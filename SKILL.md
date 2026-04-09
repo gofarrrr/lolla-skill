@@ -353,4 +353,4 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | `references/tendency-catalog.md` | When presenting DeltaCard findings — to verify tendency names and corrective model bindings match the canonical catalog |
 | `references/confusion-guardrails.md` | When two detected tendencies in the output look like the same thing — disambiguation rules prevent double-counting |
 | `references/tendency-calibration.md` | When a detection feels marginal or the user questions a finding — contains detection boundaries and threshold guidance per tendency |
-| `references/how-it-works.md` | When the user asks "how does this work", "what just happened", or about the architecture — full technical reference including research foundations, step-by-step pipeline flow, and knowledge substrate |
+| `HOW_IT_WORKS.md` (repo root) | When the user asks "how does this work", "what just happened", or about the architecture — full technical reference including research foundations, step-by-step pipeline flow, and knowledge substrate |

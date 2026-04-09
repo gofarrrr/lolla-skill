@@ -1,19 +1,31 @@
 # Lolla
 
-A reasoning audit skill for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Captures your conversation, detects structural reasoning weaknesses, and returns counter-pressure from a curated substrate of 224 mental models.
+*Named after the Lollapalooza effect — Charlie Munger's term for what happens when multiple cognitive tendencies compound together to produce extreme misjudgment. That compounding is what makes reasoning failures dangerous, and what makes them detectable.*
+
+**A reasoning audit for AI conversations.**
+
+Lolla detects structural weaknesses in LLM-generated strategic advice — not by generating opinions, but by routing through a curated substrate of 224 mental models, 25 cognitive tendencies, and 1,688 relationship edges compiled from primary sources.
+
+When you ask an LLM whether to hire a VP of Sales, sign a vendor contract, or restructure your engineering org, the answer sounds confident. Lolla tells you *where that confidence is structurally fragile* — and what specific mental models challenge it.
+
+Lolla is not in the business of finding better answers. It is in the business of **being less wrong** — reintroducing the friction that LLM fluency removes, so that inconvenient tensions, missing reversal conditions, and embedded assumptions don't get smoothed out of the narrative.
 
 Three independent audit lanes:
 
-- **Structural Pressure** — detects cognitive tendencies distorting the reasoning
-- **Model Companion** — recognizes mental models active in the reasoning
-- **Frame Pressure** — audits how the question was framed
+| Lane | What it asks | Output |
+|------|-------------|--------|
+| **Structural Pressure** | Which cognitive tendencies are distorting this reasoning? | DeltaCard — tendency detections with corrective models, challenge statements, reversal triggers |
+| **Model Companion** | Which mental models are already active in this reasoning? | CompanionCheatSheet — verified model presence with failure modes, premortem questions, antagonists |
+| **Frame Pressure** | What assumptions are embedded in the question itself? | FramePressureCard — suppressed counterfactuals, mutable constraints, reframed alternative questions |
+
+Each lane produces independent, traceable findings grounded in curated knowledge — not LLM-generated commentary.
 
 ## Install
 
 1. Clone this repo:
 
 ```bash
-git clone https://github.com/your-org/lolla-skill.git
+git clone https://github.com/gofarrrr/lolla-skill.git
 ```
 
 2. Symlink into your Claude Code skills directory:
@@ -62,11 +74,12 @@ The skill captures the conversation, extracts the decision structure, and runs t
 ```
 lolla-skill/
 ├── SKILL.md              # Skill definition (Claude Code reads this)
+├── HOW_IT_WORKS.md       # Full technical reference
 ├── engine/system_b/      # Bundled pipeline engine (58 files, zero dependencies)
 ├── data/                 # Knowledge graph, curation layers, embeddings
 ├── scripts/              # Pipeline scripts called by the skill
 ├── observatory/          # Local web UI for exploring results
-├── references/           # Technical reference docs (loaded on demand)
+├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)
 └── tests/                # Test conversations
 ```
 
@@ -74,19 +87,62 @@ The engine runs entirely on Python stdlib. No virtual environment, no pip instal
 
 ## How It Works
 
-The skill is a pure orchestrator. Claude captures the conversation and calls the pipeline scripts. All semantic judgment (triage, scoring, fingerprinting, deep checks) runs through OpenRouter via calibrated prompts against the curated knowledge substrate.
+See **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)** — the full technical reference covering the problem, architecture, knowledge substrate, step-by-step pipeline flow, quality doctrine, known limitations, and cost per run.
 
-The knowledge substrate is built from 224 canonical articles on mental models, each curated across five waves: activation semantics, failure modes, relationship edges, reframing patterns, and prerequisite orderings.
+## Cost
 
-For the full technical reference, see `references/how-it-works.md`.
+A typical audit makes 8-11 OpenRouter calls against the configured model (default: `x-ai/grok-4.1-fast`). Total: ~25-35K tokens, approximately $0.03-0.05 per run. Embeddings (if enabled) add one OpenAI call (~$0.001).
 
-## Configuration
+## Inspiration and Credits
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `OPENROUTER_API_KEY` | Yes | OpenRouter API key for LLM inference |
-| `OPENAI_API_KEY` | No | Enables semantic embedding search |
-| `LOLLA_OPENROUTER_MODEL` | No | Override model (default: `x-ai/grok-4.1-fast`) |
+Lolla exists because of foundational work by others:
+
+- **Charlie Munger** — [*The Psychology of Human Misjudgment*](https://fs.blog/great-talks/psychology-human-misjudgment/) is the intellectual root. The 25 cognitive tendencies are Munger's framework, adapted for LLM-generated reasoning.
+- **Daniel Kahneman** — *Thinking, Fast and Slow* established the System 1 / System 2 framework. LLMs are extraordinary System 1 machines — fast, fluent, pattern-matching — but structurally weak at System 2: slow, deliberate, logically disciplined reasoning. Lolla is an external System 2 guardrail.
+- **Balaji Srinivasan** — His framing of AI as probabilistic (good at "middle-to-middle" generation) but needing a deterministic verification layer directly influenced our architecture: LLMs at the probabilistic edges, curated knowledge in the deterministic middle. "0% AI is slow, but 100% AI is slop" — Lolla occupies the space between, where human-curated structure disciplines LLM flexibility.
+- **Farnam Street / The Knowledge Project** — Shane Parrish's interviews and writing on mental models shaped how the 224-model substrate was selected and organized.
+- **Kenneth Cukier, Viktor Mayer-Schönberger & Francis de Véricourt** — *Framers: Human Advantage in an Age of Technology and Turmoil* directly informed Lane 3 (Frame Pressure). The thesis that framing is humanity's core cognitive advantage — and that the frame constrains the solution space before reasoning even begins — is why Lolla audits the question, not just the answer.
+- **Research foundations** — Perez et al. (2022) on sycophancy, Kadavath et al. (2022) on calibration, Turpin et al. (2023) on unfaithful reasoning, Sharma et al. (2023) on sycophancy taxonomy.
+
+### Projects That Informed Our Approach
+
+- [qmd](https://github.com/tobi/qmd) (Tobi Lutke) — Hybrid search architecture: embeddings as one layer alongside BM25 and LLM re-ranking, fused via reciprocal rank fusion. Validated our swiss cheese approach where embeddings complement LLM triage rather than replacing it.
+- [Karpathy's knowledge wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (Andrej Karpathy) — Compilation-based knowledge management: raw sources → persistent wiki artifacts with cross-references, not retrieval-based rediscovery. Directly mirrors our curation → compilation pipeline.
+- [autoresearch](https://github.com/karpathy/autoresearch) (Andrej Karpathy) — Clean separation of stable substrate from experimental layer, with documentation as a first-class programming interface.
+- [iwe](https://github.com/iwe-org/iwe) — Structured knowledge graphs from Markdown with hierarchy, polyhierarchy, and context inheritance. "Messy knowledge yields poor results." Validated our curated-Markdown-first doctrine.
+- [gstack](https://github.com/AshMartian/gstack) — Demonstrated that Claude Code skills can be comprehensive workflow systems, not just prompt snippets.
+- [superpowers](https://github.com/NickHeap2/claude-code-superpowers) — Showed how to present a skill with confidence and clear value proposition.
+- [context-engineering](https://github.com/coleam00/context-engineering) — Validated the academic-rigor approach to skill presentation and that curated knowledge substrates outperform generated content.
+- [supermemory](https://github.com/supermemoryai/supermemory) — Extraction pipeline patterns (relationship typing, deduplication, conversation capture) informed our conversation-to-CritiqueRequest extraction design.
+- [SkillsBench](https://github.com/benchflow-ai/skillsbench) — Research findings on skill effectiveness (+18.6pp for 2-3 focused modules, +16.2pp for curated knowledge, worked examples as effectiveness separator) validated our architecture choices.
+
+## Origin
+
+Lolla was built by a lawyer, not a software engineer. I'm a trained legal professional who learned agentic coding about ten months ago. I had no prior software engineering background. Everything in this project — the RAG pipeline that built the canonical articles, the curation methodology, the deterministic routing, the knowledge graph compilation, the evaluation system — I learned by needing it and building it.
+
+That background is not incidental to the design. Lawyers think about reasoning structure professionally: burden of proof, adversarial challenge, the difference between a persuasive argument and a sound one, why a confident brief can be structurally weak. Lolla audits reasoning the way a good opposing counsel reads a brief — not to disagree, but to find where the structure doesn't hold.
+
+Building this project taught me how RAG works (and where it fails), how curation differs from generation, how LLMs actually behave under structured constraints, what knowledge engineering looks like in practice, why the distinction between deterministic and probabilistic matters for trust, and what context engineering means when you're trying to make an LLM focus rather than wander. I say this not as a disclaimer but as an invitation: if I could build this starting from zero, you can contribute to it starting from here.
+
+## What's Next
+
+The system works — but more data from real runs will let us tune the deterministic routing, understand detection patterns better, and calibrate where the system is strong and where it's still rough.
+
+- **More mental models.** Domain-specific model packs — legal reasoning, medical decision-making, engineering tradeoffs — each following the same curation methodology, would make the system sharper in specialized contexts.
+- **New lanes.** The three-lane architecture is extensible. Temporal reasoning, stakeholder mapping, assumption dependency chains — each would follow the same pattern: probabilistic detection at the edges, deterministic routing in the middle.
+- **Better detection calibration.** More runs against more cases means better understanding of where each tendency's detection boundary should sit.
+- **Deeper conversation extraction.** There's more signal in conversational dynamics — how positions shift across turns, where the human pushed back and the LLM folded, where concerns were raised and then quietly dropped.
+
+## Contributing
+
+The most valuable contributions don't require deep knowledge of the codebase:
+
+- **Run the system and share findings.** Every real-world audit helps us understand detection patterns and calibration gaps.
+- **Add mental models.** Write a canonical article from primary sources, curate its activation and intervention semantics, and it enters the substrate.
+- **Write eval cases.** Professional-grade strategic scenarios with known reasoning weaknesses help us measure whether the system catches what it should.
+- **Challenge the architecture.** Read [HOW_IT_WORKS.md](HOW_IT_WORKS.md) and tell us where the design doesn't hold.
+
+This is an early-stage project built by someone who learned as he went. The architecture is sound, the knowledge substrate is real, and the system produces genuine structural pressure. But there are rough edges, unexplored directions, and decisions that deserve scrutiny from people with different expertise. That's the point of making it public.
 
 ## License
 
