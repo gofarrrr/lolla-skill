@@ -301,6 +301,32 @@ def main() -> int:
 
     serialized["revised_answer"] = revised_answer
 
+    # Decomposed run health
+    _substrate_ok = _compiled_chunk_count > 0
+    _fingerprint_ok = len(result.audit.companion_fingerprint_validated) > 0
+    _has_findings = bool(result.delta_card and result.delta_card.findings)
+    _warnings = list(result.audit.warnings)
+
+    _health_issues = []
+    if not _substrate_ok:
+        _health_issues.append("substrate_empty")
+    if not _embedding_active:
+        _health_issues.append("embeddings_off")
+    if not _fingerprint_ok and config.enable_companion:
+        _health_issues.append("no_fingerprint")
+    if _warnings:
+        _health_issues.append("pipeline_warnings")
+
+    serialized["run_health"] = {
+        "overall": "healthy" if not _health_issues else "degraded",
+        "substrate": "ok" if _substrate_ok else "empty",
+        "embeddings": "active" if _embedding_active else "off",
+        "fingerprint": "ok" if _fingerprint_ok else "empty",
+        "findings_produced": _has_findings,
+        "issues": _health_issues,
+        "warnings": _warnings,
+    }
+
     # Output
     if args.output == "summary":
         from system_b.operator_summary import (

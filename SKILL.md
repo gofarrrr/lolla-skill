@@ -165,10 +165,12 @@ Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and present three sections. **Step
 **Rules for Step 4:**
 - Present each finding, anchor, and frame element as a separate block — do not merge, reorder, or omit entries
 - Quote `specific_passage`, `challenge_statement`, `next_move`, `evidence_quote`, and chunk text verbatim from the JSON
-- Do not add first-person commentary ("I noticed...", "Here's the structural problem...") inside card sections
+- **One bridge sentence per finding is allowed** — a single sentence that connects the abstract pattern to what happened in THIS conversation. This is the readability layer. Example: "The recommendation settled without testing whether the current arrangement still earns renewal on its own terms." That's a bridge. Two or more sentences of narrative is NOT a bridge — it's editorializing.
+- **No opening paragraphs.** Do not start any card section with a paragraph summarizing the card's theme or your impression of the findings. Go straight to the first finding.
+- **No judgment words** inside card sections: "sound", "clean", "well applied", "real structural weakness", "correctly diagnosed", etc. Those belong in Step 6.
 - Do not skip reframings based on your judgment of whether they were "already explored" — present what the pipeline returned
-- Tendency names and severity ARE the headline — use the template format below
-- Framing and voice belong in Step 6, not here
+- Tendency names and severity ARE the headline — use the template format below, tendency name first
+- Framing, opinion, and voice belong in Step 6, not here
 
 ---
 
@@ -214,9 +216,14 @@ Zero detections: "No structural pressures detected."
 
 **Example:**
 > **Excessive Self-Regard — Overconfidence in Proprietary Advantage / Inversion** (Severity: high)
+>
+> The build-vs-buy analysis never questioned whether the engineering advantage is real or assumed.
+>
 > - **Pattern found:** "Our engineering team is significantly stronger than any competitor in this space"
 > - **Challenge:** Invert the build-vs-buy calculus: if the engineering team were average, would the recommendation change?
 > - **Reversal trigger:** Benchmark velocity against two comparable projects on a 90-day deliverable.
+
+The single sentence after the headline is the bridge — it tells the reader why this finding matters here. Do not add more.
 
 ---
 
@@ -226,12 +233,15 @@ For each anchor in `companion_cheat_sheet.anchors`:
 
 **[display_name]** — [executed / violated] — "[evidence quote from companion_card.detected_models]"
 
-Present attached chunks grouped by type. 7 chunk types exist (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap — see field guide). Present the curated chunk text verbatim — do not rephrase or expand. Use chunk `provenance.confidence` for your own weighting.
+One bridge sentence connecting the model to this conversation. Then present attached chunks grouped by type, using curated chunk text verbatim. 7 chunk types exist (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap — see field guide). Do not rephrase, expand, or add interpretive paragraphs between chunks. Use chunk `provenance.confidence` for your own weighting.
 
 Null or empty: "No mental models detected with structural evidence in this conversation."
 
 **Example:**
-> The assumption that past market experience transfers to this new channel hasn't been tested. Eight years in one market creates confidence, but the specific skills that worked there may not be what's needed here. *(Circle of Competence — executed: "We know this market deeply from 8 years of operating in it")*
+> **Circle of Competence** — executed — "We know this market deeply from 8 years of operating in it"
+>
+> Eight years in one market creates confidence, but the new channel hasn't been tested against that experience boundary.
+>
 > - **Where this breaks:** Circle boundaries blur when past success creates illusion of transferability
 > - **Before proceeding, ask:** What specifically falls OUTSIDE your 8 years of experience?
 > - **Productive tension:** Man-with-a-Hammer — the risk of applying familiar tools to unfamiliar problems
@@ -243,6 +253,9 @@ Null or empty: "No mental models detected with structural evidence in this conve
 For each element in `frame_pressure_card.frame_elements` (in the order they appear in the JSON):
 
 **[element_type: assumption / mutable_constraint / suppressed_counterfactual]** — [frame_pattern]
+
+One bridge sentence. Then the structured fields:
+
 - [element_text]
 - Evidence: "[evidence_quote]"
 - Fragility: [fragility_signal]
@@ -258,6 +271,9 @@ Null or empty: "Frame pressure lane did not detect material framing issues."
 
 **Example:**
 > **Assumption** — growth-as-baseline
+>
+> The baseline scenario was never stress-tested for deceleration.
+>
 > - The decision assumes continued 30% YoY growth as the baseline scenario
 > - Evidence: "Given our growth trajectory, we need infrastructure that scales"
 > - Fragility: No scenario planning for deceleration

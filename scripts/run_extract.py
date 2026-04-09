@@ -221,15 +221,26 @@ def _extract_assistant_responses(conversation_text: str) -> str:
     return "\n\n---\n\n".join(assistant_texts)
 
 
-def _validate_conversation_capture(conversation_text: str) -> list[str]:
+def _validate_conversation_capture(conversation_text: str) -> dict:
     """Check header-declared counts against actual turn markers.
 
-    Returns a list of warning strings (empty if everything is consistent).
-    This catches the case where the capture layer (Step 1) drops turns
-    silently — the root cause is in Claude's manual capture, so this is
-    symptom detection, not prevention.
+    Returns a structured dict with capture_manifest (counts) and
+    capture_health (grade + warnings).  The grade is:
+      - "good"     — header matches body, assistant turns present
+      - "degraded" — minor mismatches (<50% drop)
+      - "critical" — >50% assistant turns missing or zero assistant turns
+      - "unknown"  — no parseable header (can't validate)
     """
     import re
+
+    actual_user = len(re.findall(r"\[Turn \d+\] USER:", conversation_text))
+    actual_assistant = len(re.findall(r"\[Turn \d+\] ASSISTANT:", conversation_text))
+
+    manifest: dict = {
+        "actual_user_turns": actual_user,
+        "actual_assistant_turns": actual_assistant,
+        "char_length": len(conversation_text),
+    }
     warnings: list[str] = []
 
     # Parse header: "CONVERSATION: {N} turns, {X} user messages, {Y} assistant responses"
@@ -238,17 +249,24 @@ def _validate_conversation_capture(conversation_text: str) -> list[str]:
         conversation_text.strip(),
     )
     if not header_match:
-        # No parseable header — can't validate, not an error
-        return warnings
+        manifest["declared_turns"] = None
+        manifest["declared_user"] = None
+        manifest["declared_assistant"] = None
+        return {
+            "capture_manifest": manifest,
+            "capture_health": "unknown",
+            "capture_warnings": warnings,
+        }
 
     declared_turns = int(header_match.group(1))
     declared_user = int(header_match.group(2))
     declared_assistant = int(header_match.group(3))
 
-    # Count actual turn markers
-    actual_user = len(re.findall(r"\[Turn \d+\] USER:", conversation_text))
-    actual_assistant = len(re.findall(r"\[Turn \d+\] ASSISTANT:", conversation_text))
+    manifest["declared_turns"] = declared_turns
+    manifest["declared_user"] = declared_user
+    manifest["declared_assistant"] = declared_assistant
 
+    # Check mismatches
     if actual_user != declared_user:
         warnings.append(
             f"Capture mismatch: header declares {declared_user} user messages "
@@ -260,13 +278,28 @@ def _validate_conversation_capture(conversation_text: str) -> list[str]:
             f"Capture mismatch ({severity}): header declares {declared_assistant} "
             f"assistant responses but body contains {actual_assistant}"
         )
+
     if actual_assistant == 0 and declared_assistant > 0:
         warnings.append(
             "CRITICAL: No assistant responses in transcript — pipeline will "
             "audit only the LLM-synthesized position, not actual reasoning"
         )
 
-    return warnings
+    # Grade
+    if actual_assistant == 0 and declared_assistant > 0:
+        grade = "critical"
+    elif actual_assistant < declared_assistant * 0.5:
+        grade = "critical"
+    elif warnings:
+        grade = "degraded"
+    else:
+        grade = "good"
+
+    return {
+        "capture_manifest": manifest,
+        "capture_health": grade,
+        "capture_warnings": warnings,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -391,7 +424,10 @@ def main() -> int:
         return 1
 
     # Validate capture integrity on raw text (before truncation, before API call)
-    capture_warnings = _validate_conversation_capture(conversation_text)
+    capture_result = _validate_conversation_capture(conversation_text)
+    capture_manifest = capture_result["capture_manifest"]
+    capture_health = capture_result["capture_health"]
+    capture_warnings = capture_result["capture_warnings"]
 
     # Truncate if needed
     conversation_text = _truncate_conversation(conversation_text)
@@ -401,8 +437,7 @@ def main() -> int:
         client = load_boundary_client_from_env("openrouter")
     except Exception as exc:
         err = {"status": "error", "error": f"Failed to initialize OpenRouter client: {exc}"}
-        if capture_warnings:
-            err["capture_warnings"] = capture_warnings
+        err.update(capture_result)
         print(json.dumps(err))
         return 1
 
@@ -412,8 +447,7 @@ def main() -> int:
         payload = client.run_json(EXTRACTION_SYSTEM_PROMPT, user_prompt)
     except Exception as exc:
         err = {"status": "error", "error": f"OpenRouter call failed: {exc}"}
-        if capture_warnings:
-            err["capture_warnings"] = capture_warnings
+        err.update(capture_result)
         print(json.dumps(err))
         return 1
 
@@ -436,6 +470,28 @@ def main() -> int:
         }))
         return 1
 
+    # Validate reasoning passages are literal substrings (degrade, don't fail)
+    passages = payload.get("reasoning_passages", [])
+    if passages:
+        verified = []
+        fabricated = []
+        for p in passages:
+            if p and p in conversation_text:
+                verified.append(p)
+            else:
+                fabricated.append(p)
+        if fabricated:
+            capture_warnings.append(
+                f"Quote validation: {len(fabricated)}/{len(passages)} reasoning_passages "
+                f"are not literal substrings of the transcript"
+            )
+        payload["_quote_validation"] = {
+            "total": len(passages),
+            "verified": len(verified),
+            "fabricated": len(fabricated),
+            "fabricated_passages": fabricated,
+        }
+
     # Extract full assistant responses from conversation for richer pipeline input
     assistant_text = _extract_assistant_responses(conversation_text)
 
@@ -446,9 +502,8 @@ def main() -> int:
         "status": "ok",
         "extraction": payload,
         "critique_request": critique_request,
+        **capture_result,
     }
-    if capture_warnings:
-        output["capture_warnings"] = capture_warnings
 
     output_text = json.dumps(output, indent=2, ensure_ascii=False)
     if args.output_file:
