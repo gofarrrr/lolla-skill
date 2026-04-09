@@ -99,7 +99,7 @@ def _resolve_data_root() -> Path:
 # Result serialization
 # ---------------------------------------------------------------------------
 
-def _serialize_result(result) -> dict:
+def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_count: int = 0) -> dict:
     """Serialize PipelineResult to a JSON-compatible dict."""
     from system_b.testing_harness import delta_card_to_payload, companion_card_to_payload
 
@@ -134,6 +134,8 @@ def _serialize_result(result) -> dict:
         "triggered_tendencies": list(result.audit.triggered_tendencies),
         "boundary_call_count": len(result.audit.boundary_calls),
         "warnings": list(result.audit.warnings),
+        "embedding_swiss_cheese_active": embedding_active,
+        "compiled_substrate_chunk_count": compiled_chunk_count,
         "companion_fingerprint_raw": list(result.audit.companion_fingerprint_raw),
         "companion_fingerprint_validated": list(result.audit.companion_fingerprint_validated),
         "companion_fingerprint_dropped": list(result.audit.companion_fingerprint_dropped),
@@ -240,6 +242,12 @@ def main() -> int:
         }))
         return 1
 
+    # Capture diagnostics for audit output
+    _embedding_active = pipeline._embedding_retriever is not None
+    _compiled_chunk_count = 0
+    if pipeline._bundle_selector is not None:
+        _compiled_chunk_count = len(pipeline._bundle_selector._substrate.all_chunks())
+
     # Run pipeline
     request = CritiqueRequest(query=query, vanilla_answer=vanilla_answer)
 
@@ -253,7 +261,11 @@ def main() -> int:
         return 1
 
     # Serialize
-    serialized = _serialize_result(result)
+    serialized = _serialize_result(
+        result,
+        embedding_active=_embedding_active,
+        compiled_chunk_count=_compiled_chunk_count,
+    )
 
     # Include query and vanilla_answer in output (for Observatory)
     serialized["query"] = query

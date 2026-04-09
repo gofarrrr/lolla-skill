@@ -56,16 +56,15 @@ else
 fi
 
 # Load API keys: project .claude/lolla.env → skill .env → global ~/.config/lolla/.env
-if [ -z "$OPENROUTER_API_KEY" ] && [ -z "$LOLLA_OPENROUTER_API_KEY" ]; then
-  _ENV_FILE=""
-  _CWD_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
-  [ -n "$_CWD_ROOT" ] && [ -f "$_CWD_ROOT/.claude/lolla.env" ] && _ENV_FILE="$_CWD_ROOT/.claude/lolla.env"
-  [ -z "$_ENV_FILE" ] && [ -n "$SKILL_DIR" ] && [ -f "$SKILL_DIR/.env" ] && _ENV_FILE="$SKILL_DIR/.env"
-  [ -z "$_ENV_FILE" ] && [ -f "$HOME/.config/lolla/.env" ] && _ENV_FILE="$HOME/.config/lolla/.env"
-  if [ -n "$_ENV_FILE" ]; then
-    set -a; source "$_ENV_FILE" 2>/dev/null; set +a
-    echo "ENV: $_ENV_FILE"
-  fi
+# Always load so ALL keys (OPENROUTER + OPENAI) are available
+_ENV_FILE=""
+_CWD_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+[ -n "$_CWD_ROOT" ] && [ -f "$_CWD_ROOT/.claude/lolla.env" ] && _ENV_FILE="$_CWD_ROOT/.claude/lolla.env"
+[ -z "$_ENV_FILE" ] && [ -n "$SKILL_DIR" ] && [ -f "$SKILL_DIR/.env" ] && _ENV_FILE="$SKILL_DIR/.env"
+[ -z "$_ENV_FILE" ] && [ -f "$HOME/.config/lolla/.env" ] && _ENV_FILE="$HOME/.config/lolla/.env"
+if [ -n "$_ENV_FILE" ]; then
+  set -a; source "$_ENV_FILE" 2>/dev/null; set +a
+  echo "ENV: $_ENV_FILE"
 fi
 
 # Check API keys
@@ -73,6 +72,12 @@ if [ -z "$OPENROUTER_API_KEY" ] && [ -z "$LOLLA_OPENROUTER_API_KEY" ]; then
   echo "FATAL: Set OPENROUTER_API_KEY. Run: mkdir -p ~/.config/lolla && echo 'OPENROUTER_API_KEY=your-key' > ~/.config/lolla/.env"
 else
   echo "OPENROUTER: configured"
+fi
+
+if [ -z "$OPENAI_API_KEY" ]; then
+  echo "WARNING: OPENAI_API_KEY not set — embeddings layer will be disabled. Add it to your .env for full accuracy."
+else
+  echo "OPENAI: configured"
 fi
 
 # Generate run ID (timestamp) for unique temp filenames
