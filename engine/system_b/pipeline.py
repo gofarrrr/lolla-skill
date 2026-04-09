@@ -75,6 +75,30 @@ from .stress_pilot_bridge import StressPilotBridge, StressPilotBridgeResult
 from .simple_pain_denial_deep_check_packet_adapter import (
     map_simple_pain_denial_result_to_subpattern,
 )
+from .curiosity_deep_check_packet_adapter import (
+    map_curiosity_result_to_subpattern,
+)
+from .twaddle_deep_check_packet_adapter import (
+    map_twaddle_result_to_subpattern,
+)
+from .use_it_or_lose_it_deep_check_packet_adapter import (
+    map_use_it_or_lose_it_result_to_subpattern,
+)
+from .lollapalooza_deep_check_packet_adapter import (
+    map_lollapalooza_result_to_subpattern,
+)
+from .doubt_avoidance_deep_check_packet_adapter import (
+    map_doubt_avoidance_result_to_subpattern,
+)
+from .stress_deep_check_packet_adapter import (
+    map_stress_result_to_subpattern,
+)
+from .social_proof_deep_check_packet_adapter import (
+    map_social_proof_result_to_subpattern,
+)
+from .reason_respecting_deep_check_packet_adapter import (
+    map_reason_respecting_result_to_subpattern,
+)
 from .tendency_catalog import TendencyCatalog
 from .triage import TriageScore, parse_pass1_scores
 
@@ -1626,6 +1650,97 @@ def _normalize_trusted_bundle_subpattern_id(
                 "slow-drift-under-registration-threshold",
                 "deal-size-over-absolute-risk",
                 "prestige-frame-distortion",
+            }:
+                return mapped_subpattern
+            return "general"
+        return "general"
+    if normalized_tendency_id == "curiosity-tendency":
+        if deep_result is not None:
+            mapped_subpattern = map_curiosity_result_to_subpattern(deep_result)
+            if mapped_subpattern in {
+                "shallow-first-answer-accepted",
+                "inquiry-suppressed-for-momentum",
+                "missing-process-self-audit",
+            }:
+                return mapped_subpattern
+            return "general"
+        return "general"
+    if normalized_tendency_id == "twaddle-tendency":
+        if deep_result is not None:
+            mapped_subpattern = map_twaddle_result_to_subpattern(deep_result)
+            if mapped_subpattern in {
+                "procedural-noise-crowds-substance",
+                "effort-spread-not-concentrated",
+                "jargon-masking-shallow-analysis",
+            }:
+                return mapped_subpattern
+            return "general"
+        return "general"
+    if normalized_tendency_id == "use-it-or-lose-it-tendency":
+        if deep_result is not None:
+            mapped_subpattern = map_use_it_or_lose_it_result_to_subpattern(deep_result)
+            if mapped_subpattern in {
+                "stale-methodology-unquestioned",
+                "lapsed-process-from-neglect",
+                "degraded-pattern-recognition",
+            }:
+                return mapped_subpattern
+            return "general"
+        return "general"
+    if normalized_tendency_id == "lollapalooza-tendency":
+        if deep_result is not None:
+            mapped_subpattern = map_lollapalooza_result_to_subpattern(deep_result)
+            if mapped_subpattern in {
+                "undiagnosed-tendency-compounding",
+                "cascade-effects-treated-in-isolation",
+                "missing-structural-firebreak",
+            }:
+                return mapped_subpattern
+            return "general"
+        return "general"
+    if normalized_tendency_id == "doubt-avoidance-tendency":
+        if deep_result is not None:
+            mapped_subpattern = map_doubt_avoidance_result_to_subpattern(deep_result)
+            if mapped_subpattern in {
+                "forced-closure-under-pressure",
+                "unknowns-demoted-to-keep-motion",
+                "option-set-collapse",
+                "counterargument-window-skipped",
+            }:
+                return mapped_subpattern
+            return "general"
+        return "general"
+    if normalized_tendency_id == "stress-influence-tendency":
+        if deep_result is not None:
+            mapped_subpattern = map_stress_result_to_subpattern(deep_result)
+            if mapped_subpattern in {
+                "deadline-driven-shortcutting",
+                "load-collapse-and-omission",
+                "feedback-threat-hijack",
+                "challenge-beyond-capacity",
+            }:
+                return mapped_subpattern
+            return "general"
+        return "general"
+    if normalized_tendency_id == "social-proof-tendency":
+        if deep_result is not None:
+            mapped_subpattern = map_social_proof_result_to_subpattern(deep_result)
+            if mapped_subpattern in {
+                "borrowed-consensus-as-proof",
+                "stress-amplified-herd-following",
+                "inaction-as-consensus-signal",
+                "contagious-normalization",
+            }:
+                return mapped_subpattern
+            return "general"
+        return "general"
+    if normalized_tendency_id == "reason-respecting-tendency":
+        if deep_result is not None:
+            mapped_subpattern = map_reason_respecting_result_to_subpattern(deep_result)
+            if mapped_subpattern in {
+                "narrative-closes-the-why",
+                "correlation-accepted-as-cause",
+                "shallow-first-why-stops-inquiry",
             }:
                 return mapped_subpattern
             return "general"
