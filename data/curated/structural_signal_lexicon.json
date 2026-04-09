@@ -1,0 +1,724 @@
+{
+  "version": "0.1",
+  "operators": [],
+  "stopwords": [],
+  "tendencies": {
+    "overoptimism-tendency": {
+      "subpatterns": {
+        "missing-denominator": {
+          "signal_tags": [
+            "inside-view-only",
+            "no-reference-class",
+            "missing-base-rate"
+          ],
+          "cue_phrases": [
+            "reference class",
+            "failure rate",
+            "baseline",
+            "inside view"
+          ]
+        },
+        "missing-reversal-condition": {
+          "signal_tags": [
+            "no-stop-rule",
+            "missing-reversal-trigger",
+            "commit-before-thresholds"
+          ],
+          "cue_phrases": [
+            "reversal trigger",
+            "stop-loss",
+            "threshold",
+            "abandoning"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "general-overoptimism"
+          ],
+          "cue_phrases": [
+            "upside",
+            "downside",
+            "failure path",
+            "reversal trigger"
+          ]
+        }
+      }
+    },
+    "stress-influence-tendency": {
+      "subpatterns": {
+        "deadline-driven-shortcutting": {
+          "signal_tags": [
+            "deadline-pressure",
+            "review-collapse"
+          ],
+          "cue_phrases": [
+            "deadline",
+            "quota",
+            "competing offer",
+            "rush",
+            "shortcut"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "general-stress",
+            "omission-risk"
+          ],
+          "cue_phrases": [
+            "stress",
+            "pressure",
+            "threat",
+            "urgency"
+          ]
+        }
+      }
+    },
+    "authority-misinfluence-tendency": {
+      "subpatterns": {
+        "prestige-cue-substitution": {
+          "signal_tags": [
+            "prestige-as-proof",
+            "credential-halo"
+          ],
+          "cue_phrases": [
+            "title",
+            "referral",
+            "brand",
+            "prestige"
+          ]
+        },
+        "authority-overrides-protocol": {
+          "signal_tags": [
+            "rank-bypasses-control",
+            "challenge-rights-suppressed"
+          ],
+          "cue_phrases": [
+            "protocol",
+            "exception",
+            "urgency",
+            "senior"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "general-authority"
+          ],
+          "cue_phrases": [
+            "authority",
+            "rank",
+            "expertise",
+            "proof"
+          ]
+        }
+      }
+    },
+    "doubt-avoidance-tendency": {
+      "subpatterns": {
+        "forced-closure-under-pressure": {
+          "signal_tags": [
+            "fast-yes-under-pressure",
+            "uncertainty-collapsed"
+          ],
+          "cue_phrases": [
+            "immediate expansion",
+            "move quickly",
+            "decide now",
+            "lock it in"
+          ]
+        },
+        "unknowns-demoted-to-keep-motion": {
+          "signal_tags": [
+            "unknowns-demoted",
+            "motion-over-uncertainty"
+          ],
+          "cue_phrases": [
+            "secondary details",
+            "paperwork later",
+            "terms can follow",
+            "keep momentum"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "general-doubt-avoidance"
+          ],
+          "cue_phrases": [
+            "remove uncertainty",
+            "rush to decision",
+            "fast commitment"
+          ]
+        }
+      }
+    },
+    "availability-misweighing-tendency": {
+      "subpatterns": {
+        "vivid-proof-substitution": {
+          "signal_tags": [
+            "salient-proof",
+            "missing-reference-class"
+          ],
+          "cue_phrases": [
+            "vivid",
+            "recent",
+            "salient",
+            "easy to recall"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "general-availability"
+          ],
+          "cue_phrases": [
+            "salient evidence",
+            "what is easiest to notice"
+          ]
+        }
+      }
+    },
+    "inconsistency-avoidance-tendency": {
+      "subpatterns": {
+        "status-quo-protection": {
+          "signal_tags": [
+            "habit-lock-in",
+            "familiarity-as-proof"
+          ],
+          "cue_phrases": [
+            "familiar environment",
+            "proven vendor",
+            "stable choice",
+            "avoid disruption"
+          ]
+        },
+        "commitment-before-resolution": {
+          "signal_tags": [
+            "unresolved-terms-demoted",
+            "commitment-carries-plan"
+          ],
+          "cue_phrases": [
+            "secondary",
+            "already signaled intent",
+            "remaining terms",
+            "delay looks inconsistent"
+          ]
+        },
+        "escalation-of-prior-design": {
+          "signal_tags": [
+            "redesign-lock-in",
+            "scale-before-rethink"
+          ],
+          "cue_phrases": [
+            "full transition",
+            "immediate rollout",
+            "scale now",
+            "commit to redesign"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "general-inconsistency-avoidance"
+          ],
+          "cue_phrases": [
+            "prior commitment",
+            "current position",
+            "hard to reverse"
+          ]
+        }
+      }
+    },
+    "deprival-superreaction-tendency": {
+      "subpatterns": {
+        "switching-loss-overweighting": {
+          "signal_tags": [
+            "continuity-loss-pressure",
+            "switching-pain-doing-the-reasoning"
+          ],
+          "cue_phrases": [
+            "migration disruption",
+            "business continuity",
+            "switching cost",
+            "current comfort"
+          ]
+        },
+        "takeaway-pain-dampening": {
+          "signal_tags": [
+            "takeaway-softening",
+            "local-loss-avoidance"
+          ],
+          "cue_phrases": [
+            "grandfathering",
+            "minimize immediate friction",
+            "loyalty window",
+            "customer loss"
+          ]
+        },
+        "target-loss-escalation": {
+          "signal_tags": [
+            "target-loss-escalation",
+            "get-even-pressure"
+          ],
+          "cue_phrases": [
+            "q1 target",
+            "quarter miss",
+            "override now",
+            "recover the number"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "general-loss-pressure",
+            "threatened-loss-doing-the-reasoning"
+          ],
+          "cue_phrases": [
+            "threatened loss",
+            "fear of losing",
+            "takeaway",
+            "near miss"
+          ]
+        }
+      }
+    },
+    "simple-pain-avoiding-psychological-denial": {
+      "subpatterns": {
+        "painful-reality-reframed-as-secondary": {
+          "signal_tags": [
+            "painful-terms-demoted",
+            "comfort-story-carries-plan"
+          ],
+          "cue_phrases": [
+            "secondary",
+            "later paperwork",
+            "unresolved terms",
+            "not a blocker"
+          ]
+        },
+        "downside-softened-into-benign-story": {
+          "signal_tags": [
+            "pain-softened",
+            "comforting-reframe"
+          ],
+          "cue_phrases": [
+            "value realization",
+            "manageable friction",
+            "loyal users",
+            "short-term noise"
+          ]
+        },
+        "catastrophic-risk-normalized-as-theoretical": {
+          "signal_tags": [
+            "catastrophic-drift",
+            "theoretical-risk-relabel"
+          ],
+          "cue_phrases": [
+            "theoretical risk",
+            "unlikely damage",
+            "policy exception",
+            "production exposure"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "general-denial",
+            "reality-made-bearable"
+          ],
+          "cue_phrases": [
+            "made bearable",
+            "painful reality",
+            "comfort story",
+            "distorted facts"
+          ]
+        }
+      }
+    },
+    "influence-from-mere-association-tendency": {
+      "subpatterns": {
+        "halo-transfer-over-substance": {
+          "signal_tags": [
+            "borrowed-halo",
+            "prestige-cue-as-proof"
+          ],
+          "cue_phrases": [
+            "halo effect",
+            "tier-1 brand",
+            "tier-one market leader",
+            "game-changer"
+          ]
+        },
+        "familiarity-equals-performance": {
+          "signal_tags": [
+            "familiarity-halo",
+            "incumbent-comfort"
+          ],
+          "cue_phrases": [
+            "proven vendor",
+            "familiar environment",
+            "stable and cost-effective",
+            "incumbent"
+          ]
+        },
+        "price-quality-signal-substitution": {
+          "signal_tags": [
+            "price-quality-halo",
+            "premium-as-proof"
+          ],
+          "cue_phrases": [
+            "value realization",
+            "justify the premium",
+            "satisfaction scores",
+            "price hike"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "association-general",
+            "causation-not-proven"
+          ],
+          "cue_phrases": [
+            "superficial association",
+            "symbolic cue",
+            "halo",
+            "causal link"
+          ]
+        }
+      }
+    },
+    "excessive-self-regard-tendency": {
+      "subpatterns": {
+        "own-offering-overrated-as-uniquely-fit": {
+          "surface_forms": [
+            "uniquely positioned",
+            "perfect fit",
+            "our product is obviously right"
+          ]
+        },
+        "value-story-certainty-without-calibration": {
+          "surface_forms": [
+            "value realization",
+            "justify the premium",
+            "our framing proves the move"
+          ]
+        },
+        "impression-over-record-selection": {
+          "surface_forms": [
+            "charisma",
+            "trusted referral",
+            "strong interview impression"
+          ]
+        },
+        "creator-judgment-insulated-from-peer-check": {
+          "surface_forms": [
+            "we designed this",
+            "the team already knows",
+            "no need for outside review"
+          ]
+        },
+        "general": {
+          "surface_forms": [
+            "our view must be right",
+            "inside view",
+            "self-trusting judgment"
+          ]
+        }
+      }
+    },
+    "reward-and-punishment-superresponse-tendency": {
+      "subpatterns": {
+        "compensation-design-as-behavior-engine": {
+          "route_keywords": [
+            "commission",
+            "accelerator",
+            "uncapped",
+            "tiered volume kicker",
+            "base salary",
+            "front-loading the rewards"
+          ]
+        },
+        "reward-window-over-governance": {
+          "route_keywords": [
+            "news cycle",
+            "market valuation",
+            "credibility",
+            "rare high-leverage opportunity",
+            "appearing difficult",
+            "maximize immediate visibility"
+          ]
+        },
+        "capture-speed-over-readiness": {
+          "route_keywords": [
+            "first-mover advantage",
+            "rapid market share acquisition",
+            "moving quickly",
+            "immediate expansion",
+            "bidding war",
+            "decisive culture"
+          ]
+        },
+        "general": {
+          "route_keywords": [
+            "reward",
+            "punishment",
+            "incentive",
+            "target pressure",
+            "upside window"
+          ]
+        }
+      }
+    },
+    "kantian-fairness-tendency": {
+      "subpatterns": {
+        "reciprocal-courtesy-assumed-without-enforcement": {
+          "signal_tags": [
+            "reciprocal-courtesy",
+            "unenforced-fairness",
+            "courtesy-assumed"
+          ]
+        },
+        "fair-sharing-expected-despite-leverage-asymmetry": {
+          "signal_tags": [
+            "fair-sharing",
+            "leverage-asymmetry",
+            "outside-options"
+          ]
+        },
+        "concession-reciprocity-assumed-as-self-executing": {
+          "signal_tags": [
+            "concession",
+            "reciprocity",
+            "self-executing-fairness"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "fairness-general",
+            "power-dynamics-first"
+          ]
+        }
+      }
+    },
+    "reciprocation-tendency": {
+      "subpatterns": {
+        "vendor-favors-treated-as-decision-debt": {
+          "signal_tags": [
+            "vendor-favors",
+            "decision-debt",
+            "executive-access"
+          ]
+        },
+        "courtesy-back-assumed-after-concession": {
+          "signal_tags": [
+            "courtesy-back",
+            "loyalty-window",
+            "concession-compliance"
+          ]
+        },
+        "past-devotion-buys-current-exemption": {
+          "signal_tags": [
+            "past-devotion",
+            "sacrifice-debt",
+            "scrutiny-waived"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "reciprocation-general",
+            "delay-before-return"
+          ]
+        }
+      }
+    },
+    "liking-loving-tendency": {
+      "subpatterns": {
+        "admired-insider-devotion-over-external-check": {
+          "signal_tags": [
+            "admiration",
+            "insider-devotion",
+            "audit-softened"
+          ]
+        },
+        "relationship-goodwill-over-cost-reality": {
+          "signal_tags": [
+            "goodwill",
+            "cost-softened",
+            "loyalty-over-economics"
+          ]
+        },
+        "high-touch-affection-over-competitive-check": {
+          "signal_tags": [
+            "high-touch",
+            "partner-warmth",
+            "softened-tender"
+          ]
+        },
+        "trusted-referral-glow-over-vetting": {
+          "signal_tags": [
+            "trusted-referral",
+            "charisma",
+            "vetting-softened"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "liking-general",
+            "step-back-first"
+          ]
+        }
+      }
+    },
+    "contrast-misreaction-tendency": {
+      "subpatterns": {
+        "incumbent-relative-offset": {
+          "signal_tags": [
+            "incumbent-baseline",
+            "relative-offset-not-absolute"
+          ],
+          "cue_phrases": [
+            "likely offset by familiarity",
+            "migration disruption",
+            "incumbent baseline",
+            "absolute cost comparison"
+          ]
+        },
+        "deal-size-over-absolute-risk": {
+          "signal_tags": [
+            "absolute-risk-shrunk",
+            "adjacent-frame-dominance"
+          ],
+          "cue_phrases": [
+            "quota pressure",
+            "deal size",
+            "absolute risk",
+            "looks small by comparison"
+          ]
+        },
+        "prestige-frame-distortion": {
+          "signal_tags": [
+            "prestige-comparison-frame",
+            "relative-upside-distortion"
+          ],
+          "cue_phrases": [
+            "tier-1 brand",
+            "immediate pr momentum",
+            "prestige halo",
+            "relative upside"
+          ]
+        },
+        "slow-drift-under-registration-threshold": {
+          "signal_tags": [
+            "slow-drift",
+            "small-leak-ignored"
+          ],
+          "cue_phrases": [
+            "small leak",
+            "tiny step",
+            "cumulative drift",
+            "boiling frog"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "general-contrast",
+            "relative-frame-over-absolute"
+          ],
+          "cue_phrases": [
+            "relative frame",
+            "absolute measure",
+            "comparison frame",
+            "looks small in context"
+          ]
+        }
+      }
+    },
+    "envy-jealousy-tendency": {
+      "subpatterns": {
+        "peer-outcome-becomes-compensation-anchor": {
+          "signal_tags": [
+            "peer-package-anchor",
+            "compensation-comparison",
+            "envy"
+          ]
+        },
+        "comparative-status-gap-treated-as-emergency": {
+          "signal_tags": [
+            "status-gap",
+            "comparison-emergency",
+            "near-peer-rivalry"
+          ]
+        },
+        "rivalry-escalation-over-own-standards": {
+          "signal_tags": [
+            "rivalry-escalation",
+            "comparison-race",
+            "own-standards-displaced"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "envy-general",
+            "comparative-fixation"
+          ]
+        }
+      }
+    },
+    "disliking-hating-tendency": {
+      "subpatterns": {
+        "hostile-motive-overread-driving-switch": {
+          "signal_tags": [
+            "hostility",
+            "evil-intent-overread",
+            "switch-on-animosity"
+          ]
+        },
+        "messenger-punished-for-bad-news": {
+          "signal_tags": [
+            "bad-news-bearer",
+            "persian-messenger",
+            "message-avoidance"
+          ]
+        },
+        "disliked-presenter-vetoes-valid-option": {
+          "signal_tags": [
+            "presenter-disliked",
+            "merits-underweighted",
+            "option-vetoed"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "hostility-general",
+            "evil-intent-overread"
+          ]
+        }
+      }
+    },
+    "reason-respecting-tendency": {
+      "subpatterns": {
+        "narrative-closes-the-why": {
+          "signal_tags": [
+            "narrative-as-proof",
+            "story-substitutes-logic",
+            "coherent-but-unverified"
+          ]
+        },
+        "correlation-accepted-as-cause": {
+          "signal_tags": [
+            "correlation-as-cause",
+            "trend-as-reason",
+            "missing-mechanism"
+          ]
+        },
+        "shallow-first-why-stops-inquiry": {
+          "signal_tags": [
+            "first-why-accepted",
+            "surface-cause",
+            "inquiry-stopped-early"
+          ]
+        },
+        "general": {
+          "signal_tags": [
+            "reason-respecting-general",
+            "structural-why-needed"
+          ]
+        }
+      }
+    }
+  }
+}
