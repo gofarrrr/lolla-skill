@@ -390,6 +390,9 @@ def main() -> int:
         print(json.dumps({"status": "error", "error": "Empty conversation file"}))
         return 1
 
+    # Validate capture integrity on raw text (before truncation, before API call)
+    capture_warnings = _validate_conversation_capture(conversation_text)
+
     # Truncate if needed
     conversation_text = _truncate_conversation(conversation_text)
 
@@ -397,7 +400,10 @@ def main() -> int:
     try:
         client = load_boundary_client_from_env("openrouter")
     except Exception as exc:
-        print(json.dumps({"status": "error", "error": f"Failed to initialize OpenRouter client: {exc}"}))
+        err = {"status": "error", "error": f"Failed to initialize OpenRouter client: {exc}"}
+        if capture_warnings:
+            err["capture_warnings"] = capture_warnings
+        print(json.dumps(err))
         return 1
 
     user_prompt = EXTRACTION_USER_PROMPT.format(conversation_text=conversation_text)
@@ -405,7 +411,10 @@ def main() -> int:
     try:
         payload = client.run_json(EXTRACTION_SYSTEM_PROMPT, user_prompt)
     except Exception as exc:
-        print(json.dumps({"status": "error", "error": f"OpenRouter call failed: {exc}"}))
+        err = {"status": "error", "error": f"OpenRouter call failed: {exc}"}
+        if capture_warnings:
+            err["capture_warnings"] = capture_warnings
+        print(json.dumps(err))
         return 1
 
     # Check if strategic
@@ -429,9 +438,6 @@ def main() -> int:
 
     # Extract full assistant responses from conversation for richer pipeline input
     assistant_text = _extract_assistant_responses(conversation_text)
-
-    # Validate capture integrity — warn on header/body mismatch
-    capture_warnings = _validate_conversation_capture(conversation_text)
 
     # Map to CritiqueRequest
     critique_request = _map_to_critique_request(payload, assistant_text=assistant_text)
