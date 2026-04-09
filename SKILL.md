@@ -358,21 +358,27 @@ Bad updates:
 
 After writing your updated position in Step 6, persist it back into the pipeline result JSON so the Observatory can render it. This makes Claude's Step 6 output a first-class artifact of the run — not a transient message.
 
+Write your full Step 6 text (the "Updated Position" section — what survived, what you set aside, what shifted) to a temp file, then merge it into the result JSON:
+
 ```bash
+cat > /tmp/lolla_${LOLLA_RUN_ID}_revised.txt << 'LOLLA_REVISED_EOF'
+{paste your Step 6 updated position text here}
+LOLLA_REVISED_EOF
+
 python3 -c "
-import json, datetime
-p = '/tmp/lolla_${LOLLA_RUN_ID}_result.json'
-d = json.loads(open(p).read())
-d['revised_answer'] = '''REVISED_ANSWER_TEXT'''
+import json, datetime, pathlib
+run_id = '${LOLLA_RUN_ID}'
+result_path = f'/tmp/lolla_{run_id}_result.json'
+revised_path = f'/tmp/lolla_{run_id}_revised.txt'
+d = json.loads(pathlib.Path(result_path).read_text())
+d['revised_answer'] = pathlib.Path(revised_path).read_text().strip()
 d['revised_answer_source'] = 'claude_step6'
 d['revised_answer_present'] = True
 d['revised_answer_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-open(p, 'w').write(json.dumps(d, indent=2, ensure_ascii=False))
-print('Revised answer persisted to', p)
+pathlib.Path(result_path).write_text(json.dumps(d, indent=2, ensure_ascii=False))
+print(f'Revised answer persisted to {result_path}')
 "
 ```
-
-Replace `REVISED_ANSWER_TEXT` with your full Step 6 text (the "Updated Position" section — what survived, what you set aside, what shifted). Use triple-quoted Python string to handle newlines and apostrophes. Escape any remaining triple quotes in the text if needed.
 
 **This step is not optional.** Without it, the Observatory shows an incomplete run — three cards with no revised answer.
 
