@@ -35,16 +35,24 @@ mkdir -p ~/.claude/skills
 ln -s /path/to/lolla-skill ~/.claude/skills/lolla
 ```
 
-3. Add your OpenRouter API key (one of these options):
+3. Add your API keys (one of these locations):
 
 ```bash
 # Option A: Global config (works across all projects)
 mkdir -p ~/.config/lolla
-echo 'OPENROUTER_API_KEY=your-key-here' > ~/.config/lolla/.env
+cat > ~/.config/lolla/.env << 'EOF'
+OPENROUTER_API_KEY=your-openrouter-key-here
+OPENAI_API_KEY=your-openai-key-here  # optional — enables embedding swiss cheese layer
+EOF
 
 # Option B: Per-project (create in any project's .claude/ directory)
-echo 'OPENROUTER_API_KEY=your-key-here' > .claude/lolla.env
+cat > .claude/lolla.env << 'EOF'
+OPENROUTER_API_KEY=your-openrouter-key-here
+OPENAI_API_KEY=your-openai-key-here  # optional
+EOF
 ```
+
+Only `OPENROUTER_API_KEY` is required. `OPENAI_API_KEY` enables the embedding swiss cheese layer — a redundancy mechanism that catches tendencies the LLM triage misses (and vice versa). The system works without it, just with one fewer detection layer.
 
 4. Restart Claude Code. The `/lolla` command is now available.
 
