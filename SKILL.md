@@ -354,9 +354,31 @@ Bad updates:
 - Mentioning the audit machinery: "The pipeline found that..." / "The delta card suggests..."
 - Treating every finding as significant: performing reconsideration instead of actually reconsidering
 
+### Step 6b: Persist Revised Answer
+
+After writing your updated position in Step 6, persist it back into the pipeline result JSON so the Observatory can render it. This makes Claude's Step 6 output a first-class artifact of the run — not a transient message.
+
+```bash
+python3 -c "
+import json, datetime
+p = '/tmp/lolla_${LOLLA_RUN_ID}_result.json'
+d = json.loads(open(p).read())
+d['revised_answer'] = '''REVISED_ANSWER_TEXT'''
+d['revised_answer_source'] = 'claude_step6'
+d['revised_answer_present'] = True
+d['revised_answer_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+open(p, 'w').write(json.dumps(d, indent=2, ensure_ascii=False))
+print('Revised answer persisted to', p)
+"
+```
+
+Replace `REVISED_ANSWER_TEXT` with your full Step 6 text (the "Updated Position" section — what survived, what you set aside, what shifted). Use triple-quoted Python string to handle newlines and apostrophes. Escape any remaining triple quotes in the text if needed.
+
+**This step is not optional.** Without it, the Observatory shows an incomplete run — three cards with no revised answer.
+
 ## Completion Status
 
-After the full cycle (present cards → update position), report:
+After the full cycle (present cards → update position → persist), report:
 
 ```
 STATUS: DONE

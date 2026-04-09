@@ -182,14 +182,23 @@ def _build_case_response() -> dict:
 
     audit_trace = r.get("audit_summary")
 
-    return {
+    response = {
         "case": case_meta,
         "delta_card": delta_card,
         "companion": companion,
         "frame_pressure_card": frame_pressure_card,
         "audit_trace": audit_trace,
         "revised_answer": revised_answer,
+        "revised_answer_source": r.get("revised_answer_source"),
+        "revised_answer_present": r.get("revised_answer_present", revised_answer is not None),
     }
+
+    # Run health — surfaces capture, substrate, embeddings, fingerprint status
+    run_health = r.get("run_health")
+    if run_health:
+        response["run_health"] = run_health
+
+    return response
 
 
 class ResultHandler(SimpleHTTPRequestHandler):
