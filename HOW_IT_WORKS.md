@@ -283,6 +283,16 @@ If strategic → extracts 6 fields:
 | `original_framing` | How the human posed the problem — what was assumed fixed, what perspectives were excluded | Lane 3 (frame pressure) audits framing. If the question assumed "we must grow" and never explored "should we grow?", Lane 3 catches that. |
 | `dropped_threads` | Concerns raised but never resolved — by either party | Enriches the `query` with explicit omission signals. When triage sees "user raised X, AI never addressed it", that's tendency-detection gold. |
 
+**Capture validation and quote verification:**
+
+Before sending the conversation to OpenRouter, the extraction script validates capture integrity against the raw (pre-truncation) text:
+
+- `capture_manifest` — actual vs. declared turn counts (user, assistant) and character length
+- `capture_health` — graded `good` / `degraded` / `critical` / `unknown` (no parseable header)
+- `_quote_validation` — after extraction, each `reasoning_passages` entry is checked as a literal substring of the transcript. Fabricated quotes are flagged but don't fail the run (degrade gracefully). This catches the extraction LLM paraphrasing instead of quoting verbatim.
+
+These diagnostics surface in every output path — success, error, and not-strategic.
+
 **CritiqueRequest mapping:**
 
 The 6 extracted fields get mapped to the 2 fields the pipeline expects:
@@ -361,6 +371,17 @@ Lane 3 is most powerful on short conversations where the question itself constra
 
 **Total OpenRouter calls:** Typically 8-10 (1 extraction + 1 triage + N deep checks + 1 fingerprint + 1 verify + 1 frame extract + 1 reframe). All use the calibrated boundary client with `temperature=0.2` and `response_format=json_object`. The revision step is skipped in the skill flow — Claude produces the updated position itself in Step 6, using the full conversation context and the three cards.
 
+**Pipeline diagnostics (`run_health`):** The pipeline output includes a decomposed health status:
+
+- `overall` — `healthy` or `degraded`
+- `substrate` — `ok` if compiled chunks loaded, `empty` if bundle selector failed
+- `embeddings` — `active` or `off`
+- `fingerprint` — `ok` if companion verified at least one model, `empty` otherwise
+- `findings_produced` — whether Lane 1 produced any findings
+- `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`
+
+These diagnostics make it possible to distinguish a clean "no findings" result from a broken run that produced no findings because the substrate didn't load.
+
 ### Step 4: Present Results
 
 Claude reads the pipeline output JSON and presents three sections:
@@ -377,7 +398,7 @@ Frame elements (assumptions, mutable constraints, suppressed counterfactuals) an
 **Updated Position (Step 6):**
 After presenting the three cards, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging. Claude holds each curated chunk against the specific conversation to see if there's a live connection — some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
 
-**Critical presentation rule:** When presenting the cards, Claude voices the curated knowledge from the output as-is. It does NOT generate its own analysis, findings, or challenge statements. The curated material has been validated against source articles — Claude's generated alternatives have not. The bridge-building between general substrate knowledge and the specific conversation is where Claude adds value.
+**Presentation model — one bridge sentence per finding:** Each finding, anchor, and frame element gets one sentence that connects the abstract pattern to what happened in THIS conversation. This is the readability layer — it helps the reader absorb the finding without cross-referencing JSON. No opening paragraphs for card sections, no judgment words ("sound", "correctly diagnosed"), no multi-sentence narratives. The curated knowledge (challenge statements, failure modes, premortem questions) is presented verbatim from the pipeline output. Claude's voice and interpretation belong exclusively in Step 6 (Updated Position), not in the card rendering.
 
 ### Step 5: Observatory (Optional)
 
@@ -434,8 +455,14 @@ The skill carries its own copy of the compiled knowledge substrate:
 | `data/curation/` | 224 files | Wave 1 activation semantics per model |
 | `data/curation/intervention_semantics/` | 224 files | Wave 2 failure modes, heuristics, premortems |
 | `data/curation/relation_semantics/` | 224 files | Wave 3 relationship edge data |
+| `data/curated/subpattern_catalog.json` | 45K | Sub-pattern definitions for deep checks |
+| `data/curated/compiled_chunks.json` | 380K | Pre-compiled knowledge chunks for bundle selection |
+| `data/curated/structural_signal_lexicon.json` | 18K | Signal lexicon for trusted bundle selection |
+| `data/curated/reasoning_signals.json` | 174K | Companion lane recall fallback signals |
 
-When running inside the repo, the pipeline uses the repo's `build/` directly (which includes additional compiled artifacts like `curated/subpattern_catalog.json`). When running standalone, the pipeline uses the skill's `data/` via a symlink. The additional `build/curated/` files enable promoted bundle selection — without them, the pipeline degrades gracefully (still produces findings, just without promoted bundle enrichment).
+The `data/curated/` files are critical for `is_trusted_surface: true` findings. The bundle selector requires all three files (`subpattern_catalog.json`, `compiled_chunks.json`, `structural_signal_lexicon.json`) — if any is missing, it returns `None` and all findings fall to the generic LLM path (`is_trusted_surface: false`).
+
+When running inside the repo, the pipeline uses the repo's `build/` directly. When running standalone, the pipeline uses the skill's `data/` via a symlink (`build/` → `data/`).
 
 ---
 

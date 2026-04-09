@@ -77,7 +77,10 @@ lolla-skill/
 ├── HOW_IT_WORKS.md       # Full technical reference
 ├── engine/system_b/      # Bundled pipeline engine (58 files, zero dependencies)
 ├── data/                 # Knowledge graph, curation layers, embeddings
-├── scripts/              # Pipeline scripts called by the skill
+│   └── curated/          # Compiled substrate files (bundle selector, signal lexicon)
+├── scripts/
+│   ├── run_extract.py    # Step 2: conversation → decision structure (with capture validation)
+│   └── run_pipeline.py   # Step 3: decision structure → three-lane audit (with run health)
 ├── observatory/          # Local web UI for exploring results
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)
 └── tests/                # Test conversations
