@@ -85,6 +85,26 @@ The answers were synthesized into canonical Markdown articles, then reviewed aga
 
 The corpus includes foundational texts (Kahneman's *Thinking, Fast and Slow*, Munger's *Poor Charlie's Almanack*, Meadows' *Thinking in Systems*) alongside less obvious but high-signal sources: Henrich's *The WEIRDest People in the World* on cultural cognition defaults, Cukier et al.'s *Framers* on how framing constrains solution spaces, Simler & Hanson's *The Elephant in the Brain* on hidden motives in reasoning, and Griffiths' *The Laws of Thought* on Bayesian cognitive models. Mental models that only draw from one domain produce one-dimensional corrections — the breadth of the corpus is intentional.
 
+### How Curation Works
+
+Each wave of curation follows the same principle: an LLM reads the full canonical article for a mental model and makes holistic semantic judgments about it. This is not mechanical parsing, brittle lexical matching, or structured field extraction. The LLM reads the article the way a thoughtful person would — understanding the model's core logic, its failure modes, where it creates productive tension with other models, and what reasoning patterns it addresses.
+
+Wave 1 asks: "When should this model be selected? When is it dangerous to apply?" Wave 2 asks: "How does this model fail? What premortem questions does it raise?" Wave 3 asks: "Which other models does this one support, oppose, or create structured tension with?" Each answer is validated against the source article — not against what the LLM "thinks" the model means from training data.
+
+This methodology is critical because mechanical approaches fail on mental models. You cannot extract "failure modes of Circle of Competence" by parsing headings or matching keywords. You need to read the full article, understand that the model's deepest failure is boundary blur in adjacent domains, and write an activation context that describes that specific pattern. The LLM does the reading; the human reviews the judgment; the result enters the curated layer.
+
+The result is a knowledge substrate that contains insights the LLM doesn't have natively — not because the information is secret, but because it was synthesized from specific source material (200+ books across disciplines) and structured for a purpose (reasoning audit) that no training corpus optimizes for.
+
+### Measurement and Calibration
+
+The system has been tested and calibrated across hundreds of evaluation runs against professional-grade strategic cases. Three layers of measurement guide ongoing development:
+
+- **Process quality** — Is the machine working correctly? Detection rates, routing coverage, boundary health, cache efficiency, timing — across all three lanes. If a code change degrades tendency detection or companion verification, the metrics show it.
+- **Novelty and specificity** — Is the system saying something the vanilla answer didn't already contain? A delta card that restates what the LLM already said adds no value. Measurement tracks whether findings surface genuinely new structural pressure — challenges, tensions, and failure modes absent from the original reasoning.
+- **Downstream influence** — When the structural pressure is fed back to an LLM, does it structurally change the answer? Not "does the LLM agree with the challenge" — sycophancy makes that meaningless. Does it engage with the challenge, add conditions it previously omitted, name failure modes it previously glossed over?
+
+These measurements follow a core constraint: **evals measure the process, not declare truth.** The system cannot know whether its challenge was "right" — that depends on a future that hasn't happened yet. What it can know is whether the challenge was specific, traceable, novel, and structurally grounded. A more knowledgeable decision process is the goal, not a more correct prediction.
+
 ---
 
 ## Architecture
@@ -456,39 +476,3 @@ A typical run makes 8-10 OpenRouter calls against `x-ai/grok-4.1-fast`:
 
 Total: roughly 25-35K tokens. At Grok 4.1 Fast pricing, this is approximately $0.03-0.05 per audit. Embeddings (if enabled) add one OpenAI embedding call (~$0.001). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
 
----
-
-## The Knowledge Foundation
-
-The foundation is not the code. The foundation is the curated knowledge substrate:
-
-- 224 mental model files, each reviewed and structured from primary sources
-- 5 waves of curation (activation, intervention, relation, reframing, latticework)
-- 304 tendency→model bindings with symptom-facing activation contexts
-- 1,688 relationship edges with curated descriptions
-- Pre-computed semantic embeddings for 2,496 knowledge chunks (text-embedding-3-large, 3072d)
-- 25 cognitive tendencies with calibrated detection boundaries and confusion guardrails
-
-This substrate is not LLM-generated. It was built through a deliberate curation methodology that treats each mental model as a whole — not a bag of keywords.
-
-### How Curation Works
-
-Each wave of curation follows the same principle: an LLM reads the full canonical article for a mental model and makes holistic semantic judgments about it. This is not mechanical parsing, brittle lexical matching, or structured field extraction. The LLM reads the article the way a thoughtful person would — understanding the model's core logic, its failure modes, where it creates productive tension with other models, and what reasoning patterns it addresses.
-
-Wave 1 asks: "When should this model be selected? When is it dangerous to apply?" Wave 2 asks: "How does this model fail? What premortem questions does it raise?" Wave 3 asks: "Which other models does this one support, oppose, or create structured tension with?" Each answer is validated against the source article — not against what the LLM "thinks" the model means from training data.
-
-This methodology is critical because mechanical approaches fail on mental models. You cannot extract "failure modes of Circle of Competence" by parsing headings or matching keywords. You need to read the full article, understand that the model's deepest failure is boundary blur in adjacent domains, and write an activation context that describes that specific pattern. The LLM does the reading; the human reviews the judgment; the result enters the curated layer.
-
-The result is a knowledge substrate that contains insights the LLM doesn't have natively — not because the information is secret, but because it was synthesized from specific source material (200+ books across disciplines) and structured for a purpose (reasoning audit) that no training corpus optimizes for.
-
-### Measurement and Calibration
-
-The system has been tested and calibrated across hundreds of evaluation runs against professional-grade strategic cases. Three layers of measurement guide ongoing development:
-
-- **Process quality** — Is the machine working correctly? Detection rates, routing coverage, boundary health, cache efficiency, timing — across all three lanes. If a code change degrades tendency detection or companion verification, the metrics show it.
-- **Novelty and specificity** — Is the system saying something the vanilla answer didn't already contain? A delta card that restates what the LLM already said adds no value. Measurement tracks whether findings surface genuinely new structural pressure — challenges, tensions, and failure modes absent from the original reasoning.
-- **Downstream influence** — When the structural pressure is fed back to an LLM, does it structurally change the answer? Not "does the LLM agree with the challenge" — sycophancy makes that meaningless. Does it engage with the challenge, add conditions it previously omitted, name failure modes it previously glossed over?
-
-These measurements follow a core constraint: **evals measure the process, not declare truth.** The system cannot know whether its challenge was "right" — that depends on a future that hasn't happened yet. What it can know is whether the challenge was specific, traceable, novel, and structurally grounded. A more knowledgeable decision process is the goal, not a more correct prediction.
-
-That curation and calibration effort is the product.
