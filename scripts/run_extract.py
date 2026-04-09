@@ -221,6 +221,54 @@ def _extract_assistant_responses(conversation_text: str) -> str:
     return "\n\n---\n\n".join(assistant_texts)
 
 
+def _validate_conversation_capture(conversation_text: str) -> list[str]:
+    """Check header-declared counts against actual turn markers.
+
+    Returns a list of warning strings (empty if everything is consistent).
+    This catches the case where the capture layer (Step 1) drops turns
+    silently — the root cause is in Claude's manual capture, so this is
+    symptom detection, not prevention.
+    """
+    import re
+    warnings: list[str] = []
+
+    # Parse header: "CONVERSATION: {N} turns, {X} user messages, {Y} assistant responses"
+    header_match = re.match(
+        r"CONVERSATION:\s*(\d+)\s*turns?,\s*(\d+)\s*user\s*messages?,\s*(\d+)\s*assistant\s*responses?",
+        conversation_text.strip(),
+    )
+    if not header_match:
+        # No parseable header — can't validate, not an error
+        return warnings
+
+    declared_turns = int(header_match.group(1))
+    declared_user = int(header_match.group(2))
+    declared_assistant = int(header_match.group(3))
+
+    # Count actual turn markers
+    actual_user = len(re.findall(r"\[Turn \d+\] USER:", conversation_text))
+    actual_assistant = len(re.findall(r"\[Turn \d+\] ASSISTANT:", conversation_text))
+
+    if actual_user != declared_user:
+        warnings.append(
+            f"Capture mismatch: header declares {declared_user} user messages "
+            f"but body contains {actual_user}"
+        )
+    if actual_assistant != declared_assistant:
+        severity = "CRITICAL" if actual_assistant < declared_assistant * 0.5 else "minor"
+        warnings.append(
+            f"Capture mismatch ({severity}): header declares {declared_assistant} "
+            f"assistant responses but body contains {actual_assistant}"
+        )
+    if actual_assistant == 0 and declared_assistant > 0:
+        warnings.append(
+            "CRITICAL: No assistant responses in transcript — pipeline will "
+            "audit only the LLM-synthesized position, not actual reasoning"
+        )
+
+    return warnings
+
+
 # ---------------------------------------------------------------------------
 # CritiqueRequest mapping
 # ---------------------------------------------------------------------------
@@ -382,6 +430,9 @@ def main() -> int:
     # Extract full assistant responses from conversation for richer pipeline input
     assistant_text = _extract_assistant_responses(conversation_text)
 
+    # Validate capture integrity — warn on header/body mismatch
+    capture_warnings = _validate_conversation_capture(conversation_text)
+
     # Map to CritiqueRequest
     critique_request = _map_to_critique_request(payload, assistant_text=assistant_text)
 
@@ -390,6 +441,8 @@ def main() -> int:
         "extraction": payload,
         "critique_request": critique_request,
     }
+    if capture_warnings:
+        output["capture_warnings"] = capture_warnings
 
     output_text = json.dumps(output, indent=2, ensure_ascii=False)
     if args.output_file:
