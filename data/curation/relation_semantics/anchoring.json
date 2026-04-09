@@ -1,0 +1,55 @@
+{
+  "model_id": "anchoring",
+  "source_file": "Anchoring_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory helps anchoring work well by using familiar schemas to reduce working-memory burden during early orientation.",
+      "source_quote": "Strategic anchoring reduces cognitive load.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "narratives",
+      "rationale_text": "Narratives gives anchoring a memorable context that can orient attention before facts are unpacked in detail.",
+      "source_quote": "Stories are highly effective anchors because they lodge in memory easily and get into the brain faster than raw data or statistics.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking pushes back on anchoring by demanding that the first frame stay corrigible in the face of new evidence.",
+      "source_quote": "Anchoring is diametrically opposed to critical thinking, which demands questioning one's own biases and continually updating beliefs based on new data.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base-rates counters anchoring by replacing the inside-view frame with an outside-view reference point grounded in broader outcomes.",
+      "source_quote": "decision-making should be anchored instead to the outside view, focusing on general outcomes and external data",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "critical-thinking",
+      "tension_text": "Anchoring conflicts with critical-thinking when the first frame becomes sticky enough to block real belief revision.",
+      "source_quote": "Anchoring is diametrically opposed to critical thinking, which demands questioning one's own biases and continually updating beliefs based on new data.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on two clean allies and a strong antagonistic relationship to critical-thinking and outside-view correction.",
+    "donor_drops": [
+      "Did not preserve donor persuasion relation sprawl beyond the source-backed memory, orientation, and anti-entrenchment surface."
+    ],
+    "open_questions": [
+      "Pyramid-principle and framing are source-real allies, but they were omitted because the current graph vocabulary does not expose them as clean target ids."
+    ]
+  }
+}

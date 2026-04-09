@@ -1,0 +1,87 @@
+{
+  "model_id": "feedback-models-sbi",
+  "source_file": "Feedback_Models_Sbi_rag.md",
+  "failure_modes": [
+    {
+      "text": "Feedback can become a dressed-up judgment if the structure skips curiosity about the receiver's actual constraints.",
+      "source_quote": "Danger when the model is used as a script to deliver judgment while skipping curiosity, listening, or the receiver's actual constraints.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Lead with curiosity about the receiver's actual constraints before stating the behavior and its impact; structure that skips empathy becomes dressed-up judgment."
+    },
+    {
+      "text": "Selective framing can make the feedback look objective while quietly smuggling in a predetermined conclusion.",
+      "source_quote": "Danger when the situation is framed selectively so the structure looks objective while smuggling in a preloaded conclusion.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit the selection of evidence: check whether the behavior-impact story was assembled to discover or to confirm a predetermined conclusion."
+    },
+    {
+      "text": "A feedback process can become highly convincing but still wrong if the initial information step is incomplete or motivated.",
+      "source_quote": "If the initial data is incomplete or influenced by motivated reasoning, the structured process merely yields a highly convincing bad decision.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Verify the initial information step against observable evidence; a feedback process built on incomplete or motivated observation will be convincing but wrong."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What observable behavior am I actually pointing to, and what conclusion am I only inferring?",
+      "source_quote": "Provide concrete, specific observations of the action or approach",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What effect did this behavior have on the person, goal, or system that the receiver can recognize as real?",
+      "source_quote": "Explain the effect the action or approach has on you or the system or goal.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would a collaborative invitation sound like if I were not trying to win the argument?",
+      "source_quote": "Extend a collaboration request to address the action or approach.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Anchor feedback in specific observable behavior before naming impact or implications.",
+      "source_quote": "Provide concrete, specific observations of the action or approach",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate the machine-level process problem from the case-at-hand reaction so the conversation improves the system, not just the mood.",
+      "source_quote": "conduct the discussion at two levels: the machine level and the case-at-hand level",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Pair critique with a real invitation to collaborate so the receiver has agency in the next move.",
+      "source_quote": "invitation to collaborate",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on specific observable behavior, effect, and invited change rather than on generic feedback etiquette.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

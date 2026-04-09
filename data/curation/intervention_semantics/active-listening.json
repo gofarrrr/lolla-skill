@@ -1,0 +1,87 @@
+{
+  "model_id": "active-listening",
+  "source_file": "Active Listening_rag.md",
+  "failure_modes": [
+    {
+      "text": "A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+      "source_quote": "The Line Cook Masquerading as the Chef",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Ask 'how' and 'why' questions that probe the reasoning behind the speaker's statements, not just the conclusions they reached."
+    },
+    {
+      "text": "Teams can mistake listening for passive waiting and miss the active work needed to solve subtle mysteries in the speaker's meaning.",
+      "source_quote": "The Assumption of Passive Listening",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Treat listening as active cognitive work: paraphrase the speaker's reasoning back to them and check whether your restatement captures what they actually meant."
+    },
+    {
+      "text": "Advice and action can arrive too early, before the emotional and factual dimensions of the problem have both been understood.",
+      "source_quote": "Premature Elaboration/Action Focus",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Employ strategic silence and separate the deliberation phase from the action phase; reflect on both the factual content and the emotional dimension before responding."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+      "source_quote": "I'm gonna find out what truly matters to that person",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What do you think the other side does not get about your perspective?",
+      "source_quote": "What do you think the other side doesn’t 'get' about your perspective?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough if we act before we have gathered the real emotional and factual data?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Ask how someone thinks, not just what they think, so the reasoning mechanics become visible.",
+      "source_quote": "Don't ask people what they think; instead, ask them how they think.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use looping, reflection, and confirmation questions to prove understanding and invite correction.",
+      "source_quote": "Sounds like you are saying… Did I get that right?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Hold silence briefly after the speaker finishes so the conversation can move past the polished answer toward what really matters.",
+      "source_quote": "Hold the Silence",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on active comprehension work, anti-premature-action discipline, and looping-for-understanding behavior.",
+    "donor_drops": [
+      "Did not preserve donor communication-technique sprawl beyond the raw source's clearer listening, looping, and silence-as-probing material."
+    ],
+    "open_questions": [
+      "The first failure mode compresses the source's learning-from-experts warning so it stays reusable outside training and interviewing contexts."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on empathy, critical-thinking, authenticity, and whole-system listening."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation-bias, curse-of-knowledge, and inside-view distortion."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension block naming prisoners-dilemma, optimization-theory, and confirmation-bias."
+    ]
+  }
+}

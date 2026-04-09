@@ -1,0 +1,72 @@
+{
+  "model_id": "falsifiability",
+  "source_file": "Falsifiability_rag.md",
+  "select_when": [
+    "The team has a strong thesis and needs a disciplined way to prove it wrong before committing.",
+    "Credibility depends on stating what evidence would reverse the recommendation instead of projecting certainty.",
+    "The real risk is protecting a belief from challenge rather than discovering whether it survives challenge.",
+    "A hypothesis is already guiding analysis, so the next useful move is to define the disconfirming test rather than gather more congenial evidence."
+  ],
+  "avoid_when": [
+    "The work is still so vague or underscoped that any initial hypothesis would be decorative rather than testable.",
+    "Organizational politics make the hypothesis untouchable, so the language of falsification would only create theater instead of real reversal conditions."
+  ],
+  "input_type": "hypothesis under review",
+  "output_type": "disconfirming test design",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Focused the model on reversal conditions, disconfirming evidence, and test design rather than broad philosophy-of-science framing.",
+    "donor_drops": [
+      "Did not preserve donor rhetoric about truth-seeking cultures when the raw source already gives stronger operational testing moves.",
+      "Did not add higher-order contracts because this batch keeps Wave 4 observational only."
+    ],
+    "open_questions": [
+      "The source is explicit about rigorous testing but less explicit about typed runtime artifacts, so the input and output labels remain reviewed normalization."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file contains explicit activation bullets on thesis testing, credibility, and protected belief; review mainly compacts them into structural triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The first condition is explicit in the raw limitations section and the second is a conservative operational compression of the same organizational-resistance warning."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about hypotheses and assertions under challenge, but the compact type label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model designs disconfirming tests and reversal thresholds; the output label compresses that into an operational artifact type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Falsifiability is clearly diagnostic and metacognitive in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

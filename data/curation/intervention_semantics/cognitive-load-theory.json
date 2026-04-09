@@ -1,0 +1,87 @@
+{
+  "model_id": "cognitive-load-theory",
+  "source_file": "Cognitive_Load_Theory_rag.md",
+  "failure_modes": [
+    {
+      "text": "Fluency can be mistaken for mastery when a workflow feels easy but the operator has not really learned the underlying distinction.",
+      "source_quote": "Risk: The Illusion of Knowing (Overconfidence Bias)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test mastery under novel conditions: fluency in the routine workflow does not prove the operator understands the underlying distinctions."
+    },
+    {
+      "text": "False pattern recognition can push a novel problem into a familiar frame simply because the familiar frame is cognitively cheaper.",
+      "source_quote": "Risk: False Pattern Recognition (Availability Heuristic/Substitution Bias)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge the first frame with a second one from a different discipline; if the novel problem was shoved into a familiar bucket, cognitive cheapness won."
+    },
+    {
+      "text": "Stress and complexity can sap working memory and leave the team under-structuring the problem until bad decisions feel like the only available move.",
+      "source_quote": "Risk: Under-structuring Complex Problems (Decision Fatigue)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Reduce extraneous load by chunking and scaffolding so working memory is freed for the genuine complexity the problem requires."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which step in this simplified workflow feels clearer only because it hides the difference between two incident classes?",
+      "source_quote": "Which step in this simplified workflow feels clearer only because it hides the difference between two incident classes, and what wrong containment, escalation, or ownership move would that false clarity trigger first?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which distinction did we erase in the name of simplification, and what wrong branch or escalation move becomes more likely once that cue is gone?",
+      "source_quote": "Which distinction did we erase in the name of simplification, and what wrong branch, owner, or escalation move becomes more likely once that cue is gone?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Where does this reduced-load playbook remove the cue that tells responders to switch to a different owner, tool path, or escalation branch?",
+      "source_quote": "Where does this reduced-load playbook remove the cue that tells responders to switch to a different owner, tool path, or escalation branch, and which incident type would be misrouted because that distinction is no longer visible under pressure?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Chunk and scaffold complex material so the learner carries one small load at a time instead of the whole pile at once.",
+      "source_quote": "Chunking and Scaffolding",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use worked examples to teach the schema before forcing the learner into heavy means-ends problem solving.",
+      "source_quote": "Use of Worked Examples",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Force simplification with plain-English explanation and analogy so unnecessary load falls away.",
+      "source_quote": "The Feynman Technique (Simplification and Analogy)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is rich on overload failure modes and workload-reduction heuristics, so the chunk set stays close to those mechanisms.",
+    "donor_drops": [
+      "Did not preserve donor product-copy or pedagogy examples that widened beyond the source's actual load-management logic."
+    ],
+    "open_questions": [
+      "The premortem questions are long in the raw source and remain lightly compressed for chunk readability."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on decomposition, systems thinking, and habit formation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on curse-of-knowledge, boiling-the-ocean, and availability-style substitution."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against first-principles-thinking and optionality."
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "redundancy",
+  "source_file": "Redundancy_rag.md",
+  "select_when": [
+    "Single-point failure is unacceptable and a backup path would materially change survival or recovery quality.",
+    "Resilience, recall, or continuity matter more than lean elegance.",
+    "One broken component, missed memory, or absent viewpoint would otherwise cripple the system."
+  ],
+  "avoid_when": [
+    "Duplication is being added by habit without a clear failure mode that justifies its cost.",
+    "Repeated analysis or repeated content is creating cognitive overload instead of real protection."
+  ],
+  "input_type": "single-point-failure risk",
+  "output_type": "backup or repetition buffer",
+  "reasoning_types": [
+    "counterfactual",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused on strategic duplication that changes resilience or retention rather than on redundancy as generic extra effort.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

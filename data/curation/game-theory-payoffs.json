@@ -1,0 +1,70 @@
+{
+  "model_id": "game-theory-payoffs",
+  "source_file": "Game_Theory_Payoffs_rag.md",
+  "select_when": [
+    "A recommendation cannot be judged in isolation because its value changes materially with how a rival, partner, regulator, or counterparty responds.",
+    "The team needs to make the players, likely moves, information asymmetries, and payoff drivers explicit before choosing a move.",
+    "Commitment, threat, promise, sequencing, or signaling may change the game more than optimizing inside a fixed option set.",
+    "The next move should test whether the current strategy is truly robust against the opponent's strongest credible response."
+  ],
+  "avoid_when": [
+    "The actors are not actually playing the same game and the visible payoff model is missing the ideology, politics, or internal incentive that is really driving behavior.",
+    "Recursive strategizing is becoming more expensive than the decision warrants, so the team needs a smaller decision-relevant model rather than another layer of countermove speculation."
+  ],
+  "input_type": "strategic interaction and payoff problem",
+  "output_type": "counterparty-response game map",
+  "reasoning_types": [
+    "systems",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on explicit players, payoff structures, credible commitments, and move-response analysis rather than abstract mathematical game theory.",
+    "donor_drops": [
+      "Did not preserve broader theoretical sprawl because the raw source is stronger on concrete strategic interaction, signaling, and credible threat discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans minmax strategy and competitive simulation formats."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on counterparty response, signaling, sequencing, and explicit payoff-driver mapping."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings about fake equilibria and computational overload from over-strategizing."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on strategic interaction and payoff problems, while the typed input remains a normalized operational label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports explicit player-response and credible-commitment mapping; the output label compresses that into a reusable artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Game-theory-payoffs is strongest as systems-aware strategic diagnosis rather than topical competition advice."
+    }
+  }
+}

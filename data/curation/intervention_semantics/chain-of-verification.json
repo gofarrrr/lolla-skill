@@ -1,0 +1,87 @@
+{
+  "model_id": "chain-of-verification",
+  "source_file": "Chain_Of_Verification_rag.md",
+  "failure_modes": [
+    {
+      "text": "A flawed foundation can survive upward because teams fail to challenge weak assumptions at the earliest link.",
+      "source_quote": "Flawed Foundation",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Challenge assumptions at the earliest link: a flawed foundation will survive all later checks if the first step is treated as given."
+    },
+    {
+      "text": "Verification can turn into theater when extra checks and sign-offs create the appearance of rigor without improving truth.",
+      "source_quote": "Danger When Verification Theater Replaces Judgment: The model is misapplied when teams keep adding checks, documents, or sign-offs that create an appearance of rigor without improving the actual truth of the chain.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Tie each verification step to a decision it should change; if no check would alter the plan, the verification is theater."
+    },
+    {
+      "text": "System rigidity can appear when a sequential proof process is treated as mechanically fixed even though the work needs iteration or reset.",
+      "source_quote": "Be prepared to walk away from a solution and restart the process if refinement fails.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Allow iteration within the sequential proof process: treat verification as a living structure that adapts when evidence demands revisiting earlier steps."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which links are make-or-break enough that the whole conclusion collapses if they fail?",
+      "source_quote": "Priority is given to critical, \"make or break\" hypotheses that, if proven wrong, would collapse the entire hypothesis pyramid.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "Ask “What would you have to believe?” to reveal the necessary assumptions in a scenario.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "For projects, ask: “Is the worst case bad enough?”.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Break the main claim into smaller conditions that can be validated bottom-up before recommitting to the top-line answer.",
+      "source_quote": "The verification happens bottom-up: analyses, facts, and data are gathered to prove or disprove the elementary hypotheses, and only once these are validated can the problem solver \"climb back up the pyramid\" to confirm the leading hypothesis.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Gather just enough fact-based evidence to prove or disprove the next link instead of boiling the ocean.",
+      "source_quote": "The principle mandates gathering just enough facts to prove or disprove a hypothesis.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep the logic and data inspectable so others can audit the chain instead of trusting a conclusion by authority.",
+      "source_quote": "allowing a system to be easily examined for bias",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on make-or-break link checking, assumption surfacing, and anti-verification-theater discipline.",
+    "donor_drops": [
+      "Did not preserve donor process bureaucracy because the raw source is stronger on evidentiary chains and bottom-up validation."
+    ],
+    "open_questions": [
+      "The first failure mode uses the source's mitigation table heading plus surrounding explanation to preserve the weak-foundation risk without inventing extra ontology."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on critical thinking, outside view, and structured hypothesis work for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation-bias-adjacent premature closure and substitution of familiar frames."
+    ],
+    "structured_tensions": [
+      "The source contains rich risk and antagonist material, but it does not present an explicit structured tension block in current-vocabulary form."
+    ]
+  }
+}

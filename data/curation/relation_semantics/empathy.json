@@ -1,0 +1,56 @@
+{
+  "model_id": "empathy",
+  "source_file": "Empathy_rag.md",
+  "allies": [
+    {
+      "target_model_id": "liking-principle",
+      "rationale_text": "Liking-principle helps empathy create receptivity when the audience needs to feel understood before a message can land.",
+      "source_quote": "Empathy is the mechanism required to build an empathic bridge.",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    },
+    {
+      "target_model_id": "narratives",
+      "rationale_text": "Narratives helps empathy make another person's world concrete enough to be felt, remembered, and acted on.",
+      "source_quote": "Storytelling triggers narrative thinking mode in the brain.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias undermines empathy when assumed motivations are fitted to prior stories rather than checked against lived reality.",
+      "source_quote": "empathy conflicts with confirmation-bias (confirmation bias) when assumed motivations are read selectively to fit prior narratives.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "liking-principle",
+      "tension_text": "Empathy conflicts with liking-principle when social affinity is mistaken for accurate perspective-taking.",
+      "source_quote": "empathy vs liking-principle: empathy conflicts with liking-principle (liking principle) when social affinity is mistaken for accurate perspective-taking.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Empathy conflicts with confirmation-bias when assumed motivations are read selectively to fit prior narratives.",
+      "source_quote": "empathy vs confirmation-bias: empathy conflicts with confirmation-bias (confirmation bias) when assumed motivations are read selectively to fit prior narratives.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on one clear receptivity ally, one strong narrative ally, and two explicit current-vocabulary tension blocks.",
+    "donor_drops": [
+      "Did not preserve donor human-centered relation sprawl beyond the clean trust, story, and anti-story-fitting surface."
+    ],
+    "open_questions": [
+      "The liking-principle ally remains interpretively lighter because the strongest source block is an explicit tension against affinity being mistaken for understanding."
+    ]
+  }
+}

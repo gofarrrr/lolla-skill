@@ -1,0 +1,72 @@
+{
+  "model_id": "active-listening",
+  "source_file": "Active Listening_rag.md",
+  "select_when": [
+    "Commitment, alignment, or conflict repair depends on understanding both the factual and emotional content of what another person is saying.",
+    "A problem owner or stakeholder is giving partial information, and the next move is to uncover what truly matters to them through careful inquiry.",
+    "The team is jumping to advice or action before it has gathered valid data about motives, constraints, and tensions.",
+    "Trust depends on demonstrating comprehension clearly enough that the other person can correct, deepen, or confirm the interpretation."
+  ],
+  "avoid_when": [
+    "The conversation has already produced enough evidence for a decision or reversible experiment, and more listening would mainly postpone commitment.",
+    "The model is being treated as passive politeness instead of active work to reduce misunderstanding, ego noise, and premature solutioning."
+  ],
+  "input_type": "understanding-and-alignment problem",
+  "output_type": "validated perspective and tension read",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on valid data gathering, perspective capture, and conflict repair rather than widening it into generic communication niceness.",
+    "donor_drops": [
+      "Did not preserve donor communication-skill sprawl beyond the raw source's stronger listening, looping, and anti-premature-action material.",
+      "Did not add higher-order composition fields because this batch remains inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans negotiation, consulting, customer discovery, and conflict management."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source is explicit that the model is strongest when commitment, alignment, or conflict resolution depends on deeply understanding another person's factual and emotional reality."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The anti-patterns are explicit that listening can become passive waiting or a substitute for timely action once understanding is already sufficient."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on understanding and alignment problems, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields validated understanding and tension clarification, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is naturally diagnostic of perspective gaps and reflective about the listener's own interpretive process, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

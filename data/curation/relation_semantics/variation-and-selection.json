@@ -1,0 +1,52 @@
+{
+  "model_id": "variation-and-selection",
+  "source_file": "Variation_And_Selection_rag.md",
+  "allies": [
+    {
+      "target_model_id": "experimentation",
+      "rationale_text": "Experimentation gives variation-and-selection the real-world testing discipline needed to separate promising variants from weak ones.",
+      "source_quote": "Treating solutions as a portfolio of experiments allows real-world data to steer the subsequent direction.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base-rates keep variation-and-selection from choosing attractive variants that collapse once the selection step is checked against reference-class reality.",
+      "source_quote": "The Outside View provides the objective standard necessary for the Selection phase.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [],
+  "structured_tensions": [
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Variation-and-selection conflicts with status-quo-bias when exploration of new options is blocked by attachment to the current solution.",
+      "source_quote": "variation-and-selection vs status-quo-bias: variation-and-selection conflicts with status-quo-bias (status quo bias) when variation and Selection challenges the Status Quo Bias by encouraging exploration of new options rather than sticking to existing solutions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "commitment-and-consistency-bias",
+      "tension_text": "Variation-and-selection conflicts with commitment-and-consistency-bias when early commitments stop the team from generating or fairly selecting better alternatives.",
+      "source_quote": "variation-and-selection vs commitment-and-consistency-bias: variation-and-selection conflicts with commitment-and-consistency-bias (commitment and consistency bias) when commitment and Consistency Bias can hinder the Variation phase by discouraging deviation from initial choices, opposing the model's emphasis on exploring diverse options.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Variation-and-selection conflicts with confirmation-bias when the search space is narrowed to options that merely confirm the current belief.",
+      "source_quote": "variation-and-selection vs confirmation-bias: variation-and-selection conflicts with confirmation-bias (confirmation bias) when variation search is constrained to options that confirm existing beliefs, preventing the model from discovering superior alternatives.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Preserved the clearest experimentation and reference-class ally plus the explicit anti-status-quo / anti-confirmation tension block.",
+    "donor_drops": ["Did not preserve broader MECE and pedagogy sprawl beyond the clearest current-vocabulary seams."],
+    "open_questions": ["MECE and outside-view are source-real nearby, but the current first-order surface is cleanest around experimentation and a base-rates-safe reference-class seam."]
+  }
+}

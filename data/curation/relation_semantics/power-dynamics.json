@@ -1,0 +1,62 @@
+{
+  "model_id": "power-dynamics",
+  "source_file": "Power_Dynamics_rag.md",
+  "allies": [
+    {
+      "target_model_id": "incentives",
+      "rationale_text": "Incentives explain why nominal authority can lose to the actor controlling the operational payoff, the next move, or the real fallback lane.",
+      "source_quote": "Power Dynamics works best in combination with models that clarify incentives",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "lock-in",
+      "rationale_text": "Lock-in clarifies how integration, retraining, and dependency costs narrow the future option set and invert leverage after commitment.",
+      "source_quote": "Lock In explains how commitment changes the future option set",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "optionality",
+      "rationale_text": "Optionality strengthens power-dynamics analysis by preserving live fallback paths and reversible exits before leverage collapses.",
+      "source_quote": "preserve leverage by keeping a live fallback lane and a reversible exit path",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias distorts power-dynamics by making teams see the leverage structure they want rather than the outside option they actually have.",
+      "source_quote": "Teams often see the leverage structure they want to see",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "opportunity-cost",
+      "rationale_text": "Opportunity-cost counters power-dynamics tunnel vision by asking whether winning the negotiation is even worth pursuing relative to better alternatives.",
+      "source_quote": "over-focus on winning the negotiation instead of asking whether the game is worth playing relative to better alternatives",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Power-dynamics conflicts with confirmation-bias when a team keeps acting as if its outside option is stronger than the evidence supports.",
+      "source_quote": "A buyer keeps acting as if the supplier needs the deal more, even after capacity signals and fallback evidence say otherwise.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The retained relation surface stays close to the source's leverage lattice: incentives, lock-in, optionality, and the explicit conflict with confirmation-bias.",
+    "donor_drops": [
+      "Did not preserve broader game-theory or information-asymmetry expansion because the current vocabulary already supports a cleaner leverage surface."
+    ],
+    "open_questions": [
+      "The source also names principal-agent-problem, but the kept ally set favors the more operational leverage and reversibility neighborhood."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "evolutionary-pressure",
+  "source_file": "Evolutionary_Pressure_rag.md",
+  "failure_modes": [
+    {
+      "text": "A system can optimize for fitness under pressure while drifting away from truth, happiness, or long-term design quality.",
+      "source_quote": "selected based on maximizing survival or Darwinian fitness",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check whether the system is optimizing for fitness under pressure or for the outcome you actually want; survival and truth are not always aligned."
+    },
+    {
+      "text": "False pattern recognition reuses an old survival heuristic on a genuinely novel problem.",
+      "source_quote": "false pattern recognition",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Test old survival heuristics against the current environment; false pattern recognition reuses evolutionary shortcuts on genuinely novel problems."
+    },
+    {
+      "text": "Fatalism creeps in when people say this is how the system selects behavior and stop redesigning incentives.",
+      "source_quote": "this is how people are wired",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Redesign incentives rather than accepting selection pressure as fate; fatalism stops teams from engineering better outcomes."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is this system currently rewarding, and what behavior is it selecting against even if no one admits it?",
+      "source_quote": "what the system is rewarding, what it is selecting against",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If this plan succeeds, what second-order consequences will selection pressure create three or more steps out?",
+      "source_quote": "three, six, and twelve months down the line",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would happen if we applied a different disciplinary frame instead of the first survival story that came to mind?",
+      "source_quote": "What would happen if I applied a frame from a completely different discipline?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Package decisions and communication in a way the pressure-shaped audience can actually process.",
+      "source_quote": "simple, clear, visual, novel, and non-threatening",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Look at what survives competition, stress, and resource constraints rather than what merely sounds right in theory.",
+      "source_quote": "systems adapt around pressure, not around ideals",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use worst-case checks to keep tail-risk blindness from hiding behind base-case comfort.",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

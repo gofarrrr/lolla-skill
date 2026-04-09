@@ -1,0 +1,56 @@
+{
+  "model_id": "expertise-reversal-effect",
+  "source_file": "Expertise_Reversal_Effect_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory provides the mechanism behind expertise-reversal-effect by explaining how redundant guidance creates harmful load once expertise is high enough.",
+      "source_quote": "The Expertise Reversal Effect is a mental model rooted in cognitive science, specifically the constraints outlined by Cognitive Load Theory.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "boundaries",
+      "rationale_text": "Boundaries support expertise-reversal-effect by helping teams define where detailed guidance is still needed and where it has crossed into drag.",
+      "source_quote": "The model adds value when the system should deliberately remove supports that have become drag.",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias makes expertise-reversal-effect worse when experts keep interpreting new cases through their entrenched schema instead of adapting support to the actual situation.",
+      "source_quote": "Experts are prone to seeking information that confirms their specialized view, reinforcing their existing schemas and leading to cognitive entrenchment.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Expertise-reversal-effect conflicts with simplification when simplified explanations appropriate for novices patronize experts and block the efficient compressed reasoning they need.",
+      "source_quote": "expertise-reversal-effect conflicts with simplification (simplification) when simplified explanations appropriate for novices patronize experts and block the efficient compressed reasoning they need.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "curse-of-knowledge",
+      "tension_text": "Expertise-reversal-effect conflicts with curse-of-knowledge when adjusting communication for expertise level is undermined by the expert's inability to model what the novice does not yet know.",
+      "source_quote": "expertise-reversal-effect conflicts with curse-of-knowledge (curse of knowledge) when adjusting communication for expertise level is undermined by the expert's inability to model what the novice does not yet know.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on its CLT grounding and on expert entrenchment risk, so the file stays sparse rather than forcing a bigger relation neighborhood.",
+    "donor_drops": [
+      "Did not preserve AI-prompt or curse-of-knowledge relation sprawl where the current canonical target surface is thinner or less clean."
+    ],
+    "open_questions": [
+      "The boundaries ally is reviewed normalization built from support-fit language rather than from a named explicit ally block."
+    ]
+  }
+}

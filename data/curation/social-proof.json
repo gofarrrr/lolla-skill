@@ -1,0 +1,70 @@
+{
+  "model_id": "social-proof",
+  "source_file": "Social_Proof_rag.md",
+  "select_when": [
+    "A decision is moving quickly because adoption, consensus, or endorsement is being treated as evidence even though the underlying mechanism is hard to inspect directly.",
+    "The team needs to test whether admired adopters are actually structurally similar to the current case before borrowing their prestige.",
+    "A recommendation may be suppressing dissent because high-status approval is making the group converge too early.",
+    "The next move should separate credibility acceleration from truth by asking what causal evidence still matters even if the crowd is impressed."
+  ],
+  "avoid_when": [
+    "The main problem is already a direct evidence-quality or mechanism question and adding more social validation would only distract from the core analysis.",
+    "The audience already has context-matched proof and the real bottleneck is execution rather than deciding whether outside validation is trustworthy."
+  ],
+  "input_type": "consensus and credibility shortcut problem",
+  "output_type": "social-proof stress test",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on prestige borrowing, consensus contagion, and the difference between credibility accelerants and causal proof.",
+    "donor_drops": [
+      "Did not preserve broader persuasion sprawl because the raw source is strongest on anti-groupthink discipline and context-matched validation."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans communication and influence tactics, but the retained routing surface is narrower and more inspectable."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on uncertainty, structural similarity, prestige contagion, and the need to keep social proof from replacing evidence."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings about substituting consensus for mechanism and overusing social proof when proof is already available."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on consensus and credibility shortcuts, while the typed input remains a compact operational label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports stress-testing borrowed prestige and consensus effects; the output label compresses that into a reusable intervention artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Social proof is strongest as a diagnostic and systems-aware check on contagion, context mismatch, and evidence substitution."
+    }
+  }
+}

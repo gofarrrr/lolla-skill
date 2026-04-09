@@ -1,0 +1,70 @@
+{
+  "model_id": "metacognitive-questioning",
+  "source_file": "Metacognitive_Questioning_rag.md",
+  "select_when": [
+    "Better questions would change the path because the main constraint is weak inspection of assumptions, strategy choice, or evidence quality.",
+    "The team can produce answers quickly but still needs to explain how it knows and where the chain might be weak.",
+    "Self-monitoring could prevent drift by interrupting autopilot before the work hardens around a bad frame.",
+    "A problem needs explicit next-step questions that review variables, constraints, and reasoning quality before more analysis is added."
+  ],
+  "avoid_when": [
+    "Reflective questioning is turning into infinite deferral that postpones commitment, experimentation, or ownership.",
+    "The inquiry is widening into low-quality information gathering instead of sharpening the next concrete move."
+  ],
+  "input_type": "assumption-inspection and reasoning-drift problem",
+  "output_type": "self-audit question set",
+  "reasoning_types": [
+    "metacognitive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on self-monitoring questions that expose assumptions and reasoning drift rather than broad reflection or journaling language.",
+    "donor_drops": [
+      "Did not preserve donor self-improvement sprawl because the raw source is stronger on guided questioning, explicit next-step prompts, and anti-deferral discipline."
+    ],
+    "open_questions": [
+      "The source spans learning, consulting, and AI prompting, so the typed output compresses several practice surfaces."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The activation conditions are explicit in the raw source passages on better questions changing the path, surfacing how a team knows, and preventing drift."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from the source warnings about infinite deferral and overcomplicated inquiry."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates around assumption inspection and self-monitoring; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields explicit self-audit questions, though the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Metacognitive questioning is explicitly about thinking about thinking and checking knowledge quality, while the retained taxonomy labels stay inside the frozen Layer 2B set."
+    }
+  }
+}

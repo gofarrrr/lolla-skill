@@ -1,0 +1,87 @@
+{
+  "model_id": "sunk-cost-fallacy",
+  "source_file": "Sunk_Cost_Fallacy_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams keep going because of prior investment even when the future case no longer justifies recommitment.",
+      "source_quote": "prior investment is used to justify continued exposure",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Evaluate only the forward case: strip past investment from the analysis and ask whether the project would be funded from scratch given today's information."
+    },
+    {
+      "text": "The model fails when history is treated as a reason to continue instead of as an irrecoverable fact that should be ignored for forward choice.",
+      "source_quote": "evaluate the stock based on its future potential",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Make the exit criteria explicit before starting: define in advance what evidence would trigger abandonment, so the team cannot reinterpret sunk costs as commitment."
+    },
+    {
+      "text": "Anti-sunk-cost logic becomes reckless when it ignores switching costs, learning value, or real upside that still remains.",
+      "source_quote": "Danger When Anti-Sunk-Cost Logic Justifies Reckless Abandonment",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Check for real remaining upside before quitting: anti-sunk-cost logic should not override genuine switching costs, accumulated learning, or residual option value that still justify continuation."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Would we start again today from current facts?",
+      "source_quote": "would we start again today",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What future upside actually remains if we ignore what is already gone?",
+      "source_quote": "future potential",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What switching cost or learning value are we using as a reason to stay, and is it real or just emotionally easier than exit?",
+      "source_quote": "switching costs",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Reset the choice from current facts and future value instead of from prior investment.",
+      "source_quote": "evaluate ... based on its future potential",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Ask whether the team would willingly recommit today before treating continued exposure as rational.",
+      "source_quote": "Best when the question is whether we would start again today",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate irrecoverable cost from still-live options so exit and recommitment are judged on the future, not on shame.",
+      "source_quote": "sunk cost prevents this objective assessment",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on restart-from-today evaluation, anti-escalation, and future-oriented recommitment discipline.",
+    "donor_drops": [
+      "Did not preserve donor behavioral-econ sprawl because the raw source is stronger on reset framing and anti-legacy-justification correction."
+    ],
+    "open_questions": [
+      "The third premortem item compresses source material on switching costs and learning value so the chunk stays usable across domains."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on first-principles-thinking, optionality, and systems-thinking as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on commitment-bias, confirmation-bias, and framing distortion, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source has explicit tension blocks with commitment-bias, optionality, and confirmation-bias that cleanly map into the current target-id surface."
+    ]
+  }
+}

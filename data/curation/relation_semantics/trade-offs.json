@@ -1,0 +1,63 @@
+{
+  "model_id": "trade-offs",
+  "source_file": "Trade_Offs_rag.md",
+  "allies": [
+    {
+      "target_model_id": "prioritization",
+      "rationale_text": "Prioritization helps trade-offs turn constrained choice into explicit ranking instead of rhetorical balance.",
+      "source_quote": "Prioritization and Focus",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "opportunity-cost",
+      "rationale_text": "Opportunity-cost sharpens trade-offs by making the hidden cost of saying yes visible.",
+      "source_quote": "Best when decision quality depends on naming the hidden cost of saying yes",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps trade-offs reveal the interrelationships and feedback loops that make one compromise carry costs elsewhere.",
+      "source_quote": "This framework enables the visualization of interrelationships and feedback loops, revealing the causal links that necessitate trade-offs.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring undermines trade-offs by over-weighting the first frame or metric and obscuring better reallocations.",
+      "source_quote": "This cognitive bias causes over-focus on a single piece of information, preventing objective analysis of trade-offs.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Trade-offs conflicts with status-quo-bias when hidden opportunity costs are ignored to preserve defaults.",
+      "source_quote": "trade-offs vs status-quo-bias: trade-offs conflicts with status-quo-bias (status quo bias) when hidden opportunity costs are ignored to preserve defaults.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Trade-offs conflicts with commitment-bias when legacy priorities block reallocation after new evidence.",
+      "source_quote": "trade-offs vs commitment-bias: trade-offs conflicts with commitment-bias (commitment bias) when legacy priorities block reallocation after new evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on allocation allies and explicit conflicts with default-preserving and legacy-priority distortions, so the file preserves that surface directly.",
+    "donor_drops": [
+      "Did not preserve donor relation sprawl beyond the named prioritization, hidden-cost, and anti-default conflict surface."
+    ],
+    "open_questions": [
+      "Availability-style distortions remain source-real antagonists, but anchoring was the cleaner bounded conflict outside the explicit tension block."
+    ]
+  }
+}

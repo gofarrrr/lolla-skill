@@ -1,0 +1,87 @@
+{
+  "model_id": "incentives",
+  "source_file": "Incentives_rag.md",
+  "failure_modes": [
+    {
+      "text": "Ignoring extreme downside can make a reward scheme look acceptable until one ugly tail outcome lands.",
+      "source_quote": "Ignoring Extreme Outcomes (Base Case Bias)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Model tail outcomes explicitly before committing to a reward scheme; extreme downside can make an acceptable-looking structure dangerous."
+    },
+    {
+      "text": "Mandating solutions can fail because inducements and standards do not create real commitment by themselves.",
+      "source_quote": "The Flaw of Mandating Solutions",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check whether the incentive creates genuine commitment or merely compliance; mandated solutions without buy-in fail at implementation."
+    },
+    {
+      "text": "A lazy System 2 controller can let intuitive and emotional incentives steer the choice without real review.",
+      "source_quote": "The Lazy Controller",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require explicit review before accepting an intuitively appealing incentive; System 2 must audit what System 1 finds rewarding."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What factors are involved in the worst-case scenario, and how can we prevent them?",
+      "source_quote": "What factors are involved in the worst-case scenario, and how can we prevent them?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Does this detail or statistic genuinely help the audience make a decision, or is it merely accurate but useless?",
+      "source_quote": "Does this detail/statistic genuinely help the employee/audience make a decision, or is it merely accurate but useless?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Have we structured this engagement to confront all parties with their freedom and responsibility?",
+      "source_quote": "Have we structured this engagement to confront all parties with their freedom and responsibility?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use autonomy, mastery, and purpose when the task is heuristic or creative rather than purely algorithmic.",
+      "source_quote": "Motivation 3.0: Autonomy, Mastery, and Purpose (AMP)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Match reward structure to task type instead of using one incentive design for everything.",
+      "source_quote": "\"If-Then\" vs. \"Now That\" Rewards",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Map the real reward structure, including status signals and penalties, before judging behavior as irrational.",
+      "source_quote": "behavior looks irrational on the surface until the reward structure, status signals, penalties, or career consequences are mapped explicitly",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw file is unusually strong on explicit mitigation questions, so the file preserves those directly and keeps the heuristic layer conservative.",
+    "donor_drops": [
+      "Skipped donor overlays that tried to convert incentive content into broader relation or routing claims."
+    ],
+    "open_questions": [
+      "The source blends behavioral and management language, so the heuristic chunks are narrower than the full raw playbook."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is rich on goal setting, emotional intelligence, second-order thinking, and hypothesis discipline."
+    ],
+    "antagonists": [
+      "The raw antagonists section contains strong future relation material around motivated reasoning, linear problem solving, and Maslow's hammer."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block is present, but the local-versus-system incentive tension is rich enough for later relation work."
+    ]
+  }
+}

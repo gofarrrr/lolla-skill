@@ -1,0 +1,70 @@
+{
+  "model_id": "sunk-cost-fallacy",
+  "source_file": "Sunk_Cost_Fallacy_rag.md",
+  "select_when": [
+    "A team is persisting mainly because of prior investment, history, or identity rather than because the future economics still justify recommitment.",
+    "The real decision is whether we would start again today from current facts, not whether we can emotionally justify past effort.",
+    "A project, relationship, or investment needs to be reevaluated from prospective value instead of from already-incurred cost.",
+    "The next useful move is to separate what is irrecoverable from what still has live future upside."
+  ],
+  "avoid_when": [
+    "Anti-sunk-cost logic is being used as cover for reckless abandonment without evaluating learning value, switching costs, or remaining upside.",
+    "The team already understands the sunk cost clearly and now mainly needs execution on the chosen exit or recommitment path."
+  ],
+  "input_type": "escalation and legacy-investment problem",
+  "output_type": "future-oriented recommitment test",
+  "reasoning_types": [
+    "counterfactual",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on future-oriented recommitment testing and anti-escalation discipline rather than on generic loss language.",
+    "donor_drops": [
+      "Did not preserve donor behavioral-econ sprawl because the raw source is stronger on restart-from-today framing and anti-legacy-justification discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans finance, organizational drift, and switching-cost considerations."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on reevaluating from current facts, asking whether we would start again today, and resisting prior-investment inertia."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings that anti-sunk-cost logic can also be misused to rationalize careless exit."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on escalation driven by legacy investment, while the typed input remains a compact reviewed label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields a reset decision based on future value; the output label compresses that into an operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Sunk-cost-fallacy is strongest as counterfactual and diagnostic reevaluation, while the taxonomy labels remain normalized."
+    }
+  }
+}

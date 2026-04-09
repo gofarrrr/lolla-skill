@@ -1,0 +1,78 @@
+{
+  "model_id": "deliberate-practice",
+  "source_file": "Deliberate_Practice_rag.md",
+  "allies": [
+    {
+      "target_model_id": "circle-of-competence",
+      "rationale_text": "Circle-of-competence prevents deliberate-practice from being misapplied to problems outside one's domain — knowing your competence boundary ensures practice targets the right skill area instead of entrenching the most available framework.",
+      "source_quote": "Practice intellectual humility—acknowledging what you don't know and staying within a well-defined circle of competence. If less believable, start by adopting the role of a student.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feedback-loops",
+      "rationale_text": "Feedback-loops make deliberate-practice real by converting reps into correction, comparison, and visible improvement.",
+      "source_quote": "Deliberate Practice thrives within environments that provide constant, high-quality feedback.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking supports deliberate-practice by helping the practitioner see how sub-skills, benchmarks, and feedback conditions fit together as a capability-building system.",
+      "source_quote": "Systems Thinking and Mental Models: DP is the route to developing fluency in mental models from major academic disciplines.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "status-quo-bias",
+      "rationale_text": "Status-quo-bias turns deliberate-practice into routine repetition by preserving familiar drills after the evidence says stretch is needed.",
+      "source_quote": "deliberate-practice conflicts with status-quo-bias (status quo bias) when routine repetition replaces feedback-driven skill stretch.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "commitment-bias",
+      "rationale_text": "Commitment-bias keeps practitioners attached to ineffective drills simply because they have already invested in them.",
+      "source_quote": "deliberate-practice conflicts with commitment-bias (commitment bias) when practitioners persist with ineffective drills despite evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Deliberate-practice conflicts with status-quo-bias when routine repetition replaces feedback-driven skill stretch.",
+      "source_quote": "deliberate-practice vs status-quo-bias: deliberate-practice conflicts with status-quo-bias (status quo bias) when routine repetition replaces feedback-driven skill stretch.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Deliberate-practice conflicts with commitment-bias when practitioners persist with ineffective drills despite evidence.",
+      "source_quote": "deliberate-practice vs commitment-bias: deliberate-practice conflicts with commitment-bias (commitment bias) when practitioners persist with ineffective drills despite evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Deliberate-practice conflicts with confirmation-bias when entrenched practice reinforces an already flawed mental model rather than exposing it to corrective feedback.",
+      "source_quote": "deliberate-practice vs confirmation-bias: deliberate-practice conflicts with confirmation-bias (confirmation bias) when entrenched practice reinforces an already flawed mental model rather than exposing it to corrective feedback.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on feedback-linked practice and an explicit tension block around routine drift, sunk drills, and model entrenchment.",
+    "donor_drops": [
+      "Did not preserve donor training-program relation sprawl beyond the strongest feedback and anti-entrenchment links."
+    ],
+    "open_questions": [
+      "Circle-of-competence wired as ally (Task 4.2 sweep) — explicit in risks/mitigations section."
+    ]
+  }
+}

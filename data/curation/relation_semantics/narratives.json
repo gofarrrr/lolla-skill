@@ -1,0 +1,77 @@
+{
+  "model_id": "narratives",
+  "source_file": "Narratives_rag.md",
+  "allies": [
+    {
+      "target_model_id": "abstraction",
+      "rationale_text": "Abstraction helps narratives compress complex facts into a clear causal line without making the audience hold every detail at once.",
+      "source_quote": "turn scattered evidence into one clear line of meaning",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification helps narratives keep the core message concrete and memorable enough that people can act on it.",
+      "source_quote": "Focus on the Core and Concrete: identify the core message and eliminate any detail that does not serve the central purpose.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "signaling",
+      "rationale_text": "Signaling helps narratives communicate belief-shifting meaning in a legible form when adoption depends on identity or causal coherence.",
+      "source_quote": "Works best when adoption depends on belief shift, identity shift, or coherent sequencing rather than on dumping more disconnected facts at the audience.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "formal-reasoning",
+      "rationale_text": "Formal-reasoning conflicts with narratives when story quality outruns explicit logic and proof structure.",
+      "source_quote": "The structured rigor of methodologies like the McKinsey-pioneered MECE principle contrasts with the sequential, character-driven nature of narratives.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking resists narratives when a compelling arc starts erasing uncertainty, trade-offs, or missing evidence.",
+      "source_quote": "story coherence outruns evidence quality",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias intensifies narratives when rhetorical skill is used to defend a desired conclusion rather than test it.",
+      "source_quote": "Smart individuals can use their rhetorical skills to spin compelling narratives to persuade themselves toward a desired conclusion, rather than seeking objective truth.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "base-rates",
+      "tension_text": "Narratives conflicts with base-rates when a compelling story overrides statistical frequency data that should anchor the estimate.",
+      "source_quote": "narratives conflicts with base-rates (base rates) when a compelling story overrides statistical frequency data that should anchor the estimate.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Narratives conflicts with confirmation-bias when narrative coherence is constructed by selectively including supporting evidence and omitting disconfirming data.",
+      "source_quote": "narratives conflicts with confirmation-bias (confirmation bias) when narrative coherence is constructed by selectively including supporting evidence and omitting disconfirming data.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The retained relation surface stays conservative around meaning compression, legibility, and the risk that story quality outruns logic or proof.",
+    "donor_drops": [
+      "Did not preserve broader System 1 or backstory expansion because the current vocabulary already supports a tighter evidence-versus-arc surface."
+    ],
+    "open_questions": [
+      "The source is clearer on ally and antagonist pressure than on explicit current-vocabulary tension phrasing, so structured tensions stay omitted."
+    ]
+  }
+}

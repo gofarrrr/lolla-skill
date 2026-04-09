@@ -1,0 +1,67 @@
+{
+  "model_id": "statistical-discipline",
+  "source_file": "Statistical_Discipline_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can jump into complex models before clarifying the question or hypothesis they need to test.",
+      "source_quote": "wade prematurely into data without doing the thinking",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Start with the question, not the model: clarify what hypothesis needs testing and what decision the analysis must inform before choosing a statistical approach."
+    },
+    {
+      "text": "Statistical rigor can be faked with charts and model outputs that hide weak assumptions.",
+      "source_quote": "statistical rigor is faked rather than earned",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit assumptions behind every output: require analysts to surface and justify the key assumptions driving their model before presenting results."
+    },
+    {
+      "text": "Point estimates can hide the downside when analysts overweight the base case and underweight tails.",
+      "source_quote": "Focusing on the Mean Outcome",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Report the full distribution: show tails, confidence intervals, and sensitivity to key assumptions alongside any point estimate."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Are we solving a causal question, a forecasting question, or a simulation question?",
+      "source_quote": "understand causation or predict a future state",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe for this model structure to be the right one?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Start with simple summary statistics before building anything complicated.",
+      "source_quote": "Starting with Simple Statistics",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Frame a clear hypothesis before collecting more data or modeling.",
+      "source_quote": "Hypothesis-Driven Problem Solving",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the outside view and reference classes to discipline the inside view.",
+      "source_quote": "Outside View and Reference Class Forecasting",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ]
+}

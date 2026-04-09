@@ -1,0 +1,63 @@
+{
+  "model_id": "rationalization",
+  "source_file": "Rationalization_rag.md",
+  "allies": [
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking helps rationalization detection by challenging whether the stated reasons are evidence-backed or merely respectable cover stories.",
+      "source_quote": "the cure is to inspect the reasoning, not just admire the explanation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking helps rationalization strip away inherited story glue and return to what is actually true and causally relevant.",
+      "source_quote": "return to what is actually true before rebuilding the explanation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps rationalization by showing the broader forces and incentives that a self-protective story tends to erase.",
+      "source_quote": "story defense often hides the larger system producing the behavior",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias powers rationalization by selecting the evidence and narrative fragments that keep the desired conclusion intact.",
+      "source_quote": "the mind defends the conclusion instead of reopening it",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "intellectual-humility",
+      "tension_text": "Rationalization conflicts with intellectual-humility when post-hoc justification masquerades as reasoned analysis, preventing the genuine self-correction that humility enables.",
+      "source_quote": "rationalization conflicts with intellectual-humility (intellectual humility) when post-hoc justification masquerades as reasoned analysis, preventing the genuine self-correction that humility enables.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "tension_text": "Rationalization conflicts with first-principles-thinking when rationalization constructs plausible-sounding premises that resist decomposition back to fundamental facts.",
+      "source_quote": "rationalization conflicts with first-principles-thinking (first principles thinking) when rationalization constructs plausible-sounding premises that resist decomposition back to fundamental facts.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on anti-story-laundering support from critical, first-principles, and systems pressure plus a direct conflict with confirmation-bias.",
+    "donor_drops": [
+      "Did not preserve donor relation widening beyond the strongest current-vocabulary anti-rationalization surface."
+    ],
+    "open_questions": [
+      "Authority and status pressures are source-real, but the retained set favors the cleaner direct wording around confirmation-bias and self-justifying story cleanup."
+    ]
+  }
+}

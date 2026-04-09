@@ -1,0 +1,87 @@
+{
+  "model_id": "peter-principle",
+  "source_file": "Peter_Principle_rag.md",
+  "failure_modes": [
+    {
+      "text": "Organizations can promote excellence in one role into incompetence in the next by assuming the same skill set scales upward unchanged.",
+      "source_quote": "promoting individuals based purely on their excellence in a current role rather than their competence and specific skillset for the next role inevitably leads to incompetence at higher levels",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Evaluate promotion readiness against the demands of the target role, not the current role: design assessments that test the skills the new position actually requires."
+    },
+    {
+      "text": "Leaders can misdiagnose a role-design or support problem as an individual character flaw.",
+      "source_quote": "It helps separate incompetence, mismatch, and missing support rather than collapsing them into one judgment.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "When performance drops after promotion, diagnose the system first: check whether role design, support, training, or team structure is the bottleneck before attributing failure to the individual."
+    },
+    {
+      "text": "The label can become fatalism if nobody redesigns the role, support, or promotion criteria after naming the pattern.",
+      "source_quote": "Danger When the Diagnosis Becomes Fatalism",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "After naming the pattern, act on it: redesign the role, add coaching, create parallel career tracks, or adjust promotion criteria — the label without structural change is just fatalism."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What specific skills does this next role require that the candidate has never had to use before?",
+      "source_quote": "What are the specific skills this individual has never had to use that are essential for this new role?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If this promotion is a spectacular failure a year from now, what is more likely: bad fit, bad support, or bad role design?",
+      "source_quote": "If this promotion is a spectacular failure a year from now, what specifically was the root cause",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we rewarding visible success in the current role because it is familiar, or because it predicts success in the next one?",
+      "source_quote": "Availability Heuristic and Substitution Bias",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Assess the distinct skills of the next role directly instead of treating past excellence as sufficient proof.",
+      "source_quote": "the organization must assess the distinct skills required for each role",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use complementary team design to cover capability gaps that do not have to sink the promotion.",
+      "source_quote": "find solutions such that their weaknesses do not matter",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Frame the promotion review around future-fit capability, not only around historical reward logic.",
+      "source_quote": "rewarding past performance without validating future-fit capability",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on mismatch between past performance and future-fit capability rather than on fatalistic workplace satire.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

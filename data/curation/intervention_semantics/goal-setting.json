@@ -1,0 +1,87 @@
+{
+  "model_id": "goal-setting",
+  "source_file": "Goal_Setting_rag.md",
+  "failure_modes": [
+    {
+      "text": "Abstract mission language can sound accurate while remaining useless for frontline decisions and execution.",
+      "source_quote": "Useless Accuracy/Lack of Concreteness (The Curse of Knowledge)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test goals against frontline decisions: if the mission language cannot guide a specific day-to-day choice, it is abstract decoration."
+    },
+    {
+      "text": "Blurring goal setting with solution design can hide the real diagnosis step and lock the team into premature plans.",
+      "source_quote": "Premature Solutioning (Blurring the Steps)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate goal-setting from solution design so the diagnosis step is not hidden or skipped by premature planning."
+    },
+    {
+      "text": "Sticky goals can survive past their evidence, creating goal inertia instead of strategic adaptation.",
+      "source_quote": "Danger when goals are sticky enough to organize action but not revisited often enough to reflect changed evidence, constraints, or strategic reality.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Schedule goal reviews against current evidence; sticky goals that survive past their data create inertia instead of strategic adaptation."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "\"Is the worst case bad enough?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "\"What would you have to believe?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If your audience remembers only one thing, what should it be?",
+      "source_quote": "if your audience remembers only one thing, what should it be?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Set goals first, then diagnose problems, design plans, and execute in sequence instead of collapsing the steps together.",
+      "source_quote": "It is crucial to perform these steps one at a time and in order; for instance, when setting goals, one should only set goals and avoid thinking about how they will be achieved or what might go wrong.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use SMART goals so the objective is specific, measurable, attainable, relevant, and time-bound.",
+      "source_quote": "SMART Goals (Clarity and Measurability)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Tie low-level goals to one top-level professional goal so the system does not optimize disconnected aims.",
+      "source_quote": "The Goal Hierarchy (Strategic Alignment)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strong on concreteness, sequencing, and strategic alignment, so the chunk set stays near those operational interventions.",
+    "donor_drops": [
+      "Did not preserve donor-style motivational overlays because the raw model is more useful as an execution-governance discipline."
+    ],
+    "open_questions": [
+      "The third premortem question comes from the mitigation section's communication test and is kept because it forces concrete target clarity."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section points to metacognition, design thinking, and structured process roles as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonists section is thinner than the explicit tension block, so most conflict preservation belongs in Wave 3."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against input-vs-output-goals, commitment-bias, and confirmation-bias."
+    ]
+  }
+}

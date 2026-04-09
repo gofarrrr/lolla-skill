@@ -1,0 +1,87 @@
+{
+  "model_id": "brainstorming",
+  "source_file": "Brainstorming_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can lock onto one answer too early and never discover better options that only appear once the search space is widened.",
+      "source_quote": "Most useful when the team is stuck too early on one frame or one answer.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Enforce a minimum idea count before any evaluation begins; early convergence kills the search space that produces non-obvious options."
+    },
+    {
+      "text": "Idea generation can become fake divergence when evaluation leaks in and only confirms the group’s current direction.",
+      "source_quote": "brainstorming vs confirmation-bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate divergent and convergent phases strictly: no critique, ranking, or feasibility filtering during idea generation."
+    },
+    {
+      "text": "The first idea can anchor the session so strongly that later options only orbit around it instead of widening the possibility space.",
+      "source_quote": "brainstorming vs anchoring",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require each participant to propose at least one idea that contradicts the first proposal; explicit counter-anchoring breaks the orbit."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Are we still genuinely widening the option set, or have we already started evaluating and defending favorites?",
+      "source_quote": "Best when divergence is explicitly separated from evaluation.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What assumption is making the first idea feel like the natural reference point for everything else?",
+      "source_quote": "brainstorming vs anchoring",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What hidden alternative would matter if we forced ourselves to go beyond the current obvious set?",
+      "source_quote": "Works when idea volume is genuinely valuable because the search space is still underexplored.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate divergence from evaluation so idea generation stays open long enough to produce real alternatives.",
+      "source_quote": "Best when divergence is explicitly separated from evaluation.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Push for volume only when the search space is genuinely underexplored and hidden alternatives still matter.",
+      "source_quote": "Works when idea volume is genuinely valuable because the search space is still underexplored.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Reset the session if the first answer has already become the implicit reference point.",
+      "source_quote": "brainstorming vs anchoring",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on genuine divergence, anti-anchoring discipline, and separating option generation from evaluation.",
+    "donor_drops": [
+      "Did not preserve donor workshop-sprawl because the raw source already supports compact divergence chunks."
+    ],
+    "open_questions": [
+      "The source supports broader group-process work, but the Wave 2 surface stays on widening the option set before judgment."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on divergence-friendly exploration models."
+    ],
+    "antagonists": [
+      "The source is strongest against confirmation-bias and anchoring during generation."
+    ],
+    "structured_tensions": [
+      "The model contains explicit tensions against confirmation-bias and anchoring."
+    ]
+  }
+}

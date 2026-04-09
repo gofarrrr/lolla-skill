@@ -1,0 +1,87 @@
+{
+  "model_id": "gestalt-principles-of-perception",
+  "source_file": "Gestalt_Principles_of_Perception_rag.md",
+  "failure_modes": [
+    {
+      "text": "Observers can mistake surface grouping for explanation and stop before testing whether the apparent pattern is actually causal.",
+      "source_quote": "gestalt-principles-of-perception conflicts with representativeness-heuristic (representativeness heuristic) when surface pattern grouping is treated as causal proof.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Test whether the perceived pattern is causal: surface grouping can look like explanation without actually explaining the mechanism."
+    },
+    {
+      "text": "People can privilege the perceptual arrangement that fits prior beliefs and miss equally real counter-patterns.",
+      "source_quote": "gestalt-principles-of-perception conflicts with confirmation-bias (confirmation bias) when observers privilege perceptual arrangements that support prior beliefs.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Actively search for counter-patterns that the preferred perceptual arrangement might be hiding; confirmation bias exploits gestalt grouping."
+    },
+    {
+      "text": "A messy execution space can remain unintelligible if nobody imposes a usable whole-before-part frame.",
+      "source_quote": "The model has high leverage when people first need a coherent organizing shape in order to make sense of complexity rather than another isolated fragment.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Impose a usable whole-before-part frame on messy execution spaces; without a deliberate organizing structure, the signal stays unintelligible."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Are we seeing a real structural pattern, or only a visually satisfying grouping?",
+      "source_quote": "surface pattern grouping is treated as causal proof",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What counter-example would break the whole we think we see?",
+      "source_quote": "observers privilege perceptual arrangements that support prior beliefs",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the minimum organizing shape that would make this complexity legible without hiding important parts?",
+      "source_quote": "helping the mind see the right clusters, contrasts, and whole-before-part patterns quickly",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Start by naming the whole pattern you want the audience to perceive before layering in details.",
+      "source_quote": "Gestalt principles are strongest when perception, explanation, or design depends on helping the mind see the right clusters, contrasts, and whole-before-part patterns quickly.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use grouping, contrast, and sequence to make the intended structure visible instead of leaving the audience to infer it from fragments.",
+      "source_quote": "creating a clear, simple framework (a powerful Gestalt) is crucial",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat the first visible pattern as a hypothesis to test, not as proof.",
+      "source_quote": "surface pattern grouping is treated as causal proof",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on whole-before-part perception and organizing shape rather than broad design-history detail.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

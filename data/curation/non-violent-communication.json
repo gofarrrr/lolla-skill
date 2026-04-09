@@ -1,0 +1,72 @@
+{
+  "model_id": "non-violent-communication",
+  "source_file": "Non_Violent_Communication_rag.md",
+  "select_when": [
+    "Completion and synchronization matter more than winning an argument, and the team needs a clearer split between content and relationship data.",
+    "Hard conversations are being distorted by threat, defensiveness, or status pressure rather than by missing intelligence alone.",
+    "The next move requires directness without infringement so that truth, needs, and trade-offs can be made discussable.",
+    "A discussion needs language that expands shared understanding instead of reinforcing polluted, defensive, or adversarial framing."
+  ],
+  "avoid_when": [
+    "The conversation is being softened so much that real boundaries, trade-offs, or accountability requests never become explicit.",
+    "The model is being used as vague harmony language rather than as disciplined clarity about observation, impact, and next-step collaboration."
+  ],
+  "input_type": "high-tension communication problem",
+  "output_type": "direct-and-nonthreatening alignment frame",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on content-versus-relationship clarity, direct needs-and-observations exchange, and threat reduction rather than widening it into generic civility language.",
+    "donor_drops": [
+      "Did not preserve donor facilitation sprawl beyond the raw source's stronger directness, synchronization, and anti-defensive communication material.",
+      "Did not add higher-order composition fields because this batch remains Wave 1 to Wave 3 only."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans conflict management, consulting, negotiation, and organizational transparency."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source is explicit that the model is strongest when synchronization, directness, and relationship-aware clarity are needed in high-tension conversations."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The anti-pattern block directly warns against smoothing disagreement so much that accountability and real trade-offs disappear."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on high-tension communication problems, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields direct but nonthreatening alignment work, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is naturally diagnostic of tension and causal in how language changes outcomes, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

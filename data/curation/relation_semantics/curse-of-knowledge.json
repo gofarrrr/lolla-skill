@@ -1,0 +1,69 @@
+{
+  "model_id": "curse-of-knowledge",
+  "source_file": "Curse_of_Knowledge_rag.md",
+  "allies": [
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "The Feynman Technique is the operational antidote to the curse of knowledge — it forces the expert to translate their understanding into language accessible to a person with no prior exposure, exposing exactly where the curse was operating.",
+      "source_quote": "The Feynman Technique is the operational antidote to the curse of knowledge: it forces the expert to translate understanding into language accessible to a person with no prior exposure.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive Load Theory provides the recipient-side model that curse-of-knowledge ignores — working memory is finite, and curse-afflicted communication regularly exceeds it by delivering compressed, unfamiliar content simultaneously.",
+      "source_quote": "CLT provides the recipient-side model: working memory is finite, and expert communication regularly exceeds it by delivering too much compressed, unfamiliar content simultaneously.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "expertise-reversal-effect",
+      "rationale_text": "Expertise-reversal-effect provides a complementary lens: while curse-of-knowledge describes the expert's failure to serve novices, ERE describes how overly scaffolded instruction can backfire with experts — together they define the adaptive communication challenge.",
+      "source_quote": "ERE describes when instructional methods optimized for novices actually harm experts; CoK is the inverse failure: communication optimized for experts that fails novices.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "empathy",
+      "rationale_text": "Empathy is the disposition that, when activated, motivates the expert to genuinely attempt to model the novice's state — but the curse of knowledge structurally impairs the simulation even when the motivation is present.",
+      "source_quote": "Empathy is the motivational counterpart to the cognitive failure: CoK makes the simulation difficult; empathy makes it worth trying.",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "feynman-technique",
+      "tension_text": "Curse-of-knowledge conflicts with feynman-technique when expert fluency suppresses the deliberate reconstruction of understanding from first principles that the Feynman standard demands.",
+      "source_quote": "curse-of-knowledge vs feynman-technique: curse-of-knowledge conflicts with feynman-technique (Feynman technique) when expert fluency suppresses the deliberate reconstruction of understanding from first principles.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "tension_text": "Curse-of-knowledge conflicts with cognitive-load-theory when expert communication ignores working memory constraints by delivering compressed, jargon-dense content that exceeds novice processing capacity.",
+      "source_quote": "curse-of-knowledge vs cognitive-load-theory: curse-of-knowledge conflicts with cognitive-load-theory (cognitive load theory) when expert communication ignores working memory constraints.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "scaffolding",
+      "tension_text": "Curse-of-knowledge conflicts with scaffolding when the expert's automated knowledge makes the necessary scaffolding gaps invisible, producing instruction that begins above the learner's actual starting point.",
+      "source_quote": "curse-of-knowledge vs scaffolding: curse-of-knowledge conflicts with scaffolding (scaffolding) when the expert's automated knowledge makes the necessary scaffolding gaps invisible.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Curse-of-knowledge Wave 3 curated from the new source markdown. Key allies: feynman-technique (operational antidote), cognitive-load-theory (recipient-side model), expertise-reversal-effect (complementary lens). Key tensions: feynman-technique, cognitive-load-theory, scaffolding.",
+    "donor_drops": [],
+    "open_questions": [
+      "Empathy wired as antagonist with medium confidence — the relation is real but the directionality is subtle: empathy motivates the attempt but does not overcome the structural simulation failure."
+    ]
+  }
+}

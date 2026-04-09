@@ -1,0 +1,70 @@
+{
+  "model_id": "input-vs-output-goals",
+  "source_file": "Input_Vs_Output_Goals_rag.md",
+  "select_when": [
+    "The desired result is clear, but the team still cannot translate it into repeatable behaviors, habits, and checkpoints.",
+    "Activity metrics are abundant while the link between action and real outcome remains weak or obscured.",
+    "Process discipline is needed to reduce anxiety, improve execution, or reveal whether the current work pattern is actually moving the result."
+  ],
+  "avoid_when": [
+    "Visible effort is being rewarded regardless of whether the activity produces value.",
+    "The team is already tightly connecting process measures to outcome movement and another goal split would add bureaucracy."
+  ],
+  "input_type": "activity-outcome disconnect",
+  "output_type": "process-to-result translation",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Focused on translating desired outcomes into controllable process moves and exposing activity metrics that hide weak outcomes.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

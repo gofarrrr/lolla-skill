@@ -1,0 +1,87 @@
+{
+  "model_id": "bayesian",
+  "source_file": "Bayesian_rag.md",
+  "failure_modes": [
+    {
+      "text": "Subjective priors can make a mathematically tidy update land on a badly distorted conclusion.",
+      "source_quote": "The Risk of Subjective Priors",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Anchor to the outside view: consult external reference classes to set the prior before adjusting for case-specific details."
+    },
+    {
+      "text": "Substitution bias can smuggle in an easier but wrong model instead of the one the problem actually needs.",
+      "source_quote": "Over-reliance on Simple Models (Maslow’s Hammer)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Enforce dialectic standards: require every model choice to meet its antithesis before accepting it as the update framework."
+    },
+    {
+      "text": "False precision can make the math decorative when the prior or evidence quality has not earned the rigor.",
+      "source_quote": "Danger When the Math Becomes Decorative",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Practice intellectual humility: externalize the reasoning structure in diagrams or concept maps and verify that each input has earned its precision level."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What assumptions undergird this initial probability?",
+      "source_quote": "\"What assumptions undergird this initial probability (prior)?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe for the opposite hypothesis to be true?",
+      "source_quote": "\"What would we have to believe for the opposite hypothesis to be true?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What specific facts must be true for this plan to succeed, and how certain are we of each fact?",
+      "source_quote": "\"What specific facts must be true for this plan to succeed, and how certain are we of each fact?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Quantify the prior before collecting more evidence so later updates have a visible starting point.",
+      "source_quote": "Quantify Prior Beliefs",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Update iteratively so each posterior becomes the next prior instead of treating each new datapoint as a reset.",
+      "source_quote": "Embrace Iteration and Convergence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Anchor to the outside view and aggregated data before trusting the inside view story.",
+      "source_quote": "Anchor to the Outside View",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on prior discipline, disconfirming challenge, and anti-decorative-rigor safeguards.",
+    "donor_drops": [
+      "Did not preserve donor mathematical detail beyond the raw source's stronger intervention surface around priors, outside view, and disciplined updates."
+    ],
+    "open_questions": [
+      "The final heuristic compresses the mitigation row into an actionable chunk so it can operate alongside base-rates without duplicating that file."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is rich on scientific-method-evidence-testing and reference-class or outside-view discipline for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on confirmation-bias, fast-thinking, and substitution bias, but only the cleanest canonical ids belong in Wave 3."
+    ],
+    "structured_tensions": [
+      "The source explicitly preserves tensions against confirmation-bias and representativeness-heuristic."
+    ]
+  }
+}

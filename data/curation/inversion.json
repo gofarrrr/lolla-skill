@@ -1,0 +1,71 @@
+{
+  "model_id": "inversion",
+  "source_file": "Inversion_rag.md",
+  "select_when": [
+    "The cost of a mistake is catastrophic, making the avoidance of stupidity a far more profitable strategy than the pursuit of brilliance.",
+    "The team is planning forward without having mapped the failure landscape — paths to ruin are identifiable even when the path to success is unclear.",
+    "A plan, strategy, or assumption needs stress-testing before committing resources, and stepping from 'how do we win' to 'how do we ensure we don't lose' would limit downside risk.",
+    "First-conclusion bias is locking the team into a favored hypothesis and no one has tried to disprove it from the opposite direction."
+  ],
+  "avoid_when": [
+    "Inversion is being used as a substitute for execution — identifying what to avoid without subsequently taking positive action leads to paralysis, not progress.",
+    "The team is generating easily dismissed straw-man failure scenarios rather than genuinely uncomfortable inverse analyses that threaten the preferred plan."
+  ],
+  "input_type": "forward-only plan or assumption",
+  "output_type": "failure-path avoidance strategy",
+  "reasoning_types": [
+    "counterfactual",
+    "deductive"
+  ],
+  "curation_notes": {
+    "summary": "Focused the model on backward reasoning from failure states, anti-goal formulation, obstacle removal over force augmentation, and the incompleteness principle (inversion is half the equation, not the whole answer).",
+    "donor_drops": [
+      "Did not inflate beyond the raw source's strongest interventions: Jacobi's maxim, Munger's addition-by-subtraction, Lewin's force field inversion, and the RAF survivorship example."
+    ],
+    "open_questions": [
+      "Inversion shares significant surface area with premortem; the distinction is that inversion is the general reasoning habit while premortem is the specific team exercise that operationalizes it."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on catastrophic-cost avoidance, failure-landscape mapping, downside limitation, and anti-first-conclusion-bias applications."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Both conditions come directly from the raw source's weaknesses section: paralysis-without-action and straw-man inverse analysis."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model activates when a forward plan or assumption has not been examined from the reverse direction; the compact label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw playbook produces anti-goals, obstacle maps, and avoidance strategies; the output label compresses that into a typed avoidance artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Inversion is explicitly counterfactual (imagining failure states) and deductive (working backward from failure to causes)."
+    }
+  }
+}

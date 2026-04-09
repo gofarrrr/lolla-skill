@@ -1,0 +1,72 @@
+{
+  "model_id": "wysiati",
+  "source_file": "WYSIATI_rag.md",
+  "failure_modes": [
+    {
+      "text": "Confidence of ignorance makes less-informed decision-makers more confident than better-informed ones, because fewer contradictions and gaps allow a more coherent story to form.",
+      "source_quote": "Confidence of ignorance",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Ask what's missing before judging confidence: require the team to list information they do not have and would need to be more certain, before trusting the coherence of the current story."
+    },
+    {
+      "text": "The invisible denominator produces conclusions from a non-random sample without any awareness that the sample is incomplete — the missing cases simply do not appear.",
+      "source_quote": "The invisible denominator",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit the sample for completeness: before drawing conclusions, check whether the evidence base includes the cases that would naturally be invisible — failed attempts, silent customers, unreported errors."
+    },
+    {
+      "text": "Coherence as quality signal treats the internal consistency and narrative flow of an argument as evidence of its correctness — well-constructed wrong analyses feel more true than messy correct ones.",
+      "source_quote": "Coherence as quality signal",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate coherence from correctness: when an argument feels convincing because it is well-structured, test it against messy contradictory evidence to see if the logic survives contact with reality."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What evidence would we need to see to be confident in this conclusion — and do we know why that evidence is not in front of us?",
+      "source_quote": "Require an explicit 'what is missing?' audit before every significant conclusion",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is this conclusion well-supported, or is it well-constructed? What is the difference in this case?",
+      "source_quote": "Separate the evaluation of logical coherence from the evaluation of empirical completeness",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If the person preparing this briefing had wanted to show us a different conclusion, what would they have included that is not here?",
+      "source_quote": "In advisory or briefing contexts, explicitly ask what is not in this presentation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Before committing to any confident conclusion, explicitly audit what information is missing and whether the absence is random or structured by selection or incentive.",
+      "source_quote": "Audit the Denominator: explicitly ask 'what is not in this picture?'",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat high confidence from a coherent story as a scrutiny trigger, not a quality signal — WYSIATI predicts that the situations where confidence feels most warranted are the ones most likely to be wrong.",
+      "source_quote": "Pre-Mortem Before Confidence: when a conclusion feels certain, treat the certainty as a trigger for scrutiny",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Apply outside-view reference-class data to import evidence not in the current picture — base rates provide exactly the missing context that System 1's narrative would otherwise exclude.",
+      "source_quote": "Outside View as Gap Detection",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Wave 2 for WYSIATI focuses on the three most decision-relevant failure modes — confidence of ignorance, invisible denominator, and coherence-as-quality-signal — with audit-focused heuristics for each.",
+    "donor_drops": [],
+    "open_questions": []
+  }
+}

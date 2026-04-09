@@ -1,0 +1,56 @@
+{
+  "model_id": "desirable-difficulties",
+  "source_file": "Desirable_Difficulties_rag.md",
+  "allies": [
+    {
+      "target_model_id": "resilience",
+      "rationale_text": "Resilience supports desirable-difficulties by helping learners treat discomfort as expected strain rather than as a signal to retreat from the growth process.",
+      "source_quote": "The model aligns with building resilience, which involves adapting to stressful situations.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "deliberate-practice",
+      "rationale_text": "Deliberate-practice makes desirable-difficulties operational by turning productive challenge into structured reps that build durable transfer instead of shallow fluency.",
+      "source_quote": "To learn hard things quickly, one must focus intensely without distraction.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification becomes a drag on desirable-difficulties when reducing friction too far preserves comfort but strips away the effort needed for durable learning.",
+      "source_quote": "Most useful when fluency would otherwise be mistaken for mastery.",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Desirable-difficulties conflicts with simplification when the pursuit of productive struggle prevents adoption of genuinely simpler approaches that would achieve the same learning with less friction.",
+      "source_quote": "desirable-difficulties conflicts with simplification (simplification) when the pursuit of productive struggle prevents adoption of genuinely simpler approaches that would achieve the same learning with less friction.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "tension_text": "Desirable-difficulties conflicts with cognitive-load-theory when difficulty exceeds working memory capacity, converting a desirable challenge into unproductive overload.",
+      "source_quote": "desirable-difficulties conflicts with cognitive-load-theory (cognitive load theory) when difficulty exceeds working memory capacity, converting a desirable challenge into unproductive overload.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on productive challenge, resilience, and disciplined practice, so the file stays sparse rather than forcing weak first-order antagonists.",
+    "donor_drops": [
+      "Did not preserve broader anti-convenience or anti-distraction relation sprawl because the canonical target surface is cleaner around resilience and deliberate-practice."
+    ],
+    "open_questions": [
+      "The simplification antagonist is source-real in spirit but remains a reviewed normalization because the raw tension is expressed more as anti-false-fluency than as a direct model pair."
+    ]
+  }
+}

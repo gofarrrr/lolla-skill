@@ -1,0 +1,87 @@
+{
+  "model_id": "information-theory",
+  "source_file": "Information_Theory_rag.md",
+  "failure_modes": [
+    {
+      "text": "Signal can fail when experts compress so aggressively that they remove decision-critical nuance along with the noise.",
+      "source_quote": "The primary limitation of this model is that while it optimizes for clarity and efficiency, it is susceptible to human cognitive biases, particularly among experts.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Verify that compression has not removed decision-critical nuance; signal fails when experts strip out too much along with the noise."
+    },
+    {
+      "text": "The message can remain correct but unusable because sequencing, chunking, or framing prevents comprehension and adoption.",
+      "source_quote": "Works when the same decision is failing because of message shape, not message truth.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit sequencing, chunking, and framing: a correct but unusable message still fails if the audience cannot comprehend and adopt it."
+    },
+    {
+      "text": "Framework choice can distort the signal when the communicator lets a favorite tool define the problem instead of the problem defining the tool.",
+      "source_quote": "Allowing the tool (framework) to define the problem rather than the problem defining the tool.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Let the problem define the framework rather than letting a favorite tool define the problem; framework choice can distort the signal."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the core signal that must survive if everything nonessential is removed?",
+      "source_quote": "Best when the communicator must choose what not to say.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which part of this message is failing because of shape or sequencing rather than because the content is false?",
+      "source_quote": "Works when the same decision is failing because of message shape, not message truth.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What detail feels optional but would make the recommendation dangerously misleading if removed?",
+      "source_quote": "The main challenge is pruning, ordering, and packaging information so the core signal survives contact with limited working memory.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Prune the message until the core signal becomes visible without removing the detail that makes the action safe.",
+      "source_quote": "Best when the communicator must choose what not to say.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Sequence and chunk information for limited working memory instead of assuming accurate content will carry itself.",
+      "source_quote": "CLT establishes the limits of working memory.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use mutually exclusive structure so overlapping arguments do not bury the signal under confusion.",
+      "source_quote": "MECE ensures that all aspects of a problem are covered without unnecessary overlap, which maximizes clarity and minimizes confusion.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on signal preservation, pruning, and memory-aware structure rather than on general communication advice.",
+    "donor_drops": [
+      "Did not preserve donor presentation sprawl because the raw source is stronger on chunking, MECE structure, and signal survival."
+    ],
+    "open_questions": [
+      "The first failure mode is normalized from the expert-compression and curse-of-knowledge material so it stays reusable beyond pedagogy contexts."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on cognitive-load-theory, simplification, and systems-thinking for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section names law-of-the-instrument style misuse and motivated reasoning, but only the cleanest current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around compression versus completeness even without a dedicated structured tension block."
+    ]
+  }
+}

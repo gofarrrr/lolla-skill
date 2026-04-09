@@ -1,0 +1,56 @@
+{
+  "model_id": "prospect-theory",
+  "source_file": "Prospect_Theory_rag.md",
+  "allies": [
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring helps explain why reference points and initial frames distort how prospect-theory choices are evaluated.",
+      "source_quote": "This phenomenon also interacts with cognitive biases like Anchoring.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "incentives",
+      "rationale_text": "Incentives interact with prospect-theory because gain and loss framing can change behavior without changing the underlying economics.",
+      "source_quote": "framing outcomes around relative gains or losses (emotional incentives)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking counters prospect-theory distortions by forcing a colder review of whether the frame is changing the choice more than the fundamentals are.",
+      "source_quote": "not a plausible normative decision theory",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "base-rates",
+      "tension_text": "Prospect-theory conflicts with base-rates when loss-aversion framing distorts assessment of objective frequencies by overweighting vivid potential losses.",
+      "source_quote": "prospect-theory conflicts with base-rates (base rates) when loss-aversion framing distorts assessment of objective frequencies by overweighting vivid potential losses.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "anchoring",
+      "tension_text": "Prospect-theory conflicts with anchoring when reference-point dependence means the same objective outcome is evaluated differently depending on the arbitrary anchor that sets the gain/loss boundary.",
+      "source_quote": "prospect-theory conflicts with anchoring (anchoring) when reference-point dependence means the same objective outcome is evaluated differently depending on the arbitrary anchor that sets the gain/loss boundary.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The retained relation surface stays narrow around framing, reference points, and the descriptive-versus-normative boundary.",
+    "donor_drops": [
+      "Did not preserve broader System 1 or theory-of-mind expansion because those targets would widen the current vocabulary surface."
+    ],
+    "open_questions": [
+      "The source is clearer on ally and antagonist pressure than on explicit current-vocabulary tension blocks, so structured tensions stay omitted."
+    ]
+  }
+}

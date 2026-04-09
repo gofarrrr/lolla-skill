@@ -1,0 +1,70 @@
+{
+  "model_id": "blooms-taxonomy",
+  "source_file": "Blooms_Taxonomy_rag.md",
+  "select_when": [
+    "The work requires diagnosing whether someone is stuck at recall, understanding, application, analysis, evaluation, or synthesis rather than treating learning as one vague block.",
+    "Skill-building needs a progression from comprehension to execution to judgment instead of a jump straight to critique.",
+    "Curriculum, coaching, or onboarding must sequence challenge so deeper performance rests on real foundations.",
+    "A learner or team needs a structured roadmap for what kind of thinking comes next."
+  ],
+  "avoid_when": [
+    "The taxonomy is being treated as a rigid staircase that blocks iteration, creativity, or revisiting earlier levels when real learning loops back.",
+    "People are trying to evaluate or critique before they have actually analyzed the problem or built enough understanding to support judgment."
+  ],
+  "input_type": "stage-confused learning task",
+  "output_type": "cognitive-stage progression",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on stage diagnosis, sequencing, and anti-premature-critique discipline rather than on broad education-theory commentary.",
+    "donor_drops": [
+      "Did not preserve donor curriculum-taxonomy sprawl because the raw source is already strongest on diagnosing the next cognitive move."
+    ],
+    "open_questions": [
+      "The source reaches into strategy and creativity, but the operational file stays on stage diagnosis and progression quality."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly says the model is strongest when diagnosing whether someone is stuck at recall, understanding, application, or synthesis and when challenge must be sequenced."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The source explicitly warns against rigid staircase use and against evaluation without enough analytical foundation."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about stage confusion and progression gaps; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model yields a sequenced cognitive progression; the short output label compresses that into an operational type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses learning-stage position and next-step reflection, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

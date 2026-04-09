@@ -1,0 +1,87 @@
+{
+  "model_id": "statistical-learning-theory",
+  "source_file": "Statistical_Learning_Theory_rag.md",
+  "failure_modes": [
+    {
+      "text": "Model worship can push the team into prediction machinery even when the target is unclear, the data is thin, or causal understanding matters more.",
+      "source_quote": "Danger of Model Worship",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Clarify the objective before building the model: check whether the task needs prediction, causal explanation, or decision support, and choose the method accordingly."
+    },
+    {
+      "text": "Premature analysis can waste effort by fitting models before the problem structure, objective, or testable hypotheses are clear.",
+      "source_quote": "Premature Analysis",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Validate before trusting: require out-of-sample testing and check whether the model's performance holds on data it has never seen before fitting to production use."
+    },
+    {
+      "text": "Distribution neglect can make a model look solid while hiding the tail outcomes or censored failures that matter most.",
+      "source_quote": "Ignoring the Extremes",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Inspect the tails: report model performance on extreme cases and censored outcomes, not just overall accuracy, to catch distribution neglect."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Are you primarily trying to understand the drivers of causation, or are you primarily trying to predict a state of the world?",
+      "source_quote": "Are you primarily trying to understand the drivers of causation, or are you primarily trying to predict a state of the world?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What outside-view baseline or reference class should discipline this model before we trust its fit on our local sample?",
+      "source_quote": "Anchor to the Outside View",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Decide up front whether the task is causation or prediction so the model class matches the real objective.",
+      "source_quote": "Prediction vs. Causation Diagnostic",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Start with scoping reconnaissance and simple summary structure before moving to heavy learning machinery.",
+      "source_quote": "Scoping Reconnaissance",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use simulations or scenario analysis to test how the model behaves across plausible states instead of trusting one fitted view.",
+      "source_quote": "Simulation and Scenario Analysis",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The intervention layer stays on framing the modeling objective correctly, avoiding premature complexity, and testing for generalization rather than mere fit.",
+    "donor_drops": [
+      "Did not preserve implementation-detail sprawl because the raw source is strongest on objective selection, reconnaissance, and anti-model-worship discipline."
+    ],
+    "open_questions": [
+      "The outside-view premortem question is reviewed compression over several source passages on baseline and reference-class discipline."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The source is rich on systems-thinking, hypothesis-driven problem solving, and game-theory simulations."
+    ],
+    "antagonists": [
+      "The raw source explicitly names representativeness-heuristic, survivorship-bias, and confirmation-bias pressures."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against representativeness-heuristic, survivorship-bias, and confirmation-bias."
+    ]
+  }
+}

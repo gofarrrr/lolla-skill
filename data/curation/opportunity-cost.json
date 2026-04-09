@@ -1,0 +1,71 @@
+{
+  "model_id": "opportunity-cost",
+  "source_file": "Opportunity_Cost_rag.md",
+  "select_when": [
+    "A team wants to add one more initiative even though the same people, budget, or launch window are needed by a higher-leverage move.",
+    "A default renewal, inherited project, or existing channel is being treated as free because the next-best use of the same resources has not been named.",
+    "Resources are scarce and each yes displaces a real alternative in capital, attention, headcount, or calendar time.",
+    "Trade-offs span more than money and the decision should price lost optionality, learning, morale, or trust rather than only explicit cash cost."
+  ],
+  "avoid_when": [
+    "The option set is still poorly framed, so comparison would create false precision around the wrong alternatives or objective function.",
+    "The analysis is loading the comparison with unrealistic alternatives that are not genuinely available, fundable, or executable."
+  ],
+  "input_type": "resource allocation choice",
+  "output_type": "trade-off pricing check",
+  "reasoning_types": [
+    "counterfactual",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the curation focused on displaced alternatives, default continuation, and resource foreclosure rather than generic economics examples.",
+    "donor_drops": [
+      "Did not preserve donor breadth around lifestyle or philosophical trade-off examples because the strongest raw material is operational resource allocation.",
+      "Did not add Wave 4 source overlays; this batch only notes later candidacy in artifacts."
+    ],
+    "open_questions": [
+      "The output label compresses multiple raw roles: comparison discipline, displacement pricing, and prioritization pressure."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is unusually explicit on scarce resources, default continuation, and displaced alternatives; review mainly tightened those into routing triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from explicit danger and anti-pattern language in the raw file."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly applies to constrained allocation choices, but the typed input label is still reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model prices what a yes prevents elsewhere; the output label compresses that function into a reusable operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Opportunity cost is strongly counterfactual and diagnostic in use, but the taxonomy names are reviewed normalization."
+    }
+  }
+}

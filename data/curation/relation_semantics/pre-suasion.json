@@ -1,0 +1,48 @@
+{
+  "model_id": "pre-suasion",
+  "source_file": "Pre_Suasion_rag.md",
+  "allies": [
+    {
+      "target_model_id": "narratives",
+      "rationale_text": "Narratives helps pre-suasion create a mental bucket before the audience evaluates the main idea in detail.",
+      "source_quote": "Stories and analogies provide instant context.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "empathy",
+      "rationale_text": "Empathy helps pre-suasion tune the preliminary frame to the audience's actual concerns rather than to the speaker's assumptions.",
+      "source_quote": "tune the message to the mind of the target",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "scientific-method-evidence-testing",
+      "rationale_text": "Scientific-method-evidence-testing resists pre-suasion when associative priming starts substituting for rigorous evidence and hypothesis checking.",
+      "source_quote": "undermines rigorous hypothesis testing",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "scientific-method-evidence-testing",
+      "tension_text": "Pre-suasion conflicts with scientific-method-evidence-testing when priming a favorable associative pattern leads to motivated reasoning that undermines rigorous hypothesis testing.",
+      "source_quote": "pre-suasion vs scientific-method-evidence-testing: pre-suasion conflicts with scientific-method-evidence-testing when priming a favorable associative pattern leads to motivated reasoning that undermines rigorous hypothesis testing.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The relation file keeps the strongest first-order graph from the raw source: framing allies plus the explicit tension against evidence-testing discipline.",
+    "donor_drops": [
+      "Did not widen into broader rhetoric neighbors because the explicit tension block already anchors the boundary clearly."
+    ],
+    "open_questions": [
+      "Framing is a source-real ally, but narratives and empathy were the cleaner current-vocabulary anchors."
+    ]
+  }
+}

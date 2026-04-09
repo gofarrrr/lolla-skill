@@ -1,0 +1,56 @@
+{
+  "model_id": "feedback-loops",
+  "source_file": "Feedback_Loops_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking treats feedback loops as foundational structures for understanding growth, stability, and interdependence in a system.",
+      "source_quote": "Feedback loops are foundational structures in systems; they determine if the system grows or stabilizes.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory relies on feedback loops to adjust pacing and scaffolding so the learner is not overwhelmed.",
+      "source_quote": "Scaffolding requires constant feedback and correction to avoid overwhelming the student's limited working memory.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias blocks effective feedback loops by resisting the evidence that should change the next action.",
+      "source_quote": "Effective feedback loops require one to acknowledge, reflect on, and learn from mistakes and failures.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "circle-of-control",
+      "tension_text": "Feedback-loops conflicts with circle-of-control when the team optimizes only immediate controllables and misses how signals propagate through the wider system.",
+      "source_quote": "feedback-loops vs circle-of-control: feedback-loops conflicts with circle-of-control when teams optimize only immediate controllables and miss system-level signal propagation.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "optionality",
+      "tension_text": "Feedback-loops conflicts with optionality when constant option switching prevents stable interpretation of signal quality over time.",
+      "source_quote": "feedback-loops vs optionality: feedback-loops conflicts with optionality when frequent option switching prevents stable interpretation of signal quality over time.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on systems allies, explicit tensions, and one clean antagonist, so the file stays intentionally bounded.",
+    "donor_drops": [
+      "Did not preserve donor topology or iterative-agent overlays because the raw first-order relation surface is already sufficient for this conservative pass."
+    ],
+    "open_questions": [
+      "Inside-view and curse-of-knowledge are source-real conflicts but were left omitted rather than forced into weaker target mappings."
+    ]
+  }
+}

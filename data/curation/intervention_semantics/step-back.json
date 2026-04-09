@@ -1,0 +1,93 @@
+{
+  "model_id": "step-back",
+  "source_file": "Step_Back_rag.md",
+  "failure_modes": [
+    {
+      "text": "Reflection can become a hiding place that postpones commitment, trade-offs, or the next concrete move.",
+      "source_quote": "Danger When the Pause Becomes a Hiding Place: The model fails when reflection is used to postpone commitment, avoid trade-offs, or keep options abstract rather than to improve the next concrete move.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Set a reflection deadline: agree in advance on when the pause must produce a concrete next action, trade-off, or commitment."
+    },
+    {
+      "text": "Teams can boil the ocean when stepping back turns into over-comprehensiveness instead of sharpening what matters.",
+      "source_quote": "An anti-pattern in research where one loses the big picture and gathers an overwhelming amount of data just for the sake of comprehensiveness.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Scope the step-back: define what question the pause is meant to answer, and stop widening the lens once that question is resolved."
+    },
+    {
+      "text": "Perfectionism can turn the pause into analysis paralysis rather than a better-sequenced action path.",
+      "source_quote": "For those prone to perfectionism, stepping back can lead to over-analyzing everything to achieve perfection, which stymies important action.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Convert insight to action: after stepping back, require the first output to be a sequenced action plan, not more analysis."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What's the one-day answer?",
+      "source_quote": "What’s the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the core point, and why does it matter?",
+      "source_quote": "What’s your main (core) point? Why does it matter?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is it the most important thing you could be doing right now?",
+      "source_quote": "Is it the most important thing you could be doing right now?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the pause to recover the big picture and governing purpose before spending more effort on local detail.",
+      "source_quote": "The step back forces the articulation of the main goal or core message, ensuring every subsequent action is aligned with a single purpose.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Switch from intuitive reaction to deliberate framing before committing to a plan in high-stakes or ambiguous situations.",
+      "source_quote": "By stepping back, one consciously engages the rational mind ... rather than defaulting to habitual, bias-prone shortcuts.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Reduce the problem into logical pieces only after the needed output is clear enough that the extra analysis will serve a real decision.",
+      "source_quote": "work plans are crystal clear about what output is needed to solve the problem before modeling or analysis begins.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Deliberately disconnect from stress-inducing noise long enough for the pause to restore framing, not just absorb more agitation.",
+      "source_quote": "consciously engages the rational mind",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on pause-for-clarity, anti-detail-fog discipline, and forcing reflection to improve the next move rather than delay it.",
+    "donor_drops": [
+      "Did not preserve donor reflection sprawl because the raw source is stronger on deliberate pause, big-picture recovery, and anti-hiding-place discipline."
+    ],
+    "open_questions": [
+      "The third heuristic compresses several process-integrity passages so the model stays operational rather than philosophical."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, metacognitive questioning, and first-principles-like reset pressure for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation-bias, status-quo-bias, and commitment-bias-style default continuation."
+    ],
+    "structured_tensions": [
+      "The source includes an explicit structured tension block around commitment-bias, status-quo-bias, and confirmation-bias that cleanly maps into the current relation layer vocabulary."
+    ]
+  }
+}

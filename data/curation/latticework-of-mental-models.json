@@ -1,0 +1,72 @@
+{
+  "model_id": "latticework-of-mental-models",
+  "source_file": "Latticework_Of_Mental_Models_rag.md",
+  "select_when": [
+    "A problem spans several causal layers and a single disciplinary frame keeps missing incentives, trade-offs, or second-order effects.",
+    "The team has many facts but they do not yet hang together into a usable theory of what is happening.",
+    "A recommendation needs multiple lenses checked against each other before committing to a single explanation.",
+    "Blind spots are likely because the current approach is trapped inside one specialist vocabulary."
+  ],
+  "avoid_when": [
+    "The team is collecting model names as decoration but not translating them into concrete tests, comparisons, or decision pressure.",
+    "The problem is narrow enough that disciplined use of one strong model already explains the mechanism and action path."
+  ],
+  "input_type": "multidimensional problem with competing frames",
+  "output_type": "cross-model diagnostic frame",
+  "reasoning_types": [
+    "analogical",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the routing identity focused on cross-model integration, blind-spot reduction, and usable theory rather than on vague worldly-wise rhetoric.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

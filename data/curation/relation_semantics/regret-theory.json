@@ -1,0 +1,48 @@
+{
+  "model_id": "regret-theory",
+  "source_file": "Regret_Theory_rag.md",
+  "allies": [
+    {
+      "target_model_id": "premortem",
+      "rationale_text": "Premortem complements regret-theory by turning prospective hindsight into a structured review of what could go wrong before commitment.",
+      "source_quote": "RMF functions as an emotionally driven premortem",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "optionality",
+      "rationale_text": "Optionality strengthens regret-theory by checking whether action can be made more reversible before anticipated regret hardens the choice.",
+      "source_quote": "If the decision is reversible, there is nothing to lose and only information and speed to gain",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias is countered by regret-theory when the framework forces the decision maker to consider the regretted path of inaction instead of only the comfortable default story.",
+      "source_quote": "helps fight the confirmation bias that typically favors the comfortable status quo",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "probabilistic-thinking",
+      "tension_text": "Regret-theory conflicts with probabilistic-thinking when anticipated regret distorts probability weighting toward vivid worst-case scenarios.",
+      "source_quote": "regret-theory conflicts with probabilistic-thinking (probabilistic thinking) when anticipated regret distorts probability weighting toward vivid worst-case scenarios.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The retained relation surface stays narrow around prospective hindsight, reversibility, and the explicit conflict with comfort-preserving confirmation-bias.",
+    "donor_drops": [
+      "Did not preserve broader expected-utility or satisficing expansion because the current vocabulary already supports a cleaner decision-pressure surface."
+    ],
+    "open_questions": [
+      "The source also gestures toward outside-view and data discipline, but the retained set favors the clearest current-vocabulary ids."
+    ]
+  }
+}

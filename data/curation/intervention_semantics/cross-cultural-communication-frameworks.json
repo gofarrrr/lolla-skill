@@ -1,0 +1,87 @@
+{
+  "model_id": "cross-cultural-communication-frameworks",
+  "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+  "failure_modes": [
+    {
+      "text": "False pattern recognition can make a familiar communication frame look right even when the audience's actual context is different.",
+      "source_quote": "False Pattern Recognition / Substitution Bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Validate the audience's actual context before applying a familiar communication frame; surface similarity can mask deep differences in interpretation."
+    },
+    {
+      "text": "Egocentric bias can make the sender assume the audience shares the same frame of reference, knowledge level, and interpretation rules.",
+      "source_quote": "Egocentric Bias / Spotlight Effect",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check for egocentric projection: explicitly state what the audience's frame of reference, knowledge level, and interpretation rules are likely to be."
+    },
+    {
+      "text": "Too much detail can cause decision paralysis by forcing the audience to work harder than the message is worth.",
+      "source_quote": "Decision Paralysis",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Calibrate detail to the audience's decision load; excessive context forces them to work harder than the message is worth."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is my audience's frame of reference, and how will this message be interpreted through that lens?",
+      "source_quote": "What is my audience's frame of reference, and how will this message be interpreted through that lens?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Have we been explicit about how our recommendations will be implemented, and have we secured buy-in from those responsible for the doing?",
+      "source_quote": "Have we been explicit about how our recommendations will be implemented, and have we secured buy-in from those responsible for the doing?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What existing models am I applying here, and are the underlying assumptions met in this new context?",
+      "source_quote": "What existing models am I applying here, and are the underlying assumptions met in this new context?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use perspective taking, initiative, nonverbal sensitivity, and goals together so communication is designed for the actual audience context.",
+      "source_quote": "The PING Approach",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Check whether the conversation is practical, emotional, or social before you decide how direct or detailed the message should be.",
+      "source_quote": "Practical ... Emotional ... Social",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Put the governing thought up front and keep only the information needed for the audience to understand and act.",
+      "source_quote": "BLUF ... governing thought",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The intervention layer stays on frame-aware packaging, audience-lens checks, and anti-overload message design.",
+    "donor_drops": [
+      "Did not preserve broad communication-framework sprawl because the raw source is strongest on perspective fit, BLUF structure, and anti-stereotype discipline."
+    ],
+    "open_questions": [
+      "The second heuristic compresses the source's conversational-mindset distinction into a practical steering rule."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is rich on emotional-intelligence, systems-thinking, analytical rigor, and Feynman-style simplification."
+    ],
+    "antagonists": [
+      "The source strongly names cognitive-load pressure, false objectivity, and stereotype shortcuts."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block was preserved from the raw file."
+    ]
+  }
+}

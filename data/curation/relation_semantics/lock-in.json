@@ -1,0 +1,63 @@
+{
+  "model_id": "lock-in",
+  "source_file": "Lock_In_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory explains the beneficial side of lock-in: chunked, repeatable patterns can become useful schemas that reduce mental friction.",
+      "source_quote": "Scaffolding and chunking information into small, manageable units facilitate the transfer of new knowledge into long-term memory, effectively establishing a beneficial cognitive lock-in.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "checklists",
+      "rationale_text": "Checklists turn beneficial lock-in into explicit repeatable structure so execution does not depend on rediscovering the routine each time.",
+      "source_quote": "Systematizing principles and using checklists locks work processes into consistent, repeatable patterns.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking breaks unhealthy lock-in by stripping away inherited convention and asking what the path would look like from fundamental facts.",
+      "source_quote": "This approach explicitly breaks the lock of convention by stripping away assumptions to leave only fundamental facts and the desired outcome.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "optionality",
+      "rationale_text": "Optionality resists lock-in when irreversible commitments are closing off adaptive branch choices too early.",
+      "source_quote": "lock-in conflicts with optionality (optionality) when irreversible commitments eliminate adaptive branch choices.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "optionality",
+      "tension_text": "Lock-in conflicts with optionality when irreversible commitments eliminate adaptive branch choices.",
+      "source_quote": "lock-in vs optionality: lock-in conflicts with optionality (optionality) when irreversible commitments eliminate adaptive branch choices.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "tension_text": "Lock-in conflicts with first-principles-thinking when conventional frameworks are preserved by inertia rather than stripped back to fundamental facts and the desired outcome.",
+      "source_quote": "lock-in vs first-principles-thinking: lock-in conflicts with first-principles-thinking (first principles thinking) when conventional frameworks are preserved by inertia rather than stripped back to fundamental facts and the desired outcome.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on beneficial procedural stickiness, reversal-cost risks, and two clean explicit tensions against adaptive reframing.",
+    "donor_drops": [
+      "Did not preserve donor migration or path-dependence overlays beyond the bounded first-order allies and explicit source tensions."
+    ],
+    "open_questions": [
+      "The source also names multidisciplinary reframing, but first-principles-thinking and optionality were the cleaner bounded antagonists inside the current curated surface."
+    ]
+  }
+}

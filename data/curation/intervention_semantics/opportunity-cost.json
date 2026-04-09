@@ -1,0 +1,87 @@
+{
+  "model_id": "opportunity-cost",
+  "source_file": "Opportunity_Cost_rag.md",
+  "failure_modes": [
+    {
+      "text": "Commitment can hide what becomes impossible once resources, time, or attention are locked into one path.",
+      "source_quote": "Foreclosure hidden by commitment",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Before committing, explicitly list what becomes impossible: name the specific projects, options, or capabilities that this commitment forecloses."
+    },
+    {
+      "text": "Decision paralysis can keep the team comparing endless alternatives instead of acting on a reversible test.",
+      "source_quote": "Decision Paralysis",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a decision timer for reversible choices: if the decision is easily reversible, cap comparison time and run a small experiment instead of endlessly modeling alternatives."
+    },
+    {
+      "text": "A request can look cheap in isolation while still stealing the same launch window, engineering time, or management attention from the highest-value move.",
+      "source_quote": "Cheap add-on displaces the real priority",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Price requests in the same currency as the best alternative: express the cost of this commitment in terms of what the same resources would deliver on the highest-value alternative."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.",
+      "source_quote": "Before approving: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which comparison in this plan is pretending to be irreversible even though we could run it as a bounded test first, and what learning are we giving up by waiting for certainty before acting?",
+      "source_quote": "Which comparison in this plan is pretending to be irreversible even though we could run it as a bounded test first, and what learning are we giving up by waiting for certainty before acting?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which initiative in this plan looks inexpensive only because its cost is being charged to the same people, budget, or launch window needed by a more valuable move?",
+      "source_quote": "Which initiative in this plan looks inexpensive only because its cost is being charged to the same people, budget, or launch window needed by a more valuable move, and what exactly are we delaying by saying yes?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Upgrade simple pro-con thinking into a comparison that includes the implicit costs of the best foregone option.",
+      "source_quote": "Cost-Benefit Analysis (CBA) Upgrade",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use opportunity cost as a prioritization filter so scarce time and attention flow toward the highest-leverage work.",
+      "source_quote": "The Prioritization Filter",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Force every recommendation to answer compared to what before calling it attractive.",
+      "source_quote": "Compared to what?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The chunk set stays close to the raw displacement logic and avoids over-expanding into generic personal trade-off advice.",
+    "donor_drops": [
+      "Did not preserve donor expansions into broad personal-life examples because the strongest raw substrate is resource-allocation discipline."
+    ],
+    "open_questions": [
+      "The heuristics are normalized from the raw playbook, but each remains tightly grounded in explicit comparison and prioritization language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally section is strong on prioritization, first principles, and scenario analysis for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonist section explicitly supports sunk-cost-fallacy, confirmation-bias, and availability-style conflicts."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against status-quo-bias, sunk-cost-fallacy, and anchoring."
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "model_id": "batna",
+  "source_file": "Batna_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps BATNA compare alternatives in the full interacting system instead of a static snapshot of the negotiation.",
+      "source_quote": "This holistic view ensures the selected alternative accounts for interrelationships rather than just static snapshots.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "scaffolding",
+      "rationale_text": "Scaffolding is an ally to BATNA because identifying a clear, manageable walk-away alternative creates an incremental framework for building negotiation competence — starting from the grounded fallback option and progressively constructing more sophisticated positioning.",
+      "source_quote": "Scaffolding | Enables Mastery: Choosing a manageable alternative or starting point allows for the gradual, incremental building of a complex structure, supporting the path from novice to expert.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines BATNA by preventing the expert negotiator from accurately modeling what a walk-away alternative looks like from the other party's knowledge perspective — expert assumptions about shared context distort assessment of the fallback's attractiveness.",
+      "source_quote": "Inside view / motivated reasoning and curse-of-knowledge are explicit raw antagonists that remain deferred because the current target-id surface is still thinner than the prose.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring undermines BATNA by making the first attractive option feel like the only serious alternative worth considering.",
+      "source_quote": "If the first available alternative is attractive, anchoring prevents exploring truly superior options.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "optionality",
+      "tension_text": "Batna conflicts with optionality when maintaining fallback branches delays commitment to a bounded negotiated zone.",
+      "source_quote": "batna conflicts with optionality (optionality) when keeping fallback branches delays commitment to a negotiated zone with bounded upside.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Batna conflicts with commitment-bias when sunk negotiation posture blocks rational walk-away updates.",
+      "source_quote": "batna conflicts with commitment-bias (commitment bias) when sunk negotiation posture blocks rational walk-away updates.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Batna conflicts with confirmation-bias when negotiators assess the current deal and the walk-away alternative selectively rather than honestly.",
+      "source_quote": "batna conflicts with confirmation-bias (confirmation bias) when negotiators selectively evaluate options to confirm the attractiveness of the current deal rather than honestly assessing the walk-away alternative.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "BATNA remains somewhat proxy-derived on the ally/antagonist side, but its explicit structured tensions are strong enough to preserve without stretching the contract.",
+    "donor_drops": [
+      "Did not preserve donor status-quo or sunk-cost overlays beyond what the raw tension block already supports."
+    ],
+    "open_questions": [
+      "Symphony, inside-view, motivated reasoning, and curse-of-knowledge remain source-real relation material but were left out rather than overfit to the current canonical id surface."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "scaffolding wired in this sweep. Symphony-style synthesis remains deferred — no clean canonical id for symphony."
+    ],
+    "antagonists": [
+      "Curse-of-knowledge wired in Task 3.3 sweep via new canonical model. Inside-view remains deferred — no canonical model id."
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "model_id": "inversion",
+  "source_file": "Inversion_rag.md",
+  "allies": [
+    {
+      "target_model_id": "premortem",
+      "rationale_text": "Premortem is a direct procedural application of inversion — it operationalizes backward-from-failure reasoning into a repeatable team exercise that overcomes groupthink.",
+      "source_quote": "The pre-mortem is a direct, procedural application of inversion.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "second-order-thinking",
+      "rationale_text": "Second-order-thinking extends inversion's failure tracing beyond the immediate cause to the cascading consequences, giving the inverse analysis depth instead of just surface-level avoidance.",
+      "source_quote": "it naturally synergizes with second-order thinking — the act of looking past the immediate result to ask, \"And then what?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "margin-of-safety",
+      "rationale_text": "Margin-of-safety completes what inversion starts: inversion identifies the worst-case paths, margin-of-safety builds the buffer to survive them.",
+      "source_quote": "Inversion identifies the worst-case scenarios and paths to ruin; Margin of Safety is the buffer you build into your system to ensure that if those worst-case scenarios happen, you survive.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking and inversion strip away inherited assumptions from opposite directions — first principles builds up from elemental truths while inversion tears down from failure states.",
+      "source_quote": "Both models strip away inherited assumptions, but from opposite directions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias is the ultimate enemy of inversion — it drives the team to seek only evidence that confirms the forward plan, directly blocking the disconfirmation discipline that inversion demands.",
+      "source_quote": "Human psychology naturally defaults to first-conclusion bias, where we rapidly form a belief and then seek only evidence that confirms it. Inversion specifically attacks this.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "optimism-bias-and-planning-fallacy",
+      "rationale_text": "Optimism bias and planning fallacy trap decision-makers in narrow project-specific optimism, while inversion forces adoption of the outside view by looking broadly at how similar efforts have failed.",
+      "source_quote": "This bias traps decision-makers into looking only at the narrow, specific details of their own project, leading to extreme optimism.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "commitment-bias",
+      "rationale_text": "Commitment-bias hardens prior commitments into psychological walls that make genuine inversion feel like disloyalty, precisely when backward analysis is most needed.",
+      "source_quote": "The deeper the commitment, the harder inversion becomes — which is precisely when it is most needed.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Inversion conflicts with confirmation-bias when backward analysis is subconsciously constrained to scenarios that still validate the preferred forward plan.",
+      "source_quote": "inversion conflicts with confirmation-bias (confirmation bias) when backward analysis is subconsciously constrained to scenarios that still validate the preferred forward plan.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Inversion conflicts with commitment-bias when prior public commitment makes genuine failure-mode exploration feel like disloyalty rather than diligence.",
+      "source_quote": "inversion conflicts with commitment-bias (commitment bias) when prior public commitment makes genuine failure-mode exploration feel like disloyalty rather than diligence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "optimism-bias-and-planning-fallacy",
+      "tension_text": "Inversion conflicts with optimism-bias-and-planning-fallacy when project-specific optimism overrides the base-rate evidence that inversion surfaces from comparable failures.",
+      "source_quote": "inversion conflicts with inside-view (inside view / planning fallacy) when project-specific optimism overrides the base-rate evidence that inversion surfaces from comparable failures.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on premortem as procedural ally, second-order depth extension, margin-of-safety completion, and the three-way antagonist triad of confirmation-bias, inside-view, and commitment-bias.",
+    "donor_drops": [
+      "Did not preserve Occam's/Hanlon's razor as a formal ally because the interaction is secondary (keeps inversion grounded) rather than primary (amplifies inversion's power)."
+    ],
+    "open_questions": [
+      "The premortem alliance is the strongest in the graph — inversion is the general habit, premortem is its team-exercise specialization. This near-identity should be preserved, not collapsed."
+    ]
+  }
+}

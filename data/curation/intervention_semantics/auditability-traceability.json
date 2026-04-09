@@ -1,0 +1,87 @@
+{
+  "model_id": "auditability-traceability",
+  "source_file": "Auditability_Traceability_rag.md",
+  "failure_modes": [
+    {
+      "text": "Traceability can become performative documentation that consumes attention without improving judgment, accountability, or learning.",
+      "source_quote": "Danger when traceability becomes performative documentation that consumes attention without improving judgment, accountability, or learning.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Tie each traced artifact to a decision it should inform or a correction it should enable; if no decision changes from the trail, the documentation is theater."
+    },
+    {
+      "text": "Experts can communicate only the punchline and lose the concrete trail needed for action, audit, or correction.",
+      "source_quote": "Experts ... may communicate the \"punchline\" ... without providing the necessary concrete, traceable steps for action.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require experts to document the reasoning chain from evidence to conclusion, not just the conclusion; use scaffolding to make the trail accessible to non-experts."
+    },
+    {
+      "text": "Familiar frameworks can be applied cargo-cult style, creating an auditable process around the wrong model entirely.",
+      "source_quote": "Using mental models or processes mechanically without deep understanding",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Before auditing the process, audit the model: verify that the framework being traced is the right one for this problem, not just the familiar one."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What assumptions underlying the frameworks we use are not being met?",
+      "source_quote": "What assumptions underlying the frameworks we use are not being met?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would need to be visible for someone else to reconstruct how we got here?",
+      "source_quote": "providing a clear, reconstructable causal chain linking inputs, assumptions, logical steps, and intentional design choices to the final result",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use hypothesis-driven workplans so each analysis step leaves a visible trail from question to evidence to conclusion.",
+      "source_quote": "Hypothesis-Driven Problem Solving: This foundational technique requires strong, testable hypotheses to guide work planning and analyses.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Make logic trees, premises, and dependencies explicit enough that another reviewer can trace the reasoning back to its source.",
+      "source_quote": "Logic trees are the primary tool used to disaggregate problems into logical, manageable pieces and clearly visualize the structure of the problem area.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Track assumptions and decision changes in a recoverable form so bad outcomes can be diagnosed at both the person and machine level.",
+      "source_quote": "If the outcome is bad, traceability allows one to synthesize whether the responsible person (RP) is incapable and/or the machine design is flawed.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on reconstructable logic trails, anti-performative process discipline, and accountability visibility.",
+    "donor_drops": [
+      "Did not preserve donor documentation sprawl because the raw source is stronger on visible causal chains and hypothesis-led auditability."
+    ],
+    "open_questions": [
+      "The third premortem question operationalizes the core definition so the model stays actionable rather than merely descriptive."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, feedback-loops, and constraint-aware workplanning for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation-bias-adjacent process distortion and purely mechanical use of familiar frames."
+    ],
+    "structured_tensions": [
+      "The source contains strong trust and process-boundary pressure, but it does not present a clean explicit structured tension block in current-vocabulary form."
+    ]
+  }
+}

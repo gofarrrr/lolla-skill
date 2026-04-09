@@ -1,0 +1,87 @@
+{
+  "model_id": "curiosity",
+  "source_file": "Curiosity_rag.md",
+  "failure_modes": [
+    {
+      "text": "The first explanation can be dangerously shallow when teams stop at proximate causes instead of digging toward the true cause.",
+      "source_quote": "The first explanation provided is often insufficient and misleading.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Ask 'why' one more time when the first explanation arrives quickly; shallow proximate causes are satisfying but often wrong."
+    },
+    {
+      "text": "Inquiry can become wasteful when it keeps widening the search space after uncertainty is already reduced enough to act.",
+      "source_quote": "Danger When Curiosity Forgets the Decision It Is Supposed to Serve.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Set a decision threshold for when inquiry should stop: once uncertainty is reduced enough to act, further widening the search space is waste."
+    },
+    {
+      "text": "Fact-gathering can turn into boiling the ocean when the team keeps collecting material without a clear hypothesis or decision need.",
+      "source_quote": "Boiling the Ocean",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require a clear hypothesis before gathering more material; fact-collection without a question to answer is boiling the ocean."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What if the first answer is mostly wrong because the real problem is still underdefined?",
+      "source_quote": "Most useful when the first answer is probably shallow.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What better question would change the frame by exposing a hidden assumption, cause, or opportunity?",
+      "source_quote": "Works when better questions can change the frame.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "How does this line of inquiry solve the problem or advance the next decision, rather than just expanding the search?",
+      "source_quote": "How does what you're doing solve the problem? How does it advance your thinking?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use repeated why-questions to move from surface causes toward the root cause instead of stopping at the first plausible story.",
+      "source_quote": "The Five Whys Technique",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use Socratic questioning to stress-test assumptions and make the reasoning explicit enough to inspect.",
+      "source_quote": "The Socratic Method",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Structure inquiry around relevant variables, a specific next-step question, and a clear decision so curiosity stays useful.",
+      "source_quote": "Structured Deep Thinking",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on root-cause questioning, frame-changing inquiry, and decision-linked exploration rather than on generic wonder rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor creativity-sprawl because the raw source is already strongest on question quality tied to action."
+    ],
+    "open_questions": [
+      "The source also supports empathy and interviews, but the intervention chunks stay on inquiry that deepens diagnosis and reframing."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on critical-thinking, first-principles-thinking, and structured disaggregation."
+    ],
+    "antagonists": [
+      "The source is strongest against confirmation-bias, unstructured overload, and single-tool framing."
+    ],
+    "structured_tensions": [
+      "The model contains explicit tensions against confirmation-bias, scaffolding, and cognitive-load-theory."
+    ]
+  }
+}

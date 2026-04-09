@@ -1,0 +1,70 @@
+{
+  "model_id": "agile-methodologies",
+  "source_file": "Agile_Methodologies_rag.md",
+  "select_when": [
+    "Requirements, stakeholder learning, or technical realities are expected to change while delivery is already underway.",
+    "The team can ship in small increments, inspect real feedback quickly, and update the next cycle without waiting for a full-plan reset.",
+    "A one-shot plan is creating false certainty, and testing assumptions in sequence is cheaper than betting everything on one forecast.",
+    "The work needs explicit hypothesis-driven loops, clear accountability, and a standing one-day answer instead of long planning latency."
+  ],
+  "avoid_when": [
+    "External commitments, interfaces, or regulatory gates are fixed enough that agile language would only hide real sequencing and approval constraints.",
+    "Agile rituals are replacing learning, accountability, or explicit decision rights with backlog churn and motion theater."
+  ],
+  "input_type": "adaptive delivery problem",
+  "output_type": "iteration and feedback-loop plan",
+  "reasoning_types": [
+    "systems",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on adaptive delivery, hypothesis-driven loops, and one-day-answer discipline rather than broad software-process branding.",
+    "donor_drops": [
+      "Did not preserve broader product-ops sprawl because the raw source is strongest on emergent implementation, short loops, and anti-ritual warnings."
+    ],
+    "open_questions": [
+      "The reasoning type compression leans on systems and causal logic even though the source also carries human-centered collaboration language."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths and playbook sections explicitly support change during delivery, short increments, sequence testing, and the one-day-answer heuristic."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from the danger language about fixed constraints and ritualized backlog churn."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around adaptive delivery under changing conditions; the typed label is reviewed operational compression."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields short-loop delivery and feedback-driven adjustment; the output label compresses that into a reusable operational surface."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model reasons about interacting loops, constraints, and consequence chains, while the taxonomy labels remain normalized."
+    }
+  }
+}

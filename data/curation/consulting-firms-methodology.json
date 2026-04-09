@@ -1,0 +1,72 @@
+{
+  "model_id": "consulting-firms-methodology",
+  "source_file": "consulting_firms_methodology_rag.md",
+  "select_when": [
+    "A vague or politically messy problem must be turned into a structured sequence of discriminating questions.",
+    "The team needs a common language for hypothesis setting, pruning analysis, synthesis, and decision support.",
+    "The problem is consequential enough that intuition alone is too loose but exhaustive analysis would be too slow.",
+    "A solution path needs MECE decomposition, prioritization, and explicit one-day-answer discipline."
+  ],
+  "avoid_when": [
+    "Framework-complete slides are replacing real uncertainty reduction or causal learning.",
+    "Hypothesis discipline has hardened into answer defense and the project is protecting elegance instead of discovering truth."
+  ],
+  "input_type": "structured problem-solving and synthesis problem",
+  "output_type": "hypothesis-driven workplan",
+  "reasoning_types": [
+    "deductive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on hypothesis-driven structure, MECE decomposition, and synthesis discipline rather than on consulting style cues.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

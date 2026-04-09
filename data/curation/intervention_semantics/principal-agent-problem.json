@@ -1,0 +1,87 @@
+{
+  "model_id": "principal-agent-problem",
+  "source_file": "Principal_Agent_Problem_rag.md",
+  "failure_modes": [
+    {
+      "text": "Alignment metrics can hide real divergence when dashboards or formal compliance are mistaken for actual goal alignment.",
+      "source_quote": "Danger When Alignment Metrics Hide Real Behavior: The model is misused when principals mistake dashboards, formal compliance, or reported activity for true goal alignment while the agent still benefits from divergence underneath.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit alignment beyond dashboards: periodically verify that formal metrics still track the principal's real goal, and sunset metrics that have become performative."
+    },
+    {
+      "text": "Micromanagement can treat the case-at-hand while leaving the machine-level design error untouched.",
+      "source_quote": "This results in micromanagement, fails to build the Agent's long-term capacity, and prevents continuous system improvement.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Address the system, not the symptom: when misalignment surfaces, redesign incentives, information flows, or role boundaries rather than adding supervision layers."
+    },
+    {
+      "text": "Diagnosis can go wrong when leaders confuse capability failure with capacity, system, or incentive failure.",
+      "source_quote": "When diagnosing a failure, the Principal confuses a poor outcome due to bad system design or lack of resources (capacity issue) with the Agent's personal flaws or incompetence (capability issue).",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Diagnose before blaming: distinguish whether poor agent performance stems from misaligned incentives, insufficient capability, inadequate resources, or bad system design."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the one-day answer?",
+      "source_quote": "What is the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Who should do what differently?",
+      "source_quote": "Who should do what differently?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If this outcome is bad, is the responsible party incapable and/or is the design bad?",
+      "source_quote": "If this outcome is bad, is the Responsible Party incapable and/or is the design bad?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define roles, decision boundaries, and expectations clearly enough that delegated work stays legible to the principal's actual objective.",
+      "source_quote": "The Agent's role explicitly defines what they are supposed to do and how they fit into the larger architecture.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Diagnose drift sequentially by separating goals, problems, root causes, design changes, and execution instead of blurring them together.",
+      "source_quote": "The Principal must execute these steps sequentially without blurring them.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Spell out what would have to be true for the current delegated setup to work, so hidden alignment assumptions become inspectable.",
+      "source_quote": "It involves spelling out all the implicit assumptions underlying a proposal or perspective, forcing clarity and rigor in thinking.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on delegated-objective drift, machine-level diagnosis, and role-boundary clarity for alignment repair.",
+    "donor_drops": [
+      "Did not preserve donor multi-agent orchestration sprawl because the raw source is stronger on alignment, accountability, and hidden-behavior pressure."
+    ],
+    "open_questions": [
+      "The first heuristic compresses both organizational and AI-agent role-definition passages into one reusable alignment move."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on incentives, information asymmetry, and systems-thinking for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on moral-hazard-style hidden divergence and frame substitution by overloaded agents."
+    ],
+    "structured_tensions": [
+      "The source includes an explicit structured tension block around moral-hazard and information-asymmetry that cleanly maps into the current relation layer vocabulary."
+    ]
+  }
+}

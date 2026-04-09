@@ -1,0 +1,72 @@
+{
+  "model_id": "adverse-selection",
+  "source_file": "Adverse Selection_rag.md",
+  "select_when": [
+    "One side may know more about quality, risk, or intent than the other.",
+    "Screening, signaling, or filtering determine outcome quality before commitment.",
+    "Pricing, access, or policy design could unintentionally attract the very cases the system is least able to handle well."
+  ],
+  "avoid_when": [
+    "Analysts are blaming hidden information even though the real issue may be incentives, execution quality, or poor process design rather than adverse selection itself.",
+    "The model is being used as a generic asymmetry story without verifying the actual selection mechanism that sorts good and bad counterparts."
+  ],
+  "input_type": "hidden-quality transaction",
+  "output_type": "screening and signaling check",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model tightly scoped to hidden-information selection mechanisms and dropped donor breadth that treated it as a generic structured-thinking tool.",
+    "donor_drops": [
+      "Dropped donor broad decision-framework examples that were not specific to hidden-information selection mechanisms.",
+      "Dropped donor higher-order relation fields because higher-order curation is still out for batch 2."
+    ],
+    "open_questions": [
+      "The output type is a reviewed operational normalization because the raw source describes the mechanism clearly but not a typed intervention artifact."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "high",
+      "note": "The raw file explicitly states the key hidden-information and screening conditions; donor drafts were narrowed because many were too broad or generic."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The raw file has one explicit anti-pattern around assuming asymmetry without verifying selection; the second avoid condition is a conservative normalization of that same limit."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly concerns transactions with hidden quality or risk, but the exact input label is a reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw material points toward screening and signaling before commitment; the output type compresses that role into a machine-usable label."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The model is diagnostic and causal in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

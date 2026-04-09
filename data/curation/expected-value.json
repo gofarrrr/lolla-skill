@@ -1,0 +1,73 @@
+{
+  "model_id": "expected-value",
+  "source_file": "Expected_Value_rag.md",
+  "select_when": [
+    "Choices involve asymmetric payoffs and intuitive judgment is likely to overweight vivid outcomes rather than weighted outcomes.",
+    "The team can estimate probabilities and consequences well enough to compare options on a common decision basis.",
+    "A decision must trade off upside, downside, and likelihood instead of reacting to whichever outcome feels most salient."
+  ],
+  "avoid_when": [
+    "EV math is being used to launder weak assumptions, speculative probabilities, or ethically unacceptable downside into a false aura of rationality.",
+    "The case is too assumption-fragile or cognitively overloaded for the numbers to support a trustworthy weighted comparison."
+  ],
+  "input_type": "probability-weighted choice",
+  "output_type": "expected payoff comparison",
+  "reasoning_types": [
+    "probabilistic",
+    "deductive"
+  ],
+  "curation_notes": {
+    "summary": "Normalized the model around weighted payoff comparison and rejected donor business-case framing that overstated output specificity.",
+    "donor_drops": [
+      "Dropped donor examples tied to particular industries because the raw source already captures the structural weighted-outcome pattern.",
+      "Dropped donor output framing that implied a richer document artifact than the raw model supports."
+    ],
+    "open_questions": [
+      "The model works best when probabilities are good enough for comparison, but the exact threshold for 'good enough' remains case-dependent."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file explicitly states when expected-value thinking is useful; donor drafts were narrowed into fewer structural triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The first condition is explicit in raw form and the second is a conservative normalization from the raw cognitive-load and false-precision limitations."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The raw file clearly operates on choices with probability-weighted payoffs, but the compact input label is a reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model compares weighted outcomes rather than producing a full business-case artifact; the output label was narrowed accordingly."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The model is clearly probabilistic and deductive in use, but the taxonomy labels are still reviewed normalization."
+    }
+  }
+}

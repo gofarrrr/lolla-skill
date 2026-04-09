@@ -1,0 +1,87 @@
+{
+  "model_id": "constructive-feedback-models",
+  "source_file": "Constructive_Feedback_Models_rag.md",
+  "failure_modes": [
+    {
+      "text": "Defensiveness can overwhelm the learning if the feedback lands as adversarial threat instead of as respectful correction.",
+      "source_quote": "Defensive/Adversarial Response",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Frame feedback as a shared problem to solve rather than an adversarial judgment; respectful framing reduces defensiveness and protects the learning signal."
+    },
+    {
+      "text": "Micromanagement can keep the conversation stuck in the case-at-hand instead of improving the process that produced it.",
+      "source_quote": "Machine vs. Case-at-Hand",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Elevate feedback from the specific case to the process that produced it; the goal is systemic improvement, not micromanagement of one incident."
+    },
+    {
+      "text": "Vague feedback can protect comfort but fail to give the receiver anything concrete enough to change.",
+      "source_quote": "Vague or Abstract Feedback",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Make feedback concrete and behavioral: vague encouragement or criticism gives the receiver nothing specific enough to change."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If someone came to me asking my opinion about this kind of decision, what would I need to know to give good advice?",
+      "source_quote": "If someone came to me asking my opinion about this kind of decision, what would I need to know to give good advice?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What process or machine condition produced this outcome, not just what happened in this one case?",
+      "source_quote": "machine level",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the 4 I's so feedback moves from concrete observation to impact, invitation, and implications instead of stalling at vague criticism.",
+      "source_quote": "The 4 I’s Framework",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Challenge directly while caring personally so the receiver gets both specificity and enough support to stay engaged.",
+      "source_quote": "Radical Candor",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Shift the discussion to the machine level when repetition suggests the system is producing the error, not just the person.",
+      "source_quote": "Machine vs. Case-at-Hand",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The intervention layer stays on specific corrective delivery, invitation-based collaboration, and machine-level diagnosis.",
+    "donor_drops": [
+      "Did not preserve broad coaching or review-process sprawl because the raw source is strongest on concrete feedback structures and anti-defensiveness tactics."
+    ],
+    "open_questions": [
+      "The third premortem question is a reviewed operational compression of the machine-level discussion rule."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is rich on metacognition, dialectic challenge, and Feynman-style blind-spot discovery."
+    ],
+    "antagonists": [
+      "The source clearly names confirmation-bias, inside-view drift, and curse-of-knowledge pressure."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block was preserved from the raw file."
+    ]
+  }
+}

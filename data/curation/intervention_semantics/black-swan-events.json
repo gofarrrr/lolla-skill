@@ -1,0 +1,87 @@
+{
+  "model_id": "black-swan-events",
+  "source_file": "Black_Swan_Events_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can invoke Black Swan language to justify vague fear, permanent defensiveness, or refusal to prioritize even when concrete resilience moves are available.",
+      "source_quote": "Danger of Tail-Risk Theater",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Use simulations and stress-testing to convert vague tail-risk fear into concrete exposure boundaries, buffers, and monitoring thresholds."
+    },
+    {
+      "text": "An aberration can be over-weighted until strategy starts treating the outlier as the new normal.",
+      "source_quote": "Overemphasis on the Aberration",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Contextualize the aberration: step back, zoom out, and compare against reference-class data to confirm whether the outlier represents a structural shift or a statistical extreme."
+    },
+    {
+      "text": "Hindsight can rewrite history and make a genuinely surprising event feel obvious after the fact, blocking real learning.",
+      "source_quote": "The Rewriting of History (Hindsight Bias)",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Enforce post-mortem discipline: resist rewriting history, focus on calibrating beliefs, and invite team members to share what they were genuinely uncertain about before the event."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "If this decision fails, what is the least obvious reason why that we are not discussing now?",
+      "source_quote": "If this decision leads to failure, what is the least obvious reason why, that we are not discussing now?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What core strategy must we execute regardless of whether this specific catastrophic event occurs or not?",
+      "source_quote": "What core strategy must we execute, regardless of whether this specific catastrophic event occurs or not?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If one essential component fails unexpectedly, what cascading implications should we already be prepared for?",
+      "source_quote": "If one essential component of our complex system fails unexpectedly, what are the cascading implications?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use systems thinking to inspect interrelationships and failure propagation rather than isolated events.",
+      "source_quote": "Systematic Exploration through Systems Thinking",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Shift from prediction toward scenario analysis and outcome simulation when deep uncertainty makes point forecasts brittle.",
+      "source_quote": "Scenario Analysis",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate good decisions from good outcomes so bad luck does not automatically discredit a sound process.",
+      "source_quote": "a good decision may sometimes lead to a bad outcome",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on unknown unknowns, fragility in complex systems, tail-risk theater, and anti-hindsight discipline.",
+    "donor_drops": [
+      "Did not preserve broad uncertainty rhetoric because the raw source is stronger on resilience, simulation, and fragility checks."
+    ],
+    "open_questions": [
+      "The third heuristic compresses the decision-quality versus outcome-quality distinction so the chunk stays operational."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on systems-thinking, resilience, and checklist-like execution discipline because the model is about readiness under surprise."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on hindsight-bias and anchoring because both distort learning and underestimate complex-system fragility."
+    ],
+    "structured_tensions": [
+      "The source explicitly names hindsight-bias and anchoring as conflicts, which makes conservative current-vocabulary relation preservation possible."
+    ]
+  }
+}

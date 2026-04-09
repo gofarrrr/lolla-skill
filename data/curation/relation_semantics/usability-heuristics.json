@@ -1,0 +1,56 @@
+{
+  "model_id": "usability-heuristics",
+  "source_file": "Usability_Heuristics_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory helps usability-heuristics reduce working-memory strain by chunking tasks and simplifying interface or process demands.",
+      "source_quote": "CLT reminds us that working memory is a limited resource.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "problem-framing-and-reframing",
+      "rationale_text": "Problem-framing-and-reframing helps usability-heuristics act as a first cut on the problem instead of a frozen answer to it.",
+      "source_quote": "cleave problems into insightful parts",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking resists usability-heuristics when the shortcut masks a genuinely novel problem that needs fresh reconstruction from facts.",
+      "source_quote": "First Principles Thinking strips away assumptions and conventional methods.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "first-principles-thinking",
+      "tension_text": "Usability-heuristics conflicts with first-principles-thinking when applying established usability patterns prevents the novel interface solutions that first-principles design would generate.",
+      "source_quote": "usability-heuristics conflicts with first-principles-thinking (first principles thinking) when applying established usability patterns prevents the novel interface solutions that first-principles design would generate.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "optimization-theory",
+      "tension_text": "Usability-heuristics conflicts with optimization-theory when usability satisficing settles for good-enough interaction when optimization would yield measurably superior outcomes.",
+      "source_quote": "usability-heuristics conflicts with optimization-theory (optimization theory) when usability satisficing settles for good-enough interaction when optimization would yield measurably superior outcomes.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The file preserves the source's strongest first-order relation surface: load-reducing heuristic support, framing aid, and the tension against overusing familiar shortcuts.",
+    "donor_drops": [
+      "Did not manufacture structured tensions because the raw file is stronger on general antagonism than on explicit named conflict blocks."
+    ],
+    "open_questions": [
+      "Critical-thinking is also a source-real antagonist, but first-principles-thinking was the cleaner current-vocabulary anchor."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "critical-mass",
+  "source_file": "Critical_Mass_rag.md",
+  "failure_modes": [
+    {
+      "text": "False pattern recognition can force a threshold explanation onto a problem whose real structure does not match critical-mass dynamics.",
+      "source_quote": "False Pattern Recognition",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test whether the problem actually has threshold dynamics before applying a critical-mass frame; not every growth curve has a tipping point."
+    },
+    {
+      "text": "Anchoring on one target threshold can understate how uncertain the path to durable mass really is.",
+      "source_quote": "Underestimating Uncertainty",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Size the uncertainty around the threshold: anchoring on one target number can understate how contingent and fragile the path to durable mass really is."
+    },
+    {
+      "text": "Strategic misrepresentation can make a team overstate current momentum or likely threshold reach just to secure resources.",
+      "source_quote": "Strategic Misrepresentation",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit momentum claims against verifiable data; strategic misrepresentation about proximity to threshold is common when resources are at stake."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is this merely an analogy, or is the underlying structure truly the same?",
+      "source_quote": "Is this merely an analogy, or is the underlying structure truly the same?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What variables, beyond the threshold size, have we failed to account for?",
+      "source_quote": "What variables, beyond the threshold size, have we failed to account for, and what happens if the outcome is two standard deviations from our estimate?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If this project fails, why did it happen?",
+      "source_quote": "If this project fails, why did it happen?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Ask what density of the key resource is needed to reach the critical mass point in the relevant area.",
+      "source_quote": "What density of [resource] is needed to reach the critical mass point in a given area?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Test the geographic or contextual boundary of the mass instead of assuming all local supply counts equally.",
+      "source_quote": "How far away can two tools be to count toward the same critical mass point in that area?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If the threshold is unreachable as designed, change the model or seed the system so the threshold becomes reachable.",
+      "source_quote": "Can you tweak the business model so that this critical mass point is reachable or easier to reach?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on threshold diagnosis, seeding logic, and false-threshold failure modes.",
+    "donor_drops": [
+      "Did not preserve donor marketplace taxonomy sprawl because the raw file is stronger on density, reachability, and threshold-fit checks."
+    ],
+    "open_questions": [
+      "The third heuristic compresses several startup-seeding examples into one reusable intervention move."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, feedback loops, momentum, and Pareto-style leverage for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is thinner than the structured tensions but clearly points to hammer effects and threshold overfitting."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against representativeness-bias, incentives, and confirmation-bias."
+    ]
+  }
+}

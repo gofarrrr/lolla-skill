@@ -1,0 +1,55 @@
+{
+  "model_id": "antifragility",
+  "source_file": "Antifragility_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps antifragility identify how shocks travel through the whole structure instead of over-reading isolated events.",
+      "source_quote": "Systems thinking provides the methodology to understand that the whole system is greater than the sum of its parts.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "experimentation",
+      "rationale_text": "Experimentation gives antifragility a practical route to benefit from variation through many bounded tests rather than one brittle bet.",
+      "source_quote": "adopt a portfolio of experiments approach. Test every single possibility and systematically compare outcomes.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking keeps antifragility from inheriting brittle assumptions by stripping the problem back to facts and desired outcomes.",
+      "source_quote": "By isolating the fundamental facts, practitioners are forced to innovate solutions rather than relying on brittle, inherited frameworks.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias makes antifragility brittle because it resists learning from disorder that contradicts the current model.",
+      "source_quote": "Confirmation bias causes individuals to seek out information that validates current beliefs, leading to a closed or resistant mindset.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "anchoring",
+      "tension_text": "Antifragility conflicts with anchoring when planners underestimate cascade failure probability by anchoring on low individual-component failure rates.",
+      "source_quote": "antifragility vs anchoring: antifragility conflicts with anchoring (anchoring) when planners underestimate cascade failure probability by anchoring on the low individual-component failure rate, building systems optimized for normal conditions rather than stress events.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on systems, experiments, and anti-brittleness through first-principles redesign, plus one explicit anchoring tension.",
+    "donor_drops": [
+      "Did not preserve donor risk-sprawl beyond the source-backed stress, experimentation, and anti-bias surface."
+    ],
+    "open_questions": [
+      "Availability-style conflict is source-real, but confirmation-bias and anchoring were the cleaner bounded conflicts into the current graph vocabulary."
+    ]
+  }
+}

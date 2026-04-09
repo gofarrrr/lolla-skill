@@ -1,0 +1,70 @@
+{
+  "model_id": "debugging-strategies",
+  "source_file": "Debugging_Strategies_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking gives debugging the whole-machine view needed to trace how components interact instead of treating failures as isolated symptoms.",
+      "source_quote": "Systems Thinking: Debugging strategies are deeply synergistic with Systems Thinking, as diagnostic frameworks are specifically designed to show how units interact as a system.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition makes debugging tractable by breaking a tangled problem into parts that can be tested and compared without losing the underlying structure.",
+      "source_quote": "This is the most important step in problem solving, involving breaking down a complicated problem into logical parts to understand the underlying causes and drivers.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "decision-trees",
+      "rationale_text": "Decision-trees support debugging by giving the team a concrete way to separate branches, conditions, and tests instead of arguing from intuition.",
+      "source_quote": "This process uses various visualization tools, such as logic trees ... and decision trees.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias makes debugging protect the current hypothesis by noticing supportive clues and overlooking more important disconfirming evidence.",
+      "source_quote": "Confirmation bias drives individuals to seek supporting evidence while overlooking disconfirming information.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "authority-bias",
+      "rationale_text": "Authority-bias weakens debugging when challenging a leader's diagnosis is treated as political disloyalty instead of necessary skeptical review.",
+      "source_quote": "challenging a CEO\u2019s strategic vision ... may be seen as political sabotage, inhibiting the necessary skeptical challenge.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Debugging-strategies conflicts with simplification when premature simplification of the problem space leads to fixing symptoms rather than identifying the true structural cause.",
+      "source_quote": "debugging-strategies conflicts with simplification (simplification) when premature simplification of the problem space leads to fixing symptoms rather than identifying the true structural cause.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Debugging-strategies conflicts with confirmation-bias when the debugger's initial hypothesis about the root cause biases the search toward confirming evidence while overlooking disconfirming signals.",
+      "source_quote": "debugging-strategies conflicts with confirmation-bias (confirmation bias) when the debugger's initial hypothesis about the root cause biases the search toward confirming evidence while overlooking disconfirming signals.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strong on systems diagnosis, logical problem cuts, and anti-bias challenge pressure, so the file preserves that bounded surface without forcing extra tensions.",
+    "donor_drops": [
+      "Did not preserve donor debugging relations beyond the strongest systems, decomposition, and anti-premature-conviction links."
+    ],
+    "open_questions": [
+      "Scientific-method pressure is source-real, but the retained set favors already-curated current-vocabulary models with cleaner direct wording."
+    ]
+  }
+}

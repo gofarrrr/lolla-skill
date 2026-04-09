@@ -1,0 +1,87 @@
+{
+  "model_id": "pre-suasion",
+  "source_file": "Pre_Suasion_rag.md",
+  "failure_modes": [
+    {
+      "text": "Pre-suasion can cross into manipulation when associative priming is decoupled from the actual merits of the proposal.",
+      "source_quote": "Manipulation and Ethical Failure",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit every priming move against the substance it leads to: if the associative frame would not survive scrutiny of the actual evidence, the pre-suasion has crossed into manipulation."
+    },
+    {
+      "text": "Availability and confirmation dynamics can make the audience more vulnerable to the wrong mental bucket once attention has been primed badly.",
+      "source_quote": "Confirmation Bias and Availability Heuristic",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "After any priming exposure, run a de-biasing check: ask what the audience would conclude if they had encountered the proposal without the preceding context."
+    },
+    {
+      "text": "Trust can break if the expectations created during the priming stage are not matched by the substance that follows.",
+      "source_quote": "Breakdown of Trust (Inconsistency)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Match promises to delivery: track whether the expectations set during the priming stage are fulfilled by the subsequent substance, and flag any trust-damaging gap."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Can I make a great pitch?",
+      "source_quote": "Can I make a great pitch?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which association are we trying to prime, and would that association still be fair if the audience slowed down and analyzed the proposal?",
+      "source_quote": "identify the desired end-state association",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What proof will the audience need after the emotional sale so the idea can survive contact with System 2?",
+      "source_quote": "handouts and documents as proof",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Guide preliminary attention to the concept you want associated with the message before you make the ask.",
+      "source_quote": "guides the preliminary attention",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use an emotional sale for the live moment and reserve detailed documents for the later proof burden.",
+      "source_quote": "The Emotional Sale vs. Rational Proof",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Choose a simple, sticky, high-context frame so the audience has a mental bucket before the details arrive.",
+      "source_quote": "high-concept pitch",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The intervention layer stays on salience shaping, associative preparation, and proof-after-priming discipline.",
+    "donor_drops": [
+      "Did not preserve broad persuasion tactic sprawl because the raw source is strongest on attention setup and anti-manipulation boundaries."
+    ],
+    "open_questions": [
+      "The first premortem prompt is sourced from the interrogative self-talk mitigation rather than from the core playbook section."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The source is rich on framing, storytelling, analogies, empathy, and MECE-supported structure."
+    ],
+    "antagonists": [
+      "The raw source explicitly names scientific-method-evidence-testing and intellectual-humility style antagonism."
+    ],
+    "structured_tensions": [
+      "The source explicitly preserves a structured tension against scientific-method-evidence-testing."
+    ]
+  }
+}

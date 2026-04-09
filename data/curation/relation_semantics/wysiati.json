@@ -1,0 +1,82 @@
+{
+  "model_id": "wysiati",
+  "source_file": "WYSIATI_rag.md",
+  "allies": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation bias amplifies WYSIATI — not only does available evidence feel complete, but the search for more evidence is also biased toward confirming the story already constructed; WYSIATI closes the picture while confirmation bias reinforces it.",
+      "source_quote": "Confirmation bias amplifies WYSIATI: not only does the available evidence feel complete, but the search for more evidence is also biased toward confirming the story already constructed.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "The first piece of evidence encountered anchors the subsequent story-building that WYSIATI performs — the anchor is not just a reference point, it is the seed from which the entire coherent narrative grows.",
+      "source_quote": "The first piece of evidence encountered anchors the subsequent story-building that WYSIATI performs.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "survivorship-bias",
+      "rationale_text": "Survivorship bias produces the structured missing denominator that WYSIATI then fails to register — the survivors are in the picture, the failures are absent, and WYSIATI reports the picture as complete.",
+      "source_quote": "Survivorship bias produces the structured missing denominator that WYSIATI then fails to register.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base rates provide the outside-view evidence that WYSIATI excludes — the distributional facts about the reference class that are not in the immediate picture.",
+      "source_quote": "Base rates provide the outside-view evidence that WYSIATI excludes: the distributional facts about the reference class not in the immediate picture.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical thinking's discipline of evidence quality assessment and assumption surfacing directly fights WYSIATI by inserting the 'what is missing?' question before conclusions are drawn.",
+      "source_quote": "Critical thinking fights WYSIATI by inserting the 'what is missing?' question before conclusions are drawn.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "base-rates",
+      "tension_text": "WYSIATI conflicts with base-rates when the mind's closure around available evidence prevents the outside-view reference-class data from entering the picture at all.",
+      "source_quote": "WYSIATI vs base-rates: WYSIATI conflicts with base-rates (base rates) when the mind's closure around available evidence prevents the outside-view reference-class data from entering the picture at all.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "information-asymmetry",
+      "tension_text": "WYSIATI conflicts with information-asymmetry when the mind treats currently-available information as complete, suppressing the recognition that the other party has material information absent from the current picture.",
+      "source_quote": "WYSIATI vs information-asymmetry: WYSIATI conflicts with information-asymmetry (information asymmetry) when the mind treats currently-available information as complete.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "probabilistic-thinking",
+      "tension_text": "WYSIATI conflicts with probabilistic-thinking when narrative coherence generates overconfidence in conclusions drawn from incomplete evidence, collapsing what should be a distribution into a single confident point estimate.",
+      "source_quote": "WYSIATI vs probabilistic-thinking: WYSIATI conflicts with probabilistic-thinking (probabilistic thinking) when narrative coherence generates overconfidence in conclusions drawn from incomplete evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "tension_text": "WYSIATI conflicts with critical-thinking when the fluency and internal coherence of the available story suppresses the signal that scrutiny, gap-identification, and assumption-testing are needed.",
+      "source_quote": "WYSIATI vs critical-thinking: WYSIATI conflicts with critical-thinking (critical thinking) when the fluency and internal coherence of the available story suppresses the signal that scrutiny is needed.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "WYSIATI Wave 3 curated from the new source markdown. Key allies: confirmation-bias (amplifies closure), anchoring (seeds the narrative), survivorship-bias (produces the structured denominator gap). Key antagonists: base-rates (imports outside-view), critical-thinking (forces gap audit). Four structured tensions.",
+    "donor_drops": [],
+    "open_questions": []
+  }
+}

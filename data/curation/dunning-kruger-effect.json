@@ -1,0 +1,36 @@
+{
+  "model_id": "dunning-kruger-effect",
+  "source_file": "Dunning_Kruger_Effect_rag.md",
+  "select_when": [
+    "Novices or newly promoted operators are gaining responsibility in a domain where confidence can outrun actual competence.",
+    "Self-assessment needs to be compared to objective tests, external review, or observed performance instead of being taken at face value.",
+    "A team needs to separate apparent fluency or charisma from real operating skill before making a trust decision.",
+    "The risk is that people do not know enough to notice their own mistakes or blind spots."
+  ],
+  "avoid_when": [
+    "The label is being used as a lazy dismissal of someone else's view instead of prompting better calibration, evidence, or coaching.",
+    "Experts are treating Dunning-Kruger as a novice-only problem and ignoring how status or past success can create the same illusion of understanding."
+  ],
+  "input_type": "uncalibrated self-assessment",
+  "output_type": "calibration-and-review protocol",
+  "reasoning_types": [
+    "metacognitive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the file on calibration, overconfidence, and evidence-bearing skill checks rather than on insult-label usage.",
+    "donor_drops": [
+      "Did not preserve broader personality-language sprawl because the raw source is already strongest on competence miscalibration."
+    ],
+    "open_questions": [
+      "The source overlaps with impostor-syndrome and organizational coaching, but the operational file stays on overconfidence and objective calibration."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on confidence outrunning competence, the need for objective tests, and separating apparent fluency from real skill."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source explicitly warns against using the label lazily and against assuming the bias belongs only to novices."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The input label compresses the raw self-assessment calibration problem."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label keeps the intervention on calibration and review rather than on mockery or dismissal."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model relies on reflective self-assessment plus diagnostic comparison to external evidence."}
+  }
+}

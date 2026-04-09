@@ -1,0 +1,87 @@
+{
+  "model_id": "statistics-concepts",
+  "source_file": "Statistics_Concepts_rag.md",
+  "failure_modes": [
+    {
+      "text": "Base-rate neglect can let vivid case details overwhelm the statistical background information that should anchor the judgment.",
+      "source_quote": "Base-Rate Neglect",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Anchor to base rates first: before processing vivid case details, look up the statistical background frequency and use it as the starting point for judgment."
+    },
+    {
+      "text": "Decorative statistical language can hide weak data quality, weak assumptions, or sampling problems.",
+      "source_quote": "statistical language gets used decoratively",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit data quality behind statistical claims: check sample size, sampling method, and measurement validity before trusting any reported statistic."
+    },
+    {
+      "text": "Overweighting the mean can hide extreme-outcome risk in distributions where tails matter more than the average case.",
+      "source_quote": "placing too much emphasis on the mean outcome",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Report distributional shape, not just the mean: show the tails and spread of outcomes when the extremes carry more decision weight than the average."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What assumption about the sample, baseline, or distribution would make this conclusion collapse first?",
+      "source_quote": "Systematic Risk Analysis (Knowns & Unknowns)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Anchor to base rates and reference classes before adding the vivid details of the current case.",
+      "source_quote": "reference classes",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use simulations or scenario analysis when the full outcome range matters more than one average estimate.",
+      "source_quote": "simulations are valuable tools for highlighting the range of possible outcomes",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat good statistical judgment as a process for making good decisions consistently, not as a guarantee of a good outcome every time.",
+      "source_quote": "good decisions ... the best way to achieve good outcomes in the long run",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the intervention layer on base-rate anchoring, range-aware analysis, and process-quality judgment rather than generic quantitative language.",
+    "donor_drops": [
+      "Did not preserve advanced-method sprawl because the raw source is strongest on signal detection, distributions, and inferential humility."
+    ],
+    "open_questions": [
+      "The third premortem question is reviewed compression over the source's broader assumption-checking surface."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The source is rich on scientific-method thinking, game theory, and systems causality."
+    ],
+    "antagonists": [
+      "The raw antagonists section explicitly names intuitive System 1 shortcuts, narrative drift, and confirmation-bias pressure."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block was preserved from the raw file."
+    ]
+  }
+}

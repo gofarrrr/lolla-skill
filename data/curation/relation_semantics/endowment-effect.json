@@ -1,0 +1,78 @@
+{
+  "model_id": "endowment-effect",
+  "source_file": "Endowment_Effect_rag.md",
+  "allies": [
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring supports endowment-effect because owned assets become reference points that distort later valuation and comparison.",
+      "source_quote": "anchored to the past status quo",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "rationalization",
+      "rationale_text": "Rationalization amplifies endowment-effect when owners spin persuasive stories to justify a value that their attachment is already inflating.",
+      "source_quote": "This self-focused perspective can engage motivated reasoning, where individuals process information specifically to get a conclusion we want.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "sunk-cost-fallacy",
+      "rationale_text": "Sunk-cost-fallacy conflicts with endowment-effect by worsening the tendency to hold owned assets long after their value or usefulness has deteriorated.",
+      "source_quote": "endowment-effect conflicts with sunk-cost-fallacy when owned assets are overvalued and held despite deteriorating value.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "status-quo-bias",
+      "rationale_text": "Status-quo-bias conflicts with endowment-effect when attachment to current holdings suppresses rational switching or divestment.",
+      "source_quote": "endowment-effect conflicts with status-quo-bias when attachment to current holdings suppresses rational switching.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking counters endowment-effect by forcing a re-evaluation of owned assets based on underlying facts instead of ownership-derived value.",
+      "source_quote": "endowment-effect conflicts with first-principles-thinking when ownership inflates perceived value beyond what the underlying facts justify.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "sunk-cost-fallacy",
+      "tension_text": "Endowment-effect conflicts with sunk-cost-fallacy when owned assets are overvalued and held despite deteriorating value.",
+      "source_quote": "endowment-effect vs sunk-cost-fallacy: endowment-effect conflicts with sunk-cost-fallacy (sunk cost fallacy) when owned assets are overvalued and held despite deteriorating value.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Endowment-effect conflicts with status-quo-bias when attachment to current holdings suppresses rational switching.",
+      "source_quote": "endowment-effect vs status-quo-bias: endowment-effect conflicts with status-quo-bias (status quo bias) when attachment to current holdings suppresses rational switching.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "tension_text": "Endowment-effect conflicts with first-principles-thinking when ownership inflates perceived value beyond what the underlying facts justify.",
+      "source_quote": "endowment-effect vs first-principles-thinking: endowment-effect conflicts with first-principles-thinking (first principles thinking) when ownership inflates perceived value beyond what the underlying facts justify, and stripping assumptions away is resisted.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The retained relation surface stays very close to the source: ownership anchoring, rationalization pressure, and three explicit structured tensions that cleanly fit current ids.",
+    "donor_drops": [
+      "Did not preserve broader System 1 or framing expansion because the current vocabulary already supports a cleaner valuation-distortion surface."
+    ],
+    "open_questions": [
+      "Opportunity-cost is source-real, but the explicit structured-tension surface was stronger and cleaner on sunk-cost-fallacy, status-quo-bias, and first-principles-thinking."
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "network-effects",
+  "source_file": "Network_Effects_rag.md",
+  "select_when": [
+    "The value of adoption may rise materially as more users, contributors, or counterparties join the same system.",
+    "The team needs to know whether growth mechanics are self-reinforcing after a threshold or are merely linear scale wrapped in better storytelling.",
+    "A strategy depends on reaching critical mass before the system becomes viable, defensible, or self-sustaining.",
+    "The next move should test density, reach, or seeding assumptions rather than assuming that ordinary growth automatically compounds into network value."
+  ],
+  "avoid_when": [
+    "Leaders are labeling ordinary scale benefits as network effects without showing that each additional participant actually increases value for the next one.",
+    "The strategy is boiling the ocean by overcomplicating the system before critical mass is even reachable."
+  ],
+  "input_type": "threshold and self-reinforcement problem",
+  "output_type": "critical-mass and feedback check",
+  "reasoning_types": [
+    "systems",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on critical mass, density, self-reinforcing adoption, and anti-fake-network-effects discipline.",
+    "donor_drops": [
+      "Did not preserve broader platform rhetoric because the raw source is strongest on threshold mechanics, feedback loops, and viability tests."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans seeding strategy and message design for adoption."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on value increasing with participation, threshold effects, and deciding whether growth is self-reinforcing."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings about fake network-effects claims and overcomplicating the system before viability."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on threshold and self-reinforcement problems, while the typed input remains a normalized routing label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports critical-mass testing and feedback assessment; the output label compresses that into a reusable intervention artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Network-effects is strongest as systems and threshold-risk reasoning rather than as generic growth advice."
+    }
+  }
+}

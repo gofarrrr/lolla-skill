@@ -1,0 +1,72 @@
+{
+  "model_id": "bottlenecks",
+  "source_file": "Bottlenecks_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive Load Theory is a direct ally because bottlenecks often show up as working-memory limits that need chunking and scaffolding.",
+      "source_quote": "The central finding of CLT—that working memory is limited—is the primary cognitive bottleneck the theory seeks to manage.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "The Feynman Technique helps reveal the hidden intellectual bottleneck by forcing the idea into simple language.",
+      "source_quote": "It aligns with the bottleneck model by forcing the user to explain a concept simply ... immediately revealing gaps or blind spots—the intellectual bottlenecks—in their understanding.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "system-1",
+      "rationale_text": "System-1's fast, intuitive, shortcut-driven processing directly opposes bottleneck thinking — bottleneck analysis requires the disciplined, slow, serial processing of System 2, while System 1's heuristics produce the pattern-jumping that misidentifies constraints and bypasses the real limit.",
+      "source_quote": "The disciplined, slow, and serial nature of processing at the bottleneck (System 2 thinking) stands in contrast to Type 1 thinking, which is fast, intuitive, and relies on mental shortcuts (heuristics).",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "optimization-theory",
+      "tension_text": "Bottlenecks conflicts with optimization-theory when local utilization maximization destabilizes downstream queues.",
+      "source_quote": "bottlenecks conflicts with optimization-theory (optimization theory) when local utilization maximization creates downstream queue instability.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "opportunity-cost",
+      "tension_text": "Bottlenecks conflicts with opportunity-cost when blocked capacity hides the throughput value being sacrificed elsewhere.",
+      "source_quote": "bottlenecks conflicts with opportunity-cost (opportunity cost) when blocked capacity hides foregone high-value throughput.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Bottlenecks conflicts with confirmation-bias when teams protect the chosen constraint diagnosis instead of testing alternate system limiters.",
+      "source_quote": "bottlenecks conflicts with confirmation-bias (confirmation bias) when teams seek evidence that confirms the chosen constraint diagnosis rather than testing the trade-off between current assumptions and alternative system limiters.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Bottlenecks already had some compiled relation coverage, but reviewed curation strengthens provenance and keeps only the first-order surface.",
+    "donor_drops": [
+      "Did not preserve donor topology or multihop relation artifacts."
+    ],
+    "open_questions": [
+      "Minto Pyramid Principle, Symphony, and law-of-the-instrument pressure remain source-real but were left deferred because the current canonical target surface is not yet stable enough."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "The raw ally section also names the Minto Pyramid Principle and Symphony, which may matter later if the canonical id surface expands."
+    ],
+    "antagonists": [
+      "System-1 wired as antagonist (Task 4.1 sweep). Law-of-the-instrument → einstellung-effect already wired in Task 2.5."
+    ]
+  }
+}

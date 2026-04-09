@@ -1,0 +1,36 @@
+{
+  "model_id": "emergence",
+  "source_file": "Emergence_rag.md",
+  "select_when": [
+    "The whole-system behavior cannot be inferred by scoring the parts independently.",
+    "Interaction effects, timing, or combinations matter more than component quality alone.",
+    "Leaders need to design conditions and constraints rather than script a fixed outcome path.",
+    "A novel system is producing patterns that only become visible once multiple forces interact."
+  ],
+  "avoid_when": [
+    "Teams are using let-it-emerge language as an excuse for having no structure, constraints, or feedback loops.",
+    "The task actually requires a fixed sequential process where diagnosis, design, and execution must stay separate."
+  ],
+  "input_type": "interaction-heavy system problem",
+  "output_type": "condition-design lens",
+  "reasoning_types": [
+    "systems",
+    "abductive"
+  ],
+  "curation_notes": {
+    "summary": "Focused on interaction effects, condition design, and anti-blueprint discipline rather than on abstract novelty language.",
+    "donor_drops": [
+      "Did not preserve broader innovation-story sprawl because the raw source is already strongest on system-level behavior and adaptive design."
+    ],
+    "open_questions": [
+      "The source overlaps with creative synthesis and implementation philosophy, but the operational file stays on system behavior emerging from interactions."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on wholes, interaction effects, novelty, and designing conditions rather than scripting outcomes."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source explicitly warns against no-design spontaneity and against blurring fixed sequential processes."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed input label compresses the raw activation conditions into a reusable routing identity."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures emergence as a condition-design intervention rather than a prediction claim."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model relies on system-level pattern reading and explanatory inference from interacting parts."}
+  }
+}

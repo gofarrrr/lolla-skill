@@ -1,0 +1,87 @@
+{
+  "model_id": "calculated-risk-taking",
+  "source_file": "Calculated_Risk_Taking_rag.md",
+  "failure_modes": [
+    {
+      "text": "Overweighting the base case can hide severe downside outcomes that matter more than the average scenario.",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Simulate outcomes one or two standard deviations from the mean; ask whether the worst case is survivable, not just whether the base case is attractive."
+    },
+    {
+      "text": "Reference-class errors can make a decision look safer or riskier because the current case was matched to the wrong historical structure.",
+      "source_quote": "Reference Class Forecasting",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Scrutinize reference-class fit: line up the assumptions that make the historical comparison valid and test each against the current case."
+    },
+    {
+      "text": "Sensitivity-blind analysis can create false confidence by hiding how much the conclusion changes when key inputs move.",
+      "source_quote": "Sensitivity Analysis",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Run sensitivity analysis on every key input; if a small change in one assumption flips the conclusion, the analysis has earned less confidence than it claims."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What You Have to Believe Analysis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which variable, probability, or payoff would have to move for this decision to stop being attractive?",
+      "source_quote": "performing a sensitivity analysis helps to test the stability of the conclusion",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use decision trees or cost-benefit analysis when a choice depends on explicit branches, tradeoffs, and probabilities.",
+      "source_quote": "Cost-Benefit Analysis (CBA) and Decision Trees",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Run scenario analysis or simulation before a large commitment so the team can see the spread of plausible outcomes, not just the central case.",
+      "source_quote": "Scenario Analysis and Simulations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat the choice as a bet and evaluate the process quality separately from whether luck later produces a good or bad outcome.",
+      "source_quote": "Decisions as Bets",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the intervention layer on explicit bet sizing, sensitivity checks, and downside-aware branch comparison.",
+    "donor_drops": [
+      "Did not preserve generic risk-management sprawl because the raw source is strongest on decisions-as-bets and scenario-backed evaluation."
+    ],
+    "open_questions": [
+      "The third heuristic is phrased as an action rule rather than preserving the metaphor verbatim, but the source support is direct."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The source is strong on game-theory, simulations, and structured decision diagrams."
+    ],
+    "antagonists": [
+      "The raw source carries familiar pressure from impulsive System 1 judgments and false certainty."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block was preserved from the raw file."
+    ]
+  }
+}

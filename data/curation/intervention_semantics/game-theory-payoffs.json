@@ -1,0 +1,87 @@
+{
+  "model_id": "game-theory-payoffs",
+  "source_file": "Game_Theory_Payoffs_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can model the wrong game when one side is optimizing politics, ideology, or internal incentives that the payoff map does not capture.",
+      "source_quote": "Danger when the actors are not actually playing the same game",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Verify the payoff map captures the real incentives in play; politics, ideology, or internal pressures that do not appear in the model can dominate behavior."
+    },
+    {
+      "text": "Recursive strategizing can become so computationally expensive that the analysis costs more than the decision is worth.",
+      "source_quote": "The cost of strategizing",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a complexity ceiling: if recursive strategizing costs more than the decision is worth, simplify the model to the dominant strategic interaction."
+    },
+    {
+      "text": "Incredible threats or promises can be treated as real leverage even when no device makes them binding.",
+      "source_quote": "Incredible Commitments/Threats",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Test whether threats or promises are credible by checking what device makes them binding; incredible commitments are not real leverage."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What evidence would show that we chose the wrong players, incentives, or payoff assumptions for this game?",
+      "source_quote": "What evidence would show that we chose the wrong players, incentives, or payoff assumptions for this game?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If the opponent's strongest adverse response lands, is the downside still survivable?",
+      "source_quote": "If the opponent's strongest adverse response lands, is the downside still survivable?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What specific device makes our stated threat or promise actually credible to the other side?",
+      "source_quote": "What specific devices ... make our stated threat or promise absolutely credible",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Name the players, moves, information asymmetries, and payoff drivers explicitly before optimizing the move.",
+      "source_quote": "name the players, likely moves, information asymmetries",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the smallest game model that can still move the decision instead of mapping every theoretical branch.",
+      "source_quote": "smallest decision-relevant game model",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Test multiple frames and contradictory evidence before locking the game structure.",
+      "source_quote": "Test multiple frames and actively seek contradictory evidence",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on explicit player-response mapping, credible commitments, and avoiding fake equilibria.",
+    "donor_drops": [
+      "Did not preserve broader theoretical game taxonomy because the raw source is stronger on concrete strategic decision discipline."
+    ],
+    "open_questions": [
+      "The first heuristic compresses several source passages on explicit game definition so the chunk stays operational."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on incentives, signaling, decision-trees, and constraints because the game changes when payoffs, commitments, and move sequencing are made explicit."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and fake-payoff framing, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source clearly supports conflict with confirmation-bias and synergy with signaling and incentives, while more theoretical neighbors should stay omitted."
+    ]
+  }
+}

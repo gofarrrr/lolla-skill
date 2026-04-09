@@ -1,0 +1,76 @@
+{
+  "model_id": "systems-thinking",
+  "source_file": "Systems_Thinking_rag.md",
+  "select_when": [
+    "Recurring symptoms, repeated escalations, or oscillating outcomes suggest the local patch is not touching the real source of behavior.",
+    "Cause and effect are delayed, circular, or distributed across multiple actors, incentives, and constraints.",
+    "The chosen intervention will change incentives, behavior, capacity, or future option space rather than only solving today's visible issue.",
+    "A rewrite or redesign may be misdiagnosing coordination debt, feedback-loop failure, or ownership ambiguity as purely technical debt."
+  ],
+  "avoid_when": [
+    "The problem is linear, bounded, and dominated by a clear proximate cause with an obvious direct fix.",
+    "The team cannot name a leverage point, intervention variable, or progress signal, so the system map is becoming description rather than decision support.",
+    "Rich diagrams and broad causal stories are replacing the harder move of choosing what to test or change next."
+  ],
+  "input_type": "recurring system behavior",
+  "output_type": "feedback-loop and leverage map",
+  "reasoning_types": [
+    "systems",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the source's event-versus-structure doctrine and architecture-misdiagnosis warning, then normalized the model into a leverage-seeking operational unit.",
+    "donor_drops": [
+      "Deferred donor compound_contracts for this first pass because they deserve a separate contract review instead of being smuggled into the pilot schema.",
+      "Dropped donor new_allies and new_tensions because the raw markdown already provides sufficient latticework context for this layer."
+    ],
+    "open_questions": [
+      "If later batches need compound contracts, this model is a likely candidate, but the pair logic should be reviewed separately from the pilot contract."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section explicitly supports recurring symptoms, feedback delay, and architecture-as-misdiagnosis; donor material helped confirm operational emphasis but was narrowed."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Built from the raw limitation and danger language, then tightened into anti-activation rules."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly frames the model around system behavior rather than isolated events, but the exact input label is normalized."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The raw playbook implies a leverage-oriented system map; donor output language was not adopted directly but helped stress the need for an operational surface."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "Systems and causal reasoning are strongly supported by the source; the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

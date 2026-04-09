@@ -1,0 +1,87 @@
+{
+  "model_id": "path-dependence",
+  "source_file": "Path_Dependence_rag.md",
+  "failure_modes": [
+    {
+      "text": "A system can keep reproducing old behavior even after intent changes because historical grooves are stronger than the latest plan.",
+      "source_quote": "Works when a system keeps reproducing old behavior despite new intent.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Map the switching costs explicitly: for each path-dependent behavior, estimate what it would actually cost to change, and compare that cost to the value of the alternative."
+    },
+    {
+      "text": "Path-lock can become a self-justifying excuse for not redesigning anything that is actually within reach to change.",
+      "source_quote": "path-dependence conflicts with status-quo-bias (status quo bias) when a correctly diagnosed path-lock is used as an excuse to avoid redesign rather than as a genuine structural constraint.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge fatalism with a 'what if we started today?' exercise: design the ideal approach from scratch, then compare it to the inherited path to see what the gap reveals."
+    },
+    {
+      "text": "Historical commitment can distort evidence reading so decision-makers selectively notice what justifies staying on the current path.",
+      "source_quote": "path-dependence conflicts with confirmation-bias (confirmation bias) when decision-makers selectively credit evidence that justifies staying on the current path rather than fairly evaluating the case for switching.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit evidence reading for confirmation of the status quo: ask whether the team would interpret the same data differently if they were not already committed to this path."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which early choice is constraining current options more than people realize?",
+      "source_quote": "Most useful when early choices are constraining current options more than people realize.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What current redesign assumption is treating the inherited estate like a clean scheduling problem when installed constraints already narrow the real path out?",
+      "source_quote": "Most useful when a migration plan treats the inherited estate like a clean scheduling problem.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If we tried to change course now, which habits, standards, interfaces, or prior investments would fight us first?",
+      "source_quote": "It is a strong fit when habits, standards, interfaces, or prior investments are locking the system into the current route.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Map inherited constraints explicitly so the team can tell the difference between present preference and historical route-lock.",
+      "source_quote": "Path dependence is strongest when the real driver is inherited architecture, history, or commitment rather than present-day preference alone.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Stress-test redesign plans against installed customers, contracts, interfaces, and operating dependencies before calling the path reversible.",
+      "source_quote": "The plan underprices installed customers, contracts, interfaces, and operational dependencies that already narrow the real path out.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use path-lock diagnosis to target redesignable constraints rather than to excuse staying with the inherited route by default.",
+      "source_quote": "Path dependence conflicts with status-quo-bias when a correctly diagnosed path-lock is used as an excuse to avoid redesign rather than as a genuine structural constraint.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on inherited route-lock, redesign friction, and anti-excuse discipline rather than on broad historical narrative.",
+    "donor_drops": [
+      "Did not preserve donor migration-policy sprawl because the raw source is already strong on inherited constraint, switching friction, and anti-stagnation checks."
+    ],
+    "open_questions": [
+      "The first failure mode compresses several adjacent source passages about old behavior reproducing itself despite new intent."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on commitment-bias dynamics and scaffolded path formation, but only the cleanest current-vocabulary ids should survive Wave 3."
+    ],
+    "antagonists": [
+      "The raw antagonists and tension sections are strongest on first-principles-thinking, status-quo-bias, and confirmation-bias."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension block that should survive into Wave 3 with bounded normalization."
+    ]
+  }
+}

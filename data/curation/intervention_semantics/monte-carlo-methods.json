@@ -1,0 +1,67 @@
+{
+  "model_id": "monte-carlo-methods",
+  "source_file": "Monte_Carlo_Methods_rag.md",
+  "failure_modes": [
+    {
+      "text": "Base-case bias hides tail risk when decision-makers overweight the mean outcome.",
+      "source_quote": "Move Beyond the Mean",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Report tail percentiles (5th, 1st) alongside the mean and require decision-makers to state which tail scenario they can survive."
+    },
+    {
+      "text": "Simulation can create false rigor when the input distributions are casually guessed.",
+      "source_quote": "convert weak assumptions into convincing-looking rigor",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit the input distributions: trace each assumption back to empirical data or expert calibration and flag any distribution that was set by convenience."
+    },
+    {
+      "text": "Unknown unknowns and structural breaks can make simulated ranges look safer than reality.",
+      "source_quote": "unknown unknowns or structural breaks dominate the outcome",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Stress-test the model against structural breaks by running scenarios where key relationships change, not just where parameters vary within the assumed distribution."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which input distributions are anchored to reference classes rather than wishful guesses?",
+      "source_quote": "reference classes",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What unknown unknown or regime break would this simulation fail to imagine?",
+      "source_quote": "unknown unknowns",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Model a range of outcomes instead of relying on one point forecast.",
+      "source_quote": "range of possible outcomes",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Run stochastic sensitivity analysis across wide ranges, not narrow comfort bands.",
+      "source_quote": "Sweep one or more probabilities through wide ranges of value",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the outside view and reference classes to seed assumptions before simulating.",
+      "source_quote": "Anchor to the Outside View",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "model_id": "batna",
+  "source_file": "Batna_rag.md",
+  "select_when": [
+    "Negotiation leverage depends on knowing the walk-away path before entering a pressured conversation.",
+    "The team must compare a proposed deal against a credible outside option rather than against hope or sunk effort.",
+    "Clarity about fallback options changes bargaining posture, sequencing, and the willingness to say no."
+  ],
+  "avoid_when": [
+    "People are declaring a fallback as their BATNA even though it is vague, unexecutable, or worse than continuing to negotiate.",
+    "The negotiation is being framed around the preferred deal path without writing down minimum acceptable terms or no-go thresholds first."
+  ],
+  "input_type": "negotiation fallback comparison",
+  "output_type": "walk-away leverage assessment",
+  "reasoning_types": [
+    "deductive",
+    "counterfactual"
+  ],
+  "curation_notes": {
+    "summary": "Normalized the model around fallback credibility and leverage rather than donor lists of negotiation scenarios.",
+    "donor_drops": [
+      "Dropped donor repeated negotiation scenario variants that did not add distinct structure beyond fallback comparison.",
+      "Dropped donor higher-order relation fields and reasoning-signal overlays because this batch preserves only the frozen first-order contract."
+    ],
+    "open_questions": [
+      "The output type is a reviewed operational compression of several raw roles: fallback comparison, leverage discipline, and walk-away thresholding."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file explicitly states the main activation conditions; donor drafts mostly supplied extra examples that were collapsed into the same structural triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The first condition is explicit in raw form and the second is a reviewed sharpening grounded in the same raw anti-pattern and donor signal overrides."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source is plainly about fallback comparison in negotiation, but the compact label is a reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw file orients the user toward leverage and walk-away clarity; the output type compresses that intervention shape."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "BATNA use is strongly deductive and counterfactual in structure, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

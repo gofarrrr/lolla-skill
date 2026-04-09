@@ -1,0 +1,71 @@
+{
+  "model_id": "time-tested-validation",
+  "source_file": "Time_Tested_Validation_rag.md",
+  "select_when": [
+    "A claim, idea, or method looks promising but needs to be checked against proven tests, reference classes, or established validation loops before wider commitment.",
+    "The team is at risk of trusting novelty, analogy, or polished explanation without enough evidence that the approach actually works.",
+    "Repeated validation against known standards, expected answers, or old-but-reliable checks would reduce the chance of fashionable error.",
+    "A recommendation needs credibility that comes from surviving structured verification, not just from sounding coherent."
+  ],
+  "avoid_when": [
+    "Time-tested validation is being used to block necessary novelty even though the situation is genuinely new and existing reference classes fit poorly.",
+    "The team is treating inherited validation habits as sacred without checking whether they still test the real failure surface."
+  ],
+  "input_type": "credibility and verification problem",
+  "output_type": "validated confidence threshold",
+  "reasoning_types": [
+    "diagnostic",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on proven checks, reference-class fit, and explicit validation thresholds rather than broad tradition-for-tradition's-sake language.",
+    "donor_drops": [
+      "Did not widen into generic best-practices rhetoric because the raw source is strongest on validation loops, reference classes, and evidence-backed credibility."
+    ],
+    "open_questions": [
+      "The source spans communication, AI evaluation, and problem-solving frameworks, so the output label intentionally stays at the confidence-threshold layer."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source explicitly supports systematic validation, reference-class checking, and evidence strong enough to earn confidence."
+    },
+    "avoid_when": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source warns about applying models mechanically; the two avoid lines compress those warnings into boundary conditions against stale or blocking validation."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates when credibility depends on verification and not mere plausibility, while the compact label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields stronger or weaker confidence based on surviving known tests; the output label compresses that surface."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses whether a claim has really been checked and uses probabilistic thinking around reference classes and simulation."
+    }
+  }
+}

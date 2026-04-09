@@ -1,0 +1,111 @@
+{
+  "model_id": "information-asymmetry",
+  "source_file": "Information_Asymmetry_rag.md",
+  "failure_modes": [
+    {
+      "text": "Partner-controlled demand signals can make manufactured confidence look like real market pull.",
+      "source_quote": "The principal then scales the channel on signals the partner controls instead of signals the market independently confirms.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Compresses the raw table entry into a chunk-safe failure mode.",
+      "mitigation": "Verify demand signals independently; partner-controlled data can make manufactured confidence look like real market pull."
+    },
+    {
+      "text": "The curse of knowledge lets experts communicate at the wrong level of abstraction for the real audience.",
+      "source_quote": "Experts unintentionally communicate abstractly and opaquely because they cannot recall what it is like to lack their specialized knowledge.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Preserves the raw cognitive failure in a later bundle-friendly form.",
+      "mitigation": "Translate to the audience's level of abstraction; the curse of knowledge makes experts communicate above the level that decision-makers can use."
+    },
+    {
+      "text": "Overconfidence and blind spots can make the informed party miss unknown unknowns and resist deeper investigation.",
+      "source_quote": "Expertise leads to an illusion of understanding and overconfidence, causing the informed party to ignore unknown unknowns.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit for unknown unknowns: the informed party's overconfidence can prevent deeper investigation of what they do not know they do not know."
+    },
+    {
+      "text": "WYSIATI makes available information look sufficient even when the decisive data is missing.",
+      "source_quote": "The belief that the available information is sufficient to make a judgment, neglecting the critical, missing data that defines IA.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Search for the missing data explicitly; WYSIATI makes available information look sufficient even when the decisive evidence is absent."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What do you think the other side doesn't get about your perspective?",
+      "source_quote": "What do you think the other side doesn’t get about your perspective?",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Normalized the apostrophe for JSON readability."
+    },
+    {
+      "text": "What specific metric, reference, or proof in this plan is controlled by the party trying to win the decision?",
+      "source_quote": "What specific metric, reference, or proof in this plan is controlled by the party trying to win the decision?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If the vendor or agent were optimizing for a different payoff than we assume, where would we see it first?",
+      "source_quote": "If the vendor or agent were optimizing for a different payoff than we assume, where would we see it first?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use social cartography to map who actually holds power, bias, and hidden decision rights.",
+      "source_quote": "Social cartography (drawing a mental map of key players) ensures the strategist has a complete picture of stakeholder biases and preferences.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Strong source-backed intervention heuristic from the raw playbook."
+    },
+    {
+      "text": "Bridge the gap with Socratic inquiry by asking how the expert thinks, not only what they recommend.",
+      "source_quote": "rather than asking what to do ... ask how the expert thinks about the problem",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Ask for stories, not advice, so tacit decision steps become inspectable.",
+      "source_quote": "Asking for Stories, Not Advice: Focusing on facts, timelines, and walking through decisions step-by-step",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the PARI method to surface precursor, action, result, and interpretation inside expert judgment.",
+      "source_quote": "The PARI method ... Precursor, Action, Result, Interpretation",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "The acronym is explicit; the chunk text expands it into later operator-friendly language."
+    }
+  ],
+  "curation_notes": {
+    "summary": "This file preserves the strongest hidden-variable, diligence, and observability content in the raw source while keeping exploitative donor framing out of the layer.",
+    "donor_drops": [
+      "Dropped donor strategic-advantage framing because this wave is about intervention content for challenge, not exploitation."
+    ],
+    "open_questions": [
+      "A later wave may separate communication-gap chunks from principal-agent-style observability chunks more sharply."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Raw allies section is rich on radical transparency, Feynman Technique, cognitive load theory, and systems thinking."
+    ],
+    "antagonists": [
+      "Raw antagonists section gives future relation material on WYSIATI, Maslow's hammer, and fast System 1 thinking."
+    ],
+    "structured_tensions": [
+      "Structured tensions explicitly connect information-asymmetry to principal-agent-problem and confirmation-bias."
+    ]
+  }
+}

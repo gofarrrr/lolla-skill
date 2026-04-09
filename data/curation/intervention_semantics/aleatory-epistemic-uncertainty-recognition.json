@@ -1,0 +1,87 @@
+{
+  "model_id": "aleatory-epistemic-uncertainty-recognition",
+  "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+  "failure_modes": [
+    {
+      "text": "Conjunctive optimism can make a complex plan look safer than it is because the chain of dependent conditions is overestimated.",
+      "source_quote": "Conjunctive Event Overestimation",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Calibrate by quantifying the joint probability of the dependent conditions; shock-test each link independently to see where the chain actually breaks."
+    },
+    {
+      "text": "Base-rate neglect can keep the team anchored in the inside view when the outside view is the only honest way to size aleatory risk.",
+      "source_quote": "Base-Rate Neglect",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Anchor decisions to the outside view first — what happened historically in the reference class — before adjusting for the specifics of this case."
+    },
+    {
+      "text": "Overprecision can hide epistemic ignorance by treating fragile assumptions as if they were already earned facts.",
+      "source_quote": "The Illusion of Knowing (Overprecision)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Run sensitivity analysis on every key assumption; ask 'what would you have to believe?' and check whether each belief has been tested or merely assumed."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Would you be really shocked if the outcome landed outside the range you just gave?",
+      "source_quote": "The Shock Test",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Classify uncertainty first so the team knows whether to run statistical sizing or discovery work.",
+      "source_quote": "different forms of decision-making and analysis are required",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Anchor to the outside view and reference classes before adjusting for the specifics of the inside view.",
+      "source_quote": "moving away from an inside view ... towards anchoring decisions in the outside view",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use simulations and scenario analysis when variability is real enough that one point estimate hides the true range of outcomes.",
+      "source_quote": "simulations and scenario analysis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The intervention layer stays on classifying uncertainty correctly, outside-view calibration, and explicit uncertainty-range checks.",
+    "donor_drops": [
+      "Did not preserve broad uncertainty taxonomy sprawl because the raw source is strongest on tool choice, shock testing, and outside-view discipline."
+    ],
+    "open_questions": [
+      "The first heuristic compresses a longer source distinction into one action rule, but it remains directly grounded."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The source is rich on probabilistic thinking, systems-thinking, falsifiability, and first-principles-thinking."
+    ],
+    "antagonists": [
+      "The raw antagonists section names WYSIATI, availability-style hammer use, confirmation-bias, and outcome-bias."
+    ],
+    "structured_tensions": [
+      "The source explicitly preserves tensions against commitment-bias, status-quo-bias, and confirmation-bias."
+    ]
+  }
+}

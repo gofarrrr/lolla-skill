@@ -1,0 +1,72 @@
+{
+  "model_id": "decomposition",
+  "source_file": "Decomposition_rag.md",
+  "select_when": [
+    "The problem is too tangled to reason about as a whole and teams keep mixing symptoms, causes, owners, and options in one blob.",
+    "Progress depends on identifying which branches are causal, which are descriptive, and which are actually actionable.",
+    "The breakdown should hand off into priorities, owners, sequencing, and the few branches worth pursuing rather than ending as a neat tree on paper.",
+    "High-volume information needs to be organized into a structure that reveals the key drivers instead of leaving facts isolated and unusable."
+  ],
+  "avoid_when": [
+    "A familiar framework is being forced onto a novel problem just because it is the easiest cut available.",
+    "The tree is creating false certainty by making the structure look tidy even though the causal landscape may still be wrong."
+  ],
+  "input_type": "tangled problem structure",
+  "output_type": "MECE branch map",
+  "reasoning_types": [
+    "deductive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the curation centered on problem disaggregation that changes action, not on abstract framework admiration.",
+    "donor_drops": [
+      "Did not preserve donor generalized issue-tree libraries because the raw source already gives cleaner MECE and branch-selection discipline.",
+      "Did not widen into higher-order composition source files in this run."
+    ],
+    "open_questions": [
+      "The output label compresses several raw structures such as logic trees, issue pyramids, and branch pruning into one operational form."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file contains explicit activation bullets and nearby strengths around complexity, driver isolation, and execution handoff; review mainly tightens them into routing triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The second condition is explicit in raw danger form and the first is a conservative anti-activation compression of the familiar-framework warning."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly applies to tangled problem structures, but the compact machine-usable label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model builds MECE trees and issue structures that expose action branches; the output label compresses that into an operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Decomposition is strongly deductive and systems-oriented in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

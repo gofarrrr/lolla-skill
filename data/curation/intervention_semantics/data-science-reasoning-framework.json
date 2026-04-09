@@ -1,0 +1,87 @@
+{
+  "model_id": "data-science-reasoning-framework",
+  "source_file": "Data_Science_Reasoning_Framework_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can build precise models around the wrong target when convenient proxies stand in for the real causal question.",
+      "source_quote": "Danger when convenient proxy metrics are treated as the underlying reality, producing precise analysis around the wrong target.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Validate that the measured proxy is causally connected to the real question; precise models around the wrong target produce confident wrong answers."
+    },
+    {
+      "text": "Analysis can degrade into dashboard theater if framing, measurement, modeling, and communication are never separated.",
+      "source_quote": "Works best when teams must separate question framing, measurement design, modeling, and communication so analysis does not collapse into dashboard theater.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Separate framing, measurement, modeling, and communication as distinct steps; collapsing them produces dashboard theater instead of insight."
+    },
+    {
+      "text": "Metric optimization can suppress stakeholder-context signals that explain why the measured pattern is shifting.",
+      "source_quote": "data-science-reasoning-framework conflicts with empathy (empathy) when metric optimization suppresses stakeholder-context signals that explain behavior shifts.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Integrate stakeholder context into the analysis loop; metric optimization that ignores why the pattern is shifting will miss the explanation."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What causal question are we actually trying to answer before we decide what to measure?",
+      "source_quote": "modeling before agreeing on the causal question or business decision",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which proxy are we treating as reality, and what behavior might it be hiding?",
+      "source_quote": "convenient proxy metrics are treated as the underlying reality",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What competing explanation would still fit the observed data if our preferred story were wrong?",
+      "source_quote": "competing explanations need to be compared against observed data",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate framing, measurement, modeling, and communication before you call the work analysis.",
+      "source_quote": "separate question framing, measurement design, modeling, and communication",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Write the causal question first so modeling effort stays tied to a decision-relevant target.",
+      "source_quote": "causal question or business decision",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Force competing explanations to survive contact with the same observed data.",
+      "source_quote": "competing explanations need to be compared against observed data",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on turning noisy evidence into explicit hypothesis-and-test structure rather than on generic analytics fluency.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

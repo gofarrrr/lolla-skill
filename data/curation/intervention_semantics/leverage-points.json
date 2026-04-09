@@ -1,0 +1,87 @@
+{
+  "model_id": "leverage-points",
+  "source_file": "Leverage_Points_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can call every preferred initiative a leverage point without proving that it sits near a real rule, bottleneck, or feedback loop.",
+      "source_quote": "Danger when leaders label every preferred initiative a leverage point without proving that it sits near a real feedback loop, bottleneck, or governing rule.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require proof that the proposed leverage point sits near a real rule, bottleneck, or feedback loop; labeling a preferred initiative as leverage is not evidence."
+    },
+    {
+      "text": "Ocean-boiling analysis can bury the few structural moves that actually matter.",
+      "source_quote": "Boiling the Ocean",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Focus analysis on the few structural moves that actually matter; ocean-boiling analysis that maps everything buries the signal."
+    },
+    {
+      "text": "A good leverage diagnosis can still fail if the execution gap between what to do and how to do it is ignored.",
+      "source_quote": "It is often straightforward to identify the necessary strategy (the \"what,\" or the leverage point), but extremely difficult to figure out the execution (the \"how\").",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Close the execution gap: a good leverage diagnosis still fails if the team does not design how to implement the structural move."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "How does what you’re doing solve the problem?",
+      "source_quote": "How does what you’re doing solve the problem?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "How does it advance your thinking?",
+      "source_quote": "How does it advance your thinking?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is it the most important thing you could be doing right now?",
+      "source_quote": "Is it the most important thing you could be doing right now?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Disaggregate the problem and prioritize the few structural elements that matter most before analysis expands.",
+      "source_quote": "Problem Disaggregation and Prioritization",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Gather only enough facts to prove or disprove the central hypothesis instead of boiling the ocean.",
+      "source_quote": "To avoid wasting time on low-leverage activities (\"Don't boil the ocean\"), one must gather only enough facts required to prove or disprove a central hypothesis.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use value-driver trees to expose the few variables that truly move the system and make what-if analysis tractable.",
+      "source_quote": "Employing a Return on Capital Tree can expose the fundamental levers of the business.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on intervention prioritization, anti-ocean-boiling discipline, and the gap between identifying leverage and executing it.",
+    "donor_drops": [
+      "Did not preserve donor scoring or topology abstractions because the raw source is stronger on disaggregation, hypothesis focus, and structural levers."
+    ],
+    "open_questions": [
+      "The third heuristic uses the value-driver tree example as a general intervention-selection tactic rather than preserving business-finance specificity."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on first-principles-thinking and structured decomposition for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on single-tool capture and expert abstraction, but only the cleanest current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension block naming optionality, margin-of-safety, and confirmation-bias."
+    ]
+  }
+}

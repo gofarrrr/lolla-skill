@@ -1,0 +1,72 @@
+{
+  "model_id": "problem-framing-and-reframing",
+  "source_file": "Problem_Framing_and_Reframing_rag.md",
+  "select_when": [
+    "The team is working hard on a problem but keeps producing weak answers, weak priorities, or repeated confusion.",
+    "Progress depends less on more data than on asking a better question, changing the boundary, or redefining the unit of analysis.",
+    "Multiple plausible frames exist and the cost of choosing the wrong one is high.",
+    "The current approach feels stuck inside one familiar lens and needs several alternative cuts before analysis deepens."
+  ],
+  "avoid_when": [
+    "The team is using reframing as an excuse to postpone commitment instead of improving the next concrete move.",
+    "A preferred hypothesis is already hardening into the answer, so reframing theater would only decorate confirmation-bias rather than challenge it."
+  ],
+  "input_type": "problem-definition and boundary-selection problem",
+  "output_type": "reframed decision-worthy problem statement",
+  "reasoning_types": [
+    "metacognitive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on choosing and testing frames, tightening problem definition, and exposing better cuts through the problem rather than broad creativity rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor-style ideation sprawl because the raw source is strongest on framing quality, boundary choice, and anti-single-frame discipline.",
+      "Did not add higher-order composition fields because this batch remains inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans consulting, innovation framing, and communication."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly names weak answers, boundary changes, multiple plausible frames, and the need for different cuts through a problem."
+    },
+    "avoid_when": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in the source warnings about confirmation-bias lock, premature analysis, and reframing that fails to improve action."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about defining the problem and changing the unit of analysis; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields better problem statements and new cuts through the issue, but the typed output label is a reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Problem framing is explicitly about thinking about thinking and shifting systems boundaries, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

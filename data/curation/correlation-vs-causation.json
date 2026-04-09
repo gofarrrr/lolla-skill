@@ -1,0 +1,72 @@
+{
+  "model_id": "correlation-vs-causation",
+  "source_file": "Correlation_Vs_Causation_rag.md",
+  "select_when": [
+    "A visible metric shift, pattern, or association is being treated as proof of what is driving the outcome.",
+    "The team is about to act on a symptom because the presenting variable is measurable, even though the causal mechanism is still uncertain.",
+    "Interventions are expensive or hard to reverse, so acting on the wrong driver would waste time, budget, or trust.",
+    "Diagnosis needs to separate proximate causes from root causes instead of confusing the latest event with the true generative mechanism."
+  ],
+  "avoid_when": [
+    "The evidence base is observational, confounded, or incomplete, but the recommendation is still being framed as if causality were already settled.",
+    "The work only needs a quick associative signal for exploration, but the team is pretending that full causal proof is available before learning starts."
+  ],
+  "input_type": "causal diagnosis problem",
+  "output_type": "causal mechanism hypothesis",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on mechanism tracing, confound control, and root-cause discipline rather than on broad statistics survey material.",
+    "donor_drops": [
+      "Did not preserve donor-shaped analytics sprawl because the raw source is strongest on mechanism, causal chain rigor, and root-cause tracing.",
+      "Did not add higher-order composition fields because this batch remains Wave 1 to Wave 3 only."
+    ],
+    "open_questions": [
+      "The second avoid-when item is conservative reviewed normalization over a source that is stronger on anti-false-certainty than on explicit exploratory activation boundaries."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that the model is strongest when visible associations are mistaken for drivers and root causes still need to be established."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The causal-certainty warning is explicit in the source; the exploration-oriented anti-activation condition is reviewed normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model activates on mechanism and driver questions, but the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source produces tested causal pathways and root-cause framing; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is strongly causal and diagnostic, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

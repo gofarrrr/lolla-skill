@@ -1,0 +1,87 @@
+{
+  "model_id": "reframing-perspective",
+  "source_file": "Reframing_Perspective_rag.md",
+  "failure_modes": [
+    {
+      "text": "A plan can look inevitable only because the current story hides other valid lenses and success criteria.",
+      "source_quote": "Most useful when the first story is trapping the decision.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "After reframing, check whether the new lens opened genuinely different options or merely relabeled the same plan: if the action set didn't change, the reframe was decorative."
+    },
+    {
+      "text": "Reframing can become euphemism when teams rename a hard reality without improving the truth surface or option set.",
+      "source_quote": "Danger when reframing becomes euphemism.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Demand truth-surface improvement: accept a reframe only if it makes previously hidden trade-offs, risks, or stakeholder concerns more visible, not less."
+    },
+    {
+      "text": "New language can turn into avoidance when leaders keep resetting the conversation instead of specifying the next decision test.",
+      "source_quote": "Danger when reframing keeps resetting the conversation instead of forcing a decision test.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Pair any new language with a concrete decision test: specify what evidence would confirm or disconfirm the reframed hypothesis so the conversation cannot keep resetting indefinitely."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What different action becomes reasonable if we look at the same facts through a user, system, risk, or trade-off lens?",
+      "source_quote": "Works when the same facts support different actions depending on viewpoint.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which binary in our language is fake, and what conditional or segmented option is hidden by it?",
+      "source_quote": "Works when the team is stuck in a false binary.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What evidence or trade-off would actually make this new frame better instead of merely nicer sounding?",
+      "source_quote": "Danger when reframing keeps resetting the conversation instead of forcing a decision test.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Change the question before changing the answer when the original framing is making one path look falsely inevitable.",
+      "source_quote": "Best when the first recommendation sounds inevitable because of how the problem was posed.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Try alternative lenses that change what counts as success, risk, or reversibility.",
+      "source_quote": "Best when leaders need a deliberate frame shift.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use reframing only when it sharpens evidence, trade-offs, or decision quality rather than softening reality.",
+      "source_quote": "Danger when reframing becomes euphemism.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks close to false-binary escape, success-criterion shifts, and anti-euphemism discipline.",
+    "donor_drops": [
+      "Did not preserve donor narrative-sprawl because the raw source already supports compact reframing chunks."
+    ],
+    "open_questions": [
+      "The source also supports communication and emotional processing, but the Wave 2 surface stays on decision quality."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on systems-thinking and peer challenge."
+    ],
+    "antagonists": [
+      "The source is strongest against commitment pressure and bias-blind-spot style egocentric framing."
+    ],
+    "structured_tensions": [
+      "The main tensions are around false binaries, euphemism, and frame-resetting without decision pressure."
+    ]
+  }
+}

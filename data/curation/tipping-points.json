@@ -1,0 +1,36 @@
+{
+  "model_id": "tipping-points",
+  "source_file": "Tipping_Points_rag.md",
+  "select_when": [
+    "Progress is not linear and one constrained variable or threshold could unlock disproportionate change.",
+    "The system has resisted many incremental fixes and the real question is where leverage actually lives.",
+    "The team needs to identify the condition that turns a marginal effort into a self-reinforcing shift.",
+    "A seemingly impossible idea might work if the hidden enabling threshold can be named and tested."
+  ],
+  "avoid_when": [
+    "Leaders are romanticizing breakthrough moments while underinvesting in the slow prerequisite buildup required for a real threshold crossing.",
+    "The team is treating a symptom as the tipping point instead of diagnosing the deeper causal constraint."
+  ],
+  "input_type": "threshold-sensitive change problem",
+  "output_type": "leverage-threshold hypothesis",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the file on thresholds, leverage, and what-must-be-true testing rather than on generic breakthrough rhetoric.",
+    "donor_drops": [
+      "Did not preserve broader persuasion and performance-spike sprawl because the raw source is already strongest on threshold conditions and leverage."
+    ],
+    "open_questions": [
+      "The source overlaps with communication and organizational change, but the operational file stays on locating the threshold that changes the system."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on nonlinearity, leverage, threshold conditions, and what-would-need-to-be-true framing."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source explicitly warns against romanticizing breakthroughs and against treating symptoms instead of deep constraints."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed input label compresses the threshold-sensitive activation conditions."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures tipping-points as a leverage and threshold hypothesis rather than a guarantee of breakthrough."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model relies on causal leverage tracing inside dynamic systems."}
+  }
+}

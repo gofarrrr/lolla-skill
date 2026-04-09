@@ -1,0 +1,64 @@
+{
+  "model_id": "goal-setting",
+  "source_file": "Goal_Setting_rag.md",
+  "allies": [
+    {
+      "target_model_id": "prioritization",
+      "rationale_text": "Prioritization helps goal-setting convert one explicit outcome into concrete trade-offs, sequencing, and measurement discipline.",
+      "source_quote": "Most useful when effort is scattered and the team needs one explicit outcome to align trade-offs, sequencing, and measurement.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "metacognitive-questioning",
+      "rationale_text": "Metacognitive-questioning helps goal-setting keep goals connected to deliberate planning rather than to unexamined aspiration.",
+      "source_quote": "Goal setting is deeply tied to metacognition (thinking about thinking).",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias turns goal-setting into direction defense by gathering evidence only to justify the existing target.",
+      "source_quote": "goal-setting conflicts with confirmation-bias (confirmation bias) when teams gather evidence only to confirm the existing direction rather than evaluate whether the goal remains valid.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "input-vs-output-goals",
+      "tension_text": "Goal-setting conflicts with input-vs-output-goals when activity quotas replace outcome accountability.",
+      "source_quote": "goal-setting vs input-vs-output-goals: goal-setting conflicts with input-vs-output-goals (input vs output goals) when activity quotas replace outcome accountability.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Goal-setting conflicts with commitment-bias when stale goals persist after environmental change.",
+      "source_quote": "goal-setting vs commitment-bias: goal-setting conflicts with commitment-bias (commitment bias) when stale goals persist after environmental change.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Goal-setting conflicts with confirmation-bias when teams gather evidence only to confirm the existing direction rather than evaluate whether the goal remains valid.",
+      "source_quote": "goal-setting vs confirmation-bias: goal-setting conflicts with confirmation-bias (confirmation bias) when teams gather evidence only to confirm the existing direction rather than evaluate whether the goal remains valid.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on explicit tension blocks and concrete alignment logic, so the file preserves those and avoids broader speculative symmetry.",
+    "donor_drops": [
+      "Did not preserve donor relation expansion beyond the named output-accountability and stale-goal conflict surface."
+    ],
+    "open_questions": [
+      "Design-thinking and Feynman-technique are source-real allies, but this pass kept the smaller relation surface closest to execution coordination."
+    ]
+  }
+}

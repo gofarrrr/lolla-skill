@@ -1,0 +1,72 @@
+{
+  "model_id": "multi-criteria-decision-analysis",
+  "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+  "select_when": [
+    "Several criteria matter at once and intuitive trade-offs are likely to be inconsistent or politically distorted.",
+    "A high-stakes choice needs explicit weighting logic that can be challenged, revised, and audited.",
+    "The team must compare options transparently across competing goals rather than pretending one metric is enough.",
+    "The current argument keeps collapsing into preference instead of explicit criteria and trade-offs."
+  ],
+  "avoid_when": [
+    "The scoring model is creating false objectivity by assigning precise weights no one actually understands or believes.",
+    "The team is spending more effort polishing the matrix than making the decision or checking the real sensitivities."
+  ],
+  "input_type": "weighted trade-off decision problem",
+  "output_type": "criteria-based option ranking",
+  "reasoning_types": [
+    "deductive",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on explicit weighted trade-offs and auditability rather than on spreadsheet theater.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

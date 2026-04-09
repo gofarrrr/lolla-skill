@@ -1,0 +1,70 @@
+{
+  "model_id": "pre-suasion",
+  "source_file": "Pre_Suasion_rag.md",
+  "select_when": [
+    "Attention placement will shape how the next message is interpreted almost as much as the message itself.",
+    "The audience is overloaded, distracted, or relying on default associations, so receptivity must be created before analysis begins.",
+    "A complex idea needs a simple, salient entry frame before it can get a fair hearing.",
+    "Sequencing and salience determine whether the audience will even consider the argument on its merits."
+  ],
+  "avoid_when": [
+    "Receptivity engineering is crossing into manipulation theater decoupled from the actual merits of the proposal.",
+    "The audience is already in deep analytical mode, so associative priming would add less value than direct evidence and clear logic."
+  ],
+  "input_type": "attention-shaping problem",
+  "output_type": "receptivity-first framing",
+  "reasoning_types": [
+    "causal",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on preliminary attention guidance and frame-setting rather than broad persuasion or copywriting sprawl.",
+    "donor_drops": [
+      "Did not widen into general storytelling or sales technique catalogs because the raw source is strongest on sequencing, salience, and associative preparation."
+    ],
+    "open_questions": [
+      "The output label compresses a source that spans attention cues, emotional sale, and physical-context priming."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths and playbook sections explicitly support attention placement, overloaded audiences, and making complex ideas legible before defense."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions come directly from the raw warnings about manipulation and the limits of the model under deliberative scrutiny."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates where attention shape matters before the ask, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields a pre-message framing state that makes the later argument legible; the output label compresses that surface."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model reasons causally about associative triggers and metacognitively about how salience shapes later interpretation."
+    }
+  }
+}

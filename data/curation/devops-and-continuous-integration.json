@@ -1,0 +1,70 @@
+{
+  "model_id": "devops-and-continuous-integration",
+  "source_file": "Devops_and_Continuous_Integration_rag.md",
+  "select_when": [
+    "Delivery speed and reliability have to coexist, and the bottleneck is integration friction rather than lack of ideas.",
+    "Failures are being created by handoffs, untested merges, delayed feedback, brittle release steps, or poor coordination between builders and operators.",
+    "The system needs a living operating loop that shortens the distance between build, observe, diagnose, and adjust.",
+    "Local throughput gains may be degrading end-to-end service, so the work needs system-level rather than step-local reasoning."
+  ],
+  "avoid_when": [
+    "Pipeline optimization is being treated as an abstract slogan without specific failure paths, rollback realities, or operator constraints.",
+    "The team is using speed metrics to hide system fragility, debugging latency, or rollback pain."
+  ],
+  "input_type": "integration friction problem",
+  "output_type": "continuous delivery feedback loop",
+  "reasoning_types": [
+    "systems",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on integration friction, living operating loops, and end-to-end reliability rather than software-fashion branding.",
+    "donor_drops": [
+      "Did not widen into broad platform-engineering process language because the raw source is strongest on feedback loops, integration pain, and local-versus-system optimization."
+    ],
+    "open_questions": [
+      "The source is synthesized from adjacent materials rather than a narrow technical manual, so the operational labels stay conservative."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths section explicitly names coexistence of speed and reliability, integration friction, living loops, and end-to-end learning."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions come directly from the anti-pattern language about oversimplified abstraction and local optimization hiding fragility."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates on failures created by integration and handoff friction, while the compact label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields continuous build-observe-adjust loops; the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model reasons about system interactions and consequence chains, while the taxonomy labels remain normalized."
+    }
+  }
+}

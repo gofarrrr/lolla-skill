@@ -1,0 +1,36 @@
+{
+  "model_id": "representativeness-heuristic",
+  "source_file": "Representativeness_Heuristic_rag.md",
+  "select_when": [
+    "A judgment is being driven by surface similarity or a vivid category match rather than by rates, frequencies, or causal detail.",
+    "People are substituting the question 'What does this resemble?' for the harder question 'What is statistically or causally likely here?'",
+    "The risk is that a compelling pattern match will crowd out denominator discipline.",
+    "A decision maker is intuitively classifying a case before checking whether the reference class actually supports that classification."
+  ],
+  "avoid_when": [
+    "The model would be used as a generic anti-intuition slogan instead of checking where resemblance is actually informative.",
+    "Teams are treating every pattern match as wrong even when there is strong base-rate and causal support for it."
+  ],
+  "input_type": "similarity-driven judgment",
+  "output_type": "pattern-match challenge",
+  "reasoning_types": [
+    "probabilistic",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the file on resemblance-driven substitution and denominator discipline rather than on broad bias taxonomy sprawl.",
+    "donor_drops": [
+      "Did not preserve wider probability-bias sprawl because the raw source is already strongest on pattern-match overreach."
+    ],
+    "open_questions": [
+      "The source overlaps with availability and outcome-bias, but the operational file stays on similarity-driven substitution."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on similarity-based judgment, substitution, and crowding out statistical or causal discipline."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source explicitly implies the need to avoid treating all intuitive resemblance as invalid when supported by stronger evidence."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed label compresses the raw resemblance-driven activation conditions."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures the intervention as challenging the pattern match with denominator or causal checks."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model is strongest as a probabilistic and diagnostic check on intuitive classification."}
+  }
+}

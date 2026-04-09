@@ -1,0 +1,70 @@
+{
+  "model_id": "psychological-safety",
+  "source_file": "Psychological_Safety_rag.md",
+  "select_when": [
+    "The team is suppressing dissent, risk signals, or upward challenge because status or fear is distorting what gets said.",
+    "Better decisions depend on candid truth and error surfacing, but current norms reward comfort, politeness, or silence.",
+    "A leader is inviting openness, and the next risk is that standards, ownership, or decision rights stay too vague for correction to matter.",
+    "The work would improve if disagreement could be expressed without social punishment while still staying accountable to outcomes."
+  ],
+  "avoid_when": [
+    "Psychological safety is being redefined as comfort, harmony, or protection from challenge rather than candid truth in service of better decisions.",
+    "The team already has enough evidence for a decision or a reversible experiment, and more discussion would mainly postpone commitment."
+  ],
+  "input_type": "dissent-suppression and challenge-quality problem",
+  "output_type": "candid accountability-supporting environment",
+  "reasoning_types": [
+    "systems",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on candid truth, upward challenge, and accountable openness rather than on generic kindness or culture language.",
+    "donor_drops": [
+      "Did not preserve donor culture-program sprawl because the raw source is stronger on dissent, challenge quality, and anti-comfort reinterpretation discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans organizational learning, leadership norms, and ethical system design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on dissent suppression, upward challenge, and the need for low-fear candor in service of better decisions."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly grounded in source warnings against redefining safety as comfort and using discussion to avoid decisions."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on suppressed challenge and low-quality candor, while the typed input remains a compact reviewed label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields an environment that supports candid correction without losing standards; the typed output compresses that result."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Psychological safety is strongest as systems and reflective team-process discipline, while the taxonomy labels remain normalized."
+    }
+  }
+}

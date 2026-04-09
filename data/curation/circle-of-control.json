@@ -1,0 +1,72 @@
+{
+  "model_id": "circle-of-control",
+  "source_file": "Circle_Of_Control_rag.md",
+  "select_when": [
+    "External volatility is dominating attention, but the team still controls sequencing, communication, staffing, guardrails, or scope.",
+    "The next step depends on separating what is directly owned, what can be influenced, and what must be monitored rather than solved immediately.",
+    "Execution speed matters more than narrative completeness, so the work needs action buckets instead of one undifferentiated worry cloud.",
+    "The plan is stuck because people are mixing controllable levers with uncontrollable conditions."
+  ],
+  "avoid_when": [
+    "The model is being used to shrink responsibility by classifying difficult stakeholder, system, or incentive problems as outside control before influence has been tested.",
+    "Local control is being optimized so narrowly that broader feedback loops or slow indirect pathways are being ignored."
+  ],
+  "input_type": "agency-boundary problem",
+  "output_type": "control-vs-influence map",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on explicit agency boundaries and controllable levers rather than generic empowerment language.",
+    "donor_drops": [
+      "Did not preserve donor-style emotional-resilience overlays because the raw source is strongest on operational ownership splitting and control illusion failure modes.",
+      "Did not add higher-order composition fields because this batch stops at the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The source is concise and operational, so the typed input and output labels remain reviewed compression over the bucket-splitting playbook."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section gives explicit activation bullets on external volatility, ownership separation, and execution speed; review mainly compacts those into routing triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The first anti-activation condition is explicit, and the second is a close operational compression of the local-control-myopia warning."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates on situations where agency boundaries are blurred, but the compact type label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook explicitly produces control, influence, and monitoring buckets; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Circle of control clearly uses diagnostic classification and systems-aware reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

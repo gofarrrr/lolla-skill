@@ -1,0 +1,87 @@
+{
+  "model_id": "expertise-reversal-effect",
+  "source_file": "Expertise_Reversal_Effect_rag.md",
+  "failure_modes": [
+    {
+      "text": "Novice scaffolding can become drag for experts once redundant detail starts adding cognitive load instead of support.",
+      "source_quote": "The additional material imposes redundant cognitive load.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Adjust scaffolding to the learner's actual competence level; novice support becomes drag for experts once it adds redundant cognitive load."
+    },
+    {
+      "text": "Compression can backfire when leaders assume experienced people need less guidance even though the task or context is still novel.",
+      "source_quote": "Danger When Less Guidance Is Confused with Better Guidance.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Verify that experienced team members still need full autonomy on this specific task: compression backfires when the context or domain is novel despite their general expertise."
+    },
+    {
+      "text": "One-size-fits-all procedures can degrade performance because the real mismatch is the support level, not the raw capability of the operator.",
+      "source_quote": "Works when performance is dropping because support is mismatched to expertise.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Customize support level, not just difficulty level; one-size-fits-all procedures degrade performance because the mismatch is in guidance, not capability."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Who is being slowed by support that has become redundant, and who is still exposed because support was removed too early?",
+      "source_quote": "Most useful when the same message is landing very differently across experience levels.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What part of this prompt, training, or procedure adds load without adding guidance for the people already fluent in it?",
+      "source_quote": "Avoid Redundancy.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Where are we treating less guidance as better guidance even though the stakes or novelty still require renewed structure?",
+      "source_quote": "Danger When Less Guidance Is Confused with Better Guidance.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Retune guidance by expertise level so novices get scaffolding and experts get compression, autonomy, or speed.",
+      "source_quote": "Best when training, prompts, or operating procedures must adapt as mastery rises.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Strip redundant examples and context only when the task is already clear for the more experienced operator.",
+      "source_quote": "If the problem is clear to the model, avoid using excessive examples.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Reintroduce structure when the task becomes new, high-stakes, or context-shifted enough that expertise alone will not cover it.",
+      "source_quote": "The model misfires when teams strip away support merely because someone is experienced, even though the task, context, or stakes are new enough to require renewed structure.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on support-level mismatch, redundant-load removal, and expertise-sensitive retuning rather than on generic personalization rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor AI-specific prompt recipes beyond the source-backed support-mismatch logic."
+    ],
+    "open_questions": [
+      "The source is especially rich on expert-system prompting, but the intervention layer stays general so the model remains reusable across settings."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on cognitive-load-theory, curse-of-knowledge, and abstraction-fit problems."
+    ],
+    "antagonists": [
+      "The source is strongest against redundancy, confirmation bias inside expertise, and static support assumptions."
+    ],
+    "structured_tensions": [
+      "There is clean tension between removing drag for experts and preserving enough structure when novelty or stakes return."
+    ]
+  }
+}

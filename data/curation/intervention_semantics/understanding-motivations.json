@@ -1,0 +1,87 @@
+{
+  "model_id": "understanding-motivations",
+  "source_file": "Understanding_Motivations_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can treat publicly stated reasons as the whole truth even when image management, politics, or self-deception are shaping the answer.",
+      "source_quote": "Danger when stated motivations are treated as sufficient truth",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Probe beyond stated reasons: use indirect evidence (behavior, resource allocation, past choices) to test whether the publicly stated motivation matches the revealed preference."
+    },
+    {
+      "text": "Analysts can over-psychologize a problem that is really about constraints, incentives, or capability gaps.",
+      "source_quote": "Danger when analysts become so committed to hidden-motive interpretation that they over-psychologize simple constraint or capability problems.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Check whether the problem is motivational or structural: before psychologizing, verify that constraints, incentives, or capability gaps are not the simpler explanation."
+    },
+    {
+      "text": "A plan can fail when leaders correctly name the motive structure but still assume implementation will behave like a rational linear process.",
+      "source_quote": "Assuming Rational Implementation",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Plan for implementation friction: even when the motivation diagnosis is correct, build in checkpoints for execution failure, coordination breakdown, and resistance from the system."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe for this motive explanation to be true?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If others looked at these same facts, what different motive structure might they infer?",
+      "source_quote": "If others looked at these same facts, what conclusions might they reach, independent of my personal perspective or beliefs?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are strong emotions driving how we are reading why this person acts, or have we separated deliberation from action?",
+      "source_quote": "Are strong emotions (either integral or incidental) driving my process of identifying why this person acts",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate intrinsic and extrinsic drivers instead of treating all motivation as one blended force.",
+      "source_quote": "Intrinsic vs. Extrinsic Motivation",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use exact audience language around pains, fears, hopes, and desires so the recommendation fits the actual motivational landscape.",
+      "source_quote": "Exact Language and Vernacular",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Walk through concrete cases step by step to reveal the hidden motives and knowledge behind visible choices.",
+      "source_quote": "Conduct Cognitive Task Analysis",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on hidden-driver diagnosis, intrinsic-versus-extrinsic motive structure, and audience-fit rather than on generic inspiration language.",
+    "donor_drops": [
+      "Did not preserve donor motivation-sprawl beyond the raw source's clearer hidden-driver, exact-language, and anti-overpsychologizing material."
+    ],
+    "open_questions": [
+      "The third premortem question compresses several source cautions about emotional overdrive and implementation distortion into one reusable check."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on emotional intelligence, systems-thinking, storytelling, and pareto-principle."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on pure extrinsic-reward logic, cold-cognition framing, and fixed-mindset thinking."
+    ],
+    "structured_tensions": [
+      "The source carries real tension material around self-deception and inside-view distortion, but it does not present a clean explicit current-vocabulary tension block."
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "model_id": "calculated-risk-taking",
+  "source_file": "Calculated_Risk_Taking_rag.md",
+  "allies": [
+    {
+      "target_model_id": "game-theory-payoffs",
+      "rationale_text": "Game-theory-payoffs helps calculated-risk-taking reason through adversarial choices, countermoves, and payoff structure before committing.",
+      "source_quote": "Game Theory in Competition",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "decision-trees",
+      "rationale_text": "Decision-trees gives calculated-risk-taking a concrete branching structure for comparing uncertain paths and explicit payoffs.",
+      "source_quote": "Decision Trees",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "optimism-bias-and-planning-fallacy",
+      "rationale_text": "Optimism-bias-and-planning-fallacy undermines calculated-risk-taking by overweighting upside scenarios and underestimating the real downside exposure.",
+      "source_quote": "focusing too heavily on the mean outcome",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Calculated-risk-taking conflicts with confirmation-bias when risk estimates are calibrated to justify a preferred course of action rather than derived from independent evidence.",
+      "source_quote": "calculated-risk-taking conflicts with confirmation-bias (confirmation bias) when risk estimates are calibrated to justify a preferred course of action rather than derived from independent evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "black-swan-events",
+      "tension_text": "Calculated-risk-taking conflicts with black-swan-events when systematic risk estimation creates false precision around outcomes whose probability distributions have fat tails.",
+      "source_quote": "calculated-risk-taking conflicts with black-swan-events (Black Swan events) when systematic risk estimation creates false precision around outcomes whose probability distributions have fat tails.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The file keeps the strongest first-order relation surface: explicit branch-comparison allies and a clear antagonist in upside-biased risk sizing.",
+    "donor_drops": [
+      "Did not manufacture structured tensions because the raw source is more ally-and-anti-pattern heavy than explicit tension-block based."
+    ],
+    "open_questions": [
+      "Reference classes are source-real here too, but decision-trees and game-theory-payoffs were the more operational anchors."
+    ]
+  }
+}

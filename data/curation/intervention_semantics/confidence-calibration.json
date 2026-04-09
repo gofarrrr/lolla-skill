@@ -1,0 +1,87 @@
+{
+  "model_id": "confidence-calibration",
+  "source_file": "Confidence_Calibration_rag.md",
+  "failure_modes": [
+    {
+      "text": "Calibration can fail when quantified language looks rigorous even though the underlying evidence is still weak or unstable.",
+      "source_quote": "Danger when teams confuse quantified language with calibrated judgment.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit the evidence beneath any precise-sounding confidence claim; quantified language can look rigorous even when the data is weak or unstable."
+    },
+    {
+      "text": "Overconfidence can hide behind dashboards or model outputs that appear precise before the data-generating process is trustworthy.",
+      "source_quote": "Works when dashboards or model outputs are being treated as decision-grade before the data-generating process is trusted.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate model precision from data trustworthiness: dashboards and outputs inherit the quality of their inputs, not the other way around."
+    },
+    {
+      "text": "Calibration talk can become a substitute for commitment when teams keep widening the caveats instead of defining an action threshold.",
+      "source_quote": "Danger when calibration talk replaces commitment.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set an action threshold: calibration talk that only widens caveats without defining a decision point is avoidance, not rigor."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "On a scale of 0 to 100%, how confident are you?",
+      "source_quote": "Ask for a numerical measure of confidence in the claim (e.g., \"On a scale of 0 to 100%, how confident are you?\").",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Would you be really shocked if the outcome fell outside this upper or lower bound?",
+      "source_quote": "Would you be really shocked if the outcome fell outside this upper or lower bound?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which confidence claim in this plan is acting like measurement even though it comes from a thin, filtered, or regime-shifted sample?",
+      "source_quote": "Which confidence claim in this plan is acting like measurement even though it comes from a thin, filtered, or regime-shifted sample, and what evidence would widen the range enough to change the commitment?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "State boundary conditions and confidence ranges explicitly so the recommendation carries the uncertainty it has actually earned.",
+      "source_quote": "Consultants must avoid the foolishness of \"pretending we can be certain of things that are difficult to predict\". Instead of projecting absolute confidence, the calibrated strategist shares the boundary conditions under which their recommendations hold true.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Interrogate the method used to justify confidence, not just the reasons that support the claim.",
+      "source_quote": "Ask what method they used to judge the quality of their reasons, then focus the conversation on assessing that methodology.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Shrink commitment size to the confidence level actually earned rather than to the upside story being told.",
+      "source_quote": "The key discipline is sizing the move to the confidence level actually earned rather than to the upside story being told.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on confidence ranges, method checks, and commitment sizing against earned certainty.",
+    "donor_drops": [
+      "Did not preserve donor-style forecasting playbooks that widened beyond the raw source's stronger confidence-discipline material."
+    ],
+    "open_questions": [
+      "The third failure mode is normalized from several adjacent source bullets so it stays reusable as a compact intervention chunk."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on outside-view discipline, metacognition, and probabilistic reasoning for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section explicitly names confirmation bias and substitution pressure, but only the cleanest current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around commitment versus caveat theater even without a dedicated structured tension block."
+    ]
+  }
+}

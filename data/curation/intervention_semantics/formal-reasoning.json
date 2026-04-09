@@ -1,0 +1,87 @@
+{
+  "model_id": "formal-reasoning",
+  "source_file": "Formal_Reasoning_rag.md",
+  "failure_modes": [
+    {
+      "text": "Formal structure can become cosmetic when valid-looking logic is built on weak or untested premises.",
+      "source_quote": "Danger When Clean Structure Launders Weak Premises",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit premises before trusting the logic: valid-looking structure built on weak or untested assumptions produces confident wrong answers."
+    },
+    {
+      "text": "The model fails when it confuses internal coherence with truth about the world.",
+      "source_quote": "formal rigor does not replace empirical contact with reality",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Distinguish internal coherence from external truth: a formally valid argument can still be disconnected from how the world actually works."
+    },
+    {
+      "text": "Formal reasoning breaks when hidden leaps stay implicit and no one checks whether the conclusion actually follows.",
+      "source_quote": "make premises explicit",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Make every inference step explicit and reviewable; hidden leaps that go unchallenged are where formal reasoning quietly fails."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What premises are doing the real work here?",
+      "source_quote": "make premises explicit",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If the conclusion is wrong, which inference step breaks first?",
+      "source_quote": "follow the logic step by step",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What evidence would show that our elegant structure is detached from reality?",
+      "source_quote": "does not replace empirical contact with reality",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Make premises explicit before debating conclusions.",
+      "source_quote": "make premises explicit",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use decision trees or logic branches to expose hidden forks in the argument.",
+      "source_quote": "Decision Trees",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Test whether the structure actually tracks reality instead of admiring the neatness of the argument.",
+      "source_quote": "formal rigor does not replace empirical contact with reality",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on premise exposure, logical traceability, and anti-premise-laundering discipline.",
+    "donor_drops": [
+      "Did not preserve donor formalism sprawl because the raw source is stronger on usable logic hygiene and decision-structure integrity."
+    ],
+    "open_questions": [
+      "The third premortem item compresses several anti-false-certainty cautions so the chunk stays operational."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on decision-trees, critical-thinking, and systems-style structure as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and representativeness-style shortcutting, but only current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source has an explicit tension block around confirmation-bias and representativeness-heuristic, but only the former cleanly maps into the current target-id surface."
+    ]
+  }
+}

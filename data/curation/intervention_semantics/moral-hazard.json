@@ -1,0 +1,87 @@
+{
+  "model_id": "moral-hazard",
+  "source_file": "Moral_Hazard_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can blame every bad outcome on distorted incentives even when uncertainty, luck, or weak capability are the dominant drivers.",
+      "source_quote": "Danger when every poor outcome gets attributed to moral hazard even when the dominant driver is uncertainty, bad luck, or weak capability rather than distorted incentives.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Diagnose the real driver before invoking incentive distortion: check whether the outcome is better explained by uncertainty, capability limits, or system design before blaming hidden behavior."
+    },
+    {
+      "text": "Outcome-based contracts can misfire when observable results are shaped heavily by chance rather than by the hidden behavior being targeted.",
+      "source_quote": "In reality, outcomes are dependent not just on the agent's action/effort, but also on chance factors.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "When outcomes are noisy, shift from pure outcome-based contracts to process-observable metrics that reward the behavior you can actually verify."
+    },
+    {
+      "text": "Immediate outcome incentives can create short-termism that externalizes longer-term risk.",
+      "source_quote": "If payments are based solely on immediate observable outcomes ... this can inadvertently incentivize short-term gains at the expense of long-term stability or ethical behavior.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Add longer time horizons or clawback provisions to contracts so agents cannot externalize tail risk by cashing out before consequences arrive."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Ask: “Is the worst case bad enough?”.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Who takes the action, and who absorbs the downside if it goes wrong?",
+      "source_quote": "Most useful when one party can take action while another party absorbs a meaningful share of the downside.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are accountability, exposure, and decision rights aligned tightly enough to discourage reckless behavior?",
+      "source_quote": "Best used when the question is whether accountability, exposure, and decision rights are aligned tightly enough to discourage reckless behavior.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Structure incentives so people experience enough consequence from their decisions to behave like owners rather than insulated agents.",
+      "source_quote": "Managers should structure incentives and penalties to encourage people to take full ownership of what they do.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Discuss failures at both the machine level and the case-at-hand level so the fix targets the system that produced the behavior.",
+      "source_quote": "When a problem occurs, always discuss it at two levels: 1) the machine level ... and 2) the case-at-hand level.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Welcome probing and peer review because observers often detect hidden risk-taking logic better than the actors inside it.",
+      "source_quote": "Observers (critics and gossipers) are often more effective at detecting errors than actors, suggesting the use of peer review or a brain trust to catch blind spots.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on downside transfer, ownership alignment, and anti-blame discipline around chance and capability.",
+    "donor_drops": [
+      "Did not preserve donor governance sprawl because the raw source is stronger on agency, exposure alignment, and peer-probing countermeasures."
+    ],
+    "open_questions": [
+      "The third heuristic compresses the broader critique/observer passages so it remains reusable outside the original organizational examples."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on incentives, information asymmetry, and system-level accountability for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on inside-view rationalization, availability-shaped misweighting of risk, and emotional shortcuts."
+    ],
+    "structured_tensions": [
+      "The source includes an explicit structured tension block around adverse-selection and incentives that cleanly maps into the current relation layer vocabulary."
+    ]
+  }
+}

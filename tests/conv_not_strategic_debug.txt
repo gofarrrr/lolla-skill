@@ -1,0 +1,41 @@
+CONVERSATION: 4 turns, 2 user messages, 2 assistant responses
+
+[Turn 1] USER:
+I'm getting a TypeError in my Python script: "TypeError: 'NoneType' object is not subscriptable" on line 42. Here's the code:
+
+```python
+def get_user_data(user_id):
+    result = db.query(f"SELECT * FROM users WHERE id = {user_id}")
+    return result['name']
+```
+
+[Turn 1] ASSISTANT:
+The error occurs because `db.query()` is returning `None` when no user is found with that ID. You're then trying to subscript `None` with `['name']`.
+
+Fix it by adding a None check:
+
+```python
+def get_user_data(user_id):
+    result = db.query(f"SELECT * FROM users WHERE id = {user_id}")
+    if result is None:
+        return None
+    return result['name']
+```
+
+Also, you have a SQL injection vulnerability — use parameterized queries instead of f-strings.
+
+[Turn 2] USER:
+Thanks, that fixed the None issue. Can you show me the parameterized query version?
+
+[Turn 2] ASSISTANT:
+Here's the safe version:
+
+```python
+def get_user_data(user_id):
+    result = db.query("SELECT * FROM users WHERE id = %s", (user_id,))
+    if result is None:
+        return None
+    return result['name']
+```
+
+The `%s` placeholder gets safely escaped by the database driver, preventing SQL injection attacks.

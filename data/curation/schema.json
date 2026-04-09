@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lolla.local/curation/operational-curation.schema.json",
+  "title": "Lolla Operational Curation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "model_id",
+    "source_file",
+    "select_when",
+    "avoid_when",
+    "input_type",
+    "output_type",
+    "reasoning_types"
+  ],
+  "properties": {
+    "model_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "source_file": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_ ]+\\.md$"
+    },
+    "select_when": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 8
+      }
+    },
+    "avoid_when": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 8
+      }
+    },
+    "input_type": {
+      "type": "string",
+      "minLength": 3
+    },
+    "output_type": {
+      "type": "string",
+      "minLength": 3
+    },
+    "reasoning_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "abductive",
+          "analogical",
+          "causal",
+          "counterfactual",
+          "deductive",
+          "diagnostic",
+          "metacognitive",
+          "probabilistic",
+          "systems"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "compound_contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "target_model_id",
+          "context_trigger",
+          "rationale",
+          "source_basis"
+        ],
+        "properties": {
+          "target_model_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "context_trigger": {
+            "type": "string",
+            "minLength": 12
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 12
+          },
+          "source_basis": {
+            "type": "string",
+            "enum": [
+              "raw_supported",
+              "reviewed_normalization"
+            ]
+          }
+        }
+      }
+    },
+    "curation_notes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "donor_drops": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "provenance_notes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sources",
+          "confidence",
+          "note"
+        ],
+        "properties": {
+          "sources": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "enum": [
+                "raw_markdown",
+                "donor_draft",
+                "reviewed_normalization"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "weak"
+            ]
+          },
+          "note": {
+            "type": "string",
+            "minLength": 8
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "model_id": "authority-bias",
+  "source_file": "Authority_Bias_rag.md",
+  "failure_modes": [
+    {
+      "text": "High-status proposals can become hard to challenge, pulling the team into confirmation bias around the authority's idea.",
+      "source_quote": "Authority figures often present proposals that are difficult to challenge because they are associated with high-status proponents or sacred beliefs.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Turns the risk table wording into a chunk-ready failure statement.",
+      "mitigation": "Decouple status from idea: require team members to write opinions independently before sharing, or read them in reverse order of seniority."
+    },
+    {
+      "text": "Blind spot barriers and motivated reasoning can make smart people better at rationalizing the authority's conclusion.",
+      "source_quote": "Smart people are particularly susceptible to this risk because they are skilled at constructing compelling narratives to rationalize the expert's conclusion.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Keeps the raw idea while compressing the wording.",
+      "mitigation": "Insist on the logic and rationale: ask the authority to provide their reasoning chain and steps, not just the final recommendation."
+    },
+    {
+      "text": "Wrong-expert domain dependence lets teams borrow authority from the wrong toolkit.",
+      "source_quote": "Accepting advice from an authority figure whose expertise does not transfer to the domain at hand ... can lead to suboptimal solutions.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Preserves the domain-transfer failure in shorter form.",
+      "mitigation": "Use believability weighting: assess who is most likely to be right based on track records and documented expertise in the specific domain at hand."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Does the person have the credentials to speak with authority? Which credentials?",
+      "source_quote": "Does the person have the credentials to speak with authority? Which credentials?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What about the person causes you to either trust implicitly or react with initial distrust?",
+      "source_quote": "What about the person causes you to either trust implicitly or react with initial distrust?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What are the underlying assumptions embedded in this framework or solution?",
+      "source_quote": "What are the underlying assumptions embedded in this framework or solution?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Decouple status from idea quality by collecting judgments independently before the group discussion starts.",
+      "source_quote": "require team members to write down initial opinions and rationales independently before discussing them",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Converted the mitigation strategy into a reusable intervention heuristic."
+    },
+    {
+      "text": "Challenge the basis of authority instead of accepting prestige markers as proof.",
+      "source_quote": "Cultivate a mindset that values inquiry and skepticism, recognizing that A way of seeing is also a way of not seeing.",
+      "extraction_type": "normalized",
+      "confidence": "medium",
+      "note": "The action is explicit, though the exact compact wording is normalized."
+    },
+    {
+      "text": "Insist on the logic and rationale by asking for the thought chain, not just the answer.",
+      "source_quote": "focus on the How. When seeking advice from an expert, ask them to provide their thought chain and reasoning steps, rather than just the final recommendation.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Strong source-backed challenge protocol for later pressure bundles."
+    },
+    {
+      "text": "Simulate and test authority views with red-team or separate-judgment methods before deference hardens into consensus.",
+      "source_quote": "Employ techniques like team voting to overcome authority bias or use red-team/blue-team competitions to explore alternative perspectives.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Combines the raw mitigation techniques into one chunk-ready testing move."
+    }
+  ],
+  "curation_notes": {
+    "summary": "This file deliberately privileges authority-audit intervention content from the raw mitigations over the persuasion-focused playbook examples.",
+    "donor_drops": [
+      "Dropped donor persuasion-strategy framing because it conflicts with the challenge-first role."
+    ],
+    "open_questions": [
+      "A later wave may want a sharper split between deference diagnosis and believability-weighting protocol."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Raw allies section is rich on WYSIATI, anchoring, and reciprocity or liking as amplification paths."
+    ],
+    "antagonists": [
+      "Raw antagonists section preserves strong future richness on idea meritocracy, radical open-mindedness, critical thinking, and first principles."
+    ],
+    "structured_tensions": [
+      "Structured tensions explicitly connect authority-bias to scientific-method-evidence-testing, first-principles-thinking, and confirmation-bias."
+    ]
+  }
+}

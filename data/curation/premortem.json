@@ -1,0 +1,71 @@
+{
+  "model_id": "premortem",
+  "source_file": "Premortem_rag.md",
+  "select_when": [
+    "A project is still pre-commitment and the cost of finding failure modes now is much lower than after launch.",
+    "Social pressure, optimism, or executive momentum would otherwise suppress dissent and make the plan feel safer than it is.",
+    "Success depends on multiple conditions lining up, so the team needs to expose weak links, reversibility limits, and contingency gaps in advance.",
+    "The main risk is not effort but unwarranted optimism about a conjunctive plan with too many silent assumptions."
+  ],
+  "avoid_when": [
+    "The exercise is producing an obvious list of worries without owners, mitigations, or decision changes tied to what was surfaced.",
+    "The team is using premortem language performatively while remaining unwilling to challenge the favored plan or change commitments."
+  ],
+  "input_type": "pre-commitment failure-exposure problem",
+  "output_type": "failure-path mitigation plan",
+  "reasoning_types": [
+    "counterfactual",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on working backward from simulated failure, exposing weak links early, and converting hidden risk into mitigations rather than general caution language.",
+    "donor_drops": [
+      "Did not preserve donor risk-workshop sprawl because the raw source is strongest on prospective hindsight, conjunctive-plan pressure, and anti-superficial premortem discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans project planning, competitive strategy, and system design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly names pre-commitment use, optimism pressure, conjunctive success conditions, and the need to expose weak links in advance."
+    },
+    "avoid_when": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in the source warnings about superficial premortems and exercises that do not bind to mitigations or decision changes."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates on pre-commitment failure exposure and risk surfacing; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields mitigations, reversibility checks, and stop rules, though the typed output label is a compact reviewed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Premortem is explicitly about backward-looking failure simulation and causal weak-link exposure, while the taxonomy labels remain normalized."
+    }
+  }
+}

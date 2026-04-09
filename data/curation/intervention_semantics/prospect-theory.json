@@ -1,0 +1,87 @@
+{
+  "model_id": "prospect-theory",
+  "source_file": "Prospect_Theory_rag.md",
+  "failure_modes": [
+    {
+      "text": "Leaders can exploit loss aversion or threat framing to force compliance without improving the underlying economics, truth, or decision quality.",
+      "source_quote": "Danger when framing is used to manipulate rather than clarify",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit framing for manipulation: when loss language is used to drive urgency, verify that the underlying economics genuinely warrant the alarm and are not just leveraging loss aversion."
+    },
+    {
+      "text": "A recommendation can drift into descriptive storytelling about how people behave and silently replace the normative question of what they should choose.",
+      "source_quote": "Normative Irrelevance",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Separate the descriptive diagnosis from the normative recommendation: after explaining how people tend to react to gains and losses, explicitly state what they should choose given the actual expected values."
+    },
+    {
+      "text": "Short-term emotional reactions to gains and losses can crowd out longer-term utility and prudent risk judgment.",
+      "source_quote": "immediate emotional impact of gains and losses",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Extend the time horizon: before acting on an emotional reaction to a gain or loss, project the decision forward and check whether the short-term feeling aligns with long-term utility."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What changes if these same economics are reframed as gains, losses, or a different reference point?",
+      "source_quote": "Framing",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we becoming risk-seeking because we feel trapped in the loss domain rather than because the underlying bet improved?",
+      "source_quote": "risk seeking in the loss domain",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would the choice look like under a colder expected-value or decision-analysis lens?",
+      "source_quote": "not a plausible normative decision theory",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Inspect the active reference point before debating the option set because behavior is relative to perceived gains and losses.",
+      "source_quote": "evaluation is relative to a neutral reference point",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Test multiple framings of the same choice to see whether the recommendation depends on presentation rather than fundamentals.",
+      "source_quote": "immense power of framing",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use prospect theory to predict human response, then pair it with a colder analytic framework before committing.",
+      "source_quote": "descriptive decision theory",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on reference points, framing, loss aversion, and the boundary between descriptive behavior and normative choice.",
+    "donor_drops": [
+      "Did not preserve broad sales-language rhetoric because the raw source is stronger on behavioral distortion and anti-manipulation discipline."
+    ],
+    "open_questions": [
+      "The second premortem item compresses several source passages on loss-domain behavior so the chunk stays operational."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on anchoring and incentive-shaping because framing and reference dependence change choice without changing fundamentals."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on critical-thinking and colder expected-value style analysis, but only current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is clearer on ally/antagonist pressure than on direct explicit tension blocks, so structured tensions should stay conservative."
+    ]
+  }
+}

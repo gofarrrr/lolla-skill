@@ -1,0 +1,70 @@
+{
+  "model_id": "lindy-effect",
+  "source_file": "Lindy_Effect_rag.md",
+  "select_when": [
+    "Choosing among non-perishable ideas, tools, or practices where survival over time is itself meaningful evidence of resilience.",
+    "The environment is noisy and forecasting is weak, making longevity a better guide than recent hype.",
+    "The decision is about durability, staying power, or what is likely to remain useful beyond the current cycle."
+  ],
+  "avoid_when": [
+    "Age is being treated as proof of superiority while technological discontinuity or new evidence is ignored.",
+    "The object is perishable or structurally changing fast enough that longevity no longer carries the same evidentiary weight."
+  ],
+  "input_type": "durability judgment",
+  "output_type": "longevity-weighted choice",
+  "reasoning_types": [
+    "probabilistic",
+    "counterfactual"
+  ],
+  "curation_notes": {
+    "summary": "Focused on longevity as evidence under uncertainty while explicitly rejecting age-as-proof reasoning.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

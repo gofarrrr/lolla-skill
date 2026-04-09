@@ -1,0 +1,71 @@
+{
+  "model_id": "prioritization",
+  "source_file": "Prioritization_rag.md",
+  "select_when": [
+    "The number of plausible tasks, issues, or opportunities already exceeds the true execution capacity of the team.",
+    "Sequencing matters and explicit non-goals or kill criteria can protect high-leverage work from constant interruption.",
+    "The organization must choose what gets to be first, what gets deferred, and what gets eliminated entirely."
+  ],
+  "avoid_when": [
+    "Prioritization is becoming endless reshuffling, so the team talks constantly about leverage but rarely commits long enough to realize it.",
+    "Urgent, visible work keeps winning by default and the system is quietly starving the slower, higher-value work it claims to care about."
+  ],
+  "input_type": "overloaded task portfolio",
+  "output_type": "sequencing and exclusion rule",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Normalized the model around sequencing and exclusion under capacity constraints rather than donor lists of resource-allocation examples.",
+    "donor_drops": [
+      "Dropped donor examples tied to marketing and prompt-engineering contexts because the raw model already captures the structural overload pattern.",
+      "Dropped donor higher-order overlays and kept only first-order operational fields."
+    ],
+    "open_questions": [
+      "The output type compresses both ordering and deliberate exclusion into one operational label."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "high",
+      "note": "The raw file explicitly defines the overload and sequencing activation surface; donor drafts were narrowed to preserve only those structural triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions are directly supported by explicit raw danger lines."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly operates on a capacity-overloaded portfolio of work, but the typed label is a reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model drives ordering and explicit non-goals; the output type compresses that into a concise operational artifact label."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is diagnostic and causal in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

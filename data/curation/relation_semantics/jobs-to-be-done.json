@@ -1,0 +1,70 @@
+{
+  "model_id": "jobs-to-be-done",
+  "source_file": "Jobs_To_Be_Done_rag.md",
+  "allies": [
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking helps jobs-to-be-done strip away the familiar solution and recover the underlying need that actually matters.",
+      "source_quote": "JTBD operates like a form of arguing from first principles.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking supports jobs-to-be-done by repeatedly questioning whether the team has identified the real job or only a convenient surface explanation.",
+      "source_quote": "constantly ask why, why, why",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps jobs-to-be-done connect the identified user purpose to the broader machine that must deliver that outcome.",
+      "source_quote": "structure the rest of the business or product as a machine",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "Feynman-technique supports jobs-to-be-done by forcing the job definition into plain language before the team commits to a solution story.",
+      "source_quote": "Mitigation often relies on metacognition and using structured processes, like the Feynman Technique, to simplify the complex job definition into plain language.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias corrupts jobs-to-be-done when the team defines the job to fit a preferred solution instead of pressure-testing what the user is really hiring for.",
+      "source_quote": "Identifying the Job based on a desired conclusion or a pre-selected solution, rather than objective reality.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Jobs-to-be-done conflicts with confirmation-bias when the job definition is framed to confirm an existing product hypothesis rather than discovered from user evidence.",
+      "source_quote": "jobs-to-be-done conflicts with confirmation-bias (confirmation bias) when the job definition is framed to confirm an existing product hypothesis rather than discovered from user evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Jobs-to-be-done conflicts with simplification when reducing customer needs to a single job erases the multi-dimensional trade-offs that actually drive choice.",
+      "source_quote": "jobs-to-be-done conflicts with simplification (simplification) when reducing customer needs to a single job erases the multi-dimensional trade-offs that actually drive choice.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The retained relation surface stays close to the source's strongest current-vocabulary interactions: first-principles, critical inquiry, systems purpose, and anti-solution-bias pressure.",
+    "donor_drops": [
+      "Did not preserve broader empathy or design-thinking expansion because the current vocabulary already supports a cleaner job-clarity surface."
+    ],
+    "open_questions": [
+      "The source is clearer on ally pressure than on explicit current-vocabulary tension blocks, so structured tensions stay omitted."
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "model_id": "second-order-thinking",
+  "source_file": "Second_Order_Thinking_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking gives second-order-thinking the structure needed to trace how local moves create later effects through interaction and emergence.",
+      "source_quote": "Systems Thinking: As the primary ally, Systems Thinking provides the necessary structure to map out the consequences inherent in SOT.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feedback-loops",
+      "rationale_text": "Feedback-loops help second-order-thinking inspect whether a locally helpful move will reinforce or destabilize the broader system over time.",
+      "source_quote": "The plan is approved because the immediate gain is visible, while the real outcome is created later by overloaded dependencies, delayed reactions, or local teams protecting their own metrics.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias makes second-order-thinking tell a downstream story that protects the preferred plan instead of stress-testing it.",
+      "source_quote": "Confirmation Bias / Motivated Reasoning",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "bottlenecks",
+      "tension_text": "Second-order-thinking conflicts with bottlenecks when a local acceleration hides the downstream threshold where delay or overload flips the result into a worse outcome.",
+      "source_quote": "identify the first threshold where delay, overload, or information-hiding would cascade into a worse second-order outcome",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "incentives",
+      "tension_text": "Second-order-thinking conflicts with incentives when local teams protect their own metrics in ways that make the broader system worse.",
+      "source_quote": "name the incentive that would cause a local team to protect its metric while making the system worse",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on downstream system mapping and incentive-aware stress tests, so the file keeps a compact normalized relation surface instead of inventing speculative chain catalogs.",
+    "donor_drops": [
+      "Did not preserve donor-style multihop logic or long consequence ladders because this batch stops at first-order relation semantics."
+    ],
+    "open_questions": [
+      "Availability and hammer effects remain source-real antagonists, but this conservative pass kept the strongest curated-system linkages."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "boundaries",
+  "source_file": "Boundaries_rag.md",
+  "failure_modes": [
+    {
+      "text": "Boundaries fail when they are drawn to protect comfort, politics, or convenience instead of the actual purpose of the work.",
+      "source_quote": "Danger When Boundaries Protect Comfort Instead of Purpose",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit whether boundaries serve the work or protect comfort: ask whether moving the boundary would improve the outcome even if it creates discomfort."
+    },
+    {
+      "text": "Premature narrowing can kill options and block the generation of better explanations or solutions.",
+      "source_quote": "Premature Narrowing of Inquiry",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Delay narrowing until at least two alternative framings have been explored; premature closure is more expensive than the extra search time."
+    },
+    {
+      "text": "Boundary discipline breaks when familiar frameworks are applied across situations that require jumping the existing frame.",
+      "source_quote": "failure to jump boundaries and instead apply an existing model",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test the boundary against a novel frame from a different discipline; if the familiar framework cannot accommodate the new case, the boundary is misplaced."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is this work actually supposed to cover, and what is deliberately out of scope?",
+      "source_quote": "The Boundaries of Your Analysis",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are these limits serving the goal, or are they mainly protecting us from difficult evidence or accountability?",
+      "source_quote": "Danger When Boundaries Protect Comfort Instead of Purpose",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What important option disappears if we narrow the frame right now?",
+      "source_quote": "Premature Narrowing of Inquiry",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Formalize the scope and expected output before the analysis sprawls.",
+      "source_quote": "Formalizing the Contract and Scope",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use boundaries to respect real cognitive limits by breaking work into genuinely manageable chunks.",
+      "source_quote": "genuinely manageable small chunks",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep boundaries purpose-aligned and revisit them when they start protecting convenience instead of clarity.",
+      "source_quote": "serve the real objective",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on scope discipline, anti-premature narrowing, and purpose-aligned limit setting.",
+    "donor_drops": [
+      "Did not preserve donor interpersonal-boundary sprawl because the raw source is stronger on analysis contracts, cognitive limits, and anti-comfort scoping."
+    ],
+    "open_questions": [
+      "The third heuristic compresses several source warnings about misused limits so the model stays operational rather than rhetorical."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on cognitive-load-theory, decomposition, prioritization, and scaffolding-like chunking as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on law-of-the-instrument style frame fixation, but only current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around comfort-protecting scope lines, but it does not expose a cleaner explicit current-vocabulary tension block than the one-hop relation surface."
+    ]
+  }
+}

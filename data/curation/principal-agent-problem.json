@@ -1,0 +1,71 @@
+{
+  "model_id": "principal-agent-problem",
+  "source_file": "Principal_Agent_Problem_rag.md",
+  "select_when": [
+    "Work is being delegated across an objective gap where the executing party may benefit from choices that do not serve the owner of the outcome.",
+    "Specialized knowledge, hidden intentions, or role ambiguity make it hard to tell whether the agent's behavior is aligned with the principal's real goals.",
+    "The main challenge is to design incentives, oversight, and role clarity so delegated work stays tied to the larger objective.",
+    "Dashboards or formal compliance are starting to look like substitutes for actual alignment, so the team needs to inspect divergence underneath the metrics."
+  ],
+  "avoid_when": [
+    "The response is collapsing into micromanagement of the current case instead of diagnosing the machine-level design that created the drift.",
+    "The model is being used to assume bad faith when the main issue is capability, capacity, or a muddled objective rather than a true alignment split."
+  ],
+  "input_type": "delegation-alignment and hidden-divergence problem",
+  "output_type": "alignment and accountability redesign",
+  "reasoning_types": [
+    "systems",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on delegated-objective divergence, hidden behavior, and system design for alignment rather than broad management advice.",
+    "donor_drops": [
+      "Did not preserve donor multi-agent architecture sprawl because the raw source is stronger on alignment gaps, role clarity, and machine-level diagnosis."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans organizations, internal cognition analogies, consulting, and AI-agent design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly names delegated objective gaps, information asymmetry, incentive alignment, and metric-hidden divergence."
+    },
+    "avoid_when": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in the source warnings about micromanagement and confusing misalignment with other causes of poor outcomes."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around delegation, alignment gaps, and hidden behavior; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields system redesign around incentives and accountability, though the typed output label is a compact reviewed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Principal-agent reasoning is explicitly structural and causal about alignment and hidden action, while the taxonomy labels remain normalized."
+    }
+  }
+}

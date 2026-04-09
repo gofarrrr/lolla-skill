@@ -1,0 +1,70 @@
+{
+  "model_id": "occams-razor",
+  "source_file": "Occams_Razor_rag.md",
+  "select_when": [
+    "A decision is carrying extra assumptions, variables, or explanatory machinery that may be making the answer feel smarter without making it truer.",
+    "Several explanations fit the facts, and the team needs a disciplined reason to start with the one that asks the least of reality.",
+    "A plan or diagnosis is becoming neat, plausible, and wrong because complexity is being rewarded more than evidential fit.",
+    "The next move should prune unsupported story structure before more analysis compounds it."
+  ],
+  "avoid_when": [
+    "The simplest explanation is being chosen for comfort, speed, or elegance even though the evidence points to interacting causes or real complexity.",
+    "The situation is genuinely multicausal and the team is using simplicity rhetoric to avoid tracing the harder causal structure."
+  ],
+  "input_type": "overcomplicated explanation problem",
+  "output_type": "pruned working explanation",
+  "reasoning_types": [
+    "deductive",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on pruning unsupported assumptions and preferring the least-complicated explanation that still fits the evidence, not on generic simplicity worship.",
+    "donor_drops": [
+      "Did not preserve donor-style philosophy sprawl because the raw source is stronger on anti-overcomplication and anti-plausible-story discipline."
+    ],
+    "open_questions": [
+      "The typed output compresses a source that also covers scientific modeling, troubleshooting, and communication clarity."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on choosing the explanation with the fewest unsupported assumptions and on resisting elegant overcomplication."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings that the simplest story can still be wrong when reality is genuinely complex."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on overcomplicated explanations and assumption-heavy reasoning, while the compact label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields a stripped-down working explanation rather than a full proof; the typed output is a compact operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Occam's Razor is strongest as disciplined pruning of assumptions and explanatory structure, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

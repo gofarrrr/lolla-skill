@@ -1,0 +1,77 @@
+{
+  "model_id": "baseline-establishment",
+  "source_file": "Baseline_Establishment_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams waste effort when they launch analysis or execution without agreeing on the starting condition, target outcome, or frame for comparison.",
+      "source_quote": "Successful outcomes are predicated on defining a clear, accurate starting point.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Separate goal-setting from solution design: define the starting condition, target, and comparison frame as distinct steps before any analysis begins."
+    },
+    {
+      "text": "Improvement claims become impressionistic when normal, broken, and improved were never defined up front.",
+      "source_quote": "Best used when later intervention quality will be judged by change from an explicit starting condition rather than by impressionistic anecdotes.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Spell out all assumptions using 'what would you have to believe?' and define measurable thresholds for normal, broken, and improved before intervening."
+    },
+    {
+      "text": "A baseline can mislead once it fossilizes into doctrine or tracks a convenient metric that is weakly tied to the real driver of success.",
+      "source_quote": "Danger when the initial baseline fossilizes into doctrine.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Stress-test the baseline against edge cases and revisit it periodically; ask whether the tracked metric still causally drives the outcome or has become a vanity measure."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What exactly is our starting condition, and what evidence says that starting picture is accurate enough to compare against later?",
+      "source_quote": "Baseline Establishment is clarity of the starting condition.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we defining the outcome first, or are we already drifting into execution and solution design?",
+      "source_quote": "Goal setting must be done without thinking about solutions or diagnosis.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which baseline metric is easiest to measure but least tied to the real causal driver we care about?",
+      "source_quote": "Danger when the chosen baseline metric is convenient to measure but weakly tied to the real causal drivers of success or failure.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define the starting picture and success criterion before expanding the work.",
+      "source_quote": "All the successful execution in the world is worthless if it’s not in service of the right outcome.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the baseline as a comparison anchor, but keep checking whether the environment has shifted enough to require a reset.",
+      "source_quote": "Danger when the initial baseline fossilizes into doctrine and the team keeps optimizing around an outdated starting frame.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Do not confuse having a metric with having the right baseline.",
+      "source_quote": "Danger when the chosen baseline metric is convenient to measure but weakly tied to the real causal drivers of success or failure.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks on starting-condition clarity, outcome-first framing, and anti-fossilized-baseline discipline.",
+    "donor_drops": ["Did not preserve broader prompt-design and persona-design sprawl beyond the clearest baseline moves."],
+    "open_questions": ["The source supports simulation and communication uses, but the Wave 2 surface stays on planning, diagnosis, and measurement baselines."]
+  },
+  "deferred_richness_notes": {
+    "allies": ["The raw source is strongest alongside MECE, systems mapping, and first-principles-thinking."],
+    "antagonists": ["The source pushes hardest against status-quo-bias, confirmation-bias, and representativeness-bias when they harden a false baseline."],
+    "structured_tensions": ["The clearest tensions are with status-quo-bias, representativeness-bias, and confirmation-bias."]
+  }
+}

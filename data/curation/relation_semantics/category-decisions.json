@@ -1,0 +1,67 @@
+{
+  "model_id": "category-decisions",
+  "source_file": "Category_Decisions_rag.md",
+  "allies": [
+    {
+      "target_model_id": "decision-trees",
+      "rationale_text": "Decision-trees helps category-decisions separate cases and consequences before the rule is locked in.",
+      "source_quote": "decision trees are tools used to cleave a problem into insightful parts",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "checklists",
+      "rationale_text": "Checklists strengthens category-decisions by turning stable boundaries into repeatable operational moves instead of ad hoc improvisation.",
+      "source_quote": "stable decision rule rather than case-by-case improvisation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias distorts category-decisions when the bucket is defended for political comfort instead of evidence.",
+      "source_quote": "predisposition to defend existing beliefs or mental models",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "representativeness-bias",
+      "tension_text": "Category-decisions conflicts with representativeness-bias when labels are assigned from salient traits instead of distributional evidence.",
+      "source_quote": "category-decisions vs representativeness-bias: labels are assigned from salient traits instead of distributional evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "tension_text": "Category-decisions conflicts with first-principles-thinking when inherited buckets replace decomposition of underlying mechanisms.",
+      "source_quote": "category-decisions vs first-principles-thinking: inherited buckets replace decomposition of underlying mechanisms.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "donor_drops": [
+      "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
+    ],
+    "open_questions": [
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "Wave 4 candidacy remains observational only and is noted only in batch artifacts."
+    ],
+    "antagonists": [
+      "No multihop or higher-order semantics were introduced in these Wave 3 files."
+    ],
+    "structured_tensions": [
+      "Explicit tensions were preserved only where the raw source clearly earned a current-vocabulary target."
+    ]
+  }
+}

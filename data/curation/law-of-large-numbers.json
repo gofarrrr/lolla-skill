@@ -1,0 +1,71 @@
+{
+  "model_id": "law-of-large-numbers",
+  "source_file": "Law_of_Large_Numbers_rag.md",
+  "select_when": [
+    "A decision is being distorted by anecdotes, vivid stories, or tiny samples when population logic should dominate.",
+    "Repeated observations can reveal the signal beneath noise better than a single memorable case can.",
+    "Base rates, frequency, or convergence matter more than the intuitiveness of one representative example.",
+    "The team is mistaking a noisy short run for proof about the underlying process."
+  ],
+  "avoid_when": [
+    "The sample is biased, structurally mismatched, or drawn from the wrong population, so large-N confidence would be fake reassurance.",
+    "Mean outcomes are being used as an excuse to ignore tail risk, distribution shape, or conjunctive failure structure."
+  ],
+  "input_type": "sample-size distorted judgment",
+  "output_type": "population-level calibration",
+  "reasoning_types": [
+    "probabilistic",
+    "analogical"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on signal-versus-noise discipline, population logic, and resistance to anecdotal certainty.",
+    "donor_drops": [
+      "Did not preserve donor-style statistics instruction beyond the raw source's stronger anti-small-sample and reference-class guidance.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The source mixes statistical principle, risk framing, and expertise development, so the typed fields are reviewed operational compression."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on anecdote correction, repeated observation, and base-rate or convergence conditions."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by the source warnings on wrong populations and overemphasis on the mean."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates when judgment is being driven by limited observations, but the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model corrects toward the population and distribution; the output label compresses that function into a typed calibration artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is clearly probabilistic and uses reference-class style analogy, but the reasoning taxonomy names are reviewed normalization."
+    }
+  }
+}

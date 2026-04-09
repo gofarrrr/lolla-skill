@@ -1,0 +1,70 @@
+{
+  "model_id": "tier-2-high-value",
+  "source_file": "Tier_2_High_Value_rag.md",
+  "select_when": [
+    "Many tasks look valuable on the surface but only a few meaningfully move the outcome, decision quality, or learning rate.",
+    "The team can distinguish leverage from busyness and define the specific end-product that would actually resolve the issue.",
+    "Time, attention, or capital are scarce enough that ruthless pruning matters more than completeness theater."
+  ],
+  "avoid_when": [
+    "High-level framing is creating the illusion that the hard causal, sequencing, or ownership thinking is already finished.",
+    "People are talking fluently about leverage while skipping the enabling details that make the recommendation executable."
+  ],
+  "input_type": "leverage-versus-busyness problem",
+  "output_type": "pruned high-value focus",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused on identifying a small set of real drivers and pruning false completeness rather than on abstract value language.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

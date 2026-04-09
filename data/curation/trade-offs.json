@@ -1,0 +1,72 @@
+{
+  "model_id": "trade-offs",
+  "source_file": "Trade_Offs_rag.md",
+  "select_when": [
+    "Pursuing one objective necessarily weakens another, so the real decision is what good thing must be sacrificed, delayed, or downweighted.",
+    "Resource scarcity makes 'do everything' an illusion and the plan needs explicit prioritization instead of rhetorical balance.",
+    "Decision quality depends on naming the hidden cost of saying yes, including opportunity cost and displaced benefit.",
+    "The team is pretending there is no downside, no reallocation, or no ranking decision embedded in the recommendation."
+  ],
+  "avoid_when": [
+    "Trade-off talk has become performance without allocation, so priorities are being acknowledged rhetorically but no resources, options, or rankings actually change.",
+    "The analysis is bloating into comprehensiveness theater instead of clarifying the few trade-offs that matter most."
+  ],
+  "input_type": "competing-objectives decision",
+  "output_type": "priority trade-off framing",
+  "reasoning_types": [
+    "counterfactual",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused the model on explicit sacrifice, allocation, and hidden-cost naming rather than on generic balance language.",
+    "donor_drops": [
+      "Did not preserve donor-style optimization overlays because the raw source is stronger on prioritization, cost of yes, and anti-performative trade-off discipline.",
+      "Did not add higher-order fields because this batch keeps Wave 4 observational only."
+    ],
+    "open_questions": [
+      "The output type is reviewed compression over a source that mixes economic, communication, and strategic examples into one constraint-framing model."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on necessary sacrifice, scarcity, and hidden costs; review mainly compresses that into routing-ready triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The first anti-activation condition is explicit, and the second is a close operational compression of the comprehensiveness and analysis-paralysis warnings."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates on constrained choices with conflicting goals, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook produces explicit prioritization and cost-benefit framing; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Trade-offs clearly use systems and counterfactual reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

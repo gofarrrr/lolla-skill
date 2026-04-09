@@ -1,0 +1,56 @@
+{
+  "model_id": "analogies-and-metaphors",
+  "source_file": "Analogies_And_Metaphors_rag.md",
+  "select_when": [
+    "The audience lacks a usable schema for the concept but does have adjacent experience that can carry the explanation.",
+    "Abstraction is blocking understanding even though the underlying idea is sound.",
+    "The mechanism can transfer through a comparison that preserves the important structural logic of the target domain.",
+    "The main bottleneck is making the idea graspable, memorable, and discussable rather than adding more facts."
+  ],
+  "avoid_when": [
+    "The comparison is catchy but distorts the structural boundaries of the target domain.",
+    "Layered metaphors are adding interpretation burden instead of reducing it."
+  ],
+  "input_type": "hard-to-grasp explanation problem",
+  "output_type": "schema-carrying comparison",
+  "reasoning_types": [
+    "analogical",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Focused on schema transfer and anti-jargon clarity rather than on rhetorical flourish.",
+    "donor_drops": [
+      "Did not preserve donor communication sprawl because the raw source is already strongest on structural transfer and explanation quality."
+    ],
+    "open_questions": [
+      "The source overlaps with teaching and product positioning, but the operational file stays on graspability and structural transfer."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "The raw source is explicit on missing schema, abstraction blockage, and structural transfer."
+    },
+    "avoid_when": {
+      "sources": ["raw_markdown"],
+      "confidence": "high",
+      "note": "The source explicitly warns about distorted transfer and excessive metaphor burden."
+    },
+    "input_type": {
+      "sources": ["reviewed_normalization", "raw_markdown"],
+      "confidence": "medium",
+      "note": "The typed input label compresses the raw explanatory activation conditions."
+    },
+    "output_type": {
+      "sources": ["reviewed_normalization", "raw_markdown"],
+      "confidence": "medium",
+      "note": "The output label compresses structural-comparison logic into a reusable intervention type."
+    },
+    "reasoning_types": {
+      "sources": ["reviewed_normalization", "raw_markdown"],
+      "confidence": "medium",
+      "note": "The model clearly relies on analogy and reflective explanation, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

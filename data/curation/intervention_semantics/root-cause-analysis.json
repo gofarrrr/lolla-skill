@@ -1,0 +1,87 @@
+{
+  "model_id": "root-cause-analysis",
+  "source_file": "Root_Cause_Analysis_rag.md",
+  "failure_modes": [
+    {
+      "text": "Jumping into analysis too early can lock the team into tools before the underlying structure of the problem is clear.",
+      "source_quote": "Premature Analysis/Jumping to Conclusions (Othello Trap)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Validate the problem frame before choosing an analysis tool: spend time defining the problem structure so the tool fits the cause, not the other way around."
+    },
+    {
+      "text": "Symptom chasing leaves the deeper machine-level driver untouched, so the problem recurs.",
+      "source_quote": "Focusing on Symptoms, Not Drivers",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Go deeper than the first plausible explanation: require at least three 'why' iterations before accepting a root cause, to avoid fixing symptoms while the driver persists."
+    },
+    {
+      "text": "RCA breaks when the search for one neat root cause erases a causal stack of interacting failures.",
+      "source_quote": "Danger when the search for one root cause erases a causal stack",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Allow for multiple interacting causes: when a single root cause feels too neat, map the causal stack and check whether removing just one factor would actually prevent recurrence."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Why does the problem exist?",
+      "source_quote": "Why does the problem exist?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the outcome good or bad, and if bad, is the design bad or is the responsible party incapable?",
+      "source_quote": "Is the outcome good or bad? Who is responsible for the outcome? If the outcome is bad, is the Responsible Party incapable and/or is the design bad?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the Five Whys to push past the surface explanation toward the real generative driver.",
+      "source_quote": "The Five Whys",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Disaggregate the problem with logic trees so the full causal picture is visible before action.",
+      "source_quote": "Problem Disaggregation and Logic Trees",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use fishbone diagrams to trace causes of causes instead of stopping at the first plausible mechanism.",
+      "source_quote": "Fishbone (Ishikawa) Diagrams",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on anti-symptom diagnosis, causal probing, and structured disaggregation.",
+    "donor_drops": [
+      "Did not preserve donor process sprawl because the raw source is stronger on Five Whys, logic trees, and anti-premature-analysis discipline."
+    ],
+    "open_questions": [
+      "The third premortem item condenses the Dalio-loop diagnostic questions into a chunk that stays reusable across contexts."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally section is strong on systems-thinking, feynman-technique, and critical-thinking as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist section is strong on confirmation-bias and law-of-the-instrument, but only the cleanest canonical ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around symptom chasing, correlation errors, and anti-confirmation discipline even without a dedicated structured tension block."
+    ]
+  }
+}

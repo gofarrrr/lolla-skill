@@ -1,0 +1,87 @@
+{
+  "model_id": "logical-fallacies",
+  "source_file": "Logical_Fallacies_rag.md",
+  "failure_modes": [
+    {
+      "text": "A small flaw in the reasoning can behave like a stress fracture that only breaks the plan under pressure.",
+      "source_quote": "little flaws in the logic, similar to tiny stress fractures",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Stress-test the argument structure before committing resources: diagram the logical chain and challenge each link with a 'what if this premise is wrong?' check."
+    },
+    {
+      "text": "Causal claims can outrun evidence and turn weak correlation into unjustified explanation.",
+      "source_quote": "causal fallacies",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require independent evidence for every causal claim; if the link relies solely on temporal sequence or surface correlation, flag it as unearned."
+    },
+    {
+      "text": "Performative fallacy hunting can replace actual problem clarification and leave the decision no better than before.",
+      "source_quote": "fallacy hunting replaces problem solving",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Redirect fallacy identification toward the decision: after naming the flaw, immediately ask what changes in the recommendation if this reasoning step is removed."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What evidence actually supports this claim, and how does that evidence support the inference step by step?",
+      "source_quote": "Can you show how your evidence supports your claim?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would prove our current hypothesis wrong rather than merely making us uncomfortable?",
+      "source_quote": "What evidence, if I saw it, would prove my current hypothesis wrong?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we treating this belief like a favorite team instead of a claim that should survive scrutiny?",
+      "source_quote": "favorite football team",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate correlation from causation before treating a pattern as an explanation.",
+      "source_quote": "separate correlation from causation",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use Socratic questioning to surface weak premises, missing proof, and hidden leaps.",
+      "source_quote": "Socratic Questioning for Critical Thinking",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Think in gray instead of collapsing complex evidence into all-or-nothing language.",
+      "source_quote": "Thinking Gray",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

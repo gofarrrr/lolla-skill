@@ -1,0 +1,87 @@
+{
+  "model_id": "emergence",
+  "source_file": "Emergence_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams miss real system behavior when they judge each component separately and never inspect the interaction effects creating the whole.",
+      "source_quote": "Most useful when the whole cannot be inferred from the parts alone.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Inspect interaction effects between components: judging each part separately will miss the emergent behavior that matters."
+    },
+    {
+      "text": "Incremental part optimization can fail because the result is being produced by relationships between parts rather than by one weak component.",
+      "source_quote": "Works when interaction effects matter more than component quality.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Optimize for the relationships and feedback loops that produce the result, not for individual components in isolation."
+    },
+    {
+      "text": "Emergence becomes an excuse for drift when teams avoid setting the minimal structure and feedback needed for healthy pattern formation.",
+      "source_quote": "Danger When “Let It Emerge” Becomes an Excuse for No Design.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Set minimal structure and feedback mechanisms: emergence is not an excuse for drift; healthy pattern formation needs guardrails."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What behavior only appears when these parts interact that we would miss if we scored them one by one?",
+      "source_quote": "To understand emergence, one must adopt systems thinking ... determine what emerges from that interaction.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which conditions, constraints, or feedback loops must be designed up front so better patterns can emerge instead of chaos?",
+      "source_quote": "Best when leaders must design conditions rather than script outcomes.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Where are we mistaking implementation flexibility for permission to improvise without a supporting structure?",
+      "source_quote": "The focus on emergence can be misapplied as 'busking it'.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Map interactions before optimizing components when the system-level result looks larger than the sum of the parts.",
+      "source_quote": "Emergence ... where complex outcomes arise from the interaction of simpler, distinct parts.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Design enabling conditions and learning loops instead of pretending the full path can be scripted in advance.",
+      "source_quote": "Implementation is often more emergent than amenable to a blueprint.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use emergence to explain interaction-driven novelty, not to excuse absent design discipline.",
+      "source_quote": "Danger When “Let It Emerge” Becomes an Excuse for No Design.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks on interaction effects, condition design, and anti-busking discipline.",
+    "donor_drops": [
+      "Did not preserve broader strategy-language sprawl beyond the clearest system and design moves."
+    ],
+    "open_questions": [
+      "The source also supports creative synthesis, but the Wave 2 surface stays on emergence as a system behavior and design problem."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on systems-thinking, synthesis, and design-thinking."
+    ],
+    "antagonists": [
+      "The source is strongest against optimization-theory style part-maximization and overly reductive decomposition."
+    ],
+    "structured_tensions": [
+      "The clearest tensions are with optimization-theory and first-principles-thinking when reduction loses interaction effects."
+    ]
+  }
+}

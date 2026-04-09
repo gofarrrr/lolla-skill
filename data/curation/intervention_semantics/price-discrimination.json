@@ -1,0 +1,67 @@
+{
+  "model_id": "price-discrimination",
+  "source_file": "Price_Discrimination_rag.md",
+  "failure_modes": [
+    {
+      "text": "Generic offers blur segment differences and leave the business sounding like every competitor.",
+      "source_quote": "somewhat generic",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Segment messaging around genuine value differences: customize offers based on what each segment actually needs, not just willingness to pay."
+    },
+    {
+      "text": "Tiering can backfire if customers can compare treatment easily and judge it as unfair.",
+      "source_quote": "customers can arbitrage between tiers",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Anticipate transparency: design tiering so that if all customers saw all tiers simultaneously, the differentiation would feel fair rather than exploitative."
+    },
+    {
+      "text": "Short-term extraction can damage long-term trust and willingness to buy later.",
+      "source_quote": "damages long-term trust",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Balance extraction against relationship: cap short-term pricing tactics where they would erode long-term trust, repeat purchase, or referral willingness."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Compared to what does this offer look like a clear bargain or a risky mistake?",
+      "source_quote": "Compared to what?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would each segment have to believe to accept this price and structure?",
+      "source_quote": "What would the customer have to believe",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Where could segmentation create confusion, arbitrage, or trust damage?",
+      "source_quote": "confusing buyers or eroding trust",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define one specific problem for one specific type of buyer in one specific way.",
+      "source_quote": "1 Specific Problem, for 1 Specific Type Of Person, in 1 Specific Way",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Translate every feature into a segment-specific benefit before discussing price.",
+      "source_quote": "features-to-benefits conversion",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Tailor the framing and voice of the offer to the buyer's processing style.",
+      "source_quote": "Tailoring Communication by Archetype",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "network-effects",
+  "source_file": "Network_Effects_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can label ordinary scale benefits as network effects without proving that each added participant improves value for the next one.",
+      "source_quote": "Danger when leaders label ordinary scale benefits as network effects",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require proof of the feedback loop: show that adding one more participant measurably improves value for existing participants, not just that the product scales with volume."
+    },
+    {
+      "text": "Local success can be mistaken for critical mass before the threshold for self-sustaining adoption is actually real.",
+      "source_quote": "Mistaking Local Success for Critical Mass",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Define the critical-mass threshold quantitatively and track adoption against it; do not declare network effects until the self-sustaining point is empirically reached."
+    },
+    {
+      "text": "Teams can overcomplicate the system before viability by trying to maximize every connection or data point too early.",
+      "source_quote": "The Boiling the Ocean Trap",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Defer complexity until the core loop works: resist adding features, integrations, or data layers until the minimal network-effect mechanism is validated with real users."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What density is actually needed to reach the critical mass point in this market or segment?",
+      "source_quote": "What density ... is needed to reach the critical mass point",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe to accept that critical mass is not reachable here?",
+      "source_quote": "What would we have to believe to accept that critical mass is not reachable?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Can the business model be tweaked so the threshold becomes reachable before organic growth is expected to carry it?",
+      "source_quote": "Can you tweak the business model so that this critical mass point is reachable",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate threshold effects from ordinary growth by asking whether each added participant actually increases value for the next one.",
+      "source_quote": "value of adoption rises materially as more users ... join",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use seeding intentionally when the network would otherwise fail before it reaches viable density.",
+      "source_quote": "seed each area with its own tools",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Focus on the few users, nodes, or features that matter most for pushing the system past critical mass.",
+      "source_quote": "Pareto Principle (80/20 Rule)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on threshold mechanics, self-reinforcement, seeding, and anti-fake-network-effects discipline.",
+    "donor_drops": [
+      "Did not preserve broad platform-growth rhetoric because the raw source is stronger on critical mass and feedback logic."
+    ],
+    "open_questions": [
+      "The third heuristic compresses the source's Pareto-guided focus rule so the chunk stays compact."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on critical-mass, feedback-loops, systems-thinking, and pareto-principle because those models explain threshold crossing and self-reinforcement."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on cognitive-load-theory and confirmation-bias because both can distort adoption or critical-mass diagnosis."
+    ],
+    "structured_tensions": [
+      "The source is clearest on ally pressure and anti-patterns, so structured tensions should stay conservative."
+    ]
+  }
+}

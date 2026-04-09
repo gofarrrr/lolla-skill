@@ -1,0 +1,87 @@
+{
+  "model_id": "theory-of-constraints",
+  "source_file": "Theory_Of_Constraints_rag.md",
+  "failure_modes": [
+    {
+      "text": "Local optimization can consume energy while the real throughput ceiling remains fixed elsewhere.",
+      "source_quote": "Local optimization of non-binding step",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Subordinate all optimization to the constraint: do not improve non-bottleneck steps until the real throughput ceiling is addressed."
+    },
+    {
+      "text": "Constraint language becomes theater when no current cap, governing metric, or movement evidence is named.",
+      "source_quote": "Constraint not explicitly measured",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Name the constraint concretely: require a specific capacity cap, governing metric, and evidence of movement before accepting that constraint language is being used productively."
+    },
+    {
+      "text": "The model breaks when teams keep fixing the old bottleneck after the constraint has already shifted somewhere else.",
+      "source_quote": "Constraint shift without retest",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Re-diagnose the constraint after every improvement cycle: once the old bottleneck is relieved, the constraint shifts — re-map the flow to find the new one."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week?",
+      "source_quote": "Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If this first bottleneck actually moves, what step becomes the next cap within two weeks?",
+      "source_quote": "If this first bottleneck actually moves, what step becomes the next cap within two weeks, and what evidence in this plan would tell us the constraint has already shifted there?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which task in this plan is consuming the same scarce team, approval slot, or specialist time needed at the bottleneck?",
+      "source_quote": "Which task in this plan is consuming the same scarce team, approval slot, or specialist time needed at the bottleneck",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define constraints rigorously up front so the problem scope and the bottleneck candidate are explicit before solutioning.",
+      "source_quote": "Clear Problem Definition (TOSCA)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Disaggregate and prioritize until only the branches affecting the binding constraint stay in focus.",
+      "source_quote": "Disaggregation and Prioritization",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Re-score the constraint after each major change so the action sequence moves with the bottleneck.",
+      "source_quote": "Constraint cadence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on measured bottlenecks, sequencing discipline, and anti-bottleneck-theater safeguards.",
+    "donor_drops": [
+      "Did not preserve donor operations sprawl because the raw source is stronger on explicit caps, retest cadence, and scarce-lane discipline."
+    ],
+    "open_questions": [
+      "The third heuristic is normalized from the mitigation table rather than the earlier playbook because the retest cadence is more operational there."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally section is strong on cognitive-load-theory and commander's-intent style alignment as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on confirmation-bias and curse-of-knowledge, but only the cleanest canonical ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source explicitly preserves tensions against optimization-theory and commitment-bias."
+    ]
+  }
+}

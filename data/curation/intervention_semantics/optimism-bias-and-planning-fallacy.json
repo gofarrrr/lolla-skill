@@ -1,0 +1,87 @@
+{
+  "model_id": "optimism-bias-and-planning-fallacy",
+  "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+  "failure_modes": [
+    {
+      "text": "Enthusiasm, charisma, or emotional mission clarity can be mistaken for evidence that the plan, timeline, or forecast is sound.",
+      "source_quote": "Danger when enthusiasm is being used as evidence",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Separate the messenger's conviction from the plan's evidence: require enthusiasm to be paired with outside-view base rates before it influences commitment."
+    },
+    {
+      "text": "Detailed preparation can amplify the planning fallacy when it narrows attention and hides external events or downside paths.",
+      "source_quote": "Detailed, step-by-step preparation ... can actually amplify the planning fallacy",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "After detailed planning, run a reference-class check: compare the plan's timeline and cost to the historical distribution of similar projects, not to the team's inside-view narrative."
+    },
+    {
+      "text": "The model fails when confidence about conjunctive success replaces explicit outside-view and downside checks.",
+      "source_quote": "objective forecasting",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Decompose conjunctive assumptions explicitly: list every condition that must hold simultaneously for the plan to succeed, estimate each independently, and multiply — the product is usually far lower than gut confidence."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What outside-view check would most likely cut this forecast down to reality?",
+      "source_quote": "outside-view check",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What downside path are we underweighting because the plan feels vivid and internally coherent?",
+      "source_quote": "needs explicit downside imagination",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If the proposer's conviction were removed, what evidence would still support this timeline or success probability?",
+      "source_quote": "strength of conviction, charisma of the proposer",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Run an outside-view check, reference class, or pre-mortem before real commitment.",
+      "source_quote": "outside-view check, a pre-mortem, or a reference class",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat detailed preparation as something to audit, not as proof that the plan is realistic.",
+      "source_quote": "Detailed, step-by-step preparation ... can actually amplify the planning fallacy",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate emotional clarity from execution realism by demanding downside imagination before commitment.",
+      "source_quote": "explicit downside imagination",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on outside-view correction, downside imagination, and anti-enthusiasm-as-evidence discipline.",
+    "donor_drops": [
+      "Did not preserve donor motivation sprawl because the raw source is stronger on planning realism and underweighted downside exposure."
+    ],
+    "open_questions": [
+      "The second premortem item compresses several source warnings on vivid internal coherence so the chunk stays reusable."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on resilience and structured hypothesis work, while the stronger corrective relation material is on outside-view and systems-style counterpressure."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on intellectual-humility, systems-thinking, and slow deliberation, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around overconfidence and planning distortion, but it does not expose a cleaner explicit current-vocabulary tension block than the one-hop relation surface."
+    ]
+  }
+}

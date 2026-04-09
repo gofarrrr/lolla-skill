@@ -1,0 +1,87 @@
+{
+  "model_id": "consulting-firms-methodology",
+  "source_file": "consulting_firms_methodology_rag.md",
+  "failure_modes": [
+    {
+      "text": "A politically convenient initial hypothesis can turn the project into confirmation-bias with prettier slides.",
+      "source_quote": "seek only the data that proves the initial hypothesis",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require that the initial hypothesis be treated as falsifiable: define what evidence would disprove it and gather that evidence first."
+    },
+    {
+      "text": "Boiling the ocean wastes time on analysis that does not discriminate among live options.",
+      "source_quote": "boiling the ocean",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Gather only enough facts to prove or disprove the live hypothesis; stop before comprehensiveness becomes its own goal."
+    },
+    {
+      "text": "Framework-complete output can ignore client commitment and the human system needed for implementation.",
+      "source_quote": "loss of client commitment",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Close the implementation gap: ensure the recommendation addresses client commitment, change management, and the human system needed for execution."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would we have to believe for this initial hypothesis to deserve protection after the first evidence arrives?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What is our one-day answer right now, and which make-or-break test could overturn it first?",
+      "source_quote": "One-Day Answer",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we solving the real problem definition, or merely the symptom that is easiest to structure?",
+      "source_quote": "Define the problem precisely",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define the problem precisely, disaggregate it MECE, and prioritize the make-or-break analyses first.",
+      "source_quote": "The Seven-Step Problem Solving Framework",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use issue trees and return-on-capital style decomposition to expose the real levers quickly.",
+      "source_quote": "Logic Trees and Issue Trees",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Gather only enough facts to prove or disprove the hypothesis and keep synthesizing toward the governing thought.",
+      "source_quote": "only enough facts to prove or disprove a hypothesis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "survivorship-bias",
+  "source_file": "Survivorship_Bias_rag.md",
+  "allies": [
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking helps survivorship-bias resist vivid winner stories by demanding the missing evidence and the hidden denominator before trusting the lesson.",
+      "source_quote": "Critical thinking is the ability to notice biases, question your own ideas, and evaluate evidence objectively.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "premortem",
+      "rationale_text": "Premortem strengthens survivorship-bias by forcing the team to imagine failure cases that winner-only evidence would otherwise hide.",
+      "source_quote": "non-surviving data points to truly stress-test edge cases",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base-rates are the direct antidote to survivorship-bias because they restore the broader outcome distribution that vivid survivor stories erase.",
+      "source_quote": "outside view demands that one explicitly looks at the probabilities of the wider class of outcomes",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias compounds survivorship-bias by locking attention onto the successful cases that confirm the favored theory while failures disappear from view.",
+      "source_quote": "confirmation Bias can exacerbate Survivorship Bias by reinforcing focus on successful outcomes, ignoring failures",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "optimism-bias-and-planning-fallacy",
+      "rationale_text": "Optimism-bias-and-planning-fallacy intensifies survivorship-bias by making the winner story feel like a likely template for success instead of a filtered special case.",
+      "source_quote": "overestimating success likelihood",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Survivorship-bias conflicts with confirmation-bias when focus on successful outcomes is reinforced while failures are ignored.",
+      "source_quote": "survivorship-bias vs confirmation-bias: survivorship-bias conflicts with confirmation-bias (confirmation bias) when confirmation Bias can exacerbate Survivorship Bias by reinforcing focus on successful outcomes, ignoring failures.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "optimism-bias-and-planning-fallacy",
+      "tension_text": "Survivorship-bias conflicts with optimism-bias-and-planning-fallacy when overestimating success likelihood overwhelms the caution implied by missing failures.",
+      "source_quote": "survivorship-bias vs optimism-bias-and-planning-fallacy: survivorship-bias conflicts with optimism-bias-and-planning-fallacy (optimism bias and planning fallacy) when optimism Bias and Planning Fallacy may lead to overestimating success likelihood, conflicting with the caution urged by Survivorship Bias.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on denominator recovery through critical and base-rate allies plus explicit conflicts with confirmation and optimism distortion, so the file preserves that conservative surface.",
+    "donor_drops": [
+      "Did not preserve donor relation widening beyond the clearly named outside-view and anti-success-story neighborhood."
+    ],
+    "open_questions": [
+      "Team processes are source-real allies too, but the retained set favors cleaner first-order current-vocabulary mappings."
+    ]
+  }
+}

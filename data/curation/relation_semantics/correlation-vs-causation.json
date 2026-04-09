@@ -1,0 +1,63 @@
+{
+  "model_id": "correlation-vs-causation",
+  "source_file": "Correlation_Vs_Causation_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps correlation-vs-causation map relations and context so the team can reason about causes instead of reading isolated symptoms.",
+      "source_quote": "Systems thinking demands attention to relations and contexts, and the ultimate goal is to understand the underlying system of an area of expertise, including the nature of cause and effect.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "experimentation",
+      "rationale_text": "Experimentation gives correlation-vs-causation a disciplined way to test whether the claimed driver actually produces the observed result.",
+      "source_quote": "Understanding causation drivers leads toward statistical analysis and experiments.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "root-cause-analysis",
+      "rationale_text": "Root-cause-analysis complements correlation-vs-causation by pushing the team past the proximate event toward the deeper mechanism that generated it.",
+      "source_quote": "This involves striving to separate the proximate cause (what happened immediately before) from the root cause (the true underlying driver).",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias interferes with causal diagnosis by filtering evidence toward the cause story the team already wants to believe.",
+      "source_quote": "Confirmation Bias ... directly interferes with accurate causal analysis.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Correlation-vs-causation conflicts with confirmation-bias when observed correlations are selectively elevated to causal status because they confirm a pre-existing theory.",
+      "source_quote": "correlation-vs-causation conflicts with confirmation-bias (confirmation bias) when observed correlations are selectively elevated to causal status because they confirm a pre-existing theory.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Correlation-vs-causation conflicts with simplification when insistence on establishing causation blocks timely action in situations where strong correlation is the best available decision input.",
+      "source_quote": "correlation-vs-causation conflicts with simplification (simplification) when insistence on establishing causation blocks timely action in situations where strong correlation is the best available decision input.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on mechanism-tracing allies and one clean anti-bias conflict rather than on an explicit structured tension block.",
+    "donor_drops": [
+      "Did not preserve donor relation sprawl where the raw source mainly supports systems, experimentation, and root-cause links."
+    ],
+    "open_questions": [
+      "Fast-thinking and availability pressure are source-real antagonists, but confirmation-bias was the cleanest bounded fit into the current relation surface."
+    ]
+  }
+}

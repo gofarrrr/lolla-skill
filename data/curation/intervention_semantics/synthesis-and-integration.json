@@ -1,0 +1,87 @@
+{
+  "model_id": "synthesis-and-integration",
+  "source_file": "Synthesis_And_Integration_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can gather many observations and still fail to act because no governing thought links the evidence into a decision-driving structure.",
+      "source_quote": "Most useful when the facts exist but no governing thought exists.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Force a governing thesis: after gathering observations, require one sentence that links the evidence into a decision-driving structure before moving forward."
+    },
+    {
+      "text": "Evidence can remain inert when analysis keeps expanding but no priority rule says what matters most.",
+      "source_quote": "Works when analysis is finished but prioritization is not.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Apply a priority filter: rank evidence by decision impact and discard or defer inputs that would not change the recommendation even if they were wrong."
+    },
+    {
+      "text": "A synthesis can fail by collapsing into a simple story that no longer carries the key reinforcing logic underneath it.",
+      "source_quote": "Best when the audience needs linked insight, not evidence dump.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Protect the reinforcing logic: when compressing a synthesis into a summary, verify that the key causal links and supporting mechanisms survive the simplification."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the governing thought that should organize these facts, and what evidence genuinely belongs under it?",
+      "source_quote": "Most useful when the facts exist but no governing thought exists.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which conclusion actually deserves to drive action rather than just look interesting on the page?",
+      "source_quote": "Works when analysis is finished but prioritization is not.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If this summary were shortened further, what causal spine would we lose that still matters for the decision?",
+      "source_quote": "Best when the audience needs linked insight, not evidence dump.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Turn a mass of analysis into a small number of mutually reinforcing conclusions.",
+      "source_quote": "Best when the audience needs linked insight, not evidence dump.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use synthesis only after enough analysis exists to justify a real governing thought.",
+      "source_quote": "Works when analysis is finished but prioritization is not.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Prune facts that do not strengthen the core decision-driving structure.",
+      "source_quote": "Synthesis demands focus and simplification, ignoring data that doesn't contribute to the core message.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on governing-thought formation, prioritization, and linked insight.",
+    "donor_drops": [
+      "Did not preserve donor summary-writing sprawl because the raw source already supports action-driving synthesis chunks."
+    ],
+    "open_questions": [
+      "The source touches AI transformation layers, but the Wave 2 surface stays on synthesis as a human decision move."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on scaffolding and systems-thinking."
+    ],
+    "antagonists": [
+      "The source is strongest against evidence dumps and unfocused fact accumulation."
+    ],
+    "structured_tensions": [
+      "The main tension is between integrated insight and overgrown analysis that never resolves into a governing thought."
+    ]
+  }
+}

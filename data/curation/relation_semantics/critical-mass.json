@@ -1,0 +1,64 @@
+{
+  "model_id": "critical-mass",
+  "source_file": "Critical_Mass_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps critical-mass identify whether the threshold is real by looking at the ecosystem and the interactions that sustain momentum.",
+      "source_quote": "Critical Mass is a concept derived from systems thinking, providing a framework for seeing interrelationships rather than things.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feedback-loops",
+      "rationale_text": "Feedback-loops explain how critical-mass turns from isolated activity into self-reinforcing growth once the threshold is crossed.",
+      "source_quote": "once the critical threshold is met, positive feedback loops (like network effects or momentum) accelerate growth",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias makes critical-mass overfit a threshold story onto weak evidence just because the team wants the pattern to be true.",
+      "source_quote": "critical-mass vs confirmation-bias: critical-mass conflicts with confirmation-bias (confirmation bias) when pattern-recognition bias causes teams to force a threshold framing onto problems that do not actually follow critical-mass dynamics.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "representativeness-bias",
+      "tension_text": "Critical-mass conflicts with representativeness-bias when early adopter behavior is misread as durable mass adoption.",
+      "source_quote": "critical-mass vs representativeness-bias: critical-mass conflicts with representativeness-bias (representativeness bias) when early adopter behavior is misread as durable mass adoption.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "incentives",
+      "tension_text": "Critical-mass conflicts with incentives when local actor payoffs discourage participation needed to reach threshold momentum.",
+      "source_quote": "critical-mass vs incentives: critical-mass conflicts with incentives (incentives) when local actor payoffs discourage participation needed to reach threshold momentum.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Critical-mass conflicts with confirmation-bias when pattern-recognition bias causes teams to force a threshold framing onto problems that do not actually follow critical-mass dynamics.",
+      "source_quote": "critical-mass vs confirmation-bias: critical-mass conflicts with confirmation-bias (confirmation bias) when pattern-recognition bias causes teams to force a threshold framing onto problems that do not actually follow critical-mass dynamics.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on threshold allies and explicit threshold-misread conflicts, so the file preserves those directly and avoids wider inferred relation sprawl.",
+    "donor_drops": [
+      "Did not preserve donor topology-like threshold overlays because this batch stops at first-order relation semantics."
+    ],
+    "open_questions": [
+      "Momentum and Pareto are source-real allies, but systems-thinking and feedback-loops were the cleaner bounded anchors for this conservative pass."
+    ]
+  }
+}

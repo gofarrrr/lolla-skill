@@ -1,0 +1,72 @@
+{
+  "model_id": "johari-window",
+  "source_file": "Johari_Window_rag.md",
+  "select_when": [
+    "Blind spots are materially affecting coordination, trust, or self-assessment quality.",
+    "Better execution depends on turning feedback and disclosure into specific behavior change instead of vague openness.",
+    "A team needs structured self-awareness about what others can see that it cannot yet see for itself.",
+    "The work would improve if outside-view input were used to reduce inside-view overconfidence and repeated misdefinition."
+  ],
+  "avoid_when": [
+    "Disclosure is becoming performance theater or socially safe sharing rather than the specific feedback and self-revelation needed to reduce the real blind spot.",
+    "The model is being used as a standalone substitute for evidence, calibration, or problem-definition discipline."
+  ],
+  "input_type": "blind-spot and feedback problem",
+  "output_type": "structured self-awareness and calibration frame",
+  "reasoning_types": [
+    "metacognitive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on blind-spot reduction, feedback uptake, and structured self-awareness rather than widening it into generic openness rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor self-awareness sprawl beyond the raw source's stronger feedback, disclosure, and anti-insularity material.",
+      "Did not add higher-order composition fields because this batch remains Wave 1 to Wave 3 only."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans interpersonal communication, leadership calibration, and group decision quality."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source is explicit that the model is strongest when blind spots are hurting coordination and when structured feedback plus disclosure can improve execution quality."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The anti-pattern section directly warns against performative disclosure, vague input, and treating the model as a standalone guide."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on blind-spot and feedback problems, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields better calibration and structured self-awareness, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is naturally reflective about self-knowledge and diagnostic of feedback gaps, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

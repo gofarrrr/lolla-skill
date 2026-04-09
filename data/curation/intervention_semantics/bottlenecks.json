@@ -1,0 +1,87 @@
+{
+  "model_id": "bottlenecks",
+  "source_file": "Bottlenecks_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can mistake the noisiest queue or highest-status pain point for the real constraint.",
+      "source_quote": "Mistaking Symptoms for the Constraint",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Trace the flow end to end and measure where work-in-progress actually accumulates; the real constraint is where throughput is physically limited, not where complaints are loudest."
+    },
+    {
+      "text": "Parallelizing around a gating dependency can make the roadmap look busy while throughput stays pinned.",
+      "source_quote": "Parallelizing Around A Gating Dependency",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Subordinate all other work to the constraint: do not optimize non-bottleneck steps until the gating step is resolved or its capacity is expanded."
+    },
+    {
+      "text": "Availability or substitution bias can push the team toward a familiar frame instead of the true system limiter.",
+      "source_quote": "Availability Heuristic / Substitution Bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test multiple frames against the throughput data; if a different model identifies a different constraint, the first diagnosis was biased by familiarity."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which step would still throttle the whole system if I funded every other improvement on the list?",
+      "source_quote": "Which step would still throttle the whole system if I funded every other improvement on the list?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "How does what you're doing solve the problem, and how does it advance your thinking?",
+      "source_quote": "How does what you’re doing solve the problem? and How does it advance your thinking?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Find the key driver instead of optimizing every visible pain point.",
+      "source_quote": "Prioritization via Key Drivers",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the Pareto principle to concentrate resources on the few inputs that unlock most throughput.",
+      "source_quote": "The Pareto Principle (80/20 Rule)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Manage cognitive load by chunking and scaffolding when the bottleneck is working-memory capacity.",
+      "source_quote": "Cognitive Load Management",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw file is especially strong on throughput misdiagnosis and queue-focused pre-mortem language, so the chunk set stays close to those interventions.",
+    "donor_drops": [
+      "Skipped donor routing overlays because they add runtime flavor without improving intervention-semantic fidelity."
+    ],
+    "open_questions": [
+      "The cognitive-load heuristic is slightly broader than the operational queue lane, but the raw file clearly treats it as part of the bottleneck playbook."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on cognitive load theory, Feynman technique, Minto structure, and systemic synthesis."
+    ],
+    "antagonists": [
+      "The raw antagonists section is useful future relation material around fast thinking and Maslow's hammer."
+    ],
+    "structured_tensions": [
+      "The source includes explicit structured tensions against optimization-theory, opportunity-cost, and confirmation-bias."
+    ]
+  }
+}

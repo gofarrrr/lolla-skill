@@ -1,0 +1,63 @@
+{
+  "model_id": "causal-attribution-resistance",
+  "source_file": "Causal_Attribution_Resistance_rag.md",
+  "allies": [
+    {
+      "target_model_id": "root-cause-analysis",
+      "rationale_text": "Root-cause-analysis gives causal-attribution-resistance the procedural discipline needed to push past the first blame story toward the actual generative driver.",
+      "source_quote": "distinguish symptoms, proximate causes, and root causes",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking strengthens causal-attribution-resistance by forcing skepticism toward the most narratively satisfying explanation.",
+      "source_quote": "resist the first satisfying cause story",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps causal-attribution-resistance see structural and environmental drivers that a person-centered blame story would miss.",
+      "source_quote": "look at incentives and structures, not just visible actors",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias undermines causal-attribution-resistance by locking onto the first plausible culprit and selectively reading later evidence through that story.",
+      "source_quote": "premature attribution hardens into a defended causal story",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "incentives",
+      "tension_text": "Causal-attribution-resistance conflicts with incentive-blind diagnosis when a moralized blame story hides the structural payoffs producing the behavior.",
+      "source_quote": "causal-attribution-resistance vs incentives",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Causal-attribution-resistance conflicts with confirmation-bias when early blame stories are defended instead of reopened as causal evidence accumulates.",
+      "source_quote": "causal-attribution-resistance vs confirmation-bias",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on root-cause, systems, and skeptical diagnosis allies plus explicit tensions with incentive-blind and confirmation-biased attribution.",
+    "donor_drops": [
+      "Did not preserve donor relation widening beyond the source-backed anti-blame and structural-causation surface."
+    ],
+    "open_questions": [
+      "Narrative closure pressure is source-real, but it was omitted because the current graph vocabulary does not expose a clean target id for narratives."
+    ]
+  }
+}

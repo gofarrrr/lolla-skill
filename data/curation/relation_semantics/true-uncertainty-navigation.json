@@ -1,0 +1,64 @@
+{
+  "model_id": "true-uncertainty-navigation",
+  "source_file": "True_Uncertainty_Navigation_rag.md",
+  "allies": [
+    {
+      "target_model_id": "risk-vs-uncertainty",
+      "rationale_text": "Risk-vs-uncertainty helps true-uncertainty-navigation keep robust action tied to how much of the uncertainty is actually reducible.",
+      "source_quote": "uncertainty is materially affecting capital allocation, sequencing, or commitment decisions",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "step-back",
+      "rationale_text": "Step-back helps true-uncertainty-navigation avoid panic or premature commitment by forcing a wider look before choosing the next action.",
+      "source_quote": "put your plan aside and focus elsewhere for a while",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias makes true-uncertainty-navigation dishonest by adjusting uncertainty estimates to protect the expected answer.",
+      "source_quote": "the mind is biased to just accept and applaud confirming evidence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "True-uncertainty-navigation conflicts with commitment-bias when teams over-commit before uncertainty is reduced.",
+      "source_quote": "true-uncertainty-navigation vs commitment-bias: true-uncertainty-navigation conflicts with commitment-bias when teams over-commit before uncertainty is reduced.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "representativeness-bias",
+      "tension_text": "True-uncertainty-navigation conflicts with representativeness-bias when familiar narratives are mistaken for reliable priors.",
+      "source_quote": "true-uncertainty-navigation vs representativeness-bias: true-uncertainty-navigation conflicts with representativeness-bias when familiar narratives are mistaken for reliable priors.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "True-uncertainty-navigation conflicts with confirmation-bias when uncertainty estimates are adjusted to confirm the expected outcome rather than honestly reflecting the limits of available information.",
+      "source_quote": "true-uncertainty-navigation vs confirmation-bias: true-uncertainty-navigation conflicts with confirmation-bias when uncertainty estimates are adjusted to confirm the expected outcome rather than honestly reflecting the limits of available information.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The file keeps the cleanest current-vocabulary surface from the raw source: uncertainty-splitting and reflective allies plus the explicit anti-bias tension block.",
+    "donor_drops": [
+      "Did not widen into general strategy neighbors because the explicit tension block already gives a disciplined first-order graph surface."
+    ],
+    "open_questions": [
+      "Scenario analysis is a source-real ally, but risk-vs-uncertainty and step-back were the more bounded anchors."
+    ]
+  }
+}

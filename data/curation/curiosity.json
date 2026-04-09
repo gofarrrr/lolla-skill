@@ -1,0 +1,70 @@
+{
+  "model_id": "curiosity",
+  "source_file": "Curiosity_rag.md",
+  "select_when": [
+    "The first answer is probably shallow and the real problem is still underdefined.",
+    "Better questions could change the frame by exposing hidden assumptions, causes, or opportunities.",
+    "Inquiry still serves a concrete decision, design move, or learning objective rather than free-floating fascination.",
+    "The work needs deeper cause-finding, assumption stress-testing, or empathic discovery rather than a quick surface explanation."
+  ],
+  "avoid_when": [
+    "Exploration is widening the search space after the relevant uncertainty has already been reduced enough to act.",
+    "The team is collecting more facts without a clear purpose, next-step question, or decision it is supposed to serve."
+  ],
+  "input_type": "underdefined inquiry problem",
+  "output_type": "question-driven reframing",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on deeper questioning, root-cause inquiry, and decision-linked exploration rather than on vague fascination rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor creativity-sprawl because the raw source is already strongest on information-gap closure, five-whys diagnosis, and inquiry tied to action."
+    ],
+    "open_questions": [
+      "The source also supports empathy and relationship work, but the operational file stays anchored to question quality and frame change."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly says curiosity matters when the first answer is shallow, when better questions can change the frame, and when inquiry still serves a concrete decision."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The source explicitly warns against curiosity that forgets the decision it is supposed to serve and against boiling-the-ocean fact collection."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about underdefined problems and information gaps; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model yields deeper questions and reframed understanding; the output label compresses that into a short intervention type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses shallow explanation and pushes reflective inquiry, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

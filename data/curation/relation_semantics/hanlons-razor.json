@@ -1,0 +1,44 @@
+{
+  "model_id": "hanlons-razor",
+  "source_file": "Hanlons_Razor_rag.md",
+  "allies": [
+    {
+      "target_model_id": "root-cause-analysis",
+      "rationale_text": "Root-cause-analysis helps hanlons-razor move from blame toward the process or design failure that actually produced the bad outcome.",
+      "source_quote": "The process of asking why, why, why allows a systemic approach to emerge.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "psychological-safety",
+      "rationale_text": "Psychological-safety gives hanlons-razor a team context where errors can be investigated without instantly escalating into hostile accusations.",
+      "source_quote": "It establishes a norm of psychological safety necessary for candid feedback and true collaborative problem-solving.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias pushes hanlons-razor off course by encouraging people to treat ambiguous evidence as proof of hostile intent.",
+      "source_quote": "Hanlon’s Razor directly fights confirmation bias by demanding the consideration of disconfirming evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "moral-hazard",
+      "tension_text": "Hanlons-razor conflicts with moral-hazard when a non-malice-first reading starts excusing behavior that is actually being rewarded by weak consequences.",
+      "source_quote": "hanlons-razor vs moral-hazard: hanlons-razor conflicts with moral-hazard (moral hazard) when Hanlon's Razor can be at odds with Moral Hazard, which involves the risk of individuals acting with malicious intent due to lack of consequences.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Preserved the clearest system-diagnosis ally, one collaborative ally, and the explicit accountability tension with moral-hazard.",
+    "donor_drops": ["Did not preserve broader theory-of-mind sprawl beyond the clearest current-vocabulary seams."],
+    "open_questions": ["Occams-razor is source-real nearby, but the first-order surface is cleanest around root-cause-analysis and psychological-safety."]
+  }
+}

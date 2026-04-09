@@ -1,0 +1,87 @@
+{
+  "model_id": "empathy",
+  "source_file": "Empathy_rag.md",
+  "failure_modes": [
+    {
+      "text": "A team can stay trapped in the inside view and misdefine the problem because it never really enters the stakeholder's world.",
+      "source_quote": "Egocentric Bias / Inside View",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Enter the stakeholder's world before defining the problem: an inside-view definition without empathic validation misses what actually matters to them."
+    },
+    {
+      "text": "Emotional empathy can compromise strategic clarity if feeling with someone starts overriding legitimate self-protection.",
+      "source_quote": "The Empathy Compromise",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate emotional understanding from strategic capitulation: feeling with someone does not mean abandoning your own legitimate interests."
+    },
+    {
+      "text": "Messages can miss entirely when expertise is communicated without enough connection to the audience's actual fears, hopes, and language.",
+      "source_quote": "The Curse of Knowledge",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Translate expertise into the audience's language, fears, hopes, and framing; a message built from the expert's vocabulary alone will miss its target."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What tensions, contradictions, or disconnects exist between what the user says and what they do?",
+      "source_quote": "What tensions, contradictions, or disconnects exist between what the user says and what they do?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What do I want the audience to think, feel, and do?",
+      "source_quote": "What do I want the audience to Think, Feel, and Do?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Why should I care from the audience's point of view rather than from my own expert perspective?",
+      "source_quote": "Why should I care?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Observe, interview, and immerse before defining the problem so the user perspective can reframe the work.",
+      "source_quote": "Design Thinking (Empathize Phase)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use empathy maps to separate what people think, feel, say, do, fear, and hope before inferring what they need.",
+      "source_quote": "Empathy Maps",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use empathetic reflection as a guess, not a diagnosis, so the other person can confirm or correct the read.",
+      "source_quote": "Is that right?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on perspective-taking, contradiction-finding, and user-centered problem reframing rather than on generic compassion language.",
+    "donor_drops": [
+      "Did not preserve donor design-thinking sprawl beyond the raw source's clearer empathy-map, reflection, and anti-inside-view material."
+    ],
+    "open_questions": [
+      "The third premortem question compresses several audience-fit passages so the operational check stays reusable across communication and design contexts."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on perspective-taking, design-thinking, storytelling, and metacognition."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on liking-principle-style affinity confusion and confirmation-bias-style story fitting."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension block naming liking-principle and confirmation-bias."
+    ]
+  }
+}

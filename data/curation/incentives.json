@@ -1,0 +1,72 @@
+{
+  "model_id": "incentives",
+  "source_file": "Incentives_rag.md",
+  "select_when": [
+    "Behavior looks irrational on the surface until the reward structure, status signals, penalties, or career consequences are mapped explicitly.",
+    "Desired behavior must be reinforced through clear feedback loops instead of vague exhortation, goodwill, or assumed alignment.",
+    "A system, compensation plan, workflow, or governance process is being redesigned because the current outputs are being shaped by the wrong local rewards."
+  ],
+  "avoid_when": [
+    "The measured incentive is becoming the target and people can game the metric while degrading the real objective.",
+    "Local incentives look efficient in isolation but create second-order avoidance, escalation, or trust erosion elsewhere in the system."
+  ],
+  "input_type": "behavior-and-reward system",
+  "output_type": "incentive-misalignment diagnosis",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on incentive mapping and second-order behavior change rather than donor examples tied to specific team archetypes.",
+    "donor_drops": [
+      "Dropped donor persona and AI-design examples because they are runtime-shaped and broader than the repo-local raw authority.",
+      "Dropped donor higher-order relation fields even where they looked plausible, because batch 2 excludes higher-order curation."
+    ],
+    "open_questions": [
+      "The typed output remains a reviewed operational normalization over a raw model that can function as both diagnosis and redesign pressure."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file provides direct activation conditions; donor material helped highlight recurring redesign contexts, but final triggers were narrowed to structural reward-shaping cases."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions are directly supported by explicit raw danger lines."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly operates on a behavior-and-reward structure, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw file points toward diagnosing and redesigning misaligned incentives; the output label compresses that into one operational unit."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The model clearly requires causal and systems reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

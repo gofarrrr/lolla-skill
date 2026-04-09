@@ -1,0 +1,87 @@
+{
+  "model_id": "decomposition",
+  "source_file": "Decomposition_rag.md",
+  "failure_modes": [
+    {
+      "text": "Boiling the ocean can turn decomposition into exhaustive branch collection that obscures the answer instead of sharpening it.",
+      "source_quote": "Boiling the Ocean",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Stop branching when the next level of detail no longer changes the conclusion; exhaustive decomposition obscures instead of sharpens."
+    },
+    {
+      "text": "A familiar framework can impose a false pattern on a novel problem and send the tree down the wrong cut.",
+      "source_quote": "Framing Error/False Pattern Recognition",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge the framework's fit before applying it: if the cut was borrowed from a different problem type, it may impose a false pattern."
+    },
+    {
+      "text": "Motivated decomposition can structure the tree to justify the preferred answer instead of discovering the true drivers.",
+      "source_quote": "Confirmation Bias (Motivated Decomposition)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check whether the tree structure leads to the truth or toward a preferred answer; motivated decomposition hides behind logical-looking branches."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the single, core purpose we are trying to achieve with this decomposition?",
+      "source_quote": "What is the single, core purpose we are trying to achieve with this decomposition?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What assumptions are embedded in this chosen framework or logic tree?",
+      "source_quote": "What assumptions are embedded in this chosen framework/logic tree?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we breaking down symptoms, or are we identifying the key drivers that are truly under our control?",
+      "source_quote": "Are we breaking down symptoms, or are we identifying the key drivers that are truly under our control?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use mutually exclusive, collectively exhaustive branches so the parts stay distinct while covering the whole.",
+      "source_quote": "MECE Principle (Mutually Exclusive, Collectively Exhaustive)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Build logic trees and issue pyramids so claims, analyses, and supporting branches stay structurally connected.",
+      "source_quote": "Logic Trees and Issue Pyramids",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use plain-English explanation to reveal whether the current decomposition actually makes the concept manageable.",
+      "source_quote": "The Feynman Technique",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is chunk-rich on branch discipline, key-driver focus, and decomposition failure modes, so the Wave 2 file stays close to those themes.",
+    "donor_drops": [
+      "Did not preserve donor issue-tree libraries or broad consulting examples because the raw source already gives stronger structural intervention content."
+    ],
+    "open_questions": [
+      "The second premortem question is lightly normalized to remove the slash while preserving the same source meaning."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally section is strong on systems thinking, prioritization, hypothesis-driven work, and synthesis."
+    ],
+    "antagonists": [
+      "The raw antagonist section is useful later relation material around first-principles-thinking and big-picture loss."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block is present in the raw source."
+    ]
+  }
+}

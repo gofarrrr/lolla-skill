@@ -1,0 +1,71 @@
+{
+  "model_id": "counterfactual-reasoning",
+  "source_file": "Counterfactual_Reasoning_rag.md",
+  "select_when": [
+    "One realized outcome is hiding the actual quality of the decision process and the missing branches need to be recovered.",
+    "Learning depends on exploring omitted paths, assumptions, or conditions rather than merely retelling the observed result.",
+    "Pre-mortems, scenario trees, or retrospectives need sharper causal pressure before the team locks in a conclusion.",
+    "Leaders need to expose realistic alternative futures before committing to a plan that currently feels inevitable."
+  ],
+  "avoid_when": [
+    "The team is spinning imagined alternatives that are untethered from plausible causal structure, base rates, or the real decision context.",
+    "The group lacks the emotional willingness to question its preferred story, so counterfactuals would become defensive theater instead of learning."
+  ],
+  "input_type": "branch-sensitive decision review",
+  "output_type": "alternative-path pressure test",
+  "reasoning_types": [
+    "counterfactual",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on recovering omitted branches and testing realistic alternatives rather than on speculative what-if storytelling.",
+    "donor_drops": [
+      "Did not preserve donor-style scenario sprawl because the raw source is stronger on causal branch pressure and anti-fiction discipline.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The source spans retrospectives, pre-mortems, and novel-problem framing, so the typed fields are reviewed operational compression."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on recovering omitted paths, separating outcome from process quality, and sharpening scenario analysis."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by the source warnings on fiction-like counterfactuals and emotional resistance to questioning intuitions."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates on branch-sensitive reviews and scenario work, but the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields alternative paths and branch-aware learning; the output label compresses that into a typed pressure-test artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Counterfactual and causal reasoning are explicit in the source, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "storytelling-frameworks",
+  "source_file": "Storytelling_Frameworks_rag.md",
+  "select_when": [
+    "Information is available but still fails to feel consequential, memorable, or decision-relevant to the audience.",
+    "An abstract service, vision, or analytical conclusion needs to become concrete enough for people to care and act.",
+    "Data needs a causal or human arc so listeners can retain the signal instead of only hearing disconnected points."
+  ],
+  "avoid_when": [
+    "A compelling narrative arc is substituting for first-principles reconstruction or evidence checks.",
+    "The task is already a tight logical proof and extra narrative dressing would dilute precision."
+  ],
+  "input_type": "abstract message problem",
+  "output_type": "decision-relevant narrative",
+  "reasoning_types": [
+    "analogical",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Focused on making abstract information consequential and memorable without normalizing narrative as evidence.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

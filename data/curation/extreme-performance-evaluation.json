@@ -1,0 +1,70 @@
+{
+  "model_id": "extreme-performance-evaluation",
+  "source_file": "Extreme_Performance_Evaluation_rag.md",
+  "select_when": [
+    "The cost of mediocre performance is large enough that the system must distinguish robust excellence from merely acceptable output.",
+    "Evaluation has to separate signal from luck across difficult, nonlinear, or high-variance performance environments.",
+    "The goal is to improve standards, calibration, and readiness rather than reward appearances of effort."
+  ],
+  "avoid_when": [
+    "Extreme standards are being imposed without matching context, support, or measurement quality.",
+    "The review is really a vanity-metric exercise dressed up as rigor."
+  ],
+  "input_type": "high-variance performance review",
+  "output_type": "calibrated excellence standard",
+  "reasoning_types": [
+    "diagnostic",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Focused on separating excellence from luck and appearance rather than on generic performance-management language.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

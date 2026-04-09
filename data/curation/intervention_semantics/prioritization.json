@@ -1,0 +1,87 @@
+{
+  "model_id": "prioritization",
+  "source_file": "Prioritization_rag.md",
+  "failure_modes": [
+    {
+      "text": "Boiling the ocean can waste effort on comprehensiveness long after the core question is already clear enough to resolve.",
+      "source_quote": "Boiling the Ocean",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a 'good enough' threshold for analysis before opening the prioritization exercise: define when the ranking is clear enough to act and stop refining."
+    },
+    {
+      "text": "Unwarranted optimism can make a complex plan look executable even when too many steps must go right together.",
+      "source_quote": "Unwarranted Optimism (Planning Fallacy)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Stress-test the top-ranked items against outside-view failure rates: check whether the plan requires too many conjunctive successes to be realistic."
+    },
+    {
+      "text": "Premature filtering can steer the shortlist toward subconscious preferences instead of objective leverage.",
+      "source_quote": "Premature Filtering",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Use blind ranking or independent scoring before group discussion to prevent anchoring and social-proof effects from steering the shortlist."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the one-day answer?",
+      "source_quote": "What is the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "How does what you're doing solve the problem, and is it the most important thing you could be doing right now?",
+      "source_quote": "How does what you’re doing solve the problem? How does it advance your thinking? Is it the most important thing you could be doing right now?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Do I really need to be optimizing here, or is the best thing to do simply to eliminate it completely?",
+      "source_quote": "Do I really need to be optimizing here, or is the best thing to do simply to eliminate it completely?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the Pareto principle to find the few activities that generate most of the leverage.",
+      "source_quote": "The Pareto Principle (80/20 Rule)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the Eisenhower matrix to keep urgency from quietly displacing what matters.",
+      "source_quote": "The Eisenhower Matrix (Important vs. Urgent)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Make the work hypothesis-driven and end-product oriented before gathering more analysis.",
+      "source_quote": "Hypothesis-Driven Problem Solving (HDPS)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw file has clear elimination, leverage, and anti-ocean-boiling intervention content, so the chunk set keeps those signals explicit.",
+    "donor_drops": [
+      "Ignored donor material that mainly restated prioritization use cases instead of preserving intervention chunks."
+    ],
+    "open_questions": [
+      "The source is richer on leverage heuristics than on named failure tables, but the failure content still supports a conservative chunk layer."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, cognitive load, HDPS, and commander's-intent style alignment."
+    ],
+    "antagonists": [
+      "The raw antagonists section gives future relation material around Maslow's hammer, confirmation bias, and curse of knowledge."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block appears here, but the raw anti-pattern material is strong enough for later relation preservation."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "power-dynamics",
+  "source_file": "Power_Dynamics_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can treat verbal toughness as leverage even when the walk-away is not credible and the fallback option is worse than the current deal.",
+      "source_quote": "Danger when a team treats verbal toughness as leverage even though the walk-away is not credible and the fallback option is worse than the current deal.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit walk-away credibility: before claiming leverage, verify that your fallback option is real, funded, and executable — not just a negotiating bluff."
+    },
+    {
+      "text": "A signed deal can be mistaken for durable control even though the next commitment hands timing, data, or switching-cost leverage to the counterparty.",
+      "source_quote": "Danger when leaders mistake a signed contract for durable control even though the next operational commitment hands timing, data, or switching cost leverage to the counterparty.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Track commitment gradients across the deal lifecycle: map where timing, data access, or switching costs shift leverage after signing, and negotiate protections for those inflection points."
+    },
+    {
+      "text": "Teams can win headline concessions while quietly giving away the commitment gradient that later inverts bargaining power.",
+      "source_quote": "negotiating headline price while ignoring the commitment gradient",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Distinguish headline wins from structural control: after any negotiation, check whether the concessions you won matter less than the commitment dynamics you gave away."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which party can actually absorb a walk-away with less damage this quarter, and what evidence proves it?",
+      "source_quote": "Which party can absorb a walk-away with less damage this quarter, and what evidence proves it?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would make our walk-away or delay threat binding rather than rhetorical?",
+      "source_quote": "What would make our walk-away or delay threat actually binding rather than rhetorical?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "At what milestone does our cost to reverse become higher than the counterparty's cost to lose us?",
+      "source_quote": "At what milestone does our cost to reverse become higher than the counterparty's cost to lose us?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Map outside options before discussing terms because fallback quality is part of the real price floor.",
+      "source_quote": "Map outside options before discussing terms",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate stated willingness from credible walk-away by checking enforcement cost, internal approval, and operational fallback.",
+      "source_quote": "Separate stated willingness from credible walk-away",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Track leverage inversion over time so early wins do not hide later lock-in and dependency costs.",
+      "source_quote": "Track leverage inversion over time",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on outside options, credible walk-away, commitment gradients, and post-signature leverage inversion.",
+    "donor_drops": [
+      "Did not preserve generic negotiation playbooks because the raw source is stronger on leverage diagnostics and hidden dependency structure."
+    ],
+    "open_questions": [
+      "The third failure mode compresses several commitment-gradient passages so the chunk remains concise."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on incentives, lock-in, principal-agent-problem, and optionality because leverage depends on who can redirect, wait, or reverse."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and opportunity-cost, but only current-vocabulary ids with clean wording should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source names clear conflict with confirmation-bias and direct synergy with lock-in, which makes conservative first-order relation retention possible."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "margin-of-safety",
+  "source_file": "Margin_Of_Safety_rag.md",
+  "failure_modes": [
+    {
+      "text": "WYSIATI can make the buffer look sufficient because the team never surfaces the failure evidence that would widen it.",
+      "source_quote": "What You See Is All There Is (WYSIATI)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Run a pre-mortem specifically for hidden failure evidence: ask what the team would need to believe for the buffer to be too small, then check whether anyone holds that evidence."
+    },
+    {
+      "text": "Overconfidence can shrink the needed margin because the operator assumes they know enough without further investigation.",
+      "source_quote": "Illusion of Explanatory Depth (Overconfidence)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Calibrate the margin against historical miss rates, not against current confidence: use reference-class data from past projects to size the buffer."
+    },
+    {
+      "text": "Conjunctive-events bias can make timelines or budgets look safe even though success depends on too many steps going right.",
+      "source_quote": "People tend to overestimate the overall probability of these conjunctive events, leading to unwarranted optimism about a plan succeeding or being completed on time.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Decompose the plan into independent steps and check how many must succeed simultaneously; widen the margin when conjunctive dependencies stack up."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "A margin of safety is only real if it is wider than your recent track record of estimation errors. Before committing: what was the actual error range on the last three comparable estimates this team made?",
+      "source_quote": "A margin of safety is only real if it is wider than your recent track record of estimation errors -- not wider than your best-case model. Before committing: what was the actual error range on the last three comparable estimates this team made?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What key facts or inputs have we ignored because they didn't fit our narrative?",
+      "source_quote": "What key facts or inputs have we ignored because they didn't fit our narrative?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe for the opposite hypothesis to be true?",
+      "source_quote": "What would we have to believe for the opposite hypothesis to be true?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define failure first and devote effort to preventing it instead of describing only success.",
+      "source_quote": "Inverse Goals (Anti-Goals)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Map known knowns, known unknowns, and unknown unknowns before deciding how much buffer the system needs.",
+      "source_quote": "Explicit Risk Categorization",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Model the full distribution of outcomes and ask whether the worst case is bad enough before proceeding.",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strong on downside-protection failure patterns and pre-mortem discipline, so the chunk set stays close to those interventions.",
+    "donor_drops": [
+      "Did not preserve donor finance-specific implementation examples because the raw playbook already gives stronger structural mitigation content."
+    ],
+    "open_questions": [
+      "The first premortem question is trimmed slightly for chunk usability, but it remains directly grounded in the raw mitigation table."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is useful later relation material around probabilistic thinking and structured hypothesis challenge."
+    ],
+    "antagonists": [
+      "The raw antagonists section is thinner than the structured tensions and also points to optimism and availability-style distortions that do not map cleanly to current ids."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against optionality, feedback-loops, and confirmation-bias."
+    ]
+  }
+}

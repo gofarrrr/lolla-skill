@@ -1,0 +1,36 @@
+{
+  "model_id": "butterfly-effect",
+  "source_file": "Butterfly_Effect_rag.md",
+  "select_when": [
+    "A small local decision could propagate through a tightly connected system and create outsized downstream effects.",
+    "First-order reasoning is too shallow because second- and third-order consequences dominate the real risk.",
+    "Leaders need to scan for cascade paths, not just isolated events or immediate outcomes.",
+    "The system is sensitive to initial conditions, sequencing, or amplification effects."
+  ],
+  "avoid_when": [
+    "Butterfly-effect language is being used to justify vague fear or grandiosity without naming a plausible transmission path.",
+    "The team is trying to model every variable and is sliding into analysis paralysis instead of prioritizing the highest-leverage cascade paths."
+  ],
+  "input_type": "cascade-risk decision",
+  "output_type": "downstream consequence scan",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on transmission paths, second-order effects, and anti-mysticism discipline.",
+    "donor_drops": [
+      "Did not preserve broader AI simulation and persona-design sprawl because the raw source is already strongest on cascade thinking."
+    ],
+    "open_questions": [
+      "The source also overlaps with forecasting and catastrophe planning, but the operational file stays on propagation and consequence tracing."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on small interventions creating large downstream effects, second-order reasoning, and scanning cascade paths."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The anti-mysticism and analysis-paralysis warnings are explicit in the source."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed label compresses cascade-sensitive decision contexts into a stable input boundary."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures the model as consequence scanning rather than precise prediction."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The source strongly supports causal tracing inside interconnected systems."}
+  }
+}

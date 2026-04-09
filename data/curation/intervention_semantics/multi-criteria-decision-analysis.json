@@ -1,0 +1,87 @@
+{
+  "model_id": "multi-criteria-decision-analysis",
+  "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+  "failure_modes": [
+    {
+      "text": "Precise-looking scores can hide criteria manipulation when the team really chose the answer first.",
+      "source_quote": "criteria are subconsciously chosen or weighted to steer toward a desired conclusion",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Lock criteria weights before scoring alternatives; if the team adjusts weights after seeing scores, flag reverse-engineering of a predetermined answer."
+    },
+    {
+      "text": "Anchoring on one factor can distort the whole weighted decision even inside a formal matrix.",
+      "source_quote": "anchoring",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Run a sensitivity test on the dominant criterion: check whether a plausible reweight of the top factor would flip the ranking, and if so, debate that factor first."
+    },
+    {
+      "text": "Analysis paralysis appears when the team keeps refining the matrix instead of making the call.",
+      "source_quote": "Analysis Paralysis",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Set a decision deadline before opening the matrix: agree in advance on when analysis stops and the call gets made, regardless of matrix refinement state."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which criterion weights would have to change materially to reverse the current ranking?",
+      "source_quote": "Run Sensitivity Analysis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe for the favored option to deserve these weights?",
+      "source_quote": "What do we have to believe for this option to succeed?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough that a low-probability downside should dominate our scoring logic?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Build an explicit selection matrix with weighted criteria before debating favorite options.",
+      "source_quote": "Construct the selection matrix",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Start with make-or-break hypotheses and criteria rather than equal treatment of every nice-to-have factor.",
+      "source_quote": "Start with Make or Break",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate process quality from outcome luck so a good decision is not judged only by a single result.",
+      "source_quote": "good decisions consistently",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

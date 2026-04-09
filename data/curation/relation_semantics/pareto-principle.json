@@ -1,0 +1,78 @@
+{
+  "model_id": "pareto-principle",
+  "source_file": "Pareto_Principle_rag.md",
+  "allies": [
+    {
+      "target_model_id": "prioritization",
+      "rationale_text": "Prioritization is the operational partner that turns Pareto from a ratio observation into a decision about what to do and what to stop doing.",
+      "source_quote": "The principle serves as the basis for answering the critical problem-solving question: \"How do you prioritize what to do and what not to do?\".",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "leverage-points",
+      "rationale_text": "Leverage-points gives Pareto its search target by identifying the small set of factors most likely to move the outcome disproportionately.",
+      "source_quote": "The core purpose of applying the Pareto Principle is to encourage efficiency and achieve the greatest ratio of input to output. It directs analytical effort toward the most important factors to maximize impact.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification helps Pareto cut the trivial many so attention stays on the few elements that actually change the result.",
+      "source_quote": "search for the vital few in the vast landscape of the trivial many",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias can quietly preselect the supposed vital few so Pareto becomes a justification for the priorities the team already wanted.",
+      "source_quote": "Confirmation Bias: Using the Pareto analysis to confirm pre-existing beliefs about what is important.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "circle-of-control",
+      "rationale_text": "Circle-of-control resists Pareto when the highest-impact levers sit outside execution authority and the model starts optimizing imaginary influence.",
+      "source_quote": "pareto-principle vs circle-of-control: pareto-principle conflicts with circle-of-control (circle of control) when high-impact levers sit outside current execution authority.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "systems-thinking",
+      "tension_text": "Pareto-principle conflicts with systems-thinking when vital-few simplification hides coupled second-order effects.",
+      "source_quote": "pareto-principle vs systems-thinking: pareto-principle conflicts with systems-thinking (systems thinking) when vital-few simplification hides coupled second-order effects.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "circle-of-control",
+      "tension_text": "Pareto-principle conflicts with circle-of-control when high-impact levers sit outside current execution authority.",
+      "source_quote": "pareto-principle vs circle-of-control: pareto-principle conflicts with circle-of-control (circle of control) when high-impact levers sit outside current execution authority.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Pareto-principle conflicts with confirmation-bias when the vital-few selection confirms already-favored priorities instead of coming from an independent impact analysis.",
+      "source_quote": "pareto-principle vs confirmation-bias: pareto-principle conflicts with confirmation-bias (confirmation bias) when the vital-few selection confirms the already-favored priorities rather than being derived from an independent impact analysis.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strong on prioritization, leverage pruning, and an explicit structured tension block around simplification risk, so the file preserves that compact surface.",
+    "donor_drops": [
+      "Did not preserve donor relation sprawl beyond the strongest current-vocabulary links around prioritization, simplification, and anti-lazy vital-few selection."
+    ],
+    "open_questions": [
+      "Bounded-rationality language is source-real, but the retained set favors the cleanest already-curated partner models."
+    ]
+  }
+}

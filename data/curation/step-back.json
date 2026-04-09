@@ -1,0 +1,71 @@
+{
+  "model_id": "step-back",
+  "source_file": "Step_Back_rag.md",
+  "select_when": [
+    "Immediate immersion is obscuring the structure of the problem and a deliberate pause would likely improve the next move.",
+    "The work is drifting into detail, motion, or urgency without a clear articulation of the core point or governing purpose.",
+    "A high-stakes decision needs the thinker to shift from intuitive reaction toward more deliberate analysis.",
+    "The team needs to recheck alignment with the bigger picture before more effort is spent on a local branch."
+  ],
+  "avoid_when": [
+    "The pause is becoming a hiding place for avoiding commitment, trade-offs, or concrete next steps.",
+    "The team is already clear on the problem and now needs execution rather than another round of reflective abstraction."
+  ],
+  "input_type": "detail-fog and reactive-immersion problem",
+  "output_type": "clarified next-step and perspective reset",
+  "reasoning_types": [
+    "metacognitive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on the deliberate pause that restores structure, purpose, and better sequencing rather than generic mindfulness language.",
+    "donor_drops": [
+      "Did not preserve donor reflection sprawl because the raw source is stronger on pause-as-reframing, big-picture recovery, and anti-detail-fog discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans consulting, learning, communication, and decision-making."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly describes stepping back when detail fog, reactive thinking, and alignment drift are degrading judgment."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in the source warnings about hiding inside reflection and overdeliberating when action is already clear."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around reactive immersion and loss of the big picture; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields a clarified next move and perspective reset, though the typed output label remains a compact reviewed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Step-back is explicitly about metacognitive pause and systems-level reframing, while the taxonomy labels remain normalized."
+    }
+  }
+}

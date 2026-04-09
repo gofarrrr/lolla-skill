@@ -1,0 +1,56 @@
+{
+  "model_id": "generation-effect",
+  "source_file": "Generation_Effect_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory helps generation-effect work by chunking complex material so active articulation builds real structure instead of overload.",
+      "source_quote": "By forcing information into small, digestible chunks or steps, generation aligns with reducing cognitive load.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "Feynman-technique operationalizes generation-effect by forcing plain-English explanation and analogy that reveal whether the idea is truly understood.",
+      "source_quote": "The Analogy Test (Feynman Step 4)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias weakens generation-effect when self-produced explanations are treated as proof instead of being checked against evidence and outside correction.",
+      "source_quote": "Danger when \"generate your own answer\" becomes an excuse to skip expert correction, evidence checks, or external calibration.",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Generation-effect conflicts with simplification when requiring learners to generate answers adds friction that direct instruction would avoid in time-critical contexts.",
+      "source_quote": "generation-effect conflicts with simplification (simplification) when requiring learners to generate answers adds friction that direct instruction would avoid in time-critical contexts.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "tension_text": "Generation-effect conflicts with cognitive-load-theory when generation demands exceed working memory capacity, causing the effortful process to degrade rather than enhance learning.",
+      "source_quote": "generation-effect conflicts with cognitive-load-theory (cognitive load theory) when generation demands exceed working memory capacity, causing the effortful process to degrade rather than enhance learning.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on active explanation, chunked understanding, and analogy testing, so the first-order relation surface stays compact.",
+    "donor_drops": [
+      "Did not preserve broader presentation-design relation sprawl because the cleanest current-vocabulary links are cognitive-load-theory and feynman-technique."
+    ],
+    "open_questions": [
+      "The confirmation-bias antagonist is source-backed as a calibration risk but not presented as a direct explicit tension block."
+    ]
+  }
+}

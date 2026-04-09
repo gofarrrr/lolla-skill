@@ -1,0 +1,63 @@
+{
+  "model_id": "experimentation",
+  "source_file": "Experimentation_rag.md",
+  "allies": [
+    {
+      "target_model_id": "scientific-method-evidence-testing",
+      "rationale_text": "Scientific-method-evidence-testing gives experimentation the hypothesis and evidence discipline that keeps tests from becoming activity without learning.",
+      "source_quote": "The fundamental essence of Experimentation is the systematic effort to explore a problem or test a hypothesis to find insight.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps experimentation test causality without overgeneralizing a local win beyond the real system interactions.",
+      "source_quote": "Experimentation relies on understanding causality. Using systems tools like Diagrams of Causal Chain helps organize the variables in a system and reveal how parts interact.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias turns experimentation into hypothesis protection by designing or reading tests to support the favored story.",
+      "source_quote": "Experimentation requires intellectual humility and a willingness to seek out and reconcile disconfirming evidence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "narratives",
+      "rationale_text": "Narratives can resist experimental revision by making the expected story feel truer than the observed result.",
+      "source_quote": "experimentation conflicts with narratives (narratives) when compelling stories about expected outcomes resist revision even when experimental results contradict the narrative.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Experimentation conflicts with confirmation-bias when tests are designed or interpreted to confirm the hypothesis rather than genuinely challenge it.",
+      "source_quote": "experimentation vs confirmation-bias: experimentation conflicts with confirmation-bias (confirmation bias) when tests are designed or interpreted to confirm the hypothesis rather than genuinely challenge it.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "narratives",
+      "tension_text": "Experimentation conflicts with narratives when compelling stories about expected outcomes resist revision even when experimental results contradict the narrative.",
+      "source_quote": "experimentation vs narratives: experimentation conflicts with narratives (narratives) when compelling stories about expected outcomes resist revision even when experimental results contradict the narrative.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on explicit conflict blocks and on the alliance between disciplined testing and causal system understanding, so the file keeps that compact surface.",
+    "donor_drops": [
+      "Did not preserve donor relation sprawl beyond the named experimentation, systems, and anti-story conflict set."
+    ],
+    "open_questions": [
+      "Feynman-technique and MECE decomposition are source-real allies, but scientific-method-evidence-testing and systems-thinking were the cleaner bounded anchors here."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "meta-cognitive-reflection",
+  "source_file": "Meta_Cognitive_Reflection_rag.md",
+  "failure_modes": [
+    {
+      "text": "Reflection can become self-soothing introspection that leaves the actual decision process unchanged.",
+      "source_quote": "Danger When Reflection Becomes Self-Soothing Rather Than Corrective",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Tie each reflection cycle to a concrete decision change: if the reflection does not alter at least one action or assumption, treat it as incomplete."
+    },
+    {
+      "text": "The model fails when motion and effort continue without any monitoring of whether the current strategy is working.",
+      "source_quote": "metacognition involves planning, monitoring, and evaluating one's thinking",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Install lightweight checkpoints that ask 'is the current strategy producing the expected signal?' at defined intervals instead of relying on spontaneous self-monitoring."
+    },
+    {
+      "text": "Too much self-observation can interrupt execution when the task now needs action or repetition instead of more process commentary.",
+      "source_quote": "reflection should improve performance, not paralyze it",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a reflection budget: when the task needs execution or repetition, cap the meta-commentary and redirect energy into deliberate practice."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "How am I thinking about this, and what might that process be missing?",
+      "source_quote": "thinking about thinking",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would an internalized teacher say I am not checking closely enough?",
+      "source_quote": "an internalized teacher monitors and guides the learner",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What sign would show that this reflection improved the next move rather than just my feeling of control?",
+      "source_quote": "reflection should improve performance",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Deliberately monitor the thinking process, not just the output, while the work is still adjustable.",
+      "source_quote": "planning, monitoring, and evaluating one's thinking",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use reflection to catch drift, confusion, and shallow understanding before they harden into rework.",
+      "source_quote": "metacognition improves learning and performance by revealing misunderstandings",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Translate reflection into a corrected next move so the loop changes behavior instead of just self-description.",
+      "source_quote": "reflection should improve performance",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on planning, monitoring, and self-corrective reflection that improves the next move.",
+    "donor_drops": [
+      "Did not preserve donor reflection sprawl because the raw source is stronger on process monitoring and corrective self-audit."
+    ],
+    "open_questions": [
+      "The second premortem item keeps the internalized-teacher metaphor because it adds source-native specificity without forcing a broader educational ontology."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on critical-thinking, systems-thinking, and step-back as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and inside-view error, but only the cleanest current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source has an explicit tension block around confirmation-bias plus non-curated concepts like flow and emotional-intelligence, so Wave 3 should preserve only the clean current-vocabulary piece."
+    ]
+  }
+}

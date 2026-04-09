@@ -1,0 +1,87 @@
+{
+  "model_id": "representativeness-bias",
+  "source_file": "Representativeness_Bias_rag.md",
+  "failure_modes": [
+    {
+      "text": "A vivid case can overpower base rates and make a category feel more probable than the surrounding distribution supports.",
+      "source_quote": "The personality description is vivid and salient, overriding the cold, statistical logic.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check the base rate before the story: for any vivid case that feels diagnostic, look up how frequently the category actually occurs in the relevant reference class."
+    },
+    {
+      "text": "Experts can force a new problem into an old pattern and end up with disastrously wrong solutions.",
+      "source_quote": "This incorrect pattern recognition risks disastrously wrong solutions.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test pattern fit explicitly: list the structural features the new case shares with the template and at least one it does not, then judge whether the mismatch is material."
+    },
+    {
+      "text": "Smart teams can become especially vulnerable when they construct elegant narratives that hide their own bias blind spot.",
+      "source_quote": "The more cognitively sophisticated a person is, the better they are at constructing narratives and rationalizing data to support their preconceived beliefs",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Assign a designated base-rate advocate: when the team's narrative is compelling, one member's job is to surface the statistical denominator and test the story against it."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe for the favored representative story to be truer than the base-rate evidence?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough if this resemblance-based judgment is wrong?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Why might my belief not be true?",
+      "source_quote": "Why might my belief not be true?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Force an outside-view pass with reference classes or base rates before acting on an intuitive category match.",
+      "source_quote": "Forcing the Outside View (Base Rates)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate independent judgments before discussion so the first representative story does not anchor the whole group.",
+      "source_quote": "obtain separate, independent judgments on the issue before any discussion takes place",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Challenge the favored frame with thesis, antithesis, and synthesis instead of letting the first pattern match become the decision.",
+      "source_quote": "Adopt the dialectic standard: require every idea or hypothesis ... to be met with its antithesis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on vivid-case substitution, base-rate correction, and false pattern-recognition risk.",
+    "donor_drops": [
+      "Did not preserve donor anti-bias sprawl beyond the raw source's clearer base-rate, outside-view, and structured-challenge material."
+    ],
+    "open_questions": [
+      "The third failure mode compresses the source's warning about smart rationalizers and bias blind spot into one reusable intervention chunk."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on confirmation-bias, WYSIATI-style story completion, and framing effects."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on System 2, multidisciplinary models, and explicit base-rate analysis."
+    ],
+    "structured_tensions": [
+      "The source is strongest on base-rates and confirmation-bias pressure, but it does not present a neat explicit structured tension block in current-vocabulary form."
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "model_id": "information-asymmetry",
+  "source_file": "Information_Asymmetry_rag.md",
+  "select_when": [
+    "Pricing, trust, or strategic choice depends on hidden information, concealed incentives, or unshared operating reality.",
+    "A vendor, agent, or delegated operator controls the dashboard, references, or pilot evidence being used as proof.",
+    "The people who know the most, the people who bear the risk, and the people who approve the decision are different actors.",
+    "The next move should change disclosure, diligence, observability, signaling, or incentive structure before commitment."
+  ],
+  "avoid_when": [
+    "The critical evidence is externally audited, directly observable in production, or contractually hard for one side to manipulate.",
+    "The real blocker is incentive misalignment, weak governance, or lack of authority to act on known facts rather than a missing-information problem.",
+    "The team is asking for more information without naming what hidden variable would actually change price, trust, sequencing, or go-no-go choice."
+  ],
+  "input_type": "unequal-observability situation",
+  "output_type": "observability and incentive challenge",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the source's hidden-information and supplier-controlled-evidence logic, but rejected the donor's more exploitative strategic-advantage framing in favor of challenge-oriented observability design.",
+    "donor_drops": [
+      "Dropped donor output_type `strategic_advantage` because it overweights exploitation of asymmetry rather than diagnosing and restructuring it.",
+      "Dropped donor new_allies and new_tensions because the first pass should not preserve extra relation overlays beyond what the raw file already supports."
+    ],
+    "open_questions": [
+      "A future pass may need a more explicit distinction between pure knowledge gaps and principal-agent overlays, but this batch stops short of adding compound logic."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section provides unusually strong operational activation cues, especially around supplier-controlled evidence and misaligned observability; donor input was narrowed, not copied."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Built directly from the raw anti-patterns and avoid condition, then tightened for operational anti-activation."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about unequal distribution of relevant knowledge and observability; the final input label narrows donor `knowledge_distribution` into a more operational form."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model's practical output in this repo is a challenge to redesign disclosure and observability, not generic strategic advantage."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source strongly supports diagnostic and causal use; the donor's dialectical label was dropped because it felt less central than diagnosis of hidden variables and incentives."
+    }
+  }
+}

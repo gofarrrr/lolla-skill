@@ -1,0 +1,87 @@
+{
+  "model_id": "true-uncertainty-navigation",
+  "source_file": "True_Uncertainty_Navigation_rag.md",
+  "failure_modes": [
+    {
+      "text": "Availability-style substitution can force a novel uncertainty problem into a familiar frame that does not actually fit.",
+      "source_quote": "Availability/Substitution Heuristic",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test frame fit before applying a familiar uncertainty model: check whether the current situation has the same structure as the template, and switch tools when it does not."
+    },
+    {
+      "text": "Overconfidence can turn fluency with the uncertainty language into an illusion of knowing.",
+      "source_quote": "Overconfidence and Illusion of Knowing",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Calibrate confidence against what you actually know: when uncertainty language flows easily, verify that the fluency reflects genuine understanding, not just comfort with the vocabulary."
+    },
+    {
+      "text": "Conjunctive optimism can make a long chain of dependencies look sturdier than it really is.",
+      "source_quote": "Conjunctive Events Bias (Unwarranted Optimism)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Stress-test conjunctive plans: when a chain of dependencies must all succeed, multiply the independent failure probabilities to see the compound risk — it is almost always worse than intuition suggests."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What You Have to Believe Analysis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If this decision were to fail a year from now, what assumptions would have proven wrong?",
+      "source_quote": "If this decision were to fail a year from now, what assumptions would have proven wrong?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Does this problem structure truly match the framework I am applying, or am I torturing reality so that it fits my model?",
+      "source_quote": "Does this problem structure truly match the framework I am applying, or am I torturing reality so that it fits my model?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use a knowns-and-unknowns map to separate what is already visible from what still needs de-risking or discovery.",
+      "source_quote": "Knowns and Unknowns Matrix",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Build several plausible scenarios instead of one forecast when the range of outcomes matters more than precision theater.",
+      "source_quote": "creating multiple plausible futures",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Generate an active hypothesis early so ambiguity does not become a license for endless unguided data gathering.",
+      "source_quote": "active hypotheses",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the intervention layer on explicit unknown mapping, scenario work, and anti-overconfidence checks rather than broad strategic ambiguity talk.",
+    "donor_drops": [
+      "Did not preserve generic uncertainty philosophy because the raw source is strongest on multi-path action rules and anti-substitution discipline."
+    ],
+    "open_questions": [
+      "The source is rich on deliberate-then-act sequencing, but the chunk set stays on the most reusable intervention surface."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is rich on scenario analysis, hypothesis-driven work, and latticework thinking."
+    ],
+    "antagonists": [
+      "The source explicitly names commitment-bias, representativeness-bias, and confirmation-bias pressure."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against commitment-bias, representativeness-bias, and confirmation-bias."
+    ]
+  }
+}

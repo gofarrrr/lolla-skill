@@ -1,0 +1,70 @@
+{
+  "model_id": "signaling",
+  "source_file": "Signaling_rag.md",
+  "select_when": [
+    "A strategy, offer, or position needs to communicate credibility under uncertainty, and the current message may not align with the actual underlying quality.",
+    "The real risk is that appearance, framing, or symbolic gestures are substituting for truth-aligned capability or commitment.",
+    "A team needs to make the intended action legible to others without relying on vague mission language or intellectual laziness.",
+    "The next move should clarify what behavior, proof, or costly commitment will make the message trustworthy."
+  ],
+  "avoid_when": [
+    "The work is mostly impression management, and better signaling would only make a weak underlying offer look cleaner.",
+    "The team already has clear truthful proof and now mainly needs execution rather than another round of message engineering."
+  ],
+  "input_type": "credibility and signal-quality problem",
+  "output_type": "truth-aligned signal design",
+  "reasoning_types": [
+    "systems",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on costly credibility, impression-versus-reality gaps, and action-legible communication rather than generic persuasion rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor communication sprawl because the raw source is stronger on signal quality, action alignment, and anti-symbolic-substitution discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans framing, schema activation, and execution translation."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on signaling under ambiguity, bridging strategy to execution, and distinguishing real credibility from symbolic appearance."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings that cheap signals and impression management can hide weak underlying reality."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on credibility and signal-quality problems, while the typed input remains a compact reviewed label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields clearer costly signals and aligned action cues; the output label compresses that into an operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Signaling is strongest as systems-aware credibility diagnosis, while the taxonomy labels remain normalized."
+    }
+  }
+}

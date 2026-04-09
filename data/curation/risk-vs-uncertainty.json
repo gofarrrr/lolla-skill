@@ -1,0 +1,74 @@
+{
+  "model_id": "risk-vs-uncertainty",
+  "source_file": "Risk_Vs_Uncertainty_rag.md",
+  "select_when": [
+    "Confidence is outrunning evidence and the core drivers remain ambiguous, unstable, or only partly observable.",
+    "Commitment size should depend on whether the situation has been converted into measurable risk or remains genuine uncertainty.",
+    "Downside is asymmetric and reversibility matters more than producing a single confident forecast.",
+    "The decision should be evaluated through ranges, failure envelopes, and thresholds rather than a single point estimate."
+  ],
+  "avoid_when": [
+    "Stable reference classes, credible probabilities, and operator-level thresholds already exist, so continued uncertainty framing would only avoid disciplined execution.",
+    "The model is being used to extend analysis without changing commitment size, reversibility, or decision thresholds."
+  ],
+  "input_type": "decision under unknowns",
+  "output_type": "commitment-sizing guidance",
+  "reasoning_types": [
+    "probabilistic",
+    "counterfactual"
+  ],
+  "curation_notes": {
+    "summary": "Kept the curation focused on confidence classification and commitment sizing, not donor scenario breadth.",
+    "donor_drops": [
+      "Dropped donor strategic and career examples that widened the activation surface without adding new structural distinctions.",
+      "Dropped donor higher-order relation fields because the current curation boundary is still first-order only."
+    ],
+    "open_questions": [
+      "The typed fields are reviewed normalizations over a source that distinguishes risk and uncertainty through commitment logic rather than explicit machine fields."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file supplies unusually explicit activation lines; donor drafts mainly confirmed nearby use cases while review tightened them into commitment-structure triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The first condition is explicit in raw form and the second is a conservative anti-activation normalization derived from the same execution-avoidance concern."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The raw material clearly operates on decisions with unresolved unknowns, but the input label is a reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model mainly changes commitment size and option structure; the output label compresses that into an operational intervention type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The model clearly relies on probabilistic distinctions and counterfactual option-value logic, but the taxonomy names remain reviewed normalization."
+    }
+  }
+}

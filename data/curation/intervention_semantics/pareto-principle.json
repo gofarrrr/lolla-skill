@@ -1,0 +1,87 @@
+{
+  "model_id": "pareto-principle",
+  "source_file": "Pareto_Principle_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can neglect emerging products, markets, or drivers by optimizing only around the current high-impact few.",
+      "source_quote": "A common anti-pattern is focusing solely on the 20% of products that generate 80% of the revenue, which can lead to neglecting emerging products or markets that could be crucial for future growth.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Schedule a periodic scan for emerging drivers: review whether new products, markets, or inputs have crossed the threshold into the vital few since the last assessment."
+    },
+    {
+      "text": "Pareto can become a lazy excuse when people invoke 80/20 language without actually measuring leverage.",
+      "source_quote": "Danger When the Vital Few Become a Lazy Excuse: The model is distorted when teams invoke 80/20 rhetoric without actually measuring leverage.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require measurement behind every 80/20 claim: do not accept Pareto language without data showing which inputs actually drive disproportionate output."
+    },
+    {
+      "text": "Premature pruning can discard lower-signal branches before they have a fair chance to prove future importance.",
+      "source_quote": "Prematurely trimming ideas based on early, low-impact metrics can lead to abandoning breakthrough concepts before they have a chance to prove their value.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Protect experimental branches with a small dedicated budget so promising long-tail options get a fair trial before being pruned by current-state concentration analysis."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "How do you prioritize what to do and what not to do?",
+      "source_quote": "How do you prioritize what to do and what not to do?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the low-impact 80% that can be minimized, streamlined, or eliminated?",
+      "source_quote": "What is the low-impact 80% that can be minimized, streamlined, or eliminated to gain greater clarity and freedom?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we trimming based on likelihood of impact, or because some areas are simply easier or less emotionally taxing to ignore?",
+      "source_quote": "Are we trimming based on likelihood of impact, or because some areas are simply easier or less emotionally taxing to ignore?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Search for the vital few by pruning low-impact branches so scarce attention goes to the biggest drivers.",
+      "source_quote": "When a problem is disaggregated into many branches of potential causes or solutions, the 80/20 Rule dictates cutting off the low-impact branches.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat the current leverage pattern as revisitable rather than permanent so the focus can change when the distribution shifts.",
+      "source_quote": "Best when prioritization can be revisited as the distribution shifts.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Measure impact before invoking Pareto language so the model sharpens focus instead of rationalizing convenience.",
+      "source_quote": "The model is distorted when teams invoke 80/20 rhetoric without actually measuring leverage.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on vital-few prioritization, anti-lazy-pruning discipline, and explicit leverage questions.",
+    "donor_drops": [
+      "Did not preserve donor productivity aphorisms that widened past the raw source's stronger pruning and measurement discipline."
+    ],
+    "open_questions": [
+      "The first heuristic compresses both issue-tree pruning and broad resource-allocation examples into one reusable operational move."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on prioritization, leverage, simplification, and bounded rationality for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on boiling the ocean and confirmation-bias-adjacent selection problems."
+    ],
+    "structured_tensions": [
+      "The source includes an explicit structured tension block that cleanly maps into the current relation layer vocabulary."
+    ]
+  }
+}

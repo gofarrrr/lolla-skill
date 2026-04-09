@@ -1,0 +1,56 @@
+{
+  "model_id": "wysiati",
+  "source_file": "WYSIATI_rag.md",
+  "select_when": [
+    "A confident conclusion has been reached from evidence that may be incomplete, non-random, or selectively presented.",
+    "One party controls the information available to the other and the recipient has no signal of what is absent.",
+    "A decision is being made from a briefing, pitch, or recommendation that tells a coherent story — and the coherence itself feels like a quality signal.",
+    "Time pressure or urgency is preventing the 'what is missing?' question from being asked before commitment.",
+    "Visible winners, successful cases, or confirming instances have been assembled without an equal accounting of failures or absences."
+  ],
+  "avoid_when": [
+    "Evidence has been explicitly audited for completeness and the gaps are known and acknowledged — the closure is warranted.",
+    "The model is being used to introduce unlimited epistemic paralysis rather than structured gap identification."
+  ],
+  "input_type": "partial-evidence conclusion under review",
+  "output_type": "missing-evidence audit and confidence calibration",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "WYSIATI curated as a missing-evidence detection model — activates when narrative coherence is generating confidence that evidence completeness does not warrant. The model's action is forcing the 'what is absent?' question.",
+    "donor_drops": [],
+    "open_questions": [
+      "The model_id is lowercase 'wysiati' per schema requirements; the concept is conventionally rendered as the acronym WYSIATI. Documentation should clarify this mapping."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Source is explicit about WYSIATI operating when available evidence generates coherent stories without signaling what is missing — select_when maps to these structural conditions."
+    },
+    "avoid_when": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Avoid_when conditions are reviewed normalizations — the model has no natural avoid condition in source; these reflect the misuse patterns of invoking incomplete-evidence concerns when evidence has already been audited."
+    },
+    "input_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Compact label for the partial-evidence situation that WYSIATI closes around."
+    },
+    "output_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "The model's operational output is an audit trigger and confidence recalibration — not a content answer."
+    },
+    "reasoning_types": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Diagnostic — identifying when the evidence picture is incomplete; metacognitive — examining the source of one's own confidence; probabilistic — calibrating confidence against evidence completeness."
+    }
+  }
+}

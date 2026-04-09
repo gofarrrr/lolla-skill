@@ -1,0 +1,87 @@
+{
+  "model_id": "premortem",
+  "source_file": "Premortem_rag.md",
+  "failure_modes": [
+    {
+      "text": "A premortem becomes superficial when it produces an obvious worry list without owners, mitigations, or decision changes.",
+      "source_quote": "Danger when the exercise produces an obvious list of worries without owners, mitigations, or decision changes tied to what was surfaced.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Tie each surfaced risk to a named owner and a concrete plan change; if no risk alters the plan, the exercise was performative."
+    },
+    {
+      "text": "Teams can substitute a shallow pro-con exercise for the harder work of imagining systemic failure paths.",
+      "source_quote": "A common anti-pattern is substituting the deep, critical work of a Premortem with a simpler, more available tool, such as a basic pro-con list.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Use the dialectic standard: every failure hypothesis must be met with a direct challenge before synthesis, not just listed alongside positives."
+    },
+    {
+      "text": "Mental fatigue can make the exercise lazy, obvious, and non-imaginative because participants default to fast thinking instead of deeper failure exploration.",
+      "source_quote": "If participants are already mentally depleted, they may rely on the fast, intuitive System 1 thinking ... resulting in a superficial analysis.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Simulate extremes and outside perspectives to force novel failure paths beyond the obvious; stress-test edge cases that depleted participants would skip."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Do we still remember the question we are trying to answer, or have we substituted an easier one?",
+      "source_quote": "Do we still remember the question we are trying to answer? Or have we substituted an easier one?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Assume the project failed and work backward from that future state to surface the weak links that could have caused it.",
+      "source_quote": "Before the project begins, the team gathers and assumes that the project has failed spectacularly. They then spend time detailing the plausible reasons why it failed.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Expose second-order consequences and domino effects instead of evaluating only the first visible step.",
+      "source_quote": "The application of the Premortem requires participants to engage in second-order thinking.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Tie each surfaced failure path to an owner, mitigation, or reversal threshold so the exercise changes the plan instead of decorating it.",
+      "source_quote": "Danger when the exercise produces an obvious list of worries without owners, mitigations, or decision changes tied to what was surfaced.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on backward failure simulation, anti-optimism discipline, and forcing failure paths into binding mitigations.",
+    "donor_drops": [
+      "Did not preserve donor risk-workshop sprawl that widened beyond the raw source's stronger backward-failure and anti-superficiality material."
+    ],
+    "open_questions": [
+      "The third heuristic deliberately reuses the danger passage as an operational rule because the source makes the keep/drop boundary unusually clear there."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, second-order-thinking, and checklist-like risk surfacing for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation-bias, commitment-bias, and conjunctive overoptimism pressures."
+    ],
+    "structured_tensions": [
+      "The source explicitly names premortem conflict with commitment-bias and carries clean current-vocabulary pressure against confirmation-biased plan defense."
+    ]
+  }
+}

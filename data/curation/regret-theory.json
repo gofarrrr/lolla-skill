@@ -1,0 +1,70 @@
+{
+  "model_id": "regret-theory",
+  "source_file": "Regret_Theory_rag.md",
+  "select_when": [
+    "A meaningful decision is stuck because anticipated regret about action or inaction is distorting the choice.",
+    "The options are already reasonably clear, but the bottleneck is psychological commitment rather than missing information.",
+    "A long-term values-loaded decision needs a deliberate outside-view check on whether omission regret is the real danger.",
+    "The next move should surface anticipated regret explicitly without letting it replace probability, reversibility, or scenario analysis."
+  ],
+  "avoid_when": [
+    "The decision is mainly operational, vendor-comparison, or analytically routine, where projected emotion would be a poor substitute for structured analysis.",
+    "Regret language is being used to romanticize recklessness, underprepared bets, or the avoidance of needed risk work."
+  ],
+  "input_type": "anticipated-regret distortion problem",
+  "output_type": "regret-calibrated commitment check",
+  "reasoning_types": [
+    "counterfactual",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on anticipated regret, omission versus commission, and the need to discipline emotional action bias with outside-view analysis.",
+    "donor_drops": [
+      "Did not preserve broad life-design rhetoric because the raw source is stronger on prospective hindsight and anti-recklessness discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans reversibility and multi-option exploration."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on anticipated regret, omission versus commission, and the use of prospective hindsight for long-term decisions."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The anti-activation conditions are grounded in source warnings that regret theory is dangerous for operational choices and can romanticize reckless action."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on anticipated-regret distortions, while the typed input remains a normalized routing label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports a regret-calibration move that surfaces omission risk without displacing analysis; the output label compresses that into an artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Regret theory is strongest as counterfactual and metacognitive discipline on anticipated emotion rather than direct optimization."
+    }
+  }
+}

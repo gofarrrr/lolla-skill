@@ -1,0 +1,84 @@
+{
+  "model_id": "conjunction-fallacy",
+  "source_file": "Conjunction_Fallacy_rag.md",
+  "allies": [
+    {
+      "target_model_id": "probabilistic-thinking",
+      "rationale_text": "Probabilistic Thinking is the direct conceptual ally that formalizes how compound probabilities shrink across dependent steps.",
+      "source_quote": "Conditional Probability/Bayesian Thinking: This is a direct conceptual ally, as it formalizes the calculation of how the probability of an event changes based on prior events having occurred.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Mapped the source's conditional probability and Bayesian phrasing to the current canonical model id."
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems Thinking helps reveal how apparently separate plan steps are causally linked and jointly fragile.",
+      "source_quote": "systems thinking illuminates how seemingly independent steps in a plan are, in fact, causally linked, confirming their conjunctive nature.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "The Feynman Technique exposes weak assumptions and compounding risks by forcing the plan into simpler, checkable language.",
+      "source_quote": "By forcing the user to distill complex ideas into simple terms and identify all blind spots, it helps expose the shaky assumptions and compounding risks inherent in an overly optimistic conjunctive plan.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation bias drives the fallacy by making the team collect only evidence that supports the optimistic sequential plan.",
+      "source_quote": "Confirmation bias makes it difficult for a team to identify the low likelihood of a sequential plan succeeding, as they only look for data points supporting their initial, optimistic hypothesis.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "wysiati",
+      "rationale_text": "WYSIATI amplifies the conjunction fallacy by treating the coherent multi-step plan narrative as a complete picture \u2014 the individual step probabilities that would reveal compound fragility are simply absent from the story System 1 constructs.",
+      "source_quote": "WYSIATI and Maslow's Hammer are strong antagonistic pressures in the raw source.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect blocks conjunction-fallacy mitigation by locking the analyst in familiar linear projection tools \u2014 the single-tool fixation ensures compound probabilities are assessed through a distorted lens rather than proper probabilistic methods.",
+      "source_quote": "Maslow's Hammer/Law of the Instrument: An executive too reliant on simple linear projection, ignoring probabilistic tools, will routinely fall victim to the Conjunction Fallacy.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Conjunction-fallacy conflicts with commitment-bias when acknowledging that a multi-step plan is conjunctively fragile threatens consistency with the original commitment.",
+      "source_quote": "conjunction-fallacy conflicts with commitment-bias (commitment bias) when acknowledging that a multi-step plan is conjunctively fragile threatens consistency with the original commitment.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "probabilistic-thinking",
+      "tension_text": "Conjunction-fallacy conflicts with probabilistic-thinking when narrative coherence of a detailed scenario overrides the mathematical reality that adding conditions can only reduce probability.",
+      "source_quote": "conjunction-fallacy conflicts with probabilistic-thinking (probabilistic thinking) when narrative coherence of a detailed scenario overrides the mathematical reality that adding conditions can only reduce probability.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source clearly supports allies and at least one canonical antagonist, but it has no explicit structured tension block.",
+    "donor_drops": [
+      "Did not convert narrative risk-table pressure into invented structured tensions."
+    ],
+    "open_questions": [
+      "WYSIATI wired in Task 3.3 sweep via new canonical wysiati model.",
+      "Maslow's Hammer wired in Task 2.5 sweep via einstellung-effect mapping."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "antagonists": [
+      "The raw antagonists section is richer than the canonical target-id surface, especially on WYSIATI and Maslow's Hammer."
+    ]
+  }
+}

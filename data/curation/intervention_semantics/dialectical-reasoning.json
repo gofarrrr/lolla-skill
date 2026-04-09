@@ -1,0 +1,87 @@
+{
+  "model_id": "dialectical-reasoning",
+  "source_file": "Dialectical_Reasoning_rag.md",
+  "failure_modes": [
+    {
+      "text": "Dialectical reasoning fails when teams mistake endless contrarianism for real synthesis work.",
+      "source_quote": "Danger when teams confuse productive dialectic with endless contrarianism and never translate tension into a bounded decision or next step.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require synthesis: every dialectical round must produce a concrete integration, not just another contrary view; contrarianism without synthesis is waste."
+    },
+    {
+      "text": "The model can slide into analysis paralysis when every perspective is surfaced but none is integrated into action.",
+      "source_quote": "Analysis Paralysis (The Hamlet Trap)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a decision deadline that forces perspectives into a synthesized recommendation; surfacing alternatives without integrating them is analysis paralysis."
+    },
+    {
+      "text": "Dialectic can be emotionally avoided when the team resists confronting the weaknesses in its own position.",
+      "source_quote": "counterintuitive and emotionally challenging",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Create psychological safety for confronting weaknesses in the team's own position; dialectic fails when the antithesis is emotionally avoided."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the strongest antithesis to our current thesis?",
+      "source_quote": "thesis, antithesis, synthesis",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What decision or next step should this tension produce instead of just extending debate?",
+      "source_quote": "translate tension into a bounded decision or next step",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which weakness in our own reasoning are we emotionally resisting because it threatens the current story?",
+      "source_quote": "the emotional part instinctively resists",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use thesis, antithesis, and synthesis as a default reasoning norm for important claims.",
+      "source_quote": "The Dialectic Standard",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Force the team to articulate the strongest counterposition before it earns synthesis.",
+      "source_quote": "Every proposition must automatically generate its counter-proposition",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Translate contradiction into a bounded integration step so dialectic ends in better judgment rather than endless motion.",
+      "source_quote": "bounded decision or next step",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on thesis-antithesis-synthesis discipline, anti-contrarianism, and anti-paralysis synthesis work.",
+    "donor_drops": [
+      "Did not preserve donor discussion-culture sprawl because the raw source is stronger on operational dialectic and bounded synthesis."
+    ],
+    "open_questions": [
+      "The second premortem item compresses several source warnings on endless debate so the chunk stays decision-oriented."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on critical-thinking, systems-thinking, step-back, and feynman-technique as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and one-sided frame protection, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around contradiction avoidance, but it does not expose a cleaner explicit current-vocabulary tension block than the one-hop relation surface."
+    ]
+  }
+}

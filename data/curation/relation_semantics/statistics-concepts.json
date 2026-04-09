@@ -1,0 +1,56 @@
+{
+  "model_id": "statistics-concepts",
+  "source_file": "Statistics_Concepts_rag.md",
+  "allies": [
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base-rates helps statistics-concepts anchor judgments in background frequencies instead of vivid but misleading case details.",
+      "source_quote": "background information (base rates)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "correlation-vs-causation",
+      "rationale_text": "Correlation-vs-causation helps statistics-concepts distinguish pattern from mechanism when the team is tempted to jump from association to cause.",
+      "source_quote": "differentiate between events that are merely associated and those that are causally related",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "narratives",
+      "rationale_text": "Narratives can overpower statistics-concepts when emotionally compelling stories displace distributional reasoning and evidence weighting.",
+      "source_quote": "Narrative Thinking",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "narratives",
+      "tension_text": "Statistics-concepts conflicts with narratives when raw statistical findings resist the narrative packaging needed for audience comprehension and action.",
+      "source_quote": "statistics-concepts conflicts with narratives (narratives) when raw statistical findings resist the narrative packaging needed for audience comprehension and action.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Statistics-concepts conflicts with simplification when statistical compression into headline numbers discards variance and distributional shape that inform the decision.",
+      "source_quote": "statistics-concepts conflicts with simplification (simplification) when statistical compression into headline numbers discards variance and distributional shape that inform the decision.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The relation surface stays on base-rate and causality allies, with narrative drift preserved as the clearest bounded antagonist.",
+    "donor_drops": [
+      "Did not widen into broader decision-theory neighbors because the raw source is stronger on signal, baselines, and story-versus-data tension."
+    ],
+    "open_questions": [
+      "Game-theory-payoffs is a source-real ally, but base-rates and correlation-vs-causation were the cleaner first-order anchors."
+    ]
+  }
+}

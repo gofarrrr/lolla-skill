@@ -1,0 +1,87 @@
+{
+  "model_id": "jobs-to-be-done",
+  "source_file": "Jobs_To_Be_Done_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can call every preference a job and skip the work of separating true functional progress from surface wants or channel noise.",
+      "source_quote": "Danger when teams call every preference a job",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Separate true functional progress from surface preferences: calling every want a job inflates the framework beyond its utility."
+    },
+    {
+      "text": "Analysis can stop at the obvious functional task and miss the deeper emotional or social job, leading to the wrong solution.",
+      "source_quote": "Superficial Job Definition",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Probe for the emotional and social dimensions behind the obvious functional task; stopping at the surface job leads to the wrong solution."
+    },
+    {
+      "text": "The team can solve the wrong problem by backing into the job from a preferred solution instead of from objective customer reality.",
+      "source_quote": "Solving the Wrong Problem",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Start from objective customer reality, not from a preferred solution; backing into the job from a product concept is motivated reasoning."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What real progress is the user trying to make that feature comparisons alone are failing to explain?",
+      "source_quote": "real progress the user is trying to make",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What assumptions are we making about the job that would need to be true for this framing to hold up?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If we ask why repeatedly, do we still land on the same job or do we uncover a deeper motivation?",
+      "source_quote": "Five Whys",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define the job in terms of the outcome being hired for, not the product attribute being sold.",
+      "source_quote": "People don't want to buy a quarter-inch drill. They want a quarter-inch hole",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "State the goal in ten words or less so the team cannot hide behind a feature-heavy story.",
+      "source_quote": "ten words or less",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use plain-language explanation before acting so the job stays clear and decision-relevant.",
+      "source_quote": "Feynman Technique",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on identifying the real job, resisting feature obsession, and pressure-testing whether the team is solving the right problem.",
+    "donor_drops": [
+      "Did not preserve broader design-thinking sprawl because the raw source is strongest on outcome focus and anti-feature-first discipline."
+    ],
+    "open_questions": [
+      "The first premortem item compresses several source passages on switching and adoption so the chunk stays concise."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on first-principles-thinking, critical-thinking, systems-thinking, and feynman-technique because those models clarify the real job behind the apparent solution."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and solution-specialization traps, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is clearer on ally and anti-pattern pressure than on explicit current-vocabulary tension blocks, so structured tensions should stay conservative."
+    ]
+  }
+}

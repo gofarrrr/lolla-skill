@@ -1,0 +1,87 @@
+{
+  "model_id": "learning-curve",
+  "source_file": "Learning_Curve_rag.md",
+  "failure_modes": [
+    {
+      "text": "Early progress can create false mastery when leaders scale responsibility before the capability has actually consolidated.",
+      "source_quote": "Danger when early progress is mistaken for mastery and the organization scales responsibility faster than capability has actually consolidated.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Verify capability consolidation before scaling responsibility; early progress can create false mastery that collapses under load."
+    },
+    {
+      "text": "Passive exposure can look like learning even when the team has not built the retrieval strength needed for reliable performance.",
+      "source_quote": "Illusion of Competence/Fluency",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test for retrieval strength, not just exposure: passive familiarity does not prove the team can perform reliably under pressure."
+    },
+    {
+      "text": "Pattern success can harden into entrenchment when an old framework gets reused mechanically in a new context.",
+      "source_quote": "Cognitive Entrenchment",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge pattern reuse in new contexts: old frameworks applied mechanically can harden into entrenchment instead of accelerating learning."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Are we judging this capability by smooth early progress or by evidence that it will perform reliably after repetition and feedback?",
+      "source_quote": "Most useful when performance improves through repetition, feedback, and chunked skill-building rather than one-off inspiration.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If I had to explain the core skill in plain English from memory, where would my explanation fall apart?",
+      "source_quote": "If I were to test myself on the main ideas, how exactly would I describe them?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What assumption is embedded in the framework we are reusing, and are those assumptions actually met here?",
+      "source_quote": "What assumption is embedded in the framework I am currently using, and are those assumptions met?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Treat capability as something that compounds through repetition, feedback, and chunked skill-building instead of as a one-shot test.",
+      "source_quote": "Most useful when performance improves through repetition, feedback, and chunked skill-building rather than one-off inspiration.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use active recall and self-testing so fluency is measured by retrieval strength rather than by passive familiarity.",
+      "source_quote": "Use Active Recall and Self-Testing",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Stress-test edge cases and worst-case scenarios so ramp confidence does not rest only on the comfortable base case.",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on compounding skill acquisition, anti-false-fluency, and anti-entrenchment rather than on broad mastery rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor adaptive-strategy sprawl because the raw source is already strongest on how capability consolidates over time."
+    ],
+    "open_questions": [
+      "The source reaches into communication and strategy, but the intervention layer stays on the learning ramp and its distortions."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on deep-work, checklists, and analogical reasoning."
+    ],
+    "antagonists": [
+      "The source is strongest against entrenchment, availability-style hammering, and unearned fluency."
+    ],
+    "structured_tensions": [
+      "The model has meaningful tension around early success being treated as proof of reliable mastery."
+    ]
+  }
+}

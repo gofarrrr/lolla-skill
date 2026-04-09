@@ -1,0 +1,63 @@
+{
+  "model_id": "liking-principle",
+  "source_file": "Liking_Principle_rag.md",
+  "allies": [
+    {
+      "target_model_id": "reciprocity-principle",
+      "rationale_text": "Reciprocity-principle strengthens liking-principle when goodwill and mutual exchange reinforce a positive relationship rather than a transactional ask.",
+      "source_quote": "Liking, Reciprocation, and Unity are three principles that are particularly appropriate when the goal is to cultivate a positive relationship.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "psychological-safety",
+      "rationale_text": "Psychological-safety helps liking-principle lower defensiveness without reducing candor, making hard recommendations easier to hear.",
+      "source_quote": "Best used when the relationship must lower defensiveness enough for a harder message, recommendation, or ask to be heard.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking pushes back on liking-principle when rapport is lowering standards of scrutiny or substituting for analytical work.",
+      "source_quote": "Liking appeals to System 1 ... Critical thinking requires stepping back (metacognition) to neutrally evaluate if one's mental models are working",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "authority-bias",
+      "rationale_text": "Authority-bias combines dangerously with liking-principle when status and warmth together reduce skepticism toward a favored messenger.",
+      "source_quote": "liking-principle conflicts with authority-bias (authority bias) when social warmth and status jointly bypass critical scrutiny.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "authority-bias",
+      "tension_text": "Liking-principle conflicts with authority-bias when social warmth and status jointly bypass critical scrutiny.",
+      "source_quote": "liking-principle vs authority-bias: liking-principle conflicts with authority-bias (authority bias) when social warmth and status jointly bypass critical scrutiny.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Liking-principle conflicts with confirmation-bias when favorable messengers receive lower evidentiary standards.",
+      "source_quote": "liking-principle vs confirmation-bias: liking-principle conflicts with confirmation-bias (confirmation bias) when favorable messengers receive lower evidentiary standards.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on warmth-plus-receptivity allies and two explicit current-vocabulary tension blocks where rapport lowers scrutiny.",
+    "donor_drops": [
+      "Did not preserve donor persuasion relation sprawl beyond the clean relationship, scrutiny, and explicit tension surface."
+    ],
+    "open_questions": [
+      "Narratives and empathy-adjacent theory-of-mind material are source-real allies, but the retained set favors the stronger current-vocabulary trust and guardrail targets."
+    ]
+  }
+}

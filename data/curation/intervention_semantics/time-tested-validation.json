@@ -1,0 +1,87 @@
+{
+  "model_id": "time-tested-validation",
+  "source_file": "Time_Tested_Validation_rag.md",
+  "failure_modes": [
+    {
+      "text": "Analogies can be misapplied when the team borrows a reference class without checking whether the current case actually fits the underlying assumptions.",
+      "source_quote": "line up all the assumptions that underpin a reference class and test the current case for fit",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check reference-class fit: before borrowing a historical analogy, list the structural features the current case shares with the reference and at least one it does not, then judge whether the mismatch is material."
+    },
+    {
+      "text": "False credibility can emerge when polished evidence presentation is substituted for actual validation against known checks or expected answers.",
+      "source_quote": "verified evidence",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate evidence quality from presentation quality: after seeing polished validation claims, audit the underlying data, methods, and sample before granting credibility."
+    },
+    {
+      "text": "A team can keep using an inherited validation habit after the real failure surface has moved somewhere else.",
+      "source_quote": "iterative, established processes",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit validation habits for relevance: periodically check whether the team's inherited validation checks still target the current failure surface or have become ritual."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would have to be true for this reference class or validation test to actually fit this case?",
+      "source_quote": "test the current case for fit with each assumption",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which expected ideal answer or trusted check would this proposal fail first if it is weaker than it looks?",
+      "source_quote": "test queries with expected ideal answers",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is this evidence time-tested because it is truly predictive, or just because it is familiar?",
+      "source_quote": "time-tested",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Check a new case against the full assumption set of the reference class before trusting the analogy.",
+      "source_quote": "line up all the assumptions that underpin a reference class",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use a small trusted set of queries, checks, or benchmarks to score whether the method behaves the way the team expects.",
+      "source_quote": "Accuracy Measurement Framework",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Validate iteratively so each new round can revisit the original problem framing before the team scales confidence.",
+      "source_quote": "The process is iterative, revisiting earlier stages as knowledge accumulates.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The intervention layer stays on reference-class fit, known-good checks, and iterative confidence earning rather than on generic tradition language.",
+    "donor_drops": [
+      "Did not preserve broader validation-process sprawl because the raw source is stronger on proving that a check still matches the real case."
+    ],
+    "open_questions": [
+      "The third premortem question is reviewed compression over a source that stresses proven credibility rather than that exact wording."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is strong on scientific-method style checks, simulations, and explicit benchmark answers."
+    ],
+    "antagonists": [
+      "The source implies pressure from novelty bias, weak analogy use, and false confidence in polished but unproven methods."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block was preserved from the raw file."
+    ]
+  }
+}

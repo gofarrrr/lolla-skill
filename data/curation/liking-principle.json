@@ -1,0 +1,72 @@
+{
+  "model_id": "liking-principle",
+  "source_file": "Liking_Principle_rag.md",
+  "select_when": [
+    "Trust, receptivity, or willingness to engage is the bottleneck and the audience first needs to feel understood rather than merely informed.",
+    "Warmth is being paired with demonstrated competence, reliability, and concrete relevance to the other person's actual problem.",
+    "The relationship needs to lower defensiveness enough for a harder message, recommendation, or ask to be heard.",
+    "A communication plan must distinguish genuine connection from charisma that would lower evidentiary standards."
+  ],
+  "avoid_when": [
+    "The decision requires deep analytical assessment and rapport is being treated as a substitute for evidence, structure, or technical competence.",
+    "The desire to stay likable is suppressing dissent, difficult feedback, or necessary escalation about risk, cost, or weak reasoning."
+  ],
+  "input_type": "receptivity and trust problem",
+  "output_type": "warmth-with-rigor communication frame",
+  "reasoning_types": [
+    "metacognitive",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on receptivity, warmth, and trust while preserving the raw source warning that rapport cannot replace rigorous thought.",
+    "donor_drops": [
+      "Did not preserve donor persuasion sprawl beyond the raw source's clearer warmth, trust, and anti-charisma-substitution surface.",
+      "Did not add higher-order composition fields because this batch remains Wave 1 to Wave 3 only."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans selling, consulting, marketing, and social influence."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source explicitly says the model is strongest when trust and receptivity are the bottleneck and when warmth is paired with competence and relevance."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The danger blocks are explicit that liking fails when it substitutes for analytical rigor or suppresses dissent."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on trust and receptivity problems, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields a warmth-plus-rigor communication posture, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is naturally reflective about receptivity and causal in how warmth changes assent, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

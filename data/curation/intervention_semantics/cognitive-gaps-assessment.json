@@ -1,0 +1,87 @@
+{
+  "model_id": "cognitive-gaps-assessment",
+  "source_file": "Cognitive_Gaps_Assessment_rag.md",
+  "failure_modes": [
+    {
+      "text": "The bias blind spot can make sophisticated people less willing to see their own missing knowledge.",
+      "source_quote": "bias blind spot",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Use the Feynman technique: explain the system in plain language and mark every point where the explanation fails as a genuine gap, not just a label."
+    },
+    {
+      "text": "Illusions of explanatory depth make people think they understand a system more deeply than they actually do.",
+      "source_quote": "illusion of explanatory depth",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Test for illusion of explanatory depth by asking the team to walk through the mechanism step by step; overconfidence collapses when specificity is required."
+    },
+    {
+      "text": "Gap-mapping can become ritualized labeling that never changes the plan, evidence bar, or exposure.",
+      "source_quote": "gap-mapping becomes a performance ritual",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Tie each identified gap to a concrete change in the plan, evidence bar, or exposure; if no decision changes, the gap-mapping is ritual."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would need to be true for this idea to work, and which assumption in that chain is least grounded?",
+      "source_quote": "What would need to be true for this idea to work?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which capability narrative are we accepting because of rank or authority rather than objective evidence?",
+      "source_quote": "rank substitutes for objective competency evidence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What unknown unknown is most likely to embarrass us because we have not tried to surface it yet?",
+      "source_quote": "Unknown Unknowns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the Feynman technique to force plain-language explanation and expose where understanding collapses.",
+      "source_quote": "The Feynman Technique",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use self-quizzing and calibration to separate fluency from actual mastery.",
+      "source_quote": "Metacognitive Self-Quizzing & Calibration",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Convert risks from unknown to known states with an explicit knowns-and-unknowns matrix.",
+      "source_quote": "Knowns & Unknowns Matrix",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

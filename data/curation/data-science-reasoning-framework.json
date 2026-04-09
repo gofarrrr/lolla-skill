@@ -1,0 +1,70 @@
+{
+  "model_id": "data-science-reasoning-framework",
+  "source_file": "Data_Science_Reasoning_Framework_rag.md",
+  "select_when": [
+    "Large, noisy evidence sets need to be turned into a bounded reasoning process with explicit hypotheses, tests, and decision-relevant outputs.",
+    "Teams must separate question framing, measurement design, modeling, and communication so analysis does not collapse into dashboard theater.",
+    "Competing explanations need to be compared against observed data rather than settled by authority, intuition, or anecdote."
+  ],
+  "avoid_when": [
+    "Data volume is substituting for problem clarity and the team is modeling before agreeing on the causal question or business decision.",
+    "Convenient proxy metrics are being treated as the underlying reality."
+  ],
+  "input_type": "noisy evidence-to-decision problem",
+  "output_type": "testable analytical frame",
+  "reasoning_types": [
+    "causal",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Focused on turning noisy evidence into explicit hypothesis-and-test structure rather than on generic analytics fluency.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

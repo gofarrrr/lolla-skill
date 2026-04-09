@@ -1,0 +1,70 @@
+{
+  "model_id": "moral-hazard",
+  "source_file": "Moral_Hazard_rag.md",
+  "select_when": [
+    "One party can take action while another party absorbs a meaningful share of the downside.",
+    "Incentives, insurance, guarantees, or governance structures may be rewarding hidden risk-taking.",
+    "The key question is whether accountability, exposure, and decision rights are aligned tightly enough to discourage reckless behavior.",
+    "A system needs to separate bad incentives from bad luck or weak capability before deciding how to respond."
+  ],
+  "avoid_when": [
+    "Every poor outcome is being attributed to distorted incentives even though uncertainty, chance, or weak capability are the dominant drivers.",
+    "The analysis assumes a clean one-to-one link between observable outcome and effort even though luck and hidden conditions materially affect the result."
+  ],
+  "input_type": "risk-transfer and accountability alignment problem",
+  "output_type": "incentive-exposure audit",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on hidden risk-taking, accountability alignment, and incentive design instead of broad blame language for any bad outcome.",
+    "donor_drops": [
+      "Did not preserve donor governance sprawl because the raw source is stronger on agency, unobservability, and ownership alignment."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans contract design, culture, and risk management."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The activation conditions are explicit in the raw source passages on downside transfer, hidden risk-taking, and alignment of accountability with decision rights."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from the source warnings about confusing moral hazard with uncertainty or luck and assuming perfect observability."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates around agency, information asymmetry, and exposure alignment, while the typed label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields incentive and exposure checks, though the typed output label is a compact reviewed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Moral hazard relies on causal and systemic reasoning about incentives and consequence distribution, while the taxonomy labels remain normalized."
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "model_id": "confirmation-bias",
+  "source_file": "Confirmation_Bias_rag.md",
+  "select_when": [
+    "A team is converging on a favored answer before the evidence has been fully tested.",
+    "Disconfirming evidence keeps getting reframed, minimized, or pushed to the edge of the discussion.",
+    "The decision is emotionally, politically, or reputationally charged enough that people are likely to defend a conclusion instead of testing it.",
+    "A recommendation packet is built around visible wins while failed cases, churn, or rejected signals were not counted with equal weight."
+  ],
+  "avoid_when": [
+    "The review is already structured around explicit falsification, equal treatment of confirming and disconfirming evidence, and adversarial challenge.",
+    "The model is being used only to accuse other people of bias without tightening the team's own evidence standards, incentives, or sacred assumptions."
+  ],
+  "input_type": "claim-under-review",
+  "output_type": "disconfirming-evidence challenge",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the activation surface focused on evidence filtering and premature conclusion defense rather than donor scenario lists.",
+    "donor_drops": [
+      "Dropped donor scenario examples that restated the same confirmation structure in case-specific language.",
+      "Dropped donor higher-order relation fields and runtime-shaped overlays because batch 2 keeps the frozen first-order contract only."
+    ],
+    "open_questions": [
+      "The input and output type labels are reviewed operational normalization rather than explicit raw-source fields."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Raw activation lines and packet-shaped examples supplied the core structure; donor cases helped confirm recurring use, but the final triggers were rewritten into structural evidence-review conditions."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The raw file has dangers and anti-patterns rather than a clean anti-activation list, so these conditions are reviewed normalizations grounded in those weaknesses."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly frames a judgment under evidence review, but the compact type label is an operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model acts as a warning and pressure mechanism for disconfirming evidence; the output label compresses that role into a reviewed operational form."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The model is clearly diagnostic and metacognitive in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

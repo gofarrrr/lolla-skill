@@ -1,0 +1,87 @@
+{
+  "model_id": "dunning-kruger-effect",
+  "source_file": "Dunning_Kruger_Effect_rag.md",
+  "failure_modes": [
+    {
+      "text": "Low-competence actors can overestimate their ability because they lack the skill required to notice their own mistakes.",
+      "source_quote": "Individuals with limited knowledge or low competence tend to significantly overestimate their abilities.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Use objective tests and calibration exercises rather than self-assessment; low-competence actors lack the skill to notice their own mistakes."
+    },
+    {
+      "text": "Organizations can mistake fluency, confidence, or slight knowledge advantage for real competence and give too much trust too early.",
+      "source_quote": "Demonstrating slightly more knowledge can cause the audience to assume that person is a guru.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Verify competence through demonstrated performance in realistic conditions, not through confidence, fluency, or slight knowledge advantage."
+    },
+    {
+      "text": "Dunning-Kruger becomes a lazy insult when the label replaces calibration, coaching, objective tests, or evidence-bearing review.",
+      "source_quote": "Danger when the Dunning-Kruger label is used as a lazy dismissal of someone else's view.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Replace the Dunning-Kruger label with concrete calibration data: coaching, evidence-bearing review, and skill tests are more useful than insults."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What objective test, external review, or observable performance would falsify this person's self-assessment?",
+      "source_quote": "Self-assessment can be compared to objective tests, external review, or observed performance instead of being taken at face value.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we trusting confidence and fluency, or are we actually checking operating skill under real conditions?",
+      "source_quote": "Teams need to separate apparent fluency or charisma from real operating skill.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "How might status, experience, or prior success be creating the same illusion of understanding in our experts?",
+      "source_quote": "Danger when experts assume the bias belongs only to novices.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Never trust self-assessment alone in a high-consequence domain.",
+      "source_quote": "The DKE is powerful in contexts where self-assessment by novices is often useless.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use calibration, external review, and performance evidence to separate real competence from overconfidence.",
+      "source_quote": "Calibration: regularly use objective instruments like quizzes, practice tests, or external review processes.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat Dunning-Kruger as a prompt for better evidence and coaching, not as a shortcut for dismissing people.",
+      "source_quote": "Danger when the Dunning-Kruger label is used as a lazy dismissal.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks on overconfidence, skill calibration, and anti-label misuse discipline.",
+    "donor_drops": [
+      "Did not preserve broader personality or impostor-syndrome sprawl beyond the clearest calibration moves."
+    ],
+    "open_questions": [
+      "The source supports coaching nuance around experts and novices, but the Wave 2 surface stays on competence calibration."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is strongest alongside confidence-calibration, intellectual-humility, and Feynman-technique style blind-spot exposure."
+    ],
+    "antagonists": [
+      "The strongest conflicts are with overconfidence, guru projection, and inside-view overtrust."
+    ],
+    "structured_tensions": [
+      "The main tensions concern novice overconfidence, expert illusion of understanding, and lazy label misuse."
+    ]
+  }
+}

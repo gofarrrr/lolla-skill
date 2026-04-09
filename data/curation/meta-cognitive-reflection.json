@@ -1,0 +1,70 @@
+{
+  "model_id": "meta-cognitive-reflection",
+  "source_file": "Meta_Cognitive_Reflection_rag.md",
+  "select_when": [
+    "The thinker needs to inspect how they are thinking, not just what they are concluding, because the process itself may be the constraint.",
+    "Planning, learning, or decision quality would improve if the team deliberately monitored assumptions, progress, and blind spots.",
+    "The work is moving, but without enough self-audit to notice drift, confusion, or shallow understanding.",
+    "A pause for internalized teacher-like review could improve the next move more than more raw effort."
+  ],
+  "avoid_when": [
+    "Reflection is becoming self-soothing, journaling theater, or introspective overprocessing instead of improving the next decision.",
+    "The situation is already clear and the team needs deliberate action, repetition, or execution more than another layer of process self-observation."
+  ],
+  "input_type": "thinking-process quality problem",
+  "output_type": "self-audited next move",
+  "reasoning_types": [
+    "metacognitive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on monitoring and correcting the thinking process itself rather than on generic introspection rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor reflection sprawl because the raw source is stronger on planning, monitoring, and internalized-teacher self-correction."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans learning transfer, emotional regulation, and decision review."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly activates when better results depend on monitoring, evaluating, and adjusting the thinking process."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings against reflection that soothes identity without improving the next move."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit on process-quality problems in thinking and learning, while the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields a corrected next move after process monitoring; the typed output is a compressed operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Meta-cognitive reflection is strongest as reflective monitoring with diagnostic correction, while the taxonomy labels remain normalized."
+    }
+  }
+}

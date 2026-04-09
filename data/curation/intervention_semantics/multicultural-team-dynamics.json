@@ -1,0 +1,87 @@
+{
+  "model_id": "multicultural-team-dynamics",
+  "source_file": "Multicultural_Team_Dynamics_rag.md",
+  "failure_modes": [
+    {
+      "text": "A culturally homogeneous consensus can hide blind spots that a more diverse interpretive set would surface.",
+      "source_quote": "a homogeneous team would miss",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Staff the decision team for interpretive range: ensure at least two genuinely different cultural or disciplinary perspectives have veto-grade input, not just attendance."
+    },
+    {
+      "text": "Hierarchy and social comfort can suppress dissenting cross-cultural signals before they affect the decision.",
+      "source_quote": "multicultural-team-dynamics conflicts with authority-bias (authority bias) when hierarchy overrides cross-cultural signal from lower-power members.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Create explicit dissent protocols (e.g., anonymous pre-meeting input, rotating devil's advocate) so hierarchy cannot filter cross-cultural signals before they reach the decision."
+    },
+    {
+      "text": "Teams can recruit diversity for optics while centralizing the actual decision process so tightly that difference never shapes the outcome.",
+      "source_quote": "Danger when leaders recruit diversity for optics but keep the real decision process so centralized that difference never shapes the outcome.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit whether diverse voices actually changed the outcome: after each major decision, trace which inputs shifted the answer and flag any pattern of decorative inclusion."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What interpretation or stakeholder signal would this team miss if everyone shared the same default assumptions?",
+      "source_quote": "decision quality depends on surfacing assumptions, interpretations, and stakeholder signals that a homogeneous team would miss",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Where is hierarchy or social comfort suppressing information from lower-power members?",
+      "source_quote": "hierarchy overrides cross-cultural signal from lower-power members",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we translating across differences to improve reasoning, or just displaying diversity without changing judgment?",
+      "source_quote": "turn diversity into better reasoning rather than symbolic representation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Design the discussion so different backgrounds surface genuinely different interpretations before consensus forms.",
+      "source_quote": "turn diversity into better reasoning",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat cross-cultural disagreement as information about the system, not as noise to smooth away quickly.",
+      "source_quote": "work crosses functions, cultures, or markets",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Check whether lower-power members have an intact path to influence the final decision.",
+      "source_quote": "authority bias when hierarchy overrides cross-cultural signal from lower-power members",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on turning diversity into better reasoning and signal detection rather than on symbolic representation language.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

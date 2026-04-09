@@ -1,0 +1,87 @@
+{
+  "model_id": "regression-to-the-mean",
+  "source_file": "Regression_To_The_Mean_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can mistake noise for signal by inventing causes for an extreme result before checking whether anything structural changed.",
+      "source_quote": "Mistaking Noise for Signal",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Before assigning causation to an extreme result, check whether the base rate alone could explain the reversion: run a simple pre-post comparison against the historical distribution."
+    },
+    {
+      "text": "Over-reaction to extremes can make the loudest datapoint dominate judgment instead of the longer-run distribution.",
+      "source_quote": "Over-reaction to Extremes",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Dampen response to outliers: weight decisions toward the running average rather than the latest extreme datapoint, and require structural evidence before treating a spike as a trend."
+    },
+    {
+      "text": "Regression-to-the-mean can be misused as a story for inaction when the mean itself has actually shifted downward.",
+      "source_quote": "Justifying Inaction",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Verify the baseline: before invoking regression-to-the-mean as a reason to wait, check whether the mean itself has shifted — inaction is only justified if the long-run distribution is stable."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "A change without a reason for the change is not really a change?",
+      "source_quote": "\"A change without a reason for the change is not really a change?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the base rate or historical likelihood of this extreme performance being sustained?",
+      "source_quote": "\"What is the base rate or historical likelihood of this extreme performance being sustained?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "\"What would you have to believe?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the outside view and longer-run distributions before assigning a special causal story to an extreme result.",
+      "source_quote": "The Outside View",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate correlation from causation before crediting a nearby intervention for the result.",
+      "source_quote": "Separating Correlation from Causation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Inspect the full range of outcomes, including catastrophe cases, instead of reasoning only from the mean.",
+      "source_quote": "Incorporate simulations to highlight the full range of outcomes possible.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strong on baseline discipline, causal caution, and outside-view checks, so the chunk set stays close to those interventions.",
+    "donor_drops": [
+      "Did not preserve donor analytics commentary that widened beyond the raw source's stronger signal-vs-noise and structural-change guidance."
+    ],
+    "open_questions": [
+      "The third heuristic compresses a simulation-oriented mitigation table into a more general full-range-outcomes prompt."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is rich on systems thinking, correlation-vs-causation, and probabilistic thinking for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section explicitly names availability bias, hammer effects, and confirmation bias."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against representativeness-bias, survivorship-bias, and confirmation-bias."
+    ]
+  }
+}

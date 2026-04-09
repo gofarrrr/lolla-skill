@@ -1,0 +1,71 @@
+{
+  "model_id": "commitment-and-consistency-bias",
+  "source_file": "Commitment_and_Consistency_Bias_rag.md",
+  "select_when": [
+    "A person or group is defending a prior commitment, identity, or promise more strongly than the evidence now justifies.",
+    "Escalation, rigidity, or self-justification is blocking reversal even though the original assumptions have weakened.",
+    "The real issue is not lack of information but the social or psychological cost of admitting the earlier choice may have been wrong.",
+    "The team needs to inspect how small public commitments are shaping larger downstream behavior."
+  ],
+  "avoid_when": [
+    "The situation mainly needs healthy follow-through or purpose alignment rather than a bias audit on rigid commitment.",
+    "The model is being used to mock consistency itself instead of distinguishing disciplined persistence from self-deceptive lock-in."
+  ],
+  "input_type": "escalation and self-justification problem",
+  "output_type": "commitment-bias reversal check",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on self-justification, rigidity, and social-consistency pressure rather than broad influence-principle enthusiasm.",
+    "donor_drops": [
+      "Did not widen into generic commitment or culture rhetoric because the raw source is strongest on rationalization, group loyalty, and reversal difficulty."
+    ],
+    "open_questions": [
+      "The source mixes productive consistency with pathological rigidity, so the avoid conditions work hard to keep the curated use narrow."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source is explicit on self-justification, group loyalty, bias blind spots, and small commitments shaping larger behavior."
+    },
+    "avoid_when": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The avoid lines are conservative compression of the source's distinction between useful consistency and harmful rigidity."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around escalating commitment and rationalization; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields reversal and de-biasing checks rather than a general communication action; the output label reflects that tighter use."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses rigid commitment and requires metacognitive inspection of self-justifying stories."
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "peer-review-your-perspectives",
+  "source_file": "Peer_Review_Your_Perspectives_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps peer-review-your-perspectives widen the frame so the critique tests interdependencies rather than only local arguments.",
+      "source_quote": "diverse perspectives help reveal parts of the system one viewpoint misses",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feedback-loops",
+      "rationale_text": "Feedback-loops turn peer review into an actual correction mechanism instead of a one-time opinion exchange.",
+      "source_quote": "good review creates an iterative loop of challenge and refinement",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "opportunity-cost",
+      "rationale_text": "Opportunity-cost strengthens peer-review-your-perspectives by forcing reviewers to test what alternative explanations or moves the current view may be crowding out.",
+      "source_quote": "other perspectives reveal what your current view may be causing you to miss",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias undermines peer review when the reviewer is recruited to reinforce the existing story instead of independently challenging it.",
+      "source_quote": "The point is to test your view, not to hear it echoed back.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "authority-bias",
+      "rationale_text": "Authority-bias weakens peer-review-your-perspectives when status determines which critiques count and which viewpoints are never allowed to challenge the frame.",
+      "source_quote": "independent judgments matter more than deference to rank or prestige",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "authority-bias",
+      "tension_text": "Peer-review-your-perspectives conflicts with authority-bias when peer review defers to the highest-status reviewer rather than weighting evidence quality independently.",
+      "source_quote": "peer-review-your-perspectives conflicts with authority-bias (authority bias) when peer review defers to the highest-status reviewer rather than weighting evidence quality independently.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Peer-review-your-perspectives conflicts with confirmation-bias when reviewers selected from the same paradigm reinforce shared blind spots instead of challenging them.",
+      "source_quote": "peer-review-your-perspectives conflicts with confirmation-bias (confirmation bias) when reviewers selected from the same paradigm reinforce shared blind spots instead of challenging them.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on feedback-rich outside challenge and conflicts with echoing and deference, so the file preserves that first-order surface without forcing weaker tension structure.",
+    "donor_drops": [
+      "Did not preserve donor relation widening beyond the clearest critique, feedback, and anti-deference neighborhood."
+    ],
+    "open_questions": [
+      "Incentives are source-real partner pressure, but the retained set favors the cleaner direct wording around opportunity-cost, feedback, and anti-authority drift."
+    ]
+  }
+}

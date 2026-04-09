@@ -1,0 +1,87 @@
+{
+  "model_id": "occams-razor",
+  "source_file": "Occams_Razor_rag.md",
+  "failure_modes": [
+    {
+      "text": "The model fails when simplicity is chosen for elegance or comfort instead of because it best fits the evidence.",
+      "source_quote": "the simplest explanation is not always the correct one if reality is genuinely complex",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test simplicity against evidence fit, not against aesthetic appeal: the simpler explanation wins only when it accounts for the same observations as the complex one."
+    },
+    {
+      "text": "A neat, plausible story can crowd out a truer explanation when the team rewards coherence more than evidential support.",
+      "source_quote": "Danger When the Explanation Is Neat, Plausible, and Wrong",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge coherence by asking what disconfirming data would look like: a neat story that cannot specify what would falsify it is probably rewarding coherence over truth."
+    },
+    {
+      "text": "Occam's Razor breaks when hidden assumptions are smuggled in under the label of simplification.",
+      "source_quote": "prefer the explanation that makes the fewest assumptions",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Surface hidden assumptions: before accepting a 'simple' explanation, list every implicit premise it requires and check whether those premises have been verified."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What assumptions are we adding that the evidence has not earned?",
+      "source_quote": "the explanation that requires the fewest assumptions is usually the best",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would make the simpler explanation too simple to be true here?",
+      "source_quote": "the simplest explanation is not always the correct one if reality is genuinely complex",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What disconfirming evidence would force us to keep the harder causal structure?",
+      "source_quote": "doesn't eliminate the need for evidence or testing",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Start with the explanation that fits the facts while adding the fewest unsupported assumptions.",
+      "source_quote": "when presented with multiple explanations for a phenomenon, one should select the explanation that makes the fewest assumptions",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use simplicity as a pruning rule, not as a substitute for testing.",
+      "source_quote": "Occam's Razor doesn't eliminate the need for evidence or testing",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Strip away ornamental complexity before adding more analysis, models, or variables.",
+      "source_quote": "avoid overcomplicating explanations or systems",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on assumption pruning, anti-neat-story discipline, and simplicity-as-starting-rule rather than simplicity-as-proof.",
+    "donor_drops": [
+      "Did not preserve donor philosophy or design sprawl because the raw source is stronger on evidential pruning and anti-overcomplication discipline."
+    ],
+    "open_questions": [
+      "The third premortem item compresses repeated source cautions that simplicity must stay answerable to testing rather than preference."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on simplification, prioritization, and cognitive-load reduction as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and representativeness-like easy-story substitution, but only current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around simplicity versus false neatness, but the named tension labels do not cleanly map to current canonical target ids beyond the safer one-hop surface."
+    ]
+  }
+}

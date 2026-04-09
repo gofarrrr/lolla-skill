@@ -1,0 +1,71 @@
+{
+  "model_id": "circle-of-competence",
+  "source_file": "Circle_Of_Competence_rag.md",
+  "allies": [
+    {
+      "target_model_id": "metacognitive-questioning",
+      "rationale_text": "Metacognitive-questioning helps circle-of-competence inspect whether current judgment is genuinely earned or only feels familiar.",
+      "source_quote": "It relies heavily on metacognition (thinking about thinking), enabling an expert to frame a problem and reflect on whether their proposed answer seems reasonable.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "The Feynman technique helps circle-of-competence expose the perimeter by revealing what cannot yet be explained simply.",
+      "source_quote": "The Feynman Technique: This powerful learning framework is a direct tool for defining the perimeter of the CoC.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "authority-bias",
+      "rationale_text": "Authority-bias can pull judgment outside the earned perimeter by making borrowed expertise feel sufficient.",
+      "source_quote": "circle-of-competence vs authority-bias: circle-of-competence conflicts with authority-bias (authority bias) when external expert status is accepted outside proven domain boundaries.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias makes circle-of-competence count only the evidence that flatters the current boundary story.",
+      "source_quote": "When relying on the CoC, a person may seek information that only confirms their pre-existing framing of the problem.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "authority-bias",
+      "tension_text": "Circle-of-competence conflicts with authority-bias when external expert status is accepted outside proven domain boundaries.",
+      "source_quote": "circle-of-competence vs authority-bias: circle-of-competence conflicts with authority-bias (authority bias) when external expert status is accepted outside proven domain boundaries.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Circle-of-competence conflicts with commitment-bias when teams keep operating outside capability limits to protect prior decisions.",
+      "source_quote": "circle-of-competence vs commitment-bias: circle-of-competence conflicts with commitment-bias (commitment bias) when teams keep operating outside capability limits to protect prior decisions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Circle-of-competence conflicts with confirmation-bias when practitioners selectively count successes to confirm they are operating inside their competence circle rather than honestly mapping its edges.",
+      "source_quote": "circle-of-competence vs confirmation-bias: circle-of-competence conflicts with confirmation-bias (confirmation bias) when practitioners selectively count successes to confirm they are operating inside their competence circle rather than honestly mapping its edges.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source gives unusually explicit first-order conflict language, so the file preserves those tensions directly and keeps allies close to the named perimeter-check tools.",
+    "donor_drops": [
+      "Did not preserve donor relation sprawl beyond the named self-monitoring and bias-conflict surface."
+    ],
+    "open_questions": [
+      "Dunning-Kruger and curse-of-knowledge remain source-real antagonists, but this pass kept the stronger direct conflicts and named perimeter allies."
+    ]
+  }
+}

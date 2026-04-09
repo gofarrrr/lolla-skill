@@ -1,0 +1,87 @@
+{
+  "model_id": "counterfactual-reasoning",
+  "source_file": "Counterfactual_Reasoning_rag.md",
+  "failure_modes": [
+    {
+      "text": "Outcome overfitting can make the past feel inevitable and hide the actual quality of the original decision.",
+      "source_quote": "Overfitting the Outcome",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Judge the decision by the quality of the process and evidence at the time, not by the outcome; overfitting to results hides the actual decision logic."
+    },
+    {
+      "text": "WYSIATI can trap the team in the available story instead of searching for the missing branch or missing information.",
+      "source_quote": "WYSIATI (What You See Is All There Is)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Actively search for the missing branch: ask what information was absent or what alternative was never explored, rather than accepting the available story."
+    },
+    {
+      "text": "Counterfactuals become dangerous when they drift into fiction untethered from plausible causal structure and context.",
+      "source_quote": "Danger When Counterfactuals Become Fiction Instead of Discipline",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Anchor counterfactuals to plausible causal structure: require that every 'what if' trace a mechanism that could have actually operated."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe to accept this conclusion?",
+      "source_quote": "\"What would you have to believe (WTWHTB)?\"",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What other plausible paths deserve attention right now before we lock in this plan?",
+      "source_quote": "what other plausible paths deserve attention right now",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If this project has already failed spectacularly, what branches or assumptions did we miss?",
+      "source_quote": "imagine that the endeavor has failed spectacularly",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Mandate a devil's advocate or dialectic standard so every dominant story meets an explicit antithesis.",
+      "source_quote": "Mandate the Devil’s Advocate/Dialectic Standard",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Require independent judgments before discussion so the first view does not anchor the full branch set.",
+      "source_quote": "Decorrleate Errors (Independent Judgment)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Run a pre-mortem before commitment so the team works backward from failure and exposes hidden branches.",
+      "source_quote": "Conduct a Pre-Mortem",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on branch recovery, anti-inevitability discipline, and pre-mortem or devil's-advocate practice.",
+    "donor_drops": [
+      "Did not preserve donor scenario catalogs because the raw source is stronger on the structural discipline for generating and testing alternatives."
+    ],
+    "open_questions": [
+      "The first premortem item normalizes the abbreviation so it reads clearly as a reusable question chunk."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems-thinking, hypothesis-driven testing, and design-style iteration for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on confirmation-bias and motivated reasoning, but availability-style conflicts remain less clean at the current canonical target surface."
+    ],
+    "structured_tensions": [
+      "The source is tension-real on confirmation-bias and anchoring-risk from early discussion order, even without a dedicated structured tension block."
+    ]
+  }
+}

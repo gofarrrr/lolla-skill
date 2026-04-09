@@ -1,0 +1,70 @@
+{
+  "model_id": "formal-reasoning",
+  "source_file": "Formal_Reasoning_rag.md",
+  "select_when": [
+    "A claim needs explicit premises, logical structure, or decision branches rather than rhetorical fluency.",
+    "The work is vulnerable to hidden leaps, category errors, or intuitive story glue that cleaner structure would expose.",
+    "A team needs to test whether the conclusion actually follows from what it says it believes.",
+    "The next step should convert a persuasive narrative into a traceable chain of reasoning."
+  ],
+  "avoid_when": [
+    "Formal structure is being used to launder weak premises, missing evidence, or fake certainty.",
+    "The situation mainly needs empirical observation, field data, or live feedback and the team is substituting symbolic neatness for contact with reality."
+  ],
+  "input_type": "logic-structure integrity problem",
+  "output_type": "traceable reasoning chain",
+  "reasoning_types": [
+    "deductive",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on explicit premises, valid inference, and decision-structure integrity rather than on abstract logic display.",
+    "donor_drops": [
+      "Did not preserve donor formalism sprawl because the raw source is stronger on usable logic hygiene, decision trees, and anti-premise laundering discipline."
+    ],
+    "open_questions": [
+      "The reasoning type labels compress a source that also reaches into communication structure and hypothesis framing."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on logic, decision trees, structured arguments, and exposing hidden leaps in reasoning."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings that structure can disguise weak premises and that logic alone cannot substitute for reality contact."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on problems of logical integrity and hidden inference, while the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields explicit reasoning chains and branch logic; the typed output is a compressed operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Formal reasoning is strongest as explicit inference discipline and structured cause-logic, while the taxonomy names remain normalized."
+    }
+  }
+}

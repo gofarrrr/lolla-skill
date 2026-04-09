@@ -1,0 +1,87 @@
+{
+  "model_id": "delays",
+  "source_file": "Delays_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can treat delayed feedback as proof that an intervention failed and overcorrect before the system has time to respond.",
+      "source_quote": "Danger when teams treat delayed feedback as proof that an intervention failed, then overcorrect before the system has had time to respond.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Account for system response time before judging an intervention; overcorrecting before delayed feedback arrives creates unnecessary oscillation."
+    },
+    {
+      "text": "Waiting can become romanticized reflection when the next useful move is already clear and the real cost is execution drift.",
+      "source_quote": "Danger when people romanticize waiting and reflection even though the next useful move is already clear and the real cost is execution drift.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set an explicit wait threshold: if the next useful move is already clear, waiting is avoidance dressed as reflection."
+    },
+    {
+      "text": "Plans can quietly fail because people underestimate how often multi-step work will slip behind its intended timing.",
+      "source_quote": "The Planning Fallacy (Failing to Anticipate Delay)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Build delay buffers into multi-step plans; underestimating how often work slips behind its intended timing is the default human error."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Are we reading no visible result yet as no effect, even though the system is known to respond with a lag?",
+      "source_quote": "Most useful when actions and consequences are separated in time, so naive short-term reading would mistake \"no result yet\" for \"no effect\".",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is this pause improving judgment, or is it just avoiding commitment or ownership?",
+      "source_quote": "Best used when the team must distinguish between a pause that improves judgment and a delay that merely avoids commitment or ownership.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If one essential lag or capacity constraint is missing from our mental model, how would that distort the correction we are about to make?",
+      "source_quote": "Analyzing delayed feedback helps managers understand why their corrective actions might be too aggressive or too timid, leading to oscillation or drift in system performance.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Map the delayed feedback path before changing course so you know when a response should realistically become visible.",
+      "source_quote": "Recognizing the location and length of time delays is key to successful system intervention.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Chunk complex work into paced stages so delay becomes a learning aid instead of a source of overload.",
+      "source_quote": "Since working memory is a limited resource, complex topics must be broken down temporally, focusing on steps or stages in a sequence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Set aggressive but achievable deadlines when the true problem is self-generated sprawl rather than useful incubation time.",
+      "source_quote": "Setting aggressive (but achievable) deadlines forces prioritization and helps free the mind from the sustained background stress of a distant deadline.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on lagged feedback, paced learning, and anti-overreaction discipline rather than on broad productivity advice.",
+    "donor_drops": [
+      "Did not preserve donor scheduling sprawl because the raw source is stronger on delayed feedback, cognitive pacing, and overcorrection risk."
+    ],
+    "open_questions": [
+      "The third premortem question is normalized from the systems-delay framing so it stays reusable across operational and learning contexts."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems-thinking, leverage-points, and cognitive-load-theory for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on urgency and present-bias pressure, but the structured tension block names the cleanest current-vocabulary conflicts."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension section that should survive into Wave 3 with bounded normalization."
+    ]
+  }
+}

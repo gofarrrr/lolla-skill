@@ -1,0 +1,87 @@
+{
+  "model_id": "reasoning-mode-router",
+  "source_file": "Reasoning_Mode_Router_rag.md",
+  "failure_modes": [
+    {
+      "text": "Faulty pattern recognition can route a novel problem into a familiar frame and produce a disastrously wrong solution path.",
+      "source_quote": "Faulty Pattern Recognition (Substitution Bias)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Before routing to a familiar method, check structural fit: list three features the problem shares with the template and one it does not, and judge whether the mismatch is load-bearing."
+    },
+    {
+      "text": "Mode-selection overhead can become a tax if the team keeps debating method instead of advancing the next discriminating test.",
+      "source_quote": "Mode-Selection Overhead",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Timebox mode selection: agree on the reasoning approach within a fixed window, then commit and advance to the next discriminating test rather than debating method indefinitely."
+    },
+    {
+      "text": "Anchored routing can lock the mode choice to the first framing even after contradictory evidence appears.",
+      "source_quote": "Anchored Routing",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Build in a mode-change trigger: define in advance what evidence would cause the team to switch reasoning modes, so anchoring on the first frame cannot survive contradictory data."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What are the assumptions embedded in the framework I am currently using?",
+      "source_quote": "What are the assumptions embedded in the framework I am currently using?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If this model is wrong, what genuinely novel problem structure might I be facing?",
+      "source_quote": "If this model is wrong, what genuinely novel problem structure might I be facing?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What specific output is needed from this work to solve the problem?",
+      "source_quote": "What specific output is needed from this work to solve the problem?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Test multiple frames before locking the route so the first usable model does not become the only one considered.",
+      "source_quote": "Testing Multiple Frames",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Enforce thesis, antithesis, synthesis so routing is pressured by challenge rather than agreement.",
+      "source_quote": "Dialectic Standard",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Define the problem context clearly before diving into tools, data, or deep analysis.",
+      "source_quote": "Enforce the Seven-Step Process",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw file is already close to a routing-discipline intervention playbook, so most chunks remain near the mitigation table and named anti-patterns.",
+    "donor_drops": [
+      "Skipped donor route-topology overlays because this wave is about intervention chunks, not higher-order routing relations."
+    ],
+    "open_questions": [
+      "This source is especially rich on future higher-order fields, but those remain explicitly out of scope for this run."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is rich on System 2, cognitive load, metacognition, and multidisciplinary thinking."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on motivated reasoning, inside view, and commitment-consistency conflicts."
+    ],
+    "structured_tensions": [
+      "The source explicitly preserves tensions against representativeness-bias, anchoring, confirmation-bias, and commitment-and-consistency-bias."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "constraints",
+  "source_file": "Constraints_rag.md",
+  "failure_modes": [
+    {
+      "text": "Stale constraints can quietly mislead action when the environment changed but the boundary never did.",
+      "source_quote": "Danger when old constraints remain unquestioned after the economics, technology, or stakeholder environment has changed.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Revisit constraints on a schedule: ask whether each boundary still reflects the current environment or has fossilized from a prior context."
+    },
+    {
+      "text": "Constraint design can fail by being so loose that it creates false confidence or so tight that it blocks learning.",
+      "source_quote": "Danger when constraints are written so loosely that they create false confidence in control, or so tightly that they choke off signal, adaptation, or learning.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Calibrate constraint tightness to the decision: too loose creates false confidence, too tight blocks learning; the constraint should match the exposure."
+    },
+    {
+      "text": "Over-engineered boundaries can create useless accuracy and analysis paralysis instead of action.",
+      "source_quote": "Over-engineering Constraints",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Prefer simple, actionable constraints over elaborate boundary architectures that produce analysis paralysis instead of enabling action."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "How does what you’re doing solve the problem?",
+      "source_quote": "How does what you’re doing solve the problem?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is it the most important thing you could be doing right now?",
+      "source_quote": "Is it the most important thing you could be doing right now?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If this was cut, would anything be lost?",
+      "source_quote": "If this was cut, would anything be lost?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define constraints explicitly in the problem statement so the scope is realistic before analysis starts.",
+      "source_quote": "Problem Statement Definition",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Make everything earn its place so only information serving the primary goal survives.",
+      "source_quote": "Make Everything Earn Its Place",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Chunk the work into bite-sized pieces so the boundary helps the mind focus instead of overload.",
+      "source_quote": "Cognitive Load Management (Chunking)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on boundary-setting, decluttering, and overload prevention rather than on abstract framework language.",
+    "donor_drops": [
+      "Did not preserve donor prompt-boundary sprawl because the raw source is stronger on problem statements, curation, and chunking."
+    ],
+    "open_questions": [
+      "The first heuristic is normalized from the TOSCA framing so it stays reusable beyond consulting-specific phrasing."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on cognitive-load-theory and scaffolding as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on confirmation-bias and curse-of-knowledge, but only the cleanest canonical ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around stale frames and anchoring on initial boundaries even without a dedicated structured tension block."
+    ]
+  }
+}

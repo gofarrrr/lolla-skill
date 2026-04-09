@@ -1,0 +1,70 @@
+{
+  "model_id": "persuasion-principles",
+  "source_file": "Persuasion_Principles_rag.md",
+  "select_when": [
+    "The insight is already sound but attention, belief, or action is still blocked by indifference, overload, or weak framing.",
+    "Adoption is the bottleneck, and the communicator can pair strong substance with simple, credible, emotionally resonant packaging.",
+    "A message needs to match how the audience will actually process it emotionally and cognitively rather than how the expert wants to explain it.",
+    "The work must turn an intangible idea into something concrete, memorable, and actionable without losing the core message."
+  ],
+  "avoid_when": [
+    "Persuasive technique is being used to accelerate acceptance of a weak answer.",
+    "Influence tactics would override the recipient's autonomy or suppress the friction that should expose an important flaw."
+  ],
+  "input_type": "adoption and influence problem",
+  "output_type": "high-receptivity message design",
+  "reasoning_types": [
+    "causal",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on influence mechanics, message fit, and adoption bottlenecks rather than broad marketing or charisma rhetoric.",
+    "donor_drops": [
+      "Did not widen into generic persuasion catalogs because the raw source is strongest on attention, emotional fit, and anti-bad-answer warnings."
+    ],
+    "open_questions": [
+      "The output label compresses several related surfaces, including story design, authority signaling, and emotional packaging."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths and playbook sections explicitly support adoption bottlenecks, message fit, emotional resonance, and making abstract ideas concrete."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions come directly from the danger language on weak answers and autonomy-undermining influence."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates when attention, belief, and action are the bottleneck, while the compact label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields message packaging that increases receptivity and action; the output label compresses that into an operational surface."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model reasons causally about what changes attention and behavior and metacognitively about how the audience will process the message."
+    }
+  }
+}

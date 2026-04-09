@@ -1,0 +1,48 @@
+{
+  "model_id": "cognitive-load-theory",
+  "source_file": "Cognitive_Load_Theory_rag.md",
+  "allies": [
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition helps cognitive-load-theory break a problem into logical pieces that working memory can actually manage.",
+      "source_quote": "Logic trees make it easy to see the structure of the problem. This limits the number of variables the working memory must consider simultaneously.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "habit-formation",
+      "rationale_text": "Habit-formation frees working memory by automating routine tasks so cognitive effort can shift to the genuinely new challenge.",
+      "source_quote": "Habits reduce the cognitive load necessary for routine tasks, allowing the conscious mind to conserve effort for higher-level problems.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [],
+  "structured_tensions": [
+    {
+      "target_model_id": "first-principles-thinking",
+      "tension_text": "Cognitive-load-theory conflicts with first-principles-thinking when deep decomposition overloads working memory before the core abstraction is stable.",
+      "source_quote": "cognitive-load-theory vs first-principles-thinking: cognitive-load-theory conflicts with first-principles-thinking (first principles thinking) when deep decomposition overloads working memory before core abstractions stabilize.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "optionality",
+      "tension_text": "Cognitive-load-theory conflicts with optionality when too many parallel branches exceed practical decision bandwidth.",
+      "source_quote": "cognitive-load-theory vs optionality: cognitive-load-theory conflicts with optionality (optionality) when too many parallel branches exceed practical decision bandwidth.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on ally structure and explicit tensions, so the file stays sparse rather than forcing weak antagonist mappings.",
+    "donor_drops": [
+      "Did not preserve donor relation sprawl where the raw canonical id surface is weaker than the explicit ally and tension blocks."
+    ],
+    "open_questions": [
+      "Curse-of-knowledge and boiling-the-ocean are source-real antagonists, but the current canonical target surface does not expose clean direct ids for them."
+    ]
+  }
+}

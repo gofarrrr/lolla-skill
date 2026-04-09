@@ -1,0 +1,87 @@
+{
+  "model_id": "persuasion-principles",
+  "source_file": "Persuasion_Principles_rag.md",
+  "failure_modes": [
+    {
+      "text": "A communicator can accelerate acceptance of a weak answer, turning better packaging into worse downstream decisions.",
+      "source_quote": "brilliant communication of the wrong answer is even more harmful",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate packaging from substance: after any persuasive communication, require the audience to restate the core evidence and logic without the framing — if the case collapses, the persuasion was compensating for weakness."
+    },
+    {
+      "text": "Motivated reasoning can turn persuasion into self-serving message design that seeks assent instead of truth.",
+      "source_quote": "Motivated Reasoning / Inside View",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Appoint a 'message-truth auditor' who checks whether the persuasive frame accurately represents the underlying data, trade-offs, and uncertainties."
+    },
+    {
+      "text": "Complexity overload can muddy an otherwise easy yes by forcing the audience to process more detail than they can carry.",
+      "source_quote": "muddy up an otherwise easy yes",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Simplify the message to the decision-relevant core: strip detail until the audience can hold the entire argument in working memory, then stop."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What do I want the audience to think, feel, and do?",
+      "source_quote": "Think, Feel, and Do",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we selling the solution, or are we still telling the story of the search?",
+      "source_quote": "the story of the solution",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If the substance were weaker than we think, what part of this packaging would most likely hide that weakness from the audience?",
+      "source_quote": "persuasive technique is used to accelerate acceptance of a weak answer",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use pre-suasion and salience cues to prepare attention before delivering the core ask.",
+      "source_quote": "Pre-suasion",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Package the message so it is simple, concrete, credible, emotional, and story-carried enough to survive overload.",
+      "source_quote": "SUCCESs Checklist",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Match the appeal to how the audience is actually processing the decision instead of defaulting to the communicator's preferred style.",
+      "source_quote": "System 1/System 2 Match",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the intervention layer on packaging discipline, think-feel-do targeting, and anti-bad-answer safeguards.",
+    "donor_drops": [
+      "Did not preserve broad marketing tactic sprawl because the raw source is strongest on message fit, overload reduction, and ethical caution."
+    ],
+    "open_questions": [
+      "The third premortem question is reviewed compression over several raw warnings about persuasive overreach."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The source is rich on narratives, empathy, cognitive-load reduction, and structured messaging."
+    ],
+    "antagonists": [
+      "The raw antagonists clearly point toward critical-thinking, first-principles-thinking, and curse-of-knowledge pressure."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block was preserved from the raw file."
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "model_id": "authenticity",
+  "source_file": "Authenticity_rag.md",
+  "allies": [
+    {
+      "target_model_id": "boundaries",
+      "rationale_text": "Boundaries helps authenticity turn candor into usable commitments instead of performative oversharing.",
+      "source_quote": "asking directly, Here is what I want from you. What do you want from me?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "signaling",
+      "rationale_text": "Signaling helps authenticity explain why congruence under pressure is more credible than polished declarations about character.",
+      "source_quote": "the most legitimate and convincing way to convey commitment and credibility to a team, superseding direct declarations of values or traits",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias undermines authenticity when people defend a preferred self-story instead of facing uncomfortable truth.",
+      "source_quote": "motivated reasoning",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "rationalization",
+      "rationale_text": "Rationalization fights authenticity when the press-secretary part of the mind spins choices after the fact instead of naming what is actually true.",
+      "source_quote": "processing information to reach a desired conclusion",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "authority-bias",
+      "tension_text": "Authenticity conflicts with authority-bias when personal conviction is mistaken for evidential weight because the speaker is perceived as genuine.",
+      "source_quote": "authenticity conflicts with authority-bias (authority bias) when personal conviction is mistaken for evidential weight because the speaker is perceived as genuine.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Authenticity conflicts with confirmation-bias when commitment to one's authentic position becomes selective attention to supporting evidence.",
+      "source_quote": "authenticity conflicts with confirmation-bias (confirmation bias) when commitment to one's authentic position becomes selective attention to supporting evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on grounded credibility, boundary-setting candor, and anti-self-deception pressure, but it does not give a clean explicit current-vocabulary tension block.",
+    "donor_drops": [
+      "Did not preserve donor personal-brand relation sprawl beyond the cleaner congruence, signaling, and anti-self-story surface."
+    ],
+    "open_questions": [
+      "The rationalization antagonist is source-grounded but more interpretive than the boundaries and signaling allies, so it should stay read conservatively."
+    ]
+  }
+}

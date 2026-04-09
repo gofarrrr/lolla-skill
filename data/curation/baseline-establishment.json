@@ -1,0 +1,36 @@
+{
+  "model_id": "baseline-establishment",
+  "source_file": "Baseline_Establishment_rag.md",
+  "select_when": [
+    "A team lacks a shared starting picture of the problem, success criteria, or the facts that later comparisons should be judged against.",
+    "Diagnosis, measurement, or ownership depends on agreeing what normal, broken, or improved actually mean.",
+    "Later intervention quality will be judged by change from an explicit starting condition rather than by anecdotes.",
+    "Work is beginning to sprawl because the goal, frame, or required output has not been clearly set."
+  ],
+  "avoid_when": [
+    "The initial baseline has fossilized into doctrine even though the environment or goal has materially shifted.",
+    "The chosen baseline metric is convenient to measure but weakly tied to the real causal drivers of success or failure."
+  ],
+  "input_type": "unclear starting condition",
+  "output_type": "explicit baseline frame",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused on defining the starting condition, goal, and comparison frame before analysis or execution expands.",
+    "donor_drops": [
+      "Did not preserve broader persona-design sprawl because the raw source is already strongest on baseline as a planning and measurement boundary."
+    ],
+    "open_questions": [
+      "The source overlaps with coaching, prompting, and simulation design, but the operational file stays on baseline clarity for diagnosis and execution."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on shared starting pictures, explicit success criteria, and comparing later change against a clear baseline."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source explicitly warns against fossilized baselines and against convenient but weak metrics."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed input label compresses the raw lack-of-baseline activation conditions."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures the model as setting the frame from which later comparison becomes meaningful."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model relies on diagnosis of the starting condition plus system-level framing of the work."}
+  }
+}

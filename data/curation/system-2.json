@@ -1,0 +1,57 @@
+{
+  "model_id": "system-2",
+  "source_file": "System_2_rag.md",
+  "select_when": [
+    "A decision involves genuinely novel situations where no reliable pattern recognition exists and deliberate analysis is required.",
+    "Stakes are high and the cost of a fluent-but-wrong fast conclusion exceeds the cost of deliberation.",
+    "Probability estimates, logical validity checks, or multi-option comparisons require explicit, rule-governed reasoning.",
+    "The team has converged on a confident answer quickly and a deliberate audit of assumptions and missing evidence is needed.",
+    "Post-decision rationalizations need to be distinguished from genuine pre-decision deliberation."
+  ],
+  "avoid_when": [
+    "In well-practiced expert domains where calibrated intuition is more accurate and faster than deliberative override.",
+    "When cognitive load is already at capacity — deploying System 2 reasoning in high-depletion conditions produces lower-quality output than accepting well-calibrated System 1 defaults."
+  ],
+  "input_type": "complex decision requiring deliberate analysis",
+  "output_type": "calibrated, deliberate judgment with explicit reasoning chain",
+  "reasoning_types": [
+    "deductive",
+    "probabilistic",
+    "metacognitive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "System 2 curated as a deliberate-reasoning activator — select_when centers on conditions requiring effortful, auditable analysis rather than universal override of fast judgment.",
+    "donor_drops": [],
+    "open_questions": [
+      "The cognitive depletion condition (avoid_when) is real but hard to detect in context — operationalizing it requires awareness of meeting length, decision volume, and time of day."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Source explicitly describes System 2's role in novel decisions, probability calibration, and deliberate assumption-testing — select_when conditions map directly to these."
+    },
+    "avoid_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Source explicitly describes depletion effects and the performance-degrading effect of System 2 override in expert domains — avoid_when reflects both."
+    },
+    "input_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Compact label reviewed normalization of source framing."
+    },
+    "output_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "System 2's core output is an auditable reasoning chain — distinguishing it from System 1's unjustified conclusion."
+    },
+    "reasoning_types": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Deductive (logical rule-following), probabilistic (base-rate and distribution reasoning), metacognitive (auditing own cognitive process), diagnostic (identifying reasoning failures)."
+    }
+  }
+}

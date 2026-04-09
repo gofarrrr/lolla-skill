@@ -1,0 +1,72 @@
+{
+  "model_id": "delays",
+  "source_file": "Delays_rag.md",
+  "select_when": [
+    "Actions and consequences are separated in time, so a naive short-term read could mistake no result yet for no effect.",
+    "A system contains feedback loops, capacity constraints, or implementation lags that could trigger overreaction if ignored.",
+    "The team needs to distinguish between a pause that improves judgment and a delay that merely avoids commitment or ownership.",
+    "Performance is being judged too quickly even though the real signal depends on delayed feedback."
+  ],
+  "avoid_when": [
+    "People are romanticizing waiting and reflection even though the next useful move is already clear and the real cost is execution drift.",
+    "The model is being used to excuse planning drag instead of to understand timing, lagged feedback, or paced learning."
+  ],
+  "input_type": "lagged-feedback problem",
+  "output_type": "timing-aware intervention frame",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on lagged consequences, pacing, and overreaction risk rather than on broad time-management advice.",
+    "donor_drops": [
+      "Did not preserve donor time-management sprawl because the raw source is strongest on delayed feedback, pacing, and implementation lag.",
+      "Did not add higher-order composition fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The second avoid-when item is reviewed normalization over a source that is stronger on anti-romanticizing delay than on explicit anti-activation routing."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that delays matter most when consequences arrive later than the action and feedback loops create overreaction risk."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The anti-romanticizing warning is explicit; the execution-drift phrasing is conservative reviewed normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model activates on lag and timing problems, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields a better frame for pacing and lagged consequences; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Delays clearly work through causal timing and systems feedback, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

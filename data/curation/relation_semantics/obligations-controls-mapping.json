@@ -1,0 +1,98 @@
+{
+  "model_id": "obligations-controls-mapping",
+  "source_file": "Obligations_Controls_Mapping_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems Thinking helps OCM map how obligations and controls interact across a larger operational whole.",
+      "source_quote": "OCM provides the defined Obligations and Controls necessary to articulate the \"wholes\" and understand the patterns of change.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition gives OCM the procedural structure needed to break obligations into analyzable and controllable parts.",
+      "source_quote": "Logic trees disaggregate the problem, keep track of parts for analysis, and build insights toward solutions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive Load Theory supports OCM by forcing control design into manageable steps that people can actually follow.",
+      "source_quote": "OCM’s emphasis on breaking down tasks into small, manageable steps (scaffolding) aligns directly with the brain’s limitation of processing only a few pieces of new information.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "The Feynman Technique helps OCM expose blind spots in the mapping by forcing simple explanation of a complex obligation.",
+      "source_quote": "It is a powerful method for identifying blind spots in one’s existing Mapping by forcing one to explain the concept simply.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines OCM by making the expert designer unable to remember what it was like not to know the obligation structure — they communicate the abstract mapping without the concrete analogies and stories that would make the controls actionable for others.",
+      "source_quote": "A powerful antagonist where the expert OCM designer cannot remember what it was like not to know the underlying structure. They communicate the abstract punch line (the Obligation) without the necessary concrete analogy or story (the simple Controls/Mapping) required for others, especially novices, to internalize the idea.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-dissonance",
+      "rationale_text": "Cognitive-dissonance resists OCM revision by making it psychologically painful to acknowledge flaws in an existing mapping — the discomfort of inconsistency between 'I built this framework' and 'this framework has a gap' drives motivated distortion rather than honest updating.",
+      "source_quote": "Cognitive Dissonance: This psychological phenomenon (an Obligation to maintain consistency) can cause individuals to distort their perception of reality to align with an existing commitment. If a flaw is revealed in the OCM, dissonance makes it psychologically difficult to abandon or critique the existing framework.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect corrupts OCM by forcing every obligation through a single familiar control — the fixation on a proven tool prevents the novel control design that new obligation types require.",
+      "source_quote": "Maslow's Hammer (Law of the Instrument): This bias occurs when a thinker, relying heavily on a specific, proven Control, views every Obligation as solvable only by that tool (the nail). It results in torturing reality to fit a familiar model, preventing novel solutions.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "authority-bias",
+      "tension_text": "Obligations-controls-mapping conflicts with authority-bias when documented control exceptions pass without evidence review.",
+      "source_quote": "obligations-controls-mapping conflicts with authority-bias (authority bias) when documented control exceptions are accepted without evidence review.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Obligations-controls-mapping conflicts with status-quo-bias when outdated controls survive changing obligation context.",
+      "source_quote": "obligations-controls-mapping conflicts with status-quo-bias (status quo bias) when outdated controls persist despite changed obligation context.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Obligations-controls-mapping conflicts with confirmation-bias when control-gap reviews are designed to prove coverage is already adequate.",
+      "source_quote": "obligations-controls-mapping conflicts with confirmation-bias (confirmation bias) when control gap assessments are designed to confirm that existing coverage is adequate.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "OCM is especially strong on explicit allies and explicit structured tensions, while its raw antagonists do not resolve cleanly to current canonical ids.",
+    "donor_drops": [
+      "Did not bring donor topology-style relation additions into the pilot layer."
+    ],
+    "open_questions": [
+      "Maslow's Hammer wired in Task 2.5 sweep via einstellung-effect mapping.",
+      "Curse-of-knowledge and cognitive-dissonance wired as antagonists (Task 4.1 sweep)."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "antagonists": [
+      "The raw source names Maslow's Hammer, Curse of Knowledge, and Cognitive Dissonance as strong antagonists for future relation expansion if the canonical id surface grows."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "prisoners-dilemma",
+  "source_file": "Prisoners_Dilemma_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can treat a bad payoff structure as if better individual behavior alone will rescue the outcome.",
+      "source_quote": "The PD highlights a crucial insight: sometimes a strategic interaction is governed by \"irredeemably lousy rules\".",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Before assuming betrayal dynamics, check the payoff structure: verify that the situation is actually a prisoner's dilemma rather than a coordination problem solvable through process design."
+    },
+    {
+      "text": "People can impose betrayal logic on a coordination problem that is actually better explained by process repair or shared identity.",
+      "source_quote": "Anti-Pattern: Treating Every Coordination Problem as Betrayal.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Explore mechanism design: ask whether changing the rules, communication channels, or enforcement structures could shift the game to one where cooperation is the dominant strategy."
+    },
+    {
+      "text": "A competitive frame can become self-fulfilling when ambiguous moves are read as proof that the other side will defect.",
+      "source_quote": "we might misinterpret a competitor's action ... which reinforces our own doubts and pressures us toward the herd action (betrayal)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test ambiguous moves charitably before defaulting to defection: when the other side's intent is unclear, design a low-cost probe that reveals intent without triggering escalation."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What frame other than a competitive one could govern this interaction?",
+      "source_quote": "What frame other than a competitive one could govern this interaction?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe to accept the competitive outcome as unavoidable?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What trust, enforcement, or repeat-interaction mechanism would have to exist for cooperation to survive?",
+      "source_quote": "Works when trust, enforcement, or repeat interaction are the real design variables.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Make the payoff structure explicit before blaming individual actors for a bad collective outcome.",
+      "source_quote": "The model helps separate bad actors from bad rules by making the payoff structure explicit.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Simulate likely countermoves so the team reasons from incentives instead of from one-sided intention stories.",
+      "source_quote": "Teams may be broken into an \"attack team\" and a \"defense team,\" playing out a series of moves and countermoves.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Change the game when possible by improving cheating detection, punishment, or collaboration conditions instead of optimizing inside a broken rule set.",
+      "source_quote": "The most critical actionable step derived from the PD is the effort to change the game itself.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on bad rules, competitive framing, and mechanism design for cooperation.",
+    "donor_drops": [
+      "Did not preserve donor game-theory generalities beyond the raw source's clearer payoff-structure, frame, and trust-design material."
+    ],
+    "open_questions": [
+      "The third failure mode compresses the source's cascade and doubt-amplification material so it stays reusable beyond classic rival-firm cases."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally section is strong on systems-thinking and logic-tree style decomposition for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonist section contains cascade and principal-agent pressure, but only current-vocabulary targets should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension block against active-listening, empathy, and confirmation-bias."
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "false-precision-avoidance",
+  "source_file": "False_Precision_Avoidance_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory gives false-precision-avoidance the core constraint that makes unnecessary detail actively harmful rather than merely inconvenient.",
+      "source_quote": "FPA directly supports this model by acknowledging that working memory is limited.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification helps false-precision-avoidance compress the landscape into a usable map without carrying every decorative branch forward.",
+      "source_quote": "acting like maps that reveal key information while ignoring nonessential details",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "prioritization",
+      "rationale_text": "Prioritization keeps false-precision-avoidance focused on the detail that changes action while dropping precision that does not change the decision.",
+      "source_quote": "The model is essential during the problem disaggregation and prioritization phase of problem-solving.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring makes false-precision-avoidance necessary because one precise number can dominate judgment long after it stops being the right guide.",
+      "source_quote": "This cognitive bias occurs when people focus too much on a single, specific piece of information (the anchor).",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias turns detail into camouflage by collecting exhaustive support for the preferred conclusion instead of clarifying what actually matters.",
+      "source_quote": "Confirmation bias drives people to process information to get the conclusion they want.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "base-rates",
+      "tension_text": "False-precision-avoidance conflicts with base-rates when rounding away precision discards meaningful base-rate variation that would change the decision.",
+      "source_quote": "false-precision-avoidance conflicts with base-rates (base rates) when rounding away precision discards meaningful base-rate variation that would change the decision.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "bayesian",
+      "tension_text": "False-precision-avoidance conflicts with bayesian when avoidance of precise probability estimates prevents the quantitative prior-updating that Bayesian reasoning requires.",
+      "source_quote": "false-precision-avoidance conflicts with bayesian (Bayesian reasoning) when avoidance of precise probability estimates prevents the quantitative prior-updating that Bayesian reasoning requires.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strong on bounded approximation, cognitive-load relief, and anti-false-certainty pressure, so the file preserves that compact surface without forcing extra tensions.",
+    "donor_drops": [
+      "Did not preserve donor simplification relations beyond the strongest current-vocabulary links around cognitive load, prioritization, and anti-anchor pressure."
+    ],
+    "open_questions": [
+      "Decision-trees pressure is source-real in the broader problem-solving framing, but the retained set favors cleaner direct current-vocabulary wording."
+    ]
+  }
+}

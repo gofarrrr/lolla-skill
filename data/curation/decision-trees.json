@@ -1,0 +1,72 @@
+{
+  "model_id": "decision-trees",
+  "source_file": "Decision_Trees_rag.md",
+  "select_when": [
+    "A decision has explicit branches, trigger conditions, or kill criteria that can be made visible before resources are committed.",
+    "The branching logic has to be explicit before commitment because the wrong branch would create irreversible downside once a threshold, approval, or counterparty response lands.",
+    "Thresholds, approvals, or countermoves can be expressed clearly enough that the tree sharpens action rather than merely documenting options.",
+    "The next action depends on naming the branch that activates if one condition fails."
+  ],
+  "avoid_when": [
+    "Payoffs or probabilities are so unstable that a neat tree would create false precision and confidence rather than real guidance.",
+    "Strong feedback loops, path dependence, or interdependencies make the branches less independent than the diagram implies."
+  ],
+  "input_type": "branching decision structure",
+  "output_type": "branch-and-trigger map",
+  "reasoning_types": [
+    "deductive",
+    "counterfactual"
+  ],
+  "curation_notes": {
+    "summary": "Centered the model on explicit branch logic and trigger visibility rather than donor examples that mixed in unrelated analysis tools.",
+    "donor_drops": [
+      "Dropped donor examples framed around generalized problem decomposition because they widened the model beyond explicit branch logic.",
+      "Dropped donor compound-contract suggestions because higher-order fields remain out in batch 2."
+    ],
+    "open_questions": [
+      "The output label is reviewed normalization over a raw model that can function as both analysis scaffold and decision protocol."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file gives direct branch and trigger conditions; donor drafts were only used as supporting context before the final list was narrowed to branch-structured cases."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are explicitly supported by raw danger lines."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The model clearly operates on branching decisions, but the machine-readable type label is a reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw file implies making branches, triggers, and fallback paths visible; the output type compresses that function into a reusable operational label."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Decision trees are strongly deductive and counterfactual in structure, but the exact taxonomy labels remain reviewed normalization."
+    }
+  }
+}

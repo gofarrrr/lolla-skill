@@ -1,0 +1,78 @@
+{
+  "model_id": "decision-trees",
+  "source_file": "Decision_Trees_rag.md",
+  "allies": [
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition is the larger problem-structuring family that decision trees use to produce useful cuts through complexity.",
+      "source_quote": "Decision Trees are part of the larger family of Logic Trees ... one may try several \"cuts\" at the tree.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "game-theory-payoffs",
+      "rationale_text": "Game-theory-payoffs uses the branch structure of decision trees to make adversary choices and countermoves legible.",
+      "source_quote": "Decision Trees provide the necessary logical structure for applying Game Theory Thinking in competitive settings, laying out choices and potential responses from adversaries.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "chain-of-thought",
+      "rationale_text": "Chain of Thought aligns with decision trees by breaking a complex task into smaller sequential reasoning steps.",
+      "source_quote": "the logical structure of the Decision Tree aligns perfectly with Chain of Thought prompts, where a complex task is broken down into a series of smaller, manageable steps",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "system-1",
+      "rationale_text": "System-1 directly opposes decision-tree analysis — decision trees require slow, analytical System 2 processing, while System 1's hot cognition (fast, emotional, intuitive) produces the shortcuts and pattern-jumps that bypass the branching logic and probabilistic rigor a decision tree demands.",
+      "source_quote": "Decision Trees are the epitome of slow, analytical System 2 thinking. They stand in opposition to the fast, emotional, and intuitive System 1.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge undermines decision trees when the analyst presents the abstract synthesized conclusion instead of the concrete branching details — audiences receive the punch line without the decision structure that makes it actionable.",
+      "source_quote": "Experts who use Decision Trees and other complex tools to arrive at an answer often struggle with the Curse of Knowledge. They present the abstract, synthesized conclusion rather than the concrete details (stories/examples) that make the concept sticky and actionable for the audience.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "chaos-theory",
+      "tension_text": "Decision-trees conflicts with chaos-theory when structured branch logic meets domains dominated by non-linearity and unpredictability.",
+      "source_quote": "decision-trees conflicts with chaos-theory (chaos theory) when chaos Theory emphasizes unpredictability and non-linearity, contrasting with the structured and deterministic nature of Decision Trees.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "cognitive-biases",
+      "tension_text": "Decision-trees conflicts with cognitive-biases when a rational branch structure is distorted by biased probability and outcome assignment.",
+      "source_quote": "decision-trees conflicts with cognitive-biases (cognitive biases) when cognitive Biases can distort decision-making processes, challenging the rational and systematic approach of Decision Trees.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Decision-trees conflicts with confirmation-bias when branch probabilities are tuned to validate the analyst's preferred path.",
+      "source_quote": "decision-trees conflicts with confirmation-bias (confirmation bias) when branch probabilities and outcomes are set to confirm the analyst's preferred path rather than derived from independent evidence.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Decision Trees is strong on allies and explicit tensions, but the raw antagonist prose does not map cleanly to current canonical ids beyond the tension surface.",
+    "donor_drops": [
+      "Did not preserve donor topology or compound suggestions because this pilot is first-order only."
+    ],
+    "open_questions": [
+      "System-1 and curse-of-knowledge wired as antagonists (Task 4.1 sweep)."
+    ]
+  }
+}

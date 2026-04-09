@@ -1,0 +1,71 @@
+{
+  "model_id": "status-quo-bias",
+  "source_file": "Status_Quo_Bias_rag.md",
+  "select_when": [
+    "An incumbent option may be surviving because changing feels costly rather than because it is actually superior.",
+    "Defaults, routines, or prior commitments are shaping judgment quietly and the team needs to separate real switching costs from inertia.",
+    "A proposal to stay the course sounds prudent but may be disguising loss aversion, sunk costs, or unchallenged precedent."
+  ],
+  "avoid_when": [
+    "Every legacy choice is being treated as bad simply because it is old, rather than asking whether the current default still outperforms the alternatives.",
+    "The desire to break inertia is turning into novelty-seeking change without enough baseline evidence that the new option is actually better."
+  ],
+  "input_type": "default-preserving decision",
+  "output_type": "default-challenge test",
+  "reasoning_types": [
+    "diagnostic",
+    "counterfactual"
+  ],
+  "curation_notes": {
+    "summary": "Normalized the model around default testing and inertia versus real switching cost, not donor lists of generic assumption-checking cases.",
+    "donor_drops": [
+      "Dropped donor broad strategy and AI-governance examples because they widened the model beyond default-preservation structure.",
+      "Dropped donor higher-order relation fields to keep the contract frozen."
+    ],
+    "open_questions": [
+      "The reasoning-types field is a reviewed taxonomy choice over a source that is more explicit about bias structure than about reasoning labels."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "high",
+      "note": "The raw file explicitly states the incumbent-versus-inertia activation logic; donor drafts were narrowed into those same structural triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit raw danger lines."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The model clearly applies to decisions that preserve an incumbent default, but the typed label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model tests whether the default deserves to survive; the output label compresses that review function into an operational artifact type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is diagnostic and counterfactual in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

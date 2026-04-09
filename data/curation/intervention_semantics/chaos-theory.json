@@ -1,0 +1,87 @@
+{
+  "model_id": "chaos-theory",
+  "source_file": "Chaos_Theory_rag.md",
+  "failure_modes": [
+    {
+      "text": "Linear forecasting creates false confidence when the system is actually sensitive, nonlinear, and hard to predict over long horizons.",
+      "source_quote": "The literal term is most closely associated with sensitive dependence on initial conditions.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Replace linear forecasts with scenario ranges; in sensitive nonlinear systems, robustness and adaptive monitoring matter more than point predictions."
+    },
+    {
+      "text": "Teams waste effort chasing exact prediction in environments where robustness and adaptive monitoring matter more.",
+      "source_quote": "Complex outcomes cannot be fully predicted from their component parts regardless of analytical effort.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Shift effort from prediction to resilience: design for adaptation, bounded exposure, and fast monitoring rather than chasing exact forecasts."
+    },
+    {
+      "text": "Chaos language becomes fatalism when people use it to imply that no understanding or intervention is possible.",
+      "source_quote": "The model is misapplied when it becomes a reason to avoid structured analysis or action.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require a concrete intervention or monitoring action from any chaos-theory framing; fatalism that implies no understanding is possible is not analysis."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Where are we confusing forecast precision with actual control over a nonlinear environment?",
+      "source_quote": "Sensitive dependence on initial conditions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which signals or thresholds should we monitor continuously because long-range certainty is unrealistic here?",
+      "source_quote": "The purpose is to recognize the necessity of anticipating second- and third-order consequences in complex systems.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What simple robustness move still helps even if exact prediction fails?",
+      "source_quote": "The true utility ... lies in highlighting profound interrelationships within complex systems.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Prefer robustness, monitoring, and reversibility to precise long-range forecasts in chaotic conditions.",
+      "source_quote": "The model highlights sensitive dependence on initial conditions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat exact prediction claims with suspicion when the system is highly nonlinear and path dependent.",
+      "source_quote": "Irreducibility ... complex outcomes cannot be fully predicted from their component parts.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Do not let chaos become an excuse for giving up on diagnosis or intervention quality.",
+      "source_quote": "The model is dangerous when it turns complexity into a reason for inaction.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks on nonlinear instability, robustness, and the limits of precise forecasting.",
+    "donor_drops": [
+      "Did not preserve broader philosophy-of-complexity sprawl beyond the clearest operational uses."
+    ],
+    "open_questions": [
+      "The source overlaps with butterfly-effect and systems-thinking, but the Wave 2 surface stays on prediction limits and robustness."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is strongest alongside systems-thinking and butterfly-effect style cascade reasoning."
+    ],
+    "antagonists": [
+      "The model pushes against false-precision and overly linear planning instincts."
+    ],
+    "structured_tensions": [
+      "The main tensions concern overconfidence in prediction and misuse of complexity as fatalism."
+    ]
+  }
+}

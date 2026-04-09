@@ -1,0 +1,77 @@
+{
+  "model_id": "network-effects",
+  "source_file": "Network_Effects_rag.md",
+  "allies": [
+    {
+      "target_model_id": "critical-mass",
+      "rationale_text": "Critical-mass gives network-effects its threshold logic by marking the point where participation becomes self-sustaining.",
+      "source_quote": "The core definition and purpose of Critical Mass is the idea that a system, concept, or product must reach a certain threshold or minimum density before it can become viable or self-sustaining.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feedback-loops",
+      "rationale_text": "Feedback-loops explain how participation can reinforce future participation once the system starts communicating success back into itself.",
+      "source_quote": "The process itself creates feedback loops that communicate success or failure and allow for continuous improvement.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps network-effects focus on interrelationships and adoption structure rather than isolated user counts.",
+      "source_quote": "Network Effects are fundamentally based on understanding how parts in a system interact, leading to smarter planning and better decisions.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "pareto-principle",
+      "rationale_text": "Pareto-principle supports network-effects by concentrating effort on the small share of users or features most likely to push the system past the threshold.",
+      "source_quote": "Pareto Principle (80/20 Rule)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory conflicts with network-effects when a complex product explanation overloads the audience before adoption can spread.",
+      "source_quote": "When explaining a complex network or product, overloading the audience's working memory with too many features or abstract details hinders the assimilation of new information.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias distorts network-effects by mistaking local traction for true critical mass and ignoring disconfirming evidence about viability.",
+      "source_quote": "Mistaking Local Success for Critical Mass",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "base-rates",
+      "tension_text": "Network-effects conflicts with base-rates when projected network growth extrapolates without accounting for historical failure rates of platforms that never reached critical mass.",
+      "source_quote": "network-effects conflicts with base-rates (base rates) when projected network growth extrapolates without accounting for historical failure rates of platforms that never reached critical mass.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "margin-of-safety",
+      "tension_text": "Network-effects conflicts with margin-of-safety when confidence in network-effect moats reduces investment in redundancy and fallback strategies.",
+      "source_quote": "network-effects conflicts with margin-of-safety (margin of safety) when confidence in network-effect moats reduces investment in redundancy and fallback strategies.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The retained relation surface stays conservative around thresholds, feedback, system structure, and anti-false-critical-mass discipline.",
+    "donor_drops": [
+      "Did not preserve broader social-influence expansion because the current vocabulary already supports a tighter threshold-and-feedback surface."
+    ],
+    "open_questions": [
+      "The source is stronger on allies and anti-patterns than on explicit current-vocabulary tension phrasing, so structured tensions stay omitted."
+    ]
+  }
+}

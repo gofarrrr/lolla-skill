@@ -1,0 +1,75 @@
+{
+  "model_id": "adaptation",
+  "source_file": "adaptation_rag.md",
+  "allies": [
+    {
+      "target_model_id": "feedback-loops",
+      "rationale_text": "Feedback-loops gives adaptation the signal structure it needs to revise behavior under changing environmental conditions.",
+      "source_quote": "understanding feedback loops allows for smarter planning and decision-making",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps adaptation diagnose the machine-level causes that must change rather than only reacting to symptoms.",
+      "source_quote": "Adaptation operates within systems",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias blocks adaptation when new signals are interpreted to defend the current path instead of changing it.",
+      "source_quote": "The innate drive to seek out and interpret information that affirms existing beliefs prevents genuine adaptation.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Adaptation conflicts with commitment-bias when prior commitments suppress necessary course-correction under new evidence.",
+      "source_quote": "adaptation vs commitment-bias: prior commitments suppress necessary course-correction under new evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "optimization-theory",
+      "tension_text": "Adaptation conflicts with optimization-theory when local objective maximization reduces the experimentation needed for system learning.",
+      "source_quote": "adaptation vs optimization-theory: local objective maximization reduces experimentation needed for system learning.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Adaptation conflicts with confirmation-bias when feedback is interpreted to confirm the current path rather than trigger revision.",
+      "source_quote": "adaptation vs confirmation-bias: feedback is interpreted to confirm the current adaptation path rather than trigger genuine revision.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "donor_drops": [
+      "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
+    ],
+    "open_questions": [
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "Wave 4 candidacy remains observational only and is noted only in batch artifacts."
+    ],
+    "antagonists": [
+      "No multihop or higher-order semantics were introduced in these Wave 3 files."
+    ],
+    "structured_tensions": [
+      "Explicit tensions were preserved only where the raw source clearly earned a current-vocabulary target."
+    ]
+  }
+}

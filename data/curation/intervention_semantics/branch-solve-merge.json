@@ -1,0 +1,87 @@
+{
+  "model_id": "branch-solve-merge",
+  "source_file": "Branch_Solve_Merge_rag.md",
+  "failure_modes": [
+    {
+      "text": "Branching fails when teams decompose aggressively but never define how the work will be recombined into one answer.",
+      "source_quote": "Danger when teams branch aggressively but never define the merge rule",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Define the merge protocol before branching: specify the format, criteria, and owner responsible for recombination into a single answer."
+    },
+    {
+      "text": "The model breaks when familiar frameworks are applied mechanically to a genuinely novel problem.",
+      "source_quote": "Maslow's Hammer (The Brittle Branch)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test the decomposition against a genuinely novel aspect of the problem; if the branch structure was borrowed from a past project without adaptation, challenge it."
+    },
+    {
+      "text": "Merge quality collapses when experts communicate in abstraction and peripheral data instead of distilling the core truth.",
+      "source_quote": "The Curse of Knowledge",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require each branch owner to distill their output to the core finding before merge; abstraction and peripheral detail kill integration quality."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the merge rule before we create more branches?",
+      "source_quote": "never define the merge rule",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are these branches MECE enough that they expose the full problem without multiplying overlap?",
+      "source_quote": "MECE Decomposition",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would show that we are forcing a familiar branch frame onto a novel problem?",
+      "source_quote": "apply familiar frameworks routinely and unquestioningly",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Decompose the problem into MECE branches before solving.",
+      "source_quote": "MECE Decomposition",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Solve each branch rigorously, but keep the future merge criterion visible while the work is still separable.",
+      "source_quote": "the Merge phase defines what emerges from that interaction",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Merge by explaining the answer plainly enough that the audience can follow the reasoning, not just admire the analysis.",
+      "source_quote": "write down an explanation of the concept in plain English",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on decomposition, merge discipline, and anti-brittle-framework process design.",
+    "donor_drops": [
+      "Did not preserve donor consulting-process sprawl because the raw source is stronger on branch discipline, merge coherence, and anti-curse-of-knowledge pressure."
+    ],
+    "open_questions": [
+      "The third heuristic compresses the merge and communication sections so the intervention stays operational rather than presentation-oriented."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on systems-thinking, decomposition, simplification, and feynman-technique as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on commitment-bias, anchoring, and curse-of-knowledge style distortion, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source has an explicit tension block with commitment-bias, which cleanly maps into the current target-id surface."
+    ]
+  }
+}

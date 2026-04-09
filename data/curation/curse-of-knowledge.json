@@ -1,0 +1,55 @@
+{
+  "model_id": "curse-of-knowledge",
+  "source_file": "Curse_of_Knowledge_rag.md",
+  "select_when": [
+    "An expert is communicating with, teaching, or designing for an audience with significantly less domain exposure.",
+    "Onboarding, training, or documentation is being produced by subject-matter experts for novice users.",
+    "A product, interface, or process is being designed by specialists who cannot reliably simulate the experience of a first-time user.",
+    "Communication is producing confusion or mis-comprehension that the communicator cannot explain — they cannot see what is unclear.",
+    "Feedback from stakeholders or customers repeatedly surfaces misaligned understanding despite expert explanations."
+  ],
+  "avoid_when": [
+    "Communicating with peers who share the same knowledge base — in that context the curse does not operate and calibrating down wastes time.",
+    "The model is being used to excuse novice confusion as inevitably the communicator's fault — sometimes the content is genuinely difficult and requires study, not simplified communication."
+  ],
+  "input_type": "expert knowledge to be communicated or applied",
+  "output_type": "communication gap identification and novice-calibrated revision",
+  "reasoning_types": [
+    "metacognitive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Curse-of-knowledge curated as a communication gap detection model — activates when the gap between expert and novice knowledge is creating invisible failures. The model surfaces what the expert cannot see.",
+    "donor_drops": [],
+    "open_questions": [
+      "The overlap with expertise-reversal-effect is real but manageable: ERE is about instructional method backfire for experts; CoK is about expert communication failure for novices. Both are needed in the same instructional design contexts."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Source explicitly identifies teaching, product design, management communication, and training as the primary curse-of-knowledge failure contexts."
+    },
+    "avoid_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Avoid_when conditions are reviewed normalizations derived from the source's implied scope — the curse requires an asymmetric knowledge gap to operate."
+    },
+    "input_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Compact label for the expert's internalized knowledge that needs to be externalized and calibrated."
+    },
+    "output_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "The model's operational output is identifying the invisible gap and prompting calibrated revision — not a content output per se."
+    },
+    "reasoning_types": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Metacognitive — reasoning about one's own knowledge state and its invisibility; diagnostic — identifying where the communication is failing and why."
+    }
+  }
+}

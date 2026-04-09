@@ -1,0 +1,36 @@
+{
+  "model_id": "synthesis-and-integration",
+  "source_file": "Synthesis_And_Integration_rag.md",
+  "select_when": [
+    "The facts exist but no governing thought exists yet.",
+    "Analysis is largely finished but prioritization and connection are not.",
+    "The audience needs linked insight rather than an evidence dump.",
+    "The real bottleneck is deciding what matters and what deserves to drive action."
+  ],
+  "avoid_when": [
+    "Synthesis is being faked as compression before the underlying analysis is strong enough to support it.",
+    "A simple story is being forced by dropping details that still carry the causal spine."
+  ],
+  "input_type": "unsynthesized analysis set",
+  "output_type": "governing insight",
+  "reasoning_types": [
+    "systems",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Focused on governing-thought formation and action-driving integration rather than on generic summary work.",
+    "donor_drops": [
+      "Did not preserve donor communication sprawl because the raw source is already strongest on turning analysis into linked conclusions."
+    ],
+    "open_questions": [
+      "The source spans strategy and AI transformation layers, but the operational file stays on synthesis as a decision-enabling move."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on missing governing thought, post-analysis prioritization, and linked insight."},
+    "avoid_when": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The anti-fake-synthesis warnings are reviewed normalization of the source's antagonism to evidence dumps and overcompression."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The compact label summarizes the raw state where many facts exist without unifying thought."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label compresses synthesis into a single governing insight artifact."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model integrates across systems and requires reflective prioritization."}
+  }
+}

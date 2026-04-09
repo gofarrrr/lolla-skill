@@ -1,0 +1,87 @@
+{
+  "model_id": "usability-heuristics",
+  "source_file": "Usability_Heuristics_rag.md",
+  "failure_modes": [
+    {
+      "text": "A shortcut can harden into doctrine and keep the team from noticing that the task, audience, or system has changed.",
+      "source_quote": "a helpful shortcut quietly hardens into doctrine",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit heuristic fit periodically: check whether the shortcut still matches the current task, audience, and system context — retire it when the environment has shifted."
+    },
+    {
+      "text": "Maslow's-hammer style frame lock can make a familiar heuristic look correct even when the current problem is genuinely novel.",
+      "source_quote": "Maslow's Hammer (Law of the Instrument)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test against a novel frame: when a familiar heuristic dominates, force a pass through a structurally different approach to detect what the shortcut is hiding."
+    },
+    {
+      "text": "Premature simplification can hide important risk, nuance, or system dynamics that the shortcut did not capture.",
+      "source_quote": "Premature Simplification",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Preserve the nuance the heuristic strips: when simplifying for usability, flag the risks, edge cases, or system dynamics that the shortcut does not capture."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Have we identified the implicit assumptions embedded in the model we are using, and do those assumptions hold true in this unique context?",
+      "source_quote": "Have we identified the implicit assumptions embedded in the model we are using, and do those assumptions hold true in this unique context?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Can I explain this solution in a single sentence to a five-year-old? If not, where exactly does my knowledge break down?",
+      "source_quote": "Can I explain this solution in a single sentence to a five-year-old? If not, where exactly does my knowledge break down?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough, and have we applied sufficient weight to outcomes that are one or two standard deviations from the mean?",
+      "source_quote": "Is the worst case bad enough, and have we applied sufficient weight to outcomes that are one or two standard deviations from the mean?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Start with simple summary heuristics to see the size and shape of the problem before building heavier analysis.",
+      "source_quote": "start all analytic work with simple summary statistics and heuristics",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use analogies or familiar schemas as mental buckets only when they increase comprehension without hiding key differences.",
+      "source_quote": "It's like the Uber of X",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Apply a rule-of-three or similarly compact structure when the real need is memory, clarity, and action rather than exhaustive completeness.",
+      "source_quote": "The Rule of Three",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready because it already distinguishes practical shortcut use from doctrinal misuse and offers explicit pre-mortem questions.",
+    "donor_drops": [
+      "Did not preserve broader generic heuristic catalog language because the raw file is strongest on shortcut hygiene and simple-first reconnaissance."
+    ],
+    "open_questions": [
+      "The third heuristic compresses several communication examples into one practical structure-oriented intervention."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The source is strong on cognitive-load-theory, communication frameworks, and hypothesis-guided problem solving."
+    ],
+    "antagonists": [
+      "The raw antagonists point clearly toward critical-thinking, first-principles-thinking, and slow analytic rigor."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block was preserved from the raw file."
+    ]
+  }
+}

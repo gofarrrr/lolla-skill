@@ -1,0 +1,87 @@
+{
+  "model_id": "redundancy",
+  "source_file": "Redundancy_rag.md",
+  "failure_modes": [
+    {
+      "text": "Repeated content can increase cognitive load when the duplication adds no real protection or clarification.",
+      "source_quote": "The Redundancy Effect",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit each redundant element for marginal value: if duplication adds no new protection, clarity, or resilience, remove it to reduce cognitive load."
+    },
+    {
+      "text": "Teams can keep accumulating backup analyses or perspectives until the work stalls into analysis paralysis.",
+      "source_quote": "An over-reliance on seeking redundant analyses or perspectives can lead to getting mired in analysis paralysis",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a backup threshold: define how many alternative analyses or perspectives are needed, and stop accumulating once the diminishing-returns point is reached."
+    },
+    {
+      "text": "A system can still be fragile if planners assume a conjunctive chain will work without enough redundancy in risk assessment.",
+      "source_quote": "When planning, people overestimate the overall probability of success for complex conjunctive events",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check conjunctive chains for single points of failure: if the plan requires too many sequential successes, add redundancy at the weakest link rather than spreading it evenly."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What exact failure mode justifies this extra layer, copy, or backup path?",
+      "source_quote": "Danger When Duplication Is Added Without a Clear Failure Mode",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Would anything important be lost if this duplicate element were removed?",
+      "source_quote": "If this was cut, would anything be lost?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we adding redundancy that changes survival or only adding drag that feels safer?",
+      "source_quote": "Best when repetition or duplication increases robustness more than it increases drag",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Add redundancy only when a named failure mode makes the backup path materially valuable.",
+      "source_quote": "single-point failure is unacceptable",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use repeated review or rehearsal to strengthen retention, not to create framework soup.",
+      "source_quote": "reviewing information multiple times strengthens neural connections",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Trim duplicate content aggressively when it increases cognitive load more than resilience.",
+      "source_quote": "presenting information that is simultaneously available in another format is harmful",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on strategic duplication that changes resilience or retention rather than on redundancy as generic extra effort.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

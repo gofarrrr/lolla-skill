@@ -1,0 +1,89 @@
+{
+  "model_id": "hindsight-bias",
+  "source_file": "Hindsight_Bias_rag.md",
+  "allies": [
+    {
+      "target_model_id": "narratives",
+      "rationale_text": "Hindsight bias is powered by the brain's narrative-construction machinery — once an outcome is known, the causal story to that outcome is assembled retroactively and experienced as the real pre-existing story, making outcomes feel inevitable through imposed causal structure.",
+      "source_quote": "Hindsight bias is powered by the brain's narrative-construction machinery: once an outcome is known, the causal story is assembled retroactively and experienced as the real pre-existing story.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "After outcomes are known, confirmation bias selectively recalls and weights pre-event signals consistent with the outcome while signals pointing elsewhere fade — hindsight bias provides the retrospective direction and confirmation bias selectively retrieves evidence to support it.",
+      "source_quote": "Confirmation bias selectively recalls pre-event signals consistent with the known outcome while signals pointing elsewhere fade.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "optimism-bias-and-planning-fallacy",
+      "rationale_text": "Optimism bias and hindsight bias jointly distort temporal reasoning — optimism over-optimistically projects futures while hindsight over-deterministically reconstructs pasts, producing a decision environment where the future feels more controllable and the past more predictable than either actually was.",
+      "source_quote": "Both optimism bias and hindsight bias distort temporal reasoning: optimism bias projects futures over-optimistically; hindsight bias reconstructs pasts over-deterministically.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "probabilistic-thinking",
+      "rationale_text": "Probabilistic thinking requires retaining the uncertainty that existed at decision time — the distribution of possible outcomes, the genuine ambiguity of the signals — which hindsight bias collapses onto the realized outcome.",
+      "source_quote": "Probabilistic thinking requires retaining the uncertainty that existed at decision time; hindsight bias collapses that distribution onto the realized outcome.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "premortem",
+      "rationale_text": "The pre-mortem is a prospective technique that generates exactly the kind of pre-event uncertainty documentation that makes hindsight bias difficult to apply — by inhabiting possible futures before they occur, it preserves the genuine uncertainty that hindsight bias would otherwise collapse.",
+      "source_quote": "The pre-mortem preserves the genuine uncertainty that hindsight bias would otherwise collapse by documenting prospective failure scenarios before outcomes are known.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base rates provide the objective probabilistic scaffolding that hindsight bias erodes — what was the prior probability of this outcome based on the reference class of similar events provides an anchor against which hindsight-contaminated assessments can be measured.",
+      "source_quote": "Base rates provide the objective probabilistic scaffolding that hindsight bias erodes.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "probabilistic-thinking",
+      "tension_text": "Hindsight-bias conflicts with probabilistic-thinking when the known outcome collapses the decision-time probability distribution into retrospective certainty, corrupting calibration and making good decisions under uncertainty look like bad decisions.",
+      "source_quote": "hindsight-bias vs probabilistic-thinking: hindsight-bias conflicts with probabilistic-thinking (probabilistic thinking) when the known outcome collapses the decision-time probability distribution into retrospective certainty.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "premortem",
+      "tension_text": "Hindsight-bias conflicts with pre-mortem when post-event retrospective review replaces the pre-event prospective reasoning that the pre-mortem technique is designed to document and protect.",
+      "source_quote": "hindsight-bias vs pre-mortem: hindsight-bias conflicts with pre-mortem (pre-mortem) when post-event retrospective review replaces the pre-event prospective reasoning.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "base-rates",
+      "tension_text": "Hindsight-bias conflicts with base-rates when retrospective outcome knowledge makes a previously uncertain event feel inevitable, suppressing the accurate prior probability that base-rate reasoning would have assigned.",
+      "source_quote": "hindsight-bias vs base-rates: hindsight-bias conflicts with base-rates (base rates) when retrospective outcome knowledge makes a previously uncertain event feel inevitable.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "scientific-method-evidence-testing",
+      "tension_text": "Hindsight-bias conflicts with scientific-method-evidence-testing when post-hoc outcome knowledge contaminates hypothesis assessment, making results that were not predicted appear to have been anticipated all along.",
+      "source_quote": "hindsight-bias vs scientific-method-evidence-testing: hindsight-bias conflicts with scientific-method-evidence-testing (scientific method evidence testing) when post-hoc outcome knowledge contaminates hypothesis assessment.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Hindsight bias Wave 3 curated from new source markdown. Key allies: narratives (retroactive story construction), confirmation-bias (selective recall), optimism-bias-and-planning-fallacy (paired temporal distortion). Key antagonists: probabilistic-thinking, premortem, base-rates. Four structured tensions.",
+    "donor_drops": [],
+    "open_questions": []
+  }
+}

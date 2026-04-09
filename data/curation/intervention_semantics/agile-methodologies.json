@@ -1,0 +1,87 @@
+{
+  "model_id": "agile-methodologies",
+  "source_file": "Agile_Methodologies_rag.md",
+  "failure_modes": [
+    {
+      "text": "Analysis paralysis can delay action until the learning loop dies under bureaucracy and studies.",
+      "source_quote": "Analysis Paralysis (The Hamlet Tendency)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Force a one-day answer: create a coherent summary and hypothesis at any point, then gather only enough data to test it."
+    },
+    {
+      "text": "Premature convergence can waste effort by boiling the ocean instead of gathering only enough facts to test the current hypothesis.",
+      "source_quote": "Don't boil the ocean",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Use the Pareto principle to identify the 20% of facts that drive 80% of the decision, and stop gathering beyond that threshold."
+    },
+    {
+      "text": "Agile theater can keep rituals running even while learning, accountability, and decision rights quietly disappear.",
+      "source_quote": "Danger when agile rituals keep running but backlog churn replaces learning, accountability, or explicit decision rights.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Pause between thought and action: in each retrospective, check whether the ritual produced a decision change, not just discussion."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the one-day answer?",
+      "source_quote": "What's the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is this the most important thing you could be doing right now?",
+      "source_quote": "Is it the most important thing you could be doing right now?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Run a standing one-day-answer synthesis so the team always knows its current hypothesis and next test.",
+      "source_quote": "What’s the one-day answer?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Gather only enough facts to prove or disprove the current hypothesis instead of expanding discovery indefinitely.",
+      "source_quote": "gather only enough facts to prove or disprove a hypothesis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep the goal-identify-diagnose-design-do loop sequential and continuous so action stays tied to diagnosis.",
+      "source_quote": "This loop must be performed sequentially and continuously for success.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The chunk set stays close to the raw source's strongest intervention surface: one-day-answer discipline, anti-ocean-boiling focus, and explicit loop sequencing.",
+    "donor_drops": [
+      "Did not preserve generic scrum or standup language because the raw file is much stronger on hypothesis and learning-loop discipline."
+    ],
+    "open_questions": [
+      "The third heuristic compresses Dalio-style sequencing into an agile operating loop rather than preserving the original five-step phrasing verbatim."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on design thinking, systems thinking, and hypothesis-driven problem solving."
+    ],
+    "antagonists": [
+      "The raw antagonists section is rich on old-plan rigidity, hammer effects, and bureaucratic delay."
+    ],
+    "structured_tensions": [
+      "The source explicitly names tensions against optimization-theory, premortem, and confirmation-bias."
+    ]
+  }
+}

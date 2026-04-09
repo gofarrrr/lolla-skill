@@ -1,0 +1,64 @@
+{
+  "model_id": "agile-methodologies",
+  "source_file": "Agile_Methodologies_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps agile-methodologies see interdependencies and feedback loops instead of treating sprint activity as isolated local work.",
+      "source_quote": "Agile’s need for continuous adaptation aligns directly with Systems Thinking.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "experimentation",
+      "rationale_text": "Experimentation gives agile-methodologies the test-everything discipline needed to turn iteration into real learning instead of opinion recycling.",
+      "source_quote": "testing every single possibility and comparing outcomes",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias turns agile-methodologies into ritualized hypothesis protection by using sprints to confirm a favored conclusion.",
+      "source_quote": "This disciplined approach minimizes the risk of confirmation bias.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "optimization-theory",
+      "tension_text": "Agile-methodologies conflicts with optimization-theory when sprint-local velocity targets degrade end-to-end system performance.",
+      "source_quote": "agile-methodologies vs optimization-theory: agile-methodologies conflicts with optimization-theory when sprint-local velocity targets degrade end-to-end system performance.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "premortem",
+      "tension_text": "Agile-methodologies conflicts with premortem when cadence pressure skips explicit failure-mode rehearsal before release commitments.",
+      "source_quote": "agile-methodologies vs premortem: agile-methodologies conflicts with premortem when cadence pressure skips explicit failure-mode rehearsal before release commitments.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Agile-methodologies conflicts with confirmation-bias when hypothesis-driven sprints are used to confirm a mandated conclusion rather than genuinely test it.",
+      "source_quote": "agile-methodologies vs confirmation-bias: agile-methodologies conflicts with confirmation-bias when hypothesis-driven sprints are used to confirm a mandated conclusion rather than genuinely test it.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The relation file keeps the clearest current-vocabulary surface from the raw source: systems and testing allies plus the explicit tension block.",
+    "donor_drops": [
+      "Did not widen the ally set into broader design or collaboration neighbors because the current source-backed graph surface is already strong."
+    ],
+    "open_questions": [
+      "Design-thinking is a source-real ally, but experimentation and systems-thinking were the cleaner current-vocabulary anchors."
+    ]
+  }
+}

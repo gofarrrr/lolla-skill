@@ -1,0 +1,72 @@
+{
+  "model_id": "association",
+  "source_file": "Association_rag.md",
+  "select_when": [
+    "Disconnected signals only become meaningful once they are linked into a larger pattern or schema.",
+    "A new idea becomes usable only after it is connected to an existing structure the audience already understands.",
+    "The team needs instant context through analogy or conceptual linkage rather than a long detached explanation.",
+    "Understanding depends on relationship and fit between elements more than on any isolated fact."
+  ],
+  "avoid_when": [
+    "A catchy comparison is being treated as proof even though the underlying causal structure has not been checked.",
+    "The first helpful association has hardened into the only frame the team is willing to see."
+  ],
+  "input_type": "disconnected-signal and mapping problem",
+  "output_type": "pattern-linking frame",
+  "reasoning_types": [
+    "analogical",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused the model on linking ideas into usable patterns and giving new material instant context through structural association.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

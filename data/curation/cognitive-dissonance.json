@@ -1,0 +1,56 @@
+{
+  "model_id": "cognitive-dissonance",
+  "source_file": "Cognitive_Dissonance_rag.md",
+  "select_when": [
+    "A public, ego-identified commitment has been made and subsequent evidence challenges it — the risk is motivated belief revision rather than honest updating.",
+    "A team is deep into a failing initiative and contrary evidence is being reframed, minimized, or explained away rather than genuinely weighted.",
+    "A decision-maker's stated reasoning is suspiciously well-aligned with the conclusion that protects their prior commitment.",
+    "Evidence avoidance is occurring — feedback mechanisms, review channels, or external assessments are being deprioritized without explicit justification.",
+    "Post-hoc rationalization is being offered as the original reasoning — the justification was constructed after the commitment, not before."
+  ],
+  "avoid_when": [
+    "Genuine honest reconsideration has occurred and the position update is evidence-driven rather than dissonance-motivated — the model should not pathologize real belief updating.",
+    "The model is being used to dismiss any position-maintenance as rationalization without examining whether the evidence genuinely warrants the maintained position."
+  ],
+  "input_type": "committed position under contrary evidence",
+  "output_type": "motivated belief revision detection and escalation warning",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Cognitive dissonance curated as a commitment-defense detection model — activates when the psychological machinery for dissonance reduction is distorting evidence processing rather than genuine belief updating occurring.",
+    "donor_drops": [],
+    "open_questions": [
+      "The boundary between legitimate position maintenance and dissonance-motivated rationalization requires explicit evidence quality assessment — the model flags the risk, not the verdict."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Source is explicit about public commitment, ego investment, and evidence avoidance as the primary dissonance activation contexts — select_when maps directly to Festinger's commitment-dissonance mechanism."
+    },
+    "avoid_when": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Avoid_when conditions are reviewed normalizations to prevent the model from pathologizing all position consistency as rationalization."
+    },
+    "input_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Compact label for the committed-position-under-pressure situation that activates the dissonance mechanism."
+    },
+    "output_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Model flags the motivated-revision risk and escalation pattern — it does not resolve the question of whether the position should be maintained."
+    },
+    "reasoning_types": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Diagnostic — identifying dissonance reduction in action; metacognitive — examining the source of one's own certainty; causal — tracing the belief revision back to the commitment mechanism."
+    }
+  }
+}

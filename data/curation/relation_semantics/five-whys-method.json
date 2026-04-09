@@ -1,0 +1,70 @@
+{
+  "model_id": "five-whys-method",
+  "source_file": "Five_Whys_Method_rag.md",
+  "allies": [
+    {
+      "target_model_id": "root-cause-analysis",
+      "rationale_text": "Root-cause-analysis is the closest ally of five-whys-method because the why-chain is a practical route from proximate symptom to deeper mechanism.",
+      "source_quote": "The Five Whys is a core method for establishing the difference between proximate cause and root cause.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking benefits from five-whys-method because repeated questioning strips away assumptions until only the operative facts remain.",
+      "source_quote": "The Five Whys serves as the practical tool for executing the philosophical mandate of First Principles.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking keeps five-whys-method honest by showing when the problem has interaction effects or parallel causes that a single why-chain would miss.",
+      "source_quote": "The analyst may stop at five steps and miss critical variables or interconnected forces.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias distorts five-whys-method when the questioning is steered toward the story the investigator already wants to prove.",
+      "source_quote": "five-whys-method conflicts with confirmation-bias (confirmation bias) when confirmation Bias can hinder the Five Whys Method by leading to biased questioning and conclusions.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring corrupts five-whys-method when the first answer fixes the chain and all later questions orbit that initial suspect.",
+      "source_quote": "five-whys-method conflicts with anchoring (anchoring) when anchoring may conflict with the Five Whys Method by causing initial answers to overly influence subsequent questions.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Five-whys-method conflicts with confirmation-bias when biased questioning steers the chain toward a preferred conclusion.",
+      "source_quote": "five-whys-method vs confirmation-bias: five-whys-method conflicts with confirmation-bias (confirmation bias) when confirmation Bias can hinder the Five Whys Method by leading to biased questioning and conclusions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "anchoring",
+      "tension_text": "Five-whys-method conflicts with anchoring when the initial answer overly influences every later question in the chain.",
+      "source_quote": "five-whys-method vs anchoring: five-whys-method conflicts with anchoring (anchoring) when anchoring may conflict with the Five Whys Method by causing initial answers to overly influence subsequent questions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on root-cause and first-principles allies plus two explicit tensions against biased or anchored questioning.",
+    "donor_drops": [
+      "Did not preserve donor troubleshooting relation sprawl beyond the strongest diagnostic allies and explicit anti-bias tensions."
+    ],
+    "open_questions": [
+      "Critical-thinking and iteration are source-real neighbors, but root-cause-analysis, first-principles-thinking, and systems-thinking were the cleaner bounded anchors for this pass."
+    ]
+  }
+}

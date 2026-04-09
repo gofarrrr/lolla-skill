@@ -1,0 +1,87 @@
+{
+  "model_id": "einstellung-effect",
+  "source_file": "Einstellung_Effect_rag.md",
+  "failure_modes": [
+    {
+      "text": "A familiar solution path can block better alternatives because the first successful frame becomes hard to unsee.",
+      "source_quote": "An existing or previously learned solution prevents an individual from perceiving alternative solutions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Before committing to the first solution that works, explicitly search for at least one alternative; a familiar path can block better options."
+    },
+    {
+      "text": "Expertise can become a trap when people assume they have seen this problem before and stop testing other frames.",
+      "source_quote": "Experienced problem solvers often rely on mental models that have worked previously, but these frames can be misleading for genuinely novel problems.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge the assumption that this is a known problem: test whether the current case actually matches the conditions where the old solution succeeded."
+    },
+    {
+      "text": "Anti-fixation rhetoric becomes waste when teams reject all prior patterns instead of identifying which pattern is stale and why.",
+      "source_quote": "Danger when the team treats avoid fixation as a reason to reject all prior knowledge.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Distinguish stale patterns from useful ones: anti-fixation rhetoric that rejects all prior experience is as wasteful as blind repetition."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What if the reason this answer arrived so fast is that we are reusing a familiar template rather than seeing the actual structure?",
+      "source_quote": "When a person begins thinking about a problem in one direction, that fixation can blind them to the full range of alternatives.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What different frame, analogy, or outside-domain lens would expose a solution path we are currently missing?",
+      "source_quote": "Avoiding the Einstellung effect means testing multiple frameworks.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What part of our prior knowledge is genuinely useful here, and what part is just making the current case look familiar?",
+      "source_quote": "The danger is allowing one’s existing toolkit to dictate the solution.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Interrupt the dominant template before committing when the problem feels novel despite a suspiciously familiar answer.",
+      "source_quote": "The model is most useful when an experienced team keeps reaching for the same proven frame even though the situation feels structurally different.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Switch modes or step away briefly when focused effort is reinforcing the same stale path.",
+      "source_quote": "The path to overcoming the effect is to turn the focus away from the subject.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep helpful pattern recognition, but force a fresh test of whether this case actually satisfies the old frame's assumptions.",
+      "source_quote": "Danger when the team treats avoid fixation as a reason to reject all prior knowledge instead of distinguishing helpful pattern recognition from stale pattern lock-in.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks on stale-template interruption, cross-frame testing, and anti-overcorrection discipline.",
+    "donor_drops": [
+      "Did not preserve broader educational-method sprawl beyond the clearest de-fixation moves."
+    ],
+    "open_questions": [
+      "The source supports learning-technique applications, but the Wave 2 surface stays on stale-problem-frame lock-in."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is strongest alongside first-principles-thinking, lateral-thinking, and step-back style interruption."
+    ],
+    "antagonists": [
+      "The source pushes hardest against confirmation-bias, availability-heuristic, and familiar-tool lock-in."
+    ],
+    "structured_tensions": [
+      "The clearest explicit tension is with schema-acquisition when templates harden into stale defaults."
+    ]
+  }
+}

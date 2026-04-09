@@ -1,0 +1,67 @@
+{
+  "model_id": "nash-equilibrium",
+  "source_file": "Nash_Equilibrium_rag.md",
+  "failure_modes": [
+    {
+      "text": "A theoretically stable equilibrium may be useless if real actors cannot compute or sustain it.",
+      "source_quote": "If your laptop cannot find it, neither can the market",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Before applying equilibrium analysis, verify that real actors can observe payoffs, compute strategies, and sustain the equilibrium under actual information and resource constraints."
+    },
+    {
+      "text": "Analysts can mistake a stable pattern for a good or efficient outcome.",
+      "source_quote": "treating a stable outcome as a good outcome",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Label the equilibrium's welfare properties explicitly: state whether the stable outcome is efficient, fair, or merely self-reinforcing, and flag any gap between stability and desirability."
+    },
+    {
+      "text": "Teams can model the game to confirm a preferred equilibrium rather than mapping the full space honestly.",
+      "source_quote": "Confirmation Bias and Groupthink",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Map the full game space before locking onto one equilibrium: require at least one alternative equilibrium analysis to prevent confirmation of the preferred outcome."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Can the actual players find and sustain this equilibrium, or only the analyst?",
+      "source_quote": "participants cannot be taken for granted to discover or reach the NE",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What reasons might make the real outcome differ from the candidate equilibrium?",
+      "source_quote": "think of reasons why, and the manner in which, the outcome may differ",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe about payoffs and responses for this stable pattern to hold?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Begin strategic interaction analysis with candidate best responses, then pressure-test them.",
+      "source_quote": "begin the analysis of strategic interactions with the Nash equilibrium",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use war games to model moves and countermoves before acting.",
+      "source_quote": "war games",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Lay strategic choices out in logic trees so assumptions and payoffs are explicit.",
+      "source_quote": "logic tree",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ]
+}

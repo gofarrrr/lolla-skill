@@ -1,0 +1,70 @@
+{
+  "model_id": "bias-blind-spot",
+  "source_file": "Bias_Blind_Spot_rag.md",
+  "select_when": [
+    "A review or debate risks turning into a diagnosis of everyone else's distortions while leaving the team's own reasoning unexamined.",
+    "The team sounds self-aware in the abstract, but there is little evidence that outside-view checks or structured reflection are actually changing judgment.",
+    "Expertise or intelligence may be amplifying rationalization by making the current story easier to defend rather than easier to test.",
+    "The next move should introduce external checks, simplification, or journaling that makes hidden self-serving assumptions harder to sustain."
+  ],
+  "avoid_when": [
+    "The model is being used mainly to brand other people as biased rather than to create a process that can expose the local blind spot.",
+    "The team already has strong external instrumentation and the main issue is now missing information rather than self-protective interpretation."
+  ],
+  "input_type": "self-exemption and rationalization problem",
+  "output_type": "outside-view bias check",
+  "reasoning_types": [
+    "metacognitive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on self-exemption, rationalization, outside-view discipline, and anti-performative self-awareness.",
+    "donor_drops": [
+      "Did not preserve broader introspection sprawl because the raw source is strongest on external calibration, peer challenge, and simplification as blind-spot tests."
+    ],
+    "open_questions": [
+      "The input and output types compress a source that also spans organizational meritocracy design and multidisciplinary thinking."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on recognizing bias in others more easily than in oneself, rationalization by intelligence, and the need for outside-view correction."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The anti-activation conditions are grounded in source warnings against diagnosing others, performative humility, and relying on awareness without process change."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on self-exemption and rationalization problems, while the typed input remains a compact operational label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports outside-view and calibration moves that expose blind spots; the output label compresses that into a reusable intervention artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Bias blind spot is strongest as metacognitive and diagnostic discipline on self-exemption rather than topical critique."
+    }
+  }
+}

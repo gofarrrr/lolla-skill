@@ -1,0 +1,87 @@
+{
+  "model_id": "chain-of-thought",
+  "source_file": "Chain_Of_Thought_rag.md",
+  "failure_modes": [
+    {
+      "text": "Jumping to a conclusion without the intermediate reasoning steps hides where the error actually entered.",
+      "source_quote": "decomposition of a complex problem into a sequence of smaller steps",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require the intermediate reasoning steps to be visible so that the point of error can be identified and corrected."
+    },
+    {
+      "text": "A reasoning chain can become so long and self-referential that it loses the big picture and stalls action.",
+      "source_quote": "loss of big picture / analysis paralysis",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Impose a length discipline: if the reasoning chain grows self-referential, step back and restate the core question the chain was supposed to answer."
+    },
+    {
+      "text": "The implementation gap appears when the chain explains what to think but not how to act on it.",
+      "source_quote": "Implementation Gap",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Close the implementation gap by translating each conclusion step into a concrete action; a chain that explains what to think but not how to act is incomplete."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which step in this reasoning chain, if wrong, would collapse the conclusion even if the rest sounded plausible?",
+      "source_quote": "sequence of smaller, logically connected steps",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the one thing the audience should remember if we acted on this chain today?",
+      "source_quote": "If my audience remembers only one thing, what should it be?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "How does the reasoning we are doing right now solve the problem, and is it the most important thing to do next?",
+      "source_quote": "How does what I'm doing solve the problem?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Decompose the hard problem into linked sub-steps before asking for the final answer.",
+      "source_quote": "structured sequence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use a one-day answer to keep the chain connected to the larger conclusion.",
+      "source_quote": "The One-Day Answer",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Write the action plan down and read it aloud so the reasoning path has an implementation check.",
+      "source_quote": "Plan for Action, Not Just Analysis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

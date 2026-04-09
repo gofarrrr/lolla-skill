@@ -1,0 +1,74 @@
+{
+  "model_id": "root-cause-analysis",
+  "source_file": "Root_Cause_Analysis_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps root-cause-analysis trace how units interact instead of mistaking isolated symptoms for the generative driver.",
+      "source_quote": "RCA is an integral part of seeing the wholes and the interrelationships rather than just static snapshots.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition gives root-cause-analysis the clean cuts it needs to expose the real driver instead of muddled symptom bundles.",
+      "source_quote": "Any problem of real consequence is too complicated to solve without breaking it down into logical parts.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking strengthens root-cause-analysis by taking nothing for granted and probing behind the first acceptable explanation.",
+      "source_quote": "RCA is fundamentally rooted in the critical thinking attitude of taking nothing for granted.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "correlation-vs-causation",
+      "rationale_text": "Correlation-vs-causation is the primary logical error root-cause-analysis is designed to prevent, because it sends diagnosis after associations instead of real drivers.",
+      "source_quote": "This is the primary logical error RCA seeks to avoid. When the analyst mistakes correlation for causation, they force a relationship where none exists, inevitably causing them to chase the wrong issue and implement ineffective solutions.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias corrupts root-cause-analysis by turning diagnosis into defense of the favored story instead of open investigation.",
+      "source_quote": "RCA demands active openness to new ideas and data and a suspicion of conventional answers.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "theory-induced-blindness",
+      "rationale_text": "Theory-induced-blindness undermines root-cause-analysis when the analyst forces a familiar frame on a novel problem and misses the real driver.",
+      "source_quote": "Applying RCA frameworks routinely and unquestioningly is dangerous because frameworks reflect mental models with embedded assumptions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Root-cause-analysis conflicts with simplification when tracing causal chains deeper adds analytical overhead beyond the depth needed for an effective intervention.",
+      "source_quote": "root-cause-analysis conflicts with simplification (simplification) when tracing causal chains deeper adds analytical overhead beyond the depth needed for an effective intervention.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "tension_text": "Root-cause-analysis conflicts with systems-thinking when single-root-cause framing misses the distributed causality typical of complex adaptive systems.",
+      "source_quote": "root-cause-analysis conflicts with systems-thinking (systems thinking) when single-root-cause framing misses the distributed causality typical of complex adaptive systems.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on systems, decomposition, and skeptical diagnosis allies plus conflicts with correlation-vs-causation, frame-defense, and familiar-tool misuse.",
+    "donor_drops": [
+      "Did not preserve donor causal sprawl beyond the source-backed diagnosis and anti-frame-distortion surface."
+    ]
+  }
+}

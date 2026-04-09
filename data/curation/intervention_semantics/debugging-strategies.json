@@ -1,0 +1,87 @@
+{
+  "model_id": "debugging-strategies",
+  "source_file": "Debugging_Strategies_rag.md",
+  "failure_modes": [
+    {
+      "text": "Debugging can optimize noise when the team has not agreed on the actual failure condition.",
+      "source_quote": "Danger when people start debugging before agreeing on the actual failure condition, so they optimize noise, symptoms, or tools instead of the broken behavior.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Define the actual failure condition first; debugging without an agreed-on target optimizes noise."
+    },
+    {
+      "text": "Teams jump into analysis too early and lose clarity on the output or problem structure they actually need.",
+      "source_quote": "A common anti-pattern is the human inclination to jump immediately into analysis or modeling without first being clear about the needed output or the underlying problem structure.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Structure the problem before diving into analysis: clarify the expected output, the actual output, and the boundary between them."
+    },
+    {
+      "text": "Frameworks can become shackles when familiar analytical cuts are reused even though their assumptions do not fit the case.",
+      "source_quote": "Routinely applying analytical frameworks without questioning their inherent assumptions leads to the \"hammer-in-search-of-a-nail\" problem.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge familiar analytical cuts when their assumptions do not fit the current case; frameworks become shackles when reused without adaptation."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What's the one-day answer?",
+      "source_quote": "What's the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "The concept of \"What would you have to believe?\" is a tool for constructive confrontation used to debug underlying assumptions.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we discussing the machine level, the case-at-hand level, or blurring the two?",
+      "source_quote": "When a problem occurs, discussion must happen at two levels: the machine level ... and the case-at-hand level.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Disaggregate the problem into logical parts so the diagnostic cut exposes insight rather than just creating more categories.",
+      "source_quote": "Good disaggregation aims to find a cut through the problem that exposes insight.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use hypothesis-driven diagnosis to gather only the facts needed to prove or disprove the current explanation.",
+      "source_quote": "This approach prevents teams from attempting to \"boil the ocean\" by gathering only enough facts required to prove or disprove the hypothesis.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep diagnosis sequenced before solution design so symptom pressure does not crowd out root-cause tracing.",
+      "source_quote": "Successful debugging requires performing these steps one at a time and in order, as blurring the steps interferes with uncovering true problems.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on root-cause discipline, explicit hypothesis testing, and anti-noise diagnosis.",
+    "donor_drops": [
+      "Did not preserve donor troubleshooting sprawl that leaned too software-specific relative to the raw source's broader structural diagnosis framing."
+    ],
+    "open_questions": [
+      "The second premortem question is sourced from a broader assumption-debugging passage, but it cleanly preserves the source's challenge discipline."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, decomposition, and scientific-method-style diagnosis for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is especially strong on confirmation bias, fast thinking, and authority-shaped communication blind spots."
+    ],
+    "structured_tensions": [
+      "The source has rich anti-bias material, but it does not present a clean explicit structured tension block in current-vocabulary form."
+    ]
+  }
+}

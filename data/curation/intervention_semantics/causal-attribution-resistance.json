@@ -1,0 +1,87 @@
+{
+  "model_id": "causal-attribution-resistance",
+  "source_file": "Causal_Attribution_Resistance_rag.md",
+  "failure_modes": [
+    {
+      "text": "A satisfying blame story can arrive before the real causal structure is understood.",
+      "source_quote": "Danger When a Fast Blame Story Replaces Causal Inquiry",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate symptom, proximate trigger, and root cause explicitly before accepting any blame story; satisfying explanations arrive fastest but are often wrong."
+    },
+    {
+      "text": "The model fails when symptom, proximate trigger, and root cause get collapsed into one emotionally available explanation.",
+      "source_quote": "distinguish symptoms, proximate causes, and root causes",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Use structured root-cause techniques (fishbone, five whys) to resist collapsing multiple causal layers into one emotionally available explanation."
+    },
+    {
+      "text": "Attribution resistance becomes avoidance when the team keeps suspending judgment after the causal evidence is already sufficient.",
+      "source_quote": "resist premature attribution, not responsible action forever",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a decision threshold: once sufficient causal evidence exists, commit to an attribution rather than letting resistance become avoidance."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Are we explaining the outcome with the most available story or with the best-supported cause chain?",
+      "source_quote": "the first story is not always the right cause",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What is symptom, what is proximate trigger, and what is root cause here?",
+      "source_quote": "distinguish symptoms, proximate causes, and root causes",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What incentives or structures might be generating the behavior we are tempted to personalize?",
+      "source_quote": "look at incentives and structures, not just visible actors",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use root-cause discipline before assigning responsibility so the team does not confuse explanation with blame.",
+      "source_quote": "causal inquiry should precede confident attribution",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Run Five Whys or similar cause-tracing methods to push past the first narratively satisfying answer.",
+      "source_quote": "Five Whys",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Check whether incentives and system conditions are producing behavior that looks purely personal at first glance.",
+      "source_quote": "look at incentives and structures",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on anti-blame narrative resistance, proximate-versus-root diagnosis, and structural cause tracing.",
+    "donor_drops": [
+      "Did not preserve donor causality sprawl because the raw source is stronger on resisting fast attribution and tracing hidden structure."
+    ],
+    "open_questions": [
+      "The first heuristic compresses repeated cautions that accountability should follow better diagnosis, not replace it."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on root-cause-analysis, systems-thinking, critical-thinking, and first-principles-thinking as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and blame-story narrative closure, but only current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source has an explicit tension block around incentives and confirmation-bias plus a non-curated narratives concept, so Wave 3 should preserve only the clean current-vocabulary tensions."
+    ]
+  }
+}

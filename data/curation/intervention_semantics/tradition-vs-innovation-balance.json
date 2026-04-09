@@ -1,0 +1,87 @@
+{
+  "model_id": "tradition-vs-innovation-balance",
+  "source_file": "Tradition_Vs_Innovation_Balance_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can keep defending existing tradition by selectively seeking confirming evidence that the balance point should not move.",
+      "source_quote": "tradition-vs-innovation-balance conflicts with confirmation-bias (confirmation bias) when teams seek evidence that confirms the existing tradition while dismissing signals that the balance point needs to shift.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit the evidence base for the status quo: require defenders of tradition to show current evidence that the inherited approach still outperforms alternatives, not just that it has worked before."
+    },
+    {
+      "text": "Innovation can degrade into theater when novelty is rewarded as identity instead of as evidence-backed adaptation.",
+      "source_quote": "Danger when innovation becomes an identity performance",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require innovation to earn its place with evidence: treat novelty the same as tradition — it must demonstrate a testable advantage, not just signal identity or ambition."
+    },
+    {
+      "text": "Tradition can turn into sunk-cost protection or fear instead of preserving something that still works.",
+      "source_quote": "tradition becomes cover for fear, sunk-cost protection, or avoidance of evidence",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Distinguish preservation from fear: when tradition is defended, check whether the real motive is that the old way still works or that the switching cost feels too threatening."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which element actually needs to remain standardized, and which one are we only protecting because changing it feels risky?",
+      "source_quote": "explicitly separate which elements should remain standardized from which elements should be experimented on",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What evidence would convince us that the current balance point has stopped matching reality?",
+      "source_quote": "dismissing signals that the balance point needs to shift",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we treating novelty as proof of improvement or only as a signal to test?",
+      "source_quote": "innovation theater without execution discipline",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate stable components from experimental components before debating the pace of change.",
+      "source_quote": "explicitly separate which elements should remain standardized from which elements should be experimented on",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use tradition to preserve proven reliability, not to shield weak assumptions from evidence.",
+      "source_quote": "preserve reliability, safety, or institutional memory",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Demand execution discipline from innovation proposals so novelty does not become its own credential.",
+      "source_quote": "innovation theater without execution discipline",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on explicit separation between what should stay stable and what should be tested rather than on generic change-management language.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "endowment-effect",
+  "source_file": "Endowment_Effect_rag.md",
+  "failure_modes": [
+    {
+      "text": "Ownership can keep teams defending what they already have without seriously comparing it to the best available alternative today.",
+      "source_quote": "Danger When Ownership Logic Hides Opportunity Cost",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Force a zero-base comparison: ask whether the team would acquire this asset today at its current cost if they did not already own it."
+    },
+    {
+      "text": "Leaders can fail to quit, divest, or switch because ownership inflates the perceived value of the status quo.",
+      "source_quote": "Failure to Quit or Divest",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Build in explicit quit, divest, or switch checkpoints; ownership inflates perceived value and makes exit feel like loss even when it is gain."
+    },
+    {
+      "text": "Motivated reasoning can justify an owned asset's value with narrative confidence rather than neutral facts.",
+      "source_quote": "Motivated Reasoning in Valuation",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require neutral facts — not narrative confidence — to justify holding an owned asset; motivated reasoning is the endowment effect's enforcement mechanism."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "If we did not already own this asset, idea, or project, how much would we pay to acquire it today?",
+      "source_quote": "If I did not currently own this asset, how much would I be willing to pay",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What facts, independent of our history or feeling of ownership, support this valuation?",
+      "source_quote": "What facts, independent of my history or feeling of ownership, support this valuation?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What assumptions about value would prove wrong if this transaction or hold decision failed?",
+      "source_quote": "If this transaction were to fail, what assumptions about value did I hold that proved incorrect?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Ask whether it is true value or just ownership talking before defending a held asset or plan.",
+      "source_quote": "Do I really value this, or is it just the ownership talking?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Anchor first to the outside view so the market or neutral benchmark disciplines the inside view.",
+      "source_quote": "Anchor to the Outside View",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Write the valuation or choice down in explicit terms so emotion has to compete with a fact-based plan.",
+      "source_quote": "Draft a Plan and Write Out Thoughts",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on ownership distortion, divestment failure, outside-view valuation, and anti-opportunity-cost blindness.",
+    "donor_drops": [
+      "Did not preserve broader behavioral-economics sprawl because the raw source is stronger on concrete valuation correction and attachment discipline."
+    ],
+    "open_questions": [
+      "The third heuristic compresses several source passages on written plans and explicit valuation so the chunk stays operational."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on anchoring, rationalization, and opportunity-cost because ownership changes the reference point and invites self-justifying stories."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on sunk-cost-fallacy, status-quo-bias, and first-principles-thinking because those models expose when attachment outruns facts."
+    ],
+    "structured_tensions": [
+      "The source has explicit structured tensions with sunk-cost-fallacy, status-quo-bias, and first-principles-thinking that cleanly map to the current target-id surface."
+    ]
+  }
+}

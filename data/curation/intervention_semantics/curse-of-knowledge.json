@@ -1,0 +1,72 @@
+{
+  "model_id": "curse-of-knowledge",
+  "source_file": "Curse_of_Knowledge_rag.md",
+  "failure_modes": [
+    {
+      "text": "Invisible compression causes the expert to skip logical steps that feel trivially obvious, leaving the audience without the premises needed to follow the conclusion.",
+      "source_quote": "Invisible compression",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test the explanation on a genuine novice; if they cannot follow the logical steps, the expert has skipped premises that feel obvious but are not."
+    },
+    {
+      "text": "Vocabulary mismatch embeds technical terms that carry precise meaning for the expert and approximate or absent meaning for the novice, with neither party registering the divergence.",
+      "source_quote": "Vocabulary mismatch",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Replace or define technical terms using the audience's vocabulary; precision that only the expert can parse is noise to everyone else."
+    },
+    {
+      "text": "Recursive curse produces a simplified version still calibrated for the expert's knowledge level — 'simplified' relative to expert discourse, not relative to the novice's starting point.",
+      "source_quote": "Recursive curse",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Verify that any 'simplified' version is calibrated to the audience's knowledge level, not to a slightly less expert version of the expert."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What step am I taking for granted here that my audience would need spelled out — and can I identify where in this explanation I first assumed shared context?",
+      "source_quote": "Articulate the Steps You're Skipping",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which words in this explanation would a smart non-specialist not understand, or understand differently than I mean?",
+      "source_quote": "Every piece of expert communication should be scanned for terms that carry compressed meaning",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Can the person I've just briefed explain this back in their own words — not mine — without using the same terms I used?",
+      "source_quote": "Feedback-loop absence: polite nodding and superficial agreement are misread as understanding",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Apply the Feynman standard: if the concept cannot be explained in plain language without jargon to someone with no prior exposure, the communication is still inside the curse.",
+      "source_quote": "Use the Feynman Standard",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Apply the Stranger Test: before finalizing any communication, ask whether a smart person who has never encountered this topic would understand it — not whether another expert would.",
+      "source_quote": "The Stranger Test",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Observe actual novice users directly — don't predict their confusion. Expert predictions of novice experience suffer from the same curse they are trying to correct.",
+      "source_quote": "Include genuine novice users in design and testing processes. Observe, don't ask.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Wave 2 for curse-of-knowledge focuses on the three structural failure modes — invisible compression, vocabulary mismatch, recursive curse — with direct-action heuristics for breaking out of each.",
+    "donor_drops": [],
+    "open_questions": []
+  }
+}

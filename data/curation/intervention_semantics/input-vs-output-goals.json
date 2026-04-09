@@ -1,0 +1,87 @@
+{
+  "model_id": "input-vs-output-goals",
+  "source_file": "Input_Vs_Output_Goals_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can keep hitting activity targets long after it is obvious that the outcome is not moving.",
+      "source_quote": "input-vs-output-goals conflicts with commitment-bias (commitment bias) when teams keep activity targets despite weak outcome movement.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Check whether activity targets are still connected to the outcome; hitting input goals after the output stops moving is waste."
+    },
+    {
+      "text": "Reward design can over-index on visible effort and hide whether value is actually being delivered.",
+      "source_quote": "input-vs-output-goals conflicts with incentives (incentives) when reward design over-indexes on visible effort instead of value delivery.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit reward design for effort-visibility bias: visible activity is easy to measure but may hide whether value is actually being delivered."
+    },
+    {
+      "text": "People can fixate on outcomes they cannot directly control and never design the behaviors that would make progress repeatable.",
+      "source_quote": "The model is strongest when people can state the desired result yet still fail to translate that result into repeatable behaviors, habits, and checkpoints.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Design the input behaviors that would cause the outcome rather than fixating on outcomes the team cannot directly control."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which of our current input metrics would still look good even if the real outcome kept deteriorating?",
+      "source_quote": "activity metrics are abundant but the link between action and outcome is weak or obscured",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What repeatable behavior do we control directly that should move this outcome if our theory is right?",
+      "source_quote": "translate that result into repeatable behaviors, habits, and checkpoints",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we rewarding effort theater or real value delivery?",
+      "source_quote": "reward design over-indexes on visible effort instead of value delivery",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Translate the desired result into behaviors and checkpoints the team can actually control.",
+      "source_quote": "repeatable behaviors, habits, and checkpoints",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Track input metrics only when there is an explicit causal claim connecting them to the outcome.",
+      "source_quote": "clear metrics tied to the Output Goal is crucial for knowing if the process (Input) is working",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use process goals to reduce anxiety around distant outcomes while still testing whether the process produces value.",
+      "source_quote": "Focusing on the process helps reduce anxiety and stress associated with overthinking the outcome.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on translating desired outcomes into controllable process moves and exposing activity metrics that hide weak outcomes.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

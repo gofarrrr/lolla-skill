@@ -1,0 +1,72 @@
+{
+  "model_id": "empathy",
+  "source_file": "Empathy_rag.md",
+  "select_when": [
+    "Hidden user, stakeholder, or teammate constraints will determine whether a solution is trusted, adopted, or resisted.",
+    "Observation, interviews, or reflection are being used to challenge assumptions rather than merely decorate a decision that is already set.",
+    "A message, service, or intervention must fit another person's actual mental model, language, fear, and motivation.",
+    "The work would improve if perspective-taking surfaced tensions between what people say, do, fear, and hope."
+  ],
+  "avoid_when": [
+    "Emotional identification is starting to compromise strategic clarity or crowd out the need to protect legitimate interests.",
+    "The model is being used to simulate care or intimacy without the observation, reflection, or validation work needed to make understanding real."
+  ],
+  "input_type": "stakeholder-perspective fit problem",
+  "output_type": "user-centered reframing and trust read",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on perspective-taking, hidden constraints, and adoption-relevant understanding rather than widening it into generic kindness rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor human-centered-design sprawl beyond the raw source's stronger perspective-taking, empathy-map, and anti-manipulation surface.",
+      "Did not add higher-order composition fields because this batch remains Wave 1 to Wave 3 only."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans design thinking, leadership, sales, and communication strategy."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source is explicit that empathy is strongest when hidden user constraints and perspective fit determine whether a solution will matter or be adopted."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The limitation section directly warns about empathy compromising strategic clarity or becoming manipulative if it loses rigor."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on stakeholder-perspective fit problems, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields better reframing and trust-building through perspective fit, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is naturally diagnostic of human constraints and causal in how perspective fit changes adoption, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

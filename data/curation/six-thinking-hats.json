@@ -1,0 +1,36 @@
+{
+  "model_id": "six-thinking-hats",
+  "source_file": "Six_Thinking_Hats_rag.md",
+  "select_when": [
+    "A team needs to separate competing modes of thought so risk review, creativity, evidence checking, and synthesis do not jam each other.",
+    "Meetings are stuck in unstructured argument and would benefit from deliberate perspective rotation.",
+    "The same group must examine one issue from several angles without mistaking the first dominant frame for the whole problem.",
+    "Role separation would reduce cognitive load and improve objectivity in a complex review."
+  ],
+  "avoid_when": [
+    "The roles are becoming performative labels and participants have stopped doing the real cognitive work of switching standards and evidence.",
+    "The frame rotation is adding theater without improving what gets checked, challenged, or synthesized."
+  ],
+  "input_type": "jammed group-thinking problem",
+  "output_type": "mode-separated review",
+  "reasoning_types": [
+    "metacognitive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused on structured perspective rotation and anti-argument-jam discipline rather than on role theater.",
+    "donor_drops": [
+      "Did not preserve donor agent-architecture sprawl because the raw source is already strongest on structured human review modes."
+    ],
+    "open_questions": [
+      "The source overlaps with agent design, but the operational file stays on multi-angle human review."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on separating thought modes, unstructured meetings, and deliberate perspective rotation."},
+    "avoid_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "medium", "note": "The performative-role warning is explicit; the second line is reviewed normalization of the same misuse."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed label compresses the raw condition of argument-jammed group thinking."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label compresses structured perspective rotation into a reusable review type."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model is reflective and system-organizing, but the taxonomy labels remain reviewed normalization."}
+  }
+}

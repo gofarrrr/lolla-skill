@@ -1,0 +1,62 @@
+{
+  "model_id": "counterfactual-reasoning",
+  "source_file": "Counterfactual_Reasoning_rag.md",
+  "allies": [
+    {
+      "target_model_id": "decision-trees",
+      "rationale_text": "Decision-trees helps counterfactual-reasoning recover the missing branches that make the original choice intelligible.",
+      "source_quote": "It allows decision-makers to view the outcome that occurred in the context of other potential outcomes at the time of the decision, helping to re-create the decision tree.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "premortem",
+      "rationale_text": "Premortem gives counterfactual-reasoning a concrete way to work backward from failure and expose hidden branches before commitment.",
+      "source_quote": "Conduct a Pre-Mortem",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking strengthens counterfactual-reasoning by surfacing interrelationships and unknown unknowns across the wider system.",
+      "source_quote": "CR helps reveal interrelationships and unexpected results.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias undermines counterfactual-reasoning by resisting the search for plausible opposite explanations.",
+      "source_quote": "CR directly opposes this by forcing the consideration of disconfirming evidence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring works against counterfactual-reasoning when the first judgment or first shared view narrows the branch set too early.",
+      "source_quote": "This prevents anchoring (focusing too much on a single piece of information) and ensures that alternative perspectives are generated organically.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Counterfactual-reasoning conflicts with confirmation-bias when teams search for support for the winning story instead of realistic alternatives.",
+      "source_quote": "When tackling a problem, team members often see support for our hypotheses in the faintest clues, while overlooking more significant, yet disconfirming information.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on branch-recovery allies and anti-confirmation discipline, so the file keeps that bounded first-order surface.",
+    "donor_drops": [
+      "Did not preserve donor multihop or scenario catalogs because this batch stops at first-order relations only."
+    ],
+    "open_questions": [
+      "Hypothesis-driven problem solving is source-real, but decision-trees and premortem were the cleaner bounded anchors into the current graph vocabulary."
+    ]
+  }
+}

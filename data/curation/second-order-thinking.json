@@ -1,0 +1,71 @@
+{
+  "model_id": "second-order-thinking",
+  "source_file": "Second_Order_Thinking_rag.md",
+  "select_when": [
+    "The first-order win may create a second-order loss in incentives, trust, coordination, resilience, or future option value downstream.",
+    "A move looks locally attractive, but the real outcome depends on delayed reactions, hidden dependencies, or system adaptation.",
+    "The current plan optimizes one visible metric while leaving the downstream chain of effects unstated.",
+    "The decision needs a dependency map and a clear threshold where the local gain could flip into later system damage."
+  ],
+  "avoid_when": [
+    "Second-order language is outrunning evidence, so the chain of consequences is speculative rather than anchored in mechanism, actor reaction, or constraints.",
+    "The model is being used to avoid choosing at all instead of naming what threshold would justify acting under uncertainty."
+  ],
+  "input_type": "first-order attractive intervention",
+  "output_type": "downstream consequence map",
+  "reasoning_types": [
+    "counterfactual",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused the model on downstream consequence mapping and thresholded cascade checks rather than broad sophistication-signaling about complexity.",
+    "donor_drops": [
+      "Did not preserve donor-style long-chain speculative overlays because the raw source explicitly warns against second-order storytelling outrunning evidence.",
+      "Did not add higher-order fields because this batch keeps Wave 4 observational only."
+    ],
+    "open_questions": [
+      "The source is rich on risks and mitigations but thinner on explicit anti-activation routing, so the avoid-when field stays close to the raw warning language."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file gives explicit activation bullets on first-order gains masking downstream loss; the final triggers mainly compress that language into routing form."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit danger and anti-pattern lines."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about attractive local moves with downstream consequences, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw playbook asks for downstream chain and threshold mapping; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Second-order thinking clearly operates through systems and counterfactual reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

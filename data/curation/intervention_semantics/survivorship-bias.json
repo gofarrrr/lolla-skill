@@ -1,0 +1,87 @@
+{
+  "model_id": "survivorship-bias",
+  "source_file": "Survivorship_Bias_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams invoke survivorship bias abstractly but still use samples or case studies that exclude the hidden denominator.",
+      "source_quote": "Danger when teams invoke survivorship bias abstractly but still use samples, benchmarks, or case studies that exclude the hidden denominator.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit the sample for the hidden denominator: before drawing conclusions from success stories, check what fraction of similar attempts failed and whether those failures are represented."
+    },
+    {
+      "text": "The correction fails when it becomes so broad that meaningful differences between actual winners and losers are ignored.",
+      "source_quote": "Danger when the anti-bias correction becomes so broad that meaningful differences between real winners and real losers are ignored rather than analyzed.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Preserve meaningful signal: when correcting for survivorship bias, still analyze what the winners did differently — the correction should refine the lesson, not erase it."
+    },
+    {
+      "text": "Success stories can become an availability trap that substitutes a memorable survivor narrative for the real outcome distribution.",
+      "source_quote": "Availability Heuristic Trap",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Counter availability with base rates: when a memorable success story dominates judgment, check the full outcome distribution to see whether the case is representative or an outlier."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What non-survivors, failures, or hidden cases are missing from this sample?",
+      "source_quote": "exclude the hidden denominator",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we overcorrecting so much that real differences between winners and losers disappear?",
+      "source_quote": "meaningful differences ... are ignored",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What outside-view base rate would this conclusion look like if the vivid survivor story were removed?",
+      "source_quote": "outside view",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Bring the hidden denominator into the evidence base before trusting the lesson drawn from survivors.",
+      "source_quote": "exclude the hidden denominator",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the outside view and base rates to counter the pull of vivid success stories.",
+      "source_quote": "The Outside View/Base Rate Neglect",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Analyze real differences between survivors and non-survivors instead of treating the warning as a reason to flatten everything.",
+      "source_quote": "meaningful differences between real winners and real losers",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on hidden-denominator correction, outside-view base rates, and anti-success-story distortion.",
+    "donor_drops": [
+      "Did not preserve donor statistics sprawl because the raw source is stronger on denominator recovery and caution against winner-only evidence."
+    ],
+    "open_questions": [
+      "The first heuristic compresses several source passages on benchmark and sample design so the chunk stays operational."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on critical-thinking, base-rate style outside view, and premortem-like team challenge as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and optimism-bias-and-planning-fallacy, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source has explicit tension blocks with confirmation-bias and optimism-bias-and-planning-fallacy that cleanly map into the current target-id surface."
+    ]
+  }
+}

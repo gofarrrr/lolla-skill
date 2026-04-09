@@ -1,0 +1,87 @@
+{
+  "model_id": "simplification",
+  "source_file": "Simplification_rag.md",
+  "failure_modes": [
+    {
+      "text": "Maslow's hammer can turn simplification into forcing the nearest easy frame onto the wrong problem.",
+      "source_quote": "Mistaking the Tool for the Problem",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test frame fit before simplifying: verify that the simplified model shares the structural features of the actual problem, not just surface similarity."
+    },
+    {
+      "text": "Premature abstraction can make the message elegant while stripping away the concrete guidance operators actually need.",
+      "source_quote": "Premature Abstraction",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Preserve operational specificity: simplify the explanation, but keep the concrete guidance, boundary conditions, and caveats that operators need to act safely."
+    },
+    {
+      "text": "Oversimplifying risk can remove the caveat or boundary that makes the recommendation safe to use.",
+      "source_quote": "Danger when simplification removes the very caveat, boundary, or uncertainty that makes the decision safe to use in reality.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Flag removed caveats explicitly: when simplifying, note what was stripped away and under what conditions the simplified version becomes dangerous or misleading."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What's your main core point?",
+      "source_quote": "What's your main (core) point?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If the audience remembers only one thing, what should it be?",
+      "source_quote": "If the audience remembers only one thing, what should it be?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the Worst Case Bad Enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Find the core before carrying the full edifice of analysis into the handoff.",
+      "source_quote": "Finding the Core",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the rule of three to give the audience a durable verbal roadmap rather than a bag of details.",
+      "source_quote": "The Rule of Three",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the Feynman technique to expose blind spots before compressing the explanation for someone else.",
+      "source_quote": "The Feynman Technique",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw file is strong on core-finding and anti-clutter intervention content, so the chunk set stays close to those explicit simplification disciplines.",
+    "donor_drops": [
+      "Did not preserve donor communication-style examples that repeated the same simplification mechanism in more topical language."
+    ],
+    "open_questions": [
+      "This model remains normalization-heavy on failure modes, but the raw mitigation and danger lines support the current chunk set directly enough for Wave 2."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is rich on cognitive load theory, systems thinking, and synthesis as future relation material."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on boiling-the-ocean pressure and MECE-related tension for later relation work."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against complex-adaptive-systems and divergent-vs-convergent-thinking."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "intellectual-humility",
+  "source_file": "Intellectual_Humility_rag.md",
+  "failure_modes": [
+    {
+      "text": "The model fails when experts assume they have seen this problem before and force a familiar pattern onto a novel case.",
+      "source_quote": "I have seen this one before, it is an X problem",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Challenge the assumption of familiarity: force the expert to articulate what is genuinely novel about this case before applying the old pattern."
+    },
+    {
+      "text": "Without intellectual humility, disconfirming evidence gets filtered out in favor of defending the current belief.",
+      "source_quote": "Ignoring Disconfirming Evidence",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Protect the flow of disconfirming evidence: without humility, inconvenient data gets filtered out in favor of the current belief."
+    },
+    {
+      "text": "Humility becomes fake when people signal openness but still avoid real updating, clear claims, or accountable judgment.",
+      "source_quote": "Danger When Humility Becomes Performative Self-Minimization",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require humility to produce observable changes — updated estimates, revised plans, explicit caveats — not just open-sounding language."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What might I be missing because I am treating this as a familiar pattern too early?",
+      "source_quote": "I have seen this one before, it is an X problem",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What disconfirming evidence would I be tempted to explain away right now?",
+      "source_quote": "Ignoring Disconfirming Evidence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What update would prove this is real humility rather than openness theater?",
+      "source_quote": "signal openness or modesty outwardly but still avoid real updating",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Treat unfamiliarity and blind spots as signals to reopen assumptions instead of defending the familiar frame.",
+      "source_quote": "acknowledging what you don't know",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use disconfirming evidence as a required part of the reasoning process rather than as a threat to identity.",
+      "source_quote": "identify and reconcile disconfirming evidence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Ask whether conventional methods are actually best before rebuilding from the facts upward.",
+      "source_quote": "Are they the best?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on anti-overconfidence, disconfirming evidence, and anti-performative-openness discipline.",
+    "donor_drops": [
+      "Did not preserve donor self-improvement sprawl because the raw source is stronger on updating posture and blind-spot exposure under real uncertainty."
+    ],
+    "open_questions": [
+      "The first heuristic compresses repeated source material on ignorance, novelty, and familiar-pattern overreach into one reusable intervention."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on critical-thinking, first-principles-thinking, and feynman-technique as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and authority-shaped certainty, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around openness theater and defended certainty, but it does not expose a cleaner explicit current-vocabulary tension block than the one-hop relation surface."
+    ]
+  }
+}

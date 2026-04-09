@@ -1,0 +1,63 @@
+{
+  "model_id": "understanding-motivations",
+  "source_file": "Understanding_Motivations_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps understanding-motivations trace behavior back to organizational design, role structure, and coordinated incentives rather than to personality stories alone.",
+      "source_quote": "Thinking of an organization as an evolutionary machine designed to achieve a goal requires a focus on motivation.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "pareto-principle",
+      "rationale_text": "Pareto-principle helps understanding-motivations focus on the few motive-linked actions that drive most of the observed result.",
+      "source_quote": "The Pareto Principle ... Motivation clarifies which 20% to focus on",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias distorts understanding-motivations when analysts read the hidden drivers they already expect instead of what the evidence supports.",
+      "source_quote": "Confirmation Bias / Groupthink",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "constraints",
+      "rationale_text": "Constraints checks understanding-motivations when a behavior that looks deeply psychological is actually driven by simpler situational limits.",
+      "source_quote": "Danger when analysts become so committed to hidden-motive interpretation that they over-psychologize simple constraint or capability problems.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Understanding-motivations conflicts with simplification when mapping the full motivational landscape adds complexity beyond what a simple incentive lever would require.",
+      "source_quote": "understanding-motivations conflicts with simplification (simplification) when mapping the full motivational landscape adds complexity beyond what a simple incentive lever would require.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Understanding-motivations conflicts with confirmation-bias when motivational analysis selectively surfaces drivers that confirm the analyst's preferred intervention.",
+      "source_quote": "understanding-motivations conflicts with confirmation-bias (confirmation bias) when motivational analysis selectively surfaces drivers that confirm the analyst's preferred intervention.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on system-level motive diagnosis, leverage focus, and anti-overpsychologizing checks, but it does not offer a clean explicit current-vocabulary tension block.",
+    "donor_drops": [
+      "Did not preserve donor motivation relation sprawl beyond the clearer systems, leverage, and anti-story-fitting surface."
+    ],
+    "open_questions": [
+      "The constraints antagonist is source-explicit and cleaner than many of the source's softer social neighbors, which is why it survived the bounded set."
+    ]
+  }
+}

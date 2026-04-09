@@ -1,0 +1,70 @@
+{
+  "model_id": "peter-principle",
+  "source_file": "Peter_Principle_rag.md",
+  "select_when": [
+    "Advancement criteria and actual role requirements are misaligned.",
+    "A leadership problem may really be a role-design, support, or talent-allocation problem rather than simple incompetence.",
+    "Promotion decisions carry compounding organizational cost across execution, morale, or downstream hiring."
+  ],
+  "avoid_when": [
+    "The diagnosis is being used fatalistically after the fact instead of driving role redesign, support, or promotion-criteria repair.",
+    "People only want a cynical slogan about bad bosses rather than a real capability-fit analysis."
+  ],
+  "input_type": "promotion-fit mismatch",
+  "output_type": "role-capability diagnosis",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Focused on mismatch between past performance and future-fit capability rather than on fatalistic workplace satire.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "true-uncertainty-navigation",
+  "source_file": "True_Uncertainty_Navigation_rag.md",
+  "select_when": [
+    "The future cannot be reduced to one forecast, and the team must reason across several plausible paths instead of one confident storyline.",
+    "Uncertainty is materially affecting capital allocation, sequencing, or commitment decisions, and superficial certainty would be dangerous.",
+    "The challenge is choosing robust action under ambiguity, not pretending the ambiguity can be eliminated first.",
+    "A novel or high-stakes problem needs scenario analysis, active hypotheses, and explicit commitment discipline to avoid paralysis or overconfidence."
+  ],
+  "avoid_when": [
+    "The problem is predictable enough that this much uncertainty work would mostly boil the ocean without changing the next move.",
+    "Scenario work is becoming theater and is not linking uncertainty to monitoring rules, options, or commitment changes."
+  ],
+  "input_type": "deep ambiguity navigation problem",
+  "output_type": "robust action under uncertainty",
+  "reasoning_types": [
+    "probabilistic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on multi-path reasoning, ambiguity-aware action, and anti-paralysis discipline rather than broad strategic drama.",
+    "donor_drops": [
+      "Did not preserve generic strategy-sprawl because the raw source is strongest on scenario analysis, active hypotheses, and robust-action thinking."
+    ],
+    "open_questions": [
+      "The output label compresses a source that spans scenario creation, deliberate planning, and stress-tested commitment rules."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths and playbook sections explicitly support multi-path futures, commitment-sensitive ambiguity, and robust action under uncertainty."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions come directly from the limitation and anti-pattern language on predictable contexts and scenario theater."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around deep ambiguity and high-stakes uncertainty, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields robust action rather than false certainty; the output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is probabilistic about scenarios and metacognitive about overconfidence, paralysis, and assumption inspection."
+    }
+  }
+}

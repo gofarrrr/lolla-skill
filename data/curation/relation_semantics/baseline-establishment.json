@@ -1,0 +1,52 @@
+{
+  "model_id": "baseline-establishment",
+  "source_file": "Baseline_Establishment_rag.md",
+  "allies": [
+    {
+      "target_model_id": "step-back",
+      "rationale_text": "Step-back helps baseline-establishment pause execution long enough to define the starting picture, output, and success frame first.",
+      "source_quote": "The process requires synthesizing initial facts, hypotheses, and assumptions into an organized structure before commencing problem-solving or action.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "auditability-traceability",
+      "rationale_text": "Auditability-traceability gives baseline-establishment a durable record of what the starting condition actually was, so later change claims can be checked.",
+      "source_quote": "Successful outcomes are predicated on defining a clear, accurate starting point ... against which all future actions, deviations, and results are measured.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [],
+  "structured_tensions": [
+    {
+      "target_model_id": "representativeness-bias",
+      "tension_text": "Baseline-establishment conflicts with representativeness-bias when salient recent data points are mistaken for a robust baseline.",
+      "source_quote": "baseline-establishment vs representativeness-bias: baseline-establishment conflicts with representativeness-bias (representativeness bias) when salient recent points are mistaken for robust baseline.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Baseline-establishment conflicts with status-quo-bias when obsolete baselines remain unchallenged after the context has shifted.",
+      "source_quote": "baseline-establishment vs status-quo-bias: baseline-establishment conflicts with status-quo-bias (status quo bias) when obsolete baselines remain unchallenged after context shift.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Baseline-establishment conflicts with confirmation-bias when evidence is filtered to preserve the existing baseline instead of honestly challenging whether it still reflects reality.",
+      "source_quote": "baseline-establishment vs confirmation-bias: baseline-establishment conflicts with confirmation-bias (confirmation bias) when evidence is filtered to confirm the existing baseline rather than honestly challenge whether it still reflects reality.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Preserved one setup ally, one traceability ally, and the explicit anti-fossilized-baseline tension block.",
+    "donor_drops": ["Did not preserve broader MECE and persona-design sprawl beyond the clearest current-vocabulary seams."],
+    "open_questions": ["Representativeness-bias wired as structured tension (Task 4.2 sweep) — explicit in source structured tension block."]
+  }
+}

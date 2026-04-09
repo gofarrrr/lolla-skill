@@ -1,0 +1,87 @@
+{
+  "model_id": "correlation-vs-causation",
+  "source_file": "Correlation_Vs_Causation_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can act on a visible association while missing the underlying causal mechanism that actually needs to change.",
+      "source_quote": "The most common anti-pattern is mistaking correlation for causation.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Trace the causal mechanism: ask what specific process connects the correlated variables and whether intervening on one will actually change the other."
+    },
+    {
+      "text": "Causal claims can become overconfident when the evidence is observational, confounded, or incomplete.",
+      "source_quote": "Danger when experimentation is impossible but certainty is still claimed.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test the causal claim against confounders: identify at least one plausible alternative explanation and check whether the evidence discriminates between them."
+    },
+    {
+      "text": "Root-cause work can fail when the team stops at the proximate event instead of tracing the machine that produced it.",
+      "source_quote": "Focusing solely on the case-at-hand (the correlation or outcome) without diagnosing the machine (the causal structure) leads to micromanagement and prevents true learning.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Push past the proximate event: use fishbone or five-whys to trace the system that produced the correlation rather than stopping at the visible association."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What mechanism would have to exist for this factor to cause the outcome we claim?",
+      "source_quote": "Before one can logically conclude that causation is present, one must explicitly formulate hypotheses about the mechanisms by which one factor causes the other.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which confounding variables have we identified and measured instead of leaving them to chance?",
+      "source_quote": "Analysts must actively identify and measure all potential confounding variables in addition to those specified in the hypotheses to control for spurious correlations.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we solving the root cause, or only the symptom that happened immediately before the failure?",
+      "source_quote": "This involves striving to separate the proximate cause (what happened immediately before) from the root cause (the true underlying driver).",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use a fishbone diagram to map multiple candidate causes before committing to a single explanation.",
+      "source_quote": "The Fishbone (or Ishikawa) Diagram is a practical tool used to determine causation more effectively.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Apply the five whys to move past surface symptoms and keep drilling toward the original driver.",
+      "source_quote": "The \"Five Whys\" Technique",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Choose analytical tools based on whether the job is to understand causal drivers or merely to predict a future state.",
+      "source_quote": "The most important defining question at the outset is whether you are primarily trying to understand the drivers of causation ... or if you are primarily trying to predict a future state.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on mechanism tracing, confound control, and root-cause discipline rather than on general research-method survey content.",
+    "donor_drops": [
+      "Did not preserve donor analytics sprawl because the raw source is stronger on mechanism hypotheses, fishbone logic, and five-whys diagnosis."
+    ],
+    "open_questions": [
+      "The first premortem question is normalized from the hypothesis-and-mechanism framing so it stays reusable beyond research-only wording."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking and abductive design work for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section explicitly names confirmation bias and fast-thinking distortions, but only the cleanest current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around prediction versus explanation, but it does not provide a dedicated structured tension block."
+    ]
+  }
+}

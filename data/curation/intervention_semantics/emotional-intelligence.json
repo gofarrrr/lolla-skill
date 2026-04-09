@@ -1,0 +1,67 @@
+{
+  "model_id": "emotional-intelligence",
+  "source_file": "Emotional_Intelligence_rag.md",
+  "failure_modes": [
+    {
+      "text": "Emotional intelligence can be misread as niceness, leaving hard but necessary truth unsaid.",
+      "source_quote": "The Nice Guy Trap",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Distinguish empathy from avoidance: emotional intelligence includes delivering hard truths, not just maintaining comfort."
+    },
+    {
+      "text": "Teams can project confidence about others' feelings without validating what is actually going on.",
+      "source_quote": "without validating what others actually feel or need",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Validate emotional reads before acting on them: projecting confidence about others' feelings without checking creates false certainty."
+    },
+    {
+      "text": "Communication fails when emotion is omitted and only information or action is specified.",
+      "source_quote": "omitting the emotional dimension",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Include the emotional dimension alongside information and action in every important communication; omitting it causes messages to misfire."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What emotion is present here, and what do I think is causing it?",
+      "source_quote": "Identifying the emotion and naming the cause",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we packaging this message for analytical review only, or for the emotional response that drives action?",
+      "source_quote": "create wanting",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What specific feeling do we want the audience to leave with?",
+      "source_quote": "emotion",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use emotional granularity instead of vague labels so the real issue becomes more actionable.",
+      "source_quote": "emotional granularity",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use empathy maps to surface pains, gains, and hidden motivations before acting.",
+      "source_quote": "Empathy Map",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Validate by naming both the emotion and the likely cause, not by generic reassurance.",
+      "source_quote": "Two-Step Validation",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ]
+}

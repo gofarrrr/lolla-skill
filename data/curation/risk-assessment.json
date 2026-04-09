@@ -1,0 +1,70 @@
+{
+  "model_id": "risk-assessment",
+  "source_file": "Risk_Assessment_rag.md",
+  "select_when": [
+    "A plan needs explicit mitigations, thresholds, and monitoring rather than generic caution language.",
+    "The system is exposed to multiple interacting downside paths, and the next move should govern uncertainty rather than merely acknowledge it.",
+    "A decision is leaning on intuition or surface plausibility even though the stakes require a more structured downside scan.",
+    "The work would improve if risks were translated into concrete indicators, scenarios, and response triggers before commitment."
+  ],
+  "avoid_when": [
+    "The team is using risk assessment as process theater, multiplying matrices and deliberation without improving decisions or mitigations.",
+    "The analysis is focusing on tidy but secondary variables while the main fragility drivers remain unexamined."
+  ],
+  "input_type": "downside-governance problem",
+  "output_type": "explicit mitigation and threshold map",
+  "reasoning_types": [
+    "systems",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on governing uncertainty through explicit mitigations, thresholds, and monitoring rather than on generic caution or compliance rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor framework sprawl because the raw source is stronger on downside governance, systems interdependence, and anti-process-theater discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans scenarios, ecosystems, and persona-level risk tendencies."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on structured downside governance, explicit mitigations, and monitoring rather than vague caution."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings about excessive deliberation and focusing on the wrong variables."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on governing downside under uncertainty, while the typed input remains a compact reviewed label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields explicit mitigations, thresholds, and monitoring; the output label compresses that into an operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Risk assessment is strongest as systems-aware probabilistic governance, while the taxonomy labels remain normalized."
+    }
+  }
+}

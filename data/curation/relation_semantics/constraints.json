@@ -1,0 +1,70 @@
+{
+  "model_id": "constraints",
+  "source_file": "Constraints_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory explains why constraints help: boundaries reduce working-memory burden and make focused processing possible.",
+      "source_quote": "Constraints are the implementation mechanism of CLT.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "checklists",
+      "rationale_text": "Checklists turn constraints into explicit operating boundaries so teams can focus on what belongs inside the frame.",
+      "source_quote": "The primary purpose of identifying and applying constraints is to introduce clarity and consistency.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification helps constraints cut away everything that does not serve the main goal so the signal stays usable.",
+      "source_quote": "The guiding principle is to Make Everything Earn Its Place.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias turns a useful boundary into a rigid mental cage that resists updating when the frame is wrong.",
+      "source_quote": "Confirmation bias is the enemy of adapting or abandoning an outdated framework, as it resists disconfirming evidence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring distorts constraints when the initial boundary gets over-weighted after the real problem or environment changes.",
+      "source_quote": "Over-focusing on an initial constraint or piece of information (the anchor) and failing to incorporate subsequent, potentially contradictory or more relevant data.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "optionality",
+      "tension_text": "Constraints conflicts with optionality when rigid constraint adherence prevents exploration of adjacent possibilities that would emerge from loosening a non-binding boundary.",
+      "source_quote": "constraints conflicts with optionality (optionality) when rigid constraint adherence prevents exploration of adjacent possibilities that would emerge from loosening a non-binding boundary.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "lateral-thinking",
+      "tension_text": "Constraints conflicts with lateral-thinking when imposed constraints channel thinking so narrowly that non-obvious solutions outside the constraint set are never considered.",
+      "source_quote": "constraints conflicts with lateral-thinking (lateral thinking) when imposed constraints channel thinking so narrowly that non-obvious solutions outside the constraint set are never considered.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on load-reduction allies and conflicts with stale, sticky frames rather than on an explicit tension block.",
+    "donor_drops": [
+      "Did not preserve donor relation inflation where the raw source mainly supports bounded allies and two clean anti-bias conflicts."
+    ],
+    "open_questions": [
+      "Scaffolding is source-real ally, but cognitive-load-theory, checklists, and simplification were the cleaner bounded anchors into the current graph vocabulary."
+    ]
+  }
+}

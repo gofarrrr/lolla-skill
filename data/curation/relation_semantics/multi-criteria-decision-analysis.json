@@ -1,0 +1,67 @@
+{
+  "model_id": "multi-criteria-decision-analysis",
+  "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+  "allies": [
+    {
+      "target_model_id": "decision-trees",
+      "rationale_text": "Decision-trees strengthens multi-criteria-decision-analysis by making branches, outcomes, and trade-offs explicit before scoring.",
+      "source_quote": "MCDA can be visualized as a decision tree",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "opportunity-cost",
+      "rationale_text": "Opportunity-cost sharpens multi-criteria-decision-analysis by keeping trade-offs visible instead of pretending all criteria can be maximized together.",
+      "source_quote": "compare options transparently across competing goals",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "commitment-bias",
+      "rationale_text": "Commitment-bias distorts multi-criteria-decision-analysis when the matrix is reverse-engineered to defend a preferred option.",
+      "source_quote": "criteria are subconsciously chosen or weighted to steer toward a desired conclusion",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Multi-criteria-decision-analysis conflicts with commitment-bias when scoring weights are frozen around an already favored option.",
+      "source_quote": "multi-criteria-decision-analysis vs commitment-bias: scoring weights are frozen around an already favored option.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "representativeness-bias",
+      "tension_text": "Multi-criteria-decision-analysis conflicts with representativeness-bias when salient criteria overshadow base-rate relevance.",
+      "source_quote": "multi-criteria-decision-analysis vs representativeness-bias: salient criteria overshadow base-rate relevance.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "donor_drops": [
+      "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
+    ],
+    "open_questions": [
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "Wave 4 candidacy remains observational only and is noted only in batch artifacts."
+    ],
+    "antagonists": [
+      "No multihop or higher-order semantics were introduced in these Wave 3 files."
+    ],
+    "structured_tensions": [
+      "Explicit tensions were preserved only where the raw source clearly earned a current-vocabulary target."
+    ]
+  }
+}

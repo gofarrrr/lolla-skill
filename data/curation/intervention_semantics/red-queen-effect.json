@@ -1,0 +1,87 @@
+{
+  "model_id": "red-queen-effect",
+  "source_file": "Red_Queen_Effect_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can mistake heavy effort for real progress even when rivals' simultaneous adaptation is canceling out the gain.",
+      "source_quote": "effort does not guarantee progress; intense effort (running) is merely the cost of maintaining a relative status",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Measure progress against the competitive landscape, not against your own baseline: ask whether the gap to rivals has actually widened, not just whether internal metrics improved."
+    },
+    {
+      "text": "Continuous adaptation pressure can mutate into analysis paralysis or feature creep when the team never stabilizes on the real problem.",
+      "source_quote": "The pursuit of continuous adaptation risks getting mired in endless questioning, leading to analysis paralysis rather than effective action.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a stability checkpoint: after each adaptation cycle, decide whether to lock the current approach and exploit it or continue adapting, to prevent perpetual churn."
+    },
+    {
+      "text": "Old successful mental models can survive too long in a changing environment and become the reason adaptation fails.",
+      "source_quote": "Combating Entrenched Thinking",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Schedule regular model retirement reviews: audit which legacy assumptions and playbooks have been outrun by environmental change and retire them before they cause adaptation failure."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would need to be true for this idea to work in a baseline that is still moving under us?",
+      "source_quote": "What would need to be true for this idea to work?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough if adaptation pressure drives us below acceptable safety thresholds?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What are we actually trying to say here, and what is the single purpose of this adaptation?",
+      "source_quote": "What am I actually trying to say here? What is the single purpose of this adaptation?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Treat anti-complacency as an execution discipline, not just as a motivational slogan.",
+      "source_quote": "focusing on implementation disciplines (execution) to bridge the gap",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use attack-team and defense-team style simulation to anticipate countermoves instead of assuming the environment stays still.",
+      "source_quote": "breaking a team into an attack and a defense team",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Build continuous feedback loops so adaptation is guided by learning rather than by panic or habit.",
+      "source_quote": "Implementing Continuous Feedback Loops",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on anti-complacency, moving baselines, and adaptation discipline rather than on generic competitive hustle.",
+    "donor_drops": [
+      "Did not preserve donor rivalry rhetoric beyond the raw source's clearer feedback, execution, and anti-entrenchment material."
+    ],
+    "open_questions": [
+      "The first failure mode compresses the source's Lewis Carroll analogy into a reusable operational warning about relative progress."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on first-principles-thinking, outside-view, and systemic feedback-loops."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation-bias, margin-of-safety, and availability-style frame substitution."
+    ],
+    "structured_tensions": [
+      "The source contains a clean current-vocabulary conflict with margin-of-safety and source-real pressure against confirmation-bias."
+    ]
+  }
+}

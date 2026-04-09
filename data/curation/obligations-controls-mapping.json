@@ -1,0 +1,76 @@
+{
+  "model_id": "obligations-controls-mapping",
+  "source_file": "Obligations_Controls_Mapping_rag.md",
+  "select_when": [
+    "The obligation is already known, but the controls, checkpoints, ownership, or operational boundaries needed to fulfill it are still vague.",
+    "Failure would come from handoff ambiguity between people, systems, or process stages rather than from missing intent.",
+    "Decision-makers need compliance, reliability, and traceability at the same time, not as separate afterthoughts.",
+    "A team must translate a stated objective into concrete process boundaries, control points, and enforcement paths."
+  ],
+  "avoid_when": [
+    "The situation is novel enough that forcing an existing control map would create false pattern recognition or suppress needed learning.",
+    "The mapping exercise is becoming documentation theater that no longer reflects live decision points, real obligations, or actual operating behavior.",
+    "The team still has to discover what the obligation really is before formalizing controls and accountabilities."
+  ],
+  "input_type": "obligation-to-execution gap",
+  "output_type": "control design map",
+  "reasoning_types": [
+    "deductive",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the source's core idea of binding the 'what' to the 'how', while centering the operational risk of handoff ambiguity and documentation theater.",
+    "donor_drops": [
+      "Dropped donor new_tensions such as `chaos-theory` and `creative-destruction` because they were too broad and not clearly necessary for the first-pass contract.",
+      "Dropped donor new_allies because the raw file already names the key supporting models and this pilot is not a topology-preservation pass."
+    ],
+    "open_questions": [
+      "The model's synthesized origin means its input and output labels are reviewed operational normalization rather than direct source vocabulary."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section strongly supports obligation-known / control-unclear activation; donor examples were collapsed into structural triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Built from the raw limitation and danger language, then expressed as anti-activation rules."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source repeatedly frames the problem as turning stated obligations into executable controls; the final label is a normalized compression."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly points toward maps, role definitions, and control paths; the output label compresses that intervention surface."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "Deductive structuring and causal control logic are both well supported, though the taxonomy is reviewed normalization."
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "feynman-technique",
+  "source_file": "Feynman_Technique_rag.md",
+  "select_when": [
+    "Understanding needs to be pressure tested by explanation rather than assumed from recognition, jargon, or recall.",
+    "A concept feels familiar but the team needs to know whether it can be explained simply enough to reveal real comprehension.",
+    "The next move should expose blind spots by forcing a plain-language explanation before more confident action is taken.",
+    "Learning or reasoning quality depends on simplifying without losing the conditions that make the concept actually true."
+  ],
+  "avoid_when": [
+    "Simplification would strip away the technical conditions, edge cases, or math that the real decision still depends on.",
+    "A smooth explanation is being mistaken for mastery even though the idea has not been tested in application or prediction."
+  ],
+  "input_type": "understanding-integrity problem",
+  "output_type": "plain-language comprehension check",
+  "reasoning_types": [
+    "metacognitive",
+    "analogical"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on explanation-as-understanding-test and blind-spot exposure rather than on generic teaching rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor learning-theory sprawl because the raw source is stronger on simplification, chunking, and anti-false-mastery discipline."
+    ],
+    "open_questions": [
+      "The typed output compresses a source that also spans analogy use, schema building, and domain-accuracy limits."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on using explanation to test comprehension, reveal blind spots, and verify whether understanding is real."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly grounded in source warnings on oversimplification and mistaking fluency for mastery."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on problems of apparent understanding that need testing, while the typed input remains a compact reviewed label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields a plain-language explanation that exposes gaps, while the typed output is an operational compression."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The Feynman Technique is strongest as reflective and analogy-driven comprehension testing, while the taxonomy labels remain normalized."
+    }
+  }
+}

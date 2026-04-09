@@ -1,0 +1,71 @@
+{
+  "model_id": "critical-thinking",
+  "source_file": "Critical_Thinking_rag.md",
+  "select_when": [
+    "Important judgments depend on separating evidence from story, authority, or emotional plausibility.",
+    "First impressions, status, or internal pressure could dominate the conclusion unless disciplined skepticism slows the team down.",
+    "A problem needs decomposition, challenge, and synthesis rather than immediate action or rhetorical certainty.",
+    "The quality of reasoning itself is the constraint on decision quality."
+  ],
+  "avoid_when": [
+    "Critical thinking is becoming detachment theater, where nuance and skepticism are used to avoid taking a position or making a recommendation.",
+    "Slow analysis is crowding out action so completely that the work is sliding into analysis paralysis."
+  ],
+  "input_type": "high-stakes judgment under bias risk",
+  "output_type": "evidence-weighted conclusion",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on evidence quality, skeptical challenge, and self-correction rather than on generic smartness rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor-style metacognition sprawl because the raw source is already strong on skepticism, synthesis, and anti-bias discipline.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The reasoning type labels are reviewed operational compression over a source that also spans systems, communication, and hypothesis work."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on separating evidence from story, slowing first impressions, and solving through challenge plus synthesis."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by the source warnings on analysis paralysis and detachment theater."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on complex, high-stakes judgments with bias risk, but the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model produces disciplined conclusions after skepticism and evaluation; the output label compresses that into a typed decision artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Critical thinking clearly uses diagnostic and metacognitive reasoning, but the taxonomy names remain reviewed normalization."
+    }
+  }
+}

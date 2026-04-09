@@ -1,0 +1,71 @@
+{
+  "model_id": "circle-of-competence",
+  "source_file": "Circle_Of_Competence_rag.md",
+  "select_when": [
+    "The downside of being wrong is large enough that false confidence matters more than missing an adjacent opportunity.",
+    "A team must decide whether its intuition is actually earned by repeated exposure, fast feedback, and real error correction in this domain.",
+    "Scarce attention needs a perimeter, so saying no to adjacent opportunities is more important than sounding broadly capable.",
+    "The decision depends on whether judgment is genuinely calibrated here rather than on whether the team can tell a persuasive story."
+  ],
+  "avoid_when": [
+    "Circle of competence is being treated as a permanent identity label instead of a boundary that can expand, decay, or shift with evidence.",
+    "Staying inside the circle is being used as an excuse to avoid adjacent learning, partnerships, or evidence that the current edge is no longer real."
+  ],
+  "input_type": "scope-of-judgment decision",
+  "output_type": "competence-boundary check",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on perimeter discipline, calibrated judgment, and strategic refusal rather than broad self-help language about strengths.",
+    "donor_drops": [
+      "Did not preserve donor-style career-positioning overlays because the raw source is strongest on boundary discipline and risk of operating outside earned expertise.",
+      "Did not add higher-order composition fields because this batch stops at the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The typed input and output labels are reviewed operational compression over a source that blends self-knowledge, delegation, and strategic focus."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file gives explicit activation bullets on downside, calibrated intuition, and focus; the final triggers mainly compress that surface into routing language."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit danger lines in the weaknesses section."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about deciding where judgment is earned, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model filters opportunities through boundary discipline; the output label compresses that into an operational check."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Circle of competence clearly relies on metacognitive and diagnostic reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

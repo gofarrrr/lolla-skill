@@ -1,0 +1,70 @@
+{
+  "model_id": "generation-effect",
+  "source_file": "Generation_Effect_rag.md",
+  "select_when": [
+    "Retention, alignment, or real understanding depends on people producing the explanation, hypothesis, or plan themselves instead of only hearing it.",
+    "A complex or abstract concept will only stick if the learner has to retrieve, articulate, or construct the idea actively.",
+    "The team is moving too quickly from borrowed wording to confident action without showing that it can generate the reasoning in its own words.",
+    "A decision or teaching path should slow System 1 fluency by forcing structured articulation, explanation, or concept mapping."
+  ],
+  "avoid_when": [
+    "Self-generation is being used as an excuse to skip correction, evidence checks, or outside calibration.",
+    "The task is so under-scaffolded that asking for generation first would create noise, confusion, or bluffing instead of real understanding."
+  ],
+  "input_type": "passive-understanding problem",
+  "output_type": "active-articulation scaffold",
+  "reasoning_types": [
+    "metacognitive",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on active retrieval, self-produced explanation, and anti-passive-learning discipline rather than on broad creativity rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor ideation or workshop sprawl because the raw source is already strongest on active generation as a memory and understanding mechanism."
+    ],
+    "open_questions": [
+      "The model also supports communication design, but the Wave 1 surface is clearest when it stays focused on active production of understanding."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly says generation is strongest when understanding depends on people producing the explanation themselves, especially under complexity and abstraction."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The danger line about generation replacing correction or evidence checks is explicit in the source."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about passive receipt versus active generation, while the machine-usable label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source produces explanation, hypothesis, and concept-map generation; the output type compresses those into a reusable intervention label."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model links reflective articulation to clearer causal understanding, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

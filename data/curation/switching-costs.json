@@ -1,0 +1,72 @@
+{
+  "model_id": "switching-costs",
+  "source_file": "Switching_Costs_rag.md",
+  "select_when": [
+    "A seemingly better alternative exists, but economic, psychological, or operational friction is keeping people on the incumbent path.",
+    "A migration or vendor exit plan is being described as reversible even though coexistence drag and reversal cost are quietly growing.",
+    "The team needs to distinguish real fit from loyalty driven by sunk effort, habit, or commitment-consistency pressure.",
+    "A recommendation must surface the hidden cost of dual-run dependency, exit sequencing pressure, or delayed switching."
+  ],
+  "avoid_when": [
+    "The situation is genuinely novel enough that clinging to the incumbent frame would mainly reinforce cognitive entrenchment.",
+    "The model is being used to justify inertia without naming the concrete coordination, dependency, or reversal costs that make switching hard."
+  ],
+  "input_type": "incumbent-friction transition problem",
+  "output_type": "switch-friction and reversibility frame",
+  "reasoning_types": [
+    "counterfactual",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on incumbent friction, dual-run drag, and reversibility decay rather than widening it into generic loyalty or persuasion language.",
+    "donor_drops": [
+      "Did not preserve donor migration-policy sprawl beyond the raw source's stronger coexistence, reversal-cost, and framing material.",
+      "Did not add higher-order composition fields because this batch remains Wave 1 to Wave 3 only."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans platform exits, cognitive inertia, and communication design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source is explicit that switching costs matter most when friction, coexistence drag, and reversal-cost growth keep actors on an incumbent path."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The novelty warning is source-explicit; the second avoid condition is conservative normalization of the source's anti-entrenchment and dependency-mapping warnings."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on incumbent-friction transitions, while the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields reversibility and switching-friction analysis, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model works through counterfactual switching and system-friction effects, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "model_id": "representativeness-bias",
+  "source_file": "Representativeness_Bias_rag.md",
+  "select_when": [
+    "A vivid story, category label, or familiar prototype is overpowering statistical reasoning in a forecast or judgment.",
+    "The team is leaning on resemblance or stereotype logic instead of reference-class evidence and base-rate correction.",
+    "A recommendation depends on forcing a handoff from intuitive categorization to explicit outside-view checking before action.",
+    "Problem solvers are at risk of declaring that they have seen this pattern before and skipping verification of whether the old frame still fits."
+  ],
+  "avoid_when": [
+    "The judgment already rests on explicit outside-view evidence and the model would only restate a bias warning without changing the decision path.",
+    "The model is being used to criticize simplification itself rather than the specific move from surface similarity to unsupported causal confidence."
+  ],
+  "input_type": "prototype-driven judgment problem",
+  "output_type": "base-rate correction frame",
+  "reasoning_types": [
+    "probabilistic",
+    "counterfactual"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on stereotype-driven pattern matching, base-rate neglect, and forced outside-view correction rather than widening it into generic anti-bias language.",
+    "donor_drops": [
+      "Did not preserve donor heuristics-and-biases sprawl beyond the raw source's stronger base-rate, WYSIATI, and false-pattern-recognition surface.",
+      "Did not add higher-order composition fields because this batch remains Wave 1 to Wave 3 only."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans communication shortcuts, hiring judgments, and forecasting errors."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source explicitly says the model is most useful when vivid story or resemblance logic overrides statistical reasoning and when a base-rate correction handoff is needed."
+    },
+    "avoid_when": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The second avoid condition is conservative normalization of the source's distinction between useful simplification and dangerous false pattern recognition."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on prototype-driven judgment problems, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields outside-view and base-rate correction behavior, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model naturally works through probability correction and counterfactual challenge of the favored story, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

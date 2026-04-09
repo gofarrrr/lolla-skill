@@ -1,0 +1,87 @@
+{
+  "model_id": "optimization-theory",
+  "source_file": "Optimization_Theory_rag.md",
+  "failure_modes": [
+    {
+      "text": "Optimization drifts into proxy worship when a measurable indicator or elegant model output replaces the real outcome.",
+      "source_quote": "Danger when the proxy becomes the target: Danger when teams optimize a measurable indicator, local process metric, or elegant model output that no longer tracks the real outcome they claim to care about.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit the objective function: verify that the metric being optimized is still a faithful proxy for the real outcome, and sunset it if the gap has grown."
+    },
+    {
+      "text": "Teams boil the ocean when they optimize for completeness instead of filtering toward the core leverage points.",
+      "source_quote": "Optimization necessitates filtering out the nonessential to focus on the core leverage points.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Apply the Pareto filter early: identify the 2-3 levers that drive most of the outcome and defer completeness until the core leverage is captured."
+    },
+    {
+      "text": "A favorite framework can become a shackle when it is reused on a problem whose assumptions no longer fit.",
+      "source_quote": "Applying a favorite or familiar mental model ... to every problem, even novel ones, simply because it's readily available.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Mandate a periodic framework rotation: after two cycles with the same optimization model, force a pass with a structurally different approach to detect assumption drift."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What are we actually maximizing or minimizing?",
+      "source_quote": "Most useful when the team can say what it is actually maximizing or minimizing and can distinguish the true target from a convenient proxy.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What are we sacrificing, what are we protecting, and which metric wins when goals conflict?",
+      "source_quote": "Best when trade-offs must be made explicit: Best when a recommendation should state what is being sacrificed, what is being protected, and which metric wins when goals conflict.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Ask: \"Is the worst case bad enough?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Name the objective function before debating options so the comparison is anchored to the real target.",
+      "source_quote": "Optimization is intrinsically linked to defining clear goals.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Make constraints operational instead of decorative so the recommendation fits actual limits on time, capital, risk, or bottlenecks.",
+      "source_quote": "Works when constraints are real rather than decorative.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Reduce extraneous complexity so effort concentrates on leverage points rather than on low-value completeness.",
+      "source_quote": "Optimization necessitates filtering out the nonessential to focus on the core leverage points.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on objective clarity, proxy-risk discipline, and constraint-aware trade-off work.",
+    "donor_drops": [
+      "Did not preserve donor optimization rhetoric that widened into general productivity language beyond the raw source's stronger leverage and proxy-risk material."
+    ],
+    "open_questions": [
+      "The second failure mode compresses several anti-completeness passages so it remains reusable across strategy and analysis settings."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, cognitive load theory, and leverage-oriented models for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation-bias-adjacent framework lock and on uncertainty-heavy contexts that resist strict maximization."
+    ],
+    "structured_tensions": [
+      "The source has real tension material around proxy targets and uncertainty, but it does not present a clean explicit structured tension block in current-vocabulary form."
+    ]
+  }
+}

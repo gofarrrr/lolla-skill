@@ -1,0 +1,71 @@
+{
+  "model_id": "leverage-points",
+  "source_file": "Leverage_Points_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking gives leverage-points the whole-system view needed to find where a small intervention can actually shift behavior.",
+      "source_quote": "Systems thinking, the foundation of LPs, is about seeing interrelationships and patterns of change.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "prioritization",
+      "rationale_text": "Prioritization helps leverage-points convert structural insight into a disciplined decision about what to do now and what to leave alone.",
+      "source_quote": "Problem solvers should focus on issues that have the biggest impact and that they can actually influence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking helps leverage-points look beneath conventional surface fixes to the deeper system element that truly governs outcomes.",
+      "source_quote": "This approach ... strips away assumptions to leave only core facts and desired outcomes.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias can make leverage-point selection reflect the analyst's preferred intervention instead of the system's real sensitivity.",
+      "source_quote": "leverage-points conflicts with confirmation-bias (confirmation bias) when leverage point identification is driven by confirming the analyst's preferred intervention rather than systematic sensitivity testing.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "optionality",
+      "tension_text": "Leverage-points conflicts with optionality when continuous branching delays commitment to the highest-impact intervention.",
+      "source_quote": "leverage-points vs optionality: leverage-points conflicts with optionality (optionality) when continuous branching delays commitment to the highest-impact intervention.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "margin-of-safety",
+      "tension_text": "Leverage-points conflicts with margin-of-safety when aggressive leverage seeks impact faster than risk buffers can absorb shocks.",
+      "source_quote": "leverage-points vs margin-of-safety: leverage-points conflicts with margin-of-safety (margin of safety) when aggressive leverage seeks impact faster than risk buffers can absorb shocks.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Leverage-points conflicts with confirmation-bias when leverage point identification is driven by confirming the analyst's preferred intervention rather than systematic sensitivity testing.",
+      "source_quote": "leverage-points vs confirmation-bias: leverage-points conflicts with confirmation-bias (confirmation bias) when leverage point identification is driven by confirming the analyst's preferred intervention rather than systematic sensitivity testing.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on structural allies and an explicit tension block around premature branching, risk buffering, and analyst preference capture.",
+    "donor_drops": [
+      "Did not preserve donor topology or scoring overlays beyond the bounded first-order links and explicit source tensions."
+    ],
+    "open_questions": [
+      "Bottlenecks and decomposition are source-real allies, but systems-thinking, prioritization, and first-principles-thinking were the cleaner bounded anchors for this pass."
+    ]
+  }
+}

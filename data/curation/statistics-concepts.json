@@ -1,0 +1,70 @@
+{
+  "model_id": "statistics-concepts",
+  "source_file": "Statistics_Concepts_rag.md",
+  "select_when": [
+    "Uncertainty is quantifiable enough that ranges, distributions, or sampling logic can improve the decision.",
+    "The team needs to distinguish signal from noise rather than argue from anecdotes, vivid cases, or gut feel.",
+    "A problem benefits from calibrated estimation, comparison, or inference instead of loose narrative certainty.",
+    "Background rates, sampling structure, or distribution shape matter more than one compelling example."
+  ],
+  "avoid_when": [
+    "Statistical language is being used decoratively and no one has checked whether the data quality, assumptions, or sample structure justify the conclusion.",
+    "The team is leaning on the mean outcome while ignoring extreme outcomes, missingness, or failure distributions that matter more to the decision."
+  ],
+  "input_type": "signal-versus-noise problem",
+  "output_type": "calibrated statistical read",
+  "reasoning_types": [
+    "probabilistic",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on distributions, inference, and calibration rather than broad math rhetoric or generic data enthusiasm.",
+    "donor_drops": [
+      "Did not widen into advanced analytics tooling because the raw source is stronger on base rates, signal detection, and useful statistical judgment."
+    ],
+    "open_questions": [
+      "The typed output compresses several surfaces, including estimation, sampling checks, and inference quality."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source explicitly supports quantifiable uncertainty, signal-versus-noise work, and calibrated estimation rather than anecdotal reasoning."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions come directly from the dangers section on decorative statistics and over-reliance on the mean."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates on noise-versus-signal judgment problems, while the compact label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields calibrated statistical interpretation; the output label compresses that surface into a reusable artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is explicitly probabilistic and diagnostic in how it distinguishes data signal, assumptions, and inferential strength."
+    }
+  }
+}

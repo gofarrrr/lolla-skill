@@ -1,0 +1,70 @@
+{
+  "model_id": "cognitive-biases",
+  "source_file": "Cognitive_Biases_rag.md",
+  "select_when": [
+    "The team is making consequential judgments under pressure, ambiguity, or strong prior beliefs that can quietly distort perception.",
+    "Decisions need explicit debiasing moves such as outside views, disconfirming evidence, or structured challenge instead of trust in intuition alone.",
+    "Unexamined confidence is more dangerous than adding a little extra friction to the reasoning process."
+  ],
+  "avoid_when": [
+    "Bias language is being used as a rhetorical weapon against opponents while the speaker avoids inspecting their own incentives, evidence, and assumptions.",
+    "The group wants a generic warning label instead of a concrete debiasing move tied to the actual decision structure."
+  ],
+  "input_type": "biased high-stakes judgment",
+  "output_type": "explicit debiasing move",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on diagnosing distorted judgment and forcing explicit debiasing moves rather than listing every named bias.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

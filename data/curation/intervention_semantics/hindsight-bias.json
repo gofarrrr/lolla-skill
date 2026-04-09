@@ -1,0 +1,72 @@
+{
+  "model_id": "hindsight-bias",
+  "source_file": "Hindsight_Bias_rag.md",
+  "failure_modes": [
+    {
+      "text": "Creeping determinism makes the causal path to a known outcome appear clear and necessary in hindsight, collapsing the genuine alternative paths that were equally plausible before the event.",
+      "source_quote": "Creeping determinism",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Reconstruct the genuine uncertainty at the time of the decision: creeping determinism makes the outcome look inevitable only after the fact."
+    },
+    {
+      "text": "Decision-quality contamination conflates outcome quality with decision quality — good processes with bad outcomes are penalized while bad processes with lucky outcomes are rewarded, corrupting the feedback signal for improving judgment.",
+      "source_quote": "Decision-quality contamination",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Evaluate decision quality separately from outcome quality: good processes with bad outcomes should not be penalized, and bad processes with good outcomes should not be rewarded."
+    },
+    {
+      "text": "False lesson extraction generates post-mortem lessons calibrated to the specific failure path as if it were uniquely predictable, producing 'fight the last war' defenses rather than improved probabilistic reasoning.",
+      "source_quote": "False lesson extraction",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Anchor post-mortem lessons to the decision process rather than to the specific failure path; false lesson extraction generates rules calibrated to one outcome."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What does our contemporaneous documentation show we thought and what we were uncertain about at decision time — and how does that differ from what we now remember thinking?",
+      "source_quote": "Require contemporaneous documentation of decision rationale, uncertainty, and known alternatives",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What was the realistic base-rate probability of this outcome at decision time, based on comparable cases — and does that change our evaluation of the decision?",
+      "source_quote": "What was the realistic probability of this outcome at the time the decision was made?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What were the three most plausible outcomes at decision time — and why do we now find it hard to remember them as equally plausible?",
+      "source_quote": "When learning from past failures, explicitly reconstruct the alternative paths that were live at the time",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate process evaluation from outcome evaluation: ask 'was this a good decision given what was known at the time?' before asking 'what happened?' — the sequence matters.",
+      "source_quote": "Separate process evaluation from outcome evaluation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Require contemporaneous documentation of decision reasoning and uncertainty at decision time — use those documents in post-event review rather than relying on reconstructed memory.",
+      "source_quote": "Document Pre-Decision Reasoning: the only reliable antidote is timestamped records",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Reconstruct the alternative futures that were live at decision time — force the question of what could reasonably have happened instead, to restore the probability branching that hindsight collapsed.",
+      "source_quote": "Explicitly reconstruct the alternative paths that were live at the time of the decision",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Wave 2 for hindsight bias focuses on the three primary distortion mechanisms — creeping determinism, decision-quality contamination, false lesson extraction — with documentation-anchored and process-separating heuristics.",
+    "donor_drops": [],
+    "open_questions": []
+  }
+}

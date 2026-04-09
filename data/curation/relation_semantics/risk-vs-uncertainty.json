@@ -1,0 +1,76 @@
+{
+  "model_id": "risk-vs-uncertainty",
+  "source_file": "Risk_Vs_Uncertainty_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems Thinking helps separate causal structure and scenarios when judging what is bounded risk versus genuine uncertainty.",
+      "source_quote": "Systems thinking helps break down complexity and assess causality, which is vital for understanding risk.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition supports the model by disaggregating uncertainty into scenarios and assumptions that can be tested separately.",
+      "source_quote": "Logic trees ... are powerful tools for disaggregating problems into insightful parts, tracking elements for analysis, and modeling different \"what if\" scenarios.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "blooms-taxonomy",
+      "rationale_text": "Bloom's Taxonomy reinforces that good uncertainty judgment depends on higher-order evaluation and creation, not shallow recall alone.",
+      "source_quote": "Evaluation and creation (the top tiers) are essential for generating effective solutions in uncertain domains.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "The Feynman Technique exposes what the operator actually understands and where uncertainty is still being hidden by abstraction.",
+      "source_quote": "This process of uncovering \"what you know versus what you think you know\" is crucial for addressing unknown unknowns.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "margin-of-safety",
+      "rationale_text": "Margin of Safety turns the distinction between risk and uncertainty into concrete buffers, thresholds, and reversible commitments.",
+      "source_quote": "Margin Of Safety turns that distinction into concrete buffers, stop-loss thresholds, and reversible commitments.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "cognitive-biases",
+      "rationale_text": "Cognitive biases substitute fast intuitive assessment for the slower work needed to classify uncertainty honestly.",
+      "source_quote": "The model is inherently in conflict with intuitive, fast thinking (System 1), which is responsible for many cognitive errors.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation bias pushes the operator to confirm a preferred risk estimate instead of testing whether the distribution is wrong.",
+      "source_quote": "Managing risk requires finding disconfirming evidence (antithesis), rather than just confirming evidence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Risk-vs-uncertainty conflicts with confirmation-bias when the desire for closure turns uncertainty into a preferred risk estimate.",
+      "source_quote": "risk-vs-uncertainty conflicts with confirmation-bias (confirmation bias) when the desire to resolve uncertainty drives selective evidence gathering that confirms the preferred risk estimate rather than genuinely testing whether the distribution is as assumed.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "This source is relation-rich on both supporting uncertainty discipline and conflicts that create false precision.",
+    "donor_drops": [
+      "Did not preserve donor scenario-level relation material that widened beyond the raw source structure."
+    ],
+    "open_questions": [
+      "Availability bias and curse-of-knowledge content were left out because the current canonical id surface does not expose them cleanly."
+    ]
+  }
+}

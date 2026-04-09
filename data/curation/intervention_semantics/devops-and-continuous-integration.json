@@ -1,0 +1,87 @@
+{
+  "model_id": "devops-and-continuous-integration",
+  "source_file": "Devops_and_Continuous_Integration_rag.md",
+  "failure_modes": [
+    {
+      "text": "Maslow's-hammer style framework use can optimize the wrong delivery problem because the team mistakes a familiar pipeline story for the real system.",
+      "source_quote": "Maslow's Hammer (Law of the Instrument)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge whether the familiar pipeline story fits the current delivery problem; Maslow's hammer can optimize the wrong bottleneck."
+    },
+    {
+      "text": "Boiling-the-ocean analysis can delay the feedback loop that should have revealed the next operational constraint earlier.",
+      "source_quote": "Boiling the Ocean",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Ship the smallest feedback loop that reveals the next operational constraint; boiling-the-ocean analysis delays the signal the pipeline should provide."
+    },
+    {
+      "text": "Local pipeline optimization can quietly increase rollback pain, debugging latency, or production brittleness.",
+      "source_quote": "Danger when local pipeline optimization hides system fragility",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit local pipeline optimizations for downstream side effects: faster deploys that increase rollback pain or debugging latency are not net improvements."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which output can we measure now to detect whether faster local flow is actually degrading end-to-end reliability?",
+      "source_quote": "What key output can I measure now to detect failure early?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use a build-observe-diagnose-adjust loop so learning happens continuously instead of after a large release batch.",
+      "source_quote": "shortening the distance between build, observe, diagnose, and adjust",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Map handoffs, merge friction, and brittle release steps explicitly before optimizing tool speed or throughput numbers.",
+      "source_quote": "handoffs, untested merges, delayed feedback, brittle release steps",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the five-step sequence of goals, problems, diagnosis, design, and implementation so delivery fixes do not skip root-cause work.",
+      "source_quote": "Success requires doing all five steps well, one at a time, and in order",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the intervention layer on explicit operating loops, integration-friction diagnosis, and anti-local-optimization safeguards.",
+    "donor_drops": [
+      "Did not preserve broad platform or tooling catalogs because the raw source is stronger on system-loop and reliability discipline."
+    ],
+    "open_questions": [
+      "The third premortem question is reviewed compression from the source's early-failure-detection and worst-case logic."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The source is rich on systems-thinking, design-thinking, and game-theory style simulation use."
+    ],
+    "antagonists": [
+      "The raw source names margin-of-safety, optimization-theory, and confirmation-bias pressures clearly."
+    ],
+    "structured_tensions": [
+      "The source explicitly preserves tensions against margin-of-safety, optimization-theory, and confirmation-bias."
+    ]
+  }
+}

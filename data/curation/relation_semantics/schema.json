@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Wave 3 Relation Semantics Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "model_id",
+    "source_file",
+    "allies",
+    "antagonists",
+    "structured_tensions"
+  ],
+  "properties": {
+    "model_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "source_file": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_\\- ]+\\.md$"
+    },
+    "allies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationItem"
+      }
+    },
+    "antagonists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationItem"
+      }
+    },
+    "structured_tensions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/tensionItem"
+      }
+    },
+    "curation_notes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "donor_drops": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "deferred_higher_order_notes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "antagonists": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "structured_tensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "relationItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_model_id",
+        "rationale_text",
+        "source_quote",
+        "extraction_type",
+        "confidence"
+      ],
+      "properties": {
+        "target_model_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "rationale_text": {
+          "type": "string",
+          "minLength": 12
+        },
+        "source_quote": {
+          "type": "string",
+          "minLength": 12
+        },
+        "extraction_type": {
+          "type": "string",
+          "enum": [
+            "explicit",
+            "normalized"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "weak"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "tensionItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_model_id",
+        "tension_text",
+        "source_quote",
+        "extraction_type",
+        "confidence"
+      ],
+      "properties": {
+        "target_model_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "tension_text": {
+          "type": "string",
+          "minLength": 12
+        },
+        "source_quote": {
+          "type": "string",
+          "minLength": 12
+        },
+        "extraction_type": {
+          "type": "string",
+          "enum": [
+            "explicit",
+            "normalized"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "weak"
+          ]
+        },
+        "tension_type": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

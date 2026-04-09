@@ -1,0 +1,95 @@
+{
+  "model_id": "authority-bias",
+  "source_file": "Authority_Bias_rag.md",
+  "allies": [
+    {
+      "target_model_id": "wysiati",
+      "rationale_text": "WYSIATI amplifies authority-bias by making the authority's available evidence feel like the complete picture — confidence in the expert's position tracks the coherence of their story, not its evidential completeness, so the listener's own information gaps become invisible.",
+      "source_quote": "Authority Bias is heavily amplified by WYSIATI, the tendency to base judgment solely on the information immediately available. Confidence in an authority's belief depends not on the quantity or quality of evidence, but on the strength of the 'story they can tell about what they see'.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring amplifies authority bias by fixing attention on the authority's frame before alternatives are considered.",
+      "source_quote": "The selection of a specific expert or framework can serve as a potent anchor, overly focusing attention on a single piece of information—the authority’s perspective—and rendering alternative views irrelevant.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "reciprocity-principle",
+      "rationale_text": "Reciprocity-principle can intensify authority bias when social warmth and obligation amplify deference to the authority figure.",
+      "source_quote": "If the authority figure also appeals to the audience's sense of liking (by being friendly or complimentary), the persuasive effect is magnified.",
+      "extraction_type": "normalized",
+      "confidence": "medium",
+      "note": "The source couples reciprocity and liking; this pilot maps only the cleaner canonical target."
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical thinking opposes authority bias by demanding evidence evaluation and active skepticism instead of automatic deference.",
+      "source_quote": "Critical thinking demands the \"ability to evaluate evidence, to notice bias as it kicks into gear,\" and to question one's own assumptions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First principles thinking strips away inherited doctrine and forces a return to core facts when expert prestige is doing too much work.",
+      "source_quote": "This mental model strips away conventional assumptions and institutional methods that experts might rely on, forcing a problem solver back to the core facts and desired outcome.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "intellectual-humility",
+      "rationale_text": "Intellectual-humility is the direct antidote to authority-bias — the disposition to acknowledge one's own fallibility and genuinely explore alternative viewpoints counteracts the automatic deference to authoritative sources that authority-bias produces.",
+      "source_quote": "Radical Open-Mindedness: The primary antidote to the ego and blind spot barriers... is radical open-mindedness. This mindset compels one to effectively explore different points of view without letting ego or blind spots interfere.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "scientific-method-evidence-testing",
+      "tension_text": "Authority-bias conflicts with scientific-method-evidence-testing when rank substitutes for falsifiable evidence.",
+      "source_quote": "authority-bias conflicts with scientific-method-evidence-testing (scientific method evidence testing) when rank substitutes for falsifiable evidence.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "tension_text": "Authority-bias conflicts with first-principles-thinking when inherited expert doctrine blocks ground-up decomposition.",
+      "source_quote": "authority-bias conflicts with first-principles-thinking (first principles thinking) when inherited expert doctrine blocks ground-up decomposition.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Authority-bias conflicts with confirmation-bias when deference to the expert selectively amplifies confirming evidence.",
+      "source_quote": "authority-bias conflicts with confirmation-bias (confirmation bias) when deference to authority selectively amplifies information that confirms the expert's preferred conclusion.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Authority Bias has a strong tension surface and two clean antagonist mappings, but some of its most distinctive antidotes still lack direct canonical ids.",
+    "donor_drops": [
+      "Did not preserve donor relation additions that widen beyond the raw ally, antagonist, and tension sections."
+    ],
+    "open_questions": [
+      "Radical open-mindedness wired in Task 2.5 sweep via intellectual-humility mapping (Dalio's radical open-mindedness = intellectual-humility).",
+      "Idea meritocracy and believability weighting also map to intellectual-humility; covered by the same edge."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "WYSIATI wired as ally (Task 4.1 sweep). Liking dynamics remains deferred — maps to liking-principle but that edge was not explicit enough in this source to warrant wiring."
+    ],
+    "antagonists": [
+      "Idea meritocracy / believability weighting and radical open-mindedness remain source-real but unresolved at the current target-id surface."
+    ]
+  }
+}

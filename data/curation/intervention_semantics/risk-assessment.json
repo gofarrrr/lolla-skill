@@ -1,0 +1,87 @@
+{
+  "model_id": "risk-assessment",
+  "source_file": "Risk_Assessment_rag.md",
+  "failure_modes": [
+    {
+      "text": "Risk assessment becomes process theater when more deliberation is added without sharper thresholds, mitigations, or decisions.",
+      "source_quote": "Misapplication of risk assessment often involves excessive deliberation",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Tie every risk review to a threshold and a decision: if no risk item triggers a plan change, mitigation, or escalation, the assessment was process theater."
+    },
+    {
+      "text": "The model fails when teams focus on tidy secondary variables while the main fragility drivers remain unexamined.",
+      "source_quote": "focusing on the wrong variables",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Prioritize the primary fragility drivers: identify the 2-3 risks that would actually kill the project and focus assessment depth there instead of spreading attention evenly."
+    },
+    {
+      "text": "Downside governance breaks when optimism or conjunctive success thinking crowds out realistic failure paths.",
+      "source_quote": "overestimate the probability of conjunctive events",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Stress-test the plan against realistic failure paths: require at least one scenario where conjunctive assumptions break, and verify the team has a response ready."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What downside path is underweighted because the plan feels coherent from the inside?",
+      "source_quote": "underweighted downside scenarios",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What threshold or indicator would tell us this risk is becoming real rather than theoretical?",
+      "source_quote": "explicit mitigations, thresholds, and monitoring",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which interdependency or unknown-unknown could break the current risk picture?",
+      "source_quote": "unknown unknowns",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Translate risk into explicit mitigations, thresholds, and monitoring instead of generic caution language.",
+      "source_quote": "explicit mitigations, thresholds, and monitoring",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use systems thinking to surface interdependencies before treating risks as isolated line items.",
+      "source_quote": "integrated ecosystem",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Check whether optimism about conjunctive success is hiding the real downside shape of the plan.",
+      "source_quote": "unwarranted optimism",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on thresholded downside governance, anti-process-theater discipline, and interdependency-aware risk work.",
+    "donor_drops": [
+      "Did not preserve donor compliance sprawl because the raw source is stronger on risk governance and realistic downside mapping."
+    ],
+    "open_questions": [
+      "The second premortem item compresses several source passages on monitoring and escalation conditions so the chunk stays operational."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on systems-thinking, constraints, resilience, trade-offs, and checklists as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on optimism-bias-and-planning-fallacy and representativeness-bias, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source has explicit tension blocks with optimism-bias-and-planning-fallacy, and that now cleanly maps into the current target-id surface."
+    ]
+  }
+}

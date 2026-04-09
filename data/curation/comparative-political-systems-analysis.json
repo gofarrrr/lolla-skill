@@ -1,0 +1,72 @@
+{
+  "model_id": "comparative-political-systems-analysis",
+  "source_file": "Comparative_Political_Systems_Analysis_rag.md",
+  "select_when": [
+    "Institutional design, incentives, and power structure matter more than the stated ideology or surface narrative.",
+    "Governance systems or policy responses must be compared without assuming one familiar national frame fits all cases.",
+    "Strategic interpretation depends on seeing how formal rules and informal behavior interact across different system designs.",
+    "The analyst needs structural comparison across systems rather than superficial analogy from one visible label."
+  ],
+  "avoid_when": [
+    "Comparison is collapsing into shallow analogy that treats unlike systems as equivalent because they share one visible institution.",
+    "The system map has grown so large that everything is connected to everything and no actionable comparison remains."
+  ],
+  "input_type": "cross-system institutional comparison problem",
+  "output_type": "structural governance comparison",
+  "reasoning_types": [
+    "analogical",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on structural institutional comparison and incentive mapping rather than on surface political analogy.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

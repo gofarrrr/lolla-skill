@@ -1,0 +1,72 @@
+{
+  "model_id": "system-1",
+  "source_file": "System_1_rag.md",
+  "failure_modes": [
+    {
+      "text": "WYSIATI-driven overconfidence constructs a confident story from available evidence without registering what is absent, making thin evidence feel complete.",
+      "source_quote": "WYSIATI-driven overconfidence",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Explicitly audit what information is missing before committing to a confident story; ask what evidence would reverse the conclusion and why it is absent."
+    },
+    {
+      "text": "Halo contamination lets one salient attribute flood all subsequent assessments, making independent evaluation of separate dimensions impossible.",
+      "source_quote": "Halo contamination",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Evaluate attributes independently and in sequence before allowing an overall impression to form; remove the most salient positive signal and re-score."
+    },
+    {
+      "text": "Expert overreach applies pattern recognition built in one domain confidently to novel domains where the underlying patterns do not hold.",
+      "source_quote": "Expert overreach",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Distinguish domains where reliable intuition can form (fast feedback, stable patterns) from those where it cannot; demand explicit reasoning chains in novel contexts."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the confidence we feel here tracking the quality of the story we can tell, or the completeness of the evidence behind it?",
+      "source_quote": "WYSIATI — confidence tracks story quality, not evidence completeness",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the evidence base for this intuition, and does the current situation actually match the cases where the intuition was formed?",
+      "source_quote": "Expert overreach: distinguish domains where reliable intuition can form from domains where it cannot",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which attribute is most salient here, and are we letting it shape our view of dimensions that should be evaluated independently?",
+      "source_quote": "Halo contamination: one positive attribute contaminates all other judgments",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Treat high fluency and fast certainty as a scrutiny trigger, not a quality signal — System 1 is most confident and most dangerous when its outputs feel most obvious.",
+      "source_quote": "Fluency as Truth: ideas expressed in clear, familiar language feel more true",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Audit the substitution: when answering a hard question, ask whether a simpler heuristic question is being answered in its place.",
+      "source_quote": "The Substitution Heuristic: System 1 answers a simpler heuristic question in place of the harder target question",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "In novel domains, require explicit reasoning chains rather than accepting intuitive conclusions, no matter how expert the source.",
+      "source_quote": "Expert overreach: demand explicit reasoning when System 1 outputs emerge in novel contexts",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Wave 2 for System 1 focuses on the three most decision-relevant failure modes — WYSIATI overconfidence, halo contamination, and expert overreach — with corresponding pre-mortem questions and detection heuristics.",
+    "donor_drops": [],
+    "open_questions": []
+  }
+}

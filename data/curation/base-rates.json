@@ -1,0 +1,76 @@
+{
+  "model_id": "base-rates",
+  "source_file": "Base_Rates_rag.md",
+  "select_when": [
+    "A forecast, diagnosis, budget, or estimate is vulnerable to a vivid inside-view story that could drown out historical frequency.",
+    "A credible reference class exists and the team can compare the current case to that class before arguing from specialness.",
+    "The decision depends on calibrating likely ranges and tail outcomes rather than defending a single optimistic base case.",
+    "The case feels special mainly because the local narrative is vivid, emotional, or expert-driven."
+  ],
+  "avoid_when": [
+    "The chosen reference class is too broad, too narrow, or structurally mismatched, making the prior look rigorous while actually misleading the decision.",
+    "A real regime shift or causal break is present, but the team is still treating historical frequencies as if nothing important changed.",
+    "The prior is being used as a substitute for updating on high-quality new evidence instead of as the starting point for that update."
+  ],
+  "input_type": "forecast or diagnosis with a usable reference class",
+  "output_type": "outside-view prior",
+  "reasoning_types": [
+    "probabilistic",
+    "analogical"
+  ],
+  "curation_notes": {
+    "summary": "Kept the raw outside-view and reference-class doctrine, but normalized the activation surface around forecast calibration instead of donor example lists.",
+    "donor_drops": [
+      "Dropped donor duplicate avoid_when language that repeated the same stable-playbook warning twice.",
+      "Dropped donor new_allies and new_tensions because the raw markdown already states the key latticework relationships for this pilot pass."
+    ],
+    "open_questions": [
+      "Reasoning type labels are operational normalization rather than a source-authored taxonomy."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths and playbook sections strongly support these activation patterns; donor examples were narrowed into case-agnostic triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw weaknesses section explicitly supports mismatched reference classes and regime-shift concerns; the third item is a conservative operational implication of the Bayes framing."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly frames forecasting and diagnosis through reference classes, but the exact label is normalized for routing use."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw file centers the model on anchoring to the outside view first; the output label compresses that function into a reusable operational noun phrase."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "Probability and reference-class analogy are both explicit in the source, while the taxonomy names themselves are normalized."
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "cultural-dimensions-theory",
+  "source_file": "Cultural_Dimensions_Theory_rag.md",
+  "select_when": [
+    "People from different backgrounds are interpreting the same behavior through incompatible expectations about trust, hierarchy, conflict, or commitment.",
+    "A decision-maker needs a comparative lens rather than a personal intuition about how others will read the same action.",
+    "Coordination quality depends on distinguishing cultural context clues from purely individual preference."
+  ],
+  "avoid_when": [
+    "The model is being used to stereotype individuals instead of generating testable context clues.",
+    "Broad cultural branching is postponing concrete coordination choices that now need commitment."
+  ],
+  "input_type": "cross-cultural interpretation problem",
+  "output_type": "comparative context lens",
+  "reasoning_types": [
+    "analogical",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused on comparative context clues for coordination and interpretation while explicitly rejecting stereotype-by-framework use.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

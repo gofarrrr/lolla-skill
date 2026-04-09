@@ -1,0 +1,70 @@
+{
+  "model_id": "expertise-reversal-effect",
+  "source_file": "Expertise_Reversal_Effect_rag.md",
+  "select_when": [
+    "The same message, prompt, or procedure is landing very differently across experience levels and the support level may be mismatched to expertise.",
+    "Performance is dropping because experts are being slowed by redundant explanation or because novices are being under-supported.",
+    "A training, workflow, or prompt should deliberately remove supports that have become drag while retaining structure for the less experienced user.",
+    "Context volume is rising, but clarity depends more on fit to expertise than on adding still more examples or scaffolding."
+  ],
+  "avoid_when": [
+    "Less guidance is being treated as automatically better even though the task, stakes, or novelty still require renewed structure.",
+    "An expert-facing simplification is being generalized to novices who still need concrete steps, examples, or explicit distinctions."
+  ],
+  "input_type": "expertise-mismatch workflow",
+  "output_type": "support-level retuning",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on expertise-sensitive support design, redundant-load removal, and fit between mastery level and explanation depth.",
+    "donor_drops": [
+      "Did not preserve donor prompt-engineering sprawl because the raw source already supports the core mismatch logic without widening into general AI-advice territory."
+    ],
+    "open_questions": [
+      "The raw source is especially strong on prompt and instruction design, but the Wave 1 file keeps that general enough to stay reusable across human and machine workflows."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that the model is strongest when the same message lands differently across expertise levels and when support has become drag."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The danger line about confusing less guidance with better guidance is explicit, as is the novice-versus-expert mismatch."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about expertise mismatches across prompts, training, and procedures; the typed input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The output is a retuned level of guidance and compression calibrated to mastery; the short label compresses that operational move."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses fit problems inside larger support systems, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

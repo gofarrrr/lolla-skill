@@ -1,0 +1,72 @@
+{
+  "model_id": "probabilistic-thinking",
+  "source_file": "Probabilistic_Thinking_rag.md",
+  "select_when": [
+    "The decision is not yes-or-no but more-likely-or-less-likely, so binary framing would hide meaningful uncertainty.",
+    "The team needs to compare ranges, distributions, or expected value instead of treating one forecast as certain.",
+    "Uncertainty can be reduced through better priors, disconfirming evidence, or explicit probability ranges rather than by telling a cleaner story.",
+    "The current argument sounds precise, but the real task is to quantify how much confidence the team actually has."
+  ],
+  "avoid_when": [
+    "The work requires a concrete commitment now, but the team is using probability language to postpone choosing after the key economics are already clear.",
+    "The probability estimates are being treated as exact-looking numbers without enough evidence, base-rate discipline, or sensitivity testing behind them."
+  ],
+  "input_type": "uncertain decision",
+  "output_type": "probability-weighted judgment",
+  "reasoning_types": [
+    "metacognitive",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on uncertainty ranges, expected value, and disciplined probability communication rather than broad statistics survey content.",
+    "donor_drops": [
+      "Did not preserve donor-style forecasting overlays because the raw source is already explicit on expected value, error discipline, and uncertainty communication.",
+      "Did not add higher-order composition fields because this batch stops at the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The avoid-when language is conservative reviewed normalization over a source that is stronger on false precision than on explicit anti-activation routing."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that probabilistic thinking is strongest when binary framing fails and uncertainty ranges matter; review mainly compacts those bullets into routing triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about false precision and misuse of exact-looking estimates; the commitment-delay warning is conservative reviewed normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model activates on uncertainty-heavy choices, but the compact type label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source produces expected-value and probability-range reasoning; the output label compresses that into a typed judgment artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Probabilistic thinking is clearly probabilistic and metacognitive in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

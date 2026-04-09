@@ -1,0 +1,70 @@
+{
+  "model_id": "usability-heuristics",
+  "source_file": "Usability_Heuristics_rag.md",
+  "select_when": [
+    "People need fast, reliable navigation through a messy task and cannot recompute the whole workflow from first principles every time.",
+    "The environment is repeatable enough for good rules of thumb or interface conventions to reduce friction without pretending to model everything.",
+    "A team needs practical triage rules, communication shortcuts, or design conventions that lower cognitive burden quickly.",
+    "Starting simple with heuristics would reveal the size and shape of the problem before anyone builds a heavier model."
+  ],
+  "avoid_when": [
+    "A once-useful shortcut has hardened into doctrine even though the task, audience, or system has changed.",
+    "The problem is genuinely novel and is being forced into a familiar heuristic frame instead of being tested from multiple cuts."
+  ],
+  "input_type": "friction and shortcut problem",
+  "output_type": "low-friction rule set",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on practical low-friction rules, cognitive-load reduction, and reconnaissance-before-complexity rather than generic heuristic theory.",
+    "donor_drops": [
+      "Did not widen the model into general decision theory because the raw source is stronger on usable shortcuts, simple starts, and anti-hammer warnings."
+    ],
+    "open_questions": [
+      "The source is broad enough to touch communication and problem-structuring surfaces, so the typed output is reviewed compression."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths and playbook sections directly support fast navigation, repeatable rules of thumb, practical decision aids, and starting simple."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The source explicitly warns against shortcuts hardening into doctrine and against applying a familiar frame to a novel problem."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around friction, overload, and the need for practical shortcuts, while the compact label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields rules of thumb, simple starting structures, and convention-setting guidance; the output label compresses that surface."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source treats shortcuts as things to inspect and calibrate rather than to trust blindly, so the normalized reasoning labels emphasize diagnosis and reflective checking."
+    }
+  }
+}

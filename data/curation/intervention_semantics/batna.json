@@ -1,0 +1,87 @@
+{
+  "model_id": "batna",
+  "source_file": "Batna_rag.md",
+  "failure_modes": [
+    {
+      "text": "Confirmation bias can make the current deal look stronger by filtering the real quality of the walk-away option.",
+      "source_quote": "Confirmation Bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Enforce the dialectic: challenge every favorable assessment of the deal with its antithesis and require independent evaluation of the walk-away option."
+    },
+    {
+      "text": "Overemphasis on the base case can hide how bad the downside becomes if the preferred negotiation path fails.",
+      "source_quote": "Overemphasis on the Base Case",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Stress-test assumptions against outcomes one or two standard deviations from the mean; incorporate reference-class history of similar negotiations."
+    },
+    {
+      "text": "Premature execution can rush the team into action before the real fallback path and constraints are clear.",
+      "source_quote": "Premature Execution",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Promote deliberation before action: distinguish between values and beliefs, map constraints explicitly, and define the BATNA threshold before entering negotiation."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would we have to believe to accept a contrasting viewpoint, and are we truly open-minded enough to consider it?",
+      "source_quote": "What would we have to believe to accept a contrasting viewpoint, and are we truly open-minded enough to consider it?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What specific assumptions underlying this framework or alternative are not being met in our current reality?",
+      "source_quote": "What specific assumptions underlying this framework (or alternative) are not being met in our current reality?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use MECE to compare alternatives cleanly instead of letting options blur together.",
+      "source_quote": "MECE (Mutually Exclusive, Collectively Exhaustive)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Model competitive responses with game theory before treating the current deal as the only serious branch.",
+      "source_quote": "Game Theory Thinking",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep a one-day answer so the best current fallback path is always coherent enough to act on.",
+      "source_quote": "What's the one-day answer?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Because BATNA is proxy-derived rather than explicitly named in the raw file, the chunks stay conservative and stick to clearly supported fallback, comparison, and downside-discipline content.",
+    "donor_drops": [
+      "Did not preserve donor material that treated BATNA as more explicit in-source than the local raw file supports."
+    ],
+    "open_questions": [
+      "This model is semantically useful but less source-explicit than most of the batch, so later adoption should keep that caveat visible."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, scaffolding, and symphony-style synthesis for later relation work."
+    ],
+    "antagonists": [
+      "The raw antagonists section provides future relation value around inside view, anchoring, and curse of knowledge."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against optionality, commitment-bias, and confirmation-bias."
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "model_id": "experimentation",
+  "source_file": "Experimentation_rag.md",
+  "select_when": [
+    "Uncertainty can be reduced faster and cheaper through targeted tests than through longer debate, forecasting, or opinion escalation.",
+    "Each experiment can be tied to a clear hypothesis, success threshold, and downstream decision instead of being run for its own sake.",
+    "Reversible probes can inform larger irreversible commitments, reallocations, or product choices.",
+    "The team is stuck in argument about what is true, but a structured test could resolve the dispute."
+  ],
+  "avoid_when": [
+    "Experimentation has become theater, generating activity, dashboards, or post-hoc learning language without changing any real decision.",
+    "Local test wins are being overgeneralized while the team ignores system interactions, long-term effects, or behavior changes outside the test window."
+  ],
+  "input_type": "testable uncertainty",
+  "output_type": "decision-linked experiment",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Focused the model on hypothesis-linked tests, reversible probes, and real decision movement rather than on generic iteration language.",
+    "donor_drops": [
+      "Did not preserve donor-style product-experimentation sprawl because the raw source is stronger on hypothesis discipline, anti-theater warnings, and system-aware test design.",
+      "Did not add higher-order fields because this batch keeps Wave 4 observational only."
+    ],
+    "open_questions": [
+      "The reasoning types are reviewed compression over a source that also leans strongly into systems and metacognitive support."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on targeted tests, clear hypotheses, and reversible probes; review mainly compacts those bullets into routing triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit danger lines in the limitations section."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model activates on testable uncertainty and disputed claims, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook produces hypothesis-linked tests that inform later decisions; the output label compresses that into a typed experiment artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Experimentation clearly uses causal and diagnostic reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

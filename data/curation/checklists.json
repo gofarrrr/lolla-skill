@@ -1,0 +1,71 @@
+{
+  "model_id": "checklists",
+  "source_file": "checklists_rag.md",
+  "select_when": [
+    "Omission risk is higher than invention risk, especially where failure comes from skipped steps, forgotten prerequisites, or weak handoffs.",
+    "The process has known failure points, approvals, or dependency checks that must be verified every time.",
+    "A recommendation needs minimum viable operating discipline before action, during execution, and before scaling.",
+    "Working memory limits are turning a complex multi-step task into cognitive clutter or inconsistent execution."
+  ],
+  "avoid_when": [
+    "The checklist is being treated as a substitute for checking whether the assumptions, environment, or causal story are still true.",
+    "The situation is novel or emergent enough that a generic checklist would force reality into a familiar but mismatched frame."
+  ],
+  "input_type": "repeatable execution with omission risk",
+  "output_type": "minimum viable operating checklist",
+  "reasoning_types": [
+    "deductive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on execution discipline, omission prevention, and load reduction rather than on bureaucracy for its own sake.",
+    "donor_drops": [
+      "Did not preserve donor implementation sprawl because the raw source is stronger on known failure points, scope checks, and anti-cargo-cult warnings.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The model sits near both execution and communication doctrine, so the typed labels are reviewed operational compression rather than source-authored taxonomy."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on omission risk, known failure points, operating discipline, and reducing working-memory overload."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by the source warnings on cargo-cult application and mistaking checklist completion for problem resolution."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates on repeatable, high-stakes processes with omission risk, but the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source produces a disciplined sequence of checks and prerequisites; the output label compresses that into a typed operating artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Checklists clearly work through structured deduction and system execution logic, but the taxonomy names remain reviewed normalization."
+    }
+  }
+}

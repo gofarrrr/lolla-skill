@@ -1,0 +1,70 @@
+{
+  "model_id": "jobs-to-be-done",
+  "source_file": "Jobs_To_Be_Done_rag.md",
+  "select_when": [
+    "Customers are adopting, switching, or abandoning solutions for reasons that feature comparisons alone do not explain.",
+    "The team needs to clarify the real progress the user is trying to make before choosing product scope, messaging, or go-to-market.",
+    "A roadmap is organized around attributes or internal categories even though the real lift depends on understanding the outcome being hired for.",
+    "The next move should separate the functional job from surface wants, channel feedback, or the team's preferred solution story."
+  ],
+  "avoid_when": [
+    "Teams are calling every preference a job and skipping the discipline of distinguishing true progress from surface wants or internal strategy wishes.",
+    "The model is being over-applied as a hammer when the real issue is not user progress but another structural problem outside the customer-job frame."
+  ],
+  "input_type": "customer progress and purpose problem",
+  "output_type": "job-clarity framing",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on outcome-focused customer progress, anti-feature obsession, and clear job definition before roadmap or messaging decisions.",
+    "donor_drops": [
+      "Did not preserve broader design-thinking sprawl because the raw source is stronger on identifying the real job and resisting feature-first reasoning."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans pivots, empathy work, and communication simplification."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on switching behavior, real progress, and the need to clarify the job before product and go-to-market choices."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The anti-activation conditions are grounded in source warnings against calling every preference a job and using JTBD as a hammer."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on customer-progress and purpose problems, while the typed input remains a normalized routing label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports clearer job framing and outcome definition; the output label compresses that into a reusable artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Jobs-to-be-done is strongest as diagnostic and systems-aware reframing of customer progress."
+    }
+  }
+}

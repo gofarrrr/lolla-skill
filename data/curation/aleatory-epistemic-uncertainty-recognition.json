@@ -1,0 +1,70 @@
+{
+  "model_id": "aleatory-epistemic-uncertainty-recognition",
+  "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+  "select_when": [
+    "The next move depends on knowing what kind of uncertainty is present because some parts are measurable risk and other parts are reducible ignorance.",
+    "One branch of the problem needs probabilistic sizing or simulation while another branch needs discovery work, diligence, or model revision.",
+    "Confidence, commitment size, and reversibility need to stay linked instead of being treated as separate decisions.",
+    "The team is about to compress all uncertainty into one category even though different tools are required for different unknowns."
+  ],
+  "avoid_when": [
+    "Uncertainty classification is becoming theater and is not changing the actual tool choice, commitment size, or monitoring rule.",
+    "The problem is routine and predictable enough that the full aleatory-versus-epistemic distinction would mostly add cognitive cost without changing action."
+  ],
+  "input_type": "mixed-uncertainty decision problem",
+  "output_type": "uncertainty-type action split",
+  "reasoning_types": [
+    "probabilistic",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on the core distinction between irreducible variability and reducible ignorance, with routing tied to tool choice and commitment sizing.",
+    "donor_drops": [
+      "Did not widen into general uncertainty philosophy because the raw source is strongest on classification-linked tool selection, outside-view calibration, and reversibility."
+    ],
+    "open_questions": [
+      "The typed output compresses several decision surfaces, including simulation, diligence, and no-regrets sequencing."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths and playbook sections explicitly support mixed uncertainty types, different action tools, and linking confidence to commitment."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions come directly from the danger language on classification theater and the limitation section on low-uncertainty overkill."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on mixed uncertainty problems, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields different actions by uncertainty class; the output label compresses that into an operational split."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model combines probabilistic treatment of risk with diagnosis of ignorance and tool mismatch, while the taxonomy labels remain normalized."
+    }
+  }
+}

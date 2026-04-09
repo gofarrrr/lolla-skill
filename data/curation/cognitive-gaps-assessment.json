@@ -1,0 +1,72 @@
+{
+  "model_id": "cognitive-gaps-assessment",
+  "source_file": "Cognitive_Gaps_Assessment_rag.md",
+  "select_when": [
+    "Confidence is high but the explanation still feels under-specified and the team may be missing something important.",
+    "Capability, evidence, or understanding must be audited explicitly before commitment.",
+    "The problem may reflect false certainty, missing perspective, or unrecognized blind spots rather than missing effort.",
+    "Prevention matters more than cleaning up hidden assumptions after damage appears."
+  ],
+  "avoid_when": [
+    "Gap mapping has become a performance ritual that labels uncertainty without changing the plan or evidence bar.",
+    "The team is endlessly diagnosing knowledge gaps instead of moving to the next discriminating test."
+  ],
+  "input_type": "blind-spot and capability-audit problem",
+  "output_type": "gap exposure check",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Focused the model on auditing blind spots, assumptions, and capability gaps before commitment rather than on abstract humility rhetoric.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

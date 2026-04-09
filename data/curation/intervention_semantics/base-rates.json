@@ -1,0 +1,94 @@
+{
+  "model_id": "base-rates",
+  "source_file": "Base_Rates_rag.md",
+  "failure_modes": [
+    {
+      "text": "Base-rate neglect lets vivid case details displace the general frequency of the outcome.",
+      "source_quote": "Ignoring the general frequency of an outcome because specific case details are compelling, vivid, or emotionally salient.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Compressed the table row into a chunk-safe failure statement.",
+      "mitigation": "Anchor to the outside view first: collect historical frequency data for the reference class before incorporating case-specific details."
+    },
+    {
+      "text": "Availability or substitution bias can push the team into the wrong reference class.",
+      "source_quote": "Substituting a simpler, more readily available model ... often resulting in selecting the wrong reference class.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Preserves the failure mode while shortening the table wording.",
+      "mitigation": "Scrutinize reference class fit: line up all assumptions that underpin the chosen class and test whether the current case matches each one."
+    },
+    {
+      "text": "Inside-view overconfidence can overwhelm the outside view and distort the prior.",
+      "source_quote": "Over-reliance on personal experience and beliefs, often amplified in smart people who spin better narratives for their own viewpoint.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Turns the raw description into a chunk that fits later challenge lanes.",
+      "mitigation": "Cultivate rationality and humility: recognize that high intelligence does not confer immunity to bias; adopt radical open-mindedness about the base-rate data."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the average success/failure rate for projects or situations like this, regardless of our unique details?",
+      "source_quote": "What is the average success/failure rate for projects/situations like this, regardless of our unique details?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Do the underlying structures and core assumptions of this reference group actually match our current situation, or are we confusing familiarity with fit?",
+      "source_quote": "Do the underlying structures and core assumptions of this reference group actually match our current situation, or are we confusing familiarity with fit?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If a believable expert saw only the statistics and not our story, what outcome would they call most likely?",
+      "source_quote": "If a believable expert, viewing only the statistics and not my personal narrative, were to assess this, what would they say is the most likely outcome?",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Shortened the question slightly for chunk readability."
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Anchor to the outside view before arguing from the particulars of the case.",
+      "source_quote": "Anchoring to the Outside View: The primary actionable framework derived from this model is the discipline of actively anchoring first to the outside view.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Retains the named heuristic while tightening the action."
+    },
+    {
+      "text": "Use reference class forecasting to compare the case against structurally similar outcomes.",
+      "source_quote": "Reference Class Forecasting: This involves defining a group of past projects or outcomes that are structurally similar to the current situation.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Directly grounded in the named playbook heuristic."
+    },
+    {
+      "text": "Apply the Bayes or conditional-probability approach by starting with the prior and then updating with the new evidence.",
+      "source_quote": "The Bayes/Conditional Probability Approach ... incorporating the prior probability (the base rate) before integrating the new, specific evidence.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Keeps the raw Bayesian sequence while making it chunk-ready."
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on explicit outside-view intervention content and kept all items raw-backed rather than donor-shaped.",
+    "donor_drops": [
+      "Dropped donor case-example select_when language because this layer is for intervention content, not routing repeats."
+    ],
+    "open_questions": [
+      "A later relation-focused wave could preserve the ally links to System 2 and scientific method more structurally."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Raw allies section is rich on Outside View, System 2 Thinking, Analogy and Reference Classes, and the Scientific Method."
+    ],
+    "antagonists": [
+      "Raw antagonists section gives useful future relation material around System 1, motivated reasoning, and cognitive entrenchment."
+    ],
+    "structured_tensions": [
+      "Structured tensions explicitly connect base-rates to representativeness-heuristic and confirmation-bias."
+    ]
+  }
+}

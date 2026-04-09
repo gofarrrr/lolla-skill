@@ -1,0 +1,72 @@
+{
+  "model_id": "chain-of-thought",
+  "source_file": "Chain_Of_Thought_rag.md",
+  "select_when": [
+    "A complex problem must be decomposed into smaller linked steps before any trustworthy answer is possible.",
+    "The team needs to slow down intuition and make the reasoning path explicit enough to inspect for gaps.",
+    "A plan depends on ordered intermediate checks rather than a one-shot conclusion.",
+    "The current failure mode is jumping from prompt to answer without disciplined intermediate reasoning."
+  ],
+  "avoid_when": [
+    "The chain is becoming verbose theater that does not improve the answer, evidence bar, or next action.",
+    "The problem is simple enough that forcing a long reasoning chain would mostly create delay and noise."
+  ],
+  "input_type": "multi-step reasoning problem",
+  "output_type": "explicit reasoning sequence",
+  "reasoning_types": [
+    "deductive",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on explicit multi-step reasoning and decomposition rather than on raw verbosity or inner-monologue fetishization.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

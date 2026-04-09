@@ -1,0 +1,86 @@
+{
+  "model_id": "resilience",
+  "source_file": "Resilience_rag.md",
+  "allies": [
+    {
+      "target_model_id": "circle-of-control",
+      "rationale_text": "Circle-of-control sharpens resilience by keeping effort on factors within reach instead of spreading attention across uncontrollable stressors.",
+      "source_quote": "Limiting concerns and efforts only to factors within one's control.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "scientific-method-evidence-testing",
+      "rationale_text": "Scientific-method-evidence-testing helps resilience learn from stress by treating actions as hypotheses to test rather than as identity commitments.",
+      "source_quote": "By framing actions as hypotheses to be tested and actively seeking to confirm or disprove them, resilience is built into the strategic process.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "root-cause-analysis",
+      "rationale_text": "Root-cause-analysis strengthens resilience by moving recovery from symptom management toward redesign of the stress-producing system.",
+      "source_quote": "the entire machine can undergo an evolutionary process—continually encountering problems, diagnosing them, designing changes, and implementing them",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias blocks resilience because adaptation requires learning from stress signals rather than defending the current recovery story.",
+      "source_quote": "Confirmation Bias prevents the objective analysis necessary for resilience by causing individuals to seek information that confirms pre-existing beliefs.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "status-quo-bias",
+      "rationale_text": "Status-quo-bias fights resilience when recovery is defined as returning to the old state instead of reconfiguring to fit the changed environment.",
+      "source_quote": "recovery from disruption defaults to restoring pre-crisis conditions rather than pursuing the strategic reconfiguration that the changed environment demands",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "growth-mindset",
+      "tension_text": "Resilience conflicts with growth-mindset when persistence under stress is mistaken for learning progression without capability update.",
+      "source_quote": "resilience vs growth-mindset: resilience conflicts with growth-mindset (growth mindset) when persistence under stress is mistaken for learning progression without capability update.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "adaptation",
+      "tension_text": "Resilience conflicts with adaptation when recovery routines stabilize the current system but block necessary strategic change.",
+      "source_quote": "resilience vs adaptation: resilience conflicts with adaptation (adaptation) when recovery routines stabilize the current system but block necessary strategic change.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Resilience conflicts with confirmation-bias when stress tests are designed to confirm existing recovery plans rather than expose genuine failure modes.",
+      "source_quote": "resilience vs confirmation-bias: resilience conflicts with confirmation-bias (confirmation bias) when stress tests are designed to confirm existing recovery plans rather than expose genuine failure modes that the plan cannot handle.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Resilience conflicts with status-quo-bias when recovery from disruption defaults to restoring pre-crisis conditions rather than strategic reconfiguration.",
+      "source_quote": "resilience vs status-quo-bias: resilience conflicts with status-quo-bias (status quo bias) when recovery from disruption defaults to restoring pre-crisis conditions rather than pursuing the strategic reconfiguration that the changed environment demands.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strong on adaptive allies plus an explicit tension block around false recovery and bias-protected persistence.",
+    "donor_drops": [
+      "Did not preserve donor motivational relation sprawl beyond the source-backed control, testing, and anti-bias surface."
+    ],
+    "open_questions": [
+      "Growth-mindset is source-real as both support and tension surface, but the explicit tension block was clearer than trying to preserve a symmetric ally relation."
+    ]
+  }
+}

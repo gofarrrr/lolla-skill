@@ -1,0 +1,70 @@
+{
+  "model_id": "signaling",
+  "source_file": "Signaling_rag.md",
+  "allies": [
+    {
+      "target_model_id": "incentives",
+      "rationale_text": "Incentives explain whether signals are costly enough to be trustworthy or cheap enough to reward appearance over substance.",
+      "source_quote": "cheap symbolic signals are rewarded over costly truth-aligned behavior",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "principal-agent-problem",
+      "rationale_text": "Principal-agent-problem clarifies why signaling matters: the actor sending the signal may benefit from looking trustworthy even when underlying quality is weak.",
+      "source_quote": "appearance-trustworthy behavior rather than be-trustworthy behavior",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "abstraction",
+      "rationale_text": "Abstraction helps signaling compress a complex reality into a legible form without forcing the receiver through every underlying detail.",
+      "source_quote": "simplify complex systems",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "commitment-and-consistency-bias",
+      "rationale_text": "Commitment-and-consistency-bias becomes stronger when signaling turns a private view into a public identity marker, making later reversal feel reputationally costly.",
+      "source_quote": "publicly observable signals can bind future behavior by making reversal more expensive",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias degrades signaling when receivers filter evidence toward a preferred conclusion regardless of signal quality.",
+      "source_quote": "accurate signals to fail regardless of their quality",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "incentives",
+      "tension_text": "Signaling conflicts with incentives when cheap symbolic signals are rewarded over costly truth-aligned behavior.",
+      "source_quote": "signaling vs incentives: signaling conflicts with incentives (incentives) when cheap symbolic signals are rewarded over costly truth-aligned behavior.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Signaling conflicts with confirmation-bias when the receiver filters incoming signals toward a preferred conclusion, causing accurate signals to fail regardless of their quality.",
+      "source_quote": "signaling vs confirmation-bias: signaling conflicts with confirmation-bias (confirmation bias) when the receiver filters incoming signals toward a preferred conclusion, causing accurate signals to fail regardless of their quality.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on incentives, principal-agent distortion, and an explicit conflict with cheap-symbolic and confirmation-biased signal failure, so the file preserves that conservative surface.",
+    "donor_drops": [
+      "Did not preserve donor relation widening beyond the clearly named incentive, agency, and anti-confirmation neighborhood."
+    ],
+    "open_questions": [
+      "Optionality-like commitment pressure is source-real and is now partially wired through commitment-and-consistency-bias, but future sweeps may still sharpen the exact public-identity language."
+    ]
+  }
+}

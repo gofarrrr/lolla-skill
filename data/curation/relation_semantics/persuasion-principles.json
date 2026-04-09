@@ -1,0 +1,56 @@
+{
+  "model_id": "persuasion-principles",
+  "source_file": "Persuasion_Principles_rag.md",
+  "allies": [
+    {
+      "target_model_id": "narratives",
+      "rationale_text": "Narratives helps persuasion-principles bind an idea to emotion and memory so it can travel farther than raw logic alone.",
+      "source_quote": "Storytelling/Narrative",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "empathy",
+      "rationale_text": "Empathy helps persuasion-principles tune the message to what the audience actually cares about rather than to what the expert wants to say.",
+      "source_quote": "Perspective taking is vital for crafting messages that resonate",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking slows persuasion-principles down by asking whether the message is merely effective or actually well grounded.",
+      "source_quote": "Critical Thinking/System 2",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "intellectual-humility",
+      "tension_text": "Persuasion-principles conflicts with intellectual-humility when persuasion techniques exploit cognitive shortcuts that override genuine evidence evaluation.",
+      "source_quote": "persuasion-principles conflicts with intellectual-humility (intellectual humility) when persuasion techniques exploit cognitive shortcuts that override genuine evidence evaluation.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "authenticity",
+      "tension_text": "Persuasion-principles conflicts with authenticity when strategic framing of a message compromises the transparency required for durable trust.",
+      "source_quote": "persuasion-principles conflicts with authenticity (authenticity) when strategic framing of a message compromises the transparency required for durable trust.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The relation file keeps the source's clearest bounded graph: story and perspective as allies, with critical-thinking as the strongest current-vocabulary antagonist.",
+    "donor_drops": [
+      "Did not manufacture structured tensions because the raw file is rich in allies and antagonists but not in explicit named tension blocks."
+    ],
+    "open_questions": [
+      "Cognitive-load-theory is a source-real ally too, but narratives and empathy were the more central operational anchors."
+    ]
+  }
+}

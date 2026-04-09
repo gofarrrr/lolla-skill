@@ -1,0 +1,70 @@
+{
+  "model_id": "international-negotiation-and-diplomacy-models",
+  "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
+  "select_when": [
+    "No party can simply impose its will without triggering response, retaliation, or coalition effects.",
+    "The decision is not only what deal is efficient, but how positions, concessions, credibility, and sequencing will be interpreted by multiple audiences.",
+    "Technical correctness alone will not move the system unless interests, legitimacy, face, and communication are managed together."
+  ],
+  "avoid_when": [
+    "Political signaling pressure is displacing fact-grounded option analysis.",
+    "The problem is really a simple bilateral transaction and diplomatic theater would overcomplicate it."
+  ],
+  "input_type": "multi-audience negotiation problem",
+  "output_type": "sequenced coalition-aware posture",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused on credibility, audience interpretation, and coalition effects rather than on generic diplomacy language.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "cybersecurity-thinking-models",
+  "source_file": "Cybersecurity_Thinking_Models_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can optimize for appearing secure instead of being secure when stakeholder incentives are misaligned with the measured outcome.",
+      "source_quote": "cybersecurity-thinking-models conflicts with incentives (incentives) when stakeholder incentives are not aligned with the security outcome being measured, so defenders optimize for appearing secure rather than being secure.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Distinguish appearing secure from being secure: audit whether the measured outcomes align with actual threat mitigation, not just compliance optics."
+    },
+    {
+      "text": "Threat modeling can become decorative if it never touches asset specificity, ownership, or operational failure chains.",
+      "source_quote": "Danger when teams fetishize threat models, simulations, or mental frameworks but skip asset specificity, attack surface reality, or operational ownership.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Anchor threat modeling to asset specificity, ownership, and operational failure chains; decorative models that never touch real attack surfaces are waste."
+    },
+    {
+      "text": "Security decisions can become static and underfit reality when they are built from compliance diagrams rather than realistic adversarial scenarios.",
+      "source_quote": "Best used when security decisions must be pressure-tested against realistic scenarios instead of static compliance or architecture diagrams alone.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Build security decisions from realistic adversarial scenarios rather than static compliance diagrams; threat landscapes shift faster than checklists."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which stakeholder gains if this plan underperforms quietly rather than fails visibly?",
+      "source_quote": "Every plan has a stakeholder whose incentives are not fully aligned with the outcome you are measuring.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What failure chain crosses technical, human, and governance layers if an attacker chooses the most inconvenient path?",
+      "source_quote": "cascading across technical, human, and governance layers at once",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we modeling realistic attacker incentives or only listing controls we already know how to talk about?",
+      "source_quote": "model attacker incentives, failure chains, and cross-domain consequences",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Threat-model the plan against adversarial incentives before treating the architecture as sufficient protection.",
+      "source_quote": "adversarial, fast-changing",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use scenario simulation to test ownership gaps and hidden dependencies, not just control lists.",
+      "source_quote": "test ideas at the speed of compute and anticipate outcomes with unprecedented clarity",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    },
+    {
+      "text": "Name the misaligned actor and fallback path before claiming the plan is robust.",
+      "source_quote": "Name that party, describe what they stand to gain, and identify which dependency on them has no fallback.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on adversarial scenario pressure rather than on generic security or compliance vocabulary.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

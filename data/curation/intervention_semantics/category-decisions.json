@@ -1,0 +1,87 @@
+{
+  "model_id": "category-decisions",
+  "source_file": "Category_Decisions_rag.md",
+  "failure_modes": [
+    {
+      "text": "A universal process can fail simply because different incident types were never separated before standardization.",
+      "source_quote": "universal process is tempting but incidents are structurally heterogeneous",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate incident types before standardizing the process; a universal procedure that ignores category differences will fail the edge cases."
+    },
+    {
+      "text": "Representativeness can assign a case to the wrong bucket based on salient traits instead of evidence.",
+      "source_quote": "labels are assigned from salient traits instead of distributional evidence",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge representativeness assignments with evidence: check whether the salient trait that drove categorization is actually predictive of the outcome."
+    },
+    {
+      "text": "Category lock-in turns yesterday's useful buckets into today's blinders.",
+      "source_quote": "Category Lock-In",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Revisit categories periodically; yesterday's useful buckets become today's blinders when the environment changes."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What evidence would show these cases are not one category but several, requiring different response logic?",
+      "source_quote": "What evidence would show the incident types in scope are not one category but two or more",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which criteria belong in separate MECE branches before we start evaluating options?",
+      "source_quote": "MECE",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What inherited bucket is replacing real decomposition of the underlying mechanism?",
+      "source_quote": "inherited buckets replace decomposition of underlying mechanisms",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use category decisions as advance fences against in-the-moment impulse and exception making.",
+      "source_quote": "onetime, advance choice about what options you can and cannot choose",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Break the problem down with logic trees before writing the rule that will govern future cases.",
+      "source_quote": "Problem Disaggregation using Logic Trees",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Force a category summary sentence after grouping so the bucket earns its place.",
+      "source_quote": "Grouping and Summarizing Process",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

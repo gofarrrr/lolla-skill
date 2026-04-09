@@ -1,0 +1,70 @@
+{
+  "model_id": "pareto-principle",
+  "source_file": "Pareto_Principle_rag.md",
+  "select_when": [
+    "A small subset of causes, customers, tasks, or constraints appears to drive a disproportionate share of the result.",
+    "Time or attention is scarce enough that the main problem is deciding what not to work on.",
+    "A complex issue tree needs pruning so analysis concentrates on the branches most likely to move the answer.",
+    "The team can revisit the prioritization as the distribution shifts instead of defending the current vital few as permanent truth."
+  ],
+  "avoid_when": [
+    "The 80/20 framing is being used as rhetoric without actual leverage measurement, making it a lazy excuse to ignore inconvenient work.",
+    "Emerging drivers or long-horizon bets are still too early to measure cleanly, so aggressive pruning would likely discard future-important factors."
+  ],
+  "input_type": "uneven-contribution prioritization problem",
+  "output_type": "vital-few focus plan",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on uneven contribution, pruning, and revisitable prioritization instead of turning 80/20 into a universal law.",
+    "donor_drops": [
+      "Did not preserve donor general productivity rhetoric because the raw source is stronger on vital-few selection and anti-premature-pruning discipline."
+    ],
+    "open_questions": [
+      "The source spans customer strategy, policy trade-offs, and learning, so the typed output compresses several application registers."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on highly uneven contribution, scarce attention, issue-tree pruning, and revisitable leverage points."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from the source warnings about lazy 80/20 rhetoric and neglect of emerging opportunities."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around uneven distributions and prioritization pressure; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields a vital-few focus plan, but the typed output label is a reviewed operational compression."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Pareto uses causal leverage logic and second-order awareness of pruning trade-offs, while the taxonomy labels remain normalized."
+    }
+  }
+}

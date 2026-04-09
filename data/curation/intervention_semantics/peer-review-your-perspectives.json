@@ -1,0 +1,87 @@
+{
+  "model_id": "peer-review-your-perspectives",
+  "source_file": "Peer_Review_Your_Perspectives_rag.md",
+  "failure_modes": [
+    {
+      "text": "Peer review fails when the room rewards agreement and reassurance more than independent challenge.",
+      "source_quote": "Danger When Feedback Becomes Social Comfort",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Structure review for genuine adversarial challenge: require reviewers to state the strongest argument against the proposal before offering support."
+    },
+    {
+      "text": "Status and consensus pressure can make outside review ceremonial instead of genuinely adversarial.",
+      "source_quote": "The Wisdom of Crowds fails when people are not making independent judgments",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Anonymize or randomize reviewer input to reduce status effects: collect critiques in writing before group discussion so seniority cannot filter the challenge."
+    },
+    {
+      "text": "Perspective collection becomes wasteful when critique stays vague instead of testing the assumptions that would change the answer.",
+      "source_quote": "the key is not more opinions but better challenge",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require specific, assumption-level critique: reject vague 'looks good' or 'needs work' feedback and insist reviewers name the exact assumption they would change and why."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What might be wrong with our current view?",
+      "source_quote": "What might I be wrong about?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What assumption fails first if our conclusion is weaker than we think?",
+      "source_quote": "What assumptions is this conclusion resting on?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Who would disagree for substantive reasons, and what would they say before we hear our own explanation again?",
+      "source_quote": "Seek out perspectives that genuinely differ from your own",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Ask for independent critique before exposing reviewers to the dominant story so the challenge is not anchored to the current framing.",
+      "source_quote": "people must make independent judgments to benefit from collective intelligence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use adversarial review to test the argument before reality does.",
+      "source_quote": "peer review your perspectives",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Favor the feedback that changes assumptions or exposes blind spots over the feedback that merely affirms tone or polish.",
+      "source_quote": "The value is in surfacing blind spots, not collecting praise",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on independent challenge, anti-consensus drift, and perspective stress-testing before commitment.",
+    "donor_drops": [
+      "Did not preserve donor collaboration sprawl because the raw source is stronger on independent critique and anti-reassurance discipline."
+    ],
+    "open_questions": [
+      "The first premortem item is normalized from repeated self-challenge framing rather than preserved as a single verbatim source line."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on systems-thinking, feedback-loops, opportunity-cost, and incentives as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias, authority-following, and group drift, but only the cleanest current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is contestable around consensus and status pressure, but it does not expose a compact explicit current-vocabulary tension block as cleanly as stronger Wave 3 files do."
+    ]
+  }
+}

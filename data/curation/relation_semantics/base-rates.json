@@ -1,0 +1,72 @@
+{
+  "model_id": "base-rates",
+  "source_file": "Base_Rates_rag.md",
+  "allies": [
+    {
+      "target_model_id": "system-2",
+      "rationale_text": "System-2 is the essential cognitive mode for applying base rates — slow, reflective, contemplative processing is required to invoke reference-class thinking and override the vivid specifics that System 1 uses to neglect base rates.",
+      "source_quote": "Applying base rates is a process that requires effort, logic, and deliberation, classifying it as a System 2 function (slow, reflective, contemplative thinking). Consciously invoking System 2 is necessary to override the quick, intuitive responses of System 1 that often lead to base-rate neglect.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "scientific-method-evidence-testing",
+      "rationale_text": "The scientific method supports base rates by forcing beliefs to be calibrated against repeatable historical evidence instead of vivid specifics.",
+      "source_quote": "Base rates embody a scientific mindset by demanding that beliefs be calibrated based on objective, repeatable evidence (historical frequency).",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "system-1",
+      "rationale_text": "System-1's fast, intuitive processing is the primary cognitive source of base-rate neglect — heuristic shortcuts substitute vivid, representative details for statistical regularities, causing people to ignore base rates when System 1's automatic narrative feels compelling.",
+      "source_quote": "System 1 Thinking (Heuristics and Biases): System 1 is fast and automatic, relying on heuristics and biases that can lead to base-rate neglect. These shortcuts substitute vivid, representative details for statistical regularities.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect (cognitive entrenchment) causes experts to dismiss base-rate data that contradicts their specialized mental models — the fixation on domain-specific frameworks blocks the reference-class correction that base rates provide.",
+      "source_quote": "Cognitive Entrenchment: Experts who have deep mastery of a field may suffer from cognitive entrenchment, making them less flexible and more prone to ignore external, general data (base rates) that contradict their internal specialized mental models.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Base-rates conflicts with representativeness-heuristic when vivid case details crowd out statistical regularities.",
+      "source_quote": "base-rates conflicts with representativeness-heuristic (representativeness heuristic) when the representativeness heuristic often leads to base-rate neglect by focusing on specific details rather than statistical regularities.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Base-rates conflicts with confirmation-bias when prior beliefs override inconvenient outside-view frequencies.",
+      "source_quote": "base-rates conflicts with confirmation-bias (confirmation bias) when confirmation bias can cause individuals to ignore base rates in favor of information that confirms their pre-existing beliefs.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strong on explicit tensions, but most ally and antagonist prose does not map cleanly to the current canonical id surface without forcing outside-view or System 1 approximations.",
+    "donor_drops": [
+      "Did not preserve donor-added relation overlays beyond the raw ally, antagonist, and structured tension sections."
+    ],
+    "open_questions": [
+      "Cognitive entrenchment wired in Task 2.5 sweep via einstellung-effect mapping.",
+      "System-2 wired as ally, system-1 wired as antagonist (Task 4.1 sweep). Outside-view remains deferred — embedded in base-rates itself, no clean standalone canonical id."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "The raw ally section is richer than the resolved target-id surface and explicitly names the outside view, System 2 thinking, and analogy/reference classes."
+    ],
+    "antagonists": [
+      "The raw source explicitly names System 1 thinking, motivated reasoning, and cognitive entrenchment, but this pilot did not force those into approximate target ids."
+    ]
+  }
+}

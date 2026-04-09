@@ -1,0 +1,70 @@
+{
+  "model_id": "branch-solve-merge",
+  "source_file": "Branch_Solve_Merge_rag.md",
+  "select_when": [
+    "A complex problem needs to be decomposed into manageable branches before the team can solve and recombine it coherently.",
+    "Workstreams are proliferating and the next risk is incoherent synthesis unless the merge rule is made explicit.",
+    "A high-stakes recommendation needs both rigorous analysis and a clear integration path back to one decision.",
+    "The team must move from scattered issue work toward a structured whole without losing the causal logic of each branch."
+  ],
+  "avoid_when": [
+    "Teams are branching aggressively without any credible merge rule, so more decomposition would only increase fragmentation.",
+    "The problem is genuinely novel and a familiar branch frame is being imposed too mechanically for comfort or speed."
+  ],
+  "input_type": "multi-branch synthesis problem",
+  "output_type": "merged decision structure",
+  "reasoning_types": [
+    "systems",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on decomposition, bounded workstream solving, and explicit merge discipline rather than on consulting jargon alone.",
+    "donor_drops": [
+      "Did not preserve donor process sprawl because the raw source is stronger on branch discipline, merge coherence, and anti-brittle-framework warnings."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans high-stakes communication and issue-tree based analysis."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on decomposition, solve-path rigor, and merge discipline for complex strategic decisions."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings on merge-less branching and brittle reuse of familiar frameworks on novel problems."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on multi-branch problems that need recombination, while the typed input is a compact reviewed label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields an integrated answer after branching and solving; the typed output compresses that result into an operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Branch-solve-merge is strongest as systems-aware causal structuring, while the taxonomy labels remain normalized."
+    }
+  }
+}

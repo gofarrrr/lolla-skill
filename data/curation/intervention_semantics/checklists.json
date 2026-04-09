@@ -1,0 +1,87 @@
+{
+  "model_id": "checklists",
+  "source_file": "checklists_rag.md",
+  "failure_modes": [
+    {
+      "text": "Cargo-cult application can force a familiar checklist onto a novel problem that needs a different frame.",
+      "source_quote": "Mechanical Application (Cargo-Cult Thinking)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit whether the checklist was designed for this type of problem; if it was borrowed from a different domain, challenge every item for relevance."
+    },
+    {
+      "text": "Cognitive clutter can defeat the point of the checklist when the list becomes too verbose or irrelevant to guide action.",
+      "source_quote": "Cognitive Clutter",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Trim the checklist to the minimum viable set: each item must directly prevent a known failure mode, not just document thoroughness."
+    },
+    {
+      "text": "Checklist completion can create false confidence when the list never tested whether the underlying assumptions were still true.",
+      "source_quote": "Danger when checklist completion is mistaken for problem resolution",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Pair checklist completion with an assumption check: ask whether the conditions the list was built for still hold."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What’s the worst-case misuse or failure scenario? Are we okay with that risk? If not, how to mitigate it?",
+      "source_quote": "What’s the worst-case misuse or failure scenario? Are we okay with that risk? If not, how to mitigate it?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Does this checklist accurately capture the essential complexity of this specific problem, or am I trying to fit a square peg into a round hole?",
+      "source_quote": "Does this checklist accurately capture the essential complexity of this specific problem, or am I trying to fit a square peg into a round hole?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is this process driving commitment and action, or merely enforcing a bureaucratic tick-box mentality?",
+      "source_quote": "Is this process driving commitment and action, or merely enforcing a bureaucratic tick-box mentality?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Enforce completeness by using a checklist to cover all distinct branches of the problem without overlap.",
+      "source_quote": "Enforcing Completeness (MECE Principle)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Ruthlessly cull the list to the make-or-break checks so the process stays usable under pressure.",
+      "source_quote": "Prioritization and Focus",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep the checklist simple and concise so it reduces load instead of adding noise.",
+      "source_quote": "Keep it Simple and Concise",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on omission prevention, simplicity, and anti-cargo-cult safeguards rather than on broad operating-manual sprawl.",
+    "donor_drops": [
+      "Did not preserve donor implementation detail beyond the raw source's stronger operating-discipline and anti-bureaucracy guidance."
+    ],
+    "open_questions": [
+      "The first heuristic compresses the MECE framing into a checklist-native action so it stays useful outside consulting-specific wording."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems-thinking, cognitive-load-theory, and Feynman-technique as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonists section includes diffuse creativity and theory-of-mind tensions, but those are less clean at the current canonical target surface."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around cargo-cult completion and assumption drift, but it lacks a dedicated structured tension block."
+    ]
+  }
+}

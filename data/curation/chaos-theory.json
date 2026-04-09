@@ -1,0 +1,36 @@
+{
+  "model_id": "chaos-theory",
+  "source_file": "Chaos_Theory_rag.md",
+  "select_when": [
+    "The environment is unstable enough that simple linear prediction is giving false confidence.",
+    "Minor disturbances, feedback, and path dependence make precise long-range forecasting unreliable.",
+    "Decision quality depends more on robustness and adaptive monitoring than on exact prediction.",
+    "The system appears orderly at a distance but is highly sensitive underneath."
+  ],
+  "avoid_when": [
+    "Teams are using chaos rhetoric to imply nothing can be understood or improved.",
+    "A bounded mechanical process with stable variables is being treated as chaotic when simpler diagnosis would suffice."
+  ],
+  "input_type": "unstable nonlinear environment",
+  "output_type": "robustness-over-prediction lens",
+  "reasoning_types": [
+    "systems",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Focused on nonlinear instability, limits of prediction, and the move toward robustness and monitoring.",
+    "donor_drops": [
+      "Did not preserve broader complexity-philosophy sprawl because the raw source is already strongest on prediction limits and adaptive design."
+    ],
+    "open_questions": [
+      "The source overlaps with butterfly-effect and risk planning, but the operational file stays on chaos as a caution against false precision."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on instability, nonlinear effects, sensitive dependence, and robustness over precise prediction."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source warns against fatalism and against applying chaos language where simpler mechanisms suffice."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The input label compresses the raw activation pattern around unstable nonlinear environments."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label keeps the intervention on robustness and monitoring rather than exact forecasting."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The source supports system-level causal tracing under nonlinear instability."}
+  }
+}

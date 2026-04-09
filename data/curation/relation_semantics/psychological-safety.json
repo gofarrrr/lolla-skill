@@ -1,0 +1,70 @@
+{
+  "model_id": "psychological-safety",
+  "source_file": "Psychological_Safety_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps psychological-safety treat suppressed dissent as a structural signal about the whole organization rather than as isolated interpersonal friction.",
+      "source_quote": "Systems Thinking",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "boundaries",
+      "rationale_text": "Boundaries help psychological-safety pair openness with clear ownership, standards, and decision rights so candor actually improves the system.",
+      "source_quote": "ownership, standards, or decision rights",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking turns psychological-safety into a truth-seeking asset by making challenge serve decision quality rather than comfort or status display.",
+      "source_quote": "candid truth in service of better decisions",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "authority-bias",
+      "rationale_text": "Authority-bias suppresses the upward challenge that psychological-safety exists to make possible.",
+      "source_quote": "formal status discourages upward challenge despite visible risk",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias grows when teams suppress dissent and filter evidence to match the prevailing leadership view instead of surfacing contradictions.",
+      "source_quote": "absence of safety causes teams to suppress dissent and filter evidence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "authority-bias",
+      "tension_text": "Psychological-safety conflicts with authority-bias when formal status discourages upward challenge despite visible risk.",
+      "source_quote": "psychological-safety vs authority-bias: psychological-safety conflicts with authority-bias (authority bias) when formal status discourages upward challenge despite visible risk.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Psychological-safety conflicts with confirmation-bias when absence of safety causes teams to suppress dissent and filter evidence to match the prevailing leadership view.",
+      "source_quote": "psychological-safety vs confirmation-bias: psychological-safety conflicts with confirmation-bias (confirmation bias) when absence of safety causes teams to suppress dissent and filter evidence to match the prevailing leadership view.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on systems and truth-seeking allies plus explicit conflicts with status-suppressed challenge and filtered evidence, so the file preserves that conservative surface.",
+    "donor_drops": [
+      "Did not preserve donor culture-program relation sprawl beyond the clearly named candor, authority, and anti-confirmation neighborhood."
+    ],
+    "open_questions": [
+      "Commitment-bias is source-real pressure too, but the retained set favors the two explicit current-vocabulary tension blocks."
+    ]
+  }
+}

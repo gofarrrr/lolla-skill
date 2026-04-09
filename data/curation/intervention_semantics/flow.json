@@ -1,0 +1,87 @@
+{
+  "model_id": "flow",
+  "source_file": "Flow_rag.md",
+  "failure_modes": [
+    {
+      "text": "The challenge can drift below skill and slide into boredom unless the task evolves with ability.",
+      "source_quote": "dip below flow into boredom",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Deliberately escalate challenge as skill grows; a static task level will slide from flow into boredom."
+    },
+    {
+      "text": "If the challenge outruns ability, the state flips from immersion into anxiety or frustration.",
+      "source_quote": "anxiety is thought without control",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Calibrate challenge to the current edge of ability; pushing too far flips the state from productive immersion into anxiety."
+    },
+    {
+      "text": "Intense immersion can create tunnel vision on the wrong problem if the big picture is never revisited.",
+      "source_quote": "danger when the team is entering flow on the wrong problem",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Schedule periodic big-picture check-ins during deep work to verify the immersion is solving the right problem."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the current challenge still sitting at the edge of competence, or has it become too easy or too overwhelming?",
+      "source_quote": "challenged at the peak of their ability",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What feedback loop will tell us quickly if this work is drifting out of the flow channel?",
+      "source_quote": "Immediate Feedback Loop",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "How does this deep work block solve the ultimate problem instead of just feeling productive?",
+      "source_quote": "How does what I'm doing right now solve the ultimate problem?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Match challenge to skill deliberately instead of assuming immersion will appear on its own.",
+      "source_quote": "The Matching Principle",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Structure deep work as repeated cycles of variable review, next-step attack, and consolidation.",
+      "source_quote": "deep work is an activity well suited to generate a flow state",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Increase challenge as skill grows so the system does not stagnate into boredom.",
+      "source_quote": "pursue new, more complex challenges",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

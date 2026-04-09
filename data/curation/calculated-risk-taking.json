@@ -1,0 +1,71 @@
+{
+  "model_id": "calculated-risk-taking",
+  "source_file": "Calculated_Risk_Taking_rag.md",
+  "select_when": [
+    "A high-stakes decision requires explicit downside sizing, scenario comparison, or sensitivity analysis rather than intuition alone.",
+    "The uncertainty parameters are estimable enough that cost-benefit logic, decision trees, or reference classes can improve the choice.",
+    "The quality of the decision process matters more than trying to guarantee a good outcome in an uncertain environment.",
+    "The work needs a structured way to compare bets, losses, and reversibility before committing capital, time, or reputation."
+  ],
+  "avoid_when": [
+    "The team is treating calculable models as a substitute for judgment in a setting where the core drivers are still too unknown or unstable.",
+    "Quantification is becoming decorative certainty and is not changing the actual choice, hedge, or exposure limit."
+  ],
+  "input_type": "high-stakes risk tradeoff",
+  "output_type": "explicit risk-reward decision",
+  "reasoning_types": [
+    "probabilistic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on decisions-as-bets, downside sizing, and structured bet comparison rather than generic bravery or risk appetite rhetoric.",
+    "donor_drops": [
+      "Did not preserve broad finance or strategy tooling sprawl because the raw source is strongest on scenario analysis, sensitivity, and explicit bet framing."
+    ],
+    "open_questions": [
+      "The source spans advisory, strategy, and competitive settings, so the output label is intentionally broad but still decision-linked."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths and playbook sections explicitly support decision trees, scenario analysis, estimable uncertainty, and process-quality framing."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source warns against false certainty, wrong framing, and treating calculations as more complete than the real uncertainty supports."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around high-stakes risk tradeoffs, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields explicit, compared bets and downside-aware decisions; the output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is probabilistic in how it sizes bets and causal in how it reasons about drivers and consequences."
+    }
+  }
+}

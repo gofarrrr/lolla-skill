@@ -1,0 +1,76 @@
+{
+  "model_id": "status-quo-bias",
+  "source_file": "Status_Quo_Bias_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-dissonance",
+      "rationale_text": "Cognitive dissonance sustains status-quo-bias by making the prospect of change uncomfortable \u2014 recognizing that the current state might be wrong generates dissonance with 'I have been doing this correctly,' and the easiest resolution is to maintain the status quo.",
+      "source_quote": "Cognitive dissonance and inside-view dynamics are raw ally material that lack a clean current target-id mapping.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias strengthens status-quo-bias by filtering for evidence that makes the current state feel justified and stable.",
+      "source_quote": "People continuously filter for incoming data points that confirm their existing beliefs (the status quo) and reject new information that challenges it.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking is the direct antithesis of status-quo-bias because it strips away inherited assumptions and rebuilds from facts and desired outcomes.",
+      "source_quote": "This model is the direct antithesis of SQB. It mandates stripping away all conventional means and assumptions\u2014the accumulation of the status quo\u2014to start only with basic facts and the desired outcome.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "intellectual-humility",
+      "rationale_text": "Intellectual-humility counters status-quo-bias by creating the open-minded disposition needed to honestly evaluate whether the current state is actually optimal \u2014 the genuine worry about suboptimal perception breaks the inertia that sustains SQB.",
+      "source_quote": "Radical Open-Mindedness: This is the core antidote to the biases that sustain SQB. It is defined as the ability to effectively explore different points of view and possibilities, motivated by the genuine worry that one might not be seeing one's choices optimally.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "margin-of-safety",
+      "tension_text": "Status-quo-bias conflicts with margin-of-safety when preference for the current state is reinforced by the safety margin's conservative stance against change.",
+      "source_quote": "status-quo-bias conflicts with margin-of-safety (margin of safety) when preference for the current state is reinforced by the safety margin's conservative stance against change.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Status-quo-bias conflicts with commitment-bias when prior commitments make the status quo feel like consistency rather than inertia.",
+      "source_quote": "status-quo-bias conflicts with commitment-bias (commitment bias) when prior commitments make the status quo feel like consistency rather than inertia.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Status Quo Bias is the thinnest tail case for clean first-order relation preservation, so this file stays intentionally sparse.",
+    "donor_drops": [
+      "Did not preserve donor creative-destruction, growth-mindset, or tradition-vs-innovation overlays because they are donor-shaped and not needed for this conservative first-order pass."
+    ],
+    "open_questions": [
+      "Radical open-mindedness wired in Task 2.5 sweep via intellectual-humility mapping.",
+      "Cognitive dissonance wired in Task 3.3 sweep via new canonical model.",
+      "Inside-view remains deferred \u2014 no canonical model id."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "The raw ally section is stronger than the final file surface and also includes cognitive dissonance and inside-view dynamics that lack a clean current target-id mapping."
+    ],
+    "antagonists": [
+      "The raw antagonists section explicitly names design thinking / beginner's mind and radical open-mindedness, but those remain deferred because the current canonical id surface is thinner than the source prose."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block is present in the raw source."
+    ]
+  }
+}

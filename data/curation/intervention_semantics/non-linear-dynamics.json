@@ -1,0 +1,67 @@
+{
+  "model_id": "non-linear-dynamics",
+  "source_file": "Non_Linear_Dynamics_rag.md",
+  "failure_modes": [
+    {
+      "text": "Straight-line plans can miss threshold crossings, delayed blowback, and outsized effects from small moves.",
+      "source_quote": "outcomes in complex systems rarely follow a straight-line progression",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Map threshold crossings and feedback loops explicitly before planning: identify where small changes could trigger disproportionate effects and build monitoring around those points."
+    },
+    {
+      "text": "Local optimization can damage long-run system behavior elsewhere.",
+      "source_quote": "local optimization can hurt the whole system",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check second-order effects of every local optimization: ask what worsens elsewhere in the system when this parameter improves here."
+    },
+    {
+      "text": "Complexity talk can become an excuse for avoiding concrete levers, checkpoints, or experiments.",
+      "source_quote": "Complexity Talk Excuses Lack of Operational Choice",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Convert complexity language into concrete levers and checkpoints: for every 'it's complex' statement, require naming the specific variable to watch and the experiment to run."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which feedback loops or delays could make a small move create an outsized effect later?",
+      "source_quote": "feedback loops and delays that produce emergent effects",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What second-order or third-order dominoes are we ignoring?",
+      "source_quote": "Visualize All the Dominoes",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What concrete lever or experiment would still improve this system under uncertainty?",
+      "source_quote": "concrete levers, checkpoints, or experiments",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Map causal chains and feedback loops before committing to a fix.",
+      "source_quote": "Thinking in Systems Maps",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Start with the big picture before diving into local details.",
+      "source_quote": "The Big Picture First Approach",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Stress-test edge cases instead of trusting the base case alone.",
+      "source_quote": "Stress-Test Edge Cases",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ]
+}

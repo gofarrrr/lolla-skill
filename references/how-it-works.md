@@ -1,0 +1,494 @@
+# Lolla — How It Works
+
+## The Problem
+
+LLMs are fluent but structurally undisciplined. Independent research papers from MIT, Princeton, CMU, ByteDance, NeurIPS, IBM, Oxford, UCLA, and others converge on the same conclusion: **fluency is not reasoning, and more context is not better thinking.**
+
+- **Borrowed certainty** — LLMs create a cognitive environment where their confidence becomes your confidence, even when that confidence is unearned (Nosta, "The Borrowed Mind")
+- **Artificial hivemind** — different LLMs converge on the same answers; the diversity you think you're getting from switching models is largely illusory (NeurIPS 2025, INFINITY-CHAT)
+- **Structure beats context by 2.83x** — giving a model all the right facts produces 30% accuracy; giving it a structured reasoning framework produces 85% (Car Wash Study, Claude Sonnet 4.5, 120 trials, p=0.001)
+- **Context pollution** — LLMs compound their own errors across turns; previous responses propagate flawed reasoning into subsequent answers (MIT/IBM)
+- **Sycophancy as sampling bias** — default GPT is statistically indistinguishable from explicitly sycophantic prompting; users become 5x less likely to discover truth (Princeton, N=557)
+- **Delusional spiraling** — even a perfectly rational Bayesian agent develops 99%+ certainty in wrong answers under sycophancy; factual bots and informed users reduce but don't eliminate the risk (MIT CSAIL)
+- **Recovery paradox** — the better an AI's reasoning structure, the harder it is to correct when wrong; structured wrong answers become self-reinforcing (Car Wash Study)
+- **Heuristic override** — surface cues (distance, cost, efficiency) dominate implicit constraints by 8.7–38x; across 14 frontier models and 500 benchmark instances, no model exceeds 75% strict accuracy — the knowledge exists but doesn't activate without structural intervention (Li et al., 2026, CMU)
+- **Cognitive deskilling** — AI that provides direct answers degrades human persistence and independent performance after just 10 minutes (N=1,222, three RCTs); AI that provides scaffolding — hints, structural challenges — does not (Liu et al., 2026, CMU/Oxford/MIT/UCLA)
+
+The gap is not facts. The gap is not better prompting. The gap is a missing layer: **a curated, inspectable substrate that knows what reasoning failure looks like and what structural counter-pressure defeats it.**
+
+## What Lolla Is
+
+A knowledge-first reasoning-about-reasoning engine. It audits how an LLM thought, routes that failure pattern through a curated mental-model substrate, and returns compact structural counter-pressure — not a replacement answer.
+
+**Lolla is not in the business of finding better answers. It is in the business of being less wrong.**
+
+LLMs are extraordinarily good at producing fluent, confident, internally consistent responses. That fluency is the problem. When the answer reads well, inconvenient tensions get smoothed out, missing reversal conditions go unnoticed, and embedded assumptions pass as established facts. The better the prose, the harder it is to see what was skipped. Lolla exists to reintroduce the friction that fluency removes — to surface the structural weaknesses that a polished narrative hides.
+
+The product is:
+- The answer was **challenged**
+- The challenge came from a **curated knowledge base** (224 mental models with validated failure modes, premortems, and relationship tensions)
+- The challenge is **structurally specific** — it names the reasoning pattern, the passage where it appears, and the curated counter-pressure that addresses it (not "consider the risks" but "the reasoning closes uncertainty without naming a reversal condition — Doubt Avoidance operating on this specific passage")
+- The challenge is **traceable** (which tendency was detected, which models were routed, which curated chunks were selected, and why)
+
+---
+
+## The Core Thesis
+
+The name "Lolla" comes from the **Lollapalooza effect** — Charlie Munger's term for what happens when multiple cognitive tendencies compound together to produce extreme misjudgment. Not a single bias, but several reinforcing each other. That compounding is what makes reasoning failures dangerous — and what makes them detectable, because compound patterns leave more structural fingerprints than isolated ones.
+
+The engine rests on a single belief: **Munger's *Psychology of Human Misjudgment* is the right failure ontology for auditing LLM reasoning.**
+
+Munger's 25 tendencies give us a vocabulary for recurring reasoning errors — overoptimism, authority-misinfluence, availability-misweighing, premature convergence — without depending on domain-specific language. If two answers in different domains show the same failure pattern, Lolla sees the same structural problem.
+
+But Munger alone is not enough. Munger tells us what failure looks like. The 224-model corpus tells us what structural intervention is available. The bridge between them — 304 curated tendency→model bindings with symptom-facing activation contexts — is the product.
+
+This has three implications:
+
+1. **Lolla reads the thinking, not the topic.** It detects reasoning patterns (overconfidence, premature convergence, missing reversal conditions), not domain categories. "This is about business, so maybe game theory" is a failure mode. "This reasoning closes uncertainty without a stop-rule, so Doubt Avoidance is in play" is correct behavior.
+
+2. **Lolla produces findings, not answers.** Its job is to surface compact structural pressure — what tendency is distorting the reasoning, what model challenges it, what tension was missed. The downstream LLM or human decides what to do with that pressure.
+
+3. **Compact pressure beats long explanation.** The delta card stays small enough that a strong downstream model can absorb it as intervention pressure instead of being drowned in prose. Naming the right pressure can be enough if the downstream model is strong.
+
+---
+
+## The Knowledge Substrate
+
+224 mental models curated from Charlie Munger's latticework of mental models, the Farnam Street Knowledge Project, and primary academic sources. This is not LLM-generated content — it is reviewed, curated, structured knowledge with explicit provenance.
+
+Academic validation: USTC's MeMo paper (Feb 2024) proved Munger's latticework concept works as a prompting strategy, achieving near-SOTA performance across logical reasoning, STEM, and commonsense tasks in zero-shot settings. Lolla goes further: deterministic routing, auditability, curated relationships, and external application — not probabilistic in-context selection.
+
+**Five waves of curation:**
+- **Wave 1 — Activation semantics:** When to select each model, when to avoid it, input/output types. 224 models fully curated.
+- **Wave 2 — Intervention semantics:** Failure modes with mitigations, heuristics, premortem questions. 224 models, each with curated failure modes and specific mitigations.
+- **Wave 3 — Relation semantics:** Allies, antagonists, structured tensions between models. 1,688 curated edges describing how models support, oppose, and create productive tension with each other.
+- **Wave 5 — Reframing semantics:** Frame pattern → model mappings for 50 models. Lane 3 substrate — connects embedded assumptions in questions to specific mental models that challenge those assumptions.
+- **Latticework layers — Discovery infrastructure:** Prerequisite orderings (A→B learning sequences), family semantics (dense ally clusters with named theses), polarity semantics (failure cascade ↔ correction stack pairs). Graph projection over Wave 3 topology proposes candidates, LLM validates against source articles, curated JSON enters the compilation path.
+
+**25 cognitive tendencies** — adapted from Munger's Psychology of Human Misjudgment for LLM-generated strategic advice. Each tendency has corrective models mapped to it with activation contexts describing the specific failure pattern that should trigger each route. 304 core+antidote bindings, all with curated activation contexts.
+
+**Pre-computed embeddings:** 2,496 knowledge chunks embedded with OpenAI text-embedding-3-large (3072d). Enables semantic matching — the query is embedded once and compared against the pre-computed vectors to find the most relevant corrective knowledge. Requires `OPENAI_API_KEY`. Without it, deterministic routing still works.
+
+### The Source Corpus
+
+The 224 canonical articles were not LLM-generated. They were extracted from a corpus of ~200 books spanning cognitive science, decision theory, behavioral economics, systems thinking, strategy, evolutionary psychology, legal reasoning, and creativity.
+
+The extraction used RAG: each book was embedded, and for every mental model in the taxonomy, the corpus was queried with five structured questions designed to extract the kind of knowledge that improves reasoning audits:
+
+1. **Core Principles** — fundamental essence, non-obvious analogies
+2. **Playbook in Action** — heuristics, actionable frameworks, concrete examples
+3. **Strengths and Weaknesses** — where the model is most powerful, where misapplication is dangerous
+4. **Latticework Interactions** — synergistic allies and conflicting antagonists
+5. **Risks and Mitigations** — failure modes, blind spots, and pre-mortem questions
+
+The answers were synthesized into canonical Markdown articles, then reviewed against source material for accuracy. This process is why the substrate contains knowledge the LLM doesn't have natively — the specific failure mode of Circle of Competence when applied to adjacent domains, the exact tension between Margin of Safety and Calculated Risk Taking, the premortem questions that Inversion would ask before a build-vs-buy decision. These come from books, not from training data.
+
+The corpus includes foundational texts (Kahneman's *Thinking, Fast and Slow*, Munger's *Poor Charlie's Almanack*, Meadows' *Thinking in Systems*) alongside less obvious but high-signal sources: Henrich's *The WEIRDest People in the World* on cultural cognition defaults, Cukier et al.'s *Framers* on how framing constrains solution spaces, Simler & Hanson's *The Elephant in the Brain* on hidden motives in reasoning, and Griffiths' *The Laws of Thought* on Bayesian cognitive models. Mental models that only draw from one domain produce one-dimensional corrections — the breadth of the corpus is intentional.
+
+---
+
+## Architecture
+
+### Conductor, Not Player
+
+**Claude is a conductor, not a player.** It captures the conversation, calls scripts, and presents results. It performs zero reasoning judgment. Every semantic decision goes through OpenRouter where prompts are calibrated and measurable.
+
+Why? Three reasons:
+
+- **Calibration control.** You can't tune Claude's judgment the way you tune an OpenRouter prompt. The pipeline has been calibrated over hundreds of eval runs against professional-grade cases. Inline judgment has been calibrated against zero.
+- **Fox can't audit the henhouse.** Claude produced the reasoning in the conversation. Asking the same LLM to find flaws in its own reasoning invites sycophantic self-defense — not because it lies, but because RLHF training optimizes for agreeable outputs.
+- **Telemetry.** When OpenRouter runs the pipeline, we get `BoundaryCallMetadata` back — prompt tokens, completion tokens, cached tokens, reasoning tokens. This makes the system observable and measurable.
+
+### Probabilistic Edges, Deterministic Middle
+
+LLMs are extraordinary System 1 machines — fast, fluent, pattern-matching — but structurally weak at System 2: slow, deliberate, logically disciplined reasoning. Kahneman's framework from *Thinking, Fast and Slow* maps directly onto Lolla's architecture. Balaji Srinivasan sharpens this further: AI is purely probabilistic, exceptional at "middle-to-middle" generation, but it cannot self-verify. His principle — "0% AI is slow, but 100% AI is slop" — captures why Lolla exists in the space between: human-curated structure disciplining LLM flexibility.
+
+The central design question is: **what should be flexible (LLM-driven) and what should be locked down (deterministic)?** The answer follows a principle: *LLMs at the probabilistic edges, curated knowledge in the deterministic middle.*
+
+LLMs are irreplaceable at two things: **recognizing semantic patterns** in natural language (is this answer showing doubt-avoidance? is this reasoning implicitly using inversion?) and **generating specific reframings** grounded in mental model semantics. No deterministic system can do this reliably. So every stage that requires reading reasoning shape, detecting implicit model usage, or producing a specific alternative question is probabilistic — it goes through an LLM via OpenRouter.
+
+But LLMs are bad at three things that matter here: **consistent routing** (the same input should always reach the same corrective knowledge), **traceable provenance** (you should see exactly which model competed and why), and **delivering out-of-distribution knowledge** (the LLM's training data doesn't contain our curated failure modes, premortem questions, and relationship tensions). So every stage that maps a detection to corrective models, traverses the knowledge graph, selects curated chunks, and assembles the output is deterministic — no LLM involvement.
+
+This is how we bring out-of-distribution knowledge into the reasoning process without losing the flexibility that makes LLMs useful:
+
+| Stage | Type | Why this choice |
+|-------|------|-----------------|
+| Triage: score 25 tendencies | **Probabilistic** (LLM) | Semantic judgment — "does this answer exhibit tendency X?" — requires reading reasoning shape |
+| Embedding tendency signal | **Probabilistic** (cosine) | Swiss cheese redundancy for LLM misses |
+| Threshold filtering (score ≥ 4) | **Deterministic** | Hard cutoff, reproducible |
+| Deep check: isolated tendency analysis | **Probabilistic** (LLM) | Deeper semantic analysis — one tendency in isolation, no distractors |
+| Routing: tendency → corrective models | **Deterministic** | Catalog lookup + graph traversal — consistent, traceable |
+| 1-hop neighborhood expansion | **Deterministic** | RelationGraph traversal — allies, antagonists, tensions from curated edges |
+| DeltaCard assembly | **Deterministic** | Tiering, compound grouping, finding presentation |
+| Fingerprint: extract reasoning moves | **Probabilistic** (LLM) | Semantic — "what abstract reasoning patterns are running?" |
+| Quote validation | **Deterministic** | Literal substring match |
+| Recall: find candidate models | **Hybrid** | Keyword overlap (deterministic) + embedding cosine (probabilistic) |
+| Verification: model presence | **Probabilistic** (LLM) | "Is Circle of Competence being executed or violated?" — requires reading structure |
+| Chunk gathering + selection | **Deterministic** | Budget, anti-echo, dedup — curated material delivered faithfully |
+| Frame extraction | **Probabilistic** (LLM) | "Does this question embed assumptions?" — requires reading the question as a reasoning artifact |
+| Frame pattern → model routing | **Deterministic** | Wave 5 lookup table |
+| Reframing generation | **Probabilistic** (LLM) | Creative — generate a specific alternative question grounded in a model |
+
+The curated substrate provides knowledge the LLM doesn't have: specific failure modes for Circle of Competence, the exact tension between Margin of Safety and Calculated Risk Taking, premortem questions that surface hidden assumptions. The deterministic middle ensures this knowledge reaches the output faithfully — not paraphrased, not selectively summarized, not lost in the telephone game of LLM-to-LLM handoff.
+
+### Swiss Cheese Redundancy
+
+Embeddings and LLM triage operate as parallel layers, not sequential gates. Three invariants:
+
+1. **Additive union, never gating intersection.** Embeddings can only ADD candidates or tendencies. They cannot remove anything the LLM or keyword path found.
+2. **LLM always runs independently.** The LLM triage and fingerprint calls run whether or not embeddings are available.
+3. **Graceful degradation.** If `OPENAI_API_KEY` is not set, embeddings.db is missing, or the API fails — the system works exactly as before. All embedding code returns empty results on failure.
+
+This means the system has multiple independent chances to detect a pattern. In practice, embeddings catch 10-15% of tendencies that the LLM's broad triage missed — and the LLM catches patterns that embedding similarity wouldn't surface.
+
+### Context Engineering: Two Passes
+
+Why does Lane 1 use two LLM passes instead of one?
+
+**Pass 1 is broad but shallow** — it scores the answer against all 25 tendencies at once. This is efficient but the LLM is balancing 25 competing hypotheses simultaneously, which means adjacent tendencies (authority vs social proof, doubt-avoidance vs stress-influence) can be confused.
+
+**Pass 2 is narrow and deep** — each triggered tendency gets its own isolated LLM call with only that tendency's description, its sub-pattern menu (corrective model options), and calibration guidance. No knowledge of what other tendencies were triggered.
+
+This is context engineering: **removing distractors** so the LLM can focus. The cost is N+1 LLM calls (1 triage + N deep checks), but precision improves because the model doesn't have to balance competing hypotheses. Pass 2 calls run in parallel (up to 8 concurrent), so wall-clock time stays roughly constant.
+
+### Three Independent Lanes
+
+The three lanes share a boundary client (LLM provider) and compiled knowledge graphs, but their information never crosses during processing except at defined merge points:
+
+- **Lane 1 ↔ Lane 2:** After both lanes complete, the cheat-sheet selector reads DeltaCard model IDs to apply anti-echo filtering — it drops heuristic chunks for models already covered by DeltaCard findings. This is a post-processing step; it doesn't feed back into either lane.
+- **Lane 1 → Lane 3:** Frame routing excludes model IDs already routed by Lane 1. Overlap detection flags where frame patterns and Lane 1 tendencies operate on the same cognitive concept. Informational, not blocking.
+
+This separation ensures that challenge signals (Lane 1) and enrichment signals (Lane 2) don't contaminate each other. The downstream consumer sees whether the system is challenging a weak reasoning path or deepening a promising one.
+
+### Trust Order
+
+The knowledge hierarchy has a strict trust ordering:
+
+```
+Canonical markdown articles (224 files) — semantic root, always wins
+    ↓
+Curated Wave JSON (activation, intervention, relation) — reviewed per-model
+    ↓
+Compiled graph artifacts (knowledge_graph.json, relationship_graph.json)
+    ↓
+Pre-computed embeddings (embeddings.db) — lowest-trust retrieval layer
+    ↓
+Runtime LLM judgment — suggests, does not decide routing
+```
+
+Embeddings suggest candidates. LLMs detect patterns. But every embedding hit still goes through LLM deep-check (tendency lane) or LLM verification (companion lane) before it affects output. And every LLM detection gets routed through deterministic graph traversal to curated knowledge. The curated material — not the LLM's opinion — is what the user sees.
+
+### How Lolla Compares
+
+| Dimension | Prompt Engineering | RAG / Context Injection | Lolla |
+|---|---|---|---|
+| Reasoning structure | Inside LLM (recovery paradox) | None (just more facts) | External, deterministic |
+| Diversity source | Same probability distribution (hivemind) | Retrieved documents | 224 curated mental models |
+| Auditability | None | Retrieval logs only | Full provenance per finding |
+| Context pollution | Amplified across turns | Diluted by irrelevant retrieval | Broken by three-lane architecture |
+| Sycophancy resistance | None (RLHF-trained to agree) | None | Deterministic challenge pressure |
+| Cognitive friction | Removed (polished answers) | Removed | Reintroduced (structural challenges) |
+
+---
+
+## Step-by-Step Flow
+
+### Step 0: Skill Activation
+
+The skill triggers when Claude sees trigger phrases in the YAML frontmatter description:
+- Explicit: "audit this", "check my reasoning", "lolla", "devil's advocate", "what am I missing", "find blind spots", "stress test", "pre-mortem", "what are we not seeing"
+- Proactive: when the conversation contains strategic advice that hasn't been challenged
+
+When triggered, Claude loads the full `SKILL.md` body and runs the **preamble bash block** first.
+
+### Step 0b: Preamble
+
+The preamble is a bash block that runs before anything else. It checks:
+
+1. **Skill directory location** — resolves where the skill files live (`~/.claude/skills/lolla/`, `.claude/skills/lolla/`, or `skill/lolla/` in the repo)
+2. **API key** — `OPENROUTER_API_KEY` or `LOLLA_OPENROUTER_API_KEY` must be set. Fatal if missing.
+3. **Data files** — `data/knowledge_graph.json` must exist. Fatal if missing.
+4. **Pipeline engine** — the bundled engine at `engine/system_b/` must be present. Fatal if missing.
+5. **Reports config** — which OpenRouter model (default: `x-ai/grok-4.1-fast`), whether embeddings are enabled (`OPENAI_API_KEY` present or not)
+
+If any check says `FATAL`, Claude stops and tells the user what's missing.
+
+### Step 1: Capture Conversation
+
+Claude extracts the conversation from its context window into a temp file. This is purely mechanical — no judgment.
+
+**What gets included:**
+- User messages (the human's words — these contain constraints, questions, pushback)
+- Assistant prose responses (Claude's reasoning — these contain the positions being audited)
+
+**What gets excluded:**
+- Tool call inputs and outputs (file reads, code execution, search results)
+- System messages and reminders
+- Meta-conversation about the skill itself
+
+**Format:**
+```
+[Turn 1] USER:
+We're considering whether to migrate to microservices...
+
+[Turn 1] ASSISTANT:
+This is a significant architectural decision. Given the context...
+
+[Turn 2] USER:
+What about the risk of...
+```
+
+**Long conversation handling:** If the conversation exceeds ~100 turns, Claude keeps the first 3 turns (contain irreplaceable constraints) and the last 15 turns (contain the current position), with an `[... N turns omitted ...]` marker.
+
+### Step 2: Extract Decision Structure
+
+```bash
+python3 $SKILL_DIR/scripts/run_extract.py --conversation-file /tmp/lolla_conversation_$$.txt
+```
+
+This script reads the conversation, sends it to OpenRouter with a calibrated extraction prompt, and parses the structured response.
+
+**First question: is this conversation strategic?** A conversation is "strategic" when the AI provides advice, recommendations, or analysis that could influence a material decision — business strategy, architecture choices, hiring, investment, product direction, vendor selection, etc. Code debugging, factual lookup, and creative writing are NOT strategic.
+
+If not strategic → returns `{"status": "not_strategic", "decline_reason": "..."}` and Claude presents a polite decline.
+
+If strategic → extracts 6 fields:
+
+| Field | What It Captures | Why the Pipeline Needs It |
+|-------|-----------------|--------------------------|
+| `decision_situation` | The core decision as a neutral problem statement — domain, stakeholders, what's at stake | Becomes the `query` for Lane 1 triage. Tells the triage model what constraints were live, what could be skipped. |
+| `live_constraints` | Every constraint the user stated, with status: active / dropped / modified, and weight: structural / situational | **The killer feature of conversation mode.** A constraint stated in turn 3 but absent from the recommendation in turn 8 is omission evidence. Lane 1 triage uses this to detect doubt-avoidance, availability-misweighing, etc. |
+| `synthesized_position` | The LLM's latest/most developed recommendation, preserving reasoning structure | Becomes the `vanilla_answer`. This is what all three lanes audit. Preserving structure (not just conclusions) is critical — Lane 2 needs to see HOW the LLM argued. |
+| `reasoning_passages` | 3-8 VERBATIM quotes from the assistant's messages — leaps, dismissals, assertions | Lane 2 (companion) fingerprints literal substrings to detect mental models. If these aren't exact quotes, fingerprint verification fails. |
+| `original_framing` | How the human posed the problem — what was assumed fixed, what perspectives were excluded | Lane 3 (frame pressure) audits framing. If the question assumed "we must grow" and never explored "should we grow?", Lane 3 catches that. |
+| `dropped_threads` | Concerns raised but never resolved — by either party | Enriches the `query` with explicit omission signals. When triage sees "user raised X, AI never addressed it", that's tendency-detection gold. |
+
+**CritiqueRequest mapping:**
+
+The 6 extracted fields get mapped to the 2 fields the pipeline expects:
+
+```
+query = decision_situation 
+      + constraint summary (with [ACTIVE/STRUCTURAL], [DROPPED/SITUATIONAL] tags)
+      + original_framing
+      + dropped_threads
+
+vanilla_answer = synthesized_position
+               + numbered reasoning passages as verbatim quotes
+```
+
+This mapping is deterministic — no LLM involved.
+
+### Step 3: Run Pipeline
+
+```bash
+python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_extraction_$$.json
+```
+
+This script parses the extraction JSON, initializes the full Lolla pipeline via OpenRouter, and runs all three lanes:
+
+```
+                         ┌──────────────────────────────┐
+                         │  CritiqueRequest              │
+                         │  query + vanilla_answer       │
+                         └──────────┬───────────────────┘
+                                    │
+                    ┌───────────────┼───────────────┐
+                    ▼               ▼               ▼
+             ┌──────────┐   ┌──────────┐   ┌──────────┐
+             │  Lane 1  │   │  Lane 2  │   │  Lane 3  │
+             │ Structural│   │ Companion│   │  Frame   │
+             │ Pressure │   │          │   │ Pressure │
+             └────┬─────┘   └────┬─────┘   └────┬─────┘
+                  │              │              │
+                  ▼              ▼              ▼
+             DeltaCard    CheatSheet    FrameCard
+```
+
+**Lane 1 — Structural Pressure (3-5 OpenRouter calls):**
+
+1. **Pass 1 (Triage):** One OpenRouter call scores the vanilla answer against all 25 Munger tendencies (0-10 each). Uses the query to understand which constraints were live. Result: a shortlist of tendencies scoring 4+ (the "triggered" set).
+
+2. **Embedding swiss cheese** (optional, if `OPENAI_API_KEY` set): Embeds the vanilla answer and compares against 25 pre-computed tendency guidance vectors. Any tendency below the LLM threshold but above the embedding threshold gets promoted into the triggered set. This catches what the LLM missed — and vice versa.
+
+3. **Pass 2 (Deep Checks):** One OpenRouter call PER triggered tendency, run in parallel (up to 8 concurrent). Each call checks ONE tendency in isolation — seeing only that tendency's definition, its sub-pattern menu, and the vanilla answer. Context isolation prevents tendency contamination. Returns: detected/not-detected, confidence, sub-pattern, specific passage, severity.
+
+4. **Deterministic routing:** For each confirmed detection, the deterministic middle looks up corrective models from the knowledge graph (224 models, 304 bindings), does 1-hop neighborhood expansion (allies, antagonists), and assembles findings with curated failure modes, heuristics, and premortem questions.
+
+5. **DeltaCard assembly:** Top findings get full treatment (challenge statement, reversal trigger, corrective model, supporting models, tensions). Secondary findings get one-line summaries. Compound patterns (multiple tendencies on overlapping evidence) get flagged.
+
+**Lane 2 — Model Companion (2-3 OpenRouter calls):**
+
+1. **Fingerprint:** One OpenRouter call extracts 3-8 abstract reasoning moves from the vanilla answer. Each move has verbatim evidence quotes. No model names mentioned — just "weighing second-order consequences", "applying inversion", etc.
+
+2. **Recall:** Keyword overlap + optional embedding search identifies 15-20 candidate mental models from the 224-model substrate.
+
+3. **Verify:** One OpenRouter call checks each candidate: is the model EXECUTED (mechanism runs in the answer) or VIOLATED (answer substitutes something the model guards against)? Mere compatibility = rejection. Broad overlay models (systems-thinking, second-order-thinking) get extra scrutiny.
+
+4. **Gather + Select:** Deterministic retrieval of curated chunks (failure modes, premortems, heuristics, antagonists) for verified models. Anti-echo filtering drops heuristic chunks for models already in the DeltaCard. Budget-constrained selection (20 chunks max, diversity guaranteed).
+
+**Lane 3 — Frame Pressure (2 OpenRouter calls):**
+
+1. **Frame extraction:** One OpenRouter call reads the QUERY (not the answer) for embedded assumptions, mutable constraints, and suppressed counterfactuals. Returns 0-5 frame elements.
+
+2. **Deterministic routing:** Each frame element's `frame_pattern` is looked up in the Wave 5 reframing routing table → candidate models.
+
+3. **Reframing generation:** One OpenRouter call generates up to 2 alternative questions that open new reasoning paths, grounded in specific mental models.
+
+4. **Anti-echo:** Models already used in Lane 1 are excluded. Overlap between frame patterns and Lane 1 pressure concepts is flagged.
+
+Lane 3 is most powerful on short conversations where the question itself constrains the answer space. A question that assumes "we must grow" and never explores "should we grow?" is a frame pressure finding.
+
+**Total OpenRouter calls:** Typically 8-10 (1 extraction + 1 triage + N deep checks + 1 fingerprint + 1 verify + 1 frame extract + 1 reframe). All use the calibrated boundary client with `temperature=0.2` and `response_format=json_object`. The revision step is skipped in the skill flow — Claude produces the updated position itself in Step 6, using the full conversation context and the three cards.
+
+### Step 4: Present Results
+
+Claude reads the pipeline output JSON and presents three sections:
+
+**DeltaCard (Structural Pressure):**
+For each top finding: tendency name, sub-pattern, severity, the specific passage from the conversation that triggered it, the challenge statement (from curated knowledge), and a reversal trigger (concrete observable condition).
+
+**CompanionCheatSheet (Mental Models Active):**
+For each verified model: name, how it appears (executed/violated), evidence quote, and attached curated chunks — failure modes, premortem questions, antagonists.
+
+**FramePressureCard (Question-Level Audit):**
+Frame elements (assumptions, mutable constraints, suppressed counterfactuals) and reframed alternative questions.
+
+**Updated Position (Step 6):**
+After presenting the three cards, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging. Claude holds each curated chunk against the specific conversation to see if there's a live connection — some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
+
+**Critical presentation rule:** When presenting the cards, Claude voices the curated knowledge from the output as-is. It does NOT generate its own analysis, findings, or challenge statements. The curated material has been validated against source articles — Claude's generated alternatives have not. The bridge-building between general substrate knowledge and the specific conversation is where Claude adds value.
+
+### Step 5: Observatory (Optional)
+
+For complex results, the skill can open the Observatory — a local web interface that renders all three cards in a navigable visual format:
+
+```bash
+python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_result_$$.json
+```
+
+Zero dependencies (stdlib Python server + pre-built Svelte frontend). Shows findings with severity tags, companion anchors with typed chunks, frame elements with reframings, and the knowledge graph provides model detail views and tendency catalog browsing.
+
+---
+
+## Quality Doctrine
+
+- **Specificity over generality** — "Consider the risks" is not a finding. "The reasoning closes on a recommendation without naming what evidence would reverse it — Inconsistency-Avoidance operating on this passage" is a finding. Specificity means naming the reasoning pattern and where it appears, not domain facts.
+- **Reversal triggers must be observable** — "If things go wrong" is not a trigger. "If Q2 pipeline coverage drops below 3x while integration is consuming >20% of engineering hours" is a trigger.
+- **Curated knowledge IS the product** — Claude presents curated material from the pipeline output as-is. It does not generate replacement analysis, findings, or challenge statements. The curated material has been validated against source articles. Claude's generated alternatives have not.
+- **Intellectual honesty** — Flag genuine uncertainty. If a detection is borderline, say so. Better to surface 3 strong findings than 8 padded ones.
+- **False confidence is worse than honest uncertainty** — The whole system exists to fight borrowed certainty. It must not create more of it.
+- **The process is part of the product** — Every finding is traceable: which tendency was detected, why, which models competed, which won. The system is a reasoning observability layer, not a magic answer box.
+
+## What Lolla Is Not
+
+- **Not a second answer.** Lolla does not compete with the vanilla model at being a domain expert.
+- **Not a generic "think harder" prompt.** It routes through specific curated knowledge, not broad instructions.
+- **Not a fact-checking engine.** It audits reasoning structure, not factual claims.
+- **Not a domain classifier.** The query identifies live constraints and omissions, not a retrieval topic.
+- **Not a consultant simulator.** It does not rewrite the memo. It surfaces compact structural pressure.
+- **Not a deterministic case-solver.** The downstream model or human still decides what to do with the pressure.
+
+Lolla succeeds when it makes better reconsideration possible, not when it dictates the outcome.
+
+## Known Limitations
+
+- **Pass 1 can miss tendencies.** LLM triage balances 25 hypotheses simultaneously; adjacent tendencies can be confused. Embedding swiss cheese partially addresses this.
+- **Pass 2 is single-shot.** No iterative refinement. If the deep check misses a sub-pattern, it stays missed.
+- **Routing is lookup-only.** 1-hop graph expansion, no multi-hop reasoning or dynamic traversal.
+- **Embedding threshold is fixed.** 0.30 for tendency signal, not tuned per tendency.
+- **Companion verification is strict.** Quote-must-be-literal-substring rejects paraphrased evidence. Good for precision, costs recall.
+- **No feedback loop.** Pipeline output doesn't feed back into itself. No learning from past runs — improvements come from reviewed curation at the correct layer.
+
+---
+
+## Data Dependencies
+
+The skill carries its own copy of the compiled knowledge substrate:
+
+| File | Size | Contents |
+|------|------|----------|
+| `data/knowledge_graph.json` | 1.9M | 224 models, 25 tendencies, 304 bindings, 1,688 edges, 15 prerequisite edges |
+| `data/relationship_graph.json` | 853K | 1,302 relationship edges (allies, antagonists, tensions) |
+| `data/embeddings.db` | 31M | 2,496 pre-computed vectors (text-embedding-3-large, 3072d) |
+| `data/curation/` | 224 files | Wave 1 activation semantics per model |
+| `data/curation/intervention_semantics/` | 224 files | Wave 2 failure modes, heuristics, premortems |
+| `data/curation/relation_semantics/` | 224 files | Wave 3 relationship edge data |
+
+When running inside the repo, the pipeline uses the repo's `build/` directly (which includes additional compiled artifacts like `curated/subpattern_catalog.json`). When running standalone, the pipeline uses the skill's `data/` via a symlink. The additional `build/curated/` files enable promoted bundle selection — without them, the pipeline degrades gracefully (still produces findings, just without promoted bundle enrichment).
+
+---
+
+## Environment Requirements
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `OPENROUTER_API_KEY` or `LOLLA_OPENROUTER_API_KEY` | Yes | All LLM judgment (extraction, triage, deep checks, fingerprint, verify, frame extraction, reframing) |
+| `OPENAI_API_KEY` | No | Enables embedding swiss cheese (tendency signal, companion recall, chunk reranking). System works without it via deterministic routing only. |
+| `LOLLA_OPENROUTER_MODEL` | No | Override model (default: `x-ai/grok-4.1-fast`) |
+| `LOLLA_LLM_TIMEOUT` | No | Timeout per boundary call in seconds (default: 45, max: 120) |
+| `LOLLA_REPO_ROOT` | No | Override engine location (not needed for standard installs) |
+
+---
+
+## Edge Cases
+
+| Situation | What Happens |
+|-----------|-------------|
+| Conversation is about code debugging | Extraction returns `not_strategic`, Claude presents polite decline |
+| Conversation is 1-2 turns | Extraction still works. Less material for Lane 2 fingerprinting. Lane 3 (frame pressure) is most useful on short conversations. |
+| Conversation is 100+ turns | Claude truncates: first 3 + last 15 turns. Early turns preserve constraints. |
+| Pipeline finds zero tendencies | Valid outcome. "No structural pressures detected." |
+| OpenRouter times out | Boundary client handles retries internally. If all attempts fail, pipeline returns partial results. |
+| `OPENAI_API_KEY` not set | Embeddings disabled. Pipeline runs purely on LLM triage + deterministic routing. Works fine, just without the swiss cheese redundancy layer. |
+| Multiple strategic threads in one conversation | Extraction captures the most developed/recent thread. |
+
+---
+
+## Cost Per Run
+
+A typical run makes 8-10 OpenRouter calls against `x-ai/grok-4.1-fast`:
+- 1 extraction call (~3K tokens in, ~1K out)
+- 1 triage call (~4K tokens in, ~2K out)
+- 2-4 deep check calls (~2K tokens each)
+- 2 companion calls (~3K tokens each)
+- 2 frame pressure calls (~2K tokens each)
+
+Total: roughly 25-35K tokens. At Grok 4.1 Fast pricing, this is approximately $0.03-0.05 per audit. Embeddings (if enabled) add one OpenAI embedding call (~$0.001). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
+
+---
+
+## The Knowledge Foundation
+
+The foundation is not the code. The foundation is the curated knowledge substrate:
+
+- 224 mental model files, each reviewed and structured from primary sources
+- 5 waves of curation (activation, intervention, relation, reframing, latticework)
+- 304 tendency→model bindings with symptom-facing activation contexts
+- 1,688 relationship edges with curated descriptions
+- Pre-computed semantic embeddings for 2,496 knowledge chunks (text-embedding-3-large, 3072d)
+- 25 cognitive tendencies with calibrated detection boundaries and confusion guardrails
+
+This substrate is not LLM-generated. It was built through a deliberate curation methodology that treats each mental model as a whole — not a bag of keywords.
+
+### How Curation Works
+
+Each wave of curation follows the same principle: an LLM reads the full canonical article for a mental model and makes holistic semantic judgments about it. This is not mechanical parsing, brittle lexical matching, or structured field extraction. The LLM reads the article the way a thoughtful person would — understanding the model's core logic, its failure modes, where it creates productive tension with other models, and what reasoning patterns it addresses.
+
+Wave 1 asks: "When should this model be selected? When is it dangerous to apply?" Wave 2 asks: "How does this model fail? What premortem questions does it raise?" Wave 3 asks: "Which other models does this one support, oppose, or create structured tension with?" Each answer is validated against the source article — not against what the LLM "thinks" the model means from training data.
+
+This methodology is critical because mechanical approaches fail on mental models. You cannot extract "failure modes of Circle of Competence" by parsing headings or matching keywords. You need to read the full article, understand that the model's deepest failure is boundary blur in adjacent domains, and write an activation context that describes that specific pattern. The LLM does the reading; the human reviews the judgment; the result enters the curated layer.
+
+The result is a knowledge substrate that contains insights the LLM doesn't have natively — not because the information is secret, but because it was synthesized from specific source material (200+ books across disciplines) and structured for a purpose (reasoning audit) that no training corpus optimizes for.
+
+### Measurement and Calibration
+
+The system has been tested and calibrated across hundreds of evaluation runs against professional-grade strategic cases. Three layers of measurement guide ongoing development:
+
+- **Process quality** — Is the machine working correctly? Detection rates, routing coverage, boundary health, cache efficiency, timing — across all three lanes. If a code change degrades tendency detection or companion verification, the metrics show it.
+- **Novelty and specificity** — Is the system saying something the vanilla answer didn't already contain? A delta card that restates what the LLM already said adds no value. Measurement tracks whether findings surface genuinely new structural pressure — challenges, tensions, and failure modes absent from the original reasoning.
+- **Downstream influence** — When the structural pressure is fed back to an LLM, does it structurally change the answer? Not "does the LLM agree with the challenge" — sycophancy makes that meaningless. Does it engage with the challenge, add conditions it previously omitted, name failure modes it previously glossed over?
+
+These measurements follow a core constraint: **evals measure the process, not declare truth.** The system cannot know whether its challenge was "right" — that depends on a future that hasn't happened yet. What it can know is whether the challenge was specific, traceable, novel, and structurally grounded. A more knowledgeable decision process is the goal, not a more correct prediction.
+
+That curation and calibration effort is the product.

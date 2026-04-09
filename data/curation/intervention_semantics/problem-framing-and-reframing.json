@@ -1,0 +1,87 @@
+{
+  "model_id": "problem-framing-and-reframing",
+  "source_file": "Problem_Framing_and_Reframing_rag.md",
+  "failure_modes": [
+    {
+      "text": "A flawed problem definition can drive elegant work toward irrelevant or costly solutions.",
+      "source_quote": "a flawed problem definition is a primary pitfall leading to irrelevant or costly solutions",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Before investing in analysis, verify the problem statement: ask three stakeholders to independently state the problem and reconcile the differences before proceeding."
+    },
+    {
+      "text": "Teams can jump into analysis too early and boil the ocean before the real structure of the problem is clear.",
+      "source_quote": "A human inclination to rush into data gathering and complex analysis without achieving clarity on the underlying problem structure.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Timebox the framing phase: set a clear boundary between problem definition and analysis, and do not allow analysis to start until the frame is tested and agreed."
+    },
+    {
+      "text": "One favored frame can become a hammer that tortures reality to fit the model instead of exposing better cuts.",
+      "source_quote": "To the man with only a hammer, everything looks like a nail",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Rotate frames deliberately: after settling on a primary frame, force a pass through at least one structurally different frame to expose what the first one hides."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What other disciplines or frameworks might view this problem entirely differently?",
+      "source_quote": "What other disciplines or frameworks might view this problem entirely differently?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What evidence would conclusively prove our current framing wrong?",
+      "source_quote": "What evidence would conclusively prove our current framing/hypothesis wrong?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the single core question we are trying to answer?",
+      "source_quote": "What is the single core question we are trying to answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Test several cuts through the problem before committing to the current unit of analysis or point of view.",
+      "source_quote": "Different frames often yield different insights, necessitating the testing of several approaches.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use a structured problem statement so owner, constraints, actors, and success criteria are explicit before analysis deepens.",
+      "source_quote": "A structured framework for rigorous problem definition, ensuring clarity on the Trouble, Owner, Success criteria, Constraints, and Actors involved.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep a one-day-answer mentality so reframing sharpens the next decision instead of becoming endless conceptual drift.",
+      "source_quote": "What’s the one-day answer?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on anti-single-frame discipline, precise problem definition, and reframing questions that sharpen decisions.",
+    "donor_drops": [
+      "Did not preserve donor creativity-process sprawl because the raw source is stronger on boundary choice and frame-testing pressure."
+    ],
+    "open_questions": [
+      "The third heuristic uses the one-day-answer prompt to preserve action pressure even though the source discusses it across several neighboring problem-solving passages."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking and metacognitive frame-checking for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation-bias lock and familiar-frame substitution pressures."
+    ],
+    "structured_tensions": [
+      "The source includes an explicit structured tension block around confirmation-bias and representativeness-heuristic, but only the current-vocabulary-safe portion should survive into Wave 3."
+    ]
+  }
+}

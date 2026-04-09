@@ -1,0 +1,87 @@
+{
+  "model_id": "experimentation",
+  "source_file": "Experimentation_rag.md",
+  "failure_modes": [
+    {
+      "text": "Conjunction-style optimism can make a complex experimental rollout look safer than it is because too many dependent conditions are assumed to hold.",
+      "source_quote": "Conjunction Fallacy/Unwarranted Optimism",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Break complex experimental rollouts into independently testable steps; conjunctive optimism hides how many things must go right simultaneously."
+    },
+    {
+      "text": "Groupthink and political pressure can keep a favored hypothesis alive even when the experiment should be disproving it.",
+      "source_quote": "Groupthink and Political Pressure",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Protect the experiment from political pressure by pre-registering the hypothesis and the criteria for disproving it."
+    },
+    {
+      "text": "Experimentation theater can produce dashboards and learning language without changing the underlying decision.",
+      "source_quote": "Danger when experimentation becomes theater, generating activity, dashboards, or post-hoc learning language without changing any real decision.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require that every experiment produce a decision change, not just a dashboard update; experimentation theater creates learning language without altering the plan."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "“Is the worst case bad enough?”",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What do you think the other side doesn't get about your perspective?",
+      "source_quote": "“What do you think the other side doesn’t ‘get’ about your perspective?”",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "\"What You Have to Believe\" Analysis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use a one-day answer so the team always has a current hypothesis and solution path guiding what facts to gather next.",
+      "source_quote": "Hypothesis-Driven Problem Solving (The \"One-Day Answer\")",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep the experiment tied to a clear hypothesis and gather only enough facts to prove or disprove it.",
+      "source_quote": "collecting enough facts only to prove or disprove a hypothesis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate process steps like diagnosis and design so the test does not get blurred into premature solutioning.",
+      "source_quote": "He stresses that these steps must be done one at a time and in order",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on hypothesis-linked testing, anti-theater discipline, and explicit pre-mortem challenge, so the chunk set stays close to those interventions.",
+    "donor_drops": [
+      "Did not preserve donor product-testing sprawl because the raw file is stronger on decision-linked experimentation and anti-groupthink safeguards."
+    ],
+    "open_questions": [
+      "The third premortem question is normalized from the playbook section rather than taken from a labeled mitigation prompt."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, MECE decomposition, and Feynman-style blind-spot discovery for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section explicitly names confirmation-bias, narratives, fast-thinking shortcuts, and hammer effects."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against confirmation-bias and narratives."
+    ]
+  }
+}

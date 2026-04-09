@@ -1,0 +1,72 @@
+{
+  "model_id": "flow",
+  "source_file": "Flow_rag.md",
+  "select_when": [
+    "A task has a clear goal, rapid feedback, and challenge calibrated high enough to demand full attention without causing panic.",
+    "Deep work quality depends on sustained immersion rather than fragmented multitasking.",
+    "A person or team has enough skill to stretch at the edge of competence and benefit from uninterrupted concentration.",
+    "The main execution risk is broken attention rather than lack of understanding or missing options."
+  ],
+  "avoid_when": [
+    "The team is entering flow on the wrong problem and efficient execution is outrunning strategic sensemaking.",
+    "Feedback loops or coordination are too weak to keep immersion anchored to reality."
+  ],
+  "input_type": "deep-work and challenge-calibration problem",
+  "output_type": "immersion setup",
+  "reasoning_types": [
+    "metacognitive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on clear goals, rapid feedback, and edge-of-competence immersion rather than on generic motivation language.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

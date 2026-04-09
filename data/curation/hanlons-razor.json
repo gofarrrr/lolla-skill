@@ -1,0 +1,36 @@
+{
+  "model_id": "hanlons-razor",
+  "source_file": "Hanlons_Razor_rag.md",
+  "select_when": [
+    "A failure, delay, or conflict could plausibly be explained by poor clarity, coordination breakdown, overload, or neglect rather than hostile intent.",
+    "The emotional temptation is to assign malice before checking for simpler operational explanations.",
+    "The goal is to keep diagnosis constructive long enough to improve the system instead of escalating blame prematurely.",
+    "A team needs to distinguish bad outcomes caused by design failure from those caused by genuine sabotage."
+  ],
+  "avoid_when": [
+    "The principle is becoming a reflexive excuse for repeat harm, obvious deception, or incentive structures that reward bad-faith behavior.",
+    "People are using Hanlon's Razor to avoid accountability instead of demanding evidence and systemic correction."
+  ],
+  "input_type": "blame-heavy failure diagnosis",
+  "output_type": "non-malice-first diagnostic lens",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on de-escalating intent attribution while preserving the warning against using it as a shield for repeat harm.",
+    "donor_drops": [
+      "Did not preserve broader relationship-advice sprawl because the raw source is already strongest on diagnosis and constructive de-escalation."
+    ],
+    "open_questions": [
+      "The source overlaps with interpersonal repair and governance, but the operational file stays on intent diagnosis and system improvement."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on coordination failure, poor clarity, overload, and resisting immediate malice attribution."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source explicitly warns against using the principle to excuse repeat harm or bad-faith behavior."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The input label compresses the raw blame-heavy diagnostic context."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures the model as a sequencing rule for diagnosis rather than a universal truth claim."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The source supports diagnostic inquiry plus reflective intent-checking."}
+  }
+}

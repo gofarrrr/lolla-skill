@@ -1,0 +1,72 @@
+{
+  "model_id": "optimization-theory",
+  "source_file": "Optimization_Theory_rag.md",
+  "select_when": [
+    "The team can name what it is actually maximizing or minimizing instead of treating a vague aspiration as the objective.",
+    "Real constraints like time, capital, risk, or operating bottlenecks materially change which option is best.",
+    "A recommendation needs to make trade-offs explicit by stating what is being protected, what is being sacrificed, and which metric wins when goals conflict.",
+    "The work is drowning in detail and needs a leverage-centered frame that filters nonessential effort while keeping the true target visible."
+  ],
+  "avoid_when": [
+    "The measurable proxy is drifting away from the real outcome, so local optimization would improve the dashboard while damaging the actual objective.",
+    "The situation is genuinely novel or uncertainty-dominated enough that strict maximization language will hide unknowns and discourage resilience thinking."
+  ],
+  "input_type": "constrained objective-selection problem",
+  "output_type": "explicit trade-off and leverage plan",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on objective clarity, constraint-aware trade-offs, and leverage filtering rather than widening it into general efficiency rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor-style optimization-process sprawl because the raw source is strongest on objective function clarity, constraints, and proxy-risk discipline.",
+      "Did not add higher-order composition fields because this batch remains inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans strategy, learning, communication, and system design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The activation conditions are explicit in the raw source passages on named objectives, real constraints, and explicit trade-offs."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly grounded in the source warnings about proxy-target drift and overfitting optimization to uncertainty-heavy cases."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about constrained optimization and objective clarity; the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields leverage-focused trade-off plans, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Optimization theory clearly relies on cause-and-effect trade-off logic and system constraints, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

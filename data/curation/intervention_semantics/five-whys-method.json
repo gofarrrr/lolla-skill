@@ -1,0 +1,87 @@
+{
+  "model_id": "five-whys-method",
+  "source_file": "Five_Whys_Method_rag.md",
+  "failure_modes": [
+    {
+      "text": "Root-cause tracing can fail when the first answer or suspect anchors the whole chain and every later why is bent to support it.",
+      "source_quote": "Danger when the first answer or first suspect anchors the whole chain and every later \"why\" is steered to support that initial story.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge the first answer instead of using it as a foundation for every subsequent why; early anchoring bends the whole chain."
+    },
+    {
+      "text": "The method can oversimplify a nonlinear, multi-cause system by forcing it into one linear explanation.",
+      "source_quote": "Danger when a nonlinear, multi-cause system is forced into a single linear thread and the team leaves out interaction effects, feedback loops, or parallel causes.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Use parallel causal branches when the system is nonlinear or multi-cause; forcing a single linear explanation oversimplifies."
+    },
+    {
+      "text": "Five Whys can stall at a proximate cause if the team stops questioning before it reaches an actionable mechanism or missing control.",
+      "source_quote": "Premature Cessation (Stopping at Proximate Cause)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Keep asking until you reach an actionable mechanism or missing control; stopping at a proximate cause leaves the real root untouched."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What evidence ties this why-chain to logs, process facts, or physical reality rather than to opinion or blame?",
+      "source_quote": "Works best when the questioning is tied to logs, process evidence, or physical facts rather than opinion, status, or blame.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If this chain is wrong, which interaction effect or parallel cause are we probably leaving out?",
+      "source_quote": "Danger when a nonlinear, multi-cause system is forced into a single linear thread and the team leaves out interaction effects, feedback loops, or parallel causes.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which why in this chain first reaches an actionable mechanism, design flaw, or missing control that someone can actually change?",
+      "source_quote": "Best used when the investigation can end in an actionable mechanism, design flaw, or missing control that someone can actually change.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Keep asking why until the chain reaches a root cause that is falsifiable and operationally actionable.",
+      "source_quote": "By forcing the investigator to reach a first principle or a falsifiable fact, the model strengthens the foundation of knowledge.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the why-chain to populate a larger causal map when multiple causes are plausible instead of pretending the linear chain is enough by itself.",
+      "source_quote": "The Five Whys sequence can then be used to populate the \"causes of causes\" within the diagram.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Tie each why to observable evidence so the conversation stays diagnostic instead of becoming opinion or blame management.",
+      "source_quote": "Works best when the questioning is tied to logs, process evidence, or physical facts rather than opinion, status, or blame.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on evidence-linked why-chains, actionable mechanism finding, and anti-anchoring discipline rather than on introspection misuse.",
+    "donor_drops": [
+      "Did not preserve donor troubleshooting sprawl because the raw source is stronger on observable why-chains, fishbone support, and anti-symptom diagnosis."
+    ],
+    "open_questions": [
+      "The first heuristic compresses the first-principles and falsifiable-fact language so it stays reusable as a compact intervention chunk."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on root-cause-analysis, first-principles-thinking, and systems-aware diagnosis for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists and tension sections are strongest on confirmation-bias and anchoring."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension block that should survive into Wave 3 with bounded normalization."
+    ]
+  }
+}

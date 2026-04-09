@@ -1,0 +1,67 @@
+{
+  "model_id": "habit-formation",
+  "source_file": "Habit_Formation_rag.md",
+  "failure_modes": [
+    {
+      "text": "Automatic behavior can keep solving yesterday's problem when the environment has changed.",
+      "source_quote": "Automation Replaces Judgment",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Build in environment-change triggers that interrupt automatic behavior when the conditions the habit was built for have shifted."
+    },
+    {
+      "text": "Entrenched routines can filter evidence and protect the habit instead of the intended outcome.",
+      "source_quote": "entrenched behavioral patterns selectively filter evidence",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test habits against current evidence: entrenched routines can filter information to protect the habit rather than the intended outcome."
+    },
+    {
+      "text": "Strategy stays inert when the required behaviors are never converted into repeatable routines.",
+      "source_quote": "strategy remains academic and irrelevant",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Convert strategic intent into repeatable routines: strategy stays inert until the required behaviors become habitual."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What cue, feeling, or belief is firing right before the unwanted behavior starts?",
+      "source_quote": "What are you feeling in the moment right before you begin the behavior?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Does this routine still serve the goal, or is it only protecting old comfort?",
+      "source_quote": "yesterday's problem",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which small repeated behavior would most improve reliability under stress?",
+      "source_quote": "repeating the right small behaviors",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use cue, craving, response, and reward to redesign the loop rather than relying on vague intention.",
+      "source_quote": "Cue, Craving, Response, and Reward",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Scaffold the response into small repeatable units so the behavior becomes easier to perform.",
+      "source_quote": "small, incremental units",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Design for consistency so useful behavior survives fatigue and overload.",
+      "source_quote": "Design for Consistency",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ]
+}

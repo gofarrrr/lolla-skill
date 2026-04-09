@@ -1,0 +1,87 @@
+{
+  "model_id": "algorithmic-thinking",
+  "source_file": "Algorithmic_Thinking_rag.md",
+  "failure_modes": [
+    {
+      "text": "Rigid procedure can fail when novelty or ambiguity is doing most of the causal work and the team mistakes repeatability for understanding.",
+      "source_quote": "Danger when novelty, ambiguity, or human emotion is doing most of the causal work and a rigid procedure is mistaken for actual understanding.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test the procedure against a genuinely novel scenario; if the algorithm cannot handle the new case without human judgment, the structure is masking understanding gaps."
+    },
+    {
+      "text": "Procedures can optimize visible proxies while ignoring exceptions, tacit knowledge, or changing context.",
+      "source_quote": "Danger when rules are optimized to visible proxies while exceptions, tacit knowledge, or changing context are treated as noise.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Build in explicit exception-handling branches and review the algorithm against the broadest mental-model latticework available, not just the procedural domain."
+    },
+    {
+      "text": "Algorithmic structure can oversimplify living social systems if implementation complexity is treated as a clean step-by-step execution problem.",
+      "source_quote": "Applying purely rational, step-by-step problem-solving to implementation oversimplifies what is required to translate ideas into action within a living, social system.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate the analytical clarity of the algorithm from its human implementation; ensure the how-to-execute step accounts for social dynamics, not just logical correctness."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which edge case or exception would break this procedure even if the happy path looks clean?",
+      "source_quote": "Best used when a process benefits from explicit branching rules, bounded edge cases, and coordination across specialized components or agents.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What part of this process is being treated as noise even though it carries decision-critical tacit knowledge?",
+      "source_quote": "Danger when rules are optimized to visible proxies while exceptions, tacit knowledge, or changing context are treated as noise.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If this routine failed in a novel situation, which assumption in the procedure would be the most misleading one?",
+      "source_quote": "When we encounter genuinely novel problems, we sometimes persist in using frames that are unhelpful or misleading in the new and different context.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Break the task into repeatable steps with explicit handoffs so the logic can be checked instead of assumed.",
+      "source_quote": "The task can be decomposed into repeatable steps with clear handoffs, inputs, and output quality checks.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Define branching rules and bounded exceptions before scale forces many people or systems to improvise inconsistently.",
+      "source_quote": "Best used when a process benefits from explicit branching rules, bounded edge cases, and coordination across specialized components or agents.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Add quality checks at the output boundary so consistency is earned through verification, not assumed from the procedure name.",
+      "source_quote": "Consistency, auditability, or scale matter more than improvisation because many people or systems must execute the same logic reliably.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on repeatable steps, explicit branching, and anti-proxy discipline rather than on generic automation rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor workflow sprawl because the raw source is stronger on procedure design, edge cases, and trustworthy execution."
+    ],
+    "open_questions": [
+      "The third heuristic compresses the trust and consistency material so it stays reusable beyond AI or agent-specific contexts."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems-thinking, scientific-method style rigor, and reflective process monitoring for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on simplification, feedback drift, and confirmation pressure through procedure design."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension block that should survive into Wave 3 with only bounded normalization."
+    ]
+  }
+}

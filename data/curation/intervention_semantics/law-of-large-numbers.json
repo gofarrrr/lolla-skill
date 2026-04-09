@@ -1,0 +1,87 @@
+{
+  "model_id": "law-of-large-numbers",
+  "source_file": "Law_of_Large_Numbers_rag.md",
+  "failure_modes": [
+    {
+      "text": "Law-of-small-numbers bias makes tiny samples look more representative than they really are.",
+      "source_quote": "The Law of Small Numbers Bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Flag small-sample conclusions explicitly: tiny samples are far more volatile than intuition suggests."
+    },
+    {
+      "text": "Exaggerated faith in scraps can turn a few observations into hasty confident judgment.",
+      "source_quote": "Exaggerated Faith in Scraps",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require a stated sample size and confidence interval before treating any observation as a reliable pattern."
+    },
+    {
+      "text": "Large-N logic can mislead when the sample is biased or drawn from the wrong population.",
+      "source_quote": "Danger When Large-N Logic Is Applied to the Wrong Population",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check whether the sample is drawn from the relevant population; large-N logic misleads when the sample is biased or mismatched."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we letting a vivid story stand in for the population-level evidence?",
+      "source_quote": "The Availability Heuristic encourages reliance on a small, biased sample of experiences",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Have we disaggregated the conjunctive plan enough to see where the overall probability actually collapses?",
+      "source_quote": "Systematic Disaggregation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use probabilistic thinking so fair bets and risk estimates reflect frequencies instead of vivid anecdotes.",
+      "source_quote": "Probabilistic Thinking",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Apply reference class forecasting before arguing that this case is uniquely special.",
+      "source_quote": "Reference Class Forecasting",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use simulations to inspect the full distribution instead of anchoring only on the mean outcome.",
+      "source_quote": "Use Simulations",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on anti-small-sample discipline, distribution awareness, and reference-class correction rather than broad statistics instruction.",
+    "donor_drops": [
+      "Did not preserve donor textbook-style exposition because the raw source already gives stronger intervention chunks around anecdotes, wrong populations, and tail-risk discipline."
+    ],
+    "open_questions": [
+      "The second premortem question is normalized from the availability conflict because the source is stronger on the risk than on a direct quoted question."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on bayesian thinking, systems emergence, and expertise-through-quantity for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section includes representativeness and availability, but only the cleanest canonical ids should survive later relation curation."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around base-rate neglect and vivid-story distortion even though it lacks a dedicated structured tension block."
+    ]
+  }
+}

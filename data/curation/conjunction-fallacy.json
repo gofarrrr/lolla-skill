@@ -1,0 +1,74 @@
+{
+  "model_id": "conjunction-fallacy",
+  "source_file": "Conjunction_Fallacy_rag.md",
+  "select_when": [
+    "Success depends on a chain of individually plausible steps that all must occur for the plan to work.",
+    "A proposal sounds convincing step by step, but the overall odds are being inferred from the plausibility of each component.",
+    "The team is evaluating a launch, integration, or transformation whose result depends on coordinated sequential execution.",
+    "The decision needs an outside-view check on how compound failure risk accumulates across a multi-stage plan."
+  ],
+  "avoid_when": [
+    "The case is dominated by one or two obvious bottlenecks rather than a long conjunctive chain, so probability arithmetic would add false precision.",
+    "The structure is actually disjunctive, redundant, or fail-safe, where success does not require every step to go right."
+  ],
+  "input_type": "multi-step success claim",
+  "output_type": "sequence-risk challenge",
+  "reasoning_types": [
+    "probabilistic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Normalized the activation surface around sequential dependency and cumulative failure risk rather than keeping donor example-heavy triggers.",
+    "donor_drops": [
+      "Dropped donor new_allies because the raw latticework already names direct allies and the first pass should not preserve duplicate relation overlays.",
+      "Dropped donor new_tensions because they introduce broader runtime-facing topology claims that are not needed for this pilot contract."
+    ],
+    "open_questions": [
+      "The input and output type labels are reviewed operational normalization rather than explicit source fields."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Raw strengths provided the core activation logic; donor examples helped show recurring use cases, but the final list was rewritten into structural triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Built directly from the raw weaknesses section and tightened into anti-activation rules."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly presents a conjunctive-plan judgment problem, but the exact label is a reviewed operational compression."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw file implies a corrective probability challenge rather than a generic warning; the output label is normalized for operational use."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The model clearly uses probability and dependency reasoning; the exact taxonomy labels are reviewed normalization."
+    }
+  }
+}

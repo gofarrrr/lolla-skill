@@ -1,0 +1,87 @@
+{
+  "model_id": "adaptation",
+  "source_file": "adaptation_rag.md",
+  "failure_modes": [
+    {
+      "text": "Premature action blurs diagnosis and solution so the system reacts before it understands what is failing.",
+      "source_quote": "Premature Action/Blurred Thinking",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Strictly separate the five adaptive steps: set goals, identify problems, diagnose root causes, design changes, then execute — never blur stages."
+    },
+    {
+      "text": "Anchoring on one perspective makes the team miss the broader system picture it needs to adapt to.",
+      "source_quote": "Failure to See the Whole Picture",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Cultivate intellectual humility and stress-test thinking through multiple frames; seek perspectives that challenge the current viewpoint."
+    },
+    {
+      "text": "Stress and emotional hijacking reduce the mental energy available for thoughtful course-correction.",
+      "source_quote": "Stress and Emotional Hijacking",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Use journaling or reflective practice to separate the emotional reaction from the analytical response before choosing the next adaptive move."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the one-day answer right now, and which signal would force us to revise it?",
+      "source_quote": "What\u2019s the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe for this adaptation path to still make sense six months from now?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we adapting to real environmental feedback or just defending the last move in a new language?",
+      "source_quote": "feedback is interpreted to confirm the current adaptation path",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Decouple goals, diagnosis, design, and execution so each stage can do its own job.",
+      "source_quote": "Decouple the Adaptive Steps",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Cultivate intellectual humility and stress-test the current path with believable critics.",
+      "source_quote": "Assume you are wrong until your thinking has been stress-tested",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Satisfice once the next workable move is clear instead of waiting for a perfect adaptive plan.",
+      "source_quote": "Embrace satisficing",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "model_id": "systems-thinking",
+  "source_file": "Systems_Thinking_rag.md",
+  "failure_modes": [
+    {
+      "text": "Maslow's hammer can force a familiar frame onto a system that needs a different cut.",
+      "source_quote": "Incorrectly applying a familiar framework to a novel problem (I have seen this one before, it is an X problem).",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test frame fit before applying: verify that the systems lens captures the dominant dynamics rather than forcing a familiar framework onto a problem that needs a different cut."
+    },
+    {
+      "text": "Confirmation bias and groupthink can lock the team into the current hypothesis or authority vision.",
+      "source_quote": "The tendency to seek or interpret information that confirms existing hypotheses or the vision of authority figures.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Introduce adversarial perspectives: rotate in an outsider or devil's advocate to challenge the dominant hypothesis before consensus hardens."
+    },
+    {
+      "text": "Architecture can be used as a misdiagnosis when the real problem is coordination, ownership, or feedback design.",
+      "source_quote": "Architecture debt is used as the explanation when the recurring failures are actually coordination debt or ownership ambiguity.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate architecture problems from coordination problems: when the system diagram looks right but outcomes are wrong, check whether the real issue is ownership, incentives, or feedback loops."
+    },
+    {
+      "text": "Analysis paralysis can keep the team in endless system explanation without moving toward the next intervention.",
+      "source_quote": "Getting lost in the complexity and depth of the system, becoming unable to move from thorough investigation to action.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set an analysis deadline: define when systems explanation must produce a concrete intervention, and enforce the boundary to prevent mapping from becoming an end in itself."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "Use tools like What would you have to believe? to spell out all implicit assumptions and implications of a viewpoint.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "The question is explicit; the source quote comes from the mitigation table."
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "For large projects, ask, Is the worst case bad enough? to ensure sufficient weight is placed on low-probability, high-impact outcomes.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Preserves the raw premortem question exactly, with surrounding source support."
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Expose mental models to the light of day so assumptions become visible, checkable, and revisable.",
+      "source_quote": "A key practice is to expose mental models to the light of day.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Run the discussion at two levels: the case at hand and the machine that produced it.",
+      "source_quote": "discussions should be conducted at two levels: the machine level ... and the case-at-hand level",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Model the system dynamically with causal loops or stock-and-flow views before choosing the fix.",
+      "source_quote": "Systems thinkers utilize tools like causal loop diagrams and stock and flow diagrams to visualize the system.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Design strategic metrics by starting from the goal, then mapping the process, measures, and levers that can move it.",
+      "source_quote": "This involves first knowing the goal, then understanding the process ... identifying the key points in the process that are best for measurement, and finally, exploring how to create levers.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Condenses the raw strategic metric design sequence into a chunk-ready heuristic."
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw file is strong on leverage-seeking heuristics and architecture-misdiagnosis failure content, even though its premortem section is sparse.",
+    "donor_drops": [
+      "Deferred donor compound-contract ideas because this wave is still first-order chunk semantics only."
+    ],
+    "open_questions": [
+      "A later wave may want a dedicated leverage-point subfield, but this run keeps the contract narrow."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Raw allies section is strong on multidisciplinary mental models, problem-solving methodologies, System 2, and analogy."
+    ],
+    "antagonists": [
+      "Raw antagonists section provides future richness on law of the instrument, specialization, and WYSIATI."
+    ],
+    "structured_tensions": [
+      "This source file has no explicit structured tension block, but its raw antagonist material is rich enough for later relation work."
+    ]
+  }
+}

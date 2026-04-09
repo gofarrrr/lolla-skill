@@ -1,0 +1,87 @@
+{
+  "model_id": "six-thinking-hats",
+  "source_file": "Six_Thinking_Hats_rag.md",
+  "failure_modes": [
+    {
+      "text": "Unstructured argument can jam evidence, risk review, creativity, and synthesis together until none of them gets done well.",
+      "source_quote": "Most useful when a team needs to separate competing modes of thought.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Sequence thinking modes deliberately: separate evidence gathering, risk assessment, creative generation, and evaluation into distinct rounds with clear transitions."
+    },
+    {
+      "text": "Perspective rotation can become empty performance when people adopt the labels without changing the evidence standard or cognitive task.",
+      "source_quote": "Danger when the roles become performative labels.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require genuine mode shifts: when switching hats, change the evidence standard and question type, not just the label — each mode should produce different outputs."
+    },
+    {
+      "text": "The first dominant frame can quietly take over the whole discussion when no one is deliberately switching modes.",
+      "source_quote": "Best used when the same group must examine one issue from several angles without mistaking the first dominant frame for the whole problem.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Appoint a mode referee who actively interrupts when the discussion collapses back into the dominant frame without completing the other perspectives."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which cognitive mode is missing right now: evidence, risk, creativity, synthesis, or another needed lens?",
+      "source_quote": "Most useful when a team needs to separate competing modes of thought.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we rotating perspective standards, or only taking turns defending the same underlying frame?",
+      "source_quote": "Danger when the roles become performative labels.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What information sits outside the current dominant hat and still needs to be checked before we move on?",
+      "source_quote": "The structure combats this by forcing the consideration of information beyond the immediate view.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate the thinking modes so creativity, evidence review, and risk pressure do not interfere with each other in the same moment.",
+      "source_quote": "Most useful when a team needs to separate competing modes of thought.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Rotate perspectives deliberately instead of letting the first dominant frame stand in for the whole issue.",
+      "source_quote": "Best used when the same group must examine one issue from several angles.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the structure as temporary scaffolding that reduces cognitive load while the group does real perspective switching work.",
+      "source_quote": "This model acts as cognitive scaffolding.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on mode separation, anti-performative role use, and structured perspective switching.",
+    "donor_drops": [
+      "Did not preserve donor agent-architecture sprawl because the raw source already supports strong perspective-rotation chunks."
+    ],
+    "open_questions": [
+      "The source overlaps with bias mitigation and AI role prompting, but the Wave 2 surface stays on human review structure."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on scaffolding and bias-fighting review discipline."
+    ],
+    "antagonists": [
+      "The source is strongest against anchoring, commitment-bias, and confirmation-bias."
+    ],
+    "structured_tensions": [
+      "The model contains explicit tensions against anchoring, commitment-bias, and confirmation-bias."
+    ]
+  }
+}

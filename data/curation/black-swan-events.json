@@ -1,0 +1,70 @@
+{
+  "model_id": "black-swan-events",
+  "source_file": "Black_Swan_Events_rag.md",
+  "select_when": [
+    "A plan faces deep uncertainty where average-case forecasts may badly understate tail exposure or fragility.",
+    "The team needs to shift from prediction theater toward vulnerability reduction, scenario analysis, or stress-testing because unknown unknowns matter.",
+    "A complex system could fail through cascading effects even if each individual component looks tolerable on its own.",
+    "The next move should improve resilience and decision quality under surprise rather than pretending the rare event can be forecast precisely."
+  ],
+  "avoid_when": [
+    "Black Swan language is being used as vague fear rhetoric even though concrete resilience or prioritization moves are available.",
+    "An aberration is being treated as the new normal in a way that would distort strategy and create unnecessary paralysis."
+  ],
+  "input_type": "tail-risk and fragility problem",
+  "output_type": "surprise-readiness and fragility check",
+  "reasoning_types": [
+    "probabilistic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on unknown unknowns, fragility in complex systems, and preparation discipline rather than prediction theater.",
+    "donor_drops": [
+      "Did not preserve broader uncertainty sprawl because the raw source is strongest on resilience, systems thinking, scenario analysis, and anti-hindsight discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans decision-quality versus outcome-quality and execution checklists."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on unknown unknowns, vulnerability reduction, deep uncertainty, and the fragility of complex disjunctive systems."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings against tail-risk theater and treating aberrations as the strategic norm."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on tail-risk and fragility problems, while the typed input remains a normalized routing label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports vulnerability reduction and stress-testing moves; the output label compresses that into an operational artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Black Swan reasoning is strongest as probabilistic systems thinking about fragility and preparation rather than direct prediction."
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "perceptual-learning",
+  "source_file": "Perceptual_Learning_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can miss crucial anomalies when old patterns feel familiar enough to suppress the cue that this case is different.",
+      "source_quote": "Danger When Pattern Recognition Stops Updating.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Build anomaly-detection habits: train pattern experts to also practice noticing what does not fit the expected pattern, not just what confirms it."
+    },
+    {
+      "text": "False pattern recognition can produce disastrously wrong solutions when the handy frame gets applied to a genuinely novel problem.",
+      "source_quote": "False Pattern Recognition and Availability Heuristic",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Before applying a recognized pattern, check structural fit: list three features the current case shares with the template and one it does not, then judge whether the mismatch matters."
+    },
+    {
+      "text": "Experts can become hard to teach or understand when refined pattern libraries turn into abstraction that no longer matches novice needs.",
+      "source_quote": "Curse of Knowledge",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Pair expert pattern-matchers with structured novice explanations: require the expert to articulate the pattern in terms a newcomer can verify, exposing abstraction gaps."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What subtle cue would tell us this case does not belong in the familiar pattern bucket we are reaching for first?",
+      "source_quote": "Most useful when better pattern detection changes real-world performance.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which signal matters here, and which distractions are we still treating as if they were equally important?",
+      "source_quote": "Best when a domain rewards anomaly detection, signal filtering, or cue discrimination.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Where has expert abstraction drifted so far from the novice view that the real lesson no longer transfers?",
+      "source_quote": "Experts, having refined their models through PL, find it difficult to remember what it was like not to know something.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Train pattern recognition with stories, timelines, and decision walkthroughs that expose the cues experts actually use.",
+      "source_quote": "Ask for Stories, Not Advice.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use plain-English explanation and analogy to expose blind spots in the pattern model before it hardens.",
+      "source_quote": "The Feynman Technique",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Tune the message to the audience so the critical pattern becomes visible instead of staying trapped in expert abstraction.",
+      "source_quote": "Complex ideas ... must be intentionally retuned for the croc brain.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on anomaly detection, cue filtering, and anti-entrenchment rather than on broad expertise lore.",
+    "donor_drops": [
+      "Did not preserve donor strategy or persona overlays because the raw source is already strongest on pattern-recognition mechanics."
+    ],
+    "open_questions": [
+      "The communication examples are strong, but the intervention layer stays on cue-learning and anomaly-detection transfer."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on cognitive-load-theory, schema-building, and story-based explanation."
+    ],
+    "antagonists": [
+      "The source is strongest against confirmation-bias, status-quo-bias, and curse-of-knowledge drift."
+    ],
+    "structured_tensions": [
+      "The model contains explicit tensions against confirmation-bias and status-quo-bias."
+    ]
+  }
+}

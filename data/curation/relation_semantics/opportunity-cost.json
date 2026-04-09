@@ -1,0 +1,71 @@
+{
+  "model_id": "opportunity-cost",
+  "source_file": "Opportunity_Cost_rag.md",
+  "allies": [
+    {
+      "target_model_id": "prioritization",
+      "rationale_text": "Prioritization uses opportunity-cost to decide what not to fund, schedule, or pursue when resources are scarce.",
+      "source_quote": "The Prioritization Filter: OC is crucial for determining how to allocate constrained resources like time and attention.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking helps opportunity-cost strip away inherited assumptions and compare alternatives against real fundamentals.",
+      "source_quote": "OC forces the strip-down of conventional assumptions. By questioning the premise of an action and comparing it objectively to alternatives, OC aids in forging a unique solution based purely on facts and desired outcomes.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "sunk-cost-fallacy",
+      "rationale_text": "Sunk-cost-fallacy fights opportunity-cost by making past investment feel more relevant than the better future alternative.",
+      "source_quote": "Opportunity Cost directly opposes SCF, asserting that the only relevant factors are future costs and benefits, regardless of what was paid in the past.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias obstructs opportunity-cost by making an unfavored alternative hard to assess objectively.",
+      "source_quote": "This obstructs the objective assessment of the opportunity cost, as it makes one reluctant to fully recognize the potential benefits of an unfavored alternative.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Opportunity-cost conflicts with status-quo-bias when default continuation hides the best foregone alternative.",
+      "source_quote": "opportunity-cost vs status-quo-bias: opportunity-cost conflicts with status-quo-bias (status quo bias) when default continuation hides foregone alternatives.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "sunk-cost-fallacy",
+      "tension_text": "Opportunity-cost conflicts with sunk-cost-fallacy when prior investment blocks reallocation to the higher-value move.",
+      "source_quote": "opportunity-cost vs sunk-cost-fallacy: opportunity-cost conflicts with sunk-cost-fallacy (sunk cost fallacy) when prior investment blocks reallocation to higher-value options.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "anchoring",
+      "tension_text": "Opportunity-cost conflicts with anchoring when the comparison is pinned to the wrong baseline instead of the best real alternative.",
+      "source_quote": "opportunity-cost vs anchoring: opportunity-cost conflicts with anchoring (anchoring) when an initial price, valuation, or reference point distorts the perceived value of the best foregone alternative, causing the comparison to be anchored to the wrong baseline.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is relation-rich on displaced alternatives and first-order conflicts that block honest reallocation.",
+    "donor_drops": [
+      "Did not preserve donor relationship expansion beyond the source-supported trade-off and foreclosure surface."
+    ],
+    "open_questions": [
+      "Availability-style conflict is source-real but was omitted because the current canonical target surface is cleaner on sunk-cost, anchoring, and status-quo tension."
+    ]
+  }
+}

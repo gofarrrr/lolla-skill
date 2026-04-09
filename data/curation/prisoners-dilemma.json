@@ -1,0 +1,72 @@
+{
+  "model_id": "prisoners-dilemma",
+  "source_file": "Prisoners_Dilemma_rag.md",
+  "select_when": [
+    "Individually sensible moves are producing a collectively worse outcome because each actor has a credible incentive to defect.",
+    "The team needs to separate bad actors from bad rules by making the payoff structure, trust assumptions, and enforcement gaps explicit.",
+    "A strategic interaction depends on whether cooperation can be made durable through trust, repeat interaction, or punishment for cheating.",
+    "A recommendation must account for countermoves from rivals, partners, or internal actors whose incentives are not naturally aligned."
+  ],
+  "avoid_when": [
+    "The behavior is better explained by simple process repair, shared identity, or non-adversarial coordination than by defection logic.",
+    "The model is being used to impose a hostile competitive frame on a problem whose real bottleneck is understanding, not incentive conflict."
+  ],
+  "input_type": "incentive-conflict coordination problem",
+  "output_type": "payoff and cooperation-design frame",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on incentive conflict, trust design, and collectively bad outcomes rather than widening it into generic competition language.",
+    "donor_drops": [
+      "Did not preserve donor game-theory sprawl beyond the raw source's stronger payoff-structure, trust, and cooperation-enforcement surface.",
+      "Did not add higher-order composition fields because this batch remains inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans competitor simulation, organizational incentives, and cooperation mechanism design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source is explicit that the model is strongest when individually rational behavior creates a collectively bad result and when trust or enforcement are the real design variables."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The anti-pattern blocks are explicit about misapplying hostile payoff frames and treating every coordination problem as betrayal."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on incentive-conflict coordination problems, while the compact type label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields payoff-matrix and trust-design thinking, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is naturally diagnostic of incentive conflict and systemic in how bad rules shape behavior, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

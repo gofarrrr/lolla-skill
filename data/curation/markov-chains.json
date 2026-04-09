@@ -1,0 +1,20 @@
+{
+  "model_id": "markov-chains",
+  "source_file": "Markov_Chains_rag.md",
+  "select_when": [
+    "The problem can be simplified into discrete states where the next step depends mainly on the current state.",
+    "Funnels, queues, or operational progressions need a bounded transition model instead of a full historical narrative.",
+    "The team wants to reason about stable handoffs, stage changes, or workflow branching with explicit transition assumptions.",
+    "Forecasting depends on whether transition patterns are stable enough to guide decisions."
+  ],
+  "avoid_when": [
+    "Hidden state, memory effects, or path dependence matter more than the visible current state.",
+    "The environment is shifting so fast that yesterday's transition assumptions are unlikely to remain stable."
+  ],
+  "input_type": "state-transition process",
+  "output_type": "transition stability check",
+  "reasoning_types": [
+    "causal",
+    "probabilistic"
+  ]
+}

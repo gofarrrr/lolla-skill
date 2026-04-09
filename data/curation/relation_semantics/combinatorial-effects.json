@@ -1,0 +1,67 @@
+{
+  "model_id": "combinatorial-effects",
+  "source_file": "Combinatorial_Effects_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps combinatorial-effects trace how multiple interacting forces amplify or offset one another across a larger whole.",
+      "source_quote": "multiple factors or forces, when aligned and interacting, produce an outcome that is disproportionately larger",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "second-order-thinking",
+      "rationale_text": "Second-order-thinking helps combinatorial-effects track the downstream dominoes created when several forces compound at once.",
+      "source_quote": "seeing the relatedness and the effects from the relatedness",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias blocks combinatorial-effects when teams defend a favorite single-cause story instead of following the interacting drivers.",
+      "source_quote": "motivated reasoning prevents honest adaptation to reality",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Combinatorial-effects conflicts with simplification when pursuit of multi-factor interaction effects prevents identification of the single dominant variable that explains most of the variance.",
+      "source_quote": "combinatorial-effects conflicts with simplification (simplification) when pursuit of multi-factor interaction effects prevents identification of the single dominant variable that explains most of the variance.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "occams-razor",
+      "tension_text": "Combinatorial-effects conflicts with occams-razor when combinatorial explanations are preferred over simpler models that predict equally well with fewer interacting terms.",
+      "source_quote": "combinatorial-effects conflicts with occams-razor (Occam's razor) when combinatorial explanations are preferred over simpler models that predict equally well with fewer interacting terms.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "donor_drops": [
+      "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
+    ],
+    "open_questions": [
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "Wave 4 candidacy remains observational only and is noted only in batch artifacts."
+    ],
+    "antagonists": [
+      "No multihop or higher-order semantics were introduced in these Wave 3 files."
+    ],
+    "structured_tensions": [
+      "Explicit tensions were preserved only where the raw source clearly earned a current-vocabulary target."
+    ]
+  }
+}

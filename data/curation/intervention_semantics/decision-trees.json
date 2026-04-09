@@ -1,0 +1,107 @@
+{
+  "model_id": "decision-trees",
+  "source_file": "Decision_Trees_rag.md",
+  "failure_modes": [
+    {
+      "text": "A tree can look complete while still missing the threshold, dependency break, or second-order consequence that kills the favored branch.",
+      "source_quote": "Branches are modeled neatly enough to look complete, but the tree does not name the threshold, dependency break, or second-order consequence that would terminate the favored path before scale.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit the tree for missing thresholds, dependency breaks, or second-order consequences that could kill the favored branch."
+    },
+    {
+      "text": "Mean-outcome thinking can hide distribution risk and send the team down the wrong branch.",
+      "source_quote": "Placing excessive emphasis on the mean outcome (the base case) and insufficient weight on outcomes far from the mean.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Replace mean-outcome thinking with distribution-aware assessment: simulate the range of outcomes for each branch to expose hidden risk."
+    },
+    {
+      "text": "Confirmation bias or Maslow's hammer can shape the tree around the analyst's preferred hypothesis instead of the real structure.",
+      "source_quote": "the modeler risks unconsciously defining branches to confirm an existing hypothesis or using the only tool they are familiar with",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check whether the tree structure was shaped by the analyst's preferred hypothesis; confirmation bias can prune branches before they are tested."
+    },
+    {
+      "text": "A missing state-of-the-world branch can make the recommendation look stable only because the decisive condition was never modeled.",
+      "source_quote": "the external condition that would force a different choice ... was never modeled",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Explicitly model the state-of-the-world conditions that could change the recommendation; a missing branch makes the tree look stable by omission."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which branch in this tree looks viable only because we have not named the threshold that kills it, the dependency that can fail first, or the second-order consequence that makes an early win a later loss?",
+      "source_quote": "Which branch in this tree looks viable only because we have not named the threshold that kills it, the dependency that can fail first, or the second-order consequence that makes an early win a later loss?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which threshold assumption would reverse which branch is correct, and what evidence would tell us we have already crossed it before sunk effort locks us into the wrong path?",
+      "source_quote": "Which threshold assumption would reverse which branch is correct, and what evidence would tell us we have already crossed it before sunk effort locks us into the wrong path?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which branch in this tree looks precise on paper but still leaves the operator without a usable decision rule when the key signal is noisy, late, or contested?",
+      "source_quote": "Which branch in this tree looks precise on paper but still leaves the operator without a usable decision rule when the key signal is noisy, late, or contested, and what simpler branch instruction would they actually need at the moment of choice?",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Trimmed the raw question slightly so it fits a compact chunk."
+    },
+    {
+      "text": "What state of the world would force this decision onto a different branch immediately, and where is that branch represented in the tree?",
+      "source_quote": "What state of the world would force this decision onto a different branch immediately, where is that branch represented in the tree",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Prune low-impact or low-change branches after disaggregating the problem.",
+      "source_quote": "Prioritization and Pruning: After disaggregating a problem into branches, the model enables prioritization by helping users determine what not to work on.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Force each option to carry explicit preferences, payoffs, and probabilities.",
+      "source_quote": "Effective use requires explicitly defining and integrating three components for each option: Preferences, Payoffs, Probabilities.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Embed explicit branch logic so the system can name when action A should beat action B.",
+      "source_quote": "Embedding Explicit Logic: For high-stakes decisions or automated systems, the Decision Tree helps explicitly define the rules for choosing action A over action B.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Define branch-kill thresholds in advance so the team knows exactly which observed condition ends the favored path instead of improvising under pressure.",
+      "source_quote": "the threshold that kills it",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Decision Trees is already close to chunk form in the raw file, especially on threshold and branch-reversal content.",
+    "donor_drops": [
+      "Dropped donor generic decision-parameter framing because the raw source already gives stronger threshold and branch-specific intervention content."
+    ],
+    "open_questions": [
+      "A later chunk-ranking wave may want to privilege premortem-question chunks over heuristics for this model."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Raw allies section is strong on logic trees, cost-benefit analysis, game theory, chain of thought, and business case synthesis."
+    ],
+    "antagonists": [
+      "Raw antagonists section is useful for future tension work around System 1 and the curse of knowledge."
+    ],
+    "structured_tensions": [
+      "Structured tensions explicitly connect decision-trees to chaos-theory, cognitive-biases, and confirmation-bias."
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "model_id": "adaptation",
+  "source_file": "adaptation_rag.md",
+  "select_when": [
+    "Environmental signals are changing and the current approach must learn, revise, or reinvent rather than defend itself.",
+    "The team needs to separate diagnosis, redesign, and execution so course-correction can happen under new evidence.",
+    "A static plan is breaking because the system must adapt around pressure rather than around ideals.",
+    "Success depends on selecting the next workable move under changing constraints, not on protecting the original story."
+  ],
+  "avoid_when": [
+    "Adaptation language is being used to excuse blur, constant motion, or lack of a stable objective.",
+    "The team is changing tactics constantly without learning whether the environment actually rewarded the last change."
+  ],
+  "input_type": "changing environment and course-correction problem",
+  "output_type": "adaptive redesign move",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on evidence-driven course-correction and redesign, not on vague flexibility slogans.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

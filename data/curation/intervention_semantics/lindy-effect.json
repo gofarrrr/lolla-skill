@@ -1,0 +1,87 @@
+{
+  "model_id": "lindy-effect",
+  "source_file": "Lindy_Effect_rag.md",
+  "failure_modes": [
+    {
+      "text": "People can mistake survival so far for proof of superiority and stop testing whether the environment has changed.",
+      "source_quote": "Danger when age is treated as proof of superiority and the analysis ignores technological discontinuity, changing constraints, or new evidence that breaks the old baseline.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Test whether survival so far is explained by genuine robustness or by luck and an unchanged environment; Lindy is not proof of superiority."
+    },
+    {
+      "text": "Recent hype can crowd out a durability signal when the environment is too noisy for short-term forecasting to be trusted.",
+      "source_quote": "Works best when the environment is noisy and forecasting is weak, making longevity a better guide than recent hype.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Use the durability signal when short-term noise makes forecasting unreliable; but verify that the long-lived baseline has not already been disrupted."
+    },
+    {
+      "text": "Rare disruptive events can abruptly end a long-lived baseline that once looked stable.",
+      "source_quote": "lindy-effect conflicts with black-swan-events (black swan events) when black Swan Events highlight unpredictable, rare occurrences that can abruptly end the longevity of ideas",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Model rare disruptive events that could abruptly end a long-lived baseline; Lindy-style reasoning is blind to regime changes."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What exactly is non-perishable here, and what might actually be changing faster than the longevity signal suggests?",
+      "source_quote": "choosing among non-perishable ideas, tools, or practices",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What new constraint or discontinuity would break the old baseline even if the idea has lasted a long time?",
+      "source_quote": "ignores technological discontinuity, changing constraints, or new evidence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we using Lindy because forecasting is weak, or because we are uncomfortable making a fresher judgment?",
+      "source_quote": "forecasting is weak, making longevity a better guide than recent hype",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use longevity as evidence when the object is non-perishable and the environment is noisy.",
+      "source_quote": "survival over time is itself meaningful evidence of resilience",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat age as a prior, not as proof; re-check the baseline for discontinuity before deciding.",
+      "source_quote": "age is treated as proof of superiority",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Prefer Lindy logic when recent performance is mostly hype-sensitive and hard to forecast cleanly.",
+      "source_quote": "recent hype",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on longevity as evidence under uncertainty while explicitly rejecting age-as-proof reasoning.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

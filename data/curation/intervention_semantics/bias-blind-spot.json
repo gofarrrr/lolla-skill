@@ -1,0 +1,87 @@
+{
+  "model_id": "bias-blind-spot",
+  "source_file": "Bias_Blind_Spot_rag.md",
+  "failure_modes": [
+    {
+      "text": "Awareness of the bias blind spot can become performative self-knowledge that sounds humble without changing how evidence is weighed.",
+      "source_quote": "Danger when awareness of the bias blind spot becomes performative self-knowledge that sounds humble without changing how evidence is weighed.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Run a pre-mortem: imagine the project failed and ask what went wrong, forcing the team to surface the biases that performative awareness would have missed."
+    },
+    {
+      "text": "The model can be used mainly to diagnose other people's distortions, recreating the same blind spot at a higher level.",
+      "source_quote": "Danger when the model is used mainly to diagnose other people's distortions, which recreates the same blind spot at a higher level.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Use triangulation and peer review: introduce diversity of thinking through mock trials or red-team exercises that turn the diagnosis inward."
+    },
+    {
+      "text": "Intelligence can enlarge the blind spot by improving the quality of rationalizations that defend a preferred story.",
+      "source_quote": "being smart can actually make bias worse",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Use structured reflection: look at patterns of your past mistakes and ask whether you would make the same decision with more time, more data, or different incentives."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What if our awareness of this bias changes nothing about how we are currently weighing evidence?",
+      "source_quote": "simply knowing about the Bias Blind Spot is often not enough",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What external check, peer challenge, or calibration tool could disconfirm the story we currently find most flattering?",
+      "source_quote": "Triangulation and Peer Review",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Where are we assuming we are the exception instead of subjecting our own reasoning to the same test we apply to others?",
+      "source_quote": "the tendency to be much better at recognizing biased reasoning in others than in oneself",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the outside view and external calibration when strong self-confidence would otherwise dominate local judgment.",
+      "source_quote": "Cultivating the Outside View",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Flip the lens around with an academic selfie before critiquing others so the first target of scrutiny is your own story.",
+      "source_quote": "The Academic Selfie",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Force simple explanation or journaling so hidden assumptions and rationalizations have fewer places to hide.",
+      "source_quote": "The Feynman Technique",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on self-exemption, rationalization, outside-view correction, and anti-performative humility discipline.",
+    "donor_drops": [
+      "Did not preserve broad introspection rhetoric because the raw source is stronger on concrete calibration moves and peer challenge."
+    ],
+    "open_questions": [
+      "The third heuristic compresses the source's journaling and simplification methods into one operational chunk so the file stays compact."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on feynman-technique, intellectual-humility, and multidisciplinary thinking because they expose hidden self-exemption."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and rationalization because those models amplify self-protective interpretation."
+    ],
+    "structured_tensions": [
+      "The source names confirmation-bias as a direct interaction, while the rest of the pressure is better preserved as allies and heuristics than as forced tension blocks."
+    ]
+  }
+}

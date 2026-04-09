@@ -1,0 +1,70 @@
+{
+  "model_id": "causal-attribution-resistance",
+  "source_file": "Causal_Attribution_Resistance_rag.md",
+  "select_when": [
+    "A problem is attracting a fast blame story and the team needs to resist assigning causation before the structure is actually understood.",
+    "The current diagnosis may be confusing symptom, proximate trigger, and root cause because the first explanation feels morally or emotionally satisfying.",
+    "An incident or outcome needs structural cause tracing before responsibility, remediation, or redesign decisions are made.",
+    "The next move should separate hidden drivers from the most narratively available explanation."
+  ],
+  "avoid_when": [
+    "The team is using anti-blame language to avoid naming an obvious causal driver, accountable party, or concrete design flaw.",
+    "The situation already has good causal evidence and now needs action rather than another loop of attribution skepticism."
+  ],
+  "input_type": "blame-first causation problem",
+  "output_type": "disciplined causal attribution",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on resisting fast blame stories, separating proximate from root causes, and forcing causal discipline before responsibility hardens.",
+    "donor_drops": [
+      "Did not preserve donor causality sprawl because the raw source is stronger on anti-blame narrative resistance, root-driver tracing, and structural diagnosis."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans accountability design, investigative method, and systems diagnosis."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on resisting neat attribution stories, distinguishing proximate from root causes, and tracing structure before judgment."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings that attribution skepticism can also become avoidance once causal evidence is already strong."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on blame-first causal error, while the typed input is a compact reviewed label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields disciplined causal diagnosis rather than a single culprit story; the output label compresses that result."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is strongest as causal and diagnostic reasoning, while the taxonomy names remain normalized."
+    }
+  }
+}

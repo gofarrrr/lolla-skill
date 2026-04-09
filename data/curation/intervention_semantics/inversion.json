@@ -1,0 +1,94 @@
+{
+  "model_id": "inversion",
+  "source_file": "Inversion_rag.md",
+  "failure_modes": [
+    {
+      "text": "Inversion without action leads to paralysis when teams map the failure landscape exhaustively but never commit to the positive moves required to build something.",
+      "source_quote": "A practitioner who only identifies what to avoid—without subsequently taking positive action—will suffer from paralysis.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Pair obstacle removal with positive force augmentation (Lewin): every inverse finding must name both what to avoid and what forward action it unblocks."
+    },
+    {
+      "text": "Straw-man inverse analysis gives false confidence when easily dismissed failure scenarios substitute for genuinely uncomfortable ones that threaten the preferred plan.",
+      "source_quote": "if inversion is applied without genuine intellectual humility, a person might just generate \"straw man\" negative scenarios that they easily avoid",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Use the Dr. Evil Game: imagine you are an evil genius whose sole mission is to sabotage this project — if the team cannot generate uncomfortable answers, the exercise is too shallow."
+    },
+    {
+      "text": "The checklist delusion creates false safety when teams identify specific failure modes, implement safeguards, and falsely believe the system is now foolproof — blinding them to unknown unknowns.",
+      "source_quote": "A user might identify the five ways a project could fail, implement safeguards for those five things, and falsely believe the system is now foolproof, blinding them to Unknown Unknowns",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Run controlled experiments to see how the system actually breaks in reality; inverse analysis identifies known failure modes, but unknown unknowns require real-world contact."
+    },
+    {
+      "text": "Fundamental attribution error in failure analysis makes teams attribute hypothetical failure to external uncontrollable circumstances rather than internal controllable decisions.",
+      "source_quote": "teams might incorrectly attribute hypothetical failure to external, uncontrollable circumstances rather than looking at internal, controllable inputs",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Apply double-loop learning: question the underlying assumptions and policies that made the failure mode possible, not just the surface action that would trigger it."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "If our failure was entirely our own fault — not market conditions, competitors, or bad luck — what internal decision or blind spot destroyed us?",
+      "source_quote": "\"If our failure was entirely our own fault—and not due to market conditions, competitors, or bad luck—what internal decision or blind spot destroyed us?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which of our inverse scenarios, if true, would require us to abandon our current plan entirely — and have we taken that scenario seriously?",
+      "source_quote": "\"Which of our inverse scenarios, if true, would require us to abandon our current plan entirely — and have we taken that scenario seriously?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What failure mode are we most confident cannot happen — and what would we do if it happened tomorrow?",
+      "source_quote": "\"What failure mode are we most confident cannot happen — and what would we do if it happened tomorrow?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define the anti-goal first: ask what you don't want to achieve, what causes it, and how to avoid it — the negative formulation often reveals simpler paths than forward planning.",
+      "source_quote": "Rather than setting direct goals, establish \"anti-goals.\" Ask yourself: \"What don't I want to achieve? What causes the non-goal? How can I avoid that?\"",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Focus on removing obstacles rather than pushing harder on supporting forces — removing friction is frequently more effective and less costly than adding propulsion.",
+      "source_quote": "instead of just pushing harder on the supporting forces, you focus on removing the obstacles (the impeding forces)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Actively seek to disprove your own hypothesis before defending it — invert confirmation bias by asking where the disconfirming evidence lives.",
+      "source_quote": "rather than looking for evidence to confirm it, use inversion to actively seek ways to disprove your own theory",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on anti-goal formulation, obstacle removal over force augmentation, disprove-it discipline, and the incompleteness warning that inversion without forward action is paralysis.",
+    "donor_drops": [
+      "Did not preserve generic backward-thinking philosophy because the raw source is most useful as a concrete failure-avoidance and hypothesis-disproval method."
+    ],
+    "open_questions": [
+      "The Dr. Evil Game heuristic could be its own chunk but is kept as a mitigation because the source uses it in the risk-guarding context, not the primary playbook."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is rich on premortem, second-order-thinking, margin-of-safety, first-principles-thinking, and Occam's razor for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation-bias, inside-view/planning-fallacy, and commitment-bias pressures."
+    ],
+    "structured_tensions": [
+      "The source has explicit structured tension entries for confirmation-bias, commitment-bias, and inside-view — all with clear conflict mechanics."
+    ]
+  }
+}

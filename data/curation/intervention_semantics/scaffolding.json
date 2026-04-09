@@ -1,0 +1,87 @@
+{
+  "model_id": "scaffolding",
+  "source_file": "Scaffolding_rag.md",
+  "failure_modes": [
+    {
+      "text": "Learners can drown in complexity when they are asked to carry the whole system before mastering the next digestible chunk.",
+      "source_quote": "Most useful when complexity exceeds current capacity.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Chunk complexity into digestible pieces and release each one only when the learner demonstrates mastery of the previous chunk."
+    },
+    {
+      "text": "A scaffold can harden into bureaucracy when the temporary support never gets removed and autonomy never transfers.",
+      "source_quote": "Danger When the Scaffold Never Comes Down.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Build in scaffold-removal checkpoints: define when temporary support should be withdrawn and ownership transferred, preventing the scaffold from hardening into permanent dependency."
+    },
+    {
+      "text": "Framework-led teaching can drift into model-imposition when the instructor’s favorite structure outruns evidence about what the learner actually needs.",
+      "source_quote": "The Law of the Instrument (Maslow's Hammer)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test framework fit against the learner's actual gap: verify that the structure being imposed matches what the learner needs, not what the instructor prefers."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the next chunk this learner can reliably master, and what part of the full problem still exceeds current capacity?",
+      "source_quote": "Most useful when complexity exceeds current capacity.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which support should still be present now, and which one has already become drag instead of a bridge to independence?",
+      "source_quote": "Best when temporary structure can later be removed.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is this information chunked and simplified enough to be useful for the intended audience without becoming useless accuracy?",
+      "source_quote": "Is this information chunked and simplified enough to be useful for decision-making by the intended audience?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Break complex work into smaller units and hand over responsibility gradually rather than asking for mastery in one jump.",
+      "source_quote": "I Do, We Do, You Do",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Sequence explanations, modeling, probing, feedback, and mini-tasks so support evolves with the learner’s actual progress.",
+      "source_quote": "Provision of Knowledge; Demonstration and Modeling; Questioning and Probing; Feedback and Correction; Task Restructuring.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep the scaffold temporary by removing supports as soon as independent performance becomes possible.",
+      "source_quote": "Best when temporary structure can later be removed.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on chunking, handoff, and anti-permanent-support failure modes rather than on general teaching commentary.",
+    "donor_drops": [
+      "Did not preserve donor pedagogy-program sprawl because the raw source is already strongest on staged support mechanics."
+    ],
+    "open_questions": [
+      "The source supports broader workflow design, but the intervention chunks stay on staged learning transfer."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on cognitive-load-theory, blooms-taxonomy, and feynman-technique."
+    ],
+    "antagonists": [
+      "The source is strongest against availability-style framework misuse, curse-of-knowledge, and fast-thinking oversimplification."
+    ],
+    "structured_tensions": [
+      "The model contains explicit tensions against desirable-difficulties and confirmation-bias."
+    ]
+  }
+}

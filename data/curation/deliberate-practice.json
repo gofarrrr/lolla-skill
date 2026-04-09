@@ -1,0 +1,72 @@
+{
+  "model_id": "deliberate-practice",
+  "source_file": "Deliberate_Practice_rag.md",
+  "select_when": [
+    "Performance improvement requires specific reps, structured feedback loops, and error correction rather than vague effort.",
+    "The bottleneck is a weak sub-skill, poor diagnostic habit, slow recognition pattern, or inconsistent execution routine.",
+    "Progress needs to be measurable over time against a tighter benchmark, coach review, or replayable standard.",
+    "The team knows the target capability but still lacks a disciplined way to build it reliably."
+  ],
+  "avoid_when": [
+    "Practice is intense but disconnected from the real failure modes, stakes, or feedback conditions of live performance.",
+    "A genuinely novel problem is being forced into the most practiced drill because that routine is the tool already at hand."
+  ],
+  "input_type": "skill-building bottleneck problem",
+  "output_type": "feedback-linked practice regimen",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on sub-skill improvement, replayable feedback, and reality-linked drills rather than on general motivation advice.",
+    "donor_drops": [
+      "Did not preserve donor training-program sprawl because the raw source is already strong on practice specificity, feedback quality, and anti-fake-drill discipline.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The typed labels compress a source that spans expertise development, teaching, and skill transfer."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that deliberate practice is strongest when performance needs specific reps, sub-skill work, and measurable improvement."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The reality-link warning is explicit; the novelty mismatch line is reviewed normalization of the entrenchment and law-of-the-instrument risks."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates on capability bottlenecks and sub-skill gaps, but the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields structured, feedback-linked practice loops; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Deliberate practice clearly requires diagnosis and reflection, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

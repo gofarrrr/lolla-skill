@@ -1,0 +1,87 @@
+{
+  "model_id": "scaffolding-educational",
+  "source_file": "Scaffolding_Educational_rag.md",
+  "failure_modes": [
+    {
+      "text": "Complex material can overwhelm working memory when support is removed before the learner has formed a stable process.",
+      "source_quote": "Scaffolding is essential for teaching complex or abstract topics because it respects the brain's limited working memory capacity",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Fade support gradually based on demonstrated competence: check that the learner can perform each sub-skill independently before removing the scaffold for that component."
+    },
+    {
+      "text": "Over-structured guidance can suppress reflective reframing instead of building independent judgment.",
+      "source_quote": "scaffolding-educational conflicts with step-back (step back) when over-structured guidance suppresses reflective reframing.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Build reflection into the scaffold: at each stage, ask the learner to explain why the current step works, not just how to execute it, to develop judgment alongside procedure."
+    },
+    {
+      "text": "A rigid sequence can prevent learners from decomposing the problem for themselves once they are ready.",
+      "source_quote": "scaffolding-educational conflicts with first-principles-thinking (first principles thinking) when rigid instructional sequence blocks independent decomposition.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Allow self-directed decomposition once readiness is established: loosen the prescribed sequence when the learner shows they can chunk the problem independently."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What support is still genuinely necessary, and what support should already be fading?",
+      "source_quote": "move from novice confusion to independent execution",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we teaching steps that help the learner think, or only steps that make the teacher feel organized?",
+      "source_quote": "Scaffolding addresses the crucial gap between knowing what needs to be done and figuring out how to execute it.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would independent performance look like if the scaffold were removed tomorrow?",
+      "source_quote": "The model adds value when people understand the goal but cannot yet perform the process reliably.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Break the task into simpler units that working memory can absorb and connect over time.",
+      "source_quote": "complex idea broken down into smaller, simpler units",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Model the process explicitly first, then remove support as the learner becomes reliable.",
+      "source_quote": "cultivates the ability to think critically and eventually self-reflect without external prompting",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use scaffolding to bridge strategy and execution, not to replace independent reasoning permanently.",
+      "source_quote": "forces the articulation of the process in simple, doable steps",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on staged support and independence-building rather than on broader pedagogy sprawl.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

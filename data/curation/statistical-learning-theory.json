@@ -1,0 +1,70 @@
+{
+  "model_id": "statistical-learning-theory",
+  "source_file": "Statistical_Learning_Theory_rag.md",
+  "select_when": [
+    "The task is prediction under uncertainty and the organization can learn from enough observations to update performance meaningfully.",
+    "The team must balance model complexity, generalization, and decision usefulness rather than chase fit on one sample.",
+    "Forecasting quality or probabilistic calibration matters more than elegant intuition or explanation alone.",
+    "Before building a model, the team can answer whether it is trying to understand causation or predict a state of the world."
+  ],
+  "avoid_when": [
+    "Model worship is treating statistical learning as a universal answer even though the target is poorly defined, the data is thin, or causal understanding matters more than prediction.",
+    "The analysis is being started before the problem structure, objective, or testable hypotheses are clear."
+  ],
+  "input_type": "prediction and generalization problem",
+  "output_type": "generalizable predictive model stance",
+  "reasoning_types": [
+    "probabilistic",
+    "deductive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on prediction-versus-causation choice, generalization discipline, and anti-model-worship boundaries rather than broad machine-learning branding.",
+    "donor_drops": [
+      "Did not preserve implementation-detail sprawl because the raw source is strongest on framing, generalization, and disciplined model choice."
+    ],
+    "open_questions": [
+      "The output label compresses a source that spans forecasting, expert systems, and AI twin modeling."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths and playbook sections explicitly support prediction tasks, generalization, and the causation-versus-prediction diagnostic."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from the model-worship and premature-analysis warnings."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around prediction and generalization under uncertainty, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields disciplined predictive posture rather than any one algorithm; the output label compresses that operationally."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is probabilistic in how it learns from observations and deductive in how it frames objective, structure, and testability."
+    }
+  }
+}

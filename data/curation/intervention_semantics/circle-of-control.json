@@ -1,0 +1,87 @@
+{
+  "model_id": "circle-of-control",
+  "source_file": "Circle_Of_Control_rag.md",
+  "failure_modes": [
+    {
+      "text": "False helplessness gives away agency by treating influenceable problems as if they are wholly external.",
+      "source_quote": "Failure Mode: False helplessness",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test the classification: ask what specific action the team could take to influence the outcome; if an action exists, the item is not purely external."
+    },
+    {
+      "text": "Control illusion mistakes activity for leverage and assumes the team can directly move a system mostly constrained by external actors or feedback loops.",
+      "source_quote": "Failure Mode: Control illusion",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Distinguish influence from direct control: focus effort on the highest-leverage moves available rather than assuming the team can force outcomes in constrained systems."
+    },
+    {
+      "text": "Static categorization locks items into one bucket and never revisits the classification after new data or changed incentives.",
+      "source_quote": "Failure Mode: Static categorization",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Revisit the categorization when new data arrives or incentives change; static buckets decay as the environment shifts."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which item did we mark uncontrollable without evidence?",
+      "source_quote": "\"Which item did we mark uncontrollable without evidence?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Where are we assuming control we do not actually have?",
+      "source_quote": "\"Where are we assuming control we do not actually have?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What one action would increase our influence on the highest-impact external factor?",
+      "source_quote": "\"What one action would increase our influence on the highest-impact external factor?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Split the situation into direct control, indirect influence, and no-control buckets before generating actions.",
+      "source_quote": "split them into three buckets: direct control, indirect influence, and no control",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Create actions only for the control and influence buckets and monitoring rules for the rest.",
+      "source_quote": "Create actions only for the first two buckets and monitoring rules for the third.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Reclassify the buckets when new information or incentives change what is influenceable.",
+      "source_quote": "what was uncontrollable yesterday may become influenceable after new information or changed incentives",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on agency misclassification and bucket-based action design, so the chunk set stays close to those moves.",
+    "donor_drops": [
+      "Did not preserve donor-style mindset coaching overlays because the raw source is stronger on explicit boundary mistakes and operational mitigation."
+    ],
+    "open_questions": [
+      "The third heuristic is lightly normalized from the latticework section rather than from a standalone imperative line."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw latticework section points cleanly toward first-principles-thinking and risk-vs-uncertainty as later relation material."
+    ],
+    "antagonists": [
+      "The source is lighter on named antagonists but does preserve tension with systems-thinking and game-theory style adaptive contexts."
+    ],
+    "structured_tensions": [
+      "There is no explicit structured tension block, so any later tension preservation should stay conservative and review-first."
+    ]
+  }
+}

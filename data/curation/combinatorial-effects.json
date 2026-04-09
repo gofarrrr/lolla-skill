@@ -1,0 +1,72 @@
+{
+  "model_id": "combinatorial-effects",
+  "source_file": "Combinatorial_Effects_rag.md",
+  "select_when": [
+    "Several forces are interacting so the outcome is larger or stranger than any single driver would predict alone.",
+    "The team needs to explain lollapalooza upside or downside by tracing aligned incentives, pressures, and system interactions.",
+    "A single-cause story feels too weak because multiple factors are compounding each other.",
+    "A recommendation should identify which combination of forces matters, not just which isolated variable matters most."
+  ],
+  "avoid_when": [
+    "The situation is being forced into a dramatic synergy story before the interacting mechanisms have been identified clearly.",
+    "One dominant driver already explains the outcome and adding more factors would mostly create narrative fog."
+  ],
+  "input_type": "multi-force interaction problem",
+  "output_type": "compound-driver diagnosis",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on aligned interacting forces and disproportionate outcomes rather than on generic complexity language.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

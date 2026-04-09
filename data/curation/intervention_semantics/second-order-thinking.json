@@ -1,0 +1,87 @@
+{
+  "model_id": "second-order-thinking",
+  "source_file": "Second_Order_Thinking_rag.md",
+  "failure_modes": [
+    {
+      "text": "Second-order storytelling can outrun evidence and turn sophistication into speculation.",
+      "source_quote": "Danger when second-order storytelling outruns evidence",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require second-order claims to cite a mechanism and a timeline: if the downstream effect cannot be specified concretely, it is speculation, not analysis."
+    },
+    {
+      "text": "A visible first-order win can hide a second-order loss caused by overloaded dependencies, delayed reactions, or metric protection.",
+      "source_quote": "First-Order Win, Second-Order Loss",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Map second-order effects explicitly: for every first-order win, list what breaks, overloads, or shifts in the layer below, and verify whether the net is still positive."
+    },
+    {
+      "text": "Local relief can teach surrounding teams the wrong behavior and make the next cycle slower, noisier, or harder to govern.",
+      "source_quote": "Local relief that teaches the wrong behavior",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check behavioral spillovers: ask whether the local fix teaches surrounding teams a lesson that makes the next cycle easier or harder."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "\"Is the worst case bad enough?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "How does what you're doing solve the problem?",
+      "source_quote": "\"How does what you’re doing solve the problem?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the system that exists within this area of mastery?",
+      "source_quote": "\"What is the system that exists within this area of mastery? What’s the nature of cause and effect? What are some analogies?\"",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Map the dependency chain before commitment instead of approving the plan from the immediate gain alone.",
+      "source_quote": "Map the dependency chain this intervention assumes will hold",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Name the first threshold where delay, overload, or information-hiding would flip the outcome from gain to damage.",
+      "source_quote": "identify the first threshold where delay, overload, or information-hiding would cascade into a worse second-order outcome",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Test what behavior the intervention will teach surrounding teams to repeat on the next cycle.",
+      "source_quote": "If this intervention works locally, what behavior will it teach the surrounding teams to repeat",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on downstream chain stress-testing and behavior-adaptation checks, so the chunk set stays tightly bound to those interventions.",
+    "donor_drops": [
+      "Did not preserve donor-style speculative chain templates because the raw file explicitly warns against second-order storytelling outrunning evidence."
+    ],
+    "open_questions": [
+      "The third premortem question is slightly compacted from a longer raw prompt so it remains usable as a chunk."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, metacognition, and Feynman technique for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists and risk table are stronger than any explicit tension block and point to confirmation bias, hammer effects, and fast-thinking shortcuts."
+    ],
+    "structured_tensions": [
+      "The source has no explicit structured tension block, but the risk table does preserve downstream dependency and incentive conflict patterns worth cautious later review."
+    ]
+  }
+}

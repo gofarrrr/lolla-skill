@@ -1,0 +1,87 @@
+{
+  "model_id": "metacognitive-questioning",
+  "source_file": "Metacognitive_Questioning_rag.md",
+  "failure_modes": [
+    {
+      "text": "Self-questioning can become infinite deferral that keeps postponing commitment, experimentation, or ownership.",
+      "source_quote": "Danger When Self-Questioning Becomes Infinite Deferral: The model is misused when reflective questions keep postponing commitment, experimentation, or ownership instead of sharpening the next concrete move.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Impose a question deadline: after a fixed number of inquiry rounds, the team must commit to a reversible experiment that generates real data."
+    },
+    {
+      "text": "The inquiry can overload working memory when it keeps accumulating low-quality or irrelevant information.",
+      "source_quote": "If the resulting self-inquiry leads to too much irrelevant or low-quality information, it can clutter the mental picture and confuse the model.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Prune the question queue ruthlessly: rank questions by decision relevance and drop those that would not change the next action even if answered."
+    },
+    {
+      "text": "Strategy can fail when people question what the right answer is but never interrogate how the work will actually be executed.",
+      "source_quote": "Excessive metacognition on what the right strategy is, without applying rigorous questioning to the executable steps (how), can render brilliant insights useless.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Extend the inquiry to execution planning: for every 'what is the right answer?' question, require a paired 'how will we actually implement and verify this?' question."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "How do you define a problem in a precise way to meet the decision maker's needs?",
+      "source_quote": "How do you define a problem in a precise way to meet the decision maker’s needs?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "How do you disaggregate the issues and develop hypotheses to be explored?",
+      "source_quote": "How do you disaggregate the issues and develop hypotheses to be explored?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What's the one-day answer?",
+      "source_quote": "What’s the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Review the relevant variables, define the next-step question, and then consolidate what the answer changes before widening the inquiry again.",
+      "source_quote": "This cycle involves: Reviewing and storing relevant variables ... Defining the specific next-step question ... Consolidating gains by clearly reviewing the answer identified.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Ask process questions, not just outcome questions, so the underlying thought chain becomes transferable.",
+      "source_quote": "Instead of asking an expert, \"Whom should I hire for this project?\" ... ask: \"What skills matter and which ones can be learned on the job? Why? Where do I find the best people? How do I test these skills?\"",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Set the purpose boundary in advance so the questioning sharpens action instead of boiling the ocean.",
+      "source_quote": "In advance, strictly define the purpose of the explanation: everything that does not explicitly help explain that purpose stays out.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on self-audit questioning, explicit problem-framing prompts, and anti-deferral discipline.",
+    "donor_drops": [
+      "Did not preserve donor reflection sprawl because the raw source is stronger on guided questioning that changes the next move."
+    ],
+    "open_questions": [
+      "The second heuristic compresses expert-elicitation examples into a reusable process-questioning pattern."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on critical thinking, systems thinking, and experimentation-adjacent guided inquiry for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on confirmation bias, availability-shaped frame lock, and autopilot reasoning."
+    ],
+    "structured_tensions": [
+      "The source carries strong anti-bias pressure, but it does not present a clean explicit structured tension block in current-vocabulary form."
+    ]
+  }
+}

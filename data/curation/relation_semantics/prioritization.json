@@ -1,0 +1,73 @@
+{
+  "model_id": "prioritization",
+  "source_file": "Prioritization_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems Thinking helps prioritization find the highest-leverage levers and anticipate where local choices ramify elsewhere.",
+      "source_quote": "Prioritization is enhanced by Systems Thinking, which involves the ability to visualize the dynamics of complex systems and foresee how a decision at one point will ramify elsewhere.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive Load Theory supports prioritization by reducing information overload and making the core priority memorable.",
+      "source_quote": "By prioritizing and simplifying information, this process deliberately works with the brain's limitations.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation bias blocks objective prioritization by making the team overweight the evidence that fits its current hypothesis.",
+      "source_quote": "This directly conflicts with objective prioritization, as it prevents the rational assessment of alternative options or critical, disconfirming evidence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect distorts prioritization by making the most familiar framework feel like the most applicable one \u2014 solutions that fit existing tools rise in the priority queue regardless of actual fit.",
+      "source_quote": "Maslow's Hammer / Availability Heuristic: This bias occurs when a person is over-reliant on a single mental model or framework, causing them to 'torture reality so that it fits your models'. This is dangerous because it leads to prioritizing solutions that fit the existing toolset.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "optionality",
+      "tension_text": "Prioritization conflicts with optionality when aggressive prioritization forecloses options that would have been valuable under high uncertainty.",
+      "source_quote": "prioritization conflicts with optionality (optionality) when aggressive prioritization forecloses options that would have been valuable under high uncertainty.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Prioritization conflicts with simplification when priority ranking oversimplifies trade-offs between incommensurable objectives that resist ordinal ordering.",
+      "source_quote": "prioritization conflicts with simplification (simplification) when priority ranking oversimplifies trade-offs between incommensurable objectives that resist ordinal ordering.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Prioritization scales cleanly into Wave 3, but most of its remaining relation richness depends on future canonical ids rather than this frozen first-order contract.",
+    "donor_drops": [
+      "Did not preserve donor-added relation overlays beyond the raw ally and antagonist prose."
+    ],
+    "open_questions": [
+      "Hypothesis-driven problem solving and commander's intent remain deferred \u2014 no clean canonical ids.",
+      "Maslow's Hammer wired in Task 2.5 sweep via einstellung-effect mapping.",
+      "Curse-of-knowledge remains deferred \u2014 no canonical model id exists yet."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "The raw ally section also points to hypothesis-driven problem solving and commander's intent, but those were deferred because the current canonical id surface is thinner than the source prose."
+    ],
+    "antagonists": [
+      "Maslow's Hammer / availability-style pressure and curse-of-knowledge remain explicit raw antagonists for a later richer pass."
+    ]
+  }
+}

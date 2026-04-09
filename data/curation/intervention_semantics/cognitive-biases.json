@@ -1,0 +1,87 @@
+{
+  "model_id": "cognitive-biases",
+  "source_file": "Cognitive_Biases_rag.md",
+  "failure_modes": [
+    {
+      "text": "System 1 can quietly take over and build a coherent story from limited evidence, leading the team to mistake fluency for truth.",
+      "source_quote": "System 1 is generally useful and appropriate for navigating daily life most of the time, allowing us to be guided by impressions and feelings.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit the evidence behind any conclusion that feels fluent and obvious; System 1 confidence tracks story quality, not evidence completeness."
+    },
+    {
+      "text": "Teams can treat familiar frameworks as if they are always the right tool, substituting a handy model for the real structure of the problem.",
+      "source_quote": "if the only tool you have is a hammer, to treat everything as if it were a nail",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Test multiple frameworks against the same problem; if only one was considered, substitution bias may have smuggled in the wrong model."
+    },
+    {
+      "text": "Smart people can become better at narrative defense than at truth-seeking, creating an intelligence trap instead of protection from bias.",
+      "source_quote": "high cognitive ability does not attenuate the bias blind spot",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require explicit reasoning chains from smart contributors; intelligence amplifies rationalization as much as it amplifies truth-seeking."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What sources of information have we missed or minimized because they do not fit the story we already prefer?",
+      "source_quote": "What sources of information could I have missed or minimized on the way to reaching my belief?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If an outside view replaced our inside view here, what base rates or denominator checks would it force us to confront?",
+      "source_quote": "To fight biases rooted in the inside view decisions must be anchored to the outside view",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe for the opposite thesis to be true?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Force an outside-view check before committing to a plan that feels intuitively compelling.",
+      "source_quote": "decisions must be anchored to the outside view",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use thesis, antithesis, and synthesis to make disconfirming evidence part of the process rather than a late objection.",
+      "source_quote": "use team norms like the Dialectic Standard (thesis, antithesis, synthesis)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Document what was known at decision time so hindsight does not rewrite the learning afterward.",
+      "source_quote": "Use the Knowledge Tracker to separate what was known at the time of the decision from what was subsequently learned.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on diagnosing distorted judgment and forcing explicit debiasing moves rather than listing every named bias.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

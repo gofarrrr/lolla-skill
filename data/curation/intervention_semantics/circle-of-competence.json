@@ -1,0 +1,87 @@
+{
+  "model_id": "circle-of-competence",
+  "source_file": "Circle_Of_Competence_rag.md",
+  "failure_modes": [
+    {
+      "text": "False confidence outside the perimeter can hide unknown unknowns until the decision is already exposed.",
+      "source_quote": "The Illusion of Understanding",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Map the boundary explicitly and require external validation before committing to decisions outside it; unknown unknowns live just past the perimeter."
+    },
+    {
+      "text": "Treating the circle as a permanent identity label can turn expertise into stagnation instead of a boundary that updates with evidence.",
+      "source_quote": "\"stay in your circle\" becomes an excuse to avoid adjacent learning, partnerships, or evidence that the current edge is no longer real.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Treat the circle as a living boundary that updates with evidence and practice, not a permanent identity label."
+    },
+    {
+      "text": "Maslow's hammer can make practitioners force familiar tools onto problems that sit outside their real competence.",
+      "source_quote": "Maslow’s Hammer (The Law of the Instrument)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "When the problem feels familiar but sits outside your real competence, bring in a practitioner from the relevant domain instead of stretching the familiar tool."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "\"What would you have to believe?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "\"Is the worst case bad enough?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What variables matter in this situation and why?",
+      "source_quote": "\"What variables matter in this situation and why?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define the real perimeter by identifying what you understand and what you do not understand.",
+      "source_quote": "You have to know what you understand and what you don’t understand.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Break oversized scopes into bite-size chunks that can actually be solved within current capability and resources.",
+      "source_quote": "the first action is to break it down into \"bite-size chunks\" that can realistically be solved within the allotted time and resources",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use plain-English explanation as a perimeter test: if you cannot explain the concept simply, the circle is thinner than you think.",
+      "source_quote": "The Feynman Technique",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally strong on perimeter discipline and self-calibration, so the chunk set stays close to those operational moves.",
+    "donor_drops": [
+      "Did not preserve donor-style self-branding or talent-positioning overlays because the raw file is stronger on competence-boundary errors and mitigations."
+    ],
+    "open_questions": [
+      "The third heuristic is a conservative operational compression of the ally section rather than a standalone raw imperative sentence."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on metacognition, Feynman technique, and multidisciplinary expansion for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section explicitly names Dunning-Kruger, curse of knowledge, and confirmation bias as future relation material."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against authority-bias, commitment-bias, and confirmation-bias."
+    ]
+  }
+}

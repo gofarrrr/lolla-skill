@@ -1,0 +1,91 @@
+{
+  "model_id": "expected-value",
+  "source_file": "Expected_Value_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems Thinking helps expected value identify the full variable structure that must be included in the payoff calculation.",
+      "source_quote": "Systems thinking provides the comprehensive structure ... necessary to ensure all variables contributing to the EV are correctly identified.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "bayesian",
+      "rationale_text": "Bayesian updating strengthens expected value by adjusting probabilities as new evidence arrives.",
+      "source_quote": "By using Bayesian techniques, EV calculations become adaptive, integrating new evidence to update likelihoods.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "game-theory-payoffs",
+      "rationale_text": "Game-theory-payoffs uses expected-value logic to account for adversary reactions in strategic choice.",
+      "source_quote": "Game Theory models the payoffs (which are essentially Expected Values) of strategic moves, anticipating how an adversary will react.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First principles thinking keeps the expected-value calculation anchored to core facts instead of inherited assumptions.",
+      "source_quote": "Applying EV requires isolating the fundamental facts and desired outcomes, stripping away conventional assumptions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "hindsight-bias",
+      "rationale_text": "Hindsight bias corrupts expected-value calibration by making past probability estimates feel less uncertain than they were — outcomes that are now known appear to have always been more probable, distorting the feedback signal for improving future EV assessments.",
+      "source_quote": "Affect heuristic and hindsight bias remain source-real antagonists.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-biases",
+      "rationale_text": "Cognitive biases work against expected value by replacing slow payoff analysis with intuitive shortcuts and substitutions.",
+      "source_quote": "EV demands slow, analytical System 2 thought. People often use immediate mental models ... rather than engaging in the arduous EV calculation.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Expected-value conflicts with representativeness-heuristic when vivid outcomes override probability-weighted evaluation.",
+      "source_quote": "expected-value conflicts with representativeness-heuristic (representativeness heuristic) when vivid outcomes override probability-weighted evaluation.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "sunk-cost-fallacy",
+      "tension_text": "Expected-value conflicts with sunk-cost-fallacy when prior spend distorts forward-looking payoff comparisons.",
+      "source_quote": "expected-value conflicts with sunk-cost-fallacy (sunk cost fallacy) when prior spend distorts forward-looking payoff comparisons.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "false-precision-avoidance",
+      "tension_text": "Expected-value conflicts with false-precision-avoidance when numerical rigor is applied to conjectural inputs that have not earned it.",
+      "source_quote": "expected-value conflicts with false-precision-avoidance (false precision avoidance) when precise probability estimates are assigned to conjectural data, creating a veneer of mathematical rigor over speculative inputs.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Expected Value scales cleanly in this layer because the source already presents a strong ally lattice and explicit structured tensions.",
+    "donor_drops": [
+      "Did not import donor relation overlays or higher-order topology ideas."
+    ],
+    "open_questions": [
+      "Hindsight-bias wired in Task 3.3 sweep via new canonical model.",
+      "Affect heuristic remains deferred — no canonical model id yet."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "antagonists": [
+      "The raw source explicitly names affect heuristic and hindsight bias, but those were omitted here because the current canonical target-id surface is not yet clean enough."
+    ]
+  }
+}

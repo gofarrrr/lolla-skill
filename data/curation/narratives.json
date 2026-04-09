@@ -1,0 +1,70 @@
+{
+  "model_id": "narratives",
+  "source_file": "Narratives_rag.md",
+  "select_when": [
+    "An abstract recommendation needs a memorable causal story so people can understand why the change matters and what to do next.",
+    "Adoption depends on belief shift, identity shift, or coherent sequencing rather than on dumping more disconnected facts at the audience.",
+    "Scattered evidence needs to be turned into one clear line of meaning without losing the operational point.",
+    "The next move should make the causal logic legible while resisting the temptation to overclaim certainty."
+  ],
+  "avoid_when": [
+    "Story coherence is outrunning evidence quality and a clean arc is making the audience feel more certainty than the proof warrants.",
+    "The narrative is compressing genuine uncertainty into false inevitability and making contingencies, trade-offs, or missing evidence disappear."
+  ],
+  "input_type": "meaning-making and adoption-framing problem",
+  "output_type": "causal story scaffold",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on turning scattered evidence into coherent meaning while guarding against story quality outrunning proof quality.",
+    "donor_drops": [
+      "Did not preserve broader storytelling rhetoric because the raw source is strongest on causal legibility, adoption, and anti-false-inevitability discipline."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans pitch structure, internal struggle framing, and persona design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on making abstract advice memorable, driving adoption through belief shift, and turning scattered evidence into a clear line of meaning."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in direct source warnings about narrative coherence outrunning evidence and uncertainty being erased."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on meaning-making and adoption-framing problems, while the typed input remains a normalized routing label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports structured causal storytelling; the output label compresses that into a reusable intervention artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Narratives is strongest as diagnostic and systems-aware sensemaking rather than freeform persuasion."
+    }
+  }
+}

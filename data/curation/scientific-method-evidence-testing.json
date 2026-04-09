@@ -1,0 +1,71 @@
+{
+  "model_id": "scientific-method-evidence-testing",
+  "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+  "select_when": [
+    "Causal claims, competing explanations, or high-cost choices need to be resolved by evidence rather than authority, intuition, or politics.",
+    "Hypotheses can be falsified clearly and the team can define disconfirming evidence before diving into the data.",
+    "Theory generation and evidence evaluation can be separated enough to keep the test from becoming answer defense.",
+    "The risk is not lack of data but lack of a disciplined test structure for deciding what the data should settle."
+  ],
+  "avoid_when": [
+    "A politically protected hypothesis cannot really be falsified, so the process would keep the language of science while losing the substance.",
+    "Measurement proxies are convenient but weakly connected to the actual phenomenon, creating disciplined-looking but misleading conclusions."
+  ],
+  "input_type": "hypothesis-testing problem",
+  "output_type": "evidence test plan",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on falsifiable hypothesis testing, disciplined evidence plans, and anti-politicized inquiry rather than broad scientific rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor-style research-process sprawl because the raw source is already strong on test structure, anti-bias discipline, and decision thresholds.",
+      "Did not add higher-order fields because this batch stops at the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The source spans both business problem solving and scientific reasoning, so the typed fields are reviewed operational compression over a broad but coherent testing discipline."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit about causal claims, falsifiability, and separation of theory from evaluation; review mainly compacts those bullets into routing triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit danger lines in the limitations section."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source is explicit about decisions structured around testable hypotheses, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook produces workplans, measurable outputs, and disconfirming tests; the output label compresses that into a typed test artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Scientific method evidence testing clearly operates through causal and diagnostic reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

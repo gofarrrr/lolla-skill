@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lolla.local/curation/intervention-semantics.schema.json",
+  "title": "Lolla Intervention Semantics Curation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "model_id",
+    "source_file",
+    "failure_modes",
+    "premortem_questions",
+    "heuristics"
+  ],
+  "properties": {
+    "model_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "source_file": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_ ]+\\.md$"
+    },
+    "failure_modes": {
+      "$ref": "#/$defs/item_list"
+    },
+    "premortem_questions": {
+      "$ref": "#/$defs/item_list"
+    },
+    "heuristics": {
+      "$ref": "#/$defs/item_list"
+    },
+    "curation_notes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "donor_drops": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "deferred_richness_notes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 12
+          }
+        },
+        "antagonists": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 12
+          }
+        },
+        "structured_tensions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 12
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "item_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "source_quote",
+        "extraction_type",
+        "confidence"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 8
+        },
+        "source_quote": {
+          "type": "string",
+          "minLength": 8
+        },
+        "extraction_type": {
+          "type": "string",
+          "enum": [
+            "explicit",
+            "normalized"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "weak"
+          ]
+        },
+        "note": {
+          "type": "string",
+          "minLength": 8
+        }
+      }
+    }
+  }
+}

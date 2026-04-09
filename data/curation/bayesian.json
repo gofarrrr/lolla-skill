@@ -1,0 +1,71 @@
+{
+  "model_id": "bayesian",
+  "source_file": "Bayesian_rag.md",
+  "select_when": [
+    "Beliefs should update in proportion to new evidence rather than flip from certainty to certainty after each datapoint.",
+    "The decision has some usable signal, but confidence still depends on combining priors, base rates, and fresh evidence.",
+    "A short run of wins, losses, or experiments is being treated as proof that the underlying probability structure changed.",
+    "The real dispute is whether to update the prior, gather more disconfirming evidence, or declare that the environment has structurally changed."
+  ],
+  "avoid_when": [
+    "The prior is weak, politically motivated, or decorative enough that numerical updates would only create false precision.",
+    "The team is treating a familiar but mismatched model as if it were the right prior for a genuinely novel problem."
+  ],
+  "input_type": "uncertain belief revision problem",
+  "output_type": "explicit posterior update",
+  "reasoning_types": [
+    "probabilistic",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on explicit priors, evidence updates, and belief calibration instead of abstract probability rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor-style mathematical sprawl because the raw source is stronger on disciplined updating and anti-decorative-rigor warnings.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The typed input and output labels are reviewed operational compression over a source that spans decision theory, forecasting, and cognitive science."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on disciplined belief revision, combining priors with evidence, and resisting overreaction to thin samples."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by the source warnings on subjective priors, substitution bias, and decorative math."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about rational belief updating under uncertainty, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source produces updated beliefs and actions after evidence integration; the output label compresses that into a reusable typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Bayesian reasoning is clearly probabilistic and diagnostic in the source, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

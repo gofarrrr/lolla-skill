@@ -1,0 +1,87 @@
+{
+  "model_id": "false-precision-avoidance",
+  "source_file": "False_Precision_Avoidance_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can use simplicity to hide uncertainty and present a rounded answer as if the underlying variance no longer matters.",
+      "source_quote": "Danger when teams use simplicity to hide uncertainty, skip the underlying analysis, or present a rounded answer as if the underlying variance no longer matters.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Label the range of uncertainty when presenting simplified numbers; rounded answers that hide underlying variance create false confidence."
+    },
+    {
+      "text": "Excessive detail can overload cognition and distract from the decision-relevant structure of the problem.",
+      "source_quote": "short-term memory is a limited resource",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Remove detail that does not change the decision; excessive precision overloads cognition and distracts from the decision-relevant structure."
+    },
+    {
+      "text": "Simplification can fail by collapsing into vague slogans that no longer guide prediction, action, or alignment.",
+      "source_quote": "Simplifying too far can result in mission statements or explanations that are abstract and ambiguous to the point of being meaningless.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Ensure every simplification still guides prediction, action, or alignment; vague slogans that remove too much structure are as dangerous as false precision."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "If this was cut, would anything be lost?",
+      "source_quote": "If this was cut, would anything be lost?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Does this create confusion?",
+      "source_quote": "Does this create confusion?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What's the one-day answer?",
+      "source_quote": "What’s the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Gather only enough facts to support or falsify the decision rather than boiling the ocean for decorative certainty.",
+      "source_quote": "gather only enough facts to prove or disprove a hypothesis or support an analysis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use bounded approximations when they preserve the decision while removing clutter that would otherwise slow alignment.",
+      "source_quote": "Decision-makers should understand the concept of \"by-and-large\" and use approximations",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Filter explanations by purpose so only detail that improves prediction, choice, or coordination survives.",
+      "source_quote": "If information isn't explicitly helping to achieve the purpose of the explanation, it stays out.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on anti-clutter discipline, bounded approximation, and useful simplicity that still respects uncertainty.",
+    "donor_drops": [
+      "Did not preserve donor minimalism rhetoric because the raw source is stronger on approximation skill and anti-false-certainty pressure."
+    ],
+    "open_questions": [
+      "The second failure mode compresses several cognitive-load passages so it stays reusable across strategy, teaching, and communication settings."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on simplification, cognitive-load-theory, and systems-level filtering for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on anchoring to precise but misleading numbers and confirmation-biased overanalysis."
+    ],
+    "structured_tensions": [
+      "The source carries real anti-bias pressure, but it does not present a clean explicit structured tension block in current-vocabulary form."
+    ]
+  }
+}

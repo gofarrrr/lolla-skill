@@ -1,0 +1,61 @@
+{
+  "model_id": "prisoners-dilemma",
+  "source_file": "Prisoners_Dilemma_rag.md",
+  "allies": [
+    {
+      "target_model_id": "incentives",
+      "rationale_text": "Incentives helps prisoners-dilemma reveal when individually rational behavior is being produced by a payoff structure that rewards defection.",
+      "source_quote": "The model helps separate bad actors from bad rules by making the payoff structure explicit.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps prisoners-dilemma diagnose bad collective outcomes as the product of a flawed interaction structure rather than isolated bad intent.",
+      "source_quote": "It serves as a diagnostic tool in systems thinking, helping users recognize archetypes of common system structures that produce characteristic patterns of behavior.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias worsens prisoners-dilemma dynamics when ambiguous moves are read as confirming that the other side is defecting.",
+      "source_quote": "prisoners-dilemma conflicts with confirmation-bias (confirmation bias) when players interpret ambiguous moves to confirm that the other party is defecting",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "active-listening",
+      "tension_text": "Prisoners-dilemma conflicts with active-listening when incentive structures reward concealment over transparent coordination.",
+      "source_quote": "prisoners-dilemma conflicts with active-listening (active listening) when incentive structures reward concealment over transparent coordination.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "empathy",
+      "tension_text": "Prisoners-dilemma conflicts with empathy when defensive payoff framing overrides perspective-taking and trust repair.",
+      "source_quote": "prisoners-dilemma conflicts with empathy (empathy) when defensive payoff framing overrides perspective-taking and trust repair.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Prisoners-dilemma conflicts with confirmation-bias when players interpret ambiguous moves to confirm that the other party is defecting, accelerating mutual defection even when cooperation was intended.",
+      "source_quote": "prisoners-dilemma vs confirmation-bias: prisoners-dilemma conflicts with confirmation-bias (confirmation bias) when players interpret ambiguous moves to confirm that the other party is defecting, accelerating mutual defection even when cooperation was intended.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on payoff-structure diagnosis, systems archetype framing, and explicit current-vocabulary tensions against active-listening, empathy, and confirmation-bias.",
+    "donor_drops": [
+      "Did not preserve donor game-theory relation sprawl beyond the clean incentives, systems, and explicit tension surface."
+    ]
+  }
+}

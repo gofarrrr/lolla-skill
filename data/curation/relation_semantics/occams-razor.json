@@ -1,0 +1,60 @@
+{
+  "model_id": "occams-razor",
+  "source_file": "Occams_Razor_rag.md",
+  "allies": [
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification gives Occam's Razor its practical expression by stripping away ornamental complexity so the explanation can be judged on what the evidence actually supports.",
+      "source_quote": "avoid overcomplicating explanations or systems",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory complements Occam's Razor because pruning unnecessary complexity reduces the mental burden that makes weak explanations feel harder to test.",
+      "source_quote": "the best explanation is often the one with the least unnecessary complexity",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "prioritization",
+      "rationale_text": "Prioritization helps Occam's Razor focus attention on the assumptions that matter instead of treating every possible complication as equally important.",
+      "source_quote": "select the explanation that makes the fewest assumptions",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias corrupts Occam's Razor when the thinker chooses the simpler story because it feels congenial, not because it best fits the evidence.",
+      "source_quote": "the simplest explanation is not always the correct one if reality is genuinely complex",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "representativeness-heuristic",
+      "rationale_text": "Representativeness-heuristic corrupts Occam's Razor by substituting story-based parsimony for evidence-based parsimony — the most familiar and vivid explanation feels like the simplest one even when it isn't the most grounded.",
+      "source_quote": "occams-razor vs representativeness-heuristic: occams-razor conflicts with representativeness-heuristic (representativeness heuristic) when the tension between story simplicity and causal accuracy causes the easiest explanation to substitute for the most evidentially grounded one.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Occam's-razor conflicts with representativeness-heuristic when story simplicity and causal accuracy pull apart — the representativeness heuristic makes the most familiar pattern feel like the most parsimonious explanation, displacing the evidence-based test the razor requires.",
+      "source_quote": "occams-razor vs representativeness-heuristic: occams-razor conflicts with representativeness-heuristic (representativeness heuristic) when the tension between story simplicity and causal accuracy causes the easiest explanation to substitute for the most evidentially grounded one.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on simplification, assumption pruning, and conflicts with evidence-resistant neat stories and representativeness-driven story parsimony.",
+    "donor_drops": [
+      "Did not preserve donor relation widening beyond the clean simplification and anti-confirmation neighborhood."
+    ],
+    "open_questions": []
+  }
+}

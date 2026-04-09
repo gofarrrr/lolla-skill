@@ -1,0 +1,87 @@
+{
+  "model_id": "hanlons-razor",
+  "source_file": "Hanlons_Razor_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams escalate conflict when they assign hostile intent before checking for simpler explanations like poor clarity, overload, or process breakdown.",
+      "source_quote": "Works best when the emotional temptation is to assign hostile intent before checking for simpler operational explanations.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Check for simpler explanations — poor clarity, overload, misaligned incentives — before assigning hostile intent."
+    },
+    {
+      "text": "Organizations miss fixable design problems when they blame people instead of diagnosing how the system allowed the error.",
+      "source_quote": "Hanlon's Razor is applied as a de-escalation and diagnostic tool that redirects analysis away from individual blame toward systemic shortcomings.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Diagnose how the system allowed the error before blaming the individual; fixable design problems hide behind personal blame."
+    },
+    {
+      "text": "Hanlon's Razor becomes negligent when it is used to excuse repeat harm, obvious deception, or incentive structures that reward bad faith.",
+      "source_quote": "Danger when the principle becomes a reflexive excuse for repeat harm.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Distinguish honest mistakes from repeat harm: Hanlon's Razor is a diagnostic tool, not an excuse for patterns of negligence or deception."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What simpler operational explanation could plausibly account for this failure before we infer hostile intent?",
+      "source_quote": "Is there another reasonable explanation for the events that have occurred?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If this were really neglect or poor design, what systemic change would prevent the same event from recurring?",
+      "source_quote": "Shift the focus from who made the mistake to how the system allowed the mistake.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What evidence would force us to stop giving the benefit of the doubt and treat this as bad-faith behavior instead?",
+      "source_quote": "It does not rule out intent entirely.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Default first to neglect, overload, or system failure before jumping to malice.",
+      "source_quote": "Do not attribute to malice that which is more easily explained by stupidity.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the principle to keep diagnosis constructive, not to erase accountability.",
+      "source_quote": "The ultimate benefit is often the improvement of relationships by granting the benefit of the doubt.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Abandon Hanlon's Razor once repeat patterns, incentive design, or evidence make bad-faith behavior the stronger explanation.",
+      "source_quote": "Danger when the principle becomes a reflexive excuse for repeat harm, obvious deception, or incentive structures that practically reward bad-faith behavior.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks on de-escalating intent attribution while preserving the explicit stop condition for bad-faith patterns.",
+    "donor_drops": [
+      "Did not preserve broader interpersonal-advice sprawl beyond the clearest diagnostic and system-improvement moves."
+    ],
+    "open_questions": [
+      "The source supports relationship repair, but the Wave 2 surface stays on intent diagnosis and accountability boundaries."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is strongest alongside root-cause-analysis, system diagnosis, and psychological-safety discipline."
+    ],
+    "antagonists": [
+      "The clearest conflicts are with confirmation-bias and with moral-hazard cases where intent really matters."
+    ],
+    "structured_tensions": [
+      "The main tension is between giving the benefit of the doubt and not excusing repeat harm."
+    ]
+  }
+}

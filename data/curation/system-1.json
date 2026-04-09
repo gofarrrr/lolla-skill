@@ -1,0 +1,54 @@
+{
+  "model_id": "system-1",
+  "source_file": "System_1_rag.md",
+  "select_when": [
+    "A fast, intuitive judgment has been made in a high-stakes or novel context and needs to be examined for reliability.",
+    "Cognitive biases driven by automatic pattern-matching (anchoring, affect heuristic, halo effect) are suspected in a decision.",
+    "Expert intuition is being applied outside the domain where reliable patterns were built, creating overreach risk.",
+    "A confident conclusion has been reached quickly and the fluency of the answer may be substituting for the rigor of the analysis."
+  ],
+  "avoid_when": [
+    "Expert intuition in a well-practiced domain with fast, reliable feedback — in those conditions System 1 is accurate and deliberative override degrades rather than improves performance.",
+    "The model is being used to dismiss all fast judgment as unreliable without distinguishing calibrated expert pattern recognition from domain-overreached heuristics."
+  ],
+  "input_type": "fast intuitive judgment or pattern-matched conclusion",
+  "output_type": "bias identification and System 2 scrutiny trigger",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "System 1 curated as a detection and scrutiny-trigger model — its activation surface is about recognizing when automatic processing needs deliberate audit, not about suppressing intuition categorically.",
+    "donor_drops": [],
+    "open_questions": [
+      "The boundary between reliable expert System 1 and overreached System 1 requires domain context to adjudicate — the model's select_when conditions are structural rather than domain-specific."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Source markdown explicitly describes WYSIATI, halo, affect heuristic, and base-rate neglect as System 1 failure modes in high-stakes contexts — select_when conditions are grounded in these."
+    },
+    "avoid_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Source explicitly notes that expert intuition in well-trained stable domains is accurate — the avoid_when reflects this with the expert-domain carve-out."
+    },
+    "input_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Compact label reviewed normalization of the source's framing of System 1 as the generator of fast impressions and pattern-matched outputs."
+    },
+    "output_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Model's operational value is as a scrutiny trigger — identifying when System 2 should be recruited rather than accepting the fast output."
+    },
+    "reasoning_types": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Diagnostic — identifying when bias is operating; metacognitive — reasoning about the quality of one's own fast cognitive processes."
+    }
+  }
+}

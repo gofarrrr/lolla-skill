@@ -1,0 +1,70 @@
+{
+  "model_id": "chain-of-verification",
+  "source_file": "Chain_Of_Verification_rag.md",
+  "select_when": [
+    "A case depends on several premises in sequence and one weak link could collapse the whole conclusion.",
+    "Stakeholders need an auditable trail that shows how each claim was established rather than relying on expert confidence alone.",
+    "The team should scale commitment only after checking whether foundational assumptions, dependencies, and thresholds actually hold.",
+    "The current reasoning is too compressed, so the next useful move is to verify the make-or-break links one step at a time."
+  ],
+  "avoid_when": [
+    "Verification is becoming theater through extra checks and sign-offs that do not materially improve the truth of the chain.",
+    "The situation needs flexible social adaptation more than a rigid sequential proof process, so over-formalization would crowd out judgment."
+  ],
+  "input_type": "sequential-proof reliability problem",
+  "output_type": "auditable validation chain",
+  "reasoning_types": [
+    "causal",
+    "deductive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on make-or-break link validation, auditable trails, and stepwise commitment thresholds rather than broad process bureaucracy.",
+    "donor_drops": [
+      "Did not preserve donor verification-process sprawl because the raw source is strongest on evidence-backed causal chains and anti-verification-theater discipline."
+    ],
+    "open_questions": [
+      "The source bridges strategy, AI systems, and persuasion, so the typed output compresses several application registers."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly names one-bad-link failure, auditable trust, commitment after verified premises, and sequential validation."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from the source warnings about verification theater and over-mechanizing living systems."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is strongest on sequential chains whose links need proof; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields an auditable validation chain, though the typed output label remains a compact reviewed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Chain of verification is explicitly about evidence-backed links and causal reasoning, while the retained taxonomy labels stay inside the frozen Layer 2B set."
+    }
+  }
+}

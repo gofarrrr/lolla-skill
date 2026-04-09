@@ -1,0 +1,87 @@
+{
+  "model_id": "varied-practice-interleaving",
+  "source_file": "Varied_Practice_Interleaving_rag.md",
+  "failure_modes": [
+    {
+      "text": "A single plausible frame can hide important behavior or edge cases when the team never tests materially different cuts of the same problem.",
+      "source_quote": "Most useful when one frame is clearly under-explaining the problem.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Force at least one structurally different cut: after the primary analysis, require a pass using a different framework, dataset, or assumption set to surface what the first frame hid."
+    },
+    {
+      "text": "Expert pattern recognition can become misleading when familiar schemas are reused without contrast against alternative views.",
+      "source_quote": "Expertise & Pattern Recognition",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit pattern reuse: when expert schemas are applied, check whether the current case has features that differ from the template and whether those differences are material."
+    },
+    {
+      "text": "Frame variety can turn into aimless wandering when teams keep adding examples and lenses without using them to sharpen the decision.",
+      "source_quote": "Danger when variety becomes undisciplined wandering.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Set a convergence rule: after introducing varied perspectives, define when the team must synthesize and decide, so frame variety does not become aimless exploration."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What materially different lens have we not yet tested on this problem structure?",
+      "source_quote": "What alternative frames have we explicitly tested?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which current frame mostly reflects our home discipline instead of the problem’s actual structure?",
+      "source_quote": "If the team has only used frameworks derived from its primary discipline, the perspective is likely too narrow.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What specific output must this frame contrast produce, so we know whether the added variety is helping the decision?",
+      "source_quote": "What specific output is required from this analysis to move the solution forward?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Test at least two or three materially different frames before locking in the operating story.",
+      "source_quote": "Best when teams need contrast before commitment.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use contrasting examples, counterexamples, and alternative cuts so learning transfers beyond the first case.",
+      "source_quote": "Works when learning must transfer across situations.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Prune frame exploration once it has exposed the highest-value contrast instead of continuing for completeness theater.",
+      "source_quote": "Prioritize and Prune",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on frame contrast, transfer, and disciplined pruning rather than on generic multidisciplinary enthusiasm.",
+    "donor_drops": [
+      "Did not preserve donor brainstorming or graph-walk sprawl because the raw source is already strongest on contrasted frame testing."
+    ],
+    "open_questions": [
+      "Some anti-pattern language could also support communication or teaching models, but the intervention file stays on decision framing."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on synthesis, feynman-technique, and structured problem decomposition."
+    ],
+    "antagonists": [
+      "The source is strongest against anchoring, specialization drift, and confirmation-bias in frame selection."
+    ],
+    "structured_tensions": [
+      "The model contains explicit tension lines around anchoring and confirmation-bias that cleanly belong in Wave 3."
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "cybersecurity-thinking-models",
+  "source_file": "Cybersecurity_Thinking_Models_rag.md",
+  "select_when": [
+    "The problem is adversarial, fast-changing, and capable of cascading across technical, human, and governance layers at once.",
+    "Defenders must model attacker incentives, failure chains, and cross-domain consequences rather than only enumerate controls.",
+    "Security decisions need to be pressure-tested against realistic scenarios instead of static compliance or architecture diagrams alone."
+  ],
+  "avoid_when": [
+    "Threat-model language is being fetishized while asset specificity, attack-surface reality, and operational ownership stay vague.",
+    "Scenario work is creating false certainty about rare threats while everyday control failures remain underexamined."
+  ],
+  "input_type": "adversarial system risk",
+  "output_type": "pressure-tested threat posture",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused on adversarial scenario pressure rather than on generic security or compliance vocabulary.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

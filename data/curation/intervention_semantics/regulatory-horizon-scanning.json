@@ -1,0 +1,87 @@
+{
+  "model_id": "regulatory-horizon-scanning",
+  "source_file": "Regulatory_Horizon_Scanning_rag.md",
+  "failure_modes": [
+    {
+      "text": "Trend language without thresholds or owners creates slide theater rather than anticipatory readiness.",
+      "source_quote": "horizon scanning becomes a slide ritual",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Attach thresholds, owners, and decision triggers to every regulatory signal: if a trend has no named owner and no action boundary, it is slide theater."
+    },
+    {
+      "text": "Headline overreaction mistakes signal detection for signal interpretation.",
+      "source_quote": "confuses signal detection with signal interpretation",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate signal detection from signal interpretation: after identifying a regulatory change, run a structured impact assessment before reacting to the headline."
+    },
+    {
+      "text": "Confirmation-seeking can make the team read policy noise as support for a preferred roadmap.",
+      "source_quote": "confirmation bias",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Audit the scan for confirmation bias: require the team to include at least one regulatory development that contradicts the preferred roadmap and assess its plausibility honestly."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What weak signal would actually force a change in product, operating, or capital decisions if it strengthened?",
+      "source_quote": "weak signals can be turned into explicit scenarios",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe about timing, enforcement, or ownership for this policy scenario to matter now?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If the worst regulatory case became the expected case, are we prepared enough today?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use a knowns-and-unknowns matrix to turn vague regulatory uncertainty into named monitoring work.",
+      "source_quote": "Known Knowns, Known Unknowns, Unknown Unknowns",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Write an active hypothesis about the future state and test it instead of collecting undirected trend slides.",
+      "source_quote": "Hypothesis-Driven Problem Solving",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Connect long-horizon patterns to present-day triggers, owners, and response options before urgency arrives.",
+      "source_quote": "response triggers, or accountable owners",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

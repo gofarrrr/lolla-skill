@@ -1,0 +1,71 @@
+{
+  "model_id": "optionality",
+  "source_file": "Optionality_rag.md",
+  "select_when": [
+    "Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.",
+    "Decisions are reversible enough that preserving multiple paths creates information value rather than just indecision.",
+    "Downside can be capped while upside remains open across several plausible futures.",
+    "The problem has collapsed into binary framing, but the real move is to create more viable paths before choosing."
+  ],
+  "avoid_when": [
+    "Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit.",
+    "Maintaining optionality is consuming cash, attention, or organizational simplicity that would be better spent on a chosen path."
+  ],
+  "input_type": "reversible high-uncertainty choice",
+  "output_type": "option set expansion",
+  "reasoning_types": [
+    "counterfactual",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on preserving viable paths under uncertainty rather than on generic flexibility rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor-style portfolio or investing overlays because the raw source is stronger on reversible decisions, option generation, and premature-commitment resistance.",
+      "Did not add higher-order fields because this batch stops at the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The input and output labels are reviewed operational compression over a source that mixes strategic, cognitive, and negotiation examples."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on high uncertainty, reversibility, and downside-capped upside-open situations; review mainly compacts those bullets into routing form."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit danger lines in the limitations section."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates on uncertain decisions with reversible elements, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook explicitly creates and evaluates multiple paths; the output label compresses that into a typed expansion artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Optionality clearly uses counterfactual and probabilistic reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

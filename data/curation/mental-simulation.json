@@ -1,0 +1,70 @@
+{
+  "model_id": "mental-simulation",
+  "source_file": "Mental_Simulation_rag.md",
+  "select_when": [
+    "A decision is expensive, slow, or risky to test directly, but the team can still rehearse plausible scenarios, reactions, and contingencies.",
+    "Multiple futures need to be compared explicitly, including hostile stakeholders, user confusion, competitor moves, or operational edge cases.",
+    "The team needs to tie rehearsal to concrete thresholds, pre-mortems, or contingency plans rather than treating simulation as imaginative theater.",
+    "The next move should test assumptions by rehearsing ugly cases, not just the preferred storyline."
+  ],
+  "avoid_when": [
+    "Vivid rehearsal is being mistaken for evidence and confidence is rising faster than the quality of the underlying assumptions or data.",
+    "The team keeps simulating its preferred story but is skipping the ugly cases, tail risks, or disconfirming scenarios that would actually change the plan."
+  ],
+  "input_type": "scenario rehearsal and assumption-testing problem",
+  "output_type": "simulation-backed contingency check",
+  "reasoning_types": [
+    "systems",
+    "counterfactual"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on scenario rehearsal, pre-validation under uncertainty, and anti-storyline-confirmation discipline.",
+    "donor_drops": [
+      "Did not preserve broader AI-roleplay sprawl because the raw source is stronger on concrete scenario comparison and ugly-case rehearsal."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans skills practice and multi-agent simulation design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on expensive-to-test decisions, multiple futures, and tying simulation to thresholds and contingencies."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in direct source warnings about simulation confidence outrunning evidence and skipping ugly cases."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on scenario-rehearsal and assumption-testing problems, while the typed input remains a normalized routing label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports contingency-oriented scenario simulation; the output label compresses that into a reusable artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Mental-simulation is strongest as systems and counterfactual rehearsal rather than as proof in itself."
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "non-violent-communication",
+  "source_file": "Non_Violent_Communication_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can soften conflict language enough to avoid argument while still failing to make the real boundary or trade-off discussable.",
+      "source_quote": "Danger when teams smooth over the sharp edge of disagreement so much that real boundaries, trade-offs, or accountability requests never become explicit.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "After collaborative dialogue, verify that the real trade-off or boundary was stated, not just softened into vagueness: ask each party to restate what was decided and what was given up."
+    },
+    {
+      "text": "A favored interpretation can harden into rigidity and block the open, non-judgmental listening the model depends on.",
+      "source_quote": "Rigidity and Inflexibility",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Practice active listening audits: periodically check whether each participant can accurately paraphrase the other's position before responding to it."
+    },
+    {
+      "text": "Groups can mistake collaborative tone for good decision hygiene and still drift into groupthink or weak challenge.",
+      "source_quote": "Suboptimal Decisions in Groups",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Distinguish process tone from decision rigor: after any consensus reached through collaborative communication, run a quick devil's advocate check to confirm the group did not drift into unchallenged agreement."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Are we trying to convince each other that we are right, or are we trying to hear each perspective to figure out what is true and what to do?",
+      "source_quote": "Are we going to try to convince each other that we are right or are we going to open-mindedly hear each other’s perspectives to try to figure out what’s true and what to do about it?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe for the opposite viewpoint to be true?",
+      "source_quote": "What would we have to believe for the opposite viewpoint to be true?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If our audience remembers only one thing, what should it be?",
+      "source_quote": "If our audience remembers only one thing, what should it be?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Check both the content level and the relationship level before deciding what the conversation actually needs next.",
+      "source_quote": "Always operate at two levels: the analytical content and the relationship tension.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Lead with objective observation and impact before inviting joint problem solving.",
+      "source_quote": "Provide Information ... Detail the Impact ... Extend an Invitation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the most respectful interpretation available so the exchange can stay direct without becoming needlessly adversarial.",
+      "source_quote": "The Most Respectful Interpretation (MRI)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on content-relationship dual attention, respectful directness, and anti-groupthink communication discipline.",
+    "donor_drops": [
+      "Did not preserve donor facilitation sprawl beyond the raw source's clearer clarity, feedback, and anti-rigidity material."
+    ],
+    "open_questions": [
+      "The second failure mode compresses several source passages about confirmation, rigidity, and challenged assumptions so the intervention stays reusable."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on emotional intelligence, critical-thinking, radical transparency, and storytelling."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on inside-view distortion, curse-of-knowledge, and fast defensive filtering."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension block naming commitment-and-consistency-bias, authority-bias, and confirmation-bias."
+    ]
+  }
+}

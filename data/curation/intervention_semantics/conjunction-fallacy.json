@@ -1,0 +1,91 @@
+{
+  "model_id": "conjunction-fallacy",
+  "source_file": "Conjunction_Fallacy_rag.md",
+  "failure_modes": [
+    {
+      "text": "Unwarranted optimism can make a multi-step plan look safer than the compounded odds justify.",
+      "source_quote": "Unwarranted Optimism",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "The raw risk table names the failure mode directly; the chunk expands it into a conjunctive-plan failure statement.",
+      "mitigation": "Decompose the multi-step plan into individual probabilities and compute the joint: the compounded odds are almost always lower than the narrative makes them feel."
+    },
+    {
+      "text": "Anchoring on one plausible step can hide how fragile the full sequence really is.",
+      "source_quote": "Anchoring Bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Preserves the raw risk-table item while tying it to sequence-level overconfidence.",
+      "mitigation": "Challenge anchoring on the most plausible single step by asking what must also go right for the full sequence to hold."
+    },
+    {
+      "text": "Lazy System 1 acceptance lets a smooth narrative substitute for explicit probability discipline.",
+      "source_quote": "Lazy Thinking (System 1 Reliance)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Force explicit probability discipline: require the team to assign and multiply probabilities rather than accepting a smooth narrative as evidence of likelihood."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What specific assumptions must all hold for this chain to succeed?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "The raw source uses the question as a challenge device; the chunk specializes it to conjunctive plans."
+    },
+    {
+      "text": "Which step breaks first if one dependency slips, and what happens to the rest of the plan then?",
+      "source_quote": "How does what you're doing solve the problem? How does it advance your thinking?",
+      "extraction_type": "normalized",
+      "confidence": "medium",
+      "note": "This is a conservative operational normalization from the raw mitigation prompts and sequence-risk focus."
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use reference class forecasting before trusting the inside story of a multi-step success case.",
+      "source_quote": "Reference Class Forecasting",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Run worst-case scrutiny on the chain instead of only arguing from the happy path.",
+      "source_quote": "Worst-Case Scrutiny",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Decompose the plan into MECE steps so hidden dependencies and stacked assumptions become inspectable.",
+      "source_quote": "Decomposition and MECE",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw file is strong on sequential failure risk and named mitigation frameworks, so the chunk set stays close to those sources.",
+    "donor_drops": [
+      "Did not carry donor routing-style scenario examples because this layer is intervention-semantics only."
+    ],
+    "open_questions": [
+      "One premortem question is still a reviewed normalization because the raw file names challenge prompts more than complete sequence-failure questions."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Raw allies material is strong on outside-view and probability-oriented support models that could matter in a later relation wave."
+    ],
+    "antagonists": [
+      "Raw antagonists and risk rows are rich on optimism, anchoring, and motivated-reasoning conflicts."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension block was preserved here, but the raw risk table suggests future tension work around optimism and narrative plausibility."
+    ]
+  }
+}

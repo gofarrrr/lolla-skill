@@ -1,0 +1,87 @@
+{
+  "model_id": "trade-offs",
+  "source_file": "Trade_Offs_rag.md",
+  "failure_modes": [
+    {
+      "text": "Conjunction-style optimism can make a risky plan look acceptable by understating how many dependent steps must all work.",
+      "source_quote": "Unwarranted Optimism (Conjunction Bias)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Decompose conjunctive assumptions: list every condition that must hold for the plan to work, estimate each independently, and multiply — if the compound probability is too low, the trade-off has been understated."
+    },
+    {
+      "text": "Motivated reasoning can make hard reallocations feel emotionally repulsive, so the team keeps its preferred project and hides the cost.",
+      "source_quote": "Motivated Reasoning",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Make reallocation concrete: after naming the trade-off, specify exactly what gets less funding, time, or attention — if nothing is cut, the trade-off is performative."
+    },
+    {
+      "text": "Trade-off talk can become performance without allocation, where everyone names the constraint but no one actually ranks or cuts anything.",
+      "source_quote": "Danger When Trade-Off Talk Becomes Performance Without Allocation",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate emotional attachment from economic value: when a project feels too important to cut, check whether the feeling is evidence-based or motivated reasoning protecting a sunk cost."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "\"What would you have to believe?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What am I seeing here?",
+      "source_quote": "\"What am I seeing here?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What's happening?",
+      "source_quote": "\"What’s happening?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Upgrade pro-con talk to cost-benefit analysis so costs and benefits are weighed systematically instead of rhetorically.",
+      "source_quote": "Cost-Benefit Analysis (CBA)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Prioritize what matters most and explicitly name what not to do.",
+      "source_quote": "Prioritization and Focus",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Hold conflicting perspectives long enough to ask what must be true before committing to one side of the trade-off.",
+      "source_quote": "Strategic thinking involves holding two or more seemingly conflicting data points or perspectives long enough to consider: \"What must be true?\"",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on explicit sacrifice, structured weighting, and anti-performative reallocation discipline, so the chunk set stays near those interventions.",
+    "donor_drops": [
+      "Did not preserve donor optimization language that widened beyond the raw source's more operational allocation and assumption-stress-testing guidance."
+    ],
+    "open_questions": [
+      "The second and third premortem prompts come from the mitigation table's pause-and-deliberate guidance rather than from a labeled pre-mortem subsection."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, Pareto leverage, and clear intent for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is broader than the structured tension block and includes anchoring and availability-style distortions."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against status-quo-bias and commitment-bias."
+    ]
+  }
+}

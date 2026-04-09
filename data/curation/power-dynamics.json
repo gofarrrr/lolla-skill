@@ -1,0 +1,70 @@
+{
+  "model_id": "power-dynamics",
+  "source_file": "Power_Dynamics_rag.md",
+  "select_when": [
+    "A negotiation or partnership sounds like a price or policy dispute on the surface, but the real issue may be leverage, outside options, or commitment costs.",
+    "The team needs to know who can actually wait, walk away, redirect demand, or absorb reversal costs before accepting the stated framing of the deal.",
+    "A commitment, integration, or dependency may invert leverage over time even if the current terms look favorable at signature.",
+    "The next move should map fallback lanes, enforcement credibility, and the point where lock-in changes what is actually negotiable."
+  ],
+  "avoid_when": [
+    "The true constraint is exogenous or non-negotiable, so treating the situation as a power contest would distract from the actual bottleneck.",
+    "The team is already over-reading symbolic status or tone as leverage and needs a factual capability or execution review instead."
+  ],
+  "input_type": "hidden leverage structure problem",
+  "output_type": "leverage and commitment map",
+  "reasoning_types": [
+    "systems",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on outside options, credible walk-away, lock-in inversion, and hidden commitment costs rather than generic negotiation advice.",
+    "donor_drops": [
+      "Did not preserve broad bargaining rhetoric because the raw source is stronger on leverage structure, reversibility, and dependency timing."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans multi-party weakest-link diagnosis and timing control."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on hidden outside options, leverage inversion after commitment, and the difference between stated terms and real bargaining power."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The anti-activation conditions are grounded in source warnings against seeing every disagreement as a power contest or mistaking status for leverage."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on leverage-structure problems, while the typed input remains a normalized operational label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports explicit mapping of fallback options, commitment gradients, and credible threats; the output label compresses that into a reusable artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Power dynamics is strongest as systems-aware leverage diagnosis rather than topical negotiation scripting."
+    }
+  }
+}

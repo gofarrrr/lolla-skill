@@ -1,0 +1,71 @@
+{
+  "model_id": "confidence-calibration",
+  "source_file": "Confidence_Calibration_rag.md",
+  "select_when": [
+    "A forecast, estimate, or recommendation is about to determine commitment size, but the confidence behind it has not been made explicit.",
+    "The team is speaking with precise-sounding certainty even though the evidence base, sample depth, or regime stability is still weak.",
+    "A branch model, dashboard, or spreadsheet looks decision-grade, but the real question is how much trust the underlying measurement has earned.",
+    "The loudest or most experienced voice may be directionally right, but the cost of untested overconfidence is high enough to justify explicit boundary conditions."
+  ],
+  "avoid_when": [
+    "The model is being used to add ranges and caveats without naming the action threshold that would still trigger a real decision.",
+    "Percentages or confidence intervals are being presented as if quantified language itself proved disciplined judgment."
+  ],
+  "input_type": "uncertain commitment-sizing problem",
+  "output_type": "calibrated confidence range",
+  "reasoning_types": [
+    "metacognitive",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on earned confidence, boundary conditions, and instrument-trust checks rather than on generic humility language.",
+    "donor_drops": [
+      "Did not preserve donor-style forecasting overlays because the raw source is already explicit on ranges, confidence measures, and instrument trust.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The typed labels compress a source that spans self-assessment, forecasting, and organizational decision hygiene."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that calibration matters most when commitment size, branch models, and expert certainty are outrunning ground truth."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from the source danger lines on caveat theater and quantified language without earned judgment."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates on forecasts and recommendations that size commitment; the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source produces explicit confidence ranges and boundary conditions; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Confidence calibration is clearly metacognitive and probabilistic in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

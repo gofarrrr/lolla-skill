@@ -1,0 +1,70 @@
+{
+  "model_id": "user-experience-research-methods",
+  "source_file": "User_Experience_Research_Methods_rag.md",
+  "select_when": [
+    "Internal assumptions about users are weak, stale, or contradicted by actual behavior in the product or service.",
+    "The team needs direct evidence about user goals, workarounds, confusion, or unmet needs before making design commitments.",
+    "Non-obvious insight is likely to emerge from conflicting data points, extreme users, or observation rather than from more internal debate.",
+    "Product risk comes primarily from misunderstanding real user behavior rather than from technical feasibility alone."
+  ],
+  "avoid_when": [
+    "Research is being used as a ritual to validate a preselected answer instead of a disciplined search for disconfirming user evidence.",
+    "The team is boiling the ocean with broad discovery work that is not tied to a hypothesis, decision, or design imperative."
+  ],
+  "input_type": "user evidence gap",
+  "output_type": "behavior-grounded user insight",
+  "reasoning_types": [
+    "diagnostic",
+    "abductive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on direct user evidence, extreme-user discovery, and behavior-grounded reframing rather than broad research-ops process language.",
+    "donor_drops": [
+      "Did not preserve synthetic-testing sprawl beyond the raw source's stronger emphasis on observation, journey evidence, and anti-validation-theater discipline."
+    ],
+    "open_questions": [
+      "The source spans classic field research and digital-twin validation examples, but the curated surface stays on first-order evidence gathering."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths and playbook sections explicitly support stale assumptions, direct evidence gathering, extreme-user insight, and behavior-driven product risk reduction."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions come directly from the danger language on validation rituals and over-analysis."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates where user evidence is missing or weak, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields concrete user insight and design imperatives; the output label compresses that into a reusable artifact surface."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is diagnostic about user behavior and abductive in how it forms candidate explanations from observations, while the taxonomy labels remain normalized."
+    }
+  }
+}

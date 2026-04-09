@@ -1,0 +1,87 @@
+{
+  "model_id": "representativeness-heuristic",
+  "source_file": "Representativeness_Heuristic_rag.md",
+  "failure_modes": [
+    {
+      "text": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more diagnostic than it is.",
+      "source_quote": "The representativeness heuristic often leads to base-rate neglect by focusing on specific details rather than statistical regularities.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Anchor to frequencies first: before accepting a pattern match, check the base-rate probability of the category in the relevant population."
+    },
+    {
+      "text": "Decision makers can confuse similarity with probability and treat a plausible story as if it were a strong forecast.",
+      "source_quote": "It judges the probability of an event by the degree to which it resembles a typical case.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate plausibility from probability: require the team to distinguish 'this story sounds right' from 'this outcome is statistically likely' and flag any conflation."
+    },
+    {
+      "text": "The heuristic is misread when all intuitive resemblance is treated as invalid instead of being checked against frequencies and causal evidence.",
+      "source_quote": "Mitigating the risks involves deliberately engaging System 2 thinking to police quick judgments.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Preserve the valid signal in intuitive resemblance: rather than discarding pattern recognition entirely, check it against frequency data and causal mechanisms to see what survives."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What are the actual rates, frequencies, or reference-class outcomes for cases like this, not just the vivid pattern match?",
+      "source_quote": "Use the Outside View and Reference Classes.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which details in this story are making it feel representative, and how many of them are actually diagnostic?",
+      "source_quote": "The risk is judging by resemblance rather than by statistical reality.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If this representative-looking pattern fails, what ignored denominator or low-probability scenario would explain the miss?",
+      "source_quote": "If this representative pattern we identified fails, what previously ignored facts or assumptions would have caused the failure?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Treat intuitive resemblance as a hypothesis generator, not as the final probability estimate.",
+      "source_quote": "Mitigating the risks of RH involves deliberately engaging System 2 thinking.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Check the denominator before trusting the story-like fit of a case to a category.",
+      "source_quote": "Reference Class Forecasting uses historical outcomes from similar problems to predict the current outcome.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If the case feels obviously representative, pause and ask what causal or statistical evidence is still missing.",
+      "source_quote": "Explicitly challenge assumptions and broaden the mental toolbox.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks on resemblance-driven substitution, denominator checks, and treating intuitive fit as a testable hypothesis.",
+    "donor_drops": [
+      "Did not preserve broader bias-taxonomy sprawl beyond the clearest probability and denominator checks."
+    ],
+    "open_questions": [
+      "The source overlaps with availability and outcome-bias, but the Wave 2 surface stays on representativeness as a pattern-match failure mode."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is strongest alongside base-rates, outside-view, and law-of-large-numbers style denominator discipline."
+    ],
+    "antagonists": [
+      "The model is most strongly corrected by probability and reference-class methods."
+    ],
+    "structured_tensions": [
+      "The clearest tensions are with base-rates, bayesian updating, and law-of-large-numbers discipline."
+    ]
+  }
+}

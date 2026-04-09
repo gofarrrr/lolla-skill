@@ -1,0 +1,72 @@
+{
+  "model_id": "commitment-bias",
+  "source_file": "Commitment_Bias_rag.md",
+  "select_when": [
+    "Execution requires persistence across a long sequence of small decisions that would otherwise unravel under distraction or drift.",
+    "The commitment is tied to a reversible experiment, disciplined cadence, or identity-based habit that benefits from staying power.",
+    "The main risk is under-follow-through rather than over-escalation, and the team has explicit stop rules to revisit the commitment."
+  ],
+  "avoid_when": [
+    "Prior public commitment, sunk cost, or ego investment is becoming more important than updating on new evidence.",
+    "The case demands flexibility and fast updating, but the commitment structure would make reversal socially or politically expensive."
+  ],
+  "input_type": "commitment-under-review",
+  "output_type": "recommit-or-exit check",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Normalized the model around persistence versus escalation structure and rejected donor examples that were mostly generic sunk-cost cases.",
+    "donor_drops": [
+      "Dropped donor long-tail case examples that repeated the same escalation pattern without adding structural distinction.",
+      "Dropped donor higher-order relation overlays to keep the batch-2 contract frozen."
+    ],
+    "open_questions": [
+      "The typed fields compress a source distinction between healthy persistence and unhealthy escalation into a reviewed operational interface."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file explicitly distinguishes useful persistence conditions; curation mostly compresses them into operationally portable triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The first avoid condition is explicit in raw form and the second sharpens the same escalation risk into an anti-activation rule."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source presents a persistence-versus-update decision boundary, but the exact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw file implies a stop-rule-aware commitment check rather than a generic bias label; the output label operationalizes that function."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses escalation dynamics and persistence failure modes, but the taxonomy names are still reviewed normalization."
+    }
+  }
+}

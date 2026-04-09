@@ -1,0 +1,74 @@
+{
+  "model_id": "bottlenecks",
+  "source_file": "Bottlenecks_rag.md",
+  "select_when": [
+    "Local optimization is masking the true throughput limiter.",
+    "Sequence and capacity matter more than aggregate effort.",
+    "Fixing one choke point could unlock disproportionate downstream gain.",
+    "A migration, launch, or handoff plan assumes every workstream can move in parallel even though one gating dependency paces the whole system."
+  ],
+  "avoid_when": [
+    "The team is labeling the noisiest queue, most visible complaint, or highest-status pain point as the bottleneck without verifying actual throughput.",
+    "Constraint analysis is becoming a substitute for execution, or the model is naming the bottleneck without addressing how the constrained step will actually improve."
+  ],
+  "input_type": "throughput-constrained system",
+  "output_type": "constraint-focused intervention",
+  "reasoning_types": [
+    "systems",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the curation focused on throughput and gating dependency structure instead of donor breadth across learning and communication uses.",
+    "donor_drops": [
+      "Dropped donor examples that treated bottlenecks as a general complexity lens rather than a throughput-constraint model.",
+      "Dropped donor compound-contract hints because higher-order fields remain out for batch 2."
+    ],
+    "open_questions": [
+      "The output type merges diagnosis and action pressure, which is operationally useful but still a reviewed normalization."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file gives strong throughput and gating-dependency triggers; donor drafts were trimmed to preserve only the core operational structure."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The avoid conditions are synthesized from raw weaknesses about symptom confusion, analysis paralysis, and ignoring implementation."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The raw material clearly concerns constrained flow systems, but the compact input label is a reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model is oriented toward relieving the true constraint; the output type compresses that into an operational intervention label."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The model is clearly systems and causal in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

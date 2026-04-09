@@ -1,0 +1,75 @@
+{
+  "model_id": "systems-thinking",
+  "source_file": "Systems_Thinking_rag.md",
+  "allies": [
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition supports systems thinking by breaking a complex system into analyzable parts without losing the larger structure.",
+      "source_quote": "The discipline complements structured problem-solving processes ... The fundamental essence of problem disaggregation uses logic trees to cleave a problem into parts for analysis.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "specialization",
+      "rationale_text": "Specialization narrows attention to one discipline and undermines the multidisciplinary picture systems thinking depends on.",
+      "source_quote": "Systems thinking counters the natural human inclination for specialization.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-biases",
+      "rationale_text": "Cognitive biases like WYSIATI push the thinker toward surface-level stories instead of the wider interacting system.",
+      "source_quote": "Systems thinking requires actively working against this bias by seeking out and incorporating information beyond the surface level.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "The source names WYSIATI directly; the target id uses the existing broader canonical model."
+    },
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines systems thinking by anchoring attention to the first familiar disciplinary framework \u2014 the fixated lens misses the cross-system interconnections that require multi-model synthesis.",
+      "source_quote": "The Law of the Instrument (Maslow's Hammer): Relying exclusively on frameworks derived from a single area of expertise leads to blind spots because they miss the complicated interconnections explained by other models.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Systems-thinking conflicts with simplification when holistic system maps add complexity that obscures the one lever that would actually move the outcome.",
+      "source_quote": "systems-thinking conflicts with simplification (simplification) when holistic system maps add complexity that obscures the one lever that would actually move the outcome.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "decomposition",
+      "tension_text": "Systems-thinking conflicts with decomposition when reductionist decomposition breaks feedback loops that only exist at the system level.",
+      "source_quote": "systems-thinking conflicts with decomposition (decomposition) when reductionist decomposition breaks feedback loops that only exist at the system level.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Systems Thinking has strong first-order ally and antagonist prose, but no explicit structured tension block in the raw file.",
+    "donor_drops": [
+      "Did not import donor tension overlays or compound logic because this pilot is first-order relation semantics only."
+    ],
+    "open_questions": [
+      "Law-of-the-instrument / Maslow's Hammer wired in Task 2.5 sweep via einstellung-effect mapping."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "The raw ally section is richer than the resolved target-id surface suggests, including multidisciplinary mental models and analogy/metaphor."
+    ],
+    "antagonists": [
+      "The raw source explicitly names the law of the instrument, but this pilot avoided forced target-id approximation."
+    ],
+    "structured_tensions": [
+      "No explicit structured tension section was preserved from raw source."
+    ]
+  }
+}

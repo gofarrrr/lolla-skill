@@ -1,0 +1,87 @@
+{
+  "model_id": "mental-simulation",
+  "source_file": "Mental_Simulation_rag.md",
+  "failure_modes": [
+    {
+      "text": "Vivid rehearsal can be mistaken for evidence, making confidence rise faster than the quality of the assumptions or data.",
+      "source_quote": "Danger when vivid rehearsal is mistaken for evidence",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Separate vividness from evidence: after any mental rehearsal, list the empirical inputs it actually consumed and flag any confidence that exceeds the data."
+    },
+    {
+      "text": "Teams can keep simulating the preferred storyline while skipping ugly cases, tail risks, and disconfirming scenarios.",
+      "source_quote": "Danger when teams keep simulating their preferred storyline",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Mandate at least one ugly-case simulation for every success-path rehearsal; require the team to simulate a failure scenario with the same level of detail."
+    },
+    {
+      "text": "Simulations can reinforce model-defending behavior when they are run mainly to confirm an existing leadership hypothesis.",
+      "source_quote": "Confirmation Bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Assign a red-team member whose sole job is to run the simulation against the opposite hypothesis, not to confirm leadership's preferred story."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What ugly case, hostile response, or edge condition would actually change this plan if it showed up in the simulation?",
+      "source_quote": "ugly cases, tail risks, and disconfirming scenarios",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What threshold, contingency, or trigger are we tying this simulation to so it is not just imaginative theater?",
+      "source_quote": "tied to concrete thresholds, pre-mortems, or contingency plans",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which assumption in the simulation is least grounded and most capable of flipping the recommendation?",
+      "source_quote": "underlying assumptions or data",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use simulation to compare multiple plausible futures, not to glorify the favorite plan.",
+      "source_quote": "multiple futures can be compared explicitly",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Pair the rehearsal with premortems, contingencies, and edge-case stress checks so it changes behavior rather than just confidence.",
+      "source_quote": "pre-mortems, or contingency plans",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat simulation as the next best thing to experience, not as a substitute for reality.",
+      "source_quote": "not as good as actually doing something, but it is the next best thing",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on scenario rehearsal, ugly-case coverage, and keeping simulation from becoming confidence theater.",
+    "donor_drops": [
+      "Did not preserve broader role-play tooling sprawl because the raw source is stronger on assumption-testing and contingency discipline."
+    ],
+    "open_questions": [
+      "The first premortem item compresses several source warnings about skipping ugly cases so the chunk remains concise."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on premortem, decision-trees, and systems-thinking because simulation is most useful when it drives explicit scenario comparison and contingency design."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias, optimism-bias-and-planning-fallacy, and commitment-bias because each can corrupt what gets simulated."
+    ],
+    "structured_tensions": [
+      "The source has explicit structured tensions with confirmation-bias, optimism-bias-and-planning-fallacy, and commitment-bias that cleanly fit the current target-id surface."
+    ]
+  }
+}

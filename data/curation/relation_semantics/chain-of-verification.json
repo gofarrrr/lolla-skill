@@ -1,0 +1,70 @@
+{
+  "model_id": "chain-of-verification",
+  "source_file": "Chain_Of_Verification_rag.md",
+  "allies": [
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking gives chain-of-verification the questioning discipline that checks whether each premise deserves to stay in the argument.",
+      "source_quote": "Critical thinking involves systematically evaluating evidence ... The goal of CoV, in this context, is to cultivate a sound path to conclusions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps chain-of-verification trace the machine-level cause structure behind a conclusion rather than validating isolated fragments.",
+      "source_quote": "In systems thinking, CoV aligns with the need to trace causal links.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "delays",
+      "rationale_text": "Delays reinforce chain-of-verification by slowing commitment until the foundation and dependencies are actually checked.",
+      "source_quote": "Best when commitment should follow validated premises.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias pressures chain-of-verification to validate the preferred story rather than reconcile disconfirming evidence link by link.",
+      "source_quote": "CoV demands radical open-mindedness and intellectual humility, forcing the thinker to identify and reconcile disconfirming evidence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification can become an antagonist when it compresses away the building blocks that chain-of-verification needs to keep inspectable.",
+      "source_quote": "Avoid presenting only high-level abstractions or punch lines; instead, convey the underlying building blocks of the solution.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "optionality",
+      "tension_text": "Chain-of-verification conflicts with optionality when exhaustive step-by-step verification delays action past the window where cheap reversible experiments would yield more learning.",
+      "source_quote": "chain-of-verification conflicts with optionality (optionality) when exhaustive step-by-step verification delays action past the window where cheap reversible experiments would yield more learning.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Chain-of-verification conflicts with confirmation-bias when each verification step unconsciously confirms prior steps rather than genuinely testing them for disconfirmation.",
+      "source_quote": "chain-of-verification conflicts with confirmation-bias (confirmation bias) when each verification step unconsciously confirms prior steps rather than genuinely testing them for disconfirmation.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strong on critical questioning, causal-link auditing, and anti-premature-closure pressure, so the file preserves that compact first-order surface.",
+    "donor_drops": [
+      "Did not preserve donor relation sprawl beyond the strongest current-vocabulary links around evidence-checking, sequential validation, and anti-bias review."
+    ],
+    "open_questions": [
+      "Outside-view pressure is source-real, but the retained set favors currently curated models with cleaner direct language in the source."
+    ]
+  }
+}

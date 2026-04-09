@@ -1,0 +1,93 @@
+{
+  "model_id": "risk-vs-uncertainty",
+  "source_file": "Risk_Vs_Uncertainty_rag.md",
+  "failure_modes": [
+    {
+      "text": "Conjunction-fallacy style optimism can make a complex plan look safer than the uncertainty really permits.",
+      "source_quote": "Conjunction Fallacy / Unwarranted Optimism",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Decompose the plan into steps and check conjunctive probability: if too many independent things must go right simultaneously, the compound risk is much higher than any single-step estimate suggests."
+    },
+    {
+      "text": "Treating uncertainty like measurable risk can convert ignorance into false precision and irreversible commitments.",
+      "source_quote": "Uncertainty treated like measurable risk",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Label what you don't know honestly: when uncertainty is genuine, use scenario ranges and decision rules rather than converting ignorance into false-precision point estimates."
+    },
+    {
+      "text": "Decision paralysis from complexity can trap the team in richer scenario language without commitment rules.",
+      "source_quote": "Decision Paralysis from Complexity",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set commitment rules for each scenario: pair scenario analysis with explicit 'if X then we do Y' triggers so richer uncertainty language does not become richer paralysis."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What part of this plan is genuinely measurable risk, and what part is uncertainty that has not earned point estimates yet?",
+      "source_quote": "What part of this plan is genuinely measurable risk, and what part is uncertainty that has not earned point estimates yet?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If this decision goes wrong because the distribution itself moved, which threshold, dependency, or commitment fails first?",
+      "source_quote": "If this decision goes wrong because the distribution itself moved, which threshold, dependency, or commitment in this plan fails first?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Classify the situation before committing so commitment size matches certainty level.",
+      "source_quote": "Classify before committing",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use scenario analysis and simulations to inspect ranges and failure envelopes instead of one base-case forecast.",
+      "source_quote": "simulations are used",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Prefer reversible probes or no-regrets moves when uncertainty has not yet been converted into stable risk.",
+      "source_quote": "\"big bets\" ... or \"no regrets\" moves",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Precommit exit conditions before escalating so the team does not have to invent kill criteria while stress, sunk effort, or narrative attachment are already active.",
+      "source_quote": "big bets ... only after uncertainty has been converted into something decision-worthy",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    }
+  ],
+  "curation_notes": {
+    "summary": "This source is naturally chunk-ready because it already distinguishes risk classes, reversibility, and threshold-aware pre-mortem questions.",
+    "donor_drops": [
+      "Did not preserve donor case examples that repeated uncertainty routing patterns in scenario-specific form."
+    ],
+    "open_questions": [
+      "The heuristic chunks compress a longer strategy schema, but all three remain directly grounded in the raw playbook."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is rich on systems thinking, logic trees, hypothesis work, and margin of safety."
+    ],
+    "antagonists": [
+      "The raw antagonists section gives future relation value around System 1, confirmation bias, availability bias, and curse of knowledge."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves a structured tension against confirmation-bias that should be retained for a later relation wave."
+    ]
+  }
+}

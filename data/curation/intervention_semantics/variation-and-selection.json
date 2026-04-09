@@ -1,0 +1,87 @@
+{
+  "model_id": "variation-and-selection",
+  "source_file": "Variation_And_Selection_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams underperform when they lock onto the first plausible idea and never generate enough variation to discover better options.",
+      "source_quote": "Most useful when the current answer set is too narrow, path-dependent, or biased by the first idea that seemed plausible.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Generate before converging: require a minimum number of distinct options before allowing evaluation, so the first plausible idea does not become the only one considered."
+    },
+    {
+      "text": "Experimentation becomes waste when teams celebrate variation but never define the rule for selection, pruning, and learning.",
+      "source_quote": "Danger when teams celebrate variation without defining the selection rule.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Define selection criteria upfront: before running experiments, specify what evidence would cause an option to be killed, kept, or iterated — variation without selection rules is waste."
+    },
+    {
+      "text": "People can preserve weak answers by processing evidence to protect an early commitment instead of letting tests eliminate bad variants.",
+      "source_quote": "Commitment and consistency bias can hinder the Variation phase by discouraging deviation from initial choices.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Protect honest elimination: assign evidence evaluation to someone other than the option's champion so that confirmation bias cannot preserve weak variants."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What promising option would never appear if we stopped at the first workable answer?",
+      "source_quote": "Quantity often drives quality in idea generation.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the exact evidence rule by which we will eliminate weak variants instead of admiring them indefinitely?",
+      "source_quote": "The Selection phase follows, applying rigorous, evidence-based criteria.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which assumption collapses our favorite option if we actually test it today?",
+      "source_quote": "What is the simplest, most vital hypothesis we can test today that could collapse the entire solution if proven wrong?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Widen the option set first, then prune with explicit evidence criteria.",
+      "source_quote": "The essence of this model lies in the duality of divergence and convergence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat solutions as experiments when the future is uncertain and the strongest option is not obvious ex ante.",
+      "source_quote": "Experimental Portfolio (Strategic Testing).",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Do not confuse more options with more learning unless the selection rule is visible and enforced.",
+      "source_quote": "Danger when teams celebrate variation without defining the selection rule.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks close to divergence-plus-selection discipline, evidence-based pruning, and anti-commitment safeguards.",
+    "donor_drops": [
+      "Did not preserve broader innovation-process sprawl beyond the clearest generate-and-test moves."
+    ],
+    "open_questions": [
+      "The source supports multiple experimentation frameworks, but the Wave 2 surface stays on disciplined variation and pruning."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on experimentation, MECE, and outside-view discipline."
+    ],
+    "antagonists": [
+      "The source is strongest against commitment-and-consistency-bias, confirmation-bias, and under-variation from familiar-tool lock-in."
+    ],
+    "structured_tensions": [
+      "The clearest tensions are with status-quo-bias, commitment-and-consistency-bias, and confirmation-bias."
+    ]
+  }
+}

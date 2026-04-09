@@ -1,0 +1,87 @@
+{
+  "model_id": "divergent-vs-convergent-thinking",
+  "source_file": "Divergent_Vs_Convergent Thinking_rag.md",
+  "failure_modes": [
+    {
+      "text": "Premature evaluation can anchor the team to the first promising idea and kill originality before the search space opens.",
+      "source_quote": "Premature Convergence (Anti-pattern): Cutting short the divergent phase by evaluating ideas too quickly run the risk of hampering originality.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Enforce strict phase separation: no evaluation, ranking, or feasibility critique during idea generation; premature convergence kills the search space."
+    },
+    {
+      "text": "Endless convergent analysis can stall action and turn disciplined narrowing into paralysis.",
+      "source_quote": "Analysis Paralysis (Over-reliance on CT)",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Set a convergence deadline: disciplined narrowing has a time limit, after which the team must commit to action rather than continuing to refine."
+    },
+    {
+      "text": "People can think they are balancing both modes while actually mixing them so badly that neither ideation nor evaluation works.",
+      "source_quote": "Danger when participants think they are being balanced but are actually switching modes so chaotically that neither ideation nor evaluation gets done well.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Explicitly label which mode is active in each meeting segment; mixing divergent and convergent thinking invisibly ruins both."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Are we still generating options, or did one early idea silently become the reference point for everything else?",
+      "source_quote": "If a compelling solution comes to mind during the question generation phase, it can act as an anchor.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would change if we asked what we could do before asking what we should do?",
+      "source_quote": "What could you do? promotes the expansive exploration of divergent thinking. What should you do? often leads to zeroing in on the most obvious solutions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Have we earned the right to converge, or are we only choosing because ambiguity is uncomfortable?",
+      "source_quote": "The problem is novel enough to need broad option generation but consequential enough to require disciplined narrowing afterward.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate ideation from evaluation so the group can widen possibilities before ranking them.",
+      "source_quote": "Separate Ideation and Evaluation",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use How Might We framing to keep the problem open long enough for real alternatives to appear.",
+      "source_quote": "articulate the problem as a How Might We question",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Force a clear convergence moment after divergence so the process ends in selection rather than option hoarding.",
+      "source_quote": "teams then reconvene to narrow them down to a few scenarios to explore further",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on deliberate alternation between idea expansion and disciplined narrowing rather than on generic creativity language.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

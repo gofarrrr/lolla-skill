@@ -1,0 +1,87 @@
+{
+  "model_id": "confirmation-bias",
+  "source_file": "Confirmation_Bias_rag.md",
+  "allies": [
+    {
+      "target_model_id": "system-1",
+      "rationale_text": "System-1 is the cognitive engine that generates and sustains confirmation bias — automatic pattern-matching builds a coherent story from confirming evidence and suppresses ambiguity before deliberate reasoning can intervene.",
+      "source_quote": "Confirmation bias is a prime example of a bias stemming from System 1 (reflexive, quick) thinking. System 1 automatically generates a coherent story from the evidence at hand and suppresses ambiguity, leading to the bias of overconfidence and WYSIATI.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-dissonance",
+      "rationale_text": "Cognitive-dissonance powers confirmation bias by making inconsistent information psychologically painful — the discomfort of conflicting beliefs drives the bias to selectively filter incoming evidence so that new information aligns with previous decisions or self-image.",
+      "source_quote": "The bias reduces the discomfort caused by inconsistent beliefs or actions. Confirmation bias serves as the protective mechanism, ensuring new information aligns with previous decisions or self-image, thereby avoiding the rigors of conflicting thought.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "rationalization",
+      "rationale_text": "Rationalization helps confirmation-bias survive by laundering preferred conclusions into respectable stories after disconfirming evidence has already been filtered out.",
+      "source_quote": "the mind defends the conclusion instead of reopening it",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "dialectical-reasoning",
+      "rationale_text": "Dialectical reasoning opposes confirmation bias by institutionalizing challenge and antithesis before synthesis.",
+      "source_quote": "This formal team norm requires every idea (thesis) to be met with its antithesis (challenge) before synthesis can occur.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "The Feynman Technique counters confirmation bias by forcing blind spots and missing evidence into the open.",
+      "source_quote": "This technique systematically forces the user to identify their blind spots and knowledge gaps by trying to explain a concept simply.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "intellectual-humility",
+      "rationale_text": "Intellectual-humility directly counters confirmation bias by replacing the ego-protective drive to confirm existing beliefs with the disposition to genuinely question whether one's view is optimal.",
+      "source_quote": "Radical Open-Mindedness: This is the primary antidote, driven by the genuine worry that one might not be seeing one's choices optimally. It is the ability to explore different points of view without letting ego or blind spots interfere.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "falsifiability",
+      "tension_text": "Confirmation-bias conflicts with falsifiability when disproof standards challenge belief-preserving evidence selection.",
+      "source_quote": "confirmation-bias conflicts with falsifiability (falsifiability) when falsifiability challenges confirmation bias by emphasizing the need for evidence that can disprove a belief.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "tension_text": "Confirmation-bias conflicts with critical-thinking when critical thinking insists on weighing all evidence instead of only confirming material.",
+      "source_quote": "confirmation-bias conflicts with critical-thinking (critical thinking) when critical thinking opposes confirmation bias by encouraging the evaluation of all evidence, not just that which confirms existing beliefs.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Confirmation Bias is relation-rich, but many of its most important allies are psychological mechanisms rather than cleanly targetable current model ids.",
+    "donor_drops": [
+      "Did not preserve donor relation overlays beyond what the source tables and explicit tensions justify."
+    ],
+    "open_questions": [
+      "Radical open-mindedness wired in Task 2.5 sweep via intellectual-humility mapping.",
+      "System-1 and cognitive-dissonance wired as allies (Task 4.1 sweep). Motivated reasoning remains deferred — mappable to confirmation-bias itself but adds no new target edge.",
+      "Rationalization is now wired explicitly as an ally because the source logic repeatedly shows confirmation-bias preserving itself by story-laundering uncomfortable evidence."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "The raw ally section is conceptually rich on System 1, cognitive dissonance, motivated reasoning, and the ego barrier, but this batch avoided forcing approximate ids."
+    ],
+    "antagonists": [
+      "Radical open-mindedness and Thinking Gray are source-real antagonists that remain deferred because the current canonical target surface is thinner than the prose."
+    ]
+  }
+}

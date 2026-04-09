@@ -1,0 +1,87 @@
+{
+  "model_id": "rationalization",
+  "source_file": "Rationalization_rag.md",
+  "failure_modes": [
+    {
+      "text": "Rationalization turns analysis into a press-secretary function that explains the decision after the fact rather than testing it beforehand.",
+      "source_quote": "The mind often acts like a press secretary for decisions already made.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require the reasoning chain to be written before the decision is announced: if the analysis was constructed after the conclusion, flag it as post-hoc justification."
+    },
+    {
+      "text": "The model fails when a polished story hides the gap between the real motive and the stated reason.",
+      "source_quote": "Danger When Story Cleanup Replaces Honest Reasoning",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Appoint a devil's advocate to surface the gap between stated reason and likely real motive; if the two diverge, the stated reason is a rationalization."
+    },
+    {
+      "text": "Anti-rationalization work becomes counterproductive when it collapses into endless motive analysis with no decision correction.",
+      "source_quote": "self-scrutiny must improve the next choice, not become an end in itself",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a reflection time limit: once rationalization has been named, pivot to the decision correction within one cycle rather than spiraling into endless motive archaeology."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would we say if we had to explain the real reason rather than the respectable reason?",
+      "source_quote": "the respectable reason often comes later",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What evidence would make us reopen the conclusion instead of improving the story around it?",
+      "source_quote": "the mind defends the conclusion instead of revisiting it",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If an outsider watched the action before hearing our explanation, what motive would they infer?",
+      "source_quote": "actions reveal motives more clearly than after-the-fact stories",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate the actual decision path from the later explanation before judging whether the reasoning was sound.",
+      "source_quote": "separate the decision from the explanation for the decision",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat a polished narrative as a signal to inspect what is being protected, not as proof that the reasoning was strong.",
+      "source_quote": "rationalization is often a defense mechanism",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use anti-rationalization pressure to change the next decision, not to perform insightfulness.",
+      "source_quote": "self-scrutiny must improve the next choice",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on post-hoc story laundering, motive-versus-reason separation, and anti-press-secretary discipline.",
+    "donor_drops": [
+      "Did not preserve donor introspection sprawl because the raw source is stronger on separating actual reasoning from defensive narrative."
+    ],
+    "open_questions": [
+      "The source is rich on self-deception language, but the kept chunks stay tightly operational so they remain reusable."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on critical-thinking, first-principles-thinking, and systems-thinking as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on confirmation-bias and motivated-defense patterns, but only the cleanest current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around post-hoc story defense, but it does not expose a cleaner explicit current-vocabulary tension block than the one-hop antagonist surface."
+    ]
+  }
+}

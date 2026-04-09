@@ -1,0 +1,81 @@
+{
+  "model_id": "analogies-and-metaphors",
+  "source_file": "Analogies_And_Metaphors_rag.md",
+  "failure_modes": [
+    {
+      "text": "People can fail to understand a concept not because information is missing but because they still lack a usable mental bucket for it.",
+      "source_quote": "Most useful when the audience lacks a schema.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Identify what schema the audience already has and connect the new concept to it explicitly; if no existing schema fits, build one with a simple concrete example first."
+    },
+    {
+      "text": "A vivid analogy can mislead when it transfers familiarity without preserving the mechanism that actually matters.",
+      "source_quote": "Best when mechanism transfers along with familiarity.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Validate the analogy by lining up assumptions: check whether the causal mechanism in the source domain actually maps to the target domain, not just the surface pattern."
+    },
+    {
+      "text": "Layered metaphors can increase interpretation burden instead of reducing it.",
+      "source_quote": "analogies-and-metaphors vs cognitive-load-theory",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Use one analogy per concept and provide counterexamples to mark where the metaphor stops applying; do not stack multiple metaphors for the same idea."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What existing schema does the audience already have that could carry this new idea?",
+      "source_quote": "Most useful when the audience lacks a schema.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which important structural boundary would this comparison distort if we pushed it too far?",
+      "source_quote": "analogies-and-metaphors vs abstraction",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is this comparison reducing obscurity, or just replacing one kind of confusion with another?",
+      "source_quote": "Analogies are the antidote to abstraction and buzzwords.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use a comparison that carries the structural logic of the idea, not just a catchy image.",
+      "source_quote": "Best when mechanism transfers along with familiarity.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Choose adjacent experience the audience already understands, then bridge into the new concept.",
+      "source_quote": "Most useful when the audience lacks a schema.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use analogy to cut through abstraction and jargon when the idea is sound but still not sticking.",
+      "source_quote": "Works when abstraction is blocking understanding.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunk set close to schema transfer, structural fidelity, and anti-jargon use.",
+    "donor_drops": [
+      "Did not preserve donor communication-program sprawl because the raw source already supports compact explanation chunks."
+    ],
+    "open_questions": [
+      "The source could support broader teaching chunks, but the Wave 2 surface is cleaner when it stays on transfer quality."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": ["The raw allies section is strongest on scaffolding and explainability-oriented models."],
+    "antagonists": ["The source is strongest against abstraction drift and cognitive overload from bad comparisons."],
+    "structured_tensions": ["The model contains explicit tensions against abstraction and cognitive-load-theory."]
+  }
+}

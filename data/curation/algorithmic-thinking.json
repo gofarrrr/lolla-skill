@@ -1,0 +1,71 @@
+{
+  "model_id": "algorithmic-thinking",
+  "source_file": "Algorithmic_Thinking_rag.md",
+  "select_when": [
+    "The task can be decomposed into repeatable steps with clear handoffs, inputs, and output quality checks.",
+    "Consistency, auditability, or scale matter more than improvisation because many people or systems must execute the same logic reliably.",
+    "A process needs explicit branching rules, bounded edge cases, and coordination across specialized components.",
+    "The problem is becoming noisy because the team lacks a shared procedure for how work should move from input to checked output."
+  ],
+  "avoid_when": [
+    "Novelty, ambiguity, or human emotion is doing most of the causal work and a rigid procedure is being mistaken for actual understanding.",
+    "Rules are being optimized to visible proxies while exceptions, tacit knowledge, or changing context are treated as noise."
+  ],
+  "input_type": "structured process design problem",
+  "output_type": "repeatable decision procedure",
+  "reasoning_types": [
+    "deductive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on repeatable logic, branching rules, and auditability rather than on AI-prompting sprawl.",
+    "donor_drops": [
+      "Did not preserve donor automation overlays because the raw source is already strong on repeatable steps, branching, and trustworthy execution structure.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The typed labels compress a source that spans operational procedure, multi-agent coordination, and trust-building through consistency."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that algorithmic thinking is strongest when work can be decomposed into repeatable, auditable steps with bounded branching."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by the source danger lines on rigid procedure in novel contexts and proxy optimization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates on procedural design and coordination problems, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source produces reliable procedure structure and branching discipline; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Algorithmic thinking is clearly deductive and systems-oriented in use, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

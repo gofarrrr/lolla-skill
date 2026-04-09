@@ -1,0 +1,48 @@
+{
+  "model_id": "representativeness-heuristic",
+  "source_file": "Representativeness_Heuristic_rag.md",
+  "allies": [],
+  "antagonists": [
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
+      "source_quote": "Reference Class Forecasting uses historical outcomes from similar problems to predict the current outcome, thereby incorporating statistical reality.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "bayesian",
+      "rationale_text": "Bayesian updating resists representativeness-heuristic by revising on evidence instead of trusting intuitive category fit.",
+      "source_quote": "Mitigating the risks of RH involves deliberately engaging System 2 thinking to police the quick judgments of System 1.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "base-rates",
+      "tension_text": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency.",
+      "source_quote": "representativeness-heuristic conflicts with base-rates (base rates) when vivid similarity overrides reference-class frequency.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "regression-to-the-mean",
+      "tension_text": "Representativeness-heuristic conflicts with regression-to-the-mean when extreme outcomes are projected as persistent.",
+      "source_quote": "representativeness-heuristic conflicts with regression-to-the-mean (regression to the mean) when extreme outcomes are projected as persistent.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Preserved the clearest denominator and updating antagonists to keep the first-order surface inspectable.",
+    "donor_drops": [
+      "Did not preserve broader availability and outcome-bias sprawl beyond the clearest current-vocabulary corrections."
+    ],
+    "open_questions": [
+      "Law-of-large-numbers is source-real nearby, but the first-order surface is cleanest around base-rates and bayesian updating."
+    ]
+  }
+}

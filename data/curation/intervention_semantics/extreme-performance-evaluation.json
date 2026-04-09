@@ -1,0 +1,87 @@
+{
+  "model_id": "extreme-performance-evaluation",
+  "source_file": "Extreme_Performance_Evaluation_rag.md",
+  "failure_modes": [
+    {
+      "text": "Evaluators can protect favored theories or people instead of using the standard to falsify their assumptions.",
+      "source_quote": "extreme-performance-evaluation conflicts with confirmation-bias (confirmation bias) when evaluators protect favored hypotheses instead of falsifying them.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Use the standard to falsify assumptions, not to protect favored theories or people; evaluation integrity depends on willingness to let the data disappoint."
+    },
+    {
+      "text": "Score maximization can push teams too close to operating limits when the evaluation logic ignores necessary buffers.",
+      "source_quote": "extreme-performance-evaluation conflicts with margin-of-safety (margin of safety) when score-maximization pushes teams to run too close to operational limits.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Build buffers into the evaluation logic so score-maximization does not push the team past safe operating limits."
+    },
+    {
+      "text": "Extreme standards can dissolve into fear or noise when context, support, and measurement quality do not match the standard being imposed.",
+      "source_quote": "Danger when extreme standards are imposed without matching context, support, or measurement quality, turning evaluation into noise, fear, or vanity metrics.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Match context, support, and measurement quality to the standard being imposed; extreme standards dissolve into fear when the infrastructure does not support them."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "How much of the observed performance is skill signal, and how much is variance or luck?",
+      "source_quote": "separate signal from luck across difficult, nonlinear, or high-variance performance environments",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What safety margin are we quietly sacrificing in order to maximize the score?",
+      "source_quote": "run too close to operational limits",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Would this standard still be useful if the team did not know which candidate we already favored?",
+      "source_quote": "protect favored hypotheses instead of falsifying them",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the evaluation to distinguish robust excellence from acceptable noise, not to reward surface effort.",
+      "source_quote": "distinguish robust excellence from merely acceptable output",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Check whether the standard has enough measurement quality and support behind it to be interpretable.",
+      "source_quote": "matching context, support, or measurement quality",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep a margin-of-safety lens in the review so extreme performance does not become reckless performance.",
+      "source_quote": "margin of safety",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on separating excellence from luck and appearance rather than on generic performance-management language.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "model_id": "iteration",
+  "source_file": "Iteration_rag.md",
+  "select_when": [
+    "The first version is unlikely to be correct, so the cheapest path to quality is repeated prototype-test-learn cycles.",
+    "Uncertainty can be reduced faster through bounded learning loops than through one long round of upfront planning.",
+    "A team needs a way to keep revising a hypothesis, design, or solution path as new evidence accumulates.",
+    "The work is drifting toward static planning even though progress depends on comparing each version against the last one."
+  ],
+  "avoid_when": [
+    "The team is iterating without stop rules, success thresholds, or a decision about what evidence is strong enough to commit.",
+    "Local polishing is continuing even though the underlying problem framing or hypothesis likely needs a reset."
+  ],
+  "input_type": "learning-loop design problem",
+  "output_type": "bounded refinement cycle",
+  "reasoning_types": [
+    "causal",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on bounded refinement cycles, hypothesis revision, and stop-rule discipline rather than on broad innovation-process language.",
+    "donor_drops": [
+      "Did not preserve donor process sprawl because the raw source is already strong on prototype-test-learn loops and the one-day-answer discipline.",
+      "Did not add higher-order composition fields because this batch stops at the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans design loops, project synthesis, and skill acquisition."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that iteration is strongest when uncertainty falls through repeated bounded cycles rather than one-shot planning."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from the source danger lines on endless looping and local polishing without reframing."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates on refinement and hypothesis-testing loops, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields reusable cycle structures and learning loops; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Iteration clearly uses evidence-updating and reflection, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

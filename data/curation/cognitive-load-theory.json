@@ -1,0 +1,71 @@
+{
+  "model_id": "cognitive-load-theory",
+  "source_file": "Cognitive_Load_Theory_rag.md",
+  "select_when": [
+    "Novices must absorb several unfamiliar concepts at once and would otherwise confuse the task because too many moving parts arrive together.",
+    "A presentation, workflow, lesson, or prompt can be sequenced so attention stays on the next useful chunk instead of the entire problem space.",
+    "Stress, ambiguity, or time pressure is already consuming working-memory capacity and decision quality depends on reducing avoidable mental load.",
+    "The communication or operating path should be redesigned so the most important distinctions stick instead of being buried in excess detail."
+  ],
+  "avoid_when": [
+    "Simplification would remove the causal structure, nuance, or thresholds needed to make a real decision rather than merely creating a feeling of clarity.",
+    "Expert users are being forced through novice scaffolding that adds friction, redundancy, or boredom instead of improving performance."
+  ],
+  "input_type": "overloaded decision workflow",
+  "output_type": "load-reducing structure",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on working-memory constraints, sequencing, and chunk design rather than broad learning-science commentary.",
+    "donor_drops": [
+      "Did not preserve donor general UX or product-design overlays because the raw source already gives stronger workload and sequencing structure.",
+      "Wave 4 implications stay observational only for this batch."
+    ],
+    "open_questions": [
+      "The reasoning-types field is a reviewed taxonomy choice over a source that is more explicit about cognitive mechanism than about mode labels."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source gives explicit activation bullets and nearby context on sequencing, overload, and stress; review mainly compacts them into routing form."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit raw danger lines."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about overloaded workflows and instruction paths, but the machine-usable label is still reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model restructures load through chunking, scaffolding, and sequencing; the output label compresses that into an operational intervention type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses overload inside larger systems of communication and work, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

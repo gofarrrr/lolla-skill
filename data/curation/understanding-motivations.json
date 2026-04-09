@@ -1,0 +1,72 @@
+{
+  "model_id": "understanding-motivations",
+  "source_file": "Understanding_Motivations_rag.md",
+  "select_when": [
+    "Observed behavior is easy to name, but the real decision quality depends on identifying the why beneath it.",
+    "Stated motivations may be incomplete because image management, politics, or self-deception are part of the situation.",
+    "A recommendation must fit what the audience wants to know, feel, and do rather than merely what the analyst finds interesting.",
+    "The work would improve if intrinsic and extrinsic drivers were separated instead of being treated as one blended explanation."
+  ],
+  "avoid_when": [
+    "The team is over-psychologizing a problem that is better explained by simple constraints, incentives, or capability gaps.",
+    "The model is being used to infer hidden motives without enough concrete behavior, context, or contradiction to justify the inference."
+  ],
+  "input_type": "behavior-driver diagnosis problem",
+  "output_type": "motive structure and action fit frame",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on hidden drivers, intrinsic-versus-extrinsic motive structure, and message-to-motivation fit rather than widening it into generic persuasion rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor motivation-sprawl beyond the raw source's stronger hidden-driver, image-management, and audience-fit surface.",
+      "Did not add higher-order composition fields because this batch remains Wave 1 to Wave 3 only."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans behavioral science, leadership, persuasion, and organizational design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source is explicit that the model is strongest when hidden drivers, motive structure, and audience-fit determine whether behavior will change."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The anti-pattern section directly warns against over-psychologizing and taking surface declarations as sufficient truth."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on behavior-driver diagnosis problems, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields clearer motive structure and action fit, but the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is naturally diagnostic of hidden drivers and causal in how motives shape behavior, while the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

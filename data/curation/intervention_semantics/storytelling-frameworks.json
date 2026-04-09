@@ -1,0 +1,87 @@
+{
+  "model_id": "storytelling-frameworks",
+  "source_file": "Storytelling_Frameworks_rag.md",
+  "failure_modes": [
+    {
+      "text": "A vivid story can make weak causal logic feel persuasive enough to escape scrutiny.",
+      "source_quote": "storytelling-frameworks conflicts with first-principles-thinking when a compelling narrative arc substitutes for base-rate reasoning",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate narrative appeal from causal logic: after hearing the story, extract the implied causal chain and test each link against evidence independently."
+    },
+    {
+      "text": "Narrative polish can smuggle subjectivity into places that actually need formal reasoning and evidence.",
+      "source_quote": "storytelling-frameworks conflicts with formal-reasoning (formal reasoning) when formal Reasoning relies on strict logic and evidence, potentially opposing the subjective and interpretive nature of storytelling.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Flag where narrative replaces evidence: identify the specific points where the story asserts a claim without data, and require those gaps to be filled before the story drives a decision."
+    },
+    {
+      "text": "Abstract information can remain inert if no narrative frame makes it matter to the audience.",
+      "source_quote": "Storytelling frameworks are strongest when information is available, yet still fails to feel consequential, memorable, or decision-relevant to the audience.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Use narrative to make abstract evidence concrete: when data exists but fails to motivate action, wrap it in a story frame that preserves accuracy while adding emotional salience."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What crucial assumption is this story asking the audience to accept without showing its evidentiary basis?",
+      "source_quote": "a compelling narrative arc substitutes for base-rate reasoning",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What detail makes this message concrete enough to feel real instead of merely conceptual?",
+      "source_quote": "Storytelling helps make abstract ideas concrete.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If we removed the story, what decision-relevant insight would still remain true?",
+      "source_quote": "Stories help connect the audience to necessary data with a handful of points",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use story to make an abstract problem concrete, not to bypass logic or evidence.",
+      "source_quote": "Storytelling helps make abstract ideas concrete.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Anchor the narrative to the one consequence or insight the audience must remember.",
+      "source_quote": "The Rule of Three/The Core Message",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    },
+    {
+      "text": "Pair narrative framing with explicit evidence checks when the story implies causal certainty.",
+      "source_quote": "formal Reasoning relies on strict logic and evidence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on making abstract information consequential and memorable without normalizing narrative as evidence.",
+    "donor_drops": [
+      "Dropped broader donor-style elaboration in favor of three compact source-grounded intervention chunks per type."
+    ],
+    "open_questions": [
+      "Relation richness stays in Wave 3; Wave 2 only preserves the intervention surface needed for preview substrate use."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Wave 3 preserves the first-order ally surface where the raw source gives a clean current-vocabulary seam."
+    ],
+    "antagonists": [
+      "Wave 3 preserves the strongest current-vocabulary conflicts and leaves weaker cross-model seams omitted on purpose."
+    ],
+    "structured_tensions": [
+      "Wave 4 remains observational only; this batch does not widen higher-order source coverage."
+    ]
+  }
+}

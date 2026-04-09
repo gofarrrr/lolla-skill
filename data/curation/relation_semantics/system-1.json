@@ -1,0 +1,91 @@
+{
+  "model_id": "system-1",
+  "source_file": "System_1_rag.md",
+  "allies": [
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring operates through System 1's associative activation — the first number or frame encountered shapes all subsequent estimates automatically without conscious intent.",
+      "source_quote": "Anchoring is dangerous because the initial piece of information causes one to put on blinders. This fixation can activate confirmation bias.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation bias is partly System 1's pattern-completion drive — the system finishes stories it has started, treating incoming evidence as confirmation rather than new data to evaluate.",
+      "source_quote": "Confirmation bias is a prime example of a bias stemming from System 1 (reflexive, quick) thinking. System 1 automatically generates a coherent story from the evidence at hand.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "system-2",
+      "rationale_text": "System 2 is the corrective counterpart — it applies effortful, rule-governed deliberation that can override System 1's fast outputs, but only when actively engaged and not depleted.",
+      "source_quote": "System 2 allocates attention to effortful mental activities and can override System 1 outputs when engaged.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "probabilistic-thinking",
+      "rationale_text": "Probabilistic thinking requires computing distributions and base rates — precisely the operations System 1 cannot perform, defaulting instead to singular vivid cases over statistical regularities.",
+      "source_quote": "Probabilistic thinking requires computing distributions and base rates — precisely the operations System 1 cannot perform.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical thinking demands questioning assumptions and suspending judgment — System 2 activities that System 1 actively undermines by delivering confident, fluent conclusions that do not signal the need for scrutiny.",
+      "source_quote": "Critical thinking demands questioning one's own biases and continually updating beliefs based on new data.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "System 1's case-based reasoning systematically ignores base rates, substituting vivid analogical reasoning — correct use of base rates requires explicitly overriding System 1 intuitions with reference-class data.",
+      "source_quote": "System 1 overweights vivid, specific case information and underweights dull but statistically authoritative base-rate data.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "system-2",
+      "tension_text": "System-1 conflicts with system-2 when fast associative pattern-matching bypasses the effortful deliberation that complex or novel problems require.",
+      "source_quote": "system-1 vs system-2: system-1 conflicts with system-2 (System 2 slow thinking) when fast associative pattern-matching bypasses the effortful deliberation that complex or novel problems require.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "probabilistic-thinking",
+      "tension_text": "System-1 conflicts with probabilistic-thinking when intuitive case-based reasoning substitutes for distributional base-rate analysis.",
+      "source_quote": "system-1 vs probabilistic-thinking: system-1 conflicts with probabilistic-thinking (probabilistic thinking) when intuitive case-based reasoning substitutes for distributional base-rate analysis.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "base-rates",
+      "tension_text": "System-1 conflicts with base-rates when vivid case details activate System 1's pattern-completion drive, crowding out the statistical regularities that base-rate reasoning requires.",
+      "source_quote": "system-1 vs base-rates: system-1 conflicts with base-rates (base rates) when vivid case details activate System 1's pattern-completion drive, crowding out the statistical regularities that base-rate reasoning requires.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "tension_text": "System-1 conflicts with critical-thinking when fluent, confident outputs suppress the signal that scrutiny, gap-identification, and assumption-testing are needed.",
+      "source_quote": "system-1 vs critical-thinking: system-1 conflicts with critical-thinking (critical thinking) when fluent, confident outputs generated without deliberation suppress the signal that scrutiny is needed.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "System 1 Wave 3 curated from the new source markdown. Key allies: anchoring and confirmation-bias (both operate through System 1 mechanisms). Key antagonists: system-2 (corrective), probabilistic-thinking, critical-thinking, base-rates.",
+    "donor_drops": [],
+    "open_questions": [
+      "Additional System 1 ally candidates: availability-heuristic, affect-heuristic — both are specific System 1 mechanisms. Deferred pending those canonical model ids."
+    ]
+  }
+}

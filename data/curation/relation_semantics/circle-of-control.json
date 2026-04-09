@@ -1,0 +1,48 @@
+{
+  "model_id": "circle-of-control",
+  "source_file": "Circle_Of_Control_rag.md",
+  "allies": [
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking helps circle-of-control decompose constraints into assumptions and testable actions instead of treating the whole situation as one helpless block.",
+      "source_quote": "Circle of Control works well with First Principles Thinking, where constraints are decomposed into controllable assumptions and testable actions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "risk-vs-uncertainty",
+      "rationale_text": "Risk-vs-uncertainty helps circle-of-control distinguish what should be hedged from what can actually be changed.",
+      "source_quote": "It also complements Risk vs. Uncertainty by distinguishing what should be hedged versus what can be actively changed.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [],
+  "structured_tensions": [
+    {
+      "target_model_id": "systems-thinking",
+      "tension_text": "Circle-of-control conflicts with systems-thinking when local optimization inside the control circle obscures broader feedback loops.",
+      "source_quote": "Potential tension appears with Systems Thinking when local optimization inside the control circle obscures broader feedback loops.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "game-theory-payoffs",
+      "tension_text": "Circle-of-control conflicts with game-theory-payoffs when opponents can shift what is influenceable faster than the current control map assumes.",
+      "source_quote": "Another tension appears with Game Theory when opponents can shift your controllable set dynamically.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is concise and strongest on two named complements and two named tensions, so the file preserves that bounded surface without inventing extra antagonists.",
+    "donor_drops": [
+      "Did not preserve donor relation sprawl where the raw file itself keeps the relational surface tight and explanatory."
+    ],
+    "open_questions": [
+      "The source does not provide a formal structured tension block, so the tension items remain normalized from the latticework discussion."
+    ]
+  }
+}

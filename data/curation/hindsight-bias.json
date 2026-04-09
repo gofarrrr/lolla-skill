@@ -1,0 +1,57 @@
+{
+  "model_id": "hindsight-bias",
+  "source_file": "Hindsight_Bias_rag.md",
+  "select_when": [
+    "A post-mortem, retrospective, or performance review is evaluating decisions that were made under genuine uncertainty.",
+    "Past decision-makers are being judged for outcomes that were not, in fact, highly predictable given what was known at the time.",
+    "Lessons being extracted from a failure are calibrated to the specific failure path as if it were obviously foreseeable, rather than to improving probabilistic reasoning generally.",
+    "A rare event is being retrospectively attributed with warning signs that appeared ambiguous or unimportant before the event.",
+    "Decision quality is being conflated with outcome quality — good process is being penalized for bad luck or vice versa."
+  ],
+  "avoid_when": [
+    "The decision was made with clear, contemporaneous evidence of high failure probability that was ignored — in those cases outcome-based criticism may be warranted.",
+    "The review is explicitly anchored to contemporaneous documentation of what was known and uncertain at decision time, not to post-hoc reconstruction."
+  ],
+  "input_type": "post-event evaluation of a decision made under prior uncertainty",
+  "output_type": "decision quality separation from outcome quality",
+  "reasoning_types": [
+    "diagnostic",
+    "probabilistic",
+    "counterfactual",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Hindsight bias curated as a retrospective distortion detection model — activates in post-mortem and review contexts where known outcomes are contaminating evaluation of pre-event decision quality.",
+    "donor_drops": [],
+    "open_questions": [
+      "The model is most powerful when paired with contemporaneous documentation — pre-mortems, timestamped decision memos, explicit probability estimates. The activation surface should be connected to those practices."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": ["raw_markdown", "reviewed_normalization"],
+      "confidence": "high",
+      "note": "Source is explicit about post-mortem distortion, creeping determinism, and outcome-quality/decision-quality conflation as the primary hindsight bias contexts — select_when maps directly to these."
+    },
+    "avoid_when": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "Avoid_when conditions are reviewed normalizations — the model should not be used to exculpate genuinely negligent decisions by invoking hindsight bias."
+    },
+    "input_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "medium",
+      "note": "The model activates on retrospective evaluation of decisions — the input is the post-event assessment context, not a prospective decision."
+    },
+    "output_type": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "The model's operational output is separating decision quality from outcome quality — the core action that hindsight bias obscures."
+    },
+    "reasoning_types": {
+      "sources": ["reviewed_normalization"],
+      "confidence": "high",
+      "note": "Diagnostic — identifying retrospective distortion; probabilistic — recovering the uncertainty distribution that existed at decision time; counterfactual — reconstructing the alternative outcomes that were live; metacognitive — examining the contamination of one's own retrospective assessment."
+    }
+  }
+}

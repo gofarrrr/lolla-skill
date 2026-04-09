@@ -1,0 +1,70 @@
+{
+  "model_id": "prospect-theory",
+  "source_file": "Prospect_Theory_rag.md",
+  "select_when": [
+    "A choice is being driven more by perceived gains, losses, or reference points than by objective value.",
+    "Different framings of the same economics are likely to change behavior materially, especially under uncertainty or emotional pressure.",
+    "A recommendation needs to account for loss aversion, risk-seeking in the loss domain, or reluctance to accept a sure small loss to avoid a larger uncertain one later.",
+    "The next move should separate descriptive human response from the normative question of what the decision should be."
+  ],
+  "avoid_when": [
+    "The analysis still needs a normative decision framework and prospect-theory language would only redescribe behavior without improving the choice.",
+    "Framing is being used to manipulate compliance without improving truth, economics, or decision quality."
+  ],
+  "input_type": "framing and loss-aversion problem",
+  "output_type": "frame-aware behavior check",
+  "reasoning_types": [
+    "probabilistic",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on reference dependence, framing, and loss aversion as descriptive choice pressures rather than as a normative decision rule.",
+    "donor_drops": [
+      "Did not preserve broad persuasion sprawl because the raw source is strongest on descriptive choice distortion and anti-manipulation discipline."
+    ],
+    "open_questions": [
+      "The typed output compresses a source that also spans communication design and segment-specific persuasion."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on reference dependence, loss aversion, framing effects, and short-term behavioral distortion under uncertainty."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The anti-activation conditions are grounded in source warnings that prospect theory is descriptive, not normative, and that framing can become manipulative."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on framing and loss-domain problems, while the typed input remains a normalized operational label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports checking reference points and behavioral framing distortions; the output label compresses that into a reusable intervention artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Prospect theory is strongest as probabilistic behavioral diagnosis rather than as a standalone decision rule."
+    }
+  }
+}

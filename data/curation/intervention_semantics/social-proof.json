@@ -1,0 +1,113 @@
+{
+  "model_id": "social-proof",
+  "source_file": "Social_Proof_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can borrow prestige from irrelevant high-status adopters whose context, incentives, or constraints do not match the current decision.",
+      "source_quote": "Danger when teams borrow prestige from irrelevant high-status adopters whose context, incentives, or constraints do not match the current decision.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Verify relevance before borrowing credibility: check whether the cited adopter's context, scale, and constraints actually match the decision at hand."
+    },
+    {
+      "text": "Social proof can become a substitute for mechanism, evidence quality, or customer truth instead of a credibility accelerant.",
+      "source_quote": "Danger when Social Proof is used as a substitute for mechanism, evidence quality, or customer truth instead of as a credibility accelerant.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require mechanism alongside consensus: social proof should accelerate trust, not replace evidence about why the approach works."
+    },
+    {
+      "text": "Consensus can harden into groupthink that suppresses dissent and carries the team along despite private doubts.",
+      "source_quote": "groupthink",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Protect dissent channels: create anonymous or structured input rounds so individual doubts survive the social pressure to conform."
+    },
+    {
+      "text": "A self-selecting consensus pool can make agreement look like proof even when the community has filtered out disconfirming evidence in advance.",
+      "source_quote": "highly connected, homogeneous groups are especially vulnerable to self-reinforcing error cascades",
+      "extraction_type": "normalized",
+      "confidence": "medium",
+      "mitigation": "Audit the consensus pool for selection bias: check whether the agreeing community filtered out disconfirming voices or evidence before treating consensus as proof."
+    },
+    {
+      "text": "Inaction by others can serve as social proof that doing nothing is correct — when nobody raises an issue, the absence of challenge suppresses necessary checks and creates diffusion of responsibility.",
+      "source_quote": "When you see other people doing nothing, your brain interprets inaction as social proof that doing nothing is the correct thing to do",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Counter bystander inertia: assign named owners for specific risk checks so silence cannot serve as implicit endorsement of the status quo."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which admired adopters actually look structurally similar to us, and which endorsements are just prestige leakage?",
+      "source_quote": "look structurally similar to the audience",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If we removed the social proof entirely, what mechanism or evidence would still justify this decision?",
+      "source_quote": "substitute for mechanism, evidence quality, or customer truth",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What dissenting view is currently being muted because consensus is moving faster than analysis?",
+      "source_quote": "discouraging members who hold dissenting opinions",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is this consensus drawing from a structurally representative sample, or from a community that mostly selects for agreement with itself?",
+      "source_quote": "homogeneous groups are especially vulnerable to self-reinforcing error cascades",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    },
+    {
+      "text": "Is this path unchallenged because it was vetted, or because no one wanted to be the first to speak up?",
+      "source_quote": "Each person's inaction reinforced everyone else's inaction",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use social proof as a credibility accelerant only after checking whether the endorsers share the audience's real context and incentives.",
+      "source_quote": "credibility accelerant",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Solicit independent opinions before group discussion so high-status contagion does not settle the answer too early.",
+      "source_quote": "Solicit independent opinions and rationales before group discussion",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Require a causal explanation for copied behavior so the team does not mistake correlation for why success happened.",
+      "source_quote": "copy practices that are merely correlational with success, rather than causal",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on prestige borrowing, groupthink, and keeping consensus from replacing mechanism and evidence quality.",
+    "donor_drops": [
+      "Did not preserve broader persuasion tactics because the raw source is stronger on anti-groupthink and anti-cargo-cult discipline."
+    ],
+    "open_questions": [
+      "The first heuristic compresses multiple source passages about context-matched proof so the chunk stays operational."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on signaling, incentives, and authority-bias because borrowed prestige and contagious status multiply social proof effects."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on critical-thinking and first-principles-thinking because those models resist consensus as proof."
+    ],
+    "structured_tensions": [
+      "The source has explicit conflict wording with critical-thinking and first-principles-thinking, but only clean current-vocabulary mappings should survive Wave 3."
+    ]
+  }
+}

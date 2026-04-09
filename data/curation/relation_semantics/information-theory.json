@@ -1,0 +1,63 @@
+{
+  "model_id": "information-theory",
+  "source_file": "Information_Theory_rag.md",
+  "allies": [
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory gives information-theory the working-memory boundary that explains why signal shape matters.",
+      "source_quote": "Cognitive Load Theory ... provides the neurological foundation for Information Theory's rules.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification supports information-theory when pruning makes the core signal legible without destroying the action-relevant meaning.",
+      "source_quote": "The main challenge is pruning, ordering, and packaging information so the core signal survives contact with limited working memory.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps information-theory decide which structural context must remain in the message so compression does not sever meaning from reality.",
+      "source_quote": "Systems Thinking offers the broader contextual structure within which information should be organized.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias distorts information-theory by protecting a preferred narrative instead of letting message structure reflect the real evidence.",
+      "source_quote": "Motivated reasoning processes information to reach a desired conclusion, rather than seeking the truth.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "systems-thinking",
+      "tension_text": "Information-theory conflicts with systems-thinking when compressing information for cognitive efficiency discards the interconnections that carry the system-level signal.",
+      "source_quote": "information-theory conflicts with systems-thinking (systems thinking) when compressing information for cognitive efficiency discards the interconnections that carry the system-level signal.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Information-theory conflicts with simplification when information-theoretic compression strips out noise that turns out to be a meaningful weak signal.",
+      "source_quote": "information-theory conflicts with simplification (simplification) when information-theoretic compression strips out noise that turns out to be a meaningful weak signal.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on load-aware allies and one clean anti-bias conflict rather than on an explicit structured tension block.",
+    "donor_drops": [
+      "Did not preserve donor communication ontology sprawl where the raw source mainly supports CLT, simplification, and anti-bias structure."
+    ],
+    "open_questions": [
+      "Constraints and goal-setting are source-real neighboring ideas, but cognitive-load-theory, simplification, and systems-thinking were the cleaner bounded anchors into the current graph vocabulary."
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "model_id": "first-principles-thinking",
+  "source_file": "First_Principles_Thinking_rag.md",
+  "select_when": [
+    "Existing categories, market assumptions, or inherited rules are distorting the problem rather than clarifying it.",
+    "The team needs to separate facts from conventions before deciding what is actually non-negotiable.",
+    "A novel solution requires rebuilding the argument from elemental truths instead of optimizing a stale template.",
+    "The current recommendation sounds polished, but no one has exposed the premises that make it true."
+  ],
+  "avoid_when": [
+    "First principles is being used as a status move to ignore practical constraints, accumulated know-how, or real implementation costs.",
+    "The analysis is boiling the ocean or stopping at abstraction instead of producing a concrete, actionable recommendation."
+  ],
+  "input_type": "assumption-heavy problem",
+  "output_type": "elemental truth reframing",
+  "reasoning_types": [
+    "deductive",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Focused the model on stripping assumptions, exposing premises, and rebuilding from elemental truths rather than on broad philosophy-of-truth prose.",
+    "donor_drops": [
+      "Did not preserve donor-style innovation heroics because the raw source is more useful as a disciplined assumption-breaking and problem-disaggregation model.",
+      "Did not add higher-order fields because this batch keeps Wave 4 observational only."
+    ],
+    "open_questions": [
+      "The output type is reviewed compression over a source that spans invention, communication, and rigorous problem decomposition."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on stale categories, fact-vs-convention separation, and novel solution rebuilds; review mainly compacts that surface into routing form."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The first condition is explicit in the danger line and the second combines the explicit boiling-the-ocean and stopping-at-abstraction warnings."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model activates when assumptions distort the problem, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw playbook rebuilds the argument from facts and desired outcomes; the output label compresses that into a typed reframing artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "First principles thinking clearly uses deductive and metacognitive reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

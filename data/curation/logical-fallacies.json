@@ -1,0 +1,72 @@
+{
+  "model_id": "logical-fallacies",
+  "source_file": "Logical_Fallacies_rag.md",
+  "select_when": [
+    "An argument sounds persuasive before it is valid and the inference structure needs to be checked explicitly.",
+    "Decision quality depends on separating evidence quality from presentation quality before resources are committed.",
+    "The team needs disciplined challenge of premises, causal links, or burden of proof.",
+    "A recommendation may be hiding overgeneralization, bad causality, or framework misuse under confident rhetoric."
+  ],
+  "avoid_when": [
+    "Fallacy hunting is being used performatively to score debate points instead of clarifying the decision or action path.",
+    "The situation primarily requires relationship repair or implementation design rather than another round of argumentative nitpicking."
+  ],
+  "input_type": "argument-validity and evidence-quality problem",
+  "output_type": "logic audit",
+  "reasoning_types": [
+    "deductive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Centered the model on explicit logic checking, weak inference detection, and disciplined challenge of evidence chains.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "metacognitive-questioning",
+  "source_file": "Metacognitive_Questioning_rag.md",
+  "allies": [
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking turns metacognitive questioning into disciplined probing of evidence, assumptions, and argumentative weak spots.",
+      "source_quote": "The Socratic method and Critical Thinking: MCQ is the engine behind the Socratic Method.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps metacognitive questioning move beyond isolated facts and ask how the parts hang together before committing.",
+      "source_quote": "MCQ is essential for understanding the structure and dynamics of a system. It forces the thinker to look beyond facts and see how things hang together.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "experimentation",
+      "rationale_text": "Experimentation keeps metacognitive questioning honest by turning reflection into testable next moves instead of endless introspection.",
+      "source_quote": "The model is misused when reflective questions keep postponing commitment, experimentation, or ownership instead of sharpening the next concrete move.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias makes metacognitive questioning ceremonial by asking questions that protect the current story instead of challenging it.",
+      "source_quote": "MCQ directly challenges the natural human tendency to process information to get a conclusion we want.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring weakens metacognitive questioning when the first framing or answer keeps pulling the inquiry back to the same assumptions.",
+      "source_quote": "Persisting in using familiar frames that are unhelpful or misleading for genuinely novel problems.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Metacognitive-questioning conflicts with simplification when recursive self-questioning adds deliberation overhead that degrades time-pressured decisions.",
+      "source_quote": "metacognitive-questioning conflicts with simplification (simplification) when recursive self-questioning adds deliberation overhead that degrades time-pressured decisions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confidence-calibration",
+      "tension_text": "Metacognitive-questioning conflicts with confidence-calibration when constant questioning produces paralytic doubt that undermines well-founded judgments.",
+      "source_quote": "metacognitive-questioning conflicts with confidence-calibration (confidence calibration) when constant questioning produces paralytic doubt that undermines well-founded judgments.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strong on guided self-audit, systems-aware questioning, and anti-autopilot pressure, so the file preserves that bounded first-order surface.",
+    "donor_drops": [
+      "Did not preserve donor reflection relations beyond the strongest current-vocabulary links around questioning discipline and anti-frame lock."
+    ],
+    "open_questions": [
+      "Prompt-engineering material is source-real, but the retained set favors cleaner current-vocabulary neighbor models already curated in this repo."
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "law-of-large-numbers",
+  "source_file": "Law_of_Large_Numbers_rag.md",
+  "allies": [
+    {
+      "target_model_id": "bayesian",
+      "rationale_text": "Bayesian reasoning depends on law-of-large-numbers logic because reliable priors and base rates need enough data to be trustworthy.",
+      "source_quote": "The LLN provides the critical statistical foundation for Bayesian reasoning.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base-rates operationalizes law-of-large-numbers by turning large-sample frequencies into usable priors for judgment.",
+      "source_quote": "Bayesian statistics requires a prior probability (base rate) to be established before new evidence is incorporated.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps law-of-large-numbers reason about emergence and large-scale interactions instead of isolated datapoints.",
+      "source_quote": "The LLN aligns with the systemic concept of emergence, which suggests that the whole system acquires qualitatively new properties that cannot be predicted from the simple addition of individual components.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "representativeness-heuristic",
+      "rationale_text": "Representativeness-heuristic fights law-of-large-numbers by replacing frequency data with similarity-based judgment.",
+      "source_quote": "This heuristic, a primary antagonist, causes people to evaluate probability based on similarity (representativeness) rather than actual frequency data (base rates).",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "narratives",
+      "rationale_text": "Narratives can work against law-of-large-numbers when vivid stories seduce the team away from population logic.",
+      "source_quote": "It is a strong fit when teams need population logic instead of narrative seduction.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Law-of-large-numbers conflicts with representativeness-heuristic when intuitive resemblance overrides base-rate and frequency discipline.",
+      "source_quote": "This heuristic, a primary antagonist, causes people to evaluate probability based on similarity (representativeness) rather than actual frequency data (base rates).",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "conjunction-fallacy",
+      "tension_text": "Law-of-large-numbers conflicts with conjunction-fallacy when complex multi-step plans are treated as more likely than their compounded probabilities allow.",
+      "source_quote": "The successful completion of complex undertakings often requires a series of events to occur sequentially (a conjunctive structure).",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on statistical allies and anti-small-sample conflicts, so the file preserves that first-order surface directly.",
+    "donor_drops": [
+      "Did not preserve donor relation inflation beyond the raw large-sample, base-rate, and anti-vivid-story structure."
+    ],
+    "open_questions": [
+      "Availability-style conflict is source-real, but narratives was the cleaner bounded antagonist into the current graph vocabulary."
+    ]
+  }
+}

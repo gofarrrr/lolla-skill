@@ -1,0 +1,67 @@
+{
+  "model_id": "markov-chains",
+  "source_file": "Markov_Chains_rag.md",
+  "failure_modes": [
+    {
+      "text": "A stable transition model breaks when hidden state or path dependence matters more than the current visible step.",
+      "source_quote": "memory, path dependence, or hidden state matters more than the current visible state",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test the memoryless assumption explicitly: ask whether knowing the path that led here would change the next-step forecast, and if so, add state variables."
+    },
+    {
+      "text": "Sequential plans can overfit yesterday's regime when transition probabilities have shifted.",
+      "source_quote": "yesterday's transition probabilities no longer describe today's regime",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Refit transition probabilities on recent windows and compare to the original model; if the distributions have drifted, flag regime change before acting on stale rates."
+    },
+    {
+      "text": "Hypothesis-driven workflows can magnify confirmation bias by overcommitting to a preferred path.",
+      "source_quote": "risks magnifying confirmation bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Build disconfirming branches into the state graph so the workflow forces exploration of alternatives rather than tunneling toward the preferred path."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What hidden state or memory effect would make our current-state simplification misleading?",
+      "source_quote": "hidden state matters more than the current visible state",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are the transition patterns still stable enough to trust this sequence?",
+      "source_quote": "transition patterns are stable enough",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough if this sequence fails at one critical step?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Break the process into clear states before reasoning about the next move.",
+      "source_quote": "defined steps lead to predictable outcomes",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use logic trees or decision trees to model step-wise branches explicitly.",
+      "source_quote": "Logical Decomposition and Decision Trees",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep a one-day answer so each step still connects to the broader goal.",
+      "source_quote": "What's the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ]
+}

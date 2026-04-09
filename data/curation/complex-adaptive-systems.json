@@ -1,0 +1,72 @@
+{
+  "model_id": "complex-adaptive-systems",
+  "source_file": "Complex_Adaptive_Systems_rag.md",
+  "select_when": [
+    "Many agents are adapting at once, so the environment behaves more like a living system than a fixed machine.",
+    "Feedback, delays, and incentives keep reshaping the situation, including the effects of the intervention itself.",
+    "Improving the whole depends on understanding where a small change can alter learning loops, coordination, or adaptation.",
+    "The team keeps describing parts correctly but still misses the behavior emerging from their interaction."
+  ],
+  "avoid_when": [
+    "Complexity language is being used as an alibi for not naming concrete leverage points, experiments, or ownership.",
+    "The model is being used to admire the system's complexity instead of deciding what variable, boundary, or loop actually matters next."
+  ],
+  "input_type": "multi-agent adaptive system problem",
+  "output_type": "adaptive system map",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on interdependence, adaptation, and system-level intervention choice rather than on simulation tooling sprawl.",
+    "donor_drops": [
+      "Did not preserve donor topology or simulation overlays because the raw source is already strongest on feedback-dominated adaptive systems and intervention choice.",
+      "Did not add higher-order fields because this batch remains inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans system diagnosis, organizational adaptation, and foresight about emergent behavior."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that CAS is strongest when many agents adapt at once and feedback reshapes the environment over time."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The complexity-as-alibi warning is explicit; the second anti-activation line is conservative reviewed normalization of the same boundary."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates on adaptive, multi-agent, feedback-heavy environments; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields system maps and adaptive intervention frames; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Complex adaptive systems clearly require causal and systems reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

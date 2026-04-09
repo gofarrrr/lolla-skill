@@ -1,0 +1,71 @@
+{
+  "model_id": "goal-setting",
+  "source_file": "Goal_Setting_rag.md",
+  "select_when": [
+    "Effort is scattered and the team needs one explicit outcome to align trade-offs, sequencing, and measurement.",
+    "The goal can be made concrete enough to govern daily decisions while still connecting to a larger purpose that sustains motivation.",
+    "Success depends on turning aspiration into owned checkpoints, thresholds, and review cadence rather than verbal commitment alone.",
+    "Execution quality is being limited by the lack of a clear target rather than by the lack of effort."
+  ],
+  "avoid_when": [
+    "The chosen goal is organizing action but is not being revisited often enough to reflect changed evidence, constraints, or strategic reality.",
+    "The goal optimizes what is legible or motivating while neglecting the side effects it creates elsewhere in the system."
+  ],
+  "input_type": "goal-framing problem",
+  "output_type": "execution target definition",
+  "reasoning_types": [
+    "deductive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused the model on concrete target setting, coordination, and execution governance rather than broad motivational language.",
+    "donor_drops": [
+      "Did not preserve donor-style performance-coaching overlays because the raw source is already strong on strategic concreteness and sequencing discipline.",
+      "Did not add higher-order fields because this batch keeps Wave 4 observational only."
+    ],
+    "open_questions": [
+      "The source mixes personal, organizational, and communication examples, so the typed fields are reviewed operational compression over a broad but coherent activation surface."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The activation bullets are explicit in the raw strengths section; review mainly compresses them into routing-ready triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit danger lines in the limitations section."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about situations where the work needs a clear objective; the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model produces concrete outcomes, checkpoints, and measurable direction; the output label compresses that into a routing artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Goal setting clearly uses systems and deductive sequencing, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

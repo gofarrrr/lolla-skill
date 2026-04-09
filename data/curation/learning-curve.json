@@ -1,0 +1,70 @@
+{
+  "model_id": "learning-curve",
+  "source_file": "Learning_Curve_rag.md",
+  "select_when": [
+    "Performance is expected to improve through repetition, feedback, and chunked skill-building rather than one-off inspiration.",
+    "Leaders need to distinguish temporary beginner inefficiency from a capability that compounds with deliberate practice.",
+    "The real question is not whether the team can do the work once, but how quickly it can become reliably good at it.",
+    "Skill acquisition depends on integrating many specific sub-skills rather than vague general ability claims."
+  ],
+  "avoid_when": [
+    "Early progress is being mistaken for mastery and responsibility is scaling faster than capability has actually consolidated.",
+    "A familiar framework is being reapplied mechanically because it worked before, even though the current problem may require a new pattern."
+  ],
+  "input_type": "capability-ramp question",
+  "output_type": "compounding-skill path",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on capability ramp quality, anti-false-mastery, and compounding skill acquisition rather than on generic expertise rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor productivity-program sprawl because the raw source is already strongest on repetition, feedback, and the consolidation path to reliable performance."
+    ],
+    "open_questions": [
+      "The source also reaches into adaptive strategy and communication, but the operational file stays on capability growth and misread progress."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly says the model is strongest when performance compounds through repetition and feedback and when leaders must judge ramp quality over time."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The source explicitly warns about mistaking early progress for mastery and about reusing handy frameworks through substitution bias."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is strongest on ramping capability and skill consolidation; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source yields a compounding path toward reliable performance; the output label compresses that into a short intervention type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses growth quality and links practices to later capability, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

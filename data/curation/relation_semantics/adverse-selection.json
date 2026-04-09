@@ -1,0 +1,101 @@
+{
+  "model_id": "adverse-selection",
+  "source_file": "Adverse Selection_rag.md",
+  "allies": [
+    {
+      "target_model_id": "system-2",
+      "rationale_text": "System-2 is the cognitive engine that adverse-selection analysis requires — deliberate, rule-governed processing provides the structures and logic needed to override System 1's lazy shortcuts and evaluate hidden-information signals objectively.",
+      "source_quote": "System 2, the deliberate and rational system, directs attention and searches memory to find answers. Mental models provide System 2 with the necessary structures and logic to engage in non-intuitive, algorithmic thinking, overriding the lazy or emotional responses of System 1.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking helps adverse-selection strip away inherited assumptions and inspect the real selection mechanism underneath a screening problem.",
+      "source_quote": "This model involves stripping away assumptions to leave only a set of core facts and a desired outcome, allowing a problem solver to forge a novel solution.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps adverse-selection trace how hidden-information filters interact with broader system structure and incentives.",
+      "source_quote": "Mental models enhance systems thinking by helping ascertain how parts in a system interact and what emerges from that interaction, leading to smarter planning and better decisions.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking supports adverse-selection by stepping outside the current frame and testing whether the chosen model is actually working.",
+      "source_quote": "Critical thinking requires stepping outside one's current mental models to examine neutrally whether they are working and how.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "system-1",
+      "rationale_text": "System-1's fast, emotional, and shortcut-driven processing undermines adverse-selection analysis by substituting intuitive pattern-matching for the deliberate hypothesis testing needed to identify hidden-information traps.",
+      "source_quote": "The 'lower-level emotional part' of the brain often fights the 'upper-level logical part'... Mental models, which rely on logic and evidence, struggle when decisions are driven by strong emotions, which tend to reduce one's capacity for methodical deliberation.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "curse-of-knowledge",
+      "rationale_text": "Curse-of-knowledge corrupts adverse-selection by making experts unable to communicate the reasoning behind screening decisions — they present abstract conclusions rather than the concrete stories that make the selection mechanism legible to others.",
+      "source_quote": "Experts struggle to communicate their mental models because they cannot remember what it was like not to know the information. This often leads experts to communicate in abstract, jargon-filled slogans rather than concrete, useful stories, which ultimately renders their sophisticated model useless to the audience.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-biases",
+      "rationale_text": "Cognitive-biases undermine adverse-selection analysis by pushing the operator toward shortcut-driven judgment instead of objective hypothesis testing.",
+      "source_quote": "Mental models are used to combat biases, which are the tendency of the brain to take shortcuts.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "algorithmic-thinking",
+      "tension_text": "Adverse-selection conflicts with algorithmic-thinking when rule-based screening magnifies hidden-information asymmetry in the inputs.",
+      "source_quote": "adverse-selection conflicts with algorithmic-thinking (algorithmic thinking) when rule-based screening amplifies hidden-information asymmetry in input data.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "tension_text": "Adverse-selection conflicts with systems-thinking when a local screening fix shifts risk elsewhere in the broader system.",
+      "source_quote": "adverse-selection conflicts with systems-thinking (systems thinking) when local screening fixes shift risk upstream or downstream in the broader system.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Adverse-selection conflicts with confirmation-bias when screeners overweight the signals that fit their prior beliefs about quality.",
+      "source_quote": "adverse-selection conflicts with confirmation-bias (confirmation bias) when screeners selectively weight signals that confirm their prior beliefs about counterparty quality rather than updating on all available evidence.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "This tail model turned out stronger than expected because the raw file contains a clean explicit tension block and several conservative first-order ally mappings.",
+    "donor_drops": [
+      "Did not preserve donor-added relation overlays such as moral-hazard because this batch stays source-first and first-order only."
+    ],
+    "open_questions": [
+      "System-2 wired as ally (Task 4.1 sweep); system-1 and curse-of-knowledge wired as antagonists (Task 4.1 sweep).",
+      "Emotional-thinking remains deferred — no clean canonical id distinct from system-1."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "The raw ally section also contains fast/slow thinking and metacognitive reflection language that is richer than the current canonical target surface."
+    ],
+    "antagonists": [
+      "Curse of knowledge and emotional / lower-level thinking remain explicit raw antagonists, but this batch avoided forced approximations."
+    ]
+  }
+}

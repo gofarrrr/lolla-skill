@@ -1,0 +1,87 @@
+{
+  "model_id": "narratives",
+  "source_file": "Narratives_rag.md",
+  "failure_modes": [
+    {
+      "text": "A clean story arc can outrun evidence quality and create more certainty than the proof warrants.",
+      "source_quote": "Danger when story coherence outruns evidence quality",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require the narrator to list what the story leaves out: every clean arc should be paired with the uncertainties, trade-offs, and alternative interpretations it compressed away."
+    },
+    {
+      "text": "Narrative compression can erase genuine uncertainty, trade-offs, or contingencies by turning them into false inevitability.",
+      "source_quote": "Danger when the narrative compresses genuine uncertainty into false inevitability",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Test narrative claims against base-rate data: if the story implies inevitability, check whether the reference class of similar situations shows the same trajectory."
+    },
+    {
+      "text": "Motivated reasoners can use rhetorical skill to persuade themselves toward a desired conclusion instead of seeking objective truth.",
+      "source_quote": "Motivated Reasoning/Inside View",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Appoint a designated counter-narrator who constructs an equally plausible story from the same evidence but with the opposite conclusion."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which missing evidence, trade-off, or contingency disappears if we tell this as one tidy story?",
+      "source_quote": "making contingencies, trade-offs, or missing evidence disappear",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we using the story to clarify causal meaning or to paper over uncertainty we do not want to face?",
+      "source_quote": "story coherence outruns evidence quality",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Can the core message still hold if we strip away every detail that does not serve the central purpose?",
+      "source_quote": "Focus on the Core and Concrete",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use narrative to make causality memorable, but keep the operational point and evidence trace visible.",
+      "source_quote": "one clear line of meaning without losing the operational point",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep the core message concrete and small enough that people can act on it rather than just admire the story.",
+      "source_quote": "Rule of Three",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Seek the outside view before trusting a compelling story, especially when the arc feels too clean.",
+      "source_quote": "Seek the Outside View",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on causal storytelling, adoption framing, and preventing clean arcs from erasing uncertainty or evidence gaps.",
+    "donor_drops": [
+      "Did not preserve broader storytelling rhetoric because the raw source is stronger on evidence discipline and operational clarity."
+    ],
+    "open_questions": [
+      "The first heuristic compresses several source passages on causal sequencing and operational point retention so the chunk stays compact."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on abstraction, simplification, and signaling because narrative makes causal meaning legible and sticky."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on formal-reasoning, critical-thinking, and confirmation-bias because narrative quality can outrun proof quality."
+    ],
+    "structured_tensions": [
+      "The source is clearest on anti-pattern pressure rather than explicit current-vocabulary tension blocks, so structured tensions should stay conservative."
+    ]
+  }
+}

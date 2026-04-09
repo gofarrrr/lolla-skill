@@ -1,0 +1,64 @@
+{
+  "model_id": "aleatory-epistemic-uncertainty-recognition",
+  "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+  "allies": [
+    {
+      "target_model_id": "risk-vs-uncertainty",
+      "rationale_text": "Risk-vs-uncertainty gives aleatory-epistemic-uncertainty-recognition a nearby decision surface for separating measurable risk from unresolved ignorance.",
+      "source_quote": "different forms of decision-making and analysis are required for each type",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base-rates helps aleatory-epistemic-uncertainty-recognition discipline the inside view with outside-view statistical grounding.",
+      "source_quote": "anchoring decisions in the outside view",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias prevents aleatory-epistemic-uncertainty-recognition from updating ignorance honestly because disconfirming evidence never changes the uncertainty map.",
+      "source_quote": "prevents recognition of disconfirming evidence needed to reduce epistemic ignorance",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Aleatory-epistemic-uncertainty-recognition conflicts with commitment-bias when teams persist with single-path plans despite unresolved unknowns.",
+      "source_quote": "aleatory-epistemic-uncertainty-recognition vs commitment-bias: aleatory-epistemic-uncertainty-recognition conflicts with commitment-bias when teams persist with single-path plans despite unresolved unknowns.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Aleatory-epistemic-uncertainty-recognition conflicts with status-quo-bias when default continuation replaces uncertainty-aware contingencies.",
+      "source_quote": "aleatory-epistemic-uncertainty-recognition vs status-quo-bias: aleatory-epistemic-uncertainty-recognition conflicts with status-quo-bias when default continuation replaces uncertainty-aware contingencies.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Aleatory-epistemic-uncertainty-recognition conflicts with confirmation-bias when the tendency to confirm existing beliefs prevents recognition of disconfirming evidence needed to reduce epistemic ignorance.",
+      "source_quote": "aleatory-epistemic-uncertainty-recognition vs confirmation-bias: aleatory-epistemic-uncertainty-recognition conflicts with confirmation-bias when the tendency to confirm existing beliefs prevents recognition of disconfirming evidence needed to reduce epistemic ignorance.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The relation file keeps the strongest current-vocabulary surface from the raw source: outside-view and uncertainty-splitting allies plus the explicit anti-bias tension block.",
+    "donor_drops": [
+      "Did not widen into broader probabilistic graph neighbors because the raw explicit tension block already gives a clear first-order surface."
+    ],
+    "open_questions": [
+      "Systems-thinking is a source-real ally, but risk-vs-uncertainty and base-rates were the cleaner bounded anchors."
+    ]
+  }
+}

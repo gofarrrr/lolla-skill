@@ -1,0 +1,87 @@
+{
+  "model_id": "combinatorial-effects",
+  "source_file": "Combinatorial_Effects_rag.md",
+  "failure_modes": [
+    {
+      "text": "Treating a lollapalooza outcome as if it had one cause hides the interacting forces that actually made it possible.",
+      "source_quote": "combinatorial effects that create lollapalooza consequences",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Map the interacting forces explicitly: if the outcome required more than one factor, label each and trace how they combined rather than crediting a single cause."
+    },
+    {
+      "text": "False pattern recognition makes a novel interacting system look like a familiar one-cause problem.",
+      "source_quote": "I have seen this one before, it is an X problem",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Challenge any one-cause explanation of a surprising outcome by asking which additional conditions were necessary for it to happen."
+    },
+    {
+      "text": "Motivated reasoning can force the team to explain away interactions that threaten a preferred story.",
+      "source_quote": "motivated reasoning",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Separate the evidence for each interacting force before allowing a narrative synthesis; motivated reasoning hides behind the combined story."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which forces are aligned here, and what happens if one of the supposedly minor drivers is removed from the combination?",
+      "source_quote": "multiple factors or forces, when aligned and interacting",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we seeing the whole interacting system, or only the most vivid contributor?",
+      "source_quote": "multiple factors shape almost every system",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What assumptions are we making when we claim these drivers will compound rather than cancel each other out?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Map interacting pressures across disciplines before naming the dominant mechanism.",
+      "source_quote": "ignore jurisdictional boundaries and synthesize the best ideas",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use symphony-style synthesis to see how multiple elements produce an outsized whole.",
+      "source_quote": "symphony",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Prefer cross-checking compound drivers with feedback and second-order consequence analysis before acting.",
+      "source_quote": "second-order effects",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

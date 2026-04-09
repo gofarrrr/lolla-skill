@@ -1,0 +1,85 @@
+{
+  "model_id": "information-asymmetry",
+  "source_file": "Information_Asymmetry_rag.md",
+  "allies": [
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "The Feynman Technique helps expose blind spots and convert hidden unknowns into inspectable knowledge.",
+      "source_quote": "By forcing the practitioner to simplify a concept until it can be explained in \"plain English\" ... it reveals blind spots and \"chinks in your armor,\" thereby transforming known unknowns into known knowns.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive Load Theory disciplines how hidden knowledge gets transferred so expert complexity does not overwhelm the learner.",
+      "source_quote": "Applying CLT principles (like scaffolding) mitigates IA in teaching by simplifying complex material into small, incremental chunks.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems Thinking helps classify known and unknown risks so information gaps become visible rather than assumed away.",
+      "source_quote": "This matrix helps systematically identify the risks that create IA, such as \"known unknowns\" ... and \"unknown unknowns\".",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "system-1",
+      "rationale_text": "System-1 entrenches information asymmetry by jumping to conclusions from available evidence — its speed-optimized shortcuts avoid the deliberative effort System 2 would use to recognize and investigate informational gaps, so IA persists undetected.",
+      "source_quote": "System 1 is optimized for speed and uses shortcuts (heuristics). When IA presents complexity, System 1 tends to avoid the 'rigors of thinking' and jumps to conclusions based on intuitive, often erroneous, patterns, rather than slowing down to engage the deliberative effort required by System 2 to gather missing information and recognize bias.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "wysiati",
+      "rationale_text": "WYSIATI amplifies information asymmetry by suppressing recognition of one's own informational gaps — available information feels complete, preventing the investigation that would surface what the other party knows and the observer does not.",
+      "source_quote": "The raw source is rich on WYSIATI, Maslow's Hammer / Availability Heuristic, and fast System 1 as antagonistic pressure.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "einstellung-effect",
+      "rationale_text": "Einstellung-effect undermines information-asymmetry analysis by substituting familiar diagnostic tools for genuine investigation — the existing-solution fixation blocks the problem-recognition step needed to surface hidden informational gaps.",
+      "source_quote": "Maslow's Hammer / Availability Heuristic: These models describe the tendency to rely on the tools or mental models that are most familiar or 'handy'... This prevents necessary investigation into the underlying informational gaps.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "principal-agent-problem",
+      "tension_text": "Information asymmetry and principal-agent-problem pull against each other when hidden agent information distorts principal decisions.",
+      "source_quote": "information-asymmetry conflicts with principal-agent-problem (principal agent problem) when hidden agent information skews principal decisions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Information asymmetry and confirmation bias reinforce each other when selective disclosure hardens existing beliefs.",
+      "source_quote": "information-asymmetry conflicts with confirmation-bias (confirmation bias) when selective disclosure reinforces existing beliefs.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is unusually strong on allies and explicit tensions, but several named antagonists do not map cleanly to current canonical model ids.",
+    "donor_drops": [
+      "Did not preserve donor-added relation overlays beyond what the raw source itself supports.",
+      "Did not force WYSIATI or System 1 phrases into broader target ids just to inflate antagonist counts."
+    ],
+    "open_questions": [
+      "WYSIATI wired in Task 3.3 sweep via new canonical wysiati model.",
+      "Maslow's Hammer wired in Task 2.5 sweep via einstellung-effect mapping.",
+      "System-1 wired as antagonist (Task 4.1 sweep)."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "antagonists": [
+      "The raw source is rich on WYSIATI, Maslow's Hammer / Availability Heuristic, and fast System 1 as antagonistic pressure, but these were not forced into approximate target ids in this pilot."
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "model_id": "regression-to-the-mean",
+  "source_file": "Regression_To_The_Mean_rag.md",
+  "select_when": [
+    "A result looks dramatic, but causality is weak and the team may be explaining variance with a confident story too early.",
+    "Decision quality depends on anchoring to base rates, longer-run distributions, and repeated measurement instead of the loudest recent datapoint.",
+    "Rewards, punishments, or process changes occurred next to an extreme outcome, so the team may over-credit the intervention.",
+    "The real question is whether performance shifted structurally or merely deviated from the mean for a while."
+  ],
+  "avoid_when": [
+    "There is evidence that the underlying system, market, or process quality has genuinely changed, so waiting for reversion would ignore a new mean.",
+    "Regression-to-the-mean is being used as a lazy wait-and-see excuse when the deteriorating trend actually requires intervention."
+  ],
+  "input_type": "extreme recent result",
+  "output_type": "variance-vs-signal check",
+  "reasoning_types": [
+    "causal",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on variance discipline, outside-view anchoring, and resisting noisy causal stories rather than broad statistics instruction.",
+    "donor_drops": [
+      "Did not preserve donor-style analytics overlays because the raw source is already explicit on base-rate discipline and structural-change checks.",
+      "Did not add higher-order fields because this batch stops at the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The first avoid-when condition is explicit in substance but still lightly compressed from the raw warning about true system change."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit about dramatic outcomes, weak causality, and baseline discipline; the final triggers mainly compress that surface into routing form."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit warnings about real system change and the lazy wait-and-see trap."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates on extreme deviations and noisy streaks, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model separates noise from structural change; the output label compresses that into an operational check."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Regression to the mean clearly uses probabilistic and causal reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

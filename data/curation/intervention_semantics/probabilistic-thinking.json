@@ -1,0 +1,87 @@
+{
+  "model_id": "probabilistic-thinking",
+  "source_file": "Probabilistic_Thinking_rag.md",
+  "failure_modes": [
+    {
+      "text": "Over-reliance on the mean can hide low-probability, high-impact outcomes that matter more than the base case.",
+      "source_quote": "Over-reliance on the Mean Outcome",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Report the full distribution, not just the expected value: require decision-makers to acknowledge tail scenarios and state what level of downside they can absorb."
+    },
+    {
+      "text": "Availability and representativeness can distort probability estimates by privileging vivid stories over statistical fit.",
+      "source_quote": "Availability Bias and Representativeness",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Calibrate estimates against base rates and reference classes before adjusting for case-specific details; flag any estimate that deviates sharply from the outside view."
+    },
+    {
+      "text": "False precision can make uncertainty look solved when the team is really only hiding what it does not know.",
+      "source_quote": "The Flaw of False Precision",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Label confidence intervals honestly: when uncertainty is high, widen the range rather than narrowing it for false comfort, and flag any precision that exceeds the data quality."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "\"Is the worst case bad enough?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What data is missing that might spoil our story?",
+      "source_quote": "\"What data is missing that might spoil our story?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What percentage confidence do I have in this estimate, and what information would narrow that range?",
+      "source_quote": "\"What percentage confidence do I have in this estimate, and what information would narrow that range?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Frame decisions as expected-value calculations instead of looking for options with no downside at all.",
+      "source_quote": "Expected Value Calculations",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Decorrelate errors by collecting independent probability judgments before group discussion starts.",
+      "source_quote": "Obtain multiple, independent judgments or probabilistic assessments on the issue before any group discussion.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Run sensitivity analysis and communicate uncertainty ranges explicitly instead of pretending to know more than you do.",
+      "source_quote": "Sensitivity Analysis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on uncertainty discipline, biased estimates, and explicit probability communication.",
+    "donor_drops": [
+      "Did not preserve donor forecasting overlays that widened beyond the raw source's stronger uncertainty-discipline playbook."
+    ],
+    "open_questions": [
+      "The second heuristic is slightly compressed from the mitigation table so it stays compact as a reusable intervention chunk."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems thinking, hypothesis-driven problem solving, and metacognition for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on confirmation bias, framing effects, and System 1 distortions."
+    ],
+    "structured_tensions": [
+      "The source lacks an explicit structured tension block, so any later tension preservation should stay conservative and review-first."
+    ]
+  }
+}

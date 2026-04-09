@@ -1,0 +1,36 @@
+{
+  "model_id": "einstellung-effect",
+  "source_file": "Einstellung_Effect_rag.md",
+  "select_when": [
+    "An experienced team keeps reaching for the same proven frame even though the situation feels structurally different.",
+    "The first solution arrived suspiciously fast and there is reason to think expertise is blinding the group to alternatives.",
+    "A problem requires reframing, cross-domain analogies, or deliberate interruption of the dominant mental template.",
+    "People are assuming they have seen this one before without pressure-testing that assumption."
+  ],
+  "avoid_when": [
+    "Avoid-fixation language is becoming a reason to reject all prior knowledge instead of distinguishing helpful pattern recognition from stale lock-in.",
+    "The team already has strong evidence that the familiar pattern truly fits and is using anti-fixation rhetoric to keep reopening a settled question."
+  ],
+  "input_type": "fixated problem frame",
+  "output_type": "de-fixation prompt",
+  "reasoning_types": [
+    "metacognitive",
+    "counterfactual"
+  ],
+  "curation_notes": {
+    "summary": "Focused on stale pattern lock-in, expertise traps, and deliberate de-fixation rather than on generic creativity slogans.",
+    "donor_drops": [
+      "Did not preserve broader learning-science sprawl because the raw source is already strongest on fixation and frame interruption."
+    ],
+    "open_questions": [
+      "The source overlaps with teaching and creativity, but the operational file stays on stale-solution lock-in."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on experienced teams reusing old frames, suspiciously fast answers, and the need for reframing or interruption."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source explicitly warns against overcorrecting by discarding all prior knowledge instead of distinguishing fresh pattern recognition from stale fixation."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed label compresses the raw fixation conditions into a stable routing identity."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures the intervention as de-fixation rather than generic ideation."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model relies on reflective interruption of a stuck frame and counterfactual alternative search."}
+  }
+}

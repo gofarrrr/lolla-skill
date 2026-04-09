@@ -1,0 +1,70 @@
+{
+  "model_id": "divergent-vs-convergent-thinking",
+  "source_file": "Divergent_Vs_Convergent Thinking_rag.md",
+  "select_when": [
+    "The team is either collapsing to the first workable idea or endlessly ideating without a real selection moment.",
+    "The problem is novel enough to need broad option generation but consequential enough to require disciplined narrowing afterward.",
+    "Creative exploration and critical evaluation are both necessary, but harmful when mixed at the same time."
+  ],
+  "avoid_when": [
+    "Participants are switching modes so chaotically that neither ideation nor evaluation is being done well.",
+    "The problem already has a clear bounded answer and extra divergence would only delay execution."
+  ],
+  "input_type": "expand-then-narrow problem",
+  "output_type": "sequenced option cycle",
+  "reasoning_types": [
+    "analogical",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on deliberate alternation between idea expansion and disciplined narrowing rather than on generic creativity language.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

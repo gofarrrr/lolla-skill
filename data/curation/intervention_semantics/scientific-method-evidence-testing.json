@@ -1,0 +1,87 @@
+{
+  "model_id": "scientific-method-evidence-testing",
+  "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+  "failure_modes": [
+    {
+      "text": "Confirmation bias can turn evidence gathering into answer defense instead of genuine pressure-testing.",
+      "source_quote": "Confirmation Bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Design falsifiable tests: before gathering evidence, specify what result would disprove the hypothesis, and commit to accepting that outcome."
+    },
+    {
+      "text": "Anchoring on the first hypothesis can block equal evaluation of alternative explanations.",
+      "source_quote": "Anchoring Bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Generate competing hypotheses upfront: require at least two alternative explanations and evaluate evidence against all of them, not just the first."
+    },
+    {
+      "text": "Motivated reasoning can make the process look scientific while quietly steering evidence toward the desired conclusion.",
+      "source_quote": "Motivated Reasoning",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate the evidence-gathering process from the hypothesis advocate: assign different people to collect data and to defend the preferred theory."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "\"What would you have to believe?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What key outputs can I measure?",
+      "source_quote": "\"What key outputs can I measure?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "\"Is the worst case bad enough?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Structure the work with a hypothesis pyramid so each sub-claim can be tested conclusively.",
+      "source_quote": "Hypothesis Pyramid",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Do not boil the ocean; gather only enough facts to prove or disprove the hypothesis.",
+      "source_quote": "\"Don't Boil the Ocean\"",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the dialectic standard so every thesis meets an antithesis before synthesis.",
+      "source_quote": "Dialectic Standard",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on disconfirming test structure, measurable outputs, and anti-answer-defense discipline.",
+    "donor_drops": [
+      "Did not preserve donor-style research-process detail beyond the raw source's stronger hypothesis and evidence gating playbook."
+    ],
+    "open_questions": [
+      "The failure-mode labels come from a later risk table rather than from the earlier anti-pattern block because they are more operationally precise."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems-thinking, design-thinking, and Feynman-technique as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonists section is thinner than the explicit tension block, so most conflict preservation belongs in Wave 3."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against confirmation-bias, status-quo-bias, and anchoring."
+    ]
+  }
+}

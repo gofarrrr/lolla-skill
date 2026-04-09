@@ -1,0 +1,70 @@
+{
+  "model_id": "cultural-intelligence",
+  "source_file": "Cultural_Intelligence_rag.md",
+  "select_when": [
+    "The same facts are being interpreted through different human worlds shaped by norms, status, pressure, or local context.",
+    "Adoption matters as much as analysis, and a recommendation will fail unless it is translated into the language and motivations of the people who must act.",
+    "Leaders need to separate stereotype from situated truth and understand whether behavior is driven by role, culture, pressure, or history.",
+    "A diverse group or cross-context team needs better perspective taking before it can coordinate effectively."
+  ],
+  "avoid_when": [
+    "Cultural understanding is being used as a polite label for untested assumptions about motives, resistance, or alignment.",
+    "The problem is being reduced to culture talk when the real issue is a concrete incentive, role, or process failure that should be named directly."
+  ],
+  "input_type": "cross-context interpretation problem",
+  "output_type": "context-aware coordination read",
+  "reasoning_types": [
+    "diagnostic",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on context-specific interpretation, stereotype avoidance, and adoption-relevant translation rather than broad diversity rhetoric.",
+    "donor_drops": [
+      "Did not widen into generic inclusion language because the raw source is strongest on perspective taking, situated truth, and anti-stereotype discipline."
+    ],
+    "open_questions": [
+      "The output label compresses organizational, cultural, and interpersonal surfaces into one coordination-focused artifact."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The strengths section explicitly supports different human worlds, adoption-sensitive translation, stereotype avoidance, and diverse-team coordination."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both avoid conditions come directly from the raw warning about cultural understanding becoming an untested assumption label."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around cross-context interpretation and coordination, while the compact type label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The playbook yields a context-aware read of how coordination and adoption will work; the output label compresses that surface."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses situated human differences and reasons systemically about how those differences affect organizational outcomes."
+    }
+  }
+}

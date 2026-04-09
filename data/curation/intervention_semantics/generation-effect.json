@@ -1,0 +1,87 @@
+{
+  "model_id": "generation-effect",
+  "source_file": "Generation_Effect_rag.md",
+  "failure_modes": [
+    {
+      "text": "Passive exposure can create brittle understanding because people can repeat the wording without generating the reasoning for themselves.",
+      "source_quote": "Most useful when retention, understanding, or alignment depends on people producing the explanation, hypothesis, or plan themselves instead of merely hearing it.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require learners to generate explanations, not just recognize or repeat them; passive exposure creates brittle understanding."
+    },
+    {
+      "text": "Complex ideas can remain shallow when teams never have to convert them into their own explanation, concept map, or plan.",
+      "source_quote": "The Generation Effect is most powerful when dealing with complexity and abstraction.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Have teams convert complex ideas into their own concept maps, summaries, or plans before accepting that understanding has occurred."
+    },
+    {
+      "text": "Self-generation can turn into bluffing if it replaces expert correction, evidence checks, or external calibration.",
+      "source_quote": "Danger when \"generate your own answer\" becomes an excuse to skip expert correction, evidence checks, or external calibration.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Pair self-generation with expert correction and evidence checks; generating answers without calibration can entrench errors."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Can the team generate the explanation or plan in its own words, or is it only borrowing polished language it has heard before?",
+      "source_quote": "Most useful when retention, understanding, or alignment depends on people producing the explanation, hypothesis, or plan themselves instead of merely hearing it.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What evidence check or outside correction are we skipping because self-generated confidence feels satisfying enough?",
+      "source_quote": "Danger when \"generate your own answer\" becomes an excuse to skip expert correction, evidence checks, or external calibration.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If this explanation had to survive an analogy test, where would its weak spots or hidden simplifications show up first?",
+      "source_quote": "The Analogy Test (Feynman Step 4)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Make people generate the explanation, hypothesis, or plan themselves instead of only consuming the finished version.",
+      "source_quote": "Most useful when retention, understanding, or alignment depends on people producing the explanation, hypothesis, or plan themselves instead of merely hearing it.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use concept maps, chunking, or structured articulation to turn abstract material into generated understanding.",
+      "source_quote": "Generating a concept map helps organize material and make clear the connections between different ideas.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Separate discovery from delivery so the hard generation work sharpens understanding without overloading the final communication.",
+      "source_quote": "Separating Discovery from Delivery",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on active articulation, concept generation, and external calibration rather than on broad brainstorming language.",
+    "donor_drops": [
+      "Did not preserve donor creativity-workshop overlays because the raw source is already strongest on memory, understanding, and self-generated explanation."
+    ],
+    "open_questions": [
+      "The source is also useful for communication design, but the intervention chunks stay anchored to generation as a comprehension mechanism."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on cognitive-load-theory, feynman-technique, and structured explanation."
+    ],
+    "antagonists": [
+      "The source strongly resists fast-thinking fluency and unsupported self-generated certainty."
+    ],
+    "structured_tensions": [
+      "The model has clean tension around skipping calibration or confusing self-produced wording with validated understanding."
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "model_id": "optionality",
+  "source_file": "Optionality_rag.md",
+  "allies": [
+    {
+      "target_model_id": "experimentation",
+      "rationale_text": "Experimentation helps optionality buy learning cheaply before the irreversible choice is forced.",
+      "source_quote": "Most useful when uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "trade-offs",
+      "rationale_text": "Trade-offs helps optionality compare multiple paths by making the downside and sacrificed alternatives explicit instead of binary.",
+      "source_quote": "By generating numerous options, this mental model aims to make decision-making more effective and helps compare the upside potential against the risk of the downside potential.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "decision-trees",
+      "rationale_text": "Decision-trees help optionality model branching choices and probabilistic outcomes instead of treating the future as one track.",
+      "source_quote": "decision trees can be used, particularly if some choices are probabilistic in nature",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias shrinks optionality by locking attention onto the preferred path and filtering out superior alternatives.",
+      "source_quote": "Confirmation bias causes us to seek information that confirms an initial belief or preferred option, leading to an inability to see superior alternatives.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "commitment-and-consistency-bias",
+      "rationale_text": "Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
+      "source_quote": "Cognitive Dissonance and Commitment/Consistency",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "commitment-bias",
+      "tension_text": "Optionality conflicts with commitment-bias when preserving options delays the commitment needed to capture time-sensitive value.",
+      "source_quote": "optionality conflicts with commitment-bias (commitment bias) when preserving options delays the commitment needed to capture time-sensitive value.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "prioritization",
+      "tension_text": "Optionality conflicts with prioritization when keeping all options open prevents the ruthless elimination that focused execution requires.",
+      "source_quote": "optionality conflicts with prioritization (prioritization) when keeping all options open prevents the ruthless elimination that focused execution requires.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on ally and antagonist logic rather than on an explicit tension block, so the file preserves that smaller first-order surface.",
+    "donor_drops": [
+      "Did not preserve donor relation inflation where the raw source did not provide an explicit structured tension block."
+    ],
+    "open_questions": [
+      "Systems-thinking is a source-real ally, but experimentation, trade-offs, and decision-trees were the cleaner bounded links into the current graph."
+    ]
+  }
+}

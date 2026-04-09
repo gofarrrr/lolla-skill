@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "sections": {
+    "structural_pressure": {
+      "label": "Structural Pressure",
+      "finding_fields": [
+        "tendency_name",
+        "severity",
+        "specific_passage",
+        "challenge_statement",
+        "intervention_hint",
+        "next_move",
+        "selected_model_ids",
+        "is_trusted_surface",
+        "sub_pattern",
+        "major_tensions"
+      ],
+      "compound_fields": [
+        "compound_id",
+        "label",
+        "description",
+        "member_tendency_ids",
+        "tier",
+        "findings"
+      ],
+      "empty_states": {
+        "correct_silence": {
+          "title": "No structural pressure detected",
+          "message": "The reasoning in this answer does not exhibit detectable cognitive tendencies. This is a valid outcome, not a failure."
+        },
+        "timeout_failure": {
+          "title": "Detection incomplete",
+          "message": "N boundary calls timed out. Results may be partial.",
+          "severity": "warning"
+        }
+      }
+    },
+    "companion": {
+      "label": "Model Companion",
+      "chunk_type_order": [
+        "failure_mode",
+        "premortem",
+        "heuristic",
+        "ally",
+        "antagonist",
+        "identity"
+      ],
+      "empty_states": {
+        "no_models": {
+          "title": "No mental models detected",
+          "message": "No mental models were detected in this answer."
+        }
+      }
+    },
+    "frame_pressure": {
+      "label": "Frame Pressure",
+      "element_type_order": ["assumption", "mutable_constraint", "suppressed_counterfactual"],
+      "move_type_labels": {
+        "inversion": "Inversion",
+        "perspective_shift": "Perspective Shift",
+        "scope_expansion": "Scope Expansion",
+        "constraint_relaxation": "Constraint Relaxation"
+      },
+      "empty_states": {
+        "no_frame_elements": {
+          "title": "No frame pressure detected",
+          "message": "The question does not contain detectable embedded assumptions, mutable constraints, or suppressed counterfactuals. This is a valid outcome — the question is well-framed."
+        }
+      }
+    },
+    "inspector": {
+      "label": "Run Inspector",
+      "funnel_stages": [
+        {"key": "total_tendencies", "label": "tendencies", "default": 25},
+        {"key": "triggered", "label": "triggered"},
+        {"key": "detected", "label": "detected"},
+        {"key": "routed", "label": "routed"},
+        {"key": "output", "label": "DeltaCard", "terminal": true}
+      ]
+    }
+  },
+  "severity_colors": {
+    "high": {"token": "--red", "hex": "#ff5a5a"},
+    "medium": {"token": "--green", "hex": "#C4FF4D"},
+    "low": {"token": "--text-dim"}
+  },
+  "chunk_type_colors": {
+    "failure_mode": {"token": "--red", "hex": "#ff5a5a"},
+    "premortem": {"token": "--green", "hex": "#C4FF4D"},
+    "heuristic": {"token": "--green", "hex": "#C4FF4D"},
+    "ally": {"token": "--purple", "hex": "#BA8CFF"},
+    "antagonist": {"token": "--red", "hex": "#ff5a5a"},
+    "identity": {"token": "--text-dim"}
+  },
+  "section_labels": {
+    "structural_pressure": "STRUCTURAL PRESSURE",
+    "companion": "MODEL COMPANION",
+    "frame_pressure": "FRAME PRESSURE",
+    "inspector": "RUN INSPECTOR",
+    "antidote": "antidote",
+    "anti_echo": "Anti-echo"
+  }
+}

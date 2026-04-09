@@ -1,0 +1,75 @@
+{
+  "model_id": "consulting-firms-methodology",
+  "source_file": "consulting_firms_methodology_rag.md",
+  "allies": [
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition strengthens consulting-firms-methodology by turning vague issues into hypothesis-testable parts.",
+      "source_quote": "breaking it down into manageable parts",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "root-cause-analysis",
+      "rationale_text": "Root-cause-analysis strengthens consulting-firms-methodology by keeping diagnosis at the machine level instead of stopping at symptoms.",
+      "source_quote": "thinking of an organization or system as a machine",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias corrupts consulting-firms-methodology when the initial hypothesis becomes politically protected instead of rigorously tested.",
+      "source_quote": "risk of confirmation bias",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "empathy",
+      "tension_text": "Consulting-firms-methodology conflicts with empathy when framework-complete recommendations miss stakeholder adoption frictions.",
+      "source_quote": "consulting-firms-methodology vs empathy: framework-complete recommendations miss stakeholder adoption frictions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "optimization-theory",
+      "tension_text": "Consulting-firms-methodology conflicts with optimization-theory when slide-level objective tuning weakens execution coherence across teams.",
+      "source_quote": "consulting-firms-methodology vs optimization-theory: slide-level objective tuning weakens execution coherence across teams.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Consulting-firms-methodology conflicts with confirmation-bias when the initial hypothesis is politically sensitive and the team seeks only confirming data.",
+      "source_quote": "consulting-firms-methodology vs confirmation-bias: the initial hypothesis is politically sensitive and the team unconsciously seeks only data that confirms it.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Relation surface stays inside the current graph vocabulary and keeps omission stronger than weak forcing.",
+    "donor_drops": [
+      "Did not widen Wave 3 target ids or import donor-shaped relation neighborhoods to rescue weak local grounding."
+    ],
+    "open_questions": [
+      "Some source-real neighbors remain omitted because the current graph vocabulary would force weaker mappings than this conservative pass allows."
+    ]
+  },
+  "deferred_higher_order_notes": {
+    "allies": [
+      "Wave 4 candidacy remains observational only and is noted only in batch artifacts."
+    ],
+    "antagonists": [
+      "No multihop or higher-order semantics were introduced in these Wave 3 files."
+    ],
+    "structured_tensions": [
+      "Explicit tensions were preserved only where the raw source clearly earned a current-vocabulary target."
+    ]
+  }
+}

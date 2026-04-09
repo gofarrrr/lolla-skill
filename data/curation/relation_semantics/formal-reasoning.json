@@ -1,0 +1,68 @@
+{
+  "model_id": "formal-reasoning",
+  "source_file": "Formal_Reasoning_rag.md",
+  "allies": [
+    {
+      "target_model_id": "decision-trees",
+      "rationale_text": "Decision-trees give formal-reasoning an explicit branch structure so hidden forks in the argument are visible instead of being smuggled through prose.",
+      "source_quote": "Decision trees and logic structures help reason through alternatives explicitly.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "critical-thinking",
+      "rationale_text": "Critical-thinking strengthens formal-reasoning by forcing premises and inference steps to earn trust rather than merely look clean.",
+      "source_quote": "formal rigor requires disciplined challenge of assumptions",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking keeps formal-reasoning from becoming too linear by testing whether the cleaned-up logic still matches the structure of the real system.",
+      "source_quote": "reasoning structure must still track the real dynamics of the problem",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias turns formal-reasoning into a laundering machine when logic is used to defend a favored thesis instead of to test whether it actually follows.",
+      "source_quote": "formal logic fails when it is recruited to justify a desired conclusion",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "representativeness-heuristic",
+      "rationale_text": "Representativeness-heuristic competes with formal-reasoning by substituting intuitive pattern fit for valid logical structure — fast associative matching displaces the requirement that premises and inference steps actually connect.",
+      "source_quote": "formal-reasoning vs representativeness-heuristic: formal-reasoning conflicts with representativeness-heuristic (representativeness heuristic) when intuitive fit overrides valid inference structure.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Formal-reasoning conflicts with confirmation-bias when explicit premises and inference checks are replaced by a logic-shaped defense of the conclusion already preferred.",
+      "source_quote": "formal reasoning vs confirmation-bias",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Formal-reasoning conflicts with representativeness-heuristic when intuitive fit overrides valid inference structure — a case feels logically resolved because it resembles a familiar category, not because the inference chain holds.",
+      "source_quote": "formal-reasoning vs representativeness-heuristic: formal-reasoning conflicts with representativeness-heuristic (representativeness heuristic) when intuitive fit overrides valid inference structure.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on decision structure, premise discipline, and explicit conflicts with confirmation-bias and representativeness-heuristic.",
+    "donor_drops": [
+      "Did not preserve donor relation widening beyond the source-backed logic, systems, and anti-confirmation neighborhood."
+    ],
+    "open_questions": []
+  }
+}

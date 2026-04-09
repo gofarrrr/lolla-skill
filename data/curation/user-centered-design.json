@@ -1,0 +1,70 @@
+{
+  "model_id": "user-centered-design",
+  "source_file": "User_Centered_Design_rag.md",
+  "select_when": [
+    "A product, service, or workflow will fail unless it matches real user goals, frictions, and workarounds rather than internal assumptions.",
+    "The team needs to reframe the problem through observation, empathy work, or journey mapping before locking design commitments.",
+    "Human adoption risk is higher than technical uncertainty, so the main gap is understanding lived experience rather than shipping mechanics.",
+    "Iterative prototyping and test cycles can cheaply expose whether the current concept fits how users actually think and act."
+  ],
+  "avoid_when": [
+    "User-centered language is being used decoratively while the real decision has already been made.",
+    "The team is generalizing from abstract personas or internal intuition without direct observation, testing, or contradiction-seeking."
+  ],
+  "input_type": "human-centered design problem",
+  "output_type": "user-fit design reframing",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on empathy-led reframing, journey understanding, and iterative fit testing rather than generic design-process branding.",
+    "donor_drops": [
+      "Did not preserve broader service-design sprawl because the raw source is strongest on perspective shift, prototype feedback, and anti-assumption discipline."
+    ],
+    "open_questions": [
+      "The output label compresses a source that spans problem definition, prototype testing, and user-adoption logic."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The source is explicit on user-fit failure, empathy and journey work, adoption risk, and iterative prototyping as the strongest activation cues."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly grounded in the source warnings about decorative empathy and assumption-driven design."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source consistently activates around human-centered design ambiguity, while the compact label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw playbook yields reframed user-fit design direction; the output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model diagnoses unmet needs and reasons causally about how design choices change adoption, while the taxonomy labels remain normalized."
+    }
+  }
+}

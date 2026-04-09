@@ -1,0 +1,71 @@
+{
+  "model_id": "false-precision-avoidance",
+  "source_file": "False_Precision_Avoidance_rag.md",
+  "select_when": [
+    "A decision needs directional clarity, bounded ranges, or operating thresholds more than an illusion of exact certainty.",
+    "Extra decimal places, caveats, or scenario branches are consuming attention without changing the decision that would actually be made.",
+    "The audience needs to act, align, or prioritize quickly and will be harmed more by cluttered precision than by a well-calibrated approximation.",
+    "The current explanation is accurate enough to sound rigorous but too overloaded to be useful for prediction, choice, or coordination."
+  ],
+  "avoid_when": [
+    "Simplicity is being used to hide uncertainty, skip the underlying analysis, or present a rounded answer as if the variance no longer matters.",
+    "The model is simplifying so far that the result becomes vague, slogan-like, or detached from the assumptions that make it usable."
+  ],
+  "input_type": "overprecision and cognitive-clutter problem",
+  "output_type": "actionable bounded approximation",
+  "reasoning_types": [
+    "metacognitive",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on resisting needless exactness, preserving decision-useful bounds, and reducing cognitive load rather than celebrating simplicity for its own sake.",
+    "donor_drops": [
+      "Did not preserve donor communication-minimalism sprawl because the raw source is stronger on approximation skill, anti-clutter discipline, and useful simplicity."
+    ],
+    "open_questions": [
+      "The output type compresses a source that spans decision-making, teaching, communication, and prompt design."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly names directional clarity, bounded ranges, non-decision-changing detail, and action-harming clutter."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly grounded in the source warnings about hiding uncertainty and simplifying into vagueness."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around excess detail and false certainty; the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields bounded approximations and decision-useful simplifications, though the typed output label remains a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "False precision avoidance explicitly checks how detail quality affects judgment and action, while the taxonomy labels remain normalized."
+    }
+  }
+}

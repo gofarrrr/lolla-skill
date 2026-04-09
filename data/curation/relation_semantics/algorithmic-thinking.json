@@ -1,0 +1,78 @@
+{
+  "model_id": "algorithmic-thinking",
+  "source_file": "Algorithmic_Thinking_rag.md",
+  "allies": [
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition gives algorithmic-thinking the clean subparts and handoffs that make a procedure reliable instead of hand-wavy.",
+      "source_quote": "It provides a crucial method for tackling complex tasks by systematically breaking them apart.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps algorithmic-thinking keep procedure design connected to the interrelationships and boundaries of the larger system.",
+      "source_quote": "Systems thinking ... provides the essential framework for seeing interrelationships and the whole picture.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "constraints",
+      "rationale_text": "Constraints help algorithmic-thinking define bounded edge cases, reliable handoffs, and the limits within which the procedure should operate.",
+      "source_quote": "Best used when a process benefits from explicit branching rules, bounded edge cases, and coordination across specialized components or agents.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification can undermine algorithmic-thinking when abstraction strips out the edge cases the procedure must still handle safely.",
+      "source_quote": "algorithmic-thinking conflicts with simplification (simplification) when abstraction removes decision-critical edge cases from the procedure.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias can get baked into the procedure when the algorithm is designed to confirm the designer's prior model rather than test it against hard cases.",
+      "source_quote": "algorithmic-thinking conflicts with confirmation-bias (confirmation bias) when procedure design embeds assumptions that confirm the designer's prior model rather than testing it against edge cases.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Algorithmic-thinking conflicts with simplification when abstraction removes decision-critical edge cases from the procedure.",
+      "source_quote": "algorithmic-thinking vs simplification: algorithmic-thinking conflicts with simplification (simplification) when abstraction removes decision-critical edge cases from the procedure.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "feedback-loops",
+      "tension_text": "Algorithmic-thinking conflicts with feedback-loops when static rule pipelines fail to update after signal drift.",
+      "source_quote": "algorithmic-thinking vs feedback-loops: algorithmic-thinking conflicts with feedback-loops (feedback loops) when static rule pipelines fail to update after signal drift.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Algorithmic-thinking conflicts with confirmation-bias when procedure design embeds assumptions that confirm the designer's prior model rather than testing it against edge cases.",
+      "source_quote": "algorithmic-thinking vs confirmation-bias: algorithmic-thinking conflicts with confirmation-bias (confirmation bias) when procedure design embeds assumptions that confirm the designer's prior model rather than testing it against edge cases.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on structural allies and an explicit tension block around simplification, drift, and designer bias, so the file preserves that bounded surface.",
+    "donor_drops": [
+      "Did not preserve donor workflow topology beyond the strongest procedural, systems, and explicit tension links."
+    ],
+    "open_questions": [
+      "Feedback-loops appears as a stronger explicit tension than as a clean first-order ally in the current source shape, so it was kept there instead of being duplicated as both."
+    ]
+  }
+}

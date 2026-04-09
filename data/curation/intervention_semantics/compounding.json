@@ -1,0 +1,67 @@
+{
+  "model_id": "compounding",
+  "source_file": "Compounding_rag.md",
+  "failure_modes": [
+    {
+      "text": "Plans with conjunctive structure can produce unwarranted optimism because every step must go right.",
+      "source_quote": "conjunctive character",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Break conjunctive plans into independent probability assessments for each step and multiply them; the compound probability is almost always lower than intuition suggests."
+    },
+    {
+      "text": "Growth can fail to compound when hidden fragility in quality or incentives erodes the engine.",
+      "source_quote": "ignore fragility in incentives, quality, retention, or operational resilience",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Monitor the compounding engine for hidden quality or incentive decay that erodes the base before the next round of growth."
+    },
+    {
+      "text": "Boiling the ocean can waste effort instead of stacking the highest-leverage gains.",
+      "source_quote": "Don't boil the ocean",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Apply the Pareto principle: stack the highest-leverage gains first rather than boiling the ocean with equal effort across all fronts."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What base are we protecting so gains can keep stacking instead of resetting?",
+      "source_quote": "protecting downside is as important as amplifying upside",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What single failure could erase years of accumulated progress?",
+      "source_quote": "single component failure",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "How does this work advance the problem instead of merely creating activity?",
+      "source_quote": "How does what you're doing solve the problem?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Stack repeated improvements where gains persist into the next cycle.",
+      "source_quote": "results generated in one cycle become the base for generating results in the next cycle",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use structured iterative loops so learning compounds rather than restarting from scratch.",
+      "source_quote": "setting goals, identifying problems, diagnosing root causes, designing solutions, and implementing them",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Focus time on highly leveraged activities that compound output over time.",
+      "source_quote": "Highly Leveraged Activities",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ]
+}

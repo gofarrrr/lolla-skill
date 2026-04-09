@@ -1,0 +1,70 @@
+{
+  "model_id": "optimism-bias-and-planning-fallacy",
+  "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+  "select_when": [
+    "A plan sounds coherent internally but still needs an outside-view check, a pre-mortem, or a reference class before commitment.",
+    "The forecast is being carried by conviction, mission clarity, or proposer charisma more than by downside imagination and execution assumptions.",
+    "The team is preparing in detail, but that detail may be narrowing attention instead of improving realism about external events.",
+    "The next useful move is to expose underweighted downside paths before the current confidence hardens into commitment."
+  ],
+  "avoid_when": [
+    "The group is using anti-optimism language to crush initiative even though the current question mainly needs execution discipline, not more downside narration.",
+    "The plan already has explicit outside-view checks, reversal conditions, and downside scenarios, so another bias warning would mostly repeat known information."
+  ],
+  "input_type": "inside-view overconfidence problem",
+  "output_type": "outside-view corrected plan",
+  "reasoning_types": [
+    "probabilistic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on outside-view correction, downside imagination, and anti-enthusiasm-as-evidence discipline rather than on generic pessimism.",
+    "donor_drops": [
+      "Did not preserve donor motivation-language sprawl because the raw source is stronger on planning realism, outside-view checks, and underweighted downside exposure."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans grit, persuasion, and hypothesis-driven preparation."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on outside-view checks, pre-mortem logic, and cases where enthusiasm is being mistaken for evidence."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source material that treats optimism as sometimes useful while still warning against false validation."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on inside-view overconfidence and planning distortion, while the typed input remains a compact reviewed label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields a plan corrected by outside-view checks and downside imagination; the typed output compresses that result."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Optimism-bias-and-planning-fallacy is strongest as probabilistic and reflective correction, while the taxonomy labels remain normalized."
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "model_id": "five-whys-method",
+  "source_file": "Five_Whys_Method_rag.md",
+  "select_when": [
+    "A recurring operational problem has an observable chain of causes and the team needs to get past symptom-fixing quickly.",
+    "Questioning can be tied to logs, process evidence, or physical facts rather than opinion, status, or blame.",
+    "The investigation can end in an actionable mechanism, design flaw, or missing control that someone can actually change.",
+    "The team needs a disciplined way to trace from the immediate failure back toward a falsifiable root cause."
+  ],
+  "avoid_when": [
+    "The first answer or first suspect is anchoring the whole chain and every later why is being steered to support that initial story.",
+    "A nonlinear, multi-cause system is being forced into a single linear thread while interaction effects, feedback loops, or parallel causes are left out."
+  ],
+  "input_type": "root-cause tracing problem",
+  "output_type": "causal why-chain",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on evidence-linked root-cause tracing and anti-symptom discipline rather than on generic introspection advice.",
+    "donor_drops": [
+      "Did not preserve donor troubleshooting sprawl because the raw source is already strongest on observable why-chains, actionable mechanisms, and root-cause discipline.",
+      "Did not add higher-order fields because this batch remains inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The output label compresses a source that spans Toyota-style operational diagnosis, fishbone support, and first-principles stripping."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit that the method is strongest for recurring operational problems with evidence-tied causal chains and actionable mechanism fixes."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by the source danger lines on anchoring the chain and forcing multi-cause systems into one thread."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source activates on root-cause and mechanism tracing problems, but the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields a structured why-chain that surfaces mechanism and root cause; the output label compresses that into a typed artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Five Whys clearly relies on causal and diagnostic reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

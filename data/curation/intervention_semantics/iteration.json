@@ -1,0 +1,87 @@
+{
+  "model_id": "iteration",
+  "source_file": "Iteration_rag.md",
+  "failure_modes": [
+    {
+      "text": "Iteration can become endless refinement when there are no stop rules or commitment thresholds.",
+      "source_quote": "Danger when iteration continues without stop rules, success thresholds, or a decision about what evidence is strong enough to commit.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Define stop rules and commitment thresholds before starting: iteration without an exit condition becomes endless refinement."
+    },
+    {
+      "text": "Teams can polish local details while avoiding the need to reset the underlying problem framing or hypothesis.",
+      "source_quote": "Danger when teams keep polishing local details while avoiding a reset on the underlying problem framing, hypothesis, or strategy.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Check whether the team is polishing details within the current frame or avoiding the harder work of resetting the framing or hypothesis."
+    },
+    {
+      "text": "Premature analysis can turn iteration into inefficient churn because the team starts exploring before defining the real output.",
+      "source_quote": "The human inclination is to jump into analysis without being perfectly clear about the desired output.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Clarify the real output before starting the cycle; premature iteration without a defined target produces churn, not progress."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What's the one-day answer?",
+      "source_quote": "What's the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If we had to stop the project right now, how would we communicate a coherent solution?",
+      "source_quote": "How would we communicate a coherent solution if we had to stop the project right now?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we currently diagnosing the root cause, or are we jumping ahead to design the solution?",
+      "source_quote": "Are we currently diagnosing the root cause, or are we jumping ahead to design the solution?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use hypothesis-driven cycles that explicitly revise the leading explanation as evidence accumulates.",
+      "source_quote": "This is a core consulting method where teams establish an initial hypothesis and then continuously gather facts and perform analyses to prove or disprove it.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Force periodic synthesis so even partial learning becomes a usable next-step plan rather than hidden work in progress.",
+      "source_quote": "This ongoing synthesis forces continuous calibration, ensuring the current level of confidence accurately reflects the work completed, not just the final goal.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Keep each loop bounded by a clear learning objective and a way to compare the next version against the last one.",
+      "source_quote": "Works best when each loop has a clear learning objective, bounded scope, and a way to compare the next version against the last one.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on bounded loops, synthesis checkpoints, and anti-endless-refinement discipline.",
+    "donor_drops": [
+      "Did not preserve donor agile-process sprawl that widened beyond the raw source's stronger hypothesis-loop and one-day-answer material."
+    ],
+    "open_questions": [
+      "The second heuristic compresses several synthesis passages so it stays reusable beyond consulting-project wording."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on feedback loops, experimentation, and systems thinking for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strong on confirmation bias and stale-frame pressure, and the structured tension block names the cleanest current-vocabulary conflicts."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension section that should survive into Wave 3 with only bounded normalization."
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "model_id": "power-laws",
+  "source_file": "Power_Laws_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can focus on the wrong 20 percent by mistaking visible symptoms for real drivers.",
+      "source_quote": "Mistaking the Symptom for the Cause",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Validate which 20% actually drives the outcome with data before concentrating resources: measure, don't assume."
+    },
+    {
+      "text": "Prematurely forcing a power-law frame can create false pattern recognition.",
+      "source_quote": "every uneven distribution is casually assumed to be power-law shaped",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test the power-law fit against alternative distributions before committing to the frame; premature pattern-matching produces false confidence."
+    },
+    {
+      "text": "Long-tail reliability or resilience concerns can be ignored while chasing dominant drivers.",
+      "source_quote": "ignore reliability, fairness, or resilience concerns that live in the long tail",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Budget explicitly for long-tail resilience: allocate monitoring and contingency resources to the non-dominant tail where rare but consequential failures live."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the identified 20 percent actually the driver, or merely a visible symptom?",
+      "source_quote": "driver of the problem, or merely a highly visible symptom",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What evidence would force us to abandon our current theory about the dominant few?",
+      "source_quote": "What data or evidence, if true, would force us to abandon our current hypothesis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which different cuts through the problem expose a better candidate 20 percent?",
+      "source_quote": "try several cuts at the problem",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Start by looking for the vital few drivers with the highest leverage.",
+      "source_quote": "20% of the actions we take are responsible for 80% of the results",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Do not boil the ocean; gather only enough facts to prove or disprove the key hypothesis.",
+      "source_quote": "Don't Boil the Ocean",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Prioritize issues that matter most and that you can actually influence.",
+      "source_quote": "those that they can actually influence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "model_id": "scale-economies",
+  "source_file": "Scale_Economies_rag.md",
+  "failure_modes": [
+    {
+      "text": "Scale can magnify defects or coordination failures faster than the system can repair them.",
+      "source_quote": "scale magnifies defects, coordination failures, or mediocre quality",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Monitor defect rates and coordination costs as volume grows: scale amplifies problems as fast as it amplifies output, so build quality feedback loops that grow with the operation."
+    },
+    {
+      "text": "Teams can confuse busyness with leverage and miss the few activities that actually scale results.",
+      "source_quote": "Busyness Paradox",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Focus scaling effort on the few activities with genuine increasing returns: audit which operations actually become cheaper or better at scale versus those that just get busier."
+    },
+    {
+      "text": "Pursuing more volume can erode the quality or differentiation that made the offering valuable.",
+      "source_quote": "Ignoring Quality for Volume",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Protect the quality differentiator: set explicit quality floors and brand standards that cannot be traded away in pursuit of volume growth."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which defect would scale faster than our ability to detect and correct it?",
+      "source_quote": "scale magnifies defects",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What fixed infrastructure or knowledge cost are we really spreading, and is the volume enough to matter?",
+      "source_quote": "spread infrastructure, knowledge, or distribution costs",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we scaling an advantage, or merely scaling activity?",
+      "source_quote": "being busy with being productive",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Focus on the few revenue, cost, and utilization levers that move the whole system.",
+      "source_quote": "drivers of the problem",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat the organization like a machine with key measurement points and adjustable levers.",
+      "source_quote": "machine",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Do not boil the ocean; gather only enough facts to support the needed scaling choice.",
+      "source_quote": "DON'T BOIL THE OCEAN",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ]
+}

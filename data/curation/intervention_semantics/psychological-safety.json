@@ -1,0 +1,87 @@
+{
+  "model_id": "psychological-safety",
+  "source_file": "Psychological_Safety_rag.md",
+  "failure_modes": [
+    {
+      "text": "Psychological safety fails when it is redefined as comfort, politeness, or protection from challenge instead of candid truth.",
+      "source_quote": "Danger when psychological safety is redefined as comfort, politeness, or protection from challenge instead of candid truth in service of better decisions.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Define safety as candor, not comfort: make it explicit that psychological safety means people can challenge ideas, raise concerns, and disagree — not that they are shielded from hard feedback."
+    },
+    {
+      "text": "Leaders can invite openness while leaving ownership, standards, or decision rights too vague for correction to matter.",
+      "source_quote": "Danger when leaders invite openness but leave ownership, standards, or decision rights vague, creating talk without correction or accountability.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Pair openness with accountability: when inviting truth-telling, also clarify decision rights, quality standards, and ownership so that candor leads to action, not just venting."
+    },
+    {
+      "text": "More discussion becomes a failure mode when the evidence already supports a decision or a reversible experiment.",
+      "source_quote": "Avoid when teams are using more discussion to postpone hard calls that already have enough evidence for a decision or a reversible experiment.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a discussion budget: when evidence already points to a clear action or reversible experiment, cap deliberation time and move to execution."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What risk, dissent, or upward challenge is still not being said because of status or fear?",
+      "source_quote": "formal status discourages upward challenge despite visible risk",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are decision rights and accountability clear enough that candor can actually change the outcome?",
+      "source_quote": "ownership, standards, or decision rights vague",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Would the next best move be more challenge or simply making the call now?",
+      "source_quote": "postpone hard calls that already have enough evidence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define psychological safety as candid challenge in service of better decisions, not as comfort.",
+      "source_quote": "candid truth in service of better decisions",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Pair openness with clear ownership and decision rights so surfaced problems can actually be corrected.",
+      "source_quote": "ownership, standards, or decision rights",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use safety to widen the set of real perspectives, not to suppress standards or delay reversible action.",
+      "source_quote": "diverse set of opinions",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on candid truth, upward challenge, and anti-comfort reinterpretation discipline.",
+    "donor_drops": [
+      "Did not preserve donor culture-program sprawl because the raw source is stronger on challenge quality, accountability, and decision-relevant candor."
+    ],
+    "open_questions": [
+      "The third heuristic compresses several source passages on openness, diversity of views, and reversible action so the chunk stays operational."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on systems-thinking, boundaries, and empathy-like perspective widening as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on authority-bias, confirmation-bias, and commitment pressure, but only clean current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source has explicit tension blocks with authority-bias and confirmation-bias that cleanly map into the current target-id surface."
+    ]
+  }
+}

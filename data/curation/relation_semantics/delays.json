@@ -1,0 +1,78 @@
+{
+  "model_id": "delays",
+  "source_file": "Delays_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking makes delays visible as part of the larger causal structure so teams stop misreading lagged results as immediate truth.",
+      "source_quote": "Delays themselves are one of the most powerful leverage points in a system.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feedback-loops",
+      "rationale_text": "Feedback-loops and delays belong together because the timing of the return signal determines whether the system learns or overreacts.",
+      "source_quote": "Analyzing delayed feedback helps managers understand why their corrective actions might be too aggressive or too timid, leading to oscillation or drift in system performance.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory supports delays when paced sequencing gives working memory time to absorb one manageable load at a time.",
+      "source_quote": "Since working memory is a limited resource, complex topics must be broken down temporally, focusing on steps or stages in a sequence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "prioritization",
+      "rationale_text": "Naive prioritization can clash with delays when urgency ranking favors short-latency tasks and ignores the high-impact work whose signal arrives later.",
+      "source_quote": "delays conflicts with prioritization (prioritization) when urgency ranking ignores lagged effects and rewards short-latency tasks over high-impact work.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias exploits delays by filling the lag with self-serving interpretations before the true outcome becomes visible.",
+      "source_quote": "delays conflicts with confirmation-bias (confirmation bias) when the lag between action and feedback creates space for confirming interpretations of ambiguous signals before the true outcome becomes visible.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "prioritization",
+      "tension_text": "Delays conflicts with prioritization when urgency ranking ignores lagged effects and rewards short-latency tasks over high-impact work.",
+      "source_quote": "delays vs prioritization: delays conflicts with prioritization (prioritization) when urgency ranking ignores lagged effects and rewards short-latency tasks over high-impact work.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "reasoning-mode-router",
+      "tension_text": "Delays conflicts with reasoning-mode-router when route decisions are made on incomplete signals before lagged outcomes materialize.",
+      "source_quote": "delays vs reasoning-mode-router: delays conflicts with reasoning-mode-router (reasoning mode router) when route decisions are made on incomplete signals before lagged outcomes materialize.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Delays conflicts with confirmation-bias when the lag between action and feedback creates space for confirming interpretations of ambiguous signals before the true outcome becomes visible.",
+      "source_quote": "delays vs confirmation-bias: delays conflicts with confirmation-bias (confirmation bias) when the lag between action and feedback creates space for confirming interpretations of ambiguous signals before the true outcome becomes visible.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on delayed-feedback allies and an explicit structured tension block around urgency, routing before signal maturity, and interpretation drift.",
+    "donor_drops": [
+      "Did not preserve donor scheduling or productivity overlays beyond the bounded timing, feedback, and explicit tension surface."
+    ],
+    "open_questions": [
+      "Leverage-points is source-real as an ally, but systems-thinking, feedback-loops, and cognitive-load-theory were the cleaner bounded anchors for this pass."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "switching-costs",
+  "source_file": "Switching_Costs_rag.md",
+  "failure_modes": [
+    {
+      "text": "Temporary coexistence can quietly become the architecture that traps the organization in both the old and new path.",
+      "source_quote": "The high-risk pattern is \"temporary coexistence\" becoming the default architecture.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a coexistence deadline: define when the old system will be fully retired and track dual-run dependencies to prevent temporary parallel operation from becoming permanent."
+    },
+    {
+      "text": "Teams can assume rollback stays available even while dual-run dependencies and customizations are rapidly making reversal harder.",
+      "source_quote": "The result is not just delayed efficiency; it is accumulated irreversibility.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Monitor rollback feasibility continuously: at each milestone, re-verify that reversal is still possible and flag the moment when customizations or dependencies make it irreversible."
+    },
+    {
+      "text": "A familiar framework can get defended beyond fit because the mental or organizational cost of switching feels too high.",
+      "source_quote": "we are uncomfortable with our inconsistencies and will take steps to reduce or remove them",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Evaluate framework loyalty against current fit: periodically check whether the incumbent tool still serves the problem better than alternatives, stripping out familiarity comfort from the comparison."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What specific capability, workflow, or partner dependency would force both the old and new path to stay alive longer than planned?",
+      "source_quote": "what specific capabilities must remain alive during migration",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "How fast does the cost of going back rise as data history, customizations, and contracts accumulate under the new state?",
+      "source_quote": "how fast does the cost of going back increase as data history, customizations, and partner contracts accumulate",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What foundational assumptions are embedded in the framework we are currently reluctant to switch away from?",
+      "source_quote": "What foundational assumptions are embedded in the primary framework we are using, and are those assumptions guaranteed to hold true?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Treat dual-run coexistence as a real coordination tax instead of as harmless implementation detail.",
+      "source_quote": "The real economic and operational burden comes from keeping both the old and new path alive at the same time.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Lower mental switching cost for a good new idea by using analogies that connect it to something the audience already understands.",
+      "source_quote": "Analogies act as \"bridges, connecting what your audience already understands to the new ideas\".",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Tie exit sequencing to named owners and checkpoints so reversibility decay becomes visible before it is too late.",
+      "source_quote": "exit sequencing that is not tied to named owners, checkpoints, and decision gates leaves the organization without a trigger to stop and re-plan",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strongest on coexistence drag, reversibility decay, and cognitive entrenchment rather than on generic customer-retention rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor vendor-migration overlays beyond the raw source's clearer dual-run, reversal-cost, and anti-entrenchment material."
+    ],
+    "open_questions": [
+      "The third failure mode generalizes the source's commitment-consistency thread so it stays useful beyond infrastructure exits."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on cognitive-load-theory, framing, and anchoring as forces that reinforce incumbent paths."
+    ],
+    "antagonists": [
+      "The raw antagonists section is strongest on intellectual-humility, first-principles-thinking, and feynman-technique."
+    ],
+    "structured_tensions": [
+      "The source contains an explicit structured tension block naming optionality, feedback-loops, and confirmation-bias."
+    ]
+  }
+}

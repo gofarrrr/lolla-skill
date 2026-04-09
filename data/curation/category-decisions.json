@@ -1,0 +1,72 @@
+{
+  "model_id": "category-decisions",
+  "source_file": "Category_Decisions_rag.md",
+  "select_when": [
+    "Repeated decisions are vulnerable to in-the-moment inconsistency and need a stable pre-committed boundary.",
+    "Option overload is degrading judgment quality and the first need is to narrow the field before evaluating details.",
+    "A team needs a stable decision rule instead of improvising each case from scratch.",
+    "Incident or case handling may require separating fundamentally different problem classes before standardization."
+  ],
+  "avoid_when": [
+    "Yesterday's buckets are being preserved after the underlying causal structure has changed.",
+    "A universal playbook is being imposed on structurally different cases that first need category validation."
+  ],
+  "input_type": "pre-commitment and decision-boundary problem",
+  "output_type": "category rule",
+  "reasoning_types": [
+    "deductive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model on advance classification, decision fences, and anti-impulse consistency rather than on generic taxonomy talk.",
+    "donor_drops": [
+      "Did not widen Wave 4 or import donor-shaped higher-order semantics in this coverage batch.",
+      "Kept the routing surface conservative so Layer 2B stays canonical and Waves 2 to 4 stay preview-only."
+    ],
+    "open_questions": [
+      "Wave 4 candidacy stays observational only for this batch."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions stay close to the source activation language and are compressed only enough for routing use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Avoid conditions preserve the source anti-patterns and misuse warnings with conservative normalization."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label is a reviewed routing compression of the source context."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention shape implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning taxonomy labels are normalized onto the existing Layer 2B vocabulary."
+    }
+  }
+}

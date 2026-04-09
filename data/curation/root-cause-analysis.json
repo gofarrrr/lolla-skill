@@ -1,0 +1,71 @@
+{
+  "model_id": "root-cause-analysis",
+  "source_file": "Root_Cause_Analysis_rag.md",
+  "select_when": [
+    "Recurring failures keep surfacing as different symptoms even though the same underlying mechanism is likely recreating the problem.",
+    "The next action should change the machine, not just fix the individual case, because process design, ownership, incentives, or environment will recreate the failure.",
+    "The apparent cause is too close to the event and is probably proximate, emotionally satisfying, or politically convenient rather than truly generative.",
+    "A problem of real consequence is too complex to solve without first being cleaved into logical, manageable parts."
+  ],
+  "avoid_when": [
+    "The team is jumping into analysis prematurely without specifying the underlying problem structure or the decision output needed.",
+    "The situation depends on several interacting causes, handoffs, or incentive failures and the analysis is forcing one neat root cause anyway."
+  ],
+  "input_type": "recurring symptom diagnosis problem",
+  "output_type": "root cause map",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on proximate-versus-root diagnosis, machine-level causation, and anti-symptom chasing rather than on generic troubleshooting rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor-style operational checklists because the raw source is stronger on causal diagnosis, logic trees, and anti-jumping-to-conclusions discipline.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The typed fields are reviewed operational compression over a source that spans consulting diagnosis, systems improvement, and behavioral analysis."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on recurring symptoms, machine-level change, and cases where the first explanation is too proximate."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by the source warnings on premature analysis and forcing a single cause over a causal stack."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on diagnosis of recurring symptoms and hidden drivers, but the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source produces causal chains and root-driver diagnosis; the output label compresses that into a typed mapping artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "RCA clearly uses causal and diagnostic reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

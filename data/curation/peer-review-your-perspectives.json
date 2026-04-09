@@ -1,0 +1,70 @@
+{
+  "model_id": "peer-review-your-perspectives",
+  "source_file": "Peer_Review_Your_Perspectives_rag.md",
+  "select_when": [
+    "The current conclusion is vulnerable to inside-view confidence and needs independent challenge before it hardens into a decision.",
+    "A team is approaching consensus too smoothly, and dissent, critique, or outside scrutiny may surface missing assumptions.",
+    "An important judgment would improve if alternative perspectives attacked the reasoning before reality does.",
+    "The thinker needs structured feedback that tests the logic, incentives, and blind spots in the current view."
+  ],
+  "avoid_when": [
+    "The review loop is becoming social reassurance, vague brainstorming, or status theater instead of independent challenge.",
+    "The decision already has enough external challenge and now needs commitment, execution, or ownership rather than another round of perspective collection."
+  ],
+  "input_type": "inside-view consensus risk",
+  "output_type": "stress-tested perspective set",
+  "reasoning_types": [
+    "metacognitive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on independent critique, outside challenge, and anti-consensus complacency rather than on generic collaboration language.",
+    "donor_drops": [
+      "Did not preserve donor collaboration sprawl because the raw source is stronger on dissent quality, independent review, and anti-group-drift pressure."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans communication hygiene, expert review, and perspective diversity."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly recommends exposing reasoning to critique, independent viewpoints, and perspective-testing before commitment."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are supported by source warnings against social comfort, shallow feedback, and indefinite critique loops."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates around inside-view and consensus risk, but the compact input label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally produces a challenged and broadened perspective set; the output label is a compact operational rendering."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is strongest as reflective self-correction with structural perspective broadening, while the taxonomy labels remain normalized."
+    }
+  }
+}

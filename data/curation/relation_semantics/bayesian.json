@@ -1,0 +1,70 @@
+{
+  "model_id": "bayesian",
+  "source_file": "Bayesian_rag.md",
+  "allies": [
+    {
+      "target_model_id": "scientific-method-evidence-testing",
+      "rationale_text": "Scientific-method-evidence-testing gives bayesian reasoning a disciplined way to generate hypotheses and update beliefs with empirical data.",
+      "source_quote": "The deliberative structure of Bayesianism aligns directly with the scientific method, emphasizing testable hypotheses and empirical data gathering.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "base-rates",
+      "rationale_text": "Base-rates stabilizes bayesian reasoning by supplying the outside-view prior before case-specific evidence is layered in.",
+      "source_quote": "To provide an objective outside view, one must anchor initial estimates to reference classes (what has happened in similar past situations).",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "expected-value",
+      "rationale_text": "Expected-value pairs with bayesian reasoning by turning updated probabilities into better decision stakes under uncertainty.",
+      "source_quote": "It underpins all optimal decision-making under uncertainty.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias blocks bayesian updating by filtering evidence so the posterior never honestly moves.",
+      "source_quote": "Bayesianism's explicit requirement to incorporate disconfirming evidence to update the prior belief fundamentally clashes with this tendency.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "anchoring",
+      "rationale_text": "Anchoring distorts bayesian reasoning when the initial prior keeps too much weight after contradictory evidence arrives.",
+      "source_quote": "Anchoring occurs when too much focus is placed on a single, often initial, piece of information.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Bayesian conflicts with confirmation-bias when posterior updates are blocked by selective evidence acceptance.",
+      "source_quote": "bayesian vs confirmation-bias: bayesian conflicts with confirmation-bias (confirmation bias) when posterior updates are blocked by selective evidence acceptance.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "representativeness-heuristic",
+      "tension_text": "Bayesian conflicts with representativeness-heuristic when intuitive resemblance overrides probability revision.",
+      "source_quote": "bayesian vs representativeness-heuristic: bayesian conflicts with representativeness-heuristic (representativeness heuristic) when intuitive resemblance overrides probability revision.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strong on ally logic around scientific testing and outside-view priors, plus an explicit structured tension block.",
+    "donor_drops": [
+      "Did not preserve donor relation expansion beyond the named testing, prior, and anti-bias surface."
+    ],
+    "open_questions": [
+      "Fast-thinking is source-real conflict, but confirmation-bias and anchoring were the cleaner bounded antagonists into the current graph vocabulary."
+    ]
+  }
+}

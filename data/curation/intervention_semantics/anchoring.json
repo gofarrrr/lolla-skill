@@ -1,0 +1,87 @@
+{
+  "model_id": "anchoring",
+  "source_file": "Anchoring_rag.md",
+  "failure_modes": [
+    {
+      "text": "Confirmation bias can turn the first frame into blinders that filter later evidence around the anchor.",
+      "source_quote": "Ignoring Disconfirming Evidence (Confirmation Bias)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Challenge the first intuition with slower, deliberate analysis; actively seek disconfirming evidence before accepting the anchored frame."
+    },
+    {
+      "text": "Substitution bias can make a familiar frame feel like the right one even when the problem is genuinely novel.",
+      "source_quote": "False Pattern Recognition",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Diversify perspectives by asking what other disciplines or frameworks might apply; test at least two alternative frames before committing to one."
+    },
+    {
+      "text": "Anchoring can distort risk in complex plans by underestimating disjunctive failure and overestimating conjunctive success.",
+      "source_quote": "Misestimation of Risk in Systems",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Use systematic stress testing: simulate the range of outcomes rather than anchoring to the base case; ask whether the worst case is bad enough."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What other disciplines or frameworks might apply here?",
+      "source_quote": "\"What other disciplines or frameworks might apply here?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe to accept this perspective?",
+      "source_quote": "\"What would you have to believe to accept this perspective?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What is generally true of the world, independent of my perspective, concerning this situation?",
+      "source_quote": "\"What is generally true of the world, independent of my perspective, concerning this situation?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use an initial anchor to orient the problem, but keep it explicitly provisional while better evidence arrives.",
+      "source_quote": "leaders need to set an initial reference point for scope, expectation, or comparison while staying alert to later correction",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Adopt the outside-view anchor when the inside view is doing too much interpretive work.",
+      "source_quote": "Adopt the Outside View Anchor",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Mandate dialectic challenge so the first frame meets an explicit antithesis before synthesis.",
+      "source_quote": "Mandate Dialectic Challenge",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Focused on the operational distinction between useful orientation anchors and dangerous entrenchment anchors.",
+    "donor_drops": [
+      "Did not preserve donor persuasion overlays because the raw source is stronger on corrective discipline than on influence tactics."
+    ],
+    "open_questions": [
+      "The first heuristic is normalized from the strengths section rather than from the mitigation table because that is where the beneficial use of anchoring is stated most clearly."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on narratives and cognitive-load-theory as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist section is strong on critical-thinking and outside-view discipline, but some concept names are cleaner than the current canonical target surface."
+    ],
+    "structured_tensions": [
+      "The source is tension-real around critical-thinking and scientific-method-style equal evaluation even though it lacks a dedicated structured tension block."
+    ]
+  }
+}

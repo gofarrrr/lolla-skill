@@ -1,0 +1,20 @@
+{
+  "model_id": "non-linear-dynamics",
+  "source_file": "Non_Linear_Dynamics_rag.md",
+  "select_when": [
+    "Small interventions could create outsized effects because feedback loops, delays, or threshold crossings dominate the system.",
+    "Local optimization may improve one metric while degrading the wider system over time.",
+    "The current plan assumes straight-line cause and effect even though the environment is full of interacting parts.",
+    "The team needs to map reinforcing and balancing loops before deciding where to intervene."
+  ],
+  "avoid_when": [
+    "Complexity language is being used to avoid naming concrete levers, checkpoints, or experiments.",
+    "The case is stable and sequential enough that a simpler one-step causal model already explains the decision."
+  ],
+  "input_type": "feedback-driven system",
+  "output_type": "system leverage map",
+  "reasoning_types": [
+    "causal",
+    "systems"
+  ]
+}

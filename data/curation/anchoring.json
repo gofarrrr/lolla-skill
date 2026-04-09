@@ -1,0 +1,71 @@
+{
+  "model_id": "anchoring",
+  "source_file": "Anchoring_rag.md",
+  "select_when": [
+    "A starting point, example, or framing device can help make a complex space more navigable without pretending it is final truth.",
+    "Leaders need an initial reference point for scope, expectation, or comparison while staying alert to later correction.",
+    "The team benefits from provisional orientation before deeper evidence arrives.",
+    "New information needs to be attached to an existing schema so attention and working memory can hold the problem long enough to think clearly."
+  ],
+  "avoid_when": [
+    "The first number, frame, or analogy is becoming non-negotiable and later evidence is only being interpreted around it.",
+    "A familiar frame is being applied automatically to a genuinely novel problem, turning anchoring into substitution bias."
+  ],
+  "input_type": "initial frame or reference point problem",
+  "output_type": "provisional orientation anchor",
+  "reasoning_types": [
+    "analogical",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on deliberate orientation and reference-point setting while preserving the strong anti-entrenchment warnings.",
+    "donor_drops": [
+      "Did not preserve donor-style persuasion overlays because the raw source is stronger on focus, learning scaffolds, and correction discipline.",
+      "Did not add higher-order fields because this batch stays inside the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The output label is intentionally provisional because the source is clear that good anchoring must remain corrigible."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section is explicit on useful starting frames, reference points, and schema-linked learning support."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by the source warnings on disconfirming-evidence blindness and substitution bias."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source activates on first frames, expectations, and comparison points, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw source clearly describes orienting reference points; the output label compresses that into a typed artifact that still preserves provisionality."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Anchoring clearly works through analogical framing and reflective management of attention, but the reasoning taxonomy labels are reviewed normalization."
+    }
+  }
+}

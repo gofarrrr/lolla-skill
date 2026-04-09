@@ -1,0 +1,107 @@
+{
+  "model_id": "expected-value",
+  "source_file": "Expected_Value_rag.md",
+  "failure_modes": [
+    {
+      "text": "Motivated reasoning can contaminate the probabilities or values that feed the EV calculation.",
+      "source_quote": "The tendency to process information to get a desired conclusion rather than seeking objective truth.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Audit the probabilities and values for motivated reasoning before computing the EV; contaminated inputs produce a precise but wrong answer."
+    },
+    {
+      "text": "Conjunctive or planning bias can overstate the success odds of a multi-link plan.",
+      "source_quote": "Overestimating the probability of success for complex undertakings where each of a series of likely events must occur.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Decompose multi-link plans into independent probability estimates and multiply; conjunctive or planning bias systematically overestimates compound success."
+    },
+    {
+      "text": "Inside-view bias can make the EV look personal and compelling instead of disciplined by the outside view.",
+      "source_quote": "Evaluating a situation only through one’s own perspective and experiences, amplifying cognitive biases and ignoring what is true of the world in general.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Anchor the EV inputs to outside-view reference-class data before adjusting for case-specific details; the inside view makes the calculation feel personal rather than disciplined."
+    },
+    {
+      "text": "Insufficient weighting of extremes hides tail outcomes that matter more than the base case.",
+      "source_quote": "Placing too much confidence in the mean outcome (base case) and insufficient weight on outcomes that are one or two standard deviations from the mean.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Simulate outcomes one or two standard deviations from the mean; tail outcomes often matter more than the base case."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "ask, What would you have to believe? to spell out all implicit assumptions required to accept the favorable outcome.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "The source quote captures the premortem question inside the mitigation table."
+    },
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "Ask the question, Is the worst case bad enough? to ensure low-probability, high-impact negative outcomes are sufficiently analyzed.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What other perspectives are there as to why things turned out the way they did?",
+      "source_quote": "What other perspectives are there as to why things turned out the way they did?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What sources of information could I have missed or minimized?",
+      "source_quote": "What sources of information could I have missed or minimized?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Run sensitivity analysis to find which assumptions actually drive the payoff.",
+      "source_quote": "performing a sensitivity analysis is crucial. This involves testing inputs to uncover key drivers",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use decision trees to model probabilistic choices instead of relying on flat pro-con logic.",
+      "source_quote": "Decision Trees ... are particularly useful for modeling choices that are probabilistic in nature",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use scenario analysis and the knowns or unknowns matrix to surface the payoff drivers you still have not bounded.",
+      "source_quote": "scenario analysis to systematically uncover risks and assess their impact. The Knowns & Unknowns model helps categorize risks",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Create a business case that makes the premises and reasoning chain inspectable before commitment.",
+      "source_quote": "produce a business case, a document outlining the explicit reasoning behind a decision, laying out the premises and explaining how they lead to the conclusion",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Expected Value gives strong raw intervention content on tail risk, assumption discipline, and input hygiene even where the current graph lacks failure-mode structure.",
+    "donor_drops": [
+      "Dropped donor business-case-document framing because the raw source supports a more general reasoning-chain artifact, not a single document form."
+    ],
+    "open_questions": [
+      "A later wave may want to split EV heuristics into estimation hygiene versus communication hygiene."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Raw allies section is rich on systems thinking, Bayesian statistics, game theory, and first principles."
+    ],
+    "antagonists": [
+      "Raw antagonists section gives useful future relation material on System 1, affect heuristic, and hindsight bias."
+    ],
+    "structured_tensions": [
+      "Structured tensions explicitly connect expected-value to representativeness-heuristic, sunk-cost-fallacy, and false-precision-avoidance."
+    ]
+  }
+}

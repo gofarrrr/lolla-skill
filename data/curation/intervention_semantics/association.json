@@ -1,0 +1,87 @@
+{
+  "model_id": "association",
+  "source_file": "Association_rag.md",
+  "failure_modes": [
+    {
+      "text": "Isolated facts stay inert when they are not connected to a larger pattern that makes them usable.",
+      "source_quote": "facts are unusable unless they hang together",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Hang facts on a latticework of theory by actively connecting them to multiple mental models; isolated data becomes usable only when it reveals a structural relationship."
+    },
+    {
+      "text": "The first compelling analogy can become a false proof if no one checks whether the underlying structure really matches.",
+      "source_quote": "surface similarity mistaken for structural match",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Validate each association by checking whether the causal mechanism transfers, not just the surface pattern; line up assumptions and test each for fit."
+    },
+    {
+      "text": "Anchoring on one association hides the rest of the system and misimports the wrong category logic.",
+      "source_quote": "wrong-category import",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Deliberately test the association from a different discipline's frame; if a social frame on a business problem or vice versa yields a different conclusion, the original association was too narrow."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Which structural variable made our favorite analogy work, and does that variable really match here?",
+      "source_quote": "Which structural variable made the source analogy work in the first place",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What important relationship would disappear if our current association turned out to be wrong?",
+      "source_quote": "What critical relationship would disappear if our favorite analogy is wrong",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What competing association should we test before acting on the first story that feels right?",
+      "source_quote": "what competing association should we test before acting",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use concept mapping to cluster findings into a higher-level pattern before jumping to a slogan.",
+      "source_quote": "Concept Mapping and Synthesis",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use analogy to create a mental bucket only after checking that the structural fit is real.",
+      "source_quote": "mental bucket",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Link new information to existing schemas so it becomes usable quickly without pretending the first schema is final.",
+      "source_quote": "instant context and understanding",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

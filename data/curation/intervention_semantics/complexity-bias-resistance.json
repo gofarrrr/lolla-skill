@@ -1,0 +1,87 @@
+{
+  "model_id": "complexity-bias-resistance",
+  "source_file": "Complexity_Bias_Resistance_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams waste time and cognitive energy when they keep adding detail without clarifying the essential core of the problem.",
+      "source_quote": "It requires the practitioner to relentlessly prioritize and be a master of exclusion.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Cut detail until the essential core of the problem is clear; every additional layer must earn its place by changing the decision."
+    },
+    {
+      "text": "Communication can fail when simplification removes the causal structure people need, or when unnecessary intricacy overloads working memory.",
+      "source_quote": "The human brain has limits on its working memory.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Match simplification to the audience: ensure the causal structure people need to act is preserved while extraneous intricacy is removed."
+    },
+    {
+      "text": "Complexity-bias-resistance becomes crude reduction when simplicity is used to erase nuance instead of to protect what matters.",
+      "source_quote": "Danger when the model is used to adopt inaccurate, oversimplified models.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Guard against crude reduction: simplicity that erases nuance is as dangerous as complexity that buries it; the goal is clarity, not minimalism."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What is the essential core of this problem, and what detail is decorative rather than decision-bearing?",
+      "source_quote": "Focus resources only on the essential core of the problem.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which part of our explanation is too compressed to preserve the real causal structure?",
+      "source_quote": "The model works against unnecessary intricacy or superficial oversimplification.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Where are we boiling the ocean because we have not defined what output the work is supposed to produce?",
+      "source_quote": "This prevents the wasteful effort of boiling the ocean.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Simplify until the core is clear, but stop before the causal structure is destroyed.",
+      "source_quote": "The disciplined commitment to simplicity and clarity.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use ruthless prioritization to decide what belongs in the reasoning path and what should be excluded.",
+      "source_quote": "Be a master of exclusion.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat needless complexity and lazy oversimplification as twin errors rather than as opposites where one side is always safe.",
+      "source_quote": "Actively working against the natural human inclination to either introduce needless complexity or adopt inaccurate, oversimplified models.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks on essential-core discipline, anti-ocean-boiling, and protecting causal structure while simplifying.",
+    "donor_drops": [
+      "Did not preserve broader presentation-advice sprawl beyond the clearest reasoning and planning moves."
+    ],
+    "open_questions": [
+      "The source supports multiple communication use cases, but the Wave 2 surface stays on complexity discipline in reasoning."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw source is strongest alongside simplification, prioritization, and critical-thinking style pruning."
+    ],
+    "antagonists": [
+      "The model pushes against both decorative complexity and misleading oversimplification."
+    ],
+    "structured_tensions": [
+      "The main tension is between clarity and loss of essential causal nuance."
+    ]
+  }
+}

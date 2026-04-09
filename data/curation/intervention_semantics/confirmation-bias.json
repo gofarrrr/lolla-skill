@@ -1,0 +1,87 @@
+{
+  "model_id": "confirmation-bias",
+  "source_file": "Confirmation_Bias_rag.md",
+  "failure_modes": [
+    {
+      "text": "Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+      "source_quote": "Bias Blind Spot Amplification",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Turn the diagnostic lens inward first: audit your own evidence standards with the same rigor you apply to others."
+    },
+    {
+      "text": "Premature simplification can harden an early story before contradictory evidence has been tested.",
+      "source_quote": "Premature Simplification",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Delay story-hardening until contradictory evidence has been actively sought and tested; premature simplification is the gateway to confirmation lock-in."
+    },
+    {
+      "text": "Flawed hypothesis testing turns the search into confirmation work instead of genuine falsification.",
+      "source_quote": "Flawed Hypothesis Testing",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require genuine falsification: define what evidence would disprove the hypothesis and look for it before declaring the hypothesis confirmed."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What disconfirming evidence would change our mind if it were true?",
+      "source_quote": "Find disconfirming evidence",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which failed cases, churn cases, or null results are we currently excluding from the packet?",
+      "source_quote": "Search for information that would prove you wrong, not just information that confirms you are right.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the Darwinian approach by trying to kill weak ideas before defending favored ones.",
+      "source_quote": "Darwinian Approach",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Ask what you would have to believe so implicit assumptions become inspectable instead of sacred.",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Adopt the scientific mindset by treating the claim as a hypothesis that must survive disconfirmation pressure.",
+      "source_quote": "Adopt the Scientific Mindset",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "This file stays close to the raw failure table and named mitigation heuristics because the source already contains chunk-ready intervention language.",
+    "donor_drops": [
+      "Ignored donor case examples that repeated the same evidence-filtering structure in more runtime-shaped language."
+    ],
+    "open_questions": [
+      "The premortem questions are operational normalizations of raw challenge prompts rather than a single explicit pre-mortem block."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is rich on scientific method, dialectic pressure, and outside-view discipline for later relation work."
+    ],
+    "antagonists": [
+      "The raw antagonists section provides strong future material around motivated reasoning, social pressure, and identity defense."
+    ],
+    "structured_tensions": [
+      "Future tension preservation could be valuable around confirmation-bias versus models that demand disconfirming evidence or outside-view anchoring."
+    ]
+  }
+}

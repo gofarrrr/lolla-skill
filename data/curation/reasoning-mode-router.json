@@ -1,0 +1,75 @@
+{
+  "model_id": "reasoning-mode-router",
+  "source_file": "Reasoning_Mode_Router_rag.md",
+  "select_when": [
+    "The problem could be approached through diagnosis, creative exploration, adversarial critique, or execution planning, and choosing the wrong path would materially distort the work.",
+    "The cost of selecting the wrong reasoning mode is high because it would waste cycles, hide key assumptions, or bias the answer early.",
+    "The team needs to name the current stage of work before mixing goals, diagnosis, design, and doing into one blurred process.",
+    "The first framing may be anchoring the method more strongly than the evidence justifies."
+  ],
+  "avoid_when": [
+    "Routing debate itself is becoming overhead and the team cannot name the next discriminating question or experiment.",
+    "A proven playbook already fits the situation and no meaningful alternative mode is actually in contention.",
+    "The router is being used as an excuse for premature complexity instead of clarifying the next reasoning move."
+  ],
+  "input_type": "problem-framing decision",
+  "output_type": "reasoning-path selection",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the source's route-selection doctrine and sequential-stage warning, then normalized the model into a metacognitive routing unit rather than a generic cognitive strategy tag.",
+    "donor_drops": [
+      "Dropped donor new_allies and new_tensions because the raw latticework plus existing graph already provide enough relation context for this pilot batch.",
+      "Narrowed donor `cognitive_strategy` output language into `reasoning-path selection` so the model reads like an operational routing decision rather than a generic psychology label."
+    ],
+    "open_questions": [
+      "Metacognitive is the most faithful reasoning-type label for this pilot, but it is still a reviewed taxonomy choice rather than source-authored metadata."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section directly supports explicit route choice, stage naming, and high-cost mode errors; donor examples were tightened into structural triggers."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Built from the raw limitations table and anti-patterns, then normalized into route-level anti-activation rules."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly frames the model around selecting how to think about a problem, but the compact label is a reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source repeatedly presents the model as choosing the route before analysis; the output label makes that explicit."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The model's central function is metacognitive diagnosis of which reasoning mode to apply; the taxonomy labels are reviewed normalization."
+    }
+  }
+}

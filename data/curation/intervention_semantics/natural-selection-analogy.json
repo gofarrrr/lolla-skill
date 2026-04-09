@@ -1,0 +1,87 @@
+{
+  "model_id": "natural-selection-analogy",
+  "source_file": "Natural_Selection_Analogy_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams talk about selection and emergence without defining the fitness criteria the human system should actually optimize.",
+      "source_quote": "failure to define what fitness actually means",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Define the fitness function explicitly before invoking selection language: state what is being optimized, by what mechanism, and over what time horizon."
+    },
+    {
+      "text": "A bad analogy imports biological logic into a business context that does not share the same structural mechanism.",
+      "source_quote": "superficial similarities instead of the correct structural relationship",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Test structural homology before importing the analogy: list at least three mechanisms the biological and business contexts share and one they do not, then judge whether the analogy still holds."
+    },
+    {
+      "text": "Survival bias makes people study only the winners and miss what the eliminated variants would have taught them.",
+      "source_quote": "survival bias",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Deliberately study the eliminated variants: run a post-mortem on failed experiments or abandoned options to extract learning that survivor-only analysis would miss."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What evidence would show this situation does not actually fit the selection process we are borrowing from biology?",
+      "source_quote": "Does this situation fit the reference class",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which part of the current design needs more variation before we can trust the environment to select among options?",
+      "source_quote": "generate multiple credible variants",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If this solution wins, will it be because we improved the machine or just masked a symptom temporarily?",
+      "source_quote": "fix a fundamental flaw in our design",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Do it like Darwin by generating more credible variants before narrowing too early.",
+      "source_quote": "Do It Like Darwin",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use iterative refinement and feedback loops so retention follows evidence instead of taste.",
+      "source_quote": "gradually adjusting it based on the responses",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat quantity in ideation as a path to better quality when the environment is still selecting.",
+      "source_quote": "quantity of ideas drives quality",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

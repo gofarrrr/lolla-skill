@@ -1,0 +1,71 @@
+{
+  "model_id": "margin-of-safety",
+  "source_file": "Margin_Of_Safety_rag.md",
+  "select_when": [
+    "Downside is hard to reverse and small forecast errors in time, capital, or quality could cascade into major loss.",
+    "Estimates are uncertain, but the team can still make buffers explicit instead of optimizing only the happy path.",
+    "Resilience can be built directly into budgets, staffing, inventory, thresholds, or decision rules before stress hits the system.",
+    "The real decision is whether the plan can survive volatility and error rather than merely whether the base case looks attractive."
+  ],
+  "avoid_when": [
+    "The assumed buffer is being treated as static even though burn rate, exposure, or environmental volatility is moving underneath it.",
+    "Margin of safety is being used as an excuse for never shipping, never committing, or demanding certainty the situation cannot provide."
+  ],
+  "input_type": "buffer-sensitive commitment",
+  "output_type": "downside buffer check",
+  "reasoning_types": [
+    "counterfactual",
+    "probabilistic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on downside absorption, reversible error, and explicit buffers rather than broad risk-management prose.",
+    "donor_drops": [
+      "Did not preserve donor expansion into broad investment or portfolio overlays because the raw source is already strong on structural buffer logic.",
+      "Did not add higher-order fields because this batch stops at the frozen Wave 1 to Wave 3 contracts."
+    ],
+    "open_questions": [
+      "The typed fields are reviewed operational compression over a source that blends engineering, finance, and strategic caution into one buffer discipline."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw file gives explicit activation bullets and nearby context on irreversibility, volatility, and buffer design; the final triggers mainly compress that language into routing form."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are directly supported by explicit raw danger lines."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about commitments that need protective slack, but the compact input label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model changes how teams size buffers and test downside; the output label compresses that into an operational intervention type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Margin of safety clearly operates through range and failure-envelope reasoning, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

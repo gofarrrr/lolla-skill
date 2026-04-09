@@ -1,0 +1,87 @@
+{
+  "model_id": "feedback-loops",
+  "source_file": "Feedback_Loops_rag.md",
+  "failure_modes": [
+    {
+      "text": "A system can drift to low performance when bad results quietly reset the standard instead of triggering correction.",
+      "source_quote": "Drift to Low Performance",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set explicit performance standards and alarm thresholds so that bad results trigger correction instead of quietly resetting the baseline."
+    },
+    {
+      "text": "Impulsivity can push the team into action before enough feedback has been gathered to understand the consequences.",
+      "source_quote": "Premature Action/Impulsivity",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Gather enough feedback before acting: impulsivity that precedes understanding creates oscillation, not progress."
+    },
+    {
+      "text": "The implementation gap appears when analysis describes what to do but the loop never closes into how the system will actually do it.",
+      "source_quote": "The Implementation Gap",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Close the loop from analysis to execution: describe not just what to do but how the system will actually do it and when it will know whether it worked."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What core standards have we failed to meet in the past, and how are we ensuring those same metrics remain absolute this quarter?",
+      "source_quote": "What core standards have we failed to meet in the past, and how are we ensuring those same metrics remain absolute this quarter?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Have we detailed how this will be executed, or only what should be done?",
+      "source_quote": "Have we detailed how this will be executed, or only what should be done? Is the strategy embedded into the continuous workflow, or is it a static document?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we mistreating this system because we are unaware of the delays, limiting factors, or false boundaries influencing the results?",
+      "source_quote": "Are we mistreating this system because we are unaware of the delays, limiting factors, or false boundaries influencing the results?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Refine the next move iteratively based on what the last output revealed instead of restarting from scratch.",
+      "source_quote": "Iterative Refinement (Cognitive Science/AI)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Run the goal-problem-diagnose-design-do cycle continuously so results feed back into the next round of action.",
+      "source_quote": "The 5-Step Process (Business Strategy)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use an iterative define-build-test rhythm that revisits earlier stages when later feedback reveals a better path.",
+      "source_quote": "Design Thinking",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is strong on loop closure, adaptive revision, and implementation discipline, so the chunk set stays close to those mechanisms.",
+    "donor_drops": [
+      "Did not preserve donor product-analytics or multi-agent expansions where the raw source already gives stronger system-loop content."
+    ],
+    "open_questions": [
+      "The second premortem question is shortened for chunk use, but it stays directly grounded in the raw implementation-gap countermeasure."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally section is strong on systems thinking, metacognitive feedback, and cognitive load theory."
+    ],
+    "antagonists": [
+      "The raw antagonist section is strong on confirmation-bias and inside-view distortions, but the current id surface is thinner than the prose in places."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against circle-of-control and optionality."
+    ]
+  }
+}

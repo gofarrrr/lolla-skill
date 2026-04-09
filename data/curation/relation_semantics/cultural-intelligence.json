@@ -1,0 +1,64 @@
+{
+  "model_id": "cultural-intelligence",
+  "source_file": "Cultural_Intelligence_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking helps cultural-intelligence interpret behavior as part of a broader machine of culture, people, and organizational feedback.",
+      "source_quote": "Systems thinking provides the framework for seeing wholes and interrelationships.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "emotional-intelligence",
+      "rationale_text": "Emotional-intelligence gives cultural-intelligence the self-awareness and social awareness needed to read another context without flattening it.",
+      "source_quote": "Emotional Intelligence (EI) forms the necessary foundation for CI.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "representativeness-bias",
+      "rationale_text": "Representativeness-bias turns cultural-intelligence into stereotype projection by treating surface familiarity as deep understanding.",
+      "source_quote": "stereotypes replace context-specific interpretation",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "status-quo-bias",
+      "tension_text": "Cultural-intelligence conflicts with status-quo-bias when default norms override cross-cultural adaptation needs.",
+      "source_quote": "cultural-intelligence vs status-quo-bias: cultural-intelligence conflicts with status-quo-bias when default norms override cross-cultural adaptation needs.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "representativeness-bias",
+      "tension_text": "Cultural-intelligence conflicts with representativeness-bias when stereotypes replace context-specific interpretation.",
+      "source_quote": "cultural-intelligence vs representativeness-bias: cultural-intelligence conflicts with representativeness-bias when stereotypes replace context-specific interpretation.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "tension_text": "Cultural-intelligence conflicts with confirmation-bias when cross-cultural observations are filtered to confirm the observer's home-culture expectations rather than genuinely updating the cultural model.",
+      "source_quote": "cultural-intelligence vs confirmation-bias: cultural-intelligence conflicts with confirmation-bias when cross-cultural observations are filtered to confirm the observer's home-culture expectations rather than genuinely updating the cultural model.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The relation file keeps the strongest bounded graph from the raw source: systems and emotional-awareness allies plus the explicit stereotype-and-default tension block.",
+    "donor_drops": [
+      "Did not widen into broad communication neighbors because the explicit tension block already gives a disciplined first-order surface."
+    ],
+    "open_questions": [
+      "Analogical reasoning is a source-real ally too, but systems-thinking and emotional-intelligence were the stronger current-vocabulary anchors."
+    ]
+  }
+}

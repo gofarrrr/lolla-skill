@@ -1,0 +1,36 @@
+{
+  "model_id": "reframing-perspective",
+  "source_file": "Reframing_Perspective_rag.md",
+  "select_when": [
+    "The first story is trapping the decision by making one option feel inevitable or impossible.",
+    "The same facts could support different actions depending on viewpoint.",
+    "Leaders need a deliberate frame shift that changes what counts as success or what variables matter.",
+    "The team is stuck in a false binary that a better frame could reopen."
+  ],
+  "avoid_when": [
+    "Reframing is becoming euphemism that renames a hard reality without improving the option set or truth surface.",
+    "New language is being used to postpone a decision instead of forcing an evidence or trade-off test."
+  ],
+  "input_type": "trapped framing problem",
+  "output_type": "frame-shifted decision lens",
+  "reasoning_types": [
+    "metacognitive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Focused on frame shifts that change decision quality rather than on slogan-polishing.",
+    "donor_drops": [
+      "Did not preserve donor persona-testing sprawl because the raw source is already strongest on changing the question before changing the answer."
+    ],
+    "open_questions": [
+      "The source strongly overlaps with decision design and communication, but the operational file stays on genuine frame shifts."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on trapped stories, alternative viewpoints, false binaries, and frame-led success criteria."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The euphemism and postponement warnings are explicit in the source."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The raw source describes trapped framing and false binaries; the typed label is reviewed normalization."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label compresses reframing into a decision-lens intervention."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model relies on reflective frame change and system-level reinterpretation."}
+  }
+}

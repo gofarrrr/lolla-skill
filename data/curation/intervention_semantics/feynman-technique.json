@@ -1,0 +1,87 @@
+{
+  "model_id": "feynman-technique",
+  "source_file": "Feynman_Technique_rag.md",
+  "failure_modes": [
+    {
+      "text": "Simplification can strip out the technical conditions that the real decision still depends on.",
+      "source_quote": "Danger when simplification strips out the technical conditions, edge cases, or math needed for correct decisions in the real domain.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Check that simplification has not stripped out the technical conditions the real decision depends on; omitting a critical qualifier makes the explanation dangerous."
+    },
+    {
+      "text": "A smooth explanation can create false confidence when the concept has not been pressure tested in use.",
+      "source_quote": "Danger when a smooth explanation is mistaken for mastery even though the concept has not been pressure tested in application.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Pressure-test the explanation in use: a smooth restatement that has never been applied creates false confidence about mastery."
+    },
+    {
+      "text": "The model fails when simplicity becomes so incomplete that the explanation is easy to repeat but useless for prediction or action.",
+      "source_quote": "accurate but useless idea",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Ensure the simplified version is still useful for prediction or action; simplicity that cannot be used is just easy to repeat."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Can I explain this in plain English without hiding behind jargon?",
+      "source_quote": "write down an explanation of the concept in plain English",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What part of this explanation still depends on words I cannot unpack?",
+      "source_quote": "identify mental blind spots",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What technical condition or edge case would break this simplified story?",
+      "source_quote": "technical conditions, edge cases, or math",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Explain the concept plainly enough that any missing understanding becomes visible.",
+      "source_quote": "write down an explanation of the concept in plain English",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Use analogy to connect the new idea to an existing schema only after the core concept is actually understood.",
+      "source_quote": "use analogy to fill blind spots",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat simplification as a comprehension test, not as permission to ignore the domain's real constraints.",
+      "source_quote": "simplicity is crucial ... but sometimes the real truth is initially complex",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on explanation-as-test, blind-spot discovery, and anti-false-mastery discipline.",
+    "donor_drops": [
+      "Did not preserve donor learning-theory sprawl because the raw source is stronger on explanation, simplification, and analogy as practical checks."
+    ],
+    "open_questions": [
+      "The second premortem item is normalized from repeated blind-spot language so the chunk stays reusable across domains."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw ally surface is strongest on first-principles-thinking, cognitive-load-theory, simplification, and metacognition as later relation material."
+    ],
+    "antagonists": [
+      "The raw antagonist pressure is strongest on authority-bias, confirmation-bias, and status-quo style repetition, but only current-vocabulary ids should survive Wave 3."
+    ],
+    "structured_tensions": [
+      "The source has an explicit tension block with authority-bias, which cleanly maps into the current target-id surface."
+    ]
+  }
+}

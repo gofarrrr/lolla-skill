@@ -1,0 +1,87 @@
+{
+  "model_id": "latticework-of-mental-models",
+  "source_file": "Latticework_Of_Mental_Models_rag.md",
+  "failure_modes": [
+    {
+      "text": "Collecting model names as intellectual decoration without concrete tests or comparisons leaves the latticework useless in practice.",
+      "source_quote": "collect model names as intellectual decoration",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Apply each model to a concrete case before collecting it; intellectual decoration without tested comparisons is useless in practice."
+    },
+    {
+      "text": "Relying on one specialist frame creates blind spots when the real problem crosses incentives, systems, and psychology at once.",
+      "source_quote": "rich models in one area but deficiencies in others",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Require at least two frames from different disciplines before committing to a diagnosis; single-frame reliance creates predictable blind spots."
+    },
+    {
+      "text": "Overloading the mind with too many models or too much complexity can impair clear thinking and slow action.",
+      "source_quote": "overloading the mind with too many models",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Limit active model count to those relevant to the current decision; overloading the mind with models impairs clear thinking and slows action."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What frame are we currently using, and what assumptions are embedded in it that might break on this problem?",
+      "source_quote": "What frame am I currently using, and what assumptions are implicit in it?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would we have to believe to accept the opposite thesis, and what facts would ruin our current hypothesis?",
+      "source_quote": "What would you have to believe to accept the opposite thesis?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Which second- or third-order consequences are we missing because we are still viewing the problem through one lens?",
+      "source_quote": "What are the consequences of this decision three or more steps out?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Test several cuts at the problem using models from different disciplines before committing to one explanatory frame.",
+      "source_quote": "test several cuts at a problem using frames from different disciplines",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the scientific method to generate a one-day answer and then prune dead-end analysis aggressively.",
+      "source_quote": "The Scientific Method and Hypothesis-Driven Approach",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use inversion and anti-goals to avoid stupidity before chasing brilliance.",
+      "source_quote": "avoid stupidity",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Chunk set stays close to the source's strongest failure modes, premortem questions, and repeatable heuristics.",
+    "donor_drops": [
+      "Did not widen the chunk surface beyond clearly source-backed failure, premortem, and heuristic material."
+    ],
+    "open_questions": [
+      "Some chunk text is compressed for operational reuse, but each item stays traceable to explicit source language."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Relation-rich ally material was left for Wave 3 instead of being smuggled into chunk text."
+    ],
+    "antagonists": [
+      "Bias and conflict material stronger as first-order relations was deferred to Wave 3."
+    ],
+    "structured_tensions": [
+      "Any higher-order candidacy remains observational only in batch artifacts."
+    ]
+  }
+}

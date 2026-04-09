@@ -1,0 +1,87 @@
+{
+  "model_id": "butterfly-effect",
+  "source_file": "Butterfly_Effect_rag.md",
+  "failure_modes": [
+    {
+      "text": "A decision can look safe locally while still creating dangerous downstream effects once it propagates through the broader system.",
+      "source_quote": "Most useful when small interventions may have large downstream effects.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Trace the plausible transmission path from the local decision through the broader system; if the propagation mechanism cannot be named, the concern is speculation."
+    },
+    {
+      "text": "First-order reasoning misses real risk when second- and third-order consequences matter more than the immediate result.",
+      "source_quote": "Works when first-order reasoning is too shallow.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Explicitly map second- and third-order consequences before accepting a first-order-only risk assessment."
+    },
+    {
+      "text": "Cascade thinking becomes noise when people invoke butterfly-effect language without naming a plausible transmission path.",
+      "source_quote": "Danger When Cascade Thinking Turns into Mysticism.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "mitigation": "Require a named mechanism for any claimed cascade; invoking butterfly-effect language without a plausible path is not analysis."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "If this small move goes wrong, through which specific chain of dependencies, delays, or feedback loops does the damage spread?",
+      "source_quote": "Visualizing All the Dominoes.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Which second- or third-order consequence would matter most if the obvious first-order outcome turns out to be the least important one?",
+      "source_quote": "The model compels us to engage in second-order thinking.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What evidence would prove that our cascade story is grounded in a real transmission path rather than vague fear?",
+      "source_quote": "Danger When Cascade Thinking Turns into Mysticism.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Trace consequence chains before declaring a local optimization safe.",
+      "source_quote": "An action at one point will invariably ramify to create an effect at a distant one.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Prioritize the few cascade paths that matter most instead of trying to model every variable in the system.",
+      "source_quote": "The goal is to be a catalyst for action, not to be complete and comprehensive.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Name the plausible transmission path or stop using butterfly-effect language.",
+      "source_quote": "Danger When Cascade Thinking Turns into Mysticism.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks on cascade paths, higher-order effects, and anti-mysticism discipline.",
+    "donor_drops": [
+      "Did not preserve broader simulation and scenario-sprawl beyond the clearest consequence-tracing moves."
+    ],
+    "open_questions": [
+      "The source supports scenario analysis and digital twins, but the Wave 2 surface stays on consequence propagation."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on systems-thinking, root-cause-analysis, and scenario reasoning."
+    ],
+    "antagonists": [
+      "The source is strongest against occams-razor, availability-heuristic, and substitution-bias framing."
+    ],
+    "structured_tensions": [
+      "The clearest tensions are with status-quo-bias, representativeness-heuristic, and occams-razor."
+    ]
+  }
+}

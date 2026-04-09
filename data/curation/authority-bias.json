@@ -1,0 +1,76 @@
+{
+  "model_id": "authority-bias",
+  "source_file": "Authority_Bias_rag.md",
+  "select_when": [
+    "The real question is whose judgment deserves initial weight in a specialized or uncertain domain.",
+    "Decision speed matters, but the group still has a mechanism for challenge, audit, or second opinion.",
+    "A recommendation is being accepted largely because of rank, polish, credentials, or institutional prestige.",
+    "The team needs to separate genuine domain authority from authority spillover into adjacent domains."
+  ],
+  "avoid_when": [
+    "Credibility is standing in for falsification, evidence testing, or domain-boundary checks.",
+    "The problem requires multiple viewpoints, but the group is collapsing too early around one high-status voice.",
+    "The authority cue comes mostly from prestige markers rather than relevant track record in the decision's actual domain."
+  ],
+  "input_type": "authority-backed recommendation",
+  "output_type": "deference audit",
+  "reasoning_types": [
+    "diagnostic",
+    "causal"
+  ],
+  "curation_notes": {
+    "summary": "Reframed the model as a structural check on deference, not as a persuasion tactic. The repo uses this model to audit reasoning, not to teach influence playbooks.",
+    "donor_drops": [
+      "Dropped donor output_type `persuasion_strategy` because that encodes a runtime-facing use that conflicts with the challenge-first doctrine.",
+      "Dropped donor new_allies and new_tensions because the raw file already names the most important antagonists and the donor additions were broader than this contract needs."
+    ],
+    "open_questions": [
+      "Whether `diagnostic` alone is sufficient for reasoning_types or whether the causal element should remain explicit can be revisited after batch review."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "donor_draft",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw strengths section strongly supports explicit deference conditions; donor phrasing was tightened to emphasize structural activation instead of generic expert use."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Built directly from the raw anti-patterns and danger line, then normalized into anti-activation rules."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source consistently presents authority as an input cue attached to a recommendation or framework; the label is an operational compression."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "This label is intentionally doctrine-aligned with Lolla's role as a reasoning auditor rather than an influence engine."
+    },
+    "reasoning_types": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly diagnoses deference patterns and their effects; the taxonomy labels are reviewed normalization."
+    }
+  }
+}

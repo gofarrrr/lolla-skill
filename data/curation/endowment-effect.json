@@ -1,0 +1,71 @@
+{
+  "model_id": "endowment-effect",
+  "source_file": "Endowment_Effect_rag.md",
+  "select_when": [
+    "Ownership, authorship, or incumbency may be making an asset, idea, or status quo feel more valuable than it would to an outsider.",
+    "A negotiation, divestment, or priority decision is being warped by identity, history, or control rather than objective utility alone.",
+    "The team needs to test whether attachment to what it already has is hiding opportunity cost or suppressing rational switching.",
+    "The next move should force an outside-view valuation instead of letting possession decide the price."
+  ],
+  "avoid_when": [
+    "The issue is already being evaluated through a credible outside-view or neutral benchmark and additional ownership-bias framing would add little.",
+    "The model is being used as a loose story about attachment without any real effort to compare today's best available alternative."
+  ],
+  "input_type": "ownership-distorted valuation problem",
+  "output_type": "outside-view valuation reset",
+  "reasoning_types": [
+    "diagnostic",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on overvaluing what is already owned, outside-view valuation, and anti-inertia discipline in negotiation and prioritization.",
+    "donor_drops": [
+      "Did not preserve broader behavioral-economics sprawl because the raw source is strongest on ownership distortion, divestment failure, and valuation reset."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also spans role reversal, negotiation posture, and written-plan discipline."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on ownership distorting value, resource prioritization, and status-quo attachment warping choice quality."
+    },
+    "avoid_when": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is stronger on activation and anti-patterns than on explicit anti-activation bullets, so these avoid-when conditions are conservative reviewed compressions."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on ownership-distorted valuation, while the typed input remains a normalized operational label."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source supports outside-view valuation and detachment moves; the output label compresses that into a reusable intervention artifact."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Endowment-effect is strongest as diagnostic and metacognitive correction of ownership-driven judgment."
+    }
+  }
+}

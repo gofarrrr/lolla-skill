@@ -1,0 +1,87 @@
+{
+  "model_id": "lateral-thinking",
+  "source_file": "Lateral_Thinking_rag.md",
+  "failure_modes": [
+    {
+      "text": "Teams can keep producing cleaner versions of the same answer when familiar frames remain unchallenged.",
+      "source_quote": "Most useful when familiar frames are producing stale options.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Explicitly challenge the current frame before refining within it; cleaner versions of the same answer are not lateral thinking."
+    },
+    {
+      "text": "More analysis inside the current frame can waste time when the real blockage is conceptual rather than effort-based.",
+      "source_quote": "Works when the blockage is conceptual, not effort-based.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Distinguish effort from insight: more analysis inside the current frame is wasted when the real blockage is conceptual, not analytical."
+    },
+    {
+      "text": "Avoiding fixation can become overcorrection if the team rejects all prior knowledge instead of just interrupting stale lock-in.",
+      "source_quote": "Danger when the team treats avoid fixation as a reason to reject all prior knowledge.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Interrupt stale lock-in without rejecting all prior knowledge; overcorrection that discards useful patterns is as wasteful as fixation."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What assumption is keeping us inside the current frame even though it is no longer producing good options?",
+      "source_quote": "Most useful when familiar frames are producing stale options.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "If we reframed the implicit problem as a new question, what option space would reopen?",
+      "source_quote": "Generative Questioning (HMWs)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Are we widening possibilities before narrowing, or are we converging too early out of habit?",
+      "source_quote": "Best when divergence comes before convergence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Interrupt the dominant template early enough that alternative frames actually get airtime.",
+      "source_quote": "Works when the blockage is conceptual, not effort-based.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use reframed questions to prevent the first solution from anchoring the whole session.",
+      "source_quote": "If a solution arises prematurely, the playbook dictates reframing the implicit problem as a new HMW question.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Delay convergence until the team has genuinely explored unconventional options.",
+      "source_quote": "Best when divergence comes before convergence.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "Kept the chunks close to hidden-assumption interruption and divergence-before-convergence.",
+    "donor_drops": [
+      "Did not preserve donor innovation-theater sprawl because the raw source already supports clean reframing chunks."
+    ],
+    "open_questions": [
+      "The execution limitation is source-real but better handled as a note than as a first-order intervention chunk."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strongest on reframing and outside-view style discipline."
+    ],
+    "antagonists": [
+      "The source is strongest against representativeness-heuristic, status-quo-bias, and confirmation-bias."
+    ],
+    "structured_tensions": [
+      "The model contains explicit tensions against representativeness-heuristic, status-quo-bias, and confirmation-bias."
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "model_id": "checklists",
+  "source_file": "checklists_rag.md",
+  "allies": [
+    {
+      "target_model_id": "systems-thinking",
+      "rationale_text": "Systems-thinking gives checklists the structural map needed to turn principles into repeatable workflows.",
+      "source_quote": "The checklist is the practical realization of systemic understanding.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "decomposition",
+      "rationale_text": "Decomposition strengthens checklists by breaking complex problems into branches that can each be verified explicitly.",
+      "source_quote": "Checklists guide the systematic breakdown of complex problems.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory explains why checklists work: they move procedural burden off limited working memory and into explicit steps.",
+      "source_quote": "The model is a countermeasure to cognitive overload.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "feynman-technique",
+      "rationale_text": "Feynman-technique pairs with checklists by forcing a simple stepwise pass through explanation, blind-spot finding, and repair.",
+      "source_quote": "A checklist ensures the learner systematically moves through the steps: identify the concept, explain it simply, find blind spots, and use analogies to fill the gaps.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [],
+  "structured_tensions": [
+    {
+      "target_model_id": "flow",
+      "tension_text": "Checklists conflicts with flow when procedural interruption for checklist compliance breaks the concentrated absorption that creative tasks require.",
+      "source_quote": "checklists conflicts with flow (flow) when procedural interruption for checklist compliance breaks the concentrated absorption that creative tasks require.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    },
+    {
+      "target_model_id": "simplification",
+      "tension_text": "Checklists conflicts with simplification when checklist completeness adds steps beyond the critical few that carry the safety or quality signal.",
+      "source_quote": "checklists conflicts with simplification (simplification) when checklist completeness adds steps beyond the critical few that carry the safety or quality signal.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on ally logic around systems, decomposition, and load reduction; antagonists are concept-real but less cleanly targetable in the current vocabulary.",
+    "donor_drops": [
+      "Did not preserve donor antagonists where the raw source only names broader creativity or theory-of-mind tensions without equally clean canonical ids."
+    ],
+    "open_questions": [
+      "A future relation pass could revisit whether first-principles-thinking or experimentation deserve bounded tension mappings, but the current source does not justify forcing them."
+    ]
+  }
+}

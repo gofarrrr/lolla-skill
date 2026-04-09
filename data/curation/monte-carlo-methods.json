@@ -1,0 +1,20 @@
+{
+  "model_id": "monte-carlo-methods",
+  "source_file": "Monte_Carlo_Methods_rag.md",
+  "select_when": [
+    "The decision depends on the spread of possible outcomes rather than on a single base-case forecast.",
+    "Uncertain inputs can be expressed as ranges or distributions well enough to support repeated simulation.",
+    "Leaders need to understand downside, variance, or tail exposure before committing resources.",
+    "The team must compare scenarios where many variables interact and simple point estimates would hide risk."
+  ],
+  "avoid_when": [
+    "The input distributions are mostly guesswork, so simulation would only convert weak assumptions into false rigor.",
+    "Unknown unknowns or regime breaks dominate the case, making sampled scenarios look more complete than they really are."
+  ],
+  "input_type": "distribution-shaped uncertainty",
+  "output_type": "outcome range estimate",
+  "reasoning_types": [
+    "counterfactual",
+    "probabilistic"
+  ]
+}

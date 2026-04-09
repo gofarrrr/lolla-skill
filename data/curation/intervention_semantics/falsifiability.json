@@ -1,0 +1,87 @@
+{
+  "model_id": "falsifiability",
+  "source_file": "Falsifiability_rag.md",
+  "failure_modes": [
+    {
+      "text": "The need to be right can overpower the search for truth and block disconfirming evidence.",
+      "source_quote": "The Ego Barrier",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Define what evidence would disprove the hypothesis before seeking confirmation; the need to be right is the enemy of the search for truth."
+    },
+    {
+      "text": "A team can torture the facts until they support the favored hypothesis instead of treating the hypothesis as provisional.",
+      "source_quote": "Torturing the Facts",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Treat the hypothesis as provisional: if the facts have to be tortured to fit, the hypothesis should change, not the facts."
+    },
+    {
+      "text": "Groupthink or systemic inertia can stop the team from challenging the leading belief even when the evidence is turning against it.",
+      "source_quote": "Systemic Inertia (Groupthink)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Create explicit challenge mechanisms that override groupthink and systemic inertia when the evidence is turning against the leading belief."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What single fact, if true, would cause us to abandon this hypothesis immediately?",
+      "source_quote": "What single fact, if true, would cause us to abandon this hypothesis immediately?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "By how much would your assumptions need to change for your conclusion to be wrong?",
+      "source_quote": "By how much would your assumptions need to change... for your conclusion to be wrong?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use strong, testable hypotheses because they are easier to challenge and pressure test than vague claims.",
+      "source_quote": "Formulating Strong, Testable Hypotheses",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Institutionalize a dialectic standard so every thesis meets an antithesis before synthesis.",
+      "source_quote": "The Dialectic Standard (Team Process)",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Stress-test the assumptions underneath the recommendation rather than only the recommendation itself.",
+      "source_quote": "Sensitivity Analysis and Reverse Questions",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on reversal conditions and hypothesis challenge, so the chunk set stays close to those core moves.",
+    "donor_drops": [
+      "Did not preserve donor philosophical commentary that widened beyond operational test design."
+    ],
+    "open_questions": [
+      "The third premortem question is lightly normalized from the raw wording so it stays compact as a chunk."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on intellectual humility and first principles for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is rich on confirmation bias, commitment, motivated reasoning, and hammer effects."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against confirmation-bias and commitment-and-consistency-bias."
+    ]
+  }
+}

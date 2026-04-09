@@ -1,0 +1,70 @@
+{
+  "model_id": "feedback-models-sbi",
+  "source_file": "Feedback_Models_Sbi_rag.md",
+  "select_when": [
+    "A feedback conversation needs to stay tied to specific observable behavior rather than personality labels or vague frustration.",
+    "The goal is to reduce defensiveness by separating what happened, why it mattered, and what change is being invited next.",
+    "Coaching, performance repair, or collaboration quality depends on recurring course correction around concrete incidents."
+  ],
+  "avoid_when": [
+    "The structure is being used as a script for delivering judgment while skipping curiosity, listening, or the receiver's real constraints.",
+    "The situation is being framed selectively so the structure only launders a preloaded conclusion."
+  ],
+  "input_type": "behavior-specific feedback need",
+  "output_type": "actionable feedback move",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Focused on specific observable behavior, effect, and invited change rather than on generic feedback etiquette.",
+    "donor_drops": [
+      "No donor-only normalization was kept when the raw source already supported a cleaner bounded routing identity."
+    ],
+    "open_questions": [
+      "Wave 4 remains observational only for this model until a later selective review explicitly earns higher-order treatment."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "Select conditions compress explicit application-context guidance from the raw markdown."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "Avoid conditions compress explicit dangers and anti-patterns from the raw markdown."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed input label compresses the recurring decision structure named in the raw source."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The typed output label compresses the intervention artifact implied by the raw source."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Reasoning types reflect the minimal current Layer 2B vocabulary needed to preserve how the model operates."
+    }
+  }
+}

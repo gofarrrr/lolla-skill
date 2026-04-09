@@ -1,0 +1,36 @@
+{
+  "model_id": "brainstorming",
+  "source_file": "Brainstorming_rag.md",
+  "select_when": [
+    "The team is stuck too early on one frame or one answer and needs to widen the option set before choosing a path.",
+    "Idea volume is genuinely valuable because the search space is still underexplored.",
+    "Novelty, reframing, or hidden alternatives matter more than early precision.",
+    "Divergence can be separated from evaluation so the group can generate before ranking."
+  ],
+  "avoid_when": [
+    "Evaluation is creeping into generation and selectively developing only ideas that confirm the current direction.",
+    "The search space is already well explored and additional divergence would mostly delay commitment."
+  ],
+  "input_type": "narrow option-space problem",
+  "output_type": "divergent option set",
+  "reasoning_types": [
+    "analogical",
+    "metacognitive"
+  ],
+  "curation_notes": {
+    "summary": "Focused on widening option sets before judgment rather than on generic creativity enthusiasm.",
+    "donor_drops": [
+      "Did not preserve donor workshop-process sprawl because the raw source is already strongest on divergence before evaluation."
+    ],
+    "open_questions": [
+      "The source overlaps with group dynamics, but the operational file stays on widening possibilities under explicit anti-anchoring discipline."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on early stuckness, option-set widening, and separating divergence from evaluation."},
+    "avoid_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "medium", "note": "The first avoid line is explicit from the tension block; the second is reviewed normalization of overused divergence."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed label compresses the raw condition of a prematurely narrowed search space."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label compresses divergence into a reusable option-set artifact."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model relies on analogical option generation and reflective suspension of judgment."}
+  }
+}

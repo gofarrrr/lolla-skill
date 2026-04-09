@@ -1,0 +1,89 @@
+{
+  "model_id": "adverse-selection",
+  "source_file": "Adverse Selection_rag.md",
+  "failure_modes": [
+    {
+      "text": "False pattern recognition can make teams force a hidden-information story onto a problem that is really about incentives, execution, or design.",
+      "source_quote": "False Pattern Recognition",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "The raw file is proxy-derived, so this chunk stays close to the explicit anti-pattern language.",
+      "mitigation": "Apply multiple frames before settling on an adverse selection explanation; test whether incentives, execution failure, or design error better explain the observed outcome."
+    },
+    {
+      "text": "Framework fetishism can hide the assumptions embedded in a screening story and make the selection diagnosis feel truer than it is.",
+      "source_quote": "Framework Fetishism",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Spell out all implicit assumptions in the screening story and pressure-test each against the outside view before acting on the diagnosis."
+    },
+    {
+      "text": "Assuming asymmetry without verifying the selection mechanism can misdiagnose the failure entirely.",
+      "source_quote": "Assuming Asymmetry Without Verifying the Selection Mechanism",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Verify the specific mechanism of information asymmetry rather than assuming it exists; structure the problem into logical parts before jumping to the adverse selection explanation."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe to accept this selection story, and which of those assumptions has not been tested yet?",
+      "source_quote": "What would you have to believe to accept a particular thesis or viewpoint?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "What is the one-day answer?",
+      "source_quote": "What is the one-day answer?",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "If someone came to me asking about this decision, what would I need to know before claiming hidden quality or hidden risk is the driver?",
+      "source_quote": "If someone came to me asking my opinion about this kind of decision, what would I need to know to give good advice?",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Specialized conservatively from the raw outside-view check to the adverse-selection use case."
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Structure the problem before analysis so screening, signaling, or filtering mechanisms are explicit rather than implied.",
+      "source_quote": "Problem Structuring: Rigorously frame a question or hypothesis before complex analysis",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Anchor to the outside view before treating one side's private-information story as the dominant explanation.",
+      "source_quote": "Outside View Anchor: Anchor decisions first to the outside view",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Test the case with multiple models or frames so hidden-information reasoning competes with other plausible explanations.",
+      "source_quote": "Multiple Models/Frames: Break down complex problems using multiple frameworks or mental models",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "This source is proxy-derived rather than explicitly named around adverse selection, so the chunks stay tightly anchored to verification, framing, and anti-misdiagnosis content.",
+    "donor_drops": [
+      "Did not preserve donor material that treated adverse selection as more explicitly sourced than the local raw file supports."
+    ],
+    "open_questions": [
+      "This is one of the more normalization-dependent Wave 2 files because the raw text frames the mechanism through proxy decision-hygiene content."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is useful future relation material around first principles, systems thinking, and fast-slow thinking."
+    ],
+    "antagonists": [
+      "The raw antagonists section is rich on cognitive biases, curse of knowledge, and emotional thinking as future relation material."
+    ],
+    "structured_tensions": [
+      "The raw source explicitly preserves tensions against algorithmic-thinking, systems-thinking, and confirmation-bias."
+    ]
+  }
+}

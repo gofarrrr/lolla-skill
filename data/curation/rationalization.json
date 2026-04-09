@@ -1,0 +1,70 @@
+{
+  "model_id": "rationalization",
+  "source_file": "Rationalization_rag.md",
+  "select_when": [
+    "The explanation sounds polished, but there are signs the reasoning may be a post-hoc defense rather than the real cause of the decision.",
+    "A team is protecting a conclusion by cleaning up the story instead of reopening whether the thesis is actually sound.",
+    "The gap between action and stated reasoning needs to be surfaced before more commitments are made.",
+    "The next intervention should separate genuine analysis from press-secretary storytelling."
+  ],
+  "avoid_when": [
+    "The group is already candid about uncertainty and trade-offs, and further anti-rationalization pressure would just create performative self-doubt.",
+    "The situation requires fast containment or execution and the team is about to turn anti-rationalization work into endless motive analysis."
+  ],
+  "input_type": "post-hoc story defense problem",
+  "output_type": "reasoning-versus-story separation",
+  "reasoning_types": [
+    "metacognitive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on detecting post-hoc story laundering and separating real reasoning from defensive explanation.",
+    "donor_drops": [
+      "Did not preserve donor introspection sprawl because the raw source is stronger on the press-secretary metaphor, motive laundering, and anti-self-justification pressure."
+    ],
+    "open_questions": [
+      "The output type compresses a source that also touches self-deception, public signaling, and motivated cognition."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source is explicit on post-hoc justification, narrative cleanup, and the need to separate actual reasoning from defensive story."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions are grounded in source warnings against turning anti-rationalization into sterile self-consciousness or delay."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates on story defense and post-hoc explanation, while the compact label is a reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source naturally yields a separation between real reasoning and defensive narrative; the typed output compresses that distinction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is strongest as reflective and diagnostic self-audit, while the taxonomy names remain normalized."
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model_id": "optionality",
+  "source_file": "Optionality_rag.md",
+  "failure_modes": [
+    {
+      "text": "Analysis paralysis can keep the team waiting for perfect information instead of learning through reversible movement.",
+      "source_quote": "Analysis Paralysis",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a decision deadline that forces commitment before analysis consumes more value than the option preserves; make the deadline visible and non-negotiable."
+    },
+    {
+      "text": "The paradox of choice can consume cognitive energy and leave the system selecting no option at all.",
+      "source_quote": "The Paradox of Choice (Decision Fatigue)",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Reduce cognitive load by pre-filtering: eliminate clearly dominated options early so the remaining set is small enough for genuine deliberation."
+    },
+    {
+      "text": "Anchoring on the first option presented can quietly shrink the perceived option set and bias later evaluation.",
+      "source_quote": "Anchoring Bias",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Actively generate alternatives before evaluating: brainstorm options independently from the first one presented to prevent anchoring from shrinking the choice set."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "Is the worst case bad enough?",
+      "source_quote": "\"Is the worst case bad enough?\"",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "text": "Would we regret making or not making this decision when we look back later?",
+      "source_quote": "one visualizes themselves at age 80 and asks if they would regret making (or not making) a specific decision",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Have we generated enough options before narrowing the choice set?",
+      "source_quote": "generate many options before selecting among them",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Use the 3+ principle to force more than a binary choice on important decisions.",
+      "source_quote": "The 3+ Principle",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Invent first and decide later so evaluation does not choke off option generation too early.",
+      "source_quote": "Invent First, Decide Later",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Bias toward action on reversible decisions because they buy information at low downside cost.",
+      "source_quote": "Reversible Decisions Bias",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The source is naturally chunk-ready on anti-binary option generation, reversible decisions, and anti-paralysis discipline.",
+    "donor_drops": [
+      "Did not preserve donor-style portfolio overlays because the raw source is stronger on preserving viable paths and deciding after learning."
+    ],
+    "open_questions": [
+      "The regret prompt is normalized from the Bezos example rather than preserved as a direct quote so it works as a reusable chunk."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "The raw allies section is strong on systems-thinking, critical-thinking, and hypothesis-driven option generation for later relation preservation."
+    ],
+    "antagonists": [
+      "The raw antagonists section is stronger than any explicit tension block and points to confirmation, commitment/consistency, and availability-style narrowing."
+    ],
+    "structured_tensions": [
+      "The source lacks an explicit structured tension block, so any later tension preservation should stay conservative and review-first."
+    ]
+  }
+}

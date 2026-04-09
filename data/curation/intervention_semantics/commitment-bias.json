@@ -1,0 +1,90 @@
+{
+  "model_id": "commitment-bias",
+  "source_file": "Commitment_Bias_rag.md",
+  "failure_modes": [
+    {
+      "text": "Escalation after the decision has already lost its best branch can keep effort flowing into a dead path.",
+      "source_quote": "Escalation after the decision has already lost its best branch",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Define explicit exit criteria and reversal triggers before commitment so the team has pre-agreed conditions for changing course."
+    },
+    {
+      "text": "Entrenchment and inertia can make the team defend prior posture long after the evidence moved.",
+      "source_quote": "Entrenchment and Inertia",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Schedule regular re-evaluation checkpoints that force the team to justify continued investment from current evidence, not from prior momentum."
+    },
+    {
+      "text": "Self-justification can turn consistency pressure into a refusal to update strategy.",
+      "source_quote": "Over-reliance on Self-Justification",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Separate the sunk cost from the forward decision: ask what the team would do if starting fresh with the same information today."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What evidence would make us reverse course rather than defend the original commitment?",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "The raw source uses the question to unpack assumptions; this chunk adapts it to reversal discipline."
+    },
+    {
+      "text": "If this path is failing quietly, what would we notice first?",
+      "source_quote": "Is the worst case bad enough?",
+      "extraction_type": "normalized",
+      "confidence": "medium",
+      "note": "Grounded in the raw downside-checking logic and escalation failure table."
+    },
+    {
+      "text": "Are we protecting the goal, or just protecting the story that we were right to start?",
+      "source_quote": "commitment and consistency",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Conservative normalization from the raw model's consistency-pressure logic."
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Separate goal-setting, diagnosis, and design so commitment to one step does not pre-commit the next.",
+      "source_quote": "perform the steps one at a time and in order",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use outside challenge to test whether the current path still deserves commitment.",
+      "source_quote": "What would you have to believe?",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Treat small commitments as leverage carefully because they can ratchet identity and posture faster than evidence updates.",
+      "source_quote": "commitment and consistency",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw file has unusually strong escalation and self-justification content, so the chunk set centers on reversal discipline rather than generic caution.",
+    "donor_drops": [
+      "Did not preserve donor runtime-style triggers because this layer is about intervention semantics, not route activation."
+    ],
+    "open_questions": [
+      "This source is richer on failure modes than on explicit pre-mortem phrasing, so some questions remain reviewed normalizations."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "A later relation wave could preserve the raw support links around outside view, implementation discipline, and structured challenge."
+    ],
+    "antagonists": [
+      "The raw source is strong on escalation, sunk posture, and identity-driven rigidity as future antagonistic relation material."
+    ],
+    "structured_tensions": [
+      "Commitment-bias likely has future structured-tension value against BATNA and route-correction models."
+    ]
+  }
+}

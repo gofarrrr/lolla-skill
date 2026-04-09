@@ -1,0 +1,70 @@
+{
+  "model_id": "varied-practice-interleaving",
+  "source_file": "Varied_Practice_Interleaving_rag.md",
+  "select_when": [
+    "One plausible frame explains part of the problem but leaves stakeholder reactions, edge cases, or system behavior under-explained.",
+    "The goal is transfer across situations, so the team should compare examples, counterexamples, and alternative cuts of the same structure.",
+    "Leaders should examine the problem through materially different lenses before locking in the operating story.",
+    "A familiar expert pattern may be misleading and the team needs contrasted frames to expose what the first read is missing."
+  ],
+  "avoid_when": [
+    "Teams are adding more frames, analogies, or examples without using them to sharpen the decision, prune hypotheses, or expose the highest-value contrast.",
+    "A simple problem already yields a clear answer and extra frame-rotation would mostly add delay, noise, or performative completeness."
+  ],
+  "input_type": "under-explained framing problem",
+  "output_type": "contrasted-frame review",
+  "reasoning_types": [
+    "metacognitive",
+    "systems"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model centered on contrasting multiple frames to improve transfer and diagnosis rather than on broad multidisciplinary rhetoric.",
+    "donor_drops": [
+      "Did not preserve donor graph-walk or ideation sprawl because the raw source is already strongest on explicit contrast before commitment."
+    ],
+    "open_questions": [
+      "The source gestures toward specialization as a tension, but the current curated target surface is cleaner around anchoring and confirmation-bias."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly says the model is strongest when one frame is under-explaining the problem, when transfer matters, and when teams need contrast before commitment."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "The source explicitly warns against undisciplined wandering and also notes that straightforward problems may not need heavy interleaving."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source is explicit about under-explained problems and misleading first frames; the compact label is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model produces contrasted frame testing and alternative cuts; the output label compresses that into a reusable artifact type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The model is reflective and system-aware, but the taxonomy labels remain reviewed normalization."
+    }
+  }
+}

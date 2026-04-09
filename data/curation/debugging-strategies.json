@@ -1,0 +1,70 @@
+{
+  "model_id": "debugging-strategies",
+  "source_file": "Debugging_Strategies_rag.md",
+  "select_when": [
+    "A failure is real but the cause is ambiguous, distributed, or hidden behind several interacting components.",
+    "The team can form explicit hypotheses, isolate variables, and test the system instead of arguing from intuition.",
+    "Reliability matters enough that vague explanations are more dangerous than the time required to trace the true defect path.",
+    "The work is conflating symptom, diagnosis, and solution design, so it needs a disciplined root-cause pass before action."
+  ],
+  "avoid_when": [
+    "People have not agreed on the actual failure condition, so debugging would optimize noise, symptoms, or tools instead of broken behavior.",
+    "The problem is genuinely novel and needs abductive or creative generation before deductive debugging frameworks can help."
+  ],
+  "input_type": "ambiguous-failure diagnosis problem",
+  "output_type": "root-cause test plan",
+  "reasoning_types": [
+    "causal",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model focused on root-cause diagnosis, variable isolation, and disciplined sequencing rather than broad software-only debugging language.",
+    "donor_drops": [
+      "Did not preserve donor troubleshooting sprawl because the raw source is already strong on diagnosis, issue trees, and anti-premature-solution discipline."
+    ],
+    "open_questions": [
+      "The source spans business problem solving and technical diagnosis, so the typed output compresses several execution surfaces."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "high",
+      "note": "The raw source explicitly names ambiguous failures, hypothesis testing, reliability-sensitive diagnosis, and step-order discipline."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown"
+      ],
+      "confidence": "high",
+      "note": "Both anti-activation conditions come directly from the source warnings about undefined failure conditions and novel problems that need different reasoning."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly activates around diagnosis under ambiguity, while the typed label is reviewed operational normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The source yields root-cause tracing and test sequencing; the typed output label is a compact reviewed abstraction."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "Debugging is explicitly about causal diagnosis and root-cause analysis, but the taxonomy labels remain normalized."
+    }
+  }
+}

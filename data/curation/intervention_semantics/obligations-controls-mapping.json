@@ -1,0 +1,95 @@
+{
+  "model_id": "obligations-controls-mapping",
+  "source_file": "Obligations_Controls_Mapping_rag.md",
+  "failure_modes": [
+    {
+      "text": "Confirmation bias can structure the map to confirm the preferred conclusion instead of exposing the real obligation gap.",
+      "source_quote": "Structuring the investigation or mapping the controls/data gathering to yield a pre-determined conclusion or hypothesis.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Have an independent reviewer audit the map against the raw obligation source to catch any framing that conveniently narrows or reinterprets what is actually required."
+    },
+    {
+      "text": "Rushing the map can push the team into control design before the real obligation is diagnosed.",
+      "source_quote": "Jumping into analysis or solution design (Controls) without adequate diagnostic work.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Sequence the work: complete obligation diagnosis before designing controls, and flag any team that starts building controls before the obligation scope is locked."
+    },
+    {
+      "text": "Scope inflation can bury the real obligation under mountains of low-value mapping work.",
+      "source_quote": "The user gathers a mountain of data or performs needless analyses, wasting time and effort without advancing the thinking.",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Set a scope boundary before mapping starts: define which obligations are in scope and timebox the mapping effort to prevent completionism from burying the critical gaps."
+    },
+    {
+      "text": "Neglecting the human element can make a clean control map fail at implementation time.",
+      "source_quote": "Over-focusing on the analytical, rational, or technical content ... while neglecting essential personal and organizational data",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "mitigation": "Include implementation owners and human-factors review in the control design: for every control, name who operates it and test whether they can realistically execute it."
+    }
+  ],
+  "premortem_questions": [
+    {
+      "text": "What would you have to believe?",
+      "source_quote": "Ask the crucial pre-mortem question: What would you have to believe? to spell out all assumptions implicit in a perspective.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "How does what you're doing solve the problem? Is it the most important thing you could be doing right now?",
+      "source_quote": "How does what you’re doing solve the problem? Is it the most important thing you could be doing right now?",
+      "extraction_type": "normalized",
+      "confidence": "high",
+      "note": "Normalized the apostrophe for JSON readability."
+    }
+  ],
+  "heuristics": [
+    {
+      "text": "Define the role and its constraints explicitly before the system starts acting.",
+      "source_quote": "the system prompt defines the agent’s role ... and its backstory ... Explicitly documenting and encoding behavioral tendencies",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the goal-oriented seven-step process so obligation definition, mapping, synthesis, and execution do not blur together.",
+      "source_quote": "The process starts with a precise definition of the problem ... followed by disaggregation and hypothesis generation ... Synthesizing findings and then structuring the execution",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Apply MECE disaggregation so obligations break into distinct and complete control areas.",
+      "source_quote": "the principle of Mutually Exclusive and Collectively Exhaustive (MECE) is fundamental",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "text": "Use the TOSCA problem statement to define trouble, owner, success criteria, constraints, and actors before mapping controls.",
+      "source_quote": "TOSCA Problem Statement ... Trouble, Owner, Success criteria, Constraints, and Actors.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "curation_notes": {
+    "summary": "This file captures the strongest control-design and handoff-discipline content from a synthesized raw model whose current graph representation is especially thin on failure modes.",
+    "donor_drops": [
+      "Dropped donor alignment-framework language because the raw source is stronger on executable controls than on generic alignment."
+    ],
+    "open_questions": [
+      "A later wave may want a dedicated handoff-ambiguity or control-gap subtype, but this pilot keeps chunk types simple."
+    ]
+  },
+  "deferred_richness_notes": {
+    "allies": [
+      "Raw allies section is rich on systems thinking, decomposition, cognitive load theory, intentionality, and Feynman Technique."
+    ],
+    "antagonists": [
+      "Raw antagonists section preserves future richness on Maslow's hammer, curse of knowledge, and cognitive dissonance."
+    ],
+    "structured_tensions": [
+      "Structured tensions explicitly connect obligations-controls-mapping to authority-bias, status-quo-bias, and confirmation-bias."
+    ]
+  }
+}

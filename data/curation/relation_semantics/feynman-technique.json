@@ -1,0 +1,62 @@
+{
+  "model_id": "feynman-technique",
+  "source_file": "Feynman_Technique_rag.md",
+  "allies": [
+    {
+      "target_model_id": "first-principles-thinking",
+      "rationale_text": "First-principles-thinking strengthens the Feynman Technique by forcing the explainer to rebuild the idea from basics rather than repeat inherited phrasing.",
+      "source_quote": "The FT demands that a concept be broken down to its underlying principles and logic.",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "cognitive-load-theory",
+      "rationale_text": "Cognitive-load-theory explains why the Feynman Technique works: simplifying and chunking the idea reduces working-memory strain enough for real learning to happen.",
+      "source_quote": "The FT's emphasis on simplifying and chunking information directly mitigates the limits of short-term or working memory.",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "simplification",
+      "rationale_text": "Simplification is the practical surface of the Feynman Technique when explanation compresses an idea enough to expose whether understanding is genuine.",
+      "source_quote": "keeping the focus narrow and simple",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "antagonists": [
+    {
+      "target_model_id": "authority-bias",
+      "rationale_text": "Authority-bias undermines the Feynman Technique when expert language is accepted and repeated without comprehension checks.",
+      "source_quote": "accepted expert language is repeated without comprehension checks",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "target_model_id": "confirmation-bias",
+      "rationale_text": "Confirmation-bias weakens the Feynman Technique when the explanation is used to feel competent rather than to reveal what still does not make sense.",
+      "source_quote": "identify mental blind spots",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "structured_tensions": [
+    {
+      "target_model_id": "authority-bias",
+      "tension_text": "Feynman-technique conflicts with authority-bias when accepted expert language is repeated without comprehension checks.",
+      "source_quote": "feynman-technique vs authority-bias: feynman-technique conflicts with authority-bias (authority bias) when accepted expert language is repeated without comprehension checks.",
+      "extraction_type": "explicit",
+      "confidence": "high",
+      "tension_type": "conflicts"
+    }
+  ],
+  "curation_notes": {
+    "summary": "The raw source is strongest on first-principles, cognitive-load, and simplification allies plus one explicit conflict with authority-bias, so the file preserves that conservative surface.",
+    "donor_drops": [
+      "Did not preserve donor relation widening beyond the clearly named explanation, learning, and anti-authority-without-understanding surface."
+    ],
+    "open_questions": [
+      "Status-quo-bias is source-real friction, but the retained set favors the explicit current-vocabulary authority tension and the stronger simplification allies."
+    ]
+  }
+}

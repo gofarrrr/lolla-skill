@@ -1,0 +1,72 @@
+{
+  "model_id": "simplification",
+  "source_file": "Simplification_rag.md",
+  "select_when": [
+    "Complexity is blocking action, alignment, or recall more than it is improving the underlying decision.",
+    "The team needs the essential governing idea, not the full story of every analysis branch that produced it.",
+    "A recommendation must survive handoff to operators who need a clear rule, intent, or checkpoint rather than expert nuance."
+  ],
+  "avoid_when": [
+    "Simplification would remove the caveat, boundary, or uncertainty that makes the decision safe to use in reality.",
+    "The case depends on expert nuance or accuracy levels that cannot be safely compressed into a short governing rule."
+  ],
+  "input_type": "complex recommendation handoff",
+  "output_type": "essential-rule distillation",
+  "reasoning_types": [
+    "diagnostic",
+    "analogical"
+  ],
+  "curation_notes": {
+    "summary": "Kept the model anchored to complexity reduction for action and handoff, not donor communication-style breadth.",
+    "donor_drops": [
+      "Dropped donor persuasion and AI-persona examples that widened the model beyond the raw simplification boundary.",
+      "Dropped donor higher-order relation overlays because batch 2 preserves the frozen first-order contract."
+    ],
+    "open_questions": [
+      "The reasoning-types field is especially normalization-heavy here because the raw source describes function more clearly than taxonomy."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "high",
+      "note": "The raw file explicitly states when simplification helps; donor drafts were only used as weak support before narrowing to action and handoff structure."
+    },
+    "avoid_when": {
+      "sources": [
+        "raw_markdown",
+        "reviewed_normalization"
+      ],
+      "confidence": "medium",
+      "note": "The first avoid condition is explicit and the second is a conservative extension of the same raw over-simplification risk."
+    },
+    "input_type": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "medium",
+      "note": "The source clearly applies to complex recommendations crossing a handoff boundary, but the typed input is reviewed normalization."
+    },
+    "output_type": {
+      "sources": [
+        "reviewed_normalization",
+        "raw_markdown"
+      ],
+      "confidence": "medium",
+      "note": "The raw model distills to the essential governing idea; the output label compresses that function into a reusable operational type."
+    },
+    "reasoning_types": {
+      "sources": [
+        "reviewed_normalization",
+        "donor_draft"
+      ],
+      "confidence": "weak",
+      "note": "The source supports the functional role more clearly than any exact reasoning taxonomy, so this field remains a relatively weak reviewed normalization."
+    }
+  }
+}

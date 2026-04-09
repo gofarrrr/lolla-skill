@@ -1,0 +1,36 @@
+{
+  "model_id": "variation-and-selection",
+  "source_file": "Variation_And_Selection_rag.md",
+  "select_when": [
+    "The current answer set is too narrow, path-dependent, or anchored on the first plausible idea.",
+    "The team can afford small experiments, prototypes, or comparative tests to separate strong variants from weak ones.",
+    "Innovation quality depends on broad option generation first and disciplined evidence-based pruning second.",
+    "A single perspective is constraining the search space and better alternatives may only appear after deliberate variation."
+  ],
+  "avoid_when": [
+    "The team keeps generating options without a selection rule, so experimentation expands but learning and pruning never happen.",
+    "Variation is being skipped because people are clinging to the first answer they want to be true."
+  ],
+  "input_type": "option-space design problem",
+  "output_type": "generate-then-prune protocol",
+  "reasoning_types": [
+    "abductive",
+    "diagnostic"
+  ],
+  "curation_notes": {
+    "summary": "Focused on divergence-plus-selection discipline rather than on abstract innovation language.",
+    "donor_drops": [
+      "Did not preserve broader content-strategy and prompt-engineering sprawl because the raw source is already strongest on generate-and-test logic."
+    ],
+    "open_questions": [
+      "The source overlaps with experimentation and design thinking, but the operational file stays on disciplined variation followed by selection."
+    ]
+  },
+  "provenance_notes": {
+    "select_when": {"sources": ["raw_markdown", "reviewed_normalization"], "confidence": "high", "note": "The raw source is explicit on narrow answer sets, experiments, broad option generation, and evidence-based pruning."},
+    "avoid_when": {"sources": ["raw_markdown"], "confidence": "high", "note": "The source explicitly warns against variation without selection and against fixation on the first answer."},
+    "input_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The typed input label compresses the raw conditions around constrained option spaces."},
+    "output_type": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The output label captures the model as a protocol: widen the set, then prune by evidence."},
+    "reasoning_types": {"sources": ["reviewed_normalization", "raw_markdown"], "confidence": "medium", "note": "The model relies on exploratory hypothesis generation followed by comparative diagnosis."}
+  }
+}
