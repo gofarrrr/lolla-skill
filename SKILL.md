@@ -160,7 +160,15 @@ This runs the full Lolla pipeline — all three lanes — via OpenRouter. The `-
 
 ### Step 4: Present Results
 
-Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and present three sections. **Present the curated knowledge from the output — do not generate your own analysis.** Field names in the pipeline output may vary slightly across versions — map to the closest match rather than failing silently.
+Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and present three sections. **Step 4 is a rendering problem, not a reasoning problem.** Present the pipeline output faithfully. Do not narrate, bridge, or editorialize inside the card sections. Your interpretation belongs in Step 6.
+
+**Rules for Step 4:**
+- Present each finding, anchor, and frame element as a separate block — do not merge, reorder, or omit entries
+- Quote `specific_passage`, `challenge_statement`, `next_move`, `evidence_quote`, and chunk text verbatim from the JSON
+- Do not add first-person commentary ("I noticed...", "Here's the structural problem...") inside card sections
+- Do not skip reframings based on your judgment of whether they were "already explored" — present what the pipeline returned
+- Tendency names and severity ARE the headline — use the template format below
+- Framing and voice belong in Step 6, not here
 
 ---
 
@@ -186,9 +194,7 @@ A chunk that sounds general — like "Is the worst case bad enough?" — is not 
 
 #### DeltaCard — Structural Pressure
 
-**Before presenting, check for overlap.** If two or more findings quote the same passage (or substantially overlapping text), do NOT present them as separate findings. Merge them: present the stronger finding (higher severity, more specific challenge) and note the compound pattern — "This passage also shows signs of [other tendency]." This prevents inflating finding count with redundant detections.
-
-For each finding in `delta_card.top_findings` (after merging overlaps):
+For each finding in `delta_card.top_findings`:
 
 **[tendency_name] — [sub_pattern] / [corrective model]** (Severity: [severity])
 
@@ -216,9 +222,11 @@ Zero detections: "No structural pressures detected."
 
 #### CompanionCheatSheet — Mental Models Active
 
-For each anchor in `companion_cheat_sheet.anchors`, lead with the practical insight — what it means for THIS decision — not with model taxonomy. The model name is attribution, not the headline.
+For each anchor in `companion_cheat_sheet.anchors`:
 
-Present the most actionable chunks first: failure modes that warn where this reasoning breaks, premortem questions that surface what hasn't been asked, antagonist tensions that highlight productive disagreement. Use chunk `provenance.confidence` for your own weighting. 7 chunk types exist (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap — see field guide); present whichever are present.
+**[display_name]** — [executed / violated] — "[evidence quote from companion_card.detected_models]"
+
+Present attached chunks grouped by type. 7 chunk types exist (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap — see field guide). Present the curated chunk text verbatim — do not rephrase or expand. Use chunk `provenance.confidence` for your own weighting.
 
 Null or empty: "No mental models detected with structural evidence in this conversation."
 
@@ -232,18 +240,14 @@ Null or empty: "No mental models detected with structural evidence in this conve
 
 #### FramePressureCard — Question-Level Audit
 
-**Lead with the most consequential element** — the one whose assumption, if wrong, would most change the conclusion. Not all frame elements carry equal weight; present the highest-impact element first and give it more space.
-
-For each element in `frame_pressure_card.frame_elements`:
+For each element in `frame_pressure_card.frame_elements` (in the order they appear in the JSON):
 
 **[element_type: assumption / mutable_constraint / suppressed_counterfactual]** — [frame_pattern]
 - [element_text]
 - Evidence: "[evidence_quote]"
 - Fragility: [fragility_signal]
 
-**Reframings — novelty check.** Before presenting a reframing, check whether the conversation already explored that question. You have the full conversation context. If a reframing echoes something the user or you already discussed, skip it or flag it as "already explored — the conversation touched this but didn't resolve it." Only present reframings that genuinely expand the frame beyond what was discussed.
-
-For each reframing that passes the novelty check (max 2):
+For each reframing in `frame_pressure_card.reframings` (present all of them):
 
 > **Alternative question:** [reframed_question]
 > Move type: [reframe_move_type: inversion / perspective_shift / scope_expansion / constraint_relaxation]
@@ -294,6 +298,8 @@ When presenting results:
 4. **False negatives over false positives.** Zero detections is a valid outcome. Do not pad the output with your own speculative concerns.
 
 ### Step 6: Update Your Position
+
+Before writing this section, read `references/presentation-voice.md` for voice guidance — Munger-inspired directness, storytelling, concrete antidotes. **This is the section where voice and interpretation belong.** Step 4 rendered the raw audit; Step 6 is where you reason about it.
 
 After presenting the three cards, **reconsider your earlier advice in this conversation and produce your updated position.** This is the most important step — your updated position IS the product. The three cards are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
 
@@ -354,7 +360,7 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | File | When to read |
 |------|-------------|
 | `references/output-field-guide.md` | **Read at the start of Step 4** — full field definitions, chunk types, compound patterns, element types, reframe moves |
-| `references/presentation-voice.md` | **Read at the start of Step 4** — how to voice findings: lead with the story not the label, concrete antidotes, Munger-inspired directness |
+| `references/presentation-voice.md` | **Read at the start of Step 6** — how to voice your updated position: Munger-inspired directness, concrete antidotes, earn the right to challenge. Do NOT read this for Step 4 — Step 4 is structured rendering, not voiced narrative. |
 | `references/tendency-catalog.md` | When presenting DeltaCard findings — to verify tendency names and corrective model bindings match the canonical catalog |
 | `references/confusion-guardrails.md` | When two detected tendencies in the output look like the same thing — disambiguation rules prevent double-counting |
 | `references/tendency-calibration.md` | When a detection feels marginal or the user questions a finding — contains detection boundaries and threshold guidance per tendency |
