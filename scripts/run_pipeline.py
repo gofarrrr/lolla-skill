@@ -209,6 +209,11 @@ def main() -> int:
     query = cr.get("query", "")
     vanilla_answer = cr.get("vanilla_answer", "")
 
+    # Read upstream capture diagnostics (from run_extract.py)
+    _capture_health = extraction.get("capture_health", "unknown")
+    _capture_warnings = extraction.get("capture_warnings", [])
+    _capture_manifest = extraction.get("capture_manifest")
+
     if not query or not vanilla_answer:
         print(json.dumps({
             "status": "error",
@@ -316,16 +321,31 @@ def main() -> int:
         _health_issues.append("no_fingerprint")
     if _warnings:
         _health_issues.append("pipeline_warnings")
+    if _capture_health == "critical":
+        _health_issues.append("capture_critical")
+    elif _capture_health == "degraded":
+        _health_issues.append("capture_degraded")
+
+    # Overall health: critical if capture is critical, degraded if any issues
+    if "capture_critical" in _health_issues:
+        _overall = "critical"
+    elif _health_issues:
+        _overall = "degraded"
+    else:
+        _overall = "healthy"
 
     serialized["run_health"] = {
-        "overall": "healthy" if not _health_issues else "degraded",
+        "overall": _overall,
+        "capture": _capture_health,
         "substrate": "ok" if _substrate_ok else "empty",
         "embeddings": "active" if _embedding_active else "off",
         "fingerprint": "ok" if _fingerprint_ok else "empty",
         "findings_produced": _has_findings,
         "issues": _health_issues,
-        "warnings": _warnings,
+        "warnings": _warnings + _capture_warnings,
     }
+    if _capture_manifest:
+        serialized["run_health"]["capture_manifest"] = _capture_manifest
 
     # Output
     if args.output == "summary":
