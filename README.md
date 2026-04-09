@@ -20,6 +20,26 @@ Three independent audit lanes:
 
 Each lane produces independent, traceable findings grounded in curated knowledge — not LLM-generated commentary.
 
+## Why This Exists
+
+LLMs will keep getting better. They'll get more accurate, more nuanced, more capable of complex reasoning. So why build a deterministic system to challenge them?
+
+Because fluency and correctness are different problems. An LLM can produce a perfectly coherent recommendation that is structurally fragile — built on an unexamined assumption, missing a reversal condition, or anchored to whichever framing the question happened to use. The better the prose, the harder this is to see. Getting better at generating doesn't mean getting better at knowing where the generation is weak.
+
+This is not a temporary gap waiting for the next model release to close. It's architectural:
+
+- **Probabilistic systems cannot self-verify.** An LLM auditing its own reasoning is sampling from the same distribution that produced the flaw. Anthropic's sycophancy research, Princeton's user studies (N=557), and MIT's Bayesian modeling all converge on the same finding: LLMs systematically agree with users and defend their own outputs, even when wrong. A different model helps — but it shares training biases. A deterministic substrate with curated failure modes doesn't share anything.
+
+- **Structure beats context.** Giving a model all the right facts produces 30% accuracy on reasoning tasks. Giving it a structured reasoning framework produces 85% (Car Wash Study, 120 trials, p=0.001). CMU's research shows surface cues dominate implicit constraints by 8-38x across 14 frontier models. The knowledge exists inside the model — it doesn't activate without structural intervention.
+
+- **Reasoning quality is not factual accuracy.** Almost all existing LLM guardrails check whether the output is *true* or *safe*. Almost nobody checks whether the *reasoning structure* is sound — whether the argument would survive adversarial challenge, whether the confidence is earned, whether the frame suppresses alternatives. This is the gap Lolla occupies.
+
+The broader landscape is converging on the same insight. Microsoft's GraphRAG, Stanford's DSPy, NVIDIA's NeMo Guardrails, Karpathy's knowledge compilation architecture — all are building hybrid systems where LLMs handle the probabilistic edges and deterministic structures handle the reliable middle. Neurosymbolic AI saw 236 publications in 2023 alone. The question is no longer *whether* to combine LLMs with structured knowledge, but *how* — and for *which problems*.
+
+Most of these systems target factual grounding (is the output true?) or compliance (is the output safe?). Lolla targets a different problem: **is the reasoning structurally sound?** Not "did the LLM hallucinate a fact" but "did the LLM close on a recommendation without testing the frame, dismiss a risk without evidence, or let one scenario do all the argumentative work?"
+
+That problem doesn't go away as models improve. It gets harder to see.
+
 ## Install
 
 1. Clone this repo:
