@@ -111,12 +111,18 @@ These measurements follow a core constraint: **evals measure the process, not de
 
 ### Conductor, Not Player
 
-**Claude is a conductor, not a player.** It captures the conversation, calls scripts, and presents results. It performs zero reasoning judgment. Every semantic decision goes through OpenRouter where prompts are calibrated and measurable.
+**Claude is a conductor, not a player — for the audit.** It captures the conversation, calls scripts, and presents results. It performs zero reasoning judgment inside extraction, triage, routing, fingerprinting, deep checks, or card generation. Every semantic decision in the audit pipeline goes through OpenRouter where prompts are calibrated and measurable.
 
-Why? Three reasons:
+**Claude does author the final revised position (Step 6).** After the three cards are presented, Claude reconsiders its earlier advice under structural pressure from the curated substrate. This revised answer is persisted as a first-class run artifact with provenance (`revised_answer_source: "claude_step6"`). The Observatory renders it alongside the pipeline output.
+
+This is a deliberate trust-boundary split:
+- **Audit (detection + routing + card assembly)** — OpenRouter via calibrated prompts. Claude produced the original reasoning; asking the same LLM to find its own flaws invites sycophantic self-defense. A different model audits.
+- **Reconsideration (Step 6)** — Claude. It has the full conversation context, the user's nuances, the back-and-forth. The audit cards are structural pressure, not commands. Claude absorbs that pressure and produces a revised position that is better than what it said before.
+
+Why the audit stays external:
 
 - **Calibration control.** You can't tune Claude's judgment the way you tune an OpenRouter prompt. The pipeline has been calibrated over hundreds of eval runs against professional-grade cases. Inline judgment has been calibrated against zero.
-- **Fox can't audit the henhouse.** Claude produced the reasoning in the conversation. Asking the same LLM to find flaws in its own reasoning invites sycophantic self-defense — not because it lies, but because RLHF training optimizes for agreeable outputs.
+- **Fox can't audit the henhouse.** RLHF training optimizes for agreeable outputs. External audit breaks that loop.
 - **Telemetry.** When OpenRouter runs the pipeline, we get `BoundaryCallMetadata` back — prompt tokens, completion tokens, cached tokens, reasoning tokens. This makes the system observable and measurable.
 
 ### Probabilistic Edges, Deterministic Middle
@@ -263,7 +269,9 @@ What about the risk of...
 ### Step 2: Extract Decision Structure
 
 ```bash
-python3 $SKILL_DIR/scripts/run_extract.py --conversation-file /tmp/lolla_conversation_$$.txt
+python3 $SKILL_DIR/scripts/run_extract.py \
+  --conversation-file /tmp/lolla_{run_id}_conversation.txt \
+  --output-file /tmp/lolla_{run_id}_extraction.json
 ```
 
 This script reads the conversation, sends it to OpenRouter with a calibrated extraction prompt, and parses the structured response.
@@ -312,10 +320,13 @@ This mapping is deterministic — no LLM involved.
 ### Step 3: Run Pipeline
 
 ```bash
-python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_extraction_$$.json
+python3 $SKILL_DIR/scripts/run_pipeline.py \
+  --extraction-file /tmp/lolla_{run_id}_extraction.json \
+  --output-file /tmp/lolla_{run_id}_result.json \
+  --skip-revision
 ```
 
-This script parses the extraction JSON, initializes the full Lolla pipeline via OpenRouter, and runs all three lanes:
+The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. This script parses the extraction JSON, initializes the full Lolla pipeline via OpenRouter, and runs all three lanes:
 
 ```
                          ┌──────────────────────────────┐
@@ -371,16 +382,19 @@ Lane 3 is most powerful on short conversations where the question itself constra
 
 **Total OpenRouter calls:** Typically 8-10 (1 extraction + 1 triage + N deep checks + 1 fingerprint + 1 verify + 1 frame extract + 1 reframe). All use the calibrated boundary client with `temperature=0.2` and `response_format=json_object`. The revision step is skipped in the skill flow — Claude produces the updated position itself in Step 6, using the full conversation context and the three cards.
 
-**Pipeline diagnostics (`run_health`):** The pipeline output includes a decomposed health status:
+**Pipeline diagnostics (`run_health`):** The pipeline output includes a decomposed health status that rolls up capture diagnostics from extraction and pipeline state into one truthful object:
 
-- `overall` — `healthy` or `degraded`
+- `overall` — `healthy`, `degraded`, or `critical`
+- `capture` — `good`, `degraded`, `critical`, or `unknown` (from extraction's `capture_health`)
 - `substrate` — `ok` if compiled chunks loaded, `empty` if bundle selector failed
 - `embeddings` — `active` or `off`
 - `fingerprint` — `ok` if companion verified at least one model, `empty` otherwise
 - `findings_produced` — whether Lane 1 produced any findings
-- `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`
+- `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`
+- `warnings` — merged pipeline warnings + capture warnings
+- `capture_manifest` (optional) — actual vs. declared turn counts and character length from the conversation capture
 
-These diagnostics make it possible to distinguish a clean "no findings" result from a broken run that produced no findings because the substrate didn't load.
+`overall` is `critical` if capture is critical (>50% assistant turns missing), `degraded` if any issues exist, `healthy` only when all components are clean. These diagnostics make it possible to distinguish a clean "no findings" result from a broken run that produced no findings because the substrate didn't load or the conversation was badly captured.
 
 ### Step 4: Present Results
 
@@ -402,13 +416,29 @@ After presenting the three cards, Claude reconsiders its earlier advice. The str
 
 ### Step 5: Observatory (Optional)
 
-For complex results, the skill can open the Observatory — a local web interface that renders all three cards in a navigable visual format:
+The Observatory is a full run viewer — not just a pipeline output viewer. It renders the complete audit artifact: the three cards, the revised answer, and the run's health context.
 
 ```bash
-python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_result_$$.json
+python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_{run_id}_result.json
 ```
 
-Zero dependencies (stdlib Python server + pre-built Svelte frontend). Shows findings with severity tags, companion anchors with typed chunks, frame elements with reframings, and the knowledge graph provides model detail views and tendency catalog browsing.
+Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backend API serves:
+
+**Primary product:**
+- Query and vanilla answer (expandable drawers)
+- DeltaCard — findings with severity, passages, challenges, reversal triggers
+- CompanionCheatSheet — model anchors with typed chunks (failure modes, premortems, antagonists)
+- FramePressureCard — frame elements with reframings
+- Revised answer with source provenance badge (`claude_step6`)
+
+**Trust / health context:**
+- Run health — overall, capture, substrate, embeddings, fingerprint status
+- Pipeline inspector — tendency funnel (25 → triggered → detected → routed → DeltaCard)
+- Knowledge graph — model detail views, tendency catalog browsing
+
+**Sidebar:**
+- Reasoning graph
+- Knowledge substrate stats
 
 ---
 

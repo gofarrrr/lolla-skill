@@ -96,7 +96,7 @@ If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
 
 ## Pipeline
 
-Four steps. You are a conductor, not a player.
+Six steps. You are a conductor for the audit pipeline (Steps 1-4), then the primary reasoning voice for reconsideration (Steps 5-6).
 
 ### Step 1: Capture Conversation
 

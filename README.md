@@ -81,7 +81,7 @@ lolla-skill/
 ├── scripts/
 │   ├── run_extract.py    # Step 2: conversation → decision structure (with capture validation)
 │   └── run_pipeline.py   # Step 3: decision structure → three-lane audit (with run health)
-├── observatory/          # Local web UI for exploring results
+├── observatory/          # Local web UI — three cards, revised answer, run health, KG browser
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)
 └── tests/                # Test conversations
 ```
