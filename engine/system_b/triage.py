@@ -3,9 +3,12 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
+from .boundary_validation import coerce_int, coerce_str, require_list_of_dicts
 from .tendency_catalog import TendencyCatalog
 
 _LOGGER = logging.getLogger("system_b.triage")
+
+_BOUNDARY = "pass1_triage"
 
 
 @dataclass(frozen=True)
@@ -16,15 +19,11 @@ class TriageScore:
 
 
 def parse_pass1_scores(payload: dict[str, object], catalog: TendencyCatalog) -> list[TriageScore]:
-    scores = payload.get("scores", [])
-    if not isinstance(scores, list):
-        return []
+    entries = require_list_of_dicts(payload, "scores", _BOUNDARY)
 
     results: list[TriageScore] = []
-    for entry in scores:
-        if not isinstance(entry, dict):
-            continue
-        key = str(entry.get("tendency_id", "")).strip()
+    for entry in entries:
+        key = coerce_str(entry.get("tendency_id")).strip()
         if not key:
             continue
         try:
@@ -35,15 +34,8 @@ def parse_pass1_scores(payload: dict[str, object], catalog: TendencyCatalog) -> 
         results.append(
             TriageScore(
                 tendency_id=tendency.tendency_id,
-                score=_coerce_int(entry.get("score")),
-                evidence=str(entry.get("evidence", "")),
+                score=coerce_int(entry.get("score")),
+                evidence=coerce_str(entry.get("evidence")),
             )
         )
     return results
-
-
-def _coerce_int(value: object, default: int = 0) -> int:
-    try:
-        return int(value)
-    except (TypeError, ValueError):
-        return default

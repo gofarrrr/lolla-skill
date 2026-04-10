@@ -143,6 +143,10 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_rejected_models": list(result.audit.companion_rejected_models),
     }
 
+    # Prompt versions (from hardening sprint)
+    if result.prompt_versions:
+        output["prompt_versions"] = dict(result.prompt_versions)
+
     return output
 
 

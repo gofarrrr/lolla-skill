@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .boundary_validation import coerce_float, coerce_int, coerce_str
 from .tendency_catalog import ModelBinding, TendencyCatalog
 
 
@@ -363,7 +364,7 @@ def parse_pass2_result(
 ) -> DeepCheckResult:
     requested_tendency = catalog.lookup(requested_tendency_key)
     tendency = requested_tendency
-    payload_tendency_key = str(payload.get("tendency_id", "")).strip()
+    payload_tendency_key = coerce_str(payload.get("tendency_id")).strip()
     if payload_tendency_key:
         try:
             tendency = catalog.lookup(payload_tendency_key)
@@ -373,26 +374,12 @@ def parse_pass2_result(
     return DeepCheckResult(
         tendency_id=tendency.tendency_id,
         tendency_name=tendency.display_name,
-        tendency_number=_coerce_int(payload.get("tendency_number"), tendency.tendency_number),
+        tendency_number=coerce_int(payload.get("tendency_number"), tendency.tendency_number),
         detected=bool(payload.get("detected", False)),
-        confidence=_coerce_float(payload.get("confidence")),
-        evidence=str(payload.get("evidence", "")),
-        sub_pattern=str(payload.get("sub_pattern", "")),
-        specific_passage=str(payload.get("specific_passage", "")),
-        severity=str(payload.get("severity", "")),
-        reason=str(payload.get("reason", "")),
+        confidence=coerce_float(payload.get("confidence")),
+        evidence=coerce_str(payload.get("evidence")),
+        sub_pattern=coerce_str(payload.get("sub_pattern")),
+        specific_passage=coerce_str(payload.get("specific_passage")),
+        severity=coerce_str(payload.get("severity")),
+        reason=coerce_str(payload.get("reason")),
     )
-
-
-def _coerce_int(value: object, default: int = 0) -> int:
-    try:
-        return int(value)
-    except (TypeError, ValueError):
-        return default
-
-
-def _coerce_float(value: object, default: float = 0.0) -> float:
-    try:
-        return float(value)
-    except (TypeError, ValueError):
-        return default

@@ -6,6 +6,7 @@ from collections.abc import Iterable
 
 _LOGGER = logging.getLogger("system_b.companion_routing")
 
+from .boundary_validation import coerce_str, require_list_of_dicts
 from .companion import (
     CompanionExpansion,
     CompanionFailureHint,
@@ -140,25 +141,23 @@ def parse_fingerprint_response(
     raw_payload: dict,
     vanilla_answer: str,
 ) -> FingerprintPayload:
-    reasoning_moves = raw_payload.get("reasoning_moves", [])
-    if not isinstance(reasoning_moves, list):
+    moves_list = require_list_of_dicts(raw_payload, "reasoning_moves", "companion_fingerprint")
+    if not moves_list:
         return FingerprintPayload(raw=[], validated=[], dropped=[])
 
     raw_moves: list[FingerprintMove] = []
-    for item in reasoning_moves:
-        if not isinstance(item, dict):
-            continue
+    for item in moves_list:
         evidence_quotes = item.get("evidence_quotes", [])
         if not isinstance(evidence_quotes, list):
             evidence_quotes = []
         evidence_quotes = [quote for quote in evidence_quotes if isinstance(quote, str)]
         raw_moves.append(
             FingerprintMove(
-                move_id=str(item.get("move_id", "")).strip(),
-                reasoning_move=str(item.get("reasoning_move", "")).strip(),
+                move_id=coerce_str(item.get("move_id")).strip(),
+                reasoning_move=coerce_str(item.get("reasoning_move")).strip(),
                 evidence_quotes=evidence_quotes,
-                evidence_rationale=str(item.get("evidence_rationale", "")).strip(),
-                confidence=str(item.get("confidence", "")).strip().lower() or "medium",
+                evidence_rationale=coerce_str(item.get("evidence_rationale")).strip(),
+                confidence=coerce_str(item.get("confidence")).strip().lower() or "medium",
             )
         )
 
@@ -227,61 +226,55 @@ def parse_verification_response(
     candidate_ids: set[str] | list[str] | tuple[str, ...],
 ) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
     allowed_ids = {str(item).strip() for item in candidate_ids if str(item).strip()}
-    accepted_payload = raw_payload.get("accepted", [])
-    rejected_payload = raw_payload.get("rejected", [])
+    accepted_entries = require_list_of_dicts(raw_payload, "accepted", "companion_verification")
+    rejected_entries = require_list_of_dicts(raw_payload, "rejected", "companion_verification")
     accepted: list[dict[str, str]] = []
     rejected: list[dict[str, str]] = []
     answer_text = vanilla_answer if isinstance(vanilla_answer, str) else str(vanilla_answer or "")
 
-    if isinstance(accepted_payload, list):
-        for item in accepted_payload:
-            if not isinstance(item, dict):
-                continue
-            model_id = str(item.get("model_id", "")).strip()
-            presence_mode = str(item.get("presence_mode", "")).strip().lower()
-            evidence_quote = str(item.get("evidence_quote", "")).strip()
-            presence_explanation = str(item.get("presence_explanation", "")).strip()
-            if not model_id or model_id not in allowed_ids:
-                continue
-            if presence_mode not in {"executed", "violated"}:
-                rejected.append(
-                    {
-                        "model_id": model_id,
-                        "rejection_reason": "invalid_presence_mode",
-                    }
-                )
-                continue
-            if evidence_quote and evidence_quote in answer_text:
-                accepted.append(
-                    {
-                        "model_id": model_id,
-                        "presence_mode": presence_mode,
-                        "evidence_quote": evidence_quote,
-                        "presence_explanation": presence_explanation,
-                    }
-                )
-                continue
+    for item in accepted_entries:
+        model_id = coerce_str(item.get("model_id")).strip()
+        presence_mode = coerce_str(item.get("presence_mode")).strip().lower()
+        evidence_quote = coerce_str(item.get("evidence_quote")).strip()
+        presence_explanation = coerce_str(item.get("presence_explanation")).strip()
+        if not model_id or model_id not in allowed_ids:
+            continue
+        if presence_mode not in {"executed", "violated"}:
             rejected.append(
                 {
                     "model_id": model_id,
-                    "rejection_reason": "execution_quote_not_literal_substring",
+                    "rejection_reason": "invalid_presence_mode",
                 }
             )
+            continue
+        if evidence_quote and evidence_quote in answer_text:
+            accepted.append(
+                {
+                    "model_id": model_id,
+                    "presence_mode": presence_mode,
+                    "evidence_quote": evidence_quote,
+                    "presence_explanation": presence_explanation,
+                }
+            )
+            continue
+        rejected.append(
+            {
+                "model_id": model_id,
+                "rejection_reason": "execution_quote_not_literal_substring",
+            }
+        )
 
-    if isinstance(rejected_payload, list):
-        for item in rejected_payload:
-            if not isinstance(item, dict):
-                continue
-            model_id = str(item.get("model_id", "")).strip()
-            rejection_reason = str(item.get("rejection_reason", "")).strip()
-            if not model_id or model_id not in allowed_ids:
-                continue
-            rejected.append(
-                {
-                    "model_id": model_id,
-                    "rejection_reason": rejection_reason or "rejected_without_reason",
-                }
-            )
+    for item in rejected_entries:
+        model_id = coerce_str(item.get("model_id")).strip()
+        rejection_reason = coerce_str(item.get("rejection_reason")).strip()
+        if not model_id or model_id not in allowed_ids:
+            continue
+        rejected.append(
+            {
+                "model_id": model_id,
+                "rejection_reason": rejection_reason or "rejected_without_reason",
+            }
+        )
 
     # Post-processing: if a broad overlay model shares a substantially overlapping
     # evidence_quote with a specific mechanism model already in the accepted list,
@@ -382,6 +375,14 @@ def _build_verification_system_prompt() -> str:
         "A sentence that mentions value, mentions doing a market check, or treats renewal as generally worthwhile does NOT execute tier-2-high-value — that is compatibility. "
         "Reject tier-2-high-value unless you can quote the exact passage where the answer itself performs and applies a top-tier value classification as its central decision mechanism."
     )
+
+
+def get_prompt_templates() -> dict[str, str]:
+    """Return companion lane prompt templates keyed by boundary name."""
+    return {
+        "companion_fingerprint": _build_fingerprint_system_prompt(),
+        "companion_verification": _build_verification_system_prompt(),
+    }
 
 
 def _build_verification_user_prompt(

@@ -131,6 +131,7 @@ class PipelineConfig:
     enable_companion: bool = False
     enable_frame_pressure: bool = False
     enable_embeddings: bool = True
+    enable_deep_checks: bool = True
     enable_telemetry: bool = False
     telemetry_db_path: str = ""
     telemetry_tags: tuple[str, ...] = ()
@@ -254,6 +255,7 @@ class PipelineResult:
     companion_card: CompanionCard | None = None
     companion_cheat_sheet: CompanionCheatSheet | None = None
     frame_pressure_card: FramePressureCard | None = None
+    prompt_versions: tuple[tuple[str, str], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -300,6 +302,9 @@ class SystemBPipeline:
         self._embedding_api_key = os.environ.get("OPENAI_API_KEY", "")
         self._startup_warnings = startup_warnings
         self._config = config or PipelineConfig()
+        # Compute prompt version hashes once at init
+        from .prompt_versioning import compute_prompt_versions
+        self._prompt_versions = tuple(sorted(compute_prompt_versions().items()))
 
     @classmethod
     def load(
@@ -408,6 +413,7 @@ class SystemBPipeline:
                 companion_card=companion_result.companion_card,
                 companion_cheat_sheet=cheat_sheet,
                 frame_pressure_card=frame_card,
+                prompt_versions=self._prompt_versions,
             )
             self._record_telemetry(
                 request=request,
@@ -422,49 +428,85 @@ class SystemBPipeline:
             )
             return result
 
-        pass2_started = time.monotonic()
-        deep_check_results, pass2_boundary_calls = _run_pass2_parallel(
-            triggered_tendencies=triggered_tendencies,
-            request=request,
-            boundary=self._boundary,
-            catalog=self._catalog,
-        )
-        boundary_calls.extend(pass2_boundary_calls)
-        pass2_seconds = time.monotonic() - pass2_started
-
-        routes = tuple(
-            route_deep_check_results(
-                deep_check_results,
-                self._catalog,
-                relation_graph=self._relation_graph,
-                max_supporting_models=self._config.max_supporting_models,
-                max_risk_models=self._config.max_risk_models,
+        if not self._config.enable_deep_checks:
+            # Triage-only mode: skip pass2, build synthetic DeltaCard from triage scores
+            triage_by_id = {s.tendency_id: s for s in triage_scores}
+            synthetic_results = [
+                DeepCheckResult(
+                    tendency_id=tid,
+                    tendency_name=self._catalog.lookup(tid).display_name,
+                    tendency_number=self._catalog.lookup(tid).tendency_number,
+                    detected=True,
+                    confidence=round(triage_by_id[tid].score / 10.0, 2),
+                    evidence=triage_by_id[tid].evidence,
+                    sub_pattern="",
+                    specific_passage="",
+                    severity="medium" if triage_by_id[tid].score >= 7 else "low",
+                    reason="triage-only synthetic result",
+                )
+                for tid in triggered_tendencies
+                if tid in triage_by_id
+            ]
+            routes = tuple(
+                route_deep_check_results(
+                    synthetic_results,
+                    self._catalog,
+                    relation_graph=self._relation_graph,
+                    max_supporting_models=self._config.max_supporting_models,
+                    max_risk_models=self._config.max_risk_models,
+                )
             )
-        )
-        promotion_warnings: list[str] = []
-        promoted_overoptimism_results = _build_promoted_overoptimism_results(
-            deep_check_results,
-            bridge=self._overoptimism_bridge if self._config.overoptimism_phase1_active else None,
-            warnings=promotion_warnings,
-        )
-        promoted_authority_results = _build_promoted_authority_results(
-            deep_check_results,
-            bridge=self._authority_bridge if self._config.authority_phase1_active else None,
-            warnings=promotion_warnings,
-        )
-        promoted_stress_results = _build_promoted_stress_results(
-            deep_check_results,
-            bridge=self._stress_bridge if self._config.stress_phase1_active else None,
-            warnings=promotion_warnings,
-        )
-        delta_card = _assemble_delta_card(
-            routes,
-            deep_check_results,
-            bundle_selector=self._bundle_selector,
-            promoted_overoptimism_results=promoted_overoptimism_results,
-            promoted_authority_results=promoted_authority_results,
-            promoted_stress_results=promoted_stress_results,
-        )
+            delta_card = _assemble_delta_card(routes, synthetic_results, bundle_selector=self._bundle_selector)
+            pass2_seconds = 0.0
+            deep_check_results = synthetic_results
+            promotion_warnings: list[str] = []
+            promoted_overoptimism_results = {}
+            promoted_authority_results = {}
+            promoted_stress_results = {}
+        else:
+            pass2_started = time.monotonic()
+            deep_check_results, pass2_boundary_calls = _run_pass2_parallel(
+                triggered_tendencies=triggered_tendencies,
+                request=request,
+                boundary=self._boundary,
+                catalog=self._catalog,
+            )
+            boundary_calls.extend(pass2_boundary_calls)
+            pass2_seconds = time.monotonic() - pass2_started
+
+            routes = tuple(
+                route_deep_check_results(
+                    deep_check_results,
+                    self._catalog,
+                    relation_graph=self._relation_graph,
+                    max_supporting_models=self._config.max_supporting_models,
+                    max_risk_models=self._config.max_risk_models,
+                )
+            )
+            promotion_warnings: list[str] = []
+            promoted_overoptimism_results = _build_promoted_overoptimism_results(
+                deep_check_results,
+                bridge=self._overoptimism_bridge if self._config.overoptimism_phase1_active else None,
+                warnings=promotion_warnings,
+            )
+            promoted_authority_results = _build_promoted_authority_results(
+                deep_check_results,
+                bridge=self._authority_bridge if self._config.authority_phase1_active else None,
+                warnings=promotion_warnings,
+            )
+            promoted_stress_results = _build_promoted_stress_results(
+                deep_check_results,
+                bridge=self._stress_bridge if self._config.stress_phase1_active else None,
+                warnings=promotion_warnings,
+            )
+            delta_card = _assemble_delta_card(
+                routes,
+                deep_check_results,
+                bundle_selector=self._bundle_selector,
+                promoted_overoptimism_results=promoted_overoptimism_results,
+                promoted_authority_results=promoted_authority_results,
+                promoted_stress_results=promoted_stress_results,
+            )
         companion_started = time.monotonic()
         companion_result = self._run_companion(request, boundary_calls)
         companion_seconds = time.monotonic() - companion_started
@@ -507,6 +549,7 @@ class SystemBPipeline:
             companion_card=companion_result.companion_card,
             companion_cheat_sheet=cheat_sheet,
             frame_pressure_card=frame_card,
+            prompt_versions=self._prompt_versions,
         )
         self._record_telemetry(
             request=request,

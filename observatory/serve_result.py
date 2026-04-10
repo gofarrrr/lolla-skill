@@ -19,12 +19,31 @@ from urllib.parse import urlparse
 SCRIPT_DIR = Path(__file__).resolve().parent
 STATIC_DIR = SCRIPT_DIR / "build"
 SKILL_DATA_DIR = SCRIPT_DIR.parent / "data"
+FAMILY_DIR = SKILL_DATA_DIR / "family_semantics"
 
-# Loaded once at startup
+# Loaded at startup, re-read on each request to pick up late writes (e.g. Step 6b)
 _RESULT: dict = {}
+_RESULT_PATH: Path | None = None
+_RESULT_MTIME: float = 0.0
 _CASE_ID: str = "lolla-audit"
 _CASE_NAME: str = "Lolla Audit"
 _KG_CACHE: dict | None = None
+_FAMILY_CACHE: list[dict] | None = None
+
+
+def _reload_result_if_changed():
+    """Re-read the result JSON from disk if the file has been modified."""
+    global _RESULT, _RESULT_MTIME
+    if _RESULT_PATH is None:
+        return
+    try:
+        mtime = _RESULT_PATH.stat().st_mtime
+    except OSError:
+        return
+    if mtime > _RESULT_MTIME:
+        with open(_RESULT_PATH) as f:
+            _RESULT = json.load(f)
+        _RESULT_MTIME = mtime
 
 
 def _derive_case_name(result: dict) -> str:
@@ -147,6 +166,78 @@ def _get_model_detail(model_id: str) -> dict | None:
     }
 
 
+def _load_json_safe(path: Path) -> dict | None:
+    if not path.exists():
+        return None
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return None
+
+
+def _load_families() -> list[dict]:
+    """Load family clusters, enriching members with display names from KG."""
+    global _FAMILY_CACHE
+    if _FAMILY_CACHE is not None:
+        return _FAMILY_CACHE
+    if not FAMILY_DIR.is_dir():
+        _FAMILY_CACHE = []
+        return _FAMILY_CACHE
+    kg = _load_kg()
+    models_db = kg.get("models", {})
+    families = []
+    for fp in sorted(FAMILY_DIR.iterdir()):
+        if fp.suffix != ".json":
+            continue
+        data = _load_json_safe(fp)
+        if not data or "family_id" not in data:
+            continue
+        members_enriched = []
+        for mid in data.get("members", []):
+            m = models_db.get(mid, {})
+            members_enriched.append({
+                "model_id": mid,
+                "display_name": m.get("display_name", mid.replace("-", " ").title()),
+            })
+        families.append({
+            "family_id": data["family_id"],
+            "member_count": len(members_enriched),
+            "members": members_enriched,
+            "corrected_thesis": data.get("corrected_thesis") or data.get("original_thesis") or "",
+            "what_this_stack_defeats": data.get("what_this_stack_defeats", ""),
+            "density": data.get("density", 0.0),
+            "validation_status": data.get("validation_status", ""),
+        })
+    _FAMILY_CACHE = families
+    return _FAMILY_CACHE
+
+
+def _get_family_detail(family_id: str) -> dict | None:
+    """Return full family data including internal edges between members."""
+    families = _load_families()
+    family = None
+    for f in families:
+        if f["family_id"] == family_id:
+            family = f
+            break
+    if family is None:
+        return None
+    member_ids = {m["model_id"] for m in family["members"]}
+    kg = _load_kg()
+    internal_edges = []
+    seen: set[tuple[str, str, str]] = set()
+    for e in kg.get("edges", []):
+        src, tgt = e.get("source", ""), e.get("target", "")
+        etype = e.get("type", "")
+        if src in member_ids and tgt in member_ids:
+            key = (src, tgt, etype)
+            if key not in seen:
+                seen.add(key)
+                internal_edges.append({"source": src, "target": tgt, "type": etype})
+    return {**family, "internal_edges": internal_edges}
+
+
 def _get_tendency_catalog() -> list[dict]:
     kg = _load_kg()
     tendencies = kg.get("tendencies", {})
@@ -165,6 +256,7 @@ def _get_tendency_catalog() -> list[dict]:
 
 def _build_case_response() -> dict:
     """Build the case response from the loaded pipeline result."""
+    _reload_result_if_changed()
     r = _RESULT
 
     delta_card = r.get("delta_card")
@@ -209,6 +301,9 @@ class ResultHandler(SimpleHTTPRequestHandler):
         parsed = urlparse(self.path)
         path = parsed.path
 
+        if path.startswith("/api/"):
+            _reload_result_if_changed()
+
         if path == "/api/cases":
             finding_count = len(_RESULT.get("detected_tendencies", []))
             self._json_response([{
@@ -247,6 +342,21 @@ class ResultHandler(SimpleHTTPRequestHandler):
             self._json_response(_get_tendency_catalog())
             return
 
+        if path == "/api/families":
+            self._json_response(_load_families())
+            return
+
+        if path.startswith("/api/family/"):
+            parts = path.split("/")
+            if len(parts) >= 4:
+                fid = parts[3]
+                data = _get_family_detail(fid)
+                if data is None:
+                    self._error_response(404, f"Family '{fid}' not found")
+                    return
+                self._json_response(data)
+                return
+
         # Static files / SPA fallback
         if STATIC_DIR.is_dir():
             file_path = STATIC_DIR / path.lstrip("/")
@@ -281,14 +391,16 @@ def main():
     parser.add_argument("--name", help="Display name for the case (auto-derived from query if omitted)")
     args = parser.parse_args()
 
-    global _RESULT, _CASE_NAME
+    global _RESULT, _RESULT_PATH, _RESULT_MTIME, _CASE_NAME
     result_path = Path(args.result)
     if not result_path.exists():
         print(f"Error: result file not found: {result_path}", file=sys.stderr)
         sys.exit(1)
 
+    _RESULT_PATH = result_path
     with open(result_path) as f:
         _RESULT = json.load(f)
+    _RESULT_MTIME = result_path.stat().st_mtime
 
     _CASE_NAME = args.name if args.name else _derive_case_name(_RESULT)
 

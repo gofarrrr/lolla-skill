@@ -16,6 +16,8 @@ import logging
 from dataclasses import dataclass, field
 from typing import Literal, Protocol
 
+from .boundary_validation import coerce_str, require_list_of_dicts
+
 _LOGGER = logging.getLogger("system_b.frame_pressure")
 
 
@@ -223,6 +225,11 @@ technical parameters are NOT frame elements.
 """
 
 
+def get_prompt_template() -> str:
+    """Return the frame extraction system prompt for versioning."""
+    return _FRAME_EXTRACTION_SYSTEM
+
+
 def _format_frame_extraction_user_prompt(query: str, vanilla_answer: str) -> str:
     return (
         f"QUERY (primary signal — analyze this):\n{query}\n\n"
@@ -260,10 +267,10 @@ def _evidence_in_text(evidence: str, text: str) -> bool:
 
 def _parse_frame_extraction(raw: dict, query: str) -> tuple[ExtractedFrameElement, ...]:
     """Parse frame extraction LLM output into typed dataclasses."""
+    items = require_list_of_dicts(raw, "frame_elements", "frame_extraction")
     elements: list[ExtractedFrameElement] = []
-    for item in raw.get("frame_elements", []):
-        evidence = item.get("evidence_quote", "")
-        # Validate evidence grounding (normalize escaped quotes for matching)
+    for item in items:
+        evidence = coerce_str(item.get("evidence_quote"))
         if evidence and not _evidence_in_text(evidence, query):
             _LOGGER.warning(
                 "Frame element evidence_quote not found in query, skipping: %r",
@@ -272,13 +279,13 @@ def _parse_frame_extraction(raw: dict, query: str) -> tuple[ExtractedFrameElemen
             continue
         try:
             el = ExtractedFrameElement(
-                element_text=item.get("element_text", ""),
-                element_type=item.get("element_type", "assumption"),
+                element_text=coerce_str(item.get("element_text")),
+                element_type=coerce_str(item.get("element_type")) or "assumption",
                 evidence_quote=evidence,
-                frame_pattern=item.get("frame_pattern", ""),
-                fragility_signal=item.get("fragility_signal", ""),
-                inquiry_stage=item.get("inquiry_stage", "how"),
-                likely_default=item.get("likely_default", "none"),
+                frame_pattern=coerce_str(item.get("frame_pattern")),
+                fragility_signal=coerce_str(item.get("fragility_signal")),
+                inquiry_stage=coerce_str(item.get("inquiry_stage")) or "how",
+                likely_default=coerce_str(item.get("likely_default")) or "none",
             )
             elements.append(el)
         except (TypeError, ValueError) as exc:
