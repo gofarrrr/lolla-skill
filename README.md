@@ -4,7 +4,7 @@
 
 **A reasoning audit for AI conversations.**
 
-Lolla detects structural weaknesses in LLM-generated strategic advice — not by generating opinions, but by routing through a curated substrate of 224 mental models, 25 cognitive tendencies, and 1,688 relationship edges compiled from primary sources.
+Lolla detects structural weaknesses in LLM-generated strategic advice — not by generating opinions, but by routing through a curated substrate of 222 mental models, 25 cognitive tendencies, and 1,358 relationship edges compiled from primary sources.
 
 When you ask an LLM whether to hire a VP of Sales, sign a vendor contract, or restructure your engineering org, the answer sounds confident. Lolla tells you *where that confidence is structurally fragile* — and what specific mental models challenge it.
 
@@ -72,7 +72,7 @@ OPENAI_API_KEY=your-openai-key-here  # optional
 EOF
 ```
 
-Only `OPENROUTER_API_KEY` is required. `OPENAI_API_KEY` enables the embedding swiss cheese layer — a redundancy mechanism that catches tendencies the LLM triage misses (and vice versa). The system works without it, just with one fewer detection layer.
+Only `OPENROUTER_API_KEY` is required. `OPENAI_API_KEY` enables the embedding swiss cheese layer — a redundancy mechanism that catches tendencies the LLM triage misses (and vice versa). Embeddings use multi-query expansion (gpt-4o-mini generates domain-vocabulary variants, fused via Reciprocal Rank Fusion) to bridge the gap between user language and curated model terminology. The system works without it, just with one fewer detection layer.
 
 4. Restart Claude Code. The `/lolla` command is now available.
 
@@ -103,7 +103,7 @@ The skill captures the conversation, extracts the decision structure, and runs t
 lolla-skill/
 ├── SKILL.md              # Skill definition (Claude Code reads this)
 ├── HOW_IT_WORKS.md       # Full technical reference
-├── engine/system_b/      # Bundled pipeline engine (58 files, zero dependencies)
+├── engine/system_b/      # Bundled pipeline engine (67 files, zero dependencies)
 ├── data/                 # Knowledge graph, curation layers, embeddings
 │   └── curated/          # Compiled substrate files (bundle selector, signal lexicon)
 ├── scripts/
@@ -122,7 +122,7 @@ See **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)** — the full technical reference cove
 
 ## Cost
 
-A typical audit makes 8-11 OpenRouter calls against the configured model (default: `x-ai/grok-4.1-fast`). Total: ~25-35K tokens, approximately $0.03-0.05 per run. Embeddings (if enabled) add one OpenAI call (~$0.001).
+A typical audit makes 8-11 OpenRouter calls against the configured model (default: `x-ai/grok-4.1-fast`). Total: ~25-35K tokens, approximately $0.03-0.05 per run. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus batch embedding for 3 query variants (~$0.0002).
 
 ## Inspiration and Credits
 
@@ -131,7 +131,7 @@ Lolla exists because of foundational work by others:
 - **Charlie Munger** — [*The Psychology of Human Misjudgment*](https://fs.blog/great-talks/psychology-human-misjudgment/) is the intellectual root. The 25 cognitive tendencies are Munger's framework, adapted for LLM-generated reasoning.
 - **Daniel Kahneman** — *Thinking, Fast and Slow* established the System 1 / System 2 framework. LLMs are extraordinary System 1 machines — fast, fluent, pattern-matching — but structurally weak at System 2: slow, deliberate, logically disciplined reasoning. Lolla is an external System 2 guardrail.
 - **Balaji Srinivasan** — His framing of AI as probabilistic (good at "middle-to-middle" generation) but needing a deterministic verification layer directly influenced our architecture: LLMs at the probabilistic edges, curated knowledge in the deterministic middle. "0% AI is slow, but 100% AI is slop" — Lolla occupies the space between, where human-curated structure disciplines LLM flexibility.
-- **Farnam Street / The Knowledge Project** — Shane Parrish's interviews and writing on mental models shaped how the 224-model substrate was selected and organized.
+- **Farnam Street / The Knowledge Project** — Shane Parrish's interviews and writing on mental models shaped how the 222-model substrate was selected and organized.
 - **Kenneth Cukier, Viktor Mayer-Schönberger & Francis de Véricourt** — *Framers: Human Advantage in an Age of Technology and Turmoil* directly informed Lane 3 (Frame Pressure). The thesis that framing is humanity's core cognitive advantage — and that the frame constrains the solution space before reasoning even begins — is why Lolla audits the question, not just the answer.
 - **Research foundations** — Perez et al. (2022) on sycophancy, Kadavath et al. (2022) on calibration, Turpin et al. (2023) on unfaithful reasoning, Sharma et al. (2023) on sycophancy taxonomy.
 

@@ -581,12 +581,11 @@ class SystemBPipeline:
             return None
         if not self._embedding_api_key:
             return None
-        query_vec = self._embedding_retriever.embed_and_cache(
+        ranked = self._embedding_retriever.rank_models_expanded(
             query_text, self._embedding_api_key,
         )
-        if query_vec is None:
+        if not ranked:
             return None
-        ranked = self._embedding_retriever.rank_models(query_vec)
         return {hit["model_id"]: hit["score"] for hit in ranked}
 
     def _run_companion(

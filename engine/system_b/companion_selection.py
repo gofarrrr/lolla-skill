@@ -188,10 +188,9 @@ def _build_chunk_relevance_scores(
     try:
         if not embedding_retriever.chunk_embeddings_available():
             return {}
-        query_vec = embedding_retriever.embed_and_cache(query_text, embedding_api_key)
-        if query_vec is None:
-            return {}
-        ranked = embedding_retriever.rank_chunks(query_vec, top_k=100)
+        ranked = embedding_retriever.rank_chunks_expanded(
+            query_text, embedding_api_key, top_k=100,
+        )
         # Key by (model_id, first 80 chars of chunk_text) for matching against
         # CheatSheetChunk.text which may be slightly different from the indexed text
         scores: dict[tuple[str, str], float] = {}

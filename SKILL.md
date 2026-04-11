@@ -4,7 +4,7 @@ description: >
   Conversation-aware reasoning audit. Captures the current conversation,
   extracts decision structure, and runs the full Lolla pipeline
   (structural pressure, model companion, frame pressure) via OpenRouter
-  against a curated substrate of 224 mental models. Use when asked to
+  against a curated substrate of 222 mental models. Use when asked to
   "audit this", "check my reasoning", "find blind spots", "stress test",
   "what am I missing", "challenge this", "devil's advocate", "lolla",
   "what are we not seeing", or "pre-mortem". Also use proactively when
@@ -182,7 +182,7 @@ Before presenting, read `references/output-field-guide.md` for full field defini
 
 The three cards below were not generated for this conversation. Here is how they were produced:
 
-1. **Source layer.** 224 canonical articles, each a deep treatment of one mental model (Circle of Competence, Power Dynamics, Optionality, etc.). These are the only semantic root — everything downstream traces back to them.
+1. **Source layer.** 222 canonical articles, each a deep treatment of one mental model (Circle of Competence, Power Dynamics, Optionality, etc.). These are the only semantic root — everything downstream traces back to them.
 
 2. **Curation.** Each article was read in full and its operational knowledge extracted: when to activate the model, when it's dangerous, how it fails, what questions it forces, which other models it allies or conflicts with. Each extraction was validated against the source. This produced five waves of structured curation — activation semantics, failure modes and heuristics, relationship edges, reframing patterns, and prerequisite orderings.
 

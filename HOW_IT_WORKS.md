@@ -26,7 +26,7 @@ LLMs are extraordinarily good at producing fluent, confident, internally consist
 
 The product is:
 - The answer was **challenged**
-- The challenge came from a **curated knowledge base** (224 mental models with validated failure modes, premortems, and relationship tensions)
+- The challenge came from a **curated knowledge base** (222 mental models with validated failure modes, premortems, and relationship tensions)
 - The challenge is **structurally specific** — it names the reasoning pattern, the passage where it appears, and the curated counter-pressure that addresses it (not "consider the risks" but "the reasoning closes uncertainty without naming a reversal condition — Doubt Avoidance operating on this specific passage")
 - The challenge is **traceable** (which tendency was detected, which models were routed, which curated chunks were selected, and why)
 
@@ -40,7 +40,7 @@ The engine rests on a single belief: **Munger's *Psychology of Human Misjudgment
 
 Munger's 25 tendencies give us a vocabulary for recurring reasoning errors — overoptimism, authority-misinfluence, availability-misweighing, premature convergence — without depending on domain-specific language. If two answers in different domains show the same failure pattern, Lolla sees the same structural problem.
 
-But Munger alone is not enough. Munger tells us what failure looks like. The 224-model corpus tells us what structural intervention is available. The bridge between them — 304 curated tendency→model bindings with symptom-facing activation contexts — is the product.
+But Munger alone is not enough. Munger tells us what failure looks like. The 222-model corpus tells us what structural intervention is available. The bridge between them — 241 curated tendency→model bindings with symptom-facing activation contexts — is the product.
 
 This has three implications:
 
@@ -54,24 +54,24 @@ This has three implications:
 
 ## The Knowledge Substrate
 
-224 mental models curated from Charlie Munger's latticework of mental models, the Farnam Street Knowledge Project, and primary academic sources. This is not LLM-generated content — it is reviewed, curated, structured knowledge with explicit provenance.
+222 mental models curated from Charlie Munger's latticework of mental models, the Farnam Street Knowledge Project, and primary academic sources. This is not LLM-generated content — it is reviewed, curated, structured knowledge with explicit provenance.
 
 Academic validation: USTC's MeMo paper (Feb 2024) proved Munger's latticework concept works as a prompting strategy, achieving near-SOTA performance across logical reasoning, STEM, and commonsense tasks in zero-shot settings. Lolla goes further: deterministic routing, auditability, curated relationships, and external application — not probabilistic in-context selection.
 
 **Five waves of curation:**
-- **Wave 1 — Activation semantics:** When to select each model, when to avoid it, input/output types. 224 models fully curated.
-- **Wave 2 — Intervention semantics:** Failure modes with mitigations, heuristics, premortem questions. 224 models, each with curated failure modes and specific mitigations.
-- **Wave 3 — Relation semantics:** Allies, antagonists, structured tensions between models. 1,688 curated edges describing how models support, oppose, and create productive tension with each other.
+- **Wave 1 — Activation semantics:** When to select each model, when to avoid it, input/output types. 222 models fully curated.
+- **Wave 2 — Intervention semantics:** Failure modes with mitigations, heuristics, premortem questions. 222 models, each with curated failure modes and specific mitigations.
+- **Wave 3 — Relation semantics:** Allies, antagonists, structured tensions between models. 1,358 curated edges describing how models support, oppose, and create productive tension with each other.
 - **Wave 5 — Reframing semantics:** Frame pattern → model mappings for 50 models. Lane 3 substrate — connects embedded assumptions in questions to specific mental models that challenge those assumptions.
 - **Latticework layers — Discovery infrastructure:** Prerequisite orderings (A→B learning sequences), family semantics (dense ally clusters with named theses), polarity semantics (failure cascade ↔ correction stack pairs). Graph projection over Wave 3 topology proposes candidates, LLM validates against source articles, curated JSON enters the compilation path.
 
-**25 cognitive tendencies** — adapted from Munger's Psychology of Human Misjudgment for LLM-generated strategic advice. Each tendency has corrective models mapped to it with activation contexts describing the specific failure pattern that should trigger each route. 304 core+antidote bindings, all with curated activation contexts.
+**25 cognitive tendencies** — adapted from Munger's Psychology of Human Misjudgment for LLM-generated strategic advice. Each tendency has corrective models mapped to it with activation contexts describing the specific failure pattern that should trigger each route. 241 antidote bindings, all with curated activation contexts.
 
-**Pre-computed embeddings:** 2,496 knowledge chunks embedded with OpenAI text-embedding-3-large (3072d). Enables semantic matching — the query is embedded once and compared against the pre-computed vectors to find the most relevant corrective knowledge. Requires `OPENAI_API_KEY`. Without it, deterministic routing still works.
+**Pre-computed embeddings:** 2,496 knowledge chunks embedded with OpenAI text-embedding-3-large (3072d). Enables semantic matching — the query is expanded into domain-vocabulary variants via gpt-4o-mini (vocabulary-seeded with all 222 model names), each variant is embedded, and results are fused via Reciprocal Rank Fusion (RRF) to find the most relevant corrective knowledge. This bridges the vocabulary gap between user language ("sign the deal") and curated domain language ("escalation of commitment"). Requires `OPENAI_API_KEY`. Without it, deterministic routing still works.
 
 ### The Source Corpus
 
-The 224 canonical articles were not LLM-generated. They were extracted from a corpus of ~200 books spanning cognitive science, decision theory, behavioral economics, systems thinking, strategy, evolutionary psychology, legal reasoning, and creativity.
+The 222 canonical articles were not LLM-generated. They were extracted from a corpus of ~200 books spanning cognitive science, decision theory, behavioral economics, systems thinking, strategy, evolutionary psychology, legal reasoning, and creativity.
 
 The extraction used RAG: each book was embedded, and for every mental model in the taxonomy, the corpus was queried with five structured questions designed to extract the kind of knowledge that improves reasoning audits:
 
@@ -144,11 +144,11 @@ This is how we bring out-of-distribution knowledge into the reasoning process wi
 | Threshold filtering (score ≥ 4) | **Deterministic** | Hard cutoff, reproducible |
 | Deep check: isolated tendency analysis | **Probabilistic** (LLM) | Deeper semantic analysis — one tendency in isolation, no distractors |
 | Routing: tendency → corrective models | **Deterministic** | Catalog lookup + graph traversal — consistent, traceable |
-| 1-hop neighborhood expansion | **Deterministic** | RelationGraph traversal — allies, antagonists, tensions from curated edges |
+| 1-hop neighborhood expansion | **Hybrid** | RelationGraph traversal — reranked by cosine similarity to query+answer when embeddings available, affinity tiebreaker; falls back to affinity-only |
 | DeltaCard assembly | **Deterministic** | Tiering, compound grouping, finding presentation |
 | Fingerprint: extract reasoning moves | **Probabilistic** (LLM) | Semantic — "what abstract reasoning patterns are running?" |
 | Quote validation | **Deterministic** | Literal substring match |
-| Recall: find candidate models | **Hybrid** | Keyword overlap (deterministic) + embedding cosine (probabilistic) |
+| Recall: find candidate models | **Hybrid** | Keyword overlap (deterministic) + multi-query expanded embedding ranking with RRF fusion (probabilistic) |
 | Verification: model presence | **Probabilistic** (LLM) | "Is Circle of Competence being executed or violated?" — requires reading structure |
 | Chunk gathering + selection | **Deterministic** | Budget, anti-echo, dedup — curated material delivered faithfully |
 | Frame extraction | **Probabilistic** (LLM) | "Does this question embed assumptions?" — requires reading the question as a reasoning artifact |
@@ -159,11 +159,12 @@ The curated substrate provides knowledge the LLM doesn't have: specific failure 
 
 ### Swiss Cheese Redundancy
 
-Embeddings and LLM triage operate as parallel layers, not sequential gates. Three invariants:
+Embeddings and LLM triage operate as parallel layers, not sequential gates. Four invariants:
 
 1. **Additive union, never gating intersection.** Embeddings can only ADD candidates or tendencies. They cannot remove anything the LLM or keyword path found.
 2. **LLM always runs independently.** The LLM triage and fingerprint calls run whether or not embeddings are available.
 3. **Graceful degradation.** If `OPENAI_API_KEY` is not set, embeddings.db is missing, or the API fails — the system works exactly as before. All embedding code returns empty results on failure.
+4. **Multi-query expansion.** Embedding retrieval uses vocabulary-seeded query expansion (gpt-4o-mini generates 2 domain-relevant variants seeded with all model names). Each variant is embedded and ranked independently, then fused via Reciprocal Rank Fusion. The original query always participates, so expansion can only boost — never degrade — retrieval quality. Queries under 5 words skip expansion; any failure degrades gracefully to single-vector ranking.
 
 This means the system has multiple independent chances to detect a pattern. In practice, embeddings catch 10-15% of tendencies that the LLM's broad triage missed — and the LLM catches patterns that embedding similarity wouldn't surface.
 
@@ -191,7 +192,7 @@ This separation ensures that challenge signals (Lane 1) and enrichment signals (
 The knowledge hierarchy has a strict trust ordering:
 
 ```
-Canonical markdown articles (224 files) — semantic root, always wins
+Canonical markdown articles (222 files) — semantic root, always wins
     ↓
 Curated Wave JSON (activation, intervention, relation) — reviewed per-model
     ↓
@@ -209,7 +210,7 @@ Embeddings suggest candidates. LLMs detect patterns. But every embedding hit sti
 | Dimension | Prompt Engineering | RAG / Context Injection | Lolla |
 |---|---|---|---|
 | Reasoning structure | Inside LLM (recovery paradox) | None (just more facts) | External, deterministic |
-| Diversity source | Same probability distribution (hivemind) | Retrieved documents | 224 curated mental models |
+| Diversity source | Same probability distribution (hivemind) | Retrieved documents | 222 curated mental models |
 | Auditability | None | Retrieval logs only | Full provenance per finding |
 | Context pollution | Amplified across turns | Diluted by irrelevant retrieval | Broken by three-lane architecture |
 | Sycophancy resistance | None (RLHF-trained to agree) | None | Deterministic challenge pressure |
@@ -354,7 +355,7 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 3. **Pass 2 (Deep Checks):** One OpenRouter call PER triggered tendency, run in parallel (up to 8 concurrent). Each call checks ONE tendency in isolation — seeing only that tendency's definition, its sub-pattern menu, and the vanilla answer. Context isolation prevents tendency contamination. Returns: detected/not-detected, confidence, sub-pattern, specific passage, severity.
 
-4. **Deterministic routing:** For each confirmed detection, the deterministic middle looks up corrective models from the knowledge graph (224 models, 304 bindings), does 1-hop neighborhood expansion (allies, antagonists), and assembles findings with curated failure modes, heuristics, and premortem questions.
+4. **Deterministic routing:** For each confirmed detection, the deterministic middle looks up corrective models from the knowledge graph (222 models, 241 bindings), does 1-hop neighborhood expansion (allies, antagonists — reranked by embedding similarity to the query when available), and assembles findings with curated failure modes, heuristics, and premortem questions.
 
 5. **DeltaCard assembly:** Top findings get full treatment (challenge statement, reversal trigger, corrective model, supporting models, tensions). Secondary findings get one-line summaries. Compound patterns (multiple tendencies on overlapping evidence) get flagged.
 
@@ -362,7 +363,7 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 1. **Fingerprint:** One OpenRouter call extracts 3-8 abstract reasoning moves from the vanilla answer. Each move has verbatim evidence quotes. No model names mentioned — just "weighing second-order consequences", "applying inversion", etc.
 
-2. **Recall:** Keyword overlap + optional embedding search identifies 15-20 candidate mental models from the 224-model substrate.
+2. **Recall:** Keyword overlap + optional embedding search identifies 15-20 candidate mental models from the 222-model substrate.
 
 3. **Verify:** One OpenRouter call checks each candidate: is the model EXECUTED (mechanism runs in the answer) or VIOLATED (answer substitutes something the model guards against)? Mere compatibility = rejection. Broad overlay models (systems-thinking, second-order-thinking) get extra scrutiny.
 
@@ -466,7 +467,7 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 
 - **Pass 1 can miss tendencies.** LLM triage balances 25 hypotheses simultaneously; adjacent tendencies can be confused. Embedding swiss cheese partially addresses this.
 - **Pass 2 is single-shot.** No iterative refinement. If the deep check misses a sub-pattern, it stays missed.
-- **Routing is lookup-only.** 1-hop graph expansion, no multi-hop reasoning or dynamic traversal.
+- **Routing is lookup-only.** 1-hop graph expansion with optional embedding reranking, no multi-hop reasoning or dynamic traversal.
 - **Embedding threshold is fixed.** 0.30 for tendency signal, not tuned per tendency.
 - **Companion verification is strict.** Quote-must-be-literal-substring rejects paraphrased evidence. Good for precision, costs recall.
 - **No feedback loop.** Pipeline output doesn't feed back into itself. No learning from past runs — improvements come from reviewed curation at the correct layer.
@@ -479,12 +480,12 @@ The skill carries its own copy of the compiled knowledge substrate:
 
 | File | Size | Contents |
 |------|------|----------|
-| `data/knowledge_graph.json` | 1.9M | 224 models, 25 tendencies, 304 bindings, 1,688 edges, 15 prerequisite edges |
-| `data/relationship_graph.json` | 853K | 1,302 relationship edges (allies, antagonists, tensions) |
+| `data/knowledge_graph.json` | 1.9M | 222 models, 25 tendencies, 241 bindings, 1,742 edges, 15 prerequisite edges |
+| `data/relationship_graph.json` | 853K | 1,358 relationship edges (allies, antagonists, tensions) |
 | `data/embeddings.db` | 31M | 2,496 pre-computed vectors (text-embedding-3-large, 3072d) |
-| `data/curation/` | 224 files | Wave 1 activation semantics per model |
-| `data/curation/intervention_semantics/` | 224 files | Wave 2 failure modes, heuristics, premortems |
-| `data/curation/relation_semantics/` | 224 files | Wave 3 relationship edge data |
+| `data/curation/` | 225 files | Wave 1 activation semantics per model |
+| `data/curation/intervention_semantics/` | 225 files | Wave 2 failure modes, heuristics, premortems |
+| `data/curation/relation_semantics/` | 225 files | Wave 3 relationship edge data |
 | `data/curated/subpattern_catalog.json` | 45K | Sub-pattern definitions for deep checks |
 | `data/curated/compiled_chunks.json` | 380K | Pre-compiled knowledge chunks for bundle selection |
 | `data/curated/structural_signal_lexicon.json` | 18K | Signal lexicon for trusted bundle selection |
@@ -531,5 +532,5 @@ A typical run makes 8-10 OpenRouter calls against `x-ai/grok-4.1-fast`:
 - 2 companion calls (~3K tokens each)
 - 2 frame pressure calls (~2K tokens each)
 
-Total: roughly 25-35K tokens. At Grok 4.1 Fast pricing, this is approximately $0.03-0.05 per audit. Embeddings (if enabled) add one OpenAI embedding call (~$0.001). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
+Total: roughly 25-35K tokens. At Grok 4.1 Fast pricing, this is approximately $0.03-0.05 per audit. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
 

@@ -591,9 +591,10 @@ def recall_candidates(
     if embedding_retriever is not None and embedding_api_key:
         try:
             query_text = " ".join(primary_texts)
-            query_vec = embedding_retriever.embed_and_cache(query_text, embedding_api_key)
-            if query_vec is not None:
-                ranked = embedding_retriever.rank_models(query_vec, top_k=max_candidates)
+            ranked = embedding_retriever.rank_models_expanded(
+                query_text, embedding_api_key, top_k=max_candidates,
+            )
+            if ranked:
                 for hit in ranked:
                     mid = hit["model_id"]
                     if mid in seen:
