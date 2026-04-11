@@ -374,6 +374,10 @@ class SystemBPipeline:
             embedding_tendency_hits=embedding_tendency_hits,
         )
 
+        lane1_relevance = self._build_lane1_relevance_scores(
+            f"{request.query} {request.vanilla_answer}"
+        )
+
         if not triggered_tendencies:
             companion_started = time.monotonic()
             companion_result = self._run_companion(request, boundary_calls)
@@ -454,6 +458,7 @@ class SystemBPipeline:
                     relation_graph=self._relation_graph,
                     max_supporting_models=self._config.max_supporting_models,
                     max_risk_models=self._config.max_risk_models,
+                    relevance_scores=lane1_relevance,
                 )
             )
             delta_card = _assemble_delta_card(routes, synthetic_results, bundle_selector=self._bundle_selector)
@@ -481,6 +486,7 @@ class SystemBPipeline:
                     relation_graph=self._relation_graph,
                     max_supporting_models=self._config.max_supporting_models,
                     max_risk_models=self._config.max_risk_models,
+                    relevance_scores=lane1_relevance,
                 )
             )
             promotion_warnings: list[str] = []
@@ -563,6 +569,25 @@ class SystemBPipeline:
             companion_candidates=companion_result.candidates,
         )
         return result
+
+    def _build_lane1_relevance_scores(
+        self, query_text: str,
+    ) -> dict[str, float] | None:
+        """Build model relevance scores for Lane 1 neighbor reranking.
+
+        Returns {model_id: cosine_similarity} or None if embeddings unavailable.
+        """
+        if not self._config.enable_embeddings or self._embedding_retriever is None:
+            return None
+        if not self._embedding_api_key:
+            return None
+        query_vec = self._embedding_retriever.embed_and_cache(
+            query_text, self._embedding_api_key,
+        )
+        if query_vec is None:
+            return None
+        ranked = self._embedding_retriever.rank_models(query_vec)
+        return {hit["model_id"]: hit["score"] for hit in ranked}
 
     def _run_companion(
         self,

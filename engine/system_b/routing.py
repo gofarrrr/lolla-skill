@@ -34,6 +34,7 @@ def route_tendency(
     relation_graph: RelationGraph | None = None,
     max_supporting_models: int = 2,
     max_risk_models: int = 1,
+    relevance_scores: dict[str, float] | None = None,
 ) -> TendencyRoute:
     tendency = catalog.lookup(tendency_key)
     primary_binding = _match_primary_binding(tendency.antidote_bindings, sub_pattern)
@@ -41,6 +42,7 @@ def route_tendency(
         (primary_binding.model_id,) if primary_binding else (),
         max_supporting_models=max_supporting_models,
         max_risk_models=max_risk_models,
+        relevance_scores=relevance_scores,
     ) if relation_graph is not None else None
     return TendencyRoute(
         tendency=tendency,
@@ -70,6 +72,7 @@ def route_detected_tendencies(
     relation_graph: RelationGraph | None = None,
     max_supporting_models: int = 2,
     max_risk_models: int = 1,
+    relevance_scores: dict[str, float] | None = None,
 ) -> list[TendencyRoute]:
     routes: list[TendencyRoute] = []
     seen: set[str] = set()
@@ -81,6 +84,7 @@ def route_detected_tendencies(
             relation_graph=relation_graph,
             max_supporting_models=max_supporting_models,
             max_risk_models=max_risk_models,
+            relevance_scores=relevance_scores,
         )
         tendency_id = route.tendency.tendency_id
         if tendency_id in seen:
@@ -97,6 +101,7 @@ def route_deep_check_results(
     relation_graph: RelationGraph | None = None,
     max_supporting_models: int = 2,
     max_risk_models: int = 1,
+    relevance_scores: dict[str, float] | None = None,
 ) -> list[TendencyRoute]:
     routes: list[TendencyRoute] = []
     seen: set[str] = set()
@@ -111,6 +116,7 @@ def route_deep_check_results(
             relation_graph=relation_graph,
             max_supporting_models=max_supporting_models,
             max_risk_models=max_risk_models,
+            relevance_scores=relevance_scores,
         )
         tendency_id = route.tendency.tendency_id
         if tendency_id in seen:

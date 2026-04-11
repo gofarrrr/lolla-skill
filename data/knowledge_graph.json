@@ -1,19 +1,19 @@
 {
   "metadata": {
     "version": "1.0",
-    "compiled_date": "2026-04-07",
-    "source_file_count": 224,
-    "total_models_processed": 224,
-    "total_edges": 1688,
-    "total_tendency_links": 386,
+    "compiled_date": "2026-04-11",
+    "source_file_count": 222,
+    "total_models_processed": 222,
+    "total_edges": 1742,
+    "total_tendency_links": 384,
     "model_relation_edges_source": "relation_semantics_wave3",
     "compilation_mode": "layer2b-canonical",
     "uses_operational_curation": true,
     "operational_curation": {
-      "applied_model_count": 224,
-      "changed_field_count": 1120,
+      "applied_model_count": 222,
+      "changed_field_count": 1110,
       "overwritten_non_empty_field_count": 175,
-      "contested_field_count": 751,
+      "contested_field_count": 743,
       "injected_fields": [
         "select_when",
         "danger_when",
@@ -65,7 +65,6 @@
         "cognitive-gaps-assessment",
         "cognitive-load-theory",
         "combinatorial-effects",
-        "commitment-and-consistency-bias",
         "commitment-bias",
         "comparative-advantage",
         "comparative-political-systems-analysis",
@@ -199,7 +198,6 @@
         "regression-to-the-mean",
         "regret-theory",
         "regulatory-horizon-scanning",
-        "representativeness-bias",
         "representativeness-heuristic",
         "resilience",
         "risk-assessment",
@@ -250,17 +248,17 @@
         "wysiati",
         "zone-of-development"
       ],
-      "applied_model_count": 224,
+      "applied_model_count": 222,
       "missing_model_ids": [],
       "missing_model_count": 0,
-      "total_failure_modes": 680,
-      "total_premortem_questions": 675,
+      "total_failure_modes": 678,
+      "total_premortem_questions": 674,
       "total_heuristics": 680
     },
     "uses_relation_semantics_wave3": true,
     "relation_semantics_wave3": {
-      "compiled_edge_count": 1302,
-      "source_record_count": 224
+      "compiled_edge_count": 1358,
+      "source_record_count": 222
     }
   },
   "models": {
@@ -3584,7 +3582,11 @@
       "select_when": [
         "Execution requires persistence across a long sequence of small decisions that would otherwise unravel under distraction or drift.",
         "The commitment is tied to a reversible experiment, disciplined cadence, or identity-based habit that benefits from staying power.",
-        "The main risk is under-follow-through rather than over-escalation, and the team has explicit stop rules to revisit the commitment."
+        "The main risk is under-follow-through rather than over-escalation, and the team has explicit stop rules to revisit the commitment.",
+        "A person or group is defending a prior commitment, identity, or promise more strongly than the evidence now justifies.",
+        "Escalation, rigidity, or self-justification is blocking reversal even though the original assumptions have weakened.",
+        "The real issue is not lack of information but the social or psychological cost of admitting the earlier choice may have been wrong.",
+        "The team needs to inspect how small public commitments are shaping larger downstream behavior."
       ],
       "failure_modes": [
         {
@@ -3603,78 +3605,6 @@
           "extraction_type": "normalized",
           "confidence": "high"
         },
-        {
-          "mode": "Over-reliance on Self-Justification",
-          "description": "Self-justification can turn consistency pressure into a refusal to update strategy.",
-          "mitigation": "Separate the sunk cost from the forward decision: ask what the team would do if starting fresh with the same information today.",
-          "source_quote": "Over-reliance on Self-Justification",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        }
-      ],
-      "premortem_questions": [
-        {
-          "description": "What evidence would make us reverse course rather than defend the original commitment?",
-          "source_quote": "What would you have to believe?",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        },
-        {
-          "description": "If this path is failing quietly, what would we notice first?",
-          "source_quote": "Is the worst case bad enough?",
-          "extraction_type": "normalized",
-          "confidence": "medium"
-        },
-        {
-          "description": "Are we protecting the goal, or just protecting the story that we were right to start?",
-          "source_quote": "commitment and consistency",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        }
-      ],
-      "heuristics": [
-        {
-          "description": "Separate goal-setting, diagnosis, and design so commitment to one step does not pre-commit the next.",
-          "source_quote": "perform the steps one at a time and in order",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        },
-        {
-          "description": "Use outside challenge to test whether the current path still deserves commitment.",
-          "source_quote": "What would you have to believe?",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        },
-        {
-          "description": "Treat small commitments as leverage carefully because they can ratchet identity and posture faster than evidence updates.",
-          "source_quote": "commitment and consistency",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        }
-      ],
-      "danger_when": [
-        "Prior public commitment, sunk cost, or ego investment is becoming more important than updating on new evidence.",
-        "The case demands flexibility and fast updating, but the commitment structure would make reversal socially or politically expensive."
-      ],
-      "slug": "commitment-bias",
-      "name": "Commitment Bias",
-      "input_type": "commitment-under-review",
-      "output_type": "recommit-or-exit check",
-      "reasoning_types": [
-        "diagnostic",
-        "causal"
-      ]
-    },
-    "commitment-and-consistency-bias": {
-      "display_name": "Commitment And Consistency Bias",
-      "source_file": "Commitment_and_Consistency_Bias_rag.md",
-      "select_when": [
-        "A person or group is defending a prior commitment, identity, or promise more strongly than the evidence now justifies.",
-        "Escalation, rigidity, or self-justification is blocking reversal even though the original assumptions have weakened.",
-        "The real issue is not lack of information but the social or psychological cost of admitting the earlier choice may have been wrong.",
-        "The team needs to inspect how small public commitments are shaping larger downstream behavior."
-      ],
-      "failure_modes": [
         {
           "mode": "Self-Justification & Rationalization",
           "description": "Self-justification can turn the conscious self into a press secretary for earlier decisions instead of a seeker of truth.",
@@ -3702,6 +3632,24 @@
       ],
       "premortem_questions": [
         {
+          "description": "What evidence would make us reverse course rather than defend the original commitment?",
+          "source_quote": "What would you have to believe?",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "description": "If this path is failing quietly, what would we notice first?",
+          "source_quote": "Is the worst case bad enough?",
+          "extraction_type": "normalized",
+          "confidence": "medium"
+        },
+        {
+          "description": "Are we protecting the goal, or just protecting the story that we were right to start?",
+          "source_quote": "commitment and consistency",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
           "description": "What would I do if I had no sunk costs invested in this outcome?",
           "source_quote": "What would I do if I had no sunk costs invested in this outcome?",
           "extraction_type": "explicit",
@@ -3712,15 +3660,27 @@
           "source_quote": "What assumptions underlie the framework I am using?",
           "extraction_type": "explicit",
           "confidence": "high"
-        },
-        {
-          "description": "What would you have to believe?",
-          "source_quote": "What would you have to believe?",
-          "extraction_type": "explicit",
-          "confidence": "high"
         }
       ],
       "heuristics": [
+        {
+          "description": "Separate goal-setting, diagnosis, and design so commitment to one step does not pre-commit the next.",
+          "source_quote": "perform the steps one at a time and in order",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "description": "Use outside challenge to test whether the current path still deserves commitment.",
+          "source_quote": "What would you have to believe?",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "description": "Treat small commitments as leverage carefully because they can ratchet identity and posture faster than evidence updates.",
+          "source_quote": "commitment and consistency",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
         {
           "description": "Treat abandoning a bad idea as learning progress rather than as weakness so reversal becomes psychologically possible.",
           "source_quote": "making mistakes is okay, but failing to learn from them is unacceptable",
@@ -3741,15 +3701,17 @@
         }
       ],
       "danger_when": [
-        "The situation mainly needs healthy follow-through or purpose alignment rather than a bias audit on rigid commitment.",
+        "Prior public commitment, sunk cost, or ego investment is becoming more important than updating on new evidence.",
+        "The case demands flexibility and fast updating, but the commitment structure would make reversal socially or politically expensive.",
         "The model is being used to mock consistency itself instead of distinguishing disciplined persistence from self-deceptive lock-in."
       ],
-      "slug": "commitment-and-consistency-bias",
-      "name": "Commitment And Consistency Bias",
-      "input_type": "escalation and self-justification problem",
-      "output_type": "commitment-bias reversal check",
+      "slug": "commitment-bias",
+      "name": "Commitment Bias",
+      "input_type": "commitment-under-review",
+      "output_type": "recommit-or-exit check",
       "reasoning_types": [
         "diagnostic",
+        "causal",
         "metacognitive"
       ]
     },
@@ -15785,21 +15747,32 @@
         "counterfactual"
       ]
     },
-    "representativeness-bias": {
-      "display_name": "Representativeness Bias",
-      "source_file": "Representativeness_Bias_rag.md",
+    "representativeness-heuristic": {
+      "display_name": "Representativeness Heuristic",
+      "source_file": "Representativeness_Heuristic_rag.md",
       "select_when": [
+        "A judgment is being driven by surface similarity or a vivid category match rather than by rates, frequencies, or causal detail.",
+        "People are substituting the question 'What does this resemble?' for the harder question 'What is statistically or causally likely here?'",
+        "The risk is that a compelling pattern match will crowd out denominator discipline.",
+        "A decision maker is intuitively classifying a case before checking whether the reference class actually supports that classification.",
         "A vivid story, category label, or familiar prototype is overpowering statistical reasoning in a forecast or judgment.",
-        "The team is leaning on resemblance or stereotype logic instead of reference-class evidence and base-rate correction.",
         "A recommendation depends on forcing a handoff from intuitive categorization to explicit outside-view checking before action.",
         "Problem solvers are at risk of declaring that they have seen this pattern before and skipping verification of whether the old frame still fits."
       ],
       "failure_modes": [
         {
-          "mode": "The personality description is vivid and salient, overriding the cold, statistical logic.",
-          "description": "A vivid case can overpower base rates and make a category feel more probable than the surrounding distribution supports.",
-          "mitigation": "Check the base rate before the story: for any vivid case that feels diagnostic, look up how frequently the category actually occurs in the relevant reference class.",
-          "source_quote": "The personality description is vivid and salient, overriding the cold, statistical logic.",
+          "mode": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more di...",
+          "description": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more diagnostic than it is.",
+          "mitigation": "Anchor to frequencies first: before accepting a pattern match, check the base-rate probability of the category in the relevant population.",
+          "source_quote": "The representativeness heuristic often leads to base-rate neglect by focusing on specific details rather than statistical regularities.",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "mode": "It judges the probability of an event by the degree to which it resembles a typical case.",
+          "description": "Decision makers can confuse similarity with probability and treat a plausible story as if it were a strong forecast.",
+          "mitigation": "Separate plausibility from probability: require the team to distinguish 'this story sounds right' from 'this outcome is statistically likely' and flag any conflation.",
+          "source_quote": "It judges the probability of an event by the degree to which it resembles a typical case.",
           "extraction_type": "normalized",
           "confidence": "high"
         },
@@ -15816,86 +15789,6 @@
           "description": "Smart teams can become especially vulnerable when they construct elegant narratives that hide their own bias blind spot.",
           "mitigation": "Assign a designated base-rate advocate: when the team's narrative is compelling, one member's job is to surface the statistical denominator and test the story against it.",
           "source_quote": "The more cognitively sophisticated a person is, the better they are at constructing narratives and rationalizing data to support their preconceived beliefs",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        }
-      ],
-      "premortem_questions": [
-        {
-          "description": "What would you have to believe for the favored representative story to be truer than the base-rate evidence?",
-          "source_quote": "What would you have to believe?",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        },
-        {
-          "description": "Is the worst case bad enough if this resemblance-based judgment is wrong?",
-          "source_quote": "Is the worst case bad enough?",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "description": "Why might my belief not be true?",
-          "source_quote": "Why might my belief not be true?",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        }
-      ],
-      "heuristics": [
-        {
-          "description": "Force an outside-view pass with reference classes or base rates before acting on an intuitive category match.",
-          "source_quote": "Forcing the Outside View (Base Rates)",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "description": "Separate independent judgments before discussion so the first representative story does not anchor the whole group.",
-          "source_quote": "obtain separate, independent judgments on the issue before any discussion takes place",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        },
-        {
-          "description": "Challenge the favored frame with thesis, antithesis, and synthesis instead of letting the first pattern match become the decision.",
-          "source_quote": "Adopt the dialectic standard: require every idea or hypothesis ... to be met with its antithesis",
-          "extraction_type": "normalized",
-          "confidence": "high"
-        }
-      ],
-      "danger_when": [
-        "The judgment already rests on explicit outside-view evidence and the model would only restate a bias warning without changing the decision path.",
-        "The model is being used to criticize simplification itself rather than the specific move from surface similarity to unsupported causal confidence."
-      ],
-      "slug": "representativeness-bias",
-      "name": "Representativeness Bias",
-      "input_type": "prototype-driven judgment problem",
-      "output_type": "base-rate correction frame",
-      "reasoning_types": [
-        "probabilistic",
-        "counterfactual"
-      ]
-    },
-    "representativeness-heuristic": {
-      "display_name": "Representativeness Heuristic",
-      "source_file": "Representativeness_Heuristic_rag.md",
-      "select_when": [
-        "A judgment is being driven by surface similarity or a vivid category match rather than by rates, frequencies, or causal detail.",
-        "People are substituting the question 'What does this resemble?' for the harder question 'What is statistically or causally likely here?'",
-        "The risk is that a compelling pattern match will crowd out denominator discipline.",
-        "A decision maker is intuitively classifying a case before checking whether the reference class actually supports that classification."
-      ],
-      "failure_modes": [
-        {
-          "mode": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more di...",
-          "description": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more diagnostic than it is.",
-          "mitigation": "Anchor to frequencies first: before accepting a pattern match, check the base-rate probability of the category in the relevant population.",
-          "source_quote": "The representativeness heuristic often leads to base-rate neglect by focusing on specific details rather than statistical regularities.",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "mode": "It judges the probability of an event by the degree to which it resembles a typical case.",
-          "description": "Decision makers can confuse similarity with probability and treat a plausible story as if it were a strong forecast.",
-          "mitigation": "Separate plausibility from probability: require the team to distinguish 'this story sounds right' from 'this outcome is statistically likely' and flag any conflation.",
-          "source_quote": "It judges the probability of an event by the degree to which it resembles a typical case.",
           "extraction_type": "normalized",
           "confidence": "high"
         },
@@ -15926,6 +15819,24 @@
           "source_quote": "If this representative pattern we identified fails, what previously ignored facts or assumptions would have caused the failure?",
           "extraction_type": "explicit",
           "confidence": "high"
+        },
+        {
+          "description": "What would you have to believe for the favored representative story to be truer than the base-rate evidence?",
+          "source_quote": "What would you have to believe?",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "description": "Is the worst case bad enough if this resemblance-based judgment is wrong?",
+          "source_quote": "Is the worst case bad enough?",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "description": "Why might my belief not be true?",
+          "source_quote": "Why might my belief not be true?",
+          "extraction_type": "explicit",
+          "confidence": "high"
         }
       ],
       "heuristics": [
@@ -15946,19 +15857,40 @@
           "source_quote": "Explicitly challenge assumptions and broaden the mental toolbox.",
           "extraction_type": "normalized",
           "confidence": "high"
+        },
+        {
+          "description": "Force an outside-view pass with reference classes or base rates before acting on an intuitive category match.",
+          "source_quote": "Forcing the Outside View (Base Rates)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "description": "Separate independent judgments before discussion so the first representative story does not anchor the whole group.",
+          "source_quote": "obtain separate, independent judgments on the issue before any discussion takes place",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "description": "Challenge the favored frame with thesis, antithesis, and synthesis instead of letting the first pattern match become the decision.",
+          "source_quote": "Adopt the dialectic standard: require every idea or hypothesis ... to be met with its antithesis",
+          "extraction_type": "normalized",
+          "confidence": "high"
         }
       ],
       "danger_when": [
         "The model would be used as a generic anti-intuition slogan instead of checking where resemblance is actually informative.",
-        "Teams are treating every pattern match as wrong even when there is strong base-rate and causal support for it."
+        "Teams are treating every pattern match as wrong even when there is strong base-rate and causal support for it.",
+        "The judgment already rests on explicit outside-view evidence and the model would only restate a bias warning without changing the decision path.",
+        "The model is being used to criticize simplification itself rather than the specific move from surface similarity to unsupported causal confidence."
       ],
       "slug": "representativeness-heuristic",
       "name": "Representativeness Heuristic",
       "input_type": "similarity-driven judgment",
-      "output_type": "pattern-match challenge",
+      "output_type": "pattern-match challenge with base-rate correction",
       "reasoning_types": [
         "probabilistic",
-        "diagnostic"
+        "diagnostic",
+        "counterfactual"
       ]
     },
     "resilience": {
@@ -21482,16 +21414,6 @@
       "description": "The reluctance to change one's habits, loyalties, or previous conclusions (First Conclusion Bias, Status Quo), especially once public identity or signaling has made reversal feel costly.",
       "core_models": [
         {
-          "model": "commitment-and-consistency-bias",
-          "activation_context": null,
-          "activation_context_source_path": "",
-          "activation_context_source_quote": "",
-          "activation_context_extraction_type": "",
-          "activation_context_confidence": "",
-          "activation_context_blocking_quality_flags": [],
-          "activation_context_advisory_quality_flags": []
-        },
-        {
           "model": "commitment-bias",
           "activation_context": null,
           "activation_context_source_path": "",
@@ -22218,16 +22140,6 @@
         },
         {
           "model": "representativeness-heuristic",
-          "activation_context": null,
-          "activation_context_source_path": "",
-          "activation_context_source_quote": "",
-          "activation_context_extraction_type": "",
-          "activation_context_confidence": "",
-          "activation_context_blocking_quality_flags": [],
-          "activation_context_advisory_quality_flags": []
-        },
-        {
-          "model": "representativeness-bias",
           "activation_context": null,
           "activation_context_source_path": "",
           "activation_context_source_quote": "",
@@ -25497,15 +25409,6 @@
     },
     {
       "source": "inconsistency-avoidance-tendency",
-      "target": "commitment-and-consistency-bias",
-      "type": "tendency_core",
-      "source_origin": "munger_mapping",
-      "tendency_number": 5,
-      "context": null,
-      "in_corpus": true
-    },
-    {
-      "source": "inconsistency-avoidance-tendency",
       "target": "commitment-bias",
       "type": "tendency_core",
       "source_origin": "munger_mapping",
@@ -26110,15 +26013,6 @@
     {
       "source": "influence-from-mere-association-tendency",
       "target": "representativeness-heuristic",
-      "type": "tendency_core",
-      "source_origin": "munger_mapping",
-      "tendency_number": 10,
-      "context": null,
-      "in_corpus": true
-    },
-    {
-      "source": "influence-from-mere-association-tendency",
-      "target": "representativeness-bias",
       "type": "tendency_core",
       "source_origin": "munger_mapping",
       "tendency_number": 10,
@@ -28724,6 +28618,22 @@
     },
     {
       "source": "analogies-and-metaphors",
+      "target": "representativeness-heuristic",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Representativeness-heuristic undermines analogies-and-metaphors by driving analogy selection toward superficial surface similarity rather than deep structural correspondence, producing comparisons that feel right but mislead.",
+      "in_corpus": true
+    },
+    {
+      "source": "analogies-and-metaphors",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines analogies-and-metaphors by locking onto the first familiar comparison so firmly that the thinker never tests whether a different analogy would map the target domain more accurately.",
+      "in_corpus": true
+    },
+    {
+      "source": "analogies-and-metaphors",
       "target": "abstraction",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -29108,10 +29018,18 @@
     },
     {
       "source": "baseline-establishment",
-      "target": "representativeness-bias",
+      "target": "anchoring",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Anchoring undermines baseline-establishment by letting the first data point or frame encountered become the de facto baseline, preventing the team from defining a genuinely representative starting condition.",
+      "in_corpus": true
+    },
+    {
+      "source": "baseline-establishment",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Baseline-establishment conflicts with representativeness-bias when salient recent data points are mistaken for a robust baseline.",
+      "context": "Baseline-establishment conflicts with representativeness-heuristic when salient recent data points are mistaken for a robust baseline.",
       "in_corpus": true
     },
     {
@@ -29484,6 +29402,14 @@
     },
     {
       "source": "brainstorming",
+      "target": "authority-bias",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Authority-bias undermines brainstorming by causing team members to suppress their own ideas and defer to the senior person's framing, collapsing the divergent space the session needs.",
+      "in_corpus": true
+    },
+    {
+      "source": "brainstorming",
       "target": "confirmation-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -29652,10 +29578,10 @@
     },
     {
       "source": "category-decisions",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Category-decisions conflicts with representativeness-bias when labels are assigned from salient traits instead of distributional evidence.",
+      "context": "Category-decisions conflicts with representativeness-heuristic when labels are assigned from salient traits instead of distributional evidence.",
       "in_corpus": true
     },
     {
@@ -29884,6 +29810,14 @@
     },
     {
       "source": "checklists",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines checklists by causing practitioners to apply a previously successful checklist to a genuinely novel problem, forcing reality into familiar steps rather than testing whether the checklist's assumptions still hold.",
+      "in_corpus": true
+    },
+    {
+      "source": "checklists",
       "target": "flow",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -29968,6 +29902,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Risk-vs-uncertainty helps circle-of-control distinguish what should be hedged from what can actually be changed.",
+      "in_corpus": true
+    },
+    {
+      "source": "circle-of-control",
+      "target": "status-quo-bias",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Status-quo-bias undermines circle-of-control by causing teams to classify difficult-but-influenceable factors as 'outside control' without testing whether influence could actually be increased, turning the model into avoidance disguised as realism.",
       "in_corpus": true
     },
     {
@@ -30156,6 +30098,14 @@
     },
     {
       "source": "cognitive-load-theory",
+      "target": "curse-of-knowledge",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Curse-of-knowledge undermines cognitive-load-theory by causing experts to communicate at their own level of abstraction, directly increasing the novice's cognitive load instead of reducing it.",
+      "in_corpus": true
+    },
+    {
+      "source": "cognitive-load-theory",
       "target": "first-principles-thinking",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -30211,51 +30161,11 @@
       "in_corpus": true
     },
     {
-      "source": "commitment-and-consistency-bias",
-      "target": "social-proof",
-      "type": "ally",
-      "source_origin": "relation_semantics_wave3",
-      "context": "Social-proof helps commitment-and-consistency-bias spread because public alignment with a group makes later reversal feel more costly.",
-      "in_corpus": true
-    },
-    {
-      "source": "commitment-and-consistency-bias",
-      "target": "sunk-cost-fallacy",
-      "type": "ally",
-      "source_origin": "relation_semantics_wave3",
-      "context": "Sunk-cost-fallacy reinforces commitment-and-consistency-bias by making prior investment feel like a reason to keep going.",
-      "in_corpus": true
-    },
-    {
-      "source": "commitment-and-consistency-bias",
-      "target": "intellectual-humility",
-      "type": "antagonist",
-      "source_origin": "relation_semantics_wave3",
-      "context": "Intellectual-humility interrupts commitment-and-consistency-bias by making truth more valuable than preserving a prior public stance.",
-      "in_corpus": true
-    },
-    {
-      "source": "commitment-and-consistency-bias",
-      "target": "optionality",
-      "type": "structured_tension",
-      "source_origin": "relation_semantics_wave3",
-      "context": "Commitment-and-consistency-bias conflicts with optionality when public consistency pressure forecloses the ability to pivot when new information favors a different path.",
-      "in_corpus": true
-    },
-    {
-      "source": "commitment-and-consistency-bias",
-      "target": "scientific-method-evidence-testing",
-      "type": "structured_tension",
-      "source_origin": "relation_semantics_wave3",
-      "context": "Commitment-and-consistency-bias conflicts with scientific-method-evidence-testing when the need to honor prior commitments overrides willingness to update beliefs based on new experimental evidence.",
-      "in_corpus": true
-    },
-    {
       "source": "commitment-bias",
       "target": "cognitive-dissonance",
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
-      "context": "Cognitive dissonance is the psychological engine that powers commitment bias \u2014 the discomfort of holding 'I committed to X' alongside contrary evidence generates the motivated drive to maintain the committed position rather than update honestly.",
+      "context": "Cognitive dissonance is the psychological engine that powers commitment bias -- the discomfort of holding 'I committed to X' alongside contrary evidence generates the motivated drive to maintain the committed position rather than update honestly.",
       "in_corpus": true
     },
     {
@@ -30264,6 +30174,22 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Scaffolding turns consistency into incremental learning by building reliable progress in structured stages.",
+      "in_corpus": true
+    },
+    {
+      "source": "commitment-bias",
+      "target": "social-proof",
+      "type": "ally",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Social-proof helps commitment bias spread because public alignment with a group makes later reversal feel more costly.",
+      "in_corpus": true
+    },
+    {
+      "source": "commitment-bias",
+      "target": "sunk-cost-fallacy",
+      "type": "ally",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Sunk-cost-fallacy reinforces commitment bias by making prior investment feel like a reason to keep going.",
       "in_corpus": true
     },
     {
@@ -30279,7 +30205,7 @@
       "target": "intellectual-humility",
       "type": "antagonist",
       "source_origin": "relation_semantics_wave3",
-      "context": "Commitment-bias is driven by the ego barrier and the need for consistency, which is directly antagonistic to intellectual humility's core demand \u2014 acknowledging you may be wrong and genuinely updating on evidence rather than defending the committed position.",
+      "context": "Commitment bias is driven by the ego barrier and the need for consistency, which is directly antagonistic to intellectual humility's core demand -- acknowledging you may be wrong and genuinely updating on evidence rather than defending the committed position.",
       "in_corpus": true
     },
     {
@@ -30304,6 +30230,14 @@
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
       "context": "Commitment-bias conflicts with confirmation-bias when the drive for consistency with past choices biases evidence evaluation toward confirming the original decision.",
+      "in_corpus": true
+    },
+    {
+      "source": "commitment-bias",
+      "target": "scientific-method-evidence-testing",
+      "type": "structured_tension",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Commitment-bias conflicts with scientific-method-evidence-testing when the need to honor prior commitments overrides willingness to update beliefs based on new experimental evidence.",
       "in_corpus": true
     },
     {
@@ -30464,6 +30398,22 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Critical-thinking helps complexity-bias-resistance test whether a reduction preserves the real logic of the case instead of just sounding neat.",
+      "in_corpus": true
+    },
+    {
+      "source": "complexity-bias-resistance",
+      "target": "curse-of-knowledge",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Curse-of-knowledge undermines complexity-bias-resistance by making experts instinctively jump to higher abstraction and methodological detail instead of the essential core the audience needs, defeating the simplification discipline CBR requires.",
+      "in_corpus": true
+    },
+    {
+      "source": "complexity-bias-resistance",
+      "target": "anchoring",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Anchoring undermines complexity-bias-resistance by locking problem framing onto the first piece of information encountered, preventing recognition of a simpler and more accurate explanatory cut.",
       "in_corpus": true
     },
     {
@@ -30988,10 +30938,10 @@
     },
     {
       "source": "creative-destruction",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Creative-destruction conflicts with commitment-and-consistency-bias when public prior strategy blocks timely reinvention.",
+      "context": "Creative-destruction conflicts with commitment-bias when public prior strategy blocks timely reinvention.",
       "in_corpus": true
     },
     {
@@ -31020,10 +30970,10 @@
     },
     {
       "source": "critical-mass",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Critical-mass conflicts with representativeness-bias when early adopter behavior is misread as durable mass adoption.",
+      "context": "Critical-mass conflicts with representativeness-heuristic when early adopter behavior is misread as durable mass adoption.",
       "in_corpus": true
     },
     {
@@ -31132,6 +31082,14 @@
     },
     {
       "source": "cultural-dimensions-theory",
+      "target": "representativeness-heuristic",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Representativeness-heuristic undermines cultural-dimensions-theory by causing users to treat dimension scores as fixed identity labels for individuals rather than probabilistic context clues, collapsing cultural analysis into stereotyping.",
+      "in_corpus": true
+    },
+    {
+      "source": "cultural-dimensions-theory",
       "target": "optionality",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -31164,7 +31122,7 @@
     },
     {
       "source": "cultural-intelligence",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "antagonist",
       "source_origin": "relation_semantics_wave3",
       "context": "Representativeness-bias turns cultural-intelligence into stereotype projection by treating surface familiarity as deep understanding.",
@@ -31180,10 +31138,10 @@
     },
     {
       "source": "cultural-intelligence",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Cultural-intelligence conflicts with representativeness-bias when stereotypes replace context-specific interpretation.",
+      "context": "Cultural-intelligence conflicts with representativeness-heuristic when stereotypes replace context-specific interpretation.",
       "in_corpus": true
     },
     {
@@ -31208,6 +31166,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "First-principles-thinking channels curiosity into fundamental questions that strip away assumptions and expose the elemental truths underneath the current frame.",
+      "in_corpus": true
+    },
+    {
+      "source": "curiosity",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines curiosity by locking the thinker onto a familiar framework so that the drive to investigate further is short-circuited before new inquiry paths can open.",
       "in_corpus": true
     },
     {
@@ -31308,6 +31274,14 @@
     },
     {
       "source": "cybersecurity-thinking-models",
+      "target": "wysiati",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "WYSIATI undermines cybersecurity-thinking-models by letting defenders accept the most visible threat narrative as the full picture, suppressing adversarial hypotheses that require imagining attack surfaces beyond currently available evidence.",
+      "in_corpus": true
+    },
+    {
+      "source": "cybersecurity-thinking-models",
       "target": "confirmation-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -31336,6 +31310,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Scientific-method-evidence-testing strengthens data-science-reasoning-framework by keeping hypotheses tied to explicit tests and disconfirmation.",
+      "in_corpus": true
+    },
+    {
+      "source": "data-science-reasoning-framework",
+      "target": "system-1",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "System-1 undermines data-science-reasoning-framework by generating fast, emotionally anchored conclusions that bypass the structured hypothesis-testing cycle the framework requires.",
       "in_corpus": true
     },
     {
@@ -31788,6 +31770,22 @@
     },
     {
       "source": "divergent-vs-convergent-thinking",
+      "target": "anchoring",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Anchoring undermines divergent-vs-convergent-thinking by letting the first compelling idea act as a reference point that prematurely collapses the divergent phase, cutting off originality before the option space is explored.",
+      "in_corpus": true
+    },
+    {
+      "source": "divergent-vs-convergent-thinking",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines divergent-vs-convergent-thinking by causing experts to perceive novel problems through patterns they already know, blocking genuine divergence and forcing premature convergence onto familiar solutions.",
+      "in_corpus": true
+    },
+    {
+      "source": "divergent-vs-convergent-thinking",
       "target": "cognitive-biases",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -31808,6 +31806,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Intellectual-humility helps dunning-kruger-effect create the mindset needed to admit what is not yet known well enough.",
+      "in_corpus": true
+    },
+    {
+      "source": "dunning-kruger-effect",
+      "target": "wysiati",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "WYSIATI undermines dunning-kruger-effect awareness by letting individuals construct a coherent-feeling story from sparse evidence, which inflates confidence and suppresses the metacognitive signal that competence is lacking.",
       "in_corpus": true
     },
     {
@@ -31952,6 +31958,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Psychological-safety helps emotional-intelligence turn emotional candor into group trust instead of defensive silence.",
+      "in_corpus": true
+    },
+    {
+      "source": "emotional-intelligence",
+      "target": "rationalization",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Rationalization undermines emotional-intelligence by converting genuine emotional signals into self-serving narratives, corrupting the self-awareness and empathy loops that EI depends on.",
       "in_corpus": true
     },
     {
@@ -32108,10 +32122,10 @@
     },
     {
       "source": "evolutionary-pressure",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Evolutionary-pressure conflicts with commitment-and-consistency-bias when legacy identity prevents fitness-driven change.",
+      "context": "Evolutionary-pressure conflicts with commitment-bias when legacy identity prevents fitness-driven change.",
       "in_corpus": true
     },
     {
@@ -32276,6 +32290,14 @@
     },
     {
       "source": "extreme-performance-evaluation",
+      "target": "survivorship-bias",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Survivorship-bias undermines extreme-performance-evaluation by directing evaluation attention only toward visible successes and away from the failures, near-misses, and eliminated candidates whose patterns carry the sharpest diagnostic signal.",
+      "in_corpus": true
+    },
+    {
+      "source": "extreme-performance-evaluation",
       "target": "confirmation-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -32372,7 +32394,7 @@
     },
     {
       "source": "falsifiability",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "antagonist",
       "source_origin": "relation_semantics_wave3",
       "context": "Commitment-and-consistency-bias makes it psychologically difficult to accept the evidence that should kill the original hypothesis.",
@@ -32388,10 +32410,10 @@
     },
     {
       "source": "falsifiability",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Falsifiability conflicts with commitment-and-consistency-bias when prior commitments make it too costly to accept disconfirming evidence.",
+      "context": "Falsifiability conflicts with commitment-bias when prior commitments make it too costly to accept disconfirming evidence.",
       "in_corpus": true
     },
     {
@@ -32448,6 +32470,22 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Cognitive-load-theory strengthens feedback-models-sbi by breaking corrective information into manageable chunks the receiver can process.",
+      "in_corpus": true
+    },
+    {
+      "source": "feedback-models-sbi",
+      "target": "rationalization",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Rationalization undermines feedback-models-sbi by allowing the feedback giver to process information toward a desired conclusion rather than surfacing what actually happened, corrupting the Information step with motivated reasoning.",
+      "in_corpus": true
+    },
+    {
+      "source": "feedback-models-sbi",
+      "target": "hindsight-bias",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Hindsight-bias undermines feedback-models-sbi by shifting the conversation from evaluating the decision process to judging the outcome, collapsing the structured separation of situation, behavior, and impact.",
       "in_corpus": true
     },
     {
@@ -32812,10 +32850,26 @@
     },
     {
       "source": "gestalt-principles-of-perception",
-      "target": "representativeness-bias",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines gestalt-principles-of-perception by locking the brain onto the first recognized pattern, preventing the reorganization of sensory data into a more accurate or useful whole.",
+      "in_corpus": true
+    },
+    {
+      "source": "gestalt-principles-of-perception",
+      "target": "theory-induced-blindness",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Theory-induced-blindness undermines gestalt-principles-of-perception by making the brain resist evidence that challenges an established perceptual organization, treating a satisfying pattern as settled truth rather than a provisional frame.",
+      "in_corpus": true
+    },
+    {
+      "source": "gestalt-principles-of-perception",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Gestalt-principles-of-perception conflicts with representativeness-bias when a familiar-looking pattern is treated as evidence of the underlying cause.",
+      "context": "Gestalt-principles-of-perception conflicts with representativeness-heuristic when a familiar-looking pattern is treated as evidence of the underlying cause.",
       "in_corpus": true
     },
     {
@@ -32944,6 +32998,22 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Checklists help habit-formation preserve reliable baseline behavior when attention is thin.",
+      "in_corpus": true
+    },
+    {
+      "source": "habit-formation",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines habit-formation by causing experts to stubbornly persist with deeply ingrained habitual frames when facing genuinely novel problems, turning automaticity from an asset into a trap.",
+      "in_corpus": true
+    },
+    {
+      "source": "habit-formation",
+      "target": "rationalization",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Rationalization undermines habit-formation by hijacking the habitual response with emotion-driven motivated reasoning, overriding planned rational habits when the brain makes chemical choices to protect the self.",
       "in_corpus": true
     },
     {
@@ -33252,6 +33322,22 @@
     },
     {
       "source": "input-vs-output-goals",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines input-vs-output-goals by causing practitioners to force new problems into a familiar input framework rather than selecting the right method for the actual output desired.",
+      "in_corpus": true
+    },
+    {
+      "source": "input-vs-output-goals",
+      "target": "curse-of-knowledge",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Curse-of-knowledge undermines input-vs-output-goals by causing experts to communicate complex process details instead of translating their insight into a clear, actionable output message.",
+      "in_corpus": true
+    },
+    {
+      "source": "input-vs-output-goals",
       "target": "commitment-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -33340,6 +33426,22 @@
     },
     {
       "source": "internal-locus-of-control",
+      "target": "system-1",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "System-1 undermines internal-locus-of-control by allowing the emotional lower-level brain to override conscious agency, making chemical choices that protect the self before the deliberate mind can intervene.",
+      "in_corpus": true
+    },
+    {
+      "source": "internal-locus-of-control",
+      "target": "optimism-bias-and-planning-fallacy",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Optimism-bias undermines internal-locus-of-control by inflating the sense of personal causation, leading to false confidence that spins better narratives rather than discovering what is actually within one's influence.",
+      "in_corpus": true
+    },
+    {
+      "source": "internal-locus-of-control",
       "target": "status-quo-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -33360,6 +33462,22 @@
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
       "context": "Internal-locus-of-control conflicts with confirmation-bias when feedback is processed to protect the sense of control instead of revising it.",
+      "in_corpus": true
+    },
+    {
+      "source": "international-negotiation-and-diplomacy-models",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines international-negotiation-and-diplomacy-models by causing practitioners to default to a familiar negotiation framework rather than diagnosing the actual structure of the current multi-party interaction.",
+      "in_corpus": true
+    },
+    {
+      "source": "international-negotiation-and-diplomacy-models",
+      "target": "curse-of-knowledge",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Curse-of-knowledge undermines international-negotiation-and-diplomacy-models by causing experts to communicate strategy at a level of abstraction the counterparty or stakeholder cannot absorb, blocking the persuasion and influence the model requires.",
       "in_corpus": true
     },
     {
@@ -33624,6 +33742,22 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Reframing-perspective gives lateral-thinking a practical way to reopen option space by changing the question before changing the answer.",
+      "in_corpus": true
+    },
+    {
+      "source": "lateral-thinking",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines lateral-thinking by causing the brain to default to the most available existing mental map, directly blocking the exploration of novel or difficult solution spaces.",
+      "in_corpus": true
+    },
+    {
+      "source": "lateral-thinking",
+      "target": "anchoring",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Anchoring undermines lateral-thinking by fixing attention on the first piece of information encountered, cutting off the flow of divergent ideas before alternative frames can form.",
       "in_corpus": true
     },
     {
@@ -33932,6 +34066,22 @@
     },
     {
       "source": "lindy-effect",
+      "target": "theory-induced-blindness",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Theory-induced-blindness undermines lindy-effect by making loyalty to a long-lived model prevent recognition of evidence that falls outside its frame, turning longevity from a valid heuristic into a blinder against disruptive forces.",
+      "in_corpus": true
+    },
+    {
+      "source": "lindy-effect",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines lindy-effect by causing practitioners to default to a known long-lived framework simply because it is readily available, substituting familiarity for fit when the problem is genuinely novel.",
+      "in_corpus": true
+    },
+    {
+      "source": "lindy-effect",
       "target": "creative-destruction",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -34096,6 +34246,22 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Scaffolding helps markov-chains model cumulative progression through bounded steps rather than giant leaps.",
+      "in_corpus": true
+    },
+    {
+      "source": "markov-chains",
+      "target": "path-dependence",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Path-dependence undermines markov-chains by introducing historical memory into state transitions, violating the memoryless assumption that makes the Markov simplification tractable.",
+      "in_corpus": true
+    },
+    {
+      "source": "markov-chains",
+      "target": "divergent-vs-convergent-thinking",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Divergent-vs-convergent-thinking undermines markov-chains by demanding free-form recombination of ideas that cannot be captured in a fixed sequence of discrete states, breaking the structured progression the model depends on.",
       "in_corpus": true
     },
     {
@@ -34476,10 +34642,10 @@
     },
     {
       "source": "multi-criteria-decision-analysis",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Multi-criteria-decision-analysis conflicts with representativeness-bias when salient criteria overshadow base-rate relevance.",
+      "context": "Multi-criteria-decision-analysis conflicts with representativeness-heuristic when salient criteria overshadow base-rate relevance.",
       "in_corpus": true
     },
     {
@@ -34496,6 +34662,22 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Systems-thinking strengthens multicultural-team-dynamics by showing how local team interactions shape broader downstream effects.",
+      "in_corpus": true
+    },
+    {
+      "source": "multicultural-team-dynamics",
+      "target": "social-proof",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Social-proof undermines multicultural-team-dynamics by pressuring team members to conform to the dominant group consensus, suppressing the dissenting perspectives that diversity is meant to surface.",
+      "in_corpus": true
+    },
+    {
+      "source": "multicultural-team-dynamics",
+      "target": "curse-of-knowledge",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Curse-of-knowledge undermines multicultural-team-dynamics by causing specialists to communicate at an abstraction level incomprehensible to colleagues from other disciplines, nullifying the cross-pollination that diversity is designed to enable.",
       "in_corpus": true
     },
     {
@@ -34600,6 +34782,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Decision-trees help nash-equilibrium lay out strategic branches and countermoves clearly enough to inspect.",
+      "in_corpus": true
+    },
+    {
+      "source": "nash-equilibrium",
+      "target": "system-1",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "System-1 undermines nash-equilibrium by bypassing the cold rational analysis required to compute equilibrium payoffs, substituting primal emotional responses that distort strategic assessment.",
       "in_corpus": true
     },
     {
@@ -34752,6 +34942,22 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Second-order-thinking helps non-linear-dynamics map the dominoes that unfold after an initial intervention.",
+      "in_corpus": true
+    },
+    {
+      "source": "non-linear-dynamics",
+      "target": "simplification",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Simplification undermines non-linear-dynamics by linearizing approximations in systems where small input changes produce disproportionate output shifts, masking the feedback loops and emergent properties the model exists to reveal.",
+      "in_corpus": true
+    },
+    {
+      "source": "non-linear-dynamics",
+      "target": "system-1",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "System-1 undermines non-linear-dynamics by producing snap judgments based on surface similarities, short-circuiting the slow deliberate reasoning required to trace feedback loops and emergent effects through a complex system.",
       "in_corpus": true
     },
     {
@@ -35140,7 +35346,7 @@
     },
     {
       "source": "optionality",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "antagonist",
       "source_origin": "relation_semantics_wave3",
       "context": "Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
@@ -35356,6 +35562,22 @@
     },
     {
       "source": "perceptual-learning",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines perceptual-learning by causing the brain to lock onto a previously learned pattern and torture new stimuli to fit it, blocking the updated discrimination that perceptual learning requires.",
+      "in_corpus": true
+    },
+    {
+      "source": "perceptual-learning",
+      "target": "curse-of-knowledge",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Curse-of-knowledge undermines perceptual-learning by making refined perceptual schemas impossible to communicate to novices, blocking the transfer of expert pattern recognition that the model is built to enable.",
+      "in_corpus": true
+    },
+    {
+      "source": "perceptual-learning",
       "target": "confirmation-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -35384,6 +35606,22 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Deliberate-practice gives persistence-grit a structured way to turn endurance into improvement rather than mere repetition.",
+      "in_corpus": true
+    },
+    {
+      "source": "persistence-grit",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines persistence-grit by channeling sustained effort into a familiar but inappropriate framework, turning grit into stubborn repetition of the wrong approach.",
+      "in_corpus": true
+    },
+    {
+      "source": "persistence-grit",
+      "target": "status-quo-bias",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Status-quo-bias undermines persistence-grit by converting purposeful endurance into inertia, causing people and organizations to double down on existing courses of action driven by the momentum of previous commitment rather than evidence.",
       "in_corpus": true
     },
     {
@@ -35460,7 +35698,7 @@
     },
     {
       "source": "peter-principle",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "antagonist",
       "source_origin": "relation_semantics_wave3",
       "context": "Commitment-and-consistency-bias can keep organizations defending a promotion decision after capability mismatch becomes visible.",
@@ -35892,7 +36130,7 @@
     },
     {
       "source": "probabilistic-thinking",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "antagonist",
       "source_origin": "relation_semantics_wave3",
       "context": "Representativeness-bias can make probabilistic-thinking judge likelihood by resemblance to a familiar story instead of by the actual odds.",
@@ -36148,7 +36386,7 @@
     },
     {
       "source": "reasoning-mode-router",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "antagonist",
       "source_origin": "relation_semantics_wave3",
       "context": "Commitment and consistency bias blocks route correction even when new evidence indicates another reasoning mode is needed.",
@@ -36156,10 +36394,10 @@
     },
     {
       "source": "reasoning-mode-router",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Reasoning-mode-router conflicts with representativeness-bias when familiar labels force premature mode routing.",
+      "context": "Reasoning-mode-router conflicts with representativeness-heuristic when familiar labels force premature mode routing.",
       "in_corpus": true
     },
     {
@@ -36180,10 +36418,10 @@
     },
     {
       "source": "reasoning-mode-router",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Reasoning-mode-router conflicts with commitment-and-consistency-bias when discomfort with inconsistency suppresses route correction.",
+      "context": "Reasoning-mode-router conflicts with commitment-bias when discomfort with inconsistency suppresses route correction.",
       "in_corpus": true
     },
     {
@@ -36364,10 +36602,10 @@
     },
     {
       "source": "regression-to-the-mean",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Regression-to-the-mean conflicts with representativeness-bias when extreme streaks are misread as persistent signal.",
+      "context": "Regression-to-the-mean conflicts with representativeness-heuristic when extreme streaks are misread as persistent signal.",
       "in_corpus": true
     },
     {
@@ -36459,43 +36697,19 @@
       "in_corpus": true
     },
     {
-      "source": "representativeness-bias",
+      "source": "representativeness-heuristic",
       "target": "confirmation-bias",
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
-      "context": "Confirmation-bias strengthens representativeness-bias by reinforcing the first stereotype or prototype match and filtering out disconfirming evidence.",
+      "context": "Confirmation-bias strengthens representativeness-heuristic by reinforcing the first stereotype or prototype match and filtering out disconfirming evidence.",
       "in_corpus": true
     },
     {
-      "source": "representativeness-bias",
+      "source": "representativeness-heuristic",
       "target": "narratives",
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
-      "context": "Narratives makes representativeness-bias more seductive when a vivid story feels more diagnostic than the actual distribution of outcomes.",
-      "in_corpus": true
-    },
-    {
-      "source": "representativeness-bias",
-      "target": "base-rates",
-      "type": "antagonist",
-      "source_origin": "relation_semantics_wave3",
-      "context": "Base-rates counters representativeness-bias by forcing the judgment back toward outside-view distribution evidence.",
-      "in_corpus": true
-    },
-    {
-      "source": "representativeness-bias",
-      "target": "critical-thinking",
-      "type": "antagonist",
-      "source_origin": "relation_semantics_wave3",
-      "context": "Critical-thinking opposes representativeness-bias by slowing the jump from resemblance to belief and demanding verification of missing evidence.",
-      "in_corpus": true
-    },
-    {
-      "source": "representativeness-bias",
-      "target": "base-rates",
-      "type": "structured_tension",
-      "source_origin": "relation_semantics_wave3",
-      "context": "Representativeness-bias conflicts with base-rates when a vivid category match overpowers outside-view distribution evidence.",
+      "context": "Narratives makes representativeness-heuristic more seductive when a vivid story feels more diagnostic than the actual distribution of outcomes.",
       "in_corpus": true
     },
     {
@@ -36516,10 +36730,18 @@
     },
     {
       "source": "representativeness-heuristic",
+      "target": "critical-thinking",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Critical-thinking opposes representativeness-heuristic by slowing the jump from resemblance to belief and demanding verification of missing evidence.",
+      "in_corpus": true
+    },
+    {
+      "source": "representativeness-heuristic",
       "target": "base-rates",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency.",
+      "context": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency and outside-view distribution evidence.",
       "in_corpus": true
     },
     {
@@ -36528,6 +36750,14 @@
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
       "context": "Representativeness-heuristic conflicts with regression-to-the-mean when extreme outcomes are projected as persistent.",
+      "in_corpus": true
+    },
+    {
+      "source": "representativeness-heuristic",
+      "target": "narratives",
+      "type": "structured_tension",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Representativeness-heuristic conflicts with narratives when narrative coherence makes a representative-seeming scenario feel more probable than its base rate warrants.",
       "in_corpus": true
     },
     {
@@ -36636,7 +36866,7 @@
     },
     {
       "source": "risk-assessment",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "antagonist",
       "source_origin": "relation_semantics_wave3",
       "context": "Representativeness-bias undermines risk-assessment by causing estimators to judge likelihood based on how much a situation resembles a vivid past case rather than on distributional base rates \u2014 salient analogies displace the reference-class evidence risk assessment requires.",
@@ -36652,10 +36882,10 @@
     },
     {
       "source": "risk-assessment",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Risk-assessment conflicts with representativeness-bias when salient analogies replace distributional risk estimates \u2014 the vivid similarity of a situation to a past case overrides the reference-class base rates that accurate risk quantification requires.",
+      "context": "Risk-assessment conflicts with representativeness-heuristic when salient analogies replace distributional risk estimates \u2014 the vivid similarity of a situation to a past case overrides the reference-class base rates that accurate risk quantification requires.",
       "in_corpus": true
     },
     {
@@ -36804,6 +37034,14 @@
     },
     {
       "source": "scaffolding-educational",
+      "target": "expertise-reversal-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Expertise-reversal-effect undermines scaffolding-educational by making explicit instructional steps interfere with experts' established schemas, turning support into cognitive friction.",
+      "in_corpus": true
+    },
+    {
+      "source": "scaffolding-educational",
       "target": "first-principles-thinking",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -36832,6 +37070,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Boundaries help scaffolding define what belongs inside the current learning frame so attention stays on the next useful increment.",
+      "in_corpus": true
+    },
+    {
+      "source": "scaffolding",
+      "target": "system-1",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "System-1 undermines scaffolding by producing snap judgments and substitution bias that bypass the deliberate, structured sequencing scaffolding requires.",
       "in_corpus": true
     },
     {
@@ -36908,10 +37154,18 @@
     },
     {
       "source": "schema-acquisition",
-      "target": "representativeness-bias",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines schema-acquisition by causing the learner to persist with the first recognized pattern instead of encoding a better-fitting schema for the novel situation.",
+      "in_corpus": true
+    },
+    {
+      "source": "schema-acquisition",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Schema-acquisition conflicts with representativeness-bias when familiar pattern labels replace context-specific diagnosis.",
+      "context": "Schema-acquisition conflicts with representativeness-heuristic when familiar pattern labels replace context-specific diagnosis.",
       "in_corpus": true
     },
     {
@@ -37132,6 +37386,14 @@
     },
     {
       "source": "self-organization-and-emergent-order",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines self-organization-and-emergent-order by forcing novel emergent phenomena into familiar but misleading frameworks, suppressing the recognition of genuinely new patterns.",
+      "in_corpus": true
+    },
+    {
+      "source": "self-organization-and-emergent-order",
       "target": "authority-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -37180,7 +37442,7 @@
     },
     {
       "source": "signaling",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Commitment-and-consistency-bias becomes stronger when signaling turns a private view into a public identity marker, making later reversal feel reputationally costly.",
@@ -37264,6 +37526,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Scaffolding supports six-thinking-hats by making complex review work manageable through temporary structure and role separation.",
+      "in_corpus": true
+    },
+    {
+      "source": "six-thinking-hats",
+      "target": "wysiati",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "WYSIATI undermines six-thinking-hats by limiting attention to readily available information and jumping to conclusions, preventing the genuine perspective rotation the hats demand.",
       "in_corpus": true
     },
     {
@@ -37628,6 +37898,14 @@
     },
     {
       "source": "storytelling-frameworks",
+      "target": "curse-of-knowledge",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Curse-of-knowledge undermines storytelling-frameworks by causing experts to communicate abstract slogans instead of the concrete, sticky stories that actually change behavior.",
+      "in_corpus": true
+    },
+    {
+      "source": "storytelling-frameworks",
       "target": "algorithmic-thinking",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -37728,6 +38006,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Risk-assessment helps supply-and-demand translate market pressure changes into decision-relevant exposure rather than vague intuition.",
+      "in_corpus": true
+    },
+    {
+      "source": "supply-and-demand",
+      "target": "system-1",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "System-1 undermines supply-and-demand by driving emotional, impulsive decisions that override the rational cost-benefit analysis the model assumes actors will perform.",
       "in_corpus": true
     },
     {
@@ -37872,6 +38158,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Systems-thinking gives synthesis-and-integration the ability to turn dispersed observations into a coherent picture of interrelationships.",
+      "in_corpus": true
+    },
+    {
+      "source": "synthesis-and-integration",
+      "target": "rationalization",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Rationalization undermines synthesis-and-integration by processing information toward a desired conclusion, distorting the objective assembly of facts and external perspectives into a coherent whole.",
       "in_corpus": true
     },
     {
@@ -38124,10 +38418,10 @@
     },
     {
       "source": "theory-induced-blindness",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Theory-induced-blindness conflicts with commitment-and-consistency-bias when public attachment to theory blocks reframing.",
+      "context": "Theory-induced-blindness conflicts with commitment-bias when public attachment to theory blocks reframing.",
       "in_corpus": true
     },
     {
@@ -38184,6 +38478,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Systems-thinking helps tier-2-high-value distinguish real leverage from isolated local wins by showing interdependencies and pattern change.",
+      "in_corpus": true
+    },
+    {
+      "source": "tier-2-high-value",
+      "target": "curse-of-knowledge",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Curse-of-knowledge undermines tier-2-high-value by causing experts to communicate high-leverage insights as abstract slogans that practitioners cannot execute.",
       "in_corpus": true
     },
     {
@@ -38260,6 +38562,14 @@
     },
     {
       "source": "tipping-points",
+      "target": "optimism-bias-and-planning-fallacy",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Optimism-bias-and-planning-fallacy undermines tipping-points by causing teams to overestimate the probability that each sequential step will succeed, masking how far the system actually is from the threshold.",
+      "in_corpus": true
+    },
+    {
+      "source": "tipping-points",
       "target": "status-quo-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -38332,6 +38642,14 @@
     },
     {
       "source": "tradition-vs-innovation-balance",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines tradition-vs-innovation-balance by causing a currently held idea or strategy to block consideration of fresh alternatives, collapsing the balance toward tradition.",
+      "in_corpus": true
+    },
+    {
+      "source": "tradition-vs-innovation-balance",
       "target": "status-quo-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -38340,10 +38658,10 @@
     },
     {
       "source": "tradition-vs-innovation-balance",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Tradition-vs-innovation-balance conflicts with commitment-and-consistency-bias when prior commitments harden into overreliance on old methods.",
+      "context": "Tradition-vs-innovation-balance conflicts with commitment-bias when prior commitments harden into overreliance on old methods.",
       "in_corpus": true
     },
     {
@@ -38388,10 +38706,10 @@
     },
     {
       "source": "true-uncertainty-navigation",
-      "target": "representativeness-bias",
+      "target": "representativeness-heuristic",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "True-uncertainty-navigation conflicts with representativeness-bias when familiar narratives are mistaken for reliable priors.",
+      "context": "True-uncertainty-navigation conflicts with representativeness-heuristic when familiar narratives are mistaken for reliable priors.",
       "in_corpus": true
     },
     {
@@ -38588,6 +38906,14 @@
     },
     {
       "source": "variation-and-selection",
+      "target": "curse-of-knowledge",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Curse-of-knowledge undermines variation-and-selection by causing experts to leap directly to an overarching principle, skipping the divergent generation of concrete building blocks the model requires.",
+      "in_corpus": true
+    },
+    {
+      "source": "variation-and-selection",
       "target": "status-quo-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
@@ -38596,10 +38922,10 @@
     },
     {
       "source": "variation-and-selection",
-      "target": "commitment-and-consistency-bias",
+      "target": "commitment-bias",
       "type": "structured_tension",
       "source_origin": "relation_semantics_wave3",
-      "context": "Variation-and-selection conflicts with commitment-and-consistency-bias when early commitments stop the team from generating or fairly selecting better alternatives.",
+      "context": "Variation-and-selection conflicts with commitment-bias when early commitments stop the team from generating or fairly selecting better alternatives.",
       "in_corpus": true
     },
     {
@@ -38624,6 +38950,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Feynman-technique helps varied-practice-interleaving turn frame contrast into deeper understanding by forcing explanation through multiple analogies and simple language.",
+      "in_corpus": true
+    },
+    {
+      "source": "varied-practice-interleaving",
+      "target": "einstellung-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Einstellung-effect undermines varied-practice-interleaving by causing rapid pattern recognition to lock in the first frame, preventing the genuine frame rotation the model demands.",
       "in_corpus": true
     },
     {
@@ -38728,6 +39062,14 @@
       "type": "ally",
       "source_origin": "relation_semantics_wave3",
       "context": "Systems-thinking is the long-run payoff of zone-of-development because structured learning of parts eventually reveals interrelationships and the big picture.",
+      "in_corpus": true
+    },
+    {
+      "source": "zone-of-development",
+      "target": "expertise-reversal-effect",
+      "type": "antagonist",
+      "source_origin": "relation_semantics_wave3",
+      "context": "Expertise-reversal-effect undermines zone-of-development by causing experts to skip calibration of challenge to the learner's actual level, communicating at abstractions the learner cannot yet use.",
       "in_corpus": true
     },
     {

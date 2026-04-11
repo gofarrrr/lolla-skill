@@ -67,6 +67,7 @@ class RelationGraph:
         max_supporting_models: int = 2,
         max_risk_models: int = 1,
         min_supporting_affinity: float = 0.6,
+        relevance_scores: dict[str, float] | None = None,
     ) -> RouteNeighborhood:
         seeds = tuple(model_id for model_id in seed_model_ids if model_id)
         if not seeds:
@@ -91,10 +92,12 @@ class RelationGraph:
             supporting_model_ids=_bounded_unique_model_ids(
                 supporting_candidates,
                 limit=max_supporting_models,
+                relevance_scores=relevance_scores,
             ),
             risk_model_ids=_bounded_unique_model_ids(
                 risk_candidates,
                 limit=max_risk_models,
+                relevance_scores=relevance_scores,
             ),
         )
 
@@ -103,11 +106,18 @@ def _bounded_unique_model_ids(
     candidates: list[tuple[float, str]],
     *,
     limit: int,
+    relevance_scores: dict[str, float] | None = None,
 ) -> tuple[str, ...]:
     if limit <= 0:
         return ()
 
-    ordered = sorted(candidates, key=lambda candidate: (-candidate[0], candidate[1]))
+    if relevance_scores:
+        ordered = sorted(
+            candidates,
+            key=lambda c: (-relevance_scores.get(c[1], 0.0), -c[0], c[1]),
+        )
+    else:
+        ordered = sorted(candidates, key=lambda candidate: (-candidate[0], candidate[1]))
     results: list[str] = []
     seen: set[str] = set()
     for _affinity, model_id in ordered:
