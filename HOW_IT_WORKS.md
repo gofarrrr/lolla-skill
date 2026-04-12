@@ -154,6 +154,11 @@ This is how we bring out-of-distribution knowledge into the reasoning process wi
 | Frame extraction | **Probabilistic** (LLM) | "Does this question embed assumptions?" — requires reading the question as a reasoning artifact |
 | Frame pattern → model routing | **Deterministic** | Wave 5 lookup table |
 | Reframing generation | **Probabilistic** (LLM) | Creative — generate a specific alternative question grounded in a model |
+| Question classification | **Probabilistic** (LLM) | "Is this a causal-diagnosis, decision-evaluation, action-planning, or prediction question?" |
+| Dimension detection + coverage | **Probabilistic** (LLM) | "Which structural dimensions are present? Which ones did the answer address?" |
+| Gap dimension → model routing | **Deterministic** | Compiled KG lookup with anti-echo from Lanes 1-3 |
+| Gap question generation | **Probabilistic** (LLM) | "What discovery questions would help the decision-maker fill this gap?" — only fires when gaps exist |
+| StructuralCoverageCard assembly | **Deterministic** | Dimension + route + question packaging |
 
 The curated substrate provides knowledge the LLM doesn't have: specific failure modes for Circle of Competence, the exact tension between Margin of Safety and Calculated Risk Taking, premortem questions that surface hidden assumptions. The deterministic middle ensures this knowledge reaches the output faithfully — not paraphrased, not selectively summarized, not lost in the telephone game of LLM-to-LLM handoff.
 
@@ -178,14 +183,17 @@ Why does Lane 1 use two LLM passes instead of one?
 
 This is context engineering: **removing distractors** so the LLM can focus. The cost is N+1 LLM calls (1 triage + N deep checks), but precision improves because the model doesn't have to balance competing hypotheses. Pass 2 calls run in parallel (up to 8 concurrent), so wall-clock time stays roughly constant.
 
-### Three Independent Lanes
+### Four Independent Lanes
 
-The three lanes share a boundary client (LLM provider) and compiled knowledge graphs, but their information never crosses during processing except at defined merge points:
+The four lanes share a boundary client (LLM provider) and compiled knowledge graphs, but their information never crosses during processing except at defined merge points:
 
 - **Lane 1 ↔ Lane 2:** After both lanes complete, the cheat-sheet selector reads DeltaCard model IDs to apply anti-echo filtering — it drops heuristic chunks for models already covered by DeltaCard findings. This is a post-processing step; it doesn't feed back into either lane.
 - **Lane 1 → Lane 3:** Frame routing excludes model IDs already routed by Lane 1. Overlap detection flags where frame patterns and Lane 1 tendencies operate on the same cognitive concept. Informational, not blocking.
+- **Lanes 1+2+3 → Lane 4:** Structural Coverage uses anti-echo from all three lanes — models already surfaced in DeltaCard findings, companion detection, or frame reframings are excluded from gap-dimension routing. This ensures Lane 4 only surfaces genuinely new structural territory.
 
-This separation ensures that challenge signals (Lane 1) and enrichment signals (Lane 2) don't contaminate each other. The downstream consumer sees whether the system is challenging a weak reasoning path or deepening a promising one.
+This separation ensures that challenge signals (Lane 1), enrichment signals (Lane 2), framing signals (Lane 3), and coverage signals (Lane 4) don't contaminate each other. The downstream consumer sees whether the system is challenging a weak reasoning path, deepening a promising one, questioning the frame, or revealing what was never addressed.
+
+**Lane 4 (Structural Coverage)** works differently from Lanes 1-3. Where the first three lanes are *reactive* — they work from what's in the answer or question — Lane 4 is *proactive*. It decomposes the problem's shape into structural dimensions (using a curated 15-dimension MECE taxonomy), checks which dimensions the answer actually addressed, and generates discovery questions for each gap. The gap questions are the HITL bridge: they ask for situation knowledge only the decision-maker has, and are never answered by an AI. Three LLM boundary calls: (1) classify the question type, (2) detect dimensions + assess coverage, (3) generate gap questions (only when gaps exist — no gaps means no call 3).
 
 ### Trust Order
 
@@ -212,7 +220,7 @@ Embeddings suggest candidates. LLMs detect patterns. But every embedding hit sti
 | Reasoning structure | Inside LLM (recovery paradox) | None (just more facts) | External, deterministic |
 | Diversity source | Same probability distribution (hivemind) | Retrieved documents | 222 curated mental models |
 | Auditability | None | Retrieval logs only | Full provenance per finding |
-| Context pollution | Amplified across turns | Diluted by irrelevant retrieval | Broken by three-lane architecture |
+| Context pollution | Amplified across turns | Diluted by irrelevant retrieval | Broken by four-lane architecture |
 | Sycophancy resistance | None (RLHF-trained to agree) | None | Deterministic challenge pressure |
 | Cognitive friction | Removed (polished answers) | Removed | Reintroduced (structural challenges) |
 
