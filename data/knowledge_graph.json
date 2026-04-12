@@ -39389,5 +39389,463 @@
       "dependency_type": "applied-form-of",
       "rationale": "Scaffolding is the implementation mechanism for respecting the cognitive load limits that CLT describes. Without understanding why working memory is the bottleneck (CLT), scaffolding is just an arbitrary sequencing choice rather than a principled design decision."
     }
-  ]
+  ],
+  "structural_coverage_routing": {
+    "dimensions": {
+      "behavioral-intervention": {
+        "dimension_name": "Behavioral Intervention",
+        "cleaving_frame": "Regulate vs Incent vs Nudge",
+        "detect_when": [
+          "Success depends on people doing something differently than they currently do",
+          "The problem involves compliance, adoption, habit change, or culture shift",
+          "Rules or mandates exist but aren't producing the desired behavior",
+          "The answer proposes a solution without specifying the behavior-change mechanism"
+        ],
+        "coverage_signals": [
+          "The answer specifies the mechanism for behavior change (rules, incentives, nudges, defaults, feedback)",
+          "The answer considers why current behavior persists \u2014 the forces maintaining the status quo",
+          "The answer addresses enforcement or sustainability of the change over time",
+          "The answer distinguishes between intrinsic and extrinsic motivation and matches the mechanism to the task type"
+        ],
+        "materiality_test": "Would choosing a different behavior-change mechanism (e.g., incentives instead of rules, or nudges instead of mandates) change the outcome?",
+        "models": [
+          "incentives",
+          "persuasion-principles",
+          "habit-formation",
+          "self-determination-theory",
+          "usability-heuristics",
+          "feedback-models-sbi"
+        ],
+        "question_types": [
+          "action-planning",
+          "causal-diagnosis"
+        ]
+      },
+      "causal-diagnosis": {
+        "dimension_name": "Causal Diagnosis",
+        "cleaving_frame": "Root cause vs Symptom",
+        "detect_when": [
+          "The answer proposes a fix or intervention without establishing what caused the problem",
+          "Multiple causes could explain the same symptom \u2014 the causal hypothesis is not tested",
+          "The problem is recurring, suggesting the root cause hasn't been identified or addressed",
+          "A proximate cause is being treated as the root cause without tracing the causal chain"
+        ],
+        "coverage_signals": [
+          "The answer distinguishes symptoms from causes \u2014 it names the mechanism, not just the observation",
+          "The answer tests competing causal hypotheses rather than jumping to the most available explanation",
+          "The answer traces the causal chain to an actionable root \u2014 deep enough to intervene effectively",
+          "The answer considers systemic factors and feedback loops that reproduce the problem"
+        ],
+        "materiality_test": "Would a different causal diagnosis lead to a different intervention?",
+        "models": [
+          "root-cause-analysis",
+          "five-whys-method",
+          "correlation-vs-causation",
+          "causal-attribution-resistance",
+          "systems-thinking"
+        ],
+        "question_types": [
+          "causal-diagnosis",
+          "action-planning"
+        ]
+      },
+      "commitment-reversibility": {
+        "dimension_name": "Commitment & Reversibility",
+        "cleaving_frame": "Lock-in vs Optionality",
+        "detect_when": [
+          "Past investments create pressure to continue on the current path regardless of merit",
+          "Switching away from the current course would be costly or disruptive",
+          "The decision forecloses future options or locks in a trajectory",
+          "Escalation of commitment is a risk \u2014 the more invested, the harder to reverse"
+        ],
+        "coverage_signals": [
+          "The answer distinguishes sunk costs from future costs \u2014 past spend is not a reason to continue",
+          "The answer identifies exit costs, switching barriers, and contractual lock-in provisions",
+          "The answer values the optionality being consumed or preserved by the decision",
+          "The answer considers whether the commitment can be staged or made reversible"
+        ],
+        "materiality_test": "Would treating the decision as more reversible (or less) change the recommendation?",
+        "models": [
+          "sunk-cost-fallacy",
+          "lock-in",
+          "commitment-bias",
+          "switching-costs",
+          "optionality",
+          "path-dependence"
+        ],
+        "question_types": [
+          "decision-evaluation",
+          "action-planning"
+        ]
+      },
+      "competitive-dynamics": {
+        "dimension_name": "Competitive Dynamics",
+        "cleaving_frame": "Collaborate vs Compete",
+        "detect_when": [
+          "The outcome depends on how another party reacts \u2014 a rival, partner, or counterparty",
+          "There are adversaries, competitors, or strategic partners whose moves materially affect the result",
+          "First-mover advantage, retaliation risk, or preemption dynamics are present",
+          "The interaction is repeated (multi-play) rather than one-shot, making reputation effects relevant"
+        ],
+        "coverage_signals": [
+          "The answer models competitor or counterparty responses \u2014 not just the actor's own move",
+          "The answer considers retaliation, imitation, or preemption scenarios",
+          "The answer addresses whether the interaction is one-shot or repeated and what that implies for strategy",
+          "The answer identifies the best alternative if negotiation or cooperation fails"
+        ],
+        "materiality_test": "Would anticipating the other party's best response change the recommended action?",
+        "models": [
+          "game-theory-payoffs",
+          "nash-equilibrium",
+          "prisoners-dilemma",
+          "batna",
+          "red-queen-effect"
+        ],
+        "question_types": [
+          "decision-evaluation",
+          "action-planning",
+          "prediction"
+        ]
+      },
+      "existing-vs-new": {
+        "dimension_name": "Existing vs New (Growth Decomposition)",
+        "cleaving_frame": "Protect the base vs Expand the frontier",
+        "detect_when": [
+          "The problem mixes existing business, product, or market with new initiatives in a single analysis",
+          "Growth could come from optimizing what exists or building something new \u2014 and the answer doesn't separate these",
+          "The new initiative might cannibalize or distract from the existing base",
+          "Different success criteria apply to protect-the-base vs expand-the-frontier but only one set is used"
+        ],
+        "coverage_signals": [
+          "The answer separates performance of existing operations from new initiatives \u2014 different metrics for each",
+          "The answer addresses cannibalization risk \u2014 whether the new erodes the existing",
+          "The answer addresses distraction risk \u2014 whether the new diverts attention and resources from the base",
+          "The answer applies different risk profiles and success criteria to existing (optimize, de-risk) vs new (explore, validate)"
+        ],
+        "materiality_test": "Would the answer change if the existing base and new opportunity were analyzed separately?",
+        "models": [
+          "creative-destruction",
+          "opportunity-cost",
+          "calculated-risk-taking",
+          "lean-startup-methodology",
+          "trade-offs"
+        ],
+        "question_types": [
+          "decision-evaluation",
+          "action-planning"
+        ]
+      },
+      "feedback-system-dynamics": {
+        "dimension_name": "Feedback & System Dynamics",
+        "cleaving_frame": "Linear cause-effect vs Feedback loops",
+        "detect_when": [
+          "Actions create reactions that amplify or dampen the original effect \u2014 reinforcing or balancing loops",
+          "There are delays between action and visible consequence that distort feedback",
+          "The system has self-correcting or self-reinforcing behavior that the answer treats as static",
+          "The answer recommends an intervention without considering how the system will adapt or respond"
+        ],
+        "coverage_signals": [
+          "The answer identifies feedback loops \u2014 reinforcing (virtuous/vicious cycles) or balancing (homeostatic)",
+          "The answer accounts for delays between cause and effect \u2014 not just immediate consequences",
+          "The answer considers second and third-order consequences of the proposed action",
+          "The answer identifies leverage points where small interventions produce large systemic effects"
+        ],
+        "materiality_test": "Would accounting for feedback dynamics change the recommended intervention or its expected outcome?",
+        "models": [
+          "systems-thinking",
+          "feedback-loops",
+          "second-order-thinking",
+          "non-linear-dynamics",
+          "leverage-points",
+          "delays"
+        ],
+        "question_types": [
+          "prediction",
+          "causal-diagnosis",
+          "action-planning"
+        ]
+      },
+      "incentive-alignment": {
+        "dimension_name": "Incentive Alignment",
+        "cleaving_frame": "Principal vs Agent",
+        "detect_when": [
+          "Multiple parties have different payoff structures or objectives",
+          "Someone acts on behalf of someone else (delegation, outsourcing, advisory, fiduciary)",
+          "Rewards or penalties are decoupled from the outcomes they should drive",
+          "Information is asymmetric between parties \u2014 one side knows more than the other",
+          "Effort or action is unobservable, so payment cannot be based on actual input"
+        ],
+        "coverage_signals": [
+          "The answer identifies whose incentives drive the decision and whether those incentives align with the stated goal",
+          "The answer discusses monitoring, accountability, or alignment mechanisms",
+          "The answer addresses what happens when interests diverge \u2014 the failure mode of misalignment",
+          "The answer considers whether the information gap between parties distorts the outcome"
+        ],
+        "materiality_test": "Would realigning incentives or changing the monitoring structure change the recommended action?",
+        "models": [
+          "principal-agent-problem",
+          "moral-hazard",
+          "incentives",
+          "adverse-selection",
+          "information-asymmetry"
+        ],
+        "question_types": [
+          "decision-evaluation",
+          "action-planning",
+          "causal-diagnosis"
+        ]
+      },
+      "information-quality": {
+        "dimension_name": "Information Quality",
+        "cleaving_frame": "Signal vs Noise",
+        "detect_when": [
+          "Key claims rest on data that may be biased, small, or unrepresentative",
+          "Survivorship or selection effects may distort the picture \u2014 only winners are visible",
+          "The answer treats noisy, preliminary, or anecdotal evidence as settled fact",
+          "Correlation is being presented as causation without ruling out confounders"
+        ],
+        "coverage_signals": [
+          "The answer assesses evidence quality \u2014 sample size, selection bias, measurement reliability",
+          "The answer distinguishes between correlation and causation and tests for confounders",
+          "The answer identifies what evidence is missing and what would change the conclusion",
+          "The answer checks base rates before interpreting specific observations"
+        ],
+        "materiality_test": "Would different or better evidence change the conclusion?",
+        "models": [
+          "survivorship-bias",
+          "base-rates",
+          "correlation-vs-causation",
+          "statistical-discipline",
+          "law-of-large-numbers",
+          "falsifiability"
+        ],
+        "question_types": [
+          "causal-diagnosis",
+          "decision-evaluation",
+          "prediction"
+        ]
+      },
+      "resource-allocation": {
+        "dimension_name": "Resource Allocation",
+        "cleaving_frame": "Supply vs Demand / Scarcity vs Abundance",
+        "detect_when": [
+          "Multiple uses compete for the same pool of resources (capital, time, headcount, attention)",
+          "Choosing one option means forgoing another \u2014 the displaced alternative matters",
+          "The constraint is how much is available, not what to do with it",
+          "A continuation or default path is being treated as free when it consumes real resources"
+        ],
+        "coverage_signals": [
+          "The answer explicitly identifies what is being given up (the displaced alternative)",
+          "The answer compares marginal returns across options, not just absolute returns",
+          "The answer sizes the resource constraint and tests whether it binds",
+          "The answer distinguishes between the vital few uses and the trivial many"
+        ],
+        "materiality_test": "Would reallocating the same resources differently change the recommended outcome?",
+        "models": [
+          "opportunity-cost",
+          "comparative-advantage",
+          "trade-offs",
+          "pareto-principle",
+          "prioritization",
+          "optimization-theory"
+        ],
+        "question_types": [
+          "decision-evaluation",
+          "action-planning"
+        ]
+      },
+      "risk-response": {
+        "dimension_name": "Risk Response",
+        "cleaving_frame": "Mitigate vs Adapt",
+        "detect_when": [
+          "There are identifiable downside scenarios with meaningful probability or impact",
+          "The problem involves deciding how much risk to accept vs mitigate",
+          "A single failure could cascade or be irreversible \u2014 tail risk is present",
+          "The answer treats risk as binary (safe/dangerous) rather than sizing it on a spectrum"
+        ],
+        "coverage_signals": [
+          "The answer distinguishes between risks to prevent, transfer, absorb, or exploit",
+          "The answer sizes the downside \u2014 quantifies or bounds the exposure, not just names it",
+          "The answer addresses reversibility and recovery paths if the risk materializes",
+          "The answer considers whether the system becomes stronger under stress (antifragile) or more brittle"
+        ],
+        "materiality_test": "Would a different risk posture (more cautious or more aggressive) change the recommended action?",
+        "models": [
+          "risk-assessment",
+          "black-swan-events",
+          "antifragility",
+          "margin-of-safety",
+          "calculated-risk-taking",
+          "resilience"
+        ],
+        "question_types": [
+          "decision-evaluation",
+          "action-planning",
+          "prediction"
+        ]
+      },
+      "scaling-dynamics": {
+        "dimension_name": "Scaling Dynamics",
+        "cleaving_frame": "What changes with scale",
+        "detect_when": [
+          "A solution that works at current scale may not work at 10x scale (or vice versa)",
+          "There are network effects, economies of scale, or diseconomies that change the dynamics",
+          "Growth introduces coordination costs, complexity, or threshold behavior",
+          "The answer extrapolates linearly from current state without considering structural change at scale"
+        ],
+        "coverage_signals": [
+          "The answer considers what breaks at scale \u2014 coordination costs, bottlenecks, complexity",
+          "The answer identifies non-linearities \u2014 accelerating returns, diminishing returns, phase transitions",
+          "The answer distinguishes linear extrapolation from structural change at different scale points",
+          "The answer identifies bottlenecks that constrain throughput regardless of other inputs"
+        ],
+        "materiality_test": "Would the answer be different at 10x or 0.1x the current scale?",
+        "models": [
+          "scale-economies",
+          "network-effects",
+          "compounding",
+          "power-laws",
+          "complexity-bias-resistance",
+          "bottlenecks"
+        ],
+        "question_types": [
+          "prediction",
+          "action-planning",
+          "decision-evaluation"
+        ]
+      },
+      "scope-boundary": {
+        "dimension_name": "Scope & Boundary Definition",
+        "cleaving_frame": "Inside vs Outside the boundary",
+        "detect_when": [
+          "The problem could be defined more narrowly or more broadly with different implications",
+          "The unit of analysis (team, product, company, market, industry) is not explicitly chosen or justified",
+          "Someone's scope of competence is being stretched beyond their domain of reliable judgment",
+          "The answer's boundary excludes factors that could change the conclusion if included"
+        ],
+        "coverage_signals": [
+          "The answer explicitly states what's in scope and what's out of scope",
+          "The answer justifies the chosen unit of analysis and considers alternatives",
+          "The answer considers whether narrowing or expanding the boundary would change the answer",
+          "The answer identifies where the decision-maker is operating outside their circle of competence"
+        ],
+        "materiality_test": "Would redefining the boundary (wider or narrower) change the recommendation?",
+        "models": [
+          "circle-of-competence",
+          "constraints",
+          "boundaries",
+          "problem-framing-and-reframing",
+          "specialization"
+        ],
+        "question_types": [
+          "decision-evaluation",
+          "action-planning",
+          "causal-diagnosis"
+        ]
+      },
+      "stakeholder-alignment": {
+        "dimension_name": "Stakeholder Alignment",
+        "cleaving_frame": "Who needs to agree vs Who needs to comply",
+        "detect_when": [
+          "Multiple people or groups must agree or cooperate for the solution to work",
+          "Power dynamics or political considerations affect feasibility beyond technical merit",
+          "The technical answer and the organizationally feasible answer may differ",
+          "Key stakeholders have veto authority or blocking power that the answer doesn't address"
+        ],
+        "coverage_signals": [
+          "The answer identifies key stakeholders and their positions \u2014 who supports, who opposes, who is indifferent",
+          "The answer addresses how to build agreement or manage resistance \u2014 the influence strategy",
+          "The answer distinguishes technical correctness from organizational feasibility",
+          "The answer considers psychological safety \u2014 whether people can voice concerns without penalty"
+        ],
+        "materiality_test": "Would a different stakeholder strategy change whether the recommendation actually gets implemented?",
+        "models": [
+          "power-dynamics",
+          "empathy",
+          "psychological-safety",
+          "six-thinking-hats",
+          "social-proof"
+        ],
+        "question_types": [
+          "action-planning",
+          "decision-evaluation"
+        ]
+      },
+      "timing-sequencing": {
+        "dimension_name": "Timing & Sequencing",
+        "cleaving_frame": "Now vs Later / Sequential vs Parallel",
+        "detect_when": [
+          "The order of actions affects the outcome \u2014 sequencing matters, not just content",
+          "There are deadlines, windows of opportunity, or first-mover dynamics at play",
+          "Delays compound or create threshold effects \u2014 waiting has non-linear consequences",
+          "Parallel execution is possible but may create coordination risk or resource contention"
+        ],
+        "coverage_signals": [
+          "The answer specifies sequencing rationale \u2014 why this order rather than another",
+          "The answer identifies the critical path and dependencies between actions",
+          "The answer addresses whether delay helps (more information, better conditions) or hurts (opportunity loss, compounding cost)",
+          "The answer identifies tipping points or thresholds where timing creates discontinuous effects"
+        ],
+        "materiality_test": "Would a different sequence or timing change the outcome?",
+        "models": [
+          "critical-mass",
+          "tipping-points",
+          "network-effects",
+          "iteration",
+          "second-order-thinking"
+        ],
+        "question_types": [
+          "action-planning",
+          "decision-evaluation",
+          "prediction"
+        ]
+      },
+      "uncertainty-type": {
+        "dimension_name": "Uncertainty Type",
+        "cleaving_frame": "Measurable risk vs True uncertainty vs Ignorance",
+        "detect_when": [
+          "The answer treats an uncertain situation as if outcomes are known or precisely estimable",
+          "There's a meaningful difference between what can be estimated with data and what is genuinely unknown",
+          "The decision strategy should differ based on whether uncertainty is reducible through experimentation",
+          "Confidence is expressed without calibration \u2014 the answer is more certain than the evidence warrants"
+        ],
+        "coverage_signals": [
+          "The answer classifies what kind of uncertainty is present \u2014 aleatory (inherent randomness), epistemic (reducible with information), or Knightian (truly unknown)",
+          "The answer matches the decision approach to the uncertainty type \u2014 probability for risk, robustness for true uncertainty, optionality for ignorance",
+          "The answer identifies what would reduce the uncertainty (experiments, data, time, prototypes)",
+          "The answer calibrates confidence to the actual evidence base \u2014 no false precision"
+        ],
+        "materiality_test": "Would recognizing a different type of uncertainty change the decision approach?",
+        "models": [
+          "aleatory-epistemic-uncertainty-recognition",
+          "true-uncertainty-navigation",
+          "probabilistic-thinking",
+          "confidence-calibration",
+          "experimentation"
+        ],
+        "question_types": [
+          "decision-evaluation",
+          "prediction",
+          "action-planning"
+        ]
+      }
+    },
+    "dimension_ids": [
+      "behavioral-intervention",
+      "causal-diagnosis",
+      "commitment-reversibility",
+      "competitive-dynamics",
+      "existing-vs-new",
+      "feedback-system-dynamics",
+      "incentive-alignment",
+      "information-quality",
+      "resource-allocation",
+      "risk-response",
+      "scaling-dynamics",
+      "scope-boundary",
+      "stakeholder-alignment",
+      "timing-sequencing",
+      "uncertainty-type"
+    ]
+  }
 }
