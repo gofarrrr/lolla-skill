@@ -328,7 +328,7 @@ For each dimension in `structural_coverage_card.dimensions`:
 
 ### Step 5: Open Observatory
 
-After presenting the cards and updated position, **always offer to open the Observatory** — a local web interface that renders all four cards visually with the knowledge graph context.
+After presenting the cards (Step 4), **always offer to open the Observatory** — a local web interface that renders all four cards visually with the knowledge graph context. Offer it again after the full cycle completes (Step 8b) so the user can see the updated position and pressure check in context.
 
 Say something like: *"Want me to open the Observatory to explore these findings visually? It shows all four cards with the knowledge graph context in a navigable interface."*
 
