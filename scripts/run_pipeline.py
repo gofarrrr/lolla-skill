@@ -125,6 +125,12 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
     else:
         output["frame_pressure_card"] = None
 
+    # Structural coverage card (Lane 4)
+    if result.structural_coverage_card is not None:
+        output["structural_coverage_card"] = result.structural_coverage_card.to_payload()
+    else:
+        output["structural_coverage_card"] = None
+
     # Audit summary with companion diagnostics
     output["audit_summary"] = {
         "triage_scores": [
@@ -235,6 +241,7 @@ def main() -> int:
     config = PipelineConfig(
         enable_companion=True,
         enable_frame_pressure=True,
+        enable_structural_coverage=True,
         enable_embeddings=has_embeddings,
     )
 

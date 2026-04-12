@@ -262,6 +262,7 @@ def _build_case_response() -> dict:
     delta_card = r.get("delta_card")
     companion = r.get("companion_cheat_sheet")
     frame_pressure_card = r.get("frame_pressure_card")
+    structural_coverage_card = r.get("structural_coverage_card")
     revised_answer = r.get("revised_answer")
 
     # Build case metadata from extraction if available
@@ -279,6 +280,7 @@ def _build_case_response() -> dict:
         "delta_card": delta_card,
         "companion": companion,
         "frame_pressure_card": frame_pressure_card,
+        "structural_coverage_card": structural_coverage_card,
         "audit_trace": audit_trace,
         "revised_answer": revised_answer,
         "revised_answer_source": r.get("revised_answer_source"),
