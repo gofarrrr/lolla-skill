@@ -121,3 +121,46 @@ Each `reframing` has a `reframe_move_type`:
 |-------|--------------|
 | `anti_echo_model_ids` | Models excluded because Lane 1 already covers them |
 | `overlap_flags` | Frame patterns that overlap Lane 1 at pressure-concept level |
+
+---
+
+## StructuralCoverageCard Fields (Lane 4)
+
+The Structural Coverage lane decomposes the problem into MECE structural dimensions, checks which ones the vanilla answer addressed, and generates discovery questions for each gap.
+
+### Top-Level
+
+| Field | What it means |
+|-------|--------------|
+| `question_type` | One of: `causal-diagnosis`, `decision-evaluation`, `action-planning`, `prediction` — classifies what kind of reasoning the question demands |
+| `dimensions` | List of `DetectedDimension` objects — the structural dimensions present in this problem |
+| `gap_routes` | List of `DimensionRoute` objects — uncovered dimensions bridged to mental models |
+| `gap_questions` | List of `GapQuestion` objects — discovery questions for each gap dimension |
+| `anti_echo_model_ids` | Models excluded from Lane 4 routing because Lanes 1-3 already cover them |
+
+### DetectedDimension
+
+| Field | What it means |
+|-------|--------------|
+| `dimension_id` | Canonical ID from the 15-dimension taxonomy (e.g., `commitment-reversibility`) |
+| `dimension_name` | Human-readable name (e.g., "Commitment Reversibility") |
+| `covered` | `true` if the answer substantively addresses this dimension, `false` if it's a gap |
+| `coverage_evidence` | What in the answer addresses this dimension, or what's structurally missing |
+| `materiality_note` | Why this gap matters for the decision (or "covered" if addressed) |
+
+### DimensionRoute
+
+| Field | What it means |
+|-------|--------------|
+| `dimension_id` | Which gap dimension this route serves |
+| `dimension_name` | Human-readable dimension name |
+| `candidate_model_ids` | Mental models bridged to this gap (after anti-echo exclusion) |
+| `excluded_model_ids` | Models that would have been bridged but were excluded by anti-echo |
+
+### GapQuestion
+
+| Field | What it means |
+|-------|--------------|
+| `dimension_id` | Which gap dimension these questions address |
+| `dimension_name` | Human-readable dimension name |
+| `questions` | 2-3 discovery questions — ask for situation knowledge only the decision-maker has. Follow 5Ws+H sequence (concrete first, reflective last). NEVER answered by an AI. |
