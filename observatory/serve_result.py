@@ -285,6 +285,8 @@ def _build_case_response() -> dict:
         "revised_answer": revised_answer,
         "revised_answer_source": r.get("revised_answer_source"),
         "revised_answer_present": r.get("revised_answer_present", revised_answer is not None),
+        "gap_check_summary": r.get("gap_check_summary"),
+        "has_gap_check": r.get("has_gap_check", False),
     }
 
     # Run health — surfaces capture, substrate, embeddings, fingerprint status
