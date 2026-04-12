@@ -253,9 +253,12 @@ Your task:
 detect_when conditions. A dimension is present if at least 2 of its detect_when \
 conditions are clearly met. Only consider dimensions whose question_types include \
 the classified question type.
-2. ASSESS COVERAGE: For each detected dimension, does the answer address it? \
-Use the coverage signals. A dimension is "covered" if the answer substantively \
-addresses at least 2 of its coverage signals.
+2. ASSESS COVERAGE: For each detected dimension, does the answer engage with \
+the structural tension described by the dimension's cleaving frame? \
+Use the coverage signals as a guide, but apply this test: the answer must \
+directly reason about the dimension's core trade-off — not merely mention \
+a related topic in passing. A dimension is "covered" ONLY if the answer \
+explicitly engages with the structural tension and reaches a position on it.
 3. MATERIALITY GATE: For each uncovered dimension, apply the materiality test. \
 Only flag it as a gap if addressing it would plausibly change the decision or action.
 
@@ -284,6 +287,24 @@ would change the recommendation. If the dimension is present but immaterial \
 coverage_evidence explaining why it's immaterial.
 - Be specific in coverage_evidence. Quote or paraphrase the answer where it \
 addresses a dimension. For gaps, explain what's structurally missing.
+- CRITICAL — Mentioning is not covering. Apply these tests before marking covered:
+  * Stakeholder Alignment: Discussing people involved in a deal is NOT \
+stakeholder analysis. Covered requires: who must APPROVE, who can BLOCK, \
+and what the influence strategy is for getting agreement.
+  * Timing & Sequencing: Listing timeframes in a deal structure is NOT \
+sequencing analysis. Covered requires: why this order rather than another, \
+what the critical path is, or whether delay helps or hurts.
+  * Commitment & Reversibility: Proposing staged deal terms is NOT \
+reversibility analysis. Covered requires: what happens if you want to \
+EXIT or UNWIND, what lock-in costs exist, what optionality is consumed.
+  * Uncertainty Type: Presenting scenarios with specific numbers is NOT \
+uncertainty classification. Covered requires: distinguishing what is \
+knowable from what is genuinely uncertain, and matching the approach to \
+the uncertainty type.
+  * Information Quality: Adjusting numbers for known risks is NOT \
+evidence quality analysis. Covered requires: questioning the reliability \
+of the data sources, identifying what evidence is missing, or checking \
+whether claims rest on biased or unrepresentative samples.
 - Return ONLY the JSON object. No explanation.
 """
 
