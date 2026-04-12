@@ -99,7 +99,7 @@ The result is a knowledge substrate that contains insights the LLM doesn't have 
 
 The system has been tested and calibrated across hundreds of evaluation runs against professional-grade strategic cases. Three layers of measurement guide ongoing development:
 
-- **Process quality** — Is the machine working correctly? Detection rates, routing coverage, boundary health, cache efficiency, timing — across all three lanes. If a code change degrades tendency detection or companion verification, the metrics show it.
+- **Process quality** — Is the machine working correctly? Detection rates, routing coverage, boundary health, cache efficiency, timing — across all four lanes. If a code change degrades tendency detection or companion verification, the metrics show it.
 - **Novelty and specificity** — Is the system saying something the vanilla answer didn't already contain? A delta card that restates what the LLM already said adds no value. Measurement tracks whether findings surface genuinely new structural pressure — challenges, tensions, and failure modes absent from the original reasoning.
 - **Downstream influence** — When the structural pressure is fed back to an LLM, does it structurally change the answer? Not "does the LLM agree with the challenge" — sycophancy makes that meaningless. Does it engage with the challenge, add conditions it previously omitted, name failure modes it previously glossed over?
 
@@ -113,7 +113,7 @@ These measurements follow a core constraint: **evals measure the process, not de
 
 **Claude is a conductor, not a player — for the audit.** It captures the conversation, calls scripts, and presents results. It performs zero reasoning judgment inside extraction, triage, routing, fingerprinting, deep checks, or card generation. Every semantic decision in the audit pipeline goes through OpenRouter where prompts are calibrated and measurable.
 
-**Claude does author the final revised position (Step 6).** After the three cards are presented, Claude reconsiders its earlier advice under structural pressure from the curated substrate. This revised answer is persisted as a first-class run artifact with provenance (`revised_answer_source: "claude_step6"`). The Observatory renders it alongside the pipeline output.
+**Claude does author the final revised position (Step 6).** After the four cards are presented, Claude reconsiders its earlier advice under structural pressure from the curated substrate. This revised answer is persisted as a first-class run artifact with provenance (`revised_answer_source: "claude_step6"`). The Observatory renders it alongside the pipeline output.
 
 This is a deliberate trust-boundary split:
 - **Audit (detection + routing + card assembly)** — OpenRouter via calibrated prompts. Claude produced the original reasoning; asking the same LLM to find its own flaws invites sycophantic self-defense. A different model audits.
@@ -295,7 +295,7 @@ If strategic → extracts 6 fields:
 |-------|-----------------|--------------------------|
 | `decision_situation` | The core decision as a neutral problem statement — domain, stakeholders, what's at stake | Becomes the `query` for Lane 1 triage. Tells the triage model what constraints were live, what could be skipped. |
 | `live_constraints` | Every constraint the user stated, with status: active / dropped / modified, and weight: structural / situational | **The killer feature of conversation mode.** A constraint stated in turn 3 but absent from the recommendation in turn 8 is omission evidence. Lane 1 triage uses this to detect doubt-avoidance, availability-misweighing, etc. |
-| `synthesized_position` | The LLM's latest/most developed recommendation, preserving reasoning structure | Becomes the `vanilla_answer`. This is what all three lanes audit. Preserving structure (not just conclusions) is critical — Lane 2 needs to see HOW the LLM argued. |
+| `synthesized_position` | The LLM's latest/most developed recommendation, preserving reasoning structure | Becomes the `vanilla_answer`. This is what all four lanes audit. Preserving structure (not just conclusions) is critical — Lane 2 needs to see HOW the LLM argued. |
 | `reasoning_passages` | 3-8 VERBATIM quotes from the assistant's messages — leaps, dismissals, assertions | Lane 2 (companion) fingerprints literal substrings to detect mental models. If these aren't exact quotes, fingerprint verification fails. |
 | `original_framing` | How the human posed the problem — what was assumed fixed, what perspectives were excluded | Lane 3 (frame pressure) audits framing. If the question assumed "we must grow" and never explored "should we grow?", Lane 3 catches that. |
 | `dropped_threads` | Concerns raised but never resolved — by either party | Enriches the `query` with explicit omission signals. When triage sees "user raised X, AI never addressed it", that's tendency-detection gold. |
@@ -335,7 +335,7 @@ python3 $SKILL_DIR/scripts/run_pipeline.py \
   --skip-revision
 ```
 
-The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. This script parses the extraction JSON, initializes the full Lolla pipeline via OpenRouter, and runs all three lanes:
+The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. This script parses the extraction JSON, initializes the full Lolla pipeline via OpenRouter, and runs all four lanes:
 
 ```
                          ┌──────────────────────────────┐
@@ -343,16 +343,16 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
                          │  query + vanilla_answer       │
                          └──────────┬───────────────────┘
                                     │
-                    ┌───────────────┼───────────────┐
-                    ▼               ▼               ▼
-             ┌──────────┐   ┌──────────┐   ┌──────────┐
-             │  Lane 1  │   │  Lane 2  │   │  Lane 3  │
-             │ Structural│   │ Companion│   │  Frame   │
-             │ Pressure │   │          │   │ Pressure │
-             └────┬─────┘   └────┬─────┘   └────┬─────┘
-                  │              │              │
-                  ▼              ▼              ▼
-             DeltaCard    CheatSheet    FrameCard
+              ┌─────────────┬───────┼───────┬─────────────┐
+              ▼             ▼       ▼       ▼             ▼
+       ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
+       │  Lane 1  │  │  Lane 2  │  │  Lane 3  │  │  Lane 4  │
+       │Structural│  │ Companion│  │  Frame   │  │ Coverage │
+       │ Pressure │  │          │  │ Pressure │  │          │
+       └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘
+            │              │              │              │
+            ▼              ▼              ▼              ▼
+       DeltaCard    CheatSheet    FrameCard    CoverageCard
 ```
 
 **Lane 1 — Structural Pressure (3-5 OpenRouter calls):**
@@ -389,7 +389,51 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 Lane 3 is most powerful on short conversations where the question itself constrains the answer space. A question that assumes "we must grow" and never explores "should we grow?" is a frame pressure finding.
 
-**Total OpenRouter calls:** Typically 8-10 (1 extraction + 1 triage + N deep checks + 1 fingerprint + 1 verify + 1 frame extract + 1 reframe). All use the calibrated boundary client with `temperature=0.2` and `response_format=json_object`. The revision step is skipped in the skill flow — Claude produces the updated position itself in Step 6, using the full conversation context and the three cards.
+**Lane 4 — Structural Coverage (2-3 OpenRouter calls):**
+
+Lane 4 is fundamentally different from Lanes 1-3. Where the first three lanes are *reactive* — they analyze what's in the answer or question — Lane 4 is *proactive*. It asks: "Given the shape of this problem, what structural territory did the answer never enter?" It decomposes the problem into structural dimensions using a curated 15-dimension MECE taxonomy, checks which ones the answer actually engaged with, and generates discovery questions for each gap.
+
+The design philosophy: Lane 4 is **informative only**. It doesn't influence Lanes 1-3, doesn't change the delta card, doesn't alter companion routing. It sits at the end and surfaces structural angles the decision-maker might not have considered. Even imperfect gap detection is valuable because the gap questions — not the coverage labels — are the product.
+
+1. **Question classification** (LLM call 1): One OpenRouter call classifies the question into one of 4 structural types — causal-diagnosis ("why is this happening?"), decision-evaluation ("should we do this?"), action-planning ("how do we do this?"), or prediction ("what will happen?"). The question type determines which dimensions can fire.
+
+2. **Dimension detection + coverage check** (LLM call 2): One OpenRouter call examines the question and answer against a catalog of 15 structural dimensions, each defined by:
+   - **Cleaving frame** — the core tension the dimension represents (e.g., "Lock-in vs Optionality" for Commitment & Reversibility)
+   - **Detect_when conditions** — when the dimension is structurally present in the problem
+   - **Coverage signals** — what "addressing this dimension" looks like in an answer
+   - **Materiality test** — whether the gap could change the recommendation
+
+   The detection prompt enforces a strict coverage bar: a dimension is "covered" only if the answer explicitly identifies the tension, reasons through both sides, and reaches a position. Merely *mentioning* a related topic is not coverage. A hard cap of 5 gaps prevents over-flagging — the LLM ranks gaps by materiality and keeps the top 3-5. A code-level safety net (`_MAX_GAPS=5`) demotes excess gaps if the LLM ignores the constraint.
+
+3. **Deterministic routing**: For each uncovered dimension, the deterministic middle looks up candidate mental models from the Wave 6 structural coverage routing table in the knowledge graph (82 model bridges across 74 unique models). Anti-echo exclusion removes models already surfaced by Lanes 1, 2, and 3 — the broadest anti-echo scope of any lane.
+
+4. **Gap question generation** (LLM call 3, conditional): For each gap dimension with routed models, one OpenRouter call generates 2-3 discovery questions following the 5Ws+H framework — concrete questions first (who, what, where, when), reflective last (why). Questions are problem-specific, plain language, and answerable only by the decision-maker from their knowledge of the situation. This call **only fires when gaps exist** — zero gaps means no LLM call, no questions. These gap questions are the HITL (Human-In-The-Loop) bridge: they are never answered by an AI.
+
+5. **Card assembly** (deterministic): Assemble detected dimensions, gap routes, gap questions, and anti-echo metadata into a StructuralCoverageCard.
+
+**The 15 structural dimensions:**
+
+| Dimension | Cleaving Frame | Example Gap |
+|-----------|---------------|-------------|
+| Resource Allocation | Supply vs Demand | Budget stated but opportunity cost not identified |
+| Incentive Alignment | Principal vs Agent | Parties listed but incentive divergence not analyzed |
+| Competitive Dynamics | Collaborate vs Compete | Competitors mentioned but response not modeled |
+| Risk Response | Mitigate vs Adapt | Risks noted but not sized or recovery-planned |
+| Behavioral Intervention | Regulate vs Incent vs Nudge | Solution proposed without behavior-change mechanism |
+| Commitment & Reversibility | Lock-in vs Optionality | Terms proposed but exit costs not considered |
+| Information Quality | Signal vs Noise | Data used but reliability not questioned |
+| Timing & Sequencing | Now vs Later | Timeline given but sequencing rationale absent |
+| Scope & Boundary Definition | Inside vs Outside | Problem addressed but boundary not justified |
+| Scaling Dynamics | What changes with scale | Growth mentioned but breakpoints not identified |
+| Causal Diagnosis | Root cause vs Symptom | Correlations noted but root cause not isolated |
+| Uncertainty Type | Risk vs True uncertainty | Numbers presented but uncertainty type not classified |
+| Stakeholder Alignment | Agree vs Comply | People mentioned but approval/blocking analysis absent |
+| Feedback & System Dynamics | Linear vs Feedback loops | Action proposed but feedback loops not considered |
+| Existing vs New | Protect base vs Expand | Expansion planned but base erosion not addressed |
+
+**Calibration approach:** The detection prompt was tuned against 14 test scenarios (in `scripts/test_lane4.py` and `scripts/test_lane4_round2.py`) using the production model (grok-4.1-fast via OpenRouter). Calibration results: 67% recall on expected gaps, ~3 false positives per scenario (capped at 5), consistent across all 4 question types. This calibration level is appropriate for an informative lane where the human filters and the questions carry the value. Known limitations: `feedback-system-dynamics` and `uncertainty-type` are under-detected; `commitment-reversibility` and `stakeholder-alignment` are over-flagged. These can be revisited by tuning detect_when conditions in the knowledge graph.
+
+**Total OpenRouter calls:** Typically 10-13 (1 extraction + 1 triage + N deep checks + 1 fingerprint + 1 verify + 1 frame extract + 1 reframe + 1 question classification + 1 dimension detection + 0-1 gap questions). All use the calibrated boundary client with `temperature=0.2` and `response_format=json_object`. The revision step is skipped in the skill flow — Claude produces the updated position itself in Step 6, using the full conversation context and the four cards.
 
 **Pipeline diagnostics (`run_health`):** The pipeline output includes a decomposed health status that rolls up capture diagnostics from extraction and pipeline state into one truthful object:
 
@@ -407,7 +451,7 @@ Lane 3 is most powerful on short conversations where the question itself constra
 
 ### Step 4: Present Results
 
-Claude reads the pipeline output JSON and presents three sections:
+Claude reads the pipeline output JSON and presents four sections:
 
 **DeltaCard (Structural Pressure):**
 For each top finding: tendency name, sub-pattern, severity, the specific passage from the conversation that triggered it, the challenge statement (from curated knowledge), and a reversal trigger (concrete observable condition).
@@ -418,14 +462,17 @@ For each verified model: name, how it appears (executed/violated), evidence quot
 **FramePressureCard (Question-Level Audit):**
 Frame elements (assumptions, mutable constraints, suppressed counterfactuals) and reframed alternative questions.
 
-**Updated Position (Step 6):**
-After presenting the three cards, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging. Claude holds each curated chunk against the specific conversation to see if there's a live connection — some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
+**StructuralCoverageCard (Gap Discovery):**
+For each uncovered structural dimension: the dimension name and cleaving frame, the gap (what was missing), routed mental models, and 2-3 discovery questions following 5Ws+H — concrete questions first, reflective last. These questions are the HITL bridge: they surface what only the decision-maker knows.
 
-**Presentation model — one bridge sentence per finding:** Each finding, anchor, and frame element gets one sentence that connects the abstract pattern to what happened in THIS conversation. This is the readability layer — it helps the reader absorb the finding without cross-referencing JSON. No opening paragraphs for card sections, no judgment words ("sound", "correctly diagnosed"), no multi-sentence narratives. The curated knowledge (challenge statements, failure modes, premortem questions) is presented verbatim from the pipeline output. Claude's voice and interpretation belong exclusively in Step 6 (Updated Position), not in the card rendering.
+**Updated Position (Step 6):**
+After presenting the four cards, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging. Claude holds each curated chunk against the specific conversation to see if there's a live connection — some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
+
+**Presentation model — one bridge sentence per finding:** Each finding, anchor, frame element, and gap dimension gets one sentence that connects the abstract pattern to what happened in THIS conversation. This is the readability layer — it helps the reader absorb the finding without cross-referencing JSON. No opening paragraphs for card sections, no judgment words ("sound", "correctly diagnosed"), no multi-sentence narratives. The curated knowledge (challenge statements, failure modes, premortem questions) is presented verbatim from the pipeline output. Claude's voice and interpretation belong exclusively in Step 6 (Updated Position), not in the card rendering.
 
 ### Step 5: Observatory (Optional)
 
-The Observatory is a full run viewer — not just a pipeline output viewer. It renders the complete audit artifact: the three cards, the revised answer, and the run's health context.
+The Observatory is a full run viewer — not just a pipeline output viewer. It renders the complete audit artifact: the four cards, the revised answer, and the run's health context.
 
 ```bash
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_{run_id}_result.json
@@ -438,6 +485,7 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 - DeltaCard — findings with severity, passages, challenges, reversal triggers
 - CompanionCheatSheet — model anchors with typed chunks (failure modes, premortems, antagonists)
 - FramePressureCard — frame elements with reframings
+- StructuralCoverageCard — gap dimensions with discovery questions
 - Revised answer with source provenance badge (`claude_step6`)
 
 **Trust / health context:**
