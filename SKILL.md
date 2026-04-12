@@ -97,7 +97,7 @@ If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
 
 ## Pipeline
 
-Eight steps. You are a conductor for the audit pipeline (Steps 1-4), then the primary reasoning voice for reconsideration (Steps 5-6), followed by an independent pressure check from isolated sub-agents (Steps 7-8).
+Nine steps. You are a conductor for the audit pipeline (Steps 1-4), then the primary reasoning voice for reconsideration (Steps 6-6b), followed by an independent pressure check from isolated sub-agents (Steps 7-8b), and finally the Observatory (Step 9). Step 5 is a placeholder — Observatory is deferred to Step 9 so all artifacts are complete.
 
 ### Step 1: Capture Conversation
 
@@ -328,19 +328,7 @@ For each dimension in `structural_coverage_card.dimensions`:
 
 ### Step 5: Open Observatory
 
-After presenting the cards (Step 4), **always offer to open the Observatory** — a local web interface that renders all four cards visually with the knowledge graph context. Offer it again after the full cycle completes (Step 8b) so the user can see the updated position and pressure check in context.
-
-Say something like: *"Want me to open the Observatory to explore these findings visually? It shows all four cards with the knowledge graph context in a navigable interface."*
-
-If the user accepts (or says "show me", "visualize", "observatory", "open in browser"), launch it:
-
-```bash
-python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
-```
-
-This starts a local server at http://localhost:8080. Tell the user the URL and that they can press Ctrl+C in the terminal to stop the server.
-
-If findings are especially rich (4+ findings across multiple lanes), proactively launch the Observatory without waiting for confirmation — the visual interface adds significant value for complex results.
+**Do NOT offer the Observatory here.** Continue to Step 6. The Observatory should only be offered after the full cycle completes (after Step 8b), when all artifacts — cards, updated position, and pressure check — are persisted to the result JSON and the user can see the complete picture.
 
 ---
 
@@ -517,9 +505,25 @@ print(f'Pressure check persisted to {result_path}')
 "
 ```
 
+### Step 9: Open Observatory
+
+After the full cycle is complete (cards, updated position, and pressure check all persisted), **offer to open the Observatory**:
+
+Say something like: *"Want me to open the Observatory to explore these findings visually? It shows all four cards, the updated position, and the pressure check in a navigable interface."*
+
+If the user accepts (or says "show me", "visualize", "observatory", "open in browser"), launch it:
+
+```bash
+python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
+```
+
+This starts a local server at http://localhost:8080. Tell the user the URL and that they can press Ctrl+C in the terminal to stop the server.
+
+If findings are especially rich (4+ findings across multiple lanes), proactively launch the Observatory without waiting for confirmation.
+
 ## Completion Status
 
-After the full cycle (present cards → update position → persist → pressure check), report:
+After the full cycle (present cards → update position → persist → pressure check → Observatory offer), report:
 
 ```
 STATUS: DONE
@@ -642,19 +646,16 @@ Be direct. Name what shifts or say the frame holds.
 
 ### Lane 4 Suffix — StructuralCoverageCard (Gap Discovery)
 
+**Before interpolating:** Strip the card JSON to only gap dimensions (`covered: false`) and their matching `gap_questions`. Drop all covered dimensions — the sub-agent doesn't need them. This keeps the payload small and focused.
+
 ```
-## Audit Findings — Structural Coverage
+## Audit Findings — Structural Coverage Gaps
 
-The following structural dimensions were assessed for this problem. Some were covered by the answer, some were not. Gap dimensions include discovery questions designed for the decision-maker.
+The following structural dimensions were identified as gaps — territory the answer didn't enter. Each includes discovery questions for the decision-maker.
 
-{STRUCTURAL_COVERAGE_CARD_JSON}
+{STRUCTURAL_COVERAGE_GAPS_ONLY_JSON}
 
 ## Your Assessment
 
-For each gap dimension:
-1. Is this a genuine blind spot in the synthesized position, or is it addressed implicitly?
-2. How severe is the gap — would filling it change the recommendation?
-3. For covered dimensions: is the coverage as thorough as claimed, or is it surface-level?
-
-Be direct. Name the blind spots or confirm the position covers them.
+For each gap: is this a genuine blind spot, or is it addressed implicitly in the position? Would filling it change the recommendation? Be direct and brief.
 ```
