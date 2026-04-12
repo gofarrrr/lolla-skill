@@ -250,17 +250,23 @@ You will receive:
 
 Your task:
 1. DETECT: Which dimensions are structurally present in this problem? Use the \
-detect_when conditions. A dimension is present if at least 2 of its detect_when \
-conditions are clearly met. Only consider dimensions whose question_types include \
-the classified question type.
+detect_when conditions. A dimension is present if at least 1 of its detect_when \
+conditions is clearly met by the QUESTION (not the answer). Only consider \
+dimensions whose question_types include the classified question type. \
+Think broadly — typically 6-10 dimensions fire for a strategic question.
 2. ASSESS COVERAGE: For each detected dimension, does the answer engage with \
 the structural tension described by the dimension's cleaving frame? \
-Use the coverage signals as a guide, but apply this test: the answer must \
-directly reason about the dimension's core trade-off — not merely mention \
-a related topic in passing. A dimension is "covered" ONLY if the answer \
-explicitly engages with the structural tension and reaches a position on it.
-3. MATERIALITY GATE: For each uncovered dimension, apply the materiality test. \
-Only flag it as a gap if addressing it would plausibly change the decision or action.
+A dimension is "covered" ONLY if the answer:
+  (a) explicitly identifies the tension or trade-off described by the cleaving frame, AND
+  (b) reasons through both sides of that tension (not just one), AND
+  (c) reaches or recommends a position on how to resolve it.
+If the answer merely MENTIONS a related topic, uses a KEYWORD associated with \
+the dimension, or ACKNOWLEDGES that the issue exists without analyzing it — \
+that is NOT coverage. Coverage requires analytical depth, not topic presence.
+3. MATERIALITY RANKING: After coverage assessment, RANK all uncovered dimensions \
+by materiality — how likely is it that analyzing this dimension would REVERSE \
+or SUBSTANTIALLY ALTER the recommendation? Then keep ONLY the top 3-5 as gaps. \
+Mark the rest as covered with coverage_evidence: "Immaterial: [reason]".
 
 Return a JSON object:
 {
@@ -270,41 +276,40 @@ Return a JSON object:
       "dimension_name": "<name from catalog>",
       "covered": true/false,
       "coverage_evidence": "<what in the answer addresses this, OR what's missing>",
-      "materiality_note": "<why this gap matters for the decision, or 'covered' if addressed>"
+      "materiality_note": "<why this gap matters for the decision, or 'covered'/'immaterial'>"
     }
   ]
 }
 
+HARD CONSTRAINT: Maximum 5 dimensions with covered=false. If your initial \
+assessment yields more than 5 gaps, you MUST demote the least material ones \
+to covered. This is not optional.
+
 Rules:
-- Return ONLY dimensions that are structurally present. Do not list dimensions \
-that don't apply to this problem.
-- Typically 4-8 dimensions fire for a strategic question. Fewer than 3 suggests \
-you're being too conservative. More than 10 suggests you're not applying the \
-detect_when conditions strictly enough.
-- The materiality gate is crucial. A dimension is a gap ONLY if addressing it \
-would change the recommendation. If the dimension is present but immaterial \
-(addressing it wouldn't change anything), mark it as covered with \
-coverage_evidence explaining why it's immaterial.
-- Be specific in coverage_evidence. Quote or paraphrase the answer where it \
-addresses a dimension. For gaps, explain what's structurally missing.
-- CRITICAL — Mentioning is not covering. Apply these tests before marking covered:
-  * Stakeholder Alignment: Discussing people involved in a deal is NOT \
-stakeholder analysis. Covered requires: who must APPROVE, who can BLOCK, \
-and what the influence strategy is for getting agreement.
-  * Timing & Sequencing: Listing timeframes in a deal structure is NOT \
-sequencing analysis. Covered requires: why this order rather than another, \
-what the critical path is, or whether delay helps or hurts.
-  * Commitment & Reversibility: Proposing staged deal terms is NOT \
-reversibility analysis. Covered requires: what happens if you want to \
-EXIT or UNWIND, what lock-in costs exist, what optionality is consumed.
-  * Uncertainty Type: Presenting scenarios with specific numbers is NOT \
-uncertainty classification. Covered requires: distinguishing what is \
-knowable from what is genuinely uncertain, and matching the approach to \
-the uncertainty type.
-  * Information Quality: Adjusting numbers for known risks is NOT \
-evidence quality analysis. Covered requires: questioning the reliability \
-of the data sources, identifying what evidence is missing, or checking \
-whether claims rest on biased or unrepresentative samples.
+- Return ONLY dimensions that are structurally present (6-10 typical).
+- Maximum 5 gaps. Typical is 2-4. A gap must be able to CHANGE the recommendation.
+- Mentioning is not covering. For every dimension, test: "Does the answer \
+reason through BOTH SIDES of this dimension's cleaving frame?" Examples:
+  * Stakeholder Alignment: Discussing people is NOT coverage. Requires: who \
+APPROVES, who BLOCKS, influence strategy.
+  * Timing & Sequencing: Listing timeframes is NOT coverage. Requires: why \
+this ORDER, critical path, delay impact.
+  * Commitment & Reversibility: Proposing terms is NOT coverage. Requires: \
+EXIT costs, lock-in, optionality consumed.
+  * Uncertainty Type: Presenting numbers is NOT coverage. Requires: what is \
+KNOWABLE vs genuinely UNKNOWABLE.
+  * Information Quality: Adjusting for risks is NOT coverage. Requires: \
+questioning data RELIABILITY, missing evidence.
+  * Competitive Dynamics: Mentioning competitors is NOT coverage. Requires: \
+modeling how they RESPOND.
+  * Resource Allocation: Stating budget is NOT coverage. Requires: what you \
+GIVE UP and why this beats alternatives.
+  * Scaling Dynamics: Mentioning growth is NOT coverage. Requires: what \
+BREAKS or CHANGES at scale.
+  * Incentive Alignment: Listing parties is NOT coverage. Requires: where \
+incentives DIVERGE and realignment mechanism.
+  * Feedback & System Dynamics: Describing cause-effect is NOT coverage. \
+Requires: identifying FEEDBACK LOOPS.
 - Return ONLY the JSON object. No explanation.
 """
 
@@ -339,8 +344,16 @@ def run_dimension_detection(
     return _parse_dimension_detection(raw)
 
 
+_MAX_GAPS = 5  # Hard cap — even if the LLM returns more, we truncate.
+
+
 def _parse_dimension_detection(raw: dict) -> tuple[DetectedDimension, ...]:
-    """Parse the LLM response into DetectedDimension objects."""
+    """Parse the LLM response into DetectedDimension objects.
+
+    Enforces a hard cap of ``_MAX_GAPS`` uncovered dimensions.  If the LLM
+    returns more, the excess gaps (ordered last in the response) are demoted
+    to covered with an "Immaterial (demoted)" evidence note.
+    """
     raw_dims = raw.get("dimensions", [])
     if not isinstance(raw_dims, list):
         _LOGGER.warning("dimension detection returned non-list, got %s", type(raw_dims).__name__)
@@ -360,6 +373,31 @@ def _parse_dimension_detection(raw: dict) -> tuple[DetectedDimension, ...]:
             coverage_evidence=coerce_str(d.get("coverage_evidence", "")),
             materiality_note=coerce_str(d.get("materiality_note", "")),
         ))
+
+    # Enforce hard gap cap — demote excess gaps to covered
+    gap_count = sum(1 for d in dims if not d.covered)
+    if gap_count > _MAX_GAPS:
+        _LOGGER.info(
+            "Demoting %d excess gaps (LLM returned %d, cap is %d)",
+            gap_count - _MAX_GAPS, gap_count, _MAX_GAPS,
+        )
+        # Keep the first _MAX_GAPS gaps; demote the rest (LLM puts most material first)
+        seen_gaps = 0
+        capped: list[DetectedDimension] = []
+        for d in dims:
+            if not d.covered:
+                seen_gaps += 1
+                if seen_gaps > _MAX_GAPS:
+                    d = DetectedDimension(
+                        dimension_id=d.dimension_id,
+                        dimension_name=d.dimension_name,
+                        covered=True,
+                        coverage_evidence=f"Immaterial (demoted): {d.coverage_evidence}",
+                        materiality_note=d.materiality_note,
+                    )
+            capped.append(d)
+        dims = capped
+
     return tuple(dims)
 
 
