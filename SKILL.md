@@ -484,26 +484,79 @@ Only "yes" answers get reported. Present divergences under a `### Pressure Check
 
 ### Step 8b: Persist Pressure Check
 
-Write the pressure check output to a temp file, then merge it into the result JSON:
+Two things get persisted: the human-readable summary text AND a structured `gap_check` object with per-lane status and divergences.
+
+**First**, build the structured object. For each of the 4 lanes, record:
+- `lane_number` (1-4)
+- `lane_name` ("DeltaCard", "CompanionCheatSheet", "FramePressureCard", "StructuralCoverageCard")
+- `status`: "completed" if the sub-agent ran and you compared its output; "skipped_empty" if the lane was skipped due to empty card; "skipped_error" if the sub-agent failed or timed out
+- `divergences`: array of objects, one per "yes" answer from the three comparison questions. Each has `question_number` (1, 2, or 3) and `description` (one sentence — what the sub-agent found that Step 6 missed or underweighted). Empty array if no divergences for that lane.
+
+**Then**, write both the text and the structured object:
 
 ```bash
 cat > /tmp/lolla_${LOLLA_RUN_ID}_gapcheck.txt << 'LOLLA_GAPCHECK_EOF'
 {paste your Step 8 pressure check text here}
 LOLLA_GAPCHECK_EOF
 
+cat > /tmp/lolla_${LOLLA_RUN_ID}_gapcheck_lanes.json << 'LOLLA_LANES_EOF'
+{paste the gap_check JSON object here — see format below}
+LOLLA_LANES_EOF
+
 python3 -c "
 import json, datetime, pathlib
 run_id = '${LOLLA_RUN_ID}'
 result_path = f'/tmp/lolla_{run_id}_result.json'
 gapcheck_path = f'/tmp/lolla_{run_id}_gapcheck.txt'
+lanes_path = f'/tmp/lolla_{run_id}_gapcheck_lanes.json'
 d = json.loads(pathlib.Path(result_path).read_text())
 d['gap_check_summary'] = pathlib.Path(gapcheck_path).read_text().strip()
+d['gap_check'] = json.loads(pathlib.Path(lanes_path).read_text())
 d['has_gap_check'] = True
 d['gap_check_written_at'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 pathlib.Path(result_path).write_text(json.dumps(d, indent=2, ensure_ascii=False))
 print(f'Pressure check persisted to {result_path}')
 "
 ```
+
+**Format for `gap_check` JSON object:**
+
+```json
+{
+  "lanes": [
+    {
+      "lane_number": 1,
+      "lane_name": "DeltaCard",
+      "status": "completed",
+      "divergences": [
+        {"question_number": 1, "description": "Sub-agent flagged dependency reduction as central deal condition, not a nice-to-have"}
+      ]
+    },
+    {
+      "lane_number": 2,
+      "lane_name": "CompanionCheatSheet",
+      "status": "completed",
+      "divergences": []
+    },
+    {
+      "lane_number": 3,
+      "lane_name": "FramePressureCard",
+      "status": "skipped_empty",
+      "divergences": []
+    },
+    {
+      "lane_number": 4,
+      "lane_name": "StructuralCoverageCard",
+      "status": "completed",
+      "divergences": [
+        {"question_number": 1, "description": "Equity staging after independent verification rather than front-loading with vesting"}
+      ]
+    }
+  ]
+}
+```
+
+Map each divergence to the question that triggered it: (1) shift I dismissed, (2) finding I treated as noise, (3) connection I didn't make. If a divergence spans multiple lanes or questions, pick the primary one.
 
 ### Step 9: Open Observatory
 
