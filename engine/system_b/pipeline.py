@@ -23,6 +23,7 @@ from .frame_pressure import (
     route_frame_elements,
     run_frame_extraction,
 )
+from .structural_coverage import StructuralCoverageCard, run_structural_coverage
 from .companion_routing import recall_candidates, run_fingerprint_call, run_verification_call
 from .companion_selection import CompanionCheatSheet, select_companion_cheat_sheet
 from .compound_catalog import COMPOUND_CATALOG
@@ -130,6 +131,7 @@ class PipelineConfig:
     stress_phase1_active: bool = False
     enable_companion: bool = False
     enable_frame_pressure: bool = False
+    enable_structural_coverage: bool = False
     enable_embeddings: bool = True
     enable_deep_checks: bool = True
     enable_telemetry: bool = False
@@ -192,6 +194,12 @@ class AuditTrace:
     frame_extraction_element_count: int = 0
     frame_extraction_pattern_ids: tuple[str, ...] = ()
     frame_extraction_fired: bool = False
+    # Structural Coverage lane (Lane 4) — additive metadata, absent when lane is off
+    structural_coverage_question_type: str = ""
+    structural_coverage_dimension_count: int = 0
+    structural_coverage_gap_count: int = 0
+    structural_coverage_gap_question_count: int = 0
+    structural_coverage_fired: bool = False
 
 
 @dataclass(frozen=True)
@@ -255,6 +263,7 @@ class PipelineResult:
     companion_card: CompanionCard | None = None
     companion_cheat_sheet: CompanionCheatSheet | None = None
     frame_pressure_card: FramePressureCard | None = None
+    structural_coverage_card: StructuralCoverageCard | None = None
     prompt_versions: tuple[tuple[str, str], ...] = ()
 
 
@@ -387,6 +396,14 @@ class SystemBPipeline:
                 lane1_tendency_ids=set(),
                 lane1_model_ids=set(),
             )
+            _lane2_model_ids = _extract_companion_model_ids(companion_result)
+            _lane3_model_ids = _extract_frame_model_ids(frame_card)
+            structural_card = self._run_structural_coverage(
+                request, boundary_calls,
+                lane1_model_ids=set(),
+                lane2_model_ids=_lane2_model_ids,
+                lane3_model_ids=_lane3_model_ids,
+            )
             audit = AuditTrace(
                 triage_scores=tuple(triage_scores),
                 triggered_tendencies=(),
@@ -400,6 +417,7 @@ class SystemBPipeline:
                 companion_detected_models=_serialize_detected_models(companion_result.detected_models),
                 companion_rejected_models=list(companion_result.rejected_models),
                 **_frame_audit_fields(frame_card),
+                **_structural_coverage_audit_fields(structural_card),
             )
             empty_delta = DeltaCard(findings=(), detected_tendencies=())
             cheat_sheet = select_companion_cheat_sheet(
@@ -417,6 +435,7 @@ class SystemBPipeline:
                 companion_card=companion_result.companion_card,
                 companion_cheat_sheet=cheat_sheet,
                 frame_pressure_card=frame_card,
+                structural_coverage_card=structural_card,
                 prompt_versions=self._prompt_versions,
             )
             self._record_telemetry(
@@ -521,6 +540,14 @@ class SystemBPipeline:
             lane1_tendency_ids={route.tendency.tendency_id for route in routes},
             lane1_model_ids=set(delta_card.selected_model_ids),
         )
+        _lane2_model_ids = _extract_companion_model_ids(companion_result)
+        _lane3_model_ids = _extract_frame_model_ids(frame_card)
+        structural_card = self._run_structural_coverage(
+            request, boundary_calls,
+            lane1_model_ids=set(delta_card.selected_model_ids),
+            lane2_model_ids=_lane2_model_ids,
+            lane3_model_ids=_lane3_model_ids,
+        )
         audit = AuditTrace(
             triage_scores=tuple(triage_scores),
             triggered_tendencies=triggered_tendencies,
@@ -539,6 +566,7 @@ class SystemBPipeline:
             companion_detected_models=_serialize_detected_models(companion_result.detected_models),
             companion_rejected_models=list(companion_result.rejected_models),
             **_frame_audit_fields(frame_card),
+            **_structural_coverage_audit_fields(structural_card),
         )
         cheat_sheet = select_companion_cheat_sheet(
             companion_result.companion_card, delta_card,
@@ -555,6 +583,7 @@ class SystemBPipeline:
             companion_card=companion_result.companion_card,
             companion_cheat_sheet=cheat_sheet,
             frame_pressure_card=frame_card,
+            structural_coverage_card=structural_card,
             prompt_versions=self._prompt_versions,
         )
         self._record_telemetry(
@@ -691,6 +720,40 @@ class SystemBPipeline:
             overlap_flags=overlap_flags,
         )
 
+    def _run_structural_coverage(
+        self,
+        request: CritiqueRequest,
+        boundary_calls: list[BoundaryCallTrace],
+        lane1_model_ids: set[str],
+        lane2_model_ids: set[str],
+        lane3_model_ids: set[str],
+    ) -> StructuralCoverageCard | None:
+        if not self._config.enable_structural_coverage:
+            return None
+
+        routing = self._companion_knowledge_graph.get("structural_coverage_routing", {})
+        if not routing:
+            return None
+
+        # Anti-echo: exclude models from all other lanes
+        anti_echo = lane1_model_ids | lane2_model_ids | lane3_model_ids
+
+        card = run_structural_coverage(
+            boundary=self._boundary,
+            query=request.query,
+            vanilla_answer=request.vanilla_answer,
+            structural_coverage_routing=routing,
+            anti_echo_model_ids=anti_echo,
+        )
+        if card is not None:
+            boundary_calls.append(
+                _capture_boundary_call(self._boundary, stage="structural_coverage_classification")
+            )
+            boundary_calls.append(
+                _capture_boundary_call(self._boundary, stage="structural_coverage_detection")
+            )
+        return card
+
     def _record_telemetry(
         self,
         *,
@@ -727,6 +790,38 @@ def _frame_audit_fields(card: FramePressureCard | None) -> dict:
             el.frame_pattern for el in card.frame_elements
         ),
         "frame_extraction_fired": len(card.frame_elements) > 0,
+    }
+
+
+def _extract_companion_model_ids(companion_result: CompanionRunResult) -> set[str]:
+    """Extract model IDs from Lane 2 companion result for anti-echo."""
+    if companion_result.companion_card is None:
+        return set()
+    return {
+        m.model_id
+        for m in companion_result.detected_models
+        if hasattr(m, "model_id")
+    }
+
+
+def _extract_frame_model_ids(frame_card: FramePressureCard | None) -> set[str]:
+    """Extract grounding model IDs from Lane 3 frame pressure card for anti-echo."""
+    if frame_card is None:
+        return set()
+    return {r.grounding_model for r in frame_card.reframings if r.grounding_model}
+
+
+def _structural_coverage_audit_fields(card: StructuralCoverageCard | None) -> dict:
+    """Return AuditTrace field overrides for the Structural Coverage lane."""
+    if card is None:
+        return {}
+    gap_count = sum(1 for d in card.dimensions if not d.covered)
+    return {
+        "structural_coverage_question_type": card.question_type,
+        "structural_coverage_dimension_count": len(card.dimensions),
+        "structural_coverage_gap_count": gap_count,
+        "structural_coverage_gap_question_count": len(card.gap_questions),
+        "structural_coverage_fired": len(card.dimensions) > 0,
     }
 
 
