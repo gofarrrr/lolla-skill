@@ -161,234 +161,99 @@ This runs the full Lolla pipeline — all four lanes — via OpenRouter. The `--
 
 ### Step 4: Present Results
 
-Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and present four sections. **Step 4 is a rendering problem, not a reasoning problem.** Present the pipeline output faithfully. Do not narrate, bridge, or editorialize inside the card sections. Your interpretation belongs in Step 6.
+Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json`. Before presenting, read `references/output-field-guide.md` for full field definitions.
 
-**Rules for Step 4:**
-- Present each finding, anchor, and frame element as a separate block — do not merge, reorder, or omit entries
-- Quote `specific_passage`, `challenge_statement`, `next_move`, `evidence_quote`, and chunk text verbatim from the JSON
-- **One bridge sentence per finding is allowed** — a single sentence that connects the abstract pattern to what happened in THIS conversation. This is the readability layer. Example: "The recommendation settled without testing whether the current arrangement still earns renewal on its own terms." That's a bridge. Two or more sentences of narrative is NOT a bridge — it's editorializing.
-- **Bridge anti-bullshit constraints** (compile-time rules, not suggestions):
-  - No bridge sentence that could stand alone without the finding — it must reference something specific from the pipeline output (anti-empty-rhetoric)
-  - No bridge sentence that acknowledges a finding while softening its force — "this is a minor consideration" on a high-severity finding is paltering (anti-paltering)
-  - No "may," "could," "potentially," "largely," "arguably" in bridge sentences — say what the pipeline found, not what it might have found (anti-weasel)
-  - No claims about the conversation not traceable to a specific passage in the extraction — if you can't point at where in the conversation the pattern appeared, drop the bridge (anti-unverified)
-- **No opening paragraphs.** Do not start any card section with a paragraph summarizing the card's theme or your impression of the findings. Go straight to the first finding.
-- **No judgment words** inside card sections: "sound", "clean", "well applied", "real structural weakness", "correctly diagnosed", etc. Those belong in Step 6.
-- Do not skip reframings based on your judgment of whether they were "already explored" — present what the pipeline returned
-- Tendency names and severity ARE the headline — use the template format below, tendency name first
-- Framing, opinion, and voice belong in Step 6, not here
+**Step 4 produces a focused chat summary, not a full card dump.** The detailed card rendering lives in the Observatory. The chat output uses a "finish/start/finish" structure: open with the single most important finding, walk through the 2-3 highest-signal findings across all lanes, then hand off to Step 6 for the turn.
 
-**Bullshit Index annotations (Step 4):**
-If `bullshit_profile` exists in the result JSON, check each finding's `specific_passage` against the BI passages. When a finding's passage overlaps with a BI passage that has a **clear**-severity detection, add a `Delivery:` line to the finding block:
+**Design principles (from presentation research — see `references/presentation-research.md`):**
+- BLUF: the most important structural weakness in the first sentence
+- Maximum 3-5 findings across ALL lanes combined — pick by signal, not by lane completeness
+- One bridge sentence per finding — connects the abstract pattern to THIS conversation
+- No template scaffolding, no severity labels, no JSON field names in chat output
+- No formatting overload — bold for finding names only, not for every field label
+- The user is the hero, not the system — frame findings around their decision, not around pipeline mechanics
+- Translate, don't display — human language, not detection metadata
 
-> - **Delivery:** Original advice used [subtype] here — [one-line from BI reasoning]
-
-Example: `- **Delivery:** Original advice used paltering here — "revenue grew 40%" omits that growth was from a one-time contract`
-
-Rules for BI annotations:
-- Only show **clear** severity detections. Suppress marginal.
-- Maximum one `Delivery:` line per finding (pick the highest-signal subtype if multiple detected).
-- The `Delivery:` line goes after `Reversal trigger:` (DeltaCard) or after the last structured field (other cards).
-- Do NOT add `Delivery:` lines to findings whose passage has no BI overlap. Most findings will have no annotation. That's fine.
+**Bridge anti-bullshit constraints** (these still apply to every bridge sentence):
+- No bridge that could stand alone without the finding (anti-empty-rhetoric)
+- No bridge that softens a finding's force (anti-paltering)
+- No "may," "could," "potentially," "largely," "arguably" (anti-weasel)
+- No claims not traceable to a specific passage in the extraction (anti-unverified)
 
 ---
 
-Before presenting, read `references/output-field-guide.md` for full field definitions, chunk types, compound patterns, and reframe move types.
+#### Chat Output Format
+
+**Opening line (the BLUF):** One sentence naming the single most important structural weakness found across all four lanes. This is your Sinatra Test — if this one finding lands, credibility for the whole audit follows. Pick the finding with the highest severity, the most specific passage match, and the most direct connection to the decision.
+
+Example: *"Your recommendation commits to a 3-year vendor lock-in without naming a single condition that would make you walk away."*
+
+**Then present 2-4 additional findings**, each as a short block. Select across lanes — don't dump all of Lane 1 before touching Lane 3. Pick by signal strength, not lane order. For each finding:
+
+> **[Finding name]** — [bridge sentence connecting to this conversation]
+>
+> [One concrete detail: the challenge question, the reversal trigger, the reframed question, or the gap question. Pick whichever is most actionable for this finding. Quote verbatim from the JSON.]
+
+That's it per finding. No severity labels, no "Pattern found:" field markers, no chunk lists.
+
+**If the audit found a strong reframing** (from Lane 3), include one:
+
+> **Alternative question:** "[reframed_question from frame_pressure_card.reframings]"
+> [what_opens — one line on what this reframing changes]
+
+**If Lane 4 found gaps**, name them in a single line:
+
+> **Structural gaps:** [dimension_name_1], [dimension_name_2] — [N] questions to answer before deciding (see Observatory for full list)
+
+**Delivery Audit (Bullshit Index):** Read `bullshit_profile` from the result JSON. If `summary.total_clear` > 0, add one line after the findings:
+
+> **Delivery check:** [total_clear] patterns of weak delivery detected in the original advice — [name the most significant subtype and a short quote]. Full profile in Observatory.
+
+If `summary.total_clear` is 0: skip — don't mention it. Clean delivery is the default, not an achievement.
+
+**Closing line:** One sentence pointing to Observatory for the full picture:
+
+> *Open the Observatory to explore all [N] findings, [N] mental model connections, and [N] structural dimensions in detail.*
+
+**Zero detections across all lanes:** "No material structural weaknesses detected. The reasoning appears structurally sound across tendency detection, model companion, frame pressure, and structural coverage."
 
 ---
 
-**Understanding what the cards contain and where it comes from.**
+#### What NOT to put in chat
 
-The four cards below were not generated for this conversation. Here is how they were produced:
+These belong in Observatory only. Claude reads them from the JSON to inform Step 6 reasoning, but does NOT render them in the chat:
 
-1. **Source layer.** 222 canonical articles, each a deep treatment of one mental model (Circle of Competence, Power Dynamics, Optionality, etc.). These are the only semantic root — everything downstream traces back to them.
-
-2. **Curation.** Each article was read in full and its operational knowledge extracted: when to activate the model, when it's dangerous, how it fails, what questions it forces, which other models it allies or conflicts with. Each extraction was validated against the source. This produced five waves of structured curation — activation semantics, failure modes and heuristics, relationship edges, reframing patterns, and prerequisite orderings.
-
-3. **Compilation.** The curations were compiled into a knowledge graph: models as nodes, typed relationships as edges (ally, antagonist, tension), chunks attached to each node (failure_mode, premortem, heuristic, identity).
-
-4. **This run.** The pipeline used the conversation once — to extract which reasoning patterns are active: which mental models you used, which tendencies are present, how the question was framed. After extraction, the conversation was consumed. The deterministic system then walked the knowledge graph using those extracted patterns as keys, retrieving the failure modes, tensions, antagonists, and premortems that the curated knowledge base says travel with those models.
-
-A chunk that sounds general — like "Is the worst case bad enough?" — is not a vague prompt. It is a validated premortem question extracted from the canonical article on that model, selected because the conversation's reasoning activated that model. It is general in form because it describes how a reasoning pattern behaves across many situations. Your task is to hold each chunk against the specific conversation and see if there is a live connection. Some will connect sharply. Some won't. Both outcomes are honest — what matters is that you look.
-
----
-
-#### DeltaCard — Structural Pressure
-
-For each finding in `delta_card.top_findings`:
-
-**[tendency_name] — [sub_pattern] / [corrective model]** (Severity: [severity])
-
-- **Pattern found:** [quote `specific_passage`]
-- **Challenge:** [`challenge_statement`]
-- **Reversal trigger:** [`next_move`]
-
-Also present `major_tensions` and `intervention_hint` when present. Use `is_trusted_surface` for your own confidence weighting (don't flag to user).
-
-If `top_compound_groups` exist, present after findings:
-> **Compound pattern: [label]** — [description]
-> Tendencies: [member tendencies]
-
-If `secondary_findings` exist: use `secondary_additional_pressures_note` if summarization is active, otherwise condense (tendency + severity + one-line challenge).
-
-Zero detections: "No structural pressures detected."
-
-**Example:**
-> **Excessive Self-Regard — Overconfidence in Proprietary Advantage / Inversion** (Severity: high)
->
-> The build-vs-buy analysis never questioned whether the engineering advantage is real or assumed.
->
-> - **Pattern found:** "Our engineering team is significantly stronger than any competitor in this space"
-> - **Challenge:** Invert the build-vs-buy calculus: if the engineering team were average, would the recommendation change?
-> - **Reversal trigger:** Benchmark velocity against two comparable projects on a 90-day deliverable.
-
-The single sentence after the headline is the bridge — it tells the reader why this finding matters here. Do not add more.
+- Full DeltaCard finding blocks with all fields (specific_passage, challenge_statement, next_move)
+- CompanionCheatSheet anchor blocks with chunk lists (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap)
+- FramePressureCard element blocks with evidence_quote, fragility_signal
+- StructuralCoverageCard dimension-by-dimension listings with gap questions
+- Compound pattern groups
+- Secondary/low-severity findings
+- Bullshit profile passage-by-passage breakdown
+- Audit trace internals (triage scores, fingerprint diagnostics)
 
 ---
 
-#### CompanionCheatSheet — Mental Models Active
+#### Card Reference (for Claude's Step 6 reasoning and Observatory rendering)
 
-For each anchor in `companion_cheat_sheet.anchors`:
+You still need to understand the full card structures to write a good Step 6 reconsideration and to know what the Observatory will show. Read the JSON fields below to inform your reasoning, but do not render them in chat.
 
-**[display_name]** — [executed / violated] — "[evidence quote from companion_card.detected_models]"
+**Understanding what the cards contain and where they come from:**
 
-One bridge sentence connecting the model to this conversation. Then present attached chunks grouped by type, using curated chunk text verbatim. 7 chunk types exist (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap — see field guide). Do not rephrase, expand, or add interpretive paragraphs between chunks. Use chunk `provenance.confidence` for your own weighting.
+1. **Source layer.** 222 canonical articles, each a deep treatment of one mental model. These are the only semantic root.
+2. **Curation.** Each article's operational knowledge extracted and validated: activation semantics, failure modes, relationship edges, reframing patterns, prerequisite orderings.
+3. **Compilation.** Compiled into a knowledge graph: models as nodes, typed relationships as edges, chunks attached to each node.
+4. **This run.** The pipeline extracted which reasoning patterns are active from the conversation, then walked the knowledge graph to retrieve failure modes, tensions, antagonists, and premortems that travel with those patterns.
 
-Null or empty: "No mental models detected with structural evidence in this conversation."
+**DeltaCard fields:** `top_findings[]` with tendency_name, sub_pattern, corrective_model, severity, specific_passage, challenge_statement, next_move, is_trusted_surface. Also: `top_compound_groups`, `secondary_findings`, `major_tensions`, `intervention_hint`.
 
-**Example:**
-> **Circle of Competence** — executed — "We know this market deeply from 8 years of operating in it"
->
-> Eight years in one market creates confidence, but the new channel hasn't been tested against that experience boundary.
->
-> - **Where this breaks:** Circle boundaries blur when past success creates illusion of transferability
-> - **Before proceeding, ask:** What specifically falls OUTSIDE your 8 years of experience?
-> - **Productive tension:** Man-with-a-Hammer — the risk of applying familiar tools to unfamiliar problems
+**CompanionCheatSheet fields:** `anchors[]` with display_name, status (executed/violated), evidence_quote, chunks grouped by type (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap). Each chunk has curated text and provenance.confidence.
 
----
+**FramePressureCard fields:** `frame_elements[]` with element_type (assumption/mutable_constraint/suppressed_counterfactual), frame_pattern, element_text, evidence_quote, fragility_signal. `reframings[]` with reframed_question, reframe_move_type, what_opens, grounding_model.
 
-#### FramePressureCard — Question-Level Audit
+**StructuralCoverageCard fields:** `dimensions[]` with dimension_name, covered (bool), coverage_evidence, materiality_note. `gap_questions[]` with dimension_id and questions[].
 
-For each element in `frame_pressure_card.frame_elements` (in the order they appear in the JSON):
-
-**[element_type: assumption / mutable_constraint / suppressed_counterfactual]** — [frame_pattern]
-
-One bridge sentence. Then the structured fields:
-
-- [element_text]
-- Evidence: "[evidence_quote]"
-- Fragility: [fragility_signal]
-
-For each reframing in `frame_pressure_card.reframings` (present all of them):
-
-> **Alternative question:** [reframed_question]
-> Move type: [reframe_move_type: inversion / perspective_shift / scope_expansion / constraint_relaxation]
-> What opens: [what_opens]
-> Grounded in: [grounding_model]
-
-Null or empty: "Frame pressure lane did not detect material framing issues."
-
-**Example:**
-> **Assumption** — growth-as-baseline
->
-> The baseline scenario was never stress-tested for deceleration.
->
-> - The decision assumes continued 30% YoY growth as the baseline scenario
-> - Evidence: "Given our growth trajectory, we need infrastructure that scales"
-> - Fragility: No scenario planning for deceleration
->
-> **Alternative question:** "What infrastructure investment makes sense if growth decelerates to 10-15%?"
-> Move type: inversion
-> What opens: Forces evaluation of downside robustness
-> Grounded in: Margin of Safety
-
----
-
-#### StructuralCoverageCard — Structural Gaps (Lane 4)
-
-Present gap dimensions with full treatment and covered dimensions as one-line summaries. If `structural_coverage_card` is null or has no dimensions: "Structural coverage lane did not detect material dimensions."
-
-For each dimension in `structural_coverage_card.dimensions`:
-
-**If the dimension has `covered: false` (a gap):**
-
-**[GAP] [dimension_name]**
-
-- What's missing: [coverage_evidence]
-- Why it matters: [materiality_note]
-- Questions to answer before deciding:
-  1. [question from gap_questions matching this dimension_id]
-  2. [question]
-
-**If the dimension has `covered: true`:**
-
-**[COVERED] [dimension_name]** — [coverage_evidence summary]
-
-**Rules:**
-- Gap dimensions come first, covered dimensions after
-- Gap questions come from `structural_coverage_card.gap_questions` — match by `dimension_id`
-- Present questions as numbered lists, verbatim from the JSON
-- Do NOT attempt to answer gap questions yourself — they are for the user
-- One bridge sentence per gap dimension is allowed (same rule as other cards)
-
-**Example:**
-> **[GAP] Commitment Reversibility**
->
-> The recommendation locks in a 3-year term without naming what would trigger early exit.
->
-> - What's missing: No discussion of exit clauses, switching costs, or conditions that would make the commitment regrettable
-> - Why it matters: A 3-year lock-in at this scale creates significant switching costs if assumptions change
-> - Questions to answer before deciding:
->   1. What would need to change in the first 6 months for you to wish you hadn't signed?
->   2. What's the actual cost of exiting this contract early if the vendor underdelivers?
->
-> **[COVERED] Stakeholder Alignment** — The answer identifies key decision-makers and their approval requirements
-
-#### Bullshit Profile — Delivery Audit
-
-**Reading the data:** After the pipeline completes, read the `bullshit_profile` key from the result JSON. It has this structure:
-```json
-{
-  "summary": { "total_passages": N, "passages_with_detections": N, "total_clear": N, "total_marginal": N },
-  "passages": [
-    {
-      "passage": "...",
-      "empty_rhetoric": { "detected": true/false, "reasoning": "...", "severity": "clear|marginal" },
-      "paltering": { "detected": true/false, "reasoning": "...", "severity": "clear|marginal" },
-      "weasel_words": { "detected": true/false, "reasoning": "...", "severity": "clear|marginal" },
-      "unverified_claims": { "detected": true/false, "reasoning": "...", "severity": "clear|marginal" }
-    }
-  ]
-}
-```
-
-**You MUST check `summary.total_clear`.** If it is greater than 0, there are clear detections — present them. Do not skip this check. Do not assume zero detections without reading the number.
-
-**If `summary.total_clear` > 0:**
-
-> ### Delivery Audit
->
-> The original advice was checked for patterns of speech produced without regard for truth-value (Frankfurt, 2005). [total_passages] passages evaluated, [total_clear] clear detections:
->
-> - **[subtype]** in "[short quote from passage]" — [one-line from reasoning field]
-> - **[subtype]** in "[short quote]" — [reasoning]
-
-**Finding the entries to show:** Iterate `passages[]`, for each check all four subtypes. When `detected` is `true` AND `severity` is `"clear"`, that's a detection to display. Priority order for selection: paltering first, then unverified_claims, then empty_rhetoric, then weasel_words.
-
-**Rules:**
-- Only show **clear** severity detections. Suppress marginal.
-- Quote a short phrase (under 15 words) from the flagged passage, not the whole passage.
-- Use the BI result's `reasoning` field verbatim, not your own interpretation.
-- Do NOT editorialize. This section is structured rendering, like the cards. Your interpretation of what the BI found belongs in Step 6.
-- Maximum 5 entries. If more than 5 clear detections, show the 5 highest-signal and note "[N] additional detections in full profile."
-
-**If `summary.total_clear` is 0:**
-
-> ### Delivery Audit
->
-> No clear delivery issues detected in the original advice.
-
-**If `bullshit_profile` is null or missing:** Skip this section entirely. Do not mention it.
+**BullshitProfile fields:** `summary` with total_passages, passages_with_detections, total_clear, total_marginal. `passages[]` with passage text and four subtypes (empty_rhetoric, paltering, weasel_words, unverified_claims), each with detected, reasoning, severity.
 
 ### Step 5: Open Observatory
 
@@ -628,11 +493,9 @@ Map each divergence to the question that triggered it: (1) shift I dismissed, (2
 
 ### Step 9: Open Observatory
 
-After the full cycle is complete (cards, updated position, and pressure check all persisted), **offer to open the Observatory**:
+After the full cycle is complete (cards, updated position, and pressure check all persisted), **launch the Observatory**. The Observatory is the primary detail surface — it renders full card breakdowns, chunk lists, gap questions, delivery audit passages, the revised answer with markdown, and the pressure check with per-lane divergences. The chat summary from Step 4 is designed to be incomplete — it points users here for the full picture.
 
-Say something like: *"Want me to open the Observatory to explore these findings visually? It shows all four cards, the updated position, and the pressure check in a navigable interface."*
-
-If the user accepts (or says "show me", "visualize", "observatory", "open in browser"), launch it:
+**Always launch the Observatory** after Step 8b completes. Do not wait for the user to ask:
 
 ```bash
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
@@ -640,7 +503,7 @@ python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_I
 
 This starts a local server at http://localhost:8080. Tell the user the URL and that they can press Ctrl+C in the terminal to stop the server.
 
-If findings are especially rich (4+ findings across multiple lanes), proactively launch the Observatory without waiting for confirmation.
+Say something like: *"The Observatory is live at http://localhost:8080 — it has the full audit: all [N] findings with challenge questions and reversal triggers, [N] mental model connections with failure modes and premortems, [N] frame elements with alternative questions, and [N] structural dimensions. Everything the chat summary pointed to is there in detail."*
 
 ## Completion Status
 
@@ -671,6 +534,7 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | `references/confusion-guardrails.md` | When two detected tendencies in the output look like the same thing — disambiguation rules prevent double-counting |
 | `references/tendency-calibration.md` | When a detection feels marginal or the user questions a finding — contains detection boundaries and threshold guidance per tendency |
 | `references/anti-bullshit-doctrine.md` | **Read at the start of Step 6** (alongside presentation-voice.md) — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid, negation test as mental model. Also read before Step 8. |
+| `references/presentation-research.md` | When thinking about how to present findings in chat vs. Observatory — book research on scanning, BLUF, story turns, formatting overuse, and the golden pocket between McKinsey-dry and fiction-entertaining |
 | `HOW_IT_WORKS.md` (repo root) | When the user asks "how does this work", "what just happened", or about the architecture — full technical reference including research foundations, step-by-step pipeline flow, and knowledge substrate |
 
 ## Sub-Agent Prompt Templates
