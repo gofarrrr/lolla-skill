@@ -483,7 +483,7 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 **Primary product:**
 - Query and vanilla answer (expandable drawers)
 - DeltaCard — findings with severity, passages, challenges, reversal triggers
-- CompanionCheatSheet — model anchors with typed chunks (failure modes, premortems, antagonists)
+- CompanionCheatSheet — model anchors with presence badges (EXECUTED/VIOLATED), evidence quotes, presence explanations, and typed chunks (failure modes, premortems, antagonists, heuristics, identity)
 - FramePressureCard — frame elements with reframings
 - StructuralCoverageCard — gap dimensions with discovery questions
 - Revised answer with source provenance badge (`claude_step6`)
@@ -491,10 +491,13 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 **Trust / health context:**
 - Run health — overall, capture, substrate, embeddings, fingerprint status
 - Pipeline inspector — tendency funnel (25 → triggered → detected → routed → DeltaCard)
+- Delivery audit — bullshit detection with clear/unclear passage counts
 - Knowledge graph — model detail views, tendency catalog browsing
 
 **Sidebar:**
-- Reasoning graph
+- Reasoning graph — force-directed d3 layout showing companion models, chunk references, and KG edges (ally/antagonist/tension)
+- Frame pressure summary
+- Structural coverage summary
 - Knowledge substrate stats
 
 ---
@@ -581,12 +584,13 @@ When running inside the repo, the pipeline uses the repo's `build/` directly. Wh
 
 ## Cost Per Run
 
-A typical run makes 8-10 OpenRouter calls against `x-ai/grok-4.1-fast`:
+A typical run makes 10-13 OpenRouter calls against `x-ai/grok-4.1-fast`:
 - 1 extraction call (~3K tokens in, ~1K out)
 - 1 triage call (~4K tokens in, ~2K out)
 - 2-4 deep check calls (~2K tokens each)
 - 2 companion calls (~3K tokens each)
 - 2 frame pressure calls (~2K tokens each)
+- 2-3 structural coverage calls (~2K tokens each): question classification, dimension detection + coverage, gap question generation (conditional, only when gaps exist)
 
-Total: roughly 25-35K tokens. At Grok 4.1 Fast pricing, this is approximately $0.03-0.05 per audit. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
+Total: roughly 30-40K tokens. At Grok 4.1 Fast pricing, this is approximately $0.03-0.06 per audit. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
 
