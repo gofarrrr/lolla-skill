@@ -177,9 +177,16 @@ class PromotedBundleTrace:
 
 
 @dataclass(frozen=True)
+class TriggeredTendency:
+    tendency_id: str
+    source: str          # "triage" | "embedding" | "always_include"
+    score: int | float
+
+
+@dataclass(frozen=True)
 class AuditTrace:
     triage_scores: tuple[TriageScore, ...] = ()
-    triggered_tendencies: tuple[str, ...] = ()
+    triggered_tendencies: tuple[TriggeredTendency, ...] = ()
     deep_check_results: tuple[DeepCheckResult, ...] = ()
     routing_decisions: tuple[TendencyRoute, ...] = ()
     boundary_calls: tuple[BoundaryCallTrace, ...] = ()
@@ -456,19 +463,19 @@ class SystemBPipeline:
             triage_by_id = {s.tendency_id: s for s in triage_scores}
             synthetic_results = [
                 DeepCheckResult(
-                    tendency_id=tid,
-                    tendency_name=self._catalog.lookup(tid).display_name,
-                    tendency_number=self._catalog.lookup(tid).tendency_number,
+                    tendency_id=tt.tendency_id,
+                    tendency_name=self._catalog.lookup(tt.tendency_id).display_name,
+                    tendency_number=self._catalog.lookup(tt.tendency_id).tendency_number,
                     detected=True,
-                    confidence=round(triage_by_id[tid].score / 10.0, 2),
-                    evidence=triage_by_id[tid].evidence,
+                    confidence=round(triage_by_id[tt.tendency_id].score / 10.0, 2),
+                    evidence=triage_by_id[tt.tendency_id].evidence,
                     sub_pattern="",
                     specific_passage="",
-                    severity="medium" if triage_by_id[tid].score >= 7 else "low",
+                    severity="medium" if triage_by_id[tt.tendency_id].score >= 7 else "low",
                     reason="triage-only synthetic result",
                 )
-                for tid in triggered_tendencies
-                if tid in triage_by_id
+                for tt in triggered_tendencies
+                if tt.tendency_id in triage_by_id
             ]
             routes = tuple(
                 route_deep_check_results(
@@ -897,7 +904,7 @@ def _run_pass2_single(
 
 def _run_pass2_parallel(
     *,
-    triggered_tendencies: tuple[str, ...],
+    triggered_tendencies: tuple[TriggeredTendency, ...],
     request: CritiqueRequest,
     boundary: BoundaryClient,
     catalog: TendencyCatalog,
@@ -914,23 +921,23 @@ def _run_pass2_parallel(
         # Fallback for test mocks or custom clients without the new method
         results: list[DeepCheckResult] = []
         traces: list[BoundaryCallTrace] = []
-        for tendency_id in triggered_tendencies:
+        for tt in triggered_tendencies:
             pass2_system, pass2_user = format_pass2_prompt(
                 query=request.query,
                 vanilla_answer=request.vanilla_answer,
-                tendency_key=tendency_id,
+                tendency_key=tt.tendency_id,
                 catalog=catalog,
             )
             payload = boundary.run_json(pass2_system, pass2_user)
-            traces.append(_capture_boundary_call(boundary, stage="pass2", tendency_id=tendency_id))
-            results.append(parse_pass2_result(payload, requested_tendency_key=tendency_id, catalog=catalog))
+            traces.append(_capture_boundary_call(boundary, stage="pass2", tendency_id=tt.tendency_id))
+            results.append(parse_pass2_result(payload, requested_tendency_key=tt.tendency_id, catalog=catalog))
         return results, traces
 
     max_workers = min(len(triggered_tendencies), 8)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [
-            executor.submit(_run_pass2_single, tid, request, boundary, catalog)
-            for tid in triggered_tendencies
+            executor.submit(_run_pass2_single, tt.tendency_id, request, boundary, catalog)
+            for tt in triggered_tendencies
         ]
     # Collect in submission order (preserves tendency ordering)
     deep_results: list[DeepCheckResult] = []
@@ -1090,8 +1097,8 @@ def _select_triggered_tendencies(
     always_include: tuple[str, ...] = (),
     catalog: TendencyCatalog | None = None,
     embedding_tendency_hits: dict[str, float] | None = None,
-) -> tuple[str, ...]:
-    triggered: list[str] = []
+) -> tuple[TriggeredTendency, ...]:
+    triggered: list[TriggeredTendency] = []
     seen: set[str] = set()
     for score in triage_scores:
         if score.score < triage_threshold:
@@ -1099,7 +1106,7 @@ def _select_triggered_tendencies(
         if score.tendency_id in seen:
             continue
         seen.add(score.tendency_id)
-        triggered.append(score.tendency_id)
+        triggered.append(TriggeredTendency(tendency_id=score.tendency_id, source="triage", score=score.score))
 
     for raw_key in always_include:
         key = str(raw_key or "").strip()
@@ -1111,15 +1118,15 @@ def _select_triggered_tendencies(
         if canonical_key in seen:
             continue
         seen.add(canonical_key)
-        triggered.append(canonical_key)
+        triggered.append(TriggeredTendency(tendency_id=canonical_key, source="always_include", score=0))
 
     # Swiss cheese: embedding hits that LLM triage missed
     if embedding_tendency_hits:
-        for tendency_id in embedding_tendency_hits:
+        for tendency_id, cosine_score in embedding_tendency_hits.items():
             if tendency_id in seen:
                 continue
             seen.add(tendency_id)
-            triggered.append(tendency_id)
+            triggered.append(TriggeredTendency(tendency_id=tendency_id, source="embedding", score=cosine_score))
 
     return tuple(triggered)
 
