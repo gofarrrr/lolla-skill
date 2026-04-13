@@ -238,6 +238,128 @@ def _get_family_detail(family_id: str) -> dict | None:
     return {**family, "internal_edges": internal_edges}
 
 
+def _build_graph_response() -> dict:
+    """Build the reasoning graph for the current case.
+
+    Nodes: companion models (large), chunk-referenced models (medium),
+    KG neighbors (small). Edges: ally/antagonist/tension from KG.
+    """
+    _reload_result_if_changed()
+    r = _RESULT
+    kg = _load_kg()
+    models_db = kg.get("models", {})
+    kg_edges = kg.get("edges", [])
+    tendencies_db = kg.get("tendencies", {})
+
+    # 1. Companion model IDs (active in the answer)
+    companion = r.get("companion_cheat_sheet", {})
+    companion_ids = {a["model_id"] for a in companion.get("anchors", [])}
+
+    # 2. Chunk-referenced model IDs (mentioned in provenance)
+    chunk_ref_ids: set[str] = set()
+    for a in companion.get("anchors", []):
+        for c in a.get("chunks", []):
+            rtid = c.get("provenance", {}).get("relation_target_id", "")
+            if rtid and rtid not in companion_ids:
+                chunk_ref_ids.add(rtid)
+
+    # 3. Seed set = companion + chunk_ref
+    seed_ids = companion_ids | chunk_ref_ids
+
+    # 4. Find edges involving seed models (ally/antagonist/tension)
+    TYPE_MAP = {"structured_tension": "tension"}
+    GRAPH_TYPES = {"ally", "antagonist", "structured_tension"}
+    neighbor_ids: set[str] = set()
+    graph_edges: list[dict] = []
+    seen_edges: set[tuple[str, str, str]] = set()
+
+    for e in kg_edges:
+        etype = e.get("type", "")
+        if etype not in GRAPH_TYPES:
+            continue
+        src, tgt = e.get("source", ""), e.get("target", "")
+        if not (src in seed_ids or tgt in seed_ids):
+            continue
+        edge_type = TYPE_MAP.get(etype, etype)
+        key = (src, tgt, edge_type)
+        if key in seen_edges:
+            continue
+        seen_edges.add(key)
+        graph_edges.append({
+            "source": src,
+            "target": tgt,
+            "type": edge_type,
+            "affinity": 0.5,
+            "description": e.get("context", ""),
+        })
+        if src not in seed_ids:
+            neighbor_ids.add(src)
+        if tgt not in seed_ids:
+            neighbor_ids.add(tgt)
+
+    # Cap neighbors to avoid an overwhelming graph
+    MAX_NEIGHBORS = 20
+    if len(neighbor_ids) > MAX_NEIGHBORS:
+        # Keep neighbors with most connections to seed nodes
+        from collections import Counter
+        neighbor_conn: Counter = Counter()
+        for e in graph_edges:
+            if e["source"] in neighbor_ids:
+                neighbor_conn[e["source"]] += 1
+            if e["target"] in neighbor_ids:
+                neighbor_conn[e["target"]] += 1
+        top = {nid for nid, _ in neighbor_conn.most_common(MAX_NEIGHBORS)}
+        neighbor_ids = top
+        graph_edges = [
+            e for e in graph_edges
+            if e["source"] in seed_ids | neighbor_ids
+            and e["target"] in seed_ids | neighbor_ids
+        ]
+
+    # 5. Build nodes
+    all_ids = companion_ids | chunk_ref_ids | neighbor_ids
+    nodes: list[dict] = []
+    for mid in all_ids:
+        m = models_db.get(mid, {})
+        if mid in companion_ids:
+            role = "companion"
+        elif mid in chunk_ref_ids:
+            role = "chunk_ref"
+        else:
+            role = "neighbor"
+        nodes.append({
+            "id": mid,
+            "label": m.get("display_name", mid.replace("-", " ").title()),
+            "role": role,
+        })
+
+    # 6. Tendencies linked to detected tendency IDs
+    detected_tids = r.get("detected_tendencies", [])
+    if isinstance(detected_tids, list):
+        detected_tids = [t if isinstance(t, str) else t.get("tendency_id", "") for t in detected_tids]
+    else:
+        detected_tids = []
+
+    tendency_list: list[dict] = []
+    for tid in detected_tids:
+        t = tendencies_db.get(tid, {})
+        if not t:
+            continue
+        tendency_list.append({
+            "tendency_id": tid,
+            "display_name": t.get("display_name", tid),
+            "core_models": [m["model"] if isinstance(m, dict) else m for m in t.get("core_models", [])],
+            "antidote_models": [m["model"] if isinstance(m, dict) else m for m in t.get("antidote_models", [])],
+        })
+
+    return {
+        "stats": _get_kg_stats(),
+        "tendencies": tendency_list,
+        "nodes": nodes,
+        "edges": graph_edges,
+    }
+
+
 def _get_tendency_catalog() -> list[dict]:
     kg = _load_kg()
     tendencies = kg.get("tendencies", {})
@@ -329,6 +451,9 @@ class ResultHandler(SimpleHTTPRequestHandler):
                 return
             if len(parts) == 5 and parts[4] == "audit_trace":
                 self._json_response(_RESULT.get("audit_summary") or {})
+                return
+            if len(parts) == 5 and parts[4] == "graph":
+                self._json_response(_build_graph_response())
                 return
 
         if path.startswith("/api/model/"):
