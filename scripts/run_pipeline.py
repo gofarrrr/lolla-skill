@@ -157,6 +157,22 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         ],
         "triggered_tendencies": list(result.audit.triggered_tendencies),
         "boundary_call_count": len(result.audit.boundary_calls),
+        "boundary_calls": [
+            {
+                "stage": bc.stage,
+                "tendency_id": bc.tendency_id,
+                "provider_name": bc.provider_name,
+                "model": bc.model,
+                "status": bc.status,
+                "prompt_tokens": bc.prompt_tokens,
+                "completion_tokens": bc.completion_tokens,
+                "total_tokens": bc.total_tokens,
+                "cached_tokens": bc.cached_tokens,
+                "cache_write_tokens": bc.cache_write_tokens,
+                "reasoning_tokens": bc.reasoning_tokens,
+            }
+            for bc in result.audit.boundary_calls
+        ],
         "warnings": list(result.audit.warnings),
         "embedding_swiss_cheese_active": embedding_active,
         "compiled_substrate_chunk_count": compiled_chunk_count,

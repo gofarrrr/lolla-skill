@@ -470,6 +470,52 @@ class EmbeddingRetriever:
         except Exception:
             return False
 
+    def score_candidate_chunks(
+        self,
+        query_vec: list[float],
+        candidates: list[tuple[str, str]],
+    ) -> dict[tuple[str, str], float]:
+        """Score specific candidate chunks by cosine similarity.
+
+        Args:
+            query_vec: Pre-computed query embedding vector.
+            candidates: List of (model_id, chunk_text_prefix_80) pairs to score.
+
+        Returns:
+            {(model_id, text_prefix): cosine_similarity} for candidates found
+            in the DB. Missing candidates are omitted (caller treats as 0.0).
+        """
+        if not candidates:
+            return {}
+        conn = self._connect()
+        if conn is None:
+            return {}
+
+        # Build lookup set for fast matching
+        wanted = set(candidates)
+        # Collect unique model_ids to narrow the DB query
+        model_ids = list({mid for mid, _ in wanted})
+
+        try:
+            placeholders = ",".join("?" for _ in model_ids)
+            rows = conn.execute(
+                f"SELECT model_id, chunk_type, chunk_text, embedding "
+                f"FROM chunk_embeddings WHERE model_id IN ({placeholders})",
+                model_ids,
+            ).fetchall()
+        except Exception:
+            _LOGGER.warning("score_candidate_chunks: query failed", exc_info=True)
+            return {}
+
+        scores: dict[tuple[str, str], float] = {}
+        for row in rows:
+            key = (row["model_id"], row["chunk_text"][:80])
+            if key in wanted:
+                vec = blob_to_vec(row["embedding"])
+                sim = _cosine_similarity(query_vec, vec)
+                scores[key] = max(scores.get(key, 0.0), sim)
+        return scores
+
     # -- Cleanup -------------------------------------------------------------
 
     def close(self):

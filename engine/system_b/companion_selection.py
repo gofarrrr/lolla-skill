@@ -178,26 +178,28 @@ def _build_chunk_relevance_scores(
     query_text: str,
     embedding_retriever,
     embedding_api_key: str,
+    candidates: list[CheatSheetChunk],
 ) -> dict[tuple[str, str], float]:
-    """Build a {(model_id, chunk_text_prefix) -> relevance_score} map.
+    """Build a {(model_id, chunk_text_prefix) -> cosine_similarity} map.
+
+    Scores the actual candidate chunks against the query embedding using
+    direct cosine similarity from the chunk_embeddings DB.
 
     Returns empty dict on failure (graceful degradation to deterministic sort).
     """
-    if embedding_retriever is None or not embedding_api_key:
+    if embedding_retriever is None or not embedding_api_key or not candidates:
         return {}
     try:
         if not embedding_retriever.chunk_embeddings_available():
             return {}
-        ranked = embedding_retriever.rank_chunks_expanded(
-            query_text, embedding_api_key, top_k=100,
-        )
-        # Key by (model_id, first 80 chars of chunk_text) for matching against
-        # CheatSheetChunk.text which may be slightly different from the indexed text
-        scores: dict[tuple[str, str], float] = {}
-        for hit in ranked:
-            key = (hit["model_id"], hit["chunk_text"][:80])
-            scores[key] = max(scores.get(key, 0.0), hit["score"])
-        return scores
+        query_vec = embedding_retriever.embed_and_cache(query_text, embedding_api_key)
+        if query_vec is None:
+            return {}
+        # Build candidate keys for targeted scoring
+        candidate_keys = [
+            (c.source_model_id, c.text[:80]) for c in candidates
+        ]
+        return embedding_retriever.score_candidate_chunks(query_vec, candidate_keys)
     except Exception:
         _LOGGER.warning("chunk reranker: failed, falling back to deterministic sort",
                         exc_info=True)
@@ -508,7 +510,7 @@ def select_companion_cheat_sheet(
 
     # Step 3: Sort by quality — use embedding reranker if available
     relevance_scores = _build_chunk_relevance_scores(
-        query_text, embedding_retriever, embedding_api_key,
+        query_text, embedding_retriever, embedding_api_key, candidates,
     ) if query_text else {}
 
     if relevance_scores:
