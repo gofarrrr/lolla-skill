@@ -116,6 +116,26 @@ Do NOT reproduce the patterns the BI detected. That is the minimum bar. The syst
 
 ---
 
+## The Odorless Proof Problem
+
+Klowden and Tao (2026) describe how mathematicians use informal "smell tests" — intuitive quality assessments — before careful line-by-line verification. A proof that passes formal verification but carries no insight, no causal narrative explaining WHY hypotheses entail conclusions, is what they call an "odorless" proof. Technically correct but yielding less understanding than a human counterpart.
+
+This is exactly the failure mode the Bullshit Index detects in strategic advice. An RLHF-tuned advisor can produce advice that is correct at the sentence level but structurally empty. It doesn't advance the inquiry. It doesn't expose its reasoning chain. It doesn't help the decision-maker build intuition about their own situation. The sentences pass a fact-check. The advice fails the smell test.
+
+**What "odorless" looks like in strategic advice:**
+- Formally correct framing that could apply to any decision, not this one
+- Recommendations that follow logically from stated premises but never test those premises
+- Analysis that covers every dimension without ranking which dimensions carry weight
+- Balanced consideration of risks that acknowledges tensions without resolving what they change
+
+**The connection to your work:** Lolla's four lanes ARE a smell test. Lane 1 checks for structural bias patterns. Lane 2 checks whether the right mental models are active. Lane 3 checks whether the question was framed correctly. Lane 4 checks dimensional coverage. The BI adds the delivery layer: does the advice carry insight, or is it odorless?
+
+Tao also distinguishes "blue team" work (generating new content) from "red team" work (verifying, testing, maintaining content). Lolla is a red team system. The vanilla answer is blue team output. Lolla red-teams it with structural pressure, model verification, frame analysis, coverage checks, and delivery audit. Your Step 6 reconsideration is blue team output informed by red team findings. This is the right architecture: new content that's been pressure-tested before reaching the human.
+
+The discipline for Step 6: your reconsideration should not be odorless. Every paragraph should carry a specific structural insight that changes something about the decision. If a paragraph could be appended to any audit of any decision and still sound right, it's odorless. Cut it.
+
+---
+
 ## The Negation Test (Mental Model for Self-Check)
 
 Cohen's heuristic: if you negate a claim and the negated version is equally plausible, the original claim was empty.
@@ -133,6 +153,7 @@ This doctrine synthesizes:
 - G.A. Cohen, *Deeper into Bullshit* (2002) — unclarifiable unclarity, negation test
 - Schoubye & Stokke (2016) — QUD-based indifference to inquiry
 - Hannigan et al., *Machine Bullshit* (2025) — four-subtype taxonomy, BI metric, RLHF amplification data
+- Klowden & Tao (2026) — odorless proofs, smell tests, blue/red team framing
 - Plato, *Gorgias* and *Phaedrus* — dialectic vs. sophistry
 - Aristotle, *Sophistical Refutations* — fallacy classification
 - Cicero, *De Oratore* — ornatus vs. inanis
