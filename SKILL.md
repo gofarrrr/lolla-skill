@@ -188,20 +188,20 @@ Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json`. Before presenting, read `referenc
 
 Example: *"Your recommendation commits to a 3-year vendor lock-in without naming a single condition that would make you walk away."*
 
-**Then present 2-4 additional findings**, each as a short block. Select across lanes — don't dump all of Lane 1 before touching Lane 3. Pick by signal strength, not lane order. For each finding:
+**Then present 2-4 additional findings**, each as a short block. Select across finding types — don't dump all tendency findings before touching frame alternatives. Pick by signal strength, not by type. For each finding:
 
 > **[Finding name]** — [bridge sentence connecting to this conversation]
 >
 > [One concrete detail: the challenge question, the reversal trigger, the reframed question, or the gap question. Pick whichever is most actionable for this finding. Quote verbatim from the JSON.]
 
-That's it per finding. No severity labels, no "Pattern found:" field markers, no chunk lists.
+That's it per finding. Do NOT include severity in parentheses like "(High severity)" or "(high)" after the finding name — severity informs your selection of which findings to show and in what order, not how you label them. No "Pattern found:" field markers, no chunk lists.
 
-**If the audit found a strong reframing** (from Lane 3), include one:
+**If the audit found a strong reframing** (from frame pressure analysis), include one:
 
 > **Alternative question:** "[reframed_question from frame_pressure_card.reframings]"
 > [what_opens — one line on what this reframing changes]
 
-**If Lane 4 found gaps**, name them in a single line:
+**If structural coverage found gaps**, name them in a single line:
 
 > **Structural gaps:** [dimension_name_1], [dimension_name_2] — [N] questions to answer before deciding (see Observatory for full list)
 
@@ -223,14 +223,11 @@ If `summary.total_clear` is 0: skip — don't mention it. Clean delivery is the 
 
 These belong in Observatory only. Claude reads them from the JSON to inform Step 6 reasoning, but does NOT render them in the chat:
 
-- Full DeltaCard finding blocks with all fields (specific_passage, challenge_statement, next_move)
-- CompanionCheatSheet anchor blocks with chunk lists (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap)
-- FramePressureCard element blocks with evidence_quote, fragility_signal
-- StructuralCoverageCard dimension-by-dimension listings with gap questions
-- Compound pattern groups
-- Secondary/low-severity findings
-- Bullshit profile passage-by-passage breakdown
-- Audit trace internals (triage scores, fingerprint diagnostics)
+**Process artifacts (never in chat):** card names (DeltaCard, CompanionCheatSheet, FramePressureCard, StructuralCoverageCard), pipeline stages, lane numbers (Lane 1, Lane 2, etc.), triage scores, boundary call counts, fingerprint diagnostics, audit trace internals, JSON field names, embedding scores, prompt versions.
+
+**Detail artifacts (Observatory only):** full finding blocks with all fields, companion anchor chunk lists (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap), frame element blocks with evidence_quote and fragility_signal, dimension-by-dimension structural gap listings, compound pattern groups, secondary/low-severity findings, bullshit profile passage-by-passage breakdown.
+
+**The rule:** process artifacts never appear in chat. Product artifacts (findings, challenge questions, reframings, gap questions, mental model connections) are presented in human language — no field names, no card names, no lane numbers.
 
 ---
 
@@ -293,7 +290,7 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 
 - **Treat FramePressureCard as an invitation to widen the frame.** If the audit found an embedded assumption in the question, you don't have to abandon your answer — but you might want to acknowledge what changes if that assumption is relaxed.
 
-- **Treat StructuralCoverageCard as territory you cannot address alone.** When Lane 4 identifies structural gaps, acknowledge them as dimensions you cannot address without user input. Do NOT attempt to answer gap questions yourself. Gap questions are an invitation for the user to deepen the conversation — they ask for situation knowledge only the decision-maker has. Your role is to flag these gaps honestly and let the user decide which ones matter enough to explore.
+- **Treat StructuralCoverageCard as territory you cannot address alone.** When structural coverage identifies gaps, acknowledge them as dimensions you cannot address without user input. Do NOT attempt to answer gap questions yourself. Gap questions are an invitation for the user to deepen the conversation — they ask for situation knowledge only the decision-maker has. Your role is to flag these gaps honestly and let the user decide which ones matter enough to explore.
 
 **Structure your updated position in this order:**
 
@@ -347,6 +344,16 @@ print(f'Revised answer persisted to {result_path}')
 ```
 
 **This step is not optional.** Without it, the Observatory shows an incomplete run — four cards with no revised answer.
+
+### Step 6c: Generate Memo
+
+After persisting the revised answer, generate the standalone markdown memo:
+
+```bash
+python3 $SKILL_DIR/scripts/render_memo.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json --output /tmp/lolla_${LOLLA_RUN_ID}_memo.md
+```
+
+This produces a persistent markdown artifact the user can reference or share without the Observatory. The memo includes key findings, mental model connections, frame alternatives, structural gaps, and the updated position — all in one portable document.
 
 ### Step 7: Pressure-Check Sub-Agents
 
@@ -503,24 +510,25 @@ python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_I
 
 This starts a local server at http://localhost:8080. Tell the user the URL and that they can press Ctrl+C in the terminal to stop the server.
 
-Say something like: *"The Observatory is live at http://localhost:8080 — it has the full audit: all [N] findings with challenge questions and reversal triggers, [N] mental model connections with failure modes and premortems, [N] frame elements with alternative questions, and [N] structural dimensions. Everything the chat summary pointed to is there in detail."*
+Say something like: *"The Observatory is live at http://localhost:8080 — it has the full audit: all [N] findings with challenge questions and reversal triggers, [N] mental model connections with failure modes and premortems, [N] frame elements with alternative questions, and [N] structural dimensions. Everything the chat summary pointed to is there in detail. The full memo is at /tmp/lolla_${LOLLA_RUN_ID}_memo.md — a standalone summary you can share or reference without the Observatory."*
 
-## Completion Status
+## Completion
 
-After the full cycle (present cards → update position → persist → pressure check → Observatory offer), report:
+After the full cycle (present findings → update position → persist → pressure check → Observatory + memo), close with a brief narrative summary — 2-3 sentences in human terms, not a structured block.
 
-```
-STATUS: DONE
-Audited: [brief description of the decision situation]
-Lane 1: [N] tendency detections ([list tendency names])
-Lane 2: [N] companion models detected
-Lane 3: [N] frame elements, [N] reframings
-Lane 4: [N] gap dimensions, [N] covered
-Position updated: [one-sentence summary of what shifted]
-Pressure check: [N] divergences across [M] lanes | aligned | [skipped lanes note]
-```
+**If all lanes completed successfully:**
 
-If any lane failed or returned errors, use `DONE_WITH_CONCERNS` and note which lane had issues.
+Summarize what the audit found in conversational language. Example:
+
+> *Audited your equity decision for Marcus. Found 3 structural patterns in the reasoning, 5 mental model connections, and 4 structural gaps to explore. The Observatory is live for the full picture; the memo captures the key findings at /tmp/lolla_${LOLLA_RUN_ID}_memo.md.*
+
+**If any lane had issues:**
+
+Add one sentence naming which aspect had problems and what the user can try. Example:
+
+> *Frame pressure analysis timed out — try running again or check the Observatory for partial results.*
+
+No status codes (`DONE`, `DONE_WITH_CONCERNS`). No lane numbers. No structured blocks. Just a human wrapping up a conversation.
 
 ## References
 
