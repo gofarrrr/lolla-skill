@@ -359,7 +359,7 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 1. **Pass 1 (Triage):** One OpenRouter call scores the vanilla answer against all 25 Munger tendencies (0-10 each). Uses the query to understand which constraints were live. Result: a shortlist of tendencies scoring 4+ (the "triggered" set).
 
-2. **Embedding swiss cheese** (optional, if `OPENAI_API_KEY` set): Embeds the vanilla answer and compares against 25 pre-computed tendency guidance vectors. Any tendency below the LLM threshold but above the embedding threshold gets promoted into the triggered set. This catches what the LLM missed — and vice versa.
+2. **Embedding swiss cheese** (optional, if `OPENAI_API_KEY` set): Embeds the vanilla answer and compares against 25 pre-computed tendency guidance vectors. Any tendency below the LLM threshold but above the embedding threshold gets promoted into the triggered set. This catches what the LLM missed — and vice versa. Each triggered tendency carries a `TriggeredTendency` record with its `source` (`triage`, `embedding`, or `always_include`) and `score` — enabling observability into which detection layer caught what. The result JSON includes both `triggered_tendencies` (IDs) and `triggered_tendency_sources` (full source/score records).
 
 3. **Pass 2 (Deep Checks):** One OpenRouter call PER triggered tendency, run in parallel (up to 8 concurrent). Each call checks ONE tendency in isolation — seeing only that tendency's definition, its sub-pattern menu, and the vanilla answer. Context isolation prevents tendency contamination. Returns: detected/not-detected, confidence, sub-pattern, specific passage, severity.
 
@@ -379,7 +379,7 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 **Lane 3 — Frame Pressure (2 OpenRouter calls):**
 
-1. **Frame extraction:** One OpenRouter call reads the QUERY (not the answer) for embedded assumptions, mutable constraints, and suppressed counterfactuals. Returns 0-5 frame elements.
+1. **Frame extraction:** One OpenRouter call reads the QUERY (not the answer) for embedded assumptions, mutable constraints, and suppressed counterfactuals. Returns 0-5 frame elements. **Validation:** Elements with empty `evidence_quote` or `frame_pattern` are rejected before routing — the extraction LLM sometimes produces structurally incomplete elements. Dropped elements and their drop reasons (`missing_evidence`, `missing_pattern`) are tracked in `dropped_frame_elements` on the FramePressureCard for observability.
 
 2. **Deterministic routing:** Each frame element's `frame_pattern` is looked up in the Wave 5 reframing routing table → candidate models.
 
@@ -451,24 +451,26 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 
 ### Step 4: Present Results
 
-Claude reads the pipeline output JSON and presents four sections:
+Claude reads the pipeline output JSON and presents a focused chat summary — not a card dump. The detailed card rendering lives in the Observatory.
 
-**DeltaCard (Structural Pressure):**
-For each top finding: tendency name, sub-pattern, severity, the specific passage from the conversation that triggered it, the challenge statement (from curated knowledge), and a reversal trigger (concrete observable condition).
+**Product vs. process separation:** The chat output uses human language exclusively. Card names (`DeltaCard`, `CompanionCheatSheet`), lane numbers, pipeline stages, severity labels, and JSON field names never appear. Findings are presented by signal strength across all finding types — not grouped by lane.
 
-**CompanionCheatSheet (Mental Models Active):**
-For each verified model: name, how it appears (executed/violated), evidence quote, and attached curated chunks — failure modes, premortem questions, antagonists.
+**Chat output structure:**
 
-**FramePressureCard (Question-Level Audit):**
-Frame elements (assumptions, mutable constraints, suppressed counterfactuals) and reframed alternative questions.
+1. **Opening line (BLUF):** One sentence naming the single most important structural weakness. This is the Sinatra Test — if this one finding lands, credibility for the whole audit follows.
 
-**StructuralCoverageCard (Gap Discovery):**
-For each uncovered structural dimension: the dimension name and cleaving frame, the gap (what was missing), routed mental models, and 2-3 discovery questions following 5Ws+H — concrete questions first, reflective last. These questions are the HITL bridge: they surface what only the decision-maker knows.
+2. **2-4 additional findings**, each as a short block: finding name, one bridge sentence connecting to this conversation, one concrete detail (challenge question, reframed question, or gap question — whichever is most actionable). No severity labels — severity informs which findings are selected and in what order, not how they're labeled.
+
+3. **Delivery check** (conditional): If the Bullshit Index found clear detections, one line naming the count and dominant subtype. Clean delivery is the default, not an achievement — zero detections means no mention.
+
+4. **Closing line:** One sentence pointing to Observatory.
+
+**Bridge anti-bullshit constraints** apply to every bridge sentence: no bridge that could stand alone without the finding (anti-empty-rhetoric), no bridge that softens a finding's force (anti-paltering), no hedging language (anti-weasel), no claims not traceable to a specific passage (anti-unverified).
 
 **Updated Position (Step 6):**
-After presenting the four cards, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging. Claude holds each curated chunk against the specific conversation to see if there's a live connection — some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
+After presenting findings, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging. Claude holds each curated chunk against the specific conversation to see if there's a live connection — some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
 
-**Presentation model — one bridge sentence per finding:** Each finding, anchor, frame element, and gap dimension gets one sentence that connects the abstract pattern to what happened in THIS conversation. This is the readability layer — it helps the reader absorb the finding without cross-referencing JSON. No opening paragraphs for card sections, no judgment words ("sound", "correctly diagnosed"), no multi-sentence narratives. The curated knowledge (challenge statements, failure modes, premortem questions) is presented verbatim from the pipeline output. Claude's voice and interpretation belong exclusively in Step 6 (Updated Position), not in the card rendering.
+**Narrative closing:** The run ends with 2-3 sentences in human language — what the audit found, where to go deeper (Observatory, memo), and what to do next. No STATUS codes, no lane counts, no CI-report formatting.
 
 ### Step 5: Observatory (Optional)
 
@@ -500,6 +502,37 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 - Structural coverage summary
 - Knowledge substrate stats
 
+### Step 5b: Memo Artifact
+
+After the Observatory, the pipeline also produces a standalone markdown memo:
+
+```bash
+python3 $SKILL_DIR/scripts/render_memo.py \
+  --result /tmp/lolla_{run_id}_result.json \
+  --output /tmp/lolla_{run_id}_memo.md
+```
+
+The memo renderer is deterministic — no API calls, no LLM, pure template rendering from the result JSON. It produces a portable markdown document with up to 7 sections, each with guard clauses so the memo degrades gracefully when optional data is absent:
+
+1. **Heading** — decision context truncated to first 2 sentences
+2. **Key Findings** — from `delta_card.findings`, sorted by severity (high → medium → low), with passage deduplication (same passage blockquote rendered only once even if multiple findings reference it)
+3. **Mental Model Connections** — from `companion_cheat_sheet.anchors` with presence mode
+4. **Frame Alternatives** — from `frame_pressure_card.reframings`
+5. **Structural Gaps** — from `structural_coverage_card.gap_questions` with dimension names
+6. **Delivery Check** — from `bullshit_profile.summary` when detections exist, naming count and dominant subtype
+7. **Updated Position** — `revised_answer` rendered as-is
+8. **Pressure Check** — from `gap_check.lanes`, only lanes with divergences, with card names translated to human labels
+
+The memo is the shareable artifact — it can be emailed, pasted into a doc, or read without the Observatory.
+
+### Bullshit Index — Fact Registry
+
+The Bullshit Index (adapted from Hannigan et al., 2025) evaluates the vanilla answer for four subtypes of bullshit: empty rhetoric, paltering, weasel words, and unverified claims. To reduce false positives on unverified claims, the BI judge receives a **fact registry** — a structured summary of what the user established in conversation.
+
+The fact registry extracts `decision_situation`, `live_constraints`, and `dropped_threads` from the extraction JSON into a compact context block (~1500 chars vs. the previous 4000-char raw conversation truncation). The `_CONTEXT_BLOCK` instructs the judge that claims referencing, restating, paraphrasing, or drawing reasonable inferences from user-stated facts are grounded — only claims introducing information the user never provided should be flagged.
+
+This structured approach gives the judge a cleaner signal about what counts as established context, reducing over-flagging of claims that are grounded in conversational facts.
+
 ---
 
 ## Quality Doctrine
@@ -528,7 +561,7 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 - **Pass 2 is single-shot.** No iterative refinement. If the deep check misses a sub-pattern, it stays missed.
 - **Routing is lookup-only.** 1-hop graph expansion with optional embedding reranking, no multi-hop reasoning or dynamic traversal.
 - **Embedding threshold is fixed.** 0.30 for tendency signal, not tuned per tendency.
-- **Companion verification is strict.** Quote-must-be-literal-substring rejects paraphrased evidence. Good for precision, costs recall.
+- **Companion verification is strict.** Quote verification first tries literal substring match, then falls back to fuzzy matching (80% token overlap) before rejecting as `fabricated_quote`. This catches paraphrased evidence that preserves semantic content. Genuinely fabricated quotes are still dropped.
 - **No feedback loop.** Pipeline output doesn't feed back into itself. No learning from past runs — improvements come from reviewed curation at the correct layer.
 
 ---
