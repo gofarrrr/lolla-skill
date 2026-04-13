@@ -81,13 +81,23 @@ class ModelAnchor:
     model_id: str
     display_name: str
     chunks: tuple[CheatSheetChunk, ...]
+    presence_mode: str = ""  # executed | violated
+    evidence_quote: str = ""
+    presence_explanation: str = ""
 
     def to_payload(self) -> dict:
-        return {
+        d = {
             "model_id": self.model_id,
             "display_name": self.display_name,
             "chunks": [c.to_payload() for c in self.chunks],
         }
+        if self.presence_mode:
+            d["presence_mode"] = self.presence_mode
+        if self.evidence_quote:
+            d["evidence_quote"] = self.evidence_quote
+        if self.presence_explanation:
+            d["presence_explanation"] = self.presence_explanation
+        return d
 
 
 @dataclass(frozen=True)
@@ -587,10 +597,16 @@ def select_companion_cheat_sheet(
                 break
 
     # Step 6: Assemble into ModelAnchors
-    # Rebuild display names from companion card
+    # Rebuild display names + detection metadata from companion card
     display_names: dict[str, str] = {}
+    detection_meta: dict[str, tuple[str, str, str]] = {}  # model_id → (presence_mode, evidence_quote, presence_explanation)
     for dm in companion_card.detected_models:
         display_names[dm.model_id] = dm.model_name
+        detection_meta[dm.model_id] = (
+            dm.presence_mode,
+            dm.evidence_quote,
+            dm.presence_explanation,
+        )
     for ic in companion_card.identity_chunks:
         display_names[ic.model_id] = ic.display_name
 
@@ -603,6 +619,9 @@ def select_companion_cheat_sheet(
             model_id=model_id,
             display_name=display_names.get(model_id, model_id),
             chunks=tuple(chunks),
+            presence_mode=detection_meta.get(model_id, ("", "", ""))[0],
+            evidence_quote=detection_meta.get(model_id, ("", "", ""))[1],
+            presence_explanation=detection_meta.get(model_id, ("", "", ""))[2],
         )
         for model_id, chunks in anchor_chunks.items()
     )
