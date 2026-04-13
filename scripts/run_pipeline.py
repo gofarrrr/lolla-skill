@@ -89,6 +89,44 @@ def _extract_user_turns(conversation_path: Path) -> str:
     return "\n\n".join(user_texts)
 
 
+def _build_fact_registry(extraction: dict) -> str:
+    """Build a structured fact registry from the extraction JSON.
+
+    Produces a compact context string for the BI judge, replacing raw
+    conversation truncation with structured facts the user established.
+    """
+    ext = extraction.get("extraction", extraction)
+    parts: list[str] = []
+
+    # Decision situation as opening context
+    situation = ext.get("decision_situation", "")
+    if situation:
+        parts.append(f"Decision: {situation}")
+
+    # Live constraints
+    constraints = ext.get("live_constraints", [])
+    if constraints:
+        parts.append("\nEstablished facts:")
+        for c in constraints:
+            constraint = c.get("constraint", "")
+            weight = c.get("weight", "")
+            status = c.get("status", "")
+            if constraint:
+                parts.append(f"- {constraint} (weight: {weight}, status: {status})")
+
+    # Dropped threads
+    threads = ext.get("dropped_threads", [])
+    if threads:
+        parts.append("\nDropped threads:")
+        for t in threads:
+            thread = t.get("thread", "")
+            status = t.get("status", "")
+            if thread:
+                parts.append(f"- DROPPED: {thread} (status: {status})")
+
+    return "\n".join(parts) if parts else ""
+
+
 # ---------------------------------------------------------------------------
 # Data root resolution
 # ---------------------------------------------------------------------------
@@ -155,7 +193,11 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
             {"tendency_id": s.tendency_id, "score": s.score, "evidence": s.evidence}
             for s in result.audit.triage_scores
         ],
-        "triggered_tendencies": list(result.audit.triggered_tendencies),
+        "triggered_tendencies": [tt.tendency_id for tt in result.audit.triggered_tendencies],
+        "triggered_tendency_sources": [
+            {"tendency_id": tt.tendency_id, "source": tt.source, "score": tt.score}
+            for tt in result.audit.triggered_tendencies
+        ],
         "boundary_call_count": len(result.audit.boundary_calls),
         "boundary_calls": [
             {
@@ -365,14 +407,19 @@ def main() -> int:
         from system_b.bullshit_index import evaluate_text
 
         client = load_boundary_client_from_env("openrouter")
-        # Pass full user turns as context so the judge can see what facts
-        # were established in conversation. Falls back to query if no
-        # conversation file was provided.
-        bi_context = _conversation_context if _conversation_context else query
+        # Prefer structured fact registry from extraction (compact, precise).
+        # Fall back to raw conversation truncation when extraction unavailable.
+        fact_registry = _build_fact_registry(extraction)
+        if fact_registry:
+            bi_context = fact_registry
+        elif _conversation_context:
+            bi_context = _conversation_context[:4000]
+        else:
+            bi_context = query
         profile = evaluate_text(
             vanilla_answer,
             client,
-            context_summary=bi_context[:4000],
+            context_summary=bi_context,
         )
         return profile.to_payload()
 

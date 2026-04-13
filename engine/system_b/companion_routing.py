@@ -108,6 +108,22 @@ def _quote_in_answer(quote: str, answer_text: str) -> bool:
     return normalized_quote in normalized_answer
 
 
+def _fuzzy_quote_in_answer(quote: str, answer_text: str, threshold: float = 0.80) -> bool:
+    """Check if a quote has high token overlap with the answer.
+
+    Fallback for when exact substring matching fails due to minor
+    paraphrasing by the LLM. Uses 80% threshold (stricter than the 60%
+    used for dedup in _quotes_overlap).
+    """
+    quote_tokens = _tokenize(quote)
+    if not quote_tokens or len(quote_tokens) < 3:
+        return False
+    answer_tokens = _tokenize(answer_text)
+    if not answer_tokens:
+        return False
+    return len(quote_tokens & answer_tokens) / len(quote_tokens) >= threshold
+
+
 def validate_fingerprint_moves(
     moves: list[FingerprintMove] | object,
     vanilla_answer: str,
@@ -130,6 +146,15 @@ def validate_fingerprint_moves(
             validated.append(move)
             continue
         if any(isinstance(quote, str) and quote and not _quote_in_answer(quote, answer_text) for quote in quotes):
+            # Fuzzy fallback: check if the non-matching quotes have high token overlap
+            if all(
+                isinstance(quote, str) and quote and (
+                    _quote_in_answer(quote, answer_text) or _fuzzy_quote_in_answer(quote, answer_text)
+                )
+                for quote in quotes
+            ):
+                validated.append(move)
+                continue
             dropped.append({"move": move, "drop_reason": "fabricated_quote"})
             continue
         dropped.append({"move": move, "drop_reason": "quote_not_literal_substring"})
