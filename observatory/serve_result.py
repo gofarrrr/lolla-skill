@@ -288,6 +288,7 @@ def _build_case_response() -> dict:
         "gap_check": r.get("gap_check"),
         "gap_check_summary": r.get("gap_check_summary"),
         "has_gap_check": r.get("has_gap_check", False),
+        "bullshit_profile": r.get("bullshit_profile"),
     }
 
     # Run health — surfaces capture, substrate, embeddings, fingerprint status
