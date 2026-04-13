@@ -152,10 +152,10 @@ Present the `decline_reason` to the user and stop. Example: "This conversation i
 ### Step 3: Run Pipeline
 
 ```bash
-python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision
+python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision
 ```
 
-This runs the full Lolla pipeline — all four lanes — via OpenRouter. The `--skip-revision` flag skips the OpenRouter revision step because you (Claude) produce the final revised position yourself in Step 6, using the full conversation context and the four cards. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_result.json`.
+This runs the full Lolla pipeline — all four lanes — via OpenRouter. The `--skip-revision` flag skips the OpenRouter revision step because you (Claude) produce the final revised position yourself in Step 6, using the full conversation context and the four cards. The `--conversation-file` passes the raw conversation transcript so the Bullshit Index detector can see the full user context (what facts the user stated) and avoid flagging grounded claims as unverified. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_result.json`.
 
 **If the output `status` is `error`:** Present the error to the user. Common causes: API timeout (try again), missing API key, data file issues.
 
@@ -167,11 +167,29 @@ Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and present four sections. **Step 
 - Present each finding, anchor, and frame element as a separate block — do not merge, reorder, or omit entries
 - Quote `specific_passage`, `challenge_statement`, `next_move`, `evidence_quote`, and chunk text verbatim from the JSON
 - **One bridge sentence per finding is allowed** — a single sentence that connects the abstract pattern to what happened in THIS conversation. This is the readability layer. Example: "The recommendation settled without testing whether the current arrangement still earns renewal on its own terms." That's a bridge. Two or more sentences of narrative is NOT a bridge — it's editorializing.
+- **Bridge anti-bullshit constraints** (compile-time rules, not suggestions):
+  - No bridge sentence that could stand alone without the finding — it must reference something specific from the pipeline output (anti-empty-rhetoric)
+  - No bridge sentence that acknowledges a finding while softening its force — "this is a minor consideration" on a high-severity finding is paltering (anti-paltering)
+  - No "may," "could," "potentially," "largely," "arguably" in bridge sentences — say what the pipeline found, not what it might have found (anti-weasel)
+  - No claims about the conversation not traceable to a specific passage in the extraction — if you can't point at where in the conversation the pattern appeared, drop the bridge (anti-unverified)
 - **No opening paragraphs.** Do not start any card section with a paragraph summarizing the card's theme or your impression of the findings. Go straight to the first finding.
 - **No judgment words** inside card sections: "sound", "clean", "well applied", "real structural weakness", "correctly diagnosed", etc. Those belong in Step 6.
 - Do not skip reframings based on your judgment of whether they were "already explored" — present what the pipeline returned
 - Tendency names and severity ARE the headline — use the template format below, tendency name first
 - Framing, opinion, and voice belong in Step 6, not here
+
+**Bullshit Index annotations (Step 4):**
+If `bullshit_profile` exists in the result JSON, check each finding's `specific_passage` against the BI passages. When a finding's passage overlaps with a BI passage that has a **clear**-severity detection, add a `Delivery:` line to the finding block:
+
+> - **Delivery:** Original advice used [subtype] here — [one-line from BI reasoning]
+
+Example: `- **Delivery:** Original advice used paltering here — "revenue grew 40%" omits that growth was from a one-time contract`
+
+Rules for BI annotations:
+- Only show **clear** severity detections. Suppress marginal.
+- Maximum one `Delivery:` line per finding (pick the highest-signal subtype if multiple detected).
+- The `Delivery:` line goes after `Reversal trigger:` (DeltaCard) or after the last structured field (other cards).
+- Do NOT add `Delivery:` lines to findings whose passage has no BI overlap. Most findings will have no annotation. That's fine.
 
 ---
 
@@ -326,6 +344,52 @@ For each dimension in `structural_coverage_card.dimensions`:
 >
 > **[COVERED] Stakeholder Alignment** — The answer identifies key decision-makers and their approval requirements
 
+#### Bullshit Profile — Delivery Audit
+
+**Reading the data:** After the pipeline completes, read the `bullshit_profile` key from the result JSON. It has this structure:
+```json
+{
+  "summary": { "total_passages": N, "passages_with_detections": N, "total_clear": N, "total_marginal": N },
+  "passages": [
+    {
+      "passage": "...",
+      "empty_rhetoric": { "detected": true/false, "reasoning": "...", "severity": "clear|marginal" },
+      "paltering": { "detected": true/false, "reasoning": "...", "severity": "clear|marginal" },
+      "weasel_words": { "detected": true/false, "reasoning": "...", "severity": "clear|marginal" },
+      "unverified_claims": { "detected": true/false, "reasoning": "...", "severity": "clear|marginal" }
+    }
+  ]
+}
+```
+
+**You MUST check `summary.total_clear`.** If it is greater than 0, there are clear detections — present them. Do not skip this check. Do not assume zero detections without reading the number.
+
+**If `summary.total_clear` > 0:**
+
+> ### Delivery Audit
+>
+> The original advice was checked for patterns of speech produced without regard for truth-value (Frankfurt, 2005). [total_passages] passages evaluated, [total_clear] clear detections:
+>
+> - **[subtype]** in "[short quote from passage]" — [one-line from reasoning field]
+> - **[subtype]** in "[short quote]" — [reasoning]
+
+**Finding the entries to show:** Iterate `passages[]`, for each check all four subtypes. When `detected` is `true` AND `severity` is `"clear"`, that's a detection to display. Priority order for selection: paltering first, then unverified_claims, then empty_rhetoric, then weasel_words.
+
+**Rules:**
+- Only show **clear** severity detections. Suppress marginal.
+- Quote a short phrase (under 15 words) from the flagged passage, not the whole passage.
+- Use the BI result's `reasoning` field verbatim, not your own interpretation.
+- Do NOT editorialize. This section is structured rendering, like the cards. Your interpretation of what the BI found belongs in Step 6.
+- Maximum 5 entries. If more than 5 clear detections, show the 5 highest-signal and note "[N] additional detections in full profile."
+
+**If `summary.total_clear` is 0:**
+
+> ### Delivery Audit
+>
+> No clear delivery issues detected in the original advice.
+
+**If `bullshit_profile` is null or missing:** Skip this section entirely. Do not mention it.
+
 ### Step 5: Open Observatory
 
 **Do NOT offer the Observatory here.** Continue to Step 6. The Observatory should only be offered after the full cycle completes (after Step 8b), when all artifacts — cards, updated position, and pressure check — are persisted to the result JSON and the user can see the complete picture.
@@ -346,7 +410,7 @@ When presenting results:
 
 ### Step 6: Update Your Position
 
-Before writing this section, read `references/presentation-voice.md` for voice guidance — Munger-inspired directness, storytelling, concrete antidotes. **This is the section where voice and interpretation belong.** Step 4 rendered the raw audit; Step 6 is where you reason about it.
+Before writing this section, read `references/presentation-voice.md` for voice guidance and `references/anti-bullshit-doctrine.md` for the anti-bullshit thinking framework. Voice tells you HOW to write. Doctrine tells you what patterns to avoid in your own output. **This is the section where voice and interpretation belong.** Step 4 rendered the raw audit; Step 6 is where you reason about it.
 
 After presenting the four cards, **reconsider your earlier advice in this conversation and produce your updated position.** This is the most important step — your updated position IS the product. The four cards are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
 
@@ -388,6 +452,8 @@ Bad updates:
 - Wholesale reversal: completely rewriting your position because the audit said so
 - Mentioning the audit machinery: "The pipeline found that..." / "The delta card suggests..."
 - Treating every finding as significant: performing reconsideration instead of actually reconsidering
+
+**Bullshit Index as internal quality signal:** If `bullshit_profile` exists in the result JSON, read it before writing. It tells you where the original advice was weak (empty rhetoric, paltering, weasel words, unverified claims). Your Step 6 must be stronger in exactly those places. Do NOT mention the BI to the user. Do NOT present BI results as separate findings. See `references/anti-bullshit-doctrine.md` for the full thinking framework.
 
 ### Step 6b: Persist Revised Answer
 
@@ -481,6 +547,8 @@ Only "yes" answers get reported. Present divergences under a `### Pressure Check
 - Just: "I said X. There's a case for Y that I may be underweighting."
 - Be honest. The anchoring you're warned about in the cards applies here too — the temptation is to dismiss divergences because you wrote Step 6. Fight that.
 - If a sub-agent over-corrects (treats every finding as damning when some are noise), note that rather than surfacing it as a divergence. Use your judgment — but lean toward surfacing rather than suppressing.
+
+**Bullshit Index in Step 8:** Cross-check your Step 6 against the `bullshit_profile`. Did you reproduce patterns the BI flagged in the original? See `references/anti-bullshit-doctrine.md` for the specific RLHF patterns to watch for in your own output.
 
 ### Step 8b: Persist Pressure Check
 
@@ -602,6 +670,7 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | `references/tendency-catalog.md` | When presenting DeltaCard findings — to verify tendency names and corrective model bindings match the canonical catalog |
 | `references/confusion-guardrails.md` | When two detected tendencies in the output look like the same thing — disambiguation rules prevent double-counting |
 | `references/tendency-calibration.md` | When a detection feels marginal or the user questions a finding — contains detection boundaries and threshold guidance per tendency |
+| `references/anti-bullshit-doctrine.md` | **Read at the start of Step 6** (alongside presentation-voice.md) — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid, negation test as mental model. Also read before Step 8. |
 | `HOW_IT_WORKS.md` (repo root) | When the user asks "how does this work", "what just happened", or about the architecture — full technical reference including research foundations, step-by-step pipeline flow, and knowledge substrate |
 
 ## Sub-Agent Prompt Templates
