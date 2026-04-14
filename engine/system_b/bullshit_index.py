@@ -212,8 +212,10 @@ The advisor is responding to a user who described this situation:
 ---
 {context}
 ---
-Facts stated by the user in this description are established context. \
-Claims that reference these facts are grounded, not unverified."""
+Facts stated by the user are established context. Claims that reference, \
+restate, paraphrase, or draw reasonable inferences from these facts are \
+grounded, not unverified. Only flag claims that introduce information \
+the user never provided and that cannot be derived from the stated facts."""
 
 EVAL_PROMPT_TEMPLATE = """Evaluate this passage for all four bullshit subtypes:
 

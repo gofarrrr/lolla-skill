@@ -67,6 +67,7 @@ class FramePressureCard:
     reframings: tuple[Reframing, ...] = ()  # max 2
     anti_echo_model_ids: tuple[str, ...] = ()  # models excluded (Lane 1 overlap)
     overlap_flags: tuple[str, ...] = ()  # frame patterns that overlap Lane 1 at pressure-concept level
+    dropped_frame_elements: tuple[dict, ...] = ()  # elements rejected during parsing
 
     def to_payload(self) -> dict:
         """Serialize to JSON-compatible dict for Observatory / eval surfaces."""
@@ -95,6 +96,7 @@ class FramePressureCard:
             ],
             "anti_echo_model_ids": list(self.anti_echo_model_ids),
             "overlap_flags": list(self.overlap_flags),
+            "dropped_frame_elements": list(self.dropped_frame_elements),
         }
 
     @classmethod
@@ -265,24 +267,45 @@ def _evidence_in_text(evidence: str, text: str) -> bool:
     return False
 
 
-def _parse_frame_extraction(raw: dict, query: str) -> tuple[ExtractedFrameElement, ...]:
-    """Parse frame extraction LLM output into typed dataclasses."""
+def _parse_frame_extraction(
+    raw: dict, query: str,
+) -> tuple[tuple[ExtractedFrameElement, ...], list[dict]]:
+    """Parse frame extraction LLM output into typed dataclasses.
+
+    Returns (valid_elements, dropped_elements) where dropped_elements
+    tracks elements that were rejected with their drop reasons.
+    """
     items = require_list_of_dicts(raw, "frame_elements", "frame_extraction")
     elements: list[ExtractedFrameElement] = []
+    dropped: list[dict] = []
     for item in items:
+        element_text = coerce_str(item.get("element_text"))
         evidence = coerce_str(item.get("evidence_quote"))
-        if evidence and not _evidence_in_text(evidence, query):
+        pattern = coerce_str(item.get("frame_pattern"))
+
+        if not evidence:
+            _LOGGER.warning("Frame element missing evidence_quote, dropping: %r", element_text[:80])
+            dropped.append({"element_text": element_text, "drop_reason": "missing_evidence"})
+            continue
+
+        if not pattern:
+            _LOGGER.warning("Frame element missing frame_pattern, dropping: %r", element_text[:80])
+            dropped.append({"element_text": element_text, "drop_reason": "missing_pattern"})
+            continue
+
+        if not _evidence_in_text(evidence, query):
             _LOGGER.warning(
                 "Frame element evidence_quote not found in query, skipping: %r",
                 evidence[:80],
             )
+            dropped.append({"element_text": element_text, "drop_reason": "evidence_not_in_query"})
             continue
         try:
             el = ExtractedFrameElement(
-                element_text=coerce_str(item.get("element_text")),
+                element_text=element_text,
                 element_type=coerce_str(item.get("element_type")) or "assumption",
                 evidence_quote=evidence,
-                frame_pattern=coerce_str(item.get("frame_pattern")),
+                frame_pattern=pattern,
                 fragility_signal=coerce_str(item.get("fragility_signal")),
                 inquiry_stage=coerce_str(item.get("inquiry_stage")) or "how",
                 likely_default=coerce_str(item.get("likely_default")) or "none",
@@ -290,7 +313,8 @@ def _parse_frame_extraction(raw: dict, query: str) -> tuple[ExtractedFrameElemen
             elements.append(el)
         except (TypeError, ValueError) as exc:
             _LOGGER.warning("Could not parse frame element: %s", exc)
-    return tuple(elements)
+            dropped.append({"element_text": element_text, "drop_reason": f"parse_error: {exc}"})
+    return tuple(elements), dropped
 
 
 # ---------------------------------------------------------------------------
@@ -309,8 +333,8 @@ def run_frame_extraction(
     """
     user_prompt = _format_frame_extraction_user_prompt(query, vanilla_answer)
     raw = boundary.run_json(_FRAME_EXTRACTION_SYSTEM, user_prompt)
-    elements = _parse_frame_extraction(raw, query)
-    return FramePressureCard(frame_elements=elements)
+    elements, dropped = _parse_frame_extraction(raw, query)
+    return FramePressureCard(frame_elements=elements, dropped_frame_elements=tuple(dropped))
 
 
 # ---------------------------------------------------------------------------

@@ -109,10 +109,11 @@ lolla-skill/
 │   └── curated/          # Compiled substrate files (bundle selector, signal lexicon)
 ├── scripts/
 │   ├── run_extract.py    # Step 2: conversation → decision structure (with capture validation)
-│   └── run_pipeline.py   # Step 3: decision structure → four-lane audit (with run health)
+│   ├── run_pipeline.py   # Step 3: decision structure → four-lane audit (with run health)
+│   └── render_memo.py    # Deterministic markdown memo from result.json (no LLM)
 ├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)
-└── tests/                # Test conversations
+└── tests/                # Unit tests (trigger sources, frame validation, fuzzy matching, BI context, memo rendering)
 ```
 
 The engine runs entirely on Python stdlib. No virtual environment, no pip install, no external packages.
