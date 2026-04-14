@@ -71,6 +71,62 @@ def _load_env_file(path: Path) -> list[str]:
     return loaded
 
 
+def _extract_user_turns(conversation_path: Path) -> str:
+    """Extract user messages from a conversation transcript.
+
+    Returns the full text of all user turns, giving the BI judge
+    visibility into what facts were established in conversation.
+    """
+    import re
+    text = conversation_path.read_text(encoding="utf-8")
+    parts = re.split(r"\[Turn \d+\] (USER|ASSISTANT):", text)
+    user_texts = []
+    for i in range(1, len(parts) - 1, 2):
+        role = parts[i].strip()
+        content = parts[i + 1].strip()
+        if role == "USER" and content:
+            user_texts.append(content)
+    return "\n\n".join(user_texts)
+
+
+def _build_fact_registry(extraction: dict) -> str:
+    """Build a structured fact registry from the extraction JSON.
+
+    Produces a compact context string for the BI judge, replacing raw
+    conversation truncation with structured facts the user established.
+    """
+    ext = extraction.get("extraction", extraction)
+    parts: list[str] = []
+
+    # Decision situation as opening context
+    situation = ext.get("decision_situation", "")
+    if situation:
+        parts.append(f"Decision: {situation}")
+
+    # Live constraints
+    constraints = ext.get("live_constraints", [])
+    if constraints:
+        parts.append("\nEstablished facts:")
+        for c in constraints:
+            constraint = c.get("constraint", "")
+            weight = c.get("weight", "")
+            status = c.get("status", "")
+            if constraint:
+                parts.append(f"- {constraint} (weight: {weight}, status: {status})")
+
+    # Dropped threads
+    threads = ext.get("dropped_threads", [])
+    if threads:
+        parts.append("\nDropped threads:")
+        for t in threads:
+            thread = t.get("thread", "")
+            status = t.get("status", "")
+            if thread:
+                parts.append(f"- DROPPED: {thread} (status: {status})")
+
+    return "\n".join(parts) if parts else ""
+
+
 # ---------------------------------------------------------------------------
 # Data root resolution
 # ---------------------------------------------------------------------------
@@ -137,8 +193,28 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
             {"tendency_id": s.tendency_id, "score": s.score, "evidence": s.evidence}
             for s in result.audit.triage_scores
         ],
-        "triggered_tendencies": list(result.audit.triggered_tendencies),
+        "triggered_tendencies": [tt.tendency_id for tt in result.audit.triggered_tendencies],
+        "triggered_tendency_sources": [
+            {"tendency_id": tt.tendency_id, "source": tt.source, "score": tt.score}
+            for tt in result.audit.triggered_tendencies
+        ],
         "boundary_call_count": len(result.audit.boundary_calls),
+        "boundary_calls": [
+            {
+                "stage": bc.stage,
+                "tendency_id": bc.tendency_id,
+                "provider_name": bc.provider_name,
+                "model": bc.model,
+                "status": bc.status,
+                "prompt_tokens": bc.prompt_tokens,
+                "completion_tokens": bc.completion_tokens,
+                "total_tokens": bc.total_tokens,
+                "cached_tokens": bc.cached_tokens,
+                "cache_write_tokens": bc.cache_write_tokens,
+                "reasoning_tokens": bc.reasoning_tokens,
+            }
+            for bc in result.audit.boundary_calls
+        ],
         "warnings": list(result.audit.warnings),
         "embedding_swiss_cheese_active": embedding_active,
         "compiled_substrate_chunk_count": compiled_chunk_count,
@@ -147,6 +223,27 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_fingerprint_dropped": list(result.audit.companion_fingerprint_dropped),
         "companion_detected_models": list(result.audit.companion_detected_models),
         "companion_rejected_models": list(result.audit.companion_rejected_models),
+        "deep_check_results": [
+            {
+                "tendency_id": dcr.tendency_id,
+                "tendency_name": dcr.tendency_name,
+                "detected": dcr.detected,
+                "confidence": dcr.confidence,
+                "sub_pattern": dcr.sub_pattern,
+                "specific_passage": dcr.specific_passage[:200] if dcr.specific_passage else "",
+                "severity": dcr.severity,
+            }
+            for dcr in result.audit.deep_check_results
+        ],
+        "routing_decisions": [
+            {
+                "tendency_id": rd.tendency.tendency_id,
+                "primary_model_id": rd.primary_model_id,
+                "sub_pattern": rd.sub_pattern,
+                "antidote_model_ids": list(rd.antidote_model_ids),
+            }
+            for rd in result.audit.routing_decisions
+        ],
     }
 
     # Prompt versions (from hardening sprint)
@@ -186,6 +283,10 @@ def main() -> int:
         action="store_true",
         help="Skip the OpenRouter revision step (use when Claude provides its own revision)",
     )
+    parser.add_argument(
+        "--conversation-file",
+        help="Path to raw conversation transcript (provides full context for BI evaluation)",
+    )
     args = parser.parse_args()
 
     # Load env: explicit flag → project .claude/lolla.env → repo .env → ~/.config/lolla/.env
@@ -218,6 +319,13 @@ def main() -> int:
 
     query = cr.get("query", "")
     vanilla_answer = cr.get("vanilla_answer", "")
+
+    # Load full conversation context for BI evaluation if available
+    _conversation_context = ""
+    if args.conversation_file:
+        conv_path = Path(args.conversation_file)
+        if conv_path.exists():
+            _conversation_context = _extract_user_turns(conv_path)
 
     # Read upstream capture diagnostics (from run_extract.py)
     _capture_health = extraction.get("capture_health", "unknown")
@@ -287,35 +395,77 @@ def main() -> int:
     serialized["query"] = query
     serialized["vanilla_answer"] = vanilla_answer
 
-    # Revision step — run the three cards through a second LLM to produce
-    # a revised answer that incorporates the structural pressure.
-    # Skipped when --skip-revision is set (skill flow uses Claude's own revision).
-    revised_answer = None
-    if not args.skip_revision and result.delta_card and result.delta_card.findings:
-        try:
-            from system_b.testing_harness import build_revision_prompt
-            from system_b.boundary_provider import load_boundary_client_from_env
+    # Revision step + Bullshit Index — run in parallel.
+    # Revision: three cards through a second LLM to produce a revised answer.
+    # BI: four-subtype detector on the vanilla answer (always-on).
+    from concurrent.futures import ThreadPoolExecutor, as_completed
 
-            revision_prompt = build_revision_prompt(
-                query=query,
-                vanilla_answer=vanilla_answer,
-                delta_card=result.delta_card,
-                companion_card=result.companion_card,
-                companion_cheat_sheet=result.companion_cheat_sheet,
-            )
-            client = load_boundary_client_from_env("openrouter")
-            revision_result = client.run_json(
-                system_prompt="You revise answers after reasoning pressure. Return strict JSON.",
-                user_prompt=revision_prompt,
-            )
-            revised_answer = revision_result.get("revised_answer")
+    revised_answer = None
+    bullshit_profile_payload = None
+
+    def _run_revision():
+        if args.skip_revision or not (result.delta_card and result.delta_card.findings):
+            return None
+        from system_b.testing_harness import build_revision_prompt
+        from system_b.boundary_provider import load_boundary_client_from_env
+
+        revision_prompt = build_revision_prompt(
+            query=query,
+            vanilla_answer=vanilla_answer,
+            delta_card=result.delta_card,
+            companion_card=result.companion_card,
+            companion_cheat_sheet=result.companion_cheat_sheet,
+        )
+        client = load_boundary_client_from_env("openrouter")
+        revision_result = client.run_json(
+            system_prompt="You revise answers after reasoning pressure. Return strict JSON.",
+            user_prompt=revision_prompt,
+        )
+        return revision_result.get("revised_answer")
+
+    def _run_bullshit_index():
+        from system_b.boundary_provider import load_boundary_client_from_env
+        from system_b.bullshit_index import evaluate_text
+
+        client = load_boundary_client_from_env("openrouter")
+        # Prefer structured fact registry from extraction (compact, precise).
+        # Fall back to raw conversation truncation when extraction unavailable.
+        fact_registry = _build_fact_registry(extraction)
+        if fact_registry:
+            bi_context = fact_registry
+        elif _conversation_context:
+            bi_context = _conversation_context[:4000]
+        else:
+            bi_context = query
+        profile = evaluate_text(
+            vanilla_answer,
+            client,
+            context_summary=bi_context,
+        )
+        return profile.to_payload()
+
+    with ThreadPoolExecutor(max_workers=2) as post_pool:
+        revision_future = post_pool.submit(_run_revision)
+        bi_future = post_pool.submit(_run_bullshit_index)
+
+        try:
+            revised_answer = revision_future.result()
         except Exception as exc:
             print(
                 json.dumps({"warning": f"Revision step failed (non-fatal): {exc}"}),
                 file=sys.stderr,
             )
 
+        try:
+            bullshit_profile_payload = bi_future.result()
+        except Exception as exc:
+            print(
+                json.dumps({"warning": f"Bullshit index failed (non-fatal): {exc}"}),
+                file=sys.stderr,
+            )
+
     serialized["revised_answer"] = revised_answer
+    serialized["bullshit_profile"] = bullshit_profile_payload
 
     # Decomposed run health
     _substrate_ok = _compiled_chunk_count > 0

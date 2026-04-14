@@ -81,13 +81,23 @@ class ModelAnchor:
     model_id: str
     display_name: str
     chunks: tuple[CheatSheetChunk, ...]
+    presence_mode: str = ""  # executed | violated
+    evidence_quote: str = ""
+    presence_explanation: str = ""
 
     def to_payload(self) -> dict:
-        return {
+        d = {
             "model_id": self.model_id,
             "display_name": self.display_name,
             "chunks": [c.to_payload() for c in self.chunks],
         }
+        if self.presence_mode:
+            d["presence_mode"] = self.presence_mode
+        if self.evidence_quote:
+            d["evidence_quote"] = self.evidence_quote
+        if self.presence_explanation:
+            d["presence_explanation"] = self.presence_explanation
+        return d
 
 
 @dataclass(frozen=True)
@@ -178,26 +188,28 @@ def _build_chunk_relevance_scores(
     query_text: str,
     embedding_retriever,
     embedding_api_key: str,
+    candidates: list[CheatSheetChunk],
 ) -> dict[tuple[str, str], float]:
-    """Build a {(model_id, chunk_text_prefix) -> relevance_score} map.
+    """Build a {(model_id, chunk_text_prefix) -> cosine_similarity} map.
+
+    Scores the actual candidate chunks against the query embedding using
+    direct cosine similarity from the chunk_embeddings DB.
 
     Returns empty dict on failure (graceful degradation to deterministic sort).
     """
-    if embedding_retriever is None or not embedding_api_key:
+    if embedding_retriever is None or not embedding_api_key or not candidates:
         return {}
     try:
         if not embedding_retriever.chunk_embeddings_available():
             return {}
-        ranked = embedding_retriever.rank_chunks_expanded(
-            query_text, embedding_api_key, top_k=100,
-        )
-        # Key by (model_id, first 80 chars of chunk_text) for matching against
-        # CheatSheetChunk.text which may be slightly different from the indexed text
-        scores: dict[tuple[str, str], float] = {}
-        for hit in ranked:
-            key = (hit["model_id"], hit["chunk_text"][:80])
-            scores[key] = max(scores.get(key, 0.0), hit["score"])
-        return scores
+        query_vec = embedding_retriever.embed_and_cache(query_text, embedding_api_key)
+        if query_vec is None:
+            return {}
+        # Build candidate keys for targeted scoring
+        candidate_keys = [
+            (c.source_model_id, c.text[:80]) for c in candidates
+        ]
+        return embedding_retriever.score_candidate_chunks(query_vec, candidate_keys)
     except Exception:
         _LOGGER.warning("chunk reranker: failed, falling back to deterministic sort",
                         exc_info=True)
@@ -508,7 +520,7 @@ def select_companion_cheat_sheet(
 
     # Step 3: Sort by quality — use embedding reranker if available
     relevance_scores = _build_chunk_relevance_scores(
-        query_text, embedding_retriever, embedding_api_key,
+        query_text, embedding_retriever, embedding_api_key, candidates,
     ) if query_text else {}
 
     if relevance_scores:
@@ -585,10 +597,16 @@ def select_companion_cheat_sheet(
                 break
 
     # Step 6: Assemble into ModelAnchors
-    # Rebuild display names from companion card
+    # Rebuild display names + detection metadata from companion card
     display_names: dict[str, str] = {}
+    detection_meta: dict[str, tuple[str, str, str]] = {}  # model_id → (presence_mode, evidence_quote, presence_explanation)
     for dm in companion_card.detected_models:
         display_names[dm.model_id] = dm.model_name
+        detection_meta[dm.model_id] = (
+            dm.presence_mode,
+            dm.evidence_quote,
+            dm.presence_explanation,
+        )
     for ic in companion_card.identity_chunks:
         display_names[ic.model_id] = ic.display_name
 
@@ -601,6 +619,9 @@ def select_companion_cheat_sheet(
             model_id=model_id,
             display_name=display_names.get(model_id, model_id),
             chunks=tuple(chunks),
+            presence_mode=detection_meta.get(model_id, ("", "", ""))[0],
+            evidence_quote=detection_meta.get(model_id, ("", "", ""))[1],
+            presence_explanation=detection_meta.get(model_id, ("", "", ""))[2],
         )
         for model_id, chunks in anchor_chunks.items()
     )

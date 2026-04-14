@@ -10,13 +10,14 @@ When you ask an LLM whether to hire a VP of Sales, sign a vendor contract, or re
 
 Lolla is not in the business of finding better answers. It is in the business of **being less wrong** — reintroducing the friction that LLM fluency removes, so that inconvenient tensions, missing reversal conditions, and embedded assumptions don't get smoothed out of the narrative.
 
-Three independent audit lanes:
+Four independent audit lanes:
 
 | Lane | What it asks | Output |
 |------|-------------|--------|
 | **Structural Pressure** | Which cognitive tendencies are distorting this reasoning? | DeltaCard — tendency detections with corrective models, challenge statements, reversal triggers |
 | **Model Companion** | Which mental models are already active in this reasoning? | CompanionCheatSheet — verified model presence with failure modes, premortem questions, antagonists |
 | **Frame Pressure** | What assumptions are embedded in the question itself? | FramePressureCard — suppressed counterfactuals, mutable constraints, reframed alternative questions |
+| **Structural Coverage** | What structural territory did the answer never enter? | CoverageCard — gap dimensions with discovery questions only the decision-maker can answer |
 
 Each lane produces independent, traceable findings grounded in curated knowledge — not LLM-generated commentary.
 
@@ -108,10 +109,11 @@ lolla-skill/
 │   └── curated/          # Compiled substrate files (bundle selector, signal lexicon)
 ├── scripts/
 │   ├── run_extract.py    # Step 2: conversation → decision structure (with capture validation)
-│   └── run_pipeline.py   # Step 3: decision structure → three-lane audit (with run health)
-├── observatory/          # Local web UI — three cards, revised answer, run health, KG browser
+│   ├── run_pipeline.py   # Step 3: decision structure → four-lane audit (with run health)
+│   └── render_memo.py    # Deterministic markdown memo from result.json (no LLM)
+├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)
-└── tests/                # Test conversations
+└── tests/                # Unit tests (trigger sources, frame validation, fuzzy matching, BI context, memo rendering)
 ```
 
 The engine runs entirely on Python stdlib. No virtual environment, no pip install, no external packages.
@@ -122,7 +124,7 @@ See **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)** — the full technical reference cove
 
 ## Cost
 
-A typical audit makes 8-11 OpenRouter calls against the configured model (default: `x-ai/grok-4.1-fast`). Total: ~25-35K tokens, approximately $0.03-0.05 per run. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus batch embedding for 3 query variants (~$0.0002).
+A typical audit makes 10-13 OpenRouter calls against the configured model (default: `x-ai/grok-4.1-fast`). Total: ~30-40K tokens, approximately $0.03-0.06 per run. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus batch embedding for 3 query variants (~$0.0002).
 
 ## Inspiration and Credits
 
@@ -141,6 +143,8 @@ Lolla exists because of foundational work by others:
 - [Karpathy's knowledge wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (Andrej Karpathy) — Compilation-based knowledge management: raw sources → persistent wiki artifacts with cross-references, not retrieval-based rediscovery. Directly mirrors our curation → compilation pipeline.
 - [autoresearch](https://github.com/karpathy/autoresearch) (Andrej Karpathy) — Clean separation of stable substrate from experimental layer, with documentation as a first-class programming interface.
 - [iwe](https://github.com/iwe-org/iwe) — Structured knowledge graphs from Markdown with hierarchy, polyhierarchy, and context inheritance. "Messy knowledge yields poor results." Validated our curated-Markdown-first doctrine.
+- [Machine Bullshit](https://github.com/synthanai/Machine-Bullshit) (Hannigan et al., 2025) — Four-subtype LLM-as-judge bullshit detector operationalizing Frankfurt's (2005) definition. Adapted for strategic advice domain as Lolla's Bullshit Index layer. MIT license.
+- [Mathematical methods and human thought in the age of AI](https://arxiv.org/abs/2603.26524) (Klowden & Tao, 2026) — "Odorless proof" concept (technically correct output lacking insight), "smell test" as informal quality assessment before formal verification, blue/red team framing for AI-assisted reasoning. Directly informs our anti-bullshit doctrine and Lolla's architectural role as a red team system.
 - [gstack](https://github.com/AshMartian/gstack) — Demonstrated that Claude Code skills can be comprehensive workflow systems, not just prompt snippets.
 - [superpowers](https://github.com/NickHeap2/claude-code-superpowers) — Showed how to present a skill with confidence and clear value proposition.
 - [context-engineering](https://github.com/coleam00/context-engineering) — Validated the academic-rigor approach to skill presentation and that curated knowledge substrates outperform generated content.
@@ -164,7 +168,7 @@ If you're building something where structured reasoning, knowledge engineering, 
 The system works — but more data from real runs will let us tune the deterministic routing, understand detection patterns better, and calibrate where the system is strong and where it's still rough.
 
 - **More mental models.** Domain-specific model packs — legal reasoning, medical decision-making, engineering tradeoffs — each following the same curation methodology, would make the system sharper in specialized contexts.
-- **New lanes.** The three-lane architecture is extensible. Temporal reasoning, stakeholder mapping, assumption dependency chains — each would follow the same pattern: probabilistic detection at the edges, deterministic routing in the middle.
+- **New lanes.** The four-lane architecture is extensible. Temporal reasoning, stakeholder mapping, assumption dependency chains — each would follow the same pattern: probabilistic detection at the edges, deterministic routing in the middle.
 - **Better detection calibration.** More runs against more cases means better understanding of where each tendency's detection boundary should sit.
 - **Deeper conversation extraction.** There's more signal in conversational dynamics — how positions shift across turns, where the human pushed back and the LLM folded, where concerns were raised and then quietly dropped.
 - **Beyond the skill.** The curated knowledge substrate and the audit architecture are not limited to a Claude Code skill. The same engine could power API-level reasoning checks, editorial review workflows, decision journaling tools, or structured training environments where people practice spotting reasoning weaknesses. We see directions we haven't built yet — and probably directions we haven't thought of.
