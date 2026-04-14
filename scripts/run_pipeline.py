@@ -223,6 +223,27 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_fingerprint_dropped": list(result.audit.companion_fingerprint_dropped),
         "companion_detected_models": list(result.audit.companion_detected_models),
         "companion_rejected_models": list(result.audit.companion_rejected_models),
+        "deep_check_results": [
+            {
+                "tendency_id": dcr.tendency_id,
+                "tendency_name": dcr.tendency_name,
+                "detected": dcr.detected,
+                "confidence": dcr.confidence,
+                "sub_pattern": dcr.sub_pattern,
+                "specific_passage": dcr.specific_passage[:200] if dcr.specific_passage else "",
+                "severity": dcr.severity,
+            }
+            for dcr in result.audit.deep_check_results
+        ],
+        "routing_decisions": [
+            {
+                "tendency_id": rd.tendency.tendency_id,
+                "primary_model_id": rd.primary_model_id,
+                "sub_pattern": rd.sub_pattern,
+                "antidote_model_ids": list(rd.antidote_model_ids),
+            }
+            for rd in result.audit.routing_decisions
+        ],
     }
 
     # Prompt versions (from hardening sprint)
