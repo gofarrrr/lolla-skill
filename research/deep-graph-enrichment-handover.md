@@ -10,6 +10,15 @@ Status: **Layer 1+2 enrichment COMPLETE (222/222). Fan correction LIVE. SPARSE r
 
 **Layers 1+2 are done. The graph is no longer flat. Fan correction is live in the runtime. SPARSE ally recovery was rejected as a design violation.**
 
+**Section 14 rollout status (2026-04-21):**
+- Phase 0 (compiler + loader plumbing) — DONE
+- Phase 0.5 (Layer 1+2 doctrine audit) — DONE
+- Phase 1 (card rendering of affinity_rationale + activation_condition) — DONE, end-to-end verified
+- **Phase 2 (tension enrichment) — SKIPPED (REV-6).** Source audit found all 491 tensions are single-sentence "X conflicts with Y when Z" entries with no richer material behind them in the canonical articles. LLM re-read would synthesize splits the curator never wrote. See Section 14f Phase 2 block for the full finding and the condition under which this decision would flip.
+- Phase 3 (near-tie tiebreaker) — NEXT
+- Phase 4 (ranking blend) — gated on Phase 3
+- Phase 5 (anti-echo suppression) — gated on Phase 3
+
 This section is the authoritative summary. Sections 6-11 below contain the original planning text for context, but this section overrides them where they conflict.
 
 Progress tracker: `lolla-skill/research/layer1-enrichment-progress.md` — shows all 222 models complete.
@@ -1010,7 +1019,30 @@ If this separation is not maintained, the Phase 3 gate becomes a measurement of 
 
 ---
 
-#### Phase 2 — Structured tension enrichment (Task #7 Part B lives here) — runs in parallel with Phase 0/1
+#### Phase 2 — Structured tension enrichment — **SKIPPED 2026-04-21 (REV-6)**
+
+**Decision:** Do NOT run the planned LLM re-read on the 491 tensions. Reasoning below; preserve the original plan text for future reference in case a corpus-side curation pass later changes the input shape.
+
+**Why skipped — the source audit that killed this phase:**
+
+- The 491 tension edges in `data/relationship_graph.json` all come from `Lolla-system-b/curation/relation_semantics/*.json → structured_tensions[]`. Each entry is a single sentence with this exact shape (verified on 491/491): **"X conflicts with Y when Z."**
+- The canonical articles (`MM_CANONICAL_216/*_rag.md`, under the section header "Structured Tension Curation") contain the exact same single sentence for each tension — no surrounding prose, no richer explanation behind it. Examples:
+  - `abstraction_rag.md:103` → "abstraction conflicts with first-principles-thinking (first principles thinking) when high-level labels hide untested assumptions." → this is literally the `source_quote` in the compiled JSON.
+  - `Calculated_Risk_Taking_rag.md:115` → identical pattern.
+- Phase 2 as originally scoped would ask an LLM to split that single sentence into `affinity_rationale` + `activation_condition`. The split is mechanical substrings: `affinity_rationale ≈ "X conflicts with Y"` (tautological — relation_type and target_model_id already encode this), `activation_condition ≈ "when Z"` (already inside `tension_text`). Zero information gain. Any additional content would be LLM synthesis, not curator judgment.
+- Per the **corpus-is-authority principle** (feedback memory, `feedback_corpus_is_authority.md`, 2026-04-21): if the curator wrote one sentence, rendering one sentence is faithful; inventing a split is corpus manipulation.
+
+**Consequences for downstream phases:**
+
+- Phase 3 (tiebreaker) and Phase 4 (blend) cannot match on tension `activation_condition` because it doesn't exist as a separate field. The matcher will see only ally + antagonist activation_conditions (867 edges instead of 1358). Phase 3 fixtures must be authored with this constraint — no fixture should expect a tension edge to win a tie via activation match.
+- Card rendering (Phase 1) already does the right thing for tensions: `tension_text` is surfaced as the connection explanation; no empty `affinity_rationale`/`activation_condition` keys appear in the payload because the serializer omits empty fields.
+- The REV-1 "doctrine gate" for Phase 2 is moot.
+
+**If richer tension structure is ever wanted:** the lever is upstream, in curation — a new wave that authors separate `tension_rationale` (why the two models fundamentally conflict) and `activation_condition` (when that conflict matters) sentences per tension, mirroring the ally/antagonist shape. That is a corpus change (a human curation task), not an LLM extraction task. Until such a corpus pass exists, Phase 2 has nothing to extract.
+
+---
+
+**ORIGINAL PLAN (preserved for reference — DO NOT EXECUTE):**
 
 - **Scope:** apply Layer 1+2 enrichment to the 491 structured tensions that currently have no `activation_condition`, `affinity_rationale`, or `affinity_strength`.
 - **Repo:** `Lolla-system-b/curation/relation_semantics/` curation files (tensions are stored alongside allies/antagonists).
@@ -1080,15 +1112,16 @@ If this separation is not maintained, the Phase 3 gate becomes a measurement of 
 - [x] Testing uses synthetic fixtures in `lolla-skill/tests/fixtures/`, not real `/tmp/lolla_*` captures.
 - [x] Three fixture families: `reasoning_shapes/`, `graphs/`, `expectations/`.
 - [x] Blind authoring protocol for fixtures (author graphs first, shapes blind to targets, distractors added, expectations reviewed by second reader). See 14e. (REV addition)
-- [x] Tension enrichment (Phase 2) uses the thorough route — LLM re-read, batches of ~8, same rubric as Layer 1+2. No scripting shortcuts.
-- [x] Phase ordering: 0 → 0.5 → 1 → (2 parallel) → 3 (tiebreaker) → 4 (blend) → 5. (REV-1 adds 0.5, REV-2 swaps old 3↔4.)
+- [x] ~~Tension enrichment (Phase 2) uses the thorough route — LLM re-read, batches of ~8, same rubric as Layer 1+2.~~ **SUPERSEDED by REV-6 (2026-04-21): Phase 2 SKIPPED.** Source audit showed all 491 tensions are single-sentence "X conflicts with Y when Z" entries with no richer material behind them in the canonical articles. LLM re-read would synthesize splits the curator never wrote. See Phase 2 block in 14f.
+- [x] Phase ordering: 0 → 0.5 → 1 → 3 (tiebreaker) → 4 (blend) → 5. (REV-1 added 0.5; REV-2 swapped old 3↔4; REV-6 removed Phase 2.)
 - [x] Phase 0.5 is a measurement phase — audits Layer 1+2's actual cognitive-move distribution, produces the baseline that Phase 2 must match and Phase 3 matcher calibrates against. Does NOT rewrite Layer 1+2 values. (REV-1)
 - [x] Phase 2 doctrine audit gate: "≥ Layer 1+2 baseline from Phase 0.5," not a fixed ≥95% target. The matcher noise-floor guard in 14d tuning lever 1 absorbs the situational tail. (REV-1)
 - [x] Phase 3 ships activation match as a near-tie tiebreaker ONLY. Default path outside the epsilon window is byte-identical to today's fan-adjusted affinity behavior. (REV-2)
 - [x] Phase 4 (ranking blend) is gated on Phase 3 landing green + one live recompile cycle. Blend weight is NOT pre-set; it comes from Phase 3 fixture data. (REV-2, supersedes first-draft 0.5/0.5 default.)
 - [x] Embeddings.db backfill is a Phase 3 pre-requisite: one-time embedding pass over 1,358 compiled edges' activation_conditions, ~$2-5 per recompile. Documented in 14d. (REV addition)
 - [x] Phase 5 runs last. It is not implemented before Phase 2 is coverage- and audit-passed AND Phase 3 is green.
-- [x] Compiler extension in Phase 0 carries both `affinity_rationale` and `activation_condition` on every ally and antagonist edge; structured tensions join that pipeline only after Phase 2 completes.
+- [x] Compiler extension in Phase 0 carries both `affinity_rationale` and `activation_condition` on every ally and antagonist edge; ~~structured tensions join that pipeline only after Phase 2 completes.~~ **REV-6: tensions never join this pipeline — Phase 2 skipped. Tensions continue to carry `tension_text` only.**
+- [x] **(REV-6, 2026-04-21)** Phase 2 skipped after source audit. Rendering tensions as a single `tension_text` sentence is the faithful representation of what the curator wrote. Revisit only if a corpus-side curation pass produces separate tension_rationale + activation_condition fields per tension.
 
 ---
 
