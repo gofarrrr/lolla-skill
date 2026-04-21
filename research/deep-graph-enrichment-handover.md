@@ -1059,6 +1059,11 @@ If this separation is not maintained, the Phase 3 gate becomes a measurement of 
 
 #### Phase 3 — Activation-match as near-tie tiebreaker (REV-2: was Phase 4)
 
+- **REV-7 (2026-04-21): Phase 3 split into Commit A + Commit B.**
+  - **Commit A — Infrastructure, shipped, no behavior change.** `engine/system_b/edge_activation_store.py` (SQLite storage), `engine/system_b/activation_matcher.py` (the matcher with typed-input enforcement + facts-free adapters), `scripts/build_edge_activation_embeddings.py` (backfill). `RelationGraph.neighborhood()` is NOT wired yet — the matcher is importable but unused. 15 unit tests green; full suite 59/59.
+  - **Commit B — Tiebreaker wire-up + data-driven thresholds, PENDING.** Author ~30 fixtures under the blind protocol (14e), run the backfill (~$2), measure ε and noise-floor from fixture distribution, wire the tiebreaker inside the ε window only.
+  - **Strictness-concern audit (2026-04-21):** the matcher's facts/reasoning-break is enforced on the **input** side (the five typed adapters drop `evidence_quotes`, `coverage_evidence`, etc.). The **edge** side was audited: 0 of 867 activation_conditions contain facts-like patterns (dollar amounts, quoted text, years, fiscal periods, titles). So the matcher has no structural pathway to demote "good" models on account of facts — because curators haven't written facts into activation_conditions in the first place. The strictness is one-sided and safe.
+
 - **Scope:** pickup points #1, #2, #3. `RelationGraph.neighborhood()` ranking + router/bundle selection use activation match to break near-ties in fan-adjusted affinity ONLY. The default path (fan-adjusted affinity alone) stays byte-identical outside the near-tie window.
 - **Repo:** `lolla-skill` (primary) + `Lolla-system-b` (mirror).
 - **Work:**
@@ -1122,6 +1127,7 @@ If this separation is not maintained, the Phase 3 gate becomes a measurement of 
 - [x] Phase 5 runs last. It is not implemented before Phase 2 is coverage- and audit-passed AND Phase 3 is green.
 - [x] Compiler extension in Phase 0 carries both `affinity_rationale` and `activation_condition` on every ally and antagonist edge; ~~structured tensions join that pipeline only after Phase 2 completes.~~ **REV-6: tensions never join this pipeline — Phase 2 skipped. Tensions continue to carry `tension_text` only.**
 - [x] **(REV-6, 2026-04-21)** Phase 2 skipped after source audit. Rendering tensions as a single `tension_text` sentence is the faithful representation of what the curator wrote. Revisit only if a corpus-side curation pass produces separate tension_rationale + activation_condition fields per tension.
+- [x] **(REV-7, 2026-04-21)** Phase 3 Commit A landed — matcher + store + backfill script shipped unused. Commit B (wire-up + threshold tuning) pending fixture authoring. Corpus audit confirmed 0/867 activation_conditions contain facts-like patterns, so the matcher's one-sided strictness has no pathway to demote curator-intended matches.
 
 ---
 
@@ -1131,6 +1137,15 @@ Revised after REV-1 and REV-2; first-draft values that were assumed defaults are
 
 1. **Phase 3 near-tie epsilon.** Cannot be set without Phase 0.5 + initial fixture data showing the distribution of top-2 fan-adjusted affinity deltas on real graph slices. First-draft guess was "TBD"; it stays TBD, to be decided by data.
 2. **Phase 3 noise-floor threshold.** Below this cosine similarity, the tiebreaker abstains (falls back to deterministic ordering). Set from Phase 0.5 distribution + fixture data — so that the threshold naturally filters out matches against the ~35% situational activation_conditions from Layer 1+2.
+
+   **Commit B calibration protocol (REV-7, 2026-04-21):** the order below is deliberate — each step must land green before the next starts.
+
+   1. **Backfill** — `OPENAI_API_KEY=... python scripts/build_edge_activation_embeddings.py` → ~867 vectors in `data/embeddings.db::edge_activation_conditions`. Idempotent, ~$2 one-shot.
+   2. **Sample the real ε distribution** — pick ~50 seed models. For each, enumerate 1-hop ally neighbors, sort by fan-adjusted affinity, record the top-1/top-2 delta. Histogram the deltas. **ε** = the value below which the tiebreaker needs to fire to matter (e.g., the 20th-percentile delta). Do NOT pick ε by taste.
+   3. **Sample the real cosine distribution** — from the same 50 seeds, take ~10 reasoning-shape inputs (pulled from live `/tmp/lolla_*` captures or authored per 14e), score top-5 candidates per input, histogram similarities. **Noise floor** = a percentile chosen so that abstention rate on deliberately generic prose (e.g., `TriggeredTendency("overconfidence", ...)` on its own) matches intuition (likely the 20th–30th percentile).
+   4. **Author ~30 fixtures under 14e blind protocol** — 10 near-tie (expect tiebreaker to fire + pick correctly), 10 non-tie (expect byte-identical to current default path), 10 noise-floor (expect abstention). Fixtures live in `tests/fixtures/{graphs,reasoning_shapes,expectations}/`. A same-session author of the matcher should NOT also author fixtures without a second-reader review — the self-fulfilling-vocabulary trap is real.
+   5. **Wire `reasoning_context` into `RelationGraph.neighborhood()`** — optional kwarg. When present AND top-2 fan-adjusted delta < ε AND top activation-match similarity ≥ noise-floor: reorder the top-2. Otherwise: untouched.
+   6. **Integration gate** — re-run the 5 existing end-to-end fixtures. Any output change must trace to a near-tie fixture's expected direction, or it's a regression.
 3. **Phase 4 blend weight.** REV-2 removed the first-draft 0.5/0.5 default. Set from Phase 3 fixture data once the signal distribution is known. May end up per-lane.
 4. **Phase 5 suppression threshold.** Still cannot be set without Phase 3 fixture data + a separate audit sample of antagonist activation_conditions (separate from the ally-weighted Phase 0.5 sample).
 5. **Phase 5 card rendering of suppression.** Whether to surface a small "model X was considered but suppressed because reasoning already in its failure shape" line. Deferred to Phase 5 kickoff.
