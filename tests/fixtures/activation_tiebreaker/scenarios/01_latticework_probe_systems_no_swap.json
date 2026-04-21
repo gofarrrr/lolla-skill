@@ -1,0 +1,12 @@
+{
+  "name": "latticework seed, systems-aligned probe → no swap",
+  "description": "Near-tie seed 'latticework-of-mental-models' has top-1 systems-thinking (adj_aff 0.1584) and top-2 first-principles-thinking (adj_aff 0.1576), δ=0.00083. A probe paraphrasing systems-thinking's curator AC should score higher against that edge's embedding, which ALREADY matches affinity order — so the gate fires but does not swap.",
+  "claim_type": "mechanical_faithfulness",
+  "seed_model_id": "latticework-of-mental-models",
+  "probe_key": "probe_systems",
+  "expected": {
+    "gate_fired": true,
+    "top_supporting_model_ids": ["systems-thinking", "first-principles-thinking"]
+  },
+  "notes": "Same-session authorship; needs second-reader review. Curator ACs (summary): systems-thinking → 'how models interact as an interconnected system'; first-principles → 'decomposing to fundamental truths'. Probe aligns with the first."
+}

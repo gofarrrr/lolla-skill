@@ -1,0 +1,12 @@
+{
+  "name": "latticework seed, first-principles-aligned probe → swap",
+  "description": "Same seed as scenario 01, but the probe now paraphrases first-principles-thinking's curator AC. Cosine prefers the top-2 (first-principles) edge over the top-1 (systems-thinking) edge, and the score is well above the noise floor, so the gate fires AND swaps the order.",
+  "claim_type": "mechanical_faithfulness",
+  "seed_model_id": "latticework-of-mental-models",
+  "probe_key": "probe_firstprinciples",
+  "expected": {
+    "gate_fired": true,
+    "top_supporting_model_ids": ["first-principles-thinking", "systems-thinking"]
+  },
+  "notes": "Same-session authorship; needs second-reader review. This is the directional-swap case — confirms the gate doesn't just fire but fires in the direction the curator ACs imply."
+}
