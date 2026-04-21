@@ -1128,6 +1128,8 @@ If this separation is not maintained, the Phase 3 gate becomes a measurement of 
 - [x] Compiler extension in Phase 0 carries both `affinity_rationale` and `activation_condition` on every ally and antagonist edge; ~~structured tensions join that pipeline only after Phase 2 completes.~~ **REV-6: tensions never join this pipeline — Phase 2 skipped. Tensions continue to carry `tension_text` only.**
 - [x] **(REV-6, 2026-04-21)** Phase 2 skipped after source audit. Rendering tensions as a single `tension_text` sentence is the faithful representation of what the curator wrote. Revisit only if a corpus-side curation pass produces separate tension_rationale + activation_condition fields per tension.
 - [x] **(REV-7, 2026-04-21)** Phase 3 Commit A landed — matcher + store + backfill script shipped unused. Commit B (wire-up + threshold tuning) pending fixture authoring. Corpus audit confirmed 0/867 activation_conditions contain facts-like patterns, so the matcher's one-sided strictness has no pathway to demote curator-intended matches.
+- [x] **(2026-04-21, commit `4cfdde4`)** Default `PipelineConfig.activation_tiebreaker_enabled = True`; kill switch via `LOLLA_ACTIVATION_TIEBREAKER=off`. `pipeline.py::_route_deep_check_results_with_optional_tiebreaker` threads per-tendency `TendencyRef` as `reasoning_context` when the flag is on. Gate preconditions (step 5) still govern whether the swap can fire.
+- [x] **(2026-04-21, commit `4cfdde4`)** Per-route `TiebreakerTrace` (14 fields, 7 abort reasons + `fired=True`) emitted from `_activation_retie_if_near_tie`, plumbed through `RouteNeighborhood` and `TendencyRoute`, serialized into `audit_summary.routing_decisions[].tiebreaker_supporting` / `.tiebreaker_risk`. See 14h item 2 step 7 (technical detail) and 14k (how to read traces).
 
 ---
 
@@ -1169,6 +1171,32 @@ Revised after REV-1 and REV-2; first-draft values that were assumed defaults are
         - first-principles-aligned probe → **SWAP** (first-principles-thinking promoted past systems-thinking)
         - off-topic "bread proofing" probe → abstention (noise-floor guard holds; default order survives)
       - **Takeaway:** the gate is wired correctly, threads real embeddings through the real code path, and is structurally harmless to paths that don't opt in. It is NOT yet exercised from `pipeline.py` — caller opt-in is a separate product decision (which callsite supplies which reasoning_context).
+
+   7. **Default-on flip + observability trace — DONE 2026-04-21 (commit `4cfdde4`).** Two orthogonal changes shipped together so the tiebreaker runs by default AND every run explains what it did:
+
+      **(A) Default-on with kill switch.** `PipelineConfig.activation_tiebreaker_enabled` now defaults to `True`. `scripts/run_pipeline.py` honors `LOLLA_ACTIVATION_TIEBREAKER` as a kill switch — set to `off|false|0|no` to disable, anything else (including unset) leaves it on. The gate still fires only when the step-5 preconditions hold (non-None `reasoning_context`, no `relevance_scores`, non-None `embeddings_db_path`), so flipping the flag does not by itself change behavior for callers that never supplied a reasoning context. It *does* change behavior for every `/lolla` run, where `pipeline.py::_route_deep_check_results_with_optional_tiebreaker` now threads the per-tendency `TendencyRef` as `reasoning_context`.
+
+      **(B) Per-route `TiebreakerTrace`.** `engine/system_b/relation_graph.py` introduces a frozen 14-field dataclass capturing:
+      - `attempted: bool` — did the gate preconditions hold at the call site?
+      - `fired: bool` — did the swap happen?
+      - `abort_reason: str` — if the gate aborted, which clause? Enum values:
+        - `"fewer_than_2_candidates"` — seed had <2 neighbors of the right edge type.
+        - `"fewer_than_2_after_dedup"` — multiple seed paths collapsed to a single target model.
+        - `"outside_epsilon_window"` — top-1/top-2 delta ≥ ε; tiebreaker not needed.
+        - `"matcher_exception"` — non-TypeError failure during embedding lookup. Silent no-op; TypeError still propagates (programmer-error contract).
+        - `"matcher_empty_result"` — matcher returned <2 results (e.g., DB missing rows for these edges).
+        - `"below_noise_floor"` — `max(top1_sim, top2_sim) < 0.45`; reasoning context doesn't map to either edge.
+        - `"no_improvement"` — top-1 already has the higher cosine; swap would regress.
+      - `top1_model`, `top2_model`, `top1_affinity`, `top2_affinity`, `delta` — the pair under consideration.
+      - `top1_sim`, `top2_sim`, `max_sim` — cosines against `reasoning_context`; left at 0.0 when the matcher never ran.
+      - `epsilon`, `noise_floor`, `candidate_count` — the constants and input size in effect for this call.
+
+      `_activation_retie_if_near_tie` now returns `(candidates, trace)` instead of bare candidates; every return path sets a specific `abort_reason` or `fired=True`. `RouteNeighborhood` gained `tiebreaker_supporting` and `tiebreaker_risk` fields (`TiebreakerTrace | None`); `TendencyRoute` plumbs both up. `scripts/run_pipeline.py::_serialize_result` calls `asdict` on both traces and writes them into `audit_summary.routing_decisions[].tiebreaker_supporting` / `.tiebreaker_risk` so every `/tmp/lolla_*_result.json` carries a per-route answer to "did the gate fire, and if not which clause stopped it."
+
+      **Test coverage:** 23 tiebreaker-scoped tests pass (15 invariant + 5 passthrough + 3 pipeline opt-in). Full suite 84 tests + 93 subtests green. The invariant tests use the public `neighborhood()` API so they survived the helper-signature refactor unchanged.
+
+      **What this did NOT change:** the gate's decision rule (same ε, same noise floor, same dedup semantics), the matcher's facts/reasoning break (five typed adapters), or the default path when preconditions aren't met (byte-identical to pre-wire).
+
 3. **Phase 4 blend weight.** REV-2 removed the first-draft 0.5/0.5 default. Set from Phase 3 fixture data once the signal distribution is known. May end up per-lane.
 4. **Phase 5 suppression threshold.** Still cannot be set without Phase 3 fixture data + a separate audit sample of antagonist activation_conditions (separate from the ally-weighted Phase 0.5 sample).
 5. **Phase 5 card rendering of suppression.** Whether to surface a small "model X was considered but suppressed because reasoning already in its failure shape" line. Deferred to Phase 5 kickoff.
@@ -1201,5 +1229,31 @@ This plan is persisted in this handover file (Section 14) and in the `MEMORY.md`
 2. Check which phases are already in progress (via git log / branch state), because this document records the plan, not live execution state.
 3. Before starting a phase, verify no prior phase's gate has silently regressed (Phase 0 plumbing intact, Phase 2 audit score still ≥95%, fixture suite still green).
 4. Update Section 14g checkboxes as phases land. Move items from 14h to 14g when decisions get made. Never delete items from 14g — only mark them outdated with a dated note if a later decision supersedes them.
+
+---
+
+### 14k. Observability in a less-wrong engine
+
+Phase 3 Commit B is the first place where a probabilistic signal (embedding cosine against reasoning-shape prose) enters the deterministic middle of the pipeline. That signal is confined to a narrow gate — top-1/top-2 affinity `δ < ε (0.01)` AND `max(top1_sim, top2_sim) ≥ noise_floor (0.45)` — and it can only swap the top-2 of a single neighborhood. Outside that window, nothing changes. The narrowness is the design, not a limitation: the tiebreaker earns the right to consult a probabilistic signal precisely because that signal cannot regress the deterministic default path.
+
+**Why the trace matters more than a binary "on/off":** the gate has seven discrete ways to *not* fire and only one way to fire. Without per-call visibility, a run looks identical in its final card whether the gate (a) was never attempted, (b) attempted and aborted at `below_noise_floor`, or (c) attempted and correctly kept the default order because top-1 was already the higher-cosine match. Those three outcomes mean very different things for whether the matcher is earning its keep. The trace makes them distinguishable.
+
+**How to read a trace (field-by-field):**
+- `attempted=False` — call site did not meet preconditions. A `False` in a `/lolla` run where the flag is `on` points to a plumbing bug (missing `reasoning_context` / `embeddings_db_path` upstream), not a gate event.
+- `attempted=True, abort_reason="outside_epsilon_window"` — gate worked as designed; no near-tie, no need to consult the matcher. Common at high `candidate_count`.
+- `attempted=True, abort_reason="below_noise_floor"` — reasoning context didn't resemble either edge's activation_condition. Correct abstention. If you see this on a case where you expected a swap, check whether the probe prose matches the curator's activation_condition register.
+- `attempted=True, abort_reason="no_improvement"` — matcher ran, top-1 already had higher cosine. Gate correctly preserved the affinity order AND confirmed the default was right. High frequency of this value is "matcher running but not changing outcomes" — informative, not alarming.
+- `attempted=True, abort_reason="matcher_empty_result"` — DB didn't have embeddings for one of the candidate edges. Likely cause: a curation change since the last `build_edge_activation_embeddings.py` run. This is the first place a corpus/embedding drift would surface.
+- `attempted=True, abort_reason="matcher_exception"` — embedding lookup raised a non-TypeError exception. Likely a network flake or SQLite issue; `TypeError` would have been re-raised as a programmer-error contract violation. Rare.
+- `fired=True` — swap happened; `top2_model` surfaced past `top1_model`. Compare `top1_sim` and `top2_sim`: a small sim delta means the swap is defensible but borderline; a large delta means the matcher carried real signal that affinity alone did not.
+
+**What the trace does NOT encode:** semantic correctness. A `fired=True` trace says "given the reasoning context you supplied, top-2 was a better cosine match than top-1." It does not say "top-2 was the right antidote for the user's reasoning." That claim still requires fixture-level authoring under the §14e blind protocol with a second reader. The trace's job is to make the gate's mechanics inspectable; it is not a quality judge.
+
+**What to use the trace for next:**
+1. **Threshold validation.** After accumulating traces across N live runs, look at the `abort_reason` histogram. If `below_noise_floor` dominates to the point where the gate rarely fires, the noise floor is too high for the real probe distribution. If `no_improvement` dominates, the matcher is running embeddings to confirm the affinity was already correct — cheap observability, cheap to leave as-is, but a signal that Phase 4 (blend) may not recover much more value than the tiebreaker already does.
+2. **Regression surface.** If a future curation pass tightens activation_conditions (or a future compiler change quietly empties them), `matcher_empty_result` or `below_noise_floor` counts shift first. The trace is the first place a regression shows up.
+3. **Phase 4/5 calibration input.** Both pending phases need real-world distribution data. Traces are that data — accumulate them across live runs rather than synthesizing from fixtures.
+
+**Less-wrong doctrine tie-in:** the engine is not trying to pick the one right model. It is trying to be *less wrong* than fan-adjusted affinity alone by consulting a second signal in the narrow region where affinity alone is uninformative. The trace is the audit trail of that second-opinion process — it does not promise the swap was right, but it guarantees we can see why the engine did or didn't make it. In a system where probabilistic elements ring deterministic ones, this visibility is not optional instrumentation; it is the only way to keep the probabilistic surface honest about its own limits.
 
 The reasoning behind every decision is in 14a-14f. If a future session wants to revisit a decision, the reason block is the starting point — don't relitigate without engaging the original reason.
