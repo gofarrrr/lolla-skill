@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import json
+import math
 from pathlib import Path
 
 
@@ -11,6 +12,8 @@ class RelationNeighbor:
     edge_type: str
     composition_affinity: float
     source_description: str = ""
+    affinity_rationale: str = ""
+    activation_condition: str = ""
 
 
 @dataclass(frozen=True)
@@ -22,6 +25,21 @@ class RouteNeighborhood:
 class RelationGraph:
     def __init__(self, graph: dict[str, tuple[RelationNeighbor, ...]]) -> None:
         self._graph = graph
+        # Degree counts for fan correction — hub models (high degree) get their
+        # ranking affinity dampened so focused models can surface.
+        dc: dict[str, int] = {}
+        for source, neighbors in graph.items():
+            dc[source] = dc.get(source, 0) + len(neighbors)
+            for n in neighbors:
+                dc[n.model_id] = dc.get(n.model_id, 0) + 1
+        self._degree_counts = dc
+
+    def _fan_adjusted_affinity(self, model_id: str, raw_affinity: float) -> float:
+        """Dampen affinity for hub models: affinity / (1 + ln(degree))."""
+        fan = self._degree_counts.get(model_id, 1)
+        if fan <= 1:
+            return raw_affinity
+        return raw_affinity / (1.0 + math.log(fan))
 
     @classmethod
     def load(cls, root: Path) -> "RelationGraph":
@@ -55,6 +73,8 @@ class RelationGraph:
                     edge_type=str(edge.get("edge_type", "")).strip().lower(),
                     composition_affinity=float(edge.get("composition_affinity", 0.0) or 0.0),
                     source_description=str(edge.get("source_description", "") or ""),
+                    affinity_rationale=str(edge.get("affinity_rationale", "") or ""),
+                    activation_condition=str(edge.get("activation_condition", "") or ""),
                 )
             )
 
@@ -84,9 +104,15 @@ class RelationGraph:
                 if neighbor.edge_type in {"ally", "compound"}:
                     if neighbor.composition_affinity < min_supporting_affinity:
                         continue
-                    supporting_candidates.append((neighbor.composition_affinity, neighbor.model_id))
+                    adjusted = self._fan_adjusted_affinity(
+                        neighbor.model_id, neighbor.composition_affinity,
+                    )
+                    supporting_candidates.append((adjusted, neighbor.model_id))
                 elif neighbor.edge_type in {"antagonist", "tension"}:
-                    risk_candidates.append((neighbor.composition_affinity, neighbor.model_id))
+                    adjusted = self._fan_adjusted_affinity(
+                        neighbor.model_id, neighbor.composition_affinity,
+                    )
+                    risk_candidates.append((adjusted, neighbor.model_id))
 
         return RouteNeighborhood(
             supporting_model_ids=_bounded_unique_model_ids(
