@@ -241,6 +241,12 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
                 "primary_model_id": rd.primary_model_id,
                 "sub_pattern": rd.sub_pattern,
                 "antidote_model_ids": list(rd.antidote_model_ids),
+                "tiebreaker_supporting": (
+                    asdict(rd.tiebreaker_supporting) if rd.tiebreaker_supporting else None
+                ),
+                "tiebreaker_risk": (
+                    asdict(rd.tiebreaker_risk) if rd.tiebreaker_risk else None
+                ),
             }
             for rd in result.audit.routing_decisions
         ],
@@ -346,11 +352,18 @@ def main() -> int:
 
     has_embeddings = bool(os.environ.get("OPENAI_API_KEY", ""))
 
+    _tiebreaker_env = os.environ.get("LOLLA_ACTIVATION_TIEBREAKER", "").strip().lower()
+    if _tiebreaker_env in ("0", "false", "no", "off"):
+        activation_tiebreaker_enabled = False
+    else:
+        activation_tiebreaker_enabled = True
+
     config = PipelineConfig(
         enable_companion=True,
         enable_frame_pressure=True,
         enable_structural_coverage=True,
         enable_embeddings=has_embeddings,
+        activation_tiebreaker_enabled=activation_tiebreaker_enabled,
     )
 
     try:
@@ -504,6 +517,7 @@ def main() -> int:
         "findings_produced": _has_findings,
         "issues": _health_issues,
         "warnings": _warnings + _capture_warnings,
+        "activation_tiebreaker": "on" if activation_tiebreaker_enabled else "off",
     }
     if _capture_manifest:
         serialized["run_health"]["capture_manifest"] = _capture_manifest

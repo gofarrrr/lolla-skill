@@ -70,7 +70,7 @@ from .relation_graph import RelationGraph
 from .reward_and_punishment_deep_check_packet_adapter import (
     map_reward_and_punishment_result_to_subpattern,
 )
-from .routing import TendencyRoute, route_deep_check_results
+from .routing import TendencyRoute, route_deep_check_results, route_tendency
 from .stress_phase1_builder import StressPhase1Builder
 from .stress_pilot_bridge import StressPilotBridge, StressPilotBridgeResult
 from .simple_pain_denial_deep_check_packet_adapter import (
@@ -137,6 +137,7 @@ class PipelineConfig:
     enable_telemetry: bool = False
     telemetry_db_path: str = ""
     telemetry_tags: tuple[str, ...] = ()
+    activation_tiebreaker_enabled: bool = True
 
 
 @dataclass(frozen=True)
@@ -302,6 +303,7 @@ class SystemBPipeline:
         telemetry_store=None,
         startup_warnings: tuple[str, ...] = (),
         config: PipelineConfig | None = None,
+        embeddings_db_path: Path | None = None,
     ) -> None:
         self._catalog = catalog
         self._relation_graph = relation_graph
@@ -316,6 +318,7 @@ class SystemBPipeline:
         self._embedding_retriever = embedding_retriever
         self._telemetry_store = telemetry_store
         self._embedding_api_key = os.environ.get("OPENAI_API_KEY", "")
+        self._embeddings_db_path = embeddings_db_path
         self._startup_warnings = startup_warnings
         self._config = config or PipelineConfig()
         # Compute prompt version hashes once at init
@@ -348,6 +351,7 @@ class SystemBPipeline:
             telemetry_store=_load_telemetry_store(root, active_config),
             startup_warnings=tuple((*overoptimism_warnings, *authority_warnings, *stress_warnings)),
             config=active_config,
+            embeddings_db_path=Path(root) / "build" / "embeddings.db",
         )
 
     @classmethod
@@ -477,15 +481,9 @@ class SystemBPipeline:
                 for tt in triggered_tendencies
                 if tt.tendency_id in triage_by_id
             ]
-            routes = tuple(
-                route_deep_check_results(
-                    synthetic_results,
-                    self._catalog,
-                    relation_graph=self._relation_graph,
-                    max_supporting_models=self._config.max_supporting_models,
-                    max_risk_models=self._config.max_risk_models,
-                    relevance_scores=lane1_relevance,
-                )
+            routes = self._route_deep_check_results_with_optional_tiebreaker(
+                synthetic_results,
+                relevance_scores=lane1_relevance,
             )
             delta_card = _assemble_delta_card(routes, synthetic_results, bundle_selector=self._bundle_selector)
             pass2_seconds = 0.0
@@ -505,15 +503,9 @@ class SystemBPipeline:
             boundary_calls.extend(pass2_boundary_calls)
             pass2_seconds = time.monotonic() - pass2_started
 
-            routes = tuple(
-                route_deep_check_results(
-                    deep_check_results,
-                    self._catalog,
-                    relation_graph=self._relation_graph,
-                    max_supporting_models=self._config.max_supporting_models,
-                    max_risk_models=self._config.max_risk_models,
-                    relevance_scores=lane1_relevance,
-                )
+            routes = self._route_deep_check_results_with_optional_tiebreaker(
+                list(deep_check_results),
+                relevance_scores=lane1_relevance,
             )
             promotion_warnings: list[str] = []
             promoted_overoptimism_results = _build_promoted_overoptimism_results(
@@ -605,6 +597,53 @@ class SystemBPipeline:
             companion_candidates=companion_result.candidates,
         )
         return result
+
+    def _route_deep_check_results_with_optional_tiebreaker(
+        self,
+        deep_results: list[DeepCheckResult],
+        relevance_scores: dict[str, float] | None,
+    ) -> tuple[TendencyRoute, ...]:
+        """Single routing entrypoint. Flag OFF = byte-identical to the
+        original call. Flag ON = per-tendency reasoning_context (TendencyRef)
+        + embeddings_db_path + openai_api_key threaded into the router so
+        RelationGraph.neighborhood() can fire the near-tie tiebreaker.
+        """
+        if not self._config.activation_tiebreaker_enabled:
+            return tuple(
+                route_deep_check_results(
+                    deep_results,
+                    self._catalog,
+                    relation_graph=self._relation_graph,
+                    max_supporting_models=self._config.max_supporting_models,
+                    max_risk_models=self._config.max_risk_models,
+                    relevance_scores=relevance_scores,
+                )
+            )
+
+        routes: list[TendencyRoute] = []
+        seen: set[str] = set()
+        for result in deep_results:
+            if not result.detected:
+                continue
+            tendency_ref = self._catalog.lookup(result.tendency_id)
+            route = route_tendency(
+                result.tendency_id,
+                self._catalog,
+                sub_pattern=result.sub_pattern,
+                relation_graph=self._relation_graph,
+                max_supporting_models=self._config.max_supporting_models,
+                max_risk_models=self._config.max_risk_models,
+                relevance_scores=relevance_scores,
+                reasoning_context=tendency_ref,
+                embeddings_db_path=self._embeddings_db_path,
+                openai_api_key=self._embedding_api_key or None,
+            )
+            tid = route.tendency.tendency_id
+            if tid in seen:
+                continue
+            seen.add(tid)
+            routes.append(route)
+        return tuple(routes)
 
     def _build_lane1_relevance_scores(
         self, query_text: str,
