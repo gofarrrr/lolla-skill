@@ -61,7 +61,7 @@ Academic validation: USTC's MeMo paper (Feb 2024) proved Munger's latticework co
 **Five waves of curation:**
 - **Wave 1 — Activation semantics:** When to select each model, when to avoid it, input/output types. 222 models fully curated.
 - **Wave 2 — Intervention semantics:** Failure modes with mitigations, heuristics, premortem questions. 222 models, each with curated failure modes and specific mitigations.
-- **Wave 3 — Relation semantics:** Allies, antagonists, structured tensions between models. 1,358 curated edges describing how models support, oppose, and create productive tension with each other.
+- **Wave 3 — Relation semantics:** Allies, antagonists, structured tensions between models. 1,358 curated edges describing how models support, oppose, and create productive tension with each other. The 867 ally + antagonist edges carry differentiated affinity (four-tier rubric 0.70/0.80/0.90/0.95), a per-edge `affinity_rationale`, and an `activation_condition` — the reasoning shape that should trigger each model. See *How the Graph Earns Its Picks* below.
 - **Wave 5 — Reframing semantics:** Frame pattern → model mappings for 50 models. Lane 3 substrate — connects embedded assumptions in questions to specific mental models that challenge those assumptions.
 - **Latticework layers — Discovery infrastructure:** Prerequisite orderings (A→B learning sequences), family semantics (dense ally clusters with named theses), polarity semantics (failure cascade ↔ correction stack pairs). Graph projection over Wave 3 topology proposes candidates, LLM validates against source articles, curated JSON enters the compilation path.
 
@@ -94,6 +94,43 @@ Wave 1 asks: "When should this model be selected? When is it dangerous to apply?
 This methodology is critical because mechanical approaches fail on mental models. You cannot extract "failure modes of Circle of Competence" by parsing headings or matching keywords. You need to read the full article, understand that the model's deepest failure is boundary blur in adjacent domains, and write an activation context that describes that specific pattern. The LLM does the reading; the human reviews the judgment; the result enters the curated layer.
 
 The result is a knowledge substrate that contains insights the LLM doesn't have natively — not because the information is secret, but because it was synthesized from specific source material (200+ books across disciplines) and structured for a purpose (reasoning audit) that no training corpus optimizes for.
+
+### How the Graph Earns Its Picks
+
+A curated graph with edges isn't yet a ranker. Three enrichments turn the Wave 3 topology into a signal the deterministic router can actually use.
+
+**1. Differentiated affinity (four-tier rubric).** Before enrichment, 98.7% of ally edges compiled to a flat `composition_affinity = 0.90`, which meant the graph was effectively sorting models alphabetically by target id. The legacy compiler derived affinities from `confidence` alone (`high → 0.90`, `medium → 0.75`, `weak → 0.65`), collapsing rich canonical-article distinctions into three buckets most of whose edges landed at `0.90`. Layer 1 re-read every ally edge in the canonical articles and assigned one of four differentiated affinities based on the author's own language strength:
+
+| Tier | Affinity | Rubric language (from canonical articles) | Share of 523 ally edges |
+|------|----------|-------------------------------------------|--------------------------|
+| CRITICAL | 0.95 | "the most powerful tool", "cannot function without", "indispensable" | 7.3% |
+| STRONG | 0.90 | "directly strengthens", "the primary mechanism", "the key discipline" | 54.1% |
+| MODERATE | 0.80 | "strengthens", "helps", "supports" | 36.9% |
+| SUPPORTIVE | 0.70 | "can help", "is related to", "additional perspective" | 1.7% |
+
+The same rubric was applied to the 344 curated antagonist edges. At runtime, antagonist affinities map through `_affinity_strength_to_risk()` (0.95→0.30, 0.90→0.25, 0.80→0.22, 0.70→0.20) to produce risk-weighted ordering for the *risk_model_ids* surfaced in the DeltaCard. Every enriched ally and antagonist also carries an `affinity_rationale` (why this relationship holds — e.g. "premortem surfaces failure modes that second-order-thinking then sequences") and an `activation_condition` (the reasoning shape that should trigger the edge — e.g. "when a plan is being evaluated before commitment"). Both were authored from the canonical articles; both reach the runtime via the compiled `relationship_graph.json`.
+
+Same model, different strengths as ally of different models. `second-order-thinking` is a 0.95 ally of `premortem` (indispensable — premortem's entire value is surfacing second-order consequences) and a 0.80 ally of `inversion` (useful, but not structurally required). Pre-enrichment the router couldn't tell these apart.
+
+**2. Fan correction (query-time dampening).** Hub models sit on many edges. Without correction they dominate every neighborhood the router touches — not because they're the right pick, but because they're adjacent to everything. `RelationGraph._fan_adjusted_affinity()` dampens hub affinity at query time:
+
+```
+fan-adjusted affinity = raw_affinity / (1 + ln(degree))
+```
+
+Applied only at ranking, never at the `min_supporting_affinity = 0.6` threshold check — so CRITICAL-tier edges (0.95) on moderately-fanned hubs still clear the threshold even when their adjusted value sits well below 0.6. This matters: a 50-edge hub with raw affinity 0.90 ranks at adjusted ~0.22, but a 10-edge focused model with raw 0.80 ranks at adjusted ~0.57. Focused models surface; hubs earn their spot only when their raw affinity was strong enough to survive dampening.
+
+**3. Near-tie activation-match tiebreaker.** Fan correction and differentiated affinity fix most of the flatness. But top-1 vs top-2 still sometimes land within 0.01 of each other after dampening — 18% of qualifying seeds on the current graph. In that narrow window, affinity is provably uninformative and the router needs a second signal. Phase 3 Commit B added one, gated to fire *only* in the near-tie region:
+
+- **Compile-time:** every ally and antagonist's `activation_condition` string is embedded (OpenAI `text-embedding-3-large`, 3072d) and stored in `data/embeddings.db::edge_activation_conditions`. 867 vectors, ~$2 per rebuild. Idempotent.
+- **Query-time:** `RelationGraph.neighborhood()` accepts a typed `reasoning_context` (one of `TendencyRef`, `TriggeredTendency`, `FingerprintPayload`, `FrameRoute`, `DimensionRoute`). When top-1/top-2 fan-adjusted delta `δ < ε = 0.01` AND `max(top1_sim, top2_sim) ≥ noise_floor = 0.45`, the gate swaps the top-2 based on cosine similarity. Outside that window, or below the noise floor, the deterministic default order stands — byte-identical to the pre-tiebreaker path.
+- **Facts/reasoning break.** The matcher's five typed adapters strip any factual content (`evidence_quotes`, `coverage_evidence`, quoted passages, numeric facts) before embedding the probe. Raw `str`, `vanilla_answer`, query text — none of these can reach it. By construction, the matcher only ever sees reasoning-shape prose on both sides: curator-authored activation_conditions vs. engine-produced reasoning-shape classifications.
+
+**Calibration (2026-04-21):** `ε = 0.01` was pinned to a measured distribution (n=204 qualifying seeds; 18% near-ties, 1% exact ties, median δ=0.038). `noise_floor = 0.45` was pinned to a cosine-gap audit (6 probes × 523 ally edges: on-target reasoning prose lands at 0.73–0.79, off-topic prose lands at 0.19; 0.45 sits in the protective gap).
+
+**4. Per-route observability trace.** Every tiebreaker invocation emits a `TiebreakerTrace` — a 14-field dataclass recording whether the gate attempted, fired, or aborted, and if aborted, which of seven clauses stopped it (`fewer_than_2_candidates`, `fewer_than_2_after_dedup`, `outside_epsilon_window`, `matcher_exception`, `matcher_empty_result`, `below_noise_floor`, `no_improvement`). Traces carry top-1/top-2 model ids, fan-adjusted affinities, delta, cosines against the reasoning context, and the calibration constants in effect. Each trace is serialized into `audit_summary.routing_decisions[].tiebreaker_supporting` / `.tiebreaker_risk`, so any run answers "did the tiebreaker fire, and if not why" from the result JSON alone — no pipeline re-run required.
+
+The design principle underneath all four: the probabilistic signal (embedding cosine) can only enter the deterministic middle inside a gate where the deterministic signal (fan-adjusted affinity) is provably uninformative. The gate is narrow, its calibration is measured, and its decisions are traced. This is how the engine imports "being less wrong" capability without surrendering reproducibility — the default path is always recoverable by flipping the kill switch (`LOLLA_ACTIVATION_TIEBREAKER=off`) or omitting the `reasoning_context`.
 
 ### Measurement and Calibration
 
@@ -144,7 +181,7 @@ This is how we bring out-of-distribution knowledge into the reasoning process wi
 | Threshold filtering (score ≥ 4) | **Deterministic** | Hard cutoff, reproducible |
 | Deep check: isolated tendency analysis | **Probabilistic** (LLM) | Deeper semantic analysis — one tendency in isolation, no distractors |
 | Routing: tendency → corrective models | **Deterministic** | Catalog lookup + graph traversal — consistent, traceable |
-| 1-hop neighborhood expansion | **Hybrid** | RelationGraph traversal — reranked by cosine similarity to query+answer when embeddings available, affinity tiebreaker; falls back to affinity-only |
+| 1-hop neighborhood expansion | **Deterministic with gated probabilistic tiebreaker** | RelationGraph traversal ranked by fan-adjusted affinity `aff / (1 + ln(degree))`. When top-1/top-2 land within δ<0.01 AND a typed reasoning_context is supplied, an embedding-cosine tiebreaker may swap them if max_sim≥0.45 — gated, traced, byte-identical outside the window |
 | DeltaCard assembly | **Deterministic** | Tiering, compound grouping, finding presentation |
 | Fingerprint: extract reasoning moves | **Probabilistic** (LLM) | Semantic — "what abstract reasoning patterns are running?" |
 | Quote validation | **Deterministic** | Literal substring match |
@@ -363,7 +400,7 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 3. **Pass 2 (Deep Checks):** One OpenRouter call PER triggered tendency, run in parallel (up to 8 concurrent). Each call checks ONE tendency in isolation — seeing only that tendency's definition, its sub-pattern menu, and the vanilla answer. Context isolation prevents tendency contamination. Returns: detected/not-detected, confidence, sub-pattern, specific passage, severity.
 
-4. **Deterministic routing:** For each confirmed detection, the deterministic middle looks up corrective models from the knowledge graph (222 models, 241 bindings), does 1-hop neighborhood expansion (allies, antagonists — reranked by embedding similarity to the query when available), and assembles findings with curated failure modes, heuristics, and premortem questions.
+4. **Deterministic routing:** For each confirmed detection, the deterministic middle looks up corrective models from the knowledge graph (222 models, 241 bindings) and does 1-hop neighborhood expansion over allies and antagonists. Ranking uses fan-adjusted differentiated affinity (rubric 0.70/0.80/0.90/0.95, dampened by `1 / (1 + ln(degree))` at query time); within the narrow near-tie window `δ < 0.01` an activation-match tiebreaker can swap top-1 and top-2 if the curator-authored `activation_condition` embeddings score the reasoning context above `noise_floor = 0.45` and top-2 outscores top-1. The gate is traced per-route — `audit_summary.routing_decisions[].tiebreaker_supporting` / `.tiebreaker_risk` shows whether the gate fired, and if not which of seven clauses aborted it (`outside_epsilon_window`, `below_noise_floor`, `no_improvement`, etc.). Findings are assembled with curated failure modes, heuristics, and premortem questions attached to the routed models.
 
 5. **DeltaCard assembly:** Top findings get full treatment (challenge statement, reversal trigger, corrective model, supporting models, tensions). Secondary findings get one-line summaries. Compound patterns (multiple tendencies on overlapping evidence) get flagged.
 
@@ -446,8 +483,11 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 - `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`
 - `warnings` — merged pipeline warnings + capture warnings
 - `capture_manifest` (optional) — actual vs. declared turn counts and character length from the conversation capture
+- `activation_tiebreaker` — `"on"` or `"off"` (reflects the `LOLLA_ACTIVATION_TIEBREAKER` kill switch; default on)
 
 `overall` is `critical` if capture is critical (>50% assistant turns missing), `degraded` if any issues exist, `healthy` only when all components are clean. These diagnostics make it possible to distinguish a clean "no findings" result from a broken run that produced no findings because the substrate didn't load or the conversation was badly captured.
+
+**Per-route tiebreaker observability.** Beyond `run_health`, every detected tendency's routing decision carries a `TiebreakerTrace` under `audit_summary.routing_decisions[].tiebreaker_supporting` / `.tiebreaker_risk`. Each trace records whether the near-tie activation-match gate attempted, fired, or aborted — and if aborted, which clause stopped it. Fields include top-1/top-2 model ids and fan-adjusted affinities, top-1/top-2 cosine similarities, the delta, and the calibration constants (`epsilon`, `noise_floor`) in effect. This means a run can answer "did the activation tiebreaker intervene for this route, and if not why" from the result JSON alone. See `research/deep-graph-enrichment-handover.md §14k` for a field-by-field reading guide.
 
 ### Step 4: Present Results
 

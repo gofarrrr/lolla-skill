@@ -35,9 +35,43 @@ class RelationNeighbor:
 
 
 @dataclass(frozen=True)
+class TiebreakerTrace:
+    """Per-neighborhood trace of the Phase 3 activation-match tiebreaker.
+
+    Emitted once per call to `_activation_retie_if_near_tie` (i.e. twice per
+    `neighborhood()`: once for supporting candidates, once for risk). Lets a
+    caller see whether the gate was attempted, whether it fired, and — if it
+    didn't fire — exactly which clause aborted it.
+
+    The dataclass always has a shape; fields are left at defaults when a
+    stage wasn't reached (e.g. `top1_sim` stays 0.0 when the matcher was
+    never called). `attempted=False` means the gate's preconditions (flag
+    on, reasoning_context supplied, db path supplied) were not met at the
+    `neighborhood()` call site.
+    """
+
+    attempted: bool = False
+    fired: bool = False
+    abort_reason: str = ""
+    top1_model: str = ""
+    top2_model: str = ""
+    top1_affinity: float = 0.0
+    top2_affinity: float = 0.0
+    delta: float = 0.0
+    top1_sim: float = 0.0
+    top2_sim: float = 0.0
+    max_sim: float = 0.0
+    epsilon: float = 0.0
+    noise_floor: float = 0.0
+    candidate_count: int = 0
+
+
+@dataclass(frozen=True)
 class RouteNeighborhood:
     supporting_model_ids: tuple[str, ...] = ()
     risk_model_ids: tuple[str, ...] = ()
+    tiebreaker_supporting: TiebreakerTrace | None = None
+    tiebreaker_risk: TiebreakerTrace | None = None
 
 
 class RelationGraph:
@@ -147,19 +181,21 @@ class RelationGraph:
         # is supplied AND no relevance_scores are overriding the sort AND a DB
         # path is available. When it doesn't fire, behavior is byte-identical
         # to the pre-wire default path.
+        tb_support = TiebreakerTrace()
+        tb_risk = TiebreakerTrace()
         if (
             reasoning_context is not None
             and relevance_scores is None
             and embeddings_db_path is not None
         ):
-            supporting_candidates = _activation_retie_if_near_tie(
+            supporting_candidates, tb_support = _activation_retie_if_near_tie(
                 supporting_candidates,
                 reasoning_context=reasoning_context,
                 db_path=embeddings_db_path,
                 api_key=openai_api_key,
                 matcher=_activation_matcher,
             )
-            risk_candidates = _activation_retie_if_near_tie(
+            risk_candidates, tb_risk = _activation_retie_if_near_tie(
                 risk_candidates,
                 reasoning_context=reasoning_context,
                 db_path=embeddings_db_path,
@@ -178,6 +214,8 @@ class RelationGraph:
                 limit=max_risk_models,
                 relevance_scores=relevance_scores,
             ),
+            tiebreaker_supporting=tb_support,
+            tiebreaker_risk=tb_risk,
         )
 
 
@@ -188,10 +226,14 @@ def _activation_retie_if_near_tie(
     db_path: Path | str,
     api_key: str | None,
     matcher: Callable[..., Any] | None,
-) -> list[tuple[float, str, str, str]]:
-    """Phase 3 near-tie tiebreaker. Returns the candidates list with the top-2
-    (by adjusted affinity, deduped by model_id) potentially reordered based on
-    activation-match cosine similarity. All other items are preserved.
+) -> tuple[list[tuple[float, str, str, str]], TiebreakerTrace]:
+    """Phase 3 near-tie tiebreaker. Returns `(candidates, trace)`.
+
+    The candidates list is the top-2 (by adjusted affinity, deduped by
+    model_id) potentially reordered based on activation-match cosine
+    similarity. All other items are preserved. The trace records which
+    gate clause aborted (or `fired=True` if the swap happened) so callers
+    can surface observability without changing gate behavior.
 
     Fires only when all four conditions hold:
       1. ≥2 distinct candidates after dedup
@@ -200,12 +242,21 @@ def _activation_retie_if_near_tie(
       4. max(top-1 sim, top-2 sim) ≥ noise floor
 
     Any degradation (missing DB, missing backfill rows, empty matcher output,
-    any exception from the matcher that isn't TypeError) is a silent no-op.
-    TypeError from the matcher IS re-raised — the matcher contract says type
-    violations are programmer errors, not runtime degradations.
+    any exception from the matcher that isn't TypeError) is a silent no-op
+    with `abort_reason` set. TypeError from the matcher IS re-raised — the
+    matcher contract says type violations are programmer errors.
     """
+    trace_common = dict(
+        attempted=True,
+        epsilon=_ACTIVATION_MATCH_EPSILON,
+        noise_floor=_ACTIVATION_MATCH_NOISE_FLOOR,
+        candidate_count=len(candidates),
+    )
+
     if len(candidates) < 2:
-        return candidates
+        return candidates, TiebreakerTrace(
+            abort_reason="fewer_than_2_candidates", **trace_common,
+        )
 
     # Dedup by model_id, keeping highest-affinity occurrence. Mirrors the
     # later _bounded_unique_model_ids dedup so we compare the right two.
@@ -216,11 +267,25 @@ def _activation_retie_if_near_tie(
             deduped[c[1]] = c
     ordered = sorted(deduped.values(), key=lambda c: (-c[0], c[1]))
     if len(ordered) < 2:
-        return candidates
+        return candidates, TiebreakerTrace(
+            abort_reason="fewer_than_2_after_dedup", **trace_common,
+        )
 
     top1, top2 = ordered[0], ordered[1]
-    if top1[0] - top2[0] >= _ACTIVATION_MATCH_EPSILON:
-        return candidates
+    delta = top1[0] - top2[0]
+    pair_fields = dict(
+        top1_model=top1[1],
+        top2_model=top2[1],
+        top1_affinity=top1[0],
+        top2_affinity=top2[0],
+        delta=delta,
+    )
+
+    if delta >= _ACTIVATION_MATCH_EPSILON:
+        return candidates, TiebreakerTrace(
+            abort_reason="outside_epsilon_window",
+            **trace_common, **pair_fields,
+        )
 
     if matcher is None:
         from .activation_matcher import match_activation
@@ -237,20 +302,37 @@ def _activation_retie_if_near_tie(
     except TypeError:
         raise
     except Exception:
-        return candidates
+        return candidates, TiebreakerTrace(
+            abort_reason="matcher_exception",
+            **trace_common, **pair_fields,
+        )
 
     if not results or len(results) < 2:
-        return candidates
+        return candidates, TiebreakerTrace(
+            abort_reason="matcher_empty_result",
+            **trace_common, **pair_fields,
+        )
 
     by_target = {r.target_model_id: r.similarity for r in results}
     sim_top1 = by_target.get(top1[1], 0.0)
     sim_top2 = by_target.get(top2[1], 0.0)
+    sim_fields = dict(
+        top1_sim=sim_top1,
+        top2_sim=sim_top2,
+        max_sim=max(sim_top1, sim_top2),
+    )
 
     if max(sim_top1, sim_top2) < _ACTIVATION_MATCH_NOISE_FLOOR:
-        return candidates
+        return candidates, TiebreakerTrace(
+            abort_reason="below_noise_floor",
+            **trace_common, **pair_fields, **sim_fields,
+        )
 
     if sim_top2 <= sim_top1:
-        return candidates
+        return candidates, TiebreakerTrace(
+            abort_reason="no_improvement",
+            **trace_common, **pair_fields, **sim_fields,
+        )
 
     # Swap: give top2 a tiny affinity bump so the downstream
     # _bounded_unique_model_ids sort surfaces it first. The bump is invisible
@@ -262,7 +344,9 @@ def _activation_retie_if_near_tie(
     # other seeds) so dedup-by-model_id downstream still produces a stable
     # total order.
     remaining = [c for c in candidates if c[1] != top2[1]]
-    return [bumped, *remaining]
+    return [bumped, *remaining], TiebreakerTrace(
+        fired=True, **trace_common, **pair_fields, **sim_fields,
+    )
 
 
 def _bounded_unique_model_ids(

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, TYPE_CHECKING
 
-from .relation_graph import RelationGraph
+from .relation_graph import RelationGraph, TiebreakerTrace
 from .subpattern_catalog import SourceRef
 from .tendency_catalog import ModelBinding, TendencyCatalog, TendencyRef
 
@@ -26,6 +26,8 @@ class TendencyRoute:
     supporting_model_ids: tuple[str, ...] = ()
     risk_model_ids: tuple[str, ...] = ()
     sub_pattern: str = ""
+    tiebreaker_supporting: TiebreakerTrace | None = None
+    tiebreaker_risk: TiebreakerTrace | None = None
 
 
 def route_tendency(
@@ -70,6 +72,8 @@ def route_tendency(
         supporting_model_ids=neighborhood.supporting_model_ids if neighborhood else (),
         risk_model_ids=neighborhood.risk_model_ids if neighborhood else (),
         sub_pattern=sub_pattern,
+        tiebreaker_supporting=neighborhood.tiebreaker_supporting if neighborhood else None,
+        tiebreaker_risk=neighborhood.tiebreaker_risk if neighborhood else None,
     )
 
 
