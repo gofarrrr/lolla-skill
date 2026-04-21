@@ -1140,10 +1140,21 @@ Revised after REV-1 and REV-2; first-draft values that were assumed defaults are
 
    **Commit B calibration protocol (REV-7, 2026-04-21):** the order below is deliberate — each step must land green before the next starts.
 
-   1. **Backfill** — `OPENAI_API_KEY=... python scripts/build_edge_activation_embeddings.py` → ~867 vectors in `data/embeddings.db::edge_activation_conditions`. Idempotent, ~$2 one-shot.
-   2. **Sample the real ε distribution** — pick ~50 seed models. For each, enumerate 1-hop ally neighbors, sort by fan-adjusted affinity, record the top-1/top-2 delta. Histogram the deltas. **ε** = the value below which the tiebreaker needs to fire to matter (e.g., the 20th-percentile delta). Do NOT pick ε by taste.
-   3. **Sample the real cosine distribution** — from the same 50 seeds, take ~10 reasoning-shape inputs (pulled from live `/tmp/lolla_*` captures or authored per 14e), score top-5 candidates per input, histogram similarities. **Noise floor** = a percentile chosen so that abstention rate on deliberately generic prose (e.g., `TriggeredTendency("overconfidence", ...)` on its own) matches intuition (likely the 20th–30th percentile).
-   4. **Author ~30 fixtures under 14e blind protocol** — 10 near-tie (expect tiebreaker to fire + pick correctly), 10 non-tie (expect byte-identical to current default path), 10 noise-floor (expect abstention). Fixtures live in `tests/fixtures/{graphs,reasoning_shapes,expectations}/`. A same-session author of the matcher should NOT also author fixtures without a second-reader review — the self-fulfilling-vocabulary trap is real.
+   1. **Backfill** — `OPENAI_API_KEY=... python scripts/build_edge_activation_embeddings.py` → ~867 vectors in `data/embeddings.db::edge_activation_conditions`. Idempotent, ~$2 one-shot. **DONE 2026-04-21**: 867/867 written, 12288-byte blobs (3072 × 4).
+
+   2. **Sample the real ε distribution** — histogram top-1/top-2 fan-adjusted affinity deltas across all qualifying seeds. **DONE 2026-04-21**:
+      - n = 204 seeds with ≥2 qualifying ally/compound neighbors
+      - median δ = 0.0376, p20 = 0.0127, p10 = 0.0051
+      - **exact ties: 2/204 (1%); near-ties δ<0.01: 37/204 (18%)**
+      - **Candidate ε = 0.01** — clean boundary, 18% fire rate, aligns with "top-2 affinity essentially indistinguishable" intuition.
+
+   3. **Sample the real cosine distribution** — score 6 probes (3 on-target TendencyRef prose, 2 thin TriggeredTendency ids, 1 deliberately off-topic) against all 523 ally/compound embeddings. **DONE 2026-04-21**:
+      - On-target prose top-1: **0.73–0.79** (intended target recovered in 3/3 cases: systems→systems-thinking, decomposition→decomposition, first-principles→first-principles-thinking)
+      - Thin TriggeredTendency top-1: 0.40–0.48 (social-proof-tendency → social-proof ally at 0.48 — meaningful signal; overconfidence-tendency top-1 at 0.40 — marginal)
+      - Deliberately off-topic ("bread proofing") top-1: **0.19**
+      - **Candidate noise floor = 0.45** — above: on-target + meaningful thin matches; below: off-topic safely abstains. ~30-point gap between on-target and off-topic protects the decision.
+
+   4. **Author ~30 fixtures under 14e blind protocol** — 10 near-tie (expect tiebreaker to fire + pick correctly), 10 non-tie (expect byte-identical to current default path), 10 noise-floor (expect abstention). Fixtures live in `tests/fixtures/{graphs,reasoning_shapes,expectations}/`. A same-session author of the matcher should NOT also author fixtures without a second-reader review — the self-fulfilling-vocabulary trap is real. **PENDING — this is the doctrine-gated step.**
    5. **Wire `reasoning_context` into `RelationGraph.neighborhood()`** — optional kwarg. When present AND top-2 fan-adjusted delta < ε AND top activation-match similarity ≥ noise-floor: reorder the top-2. Otherwise: untouched.
    6. **Integration gate** — re-run the 5 existing end-to-end fixtures. Any output change must trace to a near-tie fixture's expected direction, or it's a regression.
 3. **Phase 4 blend weight.** REV-2 removed the first-draft 0.5/0.5 default. Set from Phase 3 fixture data once the signal distribution is known. May end up per-lane.
