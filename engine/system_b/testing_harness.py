@@ -353,6 +353,8 @@ def companion_card_to_payload(companion_card: CompanionCard | None) -> dict[str,
                 "substrate_chunk": item.substrate_chunk,
                 "why_relevant": item.why_relevant,
                 **({"tension_type": item.tension_type} if item.tension_type is not None else {}),
+                **({"affinity_rationale": item.affinity_rationale} if item.affinity_rationale else {}),
+                **({"activation_condition": item.activation_condition} if item.activation_condition else {}),
             }
             for item in companion_card.expansions
         ],

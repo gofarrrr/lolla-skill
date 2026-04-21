@@ -16,7 +16,9 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from engine.system_b.companion import CompanionCard, CompanionExpansion
 from engine.system_b.relation_graph import RelationGraph, RelationNeighbor
+from engine.system_b.testing_harness import companion_card_to_payload
 
 
 class Phase0DifferentiatedAffinityTests(unittest.TestCase):
@@ -139,30 +141,82 @@ class FanCorrectionValueTests(unittest.TestCase):
         self.assertEqual(result, ("focused-model",))
 
 
-@pytest.mark.skip(reason="Phase 1 not yet implemented — renderer does not surface affinity_rationale")
 class Phase1RationaleRenderingTests(unittest.TestCase):
-    """Value claim (test-first): Phase 1 surfaces affinity_rationale on the card
-    for supporting models that carry one. Pure passthrough — the renderer must
-    not synthesize text. When the rationale is empty, the line is omitted.
+    """Value claim: Phase 1 surfaces affinity_rationale and activation_condition
+    on the card for supporting models that carry one. Pure passthrough — the
+    payload builder must not synthesize text. When a field is empty, its key
+    is omitted from the serialized expansion so Claude sees no placeholder.
 
-    This fixture is a skip marker until Phase 1 lands. Its job right now is to
-    document the claim so Phase 1 has a ready test target — not to test code
-    that doesn't exist.
+    The "output" tested here is the JSON payload built by
+    companion_card_to_payload — the surface Claude reads in Step 6. Claude
+    renders the card; Python delivers the curator text untouched.
     """
 
-    def test_rationale_renders_verbatim_when_present(self) -> None:
-        # When Phase 1 is built, this test should:
-        # 1. Construct a RelationNeighbor with a specific affinity_rationale string
-        # 2. Call whatever renderer Phase 1 adds (likely in engine/system_b/testing_harness.py
-        #    or a new module)
-        # 3. Assert the output contains the rationale string VERBATIM — no paraphrase,
-        #    no truncation beyond a documented width, no synthesis.
-        raise AssertionError("Phase 1 not implemented")
+    def _card_with_expansion(self, expansion: CompanionExpansion) -> CompanionCard:
+        return CompanionCard(
+            detected_models=[],
+            expansions=[expansion],
+            failure_hints=[],
+            heuristic_hints=[],
+            premortem_hints=[],
+            identity_chunks=[],
+            detection_model_count=0,
+            expansion_count=1,
+            failure_hint_count=0,
+            heuristic_hint_count=0,
+            premortem_hint_count=0,
+            identity_chunk_count=0,
+            detection_source="test",
+        )
 
-    def test_rationale_line_omitted_when_empty(self) -> None:
-        # Empty string rationale (the Phase 0 default) must produce zero output —
-        # no "why this connection:" label with no body, no placeholder.
-        raise AssertionError("Phase 1 not implemented")
+    def test_affinity_rationale_renders_verbatim_when_present(self) -> None:
+        rationale = "Described as 'intrinsically allied with abstraction'"
+        expansion = CompanionExpansion(
+            source_model_id="abstraction",
+            relation_type="ally",
+            model_id="systems-thinking",
+            model_name="Systems Thinking",
+            substrate_chunk="desc",
+            why_relevant="why",
+            affinity_rationale=rationale,
+        )
+        payload = companion_card_to_payload(self._card_with_expansion(expansion))
+        assert payload is not None
+        first = payload["expansions"][0]
+        self.assertEqual(first["affinity_rationale"], rationale)
+
+    def test_activation_condition_renders_verbatim_when_present(self) -> None:
+        condition = "When modeling complex phenomena and need to see interrelationships"
+        expansion = CompanionExpansion(
+            source_model_id="abstraction",
+            relation_type="ally",
+            model_id="systems-thinking",
+            model_name="Systems Thinking",
+            substrate_chunk="desc",
+            why_relevant="why",
+            activation_condition=condition,
+        )
+        payload = companion_card_to_payload(self._card_with_expansion(expansion))
+        assert payload is not None
+        first = payload["expansions"][0]
+        self.assertEqual(first["activation_condition"], condition)
+
+    def test_keys_omitted_when_fields_empty(self) -> None:
+        # Empty strings (the Phase 0 default for edges without curator text)
+        # must produce zero output — no key with an empty value, no placeholder.
+        expansion = CompanionExpansion(
+            source_model_id="abstraction",
+            relation_type="ally",
+            model_id="systems-thinking",
+            model_name="Systems Thinking",
+            substrate_chunk="desc",
+            why_relevant="why",
+        )
+        payload = companion_card_to_payload(self._card_with_expansion(expansion))
+        assert payload is not None
+        first = payload["expansions"][0]
+        self.assertNotIn("affinity_rationale", first)
+        self.assertNotIn("activation_condition", first)
 
 
 if __name__ == "__main__":
