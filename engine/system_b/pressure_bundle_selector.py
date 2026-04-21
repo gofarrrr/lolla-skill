@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 from .compiled_substrate import CompiledChunk, CompiledSubstrate
 from .deep_check_packet import DeepCheckPacket
@@ -58,14 +59,33 @@ class PressureBundleSelector:
         tendency_key: str,
         *,
         subpattern_id: str = "general",
+        reasoning_context: Any = None,
+        embeddings_db_path: Path | str | None = None,
+        openai_api_key: str | None = None,
     ) -> PressureBundle:
-        route = self._router.route(tendency_key, subpattern_id=subpattern_id)
+        route = self._router.route(
+            tendency_key,
+            subpattern_id=subpattern_id,
+            reasoning_context=reasoning_context,
+            embeddings_db_path=embeddings_db_path,
+            openai_api_key=openai_api_key,
+        )
         return self._select_from_route(route=route, packet=None)
 
-    def select_from_packet(self, packet: DeepCheckPacket) -> PressureBundle:
+    def select_from_packet(
+        self,
+        packet: DeepCheckPacket,
+        *,
+        reasoning_context: Any = None,
+        embeddings_db_path: Path | str | None = None,
+        openai_api_key: str | None = None,
+    ) -> PressureBundle:
         route = self._router.route(
             packet.tendency_id,
             subpattern_id=packet.subpattern_id,
+            reasoning_context=reasoning_context,
+            embeddings_db_path=embeddings_db_path,
+            openai_api_key=openai_api_key,
         )
         return self._select_from_route(route=route, packet=packet)
 

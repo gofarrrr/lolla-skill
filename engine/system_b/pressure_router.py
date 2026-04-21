@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 from .relation_graph import RelationGraph
 from .subpattern_catalog import SourceRef, SubpatternCatalog, SubpatternRef
@@ -51,6 +52,9 @@ class PressureRouter:
         subpattern_id: str = "general",
         max_supporting_models: int = 2,
         max_risk_models: int = 1,
+        reasoning_context: Any = None,
+        embeddings_db_path: Path | str | None = None,
+        openai_api_key: str | None = None,
     ) -> PressureRoute:
         tendency = self._catalog.lookup(tendency_key)
         subpattern = self._resolve_subpattern(
@@ -65,6 +69,9 @@ class PressureRouter:
             (primary_model_id,) if primary_model_id else (),
             max_supporting_models=max_supporting_models,
             max_risk_models=max_risk_models,
+            reasoning_context=reasoning_context,
+            embeddings_db_path=embeddings_db_path,
+            openai_api_key=openai_api_key,
         )
         primary_binding = _binding_for_model(subpattern, primary_model_id)
         return PressureRoute(
