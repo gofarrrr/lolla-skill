@@ -1,0 +1,12 @@
+{
+  "name": "latticework seed, off-topic probe → noise-floor abstains",
+  "description": "Same near-tie seed as scenarios 01/02, but the probe is deliberately off-topic (cooking/baking prose). Cosine against both candidate ACs is well below the 0.45 noise floor (0.20 and 0.16 at fixture-authoring time), so the gate must abstain and the default affinity order survives.",
+  "claim_type": "noise_floor_abstention",
+  "seed_model_id": "latticework-of-mental-models",
+  "probe_key": "probe_offtopic_baking",
+  "expected": {
+    "gate_fired": true,
+    "top_supporting_model_ids": ["systems-thinking", "first-principles-thinking"]
+  },
+  "notes": "Same-session authorship; needs second-reader review. Gate FIRES (we enter the ε window since affinities are near-tied), but the noise-floor guard prevents the swap. Default affinity order survives."
+}

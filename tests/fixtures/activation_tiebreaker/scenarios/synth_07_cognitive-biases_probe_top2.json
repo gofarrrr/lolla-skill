@@ -1,0 +1,22 @@
+{
+  "name": "synth near-tie seed cognitive-biases; probe probe_top2 \u2192 no_swap",
+  "description": "Programmatically synthesized via scripts/synthesize_tiebreaker_fixtures.py. Probe text is the top-1 select_when sentence from a third-party model (critical-thinking) in the knowledge graph \u2014 NOT authored in-session. Expected outcome is DERIVED from cosine measurement against the live embeddings DB, not asserted by the author. See \u00a714e option 2 in the handover.",
+  "claim_type": "programmatic_synthesis",
+  "seed_model_id": "cognitive-biases",
+  "probe_key": "synth_cognitive-biases__probe_top2_critical-thinking",
+  "top1_model_id": "scientific-method-evidence-testing",
+  "top2_model_id": "critical-thinking",
+  "delta_adj_affinity": 0.008688,
+  "measured_cosines": {
+    "probe_vs_ac_top1": 0.5377,
+    "probe_vs_ac_top2": 0.4066
+  },
+  "expected": {
+    "gate_class": "no_swap",
+    "top_supporting_model_ids": [
+      "scientific-method-evidence-testing",
+      "critical-thinking"
+    ]
+  },
+  "notes": "Outcome classified by gate rules: max(cos_top1, cos_top2) < 0.45 \u2192 abstain; cos_top2 > cos_top1 \u2192 swap; else no_swap. If this scenario's assertion is wrong, the matcher changed OR the DB was rebuilt with different embeddings \u2014 re-running the synthesizer will recompute the expected class."
+}

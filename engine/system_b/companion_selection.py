@@ -64,14 +64,21 @@ class CheatSheetChunk:
     source_model_id: str
     text: str
     provenance: ChunkProvenance
+    affinity_rationale: str = ""
+    activation_condition: str = ""
 
     def to_payload(self) -> dict:
-        return {
+        d = {
             "chunk_type": self.chunk_type,
             "source_model_id": self.source_model_id,
             "text": self.text,
             "provenance": self.provenance.to_payload(),
         }
+        if self.affinity_rationale:
+            d["affinity_rationale"] = self.affinity_rationale
+        if self.activation_condition:
+            d["activation_condition"] = self.activation_condition
+        return d
 
 
 @dataclass(frozen=True)
@@ -379,6 +386,8 @@ def _gather_candidates(companion_card, delta_card) -> list[CheatSheetChunk]:
                 confidence="high",
                 relation_target_id=exp.model_id,
             ),
+            affinity_rationale=exp.affinity_rationale,
+            activation_condition=exp.activation_condition,
         ))
 
     # Anti-echo: for models already in DeltaCard, drop echo types

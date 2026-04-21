@@ -1052,6 +1052,8 @@ def expand_detected_model(
                 substrate_chunk=description,
                 why_relevant=why_relevant,
                 tension_type=str(edge.get("tension_type", "conflicts")) if edge_type == "tension" else None,
+                affinity_rationale=str(edge.get("affinity_rationale", "") or ""),
+                activation_condition=str(edge.get("activation_condition", "") or ""),
             )
         )
         if len(expansions) >= max_expansions:

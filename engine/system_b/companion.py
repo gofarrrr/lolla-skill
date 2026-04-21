@@ -39,6 +39,8 @@ class CompanionExpansion:
     substrate_chunk: str
     why_relevant: str
     tension_type: str | None = None
+    affinity_rationale: str = ""
+    activation_condition: str = ""
 
 
 @dataclass(frozen=True)

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from pathlib import Path
+from typing import Any, TYPE_CHECKING
 
 from .relation_graph import RelationGraph
 from .subpattern_catalog import SourceRef
@@ -35,6 +36,9 @@ def route_tendency(
     max_supporting_models: int = 2,
     max_risk_models: int = 1,
     relevance_scores: dict[str, float] | None = None,
+    reasoning_context: Any = None,
+    embeddings_db_path: Path | str | None = None,
+    openai_api_key: str | None = None,
 ) -> TendencyRoute:
     tendency = catalog.lookup(tendency_key)
     primary_binding = _match_primary_binding(tendency.antidote_bindings, sub_pattern)
@@ -43,6 +47,9 @@ def route_tendency(
         max_supporting_models=max_supporting_models,
         max_risk_models=max_risk_models,
         relevance_scores=relevance_scores,
+        reasoning_context=reasoning_context,
+        embeddings_db_path=embeddings_db_path,
+        openai_api_key=openai_api_key,
     ) if relation_graph is not None else None
     return TendencyRoute(
         tendency=tendency,
@@ -73,6 +80,9 @@ def route_detected_tendencies(
     max_supporting_models: int = 2,
     max_risk_models: int = 1,
     relevance_scores: dict[str, float] | None = None,
+    reasoning_context: Any = None,
+    embeddings_db_path: Path | str | None = None,
+    openai_api_key: str | None = None,
 ) -> list[TendencyRoute]:
     routes: list[TendencyRoute] = []
     seen: set[str] = set()
@@ -85,6 +95,9 @@ def route_detected_tendencies(
             max_supporting_models=max_supporting_models,
             max_risk_models=max_risk_models,
             relevance_scores=relevance_scores,
+            reasoning_context=reasoning_context,
+            embeddings_db_path=embeddings_db_path,
+            openai_api_key=openai_api_key,
         )
         tendency_id = route.tendency.tendency_id
         if tendency_id in seen:
@@ -102,6 +115,9 @@ def route_deep_check_results(
     max_supporting_models: int = 2,
     max_risk_models: int = 1,
     relevance_scores: dict[str, float] | None = None,
+    reasoning_context: Any = None,
+    embeddings_db_path: Path | str | None = None,
+    openai_api_key: str | None = None,
 ) -> list[TendencyRoute]:
     routes: list[TendencyRoute] = []
     seen: set[str] = set()
@@ -117,6 +133,9 @@ def route_deep_check_results(
             max_supporting_models=max_supporting_models,
             max_risk_models=max_risk_models,
             relevance_scores=relevance_scores,
+            reasoning_context=reasoning_context,
+            embeddings_db_path=embeddings_db_path,
+            openai_api_key=openai_api_key,
         )
         tendency_id = route.tendency.tendency_id
         if tendency_id in seen:
