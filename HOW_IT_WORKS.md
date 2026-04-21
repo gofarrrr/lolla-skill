@@ -250,6 +250,14 @@ Runtime LLM judgment — suggests, does not decide routing
 
 Embeddings suggest candidates. LLMs detect patterns. But every embedding hit still goes through LLM deep-check (tendency lane) or LLM verification (companion lane) before it affects output. And every LLM detection gets routed through deterministic graph traversal to curated knowledge. The curated material — not the LLM's opinion — is what the user sees.
 
+### Observability as a First-Class Artifact
+
+Every gated decision in Lolla produces a structured trace that travels with the result. When the routing tiebreaker consults the embedding matcher, the trace records whether the gate attempted, whether it fired, and if not, which check aborted it. When the Bullshit Index evaluates a passage, each subtype's detection and reasoning is preserved inline. When the detection funnel narrows from 25 tendencies to a handful of routes, each stage's input and output is captured. These traces are never log-only — they live in `audit_summary` and `run_health` next to the findings they explain.
+
+The principle: if a probabilistic component can override or modify a deterministic ranking, the reason must be auditable without reading code. If a detector fires, the rationale must travel with the detection. The cost of a silent gate is a system that works until it doesn't, and when it doesn't, nobody can tell why. The cost of a trace is a few dozen bytes per decision.
+
+Traces are read two ways. The Observatory renders the richer surfaces (findings, anchors, frame elements, gap questions, delivery audit) in context. `scripts/inspect_run.py` prints a compact terminal summary of the same result JSON — detection funnel, per-route tiebreaker status with abort reasons, delivery audit counts, card-level totals. Both read from the same artifact: the trace is the data, the viewer is interchangeable. Any future gate added to the pipeline (frame-pressure calibration, coverage thresholds, Phase 4/5 activation tuning, decomposed LLM specialists) should emit its own trace into the same `audit_summary` envelope so both surfaces pick it up automatically.
+
 ### How Lolla Compares
 
 | Dimension | Prompt Engineering | RAG / Context Injection | Lolla |
