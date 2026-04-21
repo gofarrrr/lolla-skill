@@ -1,0 +1,22 @@
+{
+  "name": "synth near-tie seed optimism-bias-and-planning-fallacy; probe probe_offtopic \u2192 abstain",
+  "description": "Programmatically synthesized via scripts/synthesize_tiebreaker_fixtures.py. Probe text is the top-1 select_when sentence from a third-party model (category-decisions) in the knowledge graph \u2014 NOT authored in-session. Expected outcome is DERIVED from cosine measurement against the live embeddings DB, not asserted by the author. See \u00a714e option 2 in the handover.",
+  "claim_type": "programmatic_synthesis",
+  "seed_model_id": "optimism-bias-and-planning-fallacy",
+  "probe_key": "synth_optimism-bias-and-planning-fallacy__probe_offtopic_category-decisions",
+  "top1_model_id": "resilience",
+  "top2_model_id": "problem-framing-and-reframing",
+  "delta_adj_affinity": 0.005082,
+  "measured_cosines": {
+    "probe_vs_ac_top1": 0.2625,
+    "probe_vs_ac_top2": 0.3341
+  },
+  "expected": {
+    "gate_class": "abstain",
+    "top_supporting_model_ids": [
+      "resilience",
+      "problem-framing-and-reframing"
+    ]
+  },
+  "notes": "Outcome classified by gate rules: max(cos_top1, cos_top2) < 0.45 \u2192 abstain; cos_top2 > cos_top1 \u2192 swap; else no_swap. If this scenario's assertion is wrong, the matcher changed OR the DB was rebuilt with different embeddings \u2014 re-running the synthesizer will recompute the expected class."
+}

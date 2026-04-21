@@ -1,0 +1,22 @@
+{
+  "name": "synth near-tie seed hanlons-razor; probe probe_offtopic \u2192 abstain",
+  "description": "Programmatically synthesized via scripts/synthesize_tiebreaker_fixtures.py. Probe text is the top-1 select_when sentence from a third-party model (tier-2-high-value) in the knowledge graph \u2014 NOT authored in-session. Expected outcome is DERIVED from cosine measurement against the live embeddings DB, not asserted by the author. See \u00a714e option 2 in the handover.",
+  "claim_type": "programmatic_synthesis",
+  "seed_model_id": "hanlons-razor",
+  "probe_key": "synth_hanlons-razor__probe_offtopic_tier-2-high-value",
+  "top1_model_id": "psychological-safety",
+  "top2_model_id": "root-cause-analysis",
+  "delta_adj_affinity": 0.009724,
+  "measured_cosines": {
+    "probe_vs_ac_top1": 0.2174,
+    "probe_vs_ac_top2": 0.2804
+  },
+  "expected": {
+    "gate_class": "abstain",
+    "top_supporting_model_ids": [
+      "psychological-safety",
+      "root-cause-analysis"
+    ]
+  },
+  "notes": "Outcome classified by gate rules: max(cos_top1, cos_top2) < 0.45 \u2192 abstain; cos_top2 > cos_top1 \u2192 swap; else no_swap. If this scenario's assertion is wrong, the matcher changed OR the DB was rebuilt with different embeddings \u2014 re-running the synthesizer will recompute the expected class."
+}
