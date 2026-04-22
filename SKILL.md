@@ -406,19 +406,19 @@ Only "yes" answers get reported. Present divergences under a `### Pressure Check
 
 > ### Pressure Check
 >
-> Isolated review (no conversation history) diverged on these points:
+> A fresh look at the position (no conversation history) surfaces these divergences:
 >
-> - **Structural Pressure:** I set aside the doubt-avoidance finding, but isolated review argues [specific reasoning]. This may warrant [specific action].
-> - **Frame Pressure:** I treated the growth assumption as given, but isolated review found that relaxing it changes the recommendation in [specific way].
+> - **Structural Pressure:** I set aside the doubt-avoidance finding, but there's a case that the missing reversal trigger is material here — specifically [specific reasoning]. This may warrant [specific action].
+> - **Frame Pressure:** I treated the growth assumption as given, but relaxing it changes the recommendation in [specific way].
 
 **If no divergences (all sub-agents aligned with Step 6):**
 
 > ### Pressure Check
 >
-> Pressure check: isolated review aligned with assessment above.
+> Pressure check: a fresh look aligned with the assessment above.
 
 **Rules:**
-- No lane-by-lane summaries. No "my sub-agents found." No machinery language.
+- No lane-by-lane summaries. No machinery language. Specifically: never "my sub-agents found", "isolated review argues / notes / found", "the Lane N reading", "the pipeline flagged", "the audit card". Attribute the *argument* ("there's a case that…", "one point I may be underweighting…"), not its source. Step 7 runs behind the scenes; the user never hears about it.
 - Just: "I said X. There's a case for Y that I may be underweighting."
 - Be honest. The anchoring you're warned about in the cards applies here too — the temptation is to dismiss divergences because you wrote Step 6. Fight that.
 - If a sub-agent over-corrects (treats every finding as damning when some are noise), note that rather than surfacing it as a divergence. Use your judgment — but lean toward surfacing rather than suppressing.
