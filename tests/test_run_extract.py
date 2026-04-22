@@ -1,0 +1,152 @@
+"""Tests for run_extract.py — canonical_key slug validation and
+post-extraction invalid-key handling.
+
+TDD scaffolding for PR #1 of the extraction contract roadmap.
+"""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+
+from run_extract import _validate_canonical_key, _apply_canonical_key_validation  # noqa: E402
+
+
+def test_valid_four_token_slug():
+    assert _validate_canonical_key("marcus-comp-below-market") is True
+
+
+def test_valid_two_token_boundary():
+    """2-token minimum: 'marcus-comp' is valid (first token ≥2 chars)."""
+    assert _validate_canonical_key("marcus-comp") is True
+
+
+def test_valid_three_token():
+    assert _validate_canonical_key("equity-retention-risk") is True
+
+
+def test_rejects_uppercase():
+    assert _validate_canonical_key("UPPERCASE") is False
+
+
+def test_rejects_mixed_case():
+    assert _validate_canonical_key("Marcus-Comp") is False
+
+
+def test_rejects_single_token_no_hyphen():
+    assert _validate_canonical_key("onetoken") is False
+
+
+def test_rejects_five_token_slug():
+    """4-token ceiling: 'a-b-c-d-e' has 5 tokens (4 hyphens) → reject."""
+    assert _validate_canonical_key("marcus-comp-below-market-rate") is False
+
+
+def test_rejects_empty_string():
+    assert _validate_canonical_key("") is False
+
+
+def test_rejects_underscore():
+    assert _validate_canonical_key("has_underscore") is False
+
+
+def test_rejects_space():
+    assert _validate_canonical_key("has space") is False
+
+
+def test_rejects_leading_hyphen():
+    assert _validate_canonical_key("-leading-hyphen") is False
+
+
+def test_rejects_trailing_hyphen():
+    assert _validate_canonical_key("trailing-hyphen-") is False
+
+
+def test_rejects_double_hyphen():
+    assert _validate_canonical_key("double--hyphen") is False
+
+
+def test_rejects_single_char_first_token():
+    """First token must be ≥2 chars: 'a-b' has 1-char first token → reject.
+
+    This is the deliberate letter-first-≥2 regex choice. Single-letter tokens
+    like 'x-factor' also fail; iterate the regex if a real case needs them.
+    """
+    assert _validate_canonical_key("a-b") is False
+
+
+def test_rejects_leading_digit():
+    """Letter-first: '401k-vesting-risk' fails. Noted in the validator's
+    docstring comment as deliberate."""
+    assert _validate_canonical_key("401k-vesting-risk") is False
+
+
+def test_rejects_non_string_input():
+    assert _validate_canonical_key(None) is False  # type: ignore[arg-type]
+    assert _validate_canonical_key(42) is False  # type: ignore[arg-type]
+
+
+# ---------------------------------------------------------------------------
+# Post-extraction validation — walks payload, sets invalid keys to "",
+# appends a capture_warning listing offenders.
+# ---------------------------------------------------------------------------
+
+def test_post_validation_mixed_payload():
+    """Valid key preserved; invalid key blanked; missing key left missing;
+    a capture_warning is appended summarizing the offenders."""
+    payload = {
+        "live_constraints": [
+            {"constraint": "c1", "canonical_key": "valid-one-here"},
+            {"constraint": "c2", "canonical_key": "BAD-KEY"},
+            {"constraint": "c3"},  # canonical_key field absent
+        ]
+    }
+    warnings: list[str] = []
+    offenders = _apply_canonical_key_validation(payload, warnings)
+
+    assert payload["live_constraints"][0]["canonical_key"] == "valid-one-here"
+    assert payload["live_constraints"][1]["canonical_key"] == ""
+    assert "canonical_key" not in payload["live_constraints"][2]
+    assert offenders == ["BAD-KEY"]
+    assert len(warnings) == 1
+    assert "canonical_key validation" in warnings[0]
+
+
+def test_post_validation_all_valid_no_warning():
+    """If every canonical_key is valid, no capture_warning is added."""
+    payload = {
+        "live_constraints": [
+            {"constraint": "c1", "canonical_key": "alpha-beta"},
+            {"constraint": "c2", "canonical_key": "gamma-delta-epsilon"},
+        ]
+    }
+    warnings: list[str] = []
+    offenders = _apply_canonical_key_validation(payload, warnings)
+    assert offenders == []
+    assert warnings == []
+    assert payload["live_constraints"][0]["canonical_key"] == "alpha-beta"
+
+
+def test_post_validation_no_live_constraints_key():
+    """If payload has no live_constraints field, function is a no-op."""
+    payload = {"some_other_field": "x"}
+    warnings: list[str] = []
+    offenders = _apply_canonical_key_validation(payload, warnings)
+    assert offenders == []
+    assert warnings == []
+
+
+def test_post_validation_empty_string_counts_as_invalid():
+    """An explicit empty canonical_key (LLM wrote "") counts as invalid and
+    goes into the offenders list even though the field stays empty."""
+    payload = {
+        "live_constraints": [
+            {"constraint": "c1", "canonical_key": ""},
+        ]
+    }
+    warnings: list[str] = []
+    offenders = _apply_canonical_key_validation(payload, warnings)
+    assert offenders == [""]
+    assert len(warnings) == 1
+    assert payload["live_constraints"][0]["canonical_key"] == ""

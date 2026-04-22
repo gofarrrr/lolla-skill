@@ -16,8 +16,67 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
+
+
+# ---------------------------------------------------------------------------
+# canonical_key slug validation (PR #1 of the extraction contract roadmap)
+# ---------------------------------------------------------------------------
+#
+# Letter-first + lowercase-only is deliberate: covers the common case cleanly.
+# Slugs like "401k-vesting-risk" that start with a digit would fail and need a
+# prompt iteration if a real case surfaces. The 2-4 token ceiling (i.e. 1-3
+# hyphens) is where slugs stop reading like sentences and start reading like
+# identifiers; beyond that we're just re-inventing the constraint text.
+_CANONICAL_KEY_RE = re.compile(r"^[a-z][a-z0-9]+(-[a-z0-9]+){1,3}$")
+
+
+def _validate_canonical_key(key: str) -> bool:
+    """Return True if ``key`` matches the canonical_key slug rule:
+    - 2-4 tokens separated by hyphens
+    - lowercase ASCII letters and digits only
+    - first token starts with a letter, has ≥2 characters
+    - each subsequent token has ≥1 character, letters-or-digits only
+
+    Empty strings, None, and non-str inputs return False.
+    """
+    if not isinstance(key, str) or not key:
+        return False
+    return bool(_CANONICAL_KEY_RE.match(key))
+
+
+def _apply_canonical_key_validation(
+    payload: dict,
+    capture_warnings: list,
+) -> list:
+    """Walk ``payload['live_constraints']`` and enforce the canonical_key slug
+    rule. Invalid keys are set to ``""``; the field is left absent when the
+    LLM didn't emit it at all. If any invalid keys were found, a single
+    capture_warning summarizing them is appended to ``capture_warnings``.
+    Returns the list of offending key values for observability.
+
+    Design note: we do NOT slugify the constraint text as a fallback. Fallback
+    hides LLM quality and contaminates the canonical_key Jaccard signal with
+    python-generated slugs. Empty-string "honest failure" is the right signal;
+    the invalid_key_rate metric downstream captures the failure rate.
+    """
+    offenders: list = []
+    for c in payload.get("live_constraints", []) or []:
+        if "canonical_key" not in c:
+            continue
+        key = c.get("canonical_key")
+        if not _validate_canonical_key(key):
+            offenders.append(key)
+            c["canonical_key"] = ""
+    if offenders:
+        preview = [k if len(str(k)) <= 40 else str(k)[:37] + "..." for k in offenders[:3]]
+        capture_warnings.append(
+            f"canonical_key validation: {len(offenders)} constraint(s) had "
+            f"invalid slugs (set to empty); examples: {preview}"
+        )
+    return offenders
 
 
 # ---------------------------------------------------------------------------
@@ -159,8 +218,28 @@ stakeholders, and what is at stake. Be specific — "whether to adopt microservi
 is better than "architecture decision".
 
 2. "live_constraints": Array of objects, each with:
-   - "constraint": what the user stated (deadline, budget, team size, dependency, \
-     regulatory requirement, prior commitment, political factor)
+   - "canonical_key": a stable 2-4 token slug identifying THE THING this \
+     constraint is about, independent of how it is phrased in this run. \
+     Rules:
+       * lowercase ASCII letters and digits only, separated by hyphens \
+         (e.g. "marcus-comp-below-market", "equity-retention-risk", \
+         "marcus-technical-concentration")
+       * 2 to 4 tokens — slugs with 5+ tokens start reading like sentences; \
+         keep them identifier-short
+       * name the SUBJECT, not the sentence. "marcus-comp-below-market" \
+         not "comp-is-below-market-range"
+       * drop values, numbers, and adjectives unless they ARE the identity \
+         of the thing (keep "below-market" — that's the tension; drop \
+         "$225k" — that's a value, not the subject)
+       * the same concept across runs should produce the same key — think \
+         "how would I index this?"
+   - "constraint": terse noun-phrase-plus-state, ≤120 characters. State the \
+     what (deadline, budget, team size, dependency, regulatory requirement, \
+     prior commitment, political factor) plus the current state of it. \
+     Avoid prose, hedging, and multi-clause sentences. Good: "Marcus comp \
+     $225k (below market $220-250k range)". Bad: "Marcus's current \
+     compensation is $225K total, which is slightly below the market range \
+     of $220-250K for comparable roles."
    - "introduced_turn": approximate turn number where this was first mentioned
    - "status": "active" if the AI's final recommendation still addresses it, \
      "dropped" if the AI stopped referencing it, "modified" if the scope changed
@@ -610,6 +689,11 @@ def main() -> int:
             "retry_attempted": retry_attempted,
             "retry_succeeded": retry_succeeded,
         }
+
+    # canonical_key validation — walk live_constraints, blank any slugs that
+    # fail the format rule, emit a capture_warning listing the offenders.
+    # See PR #1 of the extraction contract roadmap.
+    _apply_canonical_key_validation(payload, capture_warnings)
 
     # Extract full assistant responses from conversation for richer pipeline input
     assistant_text = _extract_assistant_responses(conversation_text)
