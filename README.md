@@ -97,6 +97,7 @@ The skill captures the conversation, extracts the decision structure, and runs t
 - **Python 3.10+** (uses stdlib only, no pip dependencies)
 - **OpenRouter API key** (for LLM inference via calibrated prompts)
 - **Optional:** OpenAI API key (enables semantic embedding search for richer companion matching)
+- **Orchestrator model:** Claude Opus 4.7 recommended. Sonnet 4.6 is acceptable with mild phrasing regressions (~66% anchor-naming rate vs 100% on Opus). Haiku is below the floor — it has been observed to skip critical pipeline steps (sub-agent spawning, artifact persistence) while generating plausible-looking output for the steps that didn't run. The preamble asks the orchestrator to self-identify and refuse if it is Haiku; see [HOW_IT_WORKS.md §Model Requirements](HOW_IT_WORKS.md#model-requirements) for details.
 
 ## What's Inside
 
@@ -108,9 +109,10 @@ lolla-skill/
 ├── data/                 # Knowledge graph, curation layers, embeddings
 │   └── curated/          # Compiled substrate files (bundle selector, signal lexicon)
 ├── scripts/
-│   ├── run_extract.py    # Step 2: conversation → decision structure (with capture validation)
-│   ├── run_pipeline.py   # Step 3: decision structure → four-lane audit (with run health)
-│   └── render_memo.py    # Deterministic markdown memo from result.json (no LLM)
+│   ├── run_extract.py      # Step 2: conversation → decision structure (capture-critical gate, quote-fabrication retry, truncation transparency)
+│   ├── run_pipeline.py     # Step 3: decision structure → four-lane audit (family-clustered Pass 1, run_health envelope)
+│   ├── render_memo.py      # Deterministic markdown memo from result.json (no LLM)
+│   └── stability_check.py  # Diagnostic harness (Mode A aggregate / Mode B pipeline-variance / Mode C extraction-drift)
 ├── observatory/          # Local web UI — four cards, revised answer, reasoning graph, run health, pipeline inspector
 ├── references/           # Tendency catalog, calibration, guardrails (loaded on demand)
 └── tests/                # Unit tests (trigger sources, frame validation, fuzzy matching, BI context, memo rendering)
@@ -124,7 +126,7 @@ See **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)** — the full technical reference cove
 
 ## Cost
 
-A typical audit makes 10-13 OpenRouter calls against the configured model (default: `x-ai/grok-4.1-fast`). Total: ~30-40K tokens, approximately $0.03-0.06 per run. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus batch embedding for 3 query variants (~$0.0002).
+A typical audit makes 18-25 OpenRouter calls against the configured model (default: `x-ai/grok-4.1-fast`) — one extraction call (plus an optional retry on quote fabrication, ~14% of runs), six Pass 1 cluster specialists in parallel, 2-7 deep checks, two companion calls, two frame-pressure calls, and 2-3 structural-coverage calls. Total: ~60-110K tokens, approximately $0.04-0.10 per run. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus batch embedding for 3 query variants (~$0.0002). See [HOW_IT_WORKS.md §Cost Per Run](HOW_IT_WORKS.md#cost-per-run) for the full breakdown and the rationale behind the cost increase (family-clustered Pass 1 trades more calls for narrower per-call load).
 
 ## Inspiration and Credits
 
