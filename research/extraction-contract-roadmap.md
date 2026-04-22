@@ -84,7 +84,7 @@ Every PR uses the same three axes. Each PR's section states its field-specific t
 
 ### PR #1 — `live_constraints.canonical_key`
 
-**Status:** IN PROGRESS (branch: `feat/extraction-contract-phase-1-live-constraints`).
+**Status:** PAUSED (2026-04-22, branch: `feat/extraction-contract-phase-1-live-constraints`). Acceptance-gate measurement returned canonical_key Jaccard 0.466 Mode C (target ≥ 0.80) and 0.332 cross-capture (target ≥ 0.70). Format validator is fine (invalid_key_rate 0.0% across 14 runs); the LLM oscillates between semantically-equivalent valid slugs (`marcus-comp` / `marcus-comp-below-market` / `marcus-comp-undermarket` for one concept, five variants for the retention-risk concept). The ≤120-char constraint rule improved exact-text Jaccard from 0.000 to 0.330 Mode C as a side effect. Evidence: `research/stability-runs/contract-phase1-post-ship-2026-04-22/README.md`. Decision pending on (A) prompt iteration vs (B) metric change (fuzzy / embedding-cosine) vs (C) split-and-ship.
 
 **Scope (minimal):**
 - Add `canonical_key` field to each `Constraint` in the extraction schema.
