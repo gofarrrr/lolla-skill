@@ -27,6 +27,16 @@ The system audits conversations for structural reasoning weaknesses using four i
 - **Lane 3 (Frame Pressure)** — audits how the question was framed → FramePressureCard
 - **Lane 4 (Structural Coverage)** — decomposes the problem into structural dimensions, finds what the answer didn't address → StructuralCoverageCard
 
+## Model Requirements
+
+Calibrated on Claude Opus 4.7. Cross-model validation (2026-04-22):
+
+- **Opus 4.7** — recommended. Full doctrine compliance (anchor naming, machinery-leak avoidance, all 9 pipeline steps executed).
+- **Sonnet 4.6** — acceptable. Completes the full 9-step pipeline with sub-agents and artifact persistence; modest phrasing regressions (anchor-naming rate ~66% vs 100% on Opus; occasional machinery-term leaks in the revised answer like "sub-agents" or "the audit changes").
+- **Haiku 4.5** — below floor. Skips Steps 6b / 6c / 7 / 8b (no revised_answer persistence, no memo render, no pressure-check sub-agents, no gap_check persistence) while generating plausible-looking output for the steps that didn't run — including a fake Pressure Check. Do not use.
+
+If running on a model below Opus, expect silent degradation in the Observatory and memo.
+
 ## Preamble (run first)
 
 ```bash
@@ -184,6 +194,20 @@ Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json`. Before presenting, read `referenc
 
 #### Chat Output Format
 
+**Run-health surface (conditional):** Before the BLUF, read `run_health.overall` and `run_health.issues` from the result JSON. If `overall` is `degraded` or `critical` AND at least one *material* issue is present, insert ONE short line naming the degradation so the reader knows the audit was partial. Silent otherwise — clean delivery is the default, not an achievement.
+
+Material issues (surface these):
+- `capture_degraded` or `capture_critical` — *"⚠ Audit partially degraded: conversation capture missed assistant turns. Some reasoning wasn't audited."*
+- `substrate_empty` — *"⚠ Curated knowledge base did not load for this run. This is a generic critique, not a Lolla audit."*
+- `no_fingerprint` — *"⚠ No mental-model activations found in the reasoning — may indicate a very short conversation or a genuine gap."*
+- Multiple material issues — combine with a semicolon: *"⚠ Audit degraded: capture missed turns; no fingerprint."*
+
+Non-material (do NOT surface — these are soft signals, not audit-quality breaks):
+- `embeddings_off` — audit still works via deterministic routing.
+- `pipeline_warnings` (alone) — flag only if combined with a material issue above.
+
+Skip the block entirely when no material issue is present, even if `overall` is technically `degraded`.
+
 **Opening line (the BLUF):** One sentence naming the single most important structural weakness found across all four lanes. This is your Sinatra Test — if this one finding lands, credibility for the whole audit follows. Pick the finding with the highest severity, the most specific passage match, and the most direct connection to the decision.
 
 Example: *"Your recommendation commits to a 3-year vendor lock-in without naming a single condition that would make you walk away."*
@@ -195,6 +219,12 @@ Example: *"Your recommendation commits to a 3-year vendor lock-in without naming
 > [One concrete detail: the challenge question, the reversal trigger, the reframed question, or the gap question. Pick whichever is most actionable for this finding. Quote verbatim from the JSON.]
 
 That's it per finding. Do NOT include severity in parentheses like "(High severity)" or "(high)" after the finding name — severity informs your selection of which findings to show and in what order, not how you label them. No "Pattern found:" field markers, no chunk lists.
+
+**If the companion cheat sheet surfaced anchors**, name them explicitly in one line before any reframing or gap lines:
+
+> **Mental models active:** [display_name_1], [display_name_2], [display_name_3] — see Observatory for failure modes, premortem questions, and curated antagonists.
+
+Use each anchor's `display_name` verbatim (not paraphrased). This primes the reader to recognize the models you'll reference in Step 6. Skip this line if `companion_cheat_sheet.anchors` is empty or absent. Do not add commentary on each model — this is a naming line, not a findings block.
 
 **If the audit found a strong reframing** (from frame pressure analysis), include one:
 
