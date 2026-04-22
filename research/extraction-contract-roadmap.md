@@ -84,7 +84,7 @@ Every PR uses the same three axes. Each PR's section states its field-specific t
 
 ### PR #1 — `live_constraints.canonical_key`
 
-**Status:** NOT STARTED. Ship first.
+**Status:** IN PROGRESS (branch: `feat/extraction-contract-phase-1-live-constraints`).
 
 **Scope (minimal):**
 - Add `canonical_key` field to each `Constraint` in the extraction schema.
