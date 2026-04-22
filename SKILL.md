@@ -157,6 +157,9 @@ Read the output file to check the `status` field:
 **If `status` is `not_strategic`:**
 Present the `decline_reason` to the user and stop. Example: "This conversation is about debugging a Python error, not a strategic decision. Lolla audits strategic reasoning — try it on a conversation where you're making a recommendation or weighing tradeoffs."
 
+**If `status` is `capture_critical`:**
+The conversation capture is fundamentally broken — more than half the assistant turns are missing, or no assistant responses were captured. An audit on this capture would be unreliable, so the extraction declined before calling OpenRouter. Read the `decline_reason` and `capture_manifest` from the output file, surface a short explanation to the user, and ask them to re-run the skill so Step 1 can capture the conversation again. Do NOT proceed to Step 3. Example message: *"Lolla couldn't audit this run — the conversation capture lost more than half the assistant turns (declared N, captured M). This usually means Step 1 hit an edge case in how it read the conversation. Please rerun `/lolla` and I'll try to capture it cleanly this time."*
+
 **If `status` is `ok`:** Proceed to Step 3.
 
 ### Step 3: Run Pipeline

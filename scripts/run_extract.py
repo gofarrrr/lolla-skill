@@ -446,6 +446,33 @@ def main() -> int:
     capture_health = capture_result["capture_health"]
     capture_warnings = capture_result["capture_warnings"]
 
+    # If capture is fundamentally broken (>50% assistant turns missing, or zero
+    # assistant turns), decline the audit. An extraction on a critically
+    # degraded capture produces a ghost audit — downstream lanes would treat a
+    # half-captured conversation as authoritative. Better to surface the break
+    # and ask the user to recapture than to ship a silent lie. We check BEFORE
+    # initializing the OpenRouter client so broken captures don't cost money.
+    if capture_health == "critical":
+        decline = {
+            "status": "capture_critical",
+            "decline_reason": (
+                "Conversation capture is critically degraded — more than half "
+                "of the assistant turns declared in the transcript header are "
+                "missing from the body, or the transcript has no assistant "
+                "responses at all. An audit on this capture would be unreliable. "
+                "Re-capture the conversation and retry. See capture_manifest "
+                "below for the exact mismatch."
+            ),
+        }
+        decline.update(capture_result)
+        output_text = json.dumps(decline, indent=2, ensure_ascii=False)
+        if args.output_file:
+            Path(args.output_file).write_text(output_text, encoding="utf-8")
+            print(f"Capture critical — extraction declined. Diagnostic written to {args.output_file}")
+        else:
+            print(output_text)
+        return 0
+
     # Truncate if needed
     conversation_text = _truncate_conversation(conversation_text)
 
