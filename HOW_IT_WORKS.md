@@ -581,6 +581,23 @@ The fact registry extracts `decision_situation`, `live_constraints`, and `droppe
 
 This structured approach gives the judge a cleaner signal about what counts as established context, reducing over-flagging of claims that are grounded in conversational facts.
 
+### Run Archival
+
+After the Observatory launches, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or `scripts/stability_check.py` analysis. `scripts/archive_run.py` copies 7 files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `gapcheck.txt`, `gapcheck_lanes.json`) into `{archive_root}/{case_id}/{run_id}/`. `/tmp` originals are not touched.
+
+The "which case is this?" question is solved without asking the user: the archive computes a **case fingerprint** from `extraction.decision_situation` (first 120 chars, normalized — lowercased, punctuation stripped, whitespace collapsed) and matches it against fingerprints stored in `{case_folder}/.case-manifest.json`:
+
+1. **Exact match:** the new fingerprint is already in a case's manifest → file there.
+2. **Fuzzy match (token-set Jaccard ≥ 0.80):** handles extractor paraphrase drift. Same conversation re-extracted twice may produce slightly different decision_situation text; the token-set match still groups them into one case. The new fingerprint is added to the manifest as an alias so future exact-match lookups are O(1).
+3. **No match:** a new case folder is created. The folder name is auto-slugged from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename freely — matching is against the in-folder manifest, not the folder name.
+
+Escape hatches:
+
+- `$LOLLA_CASE_ID` — force a specific folder name, skipping fingerprint match. Useful when grouping a run with an existing case despite mismatched decision_situation, or when the user wants a clean folder name from the first run.
+- The manifest is a plain JSON file editable by hand (rename the `case_id`, merge fingerprints, adjust the `runs[]` list after manual moves).
+
+Orchestrator scratch files (`preamble.json`, `lane*.json`) are intentionally NOT archived — they are Claude-side working files regenerable from `result.json` if ever needed, and they may or may not exist depending on how the orchestrator staged Step 7 sub-agents.
+
 ---
 
 ## Quality Doctrine
