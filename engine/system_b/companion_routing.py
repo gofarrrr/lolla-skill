@@ -336,11 +336,10 @@ def _build_verification_system_prompt() -> str:
         "REJECT a model if the model's name or vocabulary appears without the mechanism being executed or violated.\n"
         "REJECT a violated-mode claim if the answer simply omits the discipline rather than substituting an alternative.\n"
         "Broad models that must be actively declined unless specifically executed or violated: second-order-thinking, multi-criteria-decision-analysis, systems-thinking, power-laws, tier-2-high-value, butterfly-effect.\n"
-        "CRITICAL for tier-2-high-value: a high-value situation is not the same as tier-2-high-value being applied. "
-        "The model is about the reasoning PROCESS of identifying and concentrating on top-tier value outcomes. "
-        "If another specific model (authority-bias, reciprocity-principle, liking-loving, etc.) already explains the structural error, tier-2-high-value is background context — reject it. "
-        "Reject tier-2-high-value if the answer merely describes something as valuable, strategic, or high-priority. "
-        "The bar for tier-2-high-value execution: the answer must show the reasoner explicitly performing a value-tier classification AND using that classification as the central mechanism, with no other specific model already capturing the same error.\n"
+        "CRITICAL for tier-2-high-value: the model is EXECUTED only when the answer's own reasoning performs a value-tier classification AND uses that classification as the central decision mechanism. "
+        "Reject if another specific model (authority-bias, reciprocity-principle, liking-loving, etc.) already explains the structural error — tier-2-high-value is background context, not the read. "
+        "Reject if the answer merely describes something as valuable, strategic, or high-priority — compatibility is not execution. "
+        "Reject if the 'value tier' language comes from an external party (e.g., the vendor calling the company 'tier-one') rather than from the answer's own reasoning.\n"
         "Return ONLY valid JSON matching this exact structure and nothing else:\n"
         "{\n"
         '  "accepted": [\n'
@@ -373,12 +372,6 @@ def _build_verification_system_prompt() -> str:
         '  evidence_quote: "The CTO\'s personal vouching for their security posture provides reasonable assurance"\n'
         '  presence_explanation: "The answer accepts credentialed attestation as a substitute for independent technical verification, directly violating the discipline scientific-method-evidence-testing exists to enforce."\n'
         "\n"
-        "EXAMPLE — executed (authority-bias with high-value framing present — tie-breaker case):\n"
-        '  model_id: "authority-bias"\n'
-        '  presence_mode: "executed"\n'
-        '  evidence_quote: "A $2M ARR deal with a CTO-level sponsor is exactly the kind of strategic customer that justifies temporary flexibility on security posture"\n'
-        '  presence_explanation: "Even though the sentence mentions deal value, the decisive epistemic move is the CTO\'s rank being used to authorize the security exception — credentialed attestation is doing the work, not value-tier classification. Authority-bias is the correct read; tier-2-high-value is coincident framing."\n'
-        "\n"
         "TIE-BREAKER RULE: when high-value opportunity language and rank-backed assurance appear in the same passage, ask: is the decisive epistemic move (a) classifying this as top-tier value, or (b) treating a credentialed person's say-so as sufficient? "
         "If rank or credential is doing the justificatory work, authority-bias is correct and tier-2-high-value must be rejected as coincident framing — even if value language is also present in the same sentence. "
         "Only accept tier-2-high-value when the value-tier classification itself — not rank, not credential — is the mechanism that drives the decision.\n"
@@ -393,12 +386,7 @@ def _build_verification_system_prompt() -> str:
         "\n"
         "EXAMPLE — rejected (broad strategic overlay):\n"
         '  model_id: "tier-2-high-value"\n'
-        '  rejection_reason: "too generic — the answer mentions value or makes a judgment about worth, but does not specifically apply the mechanism of identifying top-tier value opportunities and concentrating attention there; framing-level mention is not execution"\n'
-        "\n"
-        "KEY DISTINCTION for tier-2-high-value: the model is EXECUTED only if the answer's own reasoning explicitly classifies this opportunity as top-tier in value and uses that classification as the decision driver. "
-        "A sentence where someone else (e.g., the vendor) calls the company a 'tier-one partner' does NOT execute tier-2-high-value — that is a quote from an external party, not the reasoner applying the model. "
-        "A sentence that mentions value, mentions doing a market check, or treats renewal as generally worthwhile does NOT execute tier-2-high-value — that is compatibility. "
-        "Reject tier-2-high-value unless you can quote the exact passage where the answer itself performs and applies a top-tier value classification as its central decision mechanism."
+        '  rejection_reason: "too generic — the answer mentions value or makes a judgment about worth, but does not specifically apply the mechanism of identifying top-tier value opportunities and concentrating attention there; framing-level mention is not execution"'
     )
 
 
