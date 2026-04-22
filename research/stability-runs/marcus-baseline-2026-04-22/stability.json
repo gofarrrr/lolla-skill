@@ -1,10 +1,11 @@
 {
-  "n_runs": 4,
+  "n_runs": 5,
   "run_ids": [
     "20260421T144534Z",
     "20260421T162225Z",
     "20260421T172513Z",
-    "20260422T091837Z"
+    "20260422T091837Z",
+    "20260422T100308Z"
   ],
   "pass1_tendencies": {
     "per_run": [
@@ -23,10 +24,15 @@
       [
         "deprival-superreaction-tendency",
         "inconsistency-avoidance-tendency"
+      ],
+      [
+        "contrast-misreaction-tendency",
+        "doubt-avoidance-tendency",
+        "inconsistency-avoidance-tendency"
       ]
     ],
     "stability": {
-      "mean": 0.5,
+      "mean": 0.4,
       "min": 0.0,
       "max": 1.0,
       "pairs": [
@@ -73,6 +79,21 @@
           ]
         },
         {
+          "i": 0,
+          "j": 4,
+          "jaccard": 0.25,
+          "shared": [
+            "contrast-misreaction-tendency"
+          ],
+          "only_i": [
+            "liking-loving-tendency"
+          ],
+          "only_j": [
+            "doubt-avoidance-tendency",
+            "inconsistency-avoidance-tendency"
+          ]
+        },
+        {
           "i": 1,
           "j": 2,
           "jaccard": 1.0,
@@ -95,6 +116,21 @@
           "only_j": []
         },
         {
+          "i": 1,
+          "j": 4,
+          "jaccard": 0.25,
+          "shared": [
+            "inconsistency-avoidance-tendency"
+          ],
+          "only_i": [
+            "deprival-superreaction-tendency"
+          ],
+          "only_j": [
+            "contrast-misreaction-tendency",
+            "doubt-avoidance-tendency"
+          ]
+        },
+        {
           "i": 2,
           "j": 3,
           "jaccard": 1.0,
@@ -104,6 +140,36 @@
           ],
           "only_i": [],
           "only_j": []
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "jaccard": 0.25,
+          "shared": [
+            "inconsistency-avoidance-tendency"
+          ],
+          "only_i": [
+            "deprival-superreaction-tendency"
+          ],
+          "only_j": [
+            "contrast-misreaction-tendency",
+            "doubt-avoidance-tendency"
+          ]
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "jaccard": 0.25,
+          "shared": [
+            "inconsistency-avoidance-tendency"
+          ],
+          "only_i": [
+            "deprival-superreaction-tendency"
+          ],
+          "only_j": [
+            "contrast-misreaction-tendency",
+            "doubt-avoidance-tendency"
+          ]
         }
       ]
     }
@@ -125,10 +191,16 @@
       [
         "representativeness-heuristic",
         "sunk-cost-fallacy"
+      ],
+      [
+        "inversion",
+        "optionality",
+        "representativeness-heuristic",
+        "status-quo-bias"
       ]
     ],
     "stability": {
-      "mean": 0.0555,
+      "mean": 0.0733,
       "min": 0.0,
       "max": 0.3333,
       "pairs": [
@@ -172,6 +244,21 @@
           ]
         },
         {
+          "i": 0,
+          "j": 4,
+          "jaccard": 0.0,
+          "shared": [],
+          "only_i": [
+            "opportunity-cost"
+          ],
+          "only_j": [
+            "inversion",
+            "optionality",
+            "representativeness-heuristic",
+            "status-quo-bias"
+          ]
+        },
+        {
           "i": 1,
           "j": 2,
           "jaccard": 0.0,
@@ -202,6 +289,23 @@
           ]
         },
         {
+          "i": 1,
+          "j": 4,
+          "jaccard": 0.0,
+          "shared": [],
+          "only_i": [
+            "endowment-effect",
+            "opportunity-cost",
+            "problem-framing-and-reframing"
+          ],
+          "only_j": [
+            "inversion",
+            "optionality",
+            "representativeness-heuristic",
+            "status-quo-bias"
+          ]
+        },
+        {
           "i": 2,
           "j": 3,
           "jaccard": 0.0,
@@ -213,6 +317,38 @@
           "only_j": [
             "representativeness-heuristic",
             "sunk-cost-fallacy"
+          ]
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "jaccard": 0.2,
+          "shared": [
+            "inversion"
+          ],
+          "only_i": [
+            "premortem"
+          ],
+          "only_j": [
+            "optionality",
+            "representativeness-heuristic",
+            "status-quo-bias"
+          ]
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "jaccard": 0.2,
+          "shared": [
+            "representativeness-heuristic"
+          ],
+          "only_i": [
+            "sunk-cost-fallacy"
+          ],
+          "only_j": [
+            "inversion",
+            "optionality",
+            "status-quo-bias"
           ]
         }
       ]
@@ -232,10 +368,14 @@
         "decision-trees",
         "systems-thinking"
       ],
-      []
+      [],
+      [
+        "empathy",
+        "reframing-perspective"
+      ]
     ],
     "stability": {
-      "mean": 0.1666,
+      "mean": 0.1,
       "min": 0.0,
       "max": 0.3333,
       "pairs": [
@@ -279,6 +419,20 @@
           "only_j": []
         },
         {
+          "i": 0,
+          "j": 4,
+          "jaccard": 0.0,
+          "shared": [],
+          "only_i": [
+            "decision-trees",
+            "first-principles-thinking"
+          ],
+          "only_j": [
+            "empathy",
+            "reframing-perspective"
+          ]
+        },
+        {
           "i": 1,
           "j": 2,
           "jaccard": 0.3333,
@@ -304,6 +458,20 @@
           "only_j": []
         },
         {
+          "i": 1,
+          "j": 4,
+          "jaccard": 0.0,
+          "shared": [],
+          "only_i": [
+            "decision-trees",
+            "option-theory"
+          ],
+          "only_j": [
+            "empathy",
+            "reframing-perspective"
+          ]
+        },
+        {
           "i": 2,
           "j": 3,
           "jaccard": 0.0,
@@ -313,6 +481,31 @@
             "systems-thinking"
           ],
           "only_j": []
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "jaccard": 0.0,
+          "shared": [],
+          "only_i": [
+            "decision-trees",
+            "systems-thinking"
+          ],
+          "only_j": [
+            "empathy",
+            "reframing-perspective"
+          ]
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "jaccard": 0.0,
+          "shared": [],
+          "only_i": [],
+          "only_j": [
+            "empathy",
+            "reframing-perspective"
+          ]
         }
       ]
     }
@@ -344,12 +537,18 @@
         "resource-allocation",
         "risk-response",
         "stakeholder-alignment"
+      ],
+      [
+        "information-quality",
+        "resource-allocation",
+        "risk-response",
+        "stakeholder-alignment"
       ]
     ],
     "stability": {
-      "mean": 0.5191,
+      "mean": 0.6014,
       "min": 0.2857,
-      "max": 0.8,
+      "max": 1.0,
       "pairs": [
         {
           "i": 0,
@@ -405,6 +604,23 @@
           ]
         },
         {
+          "i": 0,
+          "j": 4,
+          "jaccard": 0.5,
+          "shared": [
+            "information-quality",
+            "resource-allocation",
+            "risk-response"
+          ],
+          "only_i": [
+            "competitive-dynamics",
+            "scope-boundary"
+          ],
+          "only_j": [
+            "stakeholder-alignment"
+          ]
+        },
+        {
           "i": 1,
           "j": 2,
           "jaccard": 0.6,
@@ -436,6 +652,19 @@
           ]
         },
         {
+          "i": 1,
+          "j": 4,
+          "jaccard": 1.0,
+          "shared": [
+            "information-quality",
+            "resource-allocation",
+            "risk-response",
+            "stakeholder-alignment"
+          ],
+          "only_i": [],
+          "only_j": []
+        },
+        {
           "i": 2,
           "j": 3,
           "jaccard": 0.5,
@@ -451,6 +680,37 @@
             "existing-vs-new",
             "risk-response"
           ]
+        },
+        {
+          "i": 2,
+          "j": 4,
+          "jaccard": 0.6,
+          "shared": [
+            "information-quality",
+            "resource-allocation",
+            "stakeholder-alignment"
+          ],
+          "only_i": [
+            "timing-sequencing"
+          ],
+          "only_j": [
+            "risk-response"
+          ]
+        },
+        {
+          "i": 3,
+          "j": 4,
+          "jaccard": 0.8,
+          "shared": [
+            "information-quality",
+            "resource-allocation",
+            "risk-response",
+            "stakeholder-alignment"
+          ],
+          "only_i": [
+            "existing-vs-new"
+          ],
+          "only_j": []
         }
       ]
     }
@@ -523,6 +783,31 @@
       "named": 2,
       "total": 2,
       "rate": 1.0
+    },
+    {
+      "run_id": "20260422T100308Z",
+      "present": true,
+      "per_anchor": [
+        {
+          "display_name": "Optionality",
+          "named": true
+        },
+        {
+          "display_name": "Representativeness Heuristic",
+          "named": true
+        },
+        {
+          "display_name": "Status Quo Bias",
+          "named": true
+        },
+        {
+          "display_name": "Inversion",
+          "named": true
+        }
+      ],
+      "named": 4,
+      "total": 4,
+      "rate": 1.0
     }
   ],
   "cost_per_run": [
@@ -553,6 +838,13 @@
       "prompt_tokens": 54940,
       "completion_tokens": 5359,
       "total_tokens": 60299
+    },
+    {
+      "run_id": "20260422T100308Z",
+      "n_boundary_calls": 12,
+      "prompt_tokens": 62819,
+      "completion_tokens": 6656,
+      "total_tokens": 69475
     }
   ]
 }

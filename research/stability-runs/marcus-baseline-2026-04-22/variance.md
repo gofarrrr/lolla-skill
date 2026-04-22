@@ -1,8 +1,8 @@
 # Stability report — marcus-baseline
 
-Generated: 2026-04-22T09:54:06Z
-Runs: 4
-Run IDs: 20260421T144534Z, 20260421T162225Z, 20260421T172513Z, 20260422T091837Z
+Generated: 2026-04-22T10:20:07Z
+Runs: 5
+Run IDs: 20260421T144534Z, 20260421T162225Z, 20260421T172513Z, 20260422T091837Z, 20260422T100308Z
 Prompt versions consistent across runs: True
 
 ## Per-stage stability (Jaccard)
@@ -11,10 +11,10 @@ Prompt versions consistent across runs: True
 
 | Stage | Mean | Min | Max |
 |---|---|---|---|
-| Pass 1 (tendencies) | 0.50 | 0.00 | 1.00 |
-| Lane 2 (anchors) | 0.06 | 0.00 | 0.33 |
-| Lane 3 (reframings) | 0.17 | 0.00 | 0.33 |
-| Lane 4 (gap dims) | 0.52 | 0.29 | 0.80 |
+| Pass 1 (tendencies) | 0.40 | 0.00 | 1.00 |
+| Lane 2 (anchors) | 0.07 | 0.00 | 0.33 |
+| Lane 3 (reframings) | 0.10 | 0.00 | 0.33 |
+| Lane 4 (gap dims) | 0.60 | 0.29 | 1.00 |
 
 ## Step 6 anchor naming (per-run)
 
@@ -24,7 +24,8 @@ Prompt versions consistent across runs: True
 | `20260421T162225Z` | 0 | 3 | 0% |
 | `20260421T172513Z` | 2 | 2 | 100% |
 | `20260422T091837Z` | 2 | 2 | 100% |
-| **AGGREGATE** | **4** | **8** | **50%** |
+| `20260422T100308Z` | 4 | 4 | 100% |
+| **AGGREGATE** | **8** | **12** | **66%** |
 
 ## Per-run item diff
 
@@ -33,24 +34,28 @@ Prompt versions consistent across runs: True
 - `20260421T162225Z`: ['deprival-superreaction-tendency', 'inconsistency-avoidance-tendency']
 - `20260421T172513Z`: ['deprival-superreaction-tendency', 'inconsistency-avoidance-tendency']
 - `20260422T091837Z`: ['deprival-superreaction-tendency', 'inconsistency-avoidance-tendency']
+- `20260422T100308Z`: ['contrast-misreaction-tendency', 'doubt-avoidance-tendency', 'inconsistency-avoidance-tendency']
 
 ### Lane 2 anchors
 - `20260421T144534Z`: ['opportunity-cost']
 - `20260421T162225Z`: ['endowment-effect', 'opportunity-cost', 'problem-framing-and-reframing']
 - `20260421T172513Z`: ['inversion', 'premortem']
 - `20260422T091837Z`: ['representativeness-heuristic', 'sunk-cost-fallacy']
+- `20260422T100308Z`: ['inversion', 'optionality', 'representativeness-heuristic', 'status-quo-bias']
 
 ### Lane 3 reframings
 - `20260421T144534Z`: ['decision-trees', 'first-principles-thinking']
 - `20260421T162225Z`: ['decision-trees', 'option-theory']
 - `20260421T172513Z`: ['decision-trees', 'systems-thinking']
 - `20260422T091837Z`: []
+- `20260422T100308Z`: ['empathy', 'reframing-perspective']
 
 ### Lane 4 gap dims
 - `20260421T144534Z`: ['competitive-dynamics', 'information-quality', 'resource-allocation', 'risk-response', 'scope-boundary']
 - `20260421T162225Z`: ['information-quality', 'resource-allocation', 'risk-response', 'stakeholder-alignment']
 - `20260421T172513Z`: ['information-quality', 'resource-allocation', 'stakeholder-alignment', 'timing-sequencing']
 - `20260422T091837Z`: ['existing-vs-new', 'information-quality', 'resource-allocation', 'risk-response', 'stakeholder-alignment']
+- `20260422T100308Z`: ['information-quality', 'resource-allocation', 'risk-response', 'stakeholder-alignment']
 
 ## Cost per run (boundary-call tokens)
 
@@ -60,3 +65,4 @@ Prompt versions consistent across runs: True
 | `20260421T162225Z` | 12 | 60907 | 5533 | 66440 |
 | `20260421T172513Z` | 11 | 54766 | 6594 | 61360 |
 | `20260422T091837Z` | 10 | 54940 | 5359 | 60299 |
+| `20260422T100308Z` | 12 | 62819 | 6656 | 69475 |
