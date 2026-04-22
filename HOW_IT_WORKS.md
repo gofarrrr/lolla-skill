@@ -162,6 +162,16 @@ Why the audit stays external:
 - **Fox can't audit the henhouse.** RLHF training optimizes for agreeable outputs. External audit breaks that loop.
 - **Telemetry.** When OpenRouter runs the pipeline, we get `BoundaryCallMetadata` back — prompt tokens, completion tokens, cached tokens, reasoning tokens. This makes the system observable and measurable.
 
+### Model Requirements
+
+The skill is calibrated against Claude Opus 4.7 as the orchestrator. Cross-model validation on 2026-04-22 produced three tiers:
+
+- **Opus 4.7** — recommended. Full doctrine compliance: anchor naming, machinery-leak avoidance, all nine pipeline steps execute reliably.
+- **Sonnet 4.6** — acceptable. Completes the full nine-step pipeline including sub-agent spawning and artifact persistence. Modest phrasing regressions: anchor-naming rate ~66% (vs 100% on Opus); occasional machinery-term leaks in the revised answer (e.g., "sub-agents", "the audit changes"). Fit for regular use; expect marginally noisier output.
+- **Haiku 4.5** — below the floor. Observed to skip Steps 6b / 6c / 7 / 8b — no `revised_answer` persistence, no memo render, no Step 7 sub-agents, no `gap_check` persistence — while generating plausible-looking output (including a fake Pressure Check) for the steps that didn't run.
+
+The preamble asks the orchestrator to self-identify and refuse if it is Haiku. There is no machine-enforced floor — `$CLAUDE_MODEL` is not exposed by Claude Code — so the check relies on self-identification. Users on Sonnet or below should treat the `run_health` envelope (Step 4 chat) and the Observatory's completeness signals as the primary integrity check.
+
 ### Probabilistic Edges, Deterministic Middle
 
 LLMs are extraordinary System 1 machines — fast, fluent, pattern-matching — but structurally weak at System 2: slow, deliberate, logically disciplined reasoning. Kahneman's framework from *Thinking, Fast and Slow* maps directly onto Lolla's architecture. Balaji Srinivasan sharpens this further: AI is purely probabilistic, exceptional at "middle-to-middle" generation, but it cannot self-verify. His principle — "0% AI is slow, but 100% AI is slop" — captures why Lolla exists in the space between: human-curated structure disciplining LLM flexibility.
@@ -176,7 +186,7 @@ This is how we bring out-of-distribution knowledge into the reasoning process wi
 
 | Stage | Type | Why this choice |
 |-------|------|-----------------|
-| Triage: score 25 tendencies | **Probabilistic** (LLM) | Semantic judgment — "does this answer exhibit tendency X?" — requires reading reasoning shape |
+| Pass 1 triage: 6 family-clustered specialists, each scoring 3-5 tendencies in parallel | **Probabilistic** (LLM) | Semantic judgment — "does this answer exhibit tendency X?" Obligation-chunked across tendency families (authority, closure, incentive, availability, self-regard, residual) so each call carries only that family's confusion guardrails. See *Context Engineering: Two Passes* below. |
 | Embedding tendency signal | **Probabilistic** (cosine) | Swiss cheese redundancy for LLM misses |
 | Threshold filtering (score ≥ 4) | **Deterministic** | Hard cutoff, reproducible |
 | Deep check: isolated tendency analysis | **Probabilistic** (LLM) | Deeper semantic analysis — one tendency in isolation, no distractors |
@@ -212,13 +222,26 @@ This means the system has multiple independent chances to detect a pattern. In p
 
 ### Context Engineering: Two Passes
 
-Why does Lane 1 use two LLM passes instead of one?
+Why does Lane 1 use multiple LLM passes instead of one?
 
-**Pass 1 is broad but shallow** — it scores the answer against all 25 tendencies at once. This is efficient but the LLM is balancing 25 competing hypotheses simultaneously, which means adjacent tendencies (authority vs social proof, doubt-avoidance vs stress-influence) can be confused.
+**Pass 1 is narrow and parallel — six family-clustered specialist calls, each scoring only its assigned tendencies.** The 25 Munger tendencies partition into six families by how they confuse with each other in practice:
 
-**Pass 2 is narrow and deep** — each triggered tendency gets its own isolated LLM call with only that tendency's description, its sub-pattern menu (corrective model options), and calibration guidance. No knowledge of what other tendencies were triggered.
+| Cluster | Tendencies (count) | Family-specific confusion guardrails |
+|---|---|---|
+| `authority` | authority-misinfluence, social-proof, influence-from-mere-association, liking-loving, reciprocation (5) | 5 of the 11 guardrails (all the "external endorsement" disambiguations) |
+| `closure` | doubt-avoidance, inconsistency-avoidance, deprival-superreaction, stress-influence (4) | 4 guardrails (closure-under-pressure disambiguations) |
+| `incentive` | reward-and-punishment, envy-jealousy, kantian-fairness (3) | 1 guardrail (reward/punishment) |
+| `availability` | availability-misweighing, contrast-misreaction (2) | 1 guardrail (availability/denominator) |
+| `self_regard` | overoptimism, excessive-self-regard, simple-pain-avoiding-psychological-denial, disliking-hating, reason-respecting (5) | 0 (no active confusion pairs in the current calibration) |
+| `residual` | curiosity, use-it-or-lose-it, drug-misinfluence, senescence-misinfluence, twaddle (5) | 0 (quirky tendencies without standard confusion patterns) |
 
-This is context engineering: **removing distractors** so the LLM can focus. The cost is N+1 LLM calls (1 triage + N deep checks), but precision improves because the model doesn't have to balance competing hypotheses. Pass 2 calls run in parallel (up to 8 concurrent), so wall-clock time stays roughly constant.
+The 25th tendency, `lollapalooza`, is not in any cluster — it is surfaced by the deterministic `_build_compound_groups` layer on final findings (see Lane 1 step 5), not by triage.
+
+All six clusters run in parallel (max_workers=8). Each returns scores only for its assigned tendencies; a deterministic merge produces the full `triage_scores` list the rest of the pipeline expects. Per-cluster boundary calls are traced individually under stages `pass1_cluster_{cluster_id}` in `audit_summary.boundary_calls`, and each cluster's system prompt is hashed separately in `prompt_versions` for reproducibility.
+
+**Pass 2 is narrow and deep** — each triggered tendency (score ≥4 OR embedding hit) gets its own isolated LLM call with only that tendency's description, its sub-pattern menu (corrective model options), and calibration guidance. No knowledge of what other tendencies were triggered.
+
+This is context engineering on **two axes**: input chunking (each Pass 1 cluster sees only its own tendency list + relevant guardrails; each Pass 2 call sees one tendency) AND obligation chunking (each Pass 1 call scores 3-5 tendencies, not 25; each Pass 2 call judges one). Cost is 6 Pass 1 cluster calls + N Pass 2 deep checks; because both stages fan out in parallel, wall-clock stays close to single-call latency. The shift from one monolithic 25-tendency prompt to six cluster specialists was validated via the stability harness: on a fixed Marcus extraction, Pass 1 Jaccard moved from 0.50 → 0.70 (N=3), and the Availability cluster consistently surfaces `availability-misweighing` — a tendency the prior 25-in-one prompt was systematically missing. See `research/stability-runs/marcus-track-b-validation-2026-04-22/` for the full report.
 
 ### Four Independent Lanes
 
@@ -257,6 +280,27 @@ Every gated decision in Lolla produces a structured trace that travels with the 
 The principle: if a probabilistic component can override or modify a deterministic ranking, the reason must be auditable without reading code. If a detector fires, the rationale must travel with the detection. The cost of a silent gate is a system that works until it doesn't, and when it doesn't, nobody can tell why. The cost of a trace is a few dozen bytes per decision.
 
 Traces are read two ways. The Observatory renders the richer surfaces (findings, anchors, frame elements, gap questions, delivery audit) in context. `scripts/inspect_run.py` prints a compact terminal summary of the same result JSON — detection funnel, per-route tiebreaker status with abort reasons, delivery audit counts, card-level totals. Both read from the same artifact: the trace is the data, the viewer is interchangeable. Any future gate added to the pipeline (frame-pressure calibration, coverage thresholds, Phase 4/5 activation tuning, decomposed LLM specialists) should emit its own trace into the same `audit_summary` envelope so both surfaces pick it up automatically.
+
+The `run_health` envelope decomposes run quality into named signals the Step 4 chat can surface selectively:
+
+- `overall`: `healthy` / `degraded` / `critical`.
+- `capture`, `substrate`, `embeddings`, `fingerprint`: per-subsystem status.
+- `findings_produced`: whether Lane 1 produced any findings.
+- `issues[]`: specific codes — `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`.
+- `warnings[]`: verbose text (pipeline warnings + capture warnings).
+- `capture_manifest`: declared vs actual turn counts, char length, and truncation fields when applicable.
+- Counts: `quote_fabrication_count`, `quote_retry_attempted`, `capture_truncated`, `omitted_turns`, `lane3_frame_drops_count`, `lane3_frame_kept_count`.
+- `activation_tiebreaker`: `on` / `off` (the per-route tiebreaker kill-switch).
+
+Step 4 maps the material issues to user-visible one-liners; the full envelope is available in the result JSON, Observatory, and `scripts/inspect_run.py`.
+
+A companion diagnostic tool — `scripts/stability_check.py` — computes per-stage Jaccard / text-similarity across N runs. Three modes:
+
+- **Mode A (aggregate)** — reads existing `result.json` files and computes pairwise Jaccard for Pass 1 tendencies, Lane 2 anchor model_ids, Lane 3 reframing grounding models, Lane 4 gap dimension_ids; plus Step 6 anchor-naming rate and per-run token costs.
+- **Mode B (pipeline-variance)** — reruns the pipeline N times from a fixed extraction so only pipeline sampling contributes to variance. Isolates Pass 1/Lane 2/Lane 3/Lane 4 intrinsic noise.
+- **Mode C (extraction-drift)** — re-runs `run_extract.py` N times on the same conversation; measures per-field drift (similarity on free-text fields, Jaccard on list fields, fabricated-count per run).
+
+Outputs land in `research/stability-runs/{case-id}-{date}/` as `stability.json` or `drift.json`, plus a human-readable `variance.md` or `drift.md`. The harness is diagnostic, not a gate — 1.0 Jaccard is a warning (signals a specialist that stopped doing semantic judgment), not a target.
 
 ### How Lolla Compares
 
@@ -345,15 +389,15 @@ If strategic → extracts 6 fields:
 | `original_framing` | How the human posed the problem — what was assumed fixed, what perspectives were excluded | Lane 3 (frame pressure) audits framing. If the question assumed "we must grow" and never explored "should we grow?", Lane 3 catches that. |
 | `dropped_threads` | Concerns raised but never resolved — by either party | Enriches the `query` with explicit omission signals. When triage sees "user raised X, AI never addressed it", that's tendency-detection gold. |
 
-**Capture validation and quote verification:**
+**Capture validation, quote verification, and failure gates:**
 
-Before sending the conversation to OpenRouter, the extraction script validates capture integrity against the raw (pre-truncation) text:
+Before sending the conversation to OpenRouter, the extraction script validates capture integrity against the raw (pre-truncation) text. Three signals feed downstream observability:
 
-- `capture_manifest` — actual vs. declared turn counts (user, assistant) and character length
-- `capture_health` — graded `good` / `degraded` / `critical` / `unknown` (no parseable header)
-- `_quote_validation` — after extraction, each `reasoning_passages` entry is checked as a literal substring of the transcript. Fabricated quotes are flagged but don't fail the run (degrade gracefully). This catches the extraction LLM paraphrasing instead of quoting verbatim.
+- `capture_manifest` — actual vs. declared turn counts (user, assistant) and character length. When the 80K-char cap or the "first 3 + last 15 turns on >100-turn conversations" rule fires, `capture_manifest.truncation_applied: true` is set and additional fields (`truncation_reason`, `original_char_length`, `truncated_char_length`, `total_turns`, `kept_turns`, `omitted_turns`) are populated so downstream layers and the Step 4 chat know the audit ran on dropped context.
+- `capture_health` — graded `good` / `degraded` / `critical` / `unknown` (no parseable header). **`capture_health: "critical"` short-circuits the run**: the extractor returns `status: "capture_critical"` with a structured `decline_reason` and the full `capture_manifest` *before* initializing the OpenRouter client, so broken captures cost nothing. A critically degraded capture (>50% assistant turns missing, or zero assistant responses) would produce a ghost audit on partial data; the gate prevents that silent failure from entering the pipeline.
+- `_quote_validation` — after extraction, each `reasoning_passages` entry is checked as a literal substring of the transcript. **If any fail, extraction retries once** with a correction prompt that lists the failed passages as examples of what NOT to do and demands character-for-character verbatim copies. If the retry produces fewer fabrications, its payload is adopted wholesale. Any fabrications that still remain after the retry are dropped from the final `reasoning_passages` list (the field contract is "literal substrings only"), a `capture_warning` is emitted, and `run_pipeline.py` surfaces `quote_fabrication` in `run_health`. `_quote_validation` also records `retry_attempted` and `retry_succeeded` for provenance.
 
-These diagnostics surface in every output path — success, error, and not-strategic.
+These diagnostics surface in every output path — `ok`, `error`, `not_strategic`, and `capture_critical`.
 
 **CritiqueRequest mapping:**
 
@@ -402,7 +446,7 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 **Lane 1 — Structural Pressure (3-5 OpenRouter calls):**
 
-1. **Pass 1 (Triage):** One OpenRouter call scores the vanilla answer against all 25 Munger tendencies (0-10 each). Uses the query to understand which constraints were live. Result: a shortlist of tendencies scoring 4+ (the "triggered" set).
+1. **Pass 1 (family-clustered triage):** Six OpenRouter calls run in parallel — one per tendency family (authority, closure, incentive, availability, self_regard, residual — see *Context Engineering: Two Passes* above for the full cluster taxonomy and rationale). Each cluster scores only its 3-5 assigned tendencies and carries only that family's confusion guardrails. Results are merged deterministically into a single `triage_scores` list covering all 24 canonical non-lollapalooza tendencies; lollapalooza is surfaced by deterministic compound detection (step 5 below), not by triage. Tendencies scoring ≥4 enter the "triggered" set.
 
 2. **Embedding swiss cheese** (optional, if `OPENAI_API_KEY` set): Embeds the vanilla answer and compares against 25 pre-computed tendency guidance vectors. Any tendency below the LLM threshold but above the embedding threshold gets promoted into the triggered set. This catches what the LLM missed — and vice versa. Each triggered tendency carries a `TriggeredTendency` record with its `source` (`triage`, `embedding`, or `always_include`) and `score` — enabling observability into which detection layer caught what. The result JSON includes both `triggered_tendencies` (IDs) and `triggered_tendency_sources` (full source/score records).
 
@@ -505,18 +549,24 @@ Claude reads the pipeline output JSON and presents a focused chat summary — no
 
 **Chat output structure:**
 
-1. **Opening line (BLUF):** One sentence naming the single most important structural weakness. This is the Sinatra Test — if this one finding lands, credibility for the whole audit follows.
+1. **Run-health surface (conditional):** If `run_health.overall` is not `"healthy"` AND at least one material issue is present, a short ⚠ line opens the chat before the BLUF. Material issues map to specific warnings: `capture_degraded` / `capture_critical` (capture missed turns), `substrate_empty` (curated knowledge base did not load), `no_fingerprint` (no mental-model activations), `quote_fabrication` (N reasoning passages failed literal-substring validation after retry), `capture_truncated` (N middle turns omitted), `lane3_all_dropped` (all frame elements dropped by the evidence-quote validator). Silent on `healthy` — clean runs never mention the absence of degradation.
 
-2. **2-4 additional findings**, each as a short block: finding name, one bridge sentence connecting to this conversation, one concrete detail (challenge question, reframed question, or gap question — whichever is most actionable). No severity labels — severity informs which findings are selected and in what order, not how they're labeled.
+2. **Opening line (BLUF):** One sentence naming the single most important structural weakness. This is the Sinatra Test — if this one finding lands, credibility for the whole audit follows.
 
-3. **Delivery check** (conditional): If the Bullshit Index found clear detections, one line naming the count and dominant subtype. Clean delivery is the default, not an achievement — zero detections means no mention.
+3. **2-4 additional findings**, each as a short block: finding name, one bridge sentence connecting to this conversation, one concrete detail (challenge question, reframed question, or gap question — whichever is most actionable). No severity labels — severity informs which findings are selected and in what order, not how they're labeled.
 
-4. **Closing line:** One sentence pointing to Observatory.
+4. **Mental models active (conditional):** If the companion cheat sheet surfaced anchors, one line names them by `display_name` verbatim — *"Mental models active: Opportunity Cost, Inversion — see Observatory for failure modes, premortem questions, and curated antagonists."* This primes the reader to recognize the models Step 6 will reference. Skipped when `companion_cheat_sheet.anchors` is empty.
+
+5. **Delivery check** (conditional): If the Bullshit Index found clear detections, one line naming the count and dominant subtype. Clean delivery is the default, not an achievement — zero detections means no mention.
+
+6. **Closing line:** One sentence pointing to Observatory.
 
 **Bridge anti-bullshit constraints** apply to every bridge sentence: no bridge that could stand alone without the finding (anti-empty-rhetoric), no bridge that softens a finding's force (anti-paltering), no hedging language (anti-weasel), no claims not traceable to a specific passage (anti-unverified).
 
 **Updated Position (Step 6):**
-After presenting findings, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging. Claude holds each curated chunk against the specific conversation to see if there's a live connection — some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
+After presenting findings, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging.
+
+An **anchor-naming invariant** constrains the reconsideration: every anchor in `companion_cheat_sheet.anchors[]` is routed through §1 (its pressure was already priced into the original advice), §2 (considered and set aside with a specific reason), or §3 (drove a change). No anchor is silently skipped. When Claude names an anchor, it uses the `display_name` verbatim — specificity is the point. This rule extends Lane 2's curated substrate from "enrichment the reviser may use" to "enrichment the reviser must account for," closing the anchor-dropout regression observed in earlier runs. Claude holds each curated chunk against the specific conversation to see if there's a live connection — some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
 
 **Narrative closing:** The run ends with 2-3 sentences in human language — what the audit found, where to go deeper (Observatory, memo), and what to do next. No STATUS codes, no lane counts, no CI-report formatting.
 
@@ -665,13 +715,15 @@ When running inside the repo, the pipeline uses the repo's `build/` directly. Wh
 
 ## Cost Per Run
 
-A typical run makes 10-13 OpenRouter calls against `x-ai/grok-4.1-fast`:
-- 1 extraction call (~3K tokens in, ~1K out)
-- 1 triage call (~4K tokens in, ~2K out)
-- 2-4 deep check calls (~2K tokens each)
-- 2 companion calls (~3K tokens each)
-- 2 frame pressure calls (~2K tokens each)
+A typical run makes 18-25 OpenRouter calls against `x-ai/grok-4.1-fast`:
+- 1 extraction call (~3K tokens in, ~1K out); +1 retry on quote fabrication (~14% of runs observed) adds ~2-3K tokens
+- 6 Pass 1 cluster triage calls in parallel (~5-6K tokens each; ~5,600 prompt + 150-300 completion per cluster)
+- 2-7 deep check calls (~2K tokens each; count depends on how many tendencies triggered)
+- 2 companion calls — fingerprint + verification (~3K tokens each)
+- 2 frame pressure calls — extraction + reframing (~2K tokens each)
 - 2-3 structural coverage calls (~2K tokens each): question classification, dimension detection + coverage, gap question generation (conditional, only when gaps exist)
 
-Total: roughly 30-40K tokens. At Grok 4.1 Fast pricing, this is approximately $0.03-0.06 per audit. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
+Total: roughly 60-110K tokens per run. At Grok 4.1 Fast pricing, approximately $0.04-0.10 per audit. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
+
+The cost bump compared to earlier versions is load-reduction working as designed. Pass 1 was previously a single monolithic call scoring all 25 tendencies under ~11 confusion guardrails; it is now six family-clustered specialists (3-5 tendencies each, family-relevant guardrails only). The trade-off is more calls for narrower per-call load — and measured Pass 1 stability moved from 0.50 → 0.70 Jaccard on a fixed Marcus extraction as a result.
 
