@@ -286,7 +286,7 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 
 - **Treat DeltaCard findings as challenge pressure, not corrections.** The audit says "this passage shows signs of doubt-avoidance" — it doesn't say your conclusion is wrong. Maybe you were right to be decisive. But if the finding names a specific missing check or reversal trigger, consider whether it belongs.
 
-- **Treat CompanionCheatSheet as enrichment.** Failure modes warn where reasoning approaches you're already using could break. Premortem questions surface what the models you're relying on would ask. Antagonists highlight productive tensions. This is material that usually travels alongside the reasoning you're doing — use it to strengthen, not to second-guess.
+- **Treat CompanionCheatSheet as enrichment — and name the anchors.** Each model in `companion_cheat_sheet.anchors[]` has a `display_name`. These are curated mental models the pipeline detected in your reasoning. Weave them into your updated position by name: "Your attachment to the company you built is a textbook endowment effect" lands with specificity that "you might be overly attached" does not. Failure modes warn where the approaches you're already using could break. Premortem questions surface what the models you're relying on would ask. Antagonists highlight productive tensions. Use the material to strengthen, not to second-guess. If an anchor doesn't fit this decision, set it aside in §2 below with a specific reason — don't silently skip it.
 
 - **Treat FramePressureCard as an invitation to widen the frame.** If the audit found an embedded assumption in the question, you don't have to abandon your answer — but you might want to acknowledge what changes if that assumption is relaxed.
 
@@ -298,21 +298,24 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 
 2. **What you'd set aside.** Name which findings you considered and deliberately chose not to act on, with a specific reason for each. "The contrast-misreaction finding flagged my comparison, but the comparison itself is the right frame for this decision because [reason]." This is the hardest part — it requires genuine judgment, not performance.
 
-3. **What actually shifted.** Name what changed in your position and why. Be specific: "I was more definitive than warranted about X because I hadn't considered Y." This should be the smallest section if your original advice was sound.
+3. **What actually shifted.** Name what changed in your position and why, and name the mental models that drove the shift. Be specific: "I was more definitive than warranted about X because I hadn't accounted for endowment effect — the emotional weight of something you built distorts exit math." This should be the smallest section if your original advice was sound.
+
+**Anchor-naming invariant.** Every anchor in `companion_cheat_sheet.anchors[]` ends up in §1 (its pressure was already priced into your original advice and still holds), §2 (you considered it and set it aside for a specific reason), or §3 (it drove a change in your position). No anchor is silently skipped. When you name an anchor, use the `display_name` — the specificity is the point.
 
 **What good looks like:**
 
 Your updated position should sound like you thought more deeply about the problem — not like you got scolded and are now hedging everything. Good updates:
 
 - Add a specific condition you missed: "One thing I should flag — if the integration timeline slips past Q3, the cost assumptions change significantly."
-- Surface a tension you glossed over: "I framed this as straightforward, but there's a real tension between speed-to-market and the compliance review timeline."
+- Name a mental model that sharpens what's going on: "Your attachment to the company you built is endowment effect — the emotional weight of something you made does not update the exit math. The number you'd pay to buy this back from a stranger is almost certainly lower than the number you'd accept to sell it."
+- Surface a tension you glossed over: "I framed this as straightforward, but there's a real tension between speed-to-market and the compliance review timeline — which is exactly where margin of safety applies."
 - Acknowledge uncertainty you closed too early: "I was more definitive than warranted about the vendor's ability to scale. That depends on assumptions we haven't verified."
 
 Bad updates:
 
 - Generic hedging: "Of course, there are risks to consider..."
 - Wholesale reversal: completely rewriting your position because the audit said so
-- Mentioning the audit machinery: "The pipeline found that..." / "The delta card suggests..."
+- Mentioning the audit machinery: "The pipeline found that..." / "The delta card suggests..." / "The companion cheat sheet includes..." — the mechanism is for you, not the user. But the **mental models themselves** (endowment effect, inversion, opportunity cost, margin of safety) are reasoning tools — name them freely. The rule is: no pipeline terms in the user-facing output; model names are fine and encouraged.
 - Treating every finding as significant: performing reconsideration instead of actually reconsidering
 
 **Bullshit Index as internal quality signal:** If `bullshit_profile` exists in the result JSON, read it before writing. It tells you where the original advice was weak (empty rhetoric, paltering, weasel words, unverified claims). Your Step 6 must be stronger in exactly those places. Do NOT mention the BI to the user. Do NOT present BI results as separate findings. See `references/anti-bullshit-doctrine.md` for the full thinking framework.
