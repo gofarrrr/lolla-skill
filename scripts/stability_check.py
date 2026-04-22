@@ -34,6 +34,14 @@ Usage:
       --extraction /tmp/lolla_XXX_extraction.json \
       --conversation /tmp/lolla_XXX_conversation.txt \
       -n 3
+
+  # Mode C (extraction-drift — re-run run_extract.py N times on same
+  # conversation; measures which of the 6 extraction fields drift):
+  python3 scripts/stability_check.py \
+      --case-id marcus-extraction-drift \
+      --drift \
+      --conversation /tmp/lolla_XXX_conversation.txt \
+      -n 3
 """
 from __future__ import annotations
 
@@ -324,6 +332,203 @@ def _rerun_pipeline(extraction: Path, conversation: Path | None,
 
 
 # ---------------------------------------------------------------------------
+# Mode C — extraction drift (re-extract N times from same conversation)
+# ---------------------------------------------------------------------------
+
+def _text_similarity(a: str, b: str) -> float:
+    """difflib SequenceMatcher ratio — 0.0 = nothing in common, 1.0 = identical.
+
+    Character-level, not semantic. Suitable for detecting paraphrase-level
+    drift in free-text extraction fields.
+    """
+    from difflib import SequenceMatcher
+    return SequenceMatcher(None, (a or "").strip(), (b or "").strip()).ratio()
+
+
+def _list_jaccard_keyed(a: list, b: list, key) -> float:
+    """Jaccard on list items after applying key() to each item (typically
+    a text-normalizer like `lambda c: c['text'].strip().lower()`)."""
+    sa = {key(x) for x in a if key(x)}
+    sb = {key(x) for x in b if key(x)}
+    if not sa and not sb:
+        return 1.0
+    if not sa or not sb:
+        return 0.0
+    return len(sa & sb) / len(sa | sb)
+
+
+def _rerun_extractions(conversation: Path, n: int, skill_dir: Path) -> list[Path]:
+    """Invoke run_extract.py N times on the same conversation.txt. Holds
+    conversation constant so only extractor sampling contributes to drift."""
+    paths: list[Path] = []
+    for i in range(n):
+        rid = _dt.datetime.utcnow().strftime("%Y%m%dT%H%M%SZ") + f"drift{i}"
+        extraction_path = Path(f"/tmp/lolla_{rid}_extraction.json")
+        cmd = [
+            "python3", str(skill_dir / "scripts" / "run_extract.py"),
+            "--conversation-file", str(conversation),
+            "--output-file", str(extraction_path),
+        ]
+        print(f"  [{i+1}/{n}] rid={rid}", file=sys.stderr)
+        subprocess.run(cmd, check=True, cwd=str(skill_dir))
+        paths.append(extraction_path)
+        time.sleep(1)
+    return paths
+
+
+def _run_id_from_extraction_path(path: Path) -> str:
+    m = re.match(r"lolla_(\d{8}T\d{6}Z\w*)_extraction\.json$", path.name)
+    return m.group(1) if m else path.stem
+
+
+def _load_extraction(path: Path) -> dict:
+    with path.open() as f:
+        return json.load(f)
+
+
+def compute_extraction_drift(extractions: list[tuple[str, dict]]) -> dict:
+    """Given N extraction payloads, compute per-field drift metrics across
+    every pair of runs."""
+    if len(extractions) < 2:
+        return {"n_runs": len(extractions),
+                "run_ids": [rid for rid, _ in extractions],
+                "pairs": [], "aggregate": {}}
+
+    from itertools import combinations as _comb
+
+    pairs = []
+    for (a_idx, a), (b_idx, b) in _comb(enumerate(extractions), 2):
+        rid_a, ea = a
+        rid_b, eb = b
+        xa = ea.get("extraction", {}) or {}
+        xb = eb.get("extraction", {}) or {}
+
+        pair = {"a": rid_a, "b": rid_b}
+        # Free-text fields — SequenceMatcher ratio
+        for field in ("decision_situation", "original_framing", "synthesized_position"):
+            va = xa.get(field, "") or ""
+            vb = xb.get(field, "") or ""
+            pair[field] = {
+                "similarity": round(_text_similarity(va, vb), 3),
+                "len_a": len(va),
+                "len_b": len(vb),
+            }
+        # live_constraints — Jaccard on normalized constraint text
+        ca = xa.get("live_constraints", []) or []
+        cb = xb.get("live_constraints", []) or []
+        pair["live_constraints"] = {
+            "count_a": len(ca), "count_b": len(cb),
+            "jaccard": round(_list_jaccard_keyed(
+                ca, cb,
+                key=lambda c: (c.get("constraint", "") or "").strip().lower()
+            ), 3),
+        }
+        # reasoning_passages — Jaccard on normalized quote strings
+        pa = xa.get("reasoning_passages", []) or []
+        pb = xb.get("reasoning_passages", []) or []
+        pair["reasoning_passages"] = {
+            "count_a": len(pa), "count_b": len(pb),
+            "jaccard": round(_list_jaccard_keyed(
+                pa, pb, key=lambda s: (s or "").strip().lower()
+            ), 3),
+        }
+        # dropped_threads — Jaccard on normalized thread text
+        ta = xa.get("dropped_threads", []) or []
+        tb = xb.get("dropped_threads", []) or []
+        pair["dropped_threads"] = {
+            "count_a": len(ta), "count_b": len(tb),
+            "jaccard": round(_list_jaccard_keyed(
+                ta, tb,
+                key=lambda t: (t.get("thread", "") or "").strip().lower()
+            ), 3),
+        }
+        # _quote_validation — fabricated quote counts
+        qa = xa.get("_quote_validation", {}) or {}
+        qb = xb.get("_quote_validation", {}) or {}
+        pair["fabricated_count"] = {"a": qa.get("fabricated", 0), "b": qb.get("fabricated", 0)}
+        pairs.append(pair)
+
+    # Aggregate per-field statistics (mean/min/max across all pairs)
+    def _mean(values: list[float]) -> float:
+        return round(sum(values) / len(values), 3) if values else 0.0
+
+    agg: dict = {}
+    for field in ("decision_situation", "original_framing", "synthesized_position"):
+        sims = [p[field]["similarity"] for p in pairs]
+        agg[field] = {
+            "mean_similarity": _mean(sims),
+            "min_similarity": round(min(sims), 3) if sims else 0.0,
+            "max_similarity": round(max(sims), 3) if sims else 0.0,
+        }
+    for field in ("live_constraints", "reasoning_passages", "dropped_threads"):
+        js = [p[field]["jaccard"] for p in pairs]
+        agg[field] = {
+            "mean_jaccard": _mean(js),
+            "min_jaccard": round(min(js), 3) if js else 0.0,
+            "max_jaccard": round(max(js), 3) if js else 0.0,
+        }
+    agg["fabricated_count_per_run"] = [
+        (e.get("extraction", {}).get("_quote_validation", {}) or {}).get("fabricated", 0)
+        for _, e in extractions
+    ]
+    agg["capture_health_per_run"] = [e.get("capture_health", "?") for _, e in extractions]
+
+    return {
+        "n_runs": len(extractions),
+        "run_ids": [rid for rid, _ in extractions],
+        "aggregate": agg,
+        "pairs": pairs,
+    }
+
+
+def render_drift_markdown(drift: dict, case_id: str, generated_at: str,
+                          conversation: Path) -> str:
+    out: list[str] = []
+    out.append(f"# Extraction drift report — {case_id}")
+    out.append("")
+    out.append(f"Generated: {generated_at}")
+    conv_size = conversation.stat().st_size if conversation.exists() else "?"
+    out.append(f"Conversation: `{conversation}` ({conv_size} bytes)")
+    out.append(f"Runs: {drift['n_runs']}")
+    out.append(f"Run IDs: {', '.join(drift['run_ids'])}")
+    out.append("")
+    out.append("**Reading the metrics:**")
+    out.append("- Free-text fields (`decision_situation`, `original_framing`, `synthesized_position`) — difflib SequenceMatcher ratio (character-level). 1.0 = identical; 0.7+ = very similar; 0.4–0.7 = material drift (paraphrase or reshape); <0.4 = shape-shift.")
+    out.append("- List fields (`live_constraints`, `reasoning_passages`, `dropped_threads`) — Jaccard on normalized item text (strip, lowercase).")
+    out.append("- `fabricated_count_per_run` — passages the extractor marked as not-a-literal-substring. Higher is worse.")
+    out.append("")
+    out.append("## Aggregate drift")
+    out.append("")
+    out.append("| Field | Metric | Mean | Min | Max |")
+    out.append("|---|---|---|---|---|")
+    agg = drift.get("aggregate", {}) or {}
+    for field in ("decision_situation", "original_framing", "synthesized_position"):
+        a = agg.get(field, {})
+        out.append(f"| `{field}` | similarity | {_fmt(a.get('mean_similarity'), 3)} | {_fmt(a.get('min_similarity'), 3)} | {_fmt(a.get('max_similarity'), 3)} |")
+    for field in ("live_constraints", "reasoning_passages", "dropped_threads"):
+        a = agg.get(field, {})
+        out.append(f"| `{field}` | jaccard | {_fmt(a.get('mean_jaccard'), 3)} | {_fmt(a.get('min_jaccard'), 3)} | {_fmt(a.get('max_jaccard'), 3)} |")
+    out.append("")
+    out.append(f"**Fabricated-quote counts per run:** {agg.get('fabricated_count_per_run', [])}")
+    out.append(f"**Capture health per run:** {agg.get('capture_health_per_run', [])}")
+    out.append("")
+    out.append("## Pairwise detail")
+    out.append("")
+    for p in drift.get("pairs", []):
+        out.append(f"### `{p['a']}` vs `{p['b']}`")
+        for field in ("decision_situation", "original_framing", "synthesized_position"):
+            d = p[field]
+            out.append(f"- **{field}**: similarity={d['similarity']:.3f}, lengths {d['len_a']} ↔ {d['len_b']}")
+        for field in ("live_constraints", "reasoning_passages", "dropped_threads"):
+            d = p[field]
+            out.append(f"- **{field}**: jaccard={d['jaccard']:.3f}, counts {d['count_a']} ↔ {d['count_b']}")
+        fc = p.get("fabricated_count", {})
+        out.append(f"- **fabricated**: a={fc.get('a',0)}, b={fc.get('b',0)}")
+        out.append("")
+    return "\n".join(out)
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -333,14 +538,14 @@ def main() -> int:
     ap.add_argument("--runs", nargs="*", help="existing result.json paths (aggregate mode)")
     ap.add_argument("--extraction", help="extraction.json path (rerun mode)")
     ap.add_argument("--conversation",
-                    help="optional conversation.txt (enables bullshit fact-registry in rerun mode)")
-    ap.add_argument("-n", type=int, default=3, help="rerun count when --extraction is given (1-5)")
+                    help="conversation.txt path. Required for --drift mode; optional for --extraction (enables bullshit fact-registry).")
+    ap.add_argument("--drift", action="store_true",
+                    help="extraction-drift mode — re-run run_extract.py N times on --conversation, measure per-field drift")
+    ap.add_argument("-n", type=int, default=3, help="rerun count for --extraction or --drift (1-5)")
     ap.add_argument("--output-dir", help="override research/stability-runs/{case-id}-{date}/")
     ap.add_argument("--skill-dir", default=str(SKILL_DIR), help="path to skill root")
     args = ap.parse_args()
 
-    if not args.runs and not args.extraction:
-        ap.error("provide --runs <paths...> and/or --extraction <path>")
     if args.n < 1 or args.n > 5:
         ap.error("-n must be in [1, 5]")
 
@@ -350,6 +555,50 @@ def main() -> int:
     out_dir = Path(args.output_dir) if args.output_dir else (
         skill_dir / "research" / "stability-runs" / f"{args.case_id}-{date}")
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    # --- Mode C: extraction drift ---
+    if args.drift:
+        if not args.conversation:
+            ap.error("--drift requires --conversation <path>")
+        conv = Path(args.conversation).resolve()
+        if not conv.exists():
+            ap.error(f"conversation file not found: {conv}")
+        print(f"[drift] {args.n} extractions from {conv.name}", file=sys.stderr)
+        extraction_paths = _rerun_extractions(conv, args.n, skill_dir)
+        extractions = [(_run_id_from_extraction_path(p), _load_extraction(p)) for p in extraction_paths]
+        drift = compute_extraction_drift(extractions)
+
+        (out_dir / "drift.json").write_text(json.dumps(drift, indent=2))
+        (out_dir / "runs.txt").write_text("\n".join(drift["run_ids"]) + "\n")
+        (out_dir / "config.json").write_text(json.dumps({
+            "case_id": args.case_id,
+            "mode": "extraction_drift",
+            "generated_at": generated_at,
+            "conversation": str(conv),
+            "extraction_paths": [str(p) for p in extraction_paths],
+        }, indent=2))
+        (out_dir / "drift.md").write_text(
+            render_drift_markdown(drift, args.case_id, generated_at, conv))
+
+        # Terminal summary
+        print(f"\n=== Extraction drift report: {args.case_id} ===")
+        print(f"Output dir: {out_dir}")
+        print(f"N runs:     {drift['n_runs']}")
+        agg = drift.get("aggregate", {}) or {}
+        for field in ("decision_situation", "original_framing", "synthesized_position"):
+            a = agg.get(field, {})
+            print(f"  {field:22s} similarity mean={_fmt(a.get('mean_similarity'),3)} "
+                  f"min={_fmt(a.get('min_similarity'),3)}")
+        for field in ("live_constraints", "reasoning_passages", "dropped_threads"):
+            a = agg.get(field, {})
+            print(f"  {field:22s} jaccard    mean={_fmt(a.get('mean_jaccard'),3)} "
+                  f"min={_fmt(a.get('min_jaccard'),3)}")
+        print(f"  fabricated counts:    {agg.get('fabricated_count_per_run', [])}")
+        return 0
+
+    # --- Mode A/B: stability (aggregate + optional rerun) ---
+    if not args.runs and not args.extraction:
+        ap.error("provide --runs <paths...>, --extraction <path>, or --drift --conversation <path>")
 
     run_paths: list[Path] = []
     if args.extraction:
