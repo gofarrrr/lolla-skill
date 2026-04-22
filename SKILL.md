@@ -103,6 +103,17 @@ echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-x-ai/grok-4.1-fast}"
 
 If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
 
+### Model self-check (before Step 1)
+
+The skill cannot detect the orchestrator model mechanically — no `$CLAUDE_MODEL` env var exists; `CLAUDECODE=1` and the exec path are all the preamble can see. This check relies on your self-identification. Before proceeding to Step 1:
+
+- **If you know you are Claude Opus 4.7 or later**: proceed normally.
+- **If you know you are Claude Sonnet 4.6 or later**: proceed, but append a one-line advisory to the Step 4 chat output after the findings: *"⚠ Orchestrator: Sonnet — phrasing quality may be mildly degraded vs Opus (see Model Requirements)."*
+- **If you know you are Claude Haiku (any version)**: STOP. Tell the user, verbatim: *"This skill requires Opus or Sonnet as the orchestrator. Haiku has been observed to skip critical pipeline steps (sub-agent spawning, artifact persistence) while generating plausible-looking output for the steps that didn't run. Please re-run on Opus or Sonnet."* Do NOT proceed to Step 1.
+- **If you cannot identify your model with confidence**: proceed, but surface a one-line caveat at the end of Step 4: *"⚠ Could not verify orchestrator model. If this run is on Haiku or below, some outputs may be incomplete — check Observatory for missing artifacts."*
+
+Only refuse to run when you are highly confident the orchestrator is Haiku. Don't false-refuse on uncertainty — the user should be able to proceed and investigate.
+
 ---
 
 ## Pipeline
