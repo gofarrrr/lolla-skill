@@ -200,6 +200,23 @@ CONVERSATION TRANSCRIPT:
 Extract the decision-making structure from this conversation. Respond with JSON only."""
 
 
+EXTRACTION_USER_PROMPT_RETRY = """\
+CONVERSATION TRANSCRIPT:
+{conversation_text}
+
+A prior extraction attempt on this transcript returned reasoning_passages that are NOT literal substrings of the transcript above. The following passages failed validation because they were paraphrased rather than copied verbatim:
+
+{failed_passages_block}
+
+On this retry:
+- Every entry in reasoning_passages MUST be a character-for-character verbatim copy of text that appears in the transcript above.
+- Do NOT reuse any of the failed passages listed above.
+- Do NOT paraphrase, smooth grammar, correct punctuation, or alter quotes.
+- Return 3-8 reasoning_passages that can be found character-exactly in the transcript.
+
+Extract the decision-making structure from this conversation. Respond with JSON only."""
+
+
 # ---------------------------------------------------------------------------
 # Assistant response extraction from conversation text
 # ---------------------------------------------------------------------------
@@ -470,26 +487,72 @@ def main() -> int:
         }))
         return 1
 
-    # Validate reasoning passages are literal substrings (degrade, don't fail)
-    passages = payload.get("reasoning_passages", [])
-    if passages:
-        verified = []
-        fabricated = []
-        for p in passages:
+    # Validate reasoning passages are literal substrings of the transcript.
+    # If any fabricated (paraphrased, not verbatim), retry extraction ONCE with
+    # an explicit correction prompt. If the retry produces fewer fabrications,
+    # adopt it. Any remaining fabricated passages are dropped from the payload
+    # and a capture_warning is emitted so run_pipeline.py can surface
+    # `quote_fabrication` via run_health.
+    def _validate_passages(pload: dict) -> tuple[list[str], list[str]]:
+        items = pload.get("reasoning_passages", []) or []
+        ver: list[str] = []
+        fab: list[str] = []
+        for p in items:
             if p and p in conversation_text:
-                verified.append(p)
+                ver.append(p)
             else:
-                fabricated.append(p)
-        if fabricated:
-            capture_warnings.append(
-                f"Quote validation: {len(fabricated)}/{len(passages)} reasoning_passages "
-                f"are not literal substrings of the transcript"
-            )
+                fab.append(p)
+        return ver, fab
+
+    initial_passage_count = len(payload.get("reasoning_passages", []) or [])
+    verified, fabricated = _validate_passages(payload)
+    retry_attempted = False
+    retry_succeeded = False
+
+    if fabricated:
+        retry_attempted = True
+        failed_list = "\n".join(
+            f"{i+1}. {json.dumps(p)}" for i, p in enumerate(fabricated)
+        )
+        retry_user = EXTRACTION_USER_PROMPT_RETRY.format(
+            conversation_text=conversation_text,
+            failed_passages_block=failed_list,
+        )
+        try:
+            retry_payload = client.run_json(EXTRACTION_SYSTEM_PROMPT, retry_user)
+        except Exception as exc:
+            capture_warnings.append(f"Quote-fabrication retry failed: {exc}")
+            retry_payload = None
+
+        if (retry_payload
+                and retry_payload.get("is_strategic", True)
+                and retry_payload.get("decision_situation")
+                and retry_payload.get("synthesized_position")):
+            rv, rf = _validate_passages(retry_payload)
+            if len(rf) < len(fabricated):
+                # Retry improved — adopt its payload wholesale.
+                payload = retry_payload
+                verified, fabricated = rv, rf
+                retry_succeeded = len(rf) == 0
+
+    # Drop any fabricated passages that remain; the list contract is
+    # "literal substrings only."
+    if fabricated:
+        payload["reasoning_passages"] = verified
+        capture_warnings.append(
+            f"Quote validation: {len(fabricated)} reasoning_passages dropped"
+            f"{' after retry' if retry_attempted else ''} "
+            f"(not literal substrings of the transcript)"
+        )
+
+    if initial_passage_count or retry_attempted:
         payload["_quote_validation"] = {
-            "total": len(passages),
+            "total": len(verified) + len(fabricated),
             "verified": len(verified),
             "fabricated": len(fabricated),
             "fabricated_passages": fabricated,
+            "retry_attempted": retry_attempted,
+            "retry_succeeded": retry_succeeded,
         }
 
     # Extract full assistant responses from conversation for richer pipeline input

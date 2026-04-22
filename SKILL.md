@@ -200,6 +200,7 @@ Material issues (surface these):
 - `capture_degraded` or `capture_critical` — *"⚠ Audit partially degraded: conversation capture missed assistant turns. Some reasoning wasn't audited."*
 - `substrate_empty` — *"⚠ Curated knowledge base did not load for this run. This is a generic critique, not a Lolla audit."*
 - `no_fingerprint` — *"⚠ No mental-model activations found in the reasoning — may indicate a very short conversation or a genuine gap."*
+- `quote_fabrication` — *"⚠ Extraction partially degraded: [N] reasoning passages couldn't be verified as literal substrings of the transcript. Lane 2 companion analysis may be weaker than usual."* — substitute `N` from `run_health.quote_fabrication_count`. If `run_health.quote_retry_attempted` is true, append "(retry attempted)" to the line.
 - Multiple material issues — combine with a semicolon: *"⚠ Audit degraded: capture missed turns; no fingerprint."*
 
 Non-material (do NOT surface — these are soft signals, not audit-quality breaks):
