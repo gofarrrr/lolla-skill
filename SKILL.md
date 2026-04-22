@@ -562,6 +562,32 @@ This starts a local server at http://localhost:8080. Tell the user the URL and t
 
 Say something like: *"The Observatory is live at http://localhost:8080 — it has the full audit: all [N] findings with challenge questions and reversal triggers, [N] mental model connections with failure modes and premortems, [N] frame elements with alternative questions, and [N] structural dimensions. Everything the chat summary pointed to is there in detail. The full memo is at /tmp/lolla_${LOLLA_RUN_ID}_memo.md — a standalone summary you can share or reference without the Observatory."*
 
+### Step 10: Archive Run
+
+After launching the Observatory, archive the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or stability-harness analysis.
+
+```bash
+python3 $SKILL_DIR/scripts/archive_run.py --run-id "${LOLLA_RUN_ID}"
+```
+
+The archive script:
+
+- Reads the 7 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `gapcheck.txt`, `gapcheck_lanes.json`). Missing artifacts (e.g., if Step 6b did not run on a weaker orchestrator) are skipped gracefully.
+- Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
+- Finds-or-creates a case folder. Matching uses **exact fingerprint first, then token-set Jaccard ≥ 0.80** against stored fingerprints — so small extractor paraphrase drift across runs of the same conversation does not split into multiple case folders. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching.
+- Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
+- Copies the artifacts into `{case_folder}/${LOLLA_RUN_ID}/` and updates `{case_folder}/.case-manifest.json` with the new fingerprint (added as an alias) and the run_id.
+- `/tmp` originals are **not** moved or deleted — Observatory and subsequent commands continue to reference them as in-flight state.
+
+**Environment overrides (optional):**
+
+- `$LOLLA_CASE_ID` — force a specific case folder (skips fingerprint match). Useful when a run should be grouped with an existing case despite a mismatched `decision_situation`, or when the user wants a specific folder name from the first run.
+- `$LOLLA_ARCHIVE_DIR` — override the archive root (default: `~/.local/share/lolla/runs/`).
+
+Surface the archive destination to the user in one short line so they know where the run went:
+
+> *Archived to `~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/`.*
+
 ## Completion
 
 After the full cycle (present findings → update position → persist → pressure check → Observatory + memo), close with a brief narrative summary — 2-3 sentences in human terms, not a structured block.
