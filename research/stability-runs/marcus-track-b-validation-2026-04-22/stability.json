@@ -1,0 +1,337 @@
+{
+  "n_runs": 3,
+  "run_ids": [
+    "20260422T111510Zstab0",
+    "20260422T111639Zstab1",
+    "20260422T111800Zstab2"
+  ],
+  "pass1_tendencies": {
+    "per_run": [
+      [
+        "availability-misweighing-tendency",
+        "contrast-misreaction-tendency",
+        "inconsistency-avoidance-tendency"
+      ],
+      [
+        "availability-misweighing-tendency",
+        "contrast-misreaction-tendency",
+        "inconsistency-avoidance-tendency",
+        "reward-and-punishment-superresponse-tendency"
+      ],
+      [
+        "availability-misweighing-tendency",
+        "contrast-misreaction-tendency",
+        "deprival-superreaction-tendency",
+        "inconsistency-avoidance-tendency"
+      ]
+    ],
+    "stability": {
+      "mean": 0.7,
+      "min": 0.6,
+      "max": 0.75,
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "jaccard": 0.75,
+          "shared": [
+            "availability-misweighing-tendency",
+            "contrast-misreaction-tendency",
+            "inconsistency-avoidance-tendency"
+          ],
+          "only_i": [],
+          "only_j": [
+            "reward-and-punishment-superresponse-tendency"
+          ]
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "jaccard": 0.75,
+          "shared": [
+            "availability-misweighing-tendency",
+            "contrast-misreaction-tendency",
+            "inconsistency-avoidance-tendency"
+          ],
+          "only_i": [],
+          "only_j": [
+            "deprival-superreaction-tendency"
+          ]
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "jaccard": 0.6,
+          "shared": [
+            "availability-misweighing-tendency",
+            "contrast-misreaction-tendency",
+            "inconsistency-avoidance-tendency"
+          ],
+          "only_i": [
+            "reward-and-punishment-superresponse-tendency"
+          ],
+          "only_j": [
+            "deprival-superreaction-tendency"
+          ]
+        }
+      ]
+    }
+  },
+  "lane2_anchors": {
+    "per_run": [
+      [
+        "empathy",
+        "inversion",
+        "opportunity-cost",
+        "power-dynamics",
+        "specialization"
+      ],
+      [
+        "endowment-effect",
+        "inversion",
+        "opportunity-cost",
+        "power-dynamics"
+      ],
+      [
+        "inversion",
+        "opportunity-cost"
+      ]
+    ],
+    "stability": {
+      "mean": 0.4667,
+      "min": 0.4,
+      "max": 0.5,
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "jaccard": 0.5,
+          "shared": [
+            "inversion",
+            "opportunity-cost",
+            "power-dynamics"
+          ],
+          "only_i": [
+            "empathy",
+            "specialization"
+          ],
+          "only_j": [
+            "endowment-effect"
+          ]
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "jaccard": 0.4,
+          "shared": [
+            "inversion",
+            "opportunity-cost"
+          ],
+          "only_i": [
+            "empathy",
+            "power-dynamics",
+            "specialization"
+          ],
+          "only_j": []
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "jaccard": 0.5,
+          "shared": [
+            "inversion",
+            "opportunity-cost"
+          ],
+          "only_i": [
+            "endowment-effect",
+            "power-dynamics"
+          ],
+          "only_j": []
+        }
+      ]
+    }
+  },
+  "lane3_reframings": {
+    "per_run": [
+      [
+        "decision-trees",
+        "first-principles-thinking"
+      ],
+      [
+        "first-principles-thinking",
+        "problem-framing-and-reframing"
+      ],
+      []
+    ],
+    "stability": {
+      "mean": 0.1111,
+      "min": 0.0,
+      "max": 0.3333,
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "jaccard": 0.3333,
+          "shared": [
+            "first-principles-thinking"
+          ],
+          "only_i": [
+            "decision-trees"
+          ],
+          "only_j": [
+            "problem-framing-and-reframing"
+          ]
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "jaccard": 0.0,
+          "shared": [],
+          "only_i": [
+            "decision-trees",
+            "first-principles-thinking"
+          ],
+          "only_j": []
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "jaccard": 0.0,
+          "shared": [],
+          "only_i": [
+            "first-principles-thinking",
+            "problem-framing-and-reframing"
+          ],
+          "only_j": []
+        }
+      ]
+    }
+  },
+  "lane4_gaps": {
+    "per_run": [
+      [
+        "existing-vs-new",
+        "resource-allocation",
+        "risk-response",
+        "stakeholder-alignment"
+      ],
+      [
+        "existing-vs-new",
+        "information-quality",
+        "resource-allocation",
+        "stakeholder-alignment"
+      ],
+      [
+        "existing-vs-new",
+        "resource-allocation",
+        "risk-response",
+        "scope-boundary",
+        "stakeholder-alignment"
+      ]
+    ],
+    "stability": {
+      "mean": 0.6333,
+      "min": 0.5,
+      "max": 0.8,
+      "pairs": [
+        {
+          "i": 0,
+          "j": 1,
+          "jaccard": 0.6,
+          "shared": [
+            "existing-vs-new",
+            "resource-allocation",
+            "stakeholder-alignment"
+          ],
+          "only_i": [
+            "risk-response"
+          ],
+          "only_j": [
+            "information-quality"
+          ]
+        },
+        {
+          "i": 0,
+          "j": 2,
+          "jaccard": 0.8,
+          "shared": [
+            "existing-vs-new",
+            "resource-allocation",
+            "risk-response",
+            "stakeholder-alignment"
+          ],
+          "only_i": [],
+          "only_j": [
+            "scope-boundary"
+          ]
+        },
+        {
+          "i": 1,
+          "j": 2,
+          "jaccard": 0.5,
+          "shared": [
+            "existing-vs-new",
+            "resource-allocation",
+            "stakeholder-alignment"
+          ],
+          "only_i": [
+            "information-quality"
+          ],
+          "only_j": [
+            "risk-response",
+            "scope-boundary"
+          ]
+        }
+      ]
+    }
+  },
+  "step6_anchor_mentions": [
+    {
+      "run_id": "20260422T111510Zstab0",
+      "present": false,
+      "per_anchor": [],
+      "named": 0,
+      "total": 5,
+      "rate": 0.0
+    },
+    {
+      "run_id": "20260422T111639Zstab1",
+      "present": false,
+      "per_anchor": [],
+      "named": 0,
+      "total": 4,
+      "rate": 0.0
+    },
+    {
+      "run_id": "20260422T111800Zstab2",
+      "present": false,
+      "per_anchor": [],
+      "named": 0,
+      "total": 2,
+      "rate": 0.0
+    }
+  ],
+  "cost_per_run": [
+    {
+      "run_id": "20260422T111510Zstab0",
+      "n_boundary_calls": 18,
+      "prompt_tokens": 93949,
+      "completion_tokens": 7031,
+      "total_tokens": 100980
+    },
+    {
+      "run_id": "20260422T111639Zstab1",
+      "n_boundary_calls": 19,
+      "prompt_tokens": 100238,
+      "completion_tokens": 7222,
+      "total_tokens": 107460
+    },
+    {
+      "run_id": "20260422T111800Zstab2",
+      "n_boundary_calls": 18,
+      "prompt_tokens": 99003,
+      "completion_tokens": 6878,
+      "total_tokens": 105881
+    }
+  ]
+}

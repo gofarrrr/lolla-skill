@@ -14,27 +14,40 @@ def _short_hash(text: str, length: int = 12) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()[:length]
 
 
-def compute_prompt_versions() -> dict[str, str]:
+def compute_prompt_versions(catalog=None) -> dict[str, str]:
     """Return a mapping of boundary name → short SHA-256 hex for each prompt template.
 
-    Covers all 5 LLM prompt boundaries:
-      1. pass1_triage         — system_b/prompts.py
-      2. pass2_deep_check     — system_b/deep_checks.py
-      3. companion_fingerprint — system_b/companion_routing.py
-      4. companion_verification — system_b/companion_routing.py
-      5. frame_extraction     — system_b/frame_pressure.py
+    Covers all LLM prompt boundaries in effect:
+      - Pass 1: six cluster specialists (authority, closure, incentive,
+        availability, self_regard, residual) + the shared user prompt
+      - pass2_deep_check            — system_b/deep_checks.py
+      - companion_fingerprint       — system_b/companion_routing.py
+      - companion_verification      — system_b/companion_routing.py
+      - frame_extraction            — system_b/frame_pressure.py
+
+    ``catalog`` is a loaded ``TendencyCatalog`` used to render per-cluster
+    prompts with actual tendency descriptions. When omitted, cluster hashes
+    are computed against an empty catalog — the template structure is still
+    captured, but per-tendency descriptions are not. Production callers (the
+    pipeline) should always pass the real catalog.
     """
     from .companion_routing import get_prompt_templates as companion_templates
     from .deep_checks import PASS_2_DEEP_CHECK_SYSTEM
     from .frame_pressure import get_prompt_template as frame_template
-    from .prompts import PASS_1_TRIAGE_SYSTEM
+    from .prompts import compute_cluster_prompt_hashes
+    from .tendency_catalog import TendencyCatalog
 
     companion = companion_templates()
 
-    return {
-        "pass1_triage": _short_hash(PASS_1_TRIAGE_SYSTEM),
+    versions: dict[str, str] = {
         "pass2_deep_check": _short_hash(PASS_2_DEEP_CHECK_SYSTEM),
         "companion_fingerprint": _short_hash(companion["companion_fingerprint"]),
         "companion_verification": _short_hash(companion["companion_verification"]),
         "frame_extraction": _short_hash(frame_template()),
     }
+
+    if catalog is None:
+        catalog = TendencyCatalog(tendencies={}, alias_index={})
+    versions.update(compute_cluster_prompt_hashes(catalog))
+
+    return versions
