@@ -357,6 +357,25 @@ def _list_jaccard_keyed(a: list, b: list, key) -> float:
     return len(sa & sb) / len(sa | sb)
 
 
+def _list_jaccard_keyed_nonempty(a: list, b: list, key) -> float | None:
+    """Jaccard on list items after applying key(), EXCLUDING empty-string values
+    from both sets before intersection. Returns None if both filtered sets are
+    empty (undefined — caller should interpret as "no valid data").
+
+    This variant is for canonical_key-style metrics where an empty string means
+    "LLM failed the format rule" and two empty strings in different runs MUST
+    NOT count as a trivial match. Reports the "why" via a separate
+    invalid_key_rate metric, not via an inflated Jaccard.
+    """
+    sa = {k for x in a if (k := key(x))}
+    sb = {k for x in b if (k := key(x))}
+    if not sa and not sb:
+        return None
+    if not sa or not sb:
+        return 0.0
+    return len(sa & sb) / len(sa | sb)
+
+
 def _rerun_extractions(conversation: Path, n: int, skill_dir: Path) -> list[Path]:
     """Invoke run_extract.py N times on the same conversation.txt. Holds
     conversation constant so only extractor sampling contributes to drift."""
@@ -423,6 +442,18 @@ def compute_extraction_drift(extractions: list[tuple[str, dict]]) -> dict:
                 key=lambda c: (c.get("constraint", "") or "").strip().lower()
             ), 3),
         }
+        # live_constraints_canonical_key — Jaccard on canonical_key slugs with
+        # empty-string exclusion. None when both runs have no valid keys
+        # (captured in invalid_key_rate below). See PR #1 of the extraction
+        # contract roadmap.
+        ck_jaccard = _list_jaccard_keyed_nonempty(
+            ca, cb,
+            key=lambda c: (c.get("canonical_key", "") or "").strip().lower()
+        )
+        pair["live_constraints_canonical_key"] = {
+            "count_a": len(ca), "count_b": len(cb),
+            "jaccard": None if ck_jaccard is None else round(ck_jaccard, 3),
+        }
         # reasoning_passages — Jaccard on normalized quote strings
         pa = xa.get("reasoning_passages", []) or []
         pb = xb.get("reasoning_passages", []) or []
@@ -460,6 +491,18 @@ def compute_extraction_drift(extractions: list[tuple[str, dict]]) -> dict:
             "min_similarity": round(min(sims), 3) if sims else 0.0,
             "max_similarity": round(max(sims), 3) if sims else 0.0,
         }
+    # canonical_key aggregate: filter None (both-empty pairs) before mean/min/max.
+    ck_vals = [p["live_constraints_canonical_key"]["jaccard"]
+               for p in pairs
+               if p["live_constraints_canonical_key"]["jaccard"] is not None]
+    agg["live_constraints_canonical_key"] = {
+        "mean_jaccard": _mean(ck_vals) if ck_vals else None,
+        "min_jaccard": round(min(ck_vals), 3) if ck_vals else None,
+        "max_jaccard": round(max(ck_vals), 3) if ck_vals else None,
+        "undefined_pair_count": sum(
+            1 for p in pairs if p["live_constraints_canonical_key"]["jaccard"] is None
+        ),
+    }
     for field in ("live_constraints", "reasoning_passages", "dropped_threads"):
         js = [p[field]["jaccard"] for p in pairs]
         agg[field] = {
@@ -472,6 +515,31 @@ def compute_extraction_drift(extractions: list[tuple[str, dict]]) -> dict:
         for _, e in extractions
     ]
     agg["capture_health_per_run"] = [e.get("capture_health", "?") for _, e in extractions]
+
+    # canonical_key invalid rate — count constraints with missing or empty
+    # canonical_key, divide by total. Per-run and overall. See PR #1
+    # acceptance gate: overall rate must stay ≤ 10%.
+    invalid_per_run: list[float] = []
+    invalid_counts: list[int] = []
+    total_counts: list[int] = []
+    for _, e in extractions:
+        constraints = (e.get("extraction", {}) or {}).get("live_constraints", []) or []
+        total = len(constraints)
+        invalid = sum(
+            1 for c in constraints
+            if not (c.get("canonical_key", "") or "").strip()
+        )
+        invalid_counts.append(invalid)
+        total_counts.append(total)
+        invalid_per_run.append(round(invalid / total, 3) if total else 0.0)
+    agg["invalid_key_rate_per_run"] = invalid_per_run
+    agg["invalid_key_counts_per_run"] = invalid_counts
+    agg["total_key_counts_per_run"] = total_counts
+    total_all = sum(total_counts)
+    invalid_all = sum(invalid_counts)
+    agg["invalid_key_rate_overall"] = (
+        round(invalid_all / total_all, 3) if total_all else 0.0
+    )
 
     return {
         "n_runs": len(extractions),
@@ -495,6 +563,8 @@ def render_drift_markdown(drift: dict, case_id: str, generated_at: str,
     out.append("**Reading the metrics:**")
     out.append("- Free-text fields (`decision_situation`, `original_framing`, `synthesized_position`) — difflib SequenceMatcher ratio (character-level). 1.0 = identical; 0.7+ = very similar; 0.4–0.7 = material drift (paraphrase or reshape); <0.4 = shape-shift.")
     out.append("- List fields (`live_constraints`, `reasoning_passages`, `dropped_threads`) — Jaccard on normalized item text (strip, lowercase).")
+    out.append("- `live_constraints_canonical_key` — Jaccard on `canonical_key` slugs with empty-string exclusion: empty/missing keys are filtered from BOTH sets before intersection so two failed extractions do not trivially match. A pair with all-empty keys on both sides is reported as `—` (undefined); the failure rate lives in `invalid_key_rate`.")
+    out.append("- `invalid_key_rate` — share of constraints where `canonical_key` is missing or empty (the LLM failed the slug format rule). Per-run + overall. Acceptance gate target: ≤ 10%.")
     out.append("- `fabricated_count_per_run` — passages the extractor marked as not-a-literal-substring. Higher is worse.")
     out.append("")
     out.append("## Aggregate drift")
@@ -508,7 +578,30 @@ def render_drift_markdown(drift: dict, case_id: str, generated_at: str,
     for field in ("live_constraints", "reasoning_passages", "dropped_threads"):
         a = agg.get(field, {})
         out.append(f"| `{field}` | jaccard | {_fmt(a.get('mean_jaccard'), 3)} | {_fmt(a.get('min_jaccard'), 3)} | {_fmt(a.get('max_jaccard'), 3)} |")
+    # canonical_key row — may be None across all pairs if every pair was
+    # fully-degenerate; render as "—" in that case.
+    ck = agg.get("live_constraints_canonical_key", {}) or {}
+    out.append(
+        f"| `live_constraints_canonical_key` | jaccard (empty-excl) | "
+        f"{_fmt(ck.get('mean_jaccard'), 3)} | {_fmt(ck.get('min_jaccard'), 3)} | "
+        f"{_fmt(ck.get('max_jaccard'), 3)} |"
+    )
+    if ck.get("undefined_pair_count", 0):
+        out.append(
+            f"> `live_constraints_canonical_key` has "
+            f"{ck['undefined_pair_count']} undefined pair(s) — both runs had "
+            f"no valid canonical_keys. See `invalid_key_rate` below."
+        )
     out.append("")
+    out.append(
+        f"**`invalid_key_rate` per run:** {agg.get('invalid_key_rate_per_run', [])}"
+    )
+    out.append(
+        f"**`invalid_key_rate` overall:** "
+        f"{_fmt(agg.get('invalid_key_rate_overall'), 3)} "
+        f"({sum(agg.get('invalid_key_counts_per_run', []) or [0])} invalid of "
+        f"{sum(agg.get('total_key_counts_per_run', []) or [0])} total constraints)"
+    )
     out.append(f"**Fabricated-quote counts per run:** {agg.get('fabricated_count_per_run', [])}")
     out.append(f"**Capture health per run:** {agg.get('capture_health_per_run', [])}")
     out.append("")
@@ -522,6 +615,13 @@ def render_drift_markdown(drift: dict, case_id: str, generated_at: str,
         for field in ("live_constraints", "reasoning_passages", "dropped_threads"):
             d = p[field]
             out.append(f"- **{field}**: jaccard={d['jaccard']:.3f}, counts {d['count_a']} ↔ {d['count_b']}")
+        ck_d = p.get("live_constraints_canonical_key", {}) or {}
+        ck_j = ck_d.get("jaccard")
+        ck_str = "undefined (both-empty)" if ck_j is None else f"{ck_j:.3f}"
+        out.append(
+            f"- **live_constraints_canonical_key**: jaccard={ck_str}, "
+            f"counts {ck_d.get('count_a', 0)} ↔ {ck_d.get('count_b', 0)}"
+        )
         fc = p.get("fabricated_count", {})
         out.append(f"- **fabricated**: a={fc.get('a',0)}, b={fc.get('b',0)}")
         out.append("")
@@ -541,6 +641,9 @@ def main() -> int:
                     help="conversation.txt path. Required for --drift mode; optional for --extraction (enables bullshit fact-registry).")
     ap.add_argument("--drift", action="store_true",
                     help="extraction-drift mode — re-run run_extract.py N times on --conversation, measure per-field drift")
+    ap.add_argument("--from-extractions", nargs="*", dest="from_extractions",
+                    help="cross-capture mode — compute drift across pre-extracted JSON paths "
+                         "(no re-running). Used for acceptance-gate cross-capture axis.")
     ap.add_argument("-n", type=int, default=3, help="rerun count for --extraction or --drift (1-5)")
     ap.add_argument("--output-dir", help="override research/stability-runs/{case-id}-{date}/")
     ap.add_argument("--skill-dir", default=str(SKILL_DIR), help="path to skill root")
@@ -593,12 +696,64 @@ def main() -> int:
             a = agg.get(field, {})
             print(f"  {field:22s} jaccard    mean={_fmt(a.get('mean_jaccard'),3)} "
                   f"min={_fmt(a.get('min_jaccard'),3)}")
+        ck = agg.get("live_constraints_canonical_key", {}) or {}
+        print(f"  {'canonical_key':22s} jaccard    mean={_fmt(ck.get('mean_jaccard'),3)} "
+              f"min={_fmt(ck.get('min_jaccard'),3)}")
+        print(f"  invalid_key_rate:     per_run={agg.get('invalid_key_rate_per_run', [])} "
+              f"overall={_fmt(agg.get('invalid_key_rate_overall'),3)}")
+        print(f"  fabricated counts:    {agg.get('fabricated_count_per_run', [])}")
+        return 0
+
+    # --- Cross-capture mode: compute drift across pre-extracted JSONs ---
+    if args.from_extractions:
+        ext_paths = [Path(p).resolve() for p in args.from_extractions]
+        for p in ext_paths:
+            if not p.exists():
+                ap.error(f"extraction file not found: {p}")
+        if len(ext_paths) < 2:
+            ap.error("--from-extractions requires at least 2 paths")
+        print(f"[cross-capture] {len(ext_paths)} pre-extracted JSONs", file=sys.stderr)
+        extractions = [(_run_id_from_extraction_path(p), _load_extraction(p)) for p in ext_paths]
+        drift = compute_extraction_drift(extractions)
+
+        (out_dir / "drift.json").write_text(json.dumps(drift, indent=2))
+        (out_dir / "runs.txt").write_text("\n".join(drift["run_ids"]) + "\n")
+        (out_dir / "config.json").write_text(json.dumps({
+            "case_id": args.case_id,
+            "mode": "cross_capture_from_extractions",
+            "generated_at": generated_at,
+            "extraction_paths": [str(p) for p in ext_paths],
+        }, indent=2))
+        # render_drift_markdown requires a conversation path for its header;
+        # pass a stub since cross-capture has no single conversation.
+        stub_conv = Path("cross-capture (no single conversation)")
+        (out_dir / "drift.md").write_text(
+            render_drift_markdown(drift, args.case_id, generated_at, stub_conv))
+
+        # Terminal summary (mirrors --drift summary)
+        print(f"\n=== Cross-capture drift report: {args.case_id} ===")
+        print(f"Output dir: {out_dir}")
+        print(f"N runs:     {drift['n_runs']}")
+        agg = drift.get("aggregate", {}) or {}
+        for field in ("decision_situation", "original_framing", "synthesized_position"):
+            a = agg.get(field, {})
+            print(f"  {field:22s} similarity mean={_fmt(a.get('mean_similarity'),3)} "
+                  f"min={_fmt(a.get('min_similarity'),3)}")
+        for field in ("live_constraints", "reasoning_passages", "dropped_threads"):
+            a = agg.get(field, {})
+            print(f"  {field:22s} jaccard    mean={_fmt(a.get('mean_jaccard'),3)} "
+                  f"min={_fmt(a.get('min_jaccard'),3)}")
+        ck = agg.get("live_constraints_canonical_key", {}) or {}
+        print(f"  {'canonical_key':22s} jaccard    mean={_fmt(ck.get('mean_jaccard'),3)} "
+              f"min={_fmt(ck.get('min_jaccard'),3)}")
+        print(f"  invalid_key_rate:     per_run={agg.get('invalid_key_rate_per_run', [])} "
+              f"overall={_fmt(agg.get('invalid_key_rate_overall'),3)}")
         print(f"  fabricated counts:    {agg.get('fabricated_count_per_run', [])}")
         return 0
 
     # --- Mode A/B: stability (aggregate + optional rerun) ---
     if not args.runs and not args.extraction:
-        ap.error("provide --runs <paths...>, --extraction <path>, or --drift --conversation <path>")
+        ap.error("provide --runs <paths...>, --extraction <path>, --drift --conversation <path>, or --from-extractions <paths...>")
 
     run_paths: list[Path] = []
     if args.extraction:
