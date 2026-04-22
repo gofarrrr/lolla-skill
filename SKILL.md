@@ -216,6 +216,7 @@ Material issues (surface these):
 - `no_fingerprint` — *"⚠ No mental-model activations found in the reasoning — may indicate a very short conversation or a genuine gap."*
 - `quote_fabrication` — *"⚠ Extraction partially degraded: [N] reasoning passages couldn't be verified as literal substrings of the transcript. Lane 2 companion analysis may be weaker than usual."* — substitute `N` from `run_health.quote_fabrication_count`. If `run_health.quote_retry_attempted` is true, append "(retry attempted)" to the line.
 - `capture_truncated` — *"⚠ Long conversation truncated: [N] middle turns were omitted to fit the size cap. The audit ran on early + late slices; context from the middle may be missing."* — substitute `N` from `run_health.omitted_turns`.
+- `lane3_all_dropped` — *"⚠ Frame pressure analysis produced no reframings — all [N] detected frame elements were dropped by the evidence-quote validator. This is different from 'no frame issues found'; the lane attempted but every candidate failed validation."* — substitute `N` from `run_health.lane3_frame_drops_count`.
 - Multiple material issues — combine with a semicolon: *"⚠ Audit degraded: capture missed turns; no fingerprint."*
 
 Non-material (do NOT surface — these are soft signals, not audit-quality breaks):

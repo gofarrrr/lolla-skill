@@ -492,6 +492,11 @@ def main() -> int:
     _fingerprint_ok = len(result.audit.companion_fingerprint_validated) > 0
     _has_findings = bool(result.delta_card and result.delta_card.findings)
     _warnings = list(result.audit.warnings)
+    _lane3_drops_count = len(getattr(result.frame_pressure_card, "dropped_frame_elements", ()) or ())
+    _lane3_kept_count = len(getattr(result.frame_pressure_card, "frame_elements", ()) or ())
+    # All frame elements dropped = Lane 3 effectively disabled by validation.
+    # Partial drops are tolerated (some elements kept).
+    _lane3_all_dropped = _lane3_drops_count > 0 and _lane3_kept_count == 0
 
     _health_issues = []
     if not _substrate_ok:
@@ -514,6 +519,12 @@ def main() -> int:
         # Conversation was truncated to fit the 80K char cap. Middle turns
         # dropped; audit ran on first-N + last-N slices.
         _health_issues.append("capture_truncated")
+    if _lane3_all_dropped:
+        # Every frame element failed validation — Lane 3 produced no reframings
+        # despite the extractor attempting. Different from "no frame elements
+        # detected" (which is a legitimate zero); this is "all detected but all
+        # dropped by the evidence_quote/pattern validator."
+        _health_issues.append("lane3_all_dropped")
 
     # Overall health: critical if capture is critical, degraded if any issues
     if "capture_critical" in _health_issues:
@@ -534,6 +545,8 @@ def main() -> int:
         "quote_retry_attempted": _quote_retry_attempted,
         "capture_truncated": _truncation_applied,
         "omitted_turns": _omitted_turns,
+        "lane3_frame_drops_count": _lane3_drops_count,
+        "lane3_frame_kept_count": _lane3_kept_count,
         "issues": _health_issues,
         "warnings": _warnings + _capture_warnings,
         "activation_tiebreaker": "on" if activation_tiebreaker_enabled else "off",
