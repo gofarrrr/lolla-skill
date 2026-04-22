@@ -340,6 +340,10 @@ def main() -> int:
     _quote_validation = extraction.get("extraction", {}).get("_quote_validation", {}) or {}
     _quote_fabricated_count = int(_quote_validation.get("fabricated", 0) or 0)
     _quote_retry_attempted = bool(_quote_validation.get("retry_attempted", False))
+    _truncation_applied = bool(
+        (_capture_manifest or {}).get("truncation_applied", False)
+    )
+    _omitted_turns = int((_capture_manifest or {}).get("omitted_turns", 0) or 0)
 
     if not query or not vanilla_answer:
         print(json.dumps({
@@ -506,6 +510,10 @@ def main() -> int:
         # Fabricated passages survived the extraction retry (if any was attempted).
         # Surface so Step 4 chat can warn the user about partial extraction quality.
         _health_issues.append("quote_fabrication")
+    if _truncation_applied:
+        # Conversation was truncated to fit the 80K char cap. Middle turns
+        # dropped; audit ran on first-N + last-N slices.
+        _health_issues.append("capture_truncated")
 
     # Overall health: critical if capture is critical, degraded if any issues
     if "capture_critical" in _health_issues:
@@ -524,6 +532,8 @@ def main() -> int:
         "findings_produced": _has_findings,
         "quote_fabrication_count": _quote_fabricated_count,
         "quote_retry_attempted": _quote_retry_attempted,
+        "capture_truncated": _truncation_applied,
+        "omitted_turns": _omitted_turns,
         "issues": _health_issues,
         "warnings": _warnings + _capture_warnings,
         "activation_tiebreaker": "on" if activation_tiebreaker_enabled else "off",

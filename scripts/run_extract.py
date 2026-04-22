@@ -80,10 +80,16 @@ KEEP_FIRST_TURNS = 3
 KEEP_LAST_TURNS = 15
 
 
-def _truncate_conversation(text: str) -> str:
-    """Truncate long conversations, keeping early + late turns."""
+def _truncate_conversation(text: str) -> tuple[str, dict]:
+    """Truncate long conversations, keeping early + late turns.
+
+    Returns ``(text, truncation_info)`` where ``truncation_info`` is a dict
+    with at minimum ``truncation_applied: bool``. When truncation fires, the
+    dict also includes diagnostic fields so downstream code (run_pipeline.py,
+    run_health, Step 4 chat) can surface the fact that context was dropped.
+    """
     if len(text) <= MAX_CONVERSATION_CHARS:
-        return text
+        return text, {"truncation_applied": False}
 
     # Split by turn markers
     import re
@@ -91,17 +97,30 @@ def _truncate_conversation(text: str) -> str:
     turns = [t for t in turns if t.strip()]
 
     if len(turns) <= KEEP_FIRST_TURNS + KEEP_LAST_TURNS:
-        return text
+        return text, {"truncation_applied": False}
 
     first = turns[:KEEP_FIRST_TURNS]
     last = turns[-KEEP_LAST_TURNS:]
     omitted = len(turns) - KEEP_FIRST_TURNS - KEEP_LAST_TURNS
 
-    return (
+    truncated = (
         "".join(first)
         + f"\n[... {omitted} turns omitted for brevity ...]\n\n"
         + "".join(last)
     )
+    return truncated, {
+        "truncation_applied": True,
+        "truncation_reason": (
+            f"char_limit_exceeded (original {len(text)} chars > cap "
+            f"{MAX_CONVERSATION_CHARS}); kept first {KEEP_FIRST_TURNS} + "
+            f"last {KEEP_LAST_TURNS} turns, omitted {omitted} middle turns"
+        ),
+        "original_char_length": len(text),
+        "truncated_char_length": len(truncated),
+        "total_turns": len(turns),
+        "kept_turns": KEEP_FIRST_TURNS + KEEP_LAST_TURNS,
+        "omitted_turns": omitted,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -473,8 +492,18 @@ def main() -> int:
             print(output_text)
         return 0
 
-    # Truncate if needed
-    conversation_text = _truncate_conversation(conversation_text)
+    # Truncate if needed. If truncation fires, merge diagnostic info into
+    # capture_manifest so run_pipeline.py / run_health / Step 4 chat can
+    # surface that context was dropped.
+    conversation_text, truncation_info = _truncate_conversation(conversation_text)
+    if truncation_info.get("truncation_applied"):
+        capture_result["capture_manifest"].update(truncation_info)
+        capture_result["capture_warnings"].append(
+            f"Conversation truncated: {truncation_info['omitted_turns']} middle "
+            f"turns omitted ({truncation_info['original_char_length']} → "
+            f"{truncation_info['truncated_char_length']} chars). Audit will run "
+            f"on first {KEEP_FIRST_TURNS} + last {KEEP_LAST_TURNS} turns only."
+        )
 
     # Call OpenRouter for extraction
     try:
