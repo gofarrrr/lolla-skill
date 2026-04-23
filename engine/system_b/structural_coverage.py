@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from .boundary_validation import coerce_str
+from .conversation_context import ConversationContext
 
 _LOGGER = logging.getLogger("system_b.structural_coverage")
 
@@ -205,9 +206,115 @@ def run_question_classification(
     query: str,
     vanilla_answer: str,
 ) -> str:
-    """Classify the question into one of 4 structural types."""
+    """Classify the question into one of 4 structural types.
+
+    Legacy entry point — consumes the collapsed `query` built from extraction
+    summaries via the shim. Still serves the legacy path until Phase 3. For
+    new conversation-first callers use `run_question_classification_from_context`.
+    """
     user_prompt = _format_classification_user_prompt(query, vanilla_answer)
     raw = boundary.run_json(_QUESTION_CLASSIFICATION_SYSTEM, user_prompt)
+    qtype = coerce_str(raw.get("question_type", ""))
+    if qtype not in _VALID_QUESTION_TYPES:
+        _LOGGER.warning("Invalid question_type %r, defaulting to decision-evaluation", qtype)
+        qtype = "decision-evaluation"
+    return qtype
+
+
+# ---------------------------------------------------------------------------
+# Phase 2b: Conversation-first question classification
+# ---------------------------------------------------------------------------
+#
+# Separate system prompt so the legacy path's calibration (reads "QUESTION" as
+# the collapsed decision_situation paraphrase) stays stable while the new path
+# explicitly tells the LLM to classify based on the user's actual turns.
+#
+# Note: Lane 4 has no evidence-substring validation downstream (unlike Lane 3).
+# The CONTEXT/SOURCE split here is prompt guidance — steering the LLM to treat
+# user turns as primary truth — not a mechanical output validator. Quality
+# signal is observed via classification stability and dimension-detection
+# shifts across paths, not via drop rates.
+
+_QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT = """\
+You are a question classifier. Your job is to read a CONVERSATION (user turns \
+plus assistant replies) and classify the QUESTION the user is posing into \
+exactly one of four structural types, based on what kind of answer the \
+question demands.
+
+The user prompt has two sections:
+  - CONTEXT: extractor summaries (decision_situation, original_framing, \
+constraints, dropped threads, assistant replies). These are secondary \
+scaffolding for understanding. Classify based on what the USER actually asked, \
+not on the extractor's paraphrase.
+  - SOURCE: the user's actual turns. The first user turn is the canonical \
+anchor for the question.
+
+The four types:
+  - "causal-diagnosis" — The user asks WHY something happened or is happening. \
+Demands root-cause reasoning. Examples: "Why are sales down?", \
+"What's causing the high churn rate?"
+  - "decision-evaluation" — The user asks WHETHER to do something. \
+Demands trade-off and commitment reasoning. Examples: "Should we sign \
+the deal?", "Is it worth expanding into Europe?"
+  - "action-planning" — The user asks HOW to do something. \
+Demands sequencing and execution reasoning. The decision is already made; \
+the question is about implementation. Examples: "How do we restructure \
+the engineering org?", "What's the plan for the product launch?"
+  - "prediction" — The user asks WHAT WILL HAPPEN. Demands forecasting \
+and scenario reasoning. Examples: "What happens if we raise prices 20%?", \
+"Where will the market be in 3 years?"
+
+Return a JSON object: {"question_type": "<type>"}
+
+Rules:
+- Pick the DOMINANT type. Many questions blend types — choose the one that \
+best captures what kind of reasoning the answer needs.
+- If the user's framing is ambiguous, default to "decision-evaluation" — most \
+strategic questions are fundamentally about whether to act.
+- Classify the USER'S question (primarily the first user turn, refined by \
+subsequent user turns if they sharpen the framing). Do not classify the \
+CONTEXT summary if it diverges from what the user actually said.
+- Return ONLY the JSON object. No explanation.
+"""
+
+
+def _format_classification_from_context_user_prompt(context: ConversationContext) -> str:
+    """User-prompt body for context-first question classification.
+
+    CONTEXT section holds extractor summaries + assistant replies (scaffolding).
+    SOURCE section holds user turns verbatim — the primary signal.
+    """
+    ext = context.extraction
+    parts: list[str] = ["CONTEXT (scaffolding — classify the user's actual question, not this summary):"]
+    if ext.decision_situation:
+        parts.append(f"- Decision situation: {ext.decision_situation}")
+    if ext.original_framing:
+        parts.append(f"- Framing extracted upstream: {ext.original_framing}")
+
+    assistant_turns = [t for t in context.turns if t.speaker == "assistant"]
+    if assistant_turns:
+        parts.append("- Assistant replies (context for what the user was engaging with):")
+        for t in assistant_turns:
+            parts.append(f"  [Turn {t.turn_index} ASSISTANT] {t.text[:500]}")
+
+    parts.append("")
+    parts.append("SOURCE (the user's actual turns — first user turn is the canonical question anchor):")
+    for t in context.turns:
+        if t.speaker == "user":
+            parts.append(f"[Turn {t.turn_index}] USER:")
+            parts.append(t.text)
+            parts.append("")
+
+    return "\n".join(parts)
+
+
+def run_question_classification_from_context(
+    boundary: _BoundaryClient,
+    context: ConversationContext,
+) -> str:
+    """Conversation-first entry point for question classification — Phase 2b."""
+    user_prompt = _format_classification_from_context_user_prompt(context)
+    raw = boundary.run_json(_QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT, user_prompt)
     qtype = coerce_str(raw.get("question_type", ""))
     if qtype not in _VALID_QUESTION_TYPES:
         _LOGGER.warning("Invalid question_type %r, defaulting to decision-evaluation", qtype)
@@ -335,12 +442,184 @@ def run_dimension_detection(
     question_type: str,
     structural_coverage_routing: dict,
 ) -> tuple[DetectedDimension, ...]:
-    """Detect structural dimensions and assess coverage."""
+    """Detect structural dimensions and assess coverage.
+
+    Legacy entry point — consumes the collapsed `query` + `vanilla_answer`
+    via the shim. Still serves the legacy path until Phase 3. For new
+    conversation-first callers use `run_dimension_detection_from_context`.
+    """
     catalog_text = _build_dimension_catalog_text(structural_coverage_routing)
     user_prompt = _format_dimension_detection_user_prompt(
         query, vanilla_answer, question_type, catalog_text,
     )
     raw = boundary.run_json(_DIMENSION_DETECTION_SYSTEM, user_prompt)
+    return _parse_dimension_detection(raw)
+
+
+# ---------------------------------------------------------------------------
+# Phase 2b: Conversation-first dimension detection
+# ---------------------------------------------------------------------------
+#
+# Detection has two legitimate evidence sources: user turns (for what the
+# question establishes — detect_when conditions are about the QUESTION) and
+# assistant replies (for what the answer addressed — coverage is about the
+# ANSWER). Both go in the SOURCE section with labels; only extractor summaries
+# live in CONTEXT.
+
+_DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT = """\
+You are a structural coverage analyst. Your job is to read a CONVERSATION \
+(user turns plus assistant replies) and determine which structural dimensions \
+of the problem are present and whether the answer addresses each one.
+
+The user prompt has two sections:
+  - CONTEXT: extractor summaries (decision_situation, framing, constraints, \
+dropped threads). These are scaffolding for understanding the decision. \
+They are NOT the primary source of truth for what the user asked or what the \
+assistant answered. Do not base detection or coverage on paraphrased summaries.
+  - SOURCE: the actual conversation, turn by turn. User turns establish the \
+question (detect_when conditions are about what the user asked). Assistant \
+turns establish the answer (coverage is about what was addressed). Both are \
+legitimate evidence sources for this lane.
+
+You will receive:
+1. The question type (causal-diagnosis, decision-evaluation, action-planning, prediction)
+2. A catalog of 15 structural dimensions with detect_when conditions and coverage signals
+3. CONTEXT + SOURCE (as described above)
+
+Your task:
+1. DETECT: Which dimensions are structurally present in this problem? Use the \
+detect_when conditions. A dimension is present if at least 1 of its detect_when \
+conditions is clearly met by the USER'S QUESTION (SOURCE — user turns, primarily \
+the first). Only consider dimensions whose question_types include the classified \
+question type. Think broadly — typically 6-10 dimensions fire for a strategic question.
+2. ASSESS COVERAGE: For each detected dimension, does the ANSWER (SOURCE — \
+assistant turns) engage with the structural tension described by the dimension's \
+cleaving frame? A dimension is "covered" ONLY if the assistant's replies:
+  (a) explicitly identify the tension or trade-off described by the cleaving frame, AND
+  (b) reason through both sides of that tension (not just one), AND
+  (c) reach or recommend a position on how to resolve it.
+If the assistant merely MENTIONS a related topic, uses a KEYWORD associated with \
+the dimension, or ACKNOWLEDGES that the issue exists without analyzing it — \
+that is NOT coverage. Coverage requires analytical depth, not topic presence. \
+Coverage evidence you cite should be recognizable to the user/reviewer as \
+something the assistant actually said.
+3. MATERIALITY RANKING: After coverage assessment, RANK all uncovered dimensions \
+by materiality — how likely is it that analyzing this dimension would REVERSE \
+or SUBSTANTIALLY ALTER the recommendation? Then keep ONLY the top 3-5 as gaps. \
+Mark the rest as covered with coverage_evidence: "Immaterial: [reason]".
+
+Return a JSON object:
+{
+  "dimensions": [
+    {
+      "dimension_id": "<id from catalog>",
+      "dimension_name": "<name from catalog>",
+      "covered": true/false,
+      "coverage_evidence": "<what in the assistant's replies addresses this, OR what's missing>",
+      "materiality_note": "<why this gap matters for the decision, or 'covered'/'immaterial'>"
+    }
+  ]
+}
+
+HARD CONSTRAINT: Maximum 5 dimensions with covered=false. If your initial \
+assessment yields more than 5 gaps, you MUST demote the least material ones \
+to covered. This is not optional.
+
+Rules:
+- Return ONLY dimensions that are structurally present (6-10 typical).
+- Maximum 5 gaps. Typical is 2-4. A gap must be able to CHANGE the recommendation.
+- Mentioning is not covering. For every dimension, test: "Does the assistant \
+reason through BOTH SIDES of this dimension's cleaving frame?" Examples:
+  * Stakeholder Alignment: Discussing people is NOT coverage. Requires: who \
+APPROVES, who BLOCKS, influence strategy.
+  * Timing & Sequencing: Listing timeframes is NOT coverage. Requires: why \
+this ORDER, critical path, delay impact.
+  * Commitment & Reversibility: Proposing terms is NOT coverage. Requires: \
+EXIT costs, lock-in, optionality consumed.
+  * Uncertainty Type: Presenting numbers is NOT coverage. Requires: what is \
+KNOWABLE vs genuinely UNKNOWABLE.
+  * Information Quality: Adjusting for risks is NOT coverage. Requires: \
+questioning data RELIABILITY, missing evidence.
+  * Competitive Dynamics: Mentioning competitors is NOT coverage. Requires: \
+modeling how they RESPOND.
+  * Resource Allocation: Stating budget is NOT coverage. Requires: what you \
+GIVE UP and why this beats alternatives.
+  * Scaling Dynamics: Mentioning growth is NOT coverage. Requires: what \
+BREAKS or CHANGES at scale.
+  * Incentive Alignment: Listing parties is NOT coverage. Requires: where \
+incentives DIVERGE and realignment mechanism.
+  * Feedback & System Dynamics: Describing cause-effect is NOT coverage. \
+Requires: identifying FEEDBACK LOOPS.
+- Coverage evidence should quote or paraphrase assistant-turn content. Do NOT \
+cite extractor summaries from CONTEXT as coverage evidence.
+- Return ONLY the JSON object. No explanation.
+"""
+
+
+def _format_dimension_detection_from_context_user_prompt(
+    context: ConversationContext,
+    question_type: str,
+    dimension_catalog_text: str,
+) -> str:
+    """User-prompt body for context-first dimension detection.
+
+    CONTEXT holds extractor summaries; SOURCE holds the full turn-by-turn
+    conversation with user and assistant turns clearly labelled so the LLM
+    can cite either side when judging coverage.
+    """
+    ext = context.extraction
+    parts: list[str] = [
+        f"QUESTION TYPE: {question_type}",
+        "",
+        f"DIMENSION CATALOG:",
+        dimension_catalog_text,
+        "",
+        "CONTEXT (scaffolding — not the primary source of truth for detection or coverage):",
+    ]
+    if ext.decision_situation:
+        parts.append(f"- Decision situation: {ext.decision_situation}")
+    if ext.original_framing:
+        parts.append(f"- Framing extracted upstream: {ext.original_framing}")
+    if ext.live_constraints:
+        parts.append("- Constraints:")
+        for c in ext.live_constraints:
+            status = c.status or "active"
+            weight = c.weight or "situational"
+            tag = status.upper() if status == "active" else f"{status.upper()}/{weight.upper()}"
+            parts.append(f"  - [{tag}] {c.constraint} (turn {c.introduced_turn})")
+    if ext.dropped_threads:
+        parts.append("- Dropped threads:")
+        for d in ext.dropped_threads:
+            line = (
+                f"  - {d.thread} (raised by {d.raised_by or '?'} turn {d.raised_turn}, "
+                f"status: {d.status or '?'})"
+            )
+            if d.superseded_by:
+                line += f", superseded_by: {d.superseded_by}"
+            parts.append(line)
+
+    parts.append("")
+    parts.append("SOURCE (primary — USER turns establish the question for detection; ASSISTANT turns establish the answer for coverage):")
+    for t in context.turns:
+        parts.append(f"[Turn {t.turn_index}] {t.speaker.upper()}:")
+        parts.append(t.text)
+        parts.append("")
+
+    return "\n".join(parts)
+
+
+def run_dimension_detection_from_context(
+    boundary: _BoundaryClient,
+    context: ConversationContext,
+    question_type: str,
+    structural_coverage_routing: dict,
+) -> tuple[DetectedDimension, ...]:
+    """Conversation-first dimension detection — Phase 2b."""
+    catalog_text = _build_dimension_catalog_text(structural_coverage_routing)
+    user_prompt = _format_dimension_detection_from_context_user_prompt(
+        context, question_type, catalog_text,
+    )
+    raw = boundary.run_json(_DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT, user_prompt)
     return _parse_dimension_detection(raw)
 
 
@@ -515,12 +794,111 @@ def generate_gap_questions(
     """Generate discovery questions for each gap dimension.
 
     Returns an empty tuple if there are no gaps (no LLM call made).
+
+    Legacy entry point — consumes the collapsed `query` + `vanilla_answer` via
+    the shim. For new conversation-first callers use
+    `generate_gap_questions_from_context`.
     """
     if not gap_routes:
         return ()
 
     user_prompt = _format_gap_question_user_prompt(
         query, vanilla_answer, question_type, gap_routes, structural_coverage_routing,
+    )
+    raw = boundary.run_json(_GAP_QUESTION_GENERATION_SYSTEM, user_prompt)
+    parsed = _parse_gap_questions(raw)
+
+    results: list[GapQuestion] = []
+    for route in gap_routes:
+        questions = parsed.get(route.dimension_id)
+        if questions:
+            results.append(GapQuestion(
+                dimension_id=route.dimension_id,
+                dimension_name=route.dimension_name,
+                questions=questions,
+            ))
+    return tuple(results)
+
+
+# ---------------------------------------------------------------------------
+# Phase 2b: Conversation-first gap question generation
+# ---------------------------------------------------------------------------
+#
+# Gap questions need to be problem-specific — they reference the actual
+# situation so the decision-maker can answer them without reading an AI-facing
+# spec. The CONTEXT/SOURCE split here steers the LLM to ground its question
+# wording in the real conversation rather than in extractor paraphrases.
+
+def _format_gap_question_from_context_user_prompt(
+    context: ConversationContext,
+    question_type: str,
+    gap_routes: tuple[DimensionRoute, ...],
+    structural_coverage_routing: dict,
+) -> str:
+    """User-prompt body for context-first gap question generation.
+
+    CONTEXT: extractor summaries. SOURCE: full conversation (user + assistant
+    turns). Questions generated should reference the conversation's real
+    details — the kind of particulars the user would recognize as being about
+    their situation, not the extractor's re-labelled framing.
+    """
+    routing_dims = structural_coverage_routing.get("dimensions", {})
+    gap_sections: list[str] = []
+    for route in gap_routes:
+        dim_def = routing_dims.get(route.dimension_id, {})
+        gap_sections.append(
+            f"GAP DIMENSION: {route.dimension_name} (id: {route.dimension_id})\n"
+            f"Cleaving frame: {dim_def.get('cleaving_frame', 'N/A')}\n"
+            f"What's missing: The assistant did not address this dimension.\n"
+            f"Why it matters: {dim_def.get('materiality_test', 'N/A')}"
+        )
+
+    ext = context.extraction
+    parts: list[str] = [
+        f"QUESTION TYPE: {question_type}",
+        "",
+        "CONTEXT (scaffolding — do NOT quote verbatim into your questions; use only for grounding):",
+    ]
+    if ext.decision_situation:
+        parts.append(f"- Decision situation: {ext.decision_situation}")
+    if ext.original_framing:
+        parts.append(f"- Framing extracted upstream: {ext.original_framing}")
+    if ext.live_constraints:
+        parts.append("- Constraints:")
+        for c in ext.live_constraints:
+            status = c.status or "active"
+            weight = c.weight or "situational"
+            tag = status.upper() if status == "active" else f"{status.upper()}/{weight.upper()}"
+            parts.append(f"  - [{tag}] {c.constraint} (turn {c.introduced_turn})")
+
+    parts.append("")
+    parts.append("SOURCE (the real conversation — your questions should reference particulars from here):")
+    for t in context.turns:
+        parts.append(f"[Turn {t.turn_index}] {t.speaker.upper()}:")
+        parts.append(t.text)
+        parts.append("")
+
+    parts.append("")
+    parts.append("STRUCTURAL GAPS:")
+    parts.append("")
+    parts.append("\n\n".join(gap_sections))
+
+    return "\n".join(parts)
+
+
+def generate_gap_questions_from_context(
+    boundary: _BoundaryClient,
+    context: ConversationContext,
+    question_type: str,
+    gap_routes: tuple[DimensionRoute, ...],
+    structural_coverage_routing: dict,
+) -> tuple[GapQuestion, ...]:
+    """Conversation-first gap question generation — Phase 2b."""
+    if not gap_routes:
+        return ()
+
+    user_prompt = _format_gap_question_from_context_user_prompt(
+        context, question_type, gap_routes, structural_coverage_routing,
     )
     raw = boundary.run_json(_GAP_QUESTION_GENERATION_SYSTEM, user_prompt)
     parsed = _parse_gap_questions(raw)
@@ -629,6 +1007,9 @@ def run_structural_coverage(
 
     Returns ``None`` on hard failure (boundary errors). Returns a card with
     empty dimensions if no dimensions fire (a valid result).
+
+    Legacy orchestrator — consumes the collapsed `query` + `vanilla_answer`.
+    For conversation-first callers use `run_structural_coverage_from_context`.
     """
     try:
         # Step 1: Question classification
@@ -663,6 +1044,49 @@ def run_structural_coverage(
         _LOGGER.exception("Gap question generation failed")
 
     # Step 5: Assembly
+    return assemble_structural_coverage_card(
+        question_type, dimensions, gap_routes, anti_echo_model_ids, gap_questions,
+    )
+
+
+def run_structural_coverage_from_context(
+    boundary: _BoundaryClient,
+    context: ConversationContext,
+    structural_coverage_routing: dict,
+    anti_echo_model_ids: set[str],
+) -> StructuralCoverageCard | None:
+    """Conversation-first orchestrator — Phase 2b.
+
+    Delegates to the `_from_context` variants of classification, detection,
+    and gap question generation. Deterministic routing (step 3) and assembly
+    (step 5) are unchanged — they don't depend on the input shape.
+    """
+    try:
+        question_type = run_question_classification_from_context(boundary, context)
+    except Exception:
+        _LOGGER.exception("Question classification (from_context) failed")
+        return None
+
+    try:
+        dimensions = run_dimension_detection_from_context(
+            boundary, context, question_type, structural_coverage_routing,
+        )
+    except Exception:
+        _LOGGER.exception("Dimension detection (from_context) failed")
+        return None
+
+    gap_routes = route_gap_dimensions(
+        dimensions, structural_coverage_routing, anti_echo_model_ids,
+    )
+
+    gap_questions: tuple[GapQuestion, ...] = ()
+    try:
+        gap_questions = generate_gap_questions_from_context(
+            boundary, context, question_type, gap_routes, structural_coverage_routing,
+        )
+    except Exception:
+        _LOGGER.exception("Gap question generation (from_context) failed")
+
     return assemble_structural_coverage_card(
         question_type, dimensions, gap_routes, anti_echo_model_ids, gap_questions,
     )
