@@ -82,9 +82,44 @@ Every PR uses the same three axes. Each PR's section states its field-specific t
 
 ## PR sequence
 
-### PR #1 — `live_constraints.canonical_key`
+### PR #1 — `live_constraints` terse canonical form (re-scoped from `canonical_key` full-ship)
 
-**Status:** PAUSED (2026-04-22, branch: `feat/extraction-contract-phase-1-live-constraints`). Acceptance-gate measurement returned canonical_key Jaccard 0.466 Mode C (target ≥ 0.80) and 0.332 cross-capture (target ≥ 0.70). Format validator is fine (invalid_key_rate 0.0% across 14 runs); the LLM oscillates between semantically-equivalent valid slugs (`marcus-comp` / `marcus-comp-below-market` / `marcus-comp-undermarket` for one concept, five variants for the retention-risk concept). The ≤120-char constraint rule improved exact-text Jaccard from 0.000 to 0.330 Mode C as a side effect. Evidence: `research/stability-runs/contract-phase1-post-ship-2026-04-22/README.md`. Decision pending on (A) prompt iteration vs (B) metric change (fuzzy / embedding-cosine) vs (C) split-and-ship.
+**Status:** IN REVIEW (2026-04-23, branch: `feat/extraction-contract-phase-1-live-constraints`). Re-scoped to **C-medium** after a diagnostic run confirmed the Context Engineering 2.0 "context pollution" hypothesis: the canonical_key prompt text was causing fabricated-quote and `original_framing` regressions on other fields.
+
+**What this PR ships:**
+- ≤120-char terse-form rule on `constraint` text (the proven win)
+- `_validate_canonical_key` slug regex validator (pre-wired, inactive — no prompt rule yet)
+- `_apply_canonical_key_validation` post-extraction processing (pre-wired, inactive)
+- Harness extensions: `--from-extractions` CLI mode, canonical_key Jaccard with empty-string exclusion, `invalid_key_rate` per-run + overall
+- `HOW_IT_WORKS.md` §Step 2 updated to document the new field shape
+
+**What this PR does NOT ship:**
+- `canonical_key` field in extraction output (prompt rules stripped to avoid pollution)
+- Any stability claim about canonical concept identity across runs
+
+**Cross-capture evidence (9 Marcus captures, 36 pairs):**
+
+| Metric | Pre-ship | Shipped (C-medium) | Δ |
+|---|---|---|---|
+| `live_constraints` exact-text Jaccard | 0.010 | **0.109** | **10×** win |
+| Fabricated-quote count (9 runs) | 0 | **0** | preserved |
+| `original_framing` similarity | 0.209 | 0.218 | preserved (+0.009) |
+| `reasoning_passages` Jaccard | 0.357 | 0.393 | preserved (+0.036) |
+| `synthesized_position` similarity | 0.169 | 0.165 | ≈ flat |
+| `decision_situation` similarity | 0.367 | 0.335 | mild dip (−0.032, within noise) |
+| `dropped_threads` Jaccard | 0.132 | 0.117 | mild dip (−0.015, within noise) |
+
+**Evidence directories:**
+- Pre-ship baseline: `research/stability-runs/contract-phase1-pre-ship-2026-04-22/README.md`
+- Initial post-ship (C-full, gate failed): `research/stability-runs/contract-phase1-post-ship-2026-04-22/README.md`
+- Diagnostic (C-medium, shipping): `research/stability-runs/contract-phase1-diagnostic-2026-04-23/README.md`
+
+**Follow-up — PR #1b (not yet scheduled):** Reintroduce `canonical_key` field with a condensed prompt addition + swap the measurement from exact-text Jaccard to embedding cosine. Target: cross-capture semantic agreement ≥ 0.70 via embedding cosine. PR #1b must land before PR #2 (dropped_threads.canonical_key) because PR #2 depends on the canonical_key pattern being proven at a semantic level.
+
+**What we learned that changes the roadmap's working assumptions:**
+1. **Mode C N=5 is too noisy for field-level judgment.** Cross-capture (36 pairs) is the reliable signal for any acceptance-gate. Prior PR acceptance gates should prefer cross-capture over Mode C.
+2. **Exact-text Jaccard on slug-like fields is the wrong metric.** Any future canonical_key work (PRs #1b, #2) must use a semantic metric (embedding cosine or equivalent). This is the "Semantic Continuity Principle" from the Context Engineering 2.0 paper (GAIR-NLP 2025).
+3. **Context pollution is observable and real in our pipeline.** Expanding any single prompt block has measurable cost on other fields. Future PRs should budget-balance prompt additions, or decompose into separate LLM calls per field (Track A).
 
 **Scope (minimal):**
 - Add `canonical_key` field to each `Constraint` in the extraction schema.
