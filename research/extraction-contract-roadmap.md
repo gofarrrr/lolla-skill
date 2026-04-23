@@ -185,11 +185,17 @@ See PR #13 on GitHub. Shipped ≤120-char terse-form rule + infrastructure. Does
 
 ---
 
-### PR #2 — `dropped_threads` tie-break rule + ≤120-char thread rule [RE-SCOPED 2026-04-23, NOT STARTED]
+### PR #2 — `dropped_threads` tie-break rule + ≤120-char thread rule [PAUSED 2026-04-23]
 
-**Re-scope:** PR #1b paused → canonical_key portion of PR #2 deferred to Track A window. PR #2 now ships the two parts that don't depend on canonical_key: (1) ≤120-char terse-form rule on `thread` text (same mechanism as PR #1's win on `constraint`), and (2) tie-break rule as prose, measured via string-fallback until canonical_key ships.
+**What was tried:** two iterations — thread rule alone, and thread rule + tie-break prose. Both attempts failed cross-capture gate: slim attempt regressed the TARGET field (dropped_threads 0.222 → 0.153); tie-break attempt improved target (+0.056) but crashed reasoning_passages (−0.256).
 
-**Blocked on:** nothing. Ready to execute independently.
+**What this reveals:** after PR #4a + PR #4b, dropped_threads was already at 0.222 cross-capture (up from 0.117) via the terse-discipline ripple effect. The prompt is at pollution saturation — each additional rule costs more than it gives, even on the rule's own target field. Same pattern as PR #1b.
+
+**What unblocks this PR:** Track A decomposition (separate LLM call per field). Same unblock as PR #1b.
+
+**Impact on downstream:** no downstream PR depends on PR #2. #3 and #5 proceed. After Track A ships, revisit #2 + #1b together as the canonical_key/dropped_threads reconsideration window.
+
+**Evidence:** `research/stability-runs/contract-phase2-attempt-with-tiebreak-2026-04-23/` + `contract-phase2-attempt-slim-2026-04-23/README.md`.
 
 **Task file:** `tasks/tasks-extraction-contract-phase-2-dropped-threads.md`.
 
