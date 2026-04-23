@@ -1,7 +1,7 @@
 # Extraction drift report — contract-phase1-pre-ship-cross
 
 Generated: 2026-04-22T20:46:15Z
-Conversation: `/Users/marcin/Desktop/Apps/lolla-skill/tmp_placeholder` (? bytes)
+Conversation: `<SKILL_ROOT>/tmp_placeholder` (? bytes)
 Runs: 9
 Run IDs: extraction_20260421T144534Z, extraction_20260421T162225Z, extraction_20260421T172513Z, extraction_20260422T091837Z, extraction_20260422T100308Z, extraction_20260422T113930Z, extraction_20260422T123205Z, extraction_20260422T130506Z, extraction_20260422T155622Z
 
