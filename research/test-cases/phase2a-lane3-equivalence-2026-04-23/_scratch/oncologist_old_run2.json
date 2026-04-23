@@ -2,7 +2,8 @@
   "status": "ok",
   "format": "json",
   "detected_tendencies": [
-    "availability-misweighing-tendency"
+    "availability-misweighing-tendency",
+    "stress-influence-tendency"
   ],
   "delta_card": {
     "findings": [
@@ -24,6 +25,25 @@
           "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
         ],
         "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "tendency_name": "Stress-Influence Tendency",
+        "sub_pattern": "deadline-driven-shortcutting",
+        "severity": "medium",
+        "specific_passage": "Have the real husband conversation tonight — not \"what do you think of Merck\" but \"here is what the next four years looks like for you if I take this role: you are the primary parent 3 nights a week for the next 4-7 years, plus you're the backup on Chicago trips. Do you want that life?\" If his real answer to that is yes, take the role.",
+        "challenge_statement": "Which approval, precedent, or prerequisite check is being skipped because the team is treating the clock as proof?",
+        "next_move": "Before committing, state the long-term rule that should still govern the move and hold that line for one full review cycle.",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "delays",
+          "checklists",
+          "self-control"
+        ],
+        "major_tensions": [
+          "If speed is becoming the reason to suspend scrutiny, assume stress is narrowing thought and require a deliberate pause before action."
+        ],
+        "intervention_hint": "Before committing, state the long-term rule that should still govern the move and hold that line for one full review cycle."
       }
     ],
     "top_findings": [
@@ -45,6 +65,25 @@
           "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
         ],
         "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "tendency_name": "Stress-Influence Tendency",
+        "sub_pattern": "deadline-driven-shortcutting",
+        "severity": "medium",
+        "specific_passage": "Have the real husband conversation tonight — not \"what do you think of Merck\" but \"here is what the next four years looks like for you if I take this role: you are the primary parent 3 nights a week for the next 4-7 years, plus you're the backup on Chicago trips. Do you want that life?\" If his real answer to that is yes, take the role.",
+        "challenge_statement": "Which approval, precedent, or prerequisite check is being skipped because the team is treating the clock as proof?",
+        "next_move": "Before committing, state the long-term rule that should still govern the move and hold that line for one full review cycle.",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "delays",
+          "checklists",
+          "self-control"
+        ],
+        "major_tensions": [
+          "If speed is becoming the reason to suspend scrutiny, assume stress is narrowing thought and require a deliberate pause before action."
+        ],
+        "intervention_hint": "Before committing, state the long-term rule that should still govern the move and hold that line for one full review cycle."
       }
     ],
     "secondary_findings": [],
@@ -57,109 +96,46 @@
     "secondary_additional_pressure_count": 0,
     "secondary_additional_pressure_tendency_ids": [],
     "detected_tendencies": [
-      "availability-misweighing-tendency"
+      "availability-misweighing-tendency",
+      "stress-influence-tendency"
     ],
     "selected_model_ids": [
       "base-rates",
       "statistics-concepts",
-      "scientific-method-evidence-testing"
+      "scientific-method-evidence-testing",
+      "delays",
+      "checklists",
+      "self-control"
     ],
     "challenge_statements": [
-      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?"
+      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
+      "Which approval, precedent, or prerequisite check is being skipped because the team is treating the clock as proof?"
     ],
     "next_moves": [
-      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
+      "Before committing, state the long-term rule that should still govern the move and hold that line for one full review cycle."
     ],
     "major_tensions": [
-      "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
+      "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case.",
+      "If speed is becoming the reason to suspend scrutiny, assume stress is narrowing thought and require a deliberate pause before action."
     ],
     "top_challenge_statements": [
-      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?"
+      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
+      "Which approval, precedent, or prerequisite check is being skipped because the team is treating the clock as proof?"
     ],
     "secondary_challenge_statements": [],
     "top_next_moves": [
-      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
+      "Before committing, state the long-term rule that should still govern the move and hold that line for one full review cycle."
     ],
     "secondary_next_moves": []
   },
   "companion_cheat_sheet": {
     "anchors": [
       {
-        "model_id": "power-dynamics",
-        "display_name": "Power Dynamics",
-        "chunks": [
-          {
-            "chunk_type": "failure_mode",
-            "source_model_id": "power-dynamics",
-            "text": "A signed deal can be mistaken for durable control even though the next commitment hands timing, data, or switching-cost leverage to the counterparty.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "premortem",
-            "source_model_id": "power-dynamics",
-            "text": "What would make our walk-away or delay threat binding rather than rhetorical?",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "antagonist",
-            "source_model_id": "power-dynamics",
-            "text": "Confirmation Bias: Confirmation-bias distorts power-dynamics by making teams see the leverage structure they want rather than the outside option they actually have.",
-            "provenance": {
-              "source_layer": "wave3",
-              "extraction_type": "explicit",
-              "confidence": "high",
-              "relation_target_id": "confirmation-bias"
-            },
-            "affinity_rationale": "Directly distorts the core leverage analysis — makes teams see the leverage structure they want rather than the outside option evidence actually supports.",
-            "activation_condition": "When assessing relative bargaining position and the team's evidence for its outside option has not been independently tested"
-          },
-          {
-            "chunk_type": "heuristic",
-            "source_model_id": "power-dynamics",
-            "text": "Separate stated willingness from credible walk-away by checking enforcement cost, internal approval, and operational fallback.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "identity",
-            "source_model_id": "power-dynamics",
-            "text": "Select when: A negotiation or partnership sounds like a price or policy dispute on the surface, but the real issue may be leverage, outside options, or commitment costs. | Danger when: The true constraint is exogenous or non-negotiable, so treating the situation as a power contest would distract from the actual bottleneck. | Reasoning: systems, diagnostic",
-            "provenance": {
-              "source_layer": "wave1",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          }
-        ],
-        "presence_mode": "executed",
-        "evidence_quote": "Merck is paying to get you — they will wait 90 days.",
-        "presence_explanation": "The answer leverages Merck's hiring commitment as superior power position to negotiate a delayed start date without risk, applying power-dynamics by recognizing and exploiting leverage."
-      },
-      {
         "model_id": "opportunity-cost",
         "display_name": "Opportunity Cost",
         "chunks": [
-          {
-            "chunk_type": "prerequisite_gap",
-            "source_model_id": "opportunity-cost",
-            "text": "This model depends on trade-offs (foundation-for), which is not active in the answer. Opportunity cost is the economic quantification of trade-offs. Understanding that resources are scarce and forces constantly conflict (trade-offs) precedes the ability to quantify what specific value is lost when choosing one path over another (opportunity cost).",
-            "provenance": {
-              "source_layer": "prerequisite",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          },
           {
             "chunk_type": "failure_mode",
             "source_model_id": "opportunity-cost",
@@ -167,6 +143,16 @@
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "prerequisite_gap",
+            "source_model_id": "opportunity-cost",
+            "text": "This model depends on trade-offs (foundation-for), which is not active in the answer. Opportunity cost is the economic quantification of trade-offs. Understanding that resources are scarce and forces constantly conflict (trade-offs) precedes the ability to quantify what specific value is lost when choosing one path over another (opportunity cost).",
+            "provenance": {
+              "source_layer": "prerequisite",
+              "extraction_type": "explicit",
               "confidence": "high"
             }
           },
@@ -181,13 +167,14 @@
             }
           },
           {
-            "chunk_type": "premortem",
+            "chunk_type": "antagonist",
             "source_model_id": "opportunity-cost",
-            "text": "Which comparison in this plan is pretending to be irreversible even though we could run it as a bounded test first, and what learning are we giving up by waiting for certainty before acting?",
+            "text": "Anchoring: Opportunity-cost conflicts with anchoring when the comparison is pinned to the wrong baseline instead of the best real alternative.",
             "provenance": {
-              "source_layer": "wave2",
+              "source_layer": "wave3",
               "extraction_type": "explicit",
-              "confidence": "high"
+              "confidence": "high",
+              "relation_target_id": "anchoring"
             }
           },
           {
@@ -203,108 +190,36 @@
         ],
         "presence_mode": "executed",
         "evidence_quote": "Your mother's window is finite and not recoverable. 3-5 good years where visits mean something is a specific quantity of time, and any plan that makes monthly visits impossible is trading that specific quantity for money. The money is large but not singular — other high-compensation roles exist at other points in your career. The mother-time doesn't.",
-        "presence_explanation": "The answer frames the decision by explicitly comparing the non-recoverable mother time against replaceable financial opportunities, applying opportunity-cost as the central trade-off mechanism."
-      },
-      {
-        "model_id": "understanding-motivations",
-        "display_name": "Understanding Motivations",
-        "chunks": [
-          {
-            "chunk_type": "failure_mode",
-            "source_model_id": "understanding-motivations",
-            "text": "A plan can fail when leaders correctly name the motive structure but still assume implementation will behave like a rational linear process.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "normalized",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "heuristic",
-            "source_model_id": "understanding-motivations",
-            "text": "Use exact audience language around pains, fears, hopes, and desires so the recommendation fits the actual motivational landscape.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "antagonist",
-            "source_model_id": "understanding-motivations",
-            "text": "Confirmation Bias: Confirmation-bias distorts understanding-motivations when analysts read the hidden drivers they already expect instead of what the evidence supports.",
-            "provenance": {
-              "source_layer": "wave3",
-              "extraction_type": "explicit",
-              "confidence": "high",
-              "relation_target_id": "confirmation-bias"
-            },
-            "affinity_rationale": "Canonical structured tension identifies selective surfacing of drivers that confirm preferred interventions",
-            "activation_condition": "When motivational analysis selectively surfaces drivers that confirm the analyst's preferred intervention"
-          },
-          {
-            "chunk_type": "antagonist",
-            "source_model_id": "understanding-motivations",
-            "text": "Confirmation Bias: Understanding-motivations conflicts with confirmation-bias when motivational analysis selectively surfaces drivers that confirm the analyst's preferred intervention.",
-            "provenance": {
-              "source_layer": "wave3",
-              "extraction_type": "explicit",
-              "confidence": "high",
-              "relation_target_id": "confirmation-bias"
-            }
-          }
-        ],
-        "presence_mode": "executed",
-        "evidence_quote": "The test question is: if Merck offered you a role that was a lateral move content-wise, still the same portfolio work you do now but with a commute, would you take it? If yes, it's genuinely a career-leverage move. If no, some of what's pulling you is the dissatisfaction, not the opportunity.",
-        "presence_explanation": "The answer probes beneath the surface career appeal to identify whether the true motivation is genuine fit or escape from dissatisfaction, applying the understanding-motivations mechanism."
-      },
-      {
-        "model_id": "path-dependence",
-        "display_name": "Path Dependence",
-        "chunks": [
-          {
-            "chunk_type": "failure_mode",
-            "source_model_id": "path-dependence",
-            "text": "Path-lock can become a self-justifying excuse for not redesigning anything that is actually within reach to change.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "normalized",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "premortem",
-            "source_model_id": "path-dependence",
-            "text": "What current redesign assumption is treating the inherited estate like a clean scheduling problem when installed constraints already narrow the real path out?",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "normalized",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "heuristic",
-            "source_model_id": "path-dependence",
-            "text": "Stress-test redesign plans against installed customers, contracts, interfaces, and operating dependencies before calling the path reversible.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "normalized",
-              "confidence": "high"
-            }
-          }
-        ],
-        "presence_mode": "executed",
-        "evidence_quote": "Adjunct status at BAMC keeps the door open — you can return to a senior academic role at 48 without starting from zero, especially if your NIH grants have transferred and you've stayed published.",
-        "presence_explanation": "The answer recognizes how early choices like adjunct status and grant transfer shape future academic re-entry options, applying path-dependence by preserving trajectories."
+        "presence_explanation": "The answer frames the decision by explicitly comparing the non-recoverable cost of mother-time against replaceable financial opportunities, using opportunity cost as the central trade-off mechanism."
       },
       {
         "model_id": "decomposition",
         "display_name": "Decomposition",
         "chunks": [
           {
+            "chunk_type": "identity",
+            "source_model_id": "decomposition",
+            "text": "Select when: The problem is too tangled to reason about as a whole and teams keep mixing symptoms, causes, owners, and options in one blob. | Danger when: A familiar framework is being forced onto a novel problem just because it is the easiest cut available. | Reasoning: deductive, systems",
+            "provenance": {
+              "source_layer": "wave1",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
             "chunk_type": "failure_mode",
             "source_model_id": "decomposition",
             "text": "Motivated decomposition can structure the tree to justify the preferred answer instead of discovering the true drivers.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "decomposition",
+            "text": "Boiling the ocean can turn decomposition into exhaustive branch collection that obscures the answer instead of sharpening it.",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
@@ -322,33 +237,35 @@
             }
           },
           {
-            "chunk_type": "antagonist",
+            "chunk_type": "premortem",
             "source_model_id": "decomposition",
-            "text": "Combinatorial Effects: Decomposition conflicts with combinatorial-effects when isolating components hides interaction effects that produce the dominant outcome only in combination.",
+            "text": "What is the single, core purpose we are trying to achieve with this decomposition?",
             "provenance": {
-              "source_layer": "wave3",
+              "source_layer": "wave2",
               "extraction_type": "explicit",
-              "confidence": "high",
-              "relation_target_id": "combinatorial-effects"
+              "confidence": "high"
             }
           }
         ],
         "presence_mode": "executed",
         "evidence_quote": "There's a career question (is this the right role for you professionally), a family question (what does 3 days/week away for years look like), and a financial question (what does the money buy and at what cost). These aren't the same question and they don't have the same answer.",
-        "presence_explanation": "The answer explicitly separates the tangled decision into distinct dimensions (career, family, financial) to evaluate them independently, applying the decomposition mechanism."
+        "presence_explanation": "The answer explicitly separates the tangled decision into distinct dimensions of career, family, and financial questions to evaluate them independently rather than conflating them."
       }
     ],
-    "total_chunk_count": 20,
+    "total_chunk_count": 10,
     "budget_max": 20,
     "anti_echo_model_ids": [
       "base-rates",
+      "checklists",
+      "delays",
       "scientific-method-evidence-testing",
+      "self-control",
       "statistics-concepts"
     ],
     "reranker": {
       "active": true,
-      "chunks_above_relevance_floor": 13,
-      "mean_relevance_score": 0.3121
+      "chunks_above_relevance_floor": 4,
+      "mean_relevance_score": 0.287
     }
   },
   "companion_card": {
@@ -358,15 +275,7 @@
         "model_name": "Decomposition",
         "evidence_quote": "There's a career question (is this the right role for you professionally), a family question (what does 3 days/week away for years look like), and a financial question (what does the money buy and at what cost). These aren't the same question and they don't have the same answer.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer explicitly separates the tangled decision into distinct dimensions (career, family, financial) to evaluate them independently, applying the decomposition mechanism.",
-        "detection_confidence": "structural"
-      },
-      {
-        "model_id": "power-dynamics",
-        "model_name": "Power Dynamics",
-        "evidence_quote": "Merck is paying to get you — they will wait 90 days.",
-        "presence_mode": "executed",
-        "presence_explanation": "The answer leverages Merck's hiring commitment as superior power position to negotiate a delayed start date without risk, applying power-dynamics by recognizing and exploiting leverage.",
+        "presence_explanation": "The answer explicitly separates the tangled decision into distinct dimensions of career, family, and financial questions to evaluate them independently rather than conflating them.",
         "detection_confidence": "structural"
       },
       {
@@ -374,23 +283,7 @@
         "model_name": "Opportunity Cost",
         "evidence_quote": "Your mother's window is finite and not recoverable. 3-5 good years where visits mean something is a specific quantity of time, and any plan that makes monthly visits impossible is trading that specific quantity for money. The money is large but not singular — other high-compensation roles exist at other points in your career. The mother-time doesn't.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer frames the decision by explicitly comparing the non-recoverable mother time against replaceable financial opportunities, applying opportunity-cost as the central trade-off mechanism.",
-        "detection_confidence": "structural"
-      },
-      {
-        "model_id": "understanding-motivations",
-        "model_name": "Understanding Motivations",
-        "evidence_quote": "The test question is: if Merck offered you a role that was a lateral move content-wise, still the same portfolio work you do now but with a commute, would you take it? If yes, it's genuinely a career-leverage move. If no, some of what's pulling you is the dissatisfaction, not the opportunity.",
-        "presence_mode": "executed",
-        "presence_explanation": "The answer probes beneath the surface career appeal to identify whether the true motivation is genuine fit or escape from dissatisfaction, applying the understanding-motivations mechanism.",
-        "detection_confidence": "structural"
-      },
-      {
-        "model_id": "path-dependence",
-        "model_name": "Path Dependence",
-        "evidence_quote": "Adjunct status at BAMC keeps the door open — you can return to a senior academic role at 48 without starting from zero, especially if your NIH grants have transferred and you've stayed published.",
-        "presence_mode": "executed",
-        "presence_explanation": "The answer recognizes how early choices like adjunct status and grant transfer shape future academic re-entry options, applying path-dependence by preserving trajectories.",
+        "presence_explanation": "The answer frames the decision by explicitly comparing the non-recoverable cost of mother-time against replaceable financial opportunities, using opportunity cost as the central trade-off mechanism.",
         "detection_confidence": "structural"
       }
     ],
@@ -424,35 +317,6 @@
         "tension_type": "conflicts"
       },
       {
-        "source_model_id": "power-dynamics",
-        "relation_type": "antagonist",
-        "model_id": "confirmation-bias",
-        "model_name": "Confirmation Bias",
-        "substrate_chunk": "Confirmation-bias distorts power-dynamics by making teams see the leverage structure they want rather than the outside option they actually have.",
-        "why_relevant": "Confirmation-bias distorts power-dynamics by making teams see the leverage structure they want rather than the outside option they actually have.",
-        "affinity_rationale": "Directly distorts the core leverage analysis — makes teams see the leverage structure they want rather than the outside option evidence actually supports.",
-        "activation_condition": "When assessing relative bargaining position and the team's evidence for its outside option has not been independently tested"
-      },
-      {
-        "source_model_id": "power-dynamics",
-        "relation_type": "tension",
-        "model_id": "confirmation-bias",
-        "model_name": "Confirmation Bias",
-        "substrate_chunk": "Power-dynamics conflicts with confirmation-bias when a team keeps acting as if its outside option is stronger than the evidence supports.",
-        "why_relevant": "Power-dynamics conflicts with confirmation-bias when a team keeps acting as if its outside option is stronger than the evidence supports.",
-        "tension_type": "conflicts"
-      },
-      {
-        "source_model_id": "power-dynamics",
-        "relation_type": "antagonist",
-        "model_id": "opportunity-cost",
-        "model_name": "Opportunity Cost",
-        "substrate_chunk": "Opportunity-cost counters power-dynamics tunnel vision by asking whether winning the negotiation is even worth pursuing relative to better alternatives.",
-        "why_relevant": "Opportunity-cost counters power-dynamics tunnel vision by asking whether winning the negotiation is even worth pursuing relative to better alternatives.",
-        "affinity_rationale": "Broader perspective correction — asks whether winning the negotiation is worth pursuing relative to better alternatives, rather than targeting the leverage analysis itself.",
-        "activation_condition": "When teams are deeply invested in winning a specific negotiation without comparing to the value of their next-best alternative"
-      },
-      {
         "source_model_id": "opportunity-cost",
         "relation_type": "tension",
         "model_id": "anchoring",
@@ -479,64 +343,6 @@
         "substrate_chunk": "Opportunity-cost conflicts with status-quo-bias when default continuation hides the best foregone alternative.",
         "why_relevant": "Opportunity-cost conflicts with status-quo-bias when default continuation hides the best foregone alternative.",
         "tension_type": "conflicts"
-      },
-      {
-        "source_model_id": "understanding-motivations",
-        "relation_type": "antagonist",
-        "model_id": "confirmation-bias",
-        "model_name": "Confirmation Bias",
-        "substrate_chunk": "Confirmation-bias distorts understanding-motivations when analysts read the hidden drivers they already expect instead of what the evidence supports.",
-        "why_relevant": "Confirmation-bias distorts understanding-motivations when analysts read the hidden drivers they already expect instead of what the evidence supports.",
-        "affinity_rationale": "Canonical structured tension identifies selective surfacing of drivers that confirm preferred interventions",
-        "activation_condition": "When motivational analysis selectively surfaces drivers that confirm the analyst's preferred intervention"
-      },
-      {
-        "source_model_id": "understanding-motivations",
-        "relation_type": "tension",
-        "model_id": "confirmation-bias",
-        "model_name": "Confirmation Bias",
-        "substrate_chunk": "Understanding-motivations conflicts with confirmation-bias when motivational analysis selectively surfaces drivers that confirm the analyst's preferred intervention.",
-        "why_relevant": "Understanding-motivations conflicts with confirmation-bias when motivational analysis selectively surfaces drivers that confirm the analyst's preferred intervention.",
-        "tension_type": "conflicts"
-      },
-      {
-        "source_model_id": "understanding-motivations",
-        "relation_type": "antagonist",
-        "model_id": "constraints",
-        "model_name": "Constraints",
-        "substrate_chunk": "Constraints checks understanding-motivations when a behavior that looks deeply psychological is actually driven by simpler situational limits.",
-        "why_relevant": "Constraints checks understanding-motivations when a behavior that looks deeply psychological is actually driven by simpler situational limits.",
-        "affinity_rationale": "Constraints can limit the scope of motivational analysis, but the canonical does not directly name this relationship",
-        "activation_condition": "When resource or structural limitations prevent full exploration of motivational landscape"
-      },
-      {
-        "source_model_id": "path-dependence",
-        "relation_type": "tension",
-        "model_id": "confirmation-bias",
-        "model_name": "Confirmation Bias",
-        "substrate_chunk": "Path-dependence conflicts with confirmation-bias when decision-makers selectively credit evidence that justifies staying on the current path rather than fairly evaluating the case for switching.",
-        "why_relevant": "Path-dependence conflicts with confirmation-bias when decision-makers selectively credit evidence that justifies staying on the current path rather than fairly evaluating the case for switching.",
-        "tension_type": "conflicts"
-      },
-      {
-        "source_model_id": "path-dependence",
-        "relation_type": "antagonist",
-        "model_id": "first-principles-thinking",
-        "model_name": "First Principles Thinking",
-        "substrate_chunk": "First-principles-thinking breaks path-dependence by stripping away inherited route assumptions and rebuilding from the underlying facts.",
-        "why_relevant": "First-principles-thinking breaks path-dependence by stripping away inherited route assumptions and rebuilding from the underlying facts.",
-        "affinity_rationale": "Path dependence relies on following conventional means while first-principles 'strips away all assumptions and precedents, reducing the problem to fundamental facts to forge a new, potentially divergent solution'.",
-        "activation_condition": "When the inherited path constrains solution design to incremental variants while first-principles analysis reveals fundamentally superior alternatives requiring path abandonment"
-      },
-      {
-        "source_model_id": "path-dependence",
-        "relation_type": "antagonist",
-        "model_id": "status-quo-bias",
-        "model_name": "Status Quo Bias",
-        "substrate_chunk": "Status-quo-bias can turn a real path-lock diagnosis into an excuse for staying on the inherited route rather than redesigning what can change.",
-        "why_relevant": "Status-quo-bias can turn a real path-lock diagnosis into an excuse for staying on the inherited route rather than redesigning what can change.",
-        "affinity_rationale": "A correctly diagnosed path-lock is used 'as an excuse to avoid redesign rather than as a genuine structural constraint' — status quo bias turns path analysis into an excuse for inaction.",
-        "activation_condition": "When path dependence is invoked to justify staying the course even though the actual switching costs are manageable and the benefits of change are clear"
       }
     ],
     "failure_hints": [
@@ -553,18 +359,6 @@
         "confidence": "high"
       },
       {
-        "source_model_id": "power-dynamics",
-        "text": "A signed deal can be mistaken for durable control even though the next commitment hands timing, data, or switching-cost leverage to the counterparty.",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "power-dynamics",
-        "text": "Teams can treat verbal toughness as leverage even when the walk-away is not credible and the fallback option is worse than the current deal.",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
         "source_model_id": "opportunity-cost",
         "text": "A request can look cheap in isolation while still stealing the same launch window, engineering time, or management attention from the highest-value move.",
         "extraction_type": "normalized",
@@ -573,30 +367,6 @@
       {
         "source_model_id": "opportunity-cost",
         "text": "Decision paralysis can keep the team comparing endless alternatives instead of acting on a reversible test.",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "understanding-motivations",
-        "text": "Analysts can over-psychologize a problem that is really about constraints, incentives, or capability gaps.",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "understanding-motivations",
-        "text": "A plan can fail when leaders correctly name the motive structure but still assume implementation will behave like a rational linear process.",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "path-dependence",
-        "text": "Historical commitment can distort evidence reading so decision-makers selectively notice what justifies staying on the current path.",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "path-dependence",
-        "text": "Path-lock can become a self-justifying excuse for not redesigning anything that is actually within reach to change.",
         "extraction_type": "normalized",
         "confidence": "high"
       }
@@ -615,18 +385,6 @@
         "confidence": "high"
       },
       {
-        "source_model_id": "power-dynamics",
-        "text": "Map outside options before discussing terms because fallback quality is part of the real price floor.",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "power-dynamics",
-        "text": "Separate stated willingness from credible walk-away by checking enforcement cost, internal approval, and operational fallback.",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
         "source_model_id": "opportunity-cost",
         "text": "Force every recommendation to answer compared to what before calling it attractive.",
         "extraction_type": "normalized",
@@ -635,30 +393,6 @@
       {
         "source_model_id": "opportunity-cost",
         "text": "Upgrade simple pro-con thinking into a comparison that includes the implicit costs of the best foregone option.",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "understanding-motivations",
-        "text": "Separate intrinsic and extrinsic drivers instead of treating all motivation as one blended force.",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "understanding-motivations",
-        "text": "Use exact audience language around pains, fears, hopes, and desires so the recommendation fits the actual motivational landscape.",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "path-dependence",
-        "text": "Map inherited constraints explicitly so the team can tell the difference between present preference and historical route-lock.",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "path-dependence",
-        "text": "Stress-test redesign plans against installed customers, contracts, interfaces, and operating dependencies before calling the path reversible.",
         "extraction_type": "normalized",
         "confidence": "high"
       }
@@ -677,18 +411,6 @@
         "confidence": "high"
       },
       {
-        "source_model_id": "power-dynamics",
-        "text": "At what milestone does our cost to reverse become higher than the counterparty's cost to lose us?",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "power-dynamics",
-        "text": "What would make our walk-away or delay threat binding rather than rhetorical?",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
         "source_model_id": "opportunity-cost",
         "text": "Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.",
         "extraction_type": "explicit",
@@ -698,30 +420,6 @@
         "source_model_id": "opportunity-cost",
         "text": "Which comparison in this plan is pretending to be irreversible even though we could run it as a bounded test first, and what learning are we giving up by waiting for certainty before acting?",
         "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "understanding-motivations",
-        "text": "What would you have to believe for this motive explanation to be true?",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "understanding-motivations",
-        "text": "Are strong emotions driving how we are reading why this person acts, or have we separated deliberation from action?",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "path-dependence",
-        "text": "If we tried to change course now, which habits, standards, interfaces, or prior investments would fight us first?",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "path-dependence",
-        "text": "What current redesign assumption is treating the inherited estate like a clean scheduling problem when installed constraints already narrow the real path out?",
-        "extraction_type": "normalized",
         "confidence": "high"
       }
     ],
@@ -747,26 +445,6 @@
         "output_type": "MECE branch map"
       },
       {
-        "model_id": "power-dynamics",
-        "display_name": "Power Dynamics",
-        "select_when": [
-          "A negotiation or partnership sounds like a price or policy dispute on the surface, but the real issue may be leverage, outside options, or commitment costs.",
-          "The team needs to know who can actually wait, walk away, redirect demand, or absorb reversal costs before accepting the stated framing of the deal.",
-          "A commitment, integration, or dependency may invert leverage over time even if the current terms look favorable at signature.",
-          "The next move should map fallback lanes, enforcement credibility, and the point where lock-in changes what is actually negotiable."
-        ],
-        "danger_when": [
-          "The true constraint is exogenous or non-negotiable, so treating the situation as a power contest would distract from the actual bottleneck.",
-          "The team is already over-reading symbolic status or tone as leverage and needs a factual capability or execution review instead."
-        ],
-        "reasoning_types": [
-          "systems",
-          "diagnostic"
-        ],
-        "input_type": "hidden leverage structure problem",
-        "output_type": "leverage and commitment map"
-      },
-      {
         "model_id": "opportunity-cost",
         "display_name": "Opportunity Cost",
         "select_when": [
@@ -785,96 +463,59 @@
         ],
         "input_type": "resource allocation choice",
         "output_type": "trade-off pricing check"
-      },
-      {
-        "model_id": "understanding-motivations",
-        "display_name": "Understanding Motivations",
-        "select_when": [
-          "Observed behavior is easy to name, but the real decision quality depends on identifying the why beneath it.",
-          "Stated motivations may be incomplete because image management, politics, or self-deception are part of the situation.",
-          "A recommendation must fit what the audience wants to know, feel, and do rather than merely what the analyst finds interesting.",
-          "The work would improve if intrinsic and extrinsic drivers were separated instead of being treated as one blended explanation."
-        ],
-        "danger_when": [
-          "The team is over-psychologizing a problem that is better explained by simple constraints, incentives, or capability gaps.",
-          "The model is being used to infer hidden motives without enough concrete behavior, context, or contradiction to justify the inference."
-        ],
-        "reasoning_types": [
-          "diagnostic",
-          "causal"
-        ],
-        "input_type": "behavior-driver diagnosis problem",
-        "output_type": "motive structure and action fit frame"
-      },
-      {
-        "model_id": "path-dependence",
-        "display_name": "Path Dependence",
-        "select_when": [
-          "Early choices are constraining current options more than people realize, so history matters more than present-day preference alone.",
-          "A system keeps reproducing old behavior despite new intent because inherited grooves are stronger than the latest goals.",
-          "Changing course requires more than a better argument because habits, standards, interfaces, or prior investments are locking the system into its route.",
-          "A migration or redesign looks clean on paper, but installed constraints are already narrowing the real path out."
-        ],
-        "danger_when": [
-          "Path-lock is being diagnosed so broadly that it becomes an excuse for not redesigning anything that could actually change.",
-          "The model is being used to romanticize history when the live issue is really current economics, current incentives, or an untested assumption."
-        ],
-        "reasoning_types": [
-          "counterfactual",
-          "systems"
-        ],
-        "input_type": "historical lock-in problem",
-        "output_type": "path-constraint frame"
       }
     ],
-    "detection_model_count": 5,
-    "expansion_count": 15,
-    "failure_hint_count": 10,
-    "heuristic_hint_count": 10,
-    "premortem_hint_count": 10,
-    "identity_chunk_count": 5,
+    "detection_model_count": 2,
+    "expansion_count": 6,
+    "failure_hint_count": 4,
+    "heuristic_hint_count": 4,
+    "premortem_hint_count": 4,
+    "identity_chunk_count": 2,
     "detection_source": "independent_llm_pass"
   },
   "frame_pressure_card": {
     "frame_elements": [
       {
-        "element_text": "Husband can't really move — he's partner at a Boston firm, there's non-compete stuff plus his whole book of business is here.",
-        "element_type": "mutable_constraint",
-        "evidence_quote": "My husband can't really move — he's partner at a Boston firm, there's non-compete stuff plus his whole book of business is here.",
-        "frame_pattern": "single_actor_assumption",
-        "fragility_signal": "Husband could negotiate remote work, partial relocation, or career pivot despite non-compete.",
+        "element_text": "The decision is whether to accept the Merck role or not, excluding relocation as an option.",
+        "element_type": "suppressed_counterfactual",
+        "evidence_quote": "excludes relocation",
+        "frame_pattern": "option_space_collapse",
+        "fragility_signal": "Husband's non-compete allows temporary relocation or remote work arrangements, or family could move together despite Boston firm.",
         "inquiry_stage": "what_if",
         "likely_default": "inertia"
       },
       {
-        "element_text": "The role is 3 days a week in NJ, so commuting not relocating.",
-        "element_type": "suppressed_counterfactual",
-        "evidence_quote": "The role is 3 days a week in NJ, so commuting not relocating.",
-        "frame_pattern": "option_space_collapse",
-        "fragility_signal": "Relocation assistance or hybrid/remote options could be negotiated.",
-        "inquiry_stage": "what_if",
-        "likely_default": "inertia"
+        "element_text": "Husband is completely non-mobile due to his Boston firm and non-compete, fixing family location in Boston.",
+        "element_type": "mutable_constraint",
+        "evidence_quote": "Husband non-mobile due to Boston firm and non-compete",
+        "frame_pattern": "single_actor_assumption",
+        "fragility_signal": "Husband's firm allows flexibility, non-compete has loopholes, or he is willing to adjust career for family move.",
+        "inquiry_stage": "why",
+        "likely_default": "social"
       }
     ],
     "reframings": [
       {
-        "reframed_question": "What if my husband negotiated a remote work arrangement or partial relocation with his Boston firm despite the non-compete?",
-        "what_opens": "Explores husband's career flexibility, revealing potential family mobility options previously dismissed as fixed.",
+        "reframed_question": "What if the family temporarily relocated to NJ for the Merck role, given the husband's non-compete fragility?",
+        "what_opens": "Explores husband's non-compete loopholes or temporary flexibility, expanding family location options beyond Boston immobility.",
         "reframe_move_type": "constraint_relaxation",
-        "grounding_model": "boundaries",
+        "grounding_model": "counterfactual-reasoning",
         "source_element_index": 0
       },
       {
-        "reframed_question": "Could Merck offer hybrid or remote options for the Medical Director role beyond the stated 3 days a week in NJ?",
-        "what_opens": "Uncovers negotiable aspects of the job structure, expanding beyond the assumption of fixed commuting.",
-        "reframe_move_type": "scope_expansion",
-        "grounding_model": "optionality",
-        "source_element_index": 1
+        "reframed_question": "Could the oncologist negotiate a remote or hybrid work arrangement with Merck to minimize the 3 days/week NJ commute?",
+        "what_opens": "Opens negotiation paths for work flexibility, testing commute feasibility without assuming full on-site requirement.",
+        "reframe_move_type": "perspective_shift",
+        "grounding_model": "lateral-thinking",
+        "source_element_index": 0
       }
     ],
     "anti_echo_model_ids": [
       "base-rates",
+      "checklists",
+      "delays",
       "scientific-method-evidence-testing",
+      "self-control",
       "statistics-concepts"
     ],
     "overlap_flags": [],
@@ -887,57 +528,57 @@
         "dimension_id": "commitment-reversibility",
         "dimension_name": "Commitment & Reversibility",
         "covered": true,
-        "coverage_evidence": "Answer distinguishes sunk costs implicitly by focusing on future family costs and career trajectory; identifies exit costs via 2-year non-compete, adjunct status to preserve academic return, and 18-month family re-evaluation check-in; values optionality preserved through negotiations and staged commitment; recommends reversible structure.",
+        "coverage_evidence": "Answer distinguishes sunk costs implicitly by focusing on future family load and career trajectory; identifies exit costs (2-year non-compete narrowing options to stay/return academia/leave field); values optionality via adjunct status, NIH grants transfer, 18-month re-eval check-in, and lawyer review of non-compete; recommends staging with 90-day delay and reversibility via back-up plan.",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "stakeholder-alignment",
         "dimension_name": "Stakeholder Alignment",
         "covered": true,
-        "coverage_evidence": "Identifies key stakeholders (husband, mother, fellows Priya/Robert); details positions and resistance (husband's hedged buy-in as veto, mother's non-negotiable time, fellows' survivable handoffs); provides influence strategy (specific husband conversation script, negotiate flex for mother, handoff plans); distinguishes technical merit from family feasibility.",
+        "coverage_evidence": "Identifies key stakeholders (husband as primary parent with explicit future scenario conversation, mother with finite window, Priya/fellows with handoff, patient Robert); addresses influence strategy (real husband convo first, negotiate flex for mother trips, announce handoffs carefully); distinguishes technical merit from feasibility (husband buy-in as load-bearing veto).",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "timing-sequencing",
         "dimension_name": "Timing & Sequencing",
         "covered": true,
-        "coverage_evidence": "Specifies sequencing (husband conversation first, then negotiations, 90-day delay for patient); rationale for order (blocks premature commitment, covers deadlines); addresses delay benefits (handles patient protocol, tests flex schedule); identifies critical path dependencies (family buy-in before Merck response).",
+        "coverage_evidence": "Specifies sequencing (husband convo tonight first, then negotiate; 90-day start for Robert handoff; front-load Merck portfolio due diligence and mother trip pressure-test before yes); rationale (avoids premature commitment, covers deadlines, tests flex feasibility); addresses delay benefits (more info on fit) vs costs (10-day deadline but Merck waits).",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "incentive-alignment",
         "dimension_name": "Incentive Alignment",
         "covered": false,
-        "coverage_evidence": "Mentions husband conversation but does not analyze principal-agent divergence (e.g., doctor's career vs husband's parenting load incentives), no monitoring/accountability mechanisms beyond one talk, no failure modes if interests diverge long-term.",
-        "materiality_note": "High: Misaligned family incentives could unravel commitment, reversing 'take the role' recommendation."
+        "coverage_evidence": "Mentions husband/family load but does not analyze principal-agent divergence (e.g., doctor's career incentives vs husband's parenting burden without realignment mechanisms like compensation or support); no discussion of monitoring family stress or failure modes beyond convo.",
+        "materiality_note": "High materiality: Misaligned family incentives could lead to household conflict, reversing 'take role' if husband resents unaddressed load."
       },
       {
         "dimension_id": "resource-allocation",
         "dimension_name": "Resource Allocation",
         "covered": false,
-        "coverage_evidence": "Acknowledges time trade-offs (Chicago trips, commute, parenting) but does not explicitly identify displaced alternatives (e.g., what academic/family activities are forgone), no marginal return comparison to status quo or other roles.",
-        "materiality_note": "High: Scarcity of time across family/career could show Merck's true opportunity cost exceeds benefits, altering decision."
+        "coverage_evidence": "Acknowledges time trade-offs (NJ commute vs Chicago visits, family nights) but does not explicitly identify displaced alternatives (e.g., what academic opportunities or patient loads are forgone vs Merck pay); no marginal return comparison across paths.",
+        "materiality_note": "High materiality: Scarcity of time for mother/family could make Merck's 3x salary not worth displaced irrecoverable time, altering recommendation."
       },
       {
         "dimension_id": "risk-response",
         "dimension_name": "Risk Response",
         "covered": false,
-        "coverage_evidence": "Names family stress and role dissatisfaction risks but does not size downside exposure, distinguish mitigate (negotiations) vs adapt strategies systematically, or detail recovery paths beyond re-evaluation.",
-        "materiality_note": "High: Downplaying family cascade risks without quantification could lead to brittle plan; different posture might recommend decline."
+        "coverage_evidence": "Names risks (family stress at 18-36 months, Merck lock-in, non-compete aggression) but does not size exposure (probabilities/impacts), distinguish mitigate vs adapt, or detail recovery paths beyond adjunct/re-eval.",
+        "materiality_note": "High materiality: Downplaying tail risks like family breakdown or bad Merck fit could reverse yes if sized properly."
       },
       {
         "dimension_id": "information-quality",
         "dimension_name": "Information Quality",
         "covered": false,
-        "coverage_evidence": "Notes need for Merck portfolio due diligence and non-compete review but does not assess evidence biases (e.g., glossy offer vs reality), test confounders in 'stuck' feeling, or identify missing evidence that could flip conclusion.",
-        "materiality_note": "Medium: Better evidence on role fit or legal risks could reverse acceptance."
+        "coverage_evidence": "Relies on unverified claims (flex schedule 'real', Merck portfolio fit) without assessing evidence quality, biases, or missing data (e.g., actual compounds/people due diligence only suggested late).",
+        "materiality_note": "Medium materiality: Better evidence on Merck specifics or flex reliability could change career fit assessment."
       },
       {
         "dimension_id": "scope-boundary",
         "dimension_name": "Scope & Boundary Definition",
-        "covered": true,
-        "coverage_evidence": "Explicitly separates career/family/financial questions as distinct; justifies focus on Merck-specific vs general industry; considers boundary stretch (mid-career escape motive); tests narrower (family veto) vs broader (career window).",
-        "materiality_note": "covered"
+        "covered": false,
+        "coverage_evidence": "Mixes career/family/patient scopes without explicit boundary justification or alternatives (e.g., narrower family-only vs broader career leverage).",
+        "materiality_note": "Immaterial: Core tensions already engaged via separated framings; redefining unlikely to reverse."
       }
     ],
     "gap_routes": [
@@ -993,6 +634,18 @@
         "excluded_model_ids": [
           "base-rates"
         ]
+      },
+      {
+        "dimension_id": "scope-boundary",
+        "dimension_name": "Scope & Boundary Definition",
+        "candidate_model_ids": [
+          "circle-of-competence",
+          "constraints",
+          "boundaries",
+          "problem-framing-and-reframing",
+          "specialization"
+        ],
+        "excluded_model_ids": []
       }
     ],
     "gap_questions": [
@@ -1000,50 +653,59 @@
         "dimension_id": "incentive-alignment",
         "dimension_name": "Incentive Alignment",
         "questions": [
-          "What incentives does Merck offer beyond the 3x salary that would keep you committed during the 2-year non-compete on immunotherapy?",
-          "Who at Merck or in your current role would monitor your performance most closely, and what happens if expectations aren't met?",
-          "What family incentives, like spousal support or child benefits, has Merck discussed to align with your husband's primary parent role?"
+          "What incentives does Merck offer beyond the 3x salary that align with your long-term career goals in oncology?",
+          "Who at Merck or in your network would monitor your performance in this role, and how does that differ from your current academic setup?",
+          "What family incentives or support is your husband expecting if he becomes the primary parent 3 nights a week?"
         ]
       },
       {
         "dimension_id": "resource-allocation",
         "dimension_name": "Resource Allocation",
         "questions": [
-          "What current resources at BAMC, like your NIH grants or patient load, would need to be reallocated if you take the Merck role?",
-          "How would you redistribute your time between the 3-day NJ commute, monthly Chicago visits, and family responsibilities?",
-          "Which of Priya's project resources or Robert's patient handoff support could be shifted to others without your direct involvement?"
+          "What current resources at BAMC, like your NIH grants or mentorship time for Priya and Robert, would need to be reallocated if you accept the Merck role?",
+          "How much of your monthly Chicago visits for your mother's dementia care can be covered by other family members or services?",
+          "What additional resources, such as household help or travel budget, would make the 3 days/week NJ commute sustainable given your husband's non-mobility?"
         ]
       },
       {
         "dimension_id": "risk-response",
         "dimension_name": "Risk Response",
         "questions": [
-          "What is the worst-case scenario for your mother's care if Chicago visits are disrupted by the NJ commute?",
-          "How has your husband responded in past situations where he had to be the primary parent for extended periods?",
-          "What risks does the 2-year Merck non-compete pose to returning to immunotherapy work at BAMC?"
+          "What is the worst-case scenario if the 2-year Merck non-compete blocks your return to immunotherapy work after leaving BAMC?",
+          "How has your family adapted to past disruptions like your Chicago trips, and what risks to your marriage arise from the 3 nights/week primary parenting shift?",
+          "What backup plans exist if Priya's project or Robert's handoff fails due to your departure in 90 days?"
         ]
       },
       {
         "dimension_id": "information-quality",
         "dimension_name": "Information Quality",
         "questions": [
-          "What specific details from Merck about the role's day-to-day responsibilities and team dynamics do you still need before deciding?",
-          "What feedback have you received from others who have made similar academic-to-pharma transitions with family constraints?",
-          "How reliable is the information on Priya's project risks and Robert's handoff without your mentorship?"
+          "What specific details from Merck about the role's day-to-day responsibilities and team dynamics have you verified beyond the offer letter?",
+          "What has your husband actually said about handling primary parenting 3 nights a week, beyond a general 'what do you think of Merck' talk?",
+          "Which colleagues at BAMC have direct experience with similar transitions to industry roles like Merck's Medical Director position?"
+        ]
+      },
+      {
+        "dimension_id": "scope-boundary",
+        "dimension_name": "Scope & Boundary Definition",
+        "questions": [
+          "What aspects of your mother's care over the next 3-5 good years fall outside what the flexible Merck schedule with protected Chicago weeks can accommodate?",
+          "Does the decision scope include potential impacts on your husband's career at the Boston firm if family strain leads to his reduced availability?",
+          "How does the 10-day deadline boundary affect gathering input from Priya, Robert's team, or Merck on adjunct status for your grants?"
         ]
       }
     ],
     "anti_echo_model_ids": [
       "base-rates",
-      "boundaries",
+      "checklists",
+      "counterfactual-reasoning",
       "decomposition",
+      "delays",
+      "lateral-thinking",
       "opportunity-cost",
-      "optionality",
-      "path-dependence",
-      "power-dynamics",
       "scientific-method-evidence-testing",
-      "statistics-concepts",
-      "understanding-motivations"
+      "self-control",
+      "statistics-concepts"
     ]
   },
   "audit_summary": {
@@ -1075,8 +737,8 @@
       },
       {
         "tendency_id": "doubt-avoidance-tendency",
-        "score": 0,
-        "evidence": "Not detected"
+        "score": 5,
+        "evidence": "Despite acknowledging unresolved dropped threads like feeling 'stuck' in academia and Priya's project risks, the synthesized position prematurely closes to 'Take the role' with workarounds, treating fellow and patient concerns as non-veto while omitting further due diligence on career fit or handoff feasibility."
       },
       {
         "tendency_id": "inconsistency-avoidance-tendency",
@@ -1090,8 +752,8 @@
       },
       {
         "tendency_id": "stress-influence-tendency",
-        "score": 2,
-        "evidence": "Faint signal in assuming Merck will easily accept 90-day delay and negotiations without evidence of time pressure impact, but deadline not used to distort or compress scrutiny."
+        "score": 3,
+        "evidence": "Mentions 10-day deadline implicitly by prioritizing immediate actions like 'husband conversation tonight' and negotiations, but does not use time pressure to compress scrutiny or bypass checks."
       },
       {
         "tendency_id": "reward-and-punishment-superresponse-tendency",
@@ -1111,7 +773,7 @@
       {
         "tendency_id": "availability-misweighing-tendency",
         "score": 5,
-        "evidence": "Overweights vivid specific commitments like Priya's 'weird project' and Robert's mid-protocol as 'real but not veto-level' and 'absorbable with 90-day delay' while omitting base rates on handoff success rates or typical fellow outcomes, treating visible anecdotes as sufficient to deprecate without denominator checks."
+        "evidence": "Overweights vivid specific commitments like Priya's 'weird project' and Robert's 'mid-protocol handoff' as 'real but not veto-level' and 'absorbable with 90-day delay' while omitting base rates on handoff success rates, fellow failure denominators, or typical transition outcomes in academic medicine."
       },
       {
         "tendency_id": "contrast-misreaction-tendency",
@@ -1121,7 +783,7 @@
       {
         "tendency_id": "overoptimism-tendency",
         "score": 5,
-        "evidence": "Recommends taking the role by assuming negotiations for 90-day delay, flexible Chicago schedule, adjunct status, and husband buy-in will all succeed despite active constraints like non-mobile husband, finite mother window, and 2-year non-compete, ignoring probability of partial failures."
+        "evidence": "Recommends taking the role by assuming negotiations for 90-day delay, flexible Chicago schedule, adjunct status, and husband's buy-in will all succeed despite live constraints like non-mobile husband, finite mother window, and 2-year non-compete, ignoring probability of pushback or failure."
       },
       {
         "tendency_id": "excessive-self-regard-tendency",
@@ -1170,6 +832,7 @@
       }
     ],
     "triggered_tendencies": [
+      "doubt-avoidance-tendency",
       "availability-misweighing-tendency",
       "overoptimism-tendency",
       "inconsistency-avoidance-tendency",
@@ -1178,6 +841,11 @@
       "twaddle-tendency"
     ],
     "triggered_tendency_sources": [
+      {
+        "tendency_id": "doubt-avoidance-tendency",
+        "source": "triage",
+        "score": 5
+      },
       {
         "tendency_id": "availability-misweighing-tendency",
         "source": "triage",
@@ -1209,7 +877,7 @@
         "score": 0.30110282511769554
       }
     ],
-    "boundary_call_count": 18,
+    "boundary_call_count": 19,
     "boundary_calls": [
       {
         "stage": "pass1_cluster_authority",
@@ -1220,7 +888,7 @@
         "prompt_tokens": 3620,
         "completion_tokens": 177,
         "total_tokens": 3797,
-        "cached_tokens": 197,
+        "cached_tokens": 3619,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1231,9 +899,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3512,
-        "completion_tokens": 176,
-        "total_tokens": 3688,
-        "cached_tokens": 197,
+        "completion_tokens": 233,
+        "total_tokens": 3745,
+        "cached_tokens": 3511,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1246,7 +914,7 @@
         "prompt_tokens": 3344,
         "completion_tokens": 116,
         "total_tokens": 3460,
-        "cached_tokens": 197,
+        "cached_tokens": 3343,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1257,9 +925,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3346,
-        "completion_tokens": 139,
-        "total_tokens": 3485,
-        "cached_tokens": 160,
+        "completion_tokens": 140,
+        "total_tokens": 3486,
+        "cached_tokens": 3345,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1270,9 +938,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3365,
-        "completion_tokens": 233,
-        "total_tokens": 3598,
-        "cached_tokens": 197,
+        "completion_tokens": 235,
+        "total_tokens": 3600,
+        "cached_tokens": 3364,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1285,7 +953,20 @@
         "prompt_tokens": 3325,
         "completion_tokens": 178,
         "total_tokens": 3503,
-        "cached_tokens": 197,
+        "cached_tokens": 3324,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "doubt-avoidance-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3925,
+        "completion_tokens": 94,
+        "total_tokens": 4019,
+        "cached_tokens": 3924,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1296,9 +977,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3881,
-        "completion_tokens": 186,
-        "total_tokens": 4067,
-        "cached_tokens": 159,
+        "completion_tokens": 196,
+        "total_tokens": 4077,
+        "cached_tokens": 3880,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1309,9 +990,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4075,
-        "completion_tokens": 118,
-        "total_tokens": 4193,
-        "cached_tokens": 159,
+        "completion_tokens": 119,
+        "total_tokens": 4194,
+        "cached_tokens": 4074,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1322,9 +1003,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3967,
-        "completion_tokens": 109,
-        "total_tokens": 4076,
-        "cached_tokens": 159,
+        "completion_tokens": 102,
+        "total_tokens": 4069,
+        "cached_tokens": 3966,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1335,9 +1016,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3555,
-        "completion_tokens": 85,
-        "total_tokens": 3640,
-        "cached_tokens": 159,
+        "completion_tokens": 222,
+        "total_tokens": 3777,
+        "cached_tokens": 3554,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1348,9 +1029,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3424,
-        "completion_tokens": 82,
-        "total_tokens": 3506,
-        "cached_tokens": 238,
+        "completion_tokens": 85,
+        "total_tokens": 3509,
+        "cached_tokens": 3423,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1361,9 +1042,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3614,
-        "completion_tokens": 90,
-        "total_tokens": 3704,
-        "cached_tokens": 1185,
+        "completion_tokens": 89,
+        "total_tokens": 3703,
+        "cached_tokens": 3613,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1374,9 +1055,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 2779,
-        "completion_tokens": 970,
-        "total_tokens": 3749,
-        "cached_tokens": 159,
+        "completion_tokens": 960,
+        "total_tokens": 3739,
+        "cached_tokens": 2778,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1386,9 +1067,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 7526,
-        "completion_tokens": 2061,
-        "total_tokens": 9587,
+        "prompt_tokens": 7515,
+        "completion_tokens": 1757,
+        "total_tokens": 9272,
         "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1399,10 +1080,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 5363,
-        "completion_tokens": 223,
-        "total_tokens": 5586,
-        "cached_tokens": 160,
+        "prompt_tokens": 3691,
+        "completion_tokens": 211,
+        "total_tokens": 3902,
+        "cached_tokens": 3690,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1412,9 +1093,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 947,
-        "completion_tokens": 359,
-        "total_tokens": 1306,
+        "prompt_tokens": 994,
+        "completion_tokens": 369,
+        "total_tokens": 1363,
         "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1425,10 +1106,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 1374,
-        "completion_tokens": 304,
-        "total_tokens": 1678,
-        "cached_tokens": 576,
+        "prompt_tokens": 1428,
+        "completion_tokens": 427,
+        "total_tokens": 1855,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1438,10 +1119,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 1374,
-        "completion_tokens": 304,
-        "total_tokens": 1678,
-        "cached_tokens": 576,
+        "prompt_tokens": 1428,
+        "completion_tokens": 427,
+        "total_tokens": 1855,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       }
@@ -1452,11 +1133,11 @@
     "companion_fingerprint_raw": [
       {
         "move_id": "1",
-        "reasoning_move": "Distinguish separate dimensions of the decision (career fit, family impact, financial incentives) to evaluate them independently rather than conflating them.",
+        "reasoning_move": "Distinguish separate dimensions of the decision into career fit, family impact, and financial incentives to evaluate them independently rather than conflating them.",
         "evidence_quotes": [
           "There's a career question (is this the right role for you professionally), a family question (what does 3 days/week away for years look like), and a financial question (what does the money buy and at what cost)."
         ],
-        "evidence_rationale": "This quote explicitly separates the decision into distinct categories, enabling targeted analysis.",
+        "evidence_rationale": "This quote explicitly separates the decision into distinct categories, enabling independent assessment.",
         "confidence": "high"
       },
       {
@@ -1465,12 +1146,12 @@
         "evidence_quotes": [
           "The test question is: if Merck offered you a role that was a lateral move content-wise, still the same portfolio work you do now but with a commute, would you take it? If yes, it's genuinely a career-leverage move. If no, some of what's pulling you is the dissatisfaction, not the opportunity."
         ],
-        "evidence_rationale": "This quote presents a counterfactual test to distinguish true opportunity from escape motive.",
+        "evidence_rationale": "This quote presents a counterfactual test to distinguish true fit from escape-driven motivation.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Prioritize non-recoverable finite commitments like mother's health window over replaceable ones like patient or fellow duties.",
+        "reasoning_move": "Prioritize non-recoverable finite commitments like mother's health window over replaceable ones like professional handoffs.",
         "evidence_quotes": [
           "Your mother's window is finite and not recoverable. 3-5 good years where visits mean something is a specific quantity of time, and any plan that makes monthly visits impossible is trading that specific quantity for money."
         ],
@@ -1479,49 +1160,49 @@
       },
       {
         "move_id": "4",
-        "reasoning_move": "Propose targeted negotiations to mitigate key constraints, treating them as addressable rather than absolute barriers.",
+        "reasoning_move": "Propose targeted negotiations to mitigate specific constraints like patient handoff, schedule flexibility, and grant continuity.",
         "evidence_quotes": [
           "Negotiate the 90-day start date, the flexible-day schedule with Chicago weeks explicitly protected, and adjunct status at BAMC so your NIH grants transfer rather than closing."
         ],
-        "evidence_rationale": "This quote lists specific negotiable terms to resolve patient handoff, family visits, and career continuity.",
+        "evidence_rationale": "This quote lists precise negotiation items addressing active constraints.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Mandate a concrete, scenario-based family discussion to secure explicit buy-in, distinguishing commitment from tolerance.",
+        "reasoning_move": "Mandate a concrete, scenario-based family discussion to secure explicit buy-in rather than ambiguous support.",
         "evidence_quotes": [
           "Have the real husband conversation tonight — not \"what do you think of Merck\" but \"here is what the next four years looks like for you if I take this role: you are the primary parent 3 nights a week for the next 4-7 years, plus you're the backup on Chicago trips. Do you want that life?\""
         ],
-        "evidence_rationale": "This quote specifies a precise framing for the conversation to elicit a clear yes/no commitment.",
+        "evidence_rationale": "This quote specifies a direct, vivid framing for the husband conversation to elicit commitment.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Downgrade veto power of professional commitments like fellows by identifying alternatives and framing as costs rather than deal-breakers.",
+        "reasoning_move": "Downgrade veto power of professional commitments like fellow mentorship by identifying viable alternatives and department support.",
         "evidence_quotes": [
           "Priya has a committee. She has other people in the department. She will not fail because you leave. She will have a harder second half of her fellowship, which is a real cost, but it's not the same as her career ending."
         ],
-        "evidence_rationale": "This quote reframes mentorship continuity as manageable with existing supports.",
+        "evidence_rationale": "This quote reframes mentorship continuity as a cost, not a blocker, citing support structures.",
         "confidence": "high"
       },
       {
         "move_id": "7",
-        "reasoning_move": "Recommend due diligence on role specifics and legal terms to assess true fit and exit risks given non-compete constraints.",
+        "reasoning_move": "Recommend due diligence on role specifics and legal terms to assess fit and exit risks given non-compete constraints.",
         "evidence_quotes": [
           "get the non-compete reviewed by a lawyer you trust, not a Merck-provided one. Non-compete language in immunotherapy is frequently more aggressive than candidates realize"
         ],
-        "evidence_rationale": "This separate quote addresses legal risks of the non-compete.",
+        "evidence_rationale": "This separate quote addresses non-compete risks specifically.",
         "confidence": "high"
       }
     ],
     "companion_fingerprint_validated": [
       {
         "move_id": "1",
-        "reasoning_move": "Distinguish separate dimensions of the decision (career fit, family impact, financial incentives) to evaluate them independently rather than conflating them.",
+        "reasoning_move": "Distinguish separate dimensions of the decision into career fit, family impact, and financial incentives to evaluate them independently rather than conflating them.",
         "evidence_quotes": [
           "There's a career question (is this the right role for you professionally), a family question (what does 3 days/week away for years look like), and a financial question (what does the money buy and at what cost)."
         ],
-        "evidence_rationale": "This quote explicitly separates the decision into distinct categories, enabling targeted analysis.",
+        "evidence_rationale": "This quote explicitly separates the decision into distinct categories, enabling independent assessment.",
         "confidence": "high"
       },
       {
@@ -1530,12 +1211,12 @@
         "evidence_quotes": [
           "The test question is: if Merck offered you a role that was a lateral move content-wise, still the same portfolio work you do now but with a commute, would you take it? If yes, it's genuinely a career-leverage move. If no, some of what's pulling you is the dissatisfaction, not the opportunity."
         ],
-        "evidence_rationale": "This quote presents a counterfactual test to distinguish true opportunity from escape motive.",
+        "evidence_rationale": "This quote presents a counterfactual test to distinguish true fit from escape-driven motivation.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Prioritize non-recoverable finite commitments like mother's health window over replaceable ones like patient or fellow duties.",
+        "reasoning_move": "Prioritize non-recoverable finite commitments like mother's health window over replaceable ones like professional handoffs.",
         "evidence_quotes": [
           "Your mother's window is finite and not recoverable. 3-5 good years where visits mean something is a specific quantity of time, and any plan that makes monthly visits impossible is trading that specific quantity for money."
         ],
@@ -1544,38 +1225,38 @@
       },
       {
         "move_id": "4",
-        "reasoning_move": "Propose targeted negotiations to mitigate key constraints, treating them as addressable rather than absolute barriers.",
+        "reasoning_move": "Propose targeted negotiations to mitigate specific constraints like patient handoff, schedule flexibility, and grant continuity.",
         "evidence_quotes": [
           "Negotiate the 90-day start date, the flexible-day schedule with Chicago weeks explicitly protected, and adjunct status at BAMC so your NIH grants transfer rather than closing."
         ],
-        "evidence_rationale": "This quote lists specific negotiable terms to resolve patient handoff, family visits, and career continuity.",
+        "evidence_rationale": "This quote lists precise negotiation items addressing active constraints.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Mandate a concrete, scenario-based family discussion to secure explicit buy-in, distinguishing commitment from tolerance.",
+        "reasoning_move": "Mandate a concrete, scenario-based family discussion to secure explicit buy-in rather than ambiguous support.",
         "evidence_quotes": [
           "Have the real husband conversation tonight — not \"what do you think of Merck\" but \"here is what the next four years looks like for you if I take this role: you are the primary parent 3 nights a week for the next 4-7 years, plus you're the backup on Chicago trips. Do you want that life?\""
         ],
-        "evidence_rationale": "This quote specifies a precise framing for the conversation to elicit a clear yes/no commitment.",
+        "evidence_rationale": "This quote specifies a direct, vivid framing for the husband conversation to elicit commitment.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Downgrade veto power of professional commitments like fellows by identifying alternatives and framing as costs rather than deal-breakers.",
+        "reasoning_move": "Downgrade veto power of professional commitments like fellow mentorship by identifying viable alternatives and department support.",
         "evidence_quotes": [
           "Priya has a committee. She has other people in the department. She will not fail because you leave. She will have a harder second half of her fellowship, which is a real cost, but it's not the same as her career ending."
         ],
-        "evidence_rationale": "This quote reframes mentorship continuity as manageable with existing supports.",
+        "evidence_rationale": "This quote reframes mentorship continuity as a cost, not a blocker, citing support structures.",
         "confidence": "high"
       },
       {
         "move_id": "7",
-        "reasoning_move": "Recommend due diligence on role specifics and legal terms to assess true fit and exit risks given non-compete constraints.",
+        "reasoning_move": "Recommend due diligence on role specifics and legal terms to assess fit and exit risks given non-compete constraints.",
         "evidence_quotes": [
           "get the non-compete reviewed by a lawyer you trust, not a Merck-provided one. Non-compete language in immunotherapy is frequently more aggressive than candidates realize"
         ],
-        "evidence_rationale": "This separate quote addresses legal risks of the non-compete.",
+        "evidence_rationale": "This separate quote addresses non-compete risks specifically.",
         "confidence": "high"
       }
     ],
@@ -1586,15 +1267,7 @@
         "model_name": "Decomposition",
         "evidence_quote": "There's a career question (is this the right role for you professionally), a family question (what does 3 days/week away for years look like), and a financial question (what does the money buy and at what cost). These aren't the same question and they don't have the same answer.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer explicitly separates the tangled decision into distinct dimensions (career, family, financial) to evaluate them independently, applying the decomposition mechanism.",
-        "detection_confidence": "structural"
-      },
-      {
-        "model_id": "power-dynamics",
-        "model_name": "Power Dynamics",
-        "evidence_quote": "Merck is paying to get you — they will wait 90 days.",
-        "presence_mode": "executed",
-        "presence_explanation": "The answer leverages Merck's hiring commitment as superior power position to negotiate a delayed start date without risk, applying power-dynamics by recognizing and exploiting leverage.",
+        "presence_explanation": "The answer explicitly separates the tangled decision into distinct dimensions of career, family, and financial questions to evaluate them independently rather than conflating them.",
         "detection_confidence": "structural"
       },
       {
@@ -1602,29 +1275,17 @@
         "model_name": "Opportunity Cost",
         "evidence_quote": "Your mother's window is finite and not recoverable. 3-5 good years where visits mean something is a specific quantity of time, and any plan that makes monthly visits impossible is trading that specific quantity for money. The money is large but not singular — other high-compensation roles exist at other points in your career. The mother-time doesn't.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer frames the decision by explicitly comparing the non-recoverable mother time against replaceable financial opportunities, applying opportunity-cost as the central trade-off mechanism.",
-        "detection_confidence": "structural"
-      },
-      {
-        "model_id": "understanding-motivations",
-        "model_name": "Understanding Motivations",
-        "evidence_quote": "The test question is: if Merck offered you a role that was a lateral move content-wise, still the same portfolio work you do now but with a commute, would you take it? If yes, it's genuinely a career-leverage move. If no, some of what's pulling you is the dissatisfaction, not the opportunity.",
-        "presence_mode": "executed",
-        "presence_explanation": "The answer probes beneath the surface career appeal to identify whether the true motivation is genuine fit or escape from dissatisfaction, applying the understanding-motivations mechanism.",
-        "detection_confidence": "structural"
-      },
-      {
-        "model_id": "path-dependence",
-        "model_name": "Path Dependence",
-        "evidence_quote": "Adjunct status at BAMC keeps the door open — you can return to a senior academic role at 48 without starting from zero, especially if your NIH grants have transferred and you've stayed published.",
-        "presence_mode": "executed",
-        "presence_explanation": "The answer recognizes how early choices like adjunct status and grant transfer shape future academic re-entry options, applying path-dependence by preserving trajectories.",
+        "presence_explanation": "The answer frames the decision by explicitly comparing the non-recoverable cost of mother-time against replaceable financial opportunities, using opportunity cost as the central trade-off mechanism.",
         "detection_confidence": "structural"
       }
     ],
     "companion_rejected_models": [
       {
         "model_id": "representativeness-heuristic",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "power-dynamics",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1636,8 +1297,8 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "critical-mass",
-        "rejection_reason": "topic-adjacent"
+        "model_id": "understanding-motivations",
+        "rejection_reason": "mechanism absent"
       },
       {
         "model_id": "feedback-loops",
@@ -1652,7 +1313,7 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "signaling",
+        "model_id": "critical-mass",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1660,43 +1321,11 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "feynman-technique",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "probabilistic-thinking",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "sunk-cost-fallacy",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "intellectual-humility",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "base-rates",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "black-swan-events",
-        "rejection_reason": "mechanism absent"
-      },
-      {
         "model_id": "boundaries",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "first-principles-thinking",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "learning-curve",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
-        "model_id": "reciprocity-principle",
+        "model_id": "information-asymmetry",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1704,23 +1333,19 @@
         "rejection_reason": "too generic"
       },
       {
-        "model_id": "status-quo-bias",
+        "model_id": "signaling",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "calculated-risk-taking",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "endowment-effect",
+        "model_id": "aleatory-epistemic-uncertainty-recognition",
         "rejection_reason": "mechanism absent"
       },
       {
         "model_id": "hindsight-bias",
-        "rejection_reason": "topic-adjacent"
+        "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "inversion",
+        "model_id": "learning-curve",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1728,35 +1353,35 @@
         "rejection_reason": "mechanism absent"
       },
       {
+        "model_id": "sunk-cost-fallacy",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "black-swan-events",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "intellectual-humility",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "inversion",
+        "rejection_reason": "mechanism absent"
+      },
+      {
         "model_id": "optimization-theory",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "problem-framing-and-reframing",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "psychological-safety",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
         "model_id": "red-queen-effect",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
-        "model_id": "aleatory-epistemic-uncertainty-recognition",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "cognitive-dissonance",
+        "model_id": "status-quo-bias",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "empathy",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "prospect-theory",
+        "model_id": "base-rates",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1764,52 +1389,48 @@
         "rejection_reason": "mechanism absent"
       },
       {
+        "model_id": "calculated-risk-taking",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "cognitive-dissonance",
+        "rejection_reason": "mechanism absent"
+      },
+      {
         "model_id": "complex-adaptive-systems",
-        "rejection_reason": "topic-adjacent"
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "cultural-intelligence",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "empathy",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "endowment-effect",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "feynman-technique",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "path-dependence",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "problem-framing-and-reframing",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "reciprocity-principle",
+        "rejection_reason": "mechanism absent"
       },
       {
         "model_id": "einstellung-effect",
         "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "liking-principle",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "optionality",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "reasoning-mode-router",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "statistical-learning-theory",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
-        "model_id": "active-listening",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
-        "model_id": "bayesian",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "blooms-taxonomy",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
-        "model_id": "cultural-intelligence",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
-        "model_id": "lean-startup-methodology",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
-        "model_id": "mental-simulation",
-        "rejection_reason": "too generic"
       },
       {
         "model_id": "nash-equilibrium",
@@ -1820,7 +1441,43 @@
         "rejection_reason": "mechanism absent"
       },
       {
+        "model_id": "optionality",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "prospect-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "psychological-safety",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "reasoning-mode-router",
+        "rejection_reason": "mechanism absent"
+      },
+      {
         "model_id": "regression-to-the-mean",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "specialization",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "active-listening",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "comparative-advantage",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "leverage-points",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "liking-principle",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1828,19 +1485,44 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "specialization",
-        "rejection_reason": "topic-adjacent"
+        "model_id": "statistical-discipline",
+        "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "step-back",
+        "model_id": "systems-thinking",
         "rejection_reason": "too generic"
       },
       {
-        "model_id": "survivorship-bias",
+        "model_id": "theory-of-constraints",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "tier-2-high-value",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "desirable-difficulties",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "expertise-reversal-effect",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "false-precision-avoidance",
         "rejection_reason": "mechanism absent"
       }
     ],
     "deep_check_results": [
+      {
+        "tendency_id": "doubt-avoidance-tendency",
+        "tendency_name": "Doubt Avoidance Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
       {
         "tendency_id": "availability-misweighing-tendency",
         "tendency_name": "Availability-Misweighing Tendency",
@@ -1871,11 +1553,11 @@
       {
         "tendency_id": "stress-influence-tendency",
         "tendency_name": "Stress-Influence Tendency",
-        "detected": false,
-        "confidence": 0.0,
-        "sub_pattern": "",
-        "specific_passage": "",
-        "severity": ""
+        "detected": true,
+        "confidence": 0.85,
+        "sub_pattern": "checklists",
+        "specific_passage": "Have the real husband conversation tonight — not \"what do you think of Merck\" but \"here is what the next four years looks like for you if I take this role: you are the primary parent 3 nights a week f",
+        "severity": "medium"
       },
       {
         "tendency_id": "reciprocation-tendency",
@@ -1919,6 +1601,52 @@
           "statistical-discipline",
           "statistical-learning-theory",
           "step-back"
+        ],
+        "tiebreaker_supporting": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        },
+        "tiebreaker_risk": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        }
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "primary_model_id": "checklists",
+        "sub_pattern": "checklists",
+        "antidote_model_ids": [
+          "checklists",
+          "scaffolding",
+          "desirable-difficulties",
+          "delays",
+          "emotional-intelligence",
+          "constructive-feedback-models",
+          "self-control"
         ],
         "tiebreaker_supporting": {
           "attempted": false,
@@ -2004,9 +1732,9 @@
           "severity": "clear"
         },
         "paltering": {
-          "detected": false,
-          "reasoning": "",
-          "severity": "clear"
+          "detected": true,
+          "reasoning": "The passage acknowledges the 'stuck' feeling as a dropped thread (user context) but then analyzes it in depth ('taking a big role for the wrong reason... is how people end up 3 years in wishing they'd stayed'), abandoning the 'dropped' status without resolving the tension it creates with the decision framework. This acknowledged-then-abandoned tension misleads by treating a deprioritized motive as centrally diagnostic.",
+          "severity": "marginal"
         },
         "weasel_words": {
           "detected": false,
@@ -2014,8 +1742,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": false,
-          "reasoning": "",
+          "detected": true,
+          "reasoning": "'taking a big role for the wrong reason — escape rather than fit — is how people end up 3 years in wishing they'd stayed' asserts a specific causal relationship and outcome ('3 years in wishing they'd stayed') as fact without evidence, beyond user facts, reasonable inferences, or common knowledge.",
           "severity": "clear"
         }
       },
@@ -2038,7 +1766,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'handoff-quality concerns are real but they're usually survivable' and 'Overloaded mentors give bad mentorship' assert specific causal relationships and empirical generalizations (survivability of handoffs, quality of overloaded mentorship) beyond user-provided facts, not restatable from context, not common practitioner knowledge at this level of specificity, and stated without evidence or qualification.",
+          "reasoning": "'handoff-quality concerns are real but they're usually survivable' asserts an empirical generalization about handoffs (typically survivable) beyond user facts or common knowledge; 'Overloaded mentors give bad mentorship' asserts a specific causal relationship not derived from context.",
           "severity": "clear"
         }
       },
@@ -2119,8 +1847,8 @@
           "severity": "clear"
         },
         "paltering": {
-          "detected": true,
-          "reasoning": "The passage acknowledges 'the husband conversation is real' (referring to structural non-mobility constraint) but immediately labels it 'negotiable' without resolving the tension or addressing why/how it differs from the 'not negotiable' mother constraint, despite both being marked as structural/active in context. This acknowledged-then-abandoned tension misleads by downplaying the husband's constraint without evidence or analysis.",
+          "detected": false,
+          "reasoning": "",
           "severity": "clear"
         },
         "weasel_words": {
@@ -2130,8 +1858,8 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Priya could finish with good mentorship from someone else or from you remotely' and 'the husband conversation is real but negotiable' introduce specific possibilities (remote mentorship feasibility, husband negotiation viability) beyond user-provided facts, not reasonable inferences or common knowledge in this context.",
-          "severity": "marginal"
+          "reasoning": "'Priya could finish with good mentorship from someone else or from you remotely' asserts without evidence that remote mentorship would be effective or that someone else could provide 'good' mentorship, going beyond user-provided facts about Priya's project being at risk without the oncologist's mentorship. 'The husband conversation is real but negotiable' asserts negotiability without evidence, beyond the structural non-mobile status due to firm and non-compete.",
+          "severity": "clear"
         }
       },
       {
@@ -2245,7 +1973,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts specific empirical facts beyond user-provided context or common knowledge, presented without evidence: 'for a Medical Director role at your level, no, a reasonable negotiation will not kill the offer'; 'What kills offers at this level is months of delay, asking for things that are structurally impossible...'; 'all of these are normal. Merck expects it.' These claim insider knowledge of Merck's negotiation expectations and industry norms for this exact role/seniority, which the user did not provide and exceed reasonable inferences from established facts. Common practitioner knowledge might cover general pharma negotiations, but specificity to 'Merck' and 'Medical Director role at your level' (46-year-old oncologist) is unverified.",
+          "reasoning": "The passage asserts specific empirical facts about industry practices without evidence or user-provided context: 'for a Medical Director role at your level, no, a reasonable negotiation will not kill the offer'; 'What kills offers at this level is months of delay, asking for things that are structurally impossible...'; 'all of these are normal. Merck expects it.' These go beyond user facts, reasonable inferences therefrom, or common practitioner knowledge (e.g., not standard like 'vesting over four years'), as they make precise claims about what 'kills offers at this level,' what is 'normal,' and Merck's specific expectations.",
           "severity": "clear"
         }
       },
@@ -2268,7 +1996,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact 'Priya has a committee. She has other people in the department. She will not fail because you leave.' These are specific details about Priya's support structure and guaranteed success that go beyond user-provided facts (only 'Fellow Priya's weird project at risk without mentorship' stated) and are not reasonable inferences, common knowledge, or derived from context. They lack evidence or qualification.",
+          "reasoning": "The passage asserts as fact 'Priya has a committee. She has other people in the department. She will not fail because you leave.' These are specific details about Priya's support structure and guaranteed success that go beyond user-provided facts (only 'Fellow Priya's weird project at risk without mentorship'), are not reasonable inferences from established context, and are not common practitioner knowledge. They are stated without evidence or qualification.",
           "severity": "clear"
         }
       },
@@ -2314,7 +2042,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts 'NIH grants transfer rather than closing' as a fact about negotiating adjunct status at BAMC, but no user-provided facts mention NIH grants, BAMC (presumably user's hospital), or grant transfer mechanics. This introduces specific empirical knowledge about grant policies beyond user context, common practice, or reasonable inference from established facts. 'Next 4-7 years' for family commitments extrapolates beyond user's '3-5 good years' for mother without evidence.",
+          "reasoning": "The passage asserts as fact that NIH grants can transfer via 'adjunct status at BAMC' ('so your NIH grants transfer rather than closing'), but the user provided no information about the oncologist's NIH grants, BAMC affiliation, or transfer mechanics. This introduces specific empirical knowledge about grant policies beyond user facts or common practitioner knowledge. 'Next 4-7 years' for family commitments extrapolates beyond the stated '3-5 good years' for mother's dementia without evidence.",
           "severity": "clear"
         }
       },
@@ -2327,7 +2055,7 @@
         },
         "paltering": {
           "detected": true,
-          "reasoning": "The passage acknowledges structural constraints (mother, commute, husband) but palters by claiming 'the mother window is partially preservable if the schedule flexes' and 'the patient duty is absorbable with 90-day delay' without resolving how these workarounds address the active weights or the 10-day deadline; it introduces an unmentioned '90-day delay' for the patient handoff (user-stated as 6 weeks) then abandons the tension by deeming everything except husband buy-in as having 'a work-around' without evidence or specifics.",
+          "reasoning": "The passage asserts 'the patient duty is absorbable with 90-day delay,' but user facts state only a 'mid-protocol handoff in 6 weeks'; no evidence or user-provided basis for a 90-day delay being feasible or 'absorbable.' This omits key context about protocol timing, making the minimization misleading. Other evaluations (e.g., 'mother window partially preservable if schedule flexes') acknowledge tensions without abandoning them.",
           "severity": "clear"
         },
         "weasel_words": {
@@ -2337,7 +2065,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'patient duty is absorbable with 90-day delay' asserts a specific timeline and absorbability not provided by user (handoff in 6 weeks) or derivable from facts; 'career-stage window closes in the next 4 years' introduces new empirical claim about the 46-year-old oncologist's career trajectory beyond user facts.",
+          "reasoning": "'patient duty is absorbable with 90-day delay' introduces a specific timeline (90 days) and causal feasibility not provided by user (only '6 weeks' handoff) nor common knowledge; cannot be reasonably inferred from established facts. Other claims (e.g., career window, fellow not veto-level) are reasonable inferences or evaluations grounded in user context.",
           "severity": "clear"
         }
       },
@@ -2360,7 +2088,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage introduces multiple new facts not provided by the user or derivable from established context: 'Adjunct status at BAMC keeps the door open' assumes a specific arrangement (adjunct status) never mentioned; 'NIH grants have transferred' assumes grant transferability and occurrence; 'you've stayed published' assumes continued publishing; 'Merck knows this too' assumes Merck's knowledge; 'industry-to-academic bounce is a normal trajectory' asserts a specific empirical norm beyond common practitioner knowledge in this context. These are stated as fact without evidence or qualification.",
+          "reasoning": "The passage introduces new, user-unprovided facts: 'Adjunct status at BAMC keeps the door open' assumes a specific arrangement (adjunct status) never mentioned by the user; 'NIH grants have transferred' and 'you've stayed published' assumes grant transferability and publication continuity as feasible without user evidence; 'Merck knows this too' attributes unverified knowledge to Merck; 'industry-to-academic bounce is a normal trajectory' asserts a specific causal career pattern as empirical fact beyond common practitioner knowledge or user facts.",
           "severity": "clear"
         }
       },
@@ -2383,7 +2111,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Most people who leave industry roles mid-contract do it around the 2-year mark, and it's usually family load that drives it' asserts specific empirical facts about departure timing and drivers without evidence, beyond user-provided facts or common practitioner knowledge. The preceding timeline ('first 6 months... great, months 6-18... normal, months 18-36... accumulated cost') is presented as general predictive knowledge, not grounded in user's situation.",
+          "reasoning": "'Most people who leave industry roles mid-contract do it around the 2-year mark, and it's usually family load that drives it' asserts specific empirical facts about departure timing and causes without evidence, beyond user-provided facts, reasonable inferences, or common practitioner knowledge.",
           "severity": "clear"
         }
       },
@@ -2498,7 +2226,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact: 'Non-compete language in immunotherapy is frequently more aggressive than candidates realize' and implies the 2-year window 'may be narrower or broader than the face language suggests depending on how \"development\" is defined.' These introduce specific empirical claims about immunotherapy non-compete practices and interpretive variability beyond user-provided facts (only the existence of a 2-year non-compete is stated), not common practitioner knowledge or reasonable inferences. The advice to get a lawyer review is actionable but rests on these unverified assertions.",
+          "reasoning": "The passage asserts as fact: 'Non-compete language in immunotherapy is frequently more aggressive than candidates realize' and implies the 2-year window 'may be narrower or broader than the face language suggests depending on how \"development\" is defined.' These introduce specific empirical claims about immunotherapy non-compete practices and interpretive variability beyond user-provided facts (only the existence of a 2-year non-compete is stated), common practitioner knowledge (general advice to review non-competes is common, but field-specific aggressiveness and frequency are unverified), and reasonable inferences. The examples of definitions are hypothetical, not claims.",
           "severity": "clear"
         }
       },
@@ -2551,8 +2279,8 @@
     ],
     "summary": {
       "total_passages": 25,
-      "passages_with_detections": 9,
-      "total_clear": 10,
+      "passages_with_detections": 10,
+      "total_clear": 11,
       "total_marginal": 1
     }
   },
