@@ -50,17 +50,17 @@ Not TDD (empirical via corpus run):
 
 ## Tasks
 
-- [ ] 0.0 Preflight
-  - [ ] 0.1 Confirm PR #13 merged to main: `git log --oneline main -5` shows the merge commit.
-  - [ ] 0.2 Confirm you're on fresh main: `git checkout main && git pull && git status`.
-  - [ ] 0.3 Create branch: `git checkout -b feat/conversation-first-phase-1-contract`.
-  - [ ] 0.4 Read the handover doc in full: `research/conversation-first-rearchitecture-handover.md`.
-  - [ ] 0.5 Read the audit §2, §3, §7 (pipeline structure, lanes, design decisions).
-  - [ ] 0.6 Map `engine/system_b/pipeline.py` structure (don't try to read linearly):
+- [x] 0.0 Preflight
+  - [x] 0.1 Confirm PR #13 merged to main: `git log --oneline main -5` shows the merge commit. *Merge commit: `9b5b5af Merge pull request #13 from gofarrrr/feat/extraction-contract-phase-1-live-constraints` (2026-04-24).*
+  - [x] 0.2 Confirm you're on fresh main: `git checkout main && git pull && git status`. *Fast-forwarded `3c609a5..9b5b5af`; working tree clean; chore commit `d9ea3cc` landed for 6 historic research docs.*
+  - [x] 0.3 Create branch: `git checkout -b feat/conversation-first-phase-1-contract`.
+  - [x] 0.4 Read the handover doc in full: `research/conversation-first-rearchitecture-handover.md`.
+  - [x] 0.5 Read the audit §2, §3, §7 (pipeline structure, lanes, design decisions). *Read full audit + `research/pipeline-py-structural-map.md` during session kickoff.*
+  - [x] 0.6 Map `engine/system_b/pipeline.py` structure (don't try to read linearly):
     ```
     grep -n "^class \|^def \|^    def " engine/system_b/pipeline.py > /tmp/pipeline_map.txt
     ```
-    Note where `SystemBPipeline.run()` is — that's the entry point for the shim.
+    *75 hits across 2200 lines. Spot-checks cross-reference cleanly with `research/pipeline-py-structural-map.md`: `CritiqueRequest:122`, `PipelineConfig:128`, `SystemBPipeline:293`, `run():375`, `_route_deep_check_results_with_optional_tiebreaker:603`, `_run_companion:668`, `_run_frame_pressure:718`, `_run_structural_coverage:771`, `_assemble_delta_card:1253`. The structural map is accurate. `SystemBPipeline.run()` at line 375 is the shim entry point.*
 
 - [ ] 1.0 Design the `ConversationContext` data model (TDD)
   - [ ] 1.1 Draft the dataclass shape (roughly):
