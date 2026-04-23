@@ -62,40 +62,16 @@ Not TDD (empirical via corpus run):
     ```
     *75 hits across 2200 lines. Spot-checks cross-reference cleanly with `research/pipeline-py-structural-map.md`: `CritiqueRequest:122`, `PipelineConfig:128`, `SystemBPipeline:293`, `run():375`, `_route_deep_check_results_with_optional_tiebreaker:603`, `_run_companion:668`, `_run_frame_pressure:718`, `_run_structural_coverage:771`, `_assemble_delta_card:1253`. The structural map is accurate. `SystemBPipeline.run()` at line 375 is the shim entry point.*
 
-- [ ] 1.0 Design the `ConversationContext` data model (TDD)
-  - [ ] 1.1 Draft the dataclass shape (roughly):
-    ```python
-    @dataclass(frozen=True)
-    class Turn:
-        turn_index: int
-        speaker: Literal["user", "assistant"]
-        text: str
-
-    @dataclass(frozen=True)
-    class ExtractionPayload:
-        decision_situation: str
-        live_constraints: tuple[LiveConstraint, ...]
-        synthesized_position: str
-        reasoning_passages: tuple[str, ...]
-        original_framing: str
-        dropped_threads: tuple[DroppedThread, ...]
-        quote_validation: dict  # _quote_validation passthrough
-
-    @dataclass(frozen=True)
-    class ConversationContext:
-        turns: tuple[Turn, ...]
-        extraction: ExtractionPayload
-        capture_manifest: dict  # truncation info, turn counts, etc.
-        capture_health: str     # "good" | "degraded" | "critical" | "unknown"
-        capture_warnings: tuple[str, ...]
-    ```
-  - [ ] 1.2 Share the draft in the task file before writing code if interactive; otherwise proceed.
-  - [ ] 1.3 RED: write test in `tests/test_conversation_context.py` — constructing a minimal `ConversationContext` with one turn + empty extraction produces a valid object.
-  - [ ] 1.4 GREEN: add the dataclasses to `engine/system_b/pipeline.py` (or a new `engine/system_b/conversation_context.py` module — your call). Keep immutable, type-hinted, import-safe.
-  - [ ] 1.5 RED: write test — a `Turn` with `speaker="invalid"` raises on construction.
-  - [ ] 1.6 GREEN: add `Literal` validation or `__post_init__` check.
-  - [ ] 1.7 RED: write test — serialization to dict (`.to_dict()` or `asdict()`) round-trips cleanly.
-  - [ ] 1.8 GREEN: verify `asdict()` works or add a `.to_dict()` method.
+- [x] 1.0 Design the `ConversationContext` data model (TDD)
+  - [x] 1.1 Dataclass shape finalized in `engine/system_b/conversation_context.py`. Deviations from sketch: (a) added `LiveConstraint` and `DroppedThread` as typed dataclasses instead of inline `tuple[dict, ...]`; (b) `LiveConstraint.canonical_key: str | None = None` — tolerant of historical JSONs that still emit it; (c) `Turn.speaker: str` with `__post_init__` validation rather than `Literal` (runtime guard); (d) `capture_manifest` and `quote_validation` stay as `dict` passthroughs per PM directive.
+  - [x] 1.2 Skipped per PM protocol (technical shape decisions made by session; decisions logged in commit message).
+  - [x] 1.3 RED: `tests/test_conversation_context.py::test_conversation_context_minimal` added.
+  - [x] 1.4 GREEN: new module `engine/system_b/conversation_context.py`. Keeps `pipeline.py` untouched — shim injection in Phase 1 task 3.0 only.
+  - [x] 1.5 RED: `test_turn_invalid_speaker_raises` added (plus `test_turn_zero_index_raises` as a bonus invariant).
+  - [x] 1.6 GREEN: `__post_init__` raises `ValueError` on invalid speaker or turn_index < 1.
+  - [x] 1.7 RED: `test_conversation_context_asdict_roundtrip_preserves_shape` added.
+  - [x] 1.8 GREEN: native `dataclasses.asdict()` handles the whole shape (tuples → lists); no custom `to_dict()` needed.
+  - *15/15 new tests pass; full suite 138 passed (no regression).*
 
 - [ ] 2.0 Build the loader (TDD)
   - [ ] 2.1 RED: write test — `load_conversation_context(extraction_path, conversation_path)` produces a `ConversationContext` with correctly parsed turns + extraction fields.
