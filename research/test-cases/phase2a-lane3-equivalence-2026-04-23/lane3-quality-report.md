@@ -1,6 +1,6 @@
 # Phase 2a Lane 3 quality check — 2026-04-23
 
-Measurement: 5 case(s) × 2 paths × N=3 runs. Wall time: 1013.9s.
+Measurement: 10 case(s) × 2 paths × N=3 runs. Wall time: 1791.9s.
 
 **Metrics definitions:**
 - `elements`: `frame_pressure_card.frame_elements` count (0-5)
@@ -12,10 +12,10 @@ Measurement: 5 case(s) × 2 paths × N=3 runs. Wall time: 1013.9s.
 
 | path | total runs | elements (mean) | dropped (mean) | drop_rate | reframings (mean) |
 |------|-----------|-----------------|----------------|-----------|-------------------|
-| old  | 15 | 1.93 | 0 | 0.0 | 1.87 |
-| new  | 15 | 2.2 | 0 | 0.0 | 2 |
+| old  | 30 | 1.8 | 0.13 | 0.069 | 1.8 |
+| new  | 30 | 2.2 | 0 | 0.0 | 2 |
 
-**Aggregate drop-rate gate:** PASS (new=0.0, old=0.0, delta=+0.000; ≤ 0.05 tolerance).
+**Aggregate drop-rate gate:** PASS (new=0.0, old=0.069, delta=-0.069; ≤ 0.05 tolerance).
 
 ## Per-case detail
 
@@ -116,6 +116,106 @@ Measurement: 5 case(s) × 2 paths × N=3 runs. Wall time: 1013.9s.
 | new | 0 | 2 | assumption:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, perspective_shift:1 |
 | new | 1 | 2 | assumption:2 | 0 | - | 2 | inversion:1, perspective_shift:1 |
 | new | 2 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, inversion:1 |
+
+</details>
+
+### `phd_research`
+
+| path | n | elements (mean ± sd) | dropped (mean ± sd) | drop_rate | reframings (mean) |
+|------|---|----------------------|---------------------|-----------|-------------------|
+| old  | 3 | 2 ± 0.0 | 0 ± 0.0 | 0.0 | 2 |
+| new  | 3 | 2 ± 0.0 | 0 ± 0.0 | 0.0 | 2 |
+
+<details><summary>per-run detail</summary>
+
+| path | run | elements | types | dropped | drop_reasons | reframings | move_types |
+|------|-----|----------|-------|---------|--------------|------------|------------|
+| old | 0 | 2 | mutable_constraint:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| old | 1 | 2 | assumption:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, perspective_shift:1 |
+| old | 2 | 2 | mutable_constraint:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 0 | 2 | assumption:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 1 | 2 | borrowed_premise:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 2 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+
+</details>
+
+### `real_estate`
+
+| path | n | elements (mean ± sd) | dropped (mean ± sd) | drop_rate | reframings (mean) |
+|------|---|----------------------|---------------------|-----------|-------------------|
+| old  | 3 | 0.33 ± 0.58 | 1.33 ± 1.15 | 0.8 | 0.67 |
+| new  | 3 | 2 ± 0.0 | 0 ± 0.0 | 0.0 | 2 |
+
+<details><summary>per-run detail</summary>
+
+| path | run | elements | types | dropped | drop_reasons | reframings | move_types |
+|------|-----|----------|-------|---------|--------------|------------|------------|
+| old | 0 | 0 | - | 2 | evidence_not_in_query:2 | 0 | - |
+| old | 1 | 0 | - | 2 | evidence_not_in_query:2 | 0 | - |
+| old | 2 | 1 | mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 0 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 1 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, perspective_shift:1 |
+| new | 2 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+
+</details>
+
+### `startup_pivot`
+
+| path | n | elements (mean ± sd) | dropped (mean ± sd) | drop_rate | reframings (mean) |
+|------|---|----------------------|---------------------|-----------|-------------------|
+| old  | 3 | 2 ± 0.0 | 0 ± 0.0 | 0.0 | 2 |
+| new  | 3 | 2 ± 0.0 | 0 ± 0.0 | 0.0 | 2 |
+
+<details><summary>per-run detail</summary>
+
+| path | run | elements | types | dropped | drop_reasons | reframings | move_types |
+|------|-----|----------|-------|---------|--------------|------------|------------|
+| old | 0 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| old | 1 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| old | 2 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, perspective_shift:1 |
+| new | 0 | 2 | assumption:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 1 | 2 | assumption:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 2 | 2 | assumption:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+
+</details>
+
+### `user_has_plan`
+
+| path | n | elements (mean ± sd) | dropped (mean ± sd) | drop_rate | reframings (mean) |
+|------|---|----------------------|---------------------|-----------|-------------------|
+| old  | 3 | 2 ± 0.0 | 0 ± 0.0 | 0.0 | 2 |
+| new  | 3 | 3 ± 0.0 | 0 ± 0.0 | 0.0 | 2 |
+
+<details><summary>per-run detail</summary>
+
+| path | run | elements | types | dropped | drop_reasons | reframings | move_types |
+|------|-----|----------|-------|---------|--------------|------------|------------|
+| old | 0 | 2 | assumption:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, perspective_shift:1 |
+| old | 1 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, perspective_shift:1 |
+| old | 2 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 0 | 3 | assumption:2, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 1 | 3 | assumption:2, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 2 | 3 | assumption:2, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+
+</details>
+
+### `whistleblower`
+
+| path | n | elements (mean ± sd) | dropped (mean ± sd) | drop_rate | reframings (mean) |
+|------|---|----------------------|---------------------|-----------|-------------------|
+| old  | 3 | 2 ± 0.0 | 0 ± 0.0 | 0.0 | 2 |
+| new  | 3 | 2 ± 0.0 | 0 ± 0.0 | 0.0 | 2 |
+
+<details><summary>per-run detail</summary>
+
+| path | run | elements | types | dropped | drop_reasons | reframings | move_types |
+|------|-----|----------|-------|---------|--------------|------------|------------|
+| old | 0 | 2 | assumption:1, option_space_collapse:1 | 0 | - | 2 | constraint_relaxation:1, inversion:1 |
+| old | 1 | 2 | assumption:1, mutable_constraint:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| old | 2 | 2 | option_space_collapse:1, scope_lock:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 0 | 2 | assumption:1, binary_collapse:1 | 0 | - | 2 | constraint_relaxation:1, inversion:1 |
+| new | 1 | 2 | assumption:1, binary_collapse:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
+| new | 2 | 2 | assumption:1, binary_collapse:1 | 0 | - | 2 | constraint_relaxation:1, scope_expansion:1 |
 
 </details>
 
