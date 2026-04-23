@@ -73,13 +73,16 @@ Not TDD (empirical via corpus run):
   - [x] 1.8 GREEN: native `dataclasses.asdict()` handles the whole shape (tuples → lists); no custom `to_dict()` needed.
   - *15/15 new tests pass; full suite 138 passed (no regression).*
 
-- [ ] 2.0 Build the loader (TDD)
-  - [ ] 2.1 RED: write test — `load_conversation_context(extraction_path, conversation_path)` produces a `ConversationContext` with correctly parsed turns + extraction fields.
-  - [ ] 2.2 GREEN: add `load_conversation_context` function in `scripts/run_pipeline.py` (or extract to `engine/system_b/conversation_loader.py`). Parses extraction JSON + conversation.txt per-turn-marker regex.
-  - [ ] 2.3 RED: write test — loading a capture_critical extraction returns the metadata correctly so downstream can check `capture_health == "critical"`.
-  - [ ] 2.4 GREEN: verify.
-  - [ ] 2.5 RED: write test — loading extraction where `_quote_validation.fabricated > 0` passes the validation fields through intact.
-  - [ ] 2.6 GREEN: verify.
+- [x] 2.0 Build the loader (TDD)
+  - [x] 2.1 RED→GREEN: `test_load_basic_extraction_and_turns` + `test_load_extraction_fields_populate_correctly`.
+  - [x] 2.2 Implemented as `engine/system_b/conversation_loader.py::load_conversation_context` (separate module, not in `run_pipeline.py` — keeps IO concerns out of the CLI wrapper). Turn parser uses `^\[Turn (\d+)\] (USER|ASSISTANT):\s*$` regex; buffers inter-marker lines, strips trailing blank lines.
+  - [x] 2.3 RED→GREEN: `test_load_capture_critical_returns_valid_empty_context` — `status: "capture_critical"` (no `extraction` field) yields an empty `ExtractionPayload` while preserving `capture_health`, `capture_manifest`, `capture_warnings`. Turns still parse from the conversation file independently.
+  - [x] 2.4 Covered by the same test.
+  - [x] 2.5 RED→GREEN: `test_load_quote_validation_passes_through_intact` — `_quote_validation` JSON field is mapped to `quote_validation` on `ExtractionPayload`, preserving `retry_attempted`, `retry_succeeded`, `fabricated`.
+  - [x] 2.6 Covered by the same test.
+  - *Also added: `test_load_live_constraints_with_and_without_canonical_key`, `test_load_dropped_threads_with_and_without_superseded_by`, `test_load_capture_metadata_preserved`, `test_load_real_10_case_corpus_oncologist` (end-to-end against real corpus file), `test_load_empty_conversation_file_yields_zero_turns`.*
+  - *9/9 loader tests pass; full suite 147 passed (no regression).*
+  - *Corpus sanity check: loader handles all 10 cases at `research/test-cases/case_*_conversation.txt`; declared-vs-parsed turn counts match for every case (header "N turns" → N user + N assistant entries).*
 
 - [ ] 3.0 Shim: make `SystemBPipeline.run()` accept either shape
   - [ ] 3.1 Read the full `SystemBPipeline.run()` method in `engine/system_b/pipeline.py` to understand the shape.
