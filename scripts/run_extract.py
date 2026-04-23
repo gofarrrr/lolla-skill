@@ -212,10 +212,11 @@ If the conversation is NOT strategic, respond with:
 
 If the conversation IS strategic, extract these fields:
 
-1. "decision_situation": The core decision or question being worked through. State it \
-as a neutral problem statement, not as the AI framed it. Include the domain, key \
-stakeholders, and what is at stake. Be specific — "whether to adopt microservices" \
-is better than "architecture decision".
+1. "decision_situation": the core decision as a single declarative sentence, \
+≤200 characters, neutral third-person. Name the subject, the action being \
+decided, and the material context. Avoid prose, emotive language, and \
+speculative outcomes. Good: "Whether Marcus should receive 15% equity given \
+retention risk and $9-13M exit valuation."
 
 2. "live_constraints": Array of objects, each with:
    - "constraint": terse noun-phrase-plus-state, ≤120 characters. State the \
