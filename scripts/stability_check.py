@@ -59,6 +59,106 @@ SKILL_DIR = Path(__file__).resolve().parent.parent
 
 
 # ---------------------------------------------------------------------------
+# Embedding infrastructure (PR #1b — canonical_key semantic metric)
+# ---------------------------------------------------------------------------
+#
+# Uses OpenAI `text-embedding-3-small` via the `openai` Python client.
+# Chosen over local sentence-transformers because: (a) openai client already
+# installed + configured, (b) OPENAI_API_KEY already in .env, (c) cost is
+# negligible (~$0.00005 per slug; 50 slugs per full cross-capture run = ~$0.003).
+# Embeddings are cached in-process to avoid duplicate API calls when the same
+# slug appears multiple times.
+
+_EMBED_MODEL = "text-embedding-3-small"
+_EMBED_CACHE: dict[str, "list[float]"] = {}
+_OPENAI_CLIENT = None
+
+
+def _get_openai_client():
+    """Lazy-init OpenAI client. Reads OPENAI_API_KEY from env. Loads .env if
+    present so callers don't have to remember to source it."""
+    global _OPENAI_CLIENT
+    if _OPENAI_CLIENT is not None:
+        return _OPENAI_CLIENT
+    import os
+    # Load .env best-effort (matches run_extract.py's pattern)
+    env_path = SKILL_DIR / ".env"
+    if env_path.exists() and not os.environ.get("OPENAI_API_KEY"):
+        for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#"):
+                continue
+            if line.startswith("export "):
+                line = line[7:].strip()
+            if "=" not in line:
+                continue
+            k, v = line.split("=", 1)
+            k, v = k.strip(), v.strip()
+            if len(v) >= 2 and v[0] == v[-1] and v[0] in {"'", '"'}:
+                v = v[1:-1]
+            if k not in os.environ:
+                os.environ[k] = v
+    from openai import OpenAI
+    _OPENAI_CLIENT = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", ""))
+    return _OPENAI_CLIENT
+
+
+def _get_embedding(text: str):
+    """Fetch embedding vector for ``text`` with in-process cache.
+    Returns a numpy array of floats. Raises on API failure (caller decides
+    whether to retry or fall back)."""
+    import numpy as np
+    if text in _EMBED_CACHE:
+        return np.asarray(_EMBED_CACHE[text], dtype=np.float32)
+    client = _get_openai_client()
+    resp = client.embeddings.create(model=_EMBED_MODEL, input=text)
+    vec = resp.data[0].embedding
+    _EMBED_CACHE[text] = vec
+    return np.asarray(vec, dtype=np.float32)
+
+
+def _cosine_similarity(a, b) -> float:
+    """Cosine similarity between two vectors. Pure function.
+
+    Returns value in [-1, 1]. Undefined (returns 0.0) for zero vectors."""
+    import numpy as np
+    a = np.asarray(a, dtype=np.float32)
+    b = np.asarray(b, dtype=np.float32)
+    denom = (np.linalg.norm(a) * np.linalg.norm(b))
+    if denom == 0:
+        return 0.0
+    return float(np.dot(a, b) / denom)
+
+
+def _best_match_mean_cosine(vecs_a, vecs_b):
+    """Given two lists of vectors, compute the best-match mean cosine.
+
+    For each vector in the shorter list, find its highest-cosine partner in
+    the other list (greedy matching; no partner re-use across items from the
+    shorter list is not enforced — matching is independent per item, which
+    gives a *most-generous* similarity and avoids complex bipartite solvers).
+    Denominator = max(len_a, len_b), so unmatched items in the longer list
+    drag the mean toward 0.
+
+    Returns None when both lists are empty (undefined; caller distinguishes
+    from zero). Returns 0.0 when one side is empty (no agreement possible).
+    """
+    if not vecs_a and not vecs_b:
+        return None
+    if not vecs_a or not vecs_b:
+        return 0.0
+    short, long_ = (vecs_a, vecs_b) if len(vecs_a) <= len(vecs_b) else (vecs_b, vecs_a)
+    best_scores = []
+    for s in short:
+        best = max(_cosine_similarity(s, l) for l in long_)
+        best_scores.append(best)
+    # Penalize unmatched items in the longer list by counting them as 0.
+    total = sum(best_scores)
+    denom = max(len(vecs_a), len(vecs_b))
+    return round(total / denom, 4)
+
+
+# ---------------------------------------------------------------------------
 # Result-JSON field extractors
 # ---------------------------------------------------------------------------
 
@@ -454,6 +554,27 @@ def compute_extraction_drift(extractions: list[tuple[str, dict]]) -> dict:
             "count_a": len(ca), "count_b": len(cb),
             "jaccard": None if ck_jaccard is None else round(ck_jaccard, 3),
         }
+        # live_constraints_canonical_key_embedding — semantic similarity via
+        # embedding cosine. Treats `marcus-comp` and `marcus-comp-below-market`
+        # as close; see PR #1b rationale. Filters empty keys before embedding.
+        keys_a = [(c.get("canonical_key", "") or "").strip().lower()
+                  for c in ca
+                  if (c.get("canonical_key", "") or "").strip()]
+        keys_b = [(c.get("canonical_key", "") or "").strip().lower()
+                  for c in cb
+                  if (c.get("canonical_key", "") or "").strip()]
+        if not keys_a and not keys_b:
+            ck_embedding = None
+        elif not keys_a or not keys_b:
+            ck_embedding = 0.0
+        else:
+            vecs_a = [_get_embedding(k) for k in keys_a]
+            vecs_b = [_get_embedding(k) for k in keys_b]
+            ck_embedding = _best_match_mean_cosine(vecs_a, vecs_b)
+        pair["live_constraints_canonical_key_embedding"] = {
+            "count_a": len(keys_a), "count_b": len(keys_b),
+            "mean_cosine": None if ck_embedding is None else round(ck_embedding, 3),
+        }
         # reasoning_passages — Jaccard on normalized quote strings
         pa = xa.get("reasoning_passages", []) or []
         pb = xb.get("reasoning_passages", []) or []
@@ -501,6 +622,18 @@ def compute_extraction_drift(extractions: list[tuple[str, dict]]) -> dict:
         "max_jaccard": round(max(ck_vals), 3) if ck_vals else None,
         "undefined_pair_count": sum(
             1 for p in pairs if p["live_constraints_canonical_key"]["jaccard"] is None
+        ),
+    }
+    # canonical_key embedding aggregate: same shape, filter None pairs.
+    cke_vals = [p["live_constraints_canonical_key_embedding"]["mean_cosine"]
+                for p in pairs
+                if p["live_constraints_canonical_key_embedding"]["mean_cosine"] is not None]
+    agg["live_constraints_canonical_key_embedding"] = {
+        "mean_cosine": round(sum(cke_vals) / len(cke_vals), 3) if cke_vals else None,
+        "min_cosine": round(min(cke_vals), 3) if cke_vals else None,
+        "max_cosine": round(max(cke_vals), 3) if cke_vals else None,
+        "undefined_pair_count": sum(
+            1 for p in pairs if p["live_constraints_canonical_key_embedding"]["mean_cosine"] is None
         ),
     }
     for field in ("live_constraints", "reasoning_passages", "dropped_threads"):
@@ -592,6 +725,13 @@ def render_drift_markdown(drift: dict, case_id: str, generated_at: str,
             f"{ck['undefined_pair_count']} undefined pair(s) — both runs had "
             f"no valid canonical_keys. See `invalid_key_rate` below."
         )
+    # canonical_key_embedding row — PR #1b primary metric for semantic agreement.
+    cke = agg.get("live_constraints_canonical_key_embedding", {}) or {}
+    out.append(
+        f"| `live_constraints_canonical_key_embedding` | cosine (empty-excl) | "
+        f"{_fmt(cke.get('mean_cosine'), 3)} | {_fmt(cke.get('min_cosine'), 3)} | "
+        f"{_fmt(cke.get('max_cosine'), 3)} |"
+    )
     out.append("")
     out.append(
         f"**`invalid_key_rate` per run:** {agg.get('invalid_key_rate_per_run', [])}"
@@ -699,6 +839,9 @@ def main() -> int:
         ck = agg.get("live_constraints_canonical_key", {}) or {}
         print(f"  {'canonical_key':22s} jaccard    mean={_fmt(ck.get('mean_jaccard'),3)} "
               f"min={_fmt(ck.get('min_jaccard'),3)}")
+        cke = agg.get("live_constraints_canonical_key_embedding", {}) or {}
+        print(f"  {'canonical_key_embed':22s} cosine     mean={_fmt(cke.get('mean_cosine'),3)} "
+              f"min={_fmt(cke.get('min_cosine'),3)}")
         print(f"  invalid_key_rate:     per_run={agg.get('invalid_key_rate_per_run', [])} "
               f"overall={_fmt(agg.get('invalid_key_rate_overall'),3)}")
         print(f"  fabricated counts:    {agg.get('fabricated_count_per_run', [])}")
@@ -746,6 +889,9 @@ def main() -> int:
         ck = agg.get("live_constraints_canonical_key", {}) or {}
         print(f"  {'canonical_key':22s} jaccard    mean={_fmt(ck.get('mean_jaccard'),3)} "
               f"min={_fmt(ck.get('min_jaccard'),3)}")
+        cke = agg.get("live_constraints_canonical_key_embedding", {}) or {}
+        print(f"  {'canonical_key_embed':22s} cosine     mean={_fmt(cke.get('mean_cosine'),3)} "
+              f"min={_fmt(cke.get('min_cosine'),3)}")
         print(f"  invalid_key_rate:     per_run={agg.get('invalid_key_rate_per_run', [])} "
               f"overall={_fmt(agg.get('invalid_key_rate_overall'),3)}")
         print(f"  fabricated counts:    {agg.get('fabricated_count_per_run', [])}")

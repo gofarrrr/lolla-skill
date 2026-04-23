@@ -12,6 +12,161 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from stability_check import compute_extraction_drift  # noqa: E402
 
+# ---------------------------------------------------------------------------
+# PR #1b — embedding cosine helpers
+# ---------------------------------------------------------------------------
+
+import numpy as np  # noqa: E402
+
+
+def test_cosine_identical_vectors_is_one():
+    """Self-similarity sanity: cosine of a vector with itself is 1.0."""
+    from stability_check import _cosine_similarity
+    v = np.array([1.0, 2.0, 3.0, 4.0])
+    assert abs(_cosine_similarity(v, v) - 1.0) < 1e-6
+
+
+def test_cosine_orthogonal_vectors_is_zero():
+    """Orthogonal vectors: cosine is 0."""
+    from stability_check import _cosine_similarity
+    a = np.array([1.0, 0.0])
+    b = np.array([0.0, 1.0])
+    assert abs(_cosine_similarity(a, b)) < 1e-6
+
+
+def test_cosine_opposite_vectors_is_negative_one():
+    """Opposite-direction vectors: cosine is -1.0."""
+    from stability_check import _cosine_similarity
+    a = np.array([1.0, 1.0])
+    b = np.array([-1.0, -1.0])
+    assert abs(_cosine_similarity(a, b) - (-1.0)) < 1e-6
+
+
+def test_best_match_mean_identical_lists_is_one():
+    """Two identical lists of vectors: best-match mean is 1.0 (every item has a perfect partner)."""
+    from stability_check import _best_match_mean_cosine
+    vecs_a = [np.array([1.0, 0.0]), np.array([0.0, 1.0])]
+    vecs_b = [np.array([1.0, 0.0]), np.array([0.0, 1.0])]
+    assert abs(_best_match_mean_cosine(vecs_a, vecs_b) - 1.0) < 1e-6
+
+
+def test_best_match_mean_empty_lists_returns_none():
+    """Both lists empty → undefined (None). Matches empty-set Jaccard doctrine."""
+    from stability_check import _best_match_mean_cosine
+    assert _best_match_mean_cosine([], []) is None
+
+
+def test_best_match_mean_one_empty_list_returns_zero():
+    """One side empty → 0.0 (no agreement possible)."""
+    from stability_check import _best_match_mean_cosine
+    vecs_a = [np.array([1.0, 0.0])]
+    assert _best_match_mean_cosine(vecs_a, []) == 0.0
+    assert _best_match_mean_cosine([], vecs_a) == 0.0
+
+
+def test_best_match_mean_different_lengths_penalizes_unmatched():
+    """Short list fully matches; longer list's unmatched items count as 0 penalty
+    against the longer-list size. Prevents a trivially high score when one
+    side has many fewer items than the other."""
+    from stability_check import _best_match_mean_cosine
+    vecs_a = [np.array([1.0, 0.0])]  # 1 item
+    vecs_b = [np.array([1.0, 0.0]), np.array([0.0, 1.0])]  # 2 items
+    # Best match for a[0] is b[0] with cosine 1.0. b[1] is unmatched.
+    # Denominator = max(len_a, len_b) = 2. Mean = (1.0 + 0.0) / 2 = 0.5.
+    result = _best_match_mean_cosine(vecs_a, vecs_b)
+    assert abs(result - 0.5) < 1e-6
+
+
+# ---------------------------------------------------------------------------
+# PR #1b — compute_extraction_drift integration for canonical_key embedding
+# ---------------------------------------------------------------------------
+#
+# These tests use a mocked embedding function so the test suite doesn't
+# require a live OpenAI API call.
+
+def test_drift_includes_canonical_key_embedding_pair_block(monkeypatch):
+    """When both runs have matching canonical_keys (semantically identical
+    strings), the pair's live_constraints_canonical_key_embedding metric
+    reports mean_cosine ~ 1.0."""
+    # Stub the embedding fetcher so we don't need network
+    embeddings = {
+        "alpha-one": np.array([1.0, 0.0, 0.0]),
+        "alpha-two": np.array([0.0, 1.0, 0.0]),
+        "alpha-three": np.array([0.0, 0.0, 1.0]),
+    }
+    import stability_check as sc
+    monkeypatch.setattr(sc, "_get_embedding", lambda s: embeddings[s])
+
+    run_a = _make_extraction([
+        {"constraint": "c1", "canonical_key": "alpha-one"},
+        {"constraint": "c2", "canonical_key": "alpha-two"},
+    ])
+    run_b = _make_extraction([
+        {"constraint": "c1", "canonical_key": "alpha-one"},
+        {"constraint": "c2", "canonical_key": "alpha-two"},
+    ])
+    drift = sc.compute_extraction_drift([("a", run_a), ("b", run_b)])
+    pair = drift["pairs"][0]
+    assert "live_constraints_canonical_key_embedding" in pair
+    assert pair["live_constraints_canonical_key_embedding"]["mean_cosine"] == 1.0
+
+
+def test_drift_embedding_semantically_close_slugs(monkeypatch):
+    """Slugs like marcus-comp and marcus-comp-below-market are both about
+    the same subject; embeddings should rate them close. Here we stub two
+    vectors that are 0.95-cosine close to simulate this."""
+    v1 = np.array([1.0, 0.0, 0.0])
+    v2 = np.array([0.95, 0.3122, 0.0])  # cosine with v1 ≈ 0.95
+    v2 = v2 / np.linalg.norm(v2)
+    embeddings = {"marcus-comp": v1, "marcus-comp-below-market": v2}
+    import stability_check as sc
+    monkeypatch.setattr(sc, "_get_embedding", lambda s: embeddings[s])
+
+    run_a = _make_extraction([{"constraint": "c", "canonical_key": "marcus-comp"}])
+    run_b = _make_extraction([{"constraint": "c", "canonical_key": "marcus-comp-below-market"}])
+    drift = sc.compute_extraction_drift([("a", run_a), ("b", run_b)])
+    pair = drift["pairs"][0]
+    score = pair["live_constraints_canonical_key_embedding"]["mean_cosine"]
+    assert score >= 0.90, f"Expected ≥0.90 (semantically close), got {score}"
+
+
+def test_drift_embedding_both_empty_returns_none(monkeypatch):
+    """Both runs have empty canonical_keys after filtering → metric is None
+    (undefined), not 1.0. Parallel to the exact-text Jaccard both-empty case."""
+    import stability_check as sc
+    monkeypatch.setattr(sc, "_get_embedding", lambda s: np.array([1.0, 0.0]))
+
+    run_a = _make_extraction([{"constraint": "x", "canonical_key": ""}])
+    run_b = _make_extraction([{"constraint": "y", "canonical_key": ""}])
+    drift = sc.compute_extraction_drift([("a", run_a), ("b", run_b)])
+    pair = drift["pairs"][0]
+    assert pair["live_constraints_canonical_key_embedding"]["mean_cosine"] is None
+
+
+def test_drift_aggregate_has_canonical_key_embedding_block(monkeypatch):
+    """Aggregate result includes live_constraints_canonical_key_embedding
+    with mean_cosine/min_cosine/max_cosine, filtering None pairs."""
+    embeddings = {
+        "alpha-one": np.array([1.0, 0.0]),
+        "alpha-two": np.array([0.0, 1.0]),
+    }
+    import stability_check as sc
+    monkeypatch.setattr(sc, "_get_embedding", lambda s: embeddings[s])
+
+    run_a = _make_extraction([{"constraint": "c", "canonical_key": "alpha-one"}])
+    run_b = _make_extraction([{"constraint": "c", "canonical_key": "alpha-one"}])
+    run_c = _make_extraction([{"constraint": "c", "canonical_key": "alpha-two"}])
+    drift = sc.compute_extraction_drift([
+        ("a", run_a), ("b", run_b), ("c", run_c)
+    ])
+    agg = drift["aggregate"]
+    assert "live_constraints_canonical_key_embedding" in agg
+    block = agg["live_constraints_canonical_key_embedding"]
+    # Pairs: (a,b)=1.0, (a,c)=0.0, (b,c)=0.0 → mean=0.333, min=0.0, max=1.0
+    assert abs(block["mean_cosine"] - (1.0 / 3)) < 0.01
+    assert block["min_cosine"] == 0.0
+    assert block["max_cosine"] == 1.0
+
 
 def _make_extraction(constraints: list[dict]) -> dict:
     """Build a minimal extraction payload with just live_constraints populated.

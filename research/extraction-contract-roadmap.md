@@ -137,7 +137,23 @@ See PR #13 on GitHub. Shipped ≤120-char terse-form rule + infrastructure. Does
 
 ---
 
-### PR #1b — `live_constraints.canonical_key` field + embedding-cosine metric [NOT STARTED]
+### PR #1b — `live_constraints.canonical_key` field + embedding-cosine metric [PAUSED 2026-04-23]
+
+**What was tried:** two iterations of condensed canonical_key prompt text — inline in live_constraints block (attempt 1) and moved to SCHEMA NOTES footer (attempt 2). Evidence: `research/stability-runs/contract-phase1b-attempt-1-2026-04-23/README.md` + `contract-phase1b-attempt-2-2026-04-23/README.md`.
+
+**What shipped from this work:** embedding-cosine metric infrastructure in `scripts/stability_check.py` (functions `_cosine_similarity`, `_best_match_mean_cosine`, `_get_embedding`, `compute_extraction_drift` extended with `live_constraints_canonical_key_embedding` metric). Fully tested (7 new unit tests). Available for any future canonical_key work.
+
+**What did NOT ship:** the canonical_key prompt addition itself. Extractor still does not emit a `canonical_key` field.
+
+**Why paused:** two iterations confirmed the canonical_key rule cannot be added to the monolithic extraction prompt without material trade-offs on other fields. Inline placement produces good slugs (embedding cosine 0.787 cross-capture — exceeds 0.70 target) but pollutes 4 adjacent fields (original_framing, decision_situation, live_constraints exact-text, dropped_threads each regressed beyond noise band). Footer placement reduces pollution on reasoning_passages but degrades slug quality (embedding cosine 0.664 — below target). Neither is a clean ship.
+
+**What unblocks this PR:** Track A decomposition — separate LLM calls per field — structurally eliminates attention competition. Track A is deferred per the Cycle-1 handover. Until then, PR #1b stays paused.
+
+**Doctrine insight captured:** even condensed prompt additions cause measurable context pollution in this pipeline. The "budget-balance" principle alone isn't enough — there's no fully-clean prompt addition possible at current model / prompt-shape. Future PRs add content at known cost; avoid unless the primary metric win clearly outweighs.
+
+**Impact on roadmap:**
+- PR #2 (dropped_threads canonical_key) was blocked on PR #1b. Re-scope PR #2 to ship ONLY the ≤120-char thread rule + tie-break detection, deferring canonical_key to the same Track A window as PR #1b.
+- PRs #3, #4a, #4b, #5 proceed as planned; none depend on canonical_key.
 
 **Why this PR exists:** the original PR #1 ambition (canonical_key as stable cross-run identity) failed because (a) the prompt text caused context pollution on other fields, and (b) exact-text Jaccard is the wrong metric for semantically-equivalent slugs. PR #1 shipped the proven side-effect win. PR #1b earns the canonical_key ambition with the right architecture: condensed prompt + semantic metric.
 
@@ -169,9 +185,11 @@ See PR #13 on GitHub. Shipped ≤120-char terse-form rule + infrastructure. Does
 
 ---
 
-### PR #2 — `dropped_threads.canonical_key` + tie-break rule + ≤120-char thread rule [NOT STARTED]
+### PR #2 — `dropped_threads` tie-break rule + ≤120-char thread rule [RE-SCOPED 2026-04-23, NOT STARTED]
 
-**Blocked on:** PR #1b merged + acceptance-gate passed.
+**Re-scope:** PR #1b paused → canonical_key portion of PR #2 deferred to Track A window. PR #2 now ships the two parts that don't depend on canonical_key: (1) ≤120-char terse-form rule on `thread` text (same mechanism as PR #1's win on `constraint`), and (2) tie-break rule as prose, measured via string-fallback until canonical_key ships.
+
+**Blocked on:** nothing. Ready to execute independently.
 
 **Task file:** `tasks/tasks-extraction-contract-phase-2-dropped-threads.md`.
 
