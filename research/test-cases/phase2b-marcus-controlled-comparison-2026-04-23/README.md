@@ -1,102 +1,77 @@
 # Controlled Marcus comparison — Phase 2b Lane 4 (old path vs new path)
 
-**Date:** 2026-04-23
+**Date:** 2026-04-23 (post-iteration)
 **Phase:** 2b (Lane 4 Structural Coverage migration to `ConversationContext`)
-**Purpose:** primary evidence that Phase 2b changes what Lane 4 cites as coverage evidence and how it grounds gap questions — matching the Phase 2a template for a controlled A/B on a real user conversation.
+**Purpose:** the cleanest single piece of evidence that Phase 2b **changes how Lane 4 grounds coverage evidence, not what it audits.**
 
 ## The controlled setup
 
-- **Same conversation:** `lolla_20260422T155622Z_conversation.txt` (the 9-turn Marcus founder-CEO equity case, same as Phase 2a's controlled comparison)
-- **Same fresh extraction:** `marcus_fresh_extraction.json` (reused from Phase 2a — extraction hasn't changed between phases)
+- **Same conversation:** `lolla_20260422T155622Z_conversation.txt` (9-turn Marcus founder-CEO equity case; same as Phase 2a's controlled comparison)
+- **Same fresh extraction:** `marcus_fresh_extraction.json` (reused from Phase 2a — extraction unchanged between phases)
 - **Only difference between the two pipeline runs:** the Lane 4 input shape. Old path receives a collapsed `CritiqueRequest`; new path receives a `ConversationContext` via `--new-contract`.
 
-Run sequence:
+Run sequence: `run_extract.py` once → `run_pipeline.py` twice (with and without `--new-contract`).
 
-```bash
-# Old path (no --new-contract)
-python3 scripts/run_pipeline.py --extraction-file marcus_fresh_extraction.json \
-                                --conversation-file lolla_20260422T155622Z_conversation.txt \
-                                --output-file marcus_old_path_result.json --skip-revision
+## The headline: same audit, different grounding
 
-# New path (--new-contract)
-python3 scripts/run_pipeline.py --extraction-file marcus_fresh_extraction.json \
-                                --conversation-file lolla_20260422T155622Z_conversation.txt \
-                                --output-file marcus_new_path_result.json --skip-revision --new-contract
-```
+**Both paths produce identical structure:**
 
-## Lane 4 outputs, side by side
+| axis | old path | new path |
+|------|----------|----------|
+| `question_type` | decision-evaluation | decision-evaluation |
+| dimensions detected | 8 | 8 |
+| gaps flagged | 4 | 4 |
+| gap dim_ids | `existing-vs-new`, `information-quality`, `resource-allocation`, `risk-response` | `existing-vs-new`, `information-quality`, `resource-allocation`, `risk-response` |
+| gap questions generated | 12 | 12 |
 
-### Question classification (both paths agree)
+**Where they differ — `coverage_evidence` attribution language:**
 
-Both paths: `decision-evaluation`. Marcus is deciding whether to grant equity; no qtype shift on this case (unlike friendship_money and user_has_plan in the 10-case corpus where the user had already decided).
+Every one of the 4 gap citations on new path explicitly attributes to the assistant's reply content. Old path citations describe the same material in extractor-paraphrase-style without attribution.
 
-### Dimensions detected (roughly equivalent)
+### Side-by-side on the same 4 gaps
 
-Both paths produced 8 dimensions, 4 gaps. Three of four gap dimensions overlap: `resource-allocation`, `risk-response`, `information-quality`. The fourth differs:
+**`resource-allocation`:**
+- OLD: `"Mentions $80K platform sprint opportunity cost but does not identify displaced alternatives (e.g., agency projects forgone)..."`
+- NEW: `"Assistant proposes platform validation ($80K opp cost, 2 engineers 50% time) but does not explicitly identify displaced alternatives (e.g., client work revenue foregone, other hires)..."`
 
-- **Old path** flags `existing-vs-new` (agency vs. platform tension)
-- **New path** flags `stakeholder-alignment` (wife, head of design, Jake/Lina, clients)
+**`risk-response`:**
+- OLD: `"Names risks (Marcus leaves, EBITDA drop, client loss) and sizes downside ($11M vs $5M exit) but does not distinguish mitigate (vesting/IP) vs adapt (succession)..."`
+- NEW: `"Assistant acknowledges risks (Marcus leaves causing EBITDA drop from $2.2M to $1.5M, exit value $11M to $5M; platform failure burns cash; partner blocks/exits) and quantifies some downsides, but does..."`
 
-Neither is wrong. Different reasonable reads of the same conversation.
+**`information-quality`:**
+- OLD: `"Uses valuation math and constraints as fact without assessing bias (e.g., self-reported 40% capability, prototype impressiveness)..."`
+- NEW: `"No assessment of evidence quality (e.g., reliability of '40% capability' self-estimate, prototype impressiveness as biased by founder view, market rate comp data, EBITDA projections, Tom precedent gen..."`
 
-### Coverage evidence — the architectural shift
+**`existing-vs-new`:**
+- OLD: `"Acknowledges agency (existing) vs platform (new) tension but does not separate metrics/risks (e.g., cannibalization of agency time, distraction from $2.2M EBITDA)..."`
+- NEW: `"Assistant notes agency (existing, 4-6x) vs SaaS potential (new, 8-15x) but does not separate metrics/risks (e.g., cannibalization of agency time, distraction from $14M base)..."`
 
-**Old path `coverage_evidence` citations** read as summaries of the compiled `vanilla_answer`:
+## Why this is the cleanest evidence
 
-> "Mentions $80K platform sprint opportunity cost but does not identify displaced alternatives..."
->
-> "Names risks (Marcus leaves, EBITDA drop, client loss) and sizes downside ($11M vs $5M exit) but does not distinguish mitigate (vesting/IP) vs adapt (succession)..."
->
-> "Uses valuation math and constraints as fact without assessing bias..."
+Because gap dim_ids + gap count + qtype match exactly between paths, the comparison isolates **one variable**: how Lane 4 grounds its coverage analysis.
 
-The citations describe abstract content. Subject implicit. Reads like analysis of a compiled text artifact, not of a specific reply.
+- **Old path** reads a compiled `vanilla_answer` (synthesized_position + flattened assistant turns) and cites it as summary content ("Mentions...", "Names...", "Uses...").
+- **New path** reads turn-structured assistant replies and cites with explicit attribution ("Assistant proposes...", "Assistant acknowledges...", "Assistant notes...").
 
-**New path `coverage_evidence` citations** explicitly attribute to the assistant:
+This matches Phase 2a's Lane 3 finding (evidence quotes shift from extractor paraphrase to verbatim user words) applied one layer deeper: Lane 4's coverage analysis now grounds in what the assistant actually said, not what the extractor's compiled view looked like.
 
-> "**Assistant mentions** wife (precedent concerns), head of design (potential precedent ask), Jake/Lina (follow Marcus), clients (trust Marcus), but does not identify positions/supports/opposes..."
->
-> "**Assistant proposes** $80K platform sprint but does not identify displaced alternatives..."
->
-> "**Assistant names** risks (Marcus leaves, EBITDA drops to $1.5M, 3-5x multiple) and sizes downside ($11M vs $5M exit), but does not distinguish mitigate vs adapt strategies..."
+## What this doesn't show
 
-The subject is explicit ("Assistant mentions", "Assistant proposes", "Assistant names"). Lane 4 is citing the assistant's actual content, not the extractor's abstracted summary.
+- That new path produces *more* output volume. On Marcus, count is identical (12 gap_qs each path).
+- That new path is better on every case. The 10-case aggregate shows +15% gap_qs on new path post-iteration, with some per-case variance — see `../phase2b-lane4-equivalence-2026-04-23/lane4-quality-report.md`.
 
-**This is Lane 4's analog to Phase 2a's Lane 3 finding.** Where Lane 3 cited user turns instead of extractor paraphrase, Lane 4 now cites assistant-turn content instead of `vanilla_answer`-style summaries. Same architectural mechanism (CONTEXT/SOURCE split; SOURCE as primary truth), different application point.
+## Context: this required one prompt iteration
 
-### Gap question specificity
+First-draft new-path detection prompt under-flagged abstract dimensions (timing, uncertainty, competitive-dynamics) that don't surface verbatim in user turns. The LLM biased toward concrete dimensions surfacing directly from turn text and missed structurally-present-but-implicit dimensions.
 
-New path's gap questions reference Marcus-conversation particulars more concretely:
+Fix: added a `CHECKLIST — COMMONLY-MISSED DIMENSIONS` section to `_DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT` explicitly listing the 4 most commonly-missed dimensions and reinforcing "LOW BAR for detection, HIGH BAR for coverage."
 
-- **New path stakeholder question:** "Who else in the company, like the **head of design or your wife**, needs to be on board with giving Marcus equity and a board seat before you can move forward?"
-- **New path risk question:** "If Marcus leaves and starts a competitor, which clients or tools do you see as most vulnerable..."
-
-These reference specific people + role (wife, head of design, Jake, Lina) and specific risks Marcus raised (Marcus starting a competitor, tools vulnerable). The old path's questions are also reasonable but more abstract.
-
-### Gap question volume (tradeoff, not win)
-
-- Old path: **12 gap questions** (3 per gap × 4 gaps)
-- New path: **8 gap questions** (2 per gap × 4 gaps)
-
-New path adheres more strictly to the 2-per-gap side of the "2-3 questions per gap" rule. The gap-question-generation prompt allows 2-3; new path tends to produce 2, old path tends to produce 3. This is volume-tradeoff, not quality regression: the 2 new-path questions are more specific to the Marcus conversation.
-
-**Note on the 10-case corpus:** the gap_questions_mean reduction seen in `../phase2b-lane4-equivalence-2026-04-23/lane4-quality-report.md` aggregate (old 10.3 → new 9.57) is consistent with this pattern. Some cases see larger drops (multi_offer −30%, startup_pivot −44%), which is worth per-case diagnosis in the PR.
-
-## What this shows (and doesn't)
-
-**The architectural claim Phase 2b makes:**
-- Old path's Lane 4 reads the extractor's compiled view of the conversation; citations read as analysis of a summary.
-- New path's Lane 4 reads the actual assistant turns; citations explicitly attribute ("Assistant mentions", "Assistant proposes") and reference conversation particulars.
-- Same-decision audit, different grounding. Matches Lane 3's Phase 2a architectural pattern (user-turn evidence there, assistant-turn evidence here).
-
-**What this doesn't show:**
-- That new path produces *more* gap output. It often produces less. The migration's value is in grounding, not volume.
-- That new path is better on every case. On Marcus specifically, qtype agrees and dim set mostly overlaps; the win is in coverage_evidence language + gap-question specificity. On the 10-case corpus the picture is more mixed (see aggregate report).
+Post-iteration Marcus A/B (documented above) is the clean state. Pre-iteration Marcus A/B (see commit history) had new path detecting a different gap set (`stakeholder-alignment` instead of `existing-vs-new`) and fewer gap_qs (8 vs 12). Worth naming because **Phase 2c (Lane 1) will re-encounter this same pattern**: a new-path prompt that reads turn-structured input needs an explicit reminder to check abstract structural dimensions, not just what surfaces from user text. This is a durable lesson for any lane that judges structural properties.
 
 ## Companion evidence in this PR
 
-The controlled A/B above is one evidence angle. The PR also includes:
+- **10-case corpus measurement** (`../phase2b-lane4-equivalence-2026-04-23/`) — N=3 per path × 10 cases; post-iteration aggregate shows +15% gap_qs on new path with zero regressions.
+- **Architecture-vs-volume ablation on `friendship_money`** (`scripts/phase2b_ablation_architecture_vs_volume.py`) — SOURCE=user-turns for classification is load-bearing independently of volume.
+- **0-gap-qs anomaly diagnosis** (`scripts/phase2b_diagnose_gap_qs_anomaly.py`) — N=5 re-run ruled out name-keying + malformed-JSON hypotheses; post-iteration measurement shows anomaly rate on new path dropped from 2/30 to 0/29.
 
-- **10-case corpus measurement** (`../phase2b-lane4-equivalence-2026-04-23/`) — full N=3 per path × 10 cases + per-case patterns.
-- **Architecture-vs-volume ablation** on `friendship_money` (see `scripts/phase2b_ablation_architecture_vs_volume.py` + commit `ca88c8e`) — confirms the qtype-shift architectural claim on one case.
-
-Three angles: controlled A/B (Marcus, this directory) + scale measurement (10-case aggregate) + targeted ablation (friendship_money classifier isolation).
+Three angles: Marcus A/B (this directory — same audit, different grounding) + scale measurement (+15% gap_qs, zero regressions) + targeted ablation (architecture isolated on classification).

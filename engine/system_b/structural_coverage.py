@@ -552,6 +552,32 @@ incentives DIVERGE and realignment mechanism.
 Requires: identifying FEEDBACK LOOPS.
 - Coverage evidence should quote or paraphrase assistant-turn content. Do NOT \
 cite extractor summaries from CONTEXT as coverage evidence.
+
+CHECKLIST — COMMONLY-MISSED DIMENSIONS:
+When reading the conversation turn-by-turn, dimensions that are IMPLICIT in \
+the user's framing (rather than verbatim keywords) can get deprioritized. \
+Before finalizing your dimension list, explicitly verify you have considered \
+each of the following — they apply to most strategic questions and are the \
+most common miss-mode for this lane:
+
+- Timing & Sequencing: ANY deadline, time pressure, or sequencing constraint \
+in the user's turns (even mentioned briefly — e.g. "I have 7 days", "by end \
+of semester", "before renewal") → DETECT this dimension.
+- Uncertainty Type: ANY probabilistic or unpredictable element in the \
+decision (market reactions, other parties' behavior, future outcomes the \
+user cannot know from current evidence) → DETECT.
+- Competitive Dynamics: ANY external party that might respond to this \
+decision (competitors, alternatives, other candidates, collaborators who \
+could defect) → DETECT.
+- Risk Response: ANY material downside or what-if concern the user has \
+raised (financial, career, relational, reputational) → DETECT.
+
+These dimensions are LOW BAR for detection (if the detect_when trigger fires, \
+include them) and HIGH BAR for coverage (mark covered ONLY if the assistant's \
+replies reason through both sides of the tension). Missing them is a failure \
+mode; false-positive detection is easier to correct via materiality demotion \
+than false-negative omission.
+
 - Return ONLY the JSON object. No explanation.
 """
 

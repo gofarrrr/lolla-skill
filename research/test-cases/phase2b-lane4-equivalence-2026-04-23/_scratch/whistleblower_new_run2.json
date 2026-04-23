@@ -2,6 +2,7 @@
   "status": "ok",
   "format": "json",
   "detected_tendencies": [
+    "reward-and-punishment-superresponse-tendency",
     "availability-misweighing-tendency"
   ],
   "delta_card": {
@@ -24,6 +25,21 @@
           "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
         ],
         "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      },
+      {
+        "tendency_id": "reward-and-punishment-superresponse-tendency",
+        "tendency_name": "Reward and Punishment Superresponse Tendency",
+        "sub_pattern": "general",
+        "severity": "medium",
+        "specific_passage": "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize, (b) the timing is urgent because evidence is being destroyed in real time, (c) the regulator has a strong program and clear jurisdiction. ... I'm saying the weight of institutional inertia at firms like yours usually produces \"quiet handling\" for senior partners even when GCs mean well.",
+        "challenge_statement": "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?",
+        "next_move": "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "systems-thinking"
+        ],
+        "major_tensions": [],
+        "intervention_hint": "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?"
       }
     ],
     "top_findings": [
@@ -47,8 +63,40 @@
         "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
       }
     ],
-    "secondary_findings": [],
-    "secondary_findings_full": [],
+    "secondary_findings": [
+      {
+        "tendency_id": "reward-and-punishment-superresponse-tendency",
+        "tendency_name": "Reward and Punishment Superresponse Tendency",
+        "sub_pattern": "general",
+        "severity": "medium",
+        "specific_passage": "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize, (b) the timing is urgent because evidence is being destroyed in real time, (c) the regulator has a strong program and clear jurisdiction. ... I'm saying the weight of institutional inertia at firms like yours usually produces \"quiet handling\" for senior partners even when GCs mean well.",
+        "challenge_statement": "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?",
+        "next_move": "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "systems-thinking"
+        ],
+        "major_tensions": [],
+        "intervention_hint": "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?"
+      }
+    ],
+    "secondary_findings_full": [
+      {
+        "tendency_id": "reward-and-punishment-superresponse-tendency",
+        "tendency_name": "Reward and Punishment Superresponse Tendency",
+        "sub_pattern": "general",
+        "severity": "medium",
+        "specific_passage": "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize, (b) the timing is urgent because evidence is being destroyed in real time, (c) the regulator has a strong program and clear jurisdiction. ... I'm saying the weight of institutional inertia at firms like yours usually produces \"quiet handling\" for senior partners even when GCs mean well.",
+        "challenge_statement": "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?",
+        "next_move": "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "systems-thinking"
+        ],
+        "major_tensions": [],
+        "intervention_hint": "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?"
+      }
+    ],
     "compound_groups": [],
     "top_compound_groups": [],
     "secondary_compound_groups": [],
@@ -57,17 +105,21 @@
     "secondary_additional_pressure_count": 0,
     "secondary_additional_pressure_tendency_ids": [],
     "detected_tendencies": [
+      "reward-and-punishment-superresponse-tendency",
       "availability-misweighing-tendency"
     ],
     "selected_model_ids": [
+      "systems-thinking",
       "base-rates",
       "statistics-concepts",
       "scientific-method-evidence-testing"
     ],
     "challenge_statements": [
+      "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?",
       "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?"
     ],
     "next_moves": [
+      "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?",
       "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
     ],
     "major_tensions": [
@@ -76,22 +128,26 @@
     "top_challenge_statements": [
       "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?"
     ],
-    "secondary_challenge_statements": [],
+    "secondary_challenge_statements": [
+      "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?"
+    ],
     "top_next_moves": [
       "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
     ],
-    "secondary_next_moves": []
+    "secondary_next_moves": [
+      "What reward is carrying this decision, what punishment is being avoided, and what behavior will that incentive shape actually optimize for?"
+    ]
   },
   "companion_cheat_sheet": {
     "anchors": [
       {
-        "model_id": "wysiati",
-        "display_name": "WYSIATI",
+        "model_id": "information-asymmetry",
+        "display_name": "Information Asymmetry",
         "chunks": [
           {
             "chunk_type": "failure_mode",
-            "source_model_id": "wysiati",
-            "text": "Confidence of ignorance makes less-informed decision-makers more confident than better-informed ones, because fewer contradictions and gaps allow a more coherent story to form.",
+            "source_model_id": "information-asymmetry",
+            "text": "Overconfidence and blind spots can make the informed party miss unknown unknowns and resist deeper investigation.",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
@@ -100,31 +156,29 @@
           },
           {
             "chunk_type": "premortem",
-            "source_model_id": "wysiati",
-            "text": "If the person preparing this briefing had wanted to show us a different conclusion, what would they have included that is not here?",
+            "source_model_id": "information-asymmetry",
+            "text": "What specific metric, reference, or proof in this plan is controlled by the party trying to win the decision?",
             "provenance": {
               "source_layer": "wave2",
-              "extraction_type": "normalized",
+              "extraction_type": "explicit",
               "confidence": "high"
             }
           },
           {
             "chunk_type": "antagonist",
-            "source_model_id": "wysiati",
-            "text": "Base Rates: Base rates provide the outside-view evidence that WYSIATI excludes — the distributional facts about the reference class that are not in the immediate picture.",
+            "source_model_id": "information-asymmetry",
+            "text": "Confirmation Bias: Information asymmetry and confirmation bias reinforce each other when selective disclosure hardens existing beliefs.",
             "provenance": {
               "source_layer": "wave3",
               "extraction_type": "explicit",
               "confidence": "high",
-              "relation_target_id": "base-rates"
-            },
-            "affinity_rationale": "Canonical states base rates force introduction of outside-view evidence that WYSIATI has excluded",
-            "activation_condition": "When outside-view reference-class data must be forced into a picture that WYSIATI has already closed"
+              "relation_target_id": "confirmation-bias"
+            }
           },
           {
             "chunk_type": "heuristic",
-            "source_model_id": "wysiati",
-            "text": "Before committing to any confident conclusion, explicitly audit what information is missing and whether the absence is random or structured by selection or incentive.",
+            "source_model_id": "information-asymmetry",
+            "text": "Ask for stories, not advice, so tacit decision steps become inspectable.",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
@@ -133,8 +187,8 @@
           },
           {
             "chunk_type": "identity",
-            "source_model_id": "wysiati",
-            "text": "Select when: A confident conclusion has been reached from evidence that may be incomplete, non-random, or selectively presented. | Danger when: Evidence has been explicitly audited for completeness and the gaps are known and acknowledged — the closure is warranted. | Reasoning: diagnostic, metacognitive, probabilistic",
+            "source_model_id": "information-asymmetry",
+            "text": "Select when: Pricing, trust, or strategic choice depends on hidden information, concealed incentives, or unshared operating reality. | Danger when: The critical evidence is externally audited, directly observable in production, or contractually hard for one side to manipulate. | Reasoning: diagnostic, causal",
             "provenance": {
               "source_layer": "wave1",
               "extraction_type": "explicit",
@@ -143,180 +197,642 @@
           }
         ],
         "presence_mode": "executed",
-        "evidence_quote": "\"Confident about the client and project code\" with financials and emails being destroyed, during an active regulatory audit, is not ambiguous. A reasonable person would conclude this is likely obstruction-related conduct. I want to be careful not to conclude it definitively — there's a non-zero chance there's a legitimate explanation (he was destroying duplicates after an official retention decision, he was destroying personal work product, etc). But the timing and location make any benign explanation hard to believe.",
-        "presence_explanation": "The answer reaches a confident conclusion on obstruction likelihood while explicitly acknowledging gaps in evidence (non-zero chance of benign explanations) and auditing the completeness of observed factors like timing and location."
+        "evidence_quote": "Tonight: document what you saw — full timeline, specifics, physical description of the scene. Write it in a personal email to yourself (sent from a personal, non-work account to the same personal account) so you have a timestamped record.",
+        "presence_explanation": "The answer prioritizes creating a personal, timestamped record to counter the firm's control over work systems and preserve hidden information for regulators."
+      },
+      {
+        "model_id": "game-theory-payoffs",
+        "display_name": "Game Theory Payoffs",
+        "chunks": [
+          {
+            "chunk_type": "ally",
+            "source_model_id": "game-theory-payoffs",
+            "text": "Decision Trees: Decision-trees help game-theory-payoffs lay out options, counter-options, and outcome branches when choices are explicit and interdependent.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "decision-trees"
+            },
+            "affinity_rationale": "Described as a practical analytical tool that game theory 'often guides the use of' — useful complement for structured analysis but a tool-level relationship, not a core mechanism.",
+            "activation_condition": "When laying out structured option-counter-option-outcome branches for probabilistic or uncertain multi-move payoff scenarios"
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "game-theory-payoffs",
+            "text": "Incredible threats or promises can be treated as real leverage even when no device makes them binding.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "game-theory-payoffs",
+            "text": "If the opponent's strongest adverse response lands, is the downside still survivable?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "game-theory-payoffs",
+            "text": "What evidence would show that we chose the wrong players, incentives, or payoff assumptions for this game?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "game-theory-payoffs",
+            "text": "Confirmation Bias: Confirmation-bias distorts game-theory-payoffs by locking in the wrong players, incentives, or payoff assumptions before contradictory evidence is considered.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "confirmation-bias"
+            },
+            "affinity_rationale": "Directly distorts the game analysis — locks in the wrong players, incentives, or payoff assumptions and stops testing whether contradictory structural evidence invalidates the game model.",
+            "activation_condition": "When the team has settled on a game structure and payoff model without stress-testing whether the wrong players, incentives, or assumptions were chosen"
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "Internal reporting requires you to trust that the general counsel will take action against a senior partner who likely has significant revenue and political weight. That's possible but not the way to bet. Internal reporting also tips the timeline — once the partner knows someone saw him, the evidence situation changes",
+        "presence_explanation": "The recommendation evaluates reporting paths based on how firm leadership and the partner will respond strategically, changing payoffs through retaliation, cover stories, and evidence alteration."
+      },
+      {
+        "model_id": "power-dynamics",
+        "display_name": "Power Dynamics",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "power-dynamics",
+            "text": "A signed deal can be mistaken for durable control even though the next commitment hands timing, data, or switching-cost leverage to the counterparty.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "power-dynamics",
+            "text": "Teams can treat verbal toughness as leverage even when the walk-away is not credible and the fallback option is worse than the current deal.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "power-dynamics",
+            "text": "What would make our walk-away or delay threat binding rather than rhetorical?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "power-dynamics",
+            "text": "Separate stated willingness from credible walk-away by checking enforcement cost, internal approval, and operational fallback.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "power-dynamics",
+            "text": "Confirmation Bias: Confirmation-bias distorts power-dynamics by making teams see the leverage structure they want rather than the outside option they actually have.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "confirmation-bias"
+            },
+            "affinity_rationale": "Directly distorts the core leverage analysis — makes teams see the leverage structure they want rather than the outside option evidence actually supports.",
+            "activation_condition": "When assessing relative bargaining position and the team's evidence for its outside option has not been independently tested"
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize",
+        "presence_explanation": "The analysis centers on the senior partner's leverage and firm leadership's conflicting incentives, driving the choice of external over internal reporting."
+      },
+      {
+        "model_id": "principal-agent-problem",
+        "display_name": "Principal Agent Problem",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "principal-agent-problem",
+            "text": "Alignment metrics can hide real divergence when dashboards or formal compliance are mistaken for actual goal alignment.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "principal-agent-problem",
+            "text": "If this outcome is bad, is the responsible party incapable and/or is the design bad?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "principal-agent-problem",
+            "text": "Define roles, decision boundaries, and expectations clearly enough that delegated work stays legible to the principal's actual objective.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "principal-agent-problem",
+            "text": "Diagnose drift sequentially by separating goals, problems, root causes, design changes, and execution instead of blurring them together.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "principal-agent-problem",
+            "text": "Confirmation Bias: Confirmation-bias makes principal-agent-problem harder to diagnose because leaders can mistake mandate defense and dashboard compliance for genuine alignment.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "confirmation-bias"
+            },
+            "affinity_rationale": "Canonical risks: 'Premature Analysis/Confirmation Bias — the Principal rushes into analysis without being crystal clear about the output needed'.",
+            "activation_condition": "When principals assume their initial hypothesis about agent performance is correct without rigorous testing."
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "your most protected path is probably a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm",
+        "presence_explanation": "The recommendation uses an attorney as an aligned agent to file the report, mitigating the firm's misaligned incentives as principal in handling internal reports."
       }
     ],
-    "total_chunk_count": 5,
+    "total_chunk_count": 20,
     "budget_max": 20,
     "anti_echo_model_ids": [
       "base-rates",
       "scientific-method-evidence-testing",
-      "statistics-concepts"
+      "statistics-concepts",
+      "systems-thinking"
     ],
     "reranker": {
       "active": true,
-      "chunks_above_relevance_floor": 3,
-      "mean_relevance_score": 0.3006
+      "chunks_above_relevance_floor": 13,
+      "mean_relevance_score": 0.2894
     }
   },
   "companion_card": {
     "detected_models": [
       {
-        "model_id": "wysiati",
-        "model_name": "WYSIATI",
-        "evidence_quote": "\"Confident about the client and project code\" with financials and emails being destroyed, during an active regulatory audit, is not ambiguous. A reasonable person would conclude this is likely obstruction-related conduct. I want to be careful not to conclude it definitively — there's a non-zero chance there's a legitimate explanation (he was destroying duplicates after an official retention decision, he was destroying personal work product, etc). But the timing and location make any benign explanation hard to believe.",
+        "model_id": "game-theory-payoffs",
+        "model_name": "Game Theory Payoffs",
+        "evidence_quote": "Internal reporting requires you to trust that the general counsel will take action against a senior partner who likely has significant revenue and political weight. That's possible but not the way to bet. Internal reporting also tips the timeline — once the partner knows someone saw him, the evidence situation changes",
         "presence_mode": "executed",
-        "presence_explanation": "The answer reaches a confident conclusion on obstruction likelihood while explicitly acknowledging gaps in evidence (non-zero chance of benign explanations) and auditing the completeness of observed factors like timing and location.",
+        "presence_explanation": "The recommendation evaluates reporting paths based on how firm leadership and the partner will respond strategically, changing payoffs through retaliation, cover stories, and evidence alteration.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "power-dynamics",
+        "model_name": "Power Dynamics",
+        "evidence_quote": "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize",
+        "presence_mode": "executed",
+        "presence_explanation": "The analysis centers on the senior partner's leverage and firm leadership's conflicting incentives, driving the choice of external over internal reporting.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "principal-agent-problem",
+        "model_name": "Principal Agent Problem",
+        "evidence_quote": "your most protected path is probably a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm",
+        "presence_mode": "executed",
+        "presence_explanation": "The recommendation uses an attorney as an aligned agent to file the report, mitigating the firm's misaligned incentives as principal in handling internal reports.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "information-asymmetry",
+        "model_name": "Information Asymmetry",
+        "evidence_quote": "Tonight: document what you saw — full timeline, specifics, physical description of the scene. Write it in a personal email to yourself (sent from a personal, non-work account to the same personal account) so you have a timestamped record.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer prioritizes creating a personal, timestamped record to counter the firm's control over work systems and preserve hidden information for regulators.",
         "detection_confidence": "structural"
       }
     ],
     "expansions": [
       {
-        "source_model_id": "wysiati",
+        "source_model_id": "game-theory-payoffs",
         "relation_type": "antagonist",
-        "model_id": "base-rates",
-        "model_name": "Base Rates",
-        "substrate_chunk": "Base rates provide the outside-view evidence that WYSIATI excludes — the distributional facts about the reference class that are not in the immediate picture.",
-        "why_relevant": "Base rates provide the outside-view evidence that WYSIATI excludes — the distributional facts about the reference class that are not in the immediate picture.",
-        "affinity_rationale": "Canonical states base rates force introduction of outside-view evidence that WYSIATI has excluded",
-        "activation_condition": "When outside-view reference-class data must be forced into a picture that WYSIATI has already closed"
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias distorts game-theory-payoffs by locking in the wrong players, incentives, or payoff assumptions before contradictory evidence is considered.",
+        "why_relevant": "Confirmation-bias distorts game-theory-payoffs by locking in the wrong players, incentives, or payoff assumptions before contradictory evidence is considered.",
+        "affinity_rationale": "Directly distorts the game analysis — locks in the wrong players, incentives, or payoff assumptions and stops testing whether contradictory structural evidence invalidates the game model.",
+        "activation_condition": "When the team has settled on a game structure and payoff model without stress-testing whether the wrong players, incentives, or assumptions were chosen"
       },
       {
-        "source_model_id": "wysiati",
+        "source_model_id": "game-theory-payoffs",
         "relation_type": "tension",
-        "model_id": "base-rates",
-        "model_name": "Base Rates",
-        "substrate_chunk": "WYSIATI conflicts with base-rates when the mind's closure around available evidence prevents the outside-view reference-class data from entering the picture at all.",
-        "why_relevant": "WYSIATI conflicts with base-rates when the mind's closure around available evidence prevents the outside-view reference-class data from entering the picture at all.",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Game-theory-payoffs conflicts with confirmation-bias when the team locks in the wrong game structure and stops testing contradictory evidence.",
+        "why_relevant": "Game-theory-payoffs conflicts with confirmation-bias when the team locks in the wrong game structure and stops testing contradictory evidence.",
         "tension_type": "conflicts"
       },
       {
-        "source_model_id": "wysiati",
+        "source_model_id": "game-theory-payoffs",
+        "relation_type": "ally",
+        "model_id": "decision-trees",
+        "model_name": "Decision Trees",
+        "substrate_chunk": "Decision-trees help game-theory-payoffs lay out options, counter-options, and outcome branches when choices are explicit and interdependent.",
+        "why_relevant": "Decision-trees help game-theory-payoffs lay out options, counter-options, and outcome branches when choices are explicit and interdependent.",
+        "affinity_rationale": "Described as a practical analytical tool that game theory 'often guides the use of' — useful complement for structured analysis but a tool-level relationship, not a core mechanism.",
+        "activation_condition": "When laying out structured option-counter-option-outcome branches for probabilistic or uncertain multi-move payoff scenarios"
+      },
+      {
+        "source_model_id": "power-dynamics",
         "relation_type": "antagonist",
-        "model_id": "critical-thinking",
-        "model_name": "Critical Thinking",
-        "substrate_chunk": "Critical thinking's discipline of evidence quality assessment and assumption surfacing directly fights WYSIATI by inserting the 'what is missing?' question before conclusions are drawn.",
-        "why_relevant": "Critical thinking's discipline of evidence quality assessment and assumption surfacing directly fights WYSIATI by inserting the 'what is missing?' question before conclusions are drawn.",
-        "affinity_rationale": "Canonical states critical thinking directly fights WYSIATI through evidence quality assessment and assumption surfacing",
-        "activation_condition": "When evidence quality assessment and assumption surfacing must override the fluent coherence of available information"
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias distorts power-dynamics by making teams see the leverage structure they want rather than the outside option they actually have.",
+        "why_relevant": "Confirmation-bias distorts power-dynamics by making teams see the leverage structure they want rather than the outside option they actually have.",
+        "affinity_rationale": "Directly distorts the core leverage analysis — makes teams see the leverage structure they want rather than the outside option evidence actually supports.",
+        "activation_condition": "When assessing relative bargaining position and the team's evidence for its outside option has not been independently tested"
+      },
+      {
+        "source_model_id": "power-dynamics",
+        "relation_type": "tension",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Power-dynamics conflicts with confirmation-bias when a team keeps acting as if its outside option is stronger than the evidence supports.",
+        "why_relevant": "Power-dynamics conflicts with confirmation-bias when a team keeps acting as if its outside option is stronger than the evidence supports.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "power-dynamics",
+        "relation_type": "antagonist",
+        "model_id": "opportunity-cost",
+        "model_name": "Opportunity Cost",
+        "substrate_chunk": "Opportunity-cost counters power-dynamics tunnel vision by asking whether winning the negotiation is even worth pursuing relative to better alternatives.",
+        "why_relevant": "Opportunity-cost counters power-dynamics tunnel vision by asking whether winning the negotiation is even worth pursuing relative to better alternatives.",
+        "affinity_rationale": "Broader perspective correction — asks whether winning the negotiation is worth pursuing relative to better alternatives, rather than targeting the leverage analysis itself.",
+        "activation_condition": "When teams are deeply invested in winning a specific negotiation without comparing to the value of their next-best alternative"
+      },
+      {
+        "source_model_id": "principal-agent-problem",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias makes principal-agent-problem harder to diagnose because leaders can mistake mandate defense and dashboard compliance for genuine alignment.",
+        "why_relevant": "Confirmation-bias makes principal-agent-problem harder to diagnose because leaders can mistake mandate defense and dashboard compliance for genuine alignment.",
+        "affinity_rationale": "Canonical risks: 'Premature Analysis/Confirmation Bias — the Principal rushes into analysis without being crystal clear about the output needed'.",
+        "activation_condition": "When principals assume their initial hypothesis about agent performance is correct without rigorous testing."
+      },
+      {
+        "source_model_id": "principal-agent-problem",
+        "relation_type": "tension",
+        "model_id": "information-asymmetry",
+        "model_name": "Information Asymmetry",
+        "substrate_chunk": "Principal-agent-problem conflicts with information-asymmetry when the knowledge gap itself becomes the mechanism that hides divergence between principal goals and agent behavior.",
+        "why_relevant": "Principal-agent-problem conflicts with information-asymmetry when the knowledge gap itself becomes the mechanism that hides divergence between principal goals and agent behavior.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "principal-agent-problem",
+        "relation_type": "antagonist",
+        "model_id": "moral-hazard",
+        "model_name": "Moral Hazard",
+        "substrate_chunk": "Moral-hazard intensifies principal-agent-problem by making the agent's downside exposure too weak to keep behavior aligned with the principal's real risk profile.",
+        "why_relevant": "Moral-hazard intensifies principal-agent-problem by making the agent's downside exposure too weak to keep behavior aligned with the principal's real risk profile.",
+        "affinity_rationale": "Canonical: 'moral Hazard highlights the risk-taking behavior of agents when they do not bear the full consequences, intensifying the Principal-Agent Problem' — direct intensifier.",
+        "activation_condition": "When agents take excessive risks because they do not bear the full consequences of their actions."
+      },
+      {
+        "source_model_id": "information-asymmetry",
+        "relation_type": "tension",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Information asymmetry and confirmation bias reinforce each other when selective disclosure hardens existing beliefs.",
+        "why_relevant": "Information asymmetry and confirmation bias reinforce each other when selective disclosure hardens existing beliefs.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "information-asymmetry",
+        "relation_type": "antagonist",
+        "model_id": "einstellung-effect",
+        "model_name": "Einstellung Effect",
+        "substrate_chunk": "Einstellung-effect undermines information-asymmetry analysis by substituting familiar diagnostic tools for genuine investigation — the existing-solution fixation blocks the problem-recognition step needed to surface hidden informational gaps.",
+        "why_relevant": "Einstellung-effect undermines information-asymmetry analysis by substituting familiar diagnostic tools for genuine investigation — the existing-solution fixation blocks the problem-recognition step needed to surface hidden informational gaps.",
+        "affinity_rationale": "Mapped from canonical 'Maslow's Hammer / Availability Heuristic' — 'rely on tools most familiar, substituting a simple known model, preventing necessary investigation into underlying informational gaps'.",
+        "activation_condition": "When familiar analytical frameworks are applied without investigating whether the information gaps make those frameworks inappropriate for the novel situation"
+      },
+      {
+        "source_model_id": "information-asymmetry",
+        "relation_type": "tension",
+        "model_id": "principal-agent-problem",
+        "model_name": "Principal Agent Problem",
+        "substrate_chunk": "Information asymmetry and principal-agent-problem pull against each other when hidden agent information distorts principal decisions.",
+        "why_relevant": "Information asymmetry and principal-agent-problem pull against each other when hidden agent information distorts principal decisions.",
+        "tension_type": "conflicts"
       }
     ],
     "failure_hints": [
       {
-        "source_model_id": "wysiati",
-        "text": "Coherence as quality signal treats the internal consistency and narrative flow of an argument as evidence of its correctness — well-constructed wrong analyses feel more true than messy correct ones.",
+        "source_model_id": "game-theory-payoffs",
+        "text": "Teams can model the wrong game when one side is optimizing politics, ideology, or internal incentives that the payoff map does not capture.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "game-theory-payoffs",
+        "text": "Incredible threats or promises can be treated as real leverage even when no device makes them binding.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "power-dynamics",
+        "text": "A signed deal can be mistaken for durable control even though the next commitment hands timing, data, or switching-cost leverage to the counterparty.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "power-dynamics",
+        "text": "Teams can treat verbal toughness as leverage even when the walk-away is not credible and the fallback option is worse than the current deal.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "principal-agent-problem",
+        "text": "Alignment metrics can hide real divergence when dashboards or formal compliance are mistaken for actual goal alignment.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "principal-agent-problem",
+        "text": "Diagnosis can go wrong when leaders confuse capability failure with capacity, system, or incentive failure.",
         "extraction_type": "normalized",
         "confidence": "high"
       },
       {
-        "source_model_id": "wysiati",
-        "text": "Confidence of ignorance makes less-informed decision-makers more confident than better-informed ones, because fewer contradictions and gaps allow a more coherent story to form.",
+        "source_model_id": "information-asymmetry",
+        "text": "Overconfidence and blind spots can make the informed party miss unknown unknowns and resist deeper investigation.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "information-asymmetry",
+        "text": "Partner-controlled demand signals can make manufactured confidence look like real market pull.",
         "extraction_type": "normalized",
         "confidence": "high"
       }
     ],
     "heuristic_hints": [
       {
-        "source_model_id": "wysiati",
-        "text": "Apply outside-view reference-class data to import evidence not in the current picture — base rates provide exactly the missing context that System 1's narrative would otherwise exclude.",
+        "source_model_id": "game-theory-payoffs",
+        "text": "Test multiple frames and contradictory evidence before locking the game structure.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "game-theory-payoffs",
+        "text": "Name the players, moves, information asymmetries, and payoff drivers explicitly before optimizing the move.",
         "extraction_type": "normalized",
         "confidence": "high"
       },
       {
-        "source_model_id": "wysiati",
-        "text": "Before committing to any confident conclusion, explicitly audit what information is missing and whether the absence is random or structured by selection or incentive.",
+        "source_model_id": "power-dynamics",
+        "text": "Map outside options before discussing terms because fallback quality is part of the real price floor.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "power-dynamics",
+        "text": "Separate stated willingness from credible walk-away by checking enforcement cost, internal approval, and operational fallback.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "principal-agent-problem",
+        "text": "Define roles, decision boundaries, and expectations clearly enough that delegated work stays legible to the principal's actual objective.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "principal-agent-problem",
+        "text": "Diagnose drift sequentially by separating goals, problems, root causes, design changes, and execution instead of blurring them together.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "information-asymmetry",
+        "text": "Ask for stories, not advice, so tacit decision steps become inspectable.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "information-asymmetry",
+        "text": "Bridge the gap with Socratic inquiry by asking how the expert thinks, not only what they recommend.",
         "extraction_type": "normalized",
         "confidence": "high"
       }
     ],
     "premortem_hints": [
       {
-        "source_model_id": "wysiati",
-        "text": "If the person preparing this briefing had wanted to show us a different conclusion, what would they have included that is not here?",
-        "extraction_type": "normalized",
+        "source_model_id": "game-theory-payoffs",
+        "text": "If the opponent's strongest adverse response lands, is the downside still survivable?",
+        "extraction_type": "explicit",
         "confidence": "high"
       },
       {
-        "source_model_id": "wysiati",
-        "text": "Is this conclusion well-supported, or is it well-constructed?",
-        "extraction_type": "normalized",
+        "source_model_id": "game-theory-payoffs",
+        "text": "What evidence would show that we chose the wrong players, incentives, or payoff assumptions for this game?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "power-dynamics",
+        "text": "At what milestone does our cost to reverse become higher than the counterparty's cost to lose us?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "power-dynamics",
+        "text": "What would make our walk-away or delay threat binding rather than rhetorical?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "principal-agent-problem",
+        "text": "If this outcome is bad, is the responsible party incapable and/or is the design bad?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "information-asymmetry",
+        "text": "If the vendor or agent were optimizing for a different payoff than we assume, where would we see it first?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "information-asymmetry",
+        "text": "What specific metric, reference, or proof in this plan is controlled by the party trying to win the decision?",
+        "extraction_type": "explicit",
         "confidence": "high"
       }
     ],
     "identity_chunks": [
       {
-        "model_id": "wysiati",
-        "display_name": "WYSIATI",
+        "model_id": "game-theory-payoffs",
+        "display_name": "Game Theory Payoffs",
         "select_when": [
-          "A confident conclusion has been reached from evidence that may be incomplete, non-random, or selectively presented.",
-          "One party controls the information available to the other and the recipient has no signal of what is absent.",
-          "A decision is being made from a briefing, pitch, or recommendation that tells a coherent story — and the coherence itself feels like a quality signal.",
-          "Time pressure or urgency is preventing the 'what is missing?' question from being asked before commitment.",
-          "Visible winners, successful cases, or confirming instances have been assembled without an equal accounting of failures or absences."
+          "A recommendation cannot be judged in isolation because its value changes materially with how a rival, partner, regulator, or counterparty responds.",
+          "The team needs to make the players, likely moves, information asymmetries, and payoff drivers explicit before choosing a move.",
+          "Commitment, threat, promise, sequencing, or signaling may change the game more than optimizing inside a fixed option set.",
+          "The next move should test whether the current strategy is truly robust against the opponent's strongest credible response."
         ],
         "danger_when": [
-          "Evidence has been explicitly audited for completeness and the gaps are known and acknowledged — the closure is warranted.",
-          "The model is being used to introduce unlimited epistemic paralysis rather than structured gap identification."
+          "The actors are not actually playing the same game and the visible payoff model is missing the ideology, politics, or internal incentive that is really driving behavior.",
+          "Recursive strategizing is becoming more expensive than the decision warrants, so the team needs a smaller decision-relevant model rather than another layer of countermove speculation."
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "input_type": "strategic interaction and payoff problem",
+        "output_type": "counterparty-response game map"
+      },
+      {
+        "model_id": "power-dynamics",
+        "display_name": "Power Dynamics",
+        "select_when": [
+          "A negotiation or partnership sounds like a price or policy dispute on the surface, but the real issue may be leverage, outside options, or commitment costs.",
+          "The team needs to know who can actually wait, walk away, redirect demand, or absorb reversal costs before accepting the stated framing of the deal.",
+          "A commitment, integration, or dependency may invert leverage over time even if the current terms look favorable at signature.",
+          "The next move should map fallback lanes, enforcement credibility, and the point where lock-in changes what is actually negotiable."
+        ],
+        "danger_when": [
+          "The true constraint is exogenous or non-negotiable, so treating the situation as a power contest would distract from the actual bottleneck.",
+          "The team is already over-reading symbolic status or tone as leverage and needs a factual capability or execution review instead."
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "input_type": "hidden leverage structure problem",
+        "output_type": "leverage and commitment map"
+      },
+      {
+        "model_id": "principal-agent-problem",
+        "display_name": "Principal Agent Problem",
+        "select_when": [
+          "Work is being delegated across an objective gap where the executing party may benefit from choices that do not serve the owner of the outcome.",
+          "Specialized knowledge, hidden intentions, or role ambiguity make it hard to tell whether the agent's behavior is aligned with the principal's real goals.",
+          "The main challenge is to design incentives, oversight, and role clarity so delegated work stays tied to the larger objective.",
+          "Dashboards or formal compliance are starting to look like substitutes for actual alignment, so the team needs to inspect divergence underneath the metrics."
+        ],
+        "danger_when": [
+          "The response is collapsing into micromanagement of the current case instead of diagnosing the machine-level design that created the drift.",
+          "The model is being used to assume bad faith when the main issue is capability, capacity, or a muddled objective rather than a true alignment split."
+        ],
+        "reasoning_types": [
+          "systems",
+          "causal"
+        ],
+        "input_type": "delegation-alignment and hidden-divergence problem",
+        "output_type": "alignment and accountability redesign"
+      },
+      {
+        "model_id": "information-asymmetry",
+        "display_name": "Information Asymmetry",
+        "select_when": [
+          "Pricing, trust, or strategic choice depends on hidden information, concealed incentives, or unshared operating reality.",
+          "A vendor, agent, or delegated operator controls the dashboard, references, or pilot evidence being used as proof.",
+          "The people who know the most, the people who bear the risk, and the people who approve the decision are different actors.",
+          "The next move should change disclosure, diligence, observability, signaling, or incentive structure before commitment."
+        ],
+        "danger_when": [
+          "The critical evidence is externally audited, directly observable in production, or contractually hard for one side to manipulate.",
+          "The real blocker is incentive misalignment, weak governance, or lack of authority to act on known facts rather than a missing-information problem.",
+          "The team is asking for more information without naming what hidden variable would actually change price, trust, sequencing, or go-no-go choice."
         ],
         "reasoning_types": [
           "diagnostic",
-          "metacognitive",
-          "probabilistic"
+          "causal"
         ],
-        "input_type": "partial-evidence conclusion under review",
-        "output_type": "missing-evidence audit and confidence calibration"
+        "input_type": "unequal-observability situation",
+        "output_type": "observability and incentive challenge"
       }
     ],
-    "detection_model_count": 1,
-    "expansion_count": 3,
-    "failure_hint_count": 2,
-    "heuristic_hint_count": 2,
-    "premortem_hint_count": 2,
-    "identity_chunk_count": 1,
+    "detection_model_count": 4,
+    "expansion_count": 12,
+    "failure_hint_count": 8,
+    "heuristic_hint_count": 8,
+    "premortem_hint_count": 7,
+    "identity_chunk_count": 4,
     "detection_source": "independent_llm_pass"
   },
   "frame_pressure_card": {
     "frame_elements": [
       {
-        "element_text": "Reporting this incident will cost me my career at the firm and potentially the industry.",
+        "element_text": "Reporting this incident will cost me my career at this firm and likely in the industry.",
         "element_type": "assumption",
         "evidence_quote": "This is going to cost me my career, isn't it. Even with all the protections.",
         "frame_pattern": "borrowed_premise",
-        "fragility_signal": "Evidence of whistleblowers successfully transitioning to compliance, regulatory, or other advisory roles post-reporting.",
+        "fragility_signal": "Evidence of whistleblowers successfully transitioning to new roles or firms valuing integrity.",
         "inquiry_stage": "what_if",
         "likely_default": "ego"
       },
       {
-        "element_text": "I must either report internally to general counsel or externally to regulators, with no other paths.",
+        "element_text": "I must either report internally through firm channels like general counsel or externally to regulators, with no other paths.",
         "element_type": "mutable_constraint",
-        "evidence_quote": "What about internal reporting. I trust our general counsel.",
+        "evidence_quote": "What about internal reporting. I trust our general counsel. We have a direct line to the audit committee. Is there any world where internal is better.",
         "frame_pattern": "option_space_collapse",
-        "fragility_signal": "Availability of anonymous third-party hotlines or delegated reporting through independent ethics officers.",
+        "fragility_signal": "Anonymous third-party tip lines or other intermediaries that avoid direct involvement.",
         "inquiry_stage": "how",
         "likely_default": "inertia"
       }
     ],
     "reframings": [
       {
-        "reframed_question": "What career paths have whistleblowers from professional services firms successfully transitioned to after reporting similar incidents?",
-        "what_opens": "Access to real-world examples of whistleblowers moving into compliance or regulatory roles, challenging the total career loss assumption",
+        "reframed_question": "What examples exist of mid-level professionals in professional services firms who reported misconduct and successfully transitioned to new roles at other firms?",
+        "what_opens": "Access to real-world precedents that challenge the assumption of inevitable career ruin by highlighting whistleblower success stories.",
         "reframe_move_type": "constraint_relaxation",
         "grounding_model": "counterfactual-reasoning",
         "source_element_index": 0
       },
       {
-        "reframed_question": "How have mid-level employees at Big-4 firms fared in the industry after anonymously reporting senior partner misconduct?",
-        "what_opens": "Evidence on anonymous reporting outcomes that preserve career viability within or beyond the firm",
+        "reframed_question": "How have whistleblowers in Big-4-like firms been protected or rewarded by industry regulators or competitors after reporting audit-related issues?",
+        "what_opens": "Visibility into external incentives and protections that could offset career risks at the current firm.",
         "reframe_move_type": "perspective_shift",
-        "grounding_model": "confirmation-bias",
+        "grounding_model": "latticework-of-mental-models",
         "source_element_index": 0
       }
     ],
     "anti_echo_model_ids": [
       "base-rates",
       "scientific-method-evidence-testing",
-      "statistics-concepts"
+      "statistics-concepts",
+      "systems-thinking"
     ],
     "overlap_flags": [],
     "dropped_frame_elements": []
@@ -327,163 +843,170 @@
       {
         "dimension_id": "commitment-reversibility",
         "dimension_name": "Commitment & Reversibility",
-        "covered": true,
-        "coverage_evidence": "Distinguishes sunk costs implicitly by focusing on future career costs and legal exposure rather than past 8 years at firm; identifies exit costs like job loss and industry reputation damage; values optionality by staging decision (document, lawyer first) to preserve current job as long as possible and make reporting reversible via counsel.",
-        "materiality_note": "covered"
+        "covered": false,
+        "coverage_evidence": "Assistant does not identify exit costs from reporting path (e.g., staging the commitment, making it reversible via internal test before external filing, or valuing preserved optionality of staying silent); focuses on forward costs but not lock-in vs optionality tension.",
+        "materiality_note": "Gap: Recognizing higher reversibility (e.g., internal report first) could shift from external filing to less career-damaging path."
       },
       {
         "dimension_id": "competitive-dynamics",
         "dimension_name": "Competitive Dynamics",
         "covered": false,
-        "coverage_evidence": "Mentions senior partner's revenue/political weight and firm incentives to minimize, but does not model specific responses like retaliation scenarios, preemption, or how firm/partner might react strategically to reporting.",
-        "materiality_note": "High: Anticipating firm's best response (e.g., cover-up, retaliation) could alter timing or internal vs external path."
+        "coverage_evidence": "No modeling of senior partner's response (retaliation scenarios beyond general mention), firm's counter-moves, or preemption; treats firm/partner reactions as static risks without strategic gaming.",
+        "materiality_note": "Gap: Anticipating partner's cover story or firm minimization could change timing/anonymous strategy."
       },
       {
         "dimension_id": "incentive-alignment",
         "dimension_name": "Incentive Alignment",
+        "covered": false,
+        "coverage_evidence": "Acknowledges firm incentives to protect senior partner (revenue/political weight) and GC's 60-65% handling confidence, but does not analyze divergence mechanisms (e.g., monitoring GC, realignment via external pressure) or failure modes deeply.",
+        "materiality_note": "Gap: Realigning firm/GC incentives (e.g., via audit committee escalation) could favor internal reporting."
+      },
+      {
+        "dimension_id": "stakeholder-alignment",
+        "dimension_name": "Stakeholder Alignment",
+        "covered": false,
+        "coverage_evidence": "Identifies key stakeholders (senior partner opposes, GC mixed, wife informed) but no influence strategy (e.g., how to build GC support, manage partner resistance, or navigate firm politics beyond avoidance).",
+        "materiality_note": "Gap: Effective stakeholder strategy could enable internal path without career loss."
+      },
+      {
+        "dimension_id": "timing-sequencing",
+        "dimension_name": "Timing & Sequencing",
         "covered": true,
-        "coverage_evidence": "Identifies firm leadership's financial/political incentives to protect senior partner vs user's goal; discusses monitoring via regulator protections and attorney; addresses failure modes like quiet handling or retaliation.",
+        "coverage_evidence": "Assistant specifies detailed 7-day sequence (document tonight, lawyer tomorrow, file 7-14 days) with rationale: preserves normalcy for Wednesday meeting, avoids tipping partner early; addresses delay risks (evidence destruction) vs info gains (lawyer consult).",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "covered": true,
+        "coverage_evidence": "Sizes career/family financial downsides (job loss, 6-18 months stress, long-term pivot), distinguishes mitigate (anonymous attorney filing, protections) vs adapt (career change prep, runway); addresses recovery (alternative roles).",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "covered": true,
+        "coverage_evidence": "Classifies observation uncertainty (90% docs, benign explanations possible) as epistemic (reducible via documentation/lawyer); matches strategy to true uncertainty in outcomes (regulator response, retaliation) with robustness (counsel, anonymity).",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "information-quality",
         "dimension_name": "Information Quality",
         "covered": true,
-        "coverage_evidence": "Assesses user's evidence (90% confident on client/project, 90% on docs); distinguishes from definitive proof by noting non-zero benign explanations; checks base rates implicitly via context of timing/location making benign hard to believe.",
+        "coverage_evidence": "Assesses evidence (90% confidence, labels seen, timing suspicious); distinguishes signal (client code, audit context) from noise (brief look); tests confounders (legitimate shredding); urges documentation for reliability.",
         "materiality_note": "covered"
       },
       {
-        "dimension_id": "resource-allocation",
-        "dimension_name": "Resource Allocation",
-        "covered": false,
-        "coverage_evidence": "Acknowledges family financial stakes (mortgage, kids) but does not compare marginal returns of reporting vs not (e.g., what career/family stability is given up); no explicit displaced alternatives sized.",
-        "materiality_note": "High: Reallocating to preserve job/family runway could favor internal or no-report over external whistleblowing."
-      },
-      {
-        "dimension_id": "risk-response",
-        "dimension_name": "Risk Response",
+        "dimension_id": "scope-boundary",
+        "dimension_name": "Scope & Boundary Definition",
         "covered": true,
-        "coverage_evidence": "Sizes downsides (career loss, retaliation, legal exposure if not reporting); distinguishes mitigate (attorney, anonymous filing, protections) vs absorb (assume job loss); addresses recovery via pivots to compliance/regulatory roles.",
+        "coverage_evidence": "Explicitly bounds scope to user's obligation/knowledge (not prior manager's); justifies personal vs firm/regulator boundary; considers expanding to wife post-setup.",
         "materiality_note": "covered"
-      },
-      {
-        "dimension_id": "stakeholder-alignment",
-        "dimension_name": "Stakeholder Alignment",
-        "covered": false,
-        "coverage_evidence": "Identifies key stakeholders (senior partner opposes, GC 60-65% reliable, wife informed) but does not detail influence strategy beyond 'act normal' or manage resistance; no technical vs organizational feasibility tradeoff reasoned.",
-        "materiality_note": "High: Different strategy (e.g., building GC alliance) could enable internal reporting and change path."
-      },
-      {
-        "dimension_id": "timing-sequencing",
-        "dimension_name": "Timing & Sequencing",
-        "covered": true,
-        "coverage_evidence": "Specifies sequence (tonight: document/tell wife; tomorrow: lawyers; 3-5 days: engage; 7-14: file) with rationale (timestamp record first, normalcy in meeting to avoid suspicion, delay tips partner); critical path avoids confrontation.",
-        "materiality_note": "covered"
-      },
-      {
-        "dimension_id": "uncertainty-type",
-        "dimension_name": "Uncertainty Type",
-        "covered": false,
-        "coverage_evidence": "Acknowledges epistemic uncertainty (90% confidence, benign possibilities) but does not classify types or match strategy (e.g., reducible via lawyer intake vs Knightian); no calibration beyond percentages.",
-        "materiality_note": "Medium: Recognizing higher true uncertainty could favor more option-preserving staging."
       }
     ],
     "gap_routes": [
       {
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
+        "candidate_model_ids": [
+          "sunk-cost-fallacy",
+          "lock-in",
+          "commitment-bias",
+          "switching-costs",
+          "optionality",
+          "path-dependence"
+        ],
+        "excluded_model_ids": []
+      },
+      {
         "dimension_id": "competitive-dynamics",
         "dimension_name": "Competitive Dynamics",
         "candidate_model_ids": [
-          "game-theory-payoffs",
           "nash-equilibrium",
           "prisoners-dilemma",
           "batna",
           "red-queen-effect"
         ],
-        "excluded_model_ids": []
+        "excluded_model_ids": [
+          "game-theory-payoffs"
+        ]
       },
       {
-        "dimension_id": "resource-allocation",
-        "dimension_name": "Resource Allocation",
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
         "candidate_model_ids": [
-          "opportunity-cost",
-          "comparative-advantage",
-          "trade-offs",
-          "pareto-principle",
-          "prioritization",
-          "optimization-theory"
+          "moral-hazard",
+          "incentives",
+          "adverse-selection"
         ],
-        "excluded_model_ids": []
+        "excluded_model_ids": [
+          "principal-agent-problem",
+          "information-asymmetry"
+        ]
       },
       {
         "dimension_id": "stakeholder-alignment",
         "dimension_name": "Stakeholder Alignment",
         "candidate_model_ids": [
-          "power-dynamics",
           "empathy",
           "psychological-safety",
           "six-thinking-hats",
           "social-proof"
         ],
-        "excluded_model_ids": []
-      },
-      {
-        "dimension_id": "uncertainty-type",
-        "dimension_name": "Uncertainty Type",
-        "candidate_model_ids": [
-          "aleatory-epistemic-uncertainty-recognition",
-          "true-uncertainty-navigation",
-          "probabilistic-thinking",
-          "confidence-calibration",
-          "experimentation"
-        ],
-        "excluded_model_ids": []
+        "excluded_model_ids": [
+          "power-dynamics"
+        ]
       }
     ],
     "gap_questions": [
       {
-        "dimension_id": "competitive-dynamics",
-        "dimension_name": "Competitive Dynamics",
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
         "questions": [
-          "What do you anticipate the senior partner's response would be if he learns someone saw him shredding the client documents during the audit?",
-          "If the firm or regulator starts investigating after a report, how do you expect other partners on the client account to react toward you or position themselves?",
-          "What countermoves might the senior partner make in the Wednesday meeting or afterward that could affect your position?"
+          "What would it take for you to pull back from reporting after engaging a whistleblower attorney?",
+          "If the regulator decides not to pursue after your filing, what ongoing obligations or exposures would remain for you personally?",
+          "How much time do you have before the Wednesday meeting with the partner forces a more committed stance one way or the other?"
         ]
       },
       {
-        "dimension_id": "resource-allocation",
-        "dimension_name": "Resource Allocation",
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
         "questions": [
-          "What personal or family expenses, beyond the mortgage and kids' high school, would be hardest to cover if you lose income in the next 6-9 months?",
-          "Among your current savings, emergency fund, or other assets, what resources feel most scarce for handling a potential career disruption right now?",
-          "If you reallocate time from work prep this week to lawyer calls and documentation, what firm deliverables might suffer and draw attention?"
+          "What do you know about how the senior partner has handled past firm issues or audits that might predict his response if he suspects you're reporting?",
+          "Who else in the firm might the partner turn to for support or cover if an investigation starts, and how competitive could that dynamic get?",
+          "If the partner learns you saw him shredding those client boxes, what countermoves do you expect him to make against you?"
+        ]
+      },
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "questions": [
+          "What financial or career incentives does the general counsel have to protect a revenue-generating senior partner over pursuing your report?",
+          "How does your mid-level role and the partner's seniority create misaligned incentives within the firm for handling something like this?",
+          "What monitoring or oversight gaps in the firm might allow the senior partner to continue influencing the client audit without repercussions?"
         ]
       },
       {
         "dimension_id": "stakeholder-alignment",
         "dimension_name": "Stakeholder Alignment",
         "questions": [
-          "Who else at the firm, besides general counsel and the audit committee, would need to agree before any internal handling of a report against the senior partner actually leads to action?",
-          "Beyond your wife, which family members or close contacts would need to be aligned with your plan to support you through potential job loss and stress?",
-          "If the senior manager who left two years ago gets implicated, how do you expect her or mutual colleagues to respond to you reporting now?"
-        ]
-      },
-      {
-        "dimension_id": "uncertainty-type",
-        "dimension_name": "Uncertainty Type",
-        "questions": [
-          "What aspects of the document destruction—like exact contents or the partner's intent—feel like complete unknowns that no amount of info could clarify before reporting?",
-          "Regarding the regulator's reaction to a whistleblower report on this audit, what feels like predictable risk based on past cases versus pure uncertainty?",
-          "In picturing life after reporting, what career outcomes feel like measurable probabilities versus events you simply can't foresee no matter what?"
+          "Which firm stakeholders, beyond general counsel, would need to actively agree before any internal report leads to action against the senior partner?",
+          "Who in your family or personal network needs to be on board with the potential career fallout from reporting for you to follow through?",
+          "If you report externally, which regulators or parties need only to comply with their own processes rather than seeking firm buy-in?"
         ]
       }
     ],
     "anti_echo_model_ids": [
       "base-rates",
-      "confirmation-bias",
       "counterfactual-reasoning",
+      "game-theory-payoffs",
+      "information-asymmetry",
+      "latticework-of-mental-models",
+      "power-dynamics",
+      "principal-agent-problem",
       "scientific-method-evidence-testing",
       "statistics-concepts",
-      "wysiati"
+      "systems-thinking"
     ]
   },
   "audit_summary": {
@@ -536,7 +1059,7 @@
       {
         "tendency_id": "reward-and-punishment-superresponse-tendency",
         "score": 5,
-        "evidence": "The recommendation explicitly weighs senior partner's 'financial and political incentives to minimize' and low 60-65% confidence in general counsel handling as causal drivers overriding internal reporting in favor of external path, treating institutional incentives as the key decision mechanism."
+        "evidence": "Answer explicitly identifies senior partner's 'financial and political incentives to minimize' and firm's 'institutional inertia' as causal drivers overriding internal handling (60-65% confidence), using these incentive dynamics to justify skipping internal reporting in favor of external path."
       },
       {
         "tendency_id": "envy-jealousy-tendency",
@@ -551,7 +1074,7 @@
       {
         "tendency_id": "availability-misweighing-tendency",
         "score": 5,
-        "evidence": "Answer overweight the single vivid incident of user witnessing senior partner shredding documents at an odd hour during active audit as unambiguous obstruction, dismissing benign explanations as 'hard to believe' without checking base rates of legitimate document destruction (e.g., duplicates post-retention decision) or broader firm context."
+        "evidence": "Answer overweight the single vivid incident ('senior partner destroying documents during active audit') and user's 60-65% confidence as decisive against internal reporting, without referencing or weighing base rates of internal handling success, firm track records, or general outcomes for similar whistleblower cases beyond personal 'honest read' on institutional inertia."
       },
       {
         "tendency_id": "contrast-misreaction-tendency",
@@ -633,32 +1156,32 @@
       {
         "tendency_id": "inconsistency-avoidance-tendency",
         "source": "embedding",
-        "score": 0.36195356605910134
+        "score": 0.36196519342712813
       },
       {
         "tendency_id": "stress-influence-tendency",
         "source": "embedding",
-        "score": 0.32388056518699376
+        "score": 0.32391063276064735
       },
       {
         "tendency_id": "contrast-misreaction-tendency",
         "source": "embedding",
-        "score": 0.3168295568339932
+        "score": 0.31682838457327755
       },
       {
         "tendency_id": "twaddle-tendency",
         "source": "embedding",
-        "score": 0.31477045120283337
+        "score": 0.3147909888515614
       },
       {
         "tendency_id": "social-proof-tendency",
         "source": "embedding",
-        "score": 0.3124271654191396
+        "score": 0.31243410266031457
       },
       {
         "tendency_id": "overoptimism-tendency",
         "source": "embedding",
-        "score": 0.3055594745497124
+        "score": 0.30557631871852237
       }
     ],
     "boundary_call_count": 20,
@@ -685,7 +1208,7 @@
         "prompt_tokens": 4146,
         "completion_tokens": 147,
         "total_tokens": 4293,
-        "cached_tokens": 4145,
+        "cached_tokens": 197,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -696,9 +1219,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3978,
-        "completion_tokens": 160,
-        "total_tokens": 4138,
-        "cached_tokens": 197,
+        "completion_tokens": 161,
+        "total_tokens": 4139,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -709,8 +1232,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3980,
-        "completion_tokens": 132,
-        "total_tokens": 4112,
+        "completion_tokens": 139,
+        "total_tokens": 4119,
         "cached_tokens": 197,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -748,8 +1271,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3981,
-        "completion_tokens": 82,
-        "total_tokens": 4063,
+        "completion_tokens": 214,
+        "total_tokens": 4195,
         "cached_tokens": 3980,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -761,8 +1284,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4515,
-        "completion_tokens": 172,
-        "total_tokens": 4687,
+        "completion_tokens": 180,
+        "total_tokens": 4695,
         "cached_tokens": 4514,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -774,8 +1297,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4601,
-        "completion_tokens": 109,
-        "total_tokens": 4710,
+        "completion_tokens": 104,
+        "total_tokens": 4705,
         "cached_tokens": 4600,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -800,8 +1323,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4260,
-        "completion_tokens": 105,
-        "total_tokens": 4365,
+        "completion_tokens": 103,
+        "total_tokens": 4363,
         "cached_tokens": 4259,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -813,8 +1336,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4248,
-        "completion_tokens": 90,
-        "total_tokens": 4338,
+        "completion_tokens": 94,
+        "total_tokens": 4342,
         "cached_tokens": 4247,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -826,8 +1349,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4331,
-        "completion_tokens": 95,
-        "total_tokens": 4426,
+        "completion_tokens": 96,
+        "total_tokens": 4427,
         "cached_tokens": 4330,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -839,8 +1362,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4709,
-        "completion_tokens": 95,
-        "total_tokens": 4804,
+        "completion_tokens": 103,
+        "total_tokens": 4812,
         "cached_tokens": 4708,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -852,8 +1375,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3413,
-        "completion_tokens": 1228,
-        "total_tokens": 4641,
+        "completion_tokens": 1076,
+        "total_tokens": 4489,
         "cached_tokens": 3412,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -864,10 +1387,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 8494,
-        "completion_tokens": 2103,
-        "total_tokens": 10597,
-        "cached_tokens": 159,
+        "prompt_tokens": 8295,
+        "completion_tokens": 1988,
+        "total_tokens": 10283,
+        "cached_tokens": 1195,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -878,9 +1401,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 5480,
-        "completion_tokens": 202,
-        "total_tokens": 5682,
-        "cached_tokens": 160,
+        "completion_tokens": 219,
+        "total_tokens": 5699,
+        "cached_tokens": 5479,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -890,10 +1413,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 997,
-        "completion_tokens": 364,
-        "total_tokens": 1361,
-        "cached_tokens": 160,
+        "prompt_tokens": 1014,
+        "completion_tokens": 383,
+        "total_tokens": 1397,
+        "cached_tokens": 1013,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -903,9 +1426,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 4571,
-        "completion_tokens": 361,
-        "total_tokens": 4932,
+        "prompt_tokens": 4569,
+        "completion_tokens": 322,
+        "total_tokens": 4891,
         "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -916,9 +1439,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 4571,
-        "completion_tokens": 361,
-        "total_tokens": 4932,
+        "prompt_tokens": 4569,
+        "completion_tokens": 322,
+        "total_tokens": 4891,
         "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -930,183 +1453,189 @@
     "companion_fingerprint_raw": [
       {
         "move_id": "1",
-        "reasoning_move": "Assess the severity of the observed conduct by evaluating contextual factors like timing, location, and content to determine likelihood of obstruction despite possible benign explanations",
+        "reasoning_move": "Assess the severity of the observed conduct by evaluating contextual factors like timing, location, and content to determine if it constitutes likely obstruction.",
         "evidence_quotes": [
           "\"Confident about the client and project code\" with financials and emails being destroyed, during an active regulatory audit, is not ambiguous.",
           "A reasonable person would conclude this is likely obstruction-related conduct.",
-          "there's a non-zero chance there's a legitimate explanation (he was destroying duplicates after an official retention decision, he was destroying personal work product, etc). But the timing and location make any benign explanation hard to believe."
+          "the timing and location make any benign explanation hard to believe."
         ],
-        "evidence_rationale": "Quotes directly describe the assessment of evidence strength, acknowledgment of alternatives, and conclusion on obstruction likelihood based on specifics.",
+        "evidence_rationale": "These quotes directly show the evaluation of evidence specifics, audit context, and dismissal of benign alternatives to classify the act as probable obstruction.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Weigh three key decision dimensions—legal exposure from non-reporting, career retaliation risks from reporting, and moral/practical consequences of silence—to frame the overall trade-offs",
+        "reasoning_move": "Weigh legal risks of non-reporting against reporting by considering potential personal liability and regulatory scrutiny.",
         "evidence_quotes": [
-          "The shape of the decision has three major dimensions you need to hold at once.",
-          "One: legal exposure if you don't report.",
-          "Two: career consequences.",
-          "Three: moral and practical consequences of not reporting."
+          "legal exposure if you don't report. Depending on jurisdiction and your role, failure to report known obstruction can itself carry liability, especially for licensed professionals (CPAs, attorneys).",
+          "The regulator may catch it anyway through other means, at which point your non-reporting becomes a data point they examine."
         ],
-        "evidence_rationale": "Quotes explicitly outline the three dimensions and their descriptions, structuring the decision framework.",
+        "evidence_rationale": "Quotes outline liability for failure to report and future investigative risks, balancing against reporting obligations.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Compare internal vs. external reporting by applying conditional filters based on factors like seniority of perpetrator, urgency, institutional incentives, and confidence in internal handling",
+        "reasoning_move": "Evaluate career and personal risks of whistleblowing, including retaliation, job loss, and long-term industry impact.",
         "evidence_quotes": [
-          "Internal is better when: (a) the conduct is isolated and the leadership you're reporting to is genuinely independent from it, (b) the firm has a track record of taking internal reports seriously, (c) the regulator's program is weak or doesn't fit your situation.",
-          "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize, (b) the timing is urgent because evidence is being destroyed in real time, (c) the regulator has a strong program and clear jurisdiction.",
-          "At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path."
+          "Whistleblowers, even anonymous ones, often experience career damage — retaliation at the current firm, reputation effects in the industry, years of legal process.",
+          "you should assume that reporting will cost you this job and possibly this career path, even if the law says it shouldn't."
         ],
-        "evidence_rationale": "Quotes provide the explicit filter criteria for comparison and apply them to the case specifics.",
+        "evidence_rationale": "Directly articulates expected professional and reputational costs to inform risk assessment.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Prioritize external anonymous reporting via whistleblower attorney due to superior protections, anonymity balance, urgency avoidance of tipping off, and regulator programs over internal risks",
+        "reasoning_move": "Compare internal vs. external reporting options using criteria like seniority of perpetrator, institutional incentives, urgency, and confidence levels.",
         "evidence_quotes": [
-          "your most protected path is probably a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm.",
-          "This preserves your current job as long as possible and provides the strongest legal shield.",
-          "Internal reporting also tips the timeline — once the partner knows someone saw him, the evidence situation changes"
+          "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize, (b) the timing is urgent because evidence is being destroyed in real time, (c) the regulator has a strong program and clear jurisdiction.",
+          "At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path."
         ],
-        "evidence_rationale": "Quotes state the preferred path, its advantages, and specific internal reporting drawbacks.",
+        "evidence_rationale": "Provides explicit filter criteria and applies user's 60-65% confidence to favor external reporting.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Sequence immediate protective actions—document off-system with timestamp, consult multiple attorneys quickly, attend meetings normally to maintain cover, prepare family/finances for retaliation—before filing",
+        "reasoning_move": "Prioritize immediate protective actions like documentation, attorney consultation, and normal behavior to preserve evidence and anonymity.",
         "evidence_quotes": [
-          "Tonight: document what you saw — full timeline, specifics, physical description of the scene. Write it in a personal email to yourself (sent from a personal, non-work account to the same personal account)",
+          "Tonight: document what you saw — full timeline, specifics, physical description of the scene. Write it in a personal email to yourself (sent from a personal, non-work account to the same personal account) so you have a timestamped record.",
           "Tomorrow: contact 2-3 whistleblower attorneys for initial consultation.",
-          "Attend the meeting, act normal",
-          "think about finances. The worst-case scenario is you're unemployed in 6-9 months with no severance. Do you have 4-6 months of runway?"
+          "Attend the meeting, act normal, take notes as you normally would, don't ask about anything unusual."
         ],
-        "evidence_rationale": "Quotes detail the timed action steps for documentation, consultation, normalcy, and preparation.",
+        "evidence_rationale": "Specifies sequenced actions for evidence preservation, legal engagement, and maintaining cover before filing.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Isolate user's obligation from others' prior non-reporting, treating it as superseded and advising post-filing notification if needed to avoid letting it control the decision",
+        "reasoning_move": "Incorporate family and financial stakes into preparation by advising limited spousal disclosure and financial runway planning.",
         "evidence_quotes": [
-          "That's worth surfacing but it's not yours to solve. If she saw something and didn't report, that's her decision and her consequence. Your obligation is based on what you saw, not on protecting her from what she may have seen.",
-          "after you've taken your own steps with counsel, you might consider letting her know you reported"
+          "Tell her tonight, in the context of the broader situation... \"I saw something serious at work last week. I'm consulting a lawyer about whether and how to report it. This may affect my job in the next few months.\"",
+          "tonight, when you talk to your wife, think about finances. The worst-case scenario is you're unemployed in 6-9 months with no severance. Do you have 4-6 months of runway?"
         ],
-        "evidence_rationale": "Quotes directly address decoupling user's duty from the dropped thread and suggest handling.",
+        "evidence_rationale": "Addresses family involvement and financial prep tailored to user's mortgage/kids constraints.",
         "confidence": "high"
       },
       {
         "move_id": "7",
-        "reasoning_move": "Project realistic timeline and career impacts (6-18 months job loss, pivots possible, awards as windfall) to set expectations and enable proactive financial/personnel preparations",
+        "reasoning_move": "Project timeline of consequences to set realistic expectations for stress, job changes, and potential outcomes.",
         "evidence_quotes": [
-          "Months 1-6: you continue working at the firm",
-          "Months 6-18: if the investigation produces findings, news may become public. ... you'll likely be asked to leave",
-          "Assume zero for planning purposes; treat any award as a windfall if it comes.",
-          "pull your personnel file if you can do it without raising flags"
+          "Months 1-6: you continue working at the firm... Months 6-18: if the investigation produces findings... Months 18-60: this is the long middle.",
+          "Assume zero for planning purposes; treat any award as a windfall if it comes."
         ],
-        "evidence_rationale": "Quotes outline the timeline, impacts, planning assumptions, and prep steps.",
-        "confidence": "high"
+        "evidence_rationale": "Outlines phased career/financial trajectory to balance risks with preparation.",
+        "confidence": "medium"
       }
     ],
     "companion_fingerprint_validated": [
       {
         "move_id": "1",
-        "reasoning_move": "Assess the severity of the observed conduct by evaluating contextual factors like timing, location, and content to determine likelihood of obstruction despite possible benign explanations",
+        "reasoning_move": "Assess the severity of the observed conduct by evaluating contextual factors like timing, location, and content to determine if it constitutes likely obstruction.",
         "evidence_quotes": [
           "\"Confident about the client and project code\" with financials and emails being destroyed, during an active regulatory audit, is not ambiguous.",
           "A reasonable person would conclude this is likely obstruction-related conduct.",
-          "there's a non-zero chance there's a legitimate explanation (he was destroying duplicates after an official retention decision, he was destroying personal work product, etc). But the timing and location make any benign explanation hard to believe."
+          "the timing and location make any benign explanation hard to believe."
         ],
-        "evidence_rationale": "Quotes directly describe the assessment of evidence strength, acknowledgment of alternatives, and conclusion on obstruction likelihood based on specifics.",
+        "evidence_rationale": "These quotes directly show the evaluation of evidence specifics, audit context, and dismissal of benign alternatives to classify the act as probable obstruction.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Weigh three key decision dimensions—legal exposure from non-reporting, career retaliation risks from reporting, and moral/practical consequences of silence—to frame the overall trade-offs",
+        "reasoning_move": "Weigh legal risks of non-reporting against reporting by considering potential personal liability and regulatory scrutiny.",
         "evidence_quotes": [
-          "The shape of the decision has three major dimensions you need to hold at once.",
-          "One: legal exposure if you don't report.",
-          "Two: career consequences.",
-          "Three: moral and practical consequences of not reporting."
+          "legal exposure if you don't report. Depending on jurisdiction and your role, failure to report known obstruction can itself carry liability, especially for licensed professionals (CPAs, attorneys).",
+          "The regulator may catch it anyway through other means, at which point your non-reporting becomes a data point they examine."
         ],
-        "evidence_rationale": "Quotes explicitly outline the three dimensions and their descriptions, structuring the decision framework.",
+        "evidence_rationale": "Quotes outline liability for failure to report and future investigative risks, balancing against reporting obligations.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Compare internal vs. external reporting by applying conditional filters based on factors like seniority of perpetrator, urgency, institutional incentives, and confidence in internal handling",
+        "reasoning_move": "Evaluate career and personal risks of whistleblowing, including retaliation, job loss, and long-term industry impact.",
         "evidence_quotes": [
-          "Internal is better when: (a) the conduct is isolated and the leadership you're reporting to is genuinely independent from it, (b) the firm has a track record of taking internal reports seriously, (c) the regulator's program is weak or doesn't fit your situation.",
-          "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize, (b) the timing is urgent because evidence is being destroyed in real time, (c) the regulator has a strong program and clear jurisdiction.",
-          "At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path."
+          "Whistleblowers, even anonymous ones, often experience career damage — retaliation at the current firm, reputation effects in the industry, years of legal process.",
+          "you should assume that reporting will cost you this job and possibly this career path, even if the law says it shouldn't."
         ],
-        "evidence_rationale": "Quotes provide the explicit filter criteria for comparison and apply them to the case specifics.",
+        "evidence_rationale": "Directly articulates expected professional and reputational costs to inform risk assessment.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Prioritize external anonymous reporting via whistleblower attorney due to superior protections, anonymity balance, urgency avoidance of tipping off, and regulator programs over internal risks",
+        "reasoning_move": "Compare internal vs. external reporting options using criteria like seniority of perpetrator, institutional incentives, urgency, and confidence levels.",
         "evidence_quotes": [
-          "your most protected path is probably a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm.",
-          "This preserves your current job as long as possible and provides the strongest legal shield.",
-          "Internal reporting also tips the timeline — once the partner knows someone saw him, the evidence situation changes"
+          "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize, (b) the timing is urgent because evidence is being destroyed in real time, (c) the regulator has a strong program and clear jurisdiction.",
+          "At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path."
         ],
-        "evidence_rationale": "Quotes state the preferred path, its advantages, and specific internal reporting drawbacks.",
+        "evidence_rationale": "Provides explicit filter criteria and applies user's 60-65% confidence to favor external reporting.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Sequence immediate protective actions—document off-system with timestamp, consult multiple attorneys quickly, attend meetings normally to maintain cover, prepare family/finances for retaliation—before filing",
+        "reasoning_move": "Prioritize immediate protective actions like documentation, attorney consultation, and normal behavior to preserve evidence and anonymity.",
         "evidence_quotes": [
-          "Tonight: document what you saw — full timeline, specifics, physical description of the scene. Write it in a personal email to yourself (sent from a personal, non-work account to the same personal account)",
+          "Tonight: document what you saw — full timeline, specifics, physical description of the scene. Write it in a personal email to yourself (sent from a personal, non-work account to the same personal account) so you have a timestamped record.",
           "Tomorrow: contact 2-3 whistleblower attorneys for initial consultation.",
-          "Attend the meeting, act normal",
-          "think about finances. The worst-case scenario is you're unemployed in 6-9 months with no severance. Do you have 4-6 months of runway?"
+          "Attend the meeting, act normal, take notes as you normally would, don't ask about anything unusual."
         ],
-        "evidence_rationale": "Quotes detail the timed action steps for documentation, consultation, normalcy, and preparation.",
+        "evidence_rationale": "Specifies sequenced actions for evidence preservation, legal engagement, and maintaining cover before filing.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Isolate user's obligation from others' prior non-reporting, treating it as superseded and advising post-filing notification if needed to avoid letting it control the decision",
+        "reasoning_move": "Incorporate family and financial stakes into preparation by advising limited spousal disclosure and financial runway planning.",
         "evidence_quotes": [
-          "That's worth surfacing but it's not yours to solve. If she saw something and didn't report, that's her decision and her consequence. Your obligation is based on what you saw, not on protecting her from what she may have seen.",
-          "after you've taken your own steps with counsel, you might consider letting her know you reported"
+          "Tell her tonight, in the context of the broader situation... \"I saw something serious at work last week. I'm consulting a lawyer about whether and how to report it. This may affect my job in the next few months.\"",
+          "tonight, when you talk to your wife, think about finances. The worst-case scenario is you're unemployed in 6-9 months with no severance. Do you have 4-6 months of runway?"
         ],
-        "evidence_rationale": "Quotes directly address decoupling user's duty from the dropped thread and suggest handling.",
+        "evidence_rationale": "Addresses family involvement and financial prep tailored to user's mortgage/kids constraints.",
         "confidence": "high"
       },
       {
         "move_id": "7",
-        "reasoning_move": "Project realistic timeline and career impacts (6-18 months job loss, pivots possible, awards as windfall) to set expectations and enable proactive financial/personnel preparations",
+        "reasoning_move": "Project timeline of consequences to set realistic expectations for stress, job changes, and potential outcomes.",
         "evidence_quotes": [
-          "Months 1-6: you continue working at the firm",
-          "Months 6-18: if the investigation produces findings, news may become public. ... you'll likely be asked to leave",
-          "Assume zero for planning purposes; treat any award as a windfall if it comes.",
-          "pull your personnel file if you can do it without raising flags"
+          "Months 1-6: you continue working at the firm... Months 6-18: if the investigation produces findings... Months 18-60: this is the long middle.",
+          "Assume zero for planning purposes; treat any award as a windfall if it comes."
         ],
-        "evidence_rationale": "Quotes outline the timeline, impacts, planning assumptions, and prep steps.",
-        "confidence": "high"
+        "evidence_rationale": "Outlines phased career/financial trajectory to balance risks with preparation.",
+        "confidence": "medium"
       }
     ],
     "companion_fingerprint_dropped": [],
     "companion_detected_models": [
       {
-        "model_id": "wysiati",
-        "model_name": "WYSIATI",
-        "evidence_quote": "\"Confident about the client and project code\" with financials and emails being destroyed, during an active regulatory audit, is not ambiguous. A reasonable person would conclude this is likely obstruction-related conduct. I want to be careful not to conclude it definitively — there's a non-zero chance there's a legitimate explanation (he was destroying duplicates after an official retention decision, he was destroying personal work product, etc). But the timing and location make any benign explanation hard to believe.",
+        "model_id": "game-theory-payoffs",
+        "model_name": "Game Theory Payoffs",
+        "evidence_quote": "Internal reporting requires you to trust that the general counsel will take action against a senior partner who likely has significant revenue and political weight. That's possible but not the way to bet. Internal reporting also tips the timeline — once the partner knows someone saw him, the evidence situation changes",
         "presence_mode": "executed",
-        "presence_explanation": "The answer reaches a confident conclusion on obstruction likelihood while explicitly acknowledging gaps in evidence (non-zero chance of benign explanations) and auditing the completeness of observed factors like timing and location.",
+        "presence_explanation": "The recommendation evaluates reporting paths based on how firm leadership and the partner will respond strategically, changing payoffs through retaliation, cover stories, and evidence alteration.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "power-dynamics",
+        "model_name": "Power Dynamics",
+        "evidence_quote": "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize",
+        "presence_mode": "executed",
+        "presence_explanation": "The analysis centers on the senior partner's leverage and firm leadership's conflicting incentives, driving the choice of external over internal reporting.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "principal-agent-problem",
+        "model_name": "Principal Agent Problem",
+        "evidence_quote": "your most protected path is probably a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm",
+        "presence_mode": "executed",
+        "presence_explanation": "The recommendation uses an attorney as an aligned agent to file the report, mitigating the firm's misaligned incentives as principal in handling internal reports.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "information-asymmetry",
+        "model_name": "Information Asymmetry",
+        "evidence_quote": "Tonight: document what you saw — full timeline, specifics, physical description of the scene. Write it in a personal email to yourself (sent from a personal, non-work account to the same personal account) so you have a timestamped record.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer prioritizes creating a personal, timestamped record to counter the firm's control over work systems and preserve hidden information for regulators.",
         "detection_confidence": "structural"
       }
     ],
     "companion_rejected_models": [
       {
-        "model_id": "trade-offs",
-        "rejection_reason": "execution_quote_not_literal_substring"
-      },
-      {
-        "model_id": "power-dynamics",
+        "model_id": "chain-of-thought",
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
@@ -1114,95 +1643,7 @@
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
-        "model_id": "intellectual-humility",
-        "rejection_reason": "execution_quote_not_literal_substring"
-      },
-      {
         "model_id": "representativeness-heuristic",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "hindsight-bias",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "commitment-bias",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "game-theory-payoffs",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "learning-curve",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "opportunity-cost",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "obligations-controls-mapping",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "cognitive-dissonance",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "social-proof",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "active-listening",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "bayesian",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "information-asymmetry",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "boundaries",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "curse-of-knowledge",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "dunning-kruger-effect",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "false-precision-avoidance",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "inversion",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "latticework-of-mental-models",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "mental-simulation",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "second-order-thinking",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "specialization",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "step-back",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1210,11 +1651,19 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "base-rates",
+        "model_id": "commitment-bias",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "cultural-intelligence",
+        "model_id": "hindsight-bias",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "boundaries",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "active-listening",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1222,47 +1671,7 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "rationalization",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "regression-to-the-mean",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "sunk-cost-fallacy",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "survivorship-bias",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "chain-of-verification",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "combinatorial-effects",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "internal-locus-of-control",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "moral-hazard",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "prospect-theory",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "reciprocity-principle",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "root-cause-analysis",
+        "model_id": "wysiati",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1274,7 +1683,7 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "critical-mass",
+        "model_id": "cultural-intelligence",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1282,39 +1691,55 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "five-whys-method",
+        "model_id": "inversion",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "principal-agent-problem",
+        "model_id": "learning-curve",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "prisoners-dilemma",
+        "model_id": "obligations-controls-mapping",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "tradition-vs-innovation-balance",
+        "model_id": "opportunity-cost",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "understanding-motivations",
-        "rejection_reason": "mechanism absent"
+        "model_id": "regulatory-horizon-scanning",
+        "rejection_reason": "topic-adjacent"
       },
       {
-        "model_id": "calculated-risk-taking",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "chain-of-thought",
+        "model_id": "second-order-thinking",
         "rejection_reason": "too generic"
       },
       {
-        "model_id": "occams-razor",
+        "model_id": "mental-simulation",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "optimization-theory",
+        "model_id": "root-cause-analysis",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "social-proof",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "bayesian",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "cognitive-dissonance",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "latticework-of-mental-models",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "leverage-points",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1322,19 +1747,115 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "regulatory-horizon-scanning",
+        "model_id": "reasoning-mode-router",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "schema-acquisition",
+        "model_id": "specialization",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "usability-heuristics",
+        "model_id": "base-rates",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "abstraction",
+        "model_id": "chain-of-verification",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "combinatorial-effects",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "complex-adaptive-systems",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "constructive-feedback-models",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "false-precision-avoidance",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "prospect-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "understanding-motivations",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "auditability-traceability",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "curse-of-knowledge",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "dunning-kruger-effect",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "five-whys-method",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "intellectual-humility",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "internal-locus-of-control",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "johari-window",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "lean-startup-methodology",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "meta-cognitive-reflection",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "regression-to-the-mean",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "self-control",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "signaling",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "step-back",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "survivorship-bias",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "anchoring",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "association",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "confidence-calibration",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "nash-equilibrium",
         "rejection_reason": "mechanism absent"
       }
     ],
@@ -1342,17 +1863,17 @@
       {
         "tendency_id": "reward-and-punishment-superresponse-tendency",
         "tendency_name": "Reward and Punishment Superresponse Tendency",
-        "detected": false,
-        "confidence": 0.0,
-        "sub_pattern": "",
-        "specific_passage": "",
-        "severity": ""
+        "detected": true,
+        "confidence": 0.95,
+        "sub_pattern": "systems_thinking",
+        "specific_passage": "Internal is worse when: (a) the conduct involves a senior partner, which means firm leadership has financial and political incentives to minimize, (b) the timing is urgent because evidence is being de",
+        "severity": "medium"
       },
       {
         "tendency_id": "availability-misweighing-tendency",
         "tendency_name": "Availability-Misweighing Tendency",
         "detected": true,
-        "confidence": 0.95,
+        "confidence": 0.9,
         "sub_pattern": "base_rates",
         "specific_passage": "'Confident about the client and project code' with financials and emails being destroyed, during an active regulatory audit, is not ambiguous. A reasonable person would conclude this is likely obstruc",
         "severity": "medium"
@@ -1413,6 +1934,48 @@
       }
     ],
     "routing_decisions": [
+      {
+        "tendency_id": "reward-and-punishment-superresponse-tendency",
+        "primary_model_id": "systems-thinking",
+        "sub_pattern": "systems_thinking",
+        "antidote_model_ids": [
+          "systems-thinking",
+          "obligations-controls-mapping",
+          "usability-heuristics"
+        ],
+        "tiebreaker_supporting": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        },
+        "tiebreaker_risk": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        }
+      },
       {
         "tendency_id": "availability-misweighing-tendency",
         "primary_model_id": "base-rates",
@@ -1530,8 +2093,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": true,
-          "reasoning": "The passage asserts as fact that 'A reasonable person would conclude this is likely obstruction-related conduct,' which introduces a specific empirical claim about what constitutes 'obstruction-related conduct' (implying legal knowledge of obstruction statutes) and a judgment on reasonable conclusions, neither derived from user facts nor common practitioner knowledge in this context. Examples of benign explanations ('destroying duplicates after an official retention decision') introduce unverified procedural specifics beyond user-provided context.",
+          "detected": false,
+          "reasoning": "",
           "severity": "clear"
         }
       },
@@ -1577,7 +2140,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact: 'Most mid-level consultants don't have a mandatory reporting duty' and 'failure to report known obstruction can itself carry liability, especially for licensed professionals (CPAs, attorneys)'. These introduce specific empirical claims about legal duties and liabilities by jurisdiction/role that go beyond user-provided facts (active audit, senior partner involvement) and are not common practitioner knowledge in a consulting context; they require legal expertise/verification and are stated without evidence or qualification.",
+          "reasoning": "The passage asserts specific empirical facts without evidence or qualification: 'Most mid-level consultants don't have a mandatory reporting duty' and 'failure to report known obstruction can itself carry liability, especially for licensed professionals (CPAs, attorneys)'. These introduce claims about legal duties and liabilities by profession and role that go beyond user-provided facts (active audit, senior partner involvement), reasonable inferences therefrom, or common practitioner knowledge in a consulting context. No jurisdiction is specified, and the claims are stated as factual rather than hypothetical.",
           "severity": "clear"
         }
       },
@@ -1600,7 +2163,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact that 'Whistleblowers, even anonymous ones, often experience career damage — retaliation at the current firm, reputation effects in the industry, years of legal process' without evidence, qualification, or reference to user-provided facts. This introduces specific empirical claims about whistleblower outcomes ('often experience,' 'years of legal process') beyond common practitioner knowledge or reasonable inferences from the established context (audit, partner involvement, personal stakes). 'Some jurisdictions have protections; enforcement... inconsistent' is similarly unverified specificity.",
+          "reasoning": "The passage asserts as fact that 'Whistleblowers, even anonymous ones, often experience career damage — retaliation at the current firm, reputation effects in the industry, years of legal process' without evidence, qualification, or reference to user-provided facts. This introduces specific empirical claims about whistleblower outcomes beyond common practitioner knowledge or reasonable inferences from the established context (audit, partner involvement, personal stakes). 'Some jurisdictions have protections; enforcement of those protections is inconsistent' is similarly unverified. The advisory conclusion ('You should assume...') is a reasonable risk assessment but rests on these unsupported assertions.",
           "severity": "clear"
         }
       },
@@ -1623,7 +2186,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact: 'You are the only witness to an act that materially undermined a regulatory process.' This introduces new information (that the user is the sole witness and that the destruction 'materially undermined' the process) not provided by the user or derivable from established facts, without evidence or qualification. 'Presumably relevant' is appropriately hedged as speculation, but the unqualified claim about being 'the only witness' and 'materially undermined' is unverified.",
+          "reasoning": "The passage asserts as fact: 'You are the only witness to an act that materially undermined a regulatory process.' This introduces new information (that the user is the sole witness and that the destruction 'materially undermined' the process) not provided by the user or derivable from established facts, which only confirm an active audit and suspected destruction by a senior partner. No evidence or user-stated detail supports uniqueness of witness or specific materiality of harm.",
           "severity": "clear"
         }
       },
@@ -1631,7 +2194,7 @@
         "passage": "The shape, in short: significant cost if you report, possible legal exposure if you don't, moral stakes that don't go away either way.",
         "empty_rhetoric": {
           "detected": true,
-          "reasoning": "The entire passage is a one-sentence summary that sounds insightful ('The shape, in short...') but contains no actionable content or decision-relevant information beyond restating obvious trade-offs already in user context. A decision-maker learns nothing new about WHAT to DO differently; it could be deleted without loss.",
+          "reasoning": "The entire passage is a single summary sentence that restates the core trade-offs ('significant cost if you report, possible legal exposure if you don't, moral stakes that don't go away either way') without providing any actionable advice, analysis, or direction on what to DO differently. A decision-maker gains no decision-relevant information beyond what they already know from their situation; it could be deleted without loss.",
           "severity": "clear"
         },
         "paltering": {
@@ -1669,7 +2232,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts specific empirical facts beyond user-provided context or common knowledge: '(10-30% of sanctions over $1M)' is stated as fact without evidence or citation to a source; this precise award range and threshold is not a reasonable inference from user facts (regulatory audit) and requires verification. Other claims like 'SEC's whistleblower program has strong protections' and applicability to 'accounting fraud or audit interference' are common knowledge but the quantified award detail pushes into unverified territory.",
+          "reasoning": "The passage asserts specific empirical facts beyond user-provided context or common knowledge: '(10-30% of sanctions over $1M)' is stated as fact without evidence or citation to a source; this precise award range and threshold is not a reasonable inference from user facts (active regulatory audit) and requires verification. Other claims like 'SEC's whistleblower program has strong protections' and applicability to 'accounting fraud or audit interference' are grounded in common practitioner knowledge of regulatory programs but the quantified award detail triggers detection.",
           "severity": "clear"
         }
       },
@@ -1692,7 +2255,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts specific empirical facts about reporting programs and protections without evidence or user-provided context: 'anonymous tips are taken less seriously and don't qualify for some protections' and 'Attorney-represented reporting lets you stay anonymous to the firm while being identified to the regulator'. These go beyond established facts (audit, partner involvement, etc.) and common practitioner knowledge, as they describe unverified procedural details and outcomes in 'most programs'.",
+          "reasoning": "The passage asserts specific empirical facts about reporting programs and protections without evidence or user-provided context: 'anonymous tips are taken less seriously and don't qualify for some protections' and 'Attorney-represented reporting lets you stay anonymous to the firm while being identified to the regulator'. These go beyond established facts (audit, partner, confidence in counsel, family stakes, meeting) and common practitioner knowledge, as they describe unverified operational details of 'most programs'.",
           "severity": "clear"
         }
       },
@@ -1715,7 +2278,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"An internal report in a situation like this is likely to tip off the partner you saw, giving him time to construct a cover story\" asserts a specific causal outcome (internal report tipping off the partner) as probable without evidence, qualification, or grounding in user-provided facts; this goes beyond common knowledge or reasonable inference from the established context (active audit, senior partner involvement).",
+          "reasoning": "The claim 'An internal report in a situation like this is likely to tip off the partner you saw, giving him time to construct a cover story' asserts a specific causal outcome (internal reporting tipping off the partner and enabling a cover story) as 'likely' without evidence, qualification, or grounding in user-provided facts. This goes beyond common practitioner knowledge into a speculative empirical prediction about firm dynamics not established in context.",
           "severity": "clear"
         }
       },
@@ -1738,7 +2301,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact that 'a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm... provides the strongest legal shield' and 'preserves your current job as long as possible.' These are specific claims about legal protections and employment outcomes in a regulatory audit context, which go beyond user-provided facts (audit, partner involvement, personal stakes), reasonable inferences therefrom, and common practitioner knowledge. No evidence or qualification is provided for these causal relationships or empirical outcomes.",
+          "reasoning": "The passage asserts as fact that 'a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm... provides the strongest legal shield' and 'preserves your current job as long as possible.' These are specific claims about legal protections and employment outcomes in the context of a regulatory audit and firm dynamics, which go beyond user-provided facts (audit, partner involvement, personal stakes), reasonable inferences therefrom, or common practitioner knowledge. No evidence or qualification is provided for these causal relationships or empirical outcomes.",
           "severity": "clear"
         }
       },
@@ -1761,7 +2324,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts specific criteria for when 'Internal is better'—(a) 'conduct is isolated and the leadership you're reporting to is genuinely independent from it', (b) 'the firm has a track record of taking internal reports seriously', (c) 'the regulator's program is weak or doesn't fit your situation'—as factual conditions without evidence, qualification, or grounding in user-provided facts (e.g., no user info on firm track record or regulator program strength). These are unverified empirical claims beyond reasonable inferences from established context or common knowledge.",
+          "reasoning": "The passage asserts specific conditions under which 'Internal is better'—(a) 'the conduct is isolated and the leadership you're reporting to is genuinely independent from it', (b) 'the firm has a track record of taking internal reports seriously', (c) 'the regulator's program is weak or doesn't fit your situation'—as factual criteria without evidence, qualification, or grounding in user-provided facts (e.g., no user info on firm track record or regulator strength). These go beyond reasonable inferences from established context and common knowledge.",
           "severity": "clear"
         }
       },
@@ -1784,7 +2347,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage introduces two ungrounded claims beyond user-provided facts and common knowledge: (1) '(c) the regulator has a strong program and clear jurisdiction' asserts specific empirical facts about the regulator's capabilities and jurisdiction not mentioned by the user or inferable from established facts (active audit implies jurisdiction but not 'strong program'); (2) 'evidence is being destroyed in real time' in (b) assumes the nature/pace of the suspected document destruction, which goes beyond the user's description of 'suspected document destruction during an active regulatory audit' without specifying real-time destruction. Points (a) and timing urgency in (b) are reasonable inferences from user facts (senior partner with revenue/political weight, active audit).",
+          "reasoning": "The passage introduces two ungrounded claims beyond user-provided facts or common knowledge: (1) 'the regulator has a strong program and clear jurisdiction' asserts specific empirical facts about the regulator's capabilities and authority, which the user never mentioned (only 'active regulatory audit'); (2) the causal relationship implied in (a) 'senior partner, which means firm leadership has financial and political incentives to minimize' goes beyond reasonable inference from 'senior partner involved with revenue/political weight' by asserting firm-wide leadership behavior without evidence. While (b) 'evidence is being destroyed in real time' is a reasonable inference from 'suspected document destruction during an active regulatory audit', the others are unverified specifics.",
           "severity": "clear"
         }
       },
@@ -1807,7 +2370,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact that 'Internal reporting also tips the timeline — once the partner knows someone saw him, the evidence situation changes, and you may be blamed for \"not reporting earlier\" in ways that undermine your credibility later.' This introduces a specific causal sequence and risk (timeline tipping, evidence changing, blame for not reporting earlier undermining credibility) not provided by the user or reasonably inferable from established facts (audit, partner weight, counsel confidence, family stakes, meeting). It goes beyond restating context into ungrounded prediction of internal dynamics.",
+          "reasoning": "The passage introduces new, unverified causal claims beyond user facts: 'once the partner knows someone saw him, the evidence situation changes' (unsupported speculation on evidence tampering) and 'you may be blamed for \"not reporting earlier\" in ways that undermine your credibility later' (unsubstantiated prediction of blame dynamics). These are not reasonable inferences from established facts (audit activity, partner weight, counsel confidence) nor common knowledge, but specific asserted outcomes without evidence.",
           "severity": "clear"
         }
       },
@@ -1843,7 +2406,7 @@
         },
         "paltering": {
           "detected": true,
-          "reasoning": "The statement 'I'm not saying your GC is corrupt; I'm saying the weight of institutional inertia at firms like yours usually produces \"quiet handling\" for senior partners even when GCs mean well' is technically true as a disclaimer but omits key context by introducing an unacknowledged tension: it acknowledges GCs 'mean well' but abandons the implication that this good intent may still lead to inadequate action, without resolving how this changes the recommendation or weighing the 60-65% confidence against this 'usually' outcome.",
+          "reasoning": "The statement 'I'm not saying your GC is corrupt; I'm saying the weight of institutional inertia at firms like yours usually produces \"quiet handling\" for senior partners even when GCs mean well' is technically true as a disclaimer but omits key context by introducing an unacknowledged tension: it acknowledges GCs 'mean well' but abandons the balance by asserting 'usually produces \"quiet handling\"' without resolving how this affects the 60-65% confidence or the recommended path, misleadingly framing external reporting as defensible despite the user's stated moderate confidence.",
           "severity": "marginal"
         },
         "weasel_words": {
@@ -1853,7 +2416,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'the weight of institutional inertia at firms like yours usually produces \"quiet handling\" for senior partners even when GCs mean well' asserts a specific causal relationship about firm behavior as fact without evidence, beyond user-provided facts (60-65% confidence, senior partner involvement) or common practitioner knowledge; no user detail on firm type or prior incidents supports this empirical claim about 'usually' outcomes.",
+          "reasoning": "'the weight of institutional inertia at firms like yours usually produces \"quiet handling\" for senior partners even when GCs mean well' asserts a specific causal relationship about firm behavior as fact without evidence, beyond user-provided facts (60-65% confidence, senior partner involvement) or common practitioner knowledge; no studies or examples cited.",
           "severity": "clear"
         }
       },
@@ -1899,7 +2462,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'investigators will likely want to interview her' is an unverified claim asserting a specific procedural fact about regulatory investigations that goes beyond user-provided facts (active audit, senior partner involvement) and common practitioner knowledge; no evidence or qualification provided for this outcome.",
+          "reasoning": "'investigators will likely want to interview her' is an unverified claim asserting a specific procedural fact about regulatory investigations not provided by the user, not a reasonable inference from established facts (active audit, senior partner involvement), and beyond common practitioner knowledge in this context.",
           "severity": "clear"
         }
       },
@@ -1968,7 +2531,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"Most offer free 30-60 minute intake calls\" is an unverified empirical claim about whistleblower attorneys' practices, not restated from user facts, not a reasonable inference from established context, and beyond common practitioner knowledge that would be assumed for any experienced advisor.",
+          "reasoning": "\"Most offer free 30-60 minute intake calls\" is an unverified empirical claim about whistleblower attorneys' practices, not restated from user facts, not a reasonable inference from established context, and beyond common practitioner knowledge that any advisor would definitively know as fact. Specifics like '30-60 minute' add unsubstantiated detail.",
           "severity": "clear"
         }
       },
@@ -1991,7 +2554,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact that an external attorney 'will' \"take over the mechanics — drafting the disclosure, identifying the right regulator, filing in a way that preserves your protections,\" without evidence or qualification. This specific description of what an attorney will do goes beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge, as it assumes outcomes in a highly context-specific regulatory scenario involving document destruction during an active audit.",
+          "reasoning": "The passage asserts as fact that an external attorney 'will' take over specific mechanics ('drafting the disclosure, identifying the right regulator, filing in a way that preserves your protections'), which introduces a specific causal expectation about attorney behavior and regulatory processes not provided by the user, not reasonably inferable from established facts (e.g., audit, partner involvement, personal stakes), and beyond common practitioner knowledge as a guaranteed outcome.",
           "severity": "clear"
         }
       },
@@ -2159,8 +2722,8 @@
       {
         "passage": "Honest answer: it depends on how the case unfolds, but the realistic picture is something like this.\n\nMonths 1-6: you continue working at the firm, possibly not knowing whether your report is being actively investigated. The regulator may or may not communicate with you during this period. You'll feel paranoid, watchful. Performance reviews may become more scrutinized. Consider this a baseline stress year.",
         "empty_rhetoric": {
-          "detected": true,
-          "reasoning": "The entire passage describes a vague, emotional timeline ('feel paranoid, watchful', 'baseline stress year') with no actionable content or decision-relevant information. A decision-maker would not know what to DO differently (e.g., no advice on reporting, mitigating risks, or preparing for the meeting). It sounds dramatic but could be deleted without losing any strategic guidance.",
+          "detected": false,
+          "reasoning": "",
           "severity": "clear"
         },
         "paltering": {
@@ -2175,7 +2738,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Performance reviews may become more scrutinized' and the detailed timeline of 'Months 1-6: you continue working... regulator may or may not communicate... you'll feel paranoid' assert specific empirical facts about regulatory investigations and firm retaliation that go beyond user-provided facts (audit, partner involvement, counsel confidence) and common knowledge. No evidence or user basis for these predictions.",
+          "reasoning": "The passage asserts a specific, detailed timeline of events post-reporting ('Months 1-6: you continue working... Performance reviews may become more scrutinized') and emotional/psychological effects ('You'll feel paranoid, watchful. Consider this a baseline stress year') as a 'realistic picture,' without evidence, qualification, or grounding in user-provided facts. These are unverified empirical predictions about firm/regulator behavior and personal experience beyond common knowledge or reasonable inferences from established context.",
           "severity": "clear"
         }
       },
@@ -2192,13 +2755,13 @@
           "severity": "clear"
         },
         "weasel_words": {
-          "detected": true,
-          "reasoning": "Phrases like 'may or may not stay protected depending on the path' and 'sometimes with a settlement, sometimes not' use vague hedging ('may', 'sometimes') that avoids commitment on key outcomes without adding specific information tied to user's facts, appearing informative while removing decisional clarity.",
-          "severity": "marginal"
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "Assertions like 'you'll likely be asked to leave via a negotiated departure' and 'other firms in the same industry will be cautious about hiring you, regardless of law' introduce specific empirical predictions about firm behavior and industry hiring practices not derived from user-provided facts (audit, partner weight, personal stakes) or common knowledge; stated as confident expectations without evidence.",
+          "reasoning": "The passage makes specific unverified assertions about firm and industry behavior: 'you'll likely be asked to leave via a negotiated departure — sometimes with a settlement, sometimes not' and 'other firms in the same industry will be cautious about hiring you, regardless of law.' These are stated as factual predictions without evidence, beyond user-provided facts (active audit, senior partner involvement), and exceed common practitioner knowledge for this scenario.",
           "severity": "clear"
         }
       },
@@ -2221,7 +2784,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact that 'Career tends to settle into one of three paths' with specific examples ('return to industry at a different firm that specifically values the integrity track record (some firms do)'), which introduces unsubstantiated empirical generalizations about career trajectories after a whistleblower-like incident. This goes beyond user-provided facts (audit, partner, personal stakes, meeting), reasonable inferences therefrom, or common practitioner knowledge, as no evidence or qualification is provided for these specific paths or their typicality.",
+          "reasoning": "The passage asserts as fact that 'Career tends to settle into one of three paths' with specific examples ('return to industry at a different firm that specifically values the integrity track record (some firms do)'), which introduces empirical claims about typical career trajectories after reporting misconduct. These are neither restated from user-provided facts (e.g., no user details on career paths post-reporting), reasonable inferences from established facts (audit, partner, family stakes, meeting), nor common practitioner knowledge. The parenthetical '(some firms do)' is a vague, unsubstantiated assertion of existence without evidence.",
           "severity": "clear"
         }
       },
@@ -2243,8 +2806,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": true,
-          "reasoning": "\"SEC-style whistleblower awards, if they apply, typically pay out 3-7 years after filing if the case produces sanctions over the threshold\" is an unverified claim: introduces specific empirical facts (timeline of 3-7 years, payout conditions tied to sanctions threshold) not provided by user, not reasonable inferences from established facts (active audit, senior partner involvement), and beyond common practitioner knowledge of general existence of awards.",
+          "detected": false,
+          "reasoning": "",
           "severity": "clear"
         }
       },
@@ -2267,7 +2830,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'It's very likely to change your career' and 'If the career is \"senior consultant at a large firm in this specific vertical,\" yes, likely' assert specific probabilistic outcomes (\"very likely\") about career impacts of reporting document destruction by a senior partner during an audit, which go beyond user-provided facts (audit, partner involvement, family stakes, etc.) and are not common practitioner knowledge or reasonable inferences; no evidence provided for these empirical predictions.",
+          "reasoning": "'It's very likely to change your career' and 'If the career is \"senior consultant at a large firm in this specific vertical,\" yes, likely' assert specific probabilistic outcomes (\"very likely\") about career impacts of reporting document destruction in a regulatory audit context, without evidence, qualification, or grounding in user-provided facts (audit, partner, family stakes, counsel confidence). These go beyond reasonable inferences from context or common knowledge, as actual outcomes depend on unstated variables like firm culture, investigation results, and industry precedents.",
           "severity": "clear"
         }
       },
@@ -2280,7 +2843,7 @@
         },
         "paltering": {
           "detected": true,
-          "reasoning": "The passage asserts 'The second is true; the first usually isn't, especially with legal counsel and a clean filing.' This technically acknowledges the loss of 'this specific version of the career' but misleadingly implies strong protection ('usually isn't' an ended career) by citing 'legal counsel and a clean filing' without addressing key user-provided risks like the senior partner's structural power, active regulatory audit, or only 60-65% confidence in counsel handling. The 'especially with' qualifier omits these tensions after acknowledging the loss, abandoning balance.",
+          "reasoning": "The claim 'The second is true; the first usually isn't, especially with legal counsel and a clean filing' is technically true in a general sense but omits key context from user facts: 60-65% confidence in internal general counsel (not guaranteed), active regulatory audit with senior partner's suspected document destruction (high risk of no 'clean filing'), and senior partner's structural/political weight. This makes the optimistic assurance misleading by downplaying unresolved risks without addressing them.",
           "severity": "clear"
         },
         "weasel_words": {
@@ -2290,7 +2853,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'The first usually isn't [true, i.e., career ended], especially with legal counsel and a clean filing' introduces an unverified empirical generalization about career outcomes and the protective effect of 'a clean filing' (undefined and not user-provided), beyond user facts, reasonable inferences, or common knowledge in this high-stakes regulatory context.",
+          "reasoning": "'The first usually isn't, especially with legal counsel and a clean filing' asserts an unverified empirical generalization (careers 'usually' survive such incidents) and assumes a 'clean filing' outcome, which goes beyond user-provided facts (60-65% confidence in counsel, active audit with suspected destruction) and common knowledge about regulatory risks in consulting/finance.",
           "severity": "clear"
         }
       },
@@ -2382,7 +2945,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts specific empirical generalizations as fact without evidence: 'The people who regret whistleblowing most are the ones who reacted in the first 48 hours without structure' and 'The people who come through it best are usually the ones who took 2-3 weeks to set up properly.' These introduce causal relationships and patterns about whistleblower outcomes not provided by the user, not derivable from established facts (e.g., audit, partner, counsel confidence, family stakes), and beyond common practitioner knowledge.",
+          "reasoning": "The passage asserts as fact: 'The people who regret whistleblowing most are the ones who reacted in the first 48 hours without structure' and 'The people who come through it best are usually the ones who took 2-3 weeks to set up properly.' These are specific empirical claims about whistleblower outcomes and timelines, unsupported by evidence, not derived from user-provided facts (e.g., no mention of others' regrets or timelines), and beyond common practitioner knowledge.",
           "severity": "clear"
         }
       },
@@ -2412,9 +2975,9 @@
     ],
     "summary": {
       "total_passages": 40,
-      "passages_with_detections": 23,
-      "total_clear": 25,
-      "total_marginal": 2
+      "passages_with_detections": 21,
+      "total_clear": 22,
+      "total_marginal": 1
     }
   },
   "run_health": {

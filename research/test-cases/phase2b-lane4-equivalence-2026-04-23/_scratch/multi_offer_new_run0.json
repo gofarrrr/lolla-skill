@@ -83,48 +83,221 @@
     "secondary_next_moves": []
   },
   "companion_cheat_sheet": {
-    "anchors": [],
-    "total_chunk_count": 0,
+    "anchors": [
+      {
+        "model_id": "meta-cognitive-reflection",
+        "display_name": "Meta Cognitive Reflection",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "meta-cognitive-reflection",
+            "text": "Reflection can become self-soothing introspection that leaves the actual decision process unchanged.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "meta-cognitive-reflection",
+            "text": "How am I thinking about this, and what might that process be missing?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "meta-cognitive-reflection",
+            "text": "Confirmation Bias: Confirmation-bias weakens meta-cognitive-reflection by making the self-audit protect the current story instead of revising it.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "confirmation-bias"
+            },
+            "affinity_rationale": "MCR 'struggles against the deeply ingrained human instinct to dismiss new, disconfirming information and instead seek data that validates existing beliefs' — directly opposes the open inquiry MCR demands.",
+            "activation_condition": "When self-monitoring is used to rationalize existing beliefs rather than genuinely examining whether the reasoning process is producing accurate rather than comfortable conclusions"
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "meta-cognitive-reflection",
+            "text": "Deliberately monitor the thinking process, not just the output, while the work is still adjustable.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "identity",
+            "source_model_id": "meta-cognitive-reflection",
+            "text": "Select when: The thinker needs to inspect how they are thinking, not just what they are concluding, because the process itself may be the constraint. | Danger when: Reflection is becoming self-soothing, journaling theater, or introspective overprocessing instead of improving the next decision. | Reasoning: metacognitive, diagnostic",
+            "provenance": {
+              "source_layer": "wave1",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "\"When I'm not being rational.\" You're framing the pull toward B as the irrational option, which suggests you've already decided the \"rational\" answer is A and you're asking me to confirm it.",
+        "presence_explanation": "The answer inspects how the user is thinking—identifying framing of B as irrational and pre-commitment to A as the process constraint biasing the conclusion—then pushes for correction, executing meta-cognitive-reflection."
+      }
+    ],
+    "total_chunk_count": 5,
     "budget_max": 20,
     "anti_echo_model_ids": [
       "checklists",
       "delays",
       "self-control"
-    ]
+    ],
+    "reranker": {
+      "active": true,
+      "chunks_above_relevance_floor": 3,
+      "mean_relevance_score": 0.283
+    }
   },
   "companion_card": {
-    "detected_models": [],
-    "expansions": [],
-    "failure_hints": [],
-    "heuristic_hints": [],
-    "premortem_hints": [],
-    "identity_chunks": [],
-    "detection_model_count": 0,
-    "expansion_count": 0,
-    "failure_hint_count": 0,
-    "heuristic_hint_count": 0,
-    "premortem_hint_count": 0,
-    "identity_chunk_count": 0,
+    "detected_models": [
+      {
+        "model_id": "meta-cognitive-reflection",
+        "model_name": "Meta Cognitive Reflection",
+        "evidence_quote": "\"When I'm not being rational.\" You're framing the pull toward B as the irrational option, which suggests you've already decided the \"rational\" answer is A and you're asking me to confirm it.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer inspects how the user is thinking—identifying framing of B as irrational and pre-commitment to A as the process constraint biasing the conclusion—then pushes for correction, executing meta-cognitive-reflection.",
+        "detection_confidence": "structural"
+      }
+    ],
+    "expansions": [
+      {
+        "source_model_id": "meta-cognitive-reflection",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias weakens meta-cognitive-reflection by making the self-audit protect the current story instead of revising it.",
+        "why_relevant": "Confirmation-bias weakens meta-cognitive-reflection by making the self-audit protect the current story instead of revising it.",
+        "affinity_rationale": "MCR 'struggles against the deeply ingrained human instinct to dismiss new, disconfirming information and instead seek data that validates existing beliefs' — directly opposes the open inquiry MCR demands.",
+        "activation_condition": "When self-monitoring is used to rationalize existing beliefs rather than genuinely examining whether the reasoning process is producing accurate rather than comfortable conclusions"
+      },
+      {
+        "source_model_id": "meta-cognitive-reflection",
+        "relation_type": "tension",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Meta-cognitive-reflection conflicts with confirmation-bias when process monitoring is replaced by belief-protecting self-explanation.",
+        "why_relevant": "Meta-cognitive-reflection conflicts with confirmation-bias when process monitoring is replaced by belief-protecting self-explanation.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "meta-cognitive-reflection",
+        "relation_type": "tension",
+        "model_id": "emotional-intelligence",
+        "model_name": "Emotional Intelligence",
+        "substrate_chunk": "Meta-cognitive-reflection conflicts with emotional-intelligence when introspective analysis delays timely relational response.",
+        "why_relevant": "Meta-cognitive-reflection conflicts with emotional-intelligence when introspective analysis delays timely relational response.",
+        "tension_type": "conflicts"
+      }
+    ],
+    "failure_hints": [
+      {
+        "source_model_id": "meta-cognitive-reflection",
+        "text": "Reflection can become self-soothing introspection that leaves the actual decision process unchanged.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "meta-cognitive-reflection",
+        "text": "The model fails when motion and effort continue without any monitoring of whether the current strategy is working.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "heuristic_hints": [
+      {
+        "source_model_id": "meta-cognitive-reflection",
+        "text": "Deliberately monitor the thinking process, not just the output, while the work is still adjustable.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "meta-cognitive-reflection",
+        "text": "Translate reflection into a corrected next move so the loop changes behavior instead of just self-description.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "premortem_hints": [
+      {
+        "source_model_id": "meta-cognitive-reflection",
+        "text": "How am I thinking about this, and what might that process be missing?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "meta-cognitive-reflection",
+        "text": "What sign would show that this reflection improved the next move rather than just my feeling of control?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "identity_chunks": [
+      {
+        "model_id": "meta-cognitive-reflection",
+        "display_name": "Meta Cognitive Reflection",
+        "select_when": [
+          "The thinker needs to inspect how they are thinking, not just what they are concluding, because the process itself may be the constraint.",
+          "Planning, learning, or decision quality would improve if the team deliberately monitored assumptions, progress, and blind spots.",
+          "The work is moving, but without enough self-audit to notice drift, confusion, or shallow understanding.",
+          "A pause for internalized teacher-like review could improve the next move more than more raw effort."
+        ],
+        "danger_when": [
+          "Reflection is becoming self-soothing, journaling theater, or introspective overprocessing instead of improving the next decision.",
+          "The situation is already clear and the team needs deliberate action, repetition, or execution more than another layer of process self-observation."
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "diagnostic"
+        ],
+        "input_type": "thinking-process quality problem",
+        "output_type": "self-audited next move"
+      }
+    ],
+    "detection_model_count": 1,
+    "expansion_count": 3,
+    "failure_hint_count": 2,
+    "heuristic_hint_count": 2,
+    "premortem_hint_count": 2,
+    "identity_chunk_count": 1,
     "detection_source": "independent_llm_pass"
   },
   "frame_pressure_card": {
     "frame_elements": [
       {
-        "element_text": "must decide within exactly 7 days",
-        "element_type": "mutable_constraint",
-        "evidence_quote": "I have to pick one within 7 days",
-        "frame_pattern": "temporal_fixation",
-        "fragility_signal": "negotiation extends the deadline to 10-14 days",
+        "element_text": "no clear path to staff at current company as a given",
+        "element_type": "assumption",
+        "evidence_quote": "no clear path to staff.",
+        "frame_pattern": "borrowed_premise",
+        "fragility_signal": "pushing back on manager for a specific project or internal transfer to create the path",
         "inquiry_stage": "how",
         "likely_default": "inertia"
       }
     ],
     "reframings": [
       {
-        "reframed_question": "What happens if I ask all three companies for a 10-14 day extension on the decision deadline?",
-        "what_opens": "Negotiation potential to extend the deadline, reducing pressure and allowing time for deeper family discussions or reference checks on the startup's equity value.",
+        "reframed_question": "What specific project could I push my manager for at my current company to create a clear path to staff?",
+        "what_opens": "Explores actionable steps to challenge the 'no clear path' assumption by leveraging internal advocacy and opportunities",
         "reframe_move_type": "constraint_relaxation",
-        "grounding_model": "optionality",
+        "grounding_model": "counterfactual-reasoning",
+        "source_element_index": 0
+      },
+      {
+        "reframed_question": "How might requesting an internal transfer to a high-visibility team at my current FAANG open a path to staff?",
+        "what_opens": "Uncovers internal mobility options within FAANG that could replicate staff+ promotion without leaving",
+        "reframe_move_type": "scope_expansion",
+        "grounding_model": "path-dependence",
         "source_element_index": 0
       }
     ],
@@ -143,64 +316,64 @@
         "dimension_id": "commitment-reversibility",
         "dimension_name": "Commitment & Reversibility",
         "covered": true,
-        "coverage_evidence": "Distinguishes sunk costs (current plateau) from future costs; identifies switching barriers like 2 years optionality loss in A ('A is a delay that costs 2 years of optionality'); values optionality consumed by A vs preserved/explored in B; recommends staging B with reversibility via negotiation and diligence.",
+        "coverage_evidence": "Assistant distinguishes sunk costs (current plateau) from future costs, identifies switching barriers for B (comp cut, family impact), values optionality consumed by A (2-year delay costing startup access at 14 years exp: 'A is a delay that costs 2 years of optionality'), recommends staging B with reversibility via negotiation (hours cap, remote, delayed start) and due diligence.",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "competitive-dynamics",
         "dimension_name": "Competitive Dynamics",
         "covered": false,
-        "coverage_evidence": "No modeling of startup competitors, retaliation, preemption, or founder responses beyond basic diligence; does not reason through collaborate vs compete tension.",
-        "materiality_note": "High: Startup success depends on competitive positioning; ignoring could reverse B recommendation if market is saturated."
+        "coverage_evidence": "No modeling of startup competitors' responses, retaliation, imitation, preemption, or first-mover dynamics in Series B space; startup diligence focuses on internal factors (employees, cap table, CEO) not external competitive reactions.",
+        "materiality_note": "High: Misjudging competitive landscape could make equity EV far worse than calculated, reversing B recommendation."
       },
       {
         "dimension_id": "incentive-alignment",
         "dimension_name": "Incentive Alignment",
         "covered": true,
-        "coverage_evidence": "Identifies wife as key agent with divergent incentives (primary earner, family impact); discusses monitoring via honest conversation and renegotiation (hours cap, ramp period); addresses failure mode of resentment if misaligned.",
+        "coverage_evidence": "Identifies wife as key agent with divergent incentives (primary earner, bears move/availability costs), discusses monitoring via explicit conversation ('does that version of the next 4 years sound like something you can live with?'), addresses divergence failure mode (resentment ends marriages), realigns via negotiation constraints.",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "resource-allocation",
         "dimension_name": "Resource Allocation",
         "covered": false,
-        "coverage_evidence": "Acknowledges family time trade-offs but does not explicitly identify displaced alternatives (e.g., kids' activities vs career) or compare marginal returns across options; no sizing of time/attention scarcity.",
-        "materiality_note": "High: With family constraints, reallocating time could make B unviable vs A."
+        "coverage_evidence": "Acknowledges comp cut and family cuts (vacations, enrichment) as survivable but does not compare marginal returns of allocating time/money across A/B/C (e.g., what B forgoes vs A upside) or size binding constraints beyond finances.",
+        "materiality_note": "Medium: Could show A preserves more family resources long-term, altering B push."
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "covered": true,
+        "coverage_evidence": "Sizes startup downside (80% fail rate, median $0), distinguishes mitigate (due diligence on runway/equity/terms, negotiate boundaries) vs adapt (treat A as bridge if B fails), addresses recovery (push deadline, lawyer review), notes antifragile potential (build skills).",
+        "materiality_note": "covered"
       },
       {
         "dimension_id": "stakeholder-alignment",
         "dimension_name": "Stakeholder Alignment",
         "covered": true,
-        "coverage_evidence": "Identifies wife as key stakeholder with blocking power; maps her position (distraction concerns); provides influence strategy (specific conversation script, probe for real yes); distinguishes technical merit from family feasibility.",
+        "coverage_evidence": "Identifies wife as key stakeholder with veto power, maps positions (distracted year signals resistance), influence strategy via non-pitch conversation script and probing ('tell me what would have to be true'), distinguishes feasibility from career merit.",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "timing-sequencing",
         "dimension_name": "Timing & Sequencing",
         "covered": true,
-        "coverage_evidence": "Specifies sequencing (wife talk tonight, extension tomorrow, diligence this week); rationale for order (wife first to de-risk, diligence before signing); addresses delay benefits (more info) vs costs (7-day clock pressure).",
+        "coverage_evidence": "Specifies critical path (wife convo tonight → extension request → diligence → decide), rationale for order (wife first to de-risk marriage, extension before signing), delay benefits (more info via calls/CEO) vs costs (none, as 10-14 days normal).",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "uncertainty-type",
         "dimension_name": "Uncertainty Type",
         "covered": false,
-        "coverage_evidence": "Acknowledges EV ambiguity and startup failure rates but does not classify uncertainty (e.g., epistemic via diligence vs Knightian founder fit); no matching of decision approach (e.g., optionality for B) or calibration of confidence.",
-        "materiality_note": "Medium: Misclassifying startup uncertainty as measurable risk could overstate B's appeal."
+        "coverage_evidence": "Acknowledges EV ambiguity and unknown personal fit ('paying to learn whether you're capable') but does not classify types (e.g., Knightian on startup success/personal fit vs epistemic on equity terms), no matching strategies like optionality staging beyond negotiation.",
+        "materiality_note": "High: True uncertainty in startup outcomes could demand more robustness (e.g., smaller equity bet), changing B to A."
       },
       {
         "dimension_id": "information-quality",
         "dimension_name": "Information Quality",
-        "covered": true,
-        "coverage_evidence": "Assesses evidence on current plateau (explicit feedback vs politics); tests causal hypotheses (distraction as symptom of deeper issue); identifies missing evidence (wife input, employee calls, cap table).",
-        "materiality_note": "covered"
-      },
-      {
-        "dimension_id": "risk-response",
-        "dimension_name": "Risk Response",
         "covered": false,
-        "coverage_evidence": "Names risks (comp cut, marriage strain, startup failure) but does not size downside exposure, distinguish mitigate vs adapt, or address recovery paths beyond basic negotiation.",
-        "materiality_note": "High: Different risk posture (e.g., more mitigation) could favor A over B."
+        "coverage_evidence": "Uses user's EV calc without assessing bias (e.g., $1.2B exit optimistic?), survivorship (successful Series B visible), missing base rates; diligence suggested but no calibration of evidence confidence.",
+        "materiality_note": "Immaterial: Diligence plan addresses key gaps; poor info unlikely to reverse given career-shape priority over finances."
       }
     ],
     "gap_routes": [
@@ -242,15 +415,15 @@
         "excluded_model_ids": []
       },
       {
-        "dimension_id": "risk-response",
-        "dimension_name": "Risk Response",
+        "dimension_id": "information-quality",
+        "dimension_name": "Information Quality",
         "candidate_model_ids": [
-          "risk-assessment",
-          "black-swan-events",
-          "antifragility",
-          "margin-of-safety",
-          "calculated-risk-taking",
-          "resilience"
+          "survivorship-bias",
+          "base-rates",
+          "correlation-vs-causation",
+          "statistical-discipline",
+          "law-of-large-numbers",
+          "falsifiability"
         ],
         "excluded_model_ids": []
       }
@@ -260,43 +433,45 @@
         "dimension_id": "competitive-dynamics",
         "dimension_name": "Competitive Dynamics",
         "questions": [
-          "Who else is the Series B startup courting for the founding engineer role, and how would they respond if you asked for a 10-14 day extension on the decision deadline?",
-          "If you push back on the 7-day deadline for Option B, what countermove might the startup make with their other candidates?",
-          "What would the FAANG for Option A do if you revealed the Series B offer and tried to negotiate a better comp bump or role?"
+          "Who else is the Series B startup considering for the founding engineer role, and how hard would they push back if you asked for a 10-14 day extension on the decision deadline?",
+          "If you push back on the 7-day deadline with the startup, what countermove do you anticipate from their CEO or founders?",
+          "For the FAANG staff+ offer, who on their team might react if you delay your decision, and what fallback candidates do they have?"
         ]
       },
       {
         "dimension_id": "resource-allocation",
         "dimension_name": "Resource Allocation",
         "questions": [
-          "What family resources like time with the kids or your wife's schedule would need to shift if you took Option B's 55-hour weeks?",
-          "Across the three options, which of your personal resources—savings, energy, or career network—feels most scarce right now?",
-          "If you reallocated budget from vacations and kids' activities for Option B, what other family priorities would that impact first?"
+          "What other family expenses beyond mortgage, vacations, and kids' activities would need to be cut or reallocated if you took the 80% base cut at the Series B?",
+          "Across the three options, which of your personal resources—like time with your 7- and 4-year-olds or supporting your wife's physician career—gets the biggest squeeze under Option B?",
+          "If you took Option A, what current work or family commitments at your existing FAANG job would you need to drop or reassign in the next 7 days to make the switch?"
         ]
       },
       {
         "dimension_id": "uncertainty-type",
         "dimension_name": "Uncertainty Type",
         "questions": [
-          "What parts of the Series B equity payout—like the exit size or timing—are true unknowns that no diligence can quantify?",
-          "In your wife's reaction to the startup conversation, what is measurable risk versus what you simply can't predict about her real feelings?",
-          "For Option A, how much of the 'platform play' leading to staff-level work is ignorance about the new FAANG's internal dynamics versus calculable odds?"
+          "What specific outcomes for the Series B startup—like down rounds or acquisition scenarios—are you treating as measurable risks versus complete unknowns?",
+          "In your expected value calc for the 0.8% equity, which parts feel like true uncertainty you can't assign probabilities to, such as the team's ability to execute?",
+          "For Option A, what ignorance do you have about the org-wide platform play—like hidden team politics—that explicit feedback from your current manager didn't reveal?"
         ]
       },
       {
-        "dimension_id": "risk-response",
-        "dimension_name": "Risk Response",
+        "dimension_id": "information-quality",
+        "dimension_name": "Information Quality",
         "questions": [
-          "What family boundaries would you set upfront with the startup to adapt to the 80% comp cut and longer hours rather than trying to avoid them?",
-          "If your wife's 'yes' turns into resentment in 6 months on Option B, what adaptation plan do you have versus just mitigating by choosing A?",
-          "How would you adjust your career expectations after 2 years on Option A if it confirms you don't want the FAANG staff path, rather than avoiding that outcome entirely?"
+          "From the two startup employees you'd talk to, what signals would tell you their answers about work hours and decision-making are reliable versus just positive spin?",
+          "What details in the equity grant terms—like vesting cliffs or down-round protections—might be noise from the startup's offer letter that a lawyer would flag as weak signals?",
+          "After a year of distraction, what recent signals from your wife about your availability carry more weight than her initial reaction to the offers?"
         ]
       }
     ],
     "anti_echo_model_ids": [
       "checklists",
+      "counterfactual-reasoning",
       "delays",
-      "optionality",
+      "meta-cognitive-reflection",
+      "path-dependence",
       "self-control"
     ]
   },
@@ -344,8 +519,8 @@
       },
       {
         "tendency_id": "stress-influence-tendency",
-        "score": 5,
-        "evidence": "Acknowledges 7-day deadline as pressure but explicitly recommends diligence steps (employee calls, equity review, CEO meet) and pushing back to extend it by a week, rather than compressing review or bypassing verification due to time constraint."
+        "score": 2,
+        "evidence": "Acknowledges 7-day deadline and recommends pushing back for extension with diligence, but does not show cognitive distortion from deadline pressure; instead, treats it as negotiable without compressing review."
       },
       {
         "tendency_id": "reward-and-punishment-superresponse-tendency",
@@ -374,8 +549,8 @@
       },
       {
         "tendency_id": "overoptimism-tendency",
-        "score": 5,
-        "evidence": "Strongly pushes B's 'high information value' and equity upside despite 80% comp cut and startup risks, framing financial EV as 'ambiguous' and survivable without quantifying low-probability success odds or reversal conditions like down rounds."
+        "score": 0,
+        "evidence": "Not detected"
       },
       {
         "tendency_id": "excessive-self-regard-tendency",
@@ -400,7 +575,7 @@
       {
         "tendency_id": "curiosity-tendency",
         "score": 8,
-        "evidence": "Dominant framing of Option B as high information value to 'find out whether you can build from zero' and a question 'you genuinely don't know' vs A's low info value, directly leveraging curiosity drive to recommend B over other options."
+        "evidence": "Answer strongly emphasizes B's 'high information value' in answering 'whether you can build from zero'—a question 'only accessible from actually doing it'—positioning it as the superior choice over A due to unique learning, directly invoking the drive to explore as decision-driver while downplaying A's diagnostic potential."
       },
       {
         "tendency_id": "use-it-or-lose-it-tendency",
@@ -424,26 +599,16 @@
       }
     ],
     "triggered_tendencies": [
-      "stress-influence-tendency",
-      "overoptimism-tendency",
       "curiosity-tendency",
       "inconsistency-avoidance-tendency",
+      "overoptimism-tendency",
       "doubt-avoidance-tendency",
       "twaddle-tendency",
+      "stress-influence-tendency",
       "reason-respecting-tendency",
       "contrast-misreaction-tendency"
     ],
     "triggered_tendency_sources": [
-      {
-        "tendency_id": "stress-influence-tendency",
-        "source": "triage",
-        "score": 5
-      },
-      {
-        "tendency_id": "overoptimism-tendency",
-        "source": "triage",
-        "score": 5
-      },
       {
         "tendency_id": "curiosity-tendency",
         "source": "triage",
@@ -455,6 +620,11 @@
         "score": 0.36996321095533463
       },
       {
+        "tendency_id": "overoptimism-tendency",
+        "source": "embedding",
+        "score": 0.3596818726152455
+      },
+      {
         "tendency_id": "doubt-avoidance-tendency",
         "source": "embedding",
         "score": 0.31797422867885566
@@ -463,6 +633,11 @@
         "tendency_id": "twaddle-tendency",
         "source": "embedding",
         "score": 0.3161390057352707
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "source": "embedding",
+        "score": 0.3123586900971739
       },
       {
         "tendency_id": "reason-respecting-tendency",
@@ -486,7 +661,7 @@
         "prompt_tokens": 4066,
         "completion_tokens": 177,
         "total_tokens": 4243,
-        "cached_tokens": 4065,
+        "cached_tokens": 197,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -497,9 +672,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3958,
-        "completion_tokens": 189,
-        "total_tokens": 4147,
-        "cached_tokens": 3957,
+        "completion_tokens": 180,
+        "total_tokens": 4138,
+        "cached_tokens": 197,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -512,7 +687,7 @@
         "prompt_tokens": 3790,
         "completion_tokens": 116,
         "total_tokens": 3906,
-        "cached_tokens": 3789,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -525,7 +700,7 @@
         "prompt_tokens": 3792,
         "completion_tokens": 78,
         "total_tokens": 3870,
-        "cached_tokens": 3791,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -536,9 +711,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3811,
-        "completion_tokens": 227,
-        "total_tokens": 4038,
-        "cached_tokens": 3810,
+        "completion_tokens": 182,
+        "total_tokens": 3993,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -549,21 +724,34 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3771,
-        "completion_tokens": 222,
-        "total_tokens": 3993,
-        "cached_tokens": 3770,
+        "completion_tokens": 237,
+        "total_tokens": 4008,
+        "cached_tokens": 197,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
       {
         "stage": "pass2",
-        "tendency_id": "stress-influence-tendency",
+        "tendency_id": "curiosity-tendency",
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 4001,
-        "completion_tokens": 228,
-        "total_tokens": 4229,
+        "prompt_tokens": 3922,
+        "completion_tokens": 83,
+        "total_tokens": 4005,
+        "cached_tokens": 159,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 4413,
+        "completion_tokens": 97,
+        "total_tokens": 4510,
         "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -575,35 +763,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4521,
-        "completion_tokens": 130,
-        "total_tokens": 4651,
-        "cached_tokens": 4520,
-        "cache_write_tokens": 0,
-        "reasoning_tokens": 0
-      },
-      {
-        "stage": "pass2",
-        "tendency_id": "curiosity-tendency",
-        "provider_name": "openrouter",
-        "model": "x-ai/grok-4.1-fast",
-        "status": "ok",
-        "prompt_tokens": 3922,
-        "completion_tokens": 97,
-        "total_tokens": 4019,
-        "cached_tokens": 3921,
-        "cache_write_tokens": 0,
-        "reasoning_tokens": 0
-      },
-      {
-        "stage": "pass2",
-        "tendency_id": "inconsistency-avoidance-tendency",
-        "provider_name": "openrouter",
-        "model": "x-ai/grok-4.1-fast",
-        "status": "ok",
-        "prompt_tokens": 4413,
-        "completion_tokens": 101,
-        "total_tokens": 4514,
-        "cached_tokens": 4412,
+        "completion_tokens": 106,
+        "total_tokens": 4627,
+        "cached_tokens": 238,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -616,7 +778,7 @@
         "prompt_tokens": 4371,
         "completion_tokens": 86,
         "total_tokens": 4457,
-        "cached_tokens": 4370,
+        "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -627,9 +789,22 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4060,
-        "completion_tokens": 109,
-        "total_tokens": 4169,
-        "cached_tokens": 4059,
+        "completion_tokens": 86,
+        "total_tokens": 4146,
+        "cached_tokens": 159,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "stress-influence-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 4001,
+        "completion_tokens": 240,
+        "total_tokens": 4241,
+        "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -640,9 +815,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4435,
-        "completion_tokens": 90,
-        "total_tokens": 4525,
-        "cached_tokens": 4434,
+        "completion_tokens": 89,
+        "total_tokens": 4524,
+        "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -653,9 +828,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4072,
-        "completion_tokens": 90,
-        "total_tokens": 4162,
-        "cached_tokens": 4071,
+        "completion_tokens": 91,
+        "total_tokens": 4163,
+        "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -666,9 +841,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3225,
-        "completion_tokens": 1172,
-        "total_tokens": 4397,
-        "cached_tokens": 3224,
+        "completion_tokens": 1576,
+        "total_tokens": 4801,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -678,10 +853,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 8179,
-        "completion_tokens": 2070,
-        "total_tokens": 10249,
-        "cached_tokens": 159,
+        "prompt_tokens": 8536,
+        "completion_tokens": 2133,
+        "total_tokens": 10669,
+        "cached_tokens": 1195,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -692,8 +867,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 5529,
-        "completion_tokens": 191,
-        "total_tokens": 5720,
+        "completion_tokens": 207,
+        "total_tokens": 5736,
         "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -704,9 +879,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 723,
-        "completion_tokens": 95,
-        "total_tokens": 818,
+        "prompt_tokens": 810,
+        "completion_tokens": 249,
+        "total_tokens": 1059,
         "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -717,9 +892,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 4583,
-        "completion_tokens": 370,
-        "total_tokens": 4953,
+        "prompt_tokens": 4574,
+        "completion_tokens": 408,
+        "total_tokens": 4982,
         "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -730,9 +905,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 4583,
-        "completion_tokens": 370,
-        "total_tokens": 4953,
+        "prompt_tokens": 4574,
+        "completion_tokens": 408,
+        "total_tokens": 4982,
         "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -744,147 +919,164 @@
     "companion_fingerprint_raw": [
       {
         "move_id": "1",
-        "reasoning_move": "Reject staying at current company due to persistent distraction and risk of career plateau turning into decline.",
+        "reasoning_move": "Reject staying (Option C) because current distraction and plateau will persist and worsen, leading to resentment and lost optionality.",
         "evidence_quotes": [
           "Don't stay (C) as distraction persists and plateau declines optionality.",
-          "Staying means accepting an indefinite plateau, and people who accept plateaus often discover that plateau becomes decline — not because they get worse, but because peers at other companies move past them and opportunities re-calibrate to that reference point.",
-          "You've been mentally checked out of your current job for a year. If you stay, that doesn't go away — in fact it gets worse"
+          "Staying means accepting an indefinite plateau, and people who accept plateaus often discover that plateau becomes decline",
+          "You've been mentally checked out of your current job for a year. If you stay, that doesn't go away — in fact it gets worse, because now you've passed on two real opportunities and you'll resent yourself and possibly her for the passing.",
+          "stay, which is the worst version of all three because you've told yourself no without even trying.",
+          "Don't stay. Staying is the answer that fails both tests."
         ],
-        "evidence_rationale": "These quotes directly argue against option C by highlighting ongoing dissatisfaction and long-term career risks.",
+        "evidence_rationale": "These quotes directly articulate the rejection of Option C, linking it to ongoing distraction, plateau risks, resentment from passing opportunities, and overall inferiority compared to other options.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Prioritize consulting wife to evaluate marriage risk before pursuing high-risk option B.",
+        "reasoning_move": "Prioritize a genuine conversation with wife to assess marriage-risk of Option B, framing it as a joint decision rather than seeking approval.",
         "evidence_quotes": [
-          "Prioritize wife conversation to assess marriage-risk for B",
+          "Prioritize wife conversation to assess marriage-risk for B; if genuine yes, pursue B",
           "The conversation you need to have isn't \"I've decided to take B, what do you think.\" It's \"I'm realizing I want to try something harder. Here's what that would mean for us. Do you want that life?\"",
-          "If her answer is genuinely \"yes, I want to see you do that,\" then option B becomes a joint decision and a shared risk. If her answer is \"you've been distracted and unavailable for a year and this sounds like more of that,\" then B becomes a marriage-risk, not a career-risk."
+          "If her answer is genuinely \"yes, I want to see you do that,\" then option B becomes a joint decision and a shared risk.",
+          "Say this, roughly: \"I've been distracted for a year, and I think I know why. There's part of me that wants to know if I can build something from scratch, and I haven't been admitting that to myself, which is why I've been half-present. I've been offered a founding engineer role at a Series B startup. It's an 80% base cut but we can afford it. It would probably mean 55-hour weeks during the first year, not 70 — I'd negotiate that up front. I'm not asking you to say yes tonight. I'm asking you to tell me honestly: does that version of the next 4 years sound like something you can live with, or does it sound like more of the last year?\""
         ],
-        "evidence_rationale": "Quotes emphasize framing the discussion with wife correctly and using her input to determine B's viability considering family constraints.",
+        "evidence_rationale": "Quotes specify the need for an authentic spousal dialogue, provide exact scripting, and outline interpreting responses to determine B's viability without unilateral decision-making.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Frame option B as high information value for testing ability to build from zero, unlike A which continues familiar path.",
+        "reasoning_move": "Frame Option B as high information value for resolving core career-shape dissatisfaction of building from zero, which Option A cannot provide.",
         "evidence_quotes": [
-          "it answers core question of building from zero with high information value.",
+          "as it answers core question of building from zero with high information value.",
           "The reason B keeps pulling you is that it solves a career-shape problem that A doesn't. At A you're still playing the staff-at-FAANG game, just at a different company with better odds. At B you're off that game entirely, for better or worse.",
+          "The question under your question is: do you want to find out whether you can build from zero? If yes, the financial EV doesn't need to be positive — you're paying to learn whether you're capable of something you currently can't know about yourself.",
           "B gives you a different kind of answer — whether you're capable of and want to build from zero. That answer is not accessible from A; it's only accessible from actually doing it.",
           "From an information-value standpoint, B is the more interesting move."
         ],
-        "evidence_rationale": "These passages contrast the unique learning opportunity of B against A's limited novelty, prioritizing personal growth over financial EV.",
+        "evidence_rationale": "These passages contrast B's unique diagnostic value for the user's underlying desire against A's inadequacy in addressing it, emphasizing non-financial learning.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Recommend specific due diligence steps for option B to mitigate risks.",
+        "reasoning_move": "If wife declines Option B, default to Option A as a temporary 2-year bridge acknowledging it delays but does not resolve core issues, avoiding indefinite stay.",
         "evidence_quotes": [
-          "pursue B with negotiation (hours, remote), diligence (employee calls, equity review, CEO meet, extend deadline)",
-          "talk to two current employees of the startup who are NOT the people interviewing you — someone senior, someone junior. Ask specifically how decisions get made, how hard they work in reality versus what they tell candidates, and what they'd change.",
-          "review the equity grant terms carefully. 0.8% means different things depending on vesting (4-year standard?), acceleration triggers, and whether your equity is subject to strike-price refresh if there's a future down round.",
-          "understand the cap table situation. How much runway does the company have? When's the next fundraise?",
-          "if you can, meet the CEO in a non-interview context."
+          "If wife no, take A as 2-year bridge aware it's a delay not solution to underlying desire, avoiding repeat crisis later.",
+          "If no terms make it work for her, option B is off the table. It's better to find that out now than 18 months in.",
+          "\"If wife is a hard or soft no, I take A\" is the default answer, but I'd hold space for a third possibility: she's a no, but you realize that the underlying issue — you wanting something mine — doesn't go away by taking A. In that case, A is a delay not a solution, and you should still take it (better than staying) but you should treat it as a 2-year bridge to trying B later, not as an answer."
         ],
-        "evidence_rationale": "Quotes provide concrete actions to assess startup viability, protecting against unknowns in equity and operations.",
+        "evidence_rationale": "Quotes establish A as fallback with explicit recognition of its limitations as a bridge, superior to staying, contingent on wife's response.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Suggest negotiating non-compensation terms and extending deadline for option B.",
+        "reasoning_move": "Conduct targeted diligence on startup for Option B including employee calls, equity review, CEO meeting, and cap table analysis to de-risk.",
         "evidence_quotes": [
-          "negotiation (hours, remote)",
-          "You can ask for: a defined 6-month ramp period with explicit hours (50-55/week not 70+), remote or hybrid arrangement with a stated travel cap, delayed start date of 30-60 days for family transition, a communication cadence with the CEO about what \"too much\" looks like.",
-          "Push back on the 7-day deadline. At this level, especially for a founding engineer role, a 10-14 day decision window is completely normal, and you can ask for it."
+          "pursue B with negotiation (hours, remote), diligence (employee calls, equity review, CEO meet, extend deadline)",
+          "talk to two current employees of the startup who are NOT the people interviewing you — someone senior, someone junior. Ask specifically how decisions get made, how hard they work in reality versus what they tell candidates, and what they'd change.",
+          "review the equity grant terms carefully. 0.8% means different things depending on vesting (4-year standard?), acceleration triggers, and whether your equity is subject to strike-price refresh if there's a future down round. Have a lawyer you trust read this, not the startup's lawyer.",
+          "understand the cap table situation. How much runway does the company have? When's the next fundraise?",
+          "if you can, meet the CEO in a non-interview context."
         ],
-        "evidence_rationale": "These detail practical negotiation tactics to make B more family-compatible and allow proper evaluation.",
+        "evidence_rationale": "Specific diligence steps are listed to evaluate startup realities, equity risks, leadership fit, and financial health before committing to B.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Position option A as a temporary bridge if B is not feasible, not a permanent solution.",
+        "reasoning_move": "Negotiate non-compensation terms for Option B like hours, remote work, and deadline extension to protect family boundaries upfront.",
         "evidence_quotes": [
-          "If wife no, take A as 2-year bridge aware it's a delay not solution to underlying desire, avoiding repeat crisis later.",
-          "A is a delay not a solution, and you should still take it (better than staying) but you should treat it as a 2-year bridge to trying B later, not as an answer.",
-          "take A but with clear eyes about what it is."
+          "negotiation (hours, remote)",
+          "At a founding engineer level, there's more flexibility than candidates assume. You can ask for: a defined 6-month ramp period with explicit hours (50-55/week not 70+), remote or hybrid arrangement with a stated travel cap, delayed start date of 30-60 days for family transition, a communication cadence with the CEO about what \"too much\" looks like.",
+          "Push back on the 7-day deadline. At this level, especially for a founding engineer role, a 10-14 day decision window is completely normal, and you can ask for it."
         ],
-        "evidence_rationale": "Quotes frame A as preferable to staying but acknowledge it doesn't resolve core dissatisfaction, preventing self-deception.",
+        "evidence_rationale": "Quotes detail negotiable elements beyond pay to set sustainable conditions, including deadline flexibility, directly tied to family viability.",
         "confidence": "high"
       }
     ],
     "companion_fingerprint_validated": [
       {
         "move_id": "1",
-        "reasoning_move": "Reject staying at current company due to persistent distraction and risk of career plateau turning into decline.",
+        "reasoning_move": "Reject staying (Option C) because current distraction and plateau will persist and worsen, leading to resentment and lost optionality.",
         "evidence_quotes": [
           "Don't stay (C) as distraction persists and plateau declines optionality.",
-          "Staying means accepting an indefinite plateau, and people who accept plateaus often discover that plateau becomes decline — not because they get worse, but because peers at other companies move past them and opportunities re-calibrate to that reference point.",
-          "You've been mentally checked out of your current job for a year. If you stay, that doesn't go away — in fact it gets worse"
+          "Staying means accepting an indefinite plateau, and people who accept plateaus often discover that plateau becomes decline",
+          "You've been mentally checked out of your current job for a year. If you stay, that doesn't go away — in fact it gets worse, because now you've passed on two real opportunities and you'll resent yourself and possibly her for the passing.",
+          "stay, which is the worst version of all three because you've told yourself no without even trying.",
+          "Don't stay. Staying is the answer that fails both tests."
         ],
-        "evidence_rationale": "These quotes directly argue against option C by highlighting ongoing dissatisfaction and long-term career risks.",
+        "evidence_rationale": "These quotes directly articulate the rejection of Option C, linking it to ongoing distraction, plateau risks, resentment from passing opportunities, and overall inferiority compared to other options.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Prioritize consulting wife to evaluate marriage risk before pursuing high-risk option B.",
+        "reasoning_move": "Prioritize a genuine conversation with wife to assess marriage-risk of Option B, framing it as a joint decision rather than seeking approval.",
         "evidence_quotes": [
-          "Prioritize wife conversation to assess marriage-risk for B",
+          "Prioritize wife conversation to assess marriage-risk for B; if genuine yes, pursue B",
           "The conversation you need to have isn't \"I've decided to take B, what do you think.\" It's \"I'm realizing I want to try something harder. Here's what that would mean for us. Do you want that life?\"",
-          "If her answer is genuinely \"yes, I want to see you do that,\" then option B becomes a joint decision and a shared risk. If her answer is \"you've been distracted and unavailable for a year and this sounds like more of that,\" then B becomes a marriage-risk, not a career-risk."
+          "If her answer is genuinely \"yes, I want to see you do that,\" then option B becomes a joint decision and a shared risk.",
+          "Say this, roughly: \"I've been distracted for a year, and I think I know why. There's part of me that wants to know if I can build something from scratch, and I haven't been admitting that to myself, which is why I've been half-present. I've been offered a founding engineer role at a Series B startup. It's an 80% base cut but we can afford it. It would probably mean 55-hour weeks during the first year, not 70 — I'd negotiate that up front. I'm not asking you to say yes tonight. I'm asking you to tell me honestly: does that version of the next 4 years sound like something you can live with, or does it sound like more of the last year?\""
         ],
-        "evidence_rationale": "Quotes emphasize framing the discussion with wife correctly and using her input to determine B's viability considering family constraints.",
+        "evidence_rationale": "Quotes specify the need for an authentic spousal dialogue, provide exact scripting, and outline interpreting responses to determine B's viability without unilateral decision-making.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Frame option B as high information value for testing ability to build from zero, unlike A which continues familiar path.",
+        "reasoning_move": "Frame Option B as high information value for resolving core career-shape dissatisfaction of building from zero, which Option A cannot provide.",
         "evidence_quotes": [
-          "it answers core question of building from zero with high information value.",
+          "as it answers core question of building from zero with high information value.",
           "The reason B keeps pulling you is that it solves a career-shape problem that A doesn't. At A you're still playing the staff-at-FAANG game, just at a different company with better odds. At B you're off that game entirely, for better or worse.",
+          "The question under your question is: do you want to find out whether you can build from zero? If yes, the financial EV doesn't need to be positive — you're paying to learn whether you're capable of something you currently can't know about yourself.",
           "B gives you a different kind of answer — whether you're capable of and want to build from zero. That answer is not accessible from A; it's only accessible from actually doing it.",
           "From an information-value standpoint, B is the more interesting move."
         ],
-        "evidence_rationale": "These passages contrast the unique learning opportunity of B against A's limited novelty, prioritizing personal growth over financial EV.",
+        "evidence_rationale": "These passages contrast B's unique diagnostic value for the user's underlying desire against A's inadequacy in addressing it, emphasizing non-financial learning.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Recommend specific due diligence steps for option B to mitigate risks.",
+        "reasoning_move": "If wife declines Option B, default to Option A as a temporary 2-year bridge acknowledging it delays but does not resolve core issues, avoiding indefinite stay.",
         "evidence_quotes": [
-          "pursue B with negotiation (hours, remote), diligence (employee calls, equity review, CEO meet, extend deadline)",
-          "talk to two current employees of the startup who are NOT the people interviewing you — someone senior, someone junior. Ask specifically how decisions get made, how hard they work in reality versus what they tell candidates, and what they'd change.",
-          "review the equity grant terms carefully. 0.8% means different things depending on vesting (4-year standard?), acceleration triggers, and whether your equity is subject to strike-price refresh if there's a future down round.",
-          "understand the cap table situation. How much runway does the company have? When's the next fundraise?",
-          "if you can, meet the CEO in a non-interview context."
+          "If wife no, take A as 2-year bridge aware it's a delay not solution to underlying desire, avoiding repeat crisis later.",
+          "If no terms make it work for her, option B is off the table. It's better to find that out now than 18 months in.",
+          "\"If wife is a hard or soft no, I take A\" is the default answer, but I'd hold space for a third possibility: she's a no, but you realize that the underlying issue — you wanting something mine — doesn't go away by taking A. In that case, A is a delay not a solution, and you should still take it (better than staying) but you should treat it as a 2-year bridge to trying B later, not as an answer."
         ],
-        "evidence_rationale": "Quotes provide concrete actions to assess startup viability, protecting against unknowns in equity and operations.",
+        "evidence_rationale": "Quotes establish A as fallback with explicit recognition of its limitations as a bridge, superior to staying, contingent on wife's response.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Suggest negotiating non-compensation terms and extending deadline for option B.",
+        "reasoning_move": "Conduct targeted diligence on startup for Option B including employee calls, equity review, CEO meeting, and cap table analysis to de-risk.",
         "evidence_quotes": [
-          "negotiation (hours, remote)",
-          "You can ask for: a defined 6-month ramp period with explicit hours (50-55/week not 70+), remote or hybrid arrangement with a stated travel cap, delayed start date of 30-60 days for family transition, a communication cadence with the CEO about what \"too much\" looks like.",
-          "Push back on the 7-day deadline. At this level, especially for a founding engineer role, a 10-14 day decision window is completely normal, and you can ask for it."
+          "pursue B with negotiation (hours, remote), diligence (employee calls, equity review, CEO meet, extend deadline)",
+          "talk to two current employees of the startup who are NOT the people interviewing you — someone senior, someone junior. Ask specifically how decisions get made, how hard they work in reality versus what they tell candidates, and what they'd change.",
+          "review the equity grant terms carefully. 0.8% means different things depending on vesting (4-year standard?), acceleration triggers, and whether your equity is subject to strike-price refresh if there's a future down round. Have a lawyer you trust read this, not the startup's lawyer.",
+          "understand the cap table situation. How much runway does the company have? When's the next fundraise?",
+          "if you can, meet the CEO in a non-interview context."
         ],
-        "evidence_rationale": "These detail practical negotiation tactics to make B more family-compatible and allow proper evaluation.",
+        "evidence_rationale": "Specific diligence steps are listed to evaluate startup realities, equity risks, leadership fit, and financial health before committing to B.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Position option A as a temporary bridge if B is not feasible, not a permanent solution.",
+        "reasoning_move": "Negotiate non-compensation terms for Option B like hours, remote work, and deadline extension to protect family boundaries upfront.",
         "evidence_quotes": [
-          "If wife no, take A as 2-year bridge aware it's a delay not solution to underlying desire, avoiding repeat crisis later.",
-          "A is a delay not a solution, and you should still take it (better than staying) but you should treat it as a 2-year bridge to trying B later, not as an answer.",
-          "take A but with clear eyes about what it is."
+          "negotiation (hours, remote)",
+          "At a founding engineer level, there's more flexibility than candidates assume. You can ask for: a defined 6-month ramp period with explicit hours (50-55/week not 70+), remote or hybrid arrangement with a stated travel cap, delayed start date of 30-60 days for family transition, a communication cadence with the CEO about what \"too much\" looks like.",
+          "Push back on the 7-day deadline. At this level, especially for a founding engineer role, a 10-14 day decision window is completely normal, and you can ask for it."
         ],
-        "evidence_rationale": "Quotes frame A as preferable to staying but acknowledge it doesn't resolve core dissatisfaction, preventing self-deception.",
+        "evidence_rationale": "Quotes detail negotiable elements beyond pay to set sustainable conditions, including deadline flexibility, directly tied to family viability.",
         "confidence": "high"
       }
     ],
     "companion_fingerprint_dropped": [],
-    "companion_detected_models": [],
+    "companion_detected_models": [
+      {
+        "model_id": "meta-cognitive-reflection",
+        "model_name": "Meta Cognitive Reflection",
+        "evidence_quote": "\"When I'm not being rational.\" You're framing the pull toward B as the irrational option, which suggests you've already decided the \"rational\" answer is A and you're asking me to confirm it.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer inspects how the user is thinking—identifying framing of B as irrational and pre-commitment to A as the process constraint biasing the conclusion—then pushes for correction, executing meta-cognitive-reflection.",
+        "detection_confidence": "structural"
+      }
+    ],
     "companion_rejected_models": [
       {
         "model_id": "status-quo-bias",
@@ -895,23 +1087,19 @@
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
-        "model_id": "checklists",
+        "model_id": "power-dynamics",
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
-        "model_id": "meta-cognitive-reflection",
+        "model_id": "sunk-cost-fallacy",
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
-        "model_id": "path-dependence",
-        "rejection_reason": "execution_quote_not_literal_substring"
-      },
-      {
-        "model_id": "representativeness-heuristic",
+        "model_id": "opportunity-cost",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "power-dynamics",
+        "model_id": "representativeness-heuristic",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -919,11 +1107,7 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "aleatory-epistemic-uncertainty-recognition",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "branch-solve-merge",
+        "model_id": "social-proof",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -931,59 +1115,7 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "anchoring",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "opportunity-cost",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "learning-curve",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "social-proof",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "probabilistic-thinking",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "reasoning-mode-router",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "information-asymmetry",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "calculated-risk-taking",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "einstellung-effect",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "hindsight-bias",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
-        "model_id": "inversion",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "optimization-theory",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "prospect-theory",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "bias-blind-spot",
+        "model_id": "aleatory-epistemic-uncertainty-recognition",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -991,7 +1123,27 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "intellectual-humility",
+        "model_id": "learning-curve",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "probabilistic-thinking",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "calculated-risk-taking",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "prospect-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "optimization-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "psychological-safety",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -999,16 +1151,24 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "sunk-cost-fallacy",
+        "model_id": "branch-solve-merge",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "brainstorming",
+        "model_id": "information-asymmetry",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "dunning-kruger-effect",
+        "model_id": "reasoning-mode-router",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "hindsight-bias",
         "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "liking-principle",
+        "rejection_reason": "mechanism absent"
       },
       {
         "model_id": "principal-agent-problem",
@@ -1019,76 +1179,8 @@
         "rejection_reason": "too generic"
       },
       {
-        "model_id": "variation-and-selection",
+        "model_id": "anchoring",
         "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "cognitive-dissonance",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "cultural-intelligence",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "psychological-safety",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "algorithmic-thinking",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "base-rates",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "blooms-taxonomy",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "decomposition",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "emotional-intelligence",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "feynman-technique",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "jobs-to-be-done",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "liking-principle",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "reciprocity-principle",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "schema-acquisition",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "specialization",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "step-back",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "abstraction",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "chain-of-thought",
-        "rejection_reason": "too generic"
       },
       {
         "model_id": "false-precision-avoidance",
@@ -1099,15 +1191,59 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "scientific-method-evidence-testing",
+        "model_id": "intellectual-humility",
         "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "path-dependence",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "step-back",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "bias-blind-spot",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "cognitive-dissonance",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "emotional-intelligence",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "lean-startup-methodology",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "reciprocity-principle",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "schema-acquisition",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "variation-and-selection",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "base-rates",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "dunning-kruger-effect",
+        "rejection_reason": "topic-adjacent"
       },
       {
         "model_id": "theory-of-constraints",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "active-listening",
+        "model_id": "algorithmic-thinking",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1115,33 +1251,67 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "debugging-strategies",
+        "model_id": "blooms-taxonomy",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "lean-startup-methodology",
+        "model_id": "brainstorming",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "inversion",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "rationalization",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "specialization",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "systems-thinking",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "agile-methodologies",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "cultural-intelligence",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "feynman-technique",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "obligations-controls-mapping",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "tier-2-high-value",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "wysiati",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "active-listening",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "constraints",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "constructive-feedback-models",
         "rejection_reason": "mechanism absent"
       }
     ],
     "deep_check_results": [
-      {
-        "tendency_id": "stress-influence-tendency",
-        "tendency_name": "Stress-Influence Tendency",
-        "detected": true,
-        "confidence": 0.95,
-        "sub_pattern": "delays",
-        "specific_passage": "Push back on the 7-day deadline. At this level, especially for a founding engineer role, a 10-14 day decision window is completely normal, and you can ask for it. \"I'm taking this seriously enough tha",
-        "severity": "medium"
-      },
-      {
-        "tendency_id": "overoptimism-tendency",
-        "tendency_name": "Overoptimism Tendency",
-        "detected": false,
-        "confidence": 0.0,
-        "sub_pattern": "",
-        "specific_passage": "",
-        "severity": ""
-      },
       {
         "tendency_id": "curiosity-tendency",
         "tendency_name": "Curiosity Tendency",
@@ -1154,6 +1324,15 @@
       {
         "tendency_id": "inconsistency-avoidance-tendency",
         "tendency_name": "Inconsistency-Avoidance Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "tendency_name": "Overoptimism Tendency",
         "detected": false,
         "confidence": 0.0,
         "sub_pattern": "",
@@ -1177,6 +1356,15 @@
         "sub_pattern": "",
         "specific_passage": "",
         "severity": ""
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "tendency_name": "Stress-Influence Tendency",
+        "detected": true,
+        "confidence": 0.85,
+        "sub_pattern": "delays",
+        "specific_passage": "Push back on the 7-day deadline. At this level, especially for a founding engineer role, a 10-14 day decision window is completely normal, and you can ask for it. \"I'm taking this seriously enough tha",
+        "severity": "medium"
       },
       {
         "tendency_id": "reason-respecting-tendency",
@@ -1306,7 +1494,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"people who accept plateaus often discover that plateau becomes decline — not because they get worse, but because peers at other companies move past them and opportunities re-calibrate to that reference point\" asserts a specific causal relationship (accepting plateau → decline via peer movement and opportunity recalibration) as a general empirical fact, beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge stated as fact without evidence or qualification.",
+          "reasoning": "\"people who accept plateaus often discover that plateau becomes decline — not because they get worse, but because peers at other companies move past them and opportunities re-calibrate to that reference point\" asserts a specific causal relationship (accepting plateau → decline via peer comparison) as a general empirical fact, beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge. While the risk of stagnation is intuitive, the claim of 'often discover[ing] decline' is stated without evidence or qualification.",
           "severity": "clear"
         }
       },
@@ -1329,7 +1517,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'usually there's an unspoken ranking when someone says \"help\"' asserts a specific behavioral pattern as typical ('usually') without evidence, beyond user facts or common practitioner knowledge; it's an ungrounded generalization about user psychology.",
+          "reasoning": "'usually there's an unspoken ranking when someone says \"help\"' asserts a specific behavioral pattern as typical ('usually') without evidence, beyond user-provided facts or common practitioner knowledge; it's an unverified empirical claim about user psychology.",
           "severity": "marginal"
         }
       },
@@ -1375,7 +1563,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"you probably have savings, some equity vested\" introduces specific empirical facts about the user's personal finances and equity holdings that were never provided by the user and cannot be reasonably inferred solely from '12 years FAANG experience,' family status, or 'financially survivable for Option B.' This goes beyond user facts and common knowledge.",
+          "reasoning": "'you probably have savings, some equity vested' introduces specific empirical facts about the user's personal finances and equity that the user never provided and cannot be derived from established facts (12 years FAANG experience, wife primary earner, financially survivable for Option B). This goes beyond reasonable inferences or common knowledge.",
           "severity": "clear"
         }
       },
@@ -1398,7 +1586,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"startup equity hopefully pays out in 4-6 years\" introduces a specific 4-6 year equity payout timeline not provided by the user or derivable from established facts (only 0.8% equity mentioned); this is not common practitioner knowledge as a precise range for Series B startup liquidity events.",
+          "reasoning": "\"startup equity hopefully pays out in 4-6 years\" introduces a specific timeline (4-6 years) for equity payout that is not derived from user-provided facts (which only state 0.8% equity and financial survivability), nor common practitioner knowledge as a precise range for Series B startups; this is an unverified empirical assertion about payout timing.",
           "severity": "clear"
         }
       },
@@ -1420,8 +1608,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": false,
-          "reasoning": "",
+          "detected": true,
+          "reasoning": "'The reason B keeps pulling you is that it solves a career-shape problem that A doesn't' asserts a specific psychological motivation ('keeps pulling you') and evaluative judgment about career benefits as fact, without evidence from user-provided facts (which lack any statement of personal pull toward B or 'career-shape problem' details). This goes beyond restating established facts (no path to staff) or reasonable inferences into unverified causal claim about user's internal state. 'For better or worse' adds ambiguity but does not qualify the assertion.",
           "severity": "clear"
         }
       },
@@ -1536,7 +1724,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts specific causal predictions as fact: 'that doesn't go away — in fact it gets worse' and 'you'll resent yourself and possibly her for the passing.' These are psychological forecasts about future emotions and resentment, which go beyond user-provided facts (e.g., 'distracted-for-a-year' is grounded, but the guaranteed worsening and resentment are not reasonable inferences, user facts, or common knowledge).",
+          "reasoning": "The passage asserts as fact that staying will cause resentment 'of yourself and possibly her for the passing,' and that distraction 'gets worse' after passing opportunities. These are specific causal predictions about the user's future emotional state and psychological trajectory, which go beyond user-provided facts (distraction for a year, no staff path, offers, family), reasonable inferences therefrom, or common practitioner knowledge. No evidence or qualification provided.",
           "severity": "clear"
         }
       },
@@ -1548,9 +1736,9 @@
           "severity": "clear"
         },
         "paltering": {
-          "detected": false,
-          "reasoning": "",
-          "severity": "clear"
+          "detected": true,
+          "reasoning": "The passage acknowledges the marriage risk of Option B ('stress-tests the marriage') but misleadingly frames staying at C as 'the worst version of all three' without resolving the structural family weight (wife primary earner, kids) and 80% comp cut, which make B's risk asymmetrically severe compared to A or staying. This abandons the tension after introducing it, presenting an unbalanced evaluation.",
+          "severity": "marginal"
         },
         "weasel_words": {
           "detected": false,
@@ -1558,8 +1746,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": false,
-          "reasoning": "",
+          "detected": true,
+          "reasoning": "'the distraction is going to be there regardless' asserts a specific causal fact about the user's internal state and family dynamics not provided by the user or derivable from established facts (decision deadline creates situational distraction, but no evidence it persists equally across options or overrides marriage risk). 'you're probably in the same conversation with yourself in 2 years' speculates a precise future outcome without evidence.",
           "severity": "clear"
         }
       },
@@ -1605,7 +1793,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"You'd be surprised. At a founding engineer level, there's more flexibility than candidates assume.\" asserts as fact that candidates underestimate flexibility and implies greater flexibility exists, without evidence or user-provided basis. Specific asks listed (e.g., 'defined 6-month ramp period with explicit hours (50-55/week not 70+)') are presented as feasible without qualification tying to user's situation, going beyond common knowledge into unverified empirical claim about Series B norms.",
+          "reasoning": "'You'd be surprised. At a founding engineer level, there's more flexibility than candidates assume' asserts as fact that candidates underestimate flexibility and implies high prevalence of such flexibility, which is not derived from user-provided facts (no prior mention of negotiation assumptions or startup flexibility) and goes beyond common practitioner knowledge of general negotiation room into specific empirical claim about candidate perceptions. Specific asks listed (e.g., 'defined 6-month ramp', '50-55/week') are actionable advice, not claims.",
           "severity": "clear"
         }
       },
@@ -1613,7 +1801,7 @@
         "passage": "None of this makes the job easier, but it shifts some of the negotiation before you accept, not after you're underwater in month 4. The startup gets a committed senior engineer; you get a framework for protecting the marriage. Both parties have skin in it.",
         "empty_rhetoric": {
           "detected": true,
-          "reasoning": "The entire passage consists of vague, metaphorical statements ('shifts some of the negotiation', 'framework for protecting the marriage', 'skin in it') that sound insightful but provide no actionable content or specifics on what to do differently. A decision-maker gains no concrete information from it; it could be deleted without losing decision-relevant details.",
+          "reasoning": "The entire passage consists of vague, metaphorical statements ('shifts some of the negotiation', 'framework for protecting the marriage', 'skin in it') that sound insightful but provide no actionable content or specifics on what to do differently. A decision-maker gains no decision-relevant information; the passage could be deleted without loss.",
           "severity": "clear"
         },
         "paltering": {
@@ -1650,8 +1838,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": true,
-          "reasoning": "'Founders who sign and then try to protect boundaries after joining usually lose that battle' asserts a specific causal relationship and outcome (usually lose) as fact without evidence, beyond user-provided facts or common practitioner knowledge. Not a reasonable inference from established context.",
+          "detected": false,
+          "reasoning": "",
           "severity": "clear"
         }
       },
@@ -1664,7 +1852,7 @@
         },
         "paltering": {
           "detected": true,
-          "reasoning": "The passage acknowledges 'no clear path to staff at current company (explicit feedback, structural)' as established fact but then palters by suggesting Option A 'could tell you whether you want the staff path or not' without resolving the key dropped thread that Option A was diagnostic for staff path (acknowledged_then_dropped). It abandons the structural barrier at current company by framing A as a low-risk test ('You'd get paid to find out'), omitting that this ignores the user's explicit feedback of no staff path there.",
+          "reasoning": "The passage acknowledges 'Option A as diagnostic for staff path' but presents it positively ('reasonable case for A', 'paid to find out') without addressing that it was a dropped thread or reconciling with established fact of 'no clear path to staff at current company (explicit feedback, structural)'. This omits key context of structural barriers at current company, making the endorsement misleading.",
           "severity": "marginal"
         },
         "weasel_words": {
@@ -1673,8 +1861,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": false,
-          "reasoning": "",
+          "detected": true,
+          "reasoning": "'Platform play at staff scope is a different job shape' and 'force you into technical leadership territory you haven't been in' introduce specific assertions about the nature of Option A that go beyond user-provided facts (no details on Option A role given), not grounded in conversation, reasonable inferences, or common knowledge.",
           "severity": "clear"
         }
       },
@@ -1697,7 +1885,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact: 'learning more of it [FAANG staff path] doesn't usually convince people they want it. It more often confirms they don't.' This is a specific empirical claim about typical outcomes for senior engineers pursuing FAANG staff roles, which goes beyond user-provided facts (no path to staff), reasonable inferences therefrom, or common practitioner knowledge. No evidence or qualification provided. Also, 'the startup-founding-engineer option would be harder to access' at 14 years experience projects a specific causal relationship without basis in conversation.",
+          "reasoning": "The passage asserts as fact: 'learning more of it [FAANG staff path] doesn't usually convince people they want it. It more often confirms they don't.' This introduces a specific empirical claim about typical outcomes in the FAANG staff engineer career path, unsupported by user-provided facts, reasonable inferences therefrom, or common practitioner knowledge. The subsequent projection ('the answer from option A is likely \"no\"') and scenario ('you'd be in your current situation 2 years from now... and the startup-founding-engineer option would be harder to access') rely on this unverified causal relationship about age/experience reducing startup viability.",
           "severity": "clear"
         }
       },
@@ -1720,7 +1908,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'at 14 years of experience the next logo matters less than the next few mostly do' asserts a specific causal relationship about career impact of logos at 14 years exp without evidence from user facts (user stated 12 years) or common knowledge; not a reasonable inference from established context.",
+          "reasoning": "\"at 14 years of experience the next logo matters less than the next few mostly do\" introduces a specific claim about career dynamics (logo value diminishing after 14 years) that goes beyond user-provided facts (12 years experience), reasonable inferences therefrom, or common practitioner knowledge; no evidence or qualification provided.",
           "severity": "clear"
         }
       },
@@ -1751,7 +1939,7 @@
         "passage": "So A answers a question you probably already know the answer to. B answers one you genuinely don't know. From an information-value standpoint, B is the more interesting move.",
         "empty_rhetoric": {
           "detected": true,
-          "reasoning": "The entire passage is empty rhetoric: it frames Options A and B in terms of 'information-value' and 'interesting move' but provides no actionable content, specific advice, or decision-relevant information. A decision-maker reading this would not know what to DO differently; the passage could be deleted without losing any substance.",
+          "reasoning": "The entire passage is empty rhetoric: it frames Options A and B in terms of 'answering questions' ('A answers a question you probably already know the answer to. B answers one you genuinely don't know') and calls B 'the more interesting move' from an 'information-value standpoint,' but provides no actionable content, specific analysis, or decision-relevant information. A decision-maker reading this would not know what to DO differently; the passage could be deleted without losing any decision-relevant information.",
           "severity": "clear"
         },
         "paltering": {
@@ -1789,7 +1977,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts 'It would probably mean 55-hour weeks during the first year, not 70' as a specific empirical prediction about work hours at the Series B startup, which goes beyond user-provided facts (no hours mentioned) and is not common practitioner knowledge or a reasonable inference from established context. This is stated without evidence or qualification.",
+          "reasoning": "The phrase 'It would probably mean 55-hour weeks during the first year, not 70' asserts a specific empirical fact about expected work hours at the Series B startup ('55-hour weeks') that goes beyond user-provided facts (no hours mentioned by user) and is not common practitioner knowledge or a reasonable inference from established context. It is stated without evidence or qualification as a prediction.",
           "severity": "clear"
         }
       },
@@ -1812,7 +2000,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'She's watched you for a year; she probably has information about you that you don't have about yourself' asserts a specific causal relationship (wife has unique self-insight after one year of observation) without evidence from user-provided facts or common knowledge; no timeline or spousal observation details were stated by user.",
+          "reasoning": "\"She's watched you for a year; she probably has information about you that you don't have about yourself\" asserts a specific causal relationship (wife's observation over a year yields unique self-knowledge) without evidence from user-provided facts or common practice; no timeline of wife's observation stated by user.",
           "severity": "clear"
         }
       },
@@ -1835,7 +2023,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The claim 'resentment from the primary earner about the partner's lower-paid risky job is one of the things that ends marriages' asserts a specific causal relationship (resentment from this dynamic ends marriages) as fact without evidence, qualification, or grounding in user-provided facts. This goes beyond reasonable inferences from the family situation (wife as primary earner, Option B's comp cut) or common knowledge, as it presents an unverified empirical generalization about marriage outcomes.",
+          "reasoning": "'resentment from the primary earner about the partner\\'s lower-paid risky job is one of the things that ends marriages' asserts a specific causal relationship (resentment from this dynamic ends marriages) as fact without evidence, beyond user-provided facts or common practitioner knowledge. The timeline 'in 6 months' is also an unverified prediction. This goes beyond reasonable inferences from family constraints and Option B's pay cut.",
           "severity": "clear"
         }
       },
@@ -1927,7 +2115,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage introduces specific, unverified empirical details about Series B timelines and runway: '18 months from a potentially-hard Series C' and 'just raised and has 30 months of runway.' These are not restated from user facts (user provided no cap table, runway, or fundraise info), not reasonable inferences from established facts (e.g., no company age or funding history given), and not common practitioner knowledge (specific durations like '18 months' or '30 months' are not standard). They assert concrete scenarios as factual examples without evidence.",
+          "reasoning": "The passage introduces specific, unverified empirical facts about Series B company timelines and runway that go beyond user-provided facts (no mention of cap table, runway, fundraise timing, or '18 months from potentially-hard Series C' vs. '30 months'). These are not reasonable inferences from established context (e.g., 80% comp cut and 0.8% equity do not imply specific runway durations) nor common practitioner knowledge stated as general facts; they assert concrete distinctions without evidence.",
           "severity": "clear"
         }
       },
@@ -1950,7 +2138,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The claim 'You're going to work for this person intensely for 4-6 years' asserts a specific timeframe and intensity of employment with the CEO that goes beyond user-provided facts (no mention of expected tenure or work dynamic) and is not common practitioner knowledge (vesting is standard but specific '4-6 years' and 'intensely' for a Series B founding engineer role is unsubstantiated). The rest is advice grounded in general practice.",
+          "reasoning": "\"You're going to work for this person intensely for 4-6 years\" asserts a specific timeframe as fact without evidence or qualification from user-provided facts (user mentioned Series B but no details on expected tenure); '4-6 years' is not common practitioner knowledge or reasonable inference from established context. The rest is advice grounded in standard startup dynamics.",
           "severity": "clear"
         }
       },
@@ -1972,8 +2160,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": true,
-          "reasoning": "'10-14 day decision window is completely normal' for senior SWE/founding engineer roles is an unverified claim; user provided no such industry norms, and this specific range exceeds common practitioner knowledge (which might support requesting extensions generally but not assert 'completely normal' for this exact window). 'If they say no... they're either desperate... or bad at managing... neither... good news' asserts specific causal inferences about startup behavior without evidence beyond user facts.",
+          "detected": false,
+          "reasoning": "",
           "severity": "clear"
         }
       },
@@ -1996,7 +2184,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Most offers' \"7 days\" is a negotiating position, not a hard deadline' asserts a specific empirical generalization about hiring practices beyond user-provided facts, common practitioner knowledge (which might cover general negotiability), or reasonable inferences from the 7-day deadline.",
+          "reasoning": "'Most offers\\' \"7 days\" is a negotiating position, not a hard deadline' asserts a specific empirical generalization about industry practices (\"most offers\") without evidence, beyond user-provided facts, conversational context, or common practitioner knowledge that any experienced advisor would universally know as fact. The refinement suggestion is a reasonable advisory inference from established facts (wife's input, no staff path), not unverified.",
           "severity": "clear"
         }
       },
@@ -2026,8 +2214,8 @@
       {
         "passage": "You're welcome. One last thing. The fact that you said \"thank you\" and treated the conversation as useful — that's a reasonable proxy for whether you're ready for B right now. People who are ready to build usually want to do the hard thinking. People who aren't ready want someone to tell them A is fine.",
         "empty_rhetoric": {
-          "detected": true,
-          "reasoning": "The entire passage is a vague, metaphorical statement ('reasonable proxy for whether you're ready for B', 'people who are ready to build usually want to do the hard thinking') that sounds insightful but provides no actionable advice or decision-relevant information. A decision-maker would not know what to DO differently; the passage could be deleted without losing any concrete guidance.",
+          "detected": false,
+          "reasoning": "",
           "severity": "clear"
         },
         "paltering": {
@@ -2042,7 +2230,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'that's a reasonable proxy for whether you're ready for B right now' and 'People who are ready to build usually want to do the hard thinking. People who aren't ready want someone to tell them A is fine' assert specific causal relationships and psychological generalizations about 'readiness' and behavior that go beyond user-provided facts, are not reasonable inferences from context (e.g., no prior discussion of proxies for readiness), and are not common practitioner knowledge.",
+          "reasoning": "The passage asserts as fact an unverified behavioral proxy and psychological generalization: 'that's a reasonable proxy for whether you're ready for B right now. People who are ready to build usually want to do the hard thinking. People who aren't ready want someone to tell them A is fine.' This introduces a specific causal relationship between the user's politeness ('thank you') and 'readiness' for Option B, which goes beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge. No evidence is provided for this proxy or the 'usually' claim about 'people who are ready to build.'",
           "severity": "clear"
         }
       },
@@ -2074,7 +2262,7 @@
       "total_passages": 35,
       "passages_with_detections": 20,
       "total_clear": 19,
-      "total_marginal": 2
+      "total_marginal": 3
     }
   },
   "run_health": {

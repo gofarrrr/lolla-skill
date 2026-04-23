@@ -11,7 +11,7 @@
         "tendency_name": "Stress-Influence Tendency",
         "sub_pattern": "deadline-driven-shortcutting",
         "severity": "medium",
-        "specific_passage": "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. This is non-negotiable. You cannot give Seattle an answer without it. Days 2-5: call your brother... Days 4-8: ask Seattle for a 2-week extension... Days 8-10: make the decision.",
+        "specific_passage": "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. [...] Days 2-5: call your brother [...] Days 4-8: ask Seattle for a 2-week extension [...] Days 8-10: make the decision.",
         "challenge_statement": "Which approval, precedent, or prerequisite check is being skipped because the team is treating the clock as proof?",
         "next_move": "Before committing, state the long-term rule that should still govern the move and hold that line for one full review cycle.",
         "is_trusted_surface": true,
@@ -32,7 +32,7 @@
         "tendency_name": "Stress-Influence Tendency",
         "sub_pattern": "deadline-driven-shortcutting",
         "severity": "medium",
-        "specific_passage": "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. This is non-negotiable. You cannot give Seattle an answer without it. Days 2-5: call your brother... Days 4-8: ask Seattle for a 2-week extension... Days 8-10: make the decision.",
+        "specific_passage": "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. [...] Days 2-5: call your brother [...] Days 4-8: ask Seattle for a 2-week extension [...] Days 8-10: make the decision.",
         "challenge_statement": "Which approval, precedent, or prerequisite check is being skipped because the team is treating the clock as proof?",
         "next_move": "Before committing, state the long-term rule that should still govern the move and hold that line for one full review cycle.",
         "is_trusted_surface": true,
@@ -85,13 +85,13 @@
   "companion_cheat_sheet": {
     "anchors": [
       {
-        "model_id": "optionality",
-        "display_name": "Optionality",
+        "model_id": "constraints",
+        "display_name": "Constraints",
         "chunks": [
           {
             "chunk_type": "failure_mode",
-            "source_model_id": "optionality",
-            "text": "Analysis paralysis can keep the team waiting for perfect information instead of learning through reversible movement.",
+            "source_model_id": "constraints",
+            "text": "Stale constraints can quietly mislead action when the environment changed but the boundary never did.",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
@@ -100,31 +100,31 @@
           },
           {
             "chunk_type": "premortem",
-            "source_model_id": "optionality",
-            "text": "Have we generated enough options before narrowing the choice set?",
+            "source_model_id": "constraints",
+            "text": "How does what you’re doing solve the problem?",
             "provenance": {
               "source_layer": "wave2",
-              "extraction_type": "normalized",
+              "extraction_type": "explicit",
               "confidence": "high"
             }
           },
           {
             "chunk_type": "antagonist",
-            "source_model_id": "optionality",
-            "text": "Commitment Bias: Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
+            "source_model_id": "constraints",
+            "text": "Anchoring: Anchoring distorts constraints when the initial boundary gets over-weighted after the real problem or environment changes.",
             "provenance": {
               "source_layer": "wave3",
               "extraction_type": "explicit",
               "confidence": "high",
-              "relation_target_id": "commitment-bias"
+              "relation_target_id": "anchoring"
             },
-            "affinity_rationale": "Commitment makes it 'extremely difficult to pivot or consider new, better options' — psychological pressure from prior choices directly destroys the flexibility optionality requires.",
-            "activation_condition": "When prior investment or public commitment creates escalation pressure that forecloses objectively superior alternatives because pivoting feels like failure"
+            "affinity_rationale": "Frame fixation — 'Over-focusing on an initial constraint or piece of information' — the first constraint identified absorbs disproportionate attention, preventing recognition of more binding limits.",
+            "activation_condition": "When the first constraint identified is receiving disproportionate attention and the team is not testing whether a different constraint is actually the binding limit on the system"
           },
           {
             "chunk_type": "heuristic",
-            "source_model_id": "optionality",
-            "text": "Invent first and decide later so evaluation does not choke off option generation too early.",
+            "source_model_id": "constraints",
+            "text": "Chunk the work into bite-sized pieces so the boundary helps the mind focus instead of overload.",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
@@ -133,8 +133,8 @@
           },
           {
             "chunk_type": "identity",
-            "source_model_id": "optionality",
-            "text": "Select when: Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call. | Danger when: Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit. | Reasoning: counterfactual, probabilistic",
+            "source_model_id": "constraints",
+            "text": "Select when: A team is losing clarity because too many goals, variables, or stakeholders are competing for attention at once. | Danger when: Old constraints are remaining unquestioned after the economics, technology, or stakeholder environment has changed. | Reasoning: deductive, systems",
             "provenance": {
               "source_layer": "wave1",
               "extraction_type": "explicit",
@@ -143,67 +143,8 @@
           }
         ],
         "presence_mode": "executed",
-        "evidence_quote": "Option A: find a short-term rental in DC — 3-6 months, usually furnished, higher monthly cost but no lock-in. This lets you move out of your current apartment without committing to a new year lease. Gives you 3-6 months to decide on Seattle without the apartment pressure.",
-        "presence_explanation": "The answer preserves optionality under high uncertainty by recommending cheap, reversible short-term rentals and extensions to avoid early irreversible commitment on housing or the job."
-      },
-      {
-        "model_id": "problem-framing-and-reframing",
-        "display_name": "Problem Framing And Reframing",
-        "chunks": [
-          {
-            "chunk_type": "failure_mode",
-            "source_model_id": "problem-framing-and-reframing",
-            "text": "Teams can jump into analysis too early and boil the ocean before the real structure of the problem is clear.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "normalized",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "failure_mode",
-            "source_model_id": "problem-framing-and-reframing",
-            "text": "A flawed problem definition can drive elegant work toward irrelevant or costly solutions.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "premortem",
-            "source_model_id": "problem-framing-and-reframing",
-            "text": "What is the single core question we are trying to answer?",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "heuristic",
-            "source_model_id": "problem-framing-and-reframing",
-            "text": "Keep a one-day-answer mentality so reframing sharpens the next decision instead of becoming endless conceptual drift.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "normalized",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "heuristic",
-            "source_model_id": "problem-framing-and-reframing",
-            "text": "Test several cuts through the problem before committing to the current unit of analysis or point of view.",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "normalized",
-              "confidence": "high"
-            }
-          }
-        ],
-        "presence_mode": "executed",
-        "evidence_quote": "OK, so the lease thing is secondary to the bigger question, which is: are you taking the Seattle job. That's actually the root decision, and everything else follows from it.",
-        "presence_explanation": "The answer reframes the entangled problems from surface lease urgency to the root Seattle job decision, producing clearer priorities and stronger next actions."
+        "evidence_quote": "The problem you're having is that you've been treating \"60 days to figure out everything\" as the constraint, when actually the constraint is \"60 days to be out of this apartment.\" Those are different problems, and the second one has much easier answers.",
+        "presence_explanation": "The answer clarifies competing constraints by distinguishing the true logistical constraint from the misframed broader one, restoring decision clarity."
       },
       {
         "model_id": "wysiati",
@@ -240,33 +181,29 @@
             }
           },
           {
-            "chunk_type": "antagonist",
+            "chunk_type": "failure_mode",
             "source_model_id": "wysiati",
-            "text": "Base Rates: Base rates provide the outside-view evidence that WYSIATI excludes — the distributional facts about the reference class that are not in the immediate picture.",
+            "text": "Coherence as quality signal treats the internal consistency and narrative flow of an argument as evidence of its correctness — well-constructed wrong analyses feel more true than messy correct ones.",
             "provenance": {
-              "source_layer": "wave3",
-              "extraction_type": "explicit",
-              "confidence": "high",
-              "relation_target_id": "base-rates"
-            },
-            "affinity_rationale": "Canonical states base rates force introduction of outside-view evidence that WYSIATI has excluded",
-            "activation_condition": "When outside-view reference-class data must be forced into a picture that WYSIATI has already closed"
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
           },
           {
-            "chunk_type": "antagonist",
+            "chunk_type": "premortem",
             "source_model_id": "wysiati",
-            "text": "Base Rates: WYSIATI conflicts with base-rates when the mind's closure around available evidence prevents the outside-view reference-class data from entering the picture at all.",
+            "text": "Is this conclusion well-supported, or is it well-constructed?",
             "provenance": {
-              "source_layer": "wave3",
-              "extraction_type": "explicit",
-              "confidence": "high",
-              "relation_target_id": "base-rates"
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
             }
           }
         ],
         "presence_mode": "executed",
         "evidence_quote": "You're being asked to make a major life decision based partly on an assumption (he'll come) that you've been too scared to test.",
-        "presence_explanation": "The answer explicitly audits the evidence for completeness by identifying the untested assumption about the boyfriend's commitment as a critical gap that must be filled before deciding, directly applying WYSIATI to avoid confident conclusions from incomplete information."
+        "presence_explanation": "The answer explicitly audits evidence completeness by identifying untested assumptions as gaps that must be filled before deciding, directly applying WYSIATI to avoid confident conclusions from incomplete information."
       },
       {
         "model_id": "scientific-method-evidence-testing",
@@ -276,6 +213,16 @@
             "chunk_type": "failure_mode",
             "source_model_id": "scientific-method-evidence-testing",
             "text": "Anchoring on the first hypothesis can block equal evaluation of alternative explanations.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "scientific-method-evidence-testing",
+            "text": "Confirmation bias can turn evidence gathering into answer defense instead of genuine pressure-testing.",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
@@ -314,25 +261,14 @@
             },
             "affinity_rationale": "Canonical: SMET is 'a proven way to address most cognitive biases.' Confirmation bias is the primary obstacle — 'politically protected hypothesis cannot really be falsified.'",
             "activation_condition": "When the desire to confirm existing beliefs undermines the genuine falsification that scientific method demands."
-          },
-          {
-            "chunk_type": "antagonist",
-            "source_model_id": "scientific-method-evidence-testing",
-            "text": "Confirmation Bias: Scientific-method-evidence-testing conflicts with confirmation-bias when disconfirming data is discounted after hypothesis commitment.",
-            "provenance": {
-              "source_layer": "wave3",
-              "extraction_type": "explicit",
-              "confidence": "high",
-              "relation_target_id": "confirmation-bias"
-            }
           }
         ],
         "presence_mode": "executed",
         "evidence_quote": "Can you ask him concretely: \"If I accept Seattle and we move in 60 days, are you coming? What does that actually look like for your job? Your family? Your friends?\" If the answers come fast and specific, he's processed it. If they're vague, he hasn't.",
-        "presence_explanation": "The answer recommends a specific empirical test via concrete questions to resolve the causal claim about the boyfriend's commitment, using evidence from responses rather than intuition or authority."
+        "presence_explanation": "The answer prescribes concrete, falsifiable tests via specific questions to resolve causal claims about boyfriend's commitment through evidence rather than untested assumptions."
       }
     ],
-    "total_chunk_count": 20,
+    "total_chunk_count": 15,
     "budget_max": 20,
     "anti_echo_model_ids": [
       "checklists",
@@ -341,8 +277,8 @@
     ],
     "reranker": {
       "active": true,
-      "chunks_above_relevance_floor": 11,
-      "mean_relevance_score": 0.2729
+      "chunks_above_relevance_floor": 5,
+      "mean_relevance_score": 0.2378
     }
   },
   "companion_card": {
@@ -352,7 +288,7 @@
         "model_name": "WYSIATI",
         "evidence_quote": "You're being asked to make a major life decision based partly on an assumption (he'll come) that you've been too scared to test.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer explicitly audits the evidence for completeness by identifying the untested assumption about the boyfriend's commitment as a critical gap that must be filled before deciding, directly applying WYSIATI to avoid confident conclusions from incomplete information.",
+        "presence_explanation": "The answer explicitly audits evidence completeness by identifying untested assumptions as gaps that must be filled before deciding, directly applying WYSIATI to avoid confident conclusions from incomplete information.",
         "detection_confidence": "structural"
       },
       {
@@ -360,23 +296,15 @@
         "model_name": "Scientific Method Evidence Testing",
         "evidence_quote": "Can you ask him concretely: \"If I accept Seattle and we move in 60 days, are you coming? What does that actually look like for your job? Your family? Your friends?\" If the answers come fast and specific, he's processed it. If they're vague, he hasn't.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer recommends a specific empirical test via concrete questions to resolve the causal claim about the boyfriend's commitment, using evidence from responses rather than intuition or authority.",
+        "presence_explanation": "The answer prescribes concrete, falsifiable tests via specific questions to resolve causal claims about boyfriend's commitment through evidence rather than untested assumptions.",
         "detection_confidence": "structural"
       },
       {
-        "model_id": "optionality",
-        "model_name": "Optionality",
-        "evidence_quote": "Option A: find a short-term rental in DC — 3-6 months, usually furnished, higher monthly cost but no lock-in. This lets you move out of your current apartment without committing to a new year lease. Gives you 3-6 months to decide on Seattle without the apartment pressure.",
+        "model_id": "constraints",
+        "model_name": "Constraints",
+        "evidence_quote": "The problem you're having is that you've been treating \"60 days to figure out everything\" as the constraint, when actually the constraint is \"60 days to be out of this apartment.\" Those are different problems, and the second one has much easier answers.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer preserves optionality under high uncertainty by recommending cheap, reversible short-term rentals and extensions to avoid early irreversible commitment on housing or the job.",
-        "detection_confidence": "structural"
-      },
-      {
-        "model_id": "problem-framing-and-reframing",
-        "model_name": "Problem Framing And Reframing",
-        "evidence_quote": "OK, so the lease thing is secondary to the bigger question, which is: are you taking the Seattle job. That's actually the root decision, and everything else follows from it.",
-        "presence_mode": "executed",
-        "presence_explanation": "The answer reframes the entangled problems from surface lease urgency to the root Seattle job decision, producing clearer priorities and stronger next actions.",
+        "presence_explanation": "The answer clarifies competing constraints by distinguishing the true logistical constraint from the misframed broader one, restoring decision clarity.",
         "detection_confidence": "structural"
       }
     ],
@@ -439,61 +367,32 @@
         "tension_type": "conflicts"
       },
       {
-        "source_model_id": "optionality",
-        "relation_type": "antagonist",
-        "model_id": "commitment-bias",
-        "model_name": "Commitment Bias",
-        "substrate_chunk": "Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
-        "why_relevant": "Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
-        "affinity_rationale": "Commitment makes it 'extremely difficult to pivot or consider new, better options' — psychological pressure from prior choices directly destroys the flexibility optionality requires.",
-        "activation_condition": "When prior investment or public commitment creates escalation pressure that forecloses objectively superior alternatives because pivoting feels like failure"
-      },
-      {
-        "source_model_id": "optionality",
-        "relation_type": "tension",
-        "model_id": "commitment-bias",
-        "model_name": "Commitment Bias",
-        "substrate_chunk": "Optionality conflicts with commitment-bias when preserving options delays the commitment needed to capture time-sensitive value.",
-        "why_relevant": "Optionality conflicts with commitment-bias when preserving options delays the commitment needed to capture time-sensitive value.",
-        "tension_type": "conflicts"
-      },
-      {
-        "source_model_id": "optionality",
-        "relation_type": "antagonist",
-        "model_id": "confirmation-bias",
-        "model_name": "Confirmation Bias",
-        "substrate_chunk": "Confirmation-bias shrinks optionality by locking attention onto the preferred path and filtering out superior alternatives.",
-        "why_relevant": "Confirmation-bias shrinks optionality by locking attention onto the preferred path and filtering out superior alternatives.",
-        "affinity_rationale": "Described as 'severely limiting' optionality — confirmation bias causes inability to see superior alternatives by seeking information that confirms the preferred option.",
-        "activation_condition": "When attachment to a preferred option causes selective evidence gathering that makes alternatives invisible despite their objective superiority"
-      },
-      {
-        "source_model_id": "problem-framing-and-reframing",
+        "source_model_id": "constraints",
         "relation_type": "antagonist",
         "model_id": "anchoring",
         "model_name": "Anchoring",
-        "substrate_chunk": "Anchoring becomes an antagonist when the first framing or salient cue keeps the team from testing alternative boundaries and causal structures.",
-        "why_relevant": "Anchoring becomes an antagonist when the first framing or salient cue keeps the team from testing alternative boundaries and causal structures.",
-        "affinity_rationale": "Canonical risks: 'Focusing too much on a single, salient piece of information (the anchor)' — root cause of the hammer-and-nail problem in framing.",
-        "activation_condition": "When an initial frame anchors subsequent analysis so strongly that alternative frames are never seriously tested."
+        "substrate_chunk": "Anchoring distorts constraints when the initial boundary gets over-weighted after the real problem or environment changes.",
+        "why_relevant": "Anchoring distorts constraints when the initial boundary gets over-weighted after the real problem or environment changes.",
+        "affinity_rationale": "Frame fixation — 'Over-focusing on an initial constraint or piece of information' — the first constraint identified absorbs disproportionate attention, preventing recognition of more binding limits.",
+        "activation_condition": "When the first constraint identified is receiving disproportionate attention and the team is not testing whether a different constraint is actually the binding limit on the system"
       },
       {
-        "source_model_id": "problem-framing-and-reframing",
+        "source_model_id": "constraints",
         "relation_type": "antagonist",
         "model_id": "confirmation-bias",
         "model_name": "Confirmation Bias",
-        "substrate_chunk": "Confirmation-bias resists reframing by defending the initial problem statement even after disconfirming evidence suggests a better cut.",
-        "why_relevant": "Confirmation-bias resists reframing by defending the initial problem statement even after disconfirming evidence suggests a better cut.",
-        "affinity_rationale": "Canonical: 'Resists reframing: Confirmation bias drives problem solvers to seek evidence that confirms their initial framing, making them unwilling to investigate deeply enough to justify a reframing.'",
-        "activation_condition": "When existing beliefs lock the problem frame in place and prevent exploring alternative framings despite disconfirming evidence."
+        "substrate_chunk": "Confirmation-bias turns a useful boundary into a rigid mental cage that resists updating when the frame is wrong.",
+        "why_relevant": "Confirmation-bias turns a useful boundary into a rigid mental cage that resists updating when the frame is wrong.",
+        "affinity_rationale": "Specific threat — 'Confirmation bias is the enemy of adapting or abandoning an outdated framework' — prevents constraint revision when evidence shows the constraint no longer serves the objective.",
+        "activation_condition": "When evidence suggests a constraint has become outdated or counterproductive but the team is defending it because it is familiar rather than because it still serves the objective"
       },
       {
-        "source_model_id": "problem-framing-and-reframing",
+        "source_model_id": "constraints",
         "relation_type": "tension",
-        "model_id": "confirmation-bias",
-        "model_name": "Confirmation Bias",
-        "substrate_chunk": "Problem-framing-and-reframing conflicts with confirmation-bias when reframing is constrained to preferred hypotheses.",
-        "why_relevant": "Problem-framing-and-reframing conflicts with confirmation-bias when reframing is constrained to preferred hypotheses.",
+        "model_id": "lateral-thinking",
+        "model_name": "Lateral Thinking",
+        "substrate_chunk": "Constraints conflicts with lateral-thinking when imposed constraints channel thinking so narrowly that non-obvious solutions outside the constraint set are never considered.",
+        "why_relevant": "Constraints conflicts with lateral-thinking when imposed constraints channel thinking so narrowly that non-obvious solutions outside the constraint set are never considered.",
         "tension_type": "conflicts"
       }
     ],
@@ -523,26 +422,14 @@
         "confidence": "high"
       },
       {
-        "source_model_id": "optionality",
-        "text": "Analysis paralysis can keep the team waiting for perfect information instead of learning through reversible movement.",
+        "source_model_id": "constraints",
+        "text": "Constraint design can fail by being so loose that it creates false confidence or so tight that it blocks learning.",
         "extraction_type": "normalized",
         "confidence": "high"
       },
       {
-        "source_model_id": "optionality",
-        "text": "Anchoring on the first option presented can quietly shrink the perceived option set and bias later evaluation.",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "problem-framing-and-reframing",
-        "text": "A flawed problem definition can drive elegant work toward irrelevant or costly solutions.",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "problem-framing-and-reframing",
-        "text": "Teams can jump into analysis too early and boil the ocean before the real structure of the problem is clear.",
+        "source_model_id": "constraints",
+        "text": "Stale constraints can quietly mislead action when the environment changed but the boundary never did.",
         "extraction_type": "normalized",
         "confidence": "high"
       }
@@ -573,26 +460,14 @@
         "confidence": "high"
       },
       {
-        "source_model_id": "optionality",
-        "text": "Bias toward action on reversible decisions because they buy information at low downside cost.",
+        "source_model_id": "constraints",
+        "text": "Chunk the work into bite-sized pieces so the boundary helps the mind focus instead of overload.",
         "extraction_type": "normalized",
         "confidence": "high"
       },
       {
-        "source_model_id": "optionality",
-        "text": "Invent first and decide later so evaluation does not choke off option generation too early.",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "problem-framing-and-reframing",
-        "text": "Keep a one-day-answer mentality so reframing sharpens the next decision instead of becoming endless conceptual drift.",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "problem-framing-and-reframing",
-        "text": "Test several cuts through the problem before committing to the current unit of analysis or point of view.",
+        "source_model_id": "constraints",
+        "text": "Define constraints explicitly in the problem statement so the scope is realistic before analysis starts.",
         "extraction_type": "normalized",
         "confidence": "high"
       }
@@ -623,26 +498,14 @@
         "confidence": "high"
       },
       {
-        "source_model_id": "optionality",
-        "text": "Is the worst case bad enough?",
+        "source_model_id": "constraints",
+        "text": "How does what you’re doing solve the problem?",
         "extraction_type": "explicit",
         "confidence": "high"
       },
       {
-        "source_model_id": "optionality",
-        "text": "Have we generated enough options before narrowing the choice set?",
-        "extraction_type": "normalized",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "problem-framing-and-reframing",
-        "text": "What evidence would conclusively prove our current framing wrong?",
-        "extraction_type": "explicit",
-        "confidence": "high"
-      },
-      {
-        "source_model_id": "problem-framing-and-reframing",
-        "text": "What is the single core question we are trying to answer?",
+        "source_model_id": "constraints",
+        "text": "If this was cut, would anything be lost?",
         "extraction_type": "explicit",
         "confidence": "high"
       }
@@ -691,52 +554,32 @@
         "output_type": "evidence test plan"
       },
       {
-        "model_id": "optionality",
-        "display_name": "Optionality",
+        "model_id": "constraints",
+        "display_name": "Constraints",
         "select_when": [
-          "Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.",
-          "Decisions are reversible enough that preserving multiple paths creates information value rather than just indecision.",
-          "Downside can be capped while upside remains open across several plausible futures.",
-          "The problem has collapsed into binary framing, but the real move is to create more viable paths before choosing."
+          "A team is losing clarity because too many goals, variables, or stakeholders are competing for attention at once.",
+          "Success depends on explicit boundaries around scope, acceptable trade-offs, and what the current effort will deliberately exclude.",
+          "Creative or analytical work needs a forcing function that narrows the space enough for quality decisions and movement.",
+          "The real problem is not lack of ideas but lack of boundaries strong enough to focus effort and reduce overload."
         ],
         "danger_when": [
-          "Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit.",
-          "Maintaining optionality is consuming cash, attention, or organizational simplicity that would be better spent on a chosen path."
+          "Old constraints are remaining unquestioned after the economics, technology, or stakeholder environment has changed.",
+          "Constraints are being written so loosely that they create false confidence in control, or so tightly that they choke off signal, adaptation, or learning."
         ],
         "reasoning_types": [
-          "counterfactual",
-          "probabilistic"
-        ],
-        "input_type": "reversible high-uncertainty choice",
-        "output_type": "option set expansion"
-      },
-      {
-        "model_id": "problem-framing-and-reframing",
-        "display_name": "Problem Framing And Reframing",
-        "select_when": [
-          "The team is working hard on a problem but keeps producing weak answers, weak priorities, or repeated confusion.",
-          "Progress depends less on more data than on asking a better question, changing the boundary, or redefining the unit of analysis.",
-          "Multiple plausible frames exist and the cost of choosing the wrong one is high.",
-          "The current approach feels stuck inside one familiar lens and needs several alternative cuts before analysis deepens."
-        ],
-        "danger_when": [
-          "The team is using reframing as an excuse to postpone commitment instead of improving the next concrete move.",
-          "A preferred hypothesis is already hardening into the answer, so reframing theater would only decorate confirmation-bias rather than challenge it."
-        ],
-        "reasoning_types": [
-          "metacognitive",
+          "deductive",
           "systems"
         ],
-        "input_type": "problem-definition and boundary-selection problem",
-        "output_type": "reframed decision-worthy problem statement"
+        "input_type": "scope and boundary control problem",
+        "output_type": "clarifying constraint frame"
       }
     ],
-    "detection_model_count": 4,
-    "expansion_count": 12,
-    "failure_hint_count": 8,
-    "heuristic_hint_count": 8,
-    "premortem_hint_count": 8,
-    "identity_chunk_count": 4,
+    "detection_model_count": 3,
+    "expansion_count": 9,
+    "failure_hint_count": 6,
+    "heuristic_hint_count": 6,
+    "premortem_hint_count": 6,
+    "identity_chunk_count": 3,
     "detection_source": "independent_llm_pass"
   },
   "frame_pressure_card": {
@@ -745,33 +588,33 @@
         "element_text": "I have to do something about that in 60 days no matter what.",
         "element_type": "mutable_constraint",
         "evidence_quote": "I have to do something about that in 60 days no matter what.",
-        "frame_pattern": "temporal_fixation",
-        "fragility_signal": "Short-term rentals or storage allow moving out without committing to long-term housing.",
+        "frame_pattern": "option_space_collapse",
+        "fragility_signal": "Short-term rentals, sublets, or temporary storage allow decoupling the move-out from long-term housing decisions.",
         "inquiry_stage": "what_if",
         "likely_default": "inertia"
       },
       {
         "element_text": "I assumed 10 days was firm.",
-        "element_type": "assumption",
+        "element_type": "mutable_constraint",
         "evidence_quote": "I assumed 10 days was firm.",
         "frame_pattern": "borrowed_premise",
-        "fragility_signal": "Offer deadlines are often negotiable, especially post-offer when the employer wants the candidate.",
+        "fragility_signal": "Offer deadlines are often negotiable, especially for desired candidates.",
         "inquiry_stage": "how",
         "likely_default": "inertia"
       }
     ],
     "reframings": [
       {
-        "reframed_question": "What short-term rental or storage options could I use to move out of my DC lease in 60 days without locking into a long-term housing decision with my boyfriend?",
-        "what_opens": "Explores flexibility in housing transitions via temporary solutions, decoupling lease expiration from immediate cohabitation or relocation commitments",
+        "reframed_question": "What short-term rental or sublet options in DC could let me handle the lease expiration without locking into a long-term housing decision right now?",
+        "what_opens": "Explores decoupling the 60-day move-out deadline from immediate cohabitation or relocation choices, preserving flexibility for job and relationship decisions.",
         "reframe_move_type": "constraint_relaxation",
         "grounding_model": "optionality",
         "source_element_index": 0
       },
       {
-        "reframed_question": "How negotiable is the 10-day deadline on my Seattle job offer, given the employer's interest in me?",
-        "what_opens": "Opens path to extending the timeline by directly challenging the firmness of the offer deadline through negotiation",
-        "reframe_move_type": "assumption",
+        "reframed_question": "Could I negotiate with the Seattle employer to extend the 10-day job offer deadline given my current housing transition?",
+        "what_opens": "Opens negotiation possibilities to reduce deadline pressure, allowing time to weigh boyfriend cohabitation and lease issues against the move.",
+        "reframe_move_type": "constraint_relaxation",
         "grounding_model": "first-principles-thinking",
         "source_element_index": 1
       }
@@ -791,71 +634,57 @@
         "dimension_id": "commitment-reversibility",
         "dimension_name": "Commitment & Reversibility",
         "covered": true,
-        "coverage_evidence": "Assistant distinguishes sunk costs (11 years in DC) from future costs, recommends short-term rental to avoid lock-in on new lease ('no lock-in', 'buys you time'), and stages commitment to Seattle via boyfriend conversation and extension request before final decision.",
+        "coverage_evidence": "Assistant distinguishes sunk costs (11 years in DC) implicitly by focusing on future costs like boyfriend commitment and mom care, identifies switching barriers (moving cities feels huge, alone in Seattle), values optionality via short-term rental to avoid lock-in ('no lock-in', buys 3-6 months), and recommends staging (talk to boyfriend/mom first, ask for extension) to preserve reversibility.",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "competitive-dynamics",
         "dimension_name": "Competitive Dynamics",
         "covered": false,
-        "coverage_evidence": "No modeling of employer's response beyond suggesting extension request; assumes they will grant without analyzing preemption, retaliation, or alternatives if denied.",
-        "materiality_note": "High: Anticipating employer's best response to extension or delay could change feasibility of timeline and overall recommendation."
+        "coverage_evidence": "No modeling of boyfriend's responses beyond prompting a conversation; does not analyze retaliation (e.g., breakup if pushed), preemption, or repeated interaction reputation effects; treats boyfriend as information source, not strategic actor.",
+        "materiality_note": "High materiality: Boyfriend's actual response could reverse Seattle recommendation from viable to high-risk solo move."
       },
       {
         "dimension_id": "incentive-alignment",
         "dimension_name": "Incentive Alignment",
         "covered": false,
-        "coverage_evidence": "Identifies boyfriend's vague commitment and withdrawn behavior but does not analyze incentive divergence (e.g., his DC job/family vs. her career) or propose realignment mechanisms beyond one conversation.",
-        "materiality_note": "High: Boyfriend's incentives could block move; misaligned incentives might reverse Seattle recommendation."
-      },
-      {
-        "dimension_id": "information-quality",
-        "dimension_name": "Information Quality",
-        "covered": false,
-        "coverage_evidence": "Acknowledges need for data on mom's condition ('cognitive evaluation') and boyfriend specifics but does not assess current evidence quality (e.g., bias in user's impressions, small sample of incidents) or test confounders.",
-        "materiality_note": "High: Better evidence on mom's decline trajectory or boyfriend reliability could substantially alter Seattle viability."
+        "coverage_evidence": "Mentions boyfriend's withdrawal and vagueness but does not identify incentive divergence (e.g., his DC job/family vs. user's career), no discussion of monitoring/commitment mechanisms or failure modes beyond 'pressure-test'; brother/mom incentives unaddressed.",
+        "materiality_note": "High materiality: Misaligned incentives with boyfriend/brother could make Seattle unfeasible without realignment, altering stay-in-DC default."
       },
       {
         "dimension_id": "resource-allocation",
         "dimension_name": "Resource Allocation",
-        "covered": true,
-        "coverage_evidence": "Compares career pay bump vs. life in DC/mom care/relationship costs; recommends prioritizing boyfriend/mom convos over lease, sequencing tasks to allocate limited time effectively.",
-        "materiality_note": "covered"
+        "covered": false,
+        "coverage_evidence": "Acknowledges time scarcity (60 days lease, 10-day offer) but does not compare marginal returns of options (e.g., career bump vs. mom care time, DC life vs. Seattle pay); no explicit displaced alternatives like forgoing visits or boyfriend time.",
+        "materiality_note": "Medium materiality: User's time/attention is scarce; poor allocation could overload her, pushing toward conservative stay-in-DC."
       },
       {
         "dimension_id": "risk-response",
         "dimension_name": "Risk Response",
         "covered": true,
-        "coverage_evidence": "Sizes downsides (alone in Seattle at 33, reduced mom presence during decline); recommends mitigation via pressure-testing boyfriend, mom's plan, short-term rental for reversibility, and extension for recovery paths.",
-        "materiality_note": "covered"
-      },
-      {
-        "dimension_id": "scope-boundary",
-        "dimension_name": "Scope & Boundary Definition",
-        "covered": true,
-        "coverage_evidence": "Explicitly defines entangled decisions (Seattle as root, lease secondary, mom separate but dependent); justifies by disentangling lease pressure from core choice.",
+        "coverage_evidence": "Sizes downsides (alone at 33 scary, reduced mom presence during decline), distinguishes mitigations (short-term rental, boyfriend test, mom plan, extension) vs. absorb (flights every 4-6 weeks), addresses recovery (adjustment anxiety fades), recommends staged approach over all-in commitment.",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "stakeholder-alignment",
         "dimension_name": "Stakeholder Alignment",
         "covered": false,
-        "coverage_evidence": "Identifies stakeholders (boyfriend, mom, brother) and need for convos but no influence strategy for resistance (e.g., boyfriend withdrawal, brother capacity) or distinction between technical vs. organizational feasibility.",
-        "materiality_note": "High: Without alignment plan, recommendation may not implement; could reverse if stakeholders block."
+        "coverage_evidence": "Prompts conversations with boyfriend/brother/mom but does not map positions (support/oppose), no influence strategy beyond 'ask concretely', ignores power dynamics (boyfriend withdrawal, brother distance) or feasibility vs. technical merit.",
+        "materiality_note": "High materiality: Without buy-in from boyfriend/brother, Seattle plan fails implementation."
       },
       {
         "dimension_id": "timing-sequencing",
         "dimension_name": "Timing & Sequencing",
         "covered": true,
-        "coverage_evidence": "Specifies sequence (boyfriend convo first, then brother/mom, extension ask, parallel rental search); rationale for order (info needed before decision), critical path, and delay benefits (more info vs. 10-day pressure).",
+        "coverage_evidence": "Specifies clear sequence (boyfriend convo tonight, brother/mom days 2-5, extension days 4-8, rental parallel, decide days 8-10), rationale (need info first to avoid bad decision), critical path (boyfriend non-negotiable), delay benefits (extension for family data) vs. costs (tight but doable).",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "uncertainty-type",
         "dimension_name": "Uncertainty Type",
         "covered": false,
-        "coverage_evidence": "Recommends reducing epistemic uncertainty (boyfriend/mom convos, evaluation) but does not classify types (e.g., Knightian on boyfriend follow-through) or match strategy to type (e.g., optionality via short-term rental).",
-        "materiality_note": "Medium: Could shift to more robust/optional approach if true uncertainty recognized."
+        "coverage_evidence": "Acknowledges unknowns (boyfriend will come? mom's trajectory) and reduces via convos/evaluation, but does not classify (epistemic via info vs. Knightian boyfriend intent), no calibration of confidence or matching strategy (e.g., optionality for true uncertainty).",
+        "materiality_note": "Medium materiality: Misclassifying boyfriend uncertainty as reducible could lead to overconfident Seattle yes."
       }
     ],
     "gap_routes": [
@@ -884,15 +713,15 @@
         "excluded_model_ids": []
       },
       {
-        "dimension_id": "information-quality",
-        "dimension_name": "Information Quality",
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
         "candidate_model_ids": [
-          "survivorship-bias",
-          "base-rates",
-          "correlation-vs-causation",
-          "statistical-discipline",
-          "law-of-large-numbers",
-          "falsifiability"
+          "opportunity-cost",
+          "comparative-advantage",
+          "trade-offs",
+          "pareto-principle",
+          "prioritization",
+          "optimization-theory"
         ],
         "excluded_model_ids": []
       },
@@ -921,13 +750,59 @@
         "excluded_model_ids": []
       }
     ],
-    "gap_questions": [],
+    "gap_questions": [
+      {
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
+        "questions": [
+          "What do you anticipate your boyfriend's strongest pushback would be if you press him tonight on specifics for moving to Seattle together?",
+          "How do you think Seattle would respond if you ask for a 2-week extension on the job offer deadline, and what alternative offer might they make?",
+          "What competitive reaction from your brother do you expect if you propose he take on more of mom's care while you're deciding on Seattle?"
+        ]
+      },
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "questions": [
+          "What matters most to your boyfriend in staying in DC that might make his commitment to move to Seattle feel like it's just to keep you rather than what he truly wants?",
+          "What would make your brother more willing to step up for mom's care if you take the Seattle job?",
+          "What incentive does Seattle have to grant your extension request, and what might they ask for in return?"
+        ]
+      },
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "questions": [
+          "What other commitments or resources in your life right now, like time or money, would need to be cut back to handle mom's care from Seattle?",
+          "If you stay in DC with a short-term rental, what budget or time tradeoffs would that force between your career, boyfriend, and mom visits?",
+          "How would your finances change if you allocate for more frequent flights to Baltimore from Seattle versus staying local?"
+        ]
+      },
+      {
+        "dimension_id": "stakeholder-alignment",
+        "dimension_name": "Stakeholder Alignment",
+        "questions": [
+          "Who else besides your boyfriend, brother, and mom needs to sign off on your Seattle decision for it to actually work?",
+          "What level of buy-in from your brother do you need on mom's care plan before accepting the Seattle job?",
+          "Whose agreement is essential for making the short-term rental work without derailing your other plans?"
+        ]
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "questions": [
+          "Which part of this feels like a risk you can quantify, like mom's health decline rate, versus something truly unpredictable like your boyfriend actually moving?",
+          "What unknowns about Seattle's flexibility on the deadline or your boyfriend's job quit timeline are pure guesses with no way to measure them?",
+          "How much of your fear about being alone in Seattle at 33 is based on known patterns versus total ignorance of how that might play out?"
+        ]
+      }
+    ],
     "anti_echo_model_ids": [
       "checklists",
+      "constraints",
       "delays",
       "first-principles-thinking",
       "optionality",
-      "problem-framing-and-reframing",
       "scientific-method-evidence-testing",
       "self-control",
       "wysiati"
@@ -978,7 +853,7 @@
       {
         "tendency_id": "stress-influence-tendency",
         "score": 2,
-        "evidence": "Acknowledges '10 days is tight' but provides structured sequence to handle pressures without compressing review or bypassing checks, decoupling lease urgency instead of rushing."
+        "evidence": "Acknowledges '10 days is tight' but provides a sequenced plan to gather info without compressing review or bypassing checks, decoupling lease urgency rather than rushing under pressure."
       },
       {
         "tendency_id": "reward-and-punishment-superresponse-tendency",
@@ -1008,7 +883,7 @@
       {
         "tendency_id": "overoptimism-tendency",
         "score": 5,
-        "evidence": "Assumes Seattle employer 'most [likely] will grant' a 2-week extension with casual phrasing because 'they want you to say yes,' ignoring probability of denial despite noting '10 days is tight' and offer deadlines being 'firmer than candidates assume,' which prematurely collapses timeline risk without math."
+        "evidence": "Assumes Seattle employer 'most [employers] will grant' a 2-week extension with phrases like 'they want you to say yes' and 'completely reasonable ask,' ignoring probability of denial despite tight 10-day deadline and no evidence of flexibility."
       },
       {
         "tendency_id": "excessive-self-regard-tendency",
@@ -1113,7 +988,7 @@
         "prompt_tokens": 3551,
         "completion_tokens": 177,
         "total_tokens": 3728,
-        "cached_tokens": 197,
+        "cached_tokens": 3550,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1124,9 +999,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3443,
-        "completion_tokens": 173,
-        "total_tokens": 3616,
-        "cached_tokens": 197,
+        "completion_tokens": 176,
+        "total_tokens": 3619,
+        "cached_tokens": 3442,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1139,7 +1014,7 @@
         "prompt_tokens": 3275,
         "completion_tokens": 116,
         "total_tokens": 3391,
-        "cached_tokens": 197,
+        "cached_tokens": 3274,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1152,7 +1027,7 @@
         "prompt_tokens": 3277,
         "completion_tokens": 78,
         "total_tokens": 3355,
-        "cached_tokens": 197,
+        "cached_tokens": 3276,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1163,9 +1038,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3296,
-        "completion_tokens": 239,
-        "total_tokens": 3535,
-        "cached_tokens": 197,
+        "completion_tokens": 230,
+        "total_tokens": 3526,
+        "cached_tokens": 3295,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1178,7 +1053,7 @@
         "prompt_tokens": 3256,
         "completion_tokens": 178,
         "total_tokens": 3434,
-        "cached_tokens": 160,
+        "cached_tokens": 3255,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1189,8 +1064,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4006,
-        "completion_tokens": 97,
-        "total_tokens": 4103,
+        "completion_tokens": 94,
+        "total_tokens": 4100,
         "cached_tokens": 4005,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1202,9 +1077,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3486,
-        "completion_tokens": 223,
-        "total_tokens": 3709,
-        "cached_tokens": 3485,
+        "completion_tokens": 216,
+        "total_tokens": 3702,
+        "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1215,8 +1090,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3898,
-        "completion_tokens": 98,
-        "total_tokens": 3996,
+        "completion_tokens": 104,
+        "total_tokens": 4002,
         "cached_tokens": 3897,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1228,8 +1103,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3856,
-        "completion_tokens": 86,
-        "total_tokens": 3942,
+        "completion_tokens": 89,
+        "total_tokens": 3945,
         "cached_tokens": 3855,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1241,8 +1116,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3557,
-        "completion_tokens": 109,
-        "total_tokens": 3666,
+        "completion_tokens": 77,
+        "total_tokens": 3634,
         "cached_tokens": 3556,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1254,9 +1129,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3545,
-        "completion_tokens": 92,
-        "total_tokens": 3637,
-        "cached_tokens": 3544,
+        "completion_tokens": 93,
+        "total_tokens": 3638,
+        "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1280,8 +1155,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 2710,
-        "completion_tokens": 1182,
-        "total_tokens": 3892,
+        "completion_tokens": 1183,
+        "total_tokens": 3893,
         "cached_tokens": 2709,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1292,9 +1167,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 7712,
-        "completion_tokens": 2095,
-        "total_tokens": 9807,
+        "prompt_tokens": 7690,
+        "completion_tokens": 2081,
+        "total_tokens": 9771,
         "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1306,9 +1181,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4781,
-        "completion_tokens": 293,
-        "total_tokens": 5074,
-        "cached_tokens": 160,
+        "completion_tokens": 288,
+        "total_tokens": 5069,
+        "cached_tokens": 4780,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1318,10 +1193,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 880,
-        "completion_tokens": 183,
-        "total_tokens": 1063,
-        "cached_tokens": 160,
+        "prompt_tokens": 925,
+        "completion_tokens": 189,
+        "total_tokens": 1114,
+        "cached_tokens": 633,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1331,10 +1206,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 4497,
-        "completion_tokens": 53,
-        "total_tokens": 4550,
-        "cached_tokens": 0,
+        "prompt_tokens": 3918,
+        "completion_tokens": 419,
+        "total_tokens": 4337,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1344,10 +1219,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 4497,
-        "completion_tokens": 53,
-        "total_tokens": 4550,
-        "cached_tokens": 0,
+        "prompt_tokens": 3918,
+        "completion_tokens": 419,
+        "total_tokens": 4337,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       }
@@ -1358,142 +1233,138 @@
     "companion_fingerprint_raw": [
       {
         "move_id": "1",
-        "reasoning_move": "Identifying the root decision amid entangled factors by distinguishing the primary choice (Seattle job) from secondary consequences (lease, boyfriend, mom).",
+        "reasoning_move": "Identifying the root decision amid entangled factors by distinguishing the primary choice from secondary consequences",
         "evidence_quotes": [
-          "OK, so the lease thing is secondary to the bigger question, which is: are you taking the Seattle job. That's actually the root decision, and everything else follows from it.",
-          "these three things aren't three separate decisions, they're one set of entangled decisions about what the next 2-5 years of your life look like."
+          "OK, so the lease thing is secondary to the bigger question, which is: are you taking the Seattle job. That's actually the root decision, and everything else follows from it."
         ],
-        "evidence_rationale": "These quotes explicitly name the Seattle job as the root decision and frame the other elements as entangled or secondary, establishing the hierarchical structure of decisions.",
+        "evidence_rationale": "This quote explicitly names the Seattle job as the root decision, with lease and other elements as secondary, establishing the decision hierarchy.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Distinguishing emotional anxiety from factual uncertainties to prioritize information-gathering on verifiable commitments.",
+        "reasoning_move": "Distinguishing emotional anxiety from factual uncertainties requiring information gathering",
         "evidence_quotes": [
           "These are different kinds of concerns. The first is adjustment anxiety — real but it fades once you're in the new place and making friends. It's not information about whether the move is right; it's just how anyone who hasn't moved before feels at the 60-day mark.",
-          "The second — \"he says he will but he's really tied to DC\" — is potential-reality information. If he's really tied to DC and saying he'll come to avoid losing you, you're planning around a version of him that doesn't exist."
+          "The second — \"he says he will but he's really tied to DC\" — is potential-reality information."
         ],
-        "evidence_rationale": "Quotes separate 'adjustment anxiety' (non-informational) from boyfriend's commitment (requiring testing), directing focus to resolvable uncertainties.",
+        "evidence_rationale": "These quotes separate adjustment anxiety (non-informational) from boyfriend commitment (requiring verification), categorizing concerns by type.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Recommending a specific, concrete conversation to test boyfriend's vague commitment and reveal true intentions.",
+        "reasoning_move": "Recommending pressure-testing assumptions through specific, concrete conversations to obtain missing information",
         "evidence_quotes": [
           "Can you ask him concretely: \"If I accept Seattle and we move in 60 days, are you coming? What does that actually look like for your job? Your family? Your friends?\" If the answers come fast and specific, he's processed it. If they're vague, he hasn't.",
-          "Priority 1 is the conversation with your boyfriend. Specific version — not \"would you come,\" but the full what-if-I-accept-Seattle conversation."
+          "I'd hold off on the Seattle decision until you have the specific conversation with him. Not \"would you come if I went?\" — that's the hypothetical he already answered. Something like: \"I need to give them an answer in X days. If I say yes, what would you actually do — what's your timeline for quitting your job, do we try to find a place together in Seattle, what about your family?\""
         ],
-        "evidence_rationale": "Provides exact scripting and criteria (specific vs. vague answers) for the conversation, positioning it as the top priority to gather missing data.",
+        "evidence_rationale": "These quotes prescribe exact questions to test boyfriend's commitment, emphasizing specificity over vague hypotheticals to reveal true intentions.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Isolating mother's care as a separate but critical decision track requiring medical evaluation and family coordination.",
+        "reasoning_move": "Separating entangled decisions into distinct, named components for clearer evaluation",
         "evidence_quotes": [
-          "If your mom's memory is slipping and you're the local child and you've been doing every-other-weekend visits, Seattle is not just a career move — it's a decision about how present you'll be during your mom's decline.",
-          "Priority 2, after priority 1, is the conversation with your mom and your brother together. ... Has she seen a neurologist? Has there been a formal cognitive evaluation?"
+          "Let me help you name the actual decisions cleanly so you can see them, not just feel them. One: what's the real answer to the Seattle job? ... Two: if you stay in DC, you're signing a new lease in the next 45 days, possibly with your boyfriend. ... Three: if you move to Seattle, you're reorganizing your mother's care."
         ],
-        "evidence_rationale": "Elevates mom's care to a named decision with specific actions (brother convo, neurologist referral), highlighting incomplete information on trajectory.",
+        "evidence_rationale": "This quote enumerates and names the decisions separately, disentangling Seattle job, DC living/cohabitation, and mother's care.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Decoupling lease urgency from life decisions by proposing short-term housing options to buy time.",
+        "reasoning_move": "Decoupling urgent logistical constraints from core decisions by proposing time-buying options",
         "evidence_quotes": [
-          "The problem you're having is that you've been treating \"60 days to figure out everything\" as the constraint, when actually the constraint is \"60 days to be out of this apartment.\" Those are different problems, and the second one has much easier answers.",
-          "Option A: find a short-term rental in DC — 3-6 months, usually furnished, higher monthly cost but no lock-in."
+          "The lease can be decoupled. Here are your options that buy you time. Option A: find a short-term rental in DC — 3-6 months...",
+          "The problem you're having is that you've been treating \"60 days to figure out everything\" as the constraint, when actually the constraint is \"60 days to be out of this apartment.\" Those are different problems, and the second one has much easier answers."
         ],
-        "evidence_rationale": "Reframing distinguishes apartment exit from broader choices, offering concrete options (A, B, C) to eliminate lease pressure.",
+        "evidence_rationale": "These quotes identify the lease as a separable constraint and list options to handle it independently, reducing its pressure on the main decision.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Sequencing actions into a prioritized timeline to manage constraints and gather information before deciding.",
+        "reasoning_move": "Prioritizing information-gathering actions into a sequenced timeline to resolve uncertainties before committing",
         "evidence_quotes": [
-          "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. ... Days 2-5: call your brother, ... Days 4-8: ask Seattle for a 2-week extension ... Days 8-10: make the decision.",
-          "Start the short-term rental search in parallel, not as a priority."
+          "Priority 1 is the conversation with your boyfriend. ... Priority 2, after priority 1, is the conversation with your mom and your brother together. ... Priority 3 is starting the short-term rental search ... Priority 4 is when you get back to evaluating the Seattle offer...",
+          "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. ... Days 2-5: call your brother... Days 4-8: ask Seattle for a 2-week extension... Days 8-10: make the decision."
         ],
-        "evidence_rationale": "Outlines day-by-day priorities (1-4) and parallel tasks, aligning with 10-day deadline and extension request.",
+        "evidence_rationale": "These quotes outline a prioritized, time-bound sequence starting with boyfriend and mom conversations, then extension and rental, deferring the Seattle decision.",
         "confidence": "high"
       },
       {
         "move_id": "7",
-        "reasoning_move": "Using long-term vision to counteract short-term pressure and align decisions with underlying preferences.",
+        "reasoning_move": "Using long-term vision to anchor decisions against short-term pressures and fears",
         "evidence_quotes": [
           "if you imagine yourself a year from now, and everything went well, what does that look like? That matters because in 10 days you're going to be making decisions under pressure, and the pressure will push you toward the answer that feels safest rather than the one that's right."
         ],
-        "evidence_rationale": "Introduces year-from-now visualization as a guiding tool against logistical noise and fear-driven choices.",
+        "evidence_rationale": "This quote introduces a year-from-now visualization to guide choices, countering logistical noise and pressure.",
         "confidence": "high"
       }
     ],
     "companion_fingerprint_validated": [
       {
         "move_id": "1",
-        "reasoning_move": "Identifying the root decision amid entangled factors by distinguishing the primary choice (Seattle job) from secondary consequences (lease, boyfriend, mom).",
+        "reasoning_move": "Identifying the root decision amid entangled factors by distinguishing the primary choice from secondary consequences",
         "evidence_quotes": [
-          "OK, so the lease thing is secondary to the bigger question, which is: are you taking the Seattle job. That's actually the root decision, and everything else follows from it.",
-          "these three things aren't three separate decisions, they're one set of entangled decisions about what the next 2-5 years of your life look like."
+          "OK, so the lease thing is secondary to the bigger question, which is: are you taking the Seattle job. That's actually the root decision, and everything else follows from it."
         ],
-        "evidence_rationale": "These quotes explicitly name the Seattle job as the root decision and frame the other elements as entangled or secondary, establishing the hierarchical structure of decisions.",
+        "evidence_rationale": "This quote explicitly names the Seattle job as the root decision, with lease and other elements as secondary, establishing the decision hierarchy.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Distinguishing emotional anxiety from factual uncertainties to prioritize information-gathering on verifiable commitments.",
+        "reasoning_move": "Distinguishing emotional anxiety from factual uncertainties requiring information gathering",
         "evidence_quotes": [
           "These are different kinds of concerns. The first is adjustment anxiety — real but it fades once you're in the new place and making friends. It's not information about whether the move is right; it's just how anyone who hasn't moved before feels at the 60-day mark.",
-          "The second — \"he says he will but he's really tied to DC\" — is potential-reality information. If he's really tied to DC and saying he'll come to avoid losing you, you're planning around a version of him that doesn't exist."
+          "The second — \"he says he will but he's really tied to DC\" — is potential-reality information."
         ],
-        "evidence_rationale": "Quotes separate 'adjustment anxiety' (non-informational) from boyfriend's commitment (requiring testing), directing focus to resolvable uncertainties.",
+        "evidence_rationale": "These quotes separate adjustment anxiety (non-informational) from boyfriend commitment (requiring verification), categorizing concerns by type.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Recommending a specific, concrete conversation to test boyfriend's vague commitment and reveal true intentions.",
+        "reasoning_move": "Recommending pressure-testing assumptions through specific, concrete conversations to obtain missing information",
         "evidence_quotes": [
           "Can you ask him concretely: \"If I accept Seattle and we move in 60 days, are you coming? What does that actually look like for your job? Your family? Your friends?\" If the answers come fast and specific, he's processed it. If they're vague, he hasn't.",
-          "Priority 1 is the conversation with your boyfriend. Specific version — not \"would you come,\" but the full what-if-I-accept-Seattle conversation."
+          "I'd hold off on the Seattle decision until you have the specific conversation with him. Not \"would you come if I went?\" — that's the hypothetical he already answered. Something like: \"I need to give them an answer in X days. If I say yes, what would you actually do — what's your timeline for quitting your job, do we try to find a place together in Seattle, what about your family?\""
         ],
-        "evidence_rationale": "Provides exact scripting and criteria (specific vs. vague answers) for the conversation, positioning it as the top priority to gather missing data.",
+        "evidence_rationale": "These quotes prescribe exact questions to test boyfriend's commitment, emphasizing specificity over vague hypotheticals to reveal true intentions.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Isolating mother's care as a separate but critical decision track requiring medical evaluation and family coordination.",
+        "reasoning_move": "Separating entangled decisions into distinct, named components for clearer evaluation",
         "evidence_quotes": [
-          "If your mom's memory is slipping and you're the local child and you've been doing every-other-weekend visits, Seattle is not just a career move — it's a decision about how present you'll be during your mom's decline.",
-          "Priority 2, after priority 1, is the conversation with your mom and your brother together. ... Has she seen a neurologist? Has there been a formal cognitive evaluation?"
+          "Let me help you name the actual decisions cleanly so you can see them, not just feel them. One: what's the real answer to the Seattle job? ... Two: if you stay in DC, you're signing a new lease in the next 45 days, possibly with your boyfriend. ... Three: if you move to Seattle, you're reorganizing your mother's care."
         ],
-        "evidence_rationale": "Elevates mom's care to a named decision with specific actions (brother convo, neurologist referral), highlighting incomplete information on trajectory.",
+        "evidence_rationale": "This quote enumerates and names the decisions separately, disentangling Seattle job, DC living/cohabitation, and mother's care.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Decoupling lease urgency from life decisions by proposing short-term housing options to buy time.",
+        "reasoning_move": "Decoupling urgent logistical constraints from core decisions by proposing time-buying options",
         "evidence_quotes": [
-          "The problem you're having is that you've been treating \"60 days to figure out everything\" as the constraint, when actually the constraint is \"60 days to be out of this apartment.\" Those are different problems, and the second one has much easier answers.",
-          "Option A: find a short-term rental in DC — 3-6 months, usually furnished, higher monthly cost but no lock-in."
+          "The lease can be decoupled. Here are your options that buy you time. Option A: find a short-term rental in DC — 3-6 months...",
+          "The problem you're having is that you've been treating \"60 days to figure out everything\" as the constraint, when actually the constraint is \"60 days to be out of this apartment.\" Those are different problems, and the second one has much easier answers."
         ],
-        "evidence_rationale": "Reframing distinguishes apartment exit from broader choices, offering concrete options (A, B, C) to eliminate lease pressure.",
+        "evidence_rationale": "These quotes identify the lease as a separable constraint and list options to handle it independently, reducing its pressure on the main decision.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Sequencing actions into a prioritized timeline to manage constraints and gather information before deciding.",
+        "reasoning_move": "Prioritizing information-gathering actions into a sequenced timeline to resolve uncertainties before committing",
         "evidence_quotes": [
-          "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. ... Days 2-5: call your brother, ... Days 4-8: ask Seattle for a 2-week extension ... Days 8-10: make the decision.",
-          "Start the short-term rental search in parallel, not as a priority."
+          "Priority 1 is the conversation with your boyfriend. ... Priority 2, after priority 1, is the conversation with your mom and your brother together. ... Priority 3 is starting the short-term rental search ... Priority 4 is when you get back to evaluating the Seattle offer...",
+          "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. ... Days 2-5: call your brother... Days 4-8: ask Seattle for a 2-week extension... Days 8-10: make the decision."
         ],
-        "evidence_rationale": "Outlines day-by-day priorities (1-4) and parallel tasks, aligning with 10-day deadline and extension request.",
+        "evidence_rationale": "These quotes outline a prioritized, time-bound sequence starting with boyfriend and mom conversations, then extension and rental, deferring the Seattle decision.",
         "confidence": "high"
       },
       {
         "move_id": "7",
-        "reasoning_move": "Using long-term vision to counteract short-term pressure and align decisions with underlying preferences.",
+        "reasoning_move": "Using long-term vision to anchor decisions against short-term pressures and fears",
         "evidence_quotes": [
           "if you imagine yourself a year from now, and everything went well, what does that look like? That matters because in 10 days you're going to be making decisions under pressure, and the pressure will push you toward the answer that feels safest rather than the one that's right."
         ],
-        "evidence_rationale": "Introduces year-from-now visualization as a guiding tool against logistical noise and fear-driven choices.",
+        "evidence_rationale": "This quote introduces a year-from-now visualization to guide choices, countering logistical noise and pressure.",
         "confidence": "high"
       }
     ],
@@ -1504,7 +1375,7 @@
         "model_name": "WYSIATI",
         "evidence_quote": "You're being asked to make a major life decision based partly on an assumption (he'll come) that you've been too scared to test.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer explicitly audits the evidence for completeness by identifying the untested assumption about the boyfriend's commitment as a critical gap that must be filled before deciding, directly applying WYSIATI to avoid confident conclusions from incomplete information.",
+        "presence_explanation": "The answer explicitly audits evidence completeness by identifying untested assumptions as gaps that must be filled before deciding, directly applying WYSIATI to avoid confident conclusions from incomplete information.",
         "detection_confidence": "structural"
       },
       {
@@ -1512,33 +1383,29 @@
         "model_name": "Scientific Method Evidence Testing",
         "evidence_quote": "Can you ask him concretely: \"If I accept Seattle and we move in 60 days, are you coming? What does that actually look like for your job? Your family? Your friends?\" If the answers come fast and specific, he's processed it. If they're vague, he hasn't.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer recommends a specific empirical test via concrete questions to resolve the causal claim about the boyfriend's commitment, using evidence from responses rather than intuition or authority.",
+        "presence_explanation": "The answer prescribes concrete, falsifiable tests via specific questions to resolve causal claims about boyfriend's commitment through evidence rather than untested assumptions.",
         "detection_confidence": "structural"
       },
       {
-        "model_id": "optionality",
-        "model_name": "Optionality",
-        "evidence_quote": "Option A: find a short-term rental in DC — 3-6 months, usually furnished, higher monthly cost but no lock-in. This lets you move out of your current apartment without committing to a new year lease. Gives you 3-6 months to decide on Seattle without the apartment pressure.",
+        "model_id": "constraints",
+        "model_name": "Constraints",
+        "evidence_quote": "The problem you're having is that you've been treating \"60 days to figure out everything\" as the constraint, when actually the constraint is \"60 days to be out of this apartment.\" Those are different problems, and the second one has much easier answers.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer preserves optionality under high uncertainty by recommending cheap, reversible short-term rentals and extensions to avoid early irreversible commitment on housing or the job.",
-        "detection_confidence": "structural"
-      },
-      {
-        "model_id": "problem-framing-and-reframing",
-        "model_name": "Problem Framing And Reframing",
-        "evidence_quote": "OK, so the lease thing is secondary to the bigger question, which is: are you taking the Seattle job. That's actually the root decision, and everything else follows from it.",
-        "presence_mode": "executed",
-        "presence_explanation": "The answer reframes the entangled problems from surface lease urgency to the root Seattle job decision, producing clearer priorities and stronger next actions.",
+        "presence_explanation": "The answer clarifies competing constraints by distinguishing the true logistical constraint from the misframed broader one, restoring decision clarity.",
         "detection_confidence": "structural"
       }
     ],
     "companion_rejected_models": [
       {
-        "model_id": "step-back",
+        "model_id": "optionality",
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
-        "model_id": "inversion",
+        "model_id": "chain-of-thought",
+        "rejection_reason": "execution_quote_not_literal_substring"
+      },
+      {
+        "model_id": "checklists",
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
@@ -1550,59 +1417,7 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "power-dynamics",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "reciprocity-principle",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "representativeness-heuristic",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "social-proof",
-        "rejection_reason": "mechanism absent"
-      },
-      {
         "model_id": "aleatory-epistemic-uncertainty-recognition",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "learning-curve",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "active-listening",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "feedback-loops",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "false-precision-avoidance",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "feynman-technique",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "information-asymmetry",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "signaling",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "cognitive-load-theory",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "constructive-feedback-models",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1610,19 +1425,31 @@
         "rejection_reason": "mechanism absent"
       },
       {
+        "model_id": "inversion",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "representativeness-heuristic",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "active-listening",
+        "rejection_reason": "mechanism absent"
+      },
+      {
         "model_id": "einstellung-effect",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "intellectual-humility",
+        "model_id": "feedback-loops",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "jobs-to-be-done",
+        "model_id": "learning-curve",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "obligations-controls-mapping",
+        "model_id": "power-dynamics",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1630,59 +1457,11 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "rationalization",
+        "model_id": "cognitive-load-theory",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "psychological-safety",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "abstraction",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "base-rates",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "boundaries",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "causal-attribution-resistance",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "optimization-theory",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "prospect-theory",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "regression-to-the-mean",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "anchoring",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "debugging-strategies",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "information-theory",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "opportunity-cost",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "premortem",
+        "model_id": "feynman-technique",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1690,43 +1469,23 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "survivorship-bias",
+        "model_id": "anchoring",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "user-centered-design",
+        "model_id": "boundaries",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "agile-methodologies",
+        "model_id": "information-asymmetry",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "bayesian",
+        "model_id": "intellectual-humility",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "bias-blind-spot",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "experimentation",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "hindsight-bias",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "metacognitive-questioning",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "principal-agent-problem",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "usability-heuristics",
+        "model_id": "social-proof",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1734,11 +1493,39 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "black-swan-events",
+        "model_id": "reciprocity-principle",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "checklists",
+        "model_id": "abstraction",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "bias-blind-spot",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "causal-attribution-resistance",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "emotional-intelligence",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "metacognitive-questioning",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "obligations-controls-mapping",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "path-dependence",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "base-rates",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1746,7 +1533,7 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "first-principles-thinking",
+        "model_id": "jobs-to-be-done",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1754,7 +1541,87 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "meta-cognitive-reflection",
+        "model_id": "prospect-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "psychological-safety",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "rationalization",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "red-queen-effect",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "signaling",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "step-back",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "usability-heuristics",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "user-centered-design",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "constructive-feedback-models",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "false-precision-avoidance",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "five-whys-method",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "hindsight-bias",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "lateral-thinking",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "opportunity-cost",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "optimization-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "agile-methodologies",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "algorithmic-thinking",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "black-swan-events",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "blooms-taxonomy",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "chain-of-verification",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "critical-mass",
         "rejection_reason": "mechanism absent"
       }
     ],
@@ -1774,7 +1641,7 @@
         "detected": true,
         "confidence": 0.95,
         "sub_pattern": "checklists",
-        "specific_passage": "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. This is non-negotiable. You cannot give Seattle an answer w",
+        "specific_passage": "10 days is tight for all of this but not impossible. Here's a realistic sequence. Tonight or tomorrow: the conversation with your boyfriend. [...] Days 2-5: call your brother [...] Days 4-8: ask Seatt",
         "severity": "medium"
       },
       {
@@ -1932,7 +1799,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact 'The 40% pay bump and better career path' without any evidence from the user-provided facts (lease, job deadline, mom's care, boyfriend's vague commitment). This introduces specific empirical details (salary increase percentage and career evaluation) beyond established context, common knowledge, or reasonable inferences.",
+          "reasoning": "The passage asserts as fact 'The 40% pay bump and better career path' without any reference to user-provided facts (user mentioned only lease, job deadline, mom, boyfriend; no salary or career details). This introduces specific empirical information ('40% pay bump') beyond established context, not a reasonable inference or common knowledge.",
           "severity": "clear"
         }
       },
@@ -1967,8 +1834,8 @@
           "severity": "clear"
         },
         "paltering": {
-          "detected": true,
-          "reasoning": "The passage technically acknowledges 'adjustment anxiety' as 'real' but misleadingly dismisses it as irrelevant ('not information about whether the move is right') and attributes it to inexperience ('anyone who hasn't moved before'), omitting key context that the user's DC love and 11-year roots (previously acknowledged) make this a structural concern, not just transient anxiety at the '60-day mark'. This acknowledged-then-dropped tension is abandoned without resolution.",
+          "detected": false,
+          "reasoning": "",
           "severity": "clear"
         },
         "weasel_words": {
@@ -1978,7 +1845,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "Asserts without evidence that adjustment anxiety 'fades once you're in the new place and making friends' and is how 'anyone who hasn't moved before feels' — specific causal and empirical claims about human experience beyond user facts or common knowledge.",
+          "reasoning": "The passage asserts as fact that 'adjustment anxiety... fades once you're in the new place and making friends' and 'it's just how anyone who hasn't moved before feels at the 60-day mark.' These are specific causal claims ('fades once...') and empirical generalizations ('anyone who hasn't moved before') about human psychology and relocation experiences that go beyond user-provided facts (lease expiration, job offer, mother's care, boyfriend's commitment), reasonable inferences therefrom, or common practitioner knowledge. No evidence or qualification is provided.",
           "severity": "clear"
         }
       },
@@ -2024,7 +1891,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'You\\'ve been too scared to test' asserts a specific psychological motive (fear) for the user\\'s failure to test the boyfriend\\'s commitment, which goes beyond user-provided facts (vague commitment) and is not a reasonable inference or common knowledge; it is an unverified assumption about the user\\'s internal state.",
+          "reasoning": "The claim 'You've been too scared to test' asserts a specific psychological motive (fear) as fact, which the user never stated and cannot be reasonably inferred from the established facts about the boyfriend's vague commitment. This goes beyond restating or inferring from user-provided information.",
           "severity": "clear"
         }
       },
@@ -2070,7 +1937,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'5-hour flight away in Seattle' introduces a specific empirical fact (flight duration) not provided by the user or derivable from established facts (only DC-Seattle distance vaguely implied as significant). This is stated as fact without evidence.",
+          "reasoning": "The passage asserts as fact that DC is '2 hours away' and Seattle is a '5-hour flight away,' introducing specific distances/times not provided by the user or derivable from established facts (only 'every-other-weekend support from DC' is stated). This is an unverified empirical claim beyond user context or common knowledge.",
           "severity": "clear"
         }
       },
@@ -2092,9 +1959,9 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": true,
-          "reasoning": "\"5-hour flight versus 2-hour drive is a substantially different relationship during early-stage cognitive decline\" asserts a specific causal relationship between travel time (flight vs drive) and the nature of the relationship during cognitive decline without evidence, beyond user-provided facts or common knowledge. While the travel difference is a reasonable inference, the claim that it 'substantially' alters the relationship is an unverified empirical assertion about family dynamics.",
-          "severity": "marginal"
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
         }
       },
       {
@@ -2116,7 +1983,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage introduces new, specific family details ('your brother moves back' and options to move mom 'to Denver with your brother') that are not mentioned in the user's established facts (lease, job deadline, mom's decline needing every-other-weekend DC support, boyfriend's vague commitment). These assert empirical facts about family structure and locations beyond user-provided context or common knowledge, stated without evidence or qualification.",
+          "reasoning": "The phrase 'your brother moves back (probably not, since he has his own life)' introduces new information about the brother having 'his own life' that prevents moving back, which is not mentioned in the user's established facts (lease, job deadline, mom's needs, boyfriend's vagueness). This is an unverified assumption stated as fact without evidence from context or common knowledge.",
           "severity": "clear"
         }
       },
@@ -2124,7 +1991,7 @@
         "passage": "None of these are free. All of them change what Seattle means. If you haven't factored any of this in, the Seattle decision is being made with incomplete information.",
         "empty_rhetoric": {
           "detected": true,
-          "reasoning": "The entire passage ('None of these are free. All of them change what Seattle means. If you haven't factored any of this in, the Seattle decision is being made with incomplete information.') sounds cautionary but provides no actionable content—no specific steps, trade-offs, or analysis of what 'these' (lease, mom, boyfriend) entail. A decision-maker learns nothing concrete to DO differently; it could be deleted without losing decision-relevant information.",
+          "reasoning": "The entire passage ('None of these are free. All of them change what Seattle means. If you haven't factored any of this in, the Seattle decision is being made with incomplete information.') sounds meaningful but contains no actionable content or decision-relevant information. It vaguely gestures to unspecified costs or factors ('these', 'this') without identifying them or explaining what to do differently. A decision-maker would not know what specific actions to take; the passage could be deleted without losing any concrete advice.",
           "severity": "clear"
         },
         "paltering": {
@@ -2147,7 +2014,7 @@
         "passage": "You're not drowning, you're noticing the real shape of the decisions for the first time. That feels like drowning. It's actually clarity arriving suddenly, and the clarity is telling you something: these three things aren't three separate decisions, they're one set of entangled decisions about what the next 2-5 years of your life look like.",
         "empty_rhetoric": {
           "detected": true,
-          "reasoning": "The entire passage consists of metaphorical reframing ('You're not drowning, you're noticing... That feels like drowning. It's actually clarity arriving suddenly') without any actionable content or decision-relevant information. A decision-maker would not know what to DO differently; the passage could be deleted without losing any specific guidance on the job offer, lease, mother, or boyfriend. No subsequent analysis is introduced—it's standalone rhetoric.",
+          "reasoning": "The entire passage consists of metaphorical framing ('You're not drowning, you're noticing... That feels like drowning. It's actually clarity arriving suddenly') that sounds insightful but provides no actionable content or decision-relevant information. A decision-maker would not know what to DO differently; the passage could be deleted without losing any specific advice on the job offer, boyfriend, mother, or lease. No subsequent analysis follows to make it structural.",
           "severity": "clear"
         },
         "paltering": {
@@ -2197,9 +2064,9 @@
           "severity": "clear"
         },
         "paltering": {
-          "detected": false,
-          "reasoning": "",
-          "severity": "clear"
+          "detected": true,
+          "reasoning": "The statement 'signing a new lease in the next 45 days' is technically true based on the user-provided fact of lease expiration in 60 days, but omits the key context that this assumes rejecting the Seattle job offer (due in 10 days), misleadingly framing staying in DC as the immediate default path without noting the decision timeline makes both paths time-pressured.",
+          "severity": "marginal"
         },
         "weasel_words": {
           "detected": false,
@@ -2231,8 +2098,8 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The phrase 'reorganizing your mother's care' asserts a specific consequence (that moving to Seattle requires reorganization of care) as fact, without evidence or qualification. While mother's every-other-weekend support need from DC is established, the passage introduces an unverified causal relationship that the move necessitates 'reorganization' (implying substantive change beyond mere logistics), which goes beyond user facts or reasonable inferences. It also references 'your brother' without any prior mention in the established context.",
-          "severity": "clear"
+          "reasoning": "The phrase 'reorganizing your mother's care' asserts as fact that moving to Seattle would require reorganization of mother's care, but this goes beyond user-provided facts (mother needs every-other-weekend support from DC). It introduces an unverified causal relationship assuming the care cannot continue unchanged from Seattle (~2700 miles away), which is a specific inference not directly derivable from established facts and not common practitioner knowledge in personal decision-making advice.",
+          "severity": "marginal"
         }
       },
       {
@@ -2277,7 +2144,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact that short-term rentals in DC are 'usually furnished' and available for '3-6 months', which introduces specific empirical details about DC rental market availability and norms not provided by the user, not derivable from established facts (lease expiration), and beyond common practitioner knowledge for this context.",
+          "reasoning": "The passage asserts as fact that short-term rentals in DC are 'usually furnished' and available for '3-6 months,' which introduces specific empirical claims about DC rental market availability and features not provided by the user, not reasonably inferable from the lease expiration fact alone, and beyond common practitioner knowledge (as it specifies local market details).",
           "severity": "clear"
         }
       },
@@ -2300,7 +2167,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact that 'sublet from someone going away for 3-6 months' has a 'similar shape to A but cheaper,' and that finding it 'takes some work.' This introduces new information about sublet availability (people 'going away for 3-6 months'), relative costs, and effort required, which goes beyond user-provided facts (lease expiration in 60 days) and is not common practitioner knowledge stated as specific empirical fact without evidence or qualification.",
+          "reasoning": "The passage asserts as fact that Option B is 'Similar shape to A but cheaper' without defining what Option A is or providing any evidence for the similarity or cost comparison, and 'sublet from someone going away for 3-6 months' introduces a specific unsubstantiated scenario beyond user-provided facts. This goes beyond reasonable inferences from established context (lease expiration, job decision).",
           "severity": "clear"
         }
       },
@@ -2323,7 +2190,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'The cheapest option' is an unverified claim, as it asserts a specific empirical fact (cost comparison) beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge. No evidence or derivation supports this comparison to other options.",
+          "reasoning": "The passage asserts as fact that 'The cheapest option' without evidence or reference to user-provided costs, lease details beyond expiration, or other financial specifics; this introduces a specific empirical claim (cost comparison) beyond established facts, reasonable inferences, or common knowledge.",
           "severity": "clear"
         }
       },
@@ -2391,9 +2258,9 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": true,
-          "reasoning": "The passage introduces new specific medical details beyond user-provided facts: 'Has she seen a neurologist? Has there been a formal cognitive evaluation?' These are unverified assertions probing for empirical facts not established in the conversation context or derivable from 'mother's cognitive decline needing every-other-weekend support.' While phrased as questions, they assert as factual possibilities without evidence that such steps are standard or relevant here, going beyond reasonable inferences from user's vague description.",
-          "severity": "marginal"
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
         }
       },
       {
@@ -2415,7 +2282,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"Might take 2-3 weekends to land one\" asserts a specific timeline as fact without evidence or qualification; this is not derived from user-provided facts, nor common practitioner knowledge for DC short-term rental markets.",
+          "reasoning": "'Might take 2-3 weekends to land one' asserts a specific timeframe for securing a short-term rental as fact without evidence, qualification, or grounding in user-provided facts; this is not common practitioner knowledge or a reasonable inference from the lease expiration alone.",
           "severity": "clear"
         }
       },
@@ -2507,8 +2374,8 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"Most employers will grant this if you're otherwise committed\" is an unverified claim asserting a specific empirical fact about employer behavior without evidence, beyond user-provided facts, reasonable inferences, or common practitioner knowledge. The subsequent interpretive advice ('If they won't, that tells you something') is a reasonable inference from the refusal itself, not unverified.",
-          "severity": "clear"
+          "reasoning": "'Most employers will grant this if you're otherwise committed' is an unverified claim asserting a specific empirical fact (what most employers do) beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge in this personal job decision context. The subsequent interpretive claim 'If they won't, that tells you something about the company' is a reasonable strategic inference, not unverified.",
+          "severity": "marginal"
         }
       },
       {
@@ -2553,7 +2420,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Most offer deadlines are firmer than candidates assume in the negotiation phase, and softer than candidates assume once the company has decided they want you' asserts a specific empirical generalization about candidate assumptions and offer deadline flexibility as fact, without evidence, qualification, or basis in user-provided facts; this goes beyond common practitioner knowledge into unverified territory. The suggested script is actionable advice, not a claim.",
+          "reasoning": "\"Most offer deadlines are firmer than candidates assume in the negotiation phase, and softer than candidates assume once the company has decided they want you\" asserts a specific empirical generalization about candidate assumptions and deadline flexibility as fact without evidence, beyond user-provided facts or common practitioner knowledge. The suggested script is actionable advice, not a claim.",
           "severity": "clear"
         }
       },
@@ -2622,15 +2489,15 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The claim 'the pressure will push you toward the answer that feels safest rather than the one that's right' asserts a specific causal relationship (pressure from a 10-day deadline causes biased decision-making toward 'safest' over 'right') without evidence, qualification, or grounding in user-provided facts. This goes beyond restating the 10-day deadline or reasonable inferences from established context.",
-          "severity": "clear"
+          "reasoning": "'the pressure will push you toward the answer that feels safest rather than the one that's right' is an unverified claim asserting a specific causal relationship (pressure → suboptimal decision) without evidence, beyond user facts or common knowledge. The second sentence is a reasonable framing of the year-from-now vision as non-binding.",
+          "severity": "marginal"
         }
       },
       {
         "passage": "Think about it this week. Not to decide with it, but to keep it visible while everything else is noisy. The noise is about logistics and fears. Under the noise is a preference you can probably name if you listen for it.",
         "empty_rhetoric": {
           "detected": true,
-          "reasoning": "The entire passage consists of vague suggestions to 'Think about it this week' and 'listen for' a 'preference' under 'noise,' without specifying what 'it' is, what the preference might be, or any actionable steps tied to the user's facts (e.g., lease, job deadline, mother, boyfriend). It sounds introspective but provides no decision-relevant information a decision-maker could act on; deleting it loses nothing substantive.",
+          "reasoning": "The entire passage consists of vague suggestions like 'Think about it this week... to keep it visible while everything else is noisy' and 'Under the noise is a preference you can probably name if you listen for it,' which sound introspective but provide no actionable content or decision-relevant information. A decision-maker would not know what to DO differently (e.g., no specific questions to ask, trade-offs to weigh, or steps to take regarding the job, boyfriend, mother, or lease). It could be deleted without losing any concrete guidance.",
           "severity": "clear"
         },
         "paltering": {
@@ -2652,9 +2519,9 @@
     ],
     "summary": {
       "total_passages": 33,
-      "passages_with_detections": 18,
-      "total_clear": 17,
-      "total_marginal": 2
+      "passages_with_detections": 17,
+      "total_clear": 13,
+      "total_marginal": 4
     }
   },
   "run_health": {

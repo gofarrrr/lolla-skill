@@ -3,34 +3,55 @@
   "format": "json",
   "detected_tendencies": [
     "authority-misinfluence-tendency",
+    "availability-misweighing-tendency",
     "inconsistency-avoidance-tendency"
   ],
   "delta_card": {
     "findings": [
       {
+        "tendency_id": "availability-misweighing-tendency",
+        "tendency_name": "Availability-Misweighing Tendency",
+        "sub_pattern": "vivid-proof-substitution",
+        "severity": "medium",
+        "specific_passage": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face. ... The reason I'm saying this before we talk about the guy: if she doesn't start talking to you, nothing else you do will land.",
+        "challenge_statement": "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
+        "next_move": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "base-rates",
+          "statistics-concepts",
+          "scientific-method-evidence-testing"
+        ],
+        "major_tensions": [
+          "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
+        ],
+        "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      },
+      {
         "tendency_id": "authority-misinfluence-tendency",
         "tendency_name": "Authority-Misinfluence Tendency",
-        "sub_pattern": "prestige-cue-substitution",
+        "sub_pattern": "general",
         "severity": "medium",
-        "specific_passage": "You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw. They will tell you whether what you have rises to a reportable offense in your state — some states have laws specifically about adults initiating sexual conversations with minors online, even without a physical meeting. Don't try to figure this out by yourself from Google. Talk to someone who does this for a living.",
-        "challenge_statement": "Does the person have the credentials to speak with authority? Which credentials?",
-        "next_move": "Strip the recommendation down to facts, constraints, and falsifiable claims before giving status any weight.",
+        "specific_passage": "You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw. They will tell you whether what you have rises to a reportable offense... Don't try to figure this out by yourself from Google. Talk to someone who does this for a living.",
+        "challenge_statement": "What would we have to believe to accept the opposite thesis?",
+        "next_move": "Write down the authority thesis, its strongest rival explanation, and the evidence that would favor one over the other.",
         "is_trusted_surface": true,
         "selected_model_ids": [
           "authority-bias",
-          "first-principles-thinking"
+          "first-principles-thinking",
+          "dialectical-reasoning"
         ],
         "major_tensions": [
           "Credibility is standing in for falsification, evidence testing, or domain-boundary checks."
         ],
-        "intervention_hint": "Strip the recommendation down to facts, constraints, and falsifiable claims before giving status any weight."
+        "intervention_hint": "Write down the authority thesis, its strongest rival explanation, and the evidence that would favor one over the other."
       },
       {
         "tendency_id": "inconsistency-avoidance-tendency",
         "tendency_name": "Inconsistency-Avoidance Tendency",
         "sub_pattern": "general",
         "severity": "medium",
-        "specific_passage": "Prioritize rebuilding daughter's trust through low-pressure communication (notes, low-stakes texts, listening without lecturing) over immediate actions against the groomer; ... disclose and stop surveillance later after trust rebuilt; ... Pace matters: relationship repair first enables future protection.",
+        "specific_passage": "5. This week: DON'T report to police (decision made, stop re-litigating it); DON'T block the 19-year-old yet; DON'T take the phone away.",
         "challenge_statement": "What would the team need to reconsider here if consistency pressure were not protecting the current position?",
         "next_move": "State the strongest disconfirming condition and the exact evidence that would require changing the current position.",
         "is_trusted_surface": true,
@@ -47,31 +68,51 @@
     ],
     "top_findings": [
       {
+        "tendency_id": "availability-misweighing-tendency",
+        "tendency_name": "Availability-Misweighing Tendency",
+        "sub_pattern": "vivid-proof-substitution",
+        "severity": "medium",
+        "specific_passage": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face. ... The reason I'm saying this before we talk about the guy: if she doesn't start talking to you, nothing else you do will land.",
+        "challenge_statement": "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
+        "next_move": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "base-rates",
+          "statistics-concepts",
+          "scientific-method-evidence-testing"
+        ],
+        "major_tensions": [
+          "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
+        ],
+        "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      }
+    ],
+    "secondary_findings": [
+      {
         "tendency_id": "authority-misinfluence-tendency",
         "tendency_name": "Authority-Misinfluence Tendency",
-        "sub_pattern": "prestige-cue-substitution",
+        "sub_pattern": "general",
         "severity": "medium",
-        "specific_passage": "You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw. They will tell you whether what you have rises to a reportable offense in your state — some states have laws specifically about adults initiating sexual conversations with minors online, even without a physical meeting. Don't try to figure this out by yourself from Google. Talk to someone who does this for a living.",
-        "challenge_statement": "Does the person have the credentials to speak with authority? Which credentials?",
-        "next_move": "Strip the recommendation down to facts, constraints, and falsifiable claims before giving status any weight.",
+        "specific_passage": "You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw. They will tell you whether what you have rises to a reportable offense... Don't try to figure this out by yourself from Google. Talk to someone who does this for a living.",
+        "challenge_statement": "What would we have to believe to accept the opposite thesis?",
+        "next_move": "Write down the authority thesis, its strongest rival explanation, and the evidence that would favor one over the other.",
         "is_trusted_surface": true,
         "selected_model_ids": [
           "authority-bias",
-          "first-principles-thinking"
+          "first-principles-thinking",
+          "dialectical-reasoning"
         ],
         "major_tensions": [
           "Credibility is standing in for falsification, evidence testing, or domain-boundary checks."
         ],
-        "intervention_hint": "Strip the recommendation down to facts, constraints, and falsifiable claims before giving status any weight."
-      }
-    ],
-    "secondary_findings": [
+        "intervention_hint": "Write down the authority thesis, its strongest rival explanation, and the evidence that would favor one over the other."
+      },
       {
         "tendency_id": "inconsistency-avoidance-tendency",
         "tendency_name": "Inconsistency-Avoidance Tendency",
         "sub_pattern": "general",
         "severity": "medium",
-        "specific_passage": "Prioritize rebuilding daughter's trust through low-pressure communication (notes, low-stakes texts, listening without lecturing) over immediate actions against the groomer; ... disclose and stop surveillance later after trust rebuilt; ... Pace matters: relationship repair first enables future protection.",
+        "specific_passage": "5. This week: DON'T report to police (decision made, stop re-litigating it); DON'T block the 19-year-old yet; DON'T take the phone away.",
         "challenge_statement": "What would the team need to reconsider here if consistency pressure were not protecting the current position?",
         "next_move": "State the strongest disconfirming condition and the exact evidence that would require changing the current position.",
         "is_trusted_surface": true,
@@ -88,11 +129,30 @@
     ],
     "secondary_findings_full": [
       {
+        "tendency_id": "authority-misinfluence-tendency",
+        "tendency_name": "Authority-Misinfluence Tendency",
+        "sub_pattern": "general",
+        "severity": "medium",
+        "specific_passage": "You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw. They will tell you whether what you have rises to a reportable offense... Don't try to figure this out by yourself from Google. Talk to someone who does this for a living.",
+        "challenge_statement": "What would we have to believe to accept the opposite thesis?",
+        "next_move": "Write down the authority thesis, its strongest rival explanation, and the evidence that would favor one over the other.",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "authority-bias",
+          "first-principles-thinking",
+          "dialectical-reasoning"
+        ],
+        "major_tensions": [
+          "Credibility is standing in for falsification, evidence testing, or domain-boundary checks."
+        ],
+        "intervention_hint": "Write down the authority thesis, its strongest rival explanation, and the evidence that would favor one over the other."
+      },
+      {
         "tendency_id": "inconsistency-avoidance-tendency",
         "tendency_name": "Inconsistency-Avoidance Tendency",
         "sub_pattern": "general",
         "severity": "medium",
-        "specific_passage": "Prioritize rebuilding daughter's trust through low-pressure communication (notes, low-stakes texts, listening without lecturing) over immediate actions against the groomer; ... disclose and stop surveillance later after trust rebuilt; ... Pace matters: relationship repair first enables future protection.",
+        "specific_passage": "5. This week: DON'T report to police (decision made, stop re-litigating it); DON'T block the 19-year-old yet; DON'T take the phone away.",
         "challenge_statement": "What would the team need to reconsider here if consistency pressure were not protecting the current position?",
         "next_move": "State the strongest disconfirming condition and the exact evidence that would require changing the current position.",
         "is_trusted_surface": true,
@@ -116,37 +176,47 @@
     "secondary_additional_pressure_tendency_ids": [],
     "detected_tendencies": [
       "authority-misinfluence-tendency",
+      "availability-misweighing-tendency",
       "inconsistency-avoidance-tendency"
     ],
     "selected_model_ids": [
       "authority-bias",
       "first-principles-thinking",
+      "dialectical-reasoning",
+      "base-rates",
+      "statistics-concepts",
+      "scientific-method-evidence-testing",
       "commitment-and-consistency-bias",
       "step-back",
       "falsifiability"
     ],
     "challenge_statements": [
-      "Does the person have the credentials to speak with authority? Which credentials?",
+      "What would we have to believe to accept the opposite thesis?",
+      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
       "What would the team need to reconsider here if consistency pressure were not protecting the current position?"
     ],
     "next_moves": [
-      "Strip the recommendation down to facts, constraints, and falsifiable claims before giving status any weight.",
+      "Write down the authority thesis, its strongest rival explanation, and the evidence that would favor one over the other.",
+      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
       "State the strongest disconfirming condition and the exact evidence that would require changing the current position."
     ],
     "major_tensions": [
       "Credibility is standing in for falsification, evidence testing, or domain-boundary checks.",
+      "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case.",
       "Inconsistency correction is shallow when the team says it is being objective but never names what would make it reverse the current stance."
     ],
     "top_challenge_statements": [
-      "Does the person have the credentials to speak with authority? Which credentials?"
+      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?"
     ],
     "secondary_challenge_statements": [
+      "What would we have to believe to accept the opposite thesis?",
       "What would the team need to reconsider here if consistency pressure were not protecting the current position?"
     ],
     "top_next_moves": [
-      "Strip the recommendation down to facts, constraints, and falsifiable claims before giving status any weight."
+      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
     ],
     "secondary_next_moves": [
+      "Write down the authority thesis, its strongest rival explanation, and the evidence that would favor one over the other.",
       "State the strongest disconfirming condition and the exact evidence that would require changing the current position."
     ]
   },
@@ -210,22 +280,64 @@
         ],
         "presence_mode": "executed",
         "evidence_quote": "When she initiates conversation: listen, don't lecture, don't solve. Just listen. The guy, the rules, the phone — all of that can come later. Right now she needs to feel heard, not managed.",
-        "presence_explanation": "The answer prescribes prioritizing understanding the daughter's emotional and factual content through listening before advancing to solutions or judgments."
+        "presence_explanation": "The answer deploys active listening as the mechanism to repair trust and alignment by prioritizing emotional reception over immediate problem-solving or advice."
       },
       {
-        "model_id": "psychological-safety",
-        "display_name": "Psychological Safety",
+        "model_id": "representativeness-heuristic",
+        "display_name": "Representativeness Heuristic",
         "chunks": [
           {
             "chunk_type": "prerequisite_gap",
-            "source_model_id": "psychological-safety",
-            "text": "This model depends on emotional-intelligence (requires), which is not active in the answer. Creating and maintaining psychological safety requires awareness and management of the emotional dynamics in a team. The PS article repeatedly discusses managing the conflict between the logical brain and the emotional brain — that management IS emotional intelligence.",
+            "source_model_id": "representativeness-heuristic",
+            "text": "This model depends on system-2 (requires), which is not active in the answer. The representativeness heuristic is a System 1 shortcut. Detecting and overriding it requires System 2 engagement to pause intuitive categorization and force comparison against base rates, alternative classes, or regression effects.",
             "provenance": {
               "source_layer": "prerequisite",
               "extraction_type": "explicit",
               "confidence": "high"
             }
           },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "representativeness-heuristic",
+            "text": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more diagnostic than it is.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "representativeness-heuristic",
+            "text": "If this representative-looking pattern fails, what ignored denominator or low-probability scenario would explain the miss?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "representativeness-heuristic",
+            "text": "Base Rates: Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "base-rates"
+            },
+            "affinity_rationale": "Canonical: 'RH, by definition, ignores critical components of rational probability, such as the base rate and statistical laws' — definitional opposition.",
+            "activation_condition": "When resemblance-based categorization overrides the actual statistical frequency of events in the reference class."
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "the pattern you're describing (the flattery, the \"you understand me\" framing) is textbook grooming language, not \"teenage stuff.\"",
+        "presence_explanation": "The answer uses surface similarity to established grooming patterns as diagnostic evidence, rejecting alternative explanations based on category match."
+      },
+      {
+        "model_id": "psychological-safety",
+        "display_name": "Psychological Safety",
+        "chunks": [
           {
             "chunk_type": "failure_mode",
             "source_model_id": "psychological-safety",
@@ -271,17 +383,17 @@
           }
         ],
         "presence_mode": "executed",
-        "evidence_quote": "slide a note under her door that says \"I love you. I am not going anywhere. When you're ready, I want to hear your side. We can figure this out together.\" Don't include rules, conditions, or threats. Just that.",
-        "presence_explanation": "The answer creates an environment where the daughter can re-engage candidly without fear of status loss, judgment, or immediate challenge, enabling better shared decision-making."
+        "evidence_quote": "slide a note under her door that says \"I love you. I am not going anywhere. When you're ready, I want to hear your side. We can figure this out together.\" Don't include rules, conditions, or threats.",
+        "presence_explanation": "The answer creates psychological safety by removing judgment and pressure, enabling candid re-engagement and truth-sharing for better decisions on protection."
       },
       {
-        "model_id": "opportunity-cost",
-        "display_name": "Opportunity Cost",
+        "model_id": "emotional-intelligence",
+        "display_name": "Emotional Intelligence",
         "chunks": [
           {
             "chunk_type": "failure_mode",
-            "source_model_id": "opportunity-cost",
-            "text": "Decision paralysis can keep the team comparing endless alternatives instead of acting on a reversible test.",
+            "source_model_id": "emotional-intelligence",
+            "text": "Emotional intelligence can be misread as niceness, leaving hard but necessary truth unsaid.",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
@@ -289,9 +401,9 @@
             }
           },
           {
-            "chunk_type": "premortem",
-            "source_model_id": "opportunity-cost",
-            "text": "Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.",
+            "chunk_type": "heuristic",
+            "source_model_id": "emotional-intelligence",
+            "text": "Use emotional granularity instead of vague labels so the real issue becomes more actionable.",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "explicit",
@@ -300,18 +412,8 @@
           },
           {
             "chunk_type": "premortem",
-            "source_model_id": "opportunity-cost",
-            "text": "Which comparison in this plan is pretending to be irreversible even though we could run it as a bounded test first, and what learning are we giving up by waiting for certainty before acting?",
-            "provenance": {
-              "source_layer": "wave2",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          },
-          {
-            "chunk_type": "failure_mode",
-            "source_model_id": "opportunity-cost",
-            "text": "A request can look cheap in isolation while still stealing the same launch window, engineering time, or management attention from the highest-value move.",
+            "source_model_id": "emotional-intelligence",
+            "text": "Are we packaging this message for analytical review only, or for the emotional response that drives action?",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
@@ -319,44 +421,91 @@
             }
           },
           {
-            "chunk_type": "prerequisite_gap",
-            "source_model_id": "opportunity-cost",
-            "text": "This model depends on trade-offs (foundation-for), which is not active in the answer. Opportunity cost is the economic quantification of trade-offs. Understanding that resources are scarce and forces constantly conflict (trade-offs) precedes the ability to quantify what specific value is lost when choosing one path over another (opportunity cost).",
+            "chunk_type": "antagonist",
+            "source_model_id": "emotional-intelligence",
+            "text": "Authenticity: Emotional-intelligence conflicts with authenticity when skillful emotional management becomes performative regulation that obscures genuine reactions needed for honest engagement.",
             "provenance": {
-              "source_layer": "prerequisite",
+              "source_layer": "wave3",
               "extraction_type": "explicit",
-              "confidence": "high"
+              "confidence": "high",
+              "relation_target_id": "authenticity"
             }
           }
         ],
         "presence_mode": "executed",
-        "evidence_quote": "You want him gone. I understand. But he's gone is a different goal from she's safe. She's safe requires her to trust you with information about him and about the next person who tries something. He's gone just removes this one person, and doesn't protect her from the next one.",
-        "presence_explanation": "The answer frames immediate removal of the groomer as lower-leverage compared to trust-building, which enables higher-leverage ongoing protection from future threats."
+        "evidence_quote": "your daughter shutting down is normal; it's not a sign you've lost her or that she's hiding worse things. It's what a 14-year-old does when she feels ashamed and exposed at the same time.",
+        "presence_explanation": "The answer integrates emotional dynamics of shame into decision sequencing, recognizing that trust and perceived fairness shape whether protective actions land effectively."
+      },
+      {
+        "model_id": "liking-principle",
+        "display_name": "Liking Principle",
+        "chunks": [
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "liking-principle",
+            "text": "Use emotional connection to lower defensiveness enough for the truth to land, not to exempt the idea from scrutiny.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "liking-principle",
+            "text": "Does the emotional connection we have established distract from a critical flaw in the facts?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "liking-principle",
+            "text": "Authority Bias: Authority-bias combines dangerously with liking-principle when status and warmth together reduce skepticism toward a favored messenger.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "authority-bias"
+            },
+            "affinity_rationale": "Social warmth and status jointly bypass critical scrutiny — when liking and authority combine, the double influence makes evidence standards dangerously low.",
+            "activation_condition": "When a liked authority figure's recommendations receive lower evidentiary scrutiny because both social warmth and status suppress the impulse to challenge"
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.",
+        "presence_explanation": "The answer prioritizes building daughter's receptivity and trust through low-pressure rapport before addressing the groomer, using liking as the bottleneck mechanism for effective future interventions."
       }
     ],
-    "total_chunk_count": 15,
+    "total_chunk_count": 20,
     "budget_max": 20,
     "anti_echo_model_ids": [
       "authority-bias",
+      "base-rates",
       "commitment-and-consistency-bias",
+      "dialectical-reasoning",
       "falsifiability",
       "first-principles-thinking",
+      "scientific-method-evidence-testing",
+      "statistics-concepts",
       "step-back"
     ],
     "reranker": {
       "active": true,
       "chunks_above_relevance_floor": 6,
-      "mean_relevance_score": 0.2628
+      "mean_relevance_score": 0.2536
     }
   },
   "companion_card": {
     "detected_models": [
       {
-        "model_id": "opportunity-cost",
-        "model_name": "Opportunity Cost",
-        "evidence_quote": "You want him gone. I understand. But he's gone is a different goal from she's safe. She's safe requires her to trust you with information about him and about the next person who tries something. He's gone just removes this one person, and doesn't protect her from the next one.",
+        "model_id": "liking-principle",
+        "model_name": "Liking Principle",
+        "evidence_quote": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer frames immediate removal of the groomer as lower-leverage compared to trust-building, which enables higher-leverage ongoing protection from future threats.",
+        "presence_explanation": "The answer prioritizes building daughter's receptivity and trust through low-pressure rapport before addressing the groomer, using liking as the bottleneck mechanism for effective future interventions.",
         "detection_confidence": "structural"
       },
       {
@@ -364,45 +513,61 @@
         "model_name": "Active Listening",
         "evidence_quote": "When she initiates conversation: listen, don't lecture, don't solve. Just listen. The guy, the rules, the phone — all of that can come later. Right now she needs to feel heard, not managed.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer prescribes prioritizing understanding the daughter's emotional and factual content through listening before advancing to solutions or judgments.",
+        "presence_explanation": "The answer deploys active listening as the mechanism to repair trust and alignment by prioritizing emotional reception over immediate problem-solving or advice.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "emotional-intelligence",
+        "model_name": "Emotional Intelligence",
+        "evidence_quote": "your daughter shutting down is normal; it's not a sign you've lost her or that she's hiding worse things. It's what a 14-year-old does when she feels ashamed and exposed at the same time.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer integrates emotional dynamics of shame into decision sequencing, recognizing that trust and perceived fairness shape whether protective actions land effectively.",
         "detection_confidence": "structural"
       },
       {
         "model_id": "psychological-safety",
         "model_name": "Psychological Safety",
-        "evidence_quote": "slide a note under her door that says \"I love you. I am not going anywhere. When you're ready, I want to hear your side. We can figure this out together.\" Don't include rules, conditions, or threats. Just that.",
+        "evidence_quote": "slide a note under her door that says \"I love you. I am not going anywhere. When you're ready, I want to hear your side. We can figure this out together.\" Don't include rules, conditions, or threats.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer creates an environment where the daughter can re-engage candidly without fear of status loss, judgment, or immediate challenge, enabling better shared decision-making.",
+        "presence_explanation": "The answer creates psychological safety by removing judgment and pressure, enabling candid re-engagement and truth-sharing for better decisions on protection.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "representativeness-heuristic",
+        "model_name": "Representativeness Heuristic",
+        "evidence_quote": "the pattern you're describing (the flattery, the \"you understand me\" framing) is textbook grooming language, not \"teenage stuff.\"",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer uses surface similarity to established grooming patterns as diagnostic evidence, rejecting alternative explanations based on category match.",
         "detection_confidence": "structural"
       }
     ],
     "expansions": [
       {
-        "source_model_id": "opportunity-cost",
+        "source_model_id": "liking-principle",
+        "relation_type": "antagonist",
+        "model_id": "authority-bias",
+        "model_name": "Authority Bias",
+        "substrate_chunk": "Authority-bias combines dangerously with liking-principle when status and warmth together reduce skepticism toward a favored messenger.",
+        "why_relevant": "Authority-bias combines dangerously with liking-principle when status and warmth together reduce skepticism toward a favored messenger.",
+        "affinity_rationale": "Social warmth and status jointly bypass critical scrutiny — when liking and authority combine, the double influence makes evidence standards dangerously low.",
+        "activation_condition": "When a liked authority figure's recommendations receive lower evidentiary scrutiny because both social warmth and status suppress the impulse to challenge"
+      },
+      {
+        "source_model_id": "liking-principle",
         "relation_type": "tension",
-        "model_id": "anchoring",
-        "model_name": "Anchoring",
-        "substrate_chunk": "Opportunity-cost conflicts with anchoring when the comparison is pinned to the wrong baseline instead of the best real alternative.",
-        "why_relevant": "Opportunity-cost conflicts with anchoring when the comparison is pinned to the wrong baseline instead of the best real alternative.",
+        "model_id": "authority-bias",
+        "model_name": "Authority Bias",
+        "substrate_chunk": "Liking-principle conflicts with authority-bias when social warmth and status jointly bypass critical scrutiny.",
+        "why_relevant": "Liking-principle conflicts with authority-bias when social warmth and status jointly bypass critical scrutiny.",
         "tension_type": "conflicts"
       },
       {
-        "source_model_id": "opportunity-cost",
-        "relation_type": "antagonist",
+        "source_model_id": "liking-principle",
+        "relation_type": "tension",
         "model_id": "confirmation-bias",
         "model_name": "Confirmation Bias",
-        "substrate_chunk": "Confirmation-bias obstructs opportunity-cost by making an unfavored alternative hard to assess objectively.",
-        "why_relevant": "Confirmation-bias obstructs opportunity-cost by making an unfavored alternative hard to assess objectively.",
-        "affinity_rationale": "Confirmation bias 'obstructs the objective assessment of opportunity cost' by making one reluctant to recognize the potential benefits of unfavored alternatives.",
-        "activation_condition": "When the assessment of foregone alternatives is biased by preference for the current option rather than honest evaluation of what is being sacrificed"
-      },
-      {
-        "source_model_id": "opportunity-cost",
-        "relation_type": "tension",
-        "model_id": "status-quo-bias",
-        "model_name": "Status Quo Bias",
-        "substrate_chunk": "Opportunity-cost conflicts with status-quo-bias when default continuation hides the best foregone alternative.",
-        "why_relevant": "Opportunity-cost conflicts with status-quo-bias when default continuation hides the best foregone alternative.",
+        "substrate_chunk": "Liking-principle conflicts with confirmation-bias when favorable messengers receive lower evidentiary standards.",
+        "why_relevant": "Liking-principle conflicts with confirmation-bias when favorable messengers receive lower evidentiary standards.",
         "tension_type": "conflicts"
       },
       {
@@ -435,6 +600,34 @@
         "activation_condition": "When efficiency metrics or optimization pressure create incentives to skip the trust-building dialogue needed for genuine stakeholder alignment"
       },
       {
+        "source_model_id": "emotional-intelligence",
+        "relation_type": "tension",
+        "model_id": "authenticity",
+        "model_name": "Authenticity",
+        "substrate_chunk": "Emotional-intelligence conflicts with authenticity when skillful emotional management becomes performative regulation that obscures genuine reactions needed for honest engagement.",
+        "why_relevant": "Emotional-intelligence conflicts with authenticity when skillful emotional management becomes performative regulation that obscures genuine reactions needed for honest engagement.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "emotional-intelligence",
+        "relation_type": "tension",
+        "model_id": "critical-thinking",
+        "model_name": "Critical Thinking",
+        "substrate_chunk": "Emotional-intelligence conflicts with critical-thinking when emotional attunement to others' feelings substitutes for rigorous evaluation of the logical merit of their arguments.",
+        "why_relevant": "Emotional-intelligence conflicts with critical-thinking when emotional attunement to others' feelings substitutes for rigorous evaluation of the logical merit of their arguments.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "emotional-intelligence",
+        "relation_type": "antagonist",
+        "model_id": "rationalization",
+        "model_name": "Rationalization",
+        "substrate_chunk": "Rationalization undermines emotional-intelligence by converting genuine emotional signals into self-serving narratives, corrupting the self-awareness and empathy loops that EI depends on.",
+        "why_relevant": "Rationalization undermines emotional-intelligence by converting genuine emotional signals into self-serving narratives, corrupting the self-awareness and empathy loops that EI depends on.",
+        "affinity_rationale": "Medium confidence — canonical points to cold rationality vs. emotional processing as the core tension. Rationalization as post-hoc justification can mask genuine emotional signals, but the canonical mechanism is different from the curation's mapping.",
+        "activation_condition": "When post-hoc rational justifications mask the genuine emotional signals that EI is designed to detect and respond to authentically"
+      },
+      {
         "source_model_id": "psychological-safety",
         "relation_type": "antagonist",
         "model_id": "authority-bias",
@@ -462,18 +655,47 @@
         "why_relevant": "Confirmation-bias grows when teams suppress dissent and filter evidence to match the prevailing leadership view instead of surfacing contradictions.",
         "affinity_rationale": "Canonical tension: 'absence of safety causes teams to suppress dissent and filter evidence to match the prevailing leadership view.'",
         "activation_condition": "When unsafe environments lead teams to suppress contradicting evidence and conform to the prevailing leadership hypothesis."
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "relation_type": "antagonist",
+        "model_id": "base-rates",
+        "model_name": "Base Rates",
+        "substrate_chunk": "Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
+        "why_relevant": "Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
+        "affinity_rationale": "Canonical: 'RH, by definition, ignores critical components of rational probability, such as the base rate and statistical laws' — definitional opposition.",
+        "activation_condition": "When resemblance-based categorization overrides the actual statistical frequency of events in the reference class."
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "relation_type": "tension",
+        "model_id": "base-rates",
+        "model_name": "Base Rates",
+        "substrate_chunk": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency and outside-view distribution evidence.",
+        "why_relevant": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency and outside-view distribution evidence.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "relation_type": "antagonist",
+        "model_id": "bayesian",
+        "model_name": "Bayesian",
+        "substrate_chunk": "Bayesian updating resists representativeness-heuristic by revising on evidence instead of trusting intuitive category fit.",
+        "why_relevant": "Bayesian updating resists representativeness-heuristic by revising on evidence instead of trusting intuitive category fit.",
+        "affinity_rationale": "Bayesian reasoning requires incorporating prior probabilities and updating with evidence — directly corrects the representativeness heuristic's neglect of base rates.",
+        "activation_condition": "When proper Bayesian updating would correct the intuitive probability estimate distorted by surface similarity."
       }
     ],
     "failure_hints": [
       {
-        "source_model_id": "opportunity-cost",
-        "text": "A request can look cheap in isolation while still stealing the same launch window, engineering time, or management attention from the highest-value move.",
+        "source_model_id": "liking-principle",
+        "text": "Charm can become a substitute for technical rigor when relationship energy is used to cover weak substance.",
         "extraction_type": "normalized",
         "confidence": "high"
       },
       {
-        "source_model_id": "opportunity-cost",
-        "text": "Decision paralysis can keep the team comparing endless alternatives instead of acting on a reversible test.",
+        "source_model_id": "liking-principle",
+        "text": "Teams can let warmth and familiarity lower evidentiary standards for favored messengers or charismatic leaders.",
         "extraction_type": "normalized",
         "confidence": "high"
       },
@@ -490,6 +712,18 @@
         "confidence": "high"
       },
       {
+        "source_model_id": "emotional-intelligence",
+        "text": "Emotional intelligence can be misread as niceness, leaving hard but necessary truth unsaid.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "emotional-intelligence",
+        "text": "Communication fails when emotion is omitted and only information or action is specified.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
         "source_model_id": "psychological-safety",
         "text": "Leaders can invite openness while leaving ownership, standards, or decision rights too vague for correction to matter.",
         "extraction_type": "explicit",
@@ -500,18 +734,30 @@
         "text": "Psychological safety fails when it is redefined as comfort, politeness, or protection from challenge instead of candid truth.",
         "extraction_type": "explicit",
         "confidence": "high"
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more diagnostic than it is.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "Decision makers can confuse similarity with probability and treat a plausible story as if it were a strong forecast.",
+        "extraction_type": "normalized",
+        "confidence": "high"
       }
     ],
     "heuristic_hints": [
       {
-        "source_model_id": "opportunity-cost",
-        "text": "Force every recommendation to answer compared to what before calling it attractive.",
-        "extraction_type": "normalized",
+        "source_model_id": "liking-principle",
+        "text": "Use emotional connection to lower defensiveness enough for the truth to land, not to exempt the idea from scrutiny.",
+        "extraction_type": "explicit",
         "confidence": "high"
       },
       {
-        "source_model_id": "opportunity-cost",
-        "text": "Upgrade simple pro-con thinking into a comparison that includes the implicit costs of the best foregone option.",
+        "source_model_id": "liking-principle",
+        "text": "Pair warmth with faultless reliability so trust rests on both relationship and competence.",
         "extraction_type": "normalized",
         "confidence": "high"
       },
@@ -528,6 +774,18 @@
         "confidence": "high"
       },
       {
+        "source_model_id": "emotional-intelligence",
+        "text": "Use emotional granularity instead of vague labels so the real issue becomes more actionable.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "emotional-intelligence",
+        "text": "Use empathy maps to surface pains, gains, and hidden motivations before acting.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
         "source_model_id": "psychological-safety",
         "text": "Define psychological safety as candid challenge in service of better decisions, not as comfort.",
         "extraction_type": "explicit",
@@ -538,18 +796,30 @@
         "text": "Pair openness with clear ownership and decision rights so surfaced problems can actually be corrected.",
         "extraction_type": "explicit",
         "confidence": "high"
-      }
-    ],
-    "premortem_hints": [
+      },
       {
-        "source_model_id": "opportunity-cost",
-        "text": "Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.",
+        "source_model_id": "representativeness-heuristic",
+        "text": "Force an outside-view pass with reference classes or base rates before acting on an intuitive category match.",
         "extraction_type": "explicit",
         "confidence": "high"
       },
       {
-        "source_model_id": "opportunity-cost",
-        "text": "Which comparison in this plan is pretending to be irreversible even though we could run it as a bounded test first, and what learning are we giving up by waiting for certainty before acting?",
+        "source_model_id": "representativeness-heuristic",
+        "text": "Challenge the favored frame with thesis, antithesis, and synthesis instead of letting the first pattern match become the decision.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "premortem_hints": [
+      {
+        "source_model_id": "liking-principle",
+        "text": "Does the emotional connection we have established distract from a critical flaw in the facts?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "liking-principle",
+        "text": "If a competitor presented this exact recommendation, would we still like it?",
         "extraction_type": "explicit",
         "confidence": "high"
       },
@@ -566,6 +836,18 @@
         "confidence": "high"
       },
       {
+        "source_model_id": "emotional-intelligence",
+        "text": "Are we packaging this message for analytical review only, or for the emotional response that drives action?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "emotional-intelligence",
+        "text": "What emotion is present here, and what do I think is causing it?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
         "source_model_id": "psychological-safety",
         "text": "Are decision rights and accountability clear enough that candor can actually change the outcome?",
         "extraction_type": "normalized",
@@ -576,28 +858,40 @@
         "text": "What risk, dissent, or upward challenge is still not being said because of status or fear?",
         "extraction_type": "normalized",
         "confidence": "high"
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "If this representative-looking pattern fails, what ignored denominator or low-probability scenario would explain the miss?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "Is the worst case bad enough if this resemblance-based judgment is wrong?",
+        "extraction_type": "explicit",
+        "confidence": "high"
       }
     ],
     "identity_chunks": [
       {
-        "model_id": "opportunity-cost",
-        "display_name": "Opportunity Cost",
+        "model_id": "liking-principle",
+        "display_name": "Liking Principle",
         "select_when": [
-          "A team wants to add one more initiative even though the same people, budget, or launch window are needed by a higher-leverage move.",
-          "A default renewal, inherited project, or existing channel is being treated as free because the next-best use of the same resources has not been named.",
-          "Resources are scarce and each yes displaces a real alternative in capital, attention, headcount, or calendar time.",
-          "Trade-offs span more than money and the decision should price lost optionality, learning, morale, or trust rather than only explicit cash cost."
+          "Trust, receptivity, or willingness to engage is the bottleneck and the audience first needs to feel understood rather than merely informed.",
+          "Warmth is being paired with demonstrated competence, reliability, and concrete relevance to the other person's actual problem.",
+          "The relationship needs to lower defensiveness enough for a harder message, recommendation, or ask to be heard.",
+          "A communication plan must distinguish genuine connection from charisma that would lower evidentiary standards."
         ],
         "danger_when": [
-          "The option set is still poorly framed, so comparison would create false precision around the wrong alternatives or objective function.",
-          "The analysis is loading the comparison with unrealistic alternatives that are not genuinely available, fundable, or executable."
+          "The decision requires deep analytical assessment and rapport is being treated as a substitute for evidence, structure, or technical competence.",
+          "The desire to stay likable is suppressing dissent, difficult feedback, or necessary escalation about risk, cost, or weak reasoning."
         ],
         "reasoning_types": [
-          "counterfactual",
-          "diagnostic"
+          "metacognitive",
+          "causal"
         ],
-        "input_type": "resource allocation choice",
-        "output_type": "trade-off pricing check"
+        "input_type": "receptivity and trust problem",
+        "output_type": "warmth-with-rigor communication frame"
       },
       {
         "model_id": "active-listening",
@@ -620,6 +914,26 @@
         "output_type": "validated perspective and tension read"
       },
       {
+        "model_id": "emotional-intelligence",
+        "display_name": "Emotional Intelligence",
+        "select_when": [
+          "The technical answer is not enough because trust, morale, conflict, or perceived fairness will shape whether the decision lands.",
+          "Stakeholder emotions carry real information about risk, resistance, motivation, or hidden constraints.",
+          "Leadership requires influencing people through difficult change without losing candor or accountability.",
+          "The problem depends on self-management, empathy, or relationship handling more than on raw analytical horsepower alone."
+        ],
+        "danger_when": [
+          "Empathy is being treated as a substitute for standards, evidence, or hard conversations.",
+          "The team assumes it has read the emotional landscape correctly without validating what others actually feel or need."
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "input_type": "human-friction problem",
+        "output_type": "emotion-aware influence plan"
+      },
+      {
         "model_id": "psychological-safety",
         "display_name": "Psychological Safety",
         "select_when": [
@@ -638,58 +952,79 @@
         ],
         "input_type": "dissent-suppression and challenge-quality problem",
         "output_type": "candid accountability-supporting environment"
+      },
+      {
+        "model_id": "representativeness-heuristic",
+        "display_name": "Representativeness Heuristic",
+        "select_when": [
+          "A judgment is being driven by surface similarity or a vivid category match rather than by rates, frequencies, or causal detail.",
+          "People are substituting the question 'What does this resemble?' for the harder question 'What is statistically or causally likely here?'",
+          "The risk is that a compelling pattern match will crowd out denominator discipline.",
+          "A decision maker is intuitively classifying a case before checking whether the reference class actually supports that classification.",
+          "A vivid story, category label, or familiar prototype is overpowering statistical reasoning in a forecast or judgment.",
+          "A recommendation depends on forcing a handoff from intuitive categorization to explicit outside-view checking before action.",
+          "Problem solvers are at risk of declaring that they have seen this pattern before and skipping verification of whether the old frame still fits."
+        ],
+        "danger_when": [
+          "The model would be used as a generic anti-intuition slogan instead of checking where resemblance is actually informative.",
+          "Teams are treating every pattern match as wrong even when there is strong base-rate and causal support for it.",
+          "The judgment already rests on explicit outside-view evidence and the model would only restate a bias warning without changing the decision path.",
+          "The model is being used to criticize simplification itself rather than the specific move from surface similarity to unsupported causal confidence."
+        ],
+        "reasoning_types": [
+          "probabilistic",
+          "diagnostic",
+          "counterfactual"
+        ],
+        "input_type": "similarity-driven judgment",
+        "output_type": "pattern-match challenge with base-rate correction"
       }
     ],
-    "detection_model_count": 3,
-    "expansion_count": 9,
-    "failure_hint_count": 6,
-    "heuristic_hint_count": 6,
-    "premortem_hint_count": 6,
-    "identity_chunk_count": 3,
+    "detection_model_count": 5,
+    "expansion_count": 15,
+    "failure_hint_count": 10,
+    "heuristic_hint_count": 10,
+    "premortem_hint_count": 10,
+    "identity_chunk_count": 5,
     "detection_source": "independent_llm_pass"
   },
   "frame_pressure_card": {
     "frame_elements": [
       {
-        "element_text": "The primary problem is the confrontation and daughter's shutdown, with the 19-year-old guy as secondary",
-        "element_type": "assumption",
-        "evidence_quote": "I confronted her and she just shut down completely. Won't talk to me. Won't come out of her room.",
-        "frame_pattern": "priority_misalignment",
-        "fragility_signal": "Immediate safety threat from the groomer outweighs relational repair if evidence shows escalation",
-        "inquiry_stage": "how",
-        "likely_default": "emotion"
-      },
-      {
-        "element_text": "Ex's minimization undermines the situation's seriousness",
+        "element_text": "The ex-husband's minimization of the situation as 'teenage stuff' undermines the mother's concerns.",
         "element_type": "assumption",
         "evidence_quote": "Her dad (we're divorced, share custody) says I'm overreacting and this is teenage stuff.",
         "frame_pattern": "borrowed_premise",
-        "fragility_signal": "Ex's view aligns with expert assessment or daughter's account reframes as non-grooming",
+        "fragility_signal": "Ex-husband's view is not authoritative; mother can independently validate the grooming risk.",
         "inquiry_stage": "why",
         "likely_default": "social"
       }
     ],
     "reframings": [
       {
-        "reframed_question": "What specific evidence in the DMs indicates grooming by the 19-year-old rather than just teenage flirtation?",
-        "what_opens": "Path to assess actual risk level from messages, prioritizing safety over relational repair if escalation signs exist",
-        "reframe_move_type": "inversion",
-        "grounding_model": "base-rates",
+        "reframed_question": "What specific evidence from the daughter's DMs with the 19-year-old indicates grooming rather than typical teenage interaction?",
+        "what_opens": "Path to independently validate grooming risk using objective criteria like age gap, emotional manipulation language, and patterns of adult-teen online interactions, bypassing ex-husband's opinion.",
+        "reframe_move_type": "constraint_relaxation",
+        "grounding_model": "confirmation-bias",
         "source_element_index": 0
       },
       {
-        "reframed_question": "How might the ex-husband's view of this as 'teenage stuff' align with expert assessments of age-gap online interactions?",
-        "what_opens": "Opportunity to evaluate co-parenting input against objective standards, reducing dismissal of ex's perspective",
+        "reframed_question": "How might the ex-husband's view of this as 'teenage stuff' be shaped by his own experiences during divorce and shared custody?",
+        "what_opens": "Explores ex-husband's potential biases from path-dependence in his life history, revealing why his minimization occurs without directly challenging him.",
         "reframe_move_type": "perspective_shift",
-        "grounding_model": "confirmation-bias",
-        "source_element_index": 1
+        "grounding_model": "path-dependence",
+        "source_element_index": 0
       }
     ],
     "anti_echo_model_ids": [
       "authority-bias",
+      "base-rates",
       "commitment-and-consistency-bias",
+      "dialectical-reasoning",
       "falsifiability",
       "first-principles-thinking",
+      "scientific-method-evidence-testing",
+      "statistics-concepts",
       "step-back"
     ],
     "overlap_flags": [
@@ -704,125 +1039,146 @@
         "dimension_id": "behavioral-intervention",
         "dimension_name": "Behavioral Intervention",
         "covered": true,
-        "coverage_evidence": "Assistant specifies mechanisms for daughter's behavior change: notes and low-stakes texts as nudges to reopen communication without shame (e.g., 'slide a note under her door that says \"I love you...\"'), distinguishes intrinsic motivation (rebuilding trust so she wants to tell you) from extrinsic (no rules/threats initially), addresses why shame persists and sustainability via routine and listening first.",
+        "coverage_evidence": "Assistant specifies mechanisms for daughter's behavior change: notes/slide under door for re-entry without shame (nudge), low-stakes texts to normalize routine (nudge), listening without lecturing (build intrinsic trust); addresses why shame persists and how to sustain via routine and repair; distinguishes extrinsic (surveillance/rules) vs intrinsic (relationship trust).",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "commitment-reversibility",
         "dimension_name": "Commitment & Reversibility",
-        "covered": true,
-        "coverage_evidence": "Assistant addresses surveillance commitment: identifies lock-in of secret checks eroding trust long-term ('she figures it out... breach of trust is much bigger'), recommends staged reversibility by disclosing/apologizing after communication reopens to preserve optionality for relationship repair.",
-        "materiality_note": "covered"
+        "covered": false,
+        "coverage_evidence": "Assistant acknowledges ongoing surveillance as a commitment but recommends disclosing/apologizing/stopping without analyzing lock-in costs of continuing secret checks vs switching to open negotiation, or staging reversibility of surveillance.",
+        "materiality_note": "High materiality: Failing to weigh exit costs from surveillance could undermine trust repair, reversing relationship-focused plan."
+      },
+      {
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
+        "covered": false,
+        "coverage_evidence": "No modeling of 19-year-old's responses (e.g., retaliation if blocked/reported, imitation on other platforms, preemption); treats as static threat without gaming out his/counterparty moves.",
+        "materiality_note": "High materiality: Anticipating groomer's response (e.g., escalation if blocked) could alter blocking/timing recommendation."
       },
       {
         "dimension_id": "incentive-alignment",
         "dimension_name": "Incentive Alignment",
-        "covered": true,
-        "coverage_evidence": "Assistant identifies ex's misaligned incentives (minimizing as 'teenage stuff' vs. grooming), discusses failure modes (undermines during custody, harms her in legal process), recommends alignment mechanism: factual-only update without debate, asking him not to discuss yet.",
-        "materiality_note": "covered"
+        "covered": false,
+        "coverage_evidence": "Identifies ex's minimization misaligns with safety goal but doesn't analyze mechanisms to realign (e.g., monitoring his custody influence, penalties for undermining, info asymmetry); just suggests factual texts without addressing divergence failure modes.",
+        "materiality_note": "High materiality: Ex's incentives could sabotage therapy/trust-building during custody, altering protection plan."
       },
       {
         "dimension_id": "stakeholder-alignment",
         "dimension_name": "Stakeholder Alignment",
         "covered": true,
-        "coverage_evidence": "Assistant maps stakeholders (daughter: shutdown/shame; ex: opposes/minimizes; Mia's mom: potential but risky), influence strategy for ex (option 3: facts-only loop-in), for daughter (let her lead, low-stakes engagement), distinguishes technical (report) from feasible (therapy given co-parenting).",
+        "coverage_evidence": "Identifies daughter (shutdown, needs face-saving re-entry), ex (minimizes, strategy: factual info only, no debate), RAINN/therapist (referrals); influence strategy for ex (loop in limited way to avoid exclusion blowup); distinguishes technical safety from co-parenting feasibility.",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "timing-sequencing",
         "dimension_name": "Timing & Sequencing",
         "covered": true,
-        "coverage_evidence": "Assistant specifies sequence/rationale: communication repair first (48hrs note, daily texts) before guy/police/therapy ('if she doesn't start talking... nothing else will land'), critical path (reopen -> surveillance disclosure in 3-4wks -> Mia's mom in 3-4mos), delay benefits (trust build) vs. risks (underground comms).",
+        "coverage_evidence": "Explicit plan sequences: immediate low-stakes texts/note (48hrs), RAINN/ex today, therapist search this week (up to 2wks), surveillance disclosure in 3-4wks post-reopen, Mia's mom in 3-4mos; rationale: thaw first or pushes backfire, delay surveillance talk avoids compounding shame.",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "risk-response",
         "dimension_name": "Risk Response",
-        "covered": false,
-        "coverage_evidence": "Assistant names risks (legal trauma, ex interference, underground contact) and weighs paths (legal vs therapeutic) but does not size downside exposure (e.g., no prob estimates of conviction/jurisdiction failure) or detail recovery/antifragility (e.g., how therapy builds resilience if grooming recurs).",
-        "materiality_note": "High: Different risk posture (e.g., report despite costs) could reverse to legal action over therapy."
+        "covered": true,
+        "coverage_evidence": "Weighs police (legal trauma, ex interference, jurisdiction) vs therapy (protection via relationship); sizes downsides (daughter as witness vs no accountability); recommends adapt via therapy over mitigate via report given co-parenting; addresses recovery (therapy for grooming).",
+        "materiality_note": "covered"
       },
       {
-        "dimension_id": "causal-diagnosis",
-        "dimension_name": "Causal Diagnosis",
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
         "covered": false,
-        "coverage_evidence": "Assistant diagnoses daughter's shutdown as shame response to confrontation/privacy invasion (not guilt over worse acts) but does not test competing causes (e.g., deeper grooming effects, peer pressure) or trace full chain to root (e.g., prior sleepover lie -> surveillance cycle).",
-        "materiality_note": "Medium: Alternative root (e.g., grooming-induced secrecy) could shift to immediate block/therapy over repair-first."
-      },
-      {
-        "dimension_id": "feedback-system-dynamics",
-        "dimension_name": "Feedback & System Dynamics",
-        "covered": false,
-        "coverage_evidence": "Mentions reactions (block -> underground; push -> retreat) but does not identify explicit loops (e.g., surveillance -> lie -> more surveillance reinforcing distrust) or delays (shame thaw over weeks).",
-        "materiality_note": "Medium: Missing loops (e.g., ex minimization amplifying daughter's secrecy) could alter sequencing."
+        "coverage_evidence": "Acknowledges uncertainty in police outcome/jurisdiction but doesn't classify (epistemic via RAINN reducible?); no matching strategy to type (e.g., optionality via staged therapy); overconfident on therapy superiority without calibration.",
+        "materiality_note": "Medium materiality: Misclassifying reporting uncertainty could shift to more experimental approach like pilot therapy."
       }
     ],
     "gap_routes": [
       {
-        "dimension_id": "risk-response",
-        "dimension_name": "Risk Response",
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
         "candidate_model_ids": [
-          "risk-assessment",
-          "black-swan-events",
-          "antifragility",
-          "margin-of-safety",
-          "calculated-risk-taking",
-          "resilience"
+          "sunk-cost-fallacy",
+          "lock-in",
+          "commitment-bias",
+          "switching-costs",
+          "optionality"
+        ],
+        "excluded_model_ids": [
+          "path-dependence"
+        ]
+      },
+      {
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
+        "candidate_model_ids": [
+          "game-theory-payoffs",
+          "nash-equilibrium",
+          "prisoners-dilemma",
+          "batna",
+          "red-queen-effect"
         ],
         "excluded_model_ids": []
       },
       {
-        "dimension_id": "causal-diagnosis",
-        "dimension_name": "Causal Diagnosis",
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
         "candidate_model_ids": [
-          "root-cause-analysis",
-          "five-whys-method",
-          "correlation-vs-causation",
-          "causal-attribution-resistance",
-          "systems-thinking"
+          "principal-agent-problem",
+          "moral-hazard",
+          "incentives",
+          "adverse-selection",
+          "information-asymmetry"
         ],
         "excluded_model_ids": []
       },
       {
-        "dimension_id": "feedback-system-dynamics",
-        "dimension_name": "Feedback & System Dynamics",
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
         "candidate_model_ids": [
-          "systems-thinking",
-          "feedback-loops",
-          "second-order-thinking",
-          "non-linear-dynamics",
-          "leverage-points",
-          "delays"
+          "aleatory-epistemic-uncertainty-recognition",
+          "true-uncertainty-navigation",
+          "probabilistic-thinking",
+          "confidence-calibration",
+          "experimentation"
         ],
         "excluded_model_ids": []
       }
     ],
     "gap_questions": [
       {
-        "dimension_id": "risk-response",
-        "dimension_name": "Risk Response",
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
         "questions": [
-          "What specific outcomes from reporting to police worry you most for your daughter given your ex's minimization and the shared custody?",
-          "Under what family circumstances would you feel compelled to take a more aggressive approach like blocking the 19-year-old immediately despite the risks?",
-          "What level of risk from this grooming situation would make you shift from protecting her privately to involving authorities right away?"
+          "What would make you feel locked into the no-police-report path right now, like if your daughter starts opening up?",
+          "If her communication stays shut down after two weeks of low-stakes texts, at what point would you reconsider steps like blocking the 19-year-old or reporting to police?",
+          "What reversible steps could you take this week that still let you pull back if your ex pushes back hard on the therapist idea?"
         ]
       },
       {
-        "dimension_id": "causal-diagnosis",
-        "dimension_name": "Causal Diagnosis",
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
         "questions": [
-          "What do you see as the main root cause behind your daughter's secret Instagram use and connection with the 19-year-old beyond just the grooming?",
-          "Is the ongoing surveillance more a symptom of broken trust from the sleepover lie or the core driver of her shutting down now?",
-          "What underlying factor in your co-parenting dynamic do you think is most fueling your ex's minimization of the intimate DMs?"
+          "How do you expect your ex to react if he finds out about the therapist before you loop him in, and would that change your low-stakes texting plan with your daughter?",
+          "If your daughter senses you're competing with her dad for her trust during his custody time, what signs would you watch for in her behavior?",
+          "What might the 19-year-old do if he notices her phone activity changing, like no nighttime use, and how does that affect keeping the phone out of her room?"
         ]
       },
       {
-        "dimension_id": "feedback-system-dynamics",
-        "dimension_name": "Feedback & System Dynamics",
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
         "questions": [
-          "How do you anticipate your ex reacting if he learns later that you handled the RAINN call and therapist search without him, and what loop might that create with your daughter?",
-          "In what ways could improving communication with your daughter this week create a positive feedback loop that reduces her reliance on secret online contacts like the 19-year-old?",
-          "What recurring patterns have you noticed in past situations where your surveillance or confrontations led to her pulling away further over time?"
+          "What incentives does your daughter currently have to keep talking to the 19-year-old instead of opening up to you, given how the confrontation went?",
+          "How could your ex's minimization during custody days misalign with your goal of getting her to therapy, and what would realign him?",
+          "What ongoing incentives are keeping you checking her phone secretly, even after planning to confess and stop?"
+        ]
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "questions": [
+          "What unknowns about the 19-year-old's intentions feel like total ignorance to you, versus risks you could measure like his location or past behavior?",
+          "In your co-parenting with your ex, what's the difference between predictable risks like his minimization and true uncertainties like how he'll respond to the therapist referral?",
+          "Regarding your daughter's thaw after four days, what feels like measurable progress versus deep uncertainty about whether she'll ever trust you with the grooming details?"
         ]
       }
     ],
@@ -832,10 +1188,16 @@
       "base-rates",
       "commitment-and-consistency-bias",
       "confirmation-bias",
+      "dialectical-reasoning",
+      "emotional-intelligence",
       "falsifiability",
       "first-principles-thinking",
-      "opportunity-cost",
+      "liking-principle",
+      "path-dependence",
       "psychological-safety",
+      "representativeness-heuristic",
+      "scientific-method-evidence-testing",
+      "statistics-concepts",
       "step-back"
     ]
   },
@@ -844,7 +1206,7 @@
       {
         "tendency_id": "authority-misinfluence-tendency",
         "score": 5,
-        "evidence": "Strongly defers to RAINN hotline ('call RAINN... they will tell you whether... Don't try to figure this out by yourself') and RAINN's advice as license to skip police report despite query constraints noting police viability, treating expert guidance as overriding independent assessment of legal risks."
+        "evidence": "Strongly defers to RAINN hotline as authoritative guidance to avoid police report ('Don't try to figure this out by yourself... Talk to someone who does this for a living'; 'call RAINN back and ask for a therapist referral'), bypassing independent assessment of dropped police option despite query constraints highlighting its viability and risks."
       },
       {
         "tendency_id": "social-proof-tendency",
@@ -883,8 +1245,8 @@
       },
       {
         "tendency_id": "stress-influence-tendency",
-        "score": 0,
-        "evidence": "Not detected"
+        "score": 2,
+        "evidence": "Faint signal in pacing advice like 'in the next 48 hours, the priority is re-opening communication' amid daughter's 4-day shutdown, but reasoning weighs tradeoffs explicitly without compressing scrutiny."
       },
       {
         "tendency_id": "reward-and-punishment-superresponse-tendency",
@@ -903,8 +1265,8 @@
       },
       {
         "tendency_id": "availability-misweighing-tendency",
-        "score": 0,
-        "evidence": "Not detected"
+        "score": 5,
+        "evidence": "Overweights the vivid recent evidence of daughter's 4-day shutdown and typical teen shame-spiral reactions to prioritize trust-rebuilding over base-rate police report viability or grooming intervention risks noted in RAINN constraints, without checking broader denominators like success rates of therapeutic vs legal paths in similar cases."
       },
       {
         "tendency_id": "contrast-misreaction-tendency",
@@ -964,6 +1326,7 @@
     ],
     "triggered_tendencies": [
       "authority-misinfluence-tendency",
+      "availability-misweighing-tendency",
       "inconsistency-avoidance-tendency"
     ],
     "triggered_tendency_sources": [
@@ -973,12 +1336,17 @@
         "score": 5
       },
       {
+        "tendency_id": "availability-misweighing-tendency",
+        "source": "triage",
+        "score": 5
+      },
+      {
         "tendency_id": "inconsistency-avoidance-tendency",
         "source": "embedding",
-        "score": 0.312355798394676
+        "score": 0.3123309774515592
       }
     ],
-    "boundary_call_count": 14,
+    "boundary_call_count": 15,
     "boundary_calls": [
       {
         "stage": "pass1_cluster_authority",
@@ -987,8 +1355,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4697,
-        "completion_tokens": 234,
-        "total_tokens": 4931,
+        "completion_tokens": 239,
+        "total_tokens": 4936,
         "cached_tokens": 4696,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1000,8 +1368,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4589,
-        "completion_tokens": 147,
-        "total_tokens": 4736,
+        "completion_tokens": 183,
+        "total_tokens": 4772,
         "cached_tokens": 4588,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1026,8 +1394,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4423,
-        "completion_tokens": 78,
-        "total_tokens": 4501,
+        "completion_tokens": 133,
+        "total_tokens": 4556,
         "cached_tokens": 4422,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1065,9 +1433,22 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 4678,
-        "completion_tokens": 212,
-        "total_tokens": 4890,
+        "completion_tokens": 227,
+        "total_tokens": 4905,
         "cached_tokens": 4677,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "availability-misweighing-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 4958,
+        "completion_tokens": 217,
+        "total_tokens": 5175,
+        "cached_tokens": 4957,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1078,9 +1459,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 5044,
-        "completion_tokens": 206,
-        "total_tokens": 5250,
-        "cached_tokens": 5043,
+        "completion_tokens": 159,
+        "total_tokens": 5203,
+        "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1091,8 +1472,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3856,
-        "completion_tokens": 1155,
-        "total_tokens": 5011,
+        "completion_tokens": 999,
+        "total_tokens": 4855,
         "cached_tokens": 3855,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1103,9 +1484,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 8824,
-        "completion_tokens": 2018,
-        "total_tokens": 10842,
+        "prompt_tokens": 8670,
+        "completion_tokens": 1253,
+        "total_tokens": 9923,
         "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1117,8 +1498,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 6295,
-        "completion_tokens": 209,
-        "total_tokens": 6504,
+        "completion_tokens": 218,
+        "total_tokens": 6513,
         "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1129,10 +1510,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 964,
-        "completion_tokens": 366,
-        "total_tokens": 1330,
-        "cached_tokens": 679,
+        "prompt_tokens": 865,
+        "completion_tokens": 301,
+        "total_tokens": 1166,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1142,10 +1523,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 5284,
-        "completion_tokens": 266,
-        "total_tokens": 5550,
-        "cached_tokens": 160,
+        "prompt_tokens": 5335,
+        "completion_tokens": 376,
+        "total_tokens": 5711,
+        "cached_tokens": 5334,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1155,10 +1536,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 5284,
-        "completion_tokens": 266,
-        "total_tokens": 5550,
-        "cached_tokens": 160,
+        "prompt_tokens": 5335,
+        "completion_tokens": 376,
+        "total_tokens": 5711,
+        "cached_tokens": 5334,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       }
@@ -1171,72 +1552,71 @@
         "move_id": "1",
         "reasoning_move": "Recognize daughter's shutdown as a normal shame response rather than evidence of deeper guilt, to prioritize trust rebuilding over confrontation.",
         "evidence_quotes": [
-          "your daughter shutting down is normal; it's not a sign you've lost her or that she's hiding worse things. It's what a 14-year-old does when she feels ashamed and exposed at the same time.",
-          "She's not hiding from you because she's guilty of something worse; she's hiding because she feels like she's been seen at her most humiliating moment and she doesn't know how to come out of that."
+          "your daughter shutting down is normal; it's not a sign you've lost her or that she's hiding worse things.",
+          "She's not hiding from you because she's guilty of something worse; she's hiding because she feels like she's been seen at her most humiliating moment"
         ],
-        "evidence_rationale": "These quotes directly explain the psychological interpretation of the daughter's behavior, justifying low-pressure communication to reopen dialogue.",
+        "evidence_rationale": "These quotes directly explain the psychological interpretation of the daughter's behavior, justifying low-pressure communication.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Prioritize relationship repair before addressing the groomer because trust is prerequisite for effective future protection.",
+        "reasoning_move": "Prioritize re-opening communication before addressing the groomer, as trust is prerequisite for effective future interventions.",
         "evidence_quotes": [
-          "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.",
+          "The first move here isn't to push on the 19-year-old.",
           "if she doesn't start talking to you, nothing else you do will land. The 19-year-old is the bigger problem medium-term, but in the next 48 hours, the priority is re-opening communication."
         ],
-        "evidence_rationale": "Quotes establish sequencing of actions, linking communication restoration to long-term safety.",
+        "evidence_rationale": "Quotes establish sequencing of actions, with relationship repair first.",
         "confidence": "high"
       },
       {
         "move_id": "3",
         "reasoning_move": "Recommend RAINN consultation over immediate police due to legal complexities and co-parenting risks, favoring therapeutic intervention.",
         "evidence_quotes": [
-          "You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw. They will tell you whether what you have rises to a reportable offense in your state",
+          "you don't call the police today. You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon",
           "if you report and it becomes a legal case, your ex will be involved as a co-parent, and his minimization could actively harm her through the process",
           "not reporting doesn't mean nothing happens. It means the intervention becomes therapeutic rather than legal. Which might actually be more effective for HER"
         ],
-        "evidence_rationale": "Quotes weigh risks of police involvement against therapy benefits, tailored to divorce constraints.",
+        "evidence_rationale": "Quotes weigh risks of police report against therapy, aligning with constraints.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Advise factual-only communication with ex to minimize conflict while keeping him informed, avoiding debate over his minimization.",
+        "reasoning_move": "Advise against blocking or confiscating phone immediately to avoid driving communication underground and hardening daughter's protectiveness.",
         "evidence_quotes": [
-          "you share factual information only (\"I saw messages from a 19-year-old that crossed a line, I am calling RAINN today, I am not telling her yet that I told you\") and you explicitly ask him not to bring it up with her yet. You don't debate his \"overreacting\" framing.",
-          "Option three is hardest but least bad."
+          "don't take it away as punishment, at least not immediately. If she feels punished for talking to him, she will protect him harder.",
+          "Don't block him yet. I know that sounds wrong; bear with me. Sometimes blocking drives the communication underground on a different platform or device"
         ],
-        "evidence_rationale": "Quotes outline specific strategy and evaluate it as optimal among alternatives given co-parenting dynamics.",
+        "evidence_rationale": "Quotes explain counterproductive effects of restrictive actions.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Defer disclosure of surveillance until trust is rebuilt, then apologize and stop to model accountability and negotiate new boundaries.",
+        "reasoning_move": "Suggest factual-only communication with ex to minimize conflict while keeping him informed, selecting optimal co-parenting strategy.",
         "evidence_quotes": [
-          "at some point in the next few weeks, after communication is re-opened, tell her. Not as part of confronting her about the guy — as a separate conversation.",
-          "\"I want you to know I've been checking your phone for months. I shouldn't have. I was scared and it felt like the only way to keep you safe. I'm going to stop. I also want us to figure out together what's reasonable for me to know about your digital life.\"",
-          "In 3-4 weeks, once therapy has started and communication is reopened: have the conversation about the surveillance. Apologize. Commit to stopping."
+          "you share factual information only (\"I saw messages from a 19-year-old that crossed a line, I am calling RAINN today, I am not telling her yet that I told you\") and you explicitly ask him not to bring it up with her yet. You don't debate his \"overreacting\" framing.",
+          "Option three is hardest but least bad."
         ],
-        "evidence_rationale": "Quotes provide timed plan for addressing surveillance breach, emphasizing repair over justification.",
+        "evidence_rationale": "Quotes outline the three options and select the least damaging one.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Avoid contacting friend's mom without specific evidence of harm to prevent betraying daughter's trust during repair phase.",
+        "reasoning_move": "Defer disclosure of surveillance until trust is rebuilt, acknowledging its independent trust-eroding potential despite past justification.",
         "evidence_quotes": [
-          "Don't call Mia's mom about this specific situation. You don't have concrete evidence that Mia is in trouble, and disclosing your daughter's situation to Mia's mom without your daughter's knowledge or consent would be exactly the kind of betrayal that undoes the relationship repair you're trying to build.",
-          "\"she's 14 and on social media\" isn't specific evidence of harm."
+          "I don't think you can build a better relationship with her on the scaffolding of ongoing secret surveillance",
+          "at some point in the next few weeks, after communication is re-opened, tell her. Not as part of confronting her about the guy — as a separate conversation.",
+          "You did find something. AND the surveillance itself is a problem you have to address separately."
         ],
-        "evidence_rationale": "Quotes justify restraint by linking action to risk of trust erosion.",
+        "evidence_rationale": "Quotes separate surveillance issue and time its resolution post-trust repair.",
         "confidence": "high"
       },
       {
         "move_id": "7",
-        "reasoning_move": "Use low-stakes, routine interactions to normalize relationship and signal safety without pressure.",
+        "reasoning_move": "Advise against contacting friend's mom without specific evidence of harm to avoid betraying daughter's trust.",
         "evidence_quotes": [
-          "tomorrow, text her something very low-stakes and unrelated. Not about the guy, not about rules, not about how you're feeling. Something like \"your sweatshirt is in the dryer\" or \"I'm going to the grocery, want anything.\"",
-          "Kids in shame need routine more than processing."
+          "Don't call Mia's mom about this specific situation. You don't have concrete evidence that Mia is in trouble, and disclosing your daughter's situation to Mia's mom without your daughter's knowledge or consent would be exactly the kind of betrayal"
         ],
-        "evidence_rationale": "Quotes specify tactics and underlying psychology for gradual thaw.",
+        "evidence_rationale": "Quote directly prohibits action due to lack of evidence and trust risk.",
         "confidence": "high"
       }
     ],
@@ -1245,83 +1625,82 @@
         "move_id": "1",
         "reasoning_move": "Recognize daughter's shutdown as a normal shame response rather than evidence of deeper guilt, to prioritize trust rebuilding over confrontation.",
         "evidence_quotes": [
-          "your daughter shutting down is normal; it's not a sign you've lost her or that she's hiding worse things. It's what a 14-year-old does when she feels ashamed and exposed at the same time.",
-          "She's not hiding from you because she's guilty of something worse; she's hiding because she feels like she's been seen at her most humiliating moment and she doesn't know how to come out of that."
+          "your daughter shutting down is normal; it's not a sign you've lost her or that she's hiding worse things.",
+          "She's not hiding from you because she's guilty of something worse; she's hiding because she feels like she's been seen at her most humiliating moment"
         ],
-        "evidence_rationale": "These quotes directly explain the psychological interpretation of the daughter's behavior, justifying low-pressure communication to reopen dialogue.",
+        "evidence_rationale": "These quotes directly explain the psychological interpretation of the daughter's behavior, justifying low-pressure communication.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Prioritize relationship repair before addressing the groomer because trust is prerequisite for effective future protection.",
+        "reasoning_move": "Prioritize re-opening communication before addressing the groomer, as trust is prerequisite for effective future interventions.",
         "evidence_quotes": [
-          "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.",
+          "The first move here isn't to push on the 19-year-old.",
           "if she doesn't start talking to you, nothing else you do will land. The 19-year-old is the bigger problem medium-term, but in the next 48 hours, the priority is re-opening communication."
         ],
-        "evidence_rationale": "Quotes establish sequencing of actions, linking communication restoration to long-term safety.",
+        "evidence_rationale": "Quotes establish sequencing of actions, with relationship repair first.",
         "confidence": "high"
       },
       {
         "move_id": "3",
         "reasoning_move": "Recommend RAINN consultation over immediate police due to legal complexities and co-parenting risks, favoring therapeutic intervention.",
         "evidence_quotes": [
-          "You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw. They will tell you whether what you have rises to a reportable offense in your state",
+          "you don't call the police today. You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon",
           "if you report and it becomes a legal case, your ex will be involved as a co-parent, and his minimization could actively harm her through the process",
           "not reporting doesn't mean nothing happens. It means the intervention becomes therapeutic rather than legal. Which might actually be more effective for HER"
         ],
-        "evidence_rationale": "Quotes weigh risks of police involvement against therapy benefits, tailored to divorce constraints.",
+        "evidence_rationale": "Quotes weigh risks of police report against therapy, aligning with constraints.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Advise factual-only communication with ex to minimize conflict while keeping him informed, avoiding debate over his minimization.",
+        "reasoning_move": "Advise against blocking or confiscating phone immediately to avoid driving communication underground and hardening daughter's protectiveness.",
         "evidence_quotes": [
-          "you share factual information only (\"I saw messages from a 19-year-old that crossed a line, I am calling RAINN today, I am not telling her yet that I told you\") and you explicitly ask him not to bring it up with her yet. You don't debate his \"overreacting\" framing.",
-          "Option three is hardest but least bad."
+          "don't take it away as punishment, at least not immediately. If she feels punished for talking to him, she will protect him harder.",
+          "Don't block him yet. I know that sounds wrong; bear with me. Sometimes blocking drives the communication underground on a different platform or device"
         ],
-        "evidence_rationale": "Quotes outline specific strategy and evaluate it as optimal among alternatives given co-parenting dynamics.",
+        "evidence_rationale": "Quotes explain counterproductive effects of restrictive actions.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Defer disclosure of surveillance until trust is rebuilt, then apologize and stop to model accountability and negotiate new boundaries.",
+        "reasoning_move": "Suggest factual-only communication with ex to minimize conflict while keeping him informed, selecting optimal co-parenting strategy.",
         "evidence_quotes": [
-          "at some point in the next few weeks, after communication is re-opened, tell her. Not as part of confronting her about the guy — as a separate conversation.",
-          "\"I want you to know I've been checking your phone for months. I shouldn't have. I was scared and it felt like the only way to keep you safe. I'm going to stop. I also want us to figure out together what's reasonable for me to know about your digital life.\"",
-          "In 3-4 weeks, once therapy has started and communication is reopened: have the conversation about the surveillance. Apologize. Commit to stopping."
+          "you share factual information only (\"I saw messages from a 19-year-old that crossed a line, I am calling RAINN today, I am not telling her yet that I told you\") and you explicitly ask him not to bring it up with her yet. You don't debate his \"overreacting\" framing.",
+          "Option three is hardest but least bad."
         ],
-        "evidence_rationale": "Quotes provide timed plan for addressing surveillance breach, emphasizing repair over justification.",
+        "evidence_rationale": "Quotes outline the three options and select the least damaging one.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Avoid contacting friend's mom without specific evidence of harm to prevent betraying daughter's trust during repair phase.",
+        "reasoning_move": "Defer disclosure of surveillance until trust is rebuilt, acknowledging its independent trust-eroding potential despite past justification.",
         "evidence_quotes": [
-          "Don't call Mia's mom about this specific situation. You don't have concrete evidence that Mia is in trouble, and disclosing your daughter's situation to Mia's mom without your daughter's knowledge or consent would be exactly the kind of betrayal that undoes the relationship repair you're trying to build.",
-          "\"she's 14 and on social media\" isn't specific evidence of harm."
+          "I don't think you can build a better relationship with her on the scaffolding of ongoing secret surveillance",
+          "at some point in the next few weeks, after communication is re-opened, tell her. Not as part of confronting her about the guy — as a separate conversation.",
+          "You did find something. AND the surveillance itself is a problem you have to address separately."
         ],
-        "evidence_rationale": "Quotes justify restraint by linking action to risk of trust erosion.",
+        "evidence_rationale": "Quotes separate surveillance issue and time its resolution post-trust repair.",
         "confidence": "high"
       },
       {
         "move_id": "7",
-        "reasoning_move": "Use low-stakes, routine interactions to normalize relationship and signal safety without pressure.",
+        "reasoning_move": "Advise against contacting friend's mom without specific evidence of harm to avoid betraying daughter's trust.",
         "evidence_quotes": [
-          "tomorrow, text her something very low-stakes and unrelated. Not about the guy, not about rules, not about how you're feeling. Something like \"your sweatshirt is in the dryer\" or \"I'm going to the grocery, want anything.\"",
-          "Kids in shame need routine more than processing."
+          "Don't call Mia's mom about this specific situation. You don't have concrete evidence that Mia is in trouble, and disclosing your daughter's situation to Mia's mom without your daughter's knowledge or consent would be exactly the kind of betrayal"
         ],
-        "evidence_rationale": "Quotes specify tactics and underlying psychology for gradual thaw.",
+        "evidence_rationale": "Quote directly prohibits action due to lack of evidence and trust risk.",
         "confidence": "high"
       }
     ],
     "companion_fingerprint_dropped": [],
     "companion_detected_models": [
       {
-        "model_id": "opportunity-cost",
-        "model_name": "Opportunity Cost",
-        "evidence_quote": "You want him gone. I understand. But he's gone is a different goal from she's safe. She's safe requires her to trust you with information about him and about the next person who tries something. He's gone just removes this one person, and doesn't protect her from the next one.",
+        "model_id": "liking-principle",
+        "model_name": "Liking Principle",
+        "evidence_quote": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer frames immediate removal of the groomer as lower-leverage compared to trust-building, which enables higher-leverage ongoing protection from future threats.",
+        "presence_explanation": "The answer prioritizes building daughter's receptivity and trust through low-pressure rapport before addressing the groomer, using liking as the bottleneck mechanism for effective future interventions.",
         "detection_confidence": "structural"
       },
       {
@@ -1329,125 +1708,53 @@
         "model_name": "Active Listening",
         "evidence_quote": "When she initiates conversation: listen, don't lecture, don't solve. Just listen. The guy, the rules, the phone — all of that can come later. Right now she needs to feel heard, not managed.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer prescribes prioritizing understanding the daughter's emotional and factual content through listening before advancing to solutions or judgments.",
+        "presence_explanation": "The answer deploys active listening as the mechanism to repair trust and alignment by prioritizing emotional reception over immediate problem-solving or advice.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "emotional-intelligence",
+        "model_name": "Emotional Intelligence",
+        "evidence_quote": "your daughter shutting down is normal; it's not a sign you've lost her or that she's hiding worse things. It's what a 14-year-old does when she feels ashamed and exposed at the same time.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer integrates emotional dynamics of shame into decision sequencing, recognizing that trust and perceived fairness shape whether protective actions land effectively.",
         "detection_confidence": "structural"
       },
       {
         "model_id": "psychological-safety",
         "model_name": "Psychological Safety",
-        "evidence_quote": "slide a note under her door that says \"I love you. I am not going anywhere. When you're ready, I want to hear your side. We can figure this out together.\" Don't include rules, conditions, or threats. Just that.",
+        "evidence_quote": "slide a note under her door that says \"I love you. I am not going anywhere. When you're ready, I want to hear your side. We can figure this out together.\" Don't include rules, conditions, or threats.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer creates an environment where the daughter can re-engage candidly without fear of status loss, judgment, or immediate challenge, enabling better shared decision-making.",
+        "presence_explanation": "The answer creates psychological safety by removing judgment and pressure, enabling candid re-engagement and truth-sharing for better decisions on protection.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "representativeness-heuristic",
+        "model_name": "Representativeness Heuristic",
+        "evidence_quote": "the pattern you're describing (the flattery, the \"you understand me\" framing) is textbook grooming language, not \"teenage stuff.\"",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer uses surface similarity to established grooming patterns as diagnostic evidence, rejecting alternative explanations based on category match.",
         "detection_confidence": "structural"
       }
     ],
     "companion_rejected_models": [
       {
-        "model_id": "second-order-thinking",
+        "model_id": "game-theory-payoffs",
         "rejection_reason": "execution_quote_not_literal_substring"
-      },
-      {
-        "model_id": "emotional-intelligence",
-        "rejection_reason": "execution_quote_not_literal_substring"
-      },
-      {
-        "model_id": "representativeness-heuristic",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "authenticity",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "commitment-bias",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "intellectual-humility",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "reciprocity-principle",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "boundaries",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "information-asymmetry",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "social-proof",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "aleatory-epistemic-uncertainty-recognition",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "liking-principle",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "constructive-feedback-models",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "einstellung-effect",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "step-back",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "auditability-traceability",
-        "rejection_reason": "mechanism absent"
       },
       {
         "model_id": "base-rates",
-        "rejection_reason": "mechanism absent"
+        "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
-        "model_id": "bias-blind-spot",
-        "rejection_reason": "mechanism absent"
+        "model_id": "second-order-thinking",
+        "rejection_reason": "too generic — the answer considers downstream implications but does not specifically apply second-order causal chain analysis; compatible but not executed or violated"
       },
       {
-        "model_id": "chain-of-verification",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "learning-curve",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "signaling",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "abstraction",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "anchoring",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "feynman-technique",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "hindsight-bias",
-        "rejection_reason": "mechanism absent"
+        "model_id": "systems-thinking",
+        "rejection_reason": "too generic — the answer notes interactions but the problem is linear and dominated by proximate causes with direct fixes; mechanism absent"
       },
       {
         "model_id": "power-dynamics",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "causal-attribution-resistance",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1455,47 +1762,7 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "non-violent-communication",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "occams-razor",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "prospect-theory",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "reasoning-mode-router",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "specialization",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "wysiati",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "confidence-calibration",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "cultural-intelligence",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "deliberate-practice",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "game-theory-payoffs",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "lean-startup-methodology",
+        "model_id": "inversion",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1503,15 +1770,11 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "prisoners-dilemma",
+        "model_id": "information-asymmetry",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "regression-to-the-mean",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "schema-acquisition",
+        "model_id": "commitment-bias",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1519,55 +1782,15 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "black-swan-events",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "circle-of-control",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "correlation-vs-causation",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "dunning-kruger-effect",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "jobs-to-be-done",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "nash-equilibrium",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "persistence-grit",
-        "rejection_reason": "mechanism absent"
-      },
-      {
         "model_id": "principal-agent-problem",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "probabilistic-thinking",
-        "rejection_reason": "mechanism absent"
+        "model_id": "reciprocity-principle",
+        "rejection_reason": "passage already claimed by more specific model"
       },
       {
-        "model_id": "rationalization",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "red-queen-effect",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "critical-mass",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "endowment-effect",
+        "model_id": "authenticity",
         "rejection_reason": "mechanism absent"
       }
     ],
@@ -1577,8 +1800,17 @@
         "tendency_name": "Authority-Misinfluence Tendency",
         "detected": true,
         "confidence": 0.95,
-        "sub_pattern": "user_experience_research_methods",
-        "specific_passage": "You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw. They will tell you whether what you have rises to a reportable offense in your state — som",
+        "sub_pattern": "first_principles_thinking",
+        "specific_passage": "You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw. They will tell you whether what you have rises to a reportable offense... Don't try to fig",
+        "severity": "medium"
+      },
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "tendency_name": "Availability-Misweighing Tendency",
+        "detected": true,
+        "confidence": 0.9,
+        "sub_pattern": "base_rates",
+        "specific_passage": "The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face. ... The reason I'm saying this before we talk about the guy: if",
         "severity": "medium"
       },
       {
@@ -1587,15 +1819,15 @@
         "detected": true,
         "confidence": 0.95,
         "sub_pattern": "creative_destruction",
-        "specific_passage": "Prioritize rebuilding daughter's trust through low-pressure communication (notes, low-stakes texts, listening without lecturing) over immediate actions against the groomer; ... disclose and stop surve",
+        "specific_passage": "5. This week: DON'T report to police (decision made, stop re-litigating it); DON'T block the 19-year-old yet; DON'T take the phone away.",
         "severity": "medium"
       }
     ],
     "routing_decisions": [
       {
         "tendency_id": "authority-misinfluence-tendency",
-        "primary_model_id": "user-experience-research-methods",
-        "sub_pattern": "user_experience_research_methods",
+        "primary_model_id": "first-principles-thinking",
+        "sub_pattern": "first_principles_thinking",
         "antidote_model_ids": [
           "user-experience-research-methods",
           "psychological-safety",
@@ -1604,6 +1836,62 @@
           "dialectical-reasoning",
           "latticework-of-mental-models",
           "self-organization-and-emergent-order"
+        ],
+        "tiebreaker_supporting": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        },
+        "tiebreaker_risk": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        }
+      },
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "primary_model_id": "base-rates",
+        "sub_pattern": "base_rates",
+        "antidote_model_ids": [
+          "variation-and-selection",
+          "varied-practice-interleaving",
+          "base-rates",
+          "law-of-large-numbers",
+          "statistics-concepts",
+          "scientific-method-evidence-testing",
+          "algorithmic-thinking",
+          "critical-thinking",
+          "decomposition",
+          "desirable-difficulties",
+          "problem-framing-and-reframing",
+          "prioritization",
+          "reasoning-mode-router",
+          "second-order-thinking",
+          "statistical-discipline",
+          "statistical-learning-theory",
+          "step-back"
         ],
         "tiebreaker_supporting": {
           "attempted": false,
@@ -1759,7 +2047,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact 'Teenagers in shame-spirals lock down harder when they feel judged' and 'She's not hiding from you because she's guilty of something worse; she's hiding because she feels like she's been seen at her most humiliating moment and she doesn't know how to come out of that.' These are specific causal claims about teenage psychology and the daughter's internal motivations, which go beyond user-provided facts (daughter avoiding mother for 4 days) and are not common practitioner knowledge or reasonable inferences; no evidence is provided.",
+          "reasoning": "The passage asserts specific causal psychological claims beyond user-provided facts or common knowledge: 'Teenagers in shame-spirals lock down harder when they feel judged' and 'She's not hiding from you because she's guilty of something worse; she's hiding because she feels like she's been seen at her most humiliating moment.' These introduce unverified empirical generalizations about teen behavior and a definitive diagnosis of the daughter's internal state, not restatements or reasonable inferences from the established fact of the daughter shutting down for 4 days after confrontation.",
           "severity": "clear"
         }
       },
@@ -1828,7 +2116,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The claim 'some states have laws specifically about adults initiating sexual conversations with minors online, even without a physical meeting' asserts a specific empirical fact about state laws that goes beyond user-provided facts (which reference RAINN on police report viability but not this detail) and common practitioner knowledge in a family advice context; it is stated without evidence or qualification.",
+          "reasoning": "'some states have laws specifically about adults initiating sexual conversations with minors online, even without a physical meeting' is an unverified claim; it introduces a specific empirical fact about state laws beyond user-provided context (RAINN viability with risks) and common practitioner knowledge, stated without evidence or qualification.",
           "severity": "clear"
         }
       },
@@ -1850,8 +2138,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": false,
-          "reasoning": "",
+          "detected": true,
+          "reasoning": "\"Sometimes blocking drives the communication underground on a different platform or device\" is an unverified claim asserting a specific causal relationship (blocking → underground communication → loss of visibility) as fact without evidence, beyond user-provided facts, dropped threads, or common practitioner knowledge in this context. The claim goes beyond reasonable inferences from established surveillance or grooming facts.",
           "severity": "clear"
         }
       },
@@ -1874,7 +2162,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'14-year-olds who are being groomed almost always can [find another way]' asserts a specific empirical fact about grooming behavior not provided by the user, not reasonably inferable from established facts (daughter's shutdown, co-parent minimization, surveillance, RAINN info), and beyond common practitioner knowledge.",
+          "reasoning": "'14-year-olds who are being groomed almost always can [find another way]' asserts a specific empirical fact about grooming behavior that goes beyond user-provided facts (daughter shut down, co-parent minimizing, surveillance, RAINN info on police) and common practitioner knowledge; no evidence or qualification provided.",
           "severity": "clear"
         }
       },
@@ -1966,7 +2254,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The claim 'usually around 15-16 when kids get more technically sophisticated' asserts a specific empirical fact about the typical age when teenagers detect phone surveillance, which goes beyond user-provided facts (months of secret surveillance), reasonable inferences therefrom, or common practitioner knowledge in parenting/strategic advice. No evidence or qualification provided.",
+          "reasoning": "'usually around 15-16 when kids get more technically sophisticated' asserts a specific empirical fact about when children typically discover surveillance that goes beyond user-provided facts and common practitioner knowledge; no evidence or qualification provided.",
           "severity": "clear"
         }
       },
@@ -2034,8 +2322,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": false,
-          "reasoning": "",
+          "detected": true,
+          "reasoning": "'She is signaling that the thaw is starting' asserts a specific interpretive fact about the daughter's intentions and emotional state (a 'thaw') that goes beyond restating the user-provided behaviors ('she came down, she ate, she nodded') and is not a reasonable inference, common knowledge, or grounded in established context. No evidence provided for this causal relationship between actions and 'signaling.'",
           "severity": "clear"
         }
       },
@@ -2127,7 +2415,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'RAINN gave you the honest version, which is rare and valuable' asserts that RAINN providing 'the honest version' is 'rare', an empirical claim about the frequency of RAINN's honesty not derivable from user-provided facts or common knowledge.",
+          "reasoning": "'RAINN gave you the honest version, which is rare and valuable' asserts that RAINN providing 'the honest version' is 'rare', an unverified empirical claim about RAINN's typical behavior not derivable from user facts or common knowledge.",
           "severity": "clear"
         }
       },
@@ -2162,9 +2450,9 @@
           "severity": "clear"
         },
         "paltering": {
-          "detected": false,
-          "reasoning": "",
-          "severity": "clear"
+          "detected": true,
+          "reasoning": "The passage acknowledges RAINN's risks of legal process and witness trauma (established fact) but presents 'therapeutic intervention' as 'more effective for HER' without evidence or qualification, omitting key context that effectiveness is unproven/speculative in this case and abandoning the tension by favoring therapy despite user desire for consequences.",
+          "severity": "marginal"
         },
         "weasel_words": {
           "detected": false,
@@ -2173,7 +2461,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The claim 'A therapist who specializes in teen online grooming can do things for her that a prosecutor can't' asserts a specific comparative effectiveness (therapist superior to prosecutor for the daughter) without evidence, qualification, or reference to user-provided facts; this goes beyond common knowledge or reasonable inferences from established context (daughter's shutdown, RAINN risks).",
+          "reasoning": "'A therapist who specializes in teen online grooming can do things for her that a prosecutor can't' and 'therapeutic...might actually be more effective for HER' assert specific comparative effectiveness without evidence, beyond user facts or common knowledge.",
           "severity": "clear"
         }
       },
@@ -2219,7 +2507,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'They often maintain lists of therapists who specialize in online exploitation and grooming recovery' is an unverified claim asserting a specific empirical fact about RAINN's practices not provided by the user, not a reasonable inference from established facts, and beyond common practitioner knowledge in this context.",
+          "reasoning": "'They often maintain lists of therapists who specialize in online exploitation and grooming recovery' is an unverified claim; it asserts a specific empirical fact about RAINN's practices not provided by the user, not a reasonable inference from established facts, and beyond common practitioner knowledge that RAINN (a known sexual assault hotline) makes referrals.",
           "severity": "clear"
         }
       },
@@ -2232,7 +2520,7 @@
         },
         "paltering": {
           "detected": true,
-          "reasoning": "'Not all good ones list it, but the ones who do usually have real experience' is technically true (listing implies some experience) but omits key context that listing specialties is self-reported and unreliable, misleadingly implying those who list have 'real experience' while good ones might not list at all, creating an unbalanced endorsement.",
+          "reasoning": "The statement 'the ones who do usually have real experience' is technically true (listing a specialty implies some experience) but omits key context that directories are self-reported, unverified, and do not guarantee 'real experience' (e.g., minimal training could suffice), making it misleadingly reassuring.",
           "severity": "marginal"
         },
         "weasel_words": {
@@ -2242,7 +2530,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'the ones who do usually have real experience' asserts a specific empirical fact about therapists' actual experience based on self-listing, which goes beyond user-provided facts, common knowledge, or reasonable inference; no evidence provided.",
+          "reasoning": "'the ones who do usually have real experience' asserts a specific empirical generalization about therapist quality based on directory listings without evidence, beyond user facts or common knowledge; no studies or basis provided.",
           "severity": "clear"
         }
       },
@@ -2265,7 +2553,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"Pediatricians often have networks of adolescent specialists\" is an unverified claim asserting a specific empirical fact about pediatricians' networks and practices beyond user-provided facts, common practitioner knowledge in general strategy, or reasonable inferences from the established context. While the advice is actionable, this supporting assertion lacks evidence or qualification.",
+          "reasoning": "\"Pediatricians often have networks of adolescent specialists\" is an unverified claim asserting a specific empirical fact about pediatricians' networks and practices that goes beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge in this grooming/divorce context. The suggestion to get a referral is actionable advice but rests on this unsupported assertion.",
           "severity": "marginal"
         }
       },
@@ -2287,9 +2575,9 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": false,
-          "reasoning": "",
-          "severity": "clear"
+          "detected": true,
+          "reasoning": "'A mismatched therapist at this moment can set her against therapy for years' asserts a specific causal outcome (years-long aversion) as fact without evidence, beyond user-provided facts or common knowledge; it's an unverified empirical claim about long-term psychological effects. 'The RAINN person can probably do one or two phone sessions' speculates on RAINN's specific capabilities without evidence from user context.",
+          "severity": "marginal"
         }
       },
       {
@@ -2324,8 +2612,8 @@
         },
         "paltering": {
           "detected": true,
-          "reasoning": "The statement 'You don't have concrete evidence that Mia is in trouble' is technically true based on user-provided facts (no mention of evidence about Mia specifically), but omits key context: the situation involves confirmed online grooming of the user's daughter by a 19-year-old, with ongoing secret surveillance and RAINN-noted viability of a police report. This makes the advice to avoid contacting Mia's mom misleadingly narrow, as the grooming context implies shared risk without acknowledging it.",
-          "severity": "clear"
+          "reasoning": "The statement 'You don't have concrete evidence that Mia is in trouble' is technically true based on user-provided facts (no mention of evidence about Mia specifically), but omits key context: the situation involves known online grooming of the user's daughter by a 19-year-old, which conversationally implies Mia's involvement or connection (e.g., as a peer or mutual contact), making the advice to avoid contacting Mia's mom potentially misleading without addressing this link or why it doesn't constitute 'trouble' warranting outreach. This acknowledged tension (betrayal risk) is not fully balanced against safety imperatives from established grooming facts.",
+          "severity": "marginal"
         },
         "weasel_words": {
           "detected": false,
@@ -2334,7 +2622,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Mia's mom' introduces a new entity (Mia's mom) not mentioned in user-provided facts, with no evidence or context for who Mia is or her relevance. This asserts a specific relationship or situation beyond established context (daughter's grooming, co-parent minimization, surveillance, RAINN info).",
+          "reasoning": "'Mia's mom' and the relational context (e.g., Mia as someone whose trouble status is relevant) introduce specific new entities and assumptions not mentioned in user-provided facts (daughter's shutdown, co-parent minimization, surveillance, RAINN advice on police). No evidence or user context for Mia's existence or connection to the grooming, beyond vague inference; stated as fact without qualification.",
           "severity": "clear"
         }
       },
@@ -2347,7 +2635,7 @@
         },
         "paltering": {
           "detected": true,
-          "reasoning": "The passage introduces a specific future conversation with 'Mia's mom' (never mentioned in user context; user is the mother of the 14-year-old daughter) and frames it as 'appropriate and maybe even helpful' without addressing key established facts like daughter's shutdown, co-parent minimization, or grooming risks, misleadingly implying a neutral coffee chat suffices when context shows acute safety/trust issues.",
+          "reasoning": "The passage suggests this future coffee conversation 'is appropriate and maybe even helpful' without acknowledging key context from user facts: daughter's active shutdown (avoiding mother), co-parent's minimization of the grooming situation, and risks of legal/trauma issues. This omits how the co-parent's denial makes even a general conversation risky or unproductive, misleading by implying viability in isolation.",
           "severity": "clear"
         },
         "weasel_words": {
@@ -2357,7 +2645,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Mia's mom' is an unmentioned third party not in user-provided facts (user is the mother); no evidence this person exists or that inviting her for coffee is viable amid divorce/co-parenting tensions.",
+          "reasoning": "Introduces new unestablished facts: 'Mia's mom' (user described 'mother' deciding, no mention of Mia or her mom, implying a different family structure) and assumes 'six months from now, when things are in a better place' without evidence this timeline or improvement is feasible given active issues like shutdown and co-parent minimization.",
           "severity": "clear"
         }
       },
@@ -2380,7 +2668,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts as fact that there is a 'direct obligation to alert her parents' if there is 'concrete, specific evidence that Mia is in harm's way.' This introduces a specific legal or moral obligation not provided by the user, not reasonably inferable from established facts (daughter's grooming, surveillance, RAINN info on police risks), and not common practitioner knowledge in this parenting/ grooming context. The claim goes beyond user context without evidence or qualification.",
+          "reasoning": "The passage asserts as fact: 'you'd have a direct obligation to alert her parents' (implying a legal or moral duty for someone discovering concrete evidence of harm to a minor). This introduces a specific causal or normative claim about obligations that goes beyond user-provided facts (daughter's grooming, shutdown, co-parenting, RAINN info on police reports), reasonable inferences therefrom, or common practitioner knowledge in parenting/divorce advice. No evidence or qualification provided for this assertion.",
           "severity": "clear"
         }
       },
@@ -2438,9 +2726,9 @@
           "severity": "clear"
         },
         "paltering": {
-          "detected": false,
-          "reasoning": "",
-          "severity": "clear"
+          "detected": true,
+          "reasoning": "The claim 'read that as a yes' is technically true in the interpretive sense provided (as engagement/acknowledgment), but omits key context about the daughter's shutdown state (avoiding mother for 4 days), making it misleading—one-word responses like 'no' could signal rejection rather than consent to rebuilding, without resolving the tension between minimal engagement and actual progress.",
+          "severity": "marginal"
         },
         "weasel_words": {
           "detected": false,
@@ -2495,7 +2783,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'almost always backfires with teenagers' asserts a specific causal relationship (pushing for big reconciliation moments causes backfires) as empirical fact without evidence, beyond user-provided facts or common practitioner knowledge.",
+          "reasoning": "'almost always backfires with teenagers' asserts a specific causal relationship (pushing for big reconciliation moments causes backfiring) as empirical fact without evidence, beyond user facts or common practitioner knowledge.",
           "severity": "clear"
         }
       },
@@ -2632,8 +2920,8 @@
           "severity": "clear"
         },
         "unverified_claims": {
-          "detected": false,
-          "reasoning": "",
+          "detected": true,
+          "reasoning": "The passage asserts as fact that 'once therapy has started and communication is reopened' (in 3-4 weeks) the surveillance conversation can/should occur, without evidence or user-provided facts supporting that therapy will start, communication will reopen on this timeline, or that this sequence is viable given established facts like daughter's shutdown (avoiding mother for 4 days) and co-parent minimization. This introduces a specific causal timeline and outcome beyond user facts or common knowledge.",
           "severity": "clear"
         }
       },
@@ -2664,7 +2952,7 @@
         "passage": "Write it down. Put it somewhere you'll see it. When you panic at 2am — and you will — read it and remember: the pace matters as much as the actions.",
         "empty_rhetoric": {
           "detected": true,
-          "reasoning": "The entire passage consists of vague exhortations ('Write it down. Put it somewhere you'll see it.') and unsubstantiated predictions ('When you panic at 2am — and you will') without specifying what 'it' refers to or providing any actionable content tied to the user's situation (e.g., no reference to grooming, trust-building, co-parenting, or surveillance). A decision-maker gains no concrete guidance on what to DO differently; the passage could be deleted without losing decision-relevant information.",
+          "reasoning": "The entire passage ('Write it down. Put it somewhere you'll see it. When you panic at 2am — and you will — read it and remember: the pace matters as much as the actions.') consists of vague motivational advice without specifying what 'it' refers to or what actionable plan to write down. It sounds supportive but provides no decision-relevant information a mother could act on differently; deleting it loses no substance.",
           "severity": "clear"
         },
         "paltering": {
@@ -2679,7 +2967,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'When you panic at 2am — and you will' asserts as fact that the mother will experience a specific panic episode, which goes beyond user-provided facts (daughter shut down for 4 days, but no mention of mother's panic history) and is not a reasonable inference, common knowledge, or grounded in context.",
+          "reasoning": "'When you panic at 2am — and you will' asserts as fact that the mother will experience a specific panic attack, which goes beyond user-provided facts (daughter shut down for 4 days) and is not a reasonable inference or common knowledge in this context.",
           "severity": "marginal"
         }
       },
@@ -2733,7 +3021,7 @@
         "passage": "You're not overreacting. Your ex is wrong. And you also don't have to react as hard as your fear wants you to. Both things are true.",
         "empty_rhetoric": {
           "detected": true,
-          "reasoning": "The entire passage consists of evaluative statements ('You're not overreacting. Your ex is wrong.') and a vague balancing claim ('you also don't have to react as hard as your fear wants you to. Both things are true.') with no actionable content, specific advice, or decision-relevant information. A decision-maker would not know what to DO differently; the passage could be deleted without losing any substantive guidance.",
+          "reasoning": "The entire passage consists of evaluative statements ('You're not overreacting. Your ex is wrong.') and a vague balancing claim ('you also don't have to react as hard as your fear wants you to') with no actionable content, specific advice, or decision-relevant information. A decision-maker would not know what to DO differently; the passage could be deleted without losing any substantive guidance.",
           "severity": "clear"
         },
         "paltering": {
@@ -2748,16 +3036,16 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Your ex is wrong' is an unverified evaluative claim asserting a factual judgment about the ex's minimization without evidence or qualification beyond user context; it goes beyond restating facts (e.g., ex is minimizing) into unsubstantiated moral assertion. 'You're not overreacting' is borderline but arguably a reasonable inference from established facts like daughter's shutdown and grooming.",
+          "reasoning": "'Your ex is wrong' asserts as fact that the ex's minimization is incorrect, going beyond restating user facts (ex minimizing) without evidence or qualification; no user-provided facts establish the ex's position as objectively wrong, and this is not common knowledge or reasonable inference.",
           "severity": "marginal"
         }
       }
     ],
     "summary": {
       "total_passages": 45,
-      "passages_with_detections": 16,
-      "total_clear": 17,
-      "total_marginal": 4
+      "passages_with_detections": 21,
+      "total_clear": 19,
+      "total_marginal": 8
     }
   },
   "run_health": {
@@ -2772,7 +3060,7 @@
     "capture_truncated": false,
     "omitted_turns": 0,
     "lane3_frame_drops_count": 0,
-    "lane3_frame_kept_count": 2,
+    "lane3_frame_kept_count": 1,
     "issues": [],
     "warnings": [],
     "activation_tiebreaker": "on",

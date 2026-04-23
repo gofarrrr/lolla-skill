@@ -2,171 +2,53 @@
   "status": "ok",
   "format": "json",
   "detected_tendencies": [
-    "social-proof-tendency",
-    "availability-misweighing-tendency",
     "inconsistency-avoidance-tendency"
   ],
   "delta_card": {
     "findings": [
       {
-        "tendency_id": "availability-misweighing-tendency",
-        "tendency_name": "Availability-Misweighing Tendency",
-        "sub_pattern": "vivid-proof-substitution",
-        "severity": "medium",
-        "specific_passage": "Industry experience suggests the first paid engagement often takes 3-5 months from launch... The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
-        "challenge_statement": "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
-        "next_move": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
-        "is_trusted_surface": true,
-        "selected_model_ids": [
-          "base-rates",
-          "statistics-concepts",
-          "scientific-method-evidence-testing"
-        ],
-        "major_tensions": [
-          "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
-        ],
-        "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
-      },
-      {
-        "tendency_id": "social-proof-tendency",
-        "tendency_name": "Social-Proof Tendency",
-        "sub_pattern": "general",
-        "severity": "medium",
-        "specific_passage": "On pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
-        "challenge_statement": "Social-Proof: challenge 'On pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.' because the answer relies on 'industry experience' and 'typically less than 1 in 5' conversion rates from network conversations as proof that the pipeline is weak and launch is risky, treating generalized peer outcomes (what other first-time consultants experience) as evidence for this specific decision without rebuilding from the user's actual facts like their network strength or runway details",
-        "next_move": "trains the thinker to ignore wrong examples from others and rebuild the conclusion from the underlying facts instead of from herd behavior",
-        "is_trusted_surface": false,
-        "selected_model_ids": [
-          "first-principles-thinking",
-          "scientific-method-evidence-testing",
-          "simplification"
-        ],
-        "major_tensions": [
-          "authority-bias"
-        ],
-        "intervention_hint": "trains the thinker to ignore wrong examples from others and rebuild the conclusion from the underlying facts instead of from herd behavior"
-      },
-      {
         "tendency_id": "inconsistency-avoidance-tendency",
         "tendency_name": "Inconsistency-Avoidance Tendency",
-        "sub_pattern": "general",
+        "sub_pattern": "status-quo-protection",
         "severity": "low",
-        "specific_passage": "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery. If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.",
-        "challenge_statement": "What would the team need to reconsider here if consistency pressure were not protecting the current position?",
-        "next_move": "State the strongest disconfirming condition and the exact evidence that would require changing the current position.",
+        "specific_passage": "'If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.'",
+        "challenge_statement": "If the team were not already living inside this setup, what fresh evidence would justify choosing it again today?",
+        "next_move": "Separate real switching cost from habit comfort, then test one concrete alternative before renewing the incumbent path.",
         "is_trusted_surface": true,
         "selected_model_ids": [
-          "commitment-and-consistency-bias",
+          "status-quo-bias",
           "step-back",
-          "falsifiability"
+          "tradition-vs-innovation-balance"
         ],
         "major_tensions": [
-          "Inconsistency correction is shallow when the team says it is being objective but never names what would make it reverse the current stance."
+          "Status-quo correction is fake when the review lists switching pain but never asks whether the current arrangement still earns renewal."
         ],
-        "intervention_hint": "State the strongest disconfirming condition and the exact evidence that would require changing the current position."
+        "intervention_hint": "Separate real switching cost from habit comfort, then test one concrete alternative before renewing the incumbent path."
       }
     ],
     "top_findings": [
       {
-        "tendency_id": "availability-misweighing-tendency",
-        "tendency_name": "Availability-Misweighing Tendency",
-        "sub_pattern": "vivid-proof-substitution",
-        "severity": "medium",
-        "specific_passage": "Industry experience suggests the first paid engagement often takes 3-5 months from launch... The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
-        "challenge_statement": "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
-        "next_move": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
-        "is_trusted_surface": true,
-        "selected_model_ids": [
-          "base-rates",
-          "statistics-concepts",
-          "scientific-method-evidence-testing"
-        ],
-        "major_tensions": [
-          "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
-        ],
-        "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
-      }
-    ],
-    "secondary_findings": [
-      {
-        "tendency_id": "social-proof-tendency",
-        "tendency_name": "Social-Proof Tendency",
-        "sub_pattern": "general",
-        "severity": "medium",
-        "specific_passage": "On pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
-        "challenge_statement": "Social-Proof: challenge 'On pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.' because the answer relies on 'industry experience' and 'typically less than 1 in 5' conversion rates from network conversations as proof that the pipeline is weak and launch is risky, treating generalized peer outcomes (what other first-time consultants experience) as evidence for this specific decision without rebuilding from the user's actual facts like their network strength or runway details",
-        "next_move": "trains the thinker to ignore wrong examples from others and rebuild the conclusion from the underlying facts instead of from herd behavior",
-        "is_trusted_surface": false,
-        "selected_model_ids": [
-          "first-principles-thinking",
-          "scientific-method-evidence-testing",
-          "simplification"
-        ],
-        "major_tensions": [
-          "authority-bias"
-        ],
-        "intervention_hint": "trains the thinker to ignore wrong examples from others and rebuild the conclusion from the underlying facts instead of from herd behavior"
-      },
-      {
         "tendency_id": "inconsistency-avoidance-tendency",
         "tendency_name": "Inconsistency-Avoidance Tendency",
-        "sub_pattern": "general",
+        "sub_pattern": "status-quo-protection",
         "severity": "low",
-        "specific_passage": "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery. If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.",
-        "challenge_statement": "What would the team need to reconsider here if consistency pressure were not protecting the current position?",
-        "next_move": "State the strongest disconfirming condition and the exact evidence that would require changing the current position.",
+        "specific_passage": "'If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.'",
+        "challenge_statement": "If the team were not already living inside this setup, what fresh evidence would justify choosing it again today?",
+        "next_move": "Separate real switching cost from habit comfort, then test one concrete alternative before renewing the incumbent path.",
         "is_trusted_surface": true,
         "selected_model_ids": [
-          "commitment-and-consistency-bias",
+          "status-quo-bias",
           "step-back",
-          "falsifiability"
+          "tradition-vs-innovation-balance"
         ],
         "major_tensions": [
-          "Inconsistency correction is shallow when the team says it is being objective but never names what would make it reverse the current stance."
+          "Status-quo correction is fake when the review lists switching pain but never asks whether the current arrangement still earns renewal."
         ],
-        "intervention_hint": "State the strongest disconfirming condition and the exact evidence that would require changing the current position."
+        "intervention_hint": "Separate real switching cost from habit comfort, then test one concrete alternative before renewing the incumbent path."
       }
     ],
-    "secondary_findings_full": [
-      {
-        "tendency_id": "social-proof-tendency",
-        "tendency_name": "Social-Proof Tendency",
-        "sub_pattern": "general",
-        "severity": "medium",
-        "specific_passage": "On pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
-        "challenge_statement": "Social-Proof: challenge 'On pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.' because the answer relies on 'industry experience' and 'typically less than 1 in 5' conversion rates from network conversations as proof that the pipeline is weak and launch is risky, treating generalized peer outcomes (what other first-time consultants experience) as evidence for this specific decision without rebuilding from the user's actual facts like their network strength or runway details",
-        "next_move": "trains the thinker to ignore wrong examples from others and rebuild the conclusion from the underlying facts instead of from herd behavior",
-        "is_trusted_surface": false,
-        "selected_model_ids": [
-          "first-principles-thinking",
-          "scientific-method-evidence-testing",
-          "simplification"
-        ],
-        "major_tensions": [
-          "authority-bias"
-        ],
-        "intervention_hint": "trains the thinker to ignore wrong examples from others and rebuild the conclusion from the underlying facts instead of from herd behavior"
-      },
-      {
-        "tendency_id": "inconsistency-avoidance-tendency",
-        "tendency_name": "Inconsistency-Avoidance Tendency",
-        "sub_pattern": "general",
-        "severity": "low",
-        "specific_passage": "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery. If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.",
-        "challenge_statement": "What would the team need to reconsider here if consistency pressure were not protecting the current position?",
-        "next_move": "State the strongest disconfirming condition and the exact evidence that would require changing the current position.",
-        "is_trusted_surface": true,
-        "selected_model_ids": [
-          "commitment-and-consistency-bias",
-          "step-back",
-          "falsifiability"
-        ],
-        "major_tensions": [
-          "Inconsistency correction is shallow when the team says it is being objective but never names what would make it reverse the current stance."
-        ],
-        "intervention_hint": "State the strongest disconfirming condition and the exact evidence that would require changing the current position."
-      }
-    ],
+    "secondary_findings": [],
+    "secondary_findings_full": [],
     "compound_groups": [],
     "top_compound_groups": [],
     "secondary_compound_groups": [],
@@ -175,60 +57,41 @@
     "secondary_additional_pressure_count": 0,
     "secondary_additional_pressure_tendency_ids": [],
     "detected_tendencies": [
-      "social-proof-tendency",
-      "availability-misweighing-tendency",
       "inconsistency-avoidance-tendency"
     ],
     "selected_model_ids": [
-      "first-principles-thinking",
-      "scientific-method-evidence-testing",
-      "simplification",
-      "base-rates",
-      "statistics-concepts",
-      "commitment-and-consistency-bias",
+      "status-quo-bias",
       "step-back",
-      "falsifiability"
+      "tradition-vs-innovation-balance"
     ],
     "challenge_statements": [
-      "Social-Proof: challenge 'On pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.' because the answer relies on 'industry experience' and 'typically less than 1 in 5' conversion rates from network conversations as proof that the pipeline is weak and launch is risky, treating generalized peer outcomes (what other first-time consultants experience) as evidence for this specific decision without rebuilding from the user's actual facts like their network strength or runway details",
-      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
-      "What would the team need to reconsider here if consistency pressure were not protecting the current position?"
+      "If the team were not already living inside this setup, what fresh evidence would justify choosing it again today?"
     ],
     "next_moves": [
-      "trains the thinker to ignore wrong examples from others and rebuild the conclusion from the underlying facts instead of from herd behavior",
-      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
-      "State the strongest disconfirming condition and the exact evidence that would require changing the current position."
+      "Separate real switching cost from habit comfort, then test one concrete alternative before renewing the incumbent path."
     ],
     "major_tensions": [
-      "authority-bias",
-      "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case.",
-      "Inconsistency correction is shallow when the team says it is being objective but never names what would make it reverse the current stance."
+      "Status-quo correction is fake when the review lists switching pain but never asks whether the current arrangement still earns renewal."
     ],
     "top_challenge_statements": [
-      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?"
+      "If the team were not already living inside this setup, what fresh evidence would justify choosing it again today?"
     ],
-    "secondary_challenge_statements": [
-      "Social-Proof: challenge 'On pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.' because the answer relies on 'industry experience' and 'typically less than 1 in 5' conversion rates from network conversations as proof that the pipeline is weak and launch is risky, treating generalized peer outcomes (what other first-time consultants experience) as evidence for this specific decision without rebuilding from the user's actual facts like their network strength or runway details",
-      "What would the team need to reconsider here if consistency pressure were not protecting the current position?"
-    ],
+    "secondary_challenge_statements": [],
     "top_next_moves": [
-      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      "Separate real switching cost from habit comfort, then test one concrete alternative before renewing the incumbent path."
     ],
-    "secondary_next_moves": [
-      "trains the thinker to ignore wrong examples from others and rebuild the conclusion from the underlying facts instead of from herd behavior",
-      "State the strongest disconfirming condition and the exact evidence that would require changing the current position."
-    ]
+    "secondary_next_moves": []
   },
   "companion_cheat_sheet": {
     "anchors": [
       {
-        "model_id": "representativeness-heuristic",
-        "display_name": "Representativeness Heuristic",
+        "model_id": "optionality",
+        "display_name": "Optionality",
         "chunks": [
           {
             "chunk_type": "failure_mode",
-            "source_model_id": "representativeness-heuristic",
-            "text": "Decision makers can confuse similarity with probability and treat a plausible story as if it were a strong forecast.",
+            "source_model_id": "optionality",
+            "text": "Analysis paralysis can keep the team waiting for perfect information instead of learning through reversible movement.",
             "provenance": {
               "source_layer": "wave2",
               "extraction_type": "normalized",
@@ -236,247 +99,386 @@
             }
           },
           {
-            "chunk_type": "prerequisite_gap",
-            "source_model_id": "representativeness-heuristic",
-            "text": "This model depends on system-2 (requires), which is not active in the answer. The representativeness heuristic is a System 1 shortcut. Detecting and overriding it requires System 2 engagement to pause intuitive categorization and force comparison against base rates, alternative classes, or regression effects.",
-            "provenance": {
-              "source_layer": "prerequisite",
-              "extraction_type": "explicit",
-              "confidence": "high"
-            }
-          },
-          {
             "chunk_type": "premortem",
-            "source_model_id": "representativeness-heuristic",
-            "text": "If this representative-looking pattern fails, what ignored denominator or low-probability scenario would explain the miss?",
+            "source_model_id": "optionality",
+            "text": "Have we generated enough options before narrowing the choice set?",
             "provenance": {
               "source_layer": "wave2",
-              "extraction_type": "explicit",
+              "extraction_type": "normalized",
               "confidence": "high"
             }
           },
           {
             "chunk_type": "antagonist",
-            "source_model_id": "representativeness-heuristic",
-            "text": "Base Rates: Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
+            "source_model_id": "optionality",
+            "text": "Commitment Bias: Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
             "provenance": {
               "source_layer": "wave3",
               "extraction_type": "explicit",
               "confidence": "high",
-              "relation_target_id": "base-rates"
+              "relation_target_id": "commitment-bias"
             },
-            "affinity_rationale": "Canonical: 'RH, by definition, ignores critical components of rational probability, such as the base rate and statistical laws' — definitional opposition.",
-            "activation_condition": "When resemblance-based categorization overrides the actual statistical frequency of events in the reference class."
+            "affinity_rationale": "Commitment makes it 'extremely difficult to pivot or consider new, better options' — psychological pressure from prior choices directly destroys the flexibility optionality requires.",
+            "activation_condition": "When prior investment or public commitment creates escalation pressure that forecloses objectively superior alternatives because pivoting feels like failure"
           },
           {
             "chunk_type": "heuristic",
-            "source_model_id": "representativeness-heuristic",
-            "text": "Force an outside-view pass with reference classes or base rates before acting on an intuitive category match.",
+            "source_model_id": "optionality",
+            "text": "Invent first and decide later so evaluation does not choke off option generation too early.",
             "provenance": {
               "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "identity",
+            "source_model_id": "optionality",
+            "text": "Select when: Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call. | Danger when: Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit. | Reasoning: counterfactual, probabilistic",
+            "provenance": {
+              "source_layer": "wave1",
               "extraction_type": "explicit",
               "confidence": "high"
             }
           }
         ],
         "presence_mode": "executed",
-        "evidence_quote": "\"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
-        "presence_explanation": "The answer corrects a judgment driven by surface similarity to polite interest by citing specific base rates and conversion frequencies rather than category resemblance."
+        "evidence_quote": "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery. If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months.",
+        "presence_explanation": "The answer structures the decision around cheap experiments (specific conversations and asks over 4 weeks) to buy learning before the irreversible launch commitment, preserving optionality under high uncertainty."
+      },
+      {
+        "model_id": "survivorship-bias",
+        "display_name": "Survivorship Bias",
+        "chunks": [
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "survivorship-bias",
+            "text": "Use the outside view and base rates to counter the pull of vivid success stories.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "survivorship-bias",
+            "text": "Teams invoke survivorship bias abstractly but still use samples or case studies that exclude the hidden denominator.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "survivorship-bias",
+            "text": "Are we overcorrecting so much that real differences between winners and losers disappear?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "survivorship-bias",
+            "text": "What non-survivors, failures, or hidden cases are missing from this sample?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "survivorship-bias",
+            "text": "Confirmation Bias: Confirmation-bias compounds survivorship-bias by locking attention onto the successful cases that confirm the favored theory while failures disappear from view.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "confirmation-bias"
+            },
+            "affinity_rationale": "Directly amplifies the core failure — selectively reinforces attention on successful cases that confirm the favored theory while failures disappear from view.",
+            "activation_condition": "When analyzing evidence for a hypothesis and the data comes predominantly from successful or surviving examples"
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "8 months at zero revenue is tight for a first-time independent consultant. Industry experience suggests the first paid engagement often takes 3-5 months from launch",
+        "presence_explanation": "The answer counters likely survivorship bias in success stories by citing typical struggles and timelines for first-time consultants, emphasizing the hidden denominator of failures."
       }
     ],
-    "total_chunk_count": 5,
+    "total_chunk_count": 10,
     "budget_max": 20,
     "anti_echo_model_ids": [
-      "base-rates",
-      "commitment-and-consistency-bias",
-      "falsifiability",
-      "first-principles-thinking",
-      "scientific-method-evidence-testing",
-      "simplification",
-      "statistics-concepts",
-      "step-back"
+      "status-quo-bias",
+      "step-back",
+      "tradition-vs-innovation-balance"
     ],
     "reranker": {
       "active": true,
-      "chunks_above_relevance_floor": 2,
-      "mean_relevance_score": 0.2477
+      "chunks_above_relevance_floor": 4,
+      "mean_relevance_score": 0.254
     }
   },
   "companion_card": {
     "detected_models": [
       {
-        "model_id": "representativeness-heuristic",
-        "model_name": "Representativeness Heuristic",
-        "evidence_quote": "\"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
+        "model_id": "optionality",
+        "model_name": "Optionality",
+        "evidence_quote": "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery. If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer corrects a judgment driven by surface similarity to polite interest by citing specific base rates and conversion frequencies rather than category resemblance.",
+        "presence_explanation": "The answer structures the decision around cheap experiments (specific conversations and asks over 4 weeks) to buy learning before the irreversible launch commitment, preserving optionality under high uncertainty.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "survivorship-bias",
+        "model_name": "Survivorship Bias",
+        "evidence_quote": "8 months at zero revenue is tight for a first-time independent consultant. Industry experience suggests the first paid engagement often takes 3-5 months from launch",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer counters likely survivorship bias in success stories by citing typical struggles and timelines for first-time consultants, emphasizing the hidden denominator of failures.",
         "detection_confidence": "structural"
       }
     ],
     "expansions": [
       {
-        "source_model_id": "representativeness-heuristic",
+        "source_model_id": "optionality",
         "relation_type": "antagonist",
-        "model_id": "base-rates",
-        "model_name": "Base Rates",
-        "substrate_chunk": "Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
-        "why_relevant": "Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
-        "affinity_rationale": "Canonical: 'RH, by definition, ignores critical components of rational probability, such as the base rate and statistical laws' — definitional opposition.",
-        "activation_condition": "When resemblance-based categorization overrides the actual statistical frequency of events in the reference class."
+        "model_id": "commitment-bias",
+        "model_name": "Commitment Bias",
+        "substrate_chunk": "Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
+        "why_relevant": "Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
+        "affinity_rationale": "Commitment makes it 'extremely difficult to pivot or consider new, better options' — psychological pressure from prior choices directly destroys the flexibility optionality requires.",
+        "activation_condition": "When prior investment or public commitment creates escalation pressure that forecloses objectively superior alternatives because pivoting feels like failure"
       },
       {
-        "source_model_id": "representativeness-heuristic",
+        "source_model_id": "optionality",
         "relation_type": "tension",
-        "model_id": "base-rates",
-        "model_name": "Base Rates",
-        "substrate_chunk": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency and outside-view distribution evidence.",
-        "why_relevant": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency and outside-view distribution evidence.",
+        "model_id": "commitment-bias",
+        "model_name": "Commitment Bias",
+        "substrate_chunk": "Optionality conflicts with commitment-bias when preserving options delays the commitment needed to capture time-sensitive value.",
+        "why_relevant": "Optionality conflicts with commitment-bias when preserving options delays the commitment needed to capture time-sensitive value.",
         "tension_type": "conflicts"
       },
       {
-        "source_model_id": "representativeness-heuristic",
+        "source_model_id": "optionality",
         "relation_type": "antagonist",
-        "model_id": "bayesian",
-        "model_name": "Bayesian",
-        "substrate_chunk": "Bayesian updating resists representativeness-heuristic by revising on evidence instead of trusting intuitive category fit.",
-        "why_relevant": "Bayesian updating resists representativeness-heuristic by revising on evidence instead of trusting intuitive category fit.",
-        "affinity_rationale": "Bayesian reasoning requires incorporating prior probabilities and updating with evidence — directly corrects the representativeness heuristic's neglect of base rates.",
-        "activation_condition": "When proper Bayesian updating would correct the intuitive probability estimate distorted by surface similarity."
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias shrinks optionality by locking attention onto the preferred path and filtering out superior alternatives.",
+        "why_relevant": "Confirmation-bias shrinks optionality by locking attention onto the preferred path and filtering out superior alternatives.",
+        "affinity_rationale": "Described as 'severely limiting' optionality — confirmation bias causes inability to see superior alternatives by seeking information that confirms the preferred option.",
+        "activation_condition": "When attachment to a preferred option causes selective evidence gathering that makes alternatives invisible despite their objective superiority"
+      },
+      {
+        "source_model_id": "survivorship-bias",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias compounds survivorship-bias by locking attention onto the successful cases that confirm the favored theory while failures disappear from view.",
+        "why_relevant": "Confirmation-bias compounds survivorship-bias by locking attention onto the successful cases that confirm the favored theory while failures disappear from view.",
+        "affinity_rationale": "Directly amplifies the core failure — selectively reinforces attention on successful cases that confirm the favored theory while failures disappear from view.",
+        "activation_condition": "When analyzing evidence for a hypothesis and the data comes predominantly from successful or surviving examples"
+      },
+      {
+        "source_model_id": "survivorship-bias",
+        "relation_type": "tension",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Survivorship-bias conflicts with confirmation-bias when focus on successful outcomes is reinforced while failures are ignored.",
+        "why_relevant": "Survivorship-bias conflicts with confirmation-bias when focus on successful outcomes is reinforced while failures are ignored.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "survivorship-bias",
+        "relation_type": "antagonist",
+        "model_id": "optimism-bias-and-planning-fallacy",
+        "model_name": "Optimism Bias And Planning Fallacy",
+        "substrate_chunk": "Optimism-bias-and-planning-fallacy intensifies survivorship-bias by making the winner story feel like a likely template for success instead of a filtered special case.",
+        "why_relevant": "Optimism-bias-and-planning-fallacy intensifies survivorship-bias by making the winner story feel like a likely template for success instead of a filtered special case.",
+        "affinity_rationale": "Complementary amplifier — makes the winner story feel like a likely template rather than a filtered special case, but acts through general optimism rather than survivor-specific distortion.",
+        "activation_condition": "When forecasting outcomes based on precedent success rates without adjusting for the invisible base rate of failures"
       }
     ],
     "failure_hints": [
       {
-        "source_model_id": "representativeness-heuristic",
-        "text": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more diagnostic than it is.",
+        "source_model_id": "optionality",
+        "text": "Analysis paralysis can keep the team waiting for perfect information instead of learning through reversible movement.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "optionality",
+        "text": "Anchoring on the first option presented can quietly shrink the perceived option set and bias later evaluation.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "survivorship-bias",
+        "text": "Teams invoke survivorship bias abstractly but still use samples or case studies that exclude the hidden denominator.",
         "extraction_type": "explicit",
         "confidence": "high"
       },
       {
-        "source_model_id": "representativeness-heuristic",
-        "text": "Decision makers can confuse similarity with probability and treat a plausible story as if it were a strong forecast.",
-        "extraction_type": "normalized",
+        "source_model_id": "survivorship-bias",
+        "text": "The correction fails when it becomes so broad that meaningful differences between actual winners and losers are ignored.",
+        "extraction_type": "explicit",
         "confidence": "high"
       }
     ],
     "heuristic_hints": [
       {
-        "source_model_id": "representativeness-heuristic",
-        "text": "Force an outside-view pass with reference classes or base rates before acting on an intuitive category match.",
+        "source_model_id": "optionality",
+        "text": "Bias toward action on reversible decisions because they buy information at low downside cost.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "optionality",
+        "text": "Invent first and decide later so evaluation does not choke off option generation too early.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "survivorship-bias",
+        "text": "Use the outside view and base rates to counter the pull of vivid success stories.",
         "extraction_type": "explicit",
         "confidence": "high"
       },
       {
-        "source_model_id": "representativeness-heuristic",
-        "text": "Challenge the favored frame with thesis, antithesis, and synthesis instead of letting the first pattern match become the decision.",
+        "source_model_id": "survivorship-bias",
+        "text": "Analyze real differences between survivors and non-survivors instead of treating the warning as a reason to flatten everything.",
         "extraction_type": "normalized",
         "confidence": "high"
       }
     ],
     "premortem_hints": [
       {
-        "source_model_id": "representativeness-heuristic",
-        "text": "If this representative-looking pattern fails, what ignored denominator or low-probability scenario would explain the miss?",
+        "source_model_id": "optionality",
+        "text": "Is the worst case bad enough?",
         "extraction_type": "explicit",
         "confidence": "high"
       },
       {
-        "source_model_id": "representativeness-heuristic",
-        "text": "Is the worst case bad enough if this resemblance-based judgment is wrong?",
-        "extraction_type": "explicit",
+        "source_model_id": "optionality",
+        "text": "Have we generated enough options before narrowing the choice set?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "survivorship-bias",
+        "text": "Are we overcorrecting so much that real differences between winners and losers disappear?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "survivorship-bias",
+        "text": "What non-survivors, failures, or hidden cases are missing from this sample?",
+        "extraction_type": "normalized",
         "confidence": "high"
       }
     ],
     "identity_chunks": [
       {
-        "model_id": "representativeness-heuristic",
-        "display_name": "Representativeness Heuristic",
+        "model_id": "optionality",
+        "display_name": "Optionality",
         "select_when": [
-          "A judgment is being driven by surface similarity or a vivid category match rather than by rates, frequencies, or causal detail.",
-          "People are substituting the question 'What does this resemble?' for the harder question 'What is statistically or causally likely here?'",
-          "The risk is that a compelling pattern match will crowd out denominator discipline.",
-          "A decision maker is intuitively classifying a case before checking whether the reference class actually supports that classification.",
-          "A vivid story, category label, or familiar prototype is overpowering statistical reasoning in a forecast or judgment.",
-          "A recommendation depends on forcing a handoff from intuitive categorization to explicit outside-view checking before action.",
-          "Problem solvers are at risk of declaring that they have seen this pattern before and skipping verification of whether the old frame still fits."
+          "Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.",
+          "Decisions are reversible enough that preserving multiple paths creates information value rather than just indecision.",
+          "Downside can be capped while upside remains open across several plausible futures.",
+          "The problem has collapsed into binary framing, but the real move is to create more viable paths before choosing."
         ],
         "danger_when": [
-          "The model would be used as a generic anti-intuition slogan instead of checking where resemblance is actually informative.",
-          "Teams are treating every pattern match as wrong even when there is strong base-rate and causal support for it.",
-          "The judgment already rests on explicit outside-view evidence and the model would only restate a bias warning without changing the decision path.",
-          "The model is being used to criticize simplification itself rather than the specific move from surface similarity to unsupported causal confidence."
+          "Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit.",
+          "Maintaining optionality is consuming cash, attention, or organizational simplicity that would be better spent on a chosen path."
+        ],
+        "reasoning_types": [
+          "counterfactual",
+          "probabilistic"
+        ],
+        "input_type": "reversible high-uncertainty choice",
+        "output_type": "option set expansion"
+      },
+      {
+        "model_id": "survivorship-bias",
+        "display_name": "Survivorship Bias",
+        "select_when": [
+          "The evidence base is dominated by winners, survivors, or visible success stories, and the hidden denominator may change the conclusion materially.",
+          "A benchmark, case set, or strategy playbook feels compelling mainly because the failures are absent from view.",
+          "The next decision should widen the sample before drawing lessons from a vivid but incomplete success narrative.",
+          "The work would improve if the team explicitly checked what non-survivors, failures, or unseen cases would do to the base rate."
+        ],
+        "danger_when": [
+          "The anti-bias correction is becoming so broad that meaningful differences between real winners and real losers are being ignored rather than analyzed.",
+          "The denominator is already explicit and the team now mainly needs a decision, not another generic warning about incomplete samples."
         ],
         "reasoning_types": [
           "probabilistic",
-          "diagnostic",
-          "counterfactual"
+          "diagnostic"
         ],
-        "input_type": "similarity-driven judgment",
-        "output_type": "pattern-match challenge with base-rate correction"
+        "input_type": "hidden-denominator evidence problem",
+        "output_type": "denominator-aware outside view"
       }
     ],
-    "detection_model_count": 1,
-    "expansion_count": 3,
-    "failure_hint_count": 2,
-    "heuristic_hint_count": 2,
-    "premortem_hint_count": 2,
-    "identity_chunk_count": 1,
+    "detection_model_count": 2,
+    "expansion_count": 6,
+    "failure_hint_count": 4,
+    "heuristic_hint_count": 4,
+    "premortem_hint_count": 4,
+    "identity_chunk_count": 2,
     "detection_source": "independent_llm_pass"
   },
   "frame_pressure_card": {
     "frame_elements": [
       {
-        "element_text": "informal network conversations constitute a viable pipeline for immediate revenue post-launch",
+        "element_text": "informal network conversations constitute a viable pipeline for launch",
         "element_type": "assumption",
-        "evidence_quote": "I've had informal conversations with 4-5 former colleagues and people in my network who've said things like \"if you were independent, we'd consider you.\"",
+        "evidence_quote": "Pipeline — I've had informal conversations with 4-5 former colleagues and people in my network who've said things like \"if you were independent, we'd consider you.\"",
         "frame_pattern": "borrowed_premise",
-        "fragility_signal": "industry data showing <20% conversion rate from polite interest to signed engagements",
+        "fragility_signal": "industry conversion rates from informal interest to signed engagements are typically under 20%",
         "inquiry_stage": "what_if",
         "likely_default": "ego"
       },
       {
-        "element_text": "8 months zero-revenue runway is sufficient to launch without signed engagements",
+        "element_text": "8 months runway at zero revenue is sufficient given the pipeline",
         "element_type": "assumption",
-        "evidence_quote": "I figured if I can't get my first engagement in 8 months, something is fundamentally wrong.",
+        "evidence_quote": "Runway — 8 months assumes zero revenue. I figured if I can't get my first engagement in 8 months, something is fundamentally wrong.",
         "frame_pattern": "temporal_fixation",
-        "fragility_signal": "typical 3-5 month lag for first paid engagement plus 1-2 months setup time",
+        "fragility_signal": "first paid engagements for new independents typically take 3-5 months post-launch",
         "inquiry_stage": "why",
         "likely_default": "inertia"
       },
       {
-        "element_text": "launch must occur in exactly 6 weeks as the fixed timeline",
+        "element_text": "launch must proceed in exactly 6 weeks",
         "element_type": "mutable_constraint",
         "evidence_quote": "Plan is to go independent starting in 6 weeks.",
         "frame_pattern": "temporal_fixation",
-        "fragility_signal": "no signed LOIs or spouse alignment on financial specifics after 4-week checkpoint",
+        "fragility_signal": "optimal launch timing aligns with signed LOIs or commitments rather than arbitrary calendar dates",
         "inquiry_stage": "what_if",
-        "likely_default": "commitment_escalation"
+        "likely_default": "inertia"
       }
     ],
     "reframings": [
       {
-        "reframed_question": "What would a realistic conversion rate look like when turning those 4-5 informal conversations with former colleagues into signed B2B fintech engagements??",
-        "what_opens": "Quantifies the fragility of polite network interest by prompting industry-benchmarked conversion analysis, revealing <20% typical rates",
+        "reframed_question": "What would it take to convert those 4-5 informal conversations with former colleagues into signed LOIs before launch?",
+        "what_opens": "Path to testing the viability of the informal network by quantifying conversion steps and required actions",
         "reframe_move_type": "constraint_relaxation",
-        "grounding_model": "confirmation-bias",
+        "grounding_model": "base-rates",
         "source_element_index": 0
       },
       {
-        "reframed_question": "How might a premortem of the first 3 months post-launch expose risks in relying on those 4-5 network conversations for immediate revenue??",
-        "what_opens": "Enables forward-looking failure simulation specific to the informal pipeline, surfacing conversion and timing gaps",
-        "reframe_move_type": "inversion",
-        "grounding_model": "premortem",
-        "source_element_index": 0
+        "reframed_question": "How does an 8-month zero-revenue runway compare to the typical 3-5 months new independents take for their first paid engagement?",
+        "what_opens": "Reality check against industry base rates to assess if the buffer is realistically sufficient",
+        "reframe_move_type": "scope_expansion",
+        "grounding_model": "base-rates",
+        "source_element_index": 1
       }
     ],
     "anti_echo_model_ids": [
-      "base-rates",
-      "commitment-and-consistency-bias",
-      "falsifiability",
-      "first-principles-thinking",
-      "scientific-method-evidence-testing",
-      "simplification",
-      "statistics-concepts",
-      "step-back"
+      "status-quo-bias",
+      "step-back",
+      "tradition-vs-innovation-balance"
     ],
     "overlap_flags": [],
     "dropped_frame_elements": []
@@ -485,56 +487,89 @@
     "question_type": "action-planning",
     "dimensions": [
       {
-        "dimension_id": "behavioral-intervention",
-        "dimension_name": "Behavioral Intervention",
-        "covered": false,
-        "coverage_evidence": "Assistant does not specify mechanism for behavior change (e.g., regulate, incent, nudge) for converting network interest to commitments or client adoption; mentions specific asks but no analysis of why current polite responses persist or enforcement/sustainability.",
-        "materiality_note": "Gap: Choosing incentives/nudges over direct asks could substantially improve pipeline conversion rates, altering launch timing recommendation."
-      },
-      {
-        "dimension_id": "commitment-reversibility",
-        "dimension_name": "Commitment & Reversibility",
-        "covered": false,
-        "coverage_evidence": "Assistant discusses delaying launch or using fractional as bridge but does not identify exit costs (e.g., switching back to full-time job after quitting, reputational lock-in from giving notice, or staging to preserve optionality).",
-        "materiality_note": "Gap: Recognizing high irreversibility of quitting (sunk job loss) could push for more staging, reversing 6-week launch advice."
+        "dimension_id": "timing-sequencing",
+        "dimension_name": "Timing & Sequencing",
+        "covered": true,
+        "coverage_evidence": "Assistant presents options comparing now (6 weeks) vs later (delay 2-3 months), explains sequencing rationale (e.g., convert network to LOIs before launch, do 3 pre-launch actions then checkpoint at 4 weeks), addresses delay benefits (better fundamentals, signed commitments) vs costs (employer noticing business dev), and critical path (spouse alignment + network asks before deciding).",
+        "materiality_note": "covered"
       },
       {
         "dimension_id": "stakeholder-alignment",
         "dimension_name": "Stakeholder Alignment",
         "covered": true,
-        "coverage_evidence": "Assistant identifies spouse as key stakeholder, notes concept vs. reality support gap ('supportive-in-concept but not-aligned-on-specifics'), urges specific conversation on financials/pressure, and ties to decision feasibility ('if spouse not aligned, push back').",
+        "coverage_evidence": "Identifies spouse as key stakeholder with veto power; distinguishes conceptual support vs specifics on runway pressure; strategy to build alignment via explicit financial scenario conversation this week; notes risk of fights if misaligned; employer as potential blocker if delaying for business dev.",
         "materiality_note": "covered"
       },
       {
-        "dimension_id": "timing-sequencing",
-        "dimension_name": "Timing & Sequencing",
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
         "covered": true,
-        "coverage_evidence": "Assistant presents options with sequencing rationale (delay 2-3 months for LOIs vs. launch now with 1-3 months BD phase), critical path (spouse talk + network asks in 6 weeks, checkpoint at 4 weeks), delay benefits (better fundamentals) vs. costs (employer notice risk).",
+        "coverage_evidence": "Discusses lock-in risks of launching without LOIs (pressure-cooks into bad work by month 5); staged commitment via 4-week checkpoint to push back if no fractional commitments; distinguishes sunk planning from future costs; fractional as reversible bridge preserving optionality vs full launch.",
         "materiality_note": "covered"
       },
       {
         "dimension_id": "resource-allocation",
         "dimension_name": "Resource Allocation",
         "covered": false,
-        "coverage_evidence": "Assistant notes tight runway (8 months zero revenue = 5 months pressure) but does not compare to displaced alternatives (e.g., staying employed longer preserves runway vs. opportunity cost of not launching; no marginal returns across options).",
-        "materiality_note": "Gap: Explicitly weighing runway preservation vs. launch opportunity cost could favor delay, changing recommendation."
+        "coverage_evidence": "Mentions 8-month runway at zero revenue and pressure by month 5, but does not identify displaced alternatives (e.g., staying employed longer, other career paths), compare marginal returns of options against continuation, or size if runway constraint truly binds vs alternatives.",
+        "materiality_note": "High materiality: Allocating runway to launch without pipeline could reverse recommendation toward preserving job/runway for better opportunities."
       },
       {
         "dimension_id": "risk-response",
         "dimension_name": "Risk Response",
-        "covered": true,
-        "coverage_evidence": "Assistant sizes downside (first engagement 3-5 months, pressure-cooks into bad work), distinguishes mitigate (fractional safety net, delay for LOIs) vs. accept (launch now, BD phase), addresses recovery (push back if no signals).",
-        "materiality_note": "covered"
+        "covered": false,
+        "coverage_evidence": "Names risks like tight runway leading to bad-fit work or spouse fights, sizes timeline (3-5 months to first engagement), but does not distinguish mitigate (e.g., fractional) vs adapt strategies across options, quantify downside exposure (e.g., burn rate bounds), or detail recovery paths if risks materialize.",
+        "materiality_note": "High materiality: Different risk posture (e.g., more mitigation via part-time) could substantially alter launch timing recommendation."
+      },
+      {
+        "dimension_id": "behavioral-intervention",
+        "dimension_name": "Behavioral Intervention",
+        "covered": false,
+        "coverage_evidence": "Acknowledges network 'consideration' as polite non-commitment (status quo persistence), but does not specify mechanisms to change network behavior (e.g., incentives like referrals, nudges via specific asks, enforcement via follow-ups), or why current polite responses persist.",
+        "materiality_note": "Medium materiality: Wrong mechanism (e.g., nudges vs direct sales) could fail pipeline conversion, altering launch viability."
       },
       {
         "dimension_id": "incentive-alignment",
         "dimension_name": "Incentive Alignment",
-        "covered": true,
-        "coverage_evidence": "Assistant flags network incentives ('polite' vs. commercial intent), user's self-misalignment (treating hopes as pipeline), spouse info asymmetry (concept vs. specifics); recommends alignment via specific asks and conversations.",
-        "materiality_note": "covered"
+        "covered": false,
+        "coverage_evidence": "Notes network politeness vs real intent, spouse conceptual vs specific alignment, but does not analyze incentive divergences (e.g., network's low cost to say 'consider' without committing, spouse's financial risks) or alignment mechanisms beyond one conversation.",
+        "materiality_note": "Immaterial: Core risks already surfaced via stakeholder and timing; deeper incentives don't reverse launch options."
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "covered": false,
+        "coverage_evidence": "Uses industry averages (<1/5 conversion, 3-5 months to engagement) but does not classify user's pipeline uncertainty as epistemic (reducible via specific asks) vs aleatory, match strategy to type (e.g., experiments for reducible), or calibrate to user's evidence.",
+        "materiality_note": "Immaterial: Options already include uncertainty reduction via pre-launch tests; type recognition doesn't change plan."
       }
     ],
     "gap_routes": [
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "candidate_model_ids": [
+          "opportunity-cost",
+          "comparative-advantage",
+          "trade-offs",
+          "pareto-principle",
+          "prioritization",
+          "optimization-theory"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "candidate_model_ids": [
+          "risk-assessment",
+          "black-swan-events",
+          "antifragility",
+          "margin-of-safety",
+          "calculated-risk-taking",
+          "resilience"
+        ],
+        "excluded_model_ids": []
+      },
       {
         "dimension_id": "behavioral-intervention",
         "dimension_name": "Behavioral Intervention",
@@ -549,73 +584,79 @@
         "excluded_model_ids": []
       },
       {
-        "dimension_id": "commitment-reversibility",
-        "dimension_name": "Commitment & Reversibility",
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
         "candidate_model_ids": [
-          "sunk-cost-fallacy",
-          "lock-in",
-          "commitment-bias",
-          "switching-costs",
-          "optionality",
-          "path-dependence"
+          "principal-agent-problem",
+          "moral-hazard",
+          "incentives",
+          "adverse-selection",
+          "information-asymmetry"
         ],
         "excluded_model_ids": []
       },
       {
-        "dimension_id": "resource-allocation",
-        "dimension_name": "Resource Allocation",
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
         "candidate_model_ids": [
-          "opportunity-cost",
-          "comparative-advantage",
-          "trade-offs",
-          "pareto-principle",
-          "prioritization",
-          "optimization-theory"
+          "aleatory-epistemic-uncertainty-recognition",
+          "true-uncertainty-navigation",
+          "probabilistic-thinking",
+          "confidence-calibration",
+          "experimentation"
         ],
         "excluded_model_ids": []
       }
     ],
     "gap_questions": [
       {
-        "dimension_id": "behavioral-intervention",
-        "dimension_name": "Behavioral Intervention",
-        "questions": [
-          "What rewards or incentives have motivated you most effectively in past career transitions, like starting a side project or changing roles?",
-          "Which of your past behaviors around business development, such as following up on network leads, have been driven more by external accountability versus internal motivation?",
-          "What subtle cues or reminders from your spouse or network have nudged you toward action in high-stakes personal decisions before?"
-        ]
-      },
-      {
-        "dimension_id": "commitment-reversibility",
-        "dimension_name": "Commitment & Reversibility",
-        "questions": [
-          "What fallback options do you have if the consulting launch doesn't generate revenue by month 5, such as re-entering the full-time job market or returning to your current employer?",
-          "How attached are you to the idea of quitting in 6 weeks, and what would make you feel comfortable treating this as a reversible test rather than a permanent commitment?",
-          "Who in your network could provide a bridge back to employment if the independent path hits unexpected roadblocks in the first few months?"
-        ]
-      },
-      {
         "dimension_id": "resource-allocation",
         "dimension_name": "Resource Allocation",
         "questions": [
-          "With your 8-month runway, what other personal or financial resources, like unused vacation time or side savings, could you reallocate to extend business development efforts before launch?",
-          "How much of your current job's remaining 6 weeks capacity are you planning to dedicate to pipeline building versus other launch prep, and what tradeoffs feel scarcest right now?",
-          "Given the scarcity of committed leads from your 4-5 network conversations, what abundance of other resources in your B2B fintech experience could you leverage differently to generate demand?"
+          "What other personal or financial resources, like savings beyond the 8-month runway or part-time income sources, could you reallocate to extend your launch timeline or support pipeline building?",
+          "In the next 6 weeks before your planned Q3 exit, how many hours per week from your current job can you dedicate to converting those 4-5 network conversations into commitments without risking your notice period?"
+        ]
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "questions": [
+          "What level of financial pressure from the 8-month zero-revenue runway feels manageable for you and your spouse before it becomes too stressful?",
+          "If none of the 4-5 network contacts commit to fractional work in the next 4 weeks, what specific risks like bad-fit engagements would you accept to launch anyway?"
+        ]
+      },
+      {
+        "dimension_id": "behavioral-intervention",
+        "dimension_name": "Behavioral Intervention",
+        "questions": [
+          "What would motivate you most to follow through on the spouse runway conversation this weekend—setting a hard deadline, creating a shared financial tracker, or something else from past experiences?",
+          "To get your network to move from 'we'd consider you' to actual fractional commitments, what small nudge like a shared calendar invite or prototype proposal have you tried before that worked?"
+        ]
+      },
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "questions": [
+          "How is your spouse's support for the independent plan tied to specific outcomes, like a minimum monthly revenue target by month 4 post-launch?",
+          "For the 4-5 network contacts, what incentives like discounted first-month rates or performance bonuses would align their interest with signing a fractional engagement starting in 6 weeks?"
+        ]
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "questions": [
+          "For your 4-5 network conversations turning into paid work, what parts feel like predictable risks you can estimate (like historical conversion rates) versus pure unknowns?",
+          "Beyond the 8-month runway math, what ignored factors in your B2B fintech network, like seasonal deal cycles, create true ignorance about first-engagement timing?"
         ]
       }
     ],
     "anti_echo_model_ids": [
       "base-rates",
-      "commitment-and-consistency-bias",
-      "confirmation-bias",
-      "falsifiability",
-      "first-principles-thinking",
-      "premortem",
-      "representativeness-heuristic",
-      "scientific-method-evidence-testing",
-      "simplification",
-      "statistics-concepts",
-      "step-back"
+      "optionality",
+      "status-quo-bias",
+      "step-back",
+      "survivorship-bias",
+      "tradition-vs-innovation-balance"
     ]
   },
   "audit_summary": {
@@ -628,7 +669,7 @@
       {
         "tendency_id": "social-proof-tendency",
         "score": 5,
-        "evidence": "Answer relies on 'industry experience suggests the first paid engagement often takes 3-5 months' and typical conversion rates '<1 in 5' from network conversations as proof of tight runway and low pipeline viability, treating peer/industry norms as direct evidence without tailoring to user's specific network or situation."
+        "evidence": "Answer relies on 'industry experience suggests the first paid engagement often takes 3-5 months' and typical conversion rates ('less than 1 in 5') from network conversations as proof of timeline realism, treating peer consultant outcomes as directly applicable without independent adjustment for user's specific weak pipeline."
       },
       {
         "tendency_id": "influence-from-mere-association-tendency",
@@ -682,8 +723,8 @@
       },
       {
         "tendency_id": "availability-misweighing-tendency",
-        "score": 5,
-        "evidence": "Answer overweighting vivid 'industry experience' anecdote of 'first paid engagement often takes 3-5 months' and 'less than 1 in 5' conversion from network conversations as de facto base rate to deem 8-month runway 'tight,' without checking or citing broader denominators like success rates for B2B fintech consultants with user's experience level or variance in ramp times."
+        "score": 0,
+        "evidence": "Not detected"
       },
       {
         "tendency_id": "contrast-misreaction-tendency",
@@ -743,7 +784,6 @@
     ],
     "triggered_tendencies": [
       "social-proof-tendency",
-      "availability-misweighing-tendency",
       "overoptimism-tendency",
       "inconsistency-avoidance-tendency",
       "stress-influence-tendency",
@@ -754,11 +794,6 @@
     "triggered_tendency_sources": [
       {
         "tendency_id": "social-proof-tendency",
-        "source": "triage",
-        "score": 5
-      },
-      {
-        "tendency_id": "availability-misweighing-tendency",
         "source": "triage",
         "score": 5
       },
@@ -793,7 +828,7 @@
         "score": 0.3019245727336072
       }
     ],
-    "boundary_call_count": 20,
+    "boundary_call_count": 19,
     "boundary_calls": [
       {
         "stage": "pass1_cluster_authority",
@@ -802,8 +837,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3003,
-        "completion_tokens": 233,
-        "total_tokens": 3236,
+        "completion_tokens": 231,
+        "total_tokens": 3234,
         "cached_tokens": 3002,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -841,8 +876,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 2729,
-        "completion_tokens": 151,
-        "total_tokens": 2880,
+        "completion_tokens": 78,
+        "total_tokens": 2807,
         "cached_tokens": 2728,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -880,22 +915,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3080,
-        "completion_tokens": 198,
-        "total_tokens": 3278,
+        "completion_tokens": 99,
+        "total_tokens": 3179,
         "cached_tokens": 3079,
-        "cache_write_tokens": 0,
-        "reasoning_tokens": 0
-      },
-      {
-        "stage": "pass2",
-        "tendency_id": "availability-misweighing-tendency",
-        "provider_name": "openrouter",
-        "model": "x-ai/grok-4.1-fast",
-        "status": "ok",
-        "prompt_tokens": 3264,
-        "completion_tokens": 179,
-        "total_tokens": 3443,
-        "cached_tokens": 3263,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -906,9 +928,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3458,
-        "completion_tokens": 105,
-        "total_tokens": 3563,
-        "cached_tokens": 3457,
+        "completion_tokens": 118,
+        "total_tokens": 3576,
+        "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -919,8 +941,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3350,
-        "completion_tokens": 261,
-        "total_tokens": 3611,
+        "completion_tokens": 176,
+        "total_tokens": 3526,
         "cached_tokens": 3349,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -945,8 +967,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 2807,
-        "completion_tokens": 76,
-        "total_tokens": 2883,
+        "completion_tokens": 82,
+        "total_tokens": 2889,
         "cached_tokens": 2806,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -958,8 +980,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3308,
-        "completion_tokens": 99,
-        "total_tokens": 3407,
+        "completion_tokens": 93,
+        "total_tokens": 3401,
         "cached_tokens": 3307,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -971,8 +993,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 2997,
-        "completion_tokens": 103,
-        "total_tokens": 3100,
+        "completion_tokens": 104,
+        "total_tokens": 3101,
         "cached_tokens": 2996,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -984,8 +1006,8 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 2162,
-        "completion_tokens": 961,
-        "total_tokens": 3123,
+        "completion_tokens": 959,
+        "total_tokens": 3121,
         "cached_tokens": 2161,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -996,9 +1018,9 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 7074,
-        "completion_tokens": 2125,
-        "total_tokens": 9199,
+        "prompt_tokens": 7063,
+        "completion_tokens": 2101,
+        "total_tokens": 9164,
         "cached_tokens": 159,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
@@ -1010,9 +1032,9 @@
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
         "prompt_tokens": 3854,
-        "completion_tokens": 310,
-        "total_tokens": 4164,
-        "cached_tokens": 160,
+        "completion_tokens": 307,
+        "total_tokens": 4161,
+        "cached_tokens": 3853,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1022,10 +1044,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 1010,
-        "completion_tokens": 508,
-        "total_tokens": 1518,
-        "cached_tokens": 160,
+        "prompt_tokens": 1017,
+        "completion_tokens": 462,
+        "total_tokens": 1479,
+        "cached_tokens": 579,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1035,10 +1057,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 2902,
-        "completion_tokens": 299,
-        "total_tokens": 3201,
-        "cached_tokens": 2901,
+        "prompt_tokens": 3001,
+        "completion_tokens": 371,
+        "total_tokens": 3372,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       },
@@ -1048,10 +1070,10 @@
         "provider_name": "openrouter",
         "model": "x-ai/grok-4.1-fast",
         "status": "ok",
-        "prompt_tokens": 2902,
-        "completion_tokens": 299,
-        "total_tokens": 3201,
-        "cached_tokens": 2901,
+        "prompt_tokens": 3001,
+        "completion_tokens": 371,
+        "total_tokens": 3372,
+        "cached_tokens": 160,
         "cache_write_tokens": 0,
         "reasoning_tokens": 0
       }
@@ -1062,149 +1084,153 @@
     "companion_fingerprint_raw": [
       {
         "move_id": "1",
-        "reasoning_move": "Assess pipeline strength by distinguishing between informal interest and firm commitments, concluding that network conversations do not constitute a reliable pipeline.",
+        "reasoning_move": "Assess pipeline strength by distinguishing between informal interest and actual commitments, concluding that network conversations do not constitute a reliable pipeline.",
         "evidence_quotes": [
           "\"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms.",
           "The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
           "You don't have a pipeline; you have a network that might become a pipeline."
         ],
-        "evidence_rationale": "These quotes directly evaluate the user's pipeline as weak based on industry conversion rates and reclassify it as mere network potential.",
+        "evidence_rationale": "These quotes directly evaluate the user's pipeline as weak based on low conversion rates from informal interest.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Evaluate runway adequacy by projecting typical timelines for first engagements and identifying the resulting financial pressure point.",
+        "reasoning_move": "Evaluate runway adequacy by projecting typical timelines for first engagements and setup, determining that 8 months is tight.",
         "evidence_quotes": [
           "8 months at zero revenue is tight for a first-time independent consultant.",
           "Industry experience suggests the first paid engagement often takes 3-5 months from launch, not including the 1-2 months you'll spend setting up legal/admin.",
-          "\"8 months runway\" actually means \"5 months of revenue pressure\" because the first 3 months won't produce income."
+          "If you don't have an engagement by month 5, your remaining 3 months of runway pressure-cooks you into taking whatever comes along"
         ],
-        "evidence_rationale": "Quotes use industry benchmarks to calculate effective runway compression, highlighting risk of pressure by month 5.",
+        "evidence_rationale": "These quotes use industry benchmarks to show the runway leaves little margin for error.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Prioritize spouse alignment on specific financial realities over general conceptual support to ensure realistic backing.",
+        "reasoning_move": "Identify spouse alignment gap by noting support is conceptual rather than based on specific financial realities, recommending a detailed conversation.",
         "evidence_quotes": [
           "Not \"are you on board with independent consulting\" — you already have that. It's \"here's the specific scenario where I launch in September with no signed engagements, here's the burn rate, here's when we'd be under financial pressure, here's what we'd do.\"",
           "Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business."
         ],
-        "evidence_rationale": "Quotes emphasize the gap between concept support and detailed financial alignment, warning of relational risks.",
+        "evidence_rationale": "These quotes highlight the difference between general and specific support, flagging it as a risk.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Propose conditional launch viability with specific pre-launch actions and a decision checkpoint to test assumptions.",
+        "reasoning_move": "Generate conditional launch plan with prerequisites and decision criteria, allowing launch in 6 weeks if key actions succeed, otherwise delay.",
         "evidence_quotes": [
           "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery.",
           "If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months."
         ],
-        "evidence_rationale": "Quotes outline testable actions and a clear pivot criterion based on evidence from the actions.",
+        "evidence_rationale": "These quotes outline the exact conditions and timeline for proceeding or delaying.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Recommend fractional engagements as a de-risking mechanism providing immediate partial revenue from network.",
+        "reasoning_move": "Propose fractional engagements as a de-risking strategy to secure early predictable revenue without full commitment.",
         "evidence_quotes": [
           "go back to your network with the specific fractional ask and see if 1-2 convert",
-          "\"Would your company be open to 10 hours/week at $12K/month for the next 6 months, starting in September?\" is a very specific ask.",
-          "Some of those 4-5 network conversations might convert to fractional arrangements even if they won't commit to full project engagements."
+          "Fractional arrangements vary but here's the common shape: you agree to provide 8-15 hours/week as a fractional CPO or senior product advisor at a single company, on a retainer basis (typically $10-20K/month for someone at your experience level)."
         ],
-        "evidence_rationale": "Quotes define fractional roles with specifics and link them to converting existing weak pipeline signals.",
+        "evidence_rationale": "These quotes define and recommend fractional work as a practical first step for revenue.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Defer tactical launch details until foundational risks (pipeline, runway, alignment) are validated with real progress.",
+        "reasoning_move": "Prioritize fundamentals over tactics, deferring detailed launch advice until pipeline and alignment evidence exists.",
         "evidence_quotes": [
           "the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid.",
-          "Come back in 4 weeks with results from those three things and we can build the actual launch plan then.",
-          "The tactics matter, but only if the foundation is real."
+          "Come back in 4 weeks with results from those three things and we can build the actual launch plan then. You'll be building on real information rather than on hopes."
         ],
-        "evidence_rationale": "Quotes subordinate tactics to fundamentals and set a follow-up based on checkpoint outcomes.",
+        "evidence_rationale": "These quotes justify focusing on core issues first and conditioning tactics on progress.",
         "confidence": "high"
       }
     ],
     "companion_fingerprint_validated": [
       {
         "move_id": "1",
-        "reasoning_move": "Assess pipeline strength by distinguishing between informal interest and firm commitments, concluding that network conversations do not constitute a reliable pipeline.",
+        "reasoning_move": "Assess pipeline strength by distinguishing between informal interest and actual commitments, concluding that network conversations do not constitute a reliable pipeline.",
         "evidence_quotes": [
           "\"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms.",
           "The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
           "You don't have a pipeline; you have a network that might become a pipeline."
         ],
-        "evidence_rationale": "These quotes directly evaluate the user's pipeline as weak based on industry conversion rates and reclassify it as mere network potential.",
+        "evidence_rationale": "These quotes directly evaluate the user's pipeline as weak based on low conversion rates from informal interest.",
         "confidence": "high"
       },
       {
         "move_id": "2",
-        "reasoning_move": "Evaluate runway adequacy by projecting typical timelines for first engagements and identifying the resulting financial pressure point.",
+        "reasoning_move": "Evaluate runway adequacy by projecting typical timelines for first engagements and setup, determining that 8 months is tight.",
         "evidence_quotes": [
           "8 months at zero revenue is tight for a first-time independent consultant.",
           "Industry experience suggests the first paid engagement often takes 3-5 months from launch, not including the 1-2 months you'll spend setting up legal/admin.",
-          "\"8 months runway\" actually means \"5 months of revenue pressure\" because the first 3 months won't produce income."
+          "If you don't have an engagement by month 5, your remaining 3 months of runway pressure-cooks you into taking whatever comes along"
         ],
-        "evidence_rationale": "Quotes use industry benchmarks to calculate effective runway compression, highlighting risk of pressure by month 5.",
+        "evidence_rationale": "These quotes use industry benchmarks to show the runway leaves little margin for error.",
         "confidence": "high"
       },
       {
         "move_id": "3",
-        "reasoning_move": "Prioritize spouse alignment on specific financial realities over general conceptual support to ensure realistic backing.",
+        "reasoning_move": "Identify spouse alignment gap by noting support is conceptual rather than based on specific financial realities, recommending a detailed conversation.",
         "evidence_quotes": [
           "Not \"are you on board with independent consulting\" — you already have that. It's \"here's the specific scenario where I launch in September with no signed engagements, here's the burn rate, here's when we'd be under financial pressure, here's what we'd do.\"",
           "Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business."
         ],
-        "evidence_rationale": "Quotes emphasize the gap between concept support and detailed financial alignment, warning of relational risks.",
+        "evidence_rationale": "These quotes highlight the difference between general and specific support, flagging it as a risk.",
         "confidence": "high"
       },
       {
         "move_id": "4",
-        "reasoning_move": "Propose conditional launch viability with specific pre-launch actions and a decision checkpoint to test assumptions.",
+        "reasoning_move": "Generate conditional launch plan with prerequisites and decision criteria, allowing launch in 6 weeks if key actions succeed, otherwise delay.",
         "evidence_quotes": [
           "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery.",
           "If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months."
         ],
-        "evidence_rationale": "Quotes outline testable actions and a clear pivot criterion based on evidence from the actions.",
+        "evidence_rationale": "These quotes outline the exact conditions and timeline for proceeding or delaying.",
         "confidence": "high"
       },
       {
         "move_id": "5",
-        "reasoning_move": "Recommend fractional engagements as a de-risking mechanism providing immediate partial revenue from network.",
+        "reasoning_move": "Propose fractional engagements as a de-risking strategy to secure early predictable revenue without full commitment.",
         "evidence_quotes": [
           "go back to your network with the specific fractional ask and see if 1-2 convert",
-          "\"Would your company be open to 10 hours/week at $12K/month for the next 6 months, starting in September?\" is a very specific ask.",
-          "Some of those 4-5 network conversations might convert to fractional arrangements even if they won't commit to full project engagements."
+          "Fractional arrangements vary but here's the common shape: you agree to provide 8-15 hours/week as a fractional CPO or senior product advisor at a single company, on a retainer basis (typically $10-20K/month for someone at your experience level)."
         ],
-        "evidence_rationale": "Quotes define fractional roles with specifics and link them to converting existing weak pipeline signals.",
+        "evidence_rationale": "These quotes define and recommend fractional work as a practical first step for revenue.",
         "confidence": "high"
       },
       {
         "move_id": "6",
-        "reasoning_move": "Defer tactical launch details until foundational risks (pipeline, runway, alignment) are validated with real progress.",
+        "reasoning_move": "Prioritize fundamentals over tactics, deferring detailed launch advice until pipeline and alignment evidence exists.",
         "evidence_quotes": [
           "the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid.",
-          "Come back in 4 weeks with results from those three things and we can build the actual launch plan then.",
-          "The tactics matter, but only if the foundation is real."
+          "Come back in 4 weeks with results from those three things and we can build the actual launch plan then. You'll be building on real information rather than on hopes."
         ],
-        "evidence_rationale": "Quotes subordinate tactics to fundamentals and set a follow-up based on checkpoint outcomes.",
+        "evidence_rationale": "These quotes justify focusing on core issues first and conditioning tactics on progress.",
         "confidence": "high"
       }
     ],
     "companion_fingerprint_dropped": [],
     "companion_detected_models": [
       {
-        "model_id": "representativeness-heuristic",
-        "model_name": "Representativeness Heuristic",
-        "evidence_quote": "\"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
+        "model_id": "optionality",
+        "model_name": "Optionality",
+        "evidence_quote": "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery. If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months.",
         "presence_mode": "executed",
-        "presence_explanation": "The answer corrects a judgment driven by surface similarity to polite interest by citing specific base rates and conversion frequencies rather than category resemblance.",
+        "presence_explanation": "The answer structures the decision around cheap experiments (specific conversations and asks over 4 weeks) to buy learning before the irreversible launch commitment, preserving optionality under high uncertainty.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "survivorship-bias",
+        "model_name": "Survivorship Bias",
+        "evidence_quote": "8 months at zero revenue is tight for a first-time independent consultant. Industry experience suggests the first paid engagement often takes 3-5 months from launch",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer counters likely survivorship bias in success stories by citing typical struggles and timelines for first-time consultants, emphasizing the hidden denominator of failures.",
         "detection_confidence": "structural"
       }
     ],
     "companion_rejected_models": [
       {
-        "model_id": "sunk-cost-fallacy",
+        "model_id": "optimism-bias-and-planning-fallacy",
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
@@ -1212,23 +1238,15 @@
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
-        "model_id": "optionality",
-        "rejection_reason": "execution_quote_not_literal_substring"
-      },
-      {
-        "model_id": "feedback-loops",
-        "rejection_reason": "execution_quote_not_literal_substring"
-      },
-      {
         "model_id": "premortem",
         "rejection_reason": "execution_quote_not_literal_substring"
       },
       {
-        "model_id": "commitment-bias",
+        "model_id": "representativeness-heuristic",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "learning-curve",
+        "model_id": "commitment-bias",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1236,12 +1254,20 @@
         "rejection_reason": "topic-adjacent"
       },
       {
-        "model_id": "cultural-intelligence",
+        "model_id": "learning-curve",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "signaling",
         "rejection_reason": "mechanism absent"
       },
       {
         "model_id": "hindsight-bias",
         "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "aleatory-epistemic-uncertainty-recognition",
+        "rejection_reason": "mechanism absent"
       },
       {
         "model_id": "inversion",
@@ -1252,39 +1278,11 @@
         "rejection_reason": "too generic"
       },
       {
-        "model_id": "signaling",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "agile-methodologies",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "aleatory-epistemic-uncertainty-recognition",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "intellectual-humility",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "critical-mass",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "lean-startup-methodology",
+        "model_id": "chain-of-thought",
         "rejection_reason": "too generic"
       },
       {
-        "model_id": "abstraction",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "association",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "bias-blind-spot",
+        "model_id": "agile-methodologies",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1292,35 +1290,7 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "occams-razor",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "probabilistic-thinking",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "social-proof",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "survivorship-bias",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "tier-2-high-value",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "black-swan-events",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "counterfactual-reasoning",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "feynman-technique",
+        "model_id": "intellectual-humility",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1328,27 +1298,11 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "meta-cognitive-reflection",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "rationalization",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "reciprocity-principle",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "step-back",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "systems-thinking",
+        "model_id": "probabilistic-thinking",
         "rejection_reason": "too generic"
       },
       {
-        "model_id": "usability-heuristics",
+        "model_id": "psychological-safety",
         "rejection_reason": "topic-adjacent"
       },
       {
@@ -1356,51 +1310,23 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "chain-of-thought",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "five-whys-method",
+        "model_id": "black-swan-events",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "information-asymmetry",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "jobs-to-be-done",
+        "model_id": "cultural-intelligence",
         "rejection_reason": "topic-adjacent"
       },
       {
-        "model_id": "mental-simulation",
+        "model_id": "occams-razor",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "power-dynamics",
+        "model_id": "sunk-cost-fallacy",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "psychological-safety",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "reasoning-mode-router",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "red-queen-effect",
-        "rejection_reason": "mechanism absent"
-      },
-      {
-        "model_id": "time-tested-validation",
-        "rejection_reason": "too generic"
-      },
-      {
-        "model_id": "user-centered-design",
-        "rejection_reason": "topic-adjacent"
-      },
-      {
-        "model_id": "blooms-taxonomy",
+        "model_id": "association",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1408,11 +1334,35 @@
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "chain-of-verification",
+        "model_id": "information-asymmetry",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "cognitive-load-theory",
+        "model_id": "reasoning-mode-router",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "bias-blind-spot",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "critical-mass",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "feedback-loops",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "information-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "adverse-selection",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "chain-of-verification",
         "rejection_reason": "mechanism absent"
       },
       {
@@ -1420,23 +1370,95 @@
         "rejection_reason": "mechanism absent"
       },
       {
+        "model_id": "feynman-technique",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "game-theory-payoffs",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "mental-simulation",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "reciprocity-principle",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "social-proof",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "status-quo-bias",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "step-back",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "time-tested-validation",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "usability-heuristics",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "adaptation",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "authenticity",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "calculated-risk-taking",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "cognitive-load-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
         "model_id": "conjunction-fallacy",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "correlation-vs-causation",
+        "model_id": "expertise-reversal-effect",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "cross-cultural-communication-frameworks",
+        "model_id": "five-whys-method",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "goal-setting",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "johari-window",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "lean-startup-methodology",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "meta-cognitive-reflection",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "obligations-controls-mapping",
         "rejection_reason": "topic-adjacent"
       },
       {
-        "model_id": "einstellung-effect",
+        "model_id": "rationalization",
         "rejection_reason": "mechanism absent"
       },
       {
-        "model_id": "expertise-reversal-effect",
+        "model_id": "red-queen-effect",
         "rejection_reason": "mechanism absent"
       }
     ],
@@ -1444,20 +1466,11 @@
       {
         "tendency_id": "social-proof-tendency",
         "tendency_name": "Social-Proof Tendency",
-        "detected": true,
-        "confidence": 0.95,
-        "sub_pattern": "general",
-        "specific_passage": "On pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that con",
-        "severity": "medium"
-      },
-      {
-        "tendency_id": "availability-misweighing-tendency",
-        "tendency_name": "Availability-Misweighing Tendency",
-        "detected": true,
-        "confidence": 0.95,
-        "sub_pattern": "base_rates",
-        "specific_passage": "Industry experience suggests the first paid engagement often takes 3-5 months from launch... The number of those conversations that convert to signed engagements in the first 3 months is typically les",
-        "severity": "medium"
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
       },
       {
         "tendency_id": "overoptimism-tendency",
@@ -1473,8 +1486,8 @@
         "tendency_name": "Inconsistency-Avoidance Tendency",
         "detected": true,
         "confidence": 0.95,
-        "sub_pattern": "scientific_method_evidence_testing",
-        "specific_passage": "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if ",
+        "sub_pattern": "step_back",
+        "specific_passage": "'If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to sig",
         "severity": "low"
       },
       {
@@ -1516,113 +1529,9 @@
     ],
     "routing_decisions": [
       {
-        "tendency_id": "social-proof-tendency",
-        "primary_model_id": "first-principles-thinking",
-        "sub_pattern": "general",
-        "antidote_model_ids": [
-          "first-principles-thinking",
-          "six-thinking-hats",
-          "brainstorming",
-          "step-back",
-          "cultural-intelligence",
-          "growth-mindset",
-          "lindy-effect",
-          "multicultural-team-dynamics",
-          "peer-review-your-perspectives"
-        ],
-        "tiebreaker_supporting": {
-          "attempted": false,
-          "fired": false,
-          "abort_reason": "",
-          "top1_model": "",
-          "top2_model": "",
-          "top1_affinity": 0.0,
-          "top2_affinity": 0.0,
-          "delta": 0.0,
-          "top1_sim": 0.0,
-          "top2_sim": 0.0,
-          "max_sim": 0.0,
-          "epsilon": 0.0,
-          "noise_floor": 0.0,
-          "candidate_count": 0
-        },
-        "tiebreaker_risk": {
-          "attempted": false,
-          "fired": false,
-          "abort_reason": "",
-          "top1_model": "",
-          "top2_model": "",
-          "top1_affinity": 0.0,
-          "top2_affinity": 0.0,
-          "delta": 0.0,
-          "top1_sim": 0.0,
-          "top2_sim": 0.0,
-          "max_sim": 0.0,
-          "epsilon": 0.0,
-          "noise_floor": 0.0,
-          "candidate_count": 0
-        }
-      },
-      {
-        "tendency_id": "availability-misweighing-tendency",
-        "primary_model_id": "base-rates",
-        "sub_pattern": "base_rates",
-        "antidote_model_ids": [
-          "variation-and-selection",
-          "varied-practice-interleaving",
-          "base-rates",
-          "law-of-large-numbers",
-          "statistics-concepts",
-          "scientific-method-evidence-testing",
-          "algorithmic-thinking",
-          "critical-thinking",
-          "decomposition",
-          "desirable-difficulties",
-          "problem-framing-and-reframing",
-          "prioritization",
-          "reasoning-mode-router",
-          "second-order-thinking",
-          "statistical-discipline",
-          "statistical-learning-theory",
-          "step-back"
-        ],
-        "tiebreaker_supporting": {
-          "attempted": false,
-          "fired": false,
-          "abort_reason": "",
-          "top1_model": "",
-          "top2_model": "",
-          "top1_affinity": 0.0,
-          "top2_affinity": 0.0,
-          "delta": 0.0,
-          "top1_sim": 0.0,
-          "top2_sim": 0.0,
-          "max_sim": 0.0,
-          "epsilon": 0.0,
-          "noise_floor": 0.0,
-          "candidate_count": 0
-        },
-        "tiebreaker_risk": {
-          "attempted": false,
-          "fired": false,
-          "abort_reason": "",
-          "top1_model": "",
-          "top2_model": "",
-          "top1_affinity": 0.0,
-          "top2_affinity": 0.0,
-          "delta": 0.0,
-          "top1_sim": 0.0,
-          "top2_sim": 0.0,
-          "max_sim": 0.0,
-          "epsilon": 0.0,
-          "noise_floor": 0.0,
-          "candidate_count": 0
-        }
-      },
-      {
         "tendency_id": "inconsistency-avoidance-tendency",
-        "primary_model_id": "scientific-method-evidence-testing",
-        "sub_pattern": "scientific_method_evidence_testing",
+        "primary_model_id": "step-back",
+        "sub_pattern": "step_back",
         "antidote_model_ids": [
           "tradition-vs-innovation-balance",
           "variation-and-selection",
@@ -1786,7 +1695,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts a specific empirical statistic: 'The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.' This introduces a precise conversion rate (less than 20%) for 'informal network conversations' like the user's 4-5 pipeline items, which is not restated from user facts, not reasonably inferable from them, and not common practitioner knowledge at this specificity (e.g., exact timeframe and rate). It is stated as fact without evidence or qualification.",
+          "reasoning": "The passage asserts a specific empirical statistic: 'The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.' This introduces a precise conversion rate (less than 20%) beyond user-provided facts (4-5 informal conversations, no commitments), reasonable inferences therefrom, or common practitioner knowledge (which might support low conversion generally but not this exact quantified claim without evidence).",
           "severity": "clear"
         }
       },
@@ -1809,7 +1718,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage introduces new empirical claims beyond user-provided facts or common knowledge: 'Industry experience suggests the first paid engagement often takes 3-5 months from launch' and 'not including the 1-2 months you'll spend setting up legal/admin'. These specific timelines for first engagements and setup are unverified assertions of industry facts not grounded in user context, not reasonable inferences from the 8-month runway or 6-week launch, and exceed standard practitioner knowledge (e.g., vagueness of 'industry experience suggests' without reference does not ground the precise ranges). The consequence ('pressure-cooks you into taking whatever comes along, which is usually badly-fit work') is a reasonable inference from the math but tied to the unverified timelines.",
+          "reasoning": "The passage introduces specific empirical claims beyond user-provided facts or common knowledge: 'Industry experience suggests the first paid engagement often takes 3-5 months from launch' and 'not including the 1-2 months you'll spend setting up legal/admin' assert unverified timelines and durations without evidence or user context. The causal prediction 'pressure-cooks you into taking whatever comes along, which is usually badly-fit work' is also an unverified empirical generalization about outcomes.",
           "severity": "clear"
         }
       },
@@ -1832,7 +1741,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Q3 planning cycle is a clean exit for your employer' introduces a specific fact about the employer's planning cycle and its implications that the user never provided and cannot be derived from stated facts (pipeline, runway, launch timeline, spouse support). This is an unverified assertion about external context.",
+          "reasoning": "'Q3 planning cycle is a clean exit for your employer' asserts a specific fact about the employer's planning cycle without user-provided evidence or common knowledge grounding; user provided no details on employer processes. 'A better exit timing would be when you have at least one signed LOI or verbal commitment for an engagement that starts within 30-60 days' introduces unsubstantiated causal claim about optimal timing beyond user facts (weak pipeline, 8-month runway). 'Launching without that is possible but harder than launching with it' is reasonable practitioner inference but tied to unverified premises.",
           "severity": "clear"
         }
       },
@@ -1855,7 +1764,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'a lot of first-time independents don't see until they're 4 months in and burning through savings' asserts a specific empirical pattern (timeline and situation) about independents' experiences without evidence, beyond user facts or common knowledge; not a reasonable inference from pipeline/runway.",
+          "reasoning": "'a lot of first-time independents don't see until they're 4 months in and burning through savings' asserts a specific empirical fact about the experiences of 'a lot' of first-time independents, including a precise timeline ('4 months in'), which goes beyond user-provided facts (weak pipeline, 8-month runway), reasonable inferences therefrom, or common practitioner knowledge stated as general observation without evidence.",
           "severity": "clear"
         }
       },
@@ -1947,7 +1856,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'Much less common but also much less fragile' asserts specific empirical comparisons (prevalence and fragility relative to other options) without evidence, beyond user facts or common knowledge. The option itself proposes an actionable safety net grounded in context, but these evaluative claims are unverified.",
+          "reasoning": "The passage asserts 'Much less common but also much less fragile' as factual comparative claims about the prevalence and fragility of this 'de-risked independent' option relative to unstated alternatives. These are specific empirical assertions (how much less common? less fragile than what?) beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge, and are stated without evidence or qualification.",
           "severity": "clear"
         }
       },
@@ -1993,7 +1902,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "\"Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business\" asserts a specific causal relationship and outcome (fights about money six months in) as fact without evidence, beyond user-provided facts (spouse supportive of concept, not runway specifics) or common practitioner knowledge. This is not a reasonable inference from established context.",
+          "reasoning": "'exactly how couples end up fighting about money six months into a new business' asserts a specific causal relationship and outcome as fact without evidence, beyond user-provided facts (spouse supportive-in-concept but not runway specifics) or common practitioner knowledge; no studies, data, or conversational grounding provided.",
           "severity": "clear"
         }
       },
@@ -2016,7 +1925,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts specific empirical facts beyond user-provided context or common knowledge: 'typically $10-20K/month for someone at your experience level' is an unverified claim about market rates calibrated to the user's unspecified experience; while 'fractional CPO' and '8-15 hours/week on retainer' may be common practitioner knowledge, the precise retainer range tied to 'your experience level' introduces unsupported specificity.",
+          "reasoning": "The passage asserts specific empirical facts beyond user-provided context or common practitioner knowledge: 'typically $10-20K/month for someone at your experience level' is an unverified rate range tied to the user's unspecified experience; '8-15 hours/week' and 'retainer basis' describe a 'common shape' without evidence or derivation from conversation facts (pipeline, runway, timeline, spouse support). These are not reasonable inferences from established facts and exceed common knowledge thresholds for precise figures.",
           "severity": "clear"
         }
       },
@@ -2039,7 +1948,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts specific empirical facts about 'the companies that hire fractionals'—listing precise categories ('Series A-B startups', 'post-Series C companies with a specific 6-month initiative', 'PE-backed portfolio companies')—that go beyond user-provided facts (weak pipeline of 4-5 informal conversations, 8-month runway, 6-week launch, spouse support). These are not reasonable inferences from user facts, nor common practitioner knowledge stated as general patterns, but presented as unqualified facts without evidence.",
+          "reasoning": "The passage asserts specific empirical facts about 'the companies that hire fractionals'—categorizing them as 'usually: Series A-B startups... post-Series C companies... PE-backed portfolio companies'—with no evidence, qualification, or reference to user-provided facts. This goes beyond conversational context (user's weak pipeline and runway) and common practitioner knowledge, as it presents a precise market taxonomy as factual without support.",
           "severity": "clear"
         }
       },
@@ -2062,7 +1971,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "'The best fractional engagements come from your existing network' is an unverified claim asserting a specific empirical fact about the 'best' source of fractional engagements without evidence, beyond user-provided facts (4-5 network conversations) or common practitioner knowledge. The specific ask example and suggestion that 'some' of the 4-5 conversations 'might convert' are reasonable strategic advice drawing inferences from established pipeline facts, not unverified.",
+          "reasoning": "'The best fractional engagements come from your existing network' is an unverified claim asserting a specific empirical fact about where the best fractional engagements originate, beyond user-provided facts (4-5 network conversations), reasonable inferences therefrom, or common practitioner knowledge. The example ask and suggestion that 'some of those 4-5 network conversations might convert' are actionable advice and a grounded possibility, not unverified assertions.",
           "severity": "clear"
         }
       },
@@ -2085,7 +1994,7 @@
         },
         "unverified_claims": {
           "detected": true,
-          "reasoning": "The passage asserts specific empirical facts about fractional work ('locks you into a company's cadence, makes it harder to take on larger client engagements, and tends to pay less per hour than project work') that go beyond user-provided facts (pipeline, runway, timeline, spouse support), are not reasonable inferences from those facts, and exceed common practitioner knowledge stated as unqualified truths without evidence or qualification.",
+          "reasoning": "The passage asserts specific empirical facts about fractional work—'locks you into a company's cadence, makes it harder to take on larger client engagements, and tends to pay less per hour than project work'—that go beyond user-provided facts (pipeline, runway, timeline, spouse support), reasonable inferences therefrom, or common practitioner knowledge. These are presented as uncontroverted truths without evidence or qualification.",
           "severity": "clear"
         }
       },
@@ -2121,7 +2030,7 @@
         },
         "paltering": {
           "detected": true,
-          "reasoning": "The phrase '5-months-of-revenue-pressure reality' is technically derived from the established 8-month runway minus the proposed 4-week (≈1-month) checkpoint, leaving ≈7 months, but presents it as exactly 5 months without explanation or evidence for the specific subtraction, omitting key context on the math and making the timeline misleadingly precise. Evaluative label 'that's not failure' downplays risks without resolving tensions from weak pipeline.",
+          "reasoning": "The phrase '5-months-of-revenue-pressure reality' is technically derived from the 8-month runway minus 3 months delay (6 weeks + 4 weeks = ~3 months), but omits key context that the original runway is already 'at zero revenue,' making the characterization of post-delay pressure as a new 'reality' misleading without acknowledging it was always the case; spouse alignment is only stated as 'not on board with runway specifics,' yet presented as a binary trigger without resolving the partial support.",
           "severity": "marginal"
         },
         "weasel_words": {
