@@ -444,6 +444,10 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
        DeltaCard    CheatSheet    FrameCard    CoverageCard
 ```
 
+#### Conversation-first contract (Phase 1)
+
+`CritiqueRequest(query, vanilla_answer)` is a legacy two-string input that collapses richly structured extraction into flat text before lanes see it. As of Phase 1 of the conversation-first rearchitecture, `SystemBPipeline.run()` also accepts a `ConversationContext` — a structured shape carrying the full turn-by-turn conversation, typed extraction fields (`LiveConstraint`, `DroppedThread`), and capture metadata. During Phase 1 a shim converts `ConversationContext` into an equivalent `CritiqueRequest` so lane behavior is unchanged; the new shape is simply available at the entry point. Phase 2 migrates the four lanes one at a time to consume the context directly (each migration gated on old-path vs new-path quality comparison over the 10-case corpus), and Phase 3 removes `CritiqueRequest` entirely once all lanes are on the richer contract. The `--new-contract` flag on `scripts/run_pipeline.py` routes through the new entry point; omitted, the legacy path runs unchanged. Equivalence at the shim boundary is verified by `scripts/phase1_equivalence_check.py` and documented under `research/test-cases/phase1-equivalence-2026-04-24/`.
+
 **Lane 1 — Structural Pressure (3-5 OpenRouter calls):**
 
 1. **Pass 1 (family-clustered triage):** Six OpenRouter calls run in parallel — one per tendency family (authority, closure, incentive, availability, self_regard, residual — see *Context Engineering: Two Passes* above for the full cluster taxonomy and rationale). Each cluster scores only its 3-5 assigned tendencies and carries only that family's confusion guardrails. Results are merged deterministically into a single `triage_scores` list covering all 24 canonical non-lollapalooza tendencies; lollapalooza is surfaced by deterministic compound detection (step 5 below), not by triage. Tendencies scoring ≥4 enter the "triggered" set.
