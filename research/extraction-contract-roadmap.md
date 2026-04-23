@@ -223,7 +223,17 @@ See PR #13 on GitHub. Shipped ≤120-char terse-form rule + infrastructure. Does
 
 ---
 
-### PR #3 — `synthesized_position` as structured `Position` object [NOT STARTED]
+### PR #3 — `synthesized_position` as structured `Position` object [PAUSED 2026-04-23]
+
+**Minimal attempt tried and reverted.** Even a stripped-down variant (keep string, add mechanical "final assistant turn" anchor + ≤300-char rule) regressed the target field on BOTH char-level (0.216 → 0.147) and semantic embedding-cosine (0.835 → 0.735). Full Position object would add more prompt content, almost certainly making this worse.
+
+**Why it failed:** synthesized_position's baseline outputs are moderately long (~700-900 chars of substantive content). Terse-form discipline that worked on decision_situation and original_framing (which had very verbose ~400+ char baselines) doesn't translate here — forcing short restatements amplifies paraphrase drift.
+
+**Doctrine:** terse-form is not universally applicable. Works on verbose fields where canonical compressible form exists; fails on content-heavy fields like recommendations.
+
+**What unblocks this PR:** Track A decomposition. Same structural unblock as PR #1b and PR #2.
+
+**Evidence:** `research/stability-runs/contract-phase3-attempt-minimal-2026-04-23/README.md`.
 
 **Blocked on:** nothing (independent of canonical_key pattern). Can ship in parallel with PR #1b / #2 / #4a.
 
@@ -317,7 +327,13 @@ See PR #13 on GitHub. Shipped ≤120-char terse-form rule + infrastructure. Does
 
 ---
 
-### PR #5 — `reasoning_passages.move_type` enum + generalize hard-fail [NOT STARTED]
+### PR #5 — `reasoning_passages.move_type` enum + generalize hard-fail [NOT STARTED — DEFERRED]
+
+**Status:** not attempted 2026-04-23. Given PR #1b, PR #2, and PR #3 all hit the same prompt-saturation wall, PR #5's breaking schema change (`reasoning_passages` from `list[str]` to `list[dict]`) plus the enum addition is almost certainly going to hit the same wall. Deferring to the Track A decomposition window so the enum addition can be in a dedicated LLM call.
+
+**Valid independent work that could ship NOW:** the "generalize retry-then-drop" infrastructure refactor (pure Python, no prompt change). Could ship as a standalone small PR if desired, but no acceptance-gate work needed since behavior is unchanged. Not prioritized as part of this extraction contract cycle.
+
+**What unblocks this PR:** Track A decomposition. Same unblock as #1b, #2, #3.
 
 **Blocked on:** nothing (independent). Could ship anytime after PR #1.
 
