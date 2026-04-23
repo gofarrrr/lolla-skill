@@ -114,10 +114,10 @@ Not TDD (empirical via corpus run):
   - [x] 6.3 Evidence path committed.
   - **Open question for PM:** proceed to 7.0/8.0 on this CR-level evidence, or run a limited pipeline-level spot-check despite the temperature-0.2 noise? See checkpoint report.
 
-- [ ] 7.0 Documentation
-  - [ ] 7.1 Update `HOW_IT_WORKS.md` §Step 3 — add a subsection "Conversation-first contract (Phase 1)" describing the new `ConversationContext` shape, the shim, and the deprecation plan for `CritiqueRequest`.
-  - [ ] 7.2 Update `research/conversation-first-rearchitecture-handover.md` §"What's shipped" to note Phase 1 is merged (do this when the PR merges, not before).
-  - [ ] 7.3 Add a brief note in `SKILL.md` or leave unchanged (Claude's orchestration is unaffected — the flag change is internal to the Python pipeline).
+- [x] 7.0 Documentation
+  - [x] 7.1 `HOW_IT_WORKS.md` §Step 3 now has a "Conversation-first contract (Phase 1)" subsection right after the lane-entry diagram. Explains `ConversationContext` coexists with `CritiqueRequest`, the shim preserves old behavior, Phase 2 migrates lanes one at a time, Phase 3 removes `CritiqueRequest`, `--new-contract` flag, and points to the equivalence evidence.
+  - [ ] 7.2 **Deferred to post-merge** — handover `What's shipped` update lands when the PR merges (prevents rot if the PR is revised).
+  - [x] 7.3 `SKILL.md` left unchanged — Claude's orchestration is unaffected; `--new-contract` is internal to the Python pipeline.
 
 - [ ] 8.0 Ship
   - [ ] 8.1 Run full test suite: `python3 -m pytest tests/ -v`. All green.
