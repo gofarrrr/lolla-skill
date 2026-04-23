@@ -134,6 +134,6 @@ Update the file after completing each sub-task, not just after completing an ent
   - [x] 5.8 **If ANY axis fails**: STOP. Do not proceed to PR. Update `research/extraction-contract-roadmap.md` PR #1 section with a failure note (which axis, measured value, hypothesis). Share findings with the user. Do NOT silently iterate on the prompt. → GATE HIT — canonical_key Jaccard 0.466 Mode C / 0.332 cross-capture, both below target. Surfaced to user.
   - [x] 5.9 ~~If all axes pass: commit the post-ship evidence~~ → Gate failed; executed diagnostic C-medium path instead: stripped canonical_key prompt rules, re-measured, confirmed context-pollution theory, committed diagnostic evidence.
   - [x] 5.10 ~~Ask the user for approval before pushing~~ → User approved C-medium ship after diagnostic findings.
-  - [ ] 5.11 Push the branch: `git push -u origin feat/extraction-contract-phase-1-live-constraints`.
-  - [ ] 5.12 Open PR. Title reflects re-scoped C-medium: terse canonical form + validator infrastructure + harness metrics (no canonical_key stability claim — deferred to PR #1b).
+  - [x] 5.11 Push the branch: `git push -u origin feat/extraction-contract-phase-1-live-constraints`.
+  - [x] 5.12 Open PR — https://github.com/gofarrrr/lolla-skill/pull/13. Title: `feat(extract): live_constraints terse canonical form (phase 1)`. C-medium scope.
   - [ ] 5.13 After merge: flip roadmap PR #1 status `IN REVIEW` → `SHIPPED (commit: <merge-hash>)`. Schedule PR #1b for canonical_key field + embedding metric.
