@@ -92,28 +92,27 @@ Not TDD (empirical via corpus run):
   - [x] 3.5 One real divergence caught by `test_full_case_constraints_framing_threads_long_assistant_text` — the legacy `_extract_assistant_responses` strips per-turn content but the shim was joining raw `Turn.text`. Fixed: shim now strips per assistant-turn before joining. *This is exactly the class of bug the equivalence test exists to catch; good signal the test is doing its job.*
   - [x] 3.6 Full suite: **157 passed, 93 subtests passed. Zero regression.** (147 before + 10 new shim tests.)
 
-- [ ] 4.0 CLI: add `--new-contract` flag
-  - [ ] 4.1 Update `scripts/run_pipeline.py` argparse to add `--new-contract` (boolean flag, default false).
-  - [ ] 4.2 When flag is set, build `ConversationContext` via `load_conversation_context()` and pass to `pipeline.run()`. When not set, use the existing `CritiqueRequest` path.
-  - [ ] 4.3 Help text: "Use the new ConversationContext contract. Default: off (uses legacy CritiqueRequest). During Phase 1 these paths are behaviorally equivalent; Phase 2+ lane migrations will make the new path produce better lane output."
+- [x] 4.0 CLI: add `--new-contract` flag
+  - [x] 4.1 `scripts/run_pipeline.py` argparse has the boolean flag (default false). Validation: flag requires both `--extraction-file` and `--conversation-file`; mismatched usage returns a structured error.
+  - [x] 4.2 When set, `load_conversation_context(extraction_path, conversation_path)` builds the context and passes it to `pipeline.run(context)`. Legacy path untouched.
+  - [x] 4.3 Help text includes: "Use the new ConversationContext contract (Phase 1). Default: off (legacy CritiqueRequest path). During Phase 1 these paths are behaviorally equivalent; Phase 2+ lane migrations will let the new path produce richer lane output. Requires --extraction-file and --conversation-file."
 
-- [ ] 5.0 Build `scripts/compare_outputs.py`
-  - [ ] 5.1 Purpose: take two result.json files (from old-path and new-path runs), diff the meaningful fields, report match/mismatch.
-  - [ ] 5.2 Fields to diff: `detected_tendencies`, `delta_card.findings`, `companion_cheat_sheet.anchors`, `frame_pressure_card.reframings`, `structural_coverage_card.gap_questions`, `audit_summary.triggered_tendencies`. Don't diff timing fields (they'll differ by design) or boundary_call metadata.
-  - [ ] 5.3 Output format: per-field match/mismatch summary + full diff on mismatches.
-  - [ ] 5.4 RED: write test in `tests/test_compare_outputs.py` — two identical result files produce "all match" output.
-  - [ ] 5.5 GREEN: implement.
-  - [ ] 5.6 RED: write test — two result files that differ in `detected_tendencies` produce mismatch on that field.
-  - [ ] 5.7 GREEN: verify.
+- [x] 5.0 Build `scripts/compare_outputs.py`
+  - [x] 5.1 `scripts/compare_outputs.py` takes two result.json paths, returns exit 0 on match / 1 on mismatch. Also importable: `compare_results(left, right) -> Comparison`.
+  - [x] 5.2 Compares exactly the 6 fields listed: `detected_tendencies`, `delta_card.findings`, `companion_cheat_sheet.anchors`, `frame_pressure_card.reframings`, `structural_coverage_card.gap_questions`, `audit_summary.triggered_tendencies`. All timing + `boundary_calls` metadata ignored.
+  - [x] 5.3 Output: per-field MATCH/DIFFER line + summary + per-field diff on mismatches.
+  - [x] 5.4 RED→GREEN: `test_identical_payloads_all_match`.
+  - [x] 5.5 Implemented.
+  - [x] 5.6 RED→GREEN: `test_mismatch_on_detected_tendencies`, `test_mismatch_on_delta_card_findings`, `test_timing_differences_are_ignored`, `test_missing_lane_cards_treated_as_empty`, `test_render_report_labels_match_and_diverge`, `test_main_exit_codes`.
+  - [x] 5.7 7/7 tests green; full suite 164 passed (157 + 7 new).
 
-- [ ] 6.0 End-to-end equivalence test on 10-case corpus
-  - [ ] 6.1 For each of the 10 cases at `research/test-cases/case_*_conversation.txt`:
-    - Extract: `python3 scripts/run_extract.py --conversation-file <path> --output-file /tmp/case_extraction.json`
-    - Old path: `python3 scripts/run_pipeline.py --extraction-file /tmp/case_extraction.json --conversation-file <conv> --output-file /tmp/old_result.json --skip-revision`
-    - New path: `python3 scripts/run_pipeline.py --extraction-file /tmp/case_extraction.json --conversation-file <conv> --output-file /tmp/new_result.json --skip-revision --new-contract`
-    - Diff: `python3 scripts/compare_outputs.py /tmp/old_result.json /tmp/new_result.json`
-  - [ ] 6.2 Expected: zero meaningful diffs. If diffs appear, they're a bug in `_context_to_critique` — align the logic.
-  - [ ] 6.3 Commit the 10-case equivalence evidence to `research/test-cases/phase1-equivalence-2026-MM-DD/`.
+- [~] 6.0 End-to-end equivalence — **scope adjusted; reported to PM for confirmation**
+  - *Issue surfaced:* `engine/system_b/boundary_provider.py:82` sets `temperature=0.2` on every OpenRouter call. The pipeline is non-deterministic by design, so literal "bit-identical pipeline output" across two runs on the same input is unachievable — even old-path vs old-path on the same `CritiqueRequest` would produce diffs that aren't shim bugs. Any divergence caught by pipeline-level comparison would conflate shim correctness with LLM noise.
+  - *Scope adjustment:* the architectural commitment Phase 1 makes is that `_context_to_critique(ctx)` produces bit-identical `CritiqueRequest` to what `_map_to_critique_request(extraction_dict, assistant_text)` produces. That's testable deterministically at the shim boundary without LLM calls.
+  - [x] 6.1 `scripts/phase1_equivalence_check.py` runs this check against all 10 corpus conversations. For each: build `ConversationContext` via the loader, apply the shim, build the legacy CR via the original mapping function on the same extraction + `_extract_assistant_responses(conversation_text)`, compare `query` + `vanilla_answer` byte-by-byte.
+  - [x] 6.2 **Result: 10/10 cases match bit-for-bit on both `query` and `vanilla_answer`.** Evidence committed to `research/test-cases/phase1-equivalence-2026-04-24/shim-equivalence-report.md`.
+  - [x] 6.3 Evidence path committed.
+  - **Open question for PM:** proceed to 7.0/8.0 on this CR-level evidence, or run a limited pipeline-level spot-check despite the temperature-0.2 noise? See checkpoint report.
 
 - [ ] 7.0 Documentation
   - [ ] 7.1 Update `HOW_IT_WORKS.md` §Step 3 — add a subsection "Conversation-first contract (Phase 1)" describing the new `ConversationContext` shape, the shim, and the deprecation plan for `CritiqueRequest`.

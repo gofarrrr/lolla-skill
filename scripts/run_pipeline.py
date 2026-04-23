@@ -293,7 +293,27 @@ def main() -> int:
         "--conversation-file",
         help="Path to raw conversation transcript (provides full context for BI evaluation)",
     )
+    parser.add_argument(
+        "--new-contract",
+        action="store_true",
+        help=(
+            "Use the new ConversationContext contract (Phase 1). "
+            "Default: off (legacy CritiqueRequest path). During Phase 1 these paths "
+            "are behaviorally equivalent; Phase 2+ lane migrations will let the new "
+            "path produce richer lane output. "
+            "Requires --extraction-file and --conversation-file."
+        ),
+    )
     args = parser.parse_args()
+
+    if args.new_contract and not (args.extraction_file and args.conversation_file):
+        print(json.dumps({
+            "status": "error",
+            "error": (
+                "--new-contract requires both --extraction-file and --conversation-file"
+            ),
+        }))
+        return 1
 
     # Load env: explicit flag → project .claude/lolla.env → repo .env → ~/.config/lolla/.env
     if args.env_file:
@@ -392,11 +412,18 @@ def main() -> int:
     if pipeline._bundle_selector is not None:
         _compiled_chunk_count = len(pipeline._bundle_selector._substrate.all_chunks())
 
-    # Run pipeline
-    request = CritiqueRequest(query=query, vanilla_answer=vanilla_answer)
+    # Run pipeline — Phase 1: either legacy CritiqueRequest or new ConversationContext
+    if args.new_contract:
+        from system_b.conversation_loader import load_conversation_context
+        pipeline_input = load_conversation_context(
+            extraction_path=Path(args.extraction_file),
+            conversation_path=Path(args.conversation_file),
+        )
+    else:
+        pipeline_input = CritiqueRequest(query=query, vanilla_answer=vanilla_answer)
 
     try:
-        result = pipeline.run(request)
+        result = pipeline.run(pipeline_input)
     except Exception as exc:
         print(json.dumps({
             "status": "error",
