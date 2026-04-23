@@ -1,0 +1,224 @@
+{
+  "n_runs": 3,
+  "run_ids": [
+    "20260423T102943Zdrift0",
+    "20260423T102952Zdrift1",
+    "20260423T102957Zdrift2"
+  ],
+  "aggregate": {
+    "decision_situation": {
+      "mean_similarity": 0.899,
+      "min_similarity": 0.848,
+      "max_similarity": 1.0
+    },
+    "original_framing": {
+      "mean_similarity": 0.278,
+      "min_similarity": 0.018,
+      "max_similarity": 0.662
+    },
+    "synthesized_position": {
+      "mean_similarity": 0.318,
+      "min_similarity": 0.195,
+      "max_similarity": 0.475
+    },
+    "live_constraints_canonical_key": {
+      "mean_jaccard": null,
+      "min_jaccard": null,
+      "max_jaccard": null,
+      "undefined_pair_count": 3
+    },
+    "live_constraints_canonical_key_embedding": {
+      "mean_cosine": null,
+      "min_cosine": null,
+      "max_cosine": null,
+      "undefined_pair_count": 3
+    },
+    "live_constraints": {
+      "mean_jaccard": 0.306,
+      "min_jaccard": 0.125,
+      "max_jaccard": 0.667
+    },
+    "reasoning_passages": {
+      "mean_jaccard": 0.274,
+      "min_jaccard": 0.25,
+      "max_jaccard": 0.286
+    },
+    "dropped_threads": {
+      "mean_jaccard": 0.333,
+      "min_jaccard": 0.0,
+      "max_jaccard": 1.0
+    },
+    "fabricated_count_per_run": [
+      1,
+      0,
+      1
+    ],
+    "capture_health_per_run": [
+      "good",
+      "good",
+      "good"
+    ],
+    "invalid_key_rate_per_run": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "invalid_key_counts_per_run": [
+      4,
+      5,
+      5
+    ],
+    "total_key_counts_per_run": [
+      4,
+      5,
+      5
+    ],
+    "invalid_key_rate_overall": 1.0
+  },
+  "pairs": [
+    {
+      "a": "20260423T102943Zdrift0",
+      "b": "20260423T102952Zdrift1",
+      "decision_situation": {
+        "similarity": 0.848,
+        "len_a": 164,
+        "len_b": 178
+      },
+      "original_framing": {
+        "similarity": 0.018,
+        "len_a": 203,
+        "len_b": 247
+      },
+      "synthesized_position": {
+        "similarity": 0.195,
+        "len_a": 381,
+        "len_b": 551
+      },
+      "live_constraints": {
+        "count_a": 4,
+        "count_b": 5,
+        "jaccard": 0.125
+      },
+      "live_constraints_canonical_key": {
+        "count_a": 4,
+        "count_b": 5,
+        "jaccard": null
+      },
+      "live_constraints_canonical_key_embedding": {
+        "count_a": 0,
+        "count_b": 0,
+        "mean_cosine": null
+      },
+      "reasoning_passages": {
+        "count_a": 5,
+        "count_b": 5,
+        "jaccard": 0.25
+      },
+      "dropped_threads": {
+        "count_a": 2,
+        "count_b": 1,
+        "jaccard": 0.0
+      },
+      "fabricated_count": {
+        "a": 1,
+        "b": 0
+      }
+    },
+    {
+      "a": "20260423T102943Zdrift0",
+      "b": "20260423T102957Zdrift2",
+      "decision_situation": {
+        "similarity": 0.848,
+        "len_a": 164,
+        "len_b": 178
+      },
+      "original_framing": {
+        "similarity": 0.153,
+        "len_a": 203,
+        "len_b": 345
+      },
+      "synthesized_position": {
+        "similarity": 0.284,
+        "len_a": 381,
+        "len_b": 528
+      },
+      "live_constraints": {
+        "count_a": 4,
+        "count_b": 5,
+        "jaccard": 0.125
+      },
+      "live_constraints_canonical_key": {
+        "count_a": 4,
+        "count_b": 5,
+        "jaccard": null
+      },
+      "live_constraints_canonical_key_embedding": {
+        "count_a": 0,
+        "count_b": 0,
+        "mean_cosine": null
+      },
+      "reasoning_passages": {
+        "count_a": 5,
+        "count_b": 4,
+        "jaccard": 0.286
+      },
+      "dropped_threads": {
+        "count_a": 2,
+        "count_b": 1,
+        "jaccard": 0.0
+      },
+      "fabricated_count": {
+        "a": 1,
+        "b": 1
+      }
+    },
+    {
+      "a": "20260423T102952Zdrift1",
+      "b": "20260423T102957Zdrift2",
+      "decision_situation": {
+        "similarity": 1.0,
+        "len_a": 178,
+        "len_b": 178
+      },
+      "original_framing": {
+        "similarity": 0.662,
+        "len_a": 247,
+        "len_b": 345
+      },
+      "synthesized_position": {
+        "similarity": 0.475,
+        "len_a": 551,
+        "len_b": 528
+      },
+      "live_constraints": {
+        "count_a": 5,
+        "count_b": 5,
+        "jaccard": 0.667
+      },
+      "live_constraints_canonical_key": {
+        "count_a": 5,
+        "count_b": 5,
+        "jaccard": null
+      },
+      "live_constraints_canonical_key_embedding": {
+        "count_a": 0,
+        "count_b": 0,
+        "mean_cosine": null
+      },
+      "reasoning_passages": {
+        "count_a": 5,
+        "count_b": 4,
+        "jaccard": 0.286
+      },
+      "dropped_threads": {
+        "count_a": 1,
+        "count_b": 1,
+        "jaccard": 1.0
+      },
+      "fabricated_count": {
+        "a": 0,
+        "b": 1
+      }
+    }
+  ]
+}

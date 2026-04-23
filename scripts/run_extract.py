@@ -198,9 +198,11 @@ Your job is to determine:
 A conversation is "strategic" when the AI provides advice, recommendations, or \
 analysis that could influence a material decision — business strategy, architecture \
 choices, hiring, investment, product direction, vendor selection, organizational \
-design, technology tradeoffs, negotiation positioning, risk assessment, or similar. \
-It is NOT strategic when it is purely technical execution (code debugging, syntax \
-questions, build errors), factual lookup, creative writing, or casual conversation.
+design, technology tradeoffs, negotiation positioning, risk assessment, or personal \
+decisions with material stakes (career, financial, family, health, relationship, \
+caregiving, ethical), or similar. It is NOT strategic when it is purely technical \
+execution (code debugging, syntax questions, build errors), factual lookup, creative \
+writing, or casual conversation.
 
 If the conversation is NOT strategic, respond with:
 ```json
