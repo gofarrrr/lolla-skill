@@ -14,6 +14,7 @@ from .authority_pilot_bridge import AuthorityPilotBridge, AuthorityPilotBridgeRe
 from concurrent.futures import ThreadPoolExecutor
 
 from .boundary_provider import BoundaryCallMetadata, load_boundary_client_from_env
+from .conversation_context import ConversationContext
 from .companion import CompanionCard, DetectedModel, FingerprintMove, FingerprintPayload, build_companion_card
 from .frame_pressure import (
     FramePressureCard,
@@ -122,6 +123,80 @@ class BoundaryClient(Protocol):
 class CritiqueRequest:
     query: str
     vanilla_answer: str
+
+
+# Phase 1 shim: mirrors scripts/run_extract.py::_map_to_critique_request so the
+# new ConversationContext entry point produces bit-identical lane inputs to
+# the legacy path. Kept inline (not imported from scripts/) because engine/
+# should not depend on scripts/. Deleted in Phase 3 alongside CritiqueRequest
+# once lanes no longer consume the legacy shape.
+_SHIM_VANILLA_ANSWER_CHAR_CAP = 40_000
+_SHIM_ASSISTANT_TEXT_JOIN = "\n\n---\n\n"
+
+
+def _context_to_critique(context: ConversationContext) -> CritiqueRequest:
+    extraction = context.extraction
+
+    query_parts = [extraction.decision_situation]
+
+    if extraction.live_constraints:
+        constraint_lines = []
+        for c in extraction.live_constraints:
+            status = c.status or "active"
+            weight = c.weight or "situational"
+            tag = (
+                f"{status.upper()}/{weight.upper()}"
+                if status != "active"
+                else status.upper()
+            )
+            constraint_lines.append(f"- [{tag}] {c.constraint}")
+        query_parts.append(
+            "\nConstraints stated during conversation:\n" + "\n".join(constraint_lines)
+        )
+
+    if extraction.original_framing:
+        query_parts.append(f"\nOriginal framing: {extraction.original_framing}")
+
+    if extraction.dropped_threads:
+        thread_lines = []
+        for d in extraction.dropped_threads:
+            line = (
+                f"- {d.thread} (raised by {d.raised_by or '?'}, "
+                f"status: {d.status or '?'})"
+            )
+            if d.superseded_by:
+                line += f" → superseded by: {d.superseded_by}"
+            thread_lines.append(line)
+        query_parts.append(
+            "\nDropped threads (raised but unresolved):\n" + "\n".join(thread_lines)
+        )
+
+    query = "\n".join(query_parts)
+
+    # Strip per-turn to match scripts/run_extract.py::_extract_assistant_responses,
+    # which calls `content.strip()` on each turn body before joining. The loader
+    # already strips, but hand-built ConversationContexts may not — belt and braces.
+    assistant_texts = [
+        t.text.strip() for t in context.turns if t.speaker == "assistant"
+    ]
+    assistant_text = _SHIM_ASSISTANT_TEXT_JOIN.join(s for s in assistant_texts if s)
+
+    if assistant_text and len(assistant_text) > 200:
+        vanilla_answer = (
+            f"SYNTHESIZED POSITION:\n{extraction.synthesized_position}\n\n"
+            f"FULL ASSISTANT REASONING:\n{assistant_text}"
+        )
+        if len(vanilla_answer) > _SHIM_VANILLA_ANSWER_CHAR_CAP:
+            vanilla_answer = vanilla_answer[:_SHIM_VANILLA_ANSWER_CHAR_CAP]
+    else:
+        vanilla_parts = [extraction.synthesized_position]
+        if extraction.reasoning_passages:
+            vanilla_parts.append("\n\nKey reasoning passages from the conversation:")
+            for i, p in enumerate(extraction.reasoning_passages, 1):
+                vanilla_parts.append(f"\n[{i}] \"{p}\"")
+        vanilla_answer = "\n".join(vanilla_parts)
+
+    return CritiqueRequest(query=query, vanilla_answer=vanilla_answer)
 
 
 @dataclass(frozen=True)
@@ -372,7 +447,15 @@ class SystemBPipeline:
             config=config,
         )
 
-    def run(self, request: CritiqueRequest) -> PipelineResult:
+    def run(
+        self, request: CritiqueRequest | ConversationContext
+    ) -> PipelineResult:
+        # Phase 1 dispatch: ConversationContext is the new entry point; for
+        # now we shim it into the legacy CritiqueRequest shape so lane code
+        # stays untouched. Phase 2 migrates each lane to consume the context
+        # directly; Phase 3 removes CritiqueRequest entirely.
+        if isinstance(request, ConversationContext):
+            request = _context_to_critique(request)
         run_started = time.monotonic()
         boundary_calls: list[BoundaryCallTrace] = []
         pass1_started = time.monotonic()

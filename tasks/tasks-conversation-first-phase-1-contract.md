@@ -84,22 +84,13 @@ Not TDD (empirical via corpus run):
   - *9/9 loader tests pass; full suite 147 passed (no regression).*
   - *Corpus sanity check: loader handles all 10 cases at `research/test-cases/case_*_conversation.txt`; declared-vs-parsed turn counts match for every case (header "N turns" → N user + N assistant entries).*
 
-- [ ] 3.0 Shim: make `SystemBPipeline.run()` accept either shape
-  - [ ] 3.1 Read the full `SystemBPipeline.run()` method in `engine/system_b/pipeline.py` to understand the shape.
-  - [ ] 3.2 Add an overload or dispatch at the top of `run()`:
-    ```python
-    def run(self, request: CritiqueRequest | ConversationContext) -> PipelineResult:
-        if isinstance(request, ConversationContext):
-            # Build a CritiqueRequest from the context for legacy lane delegation
-            critique = _context_to_critique(request)
-        else:
-            critique = request
-        # ... existing logic uses `critique` ...
-    ```
-  - [ ] 3.3 Add `_context_to_critique(context: ConversationContext) -> CritiqueRequest` that builds `query + vanilla_answer` from the conversation structure using the SAME logic as `_map_to_critique_request` in `run_extract.py`. Copy that logic; don't change it.
-  - [ ] 3.4 RED: write test — `SystemBPipeline.run(critique_request)` and `SystemBPipeline.run(conversation_context)` produce identical `PipelineResult` when given equivalent inputs. Mock the `BoundaryClient` so we don't make real API calls in the test.
-  - [ ] 3.5 GREEN: verify. If test fails, likely the `_context_to_critique` logic diverges from `_map_to_critique_request` — align them.
-  - [ ] 3.6 Run the existing 123-test suite: `python3 -m pytest tests/ -v`. Zero regression expected.
+- [x] 3.0 Shim: make `SystemBPipeline.run()` accept either shape
+  - [x] 3.1 Read full `run()` method (lines 375–601 in `engine/system_b/pipeline.py`) + `CritiqueRequest` (lines 122–124) + `_map_to_critique_request` (lines 414–482 in `scripts/run_extract.py`) + `_extract_assistant_responses` (lines 315–326, separator `"\n\n---\n\n"`).
+  - [x] 3.2 Dispatch added at the top of `run()` (lines 375–383 in pipeline.py): `if isinstance(request, ConversationContext): request = _context_to_critique(request)`. Type annotation updated to `CritiqueRequest | ConversationContext`.
+  - [x] 3.3 `_context_to_critique` added to `pipeline.py` (module-level, near `CritiqueRequest`, with delete-in-Phase-3 comment). Logic mirrors `scripts/run_extract.py::_map_to_critique_request` on both the query assembly (decision + tagged constraints + framing + dropped threads) and the vanilla_answer assembly (full-mode when assistant_text > 200 chars, fallback mode otherwise). Per-assistant-turn `.strip()` added to match `_extract_assistant_responses`'s behavior — caught by the equivalence test.
+  - [x] 3.4 RED→GREEN: `tests/test_pipeline_shim_equivalence.py`. Two test classes: (a) bit-identical equivalence — compares `_context_to_critique(ctx)` against `_map_to_critique_request(equivalent_dict, assistant_text)` on 8 shape variants (empty/full, active/dropped constraints, with/without framing, with/without superseded_by, short/long assistant text, multi-turn); (b) dispatch — `run()` routes `ConversationContext` through the shim and routes `CritiqueRequest` without invoking it (patched spy).
+  - [x] 3.5 One real divergence caught by `test_full_case_constraints_framing_threads_long_assistant_text` — the legacy `_extract_assistant_responses` strips per-turn content but the shim was joining raw `Turn.text`. Fixed: shim now strips per assistant-turn before joining. *This is exactly the class of bug the equivalence test exists to catch; good signal the test is doing its job.*
+  - [x] 3.6 Full suite: **157 passed, 93 subtests passed. Zero regression.** (147 before + 10 new shim tests.)
 
 - [ ] 4.0 CLI: add `--new-contract` flag
   - [ ] 4.1 Update `scripts/run_pipeline.py` argparse to add `--new-contract` (boolean flag, default false).
