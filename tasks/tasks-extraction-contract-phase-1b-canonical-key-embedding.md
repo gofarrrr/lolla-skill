@@ -96,10 +96,10 @@ As each sub-task completes, change `- [ ]` → `- [x]` in this file. Update the 
   - [ ] 0.3 Verify `_validate_canonical_key` and `_apply_canonical_key_validation` exist in `scripts/run_extract.py` (carried from PR #1).
   - [ ] 0.4 Verify harness `--from-extractions` mode + canonical_key Jaccard + `invalid_key_rate` exist in `scripts/stability_check.py`.
 
-- [ ] 1.0 Design decisions — document choices in task file notes before writing code
-  - [ ] 1.1 Pick embedding source (local sentence-transformer vs remote API). If autonomous, default to local `sentence-transformers/all-MiniLM-L6-v2`. Document the pinned version and fallback plan if model not installed.
-  - [ ] 1.2 Pick metric form (pairwise mean cosine vs clustered Jaccard vs both). Default: both, pairwise primary.
-  - [ ] 1.3 Draft condensed canonical_key prompt text (≤250 chars). Share with user before committing if in interactive mode.
+- [x] 1.0 Design decisions — DOCUMENTED
+  - [x] 1.1 Embedding source: **OpenAI `text-embedding-3-small` via existing `openai` Python client.** Rationale: `sentence-transformers` not installed; installing adds ~500MB; `openai` v2.29.0 already present; `OPENAI_API_KEY` already in `.env`; existing `boundary_provider.py` has OpenAI class method; cost is negligible (~$0.00005 per slug).
+  - [x] 1.2 Metric form: **pairwise mean cosine primary.** Clustered Jaccard deferred (simpler primary number is better for a gate).
+  - [x] 1.3 Condensed canonical_key prompt text: draft below, ~240 chars. Applied in task 4.3.
 
 - [ ] 2.0 Add embedding-cosine infrastructure (TDD)
   - [ ] 2.1 Install dependency if needed: `pip install sentence-transformers` (or document OpenAI SDK path).
