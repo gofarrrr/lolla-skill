@@ -68,21 +68,23 @@ Cost: 10 cases × 2 paths × 3 runs × ~$0.05-0.15/run ≈ **$3-9 per Phase 2 PR
 
 Any of these on any case = **STOP, diagnose, do not ship**.
 
-### Proposed thresholds for PR 2a (Lane 3)
+### Thresholds for PR 2a (Lane 3) — approved policy
 
 | Axis | Target | Rationale |
 |---|---|---|
-| Aggregate `dropped_frame_elements_rate` | new-path ≤ old-path (within 5% tolerance band) | Main expected improvement — new path sees actual user text, less likely to hallucinate evidence |
+| Aggregate `dropped_frame_elements_rate` | new-path ≤ old-path **within 5% tolerance band** | Drop rate is a guard against catastrophic failure, not an improvement target. The migration's real wins show up in qualitative read + `frame_elements_count` stability; drop rate just can't collapse. |
 | `frame_elements_count` per case | within ±2 of old-path median across 3 samples | Stability check — we don't want the new path to suddenly produce many more or fewer elements |
-| Qualitative human read | ≥ 2 of 3 cases rated "new ≥ old" | PM judgment call; 2/3 = majority, 3/3 = strong |
+| Qualitative human read | ≥ 2 of 3 cases rated "new ≥ old" | Majority bar on human judgment |
 | Negative check | zero trips on any case | Hard blocker |
 
-**Open product-level questions for PM** (would appreciate steer before PR 2a executes):
+**Partial-regression policy (net-positive with mandatory diagnosis):**
 
-1. Should the drop-rate threshold be "strict ≤" (new < old on any margin) or "within 5% tolerance" (absorb noise)?
-2. N=3 samples × 2 paths × 10 cases = $3-9 per PR. Acceptable, or cut to N=2 ($2-6)?
-3. Are the 3 qualitative cases (messy, clean, edge) the right variance axis, or should we pick by a different criterion?
-4. If the new path is WORSE on 1-2 cases but better overall, does that still ship as net-positive, or does any regression hold?
+If any case regresses on any metric, the PR description MUST name a specific hypothesis for why that case regressed. No "within noise" hand-waving — each regression gets a named tradeoff. Two or more undiagnosed regressions = block. Diagnosed regressions with a stated tradeoff = ship. Reasoning: Lane 3 migration will expose something real about how the lane reacts to richer inputs; regressions are information, not just failure. Ship with honesty, not stasis.
+
+**Operational protocol (approved):**
+- Sample size **N=3** per path per case (cost ~$3-9 per PR is noise-level; weaker statistics aren't worth cutting).
+- Qualitative cases: `messy_three_problems` (multi-thread frame drift), `startup_pivot` (clean baseline), `phd_research` (long-evolved framing).
+- Negative-check criteria: (a) non-empty card on old → empty card on new; (b) hallucinated evidence (fails literal-substring check against user turns); (c) `dropped_frame_elements_rate` > 50% on any case where old was < 20%.
 
 ## Rollback posture
 

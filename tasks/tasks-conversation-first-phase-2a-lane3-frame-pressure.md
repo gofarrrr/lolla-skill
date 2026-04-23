@@ -42,6 +42,8 @@ Giving Lane 3 direct access to (a) the actual first user turn verbatim, (b) the 
 | Negative-check gate | zero trips on any case |
 | HOW_IT_WORKS.md updated | yes |
 
+**Partial-regression policy (approved, baked into this PR):** if any case regresses, diagnosis required in PR description. Two undiagnosed regressions = block. Diagnosed regressions with a named tradeoff = ship. No "within noise" hand-waving — each regressing case gets a specific hypothesis for why it regressed. See `research/phase2-lane-migration-plan.md` for rationale.
+
 ## Tasks
 
 - [ ] 0.0 Preflight
@@ -86,8 +88,9 @@ Giving Lane 3 direct access to (a) the actual first user turn verbatim, (b) the 
 - [ ] 6.0 Execute the N=3 × 10-case measurement
   - [ ] 6.1 Run `scripts/phase2a_lane3_quality_check.py` against all 10 cases with N=3. Expected cost ≈ $3-9. Expected time ≈ 20-40 minutes.
   - [ ] 6.2 Review the aggregate: does `dropped_frame_elements_rate` satisfy the threshold (new ≤ old within 5%)? Does `frame_elements_count` stay within ±2 per case?
-  - [ ] 6.3 **If any threshold fails: STOP, diagnose, do not proceed to 7.0.** Report to PM with the specific case + metric that failed.
-  - [ ] 6.4 Commit the evidence report.
+  - [ ] 6.3 **Per-case regression check.** For each of the 10 cases, compare new-path vs old-path on `dropped_frame_elements_rate` and `frame_elements_count`. Flag any case that regresses (even within the 5% tolerance band — the diagnosis policy applies to per-case regression, not just aggregate threshold failure).
+  - [ ] 6.4 **Diagnosis requirement.** For every flagged regression, produce a specific hypothesis: what about THIS case made the new path worse? Examples: "first user turn is 3 paragraphs of context — new path extracts framing from a non-question", "user explicitly names a technical constraint — new path incorrectly flags it as borrowed_premise". Record in the evidence report per-regression. Two or more *undiagnosed* regressions = block the PR; stop, report to PM, do not proceed to 7.0. Diagnosed regressions continue with the named tradeoff in the PR description.
+  - [ ] 6.5 Commit the evidence report (including per-case table + diagnosed regressions) to `research/test-cases/phase2a-lane3-equivalence-2026-MM-DD/`.
 
 - [ ] 7.0 Qualitative human read
   - [ ] 7.1 Render old-path vs new-path outputs side-by-side for the 3 chosen cases (`messy_three_problems`, `startup_pivot`, `phd_research`) into a single markdown diff file.
@@ -106,7 +109,7 @@ Giving Lane 3 direct access to (a) the actual first user turn verbatim, (b) the 
 - [ ] 10.0 Ship
   - [ ] 10.1 Run full test suite. All green.
   - [ ] 10.2 Push + open PR. Title: `feat(pipeline): Lane 3 (Frame Pressure) migrated to ConversationContext (phase 2a)`.
-  - [ ] 10.3 PR description includes: quality-metric tables, qualitative comparison link, acceptance-gate table, honest call-outs on any case where new-path ≠ old-path materially.
+  - [ ] 10.3 PR description includes: quality-metric tables, qualitative comparison link, acceptance-gate table, **per-case regression diagnoses (one hypothesis per regressing case, no "within noise" language)**, honest call-outs on any case where new-path ≠ old-path materially.
   - [ ] 10.4 On merge: update handover "What's shipped" with PR #, metrics summary, and rollback path.
 
 ## Phase 2b preview (do NOT do in this PR)
