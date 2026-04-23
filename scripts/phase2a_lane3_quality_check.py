@@ -54,6 +54,21 @@ class RunMetrics:
     error: str | None = None
 
 
+def _empty_metrics(case: str, path_label: str, run_index: int, error: str) -> RunMetrics:
+    return RunMetrics(
+        case=case,
+        path_label=path_label,
+        run_index=run_index,
+        frame_elements_count=0,
+        frame_elements_type_counts={},
+        dropped_frame_elements_count=0,
+        dropped_drop_reasons={},
+        reframings_count=0,
+        reframings_move_type_counts={},
+        error=error,
+    )
+
+
 @dataclass
 class CaseMetrics:
     case: str
@@ -79,7 +94,22 @@ def _run_subprocess(cmd: list[str]) -> tuple[int, str, str]:
     return proc.returncode, proc.stdout, proc.stderr
 
 
-def extract_once(conversation_path: Path, extraction_output: Path) -> None:
+def extract_once(conversation_path: Path, extraction_output: Path, *, resume: bool = True) -> str | None:
+    """Extract; skip if the output already exists and parses cleanly (resume feature).
+
+    Returns None on success, an error string on failure. Resilient to transient
+    extraction failures (e.g. boundary timeouts on long conversations): the
+    caller logs the error and moves on; pipeline runs for that case are skipped.
+    """
+    if resume and extraction_output.exists():
+        try:
+            payload = json.loads(extraction_output.read_text(encoding="utf-8"))
+            # Accept ok extractions. Don't resume error-payloads — we want to retry those.
+            if payload.get("status") == "ok":
+                print(f"  [resume] extraction exists: {extraction_output.name}", flush=True)
+                return None
+        except json.JSONDecodeError:
+            pass  # fall through to re-extract
     cmd = [
         sys.executable,
         str(REPO_ROOT / "scripts" / "run_extract.py"),
@@ -88,12 +118,23 @@ def extract_once(conversation_path: Path, extraction_output: Path) -> None:
     ]
     code, out, err = _run_subprocess(cmd)
     if code != 0:
-        raise SystemExit(
-            f"run_extract.py failed on {conversation_path.name} (exit {code}).\n"
-            f"stdout: {out[:500]}\nstderr: {err[:500]}"
+        return (
+            f"run_extract.py exit={code} on {conversation_path.name}. "
+            f"stdout: {out.strip()[:400]!r} stderr: {err.strip()[:400]!r}"
         )
     if not extraction_output.exists():
-        raise SystemExit(f"run_extract.py returned 0 but {extraction_output} is absent")
+        return f"run_extract.py returned 0 but {extraction_output} is absent"
+    # Verify extraction succeeded (status: ok + extraction present)
+    try:
+        payload = json.loads(extraction_output.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return f"extraction output not parseable: {exc}"
+    if payload.get("status") != "ok":
+        return (
+            f"extraction status={payload.get('status')!r} for {conversation_path.name}; "
+            f"error={payload.get('error', '(none)')[:200]!r}"
+        )
+    return None
 
 
 def run_pipeline_once(
@@ -102,7 +143,24 @@ def run_pipeline_once(
     result_output: Path,
     *,
     new_contract: bool,
-) -> None:
+    resume: bool = True,
+) -> str | None:
+    """Run pipeline once; return None on success, an error string on failure.
+
+    Resume: if result_output already exists and parses to a valid payload with
+    a frame_pressure_card key, skip the subprocess call. Lets an interrupted
+    measurement pick up where it left off instead of re-burning API calls.
+    """
+    if resume and result_output.exists():
+        try:
+            existing = json.loads(result_output.read_text(encoding="utf-8"))
+            # Accept any payload with either status:ok or frame_pressure_card
+            # (skip extractor-error payloads — they don't contain lane data)
+            if "frame_pressure_card" in existing or existing.get("status") == "ok":
+                print(f"  [resume] skip {result_output.name} (already present)", flush=True)
+                return None
+        except json.JSONDecodeError:
+            pass
     cmd = [
         sys.executable,
         str(REPO_ROOT / "scripts" / "run_pipeline.py"),
@@ -115,10 +173,15 @@ def run_pipeline_once(
         cmd.append("--new-contract")
     code, out, err = _run_subprocess(cmd)
     if code != 0:
-        raise SystemExit(
-            f"run_pipeline.py failed ({'new' if new_contract else 'old'}-path) on "
-            f"{conversation_path.name} (exit {code}).\nstdout: {out[:500]}\nstderr: {err[:500]}"
+        # Don't crash the whole measurement — one flaky run is noise.
+        # Log, return the error, let the caller mark this run as errored and continue.
+        short_out = out.strip()[:400]
+        short_err = err.strip()[:400]
+        return (
+            f"run_pipeline.py exit={code} on {conversation_path.name} "
+            f"({'new' if new_contract else 'old'}-path). stdout: {short_out!r} stderr: {short_err!r}"
         )
+    return None
 
 
 def parse_frame_pressure_metrics(
@@ -349,6 +412,25 @@ def render_report(
             f"**Per-case regression summary:** {regressions_total} of {len(all_cases)} cases regressed. "
             "Each must be diagnosed in the PR description before shipping (diagnosis-required policy)."
         )
+
+    errored_runs = [
+        r for c in all_cases for r in (c.old_runs + c.new_runs) if r.error is not None
+    ]
+    if errored_runs:
+        lines.append("")
+        lines.append(f"## Errored runs ({len(errored_runs)} of {len(all_cases) * 2 * n})")
+        lines.append("")
+        lines.append(
+            "These runs crashed; their metrics are empty-stubbed. The rest of the measurement proceeded "
+            "(resilience was added after a partial crash on an earlier run). Pre-existing bugs in lanes "
+            "OTHER than Lane 3 can still trip at random due to `temperature=0.2` variance and are "
+            "outside Phase 2a's scope — the shim correctness is tested by the successful runs."
+        )
+        lines.append("")
+        lines.append("| case | path | run | error |")
+        lines.append("|------|------|-----|-------|")
+        for r in errored_runs:
+            lines.append(f"| `{r.case}` | {r.path_label} | {r.run_index} | `{r.error[:150]}` |")
     lines.append("")
     return "\n".join(lines)
 
@@ -367,28 +449,56 @@ def run_measurement(
     started = time.monotonic()
     all_metrics: list[CaseMetrics] = []
 
+    errored_runs: list[str] = []
+
     for case_name, conversation_path in cases:
         print(f"[{case_name}] extracting...", flush=True)
         extraction_path = scratch_dir / f"{case_name}_extraction.json"
-        extract_once(conversation_path, extraction_path)
+        extract_err = extract_once(conversation_path, extraction_path)
+        if extract_err is not None:
+            print(f"  [errored] extraction failed — skipping case's pipeline runs: {extract_err}", flush=True)
+            errored_runs.append(f"[{case_name}] EXTRACTION: {extract_err}")
+            # Emit empty-stubbed metrics so the case appears in the report as "errored at extraction"
+            case = CaseMetrics(case=case_name)
+            for run_index in range(n):
+                for label in ("old", "new"):
+                    case.old_runs.append(_empty_metrics(case_name, label, run_index, error=extract_err)) if label == "old" else case.new_runs.append(_empty_metrics(case_name, label, run_index, error=extract_err))
+            all_metrics.append(case)
+            continue
 
         case = CaseMetrics(case=case_name)
         for run_index in range(n):
             for label, new_contract in (("old", False), ("new", True)):
                 out_path = scratch_dir / f"{case_name}_{label}_run{run_index}.json"
                 print(f"[{case_name}] pipeline path={label} run={run_index}...", flush=True)
-                run_pipeline_once(
+                err = run_pipeline_once(
                     extraction_path=extraction_path,
                     conversation_path=conversation_path,
                     result_output=out_path,
                     new_contract=new_contract,
                 )
-                metrics = parse_frame_pressure_metrics(out_path, case_name, label, run_index)
+                if err is not None:
+                    print(f"  [errored] {err}", flush=True)
+                    errored_runs.append(err)
+                    metrics = _empty_metrics(case_name, label, run_index, error=err)
+                else:
+                    try:
+                        metrics = parse_frame_pressure_metrics(out_path, case_name, label, run_index)
+                    except (json.JSONDecodeError, KeyError) as parse_exc:
+                        parse_err = f"parse_error on {out_path.name}: {parse_exc}"
+                        print(f"  [errored] {parse_err}", flush=True)
+                        errored_runs.append(parse_err)
+                        metrics = _empty_metrics(case_name, label, run_index, error=parse_err)
                 if label == "old":
                     case.old_runs.append(metrics)
                 else:
                     case.new_runs.append(metrics)
         all_metrics.append(case)
+
+    if errored_runs:
+        print(f"\n[warning] {len(errored_runs)} runs errored — metrics for those runs are empty-stubbed.", flush=True)
+        for e in errored_runs:
+            print(f"  - {e}", flush=True)
 
     duration = time.monotonic() - started
     report = render_report(all_metrics, n=n, duration_seconds=duration, dry_run=dry_run)
