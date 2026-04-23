@@ -204,35 +204,59 @@ def test_run_frame_extraction_from_context_calls_boundary_with_context_system_pr
     args, _ = boundary.run_json.call_args
     system_prompt, user_prompt = args
     assert system_prompt is _FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT
-    # The user prompt must carry turn-by-turn markers + extracted structure
+    # User prompt must have two labelled sections: CONTEXT (not quotable) +
+    # SOURCE (evidence must come from here)
+    assert "CONTEXT (background for understanding" in user_prompt
+    assert "SOURCE (evidence_quote MUST be a literal substring" in user_prompt
+    # User turns appear in the SOURCE section
     assert "[Turn 1] USER:" in user_prompt
-    assert "[Turn 1] ASSISTANT:" in user_prompt
-    assert "EXTRACTED STRUCTURE" in user_prompt
+    # Assistant turns appear in CONTEXT with a non-quotable marker
+    assert "[Turn 1 ASSISTANT]" in user_prompt
 
 
 # ---------- prompt formatting helpers ----------
 
 
-def test_format_user_prompt_includes_turns_and_extraction() -> None:
+def test_format_user_prompt_includes_extracted_structure_in_context_section() -> None:
     ctx = _ctx((
         (1, "user", "first question"),
         (1, "assistant", "first reply"),
         (2, "user", "follow-up"),
     ))
     prompt = _format_frame_extraction_from_context_user_prompt(ctx)
-    # Turn sequence preserved
-    assert prompt.index("first question") < prompt.index("first reply") < prompt.index("follow-up")
-    # Extracted structure present
-    assert "decision_situation: Whether to take the offer" in prompt
-    assert "original_framing: Is this obvious or crazy?" in prompt
-    assert "live_constraints:" in prompt
-    assert "[ACTIVE] timeline is 10 days (turn 1)" in prompt
-    assert "dropped_threads:" in prompt
-    assert "partner's reaction" in prompt
+    # Extracted structure lives in the CONTEXT section (not quotable)
+    ctx_section_end = prompt.index("SOURCE")
+    context_section = prompt[:ctx_section_end]
+    assert "CONTEXT (background for understanding" in context_section
+    assert "Decision situation: Whether to take the offer" in context_section
+    assert "Framing extracted upstream: Is this obvious or crazy?" in context_section
+    assert "Constraints:" in context_section
+    assert "[ACTIVE] timeline is 10 days (turn 1)" in context_section
+    assert "Dropped threads:" in context_section
+    assert "partner's reaction" in context_section
 
 
-def test_format_user_prompt_omits_empty_sections() -> None:
-    """If live_constraints is empty, don't render a dangling label."""
+def test_format_user_prompt_places_user_turns_in_source_and_assistant_turns_in_context() -> None:
+    ctx = _ctx((
+        (1, "user", "first question"),
+        (1, "assistant", "first reply"),
+        (2, "user", "follow-up"),
+    ))
+    prompt = _format_frame_extraction_from_context_user_prompt(ctx)
+    # SOURCE section contains user-turn bodies; assistant-turn bodies appear
+    # in the CONTEXT half only (marked non-quotable).
+    context_section, source_section = prompt.split("SOURCE", 1)
+    assert "first question" in source_section
+    assert "follow-up" in source_section
+    # Assistant reply is NOT in SOURCE (would bypass the quotability rule)
+    assert "first reply" not in source_section
+    # It IS in CONTEXT, marked non-quotable
+    assert "first reply" in context_section
+    assert "[Turn 1 ASSISTANT]" in context_section
+
+
+def test_format_user_prompt_omits_empty_context_sections() -> None:
+    """If live_constraints + dropped_threads are empty, don't render dangling labels."""
     empty_ext = ExtractionPayload(
         decision_situation="D",
         live_constraints=(),
@@ -246,9 +270,23 @@ def test_format_user_prompt_omits_empty_sections() -> None:
         extraction=empty_ext,
     )
     prompt = _format_frame_extraction_from_context_user_prompt(ctx)
-    assert "live_constraints:" not in prompt
-    assert "dropped_threads:" not in prompt
-    assert "original_framing:" not in prompt
+    assert "- Constraints:" not in prompt
+    assert "- Dropped threads:" not in prompt
+    assert "Framing extracted upstream:" not in prompt
+
+
+def test_system_prompt_explicitly_forbids_quoting_from_context() -> None:
+    """Confirm the system prompt tells the LLM not to quote from CONTEXT.
+
+    This is the anti-regression for Phase 2a's first measurement run, which
+    showed drops when the LLM quoted from the extracted-structure section.
+    """
+    prompt = _FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT
+    assert "DO NOT quote from CONTEXT" in prompt
+    assert "ONLY section from which evidence_quote may be drawn" in prompt
+    # Includes at least one right-vs-wrong worked example
+    assert "RIGHT:" in prompt
+    assert "WRONG:" in prompt
 
 
 def test_joined_user_turns_text_includes_user_only() -> None:

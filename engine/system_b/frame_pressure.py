@@ -362,11 +362,29 @@ You are NOT analyzing the assistant's replies. You are analyzing the USER'S \
 FRAMING — how the user posed the problem across their turns — as a reasoning \
 artifact. Assistant turns are shown for context only.
 
+EVIDENCE QUOTING — READ CAREFULLY:
+The user prompt has two labelled sections:
+  - CONTEXT: extractor summaries (decision_situation, framing, constraints, \
+dropped threads, assistant replies). These are for your understanding only. \
+DO NOT quote from CONTEXT. CONTEXT is paraphrased — not the user's own words.
+  - SOURCE: the actual user turns, verbatim. This is the ONLY section from \
+which evidence_quote may be drawn.
+
+Every evidence_quote MUST be a LITERAL SUBSTRING of a user turn from the \
+SOURCE section. Character-for-character match. If a frame element is real but \
+no user-turn substring supports it directly, you MUST OMIT the element — do \
+not paraphrase, do not quote from CONTEXT, do not fabricate.
+
+RIGHT: evidence_quote = "I have to decide this week" (verbatim from a USER turn)
+WRONG: evidence_quote = "time pressure assumed" (paraphrase)
+WRONG: evidence_quote = "the decision has a 10-day window" (extractor summary from CONTEXT)
+WRONG: evidence_quote = "you're under real time pressure" (assistant reply, not a user turn)
+
 Return a JSON object with a single key "frame_elements" containing a list of \
 0-5 extracted elements. Each element has:
   - element_text: what the user's framing assumes, constrains, or suppresses
   - element_type: "assumption" | "mutable_constraint" | "suppressed_counterfactual"
-  - evidence_quote: a LITERAL SUBSTRING of one of the USER turns that grounds this element
+  - evidence_quote: a LITERAL SUBSTRING of a USER turn from the SOURCE section
   - frame_pattern: the pattern from this taxonomy: binary_collapse, \
 borrowed_premise, scope_lock, temporal_fixation, proxy_optimization, \
 option_space_collapse, single_actor_assumption, commitment_escalation, \
@@ -435,7 +453,8 @@ are suppressed. Two standard algorithm choices for a known problem are NOT \
 option space collapse — they are the natural solution set.
 - Trivially true observations, routine planning constraints, and ordinary \
 technical parameters are NOT frame elements.
-- evidence_quote MUST be a literal substring of one of the USER turns.
+- evidence_quote MUST be a literal substring of a USER turn from the SOURCE section. Never paraphrase, never quote from CONTEXT, never quote assistant replies.
+- If a real frame element has no direct user-turn substring to support it, omit it rather than inventing evidence.
 - If no frame elements meet the threshold, return {"frame_elements": []}.
 """
 
@@ -446,31 +465,33 @@ def get_prompt_template_from_context() -> str:
 
 
 def _format_frame_extraction_from_context_user_prompt(context: ConversationContext) -> str:
-    """Render the conversation + extracted structure as the user-prompt body."""
-    parts: list[str] = [
-        "CONVERSATION (analyze the user's framing across these turns — the first user turn is the canonical anchor):",
-        "",
-    ]
-    for t in context.turns:
-        parts.append(f"[Turn {t.turn_index}] {t.speaker.upper()}:")
-        parts.append(t.text)
-        parts.append("")
+    """Render the user-prompt body with an explicit CONTEXT vs SOURCE split.
 
+    CONTEXT holds everything that's summary/secondary (extracted fields +
+    assistant replies). The LLM uses it to understand the decision but MUST
+    NOT draw evidence_quotes from it.
+
+    SOURCE holds user turns verbatim. Evidence_quotes MUST be literal
+    substrings of a user turn in SOURCE — enforced downstream by
+    `_evidence_in_text` against `_joined_user_turns_text`.
+    """
     ext = context.extraction
-    parts.append("EXTRACTED STRUCTURE (secondary — the extraction LLM's summary of the decision):")
+    parts: list[str] = [
+        "CONTEXT (background for understanding the decision — NOT quotable as evidence):",
+    ]
     if ext.decision_situation:
-        parts.append(f"decision_situation: {ext.decision_situation}")
+        parts.append(f"- Decision situation: {ext.decision_situation}")
     if ext.original_framing:
-        parts.append(f"original_framing: {ext.original_framing}")
+        parts.append(f"- Framing extracted upstream: {ext.original_framing}")
     if ext.live_constraints:
-        parts.append("live_constraints:")
+        parts.append("- Constraints:")
         for c in ext.live_constraints:
             status = c.status or "active"
             weight = c.weight or "situational"
             tag = status.upper() if status == "active" else f"{status.upper()}/{weight.upper()}"
             parts.append(f"  - [{tag}] {c.constraint} (turn {c.introduced_turn})")
     if ext.dropped_threads:
-        parts.append("dropped_threads:")
+        parts.append("- Dropped threads:")
         for d in ext.dropped_threads:
             line = (
                 f"  - {d.thread} (raised by {d.raised_by or '?'} turn {d.raised_turn}, "
@@ -479,6 +500,23 @@ def _format_frame_extraction_from_context_user_prompt(context: ConversationConte
             if d.superseded_by:
                 line += f", superseded_by: {d.superseded_by}"
             parts.append(line)
+
+    assistant_turns = [t for t in context.turns if t.speaker == "assistant"]
+    if assistant_turns:
+        parts.append("- Assistant replies (NOT quotable — shown so you can see how the framing was engaged):")
+        for t in assistant_turns:
+            parts.append(f"  [Turn {t.turn_index} ASSISTANT] {t.text}")
+
+    parts.append("")
+    parts.append(
+        "SOURCE (evidence_quote MUST be a literal substring of a user turn from THIS section only — "
+        "the first user turn is the canonical framing anchor):"
+    )
+    user_turns = [t for t in context.turns if t.speaker == "user"]
+    for t in user_turns:
+        parts.append(f"[Turn {t.turn_index}] USER:")
+        parts.append(t.text)
+        parts.append("")
 
     return "\n".join(parts)
 
