@@ -506,6 +506,8 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 
 5. **Card assembly** (deterministic): Assemble detected dimensions, gap routes, gap questions, and anti-echo metadata into a StructuralCoverageCard.
 
+**Phase 2b migration (conversation-first input):** when the pipeline receives a `ConversationContext`, Lane 4 uses `run_structural_coverage_from_context` — which in turn uses `_from_context` variants of question classification, dimension detection, and gap question generation. User-prompt bodies follow the same CONTEXT (extractor summaries, NOT citable) / SOURCE (raw conversation turns) split as Lane 3. For detection specifically, SOURCE contains both user and assistant turns — detect_when conditions read user turns (the question), coverage assessments read assistant turns (the answer). Lane 4 has no evidence-substring validation downstream (unlike Lane 3), so the CONTEXT/SOURCE split is prompt guidance not a mechanical gate; the architectural effect shows up as `coverage_evidence` citations attributed to the assistant's actual replies ("Assistant mentions...", "Assistant proposes...") instead of extractor-paraphrased summaries. Measurement evidence: `research/test-cases/phase2b-lane4-equivalence-2026-04-23/` + `research/test-cases/phase2b-marcus-controlled-comparison-2026-04-23/`.
+
 **The 15 structural dimensions:**
 
 | Dimension | Cleaving Frame | Example Gap |
