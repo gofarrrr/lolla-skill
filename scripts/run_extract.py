@@ -218,21 +218,6 @@ stakeholders, and what is at stake. Be specific — "whether to adopt microservi
 is better than "architecture decision".
 
 2. "live_constraints": Array of objects, each with:
-   - "canonical_key": a stable 2-4 token slug identifying THE THING this \
-     constraint is about, independent of how it is phrased in this run. \
-     Rules:
-       * lowercase ASCII letters and digits only, separated by hyphens \
-         (e.g. "marcus-comp-below-market", "equity-retention-risk", \
-         "marcus-technical-concentration")
-       * 2 to 4 tokens — slugs with 5+ tokens start reading like sentences; \
-         keep them identifier-short
-       * name the SUBJECT, not the sentence. "marcus-comp-below-market" \
-         not "comp-is-below-market-range"
-       * drop values, numbers, and adjectives unless they ARE the identity \
-         of the thing (keep "below-market" — that's the tension; drop \
-         "$225k" — that's a value, not the subject)
-       * the same concept across runs should produce the same key — think \
-         "how would I index this?"
    - "constraint": terse noun-phrase-plus-state, ≤120 characters. State the \
      what (deadline, budget, team size, dependency, regulatory requirement, \
      prior commitment, political factor) plus the current state of it. \
