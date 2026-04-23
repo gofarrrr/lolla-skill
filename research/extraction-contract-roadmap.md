@@ -1,197 +1,213 @@
 # Extraction Contract — PR Roadmap
 
 **Authored:** 2026-04-22
-**Status:** Planning complete. PR #1 NOT STARTED.
+**Last updated:** 2026-04-23 (post PR #1 learnings absorbed)
 **Scope:** `lolla-skill` Step 2 (`scripts/run_extract.py`). NOT system_b.
 
 ## Why this document exists
 
-The extraction contract work is a multi-PR effort. This roadmap exists so the sequence survives context loss. If a future session asks "what's next after PR #2?" the answer is in this file, not in conversation memory.
+The extraction contract work is a multi-PR effort. This roadmap exists so the sequence survives context loss. If a future session or new developer asks "what's next after PR #X?" the answer lives here, not in conversation memory.
 
 Each PR is a ship-or-stop measurement event with its own acceptance gate. If a PR fails its gate, the plan pauses at that point — not every PR is predetermined to land.
 
-## Supporting docs (READ FIRST)
+This document is the **handover contract**. It must be sufficient for a cold-start session to understand: the system state, what we're trying to improve, what's done, what's next, what "good" looks like for each remaining PR, and the methodology discipline that keeps measurements honest.
 
-- `research/extraction-contract-observations-2026-04-22.md` — the normative spec (fields, types, Mode C pass criteria). This roadmap implements that spec one field-group at a time.
-- `research/llm-decomposition-handover.md` — Section 0 explains why extraction-front was deferred in Cycle 1; today's scope shift reverses that deferral per the user's 2026-04-22 call.
-- `HOW_IT_WORKS.md` §Step 2 — current extraction behavior. This is what we're changing.
-- `scripts/run_extract.py` — the file every PR in this roadmap touches.
-- `scripts/stability_check.py` — Mode C drift harness. Used by every PR's acceptance gate.
+## Supporting docs (READ FIRST for any cold start)
 
-## Current state (2026-04-22)
+- `research/extraction-contract-observations-2026-04-22.md` — normative spec for each field (types, rules, rationale). Still the spec; what changed is how we measure it.
+- `research/llm-decomposition-handover.md` — Cycle-1 context and why extraction-front was deferred there.
+- `HOW_IT_WORKS.md` §Step 2 — current extraction behavior (now reflects PR #1's ≤120-char rule).
+- `scripts/run_extract.py` — file every PR touches.
+- `scripts/stability_check.py` — harness. After PR #1, includes canonical_key Jaccard with empty-exclusion, `invalid_key_rate`, and `--from-extractions` CLI mode.
+- `tasks/tasks-extraction-contract-phase-1-live-constraints.md` — PR #1's task-file template. All subsequent PRs follow this pattern.
+- `tasks/tasks-extraction-contract-phase-{1b,2,3,4a,4b,5}-*.md` — per-PR task files with TDD sub-tasks and acceptance gates.
+- `research/stability-runs/contract-phase1-*/README.md` — pre-ship, C-full-post-ship, and diagnostic evidence from PR #1. Useful as baseline for all subsequent gates.
+- Industry context (decision-informing but not ship-blocking): [Context Engineering 2.0 arxiv paper 2510.26493](https://arxiv.org/abs/2510.26493); [EDC framework paper](https://arxiv.org/html/2404.03868v1); [SemanticDeduplicator GitHub](https://github.com/gkamradt/SemanticDeduplicator).
+
+## Current state (2026-04-23)
 
 **Shipped in Cycle 1 + post-cycle work (commits `d157da2` through `b742564`):**
 
 - D-skill anchor-naming (Step 6) — 100% anchor-naming rate across post-fix runs.
 - Stability harness — Modes A/B/C live in `scripts/stability_check.py`.
 - Pass 1 family clustering (Track B) — 6 clusters shipped. Jaccard 0.50 → 0.70.
-- Silent-degradation items #1 (quote fabrication retry-then-drop), #2 (capture-critical gating), #3 (truncation transparency), #5 (Lane 3 dropped-element surfacing) — all live.
+- Silent-degradation items #1–3, #5 — all live.
 - Per-run archival by fingerprint — `~/.local/share/lolla/runs/{case}/{run_id}/`.
 
-**NOT shipped (this roadmap's scope):**
+**Shipped on feature branch (PR #13, IN REVIEW 2026-04-23):**
 
-- `live_constraints.canonical_key` — PR #1
-- `dropped_threads.canonical_key` + tie-break rule with live_constraints — PR #2
-- `synthesized_position` as structured `Position` object with stance enum + temporal anchor — PR #3
-- `decision_situation` + `original_framing` canonical forms — PR #4
-- `reasoning_passages.move_type` enum + generalize hard-fail — PR #5
+- **PR #1 — `live_constraints` terse canonical form.** Ships the ≤120-char terse-form rule on `constraint` text, `_validate_canonical_key` regex validator (pre-wired, inactive), `_apply_canonical_key_validation` post-extraction processor (pre-wired, inactive), harness `--from-extractions` CLI mode, canonical_key Jaccard (empty-excl) and `invalid_key_rate` metrics. Does NOT ship the `canonical_key` field itself.
+- Cross-capture exact-text Jaccard on `live_constraints` moved **0.010 → 0.109 (10× win)**, with zero regressions on other fields.
 
-**Open question, Cycle 2 only (PRs #6–7):**
+**Not shipped (the rest of this roadmap):**
 
-- Negative-space field (alternatives never considered, what-ifs avoided, stakes never weighed) — PR #6 conditional
-- Epistemic-posture field (confidence markers, hedging, authority claims, evidence gaps) — PR #7 conditional
+- `live_constraints.canonical_key` field with embedding-cosine metric — **PR #1b**
+- `dropped_threads.canonical_key` + tie-break rule + ≤120-char rule on `thread` — **PR #2**
+- `synthesized_position` as structured `Position` object — **PR #3**
+- `decision_situation` terse canonical form — **PR #4a**
+- `original_framing` first-turn anchor + terse form — **PR #4b**
+- `reasoning_passages.move_type` enum + generalize hard-fail — **PR #5**
 
-## Validation set — n=1 constraint
+**Open Cycle-2 questions (conditional PRs #6–7, unchanged):**
 
-**What we have:**
+- Negative-space field — PR #6 conditional
+- Epistemic-posture field — PR #7 conditional
 
-- **Archive** (`~/.local/share/lolla/runs/`): 4 runs total across 2 case fingerprints — `marcus-equity` (1 run) + `grant-equity-partnership-status` (3 runs). Almost certainly the same underlying Marcus conversation; capture drift produced different case fingerprints.
-- **`/tmp/`**: 9 Marcus `conversation.txt` captures across different sessions + 11+ extraction JSONs including prior Mode C drift outputs.
-- **No other cases.** System_b's (query, vanilla) pairs don't port — they're single-shot, so they don't exercise multi-turn contract parts (`superseded_stances`, `introduced_turn`, `status: active|dropped|modified`, turn anchors, dropped-vs-live tie-break).
+## Methodology upgrades (MANDATORY for all future PRs)
 
-**What this means for the plan:**
+PR #1 produced four discipline changes. Every remaining PR adopts them:
 
-- Every PR's acceptance gate uses Marcus-only as the validation set.
-- Each PR runs on three axes: (1) Mode C intrinsic drift N=5 on one capture, (2) cross-capture stability across the 9 Marcus captures, (3) qualitative read of output.
-- **Honesty clause in PR descriptions:** results show the contract change works on Marcus. Generalization is verified only as non-Marcus cases accumulate in the archive. No synthesis, no wrapped system_b cases, no dogfooding-to-accumulate (that biases the set toward conversations chosen to test the contract).
+### 1. Cross-capture is the acceptance signal; Mode C is a diagnostic
 
-**Non-blocking parallel track:** as real non-Marcus /lolla runs accumulate, add them to `research/stability-runs/contract-phaseN/cases.txt` indexes. PR #N+1 re-runs all prior PRs' gates on any cases added after #N. The spec only "graduates" from Marcus-only once the set reaches ~5 distinct cases.
+- Mode C N=5 has 10 pairs. Cross-capture 9-run has 36 pairs. The 3.6× sample-size gap matters.
+- Mode C was contradicted by cross-capture on multiple fields during PR #1's diagnostic — **trust the larger sample for any gate call.**
+- All acceptance gates below state cross-capture as the PRIMARY axis. Mode C is retained as a sanity check under conversation-held-constant conditions.
 
-## Testing methodology (applies to every PR)
+### 2. Exact-text Jaccard is the wrong metric for slug / enum / canonical fields
 
-Every PR uses the same three axes. Each PR's section states its field-specific targets; the method is identical.
+- Exact-text treats semantically-equivalent variants (`marcus-comp` vs `marcus-comp-below-market`) as disjoint.
+- Industry pattern (EDC, Zep, Kamradt) uses embedding cosine or equivalent semantic metric.
+- **Mandatory for PRs #1b, #2, and any enum field in PR #5.** Free-text similarity remains SequenceMatcher (suitable for character-level paraphrase drift).
 
-**Axis 1 — Extractor intrinsic drift (Mode C, N=5 on one capture):**
-- Run `scripts/stability_check.py --drift --conversation <newest-marcus-capture> --n 5`.
-- Measures: Mode C reruns `run_extract.py` N times against the same `conversation.txt`. Isolates extractor sampling variance from capture variance.
+### 3. Budget-balance every prompt addition
 
-**Axis 2 — Cross-capture robustness (9 Marcus captures, 1 run each):**
-- Run the new extractor once against each of 9 archived Marcus `conversation.txt` files.
-- Compute Jaccard on the PR's target fields across all 9 outputs.
-- Tests whether the canonical form is robust to Step 1 (Claude-writes-from-memory) capture drift.
+- PR #1 C-full caused fabricated-quote count 0→3 and `original_framing` similarity regression; stripping the prompt addition reversed both.
+- Context pollution is observable in THIS pipeline, not just academic concept.
+- **Every future PR must pre-measure ALL fields and post-measure ALL fields.** Gate includes "no regression on non-target fields beyond noise band" as an acceptance axis, not an afterthought.
 
-**Axis 3 — Qualitative read:**
-- Human review of 3 outputs. Does the canonical form read as a stable identifier, or as a phrasing accident?
-- For `canonical_key` fields: do two runs produce the same key for clearly the same concept?
-- For stance/move_type enums: does the assigned enum value match how a reader would classify the passage?
+### 4. Terse canonical-form rule is a compound pattern
 
-**Regression check (every PR):**
-- No decrease in similarity/Jaccard on fields the PR didn't change.
-- No cost increase >10% per extraction call.
-- `_quote_validation.fabricated` count stays at 0.
+- PR #1 proved: ≤120-char terse noun-phrase + state rule tightens free-text without semantic loss (0.010 → 0.109 cross-capture exact-text on `live_constraints`).
+- Applicable wherever a free-text field has drifty phrasing: `thread` in dropped_threads (PR #2), `decision_situation` (PR #4a), `original_framing` (PR #4b), `latest_stance_text` in Position (PR #3).
+- Apply the proven discipline; don't reinvent with per-field templates.
 
-## PR sequence
+## Realistic-target calibration (from PR #1 baselines)
 
-### PR #1 — `live_constraints` terse canonical form (re-scoped from `canonical_key` full-ship)
+PR #1's cross-capture baselines on 9 Marcus captures should inform target-setting for every remaining PR. Aspirational targets in the original observations doc were overshoots; the table below reflects realistic ceilings given observed variance.
 
-**Status:** IN REVIEW (2026-04-23, branch: `feat/extraction-contract-phase-1-live-constraints`). Re-scoped to **C-medium** after a diagnostic run confirmed the Context Engineering 2.0 "context pollution" hypothesis: the canonical_key prompt text was causing fabricated-quote and `original_framing` regressions on other fields.
-
-**What this PR ships:**
-- ≤120-char terse-form rule on `constraint` text (the proven win)
-- `_validate_canonical_key` slug regex validator (pre-wired, inactive — no prompt rule yet)
-- `_apply_canonical_key_validation` post-extraction processing (pre-wired, inactive)
-- Harness extensions: `--from-extractions` CLI mode, canonical_key Jaccard with empty-string exclusion, `invalid_key_rate` per-run + overall
-- `HOW_IT_WORKS.md` §Step 2 updated to document the new field shape
-
-**What this PR does NOT ship:**
-- `canonical_key` field in extraction output (prompt rules stripped to avoid pollution)
-- Any stability claim about canonical concept identity across runs
-
-**Cross-capture evidence (9 Marcus captures, 36 pairs):**
-
-| Metric | Pre-ship | Shipped (C-medium) | Δ |
+| Field | Pre-ship cross-capture | Observed ceiling on comparable rule (PR #1) | Realistic gate |
 |---|---|---|---|
-| `live_constraints` exact-text Jaccard | 0.010 | **0.109** | **10×** win |
-| Fabricated-quote count (9 runs) | 0 | **0** | preserved |
-| `original_framing` similarity | 0.209 | 0.218 | preserved (+0.009) |
-| `reasoning_passages` Jaccard | 0.357 | 0.393 | preserved (+0.036) |
-| `synthesized_position` similarity | 0.169 | 0.165 | ≈ flat |
-| `decision_situation` similarity | 0.367 | 0.335 | mild dip (−0.032, within noise) |
-| `dropped_threads` Jaccard | 0.132 | 0.117 | mild dip (−0.015, within noise) |
+| `live_constraints.constraint` exact-text | 0.010 | 0.109 (10×) | — already achieved in PR #1 |
+| `live_constraints.canonical_key` (embedding cosine) | undefined | TBD in PR #1b | ≥ 0.70 cross-capture |
+| `dropped_threads.thread` exact-text | baseline to measure in PR #2 | expected ≥0.20 (thread is already more structured than constraint) | ≥0.20 cross-capture |
+| `dropped_threads.canonical_key` (embedding) | undefined | TBD in PR #2 | ≥ 0.60 cross-capture (lower than #1b because dropped_threads is more of a judgment call) |
+| `decision_situation` similarity | 0.367 | gain from terse-rule expected | ≥ 0.55 cross-capture |
+| `original_framing` similarity | 0.209 | hard to move; baseline is already low | ≥ 0.35 cross-capture |
+| `synthesized_position.latest_stance_text` similarity | 0.169 | structural change (Position object) | ≥ 0.35 cross-capture |
+| `synthesized_position.stance` enum Jaccard | n/a | mechanical rule | ≥ 0.90 cross-capture (1.0 is a WARNING per harness doctrine) |
+| `reasoning_passages` text Jaccard | 0.357 | no text-rule change in PR #5 | no regression (stay ≥ 0.30) |
+| `reasoning_passages.move_type` agreement | undefined | depends on measurement design | distribution sanity (no single value > 60%) — see PR #5 |
+| Fabricated count (any run) | 0 | 3 post-PR-1-C-full, 0 post-diagnostic | **always 0** |
+| `invalid_key_rate` (on PRs introducing slug fields) | n/a | 0.0% in PR #1 diagnostic | ≤ 10% |
 
-**Evidence directories:**
-- Pre-ship baseline: `research/stability-runs/contract-phase1-pre-ship-2026-04-22/README.md`
-- Initial post-ship (C-full, gate failed): `research/stability-runs/contract-phase1-post-ship-2026-04-22/README.md`
-- Diagnostic (C-medium, shipping): `research/stability-runs/contract-phase1-diagnostic-2026-04-23/README.md`
+## Testing methodology (unchanged from original, refined with #1 learnings)
 
-**Follow-up — PR #1b (not yet scheduled):** Reintroduce `canonical_key` field with a condensed prompt addition + swap the measurement from exact-text Jaccard to embedding cosine. Target: cross-capture semantic agreement ≥ 0.70 via embedding cosine. PR #1b must land before PR #2 (dropped_threads.canonical_key) because PR #2 depends on the canonical_key pattern being proven at a semantic level.
+**Every PR's acceptance gate uses three axes, cross-capture primary:**
 
-**What we learned that changes the roadmap's working assumptions:**
-1. **Mode C N=5 is too noisy for field-level judgment.** Cross-capture (36 pairs) is the reliable signal for any acceptance-gate. Prior PR acceptance gates should prefer cross-capture over Mode C.
-2. **Exact-text Jaccard on slug-like fields is the wrong metric.** Any future canonical_key work (PRs #1b, #2) must use a semantic metric (embedding cosine or equivalent). This is the "Semantic Continuity Principle" from the Context Engineering 2.0 paper (GAIR-NLP 2025).
-3. **Context pollution is observable and real in our pipeline.** Expanding any single prompt block has measurable cost on other fields. Future PRs should budget-balance prompt additions, or decompose into separate LLM calls per field (Track A).
+1. **Axis 1 — Cross-capture drift (PRIMARY, 9 Marcus captures × 1 run each, 36 pairs):**
+   - Reproducible via `scripts/stability_check.py --from-extractions <post-ship JSON paths>`
+   - Reports per-pair and aggregate metrics per field.
 
-**Scope (minimal):**
-- Add `canonical_key` field to each `Constraint` in the extraction schema.
-- Add canonical-form phrasing rule to the extraction prompt: constraint text ≤120 chars, terse noun-phrase-plus-state form.
-- Add `canonical_key` rule to the prompt: 2–4 words, lowercase, hyphen-separated, noun-phrase identity (e.g. `marcus-technical-concentration`). LLM generates the key; Python validates the format.
-- Update `capture_manifest` / result schema to include canonical_keys in serialized output.
+2. **Axis 2 — Mode C intrinsic drift (DIAGNOSTIC, N=5 on one capture):**
+   - `scripts/stability_check.py --drift --conversation <newest> --n 5`
+   - Sanity check under extraction-sampling-only variance. NOT a gate.
 
-**Files touched:**
-- `scripts/run_extract.py` — prompt text, schema, post-extraction validation.
-- `scripts/stability_check.py --drift` — extend the drift report to compute Jaccard on `canonical_key` in addition to exact text.
-- `HOW_IT_WORKS.md` §Step 2 — update the field description for `live_constraints`.
+3. **Axis 3 — Qualitative read:**
+   - Manual review of 3 extraction outputs per PR.
+   - Does the target field read as intended (terse / stable / meaningful)?
 
-**Acceptance gate (Marcus-only):**
+**Regression check (mandatory on every PR):**
+- No decrease outside noise band (~0.03) on any field the PR didn't target.
+- `fabricated count` stays at 0.
+- Cost per extraction call ≤ +10%.
 
-| Axis | Target |
-|---|---|
-| Mode C N=5, `live_constraints.canonical_key` Jaccard | ≥ 0.80 |
-| Cross-capture (9 captures), `live_constraints.canonical_key` Jaccard | ≥ 0.70 |
-| Qualitative: canonical_keys read as stable identifiers | yes (3 spot-checks) |
-| Regression: other fields' similarity/Jaccard | no decrease vs baseline |
-| Cost delta per extraction call | ≤ +10% |
+## Validation set — Marcus-only, non-blocking external-case track
 
-**Why this PR first:** Mode C baseline shows `live_constraints` Jaccard on exact text = 0.00. Biggest single signal in the dataset. If canonical_key mechanism works anywhere, this is where it shows up loudest.
+**What we have (unchanged 2026-04-22):** 9 Marcus `/tmp/lolla_*_conversation.txt` captures. No other cases ported from system_b (wrong shape).
 
-**Risk / rollback:**
-- If Axis 2 (cross-capture) fails but Axis 1 passes: the slug is LLM-variance-stable but not capture-variance-stable. Consider falling back to Python-side slugification from a canonicalized terse form (Option C in design notes).
-- If both fail: the hypothesis that "canonical_key via LLM output" works is wrong. Pause roadmap; revisit the contract spec itself.
-- Rollback: the schema change is additive. Revert the prompt + schema to pre-PR and old extractor runs still parse.
+**Honesty clause in every PR description:** results show the contract change works on Marcus. Generalization is verified only as non-Marcus cases accumulate in `~/.local/share/lolla/runs/`. No synthesis, no wrapped system_b cases, no dogfooding-to-accumulate.
 
-**Unblocks:** PR #2 (same mechanism, different field).
+**Parallel track:** whenever a non-Marcus `/lolla` run accumulates, add a line to `research/stability-runs/contract-phase{N}/cases.txt`. PR #N+1 re-runs all prior PRs' acceptance gates across new cases. The spec graduates from Marcus-only once the set reaches ≥ 5 distinct cases.
+
+## PR sequence (revised 2026-04-23)
+
+### PR #1 — `live_constraints` terse canonical form [IN REVIEW]
+
+See PR #13 on GitHub. Shipped ≤120-char terse-form rule + infrastructure. Does NOT ship `canonical_key` field. See `tasks/tasks-extraction-contract-phase-1-live-constraints.md` and the `contract-phase1-*` evidence directories.
 
 ---
 
-### PR #2 — `dropped_threads.canonical_key` + tie-break rule
+### PR #1b — `live_constraints.canonical_key` field + embedding-cosine metric [NOT STARTED]
 
-**Status:** NOT STARTED. Blocked on PR #1.
+**Why this PR exists:** the original PR #1 ambition (canonical_key as stable cross-run identity) failed because (a) the prompt text caused context pollution on other fields, and (b) exact-text Jaccard is the wrong metric for semantically-equivalent slugs. PR #1 shipped the proven side-effect win. PR #1b earns the canonical_key ambition with the right architecture: condensed prompt + semantic metric.
+
+**Blocks:** PR #2 (needs canonical_key pattern proven before applying to dropped_threads).
+
+**Task file:** `tasks/tasks-extraction-contract-phase-1b-canonical-key-embedding.md`.
 
 **Scope:**
-- Apply PR #1's canonical_key mechanism to `dropped_threads`.
-- Implement the tie-break rule from the observations doc §live_constraints: a concern raised by a third party and briefly addressed by the AI is a `Constraint` with `weight: situational`, NOT a `dropped_thread` — unless the user explicitly abandoned it later. Rule: if the user returned to it, it's live; if never revisited, it's dropped.
-- Add `raised_by` enum, `raised_turn`, `status` enum (`never_addressed` / `acknowledged_then_dropped` / `resolved`), `superseded_by` optional.
 
-**Files touched:**
-- `scripts/run_extract.py` — schema + prompt.
-- `scripts/stability_check.py --drift` — add dropped_threads canonical_key Jaccard.
-- `HOW_IT_WORKS.md` §Step 2 — update dropped_threads description.
+- Reintroduce `canonical_key` field in `EXTRACTION_SYSTEM_PROMPT` live_constraints block, **condensed** (~40% of the original block text) to budget-balance against other-field pollution.
+- Add embedding-cosine helper to `scripts/stability_check.py`. Exact design (local sentence-transformer vs OpenAI embeddings API; pairwise vs clustered) is a task-start design decision — see task file §1.
+- Extend `compute_extraction_drift()` with an embedding-cosine metric on `live_constraints.canonical_key`.
+- Update acceptance-gate documentation to cite the embedding metric as the canonical_key primary axis.
 
-**Acceptance gate (Marcus-only):**
+**Acceptance gate (cross-capture primary):**
 
 | Axis | Target |
 |---|---|
-| Mode C N=5, `dropped_threads.canonical_key` Jaccard | ≥ 0.70 |
-| Cross-capture, `dropped_threads.canonical_key` Jaccard | ≥ 0.60 |
-| Tie-break consistency: no item appears in both `live_constraints` and `dropped_threads` across any run | 0 violations |
-| Qualitative: tie-break rule assigns third-party concerns correctly | yes |
-| Regression | no decrease on PR #1's gate |
+| Cross-capture `canonical_key` embedding cosine mean | ≥ 0.70 |
+| Cross-capture `canonical_key` embedding cosine min | ≥ 0.50 (no single pair catastrophically off) |
+| `invalid_key_rate` overall | ≤ 10% |
+| Regression on `original_framing` similarity | no decrease vs PR #1 baseline (cross-capture 0.218) — **sentinel field for pollution** |
+| Regression on fabricated count | always 0 across 9 runs |
+| Regression on other fields | no decrease > 0.03 vs PR #1 baseline |
+| Cost per extraction call | ≤ +10% vs PR #1 shipped state (embedding calls add overhead) |
+| Qualitative: canonical_keys read as stable identifiers | yes (3 spot-checks) |
 
-**Why second:** same mechanism as PR #1, lower Mode C target (0.70 vs 0.80) because dropped_threads is more naturally a judgment call. Pairs naturally with PR #1 via the tie-break rule — attempting to ship the tie-break rule before both fields have canonical_keys produces incomplete semantics.
-
-**Risk / rollback:** same as PR #1. Tie-break rule is the main new risk; monitor the "0 violations" metric.
-
-**Unblocks:** PR #3 (independent mechanism; any order after #2 is fine).
+**Risk / rollback:** prompt addition is the same class of change as PR #1 C-full. Mitigate via condensation + pre/post-measurement. If the embedding metric passes but pollution returns → roll back the prompt, keep the embedding infrastructure, retry with further condensation.
 
 ---
 
-### PR #3 — `synthesized_position` as structured `Position` object
+### PR #2 — `dropped_threads.canonical_key` + tie-break rule + ≤120-char thread rule [NOT STARTED]
 
-**Status:** NOT STARTED. Blocked on PR #2.
+**Blocked on:** PR #1b merged + acceptance-gate passed.
+
+**Task file:** `tasks/tasks-extraction-contract-phase-2-dropped-threads.md`.
+
+**Scope:**
+
+- Add `canonical_key` subfield to each `Thread` in `dropped_threads`, using the same pattern proved by PR #1b (condensed prompt + embedding metric).
+- Add ≤120-char terse-form rule on `thread` text (mirror PR #1 win on `constraint`).
+- Implement tie-break rule in the prompt: *a concern raised by a third party briefly addressed by the AI is a `Constraint` with `weight: situational`, NOT a `dropped_thread` — unless the user explicitly abandoned it later.* Mechanical rule: if user returned to it, it's live; if never revisited, it's dropped.
+- Extend `_apply_canonical_key_validation` to walk dropped_threads as well as live_constraints.
+- Extend `compute_extraction_drift` to compute canonical_key embedding metric on dropped_threads.
+
+**Acceptance gate (cross-capture primary):**
+
+| Axis | Target |
+|---|---|
+| Cross-capture `dropped_threads.canonical_key` embedding cosine mean | ≥ 0.60 |
+| Cross-capture `dropped_threads.thread` exact-text Jaccard | ≥ 0.20 (vs pre-ship baseline 0.132) |
+| Tie-break violations (items appearing in both `live_constraints` AND `dropped_threads` by canonical_key across any run) | 0 |
+| `invalid_key_rate` overall (dropped_threads) | ≤ 10% |
+| Regression on `live_constraints` metrics | no decrease vs PR #1b shipped state |
+| Regression on other fields | no decrease > 0.03 |
+| Fabricated count | 0 |
+
+**Risk / rollback:** tie-break rule is the main new risk — it may cause the LLM to over-assign constraints as dropped_threads or vice versa. The "violations = 0" axis catches this. Rollback: revert the prompt + schema additions; infrastructure (validator extended to dropped_threads) stays inert.
+
+---
+
+### PR #3 — `synthesized_position` as structured `Position` object [NOT STARTED]
+
+**Blocked on:** nothing (independent of canonical_key pattern). Can ship in parallel with PR #1b / #2 / #4a.
+
+**Task file:** `tasks/tasks-extraction-contract-phase-3-synthesized-position.md`.
 
 **Scope:** biggest structural change in the roadmap.
 
-- Replace `synthesized_position: str` with the `Position` object from the observations doc:
+- Replace `synthesized_position: str` with object shape:
   ```json
   {
     "stance": "recommends_action" | "presents_tradeoffs" | "declines_to_recommend",
@@ -200,187 +216,210 @@ Every PR uses the same three axes. Each PR's section states its field-specific t
     "is_ambiguous": true | false
   }
   ```
-- Mechanical temporal anchor: `latest_stance_text` = the stance expressed in the FINAL assistant turn. Not "most developed."
-- Update `_map_to_critique_request` to build `vanilla_answer` from the new structure (concatenate `latest_stance_text` + superseded_stances summary + full assistant text as before).
+- Mechanical temporal anchor: `latest_stance_text` = stance in FINAL assistant turn.
+- Update `_map_to_critique_request` to read the object shape and build `vanilla_answer` equivalently to today (concat `latest_stance_text` + superseded summaries + full assistant text).
+- Schema-version handling: either absorb the change inside `_map_to_critique_request` (cleanest) or version the extraction output. Design decision at task start.
 
-**Files touched:**
-- `scripts/run_extract.py` — schema, prompt, `_map_to_critique_request`.
-- `engine/system_b/` — check whether any consumer of `synthesized_position` reads it as a string. Likely zero changes there because `_map_to_critique_request` absorbs the shape change. Verify via grep.
-- `scripts/stability_check.py --drift` — stance Jaccard + latest_stance_text similarity.
-- `HOW_IT_WORKS.md` §Step 2 — new field structure.
-
-**Acceptance gate (Marcus-only):**
+**Acceptance gate (cross-capture primary):**
 
 | Axis | Target |
 |---|---|
-| Mode C N=5, `stance` enum Jaccard | 1.0 (mechanical rule = identical enum) |
-| Mode C N=5, `latest_stance_text` similarity | ≥ 0.70 |
-| Cross-capture, `stance` Jaccard | ≥ 0.90 |
-| Qualitative: `is_ambiguous` correctly flags tradeoff presentations | yes |
-| Regression | no decrease on PR #1 + #2 |
-
-**Why third:** biggest structural change, largest downstream-consumer risk. Ship after canonical_key pattern is proven so we're not juggling two experimental mechanisms at once.
+| Cross-capture `stance` enum Jaccard (empty-excl) | ≥ 0.90 (1.0 is a warning per harness doctrine) |
+| Cross-capture `latest_stance_text` similarity mean | ≥ 0.35 (vs pre-ship 0.169) |
+| Qualitative: `is_ambiguous` correctly flags tradeoff presentations | yes (3 spot-checks) |
+| Downstream `_map_to_critique_request` output functionally equivalent to today | yes (diff-test vs current state) |
+| Regression on other fields | no decrease > 0.03 |
+| Fabricated count | 0 |
 
 **Risk / rollback:**
-- `_map_to_critique_request` consumers may implicitly depend on the old string shape. Grep before writing.
-- "Final assistant turn" is mechanically defined but brittle on conversations where the AI's final turn is a clarifying question rather than a position. `is_ambiguous` should absorb this.
-- Rollback: schema change is breaking. Old extraction JSONs won't parse as new Position objects. Version the schema or add a migration helper — don't expect zero-downtime.
+- `_map_to_critique_request` consumers may implicitly depend on string shape. Mitigation: grep all consumers before writing; absorb shape change inside mapping function.
+- "Final assistant turn" brittle when final turn is a clarifying question. `is_ambiguous` should absorb; explicit fallback behavior documented in task file.
+- Biggest pollution risk of the remaining PRs because the prompt addition is substantial. Condensed format required.
 
-**Unblocks:** PR #4 (independent; any order fine).
+**Rollback:** the schema change is breaking. Revert the PR; old archived extraction JSONs still parse against the old shape.
 
 ---
 
-### PR #4 — `decision_situation` + `original_framing` canonical forms
+### PR #4a — `decision_situation` terse canonical form [NOT STARTED]
 
-**Status:** NOT STARTED. Blocked on PR #3.
+**Blocked on:** nothing. Lowest-risk remaining PR; same mechanism as PR #1's proven win.
 
-**Scope:** phrasing-rule PRs, lowest mechanism change of the roadmap.
+**Task file:** `tasks/tasks-extraction-contract-phase-4a-decision-situation.md`.
 
-- Add canonical-form template to `decision_situation`: *"[Whether|How|When] [action] [subject], given [situation summary], with stakes [brief]."* One sentence, neutral third-person. Forbid founder pronouns, emotive adjectives, speculative outcomes.
-- Anchor `original_framing` mechanically to the FIRST user turn. MUST describe: what was assumed fixed, what alternatives were explicitly excluded, what lens the human brought. MUST NOT describe conversation-evolved framing (that's in `superseded_stances`).
+**Scope:** prompt-only change.
 
-**Files touched:**
-- `scripts/run_extract.py` — prompt only. No schema changes.
-- `scripts/stability_check.py --drift` — already measures similarity on these fields; no harness change.
-- `HOW_IT_WORKS.md` §Step 2 — update field descriptions.
+- Add ≤200-char rule to `decision_situation`: single sentence, neutral third-person, declarative.
+- MUST NOT include: founder pronouns, emotive adjectives, speculative outcomes.
+- Approach: apply PR #1's proven terse-rule discipline. Do NOT use the observation-doc's fill-in template ("[Whether|How|When] [action]...") — that's the inflexible path we've already rejected at the canonical_key level. Terse-rule alone is sufficient.
 
-**Acceptance gate (Marcus-only):**
+**Acceptance gate (cross-capture primary):**
 
 | Axis | Target |
 |---|---|
-| Mode C N=5, `decision_situation` similarity | ≥ 0.85 |
-| Mode C N=5, `original_framing` similarity | ≥ 0.70 |
-| Cross-capture, `decision_situation` similarity | ≥ 0.75 |
-| Qualitative: canonical_form template followed | yes (3 spot-checks) |
-| Regression | no decrease on PR #1–3 |
+| Cross-capture `decision_situation` similarity mean | ≥ 0.55 (vs pre-ship baseline 0.367) |
+| `decision_situation` length ≤ 200 chars | 9/9 runs |
+| Qualitative: neutral third-person, single sentence | yes (3 spot-checks) |
+| Regression on other fields | no decrease > 0.03 |
+| Fabricated count | 0 |
 
-**Why fourth:** smallest mechanism change (prompt-only), so risk is low. Put it later so it's not a distraction while the bigger structural PRs are in flight.
-
-**Risk / rollback:** the template may over-constrain on edge-case conversations (e.g., where the decision is compound or truly multi-part). If Axis 3 fails on that pattern, relax the template to a rule ("single-sentence, neutral third-person, opens with the decision verb") rather than a fill-in-the-blank form.
-
-**Unblocks:** PR #5.
+**Risk / rollback:** template-over-constrain on edge-case conversations (compound decisions, multi-part framing). Mitigation: terse-rule instead of fill-in template; let the LLM preserve structure within the length budget. Rollback: revert prompt; no schema change.
 
 ---
 
-### PR #5 — `reasoning_passages.move_type` + generalize hard-fail
+### PR #4b — `original_framing` first-turn anchor + terse form [NOT STARTED]
 
-**Status:** NOT STARTED. Blocked on PR #4.
+**Blocked on:** PR #4a (same-file edit, second in a parallel track; also provides decision-making experience).
+
+**Task file:** `tasks/tasks-extraction-contract-phase-4b-original-framing.md`.
+
+**Scope:** prompt-only change.
+
+- Anchor `original_framing` mechanically to FIRST user turn.
+- MUST describe: what was assumed fixed, what alternatives were explicitly excluded, what lens the human brought.
+- MUST NOT describe: framing shifts later in conversation (captured in `synthesized_position.superseded_stances` instead).
+- ≤200-char terse-rule applied.
+
+**Acceptance gate (cross-capture primary):**
+
+| Axis | Target |
+|---|---|
+| Cross-capture `original_framing` similarity mean | ≥ 0.35 (vs pre-ship baseline 0.209 — baseline is genuinely low; stretch target is realistic) |
+| `original_framing` length ≤ 200 chars | 9/9 runs |
+| Qualitative: anchored to first user turn, no conversation-evolved framing | yes (3 spot-checks) |
+| Regression on other fields | no decrease > 0.03 |
+| Fabricated count | 0 |
+
+**Risk / rollback:** original_framing has the lowest baseline of any field (0.209); it's genuinely hard to move. The 0.35 target is a stretch; acceptable outcome also includes "stayed at baseline but qualitative criteria met." If qualitative is strong but quantitative flat, ship — the anchor-to-first-turn rule produces structurally correct output even when character-level similarity is low.
+
+---
+
+### PR #5 — `reasoning_passages.move_type` enum + generalize hard-fail [NOT STARTED]
+
+**Blocked on:** nothing (independent). Could ship anytime after PR #1.
+
+**Task file:** `tasks/tasks-extraction-contract-phase-5-move-type.md`.
 
 **Scope:**
-- Add `move_type` enum to each `Passage`: `leap` / `dismissal` / `assertion_without_evidence` / `framing_shift` / `closure` / `inversion` / `comparison`.
-- Generalize the existing retry-then-drop quote-validation to any future field that references verbatim turn content. Currently `reasoning_passages` is the only such field; this PR is the hook for future fields without changing live behavior.
-- Per the observations doc: hard-fail was partially shipped as retry-then-drop (Option D). This PR keeps retry-then-drop as the behavior and refactors the validation layer so it's reusable. No behavior change there.
 
-**Files touched:**
-- `scripts/run_extract.py` — prompt + schema + validation refactor.
-- `engine/system_b/companion_routing.py` — check whether Lane 2 fingerprint/verification could consume `move_type` as a filter (not required for this PR, just note in the PR description as a follow-up).
-- `HOW_IT_WORKS.md` §Step 2.
+- Add `move_type` enum to each `Passage`. **Reduced from 7 to 5 values** based on disambiguation-difficulty analysis in task file: `leap` / `dismissal` / `assertion_without_evidence` / `framing_shift` / `closure`. Drops `inversion` and `comparison` (those two were hard to disambiguate from `framing_shift` and `leap` respectively). Use `str` + validator, not strict enum, for future extensibility.
+- Generalize existing retry-then-drop quote-validation into a reusable helper so future PRs referencing verbatim turn content don't re-implement it. **No behavior change** — just refactor.
+- **Enum-stability measurement:** given passage text itself drifts (0.357-0.418 cross-capture), matching-passages-across-runs is itself unstable. Decision at task start: either (a) fuzzy-match passages first then measure enum agreement on matched set, or (b) distribution sanity only ("no single move_type > 60% of total passages") and accept that per-passage enum stability isn't cleanly measurable.
 
-**Acceptance gate (Marcus-only):**
+**Acceptance gate (cross-capture primary):**
 
 | Axis | Target |
 |---|---|
-| Mode C N=5, `reasoning_passages` text Jaccard | ≥ 0.50 (same as current target) |
-| Mode C N=5, `move_type` enum agreement rate | ≥ 0.60 (passage-level: when the same passage is extracted, what fraction of runs agree on move_type?) |
-| Cross-capture, move_type distribution | no single move_type > 60% of all passages (sanity check that the enum isn't degenerate) |
+| `reasoning_passages.text` Jaccard (regression check on existing metric) | no decrease vs PR #1 baseline (stay ≥ 0.30) |
+| `move_type` distribution sanity: no single value > 60% of passages across all 9 runs | pass |
+| `move_type` enum-agreement method chosen at task start: (a) fuzzy-match + per-passage ≥ 0.60 OR (b) distribution-only | per chosen method |
 | `_quote_validation.fabricated` count | 0 |
-| Regression | no decrease on PR #1–4 |
+| Regression on other fields | no decrease > 0.03 |
 
-**Why fifth:** additive enum, low-risk. Enables Lane 1 and Lane 2 to filter passages by reasoning-move type in future PRs (outside this roadmap). Reasoning_passages has the best current Jaccard (0.389); gains here are the smallest of the roadmap, which is why it's last.
-
-**Risk / rollback:** the enum may need to grow as cases accumulate. Keep it open to extension in the schema (use `str` + validate-against-known-values rather than strict enum).
-
-**Unblocks:** Cycle 2 evaluation — see below.
+**Risk / rollback:** enum may be too coarse or too fine — keep `str` + validator (not strict enum) so new values can be added in a follow-up without a breaking change. Generalized hard-fail helper is low-risk infrastructure.
 
 ---
 
-## Cycle 2 decision gate (after PR #5)
+## Dependency graph (revised 2026-04-23)
 
-After PR #5 lands, re-run Mode C full-suite on the Marcus set and assess:
+```
+PR #1 (IN REVIEW)
+    │
+    ├──→ PR #1b (canonical_key + embedding metric)
+    │         │
+    │         └──→ PR #2 (dropped_threads.canonical_key + tie-break + thread ≤120-char)
+    │
+    ├──→ PR #4a (decision_situation terse form) ─── PR #4b (original_framing terse + anchor)
+    │
+    ├──→ PR #3 (synthesized_position Position object) — independent; substantial prep
+    │
+    └──→ PR #5 (reasoning_passages.move_type + hard-fail generalize) — independent
+```
 
-1. **Lane 1 stability across extraction-equivalent runs.** If Pass 1 tendencies Jaccard improved (because the contract reduced input variance), that's a major doctrinal win and the system achieves "repeatable structural read" on Marcus.
+**Only hard dependency:** PR #1b → PR #2. Everything else can parallelize after PR #1 merges.
+
+**Suggested execution order** (one PR shipped at a time, to keep context-pollution measurement clean):
+
+1. PR #1 merge (IN REVIEW today)
+2. PR #1b (smallest next — unblocks PR #2)
+3. PR #4a (lowest-risk, same-mechanism as PR #1's win)
+4. PR #4b (same mechanism as #4a; natural pair)
+5. PR #2 (now unblocked; reuses PR #1b's pattern)
+6. PR #3 (biggest structural change; benefits from the three previous PRs having shown how pollution-budgeting works)
+7. PR #5 (can interleave anywhere after #1)
+
+## Cycle 2 decision gate (after PR #5 lands)
+
+Re-run Mode C + cross-capture full-suite on Marcus and assess:
+
+1. **Lane 1 tendency-set stability across extraction-equivalent runs.** If Pass 1 tendencies Jaccard improved (because contract reduced input variance), the system achieves "repeatable structural read" on Marcus.
 2. **Lane 2 anchor stability.** Same question for companion anchors.
 3. **Qualitative: what subtle failures still slip through?** If answer is "nothing significant," Cycle 2 stops here.
 
-If significant failures remain — specifically, if Lane 1 still routes to different tendency families across runs despite stable extraction — Cycle 2 extends to the conditional PRs below.
+If significant failures remain — especially Lane 1 still routing to different tendency families across runs despite tight extraction — Cycle 2 extends to the conditional PRs below.
 
-## Conditional Cycle 2 PRs
+## Conditional Cycle 2 PRs (unchanged structure)
 
 ### PR #6 (conditional) — Negative space field
 
-**Status:** CONDITIONAL. Depends on Cycle 2 gate.
-
-**Scope (if unblocked):**
-- Add `negative_space` field to extraction output. Subfields:
-  - `user_asks_unaddressed` — user questions raised but not answered by the assistant. Must quote the user's turn verbatim.
-  - `alternatives_never_considered` — decision paths the conversation never surfaced (e.g., if the decision is "buy vs build," was "partner-with" mentioned?).
-  - `stakes_never_weighed` — stakes implicitly present in the scenario but never given weight in the assistant's analysis.
-  - `what_ifs_avoided` — reversibility questions or what-if scenarios the assistant didn't raise.
-
-**Why this is harder:** each of these requires the LLM to produce things that aren't in the transcript. That's a fundamentally different task from "summarize turn N." It might not be extractable in the same prompt even with a perfect contract — may need its own specialist call. Scope the PR to investigate both options (same call vs specialist call) before committing.
-
-**Risk:** the LLM will fabricate negative-space items under pressure to produce output. Mode C will show whether the outputs are stable enough to be useful.
-
-**Acceptance gate:** TBD when/if this PR is unblocked. Likely a qualitative gate ("does surfacing negative space change what Lane 1 catches?") more than a Mode C number, because negative space is fundamentally creative.
-
----
+Unchanged from 2026-04-22 plan. Unblock depends on Cycle 2 gate. See original section.
 
 ### PR #7 (conditional) — Epistemic posture field
 
-**Status:** CONDITIONAL. Depends on Cycle 2 gate AND PR #6 outcome.
-
-**Scope (if unblocked):**
-- Add `epistemic_posture` field:
-  - `confidence_markers` — verbatim phrases where the assistant expressed confidence (e.g., "clearly," "obviously," "without doubt").
-  - `hedging_patterns` — verbatim phrases where the assistant hedged (e.g., "might," "could potentially," "it's worth considering").
-  - `authority_claims` — passages where the assistant appealed to authority (e.g., "research shows," "experts agree").
-  - `evidence_gaps` — claims made without supporting evidence in the conversation.
-
-**Why maybe useful:** Lane 1 tendencies (overoptimism, authority-misinfluence) today re-derive these from vanilla_answer. Surfacing them in extraction gives Lane 1 structured signals instead of re-reading prose.
-
-**Why maybe not:** may duplicate what `reasoning_passages.move_type` already captures. PR #6's outcome determines whether we need more negative-space-adjacent fields or whether move_type is sufficient.
-
-**Acceptance gate:** TBD.
-
----
+Unchanged. Unblock depends on Cycle 2 gate AND PR #6 outcome.
 
 ## What this plan is NOT
 
-- **Not Track A decomposition.** Splitting extraction into 5 specialists is still deferred. The contract must be proven first (Cycle 2 gate above). Decomposition without a tight contract preserves ambiguity at a new layer, per the observations doc.
-- **Not a rewrite.** The schema changes are additive (canonical_key, move_type, Position object). `_map_to_critique_request` absorbs the shape changes so downstream lanes don't change.
-- **Not cross-model.** Every PR uses the current production model (`x-ai/grok-4.1-fast`). Model choice is orthogonal.
-- **Not ensemble voting.** See `llm-decomposition-handover.md` §0e for the doctrinal reason.
+- **Not Track A decomposition.** Splitting extraction into 5 specialists is still deferred. The contract must be proven first. Decomposition without a tight contract preserves ambiguity at a new layer.
+- **Not a rewrite.** All schema changes are additive (canonical_key, move_type, Position object). `_map_to_critique_request` absorbs the shape change for Position so downstream lanes don't change.
+- **Not cross-model.** Every PR uses current production model (`x-ai/grok-4.1-fast`). Model choice is orthogonal.
+- **Not ensemble voting.** See `llm-decomposition-handover.md` §0e.
 
 ## Branching strategy
 
-- One branch per PR. `feat/extraction-contract-phase-1-live-constraints`, etc.
+- One branch per PR. Names: `feat/extraction-contract-phase-{1b,2,3,4a,4b,5}-{slug}`.
 - Rebase on `main` before opening each PR. Don't pile PRs on top of each other.
-- Each PR is independently revertible. If PR #3 regresses something, revert just #3 — #1 and #2 continue to hold.
-- Acceptance evidence goes into `research/stability-runs/contract-phase{N}-{date}/` with the Mode C outputs + cross-capture diff + qualitative notes. PR description links to that directory.
+- Each PR independently revertible.
+- Acceptance evidence → `research/stability-runs/contract-phase{N}-{date}/`, same subdirectory layout as PR #1 (`modec-n5/`, `cross-capture/`, `cross-capture-drift/`, `README.md`, optional `qualitative-spot-check.md`).
+- PR description links to the evidence directory.
 
 ## What could change this plan
 
-- **Non-Marcus cases accumulate.** If new cases show Mode C failure modes that Marcus didn't show, the spec may need additions before the next PR ships. Revisit the observations doc first; extend if needed.
-- **Cycle 2 gate shows Lane 1/2 still unstable despite tight extraction.** Means the contract isn't the bottleneck; something else is. Revisit `llm-decomposition-handover.md` Section 6 for the held-track options (C-extended, C-fingerprint).
-- **Axis 2 (cross-capture) fails consistently across PRs.** Means capture drift (Step 1) is the dominant variance, not extraction (Step 2). The contract work caps out; next cycle has to address the capture layer (SKILL.md Step 1 rules, or upstream mechanical capture).
-- **User scope change.** If the user decides extraction-front is no longer priority, park the remaining PRs here with a status line noting where work stopped.
+- **Non-Marcus cases accumulate.** Extend the test set; re-run all prior PRs' gates on any new case. If a non-Marcus case shows a failure mode Marcus didn't show, pause the sequence and extend the observations doc before continuing.
+- **Cycle 2 gate shows Lane 1/2 still unstable despite tight extraction.** Contract isn't the bottleneck; something else is. Revisit `llm-decomposition-handover.md` §6 for held-track options.
+- **Axis 1 (cross-capture) fails consistently across PRs.** Means capture drift (Step 1) is the dominant variance, not extraction (Step 2). The contract work caps out; next cycle addresses the capture layer (SKILL.md Step 1 rules, or upstream mechanical capture).
+- **User scope change.** Park the remaining PRs with a status line noting where work stopped.
 
-## Execution checklist
+## Execution checklist for any future PR
 
-Before starting any PR:
+Before starting:
 
-- [ ] Re-read the corresponding field section in `research/extraction-contract-observations-2026-04-22.md` — that's the normative spec; this roadmap is just the sequencing.
-- [ ] Confirm prior PRs' Mode C evidence still holds (no regression from drift in the production environment).
-- [ ] Check `~/.local/share/lolla/runs/` — if non-Marcus cases have accumulated, add them to the test set for this PR's acceptance gate.
+- [ ] Re-read the corresponding field section in `research/extraction-contract-observations-2026-04-22.md`.
+- [ ] Re-read this roadmap's §"Methodology upgrades" and §"Realistic-target calibration."
+- [ ] Confirm prior PRs' cross-capture evidence still holds (no drift regression from production deploys).
+- [ ] Check `~/.local/share/lolla/runs/` for non-Marcus cases. If any accumulated, ADD them to the test set and re-measure prior PRs' gates before starting this one.
+- [ ] Open the PR's task file and execute sub-tasks in order.
 - [ ] Branch off `main` fresh.
-- [ ] Write the PR diff, run Mode C (N=5) on newest capture, run cross-capture across 9 captures, do qualitative review.
-- [ ] If all three axes pass: open PR. If any fails: note the failure in this roadmap under the PR's section, diagnose before retrying.
-- [ ] Mark PR status in this file: `NOT STARTED` → `IN PROGRESS` → `SHIPPED (commit: <hash>)` or `PAUSED (reason: ...)`.
+
+Ship criteria:
+
+- [ ] All acceptance-gate axes meet targets.
+- [ ] Cross-capture is the PRIMARY signal; don't ship on Mode C alone.
+- [ ] Pre/post-measurement shows no regression on non-target fields outside noise band.
+- [ ] Qualitative review passes on 3 spot-checks.
+- [ ] Evidence directory populated + linked in PR description.
+- [ ] Honesty clause in PR description (Marcus-only validation).
+
+Roadmap status updates:
+
+- Mark PR status in this file: `NOT STARTED` → `IN PROGRESS` (at branch creation) → `IN REVIEW` (at PR open) → `SHIPPED (commit: <merge-hash>)` (at merge) OR `PAUSED (reason: ...)` (at gate failure).
 
 ## References
 
 - Observations doc (normative spec): `research/extraction-contract-observations-2026-04-22.md`
-- Cycle 1 handover (context): `research/llm-decomposition-handover.md`
+- Cycle 1 handover: `research/llm-decomposition-handover.md`
 - Architecture: `HOW_IT_WORKS.md`
 - Extraction code: `scripts/run_extract.py`
-- Mode C harness: `scripts/stability_check.py`
+- Harness: `scripts/stability_check.py`
+- Context Engineering 2.0 paper (GAIR-NLP, Oct 2025): arxiv 2510.26493 — entropy-reduction framing + 8-operation taxonomy + "context pollution" naming
+- EDC framework (ACL 2024): arxiv 2404.03868 — three-phase Extract/Define/Canonicalize pattern
+- Kamradt SemanticDeduplicator: github.com/gkamradt/SemanticDeduplicator — hybrid cosine + LLM verification reference implementation
