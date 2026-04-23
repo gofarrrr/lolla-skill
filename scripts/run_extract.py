@@ -258,9 +258,11 @@ copied from the AI assistant's messages. Focus on passages that show:
    Do NOT paraphrase, summarize, or fabricate. If you cannot find enough distinct \
    passages, return fewer rather than inventing quotes.
 
-5. "original_framing": How the human originally posed the problem. What perspective \
-was adopted? What was treated as fixed vs. open? What alternatives were implicitly \
-excluded by the way the question was asked?
+5. "original_framing": how the HUMAN posed the question IN THE FIRST USER TURN \
+(mechanical anchor — NOT conversation-evolved framing). ≤200 chars, neutral \
+third-person. Describe: what was assumed fixed, what alternatives were \
+excluded, what lens the human brought. MUST NOT describe framing shifts \
+from later turns.
 
 6. "dropped_threads": Array of objects, each with:
    - "thread": the concern, constraint, or question that was raised
