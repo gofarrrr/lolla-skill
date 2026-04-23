@@ -9,7 +9,7 @@ Run IDs: 20260423T072924Zdrift0, 20260423T072934Zdrift1, 20260423T072945Zdrift2,
 - Free-text fields (`decision_situation`, `original_framing`, `synthesized_position`) — difflib SequenceMatcher ratio (character-level). 1.0 = identical; 0.7+ = very similar; 0.4–0.7 = material drift (paraphrase or reshape); <0.4 = shape-shift.
 - List fields (`live_constraints`, `reasoning_passages`, `dropped_threads`) — Jaccard on normalized item text (strip, lowercase).
 - `live_constraints_canonical_key` — Jaccard on `canonical_key` slugs with empty-string exclusion: empty/missing keys are filtered from BOTH sets before intersection so two failed extractions do not trivially match. A pair with all-empty keys on both sides is reported as `—` (undefined); the failure rate lives in `invalid_key_rate`.
-- `invalid_key_rate` — share of constraints where `canonical_key` is missing or empty (the LLM failed the slug format rule). Per-run + overall. Acceptance gate target: ≤ 10%.
+- `invalid_key_rate` — share of constraints where `canonical_key` is missing or empty (the LLM failed the slug format rule). Per-run + overall. Acceptance gate target: ≤ 10%. **N/A for this phase — `canonical_key` prompt rules were stripped (commit `8193b89`) after the diagnostic showed context pollution; the field is intentionally inactive in PR #13, so a 1.000 rate here is expected, not a regression.**
 - `fabricated_count_per_run` — passages the extractor marked as not-a-literal-substring. Higher is worse.
 
 ## Aggregate drift
@@ -25,8 +25,8 @@ Run IDs: 20260423T072924Zdrift0, 20260423T072934Zdrift1, 20260423T072945Zdrift2,
 | `live_constraints_canonical_key` | jaccard (empty-excl) | — | — | — |
 > `live_constraints_canonical_key` has 10 undefined pair(s) — both runs had no valid canonical_keys. See `invalid_key_rate` below.
 
-**`invalid_key_rate` per run:** [1.0, 1.0, 1.0, 1.0, 1.0]
-**`invalid_key_rate` overall:** 1.000 (27 invalid of 27 total constraints)
+**`invalid_key_rate` per run:** [1.0, 1.0, 1.0, 1.0, 1.0] — *expected; `canonical_key` intentionally inactive in PR #13, see note above.*
+**`invalid_key_rate` overall:** 1.000 (27 invalid of 27 total constraints) — *N/A for this phase.*
 **Fabricated-quote counts per run:** [1, 0, 0, 0, 0]
 **Capture health per run:** ['good', 'good', 'good', 'good', 'good']
 
