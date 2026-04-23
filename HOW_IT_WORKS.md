@@ -482,6 +482,8 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 Lane 3 is most powerful on short conversations where the question itself constrains the answer space. A question that assumes "we must grow" and never explores "should we grow?" is a frame pressure finding.
 
+**Phase 2a migration (conversation-first input):** when the pipeline receives a `ConversationContext` (via `--new-contract` or a direct lane call), Lane 3 uses `run_frame_extraction_from_context` and `generate_reframings_from_context` instead of the legacy `query`/`vanilla_answer` variants. The user-prompt body is split into a `CONTEXT` section (extractor summaries + assistant replies, NOT quotable as evidence) and a `SOURCE` section (raw user turns). `evidence_quote` validation requires a literal substring of a user turn. This grounds framing findings in the user's own words rather than the extractor's paraphrased `decision_situation`/`original_framing` text that the legacy collapsed `query` carried. Measurement evidence: `research/test-cases/phase2a-lane3-equivalence-2026-04-23/`.
+
 **Lane 4 — Structural Coverage (2-3 OpenRouter calls):**
 
 Lane 4 is fundamentally different from Lanes 1-3. Where the first three lanes are *reactive* — they analyze what's in the answer or question — Lane 4 is *proactive*. It asks: "Given the shape of this problem, what structural territory did the answer never enter?" It decomposes the problem into structural dimensions using a curated 15-dimension MECE taxonomy, checks which ones the answer actually engaged with, and generates discovery questions for each gap.

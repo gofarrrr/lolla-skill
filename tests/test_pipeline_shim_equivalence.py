@@ -376,3 +376,114 @@ def test_run_passes_critique_request_through_without_shim() -> None:
 
 class _ShimDispatchedException(Exception):
     pass
+
+
+# ---------- Phase 2a: Lane 3 dispatch ----------
+
+
+def _minimal_context() -> ConversationContext:
+    return ConversationContext(
+        turns=(Turn(turn_index=1, speaker="user", text="question text"),),
+        extraction=ExtractionPayload(
+            decision_situation="D",
+            live_constraints=(),
+            synthesized_position="S",
+            reasoning_passages=(),
+            original_framing="",
+            dropped_threads=(),
+        ),
+    )
+
+
+def test_run_frame_pressure_uses_context_path_when_context_present() -> None:
+    """When _run_frame_pressure is given a ConversationContext, Lane 3 must
+    call run_frame_extraction_from_context (not the legacy query-based one)."""
+    from engine.system_b.pipeline import PipelineConfig
+    ctx = _minimal_context()
+    captured_from_context: list = []
+    captured_legacy: list = []
+
+    def _spy_from_context(*, boundary, context):  # noqa: ARG001
+        captured_from_context.append(context)
+        raise _ShimDispatchedException()
+
+    def _spy_legacy(*, boundary, query, vanilla_answer):  # noqa: ARG001
+        captured_legacy.append((query, vanilla_answer))
+        raise _ShimDispatchedException()
+
+    with patch(
+        "engine.system_b.pipeline.run_frame_extraction_from_context",
+        side_effect=_spy_from_context,
+    ), patch(
+        "engine.system_b.pipeline.run_frame_extraction",
+        side_effect=_spy_legacy,
+    ):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        pipeline._config = PipelineConfig(enable_frame_pressure=True)
+        pipeline._boundary = object()
+        try:
+            pipeline._run_frame_pressure(
+                CritiqueRequest(query="legacy_q", vanilla_answer="legacy_va"),
+                boundary_calls=[],
+                conversation_context=ctx,
+            )
+        except _ShimDispatchedException:
+            pass
+
+    assert len(captured_from_context) == 1
+    assert captured_from_context[0] is ctx
+    assert captured_legacy == [], "legacy run_frame_extraction should NOT have been called"
+
+
+def test_run_frame_pressure_uses_legacy_path_when_no_context() -> None:
+    """Without a ConversationContext, _run_frame_pressure must keep calling the
+    legacy run_frame_extraction path — protects the existing shim behavior."""
+    from engine.system_b.pipeline import PipelineConfig
+    critique = CritiqueRequest(query="qtext", vanilla_answer="vatext")
+    captured_from_context: list = []
+    captured_legacy: list = []
+
+    def _spy_from_context(*, boundary, context):  # noqa: ARG001
+        captured_from_context.append(context)
+        raise _ShimDispatchedException()
+
+    def _spy_legacy(*, boundary, query, vanilla_answer):  # noqa: ARG001
+        captured_legacy.append((query, vanilla_answer))
+        raise _ShimDispatchedException()
+
+    with patch(
+        "engine.system_b.pipeline.run_frame_extraction_from_context",
+        side_effect=_spy_from_context,
+    ), patch(
+        "engine.system_b.pipeline.run_frame_extraction",
+        side_effect=_spy_legacy,
+    ):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        pipeline._config = PipelineConfig(enable_frame_pressure=True)
+        pipeline._boundary = object()
+        try:
+            pipeline._run_frame_pressure(
+                critique,
+                boundary_calls=[],
+                conversation_context=None,
+            )
+        except _ShimDispatchedException:
+            pass
+
+    assert len(captured_legacy) == 1
+    assert captured_legacy[0] == ("qtext", "vatext")
+    assert captured_from_context == [], "new from_context path should NOT have been called"
+
+
+def test_run_frame_pressure_skips_both_paths_when_feature_disabled() -> None:
+    """PipelineConfig.enable_frame_pressure=False short-circuits Lane 3 entirely."""
+    from engine.system_b.pipeline import PipelineConfig
+    pipeline = SystemBPipeline.__new__(SystemBPipeline)
+    pipeline._config = PipelineConfig(enable_frame_pressure=False)
+    pipeline._boundary = object()
+    result = pipeline._run_frame_pressure(
+        CritiqueRequest(query="q", vanilla_answer="a"),
+        boundary_calls=[],
+        conversation_context=_minimal_context(),
+    )
+    assert result is None

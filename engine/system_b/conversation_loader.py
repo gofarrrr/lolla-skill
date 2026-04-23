@@ -18,7 +18,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from engine.system_b.conversation_context import (
+from .conversation_context import (
     ConversationContext,
     DroppedThread,
     ExtractionPayload,

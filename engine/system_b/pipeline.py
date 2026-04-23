@@ -21,8 +21,10 @@ from .frame_pressure import (
     assemble_frame_card,
     compute_pressure_concept_overlap,
     generate_reframings,
+    generate_reframings_from_context,
     route_frame_elements,
     run_frame_extraction,
+    run_frame_extraction_from_context,
 )
 from .structural_coverage import StructuralCoverageCard, run_structural_coverage
 from .companion_routing import recall_candidates, run_fingerprint_call, run_verification_call
@@ -454,7 +456,11 @@ class SystemBPipeline:
         # now we shim it into the legacy CritiqueRequest shape so lane code
         # stays untouched. Phase 2 migrates each lane to consume the context
         # directly; Phase 3 removes CritiqueRequest entirely.
+        # Phase 2a holds the original context alongside the converted request
+        # so already-migrated lanes (Lane 3 as of PR 2a) can consume it directly.
+        conversation_context: ConversationContext | None = None
         if isinstance(request, ConversationContext):
+            conversation_context = request
             request = _context_to_critique(request)
         run_started = time.monotonic()
         boundary_calls: list[BoundaryCallTrace] = []
@@ -491,6 +497,7 @@ class SystemBPipeline:
                 request, boundary_calls,
                 lane1_tendency_ids=set(),
                 lane1_model_ids=set(),
+                conversation_context=conversation_context,
             )
             _lane2_model_ids = _extract_companion_model_ids(companion_result)
             _lane3_model_ids = _extract_frame_model_ids(frame_card)
@@ -623,6 +630,7 @@ class SystemBPipeline:
             request, boundary_calls,
             lane1_tendency_ids={route.tendency.tendency_id for route in routes},
             lane1_model_ids=set(delta_card.selected_model_ids),
+            conversation_context=conversation_context,
         )
         _lane2_model_ids = _extract_companion_model_ids(companion_result)
         _lane3_model_ids = _extract_frame_model_ids(frame_card)
@@ -804,16 +812,29 @@ class SystemBPipeline:
         boundary_calls: list[BoundaryCallTrace],
         lane1_tendency_ids: set[str] | None = None,
         lane1_model_ids: set[str] | None = None,
+        conversation_context: ConversationContext | None = None,
     ) -> FramePressureCard | None:
         if not self._config.enable_frame_pressure:
             return None
 
-        # Phase 1: Extract frame elements from the query
-        extraction_result = run_frame_extraction(
-            boundary=self._boundary,
-            query=request.query,
-            vanilla_answer=request.vanilla_answer,
-        )
+        # Phase 2a dispatch: when the caller passed a ConversationContext at
+        # the pipeline entry point, Lane 3 uses the conversation-first
+        # extraction and reframe generators. Otherwise it runs the legacy
+        # path on the shim-converted CritiqueRequest. Legacy entry points
+        # stay alongside the new ones until Phase 3.
+        use_context = conversation_context is not None
+
+        if use_context:
+            extraction_result = run_frame_extraction_from_context(
+                boundary=self._boundary,
+                context=conversation_context,
+            )
+        else:
+            extraction_result = run_frame_extraction(
+                boundary=self._boundary,
+                query=request.query,
+                vanilla_answer=request.vanilla_answer,
+            )
         boundary_calls.append(_capture_boundary_call(self._boundary, stage="frame_extraction"))
 
         if extraction_result is None or not extraction_result.frame_elements:
@@ -835,12 +856,20 @@ class SystemBPipeline:
         )
 
         # Phase 3: Generate reframings + assemble card
-        reframings = generate_reframings(
-            boundary=self._boundary,
-            query=request.query,
-            elements=elements,
-            routes=routes,
-        )
+        if use_context:
+            reframings = generate_reframings_from_context(
+                boundary=self._boundary,
+                context=conversation_context,
+                elements=elements,
+                routes=routes,
+            )
+        else:
+            reframings = generate_reframings(
+                boundary=self._boundary,
+                query=request.query,
+                elements=elements,
+                routes=routes,
+            )
         boundary_calls.append(_capture_boundary_call(self._boundary, stage="frame_reframing"))
 
         return assemble_frame_card(

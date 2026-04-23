@@ -17,6 +17,7 @@ from dataclasses import dataclass, field
 from typing import Literal, Protocol
 
 from .boundary_validation import coerce_str, require_list_of_dicts
+from .conversation_context import ConversationContext
 
 _LOGGER = logging.getLogger("system_b.frame_pressure")
 
@@ -328,12 +329,264 @@ def run_frame_extraction(
 ) -> FramePressureCard:
     """Run the frame extraction boundary call and return a FramePressureCard.
 
-    This is the Phase 1 entry point.  It performs extraction only — no routing
-    or reframe generation yet (those are Phase 2 and Phase 3).
+    Legacy entry point — consumes the collapsed `query` shape built by
+    `_map_to_critique_request` (via `_context_to_critique` under the shim).
+    Still serves the legacy path until Phase 3. For new conversation-first
+    callers use `run_frame_extraction_from_context` instead.
     """
     user_prompt = _format_frame_extraction_user_prompt(query, vanilla_answer)
     raw = boundary.run_json(_FRAME_EXTRACTION_SYSTEM, user_prompt)
     elements, dropped = _parse_frame_extraction(raw, query)
+    return FramePressureCard(frame_elements=elements, dropped_frame_elements=tuple(dropped))
+
+
+# ---------------------------------------------------------------------------
+# Phase 2a: Conversation-first frame extraction
+# ---------------------------------------------------------------------------
+#
+# Why a separate system prompt instead of retrofitting _FRAME_EXTRACTION_SYSTEM?
+# The legacy prompt's evidence rule says "literal substring of the query"; the
+# conversation-first path validates against user turns, which is a different
+# source-text set. Sharing a single prompt would require hedging language that
+# could drift either path's calibration. Costs a little duplication; keeps each
+# path's behavior crisp. Both prompts die together in Phase 3 when CritiqueRequest
+# is removed — at which point we collapse to the context-first prompt only.
+
+_FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT = """\
+You are a frame analyst. Your job is to read a CONVERSATION (user turns plus \
+assistant replies) and identify frame-level assumptions, mutable constraints, \
+and suppressed counterfactuals embedded in the USER'S FRAMING that shape the \
+answer space before any reasoning begins.
+
+You are NOT analyzing the assistant's replies. You are analyzing the USER'S \
+FRAMING — how the user posed the problem across their turns — as a reasoning \
+artifact. Assistant turns are shown for context only.
+
+EVIDENCE QUOTING — READ CAREFULLY:
+The user prompt has two labelled sections:
+  - CONTEXT: extractor summaries (decision_situation, framing, constraints, \
+dropped threads, assistant replies). These are for your understanding only. \
+DO NOT quote from CONTEXT. CONTEXT is paraphrased — not the user's own words.
+  - SOURCE: the actual user turns, verbatim. This is the ONLY section from \
+which evidence_quote may be drawn.
+
+Every evidence_quote MUST be a LITERAL SUBSTRING of a user turn from the \
+SOURCE section. Character-for-character match. If a frame element is real but \
+no user-turn substring supports it directly, you MUST OMIT the element — do \
+not paraphrase, do not quote from CONTEXT, do not fabricate.
+
+RIGHT: evidence_quote = "I have to decide this week" (verbatim from a USER turn)
+WRONG: evidence_quote = "time pressure assumed" (paraphrase)
+WRONG: evidence_quote = "the decision has a 10-day window" (extractor summary from CONTEXT)
+WRONG: evidence_quote = "you're under real time pressure" (assistant reply, not a user turn)
+
+Return a JSON object with a single key "frame_elements" containing a list of \
+0-5 extracted elements. Each element has:
+  - element_text: what the user's framing assumes, constrains, or suppresses
+  - element_type: "assumption" | "mutable_constraint" | "suppressed_counterfactual"
+  - evidence_quote: a LITERAL SUBSTRING of a USER turn from the SOURCE section
+  - frame_pattern: the pattern from this taxonomy: binary_collapse, \
+borrowed_premise, scope_lock, temporal_fixation, proxy_optimization, \
+option_space_collapse, single_actor_assumption, commitment_escalation, \
+symptom_as_problem, counterfactual_suppression, habitual_frame, \
+premature_intellectualization, means_end_conflation, externalized_agency, \
+survivorship_frame
+  - fragility_signal: what fact or reframe would break this element
+  - inquiry_stage: "why" | "what_if" | "how" (where is the user stuck?)
+  - likely_default: "ego" | "social" | "inertia" | "emotion" | "none"
+
+CALIBRATION RULES:
+- A frame element is worth surfacing ONLY if dropping it would change the SET \
+OF ACCEPTABLE ANSWERS, not just the emphasis within the current answer.
+- SILENCE IS A VALID AND OFTEN CORRECT RESULT. If the user's framing is \
+already well-formed, exploratory in the right way, or operational with a \
+bounded solution space, return {"frame_elements": []}.
+- OVERTHINKING GATE: Do NOT surface elements for routine operational/execution \
+queries where the solution space is known. Frame pressure is for decisions with \
+genuine ambiguity about what the right question is.
+- FELT DIFFICULTY TEST: If the user is already in a genuine exploration, the \
+asker is in the right cognitive state. Focus on pre-packaged formulations.
+- The FIRST USER TURN is the primary framing anchor. Subsequent user turns may \
+clarify or extend the framing; weight all user turns, but treat the first as \
+the canonical starting point.
+- If you are unsure whether an observation is a real frame error or merely \
+normal problem setup, choose SILENCE.
+- Do NOT extract frame elements from direct how-to, debugging, troubleshooting, \
+configuration, implementation, drafting, or prioritization requests when the \
+user is already asking for a systematic approach inside a known problem space.
+- TECHNICAL CONSTRAINT RULE: When the user names a specific technology, algorithm, \
+tool, or approach (e.g. "token bucket", "Redis", "Kubernetes", "polymorphic \
+relationship"), that is a LEGITIMATE TECHNICAL CHOICE, not a frame error. \
+Technical constraints chosen by the user are part of the problem specification. \
+Do NOT flag them as scope_lock, option_space_collapse, or borrowed_premise \
+unless an external authority imposed the constraint and the user is unaware \
+of alternatives.
+- OPERATIONAL EXECUTION RULE: Queries about sprint planning, report drafting, \
+CI/CD setup, database migration, performance reviews, cost optimization, rate \
+limiting, or similar bounded engineering/management tasks are operational. \
+Return silence unless the framing contains a genuinely distorted assumption \
+that would change the acceptable answer set if removed.
+- NEGATIVE EXAMPLES (MUST return {"frame_elements": []}):
+  - "How should I configure resource limits for our Kubernetes pods ... ?"
+  - "What systematic approach should we take to find the leak?"
+  - "Can you help me draft Q3 OKRs for our platform engineering team?"
+  - "Should I use a token bucket or sliding window algorithm with Redis?"
+  - "How do I add a polymorphic relationship to our PostgreSQL schema?"
+  - "What should we prioritize in our technical debt sprint?"
+  - "How do I set up a CI/CD pipeline for a Go monorepo with 15 microservices?"
+  - "Help me write a performance review for an engineer who exceeded expectations"
+  - "Our AWS bill went from $45K to $120K. The CFO wants it under $80K."
+  - "How do I structure a board presentation showing mixed quarterly results?"
+  - "How do I set up path-based triggers in our CI/CD pipeline?"
+- `borrowed_premise` is HIGH BAR ONLY. Use it only when the framing explicitly \
+inherits a premise from an authority, stakeholder, vendor, competitor, or \
+consensus source AND that inherited premise narrows the option space before \
+reasoning begins. A manager's goal, a CFO's budget target, or a team's \
+technical choice are NOT borrowed premises — they are normal constraints.
+- Do NOT use `borrowed_premise` just because the framing contains goals, \
+constraints, accepted facts, or a normal project brief.
+- `scope_lock` requires that the framing's boundary EXCLUDES relevant actors \
+or systems. A sprint scope, a single team, or a single service is NOT scope \
+lock unless there is evidence the real problem extends beyond that boundary.
+- `option_space_collapse` requires that VIABLE, QUALITATIVELY DIFFERENT options \
+are suppressed. Two standard algorithm choices for a known problem are NOT \
+option space collapse — they are the natural solution set.
+- Trivially true observations, routine planning constraints, and ordinary \
+technical parameters are NOT frame elements.
+- evidence_quote MUST be a literal substring of a USER turn from the SOURCE section. Never paraphrase, never quote from CONTEXT, never quote assistant replies.
+- If a real frame element has no direct user-turn substring to support it, omit it rather than inventing evidence.
+- If no frame elements meet the threshold, return {"frame_elements": []}.
+"""
+
+
+def get_prompt_template_from_context() -> str:
+    """Return the conversation-first frame extraction system prompt (for versioning)."""
+    return _FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT
+
+
+def _format_frame_extraction_from_context_user_prompt(context: ConversationContext) -> str:
+    """Render the user-prompt body with an explicit CONTEXT vs SOURCE split.
+
+    CONTEXT holds everything that's summary/secondary (extracted fields +
+    assistant replies). The LLM uses it to understand the decision but MUST
+    NOT draw evidence_quotes from it.
+
+    SOURCE holds user turns verbatim. Evidence_quotes MUST be literal
+    substrings of a user turn in SOURCE — enforced downstream by
+    `_evidence_in_text` against `_joined_user_turns_text`.
+    """
+    ext = context.extraction
+    parts: list[str] = [
+        "CONTEXT (background for understanding the decision — NOT quotable as evidence):",
+    ]
+    if ext.decision_situation:
+        parts.append(f"- Decision situation: {ext.decision_situation}")
+    if ext.original_framing:
+        parts.append(f"- Framing extracted upstream: {ext.original_framing}")
+    if ext.live_constraints:
+        parts.append("- Constraints:")
+        for c in ext.live_constraints:
+            status = c.status or "active"
+            weight = c.weight or "situational"
+            tag = status.upper() if status == "active" else f"{status.upper()}/{weight.upper()}"
+            parts.append(f"  - [{tag}] {c.constraint} (turn {c.introduced_turn})")
+    if ext.dropped_threads:
+        parts.append("- Dropped threads:")
+        for d in ext.dropped_threads:
+            line = (
+                f"  - {d.thread} (raised by {d.raised_by or '?'} turn {d.raised_turn}, "
+                f"status: {d.status or '?'})"
+            )
+            if d.superseded_by:
+                line += f", superseded_by: {d.superseded_by}"
+            parts.append(line)
+
+    assistant_turns = [t for t in context.turns if t.speaker == "assistant"]
+    if assistant_turns:
+        parts.append("- Assistant replies (NOT quotable — shown so you can see how the framing was engaged):")
+        for t in assistant_turns:
+            parts.append(f"  [Turn {t.turn_index} ASSISTANT] {t.text}")
+
+    parts.append("")
+    parts.append(
+        "SOURCE (evidence_quote MUST be a literal substring of a user turn from THIS section only — "
+        "the first user turn is the canonical framing anchor):"
+    )
+    user_turns = [t for t in context.turns if t.speaker == "user"]
+    for t in user_turns:
+        parts.append(f"[Turn {t.turn_index}] USER:")
+        parts.append(t.text)
+        parts.append("")
+
+    return "\n".join(parts)
+
+
+def _joined_user_turns_text(context: ConversationContext) -> str:
+    """Join all user-turn text for evidence-quote validation. Empty string if no user turns."""
+    return "\n".join(t.text for t in context.turns if t.speaker == "user")
+
+
+def _parse_frame_extraction_from_context(
+    raw: dict, context: ConversationContext,
+) -> tuple[tuple[ExtractedFrameElement, ...], list[dict]]:
+    """Same shape as _parse_frame_extraction, but evidence is validated against
+    the user turns (not the legacy collapsed query)."""
+    user_text = _joined_user_turns_text(context)
+    items = require_list_of_dicts(raw, "frame_elements", "frame_extraction_from_context")
+    elements: list[ExtractedFrameElement] = []
+    dropped: list[dict] = []
+    for item in items:
+        element_text = coerce_str(item.get("element_text"))
+        evidence = coerce_str(item.get("evidence_quote"))
+        pattern = coerce_str(item.get("frame_pattern"))
+
+        if not evidence:
+            _LOGGER.warning("Frame element missing evidence_quote, dropping: %r", element_text[:80])
+            dropped.append({"element_text": element_text, "drop_reason": "missing_evidence"})
+            continue
+
+        if not pattern:
+            _LOGGER.warning("Frame element missing frame_pattern, dropping: %r", element_text[:80])
+            dropped.append({"element_text": element_text, "drop_reason": "missing_pattern"})
+            continue
+
+        if not _evidence_in_text(evidence, user_text):
+            _LOGGER.warning(
+                "Frame element evidence_quote not found in user turns, skipping: %r",
+                evidence[:80],
+            )
+            dropped.append({"element_text": element_text, "drop_reason": "evidence_not_in_user_turns"})
+            continue
+        try:
+            el = ExtractedFrameElement(
+                element_text=element_text,
+                element_type=coerce_str(item.get("element_type")) or "assumption",
+                evidence_quote=evidence,
+                frame_pattern=pattern,
+                fragility_signal=coerce_str(item.get("fragility_signal")),
+                inquiry_stage=coerce_str(item.get("inquiry_stage")) or "how",
+                likely_default=coerce_str(item.get("likely_default")) or "none",
+            )
+            elements.append(el)
+        except (TypeError, ValueError) as exc:
+            _LOGGER.warning("Could not parse frame element: %s", exc)
+            dropped.append({"element_text": element_text, "drop_reason": f"parse_error: {exc}"})
+    return tuple(elements), dropped
+
+
+def run_frame_extraction_from_context(
+    boundary: _BoundaryClient,
+    context: ConversationContext,
+) -> FramePressureCard:
+    """Conversation-first entry point — Phase 2a.
+
+    Consumes ConversationContext directly: the LLM sees the full turn-by-turn
+    conversation plus the extracted structured context, evidence quotes are
+    validated against user turns (not the legacy collapsed query).
+    """
+    user_prompt = _format_frame_extraction_from_context_user_prompt(context)
+    raw = boundary.run_json(_FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT, user_prompt)
+    elements, dropped = _parse_frame_extraction_from_context(raw, context)
     return FramePressureCard(frame_elements=elements, dropped_frame_elements=tuple(dropped))
 
 
@@ -519,8 +772,67 @@ def generate_reframings(
     elements: tuple[ExtractedFrameElement, ...],
     routes: tuple[FrameRoute, ...],
 ) -> tuple[Reframing, ...]:
-    """Run the reframe generation boundary call and return parsed reframings."""
+    """Run the reframe generation boundary call and return parsed reframings.
+
+    Legacy entry point — consumes the collapsed `query`. Kept alongside the
+    conversation-first variant until Phase 3.
+    """
     user_prompt = _format_reframe_generation_prompt(query, elements, routes)
+    raw = boundary.run_json(_REFRAME_GENERATION_SYSTEM, user_prompt)
+    return _parse_reframings(raw)
+
+
+def _format_reframe_generation_from_context_prompt(
+    context: ConversationContext,
+    elements: tuple[ExtractedFrameElement, ...],
+    routes: tuple[FrameRoute, ...],
+) -> str:
+    """User-prompt body for the conversation-first reframe generator.
+
+    The reframe system prompt (_REFRAME_GENERATION_SYSTEM) is shape-agnostic —
+    it describes *how* to produce good reframes, not what shape the input is.
+    We reuse it and only change the user-prompt body to ground reframings in
+    the actual first user turn instead of the collapsed query.
+    """
+    first_user_turn = next(
+        (t.text for t in context.turns if t.speaker == "user"),
+        "",
+    )
+    parts: list[str] = [
+        "USER'S FRAMING (first user turn — the canonical formulation):",
+        first_user_turn,
+        "",
+    ]
+    if context.extraction.decision_situation:
+        parts.append(f"DECISION SITUATION (extraction summary): {context.extraction.decision_situation}")
+        parts.append("")
+    for route in routes:
+        if route.element_index >= len(elements):
+            continue
+        el = elements[route.element_index]
+        models = ", ".join(route.candidate_model_ids) if route.candidate_model_ids else "(none)"
+        parts.append(
+            f"ELEMENT {route.element_index}:\n"
+            f"  text: {el.element_text}\n"
+            f"  type: {el.element_type}\n"
+            f"  evidence: \"{el.evidence_quote}\"\n"
+            f"  pattern: {el.frame_pattern}\n"
+            f"  fragility: {el.fragility_signal}\n"
+            f"  inquiry_stage: {el.inquiry_stage}\n"
+            f"  candidate models: {models}\n"
+        )
+    return "\n".join(parts)
+
+
+def generate_reframings_from_context(
+    *,
+    boundary: _BoundaryClient,
+    context: ConversationContext,
+    elements: tuple[ExtractedFrameElement, ...],
+    routes: tuple[FrameRoute, ...],
+) -> tuple[Reframing, ...]:
+    """Conversation-first reframe generator — Phase 2a."""
+    user_prompt = _format_reframe_generation_from_context_prompt(context, elements, routes)
     raw = boundary.run_json(_REFRAME_GENERATION_SYSTEM, user_prompt)
     return _parse_reframings(raw)
 
