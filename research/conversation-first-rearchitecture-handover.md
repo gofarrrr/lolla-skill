@@ -32,6 +32,7 @@ The lolla pipeline has a structural bottleneck: a legacy data contract (`Critiqu
   - 41 new tests (164 total, zero regression); 10/10 corpus cases bit-identical between shim and legacy mapping
   - Evidence: `research/test-cases/phase1-equivalence-2026-04-24/shim-equivalence-report.md`
   - HOW_IT_WORKS §Step 3 has a "Conversation-first contract (Phase 1)" subsection
+- **Phase 2a (PR #15, merged 2026-04-23)** — Lane 3 (Frame Pressure) migrated to `ConversationContext`. Controlled Marcus comparison shows qualitative audit-quality shift: new path grounds frame evidence in verbatim user words (`"Giving away 15% feels like giving away something I earned"`); old path grounds in extractor paraphrases. Fixed a production bug on `real_estate` (old path produced empty Lane 3 cards 2 of 3 runs). 10-case aggregate: +22% elements, drop rate 0.069 → 0.000, zero regressions. Artifacts: `research/test-cases/phase2a-marcus-controlled-comparison-2026-04-23/` and `research/test-cases/phase2a-lane3-equivalence-2026-04-23/`.
 
 ### What's paused (and why)
 - PRs #1b, #2, #3, #5 — all hit prompt saturation (monolithic extraction prompt can't absorb more rules without polluting adjacent fields). Deferred pending architectural fix.
