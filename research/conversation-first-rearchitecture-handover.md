@@ -22,6 +22,16 @@ The lolla pipeline has a structural bottleneck: a legacy data contract (`Critiqu
 - Gate fix (PR #11 — strategic gate now includes personal decisions)
 - Embedding-cosine metric infrastructure in `scripts/stability_check.py`
 - Full system audit (`research/full-system-audit-2026-04-23.md`)
+- **Phase 1 (PR #14, merged 2026-04-24)** — conversation-first contract scaffolding:
+  - `engine/system_b/conversation_context.py` — `ConversationContext` + `Turn` + `LiveConstraint` + `DroppedThread` + `ExtractionPayload` dataclasses
+  - `engine/system_b/conversation_loader.py` — `load_conversation_context(extraction_path, conversation_path)` builds the context from on-disk artifacts
+  - Shim in `SystemBPipeline.run()` — accepts `CritiqueRequest | ConversationContext`; `_context_to_critique()` converts new shape to legacy one so lane code is untouched. Marked for removal in Phase 3.
+  - `scripts/run_pipeline.py --new-contract` flag routes through the new path
+  - `scripts/compare_outputs.py` — compares 6 meaningful fields between two result.json files (future regression tool)
+  - `scripts/phase1_equivalence_check.py` — verifies shim correctness at the `CritiqueRequest` boundary
+  - 41 new tests (164 total, zero regression); 10/10 corpus cases bit-identical between shim and legacy mapping
+  - Evidence: `research/test-cases/phase1-equivalence-2026-04-24/shim-equivalence-report.md`
+  - HOW_IT_WORKS §Step 3 has a "Conversation-first contract (Phase 1)" subsection
 
 ### What's paused (and why)
 - PRs #1b, #2, #3, #5 — all hit prompt saturation (monolithic extraction prompt can't absorb more rules without polluting adjacent fields). Deferred pending architectural fix.
