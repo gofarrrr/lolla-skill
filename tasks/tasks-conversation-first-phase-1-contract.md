@@ -119,13 +119,13 @@ Not TDD (empirical via corpus run):
   - [ ] 7.2 **Deferred to post-merge** — handover `What's shipped` update lands when the PR merges (prevents rot if the PR is revised).
   - [x] 7.3 `SKILL.md` left unchanged — Claude's orchestration is unaffected; `--new-contract` is internal to the Python pipeline.
 
-- [ ] 8.0 Ship
-  - [ ] 8.1 Run full test suite: `python3 -m pytest tests/ -v`. All green.
-  - [ ] 8.2 Run the 10-case equivalence test (task 6.0). Zero diffs.
-  - [ ] 8.3 Commit with a descriptive message capturing: new `ConversationContext` shape, shim, `compare_outputs.py`, equivalence evidence, docs.
-  - [ ] 8.4 Push + open PR. Title: `feat(pipeline): conversation-first contract scaffolding (phase 1)`.
-  - [ ] 8.5 PR description includes: the shim equivalence evidence, the `compare_outputs.py` tool, the acceptance-gate table, honesty clause that this PR is infrastructure only (no lane behavior change, Phase 2 migrates lanes).
-  - [ ] 8.6 On merge: update handover doc to reflect shipped state.
+- [x] 8.0 Ship
+  - [x] 8.1 Full test suite: **164 passed, 93 subtests passed**. Zero regression on prior 123 tests.
+  - [x] 8.2 10-case equivalence (re-scoped per task 6.0): **10/10 bit-identical** on both `query` and `vanilla_answer`. Evidence at `research/test-cases/phase1-equivalence-2026-04-24/shim-equivalence-report.md`.
+  - [x] 8.3 Seven per-task commits with descriptive messages.
+  - [x] 8.4 PR #14 opened: https://github.com/gofarrrr/lolla-skill/pull/14
+  - [x] 8.5 PR description includes: 10/10 equivalence evidence table, explicit "task 6.0 re-scoped" section naming the `temperature=0.2` finding, scope boundaries, test plan, commit history.
+  - [ ] 8.6 **Deferred to post-merge** — handover `What's shipped` update.
 
 ## Phase 2 preview (do NOT do in this PR)
 
