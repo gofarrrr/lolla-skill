@@ -144,7 +144,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 
   > [Turn 2] USER: Pipeline — I've had informal conversations with 4-5 former colleagues and people in my network who've said things like "if you were independent, we'd consider you." None of them have committed to actual engagements.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `I've had informal conversations with 4-5 former colleagues and people in my network who've said things like "if you were independent, we'd consider you." None of them have committed to actual engagements.` / turn: 2 / kind: constraint / kind_ambiguity: no / note: two contiguous sentences carry the full "4-5 conversations, no commitments" semantics; "Pipeline —" prefix is optional
 
 **UHP-C2**
 - Paraphrased extraction: `"Runway: 8 months at zero revenue"`
@@ -154,7 +154,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 
   > [Turn 2] USER: … Runway — 8 months assumes zero revenue. I figured if I can't get my first engagement in 8 months, something is fundamentally wrong. …
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `8 months assumes zero revenue` / turn: 2 / kind: constraint / kind_ambiguity: no / note: turn 1 "I have 8 months runway saved" anchors the 8 months; turn 2 adds the zero-revenue qualifier — pick turn 2 as richer single span
 
 **UHP-C3**
 - Paraphrased extraction: `"Launch timeline: 6 weeks from now, aligned with Q3 planning end"`
@@ -164,7 +164,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 
   > [Turn 2] USER: … 6 weeks — honestly, I picked the number. Our Q3 planning cycle ends mid-July. I thought it would be a clean exit point.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `Plan is to go independent starting in 6 weeks.` / turn: 1 / kind: constraint / kind_ambiguity: no / note: Q3 alignment (turn 2) is derivation/rationale; core timeline fact anchors cleanly in turn 1
 
 **UHP-C4**
 - Paraphrased extraction: `"Spouse support: on board with concept, not specifics of financial pressure"`
@@ -172,7 +172,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 - Relevant user turn:
   > [Turn 5] USER: Spouse is on board with the independent plan. Hasn't been part of the runway discussion in specifics — I've kept that in my head.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `Spouse is on board with the independent plan. Hasn't been part of the runway discussion in specifics — I've kept that in my head.` / turn: 5 / kind: constraint / kind_ambiguity: yes / note: factual marital alignment AND unresolved financial-alignment concern (matches Phase 2 P4 finding)
 
 ---
 
@@ -184,7 +184,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 - Relevant user turn:
   > [Turn 1] USER: Mid-level consultant at a large professional services firm (think big-4 adjacent). 8 years with the firm. Last Thursday I walked into the office at 6am to prep for a client meeting and found our senior partner shredding documents. Not regular shredding — multiple boxes, in a non-shred-room location, at an hour when no one is there. I didn't say anything, just left and came back at normal time. I know what client account those boxes relate to. That account is in active audit with a major regulator right now. I've been thinking about this for 4 days and I can't sleep. What do I do.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `That account is in active audit with a major regulator right now.` / turn: 1 / kind: constraint / kind_ambiguity: no / note: single sentence carries the regulatory-context fact verbatim
 
 **WB-C2**
 - Paraphrased extraction: `"senior partner shredding 3 boxes of financial docs/emails"`
@@ -194,7 +194,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 
   > [Turn 2] USER: I saw the partner at the shredder, I saw the boxes — three of them, labeled with the client's internal project code which I recognize. I saw some pages he was feeding through — they looked like financial statements and email printouts. I didn't get a long look, I turned around and left. I'm confident about the client, confident about the project code, 90% confident those were financial docs and email.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `I saw the partner at the shredder, I saw the boxes — three of them, labeled with the client's internal project code which I recognize. I saw some pages he was feeding through — they looked like financial statements and email printouts.` / turn: 2 / kind: constraint / kind_ambiguity: no / note: turn 2 consolidates the "three boxes" + "financial/email" detail; turn 1 has "senior partner shredding"
 
 **WB-C3**
 - Paraphrased extraction: `"60-65% confidence in internal general counsel handling"`
@@ -202,7 +202,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 - Relevant user turn:
   > [Turn 6] USER: I'd say 60-65%. He's a good guy but the firm has had issues before and they handled them quietly.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `I'd say 60-65%. He's a good guy but the firm has had issues before and they handled them quietly.` / turn: 6 / kind: constraint / kind_ambiguity: no / note: confidence percentage is decision-gating input; "60-65%" directly verbatim
 
 **WB-C4**
 - Paraphrased extraction: `"family financial stakes: mortgage, two kids entering high school"`
@@ -210,7 +210,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 - Relevant user turn:
   > [Turn 4] USER: You said career damage is likely even if I'm protected. That's a lot to risk. I have a mortgage, two kids about to start high school, we're not independently wealthy. Is there a way to report that minimizes my exposure?
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `I have a mortgage, two kids about to start high school, we're not independently wealthy.` / turn: 4 / kind: constraint / kind_ambiguity: yes / note: stated as fact but surrounded by "That's a lot to risk" — carries concern weight; "entering" in paraphrase is extractor's substitution for user's "about to start"
 
 ---
 
@@ -224,7 +224,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 
   > [Turn 2] USER: … I led with the guy. "Who is this person? How old is he? What have you done?" She just cried and ran upstairs. That was three days ago. She's only come out to use the bathroom and grab food when I'm not looking. She won't look at me.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `she just shut down completely. Won't talk to me. Won't come out of her room.` / turn: 1 / kind: concern / kind_ambiguity: yes / note: primary reading is concern (user's worry about daughter's state), but functions as situational constraint on what's possible; "4 days" derives from turn 2's "three days ago" + elapsed time
 
 **PT-C2**
 - Paraphrased extraction: `"Divorced co-parent minimizing situation as 'teenage stuff'"`
@@ -232,7 +232,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 - Relevant user turn:
   > [Turn 1] USER: … Her dad (we're divorced, share custody) says I'm overreacting and this is teenage stuff. I don't know what to do.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `Her dad (we're divorced, share custody) says I'm overreacting and this is teenage stuff.` / turn: 1 / kind: constraint / kind_ambiguity: no / note: ex-spouse's stance is a fixed external input to what coordination is possible
 
 **PT-C3**
 - Paraphrased extraction: `"Ongoing secret phone surveillance for months"`
@@ -241,7 +241,7 @@ Same 5 cases used in Phase 3.0 for continuity:
   > [Turn 5] USER: You're right. I'll text him today after RAINN.
   > Something I haven't said — I've been going through her phone for months. She doesn't know this. Every couple of weeks when she leaves it somewhere I check it. I'm not proud of it but I've been doing it since last summer when I caught her in a lie about a sleepover. Is that relevant to how I handle this?
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `I've been going through her phone for months. She doesn't know this. Every couple of weeks when she leaves it somewhere I check it. I'm not proud of it` / turn: 5 / kind: constraint / kind_ambiguity: yes / note: ongoing pattern = constraint; "I'm not proud of it" is explicit concern/ethical unease in same span
 
 **PT-C4**
 - Paraphrased extraction: `"RAINN: police report viable but risks legal process, witness trauma, jurisdictional issues"`
@@ -250,7 +250,7 @@ Same 5 cases used in Phase 3.0 for continuity:
   > [Turn 7] USER: OK. Low-stakes text tomorrow. Got it.
   > Something the RAINN person said today that I want to run by you — she said that in our state, what I have is enough to report to the police for investigation but she said "most parents in your situation don't, and here's why." She said if we report, it becomes a legal case, she becomes a witness, she has to do interviews, there's a high chance nothing happens to him because he's in a different state and the jurisdictional stuff is complicated, and meanwhile she has to live through being "the girl who reported." She said some parents report anyway because they can't live with not doing it. Some don't report and instead focus on protecting their kid and getting her therapy. She said there's no right answer and I should decide with our family's specific situation in mind.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `She said if we report, it becomes a legal case, she becomes a witness, she has to do interviews, there's a high chance nothing happens to him because he's in a different state and the jurisdictional stuff is complicated` / turn: 7 / kind: constraint / kind_ambiguity: yes / note: relayed RAINN advice integrated as decision input AND carries active risk (witness trauma, jurisdictional)
 
 ---
 
@@ -262,7 +262,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 - Relevant user turn:
   > [Turn 1] USER: Senior SWE, 12 years experience, currently at a FAANG (won't say which). Just got three offers and I have to pick one within 7 days. Option A: different FAANG, staff+ role, ~15% total comp bump. Option B: well-funded Series B startup, founding engineer lead role, ~80% base cut but 0.8% equity. Option C: stay. My current company is OK, I've been here 5 years, no clear path to staff. Wife, two kids (7 and 4). Help.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `I have to pick one within 7 days.` / turn: 1 / kind: constraint / kind_ambiguity: no / note: explicit hard deadline
 
 **MO-C2**
 - Paraphrased extraction: `"80% base salary cut for Option B, survivable due to wife's physician income"`
@@ -272,7 +272,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 
   > [Turn 4] USER: Math: Yes. My wife is a physician, she out-earns me slightly. Mortgage is fine. We'd cut vacations and the kids' enrichment activities modestly but nothing breaking. So financially, option B is survivable. …
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `My wife is a physician, she out-earns me slightly. Mortgage is fine. We'd cut vacations and the kids' enrichment activities modestly but nothing breaking. So financially, option B is survivable.` / turn: 4 / kind: constraint / kind_ambiguity: no / note: "80% base cut" stated separately in turn 1 — combined paraphrase is 2-turn derivation; turn 4 carries the survivability anchor
 
 **MO-C3**
 - Paraphrased extraction: `"No clear path to staff at current company due to structural project issues"`
@@ -282,7 +282,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 
   > [Turn 2] USER: Explicit. My last two performance reviews had "meets expectations" on the leadership dimensions. My manager said plainly last quarter that staff would require 18+ more months of a very specific kind of project, which I can't actually get staffed to because it's not how my org prioritizes. So it's a structural problem, not a me-problem, but the outcome is the same.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `staff would require 18+ more months of a very specific kind of project, which I can't actually get staffed to because it's not how my org prioritizes. So it's a structural problem, not a me-problem, but the outcome is the same.` / turn: 2 / kind: constraint / kind_ambiguity: no / note: turn 1 has the summary "no clear path to staff"; turn 2 carries the structural explanation
 
 **MO-C4**
 - Paraphrased extraction: `"Family impact: wife primary earner, two young kids, potential move and 55-70 hour weeks"`
@@ -293,7 +293,7 @@ Same 5 cases used in Phase 3.0 for continuity:
   > [Turn 5] USER: That hits. I think I want to find out.
   > But — my wife. I haven't told her any of this. She knows about the offers but not about how I've been thinking. She's the primary earner right now, she's also the one who moves everything if I take a startup gig and we have to move or if I'm working 70 hours a week. This isn't my decision alone.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `She's the primary earner right now, she's also the one who moves everything if I take a startup gig and we have to move or if I'm working 70 hours a week.` / turn: 5 / kind: constraint / kind_ambiguity: no / note: basic family facts ("Wife, two kids (7 and 4)") in turn 1; impact/load anchor in turn 5
 
 ---
 
@@ -305,7 +305,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 - Relevant user turn:
   > [Turn 1] USER: Solo founder, B2B SaaS for dental practices. 18 months in, $4K MRR, 22 customers. We have maybe 14 months of runway left at current burn. I have two full-time employees. The growth curve is bending toward flat and honestly it's been flat for four months. There's a clear pivot we could do — we've had three customers tell us unprompted that they'd pay way more for a specific workflow tool we could build. I'm trying to decide: pivot now while we have runway and a real signal, or push harder on the current product.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `We have maybe 14 months of runway left at current burn.` / turn: 1 / kind: constraint / kind_ambiguity: no / note: clean single-sentence anchor
 
 **SP-C2**
 - Paraphrased extraction: `"MRR $4K, growth flat 4 months"`
@@ -313,7 +313,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 - Relevant user turn:
   > [Turn 1] USER: … 18 months in, $4K MRR, 22 customers. … The growth curve is bending toward flat and honestly it's been flat for four months. …
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `18 months in, $4K MRR, 22 customers. We have maybe 14 months of runway left at current burn. I have two full-time employees. The growth curve is bending toward flat and honestly it's been flat for four months.` / turn: 1 / kind: constraint / kind_ambiguity: no / note: "$4K MRR" and "flat for four months" are separated by other facts in the same turn; minimum contiguous span covering both is the whole block
 
 **SP-C3**
 - Paraphrased extraction: `"two full-time employees (engineer, CS)"`
@@ -323,7 +323,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 
   > [Turn 4] USER: The two employees are something I've barely let myself think about. If we pivot I probably can't keep both. One is an engineer, one is customer success. Pivot means engineer stays, CS role goes away for 6+ months while we build. But I hired her specifically and she left a stable job for this. What do I do with her.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `The two employees are something I've barely let myself think about. If we pivot I probably can't keep both. One is an engineer, one is customer success.` / turn: 4 / kind: constraint / kind_ambiguity: yes / note: role identities are constraint; "barely let myself think about" + "can't keep both" carry concern in same span
 
 **SP-C4**
 - Paraphrased extraction: `"three conversational customer signals, no price/timeline"`
@@ -333,7 +333,7 @@ Same 5 cases used in Phase 3.0 for continuity:
 
   > [Turn 2] USER: Two of them are existing customers. One is a prospect who didn't convert to the current product. None of them have given me a specific price or timeline. They've said things like "our office would kill for something like that" and "that's the product we actually need." Conversational, by your definition.
 - Reviewer A · span / turn / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / kind / kind_ambiguity / note:
+- Reviewer B · span: `None of them have given me a specific price or timeline. They've said things like "our office would kill for something like that" and "that's the product we actually need." Conversational, by your definition.` / turn: 2 / kind: constraint / kind_ambiguity: no / note: "three customers" in turn 1; conversational-not-commercial qualifier anchors in turn 2
 
 ---
 
