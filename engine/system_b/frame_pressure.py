@@ -18,6 +18,7 @@ from typing import Literal, Protocol
 
 from .boundary_validation import coerce_str, require_list_of_dicts
 from .conversation_context import ConversationContext
+from .text_matching import find_substring_tolerant
 
 _LOGGER = logging.getLogger("system_b.frame_pressure")
 
@@ -254,7 +255,20 @@ def _strip_wrapping_quotes(text: str) -> str:
 
 
 def _evidence_in_text(evidence: str, text: str) -> bool:
-    """Check if evidence appears in text, tolerant of quote escaping and wrapping."""
+    """Check if evidence appears in text, tolerant of quote escaping, wrapping,
+    and case differences.
+
+    Tolerance is layered:
+      1. Exact substring (cheapest, most strict).
+      2. JSON-quote-normalized substring (handles escape-sequence drift).
+      3. Wrapping-quote-stripped substring (handles LLMs that add surrounding quotes).
+      4. Case-insensitive substring (handles LLMs that lowercase the first
+         character when extracting a passage from mid-sentence — this is the
+         quote_fabrication false-reject class fixed in PR #22).
+
+    Each tolerance tier is principled: real paraphrase or hallucination still
+    fails at all four tiers.
+    """
     if evidence in text:
         return True
     norm_ev = _normalize_quotes(evidence)
@@ -264,6 +278,13 @@ def _evidence_in_text(evidence: str, text: str) -> bool:
     # Try stripping wrapping quotes the LLM may have added
     stripped = _strip_wrapping_quotes(norm_ev)
     if stripped != norm_ev and stripped in norm_text:
+        return True
+    # Case-insensitive fallback (covers LLM first-char lowercase drift)
+    if find_substring_tolerant(evidence, text) is not None:
+        return True
+    if find_substring_tolerant(norm_ev, norm_text) is not None:
+        return True
+    if stripped != norm_ev and find_substring_tolerant(stripped, norm_text) is not None:
         return True
     return False
 

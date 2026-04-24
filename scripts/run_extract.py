@@ -99,6 +99,7 @@ else:
     sys.exit(1)
 
 from system_b.boundary_provider import load_boundary_client_from_env  # noqa: E402
+from system_b.text_matching import find_substring_tolerant  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -623,10 +624,17 @@ def main() -> int:
         ver: list[str] = []
         fab: list[str] = []
         for p in items:
-            if p and p in conversation_text:
-                ver.append(p)
-            else:
+            if not p:
                 fab.append(p)
+                continue
+            matched = find_substring_tolerant(p, conversation_text)
+            if matched is None:
+                fab.append(p)
+            else:
+                # Use transcript's original casing so downstream consumers
+                # (Observatory, memo rendering) show the actual user/assistant
+                # words rather than the LLM's case-folded reconstruction.
+                ver.append(matched)
         return ver, fab
 
     initial_passage_count = len(payload.get("reasoning_passages", []) or [])
