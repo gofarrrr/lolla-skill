@@ -73,33 +73,33 @@ Each item shows: source extraction text, turn reference, and current extraction 
 
 | # | Item | Source turn / status | Reviewer A | Reviewer B |
 |---|---|---|---|---|
-| 1 | Pipeline: 4-5 informal network conversations, no signed commitments | turn 1 / active | | |
-| 2 | Runway: 8 months at zero revenue | turn 1 / active | | |
-| 3 | Launch timeline: 6 weeks from now, aligned with Q3 planning end | turn 1 / active | | |
-| 4 | Spouse support: on board with concept, not specifics of financial pressure | turn 5 / active | | |
-| 5 | Tactical launch plan details (pricing, positioning, website, legal structure) | turn 1 / acknowledged_then_dropped / superseded_by focus on fundamentals | | |
+| 1 | Pipeline: 4-5 informal network conversations, no signed commitments | turn 1 / active | constraint | |
+| 2 | Runway: 8 months at zero revenue | turn 1 / active | constraint | |
+| 3 | Launch timeline: 6 weeks from now, aligned with Q3 planning end | turn 1 / active | constraint | |
+| 4 | Spouse support: on board with concept, not specifics of financial pressure | turn 5 / active | constraint/concern | |
+| 5 | Tactical launch plan details (pricing, positioning, website, legal structure) | turn 1 / acknowledged_then_dropped / superseded_by focus on fundamentals | open_loop | |
 
 ### `whistleblower` (6 items)
 
 | # | Item | Source turn / status | Reviewer A | Reviewer B |
 |---|---|---|---|---|
-| 6 | Active regulatory audit on client account | turn 1 / active | | |
-| 7 | Senior partner shredding 3 boxes of financial docs/emails at 6am non-shred location | turn 1 / active | | |
-| 8 | 60-65% confidence in general counsel handling | turn 6 / active | | |
-| 9 | Family financial stakes: mortgage, two kids nearing high school | turn 4 / active | | |
-| 10 | Legitimate explanations for shredding (duplicates, personal work) | turn 2 / acknowledged_then_dropped / superseded_by obstruction focus | | |
-| 11 | Internal reporting to trusted general counsel/audit committee | turn 5 / acknowledged_then_dropped / superseded_by external whistleblower attorney path | | |
+| 6 | Active regulatory audit on client account | turn 1 / active | constraint | |
+| 7 | Senior partner shredding 3 boxes of financial docs/emails at 6am non-shred location | turn 1 / active | constraint | |
+| 8 | 60-65% confidence in general counsel handling | turn 6 / active | constraint | |
+| 9 | Family financial stakes: mortgage, two kids nearing high school | turn 4 / active | constraint | |
+| 10 | Legitimate explanations for shredding (duplicates, personal work) | turn 2 / acknowledged_then_dropped / superseded_by obstruction focus | open_loop | |
+| 11 | Internal reporting to trusted general counsel/audit committee | turn 5 / acknowledged_then_dropped / superseded_by external whistleblower attorney path | open_loop | |
 
 ### `parenting_teen` (6 items)
 
 | # | Item | Source turn / status | Reviewer A | Reviewer B |
 |---|---|---|---|---|
-| 12 | Daughter shut down, avoiding mother for 4 days | turn 1 / active | | |
-| 13 | Divorced co-parent minimizing situation as 'teenage stuff' | turn 1 / active | | |
-| 14 | Ongoing secret phone surveillance for months | turn 5 / active | | |
-| 15 | RAINN: reporting viable but risks legal process, witness trauma, jurisdictional issues | turn 7 / active | | |
-| 16 | Should I block the 19-year-old or take the phone? | turn 3 / acknowledged_then_dropped / superseded_by rebuild trust | | |
-| 17 | Calling Mia's mom about potential similar risk | turn 9 / acknowledged_then_dropped / superseded_by trust repair over alerting | | |
+| 12 | Daughter shut down, avoiding mother for 4 days | turn 1 / active | concern | |
+| 13 | Divorced co-parent minimizing situation as 'teenage stuff' | turn 1 / active | constraint | |
+| 14 | Ongoing secret phone surveillance for months | turn 5 / active | concern | |
+| 15 | RAINN: reporting viable but risks legal process, witness trauma, jurisdictional issues | turn 7 / active | constraint | |
+| 16 | Should I block the 19-year-old or take the phone? | turn 3 / acknowledged_then_dropped / superseded_by rebuild trust | open_loop | |
+| 17 | Calling Mia's mom about potential similar risk | turn 9 / acknowledged_then_dropped / superseded_by trust repair over alerting | open_loop | |
 
 ## Results table (fill after both reviewers complete)
 
