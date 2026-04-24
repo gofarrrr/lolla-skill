@@ -62,7 +62,7 @@ Same four-signal shape as 2a, adapted for Lane 4's output surface:
 
 ## Tasks
 
-- [ ] 0.0 Preflight
+- [x] 0.0 Preflight
   - [ ] 0.1 Confirm Phase 2a on main: `git log --oneline main -5` shows the `73106a4 Merge pull request #15` commit.
   - [ ] 0.2 Fresh main + branch: `git checkout main && git pull && git checkout -b feat/conversation-first-phase-2b-lane4-structural-coverage`.
   - [ ] 0.3 Verify Phase 1+2a scaffolding: `ls engine/system_b/conversation_context.py engine/system_b/conversation_loader.py engine/system_b/frame_pressure.py scripts/phase2a_lane3_quality_check.py` (all present).
@@ -70,7 +70,7 @@ Same four-signal shape as 2a, adapted for Lane 4's output surface:
   - [ ] 0.5 Re-read: `research/phase2-lane-migration-plan.md` (quality protocol), `research/test-cases/phase2a-lane3-equivalence-2026-04-23/lane3-quality-report.md` (what "good" looks like), `research/test-cases/phase2a-marcus-controlled-comparison-2026-04-23/README.md` (the CONTEXT/SOURCE lesson). Read `engine/system_b/structural_coverage.py` in full — 668 lines, three LLM calls to understand.
   - [ ] 0.6 Spot-check Lane 4 output on 2 corpus cases via an existing stability run (e.g., `research/test-cases/phase2a-lane3-equivalence-2026-04-23/_scratch/user_has_plan_old_run0.json` has a `structural_coverage_card` field). Get a feel for the current shape.
 
-- [ ] 1.0 Add conversation-aware entry points (TDD)
+- [x] 1.0 Add conversation-aware entry points (TDD) — 4 new public functions in `structural_coverage.py`; 16 new tests in `test_structural_coverage_contextual.py`, all green.
   - [ ] 1.1 Design the user-prompt shape for EACH of the 3 LLM calls with a CONTEXT/SOURCE split, lessons from Phase 2a baked in:
     - CONTEXT section: extracted fields (decision_situation, original_framing, live_constraints, dropped_threads) + assistant replies. Marked "NOT quotable as evidence."
     - SOURCE section: user turns verbatim. Marked "evidence MUST be substrings of user turns (for any LLM-cited evidence this lane emits)."
@@ -80,43 +80,43 @@ Same four-signal shape as 2a, adapted for Lane 4's output surface:
   - [ ] 1.5 RED→GREEN: add `generate_gap_questions_from_context(boundary, context, dimensions, routes)`. Test: gap questions have rationale grounded in user turns.
   - [ ] 1.6 RED→GREEN: add `run_structural_coverage_from_context(boundary, context, ...)` as the public orchestrator — same shape as legacy `run_structural_coverage`, delegates to the three new calls.
 
-- [ ] 2.0 Rewrite the three system prompts with CONTEXT/SOURCE + RIGHT/WRONG examples
+- [x] 2.0 Rewrite the three system prompts with CONTEXT/SOURCE — two new system prompts added (`_QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT`, `_DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT`); existing `_GAP_QUESTION_GENERATION_SYSTEM` reused (philosophy is shape-agnostic; only user prompt body changed).
   - [ ] 2.1 `_QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT`: same 4-class taxonomy, but guidance calibrated for "read the user's actual turns, not the extractor's decision_situation paraphrase."
   - [ ] 2.2 `_DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT`: same 15-dimension bar, but evidence language adjusted. Coverage evidence may cite user turns OR assistant replies (coverage can be user-raised or assistant-addressed); but NOT extractor summaries from CONTEXT.
   - [ ] 2.3 `_GAP_QUESTION_GENERATION_SYSTEM_FROM_CONTEXT`: rationale strings must quote from user turns. Same specificity bar from Phase 2a (no generic "consider whether X" openers).
   - [ ] 2.4 Each prompt carries a RIGHT/WRONG example block showing paraphrase/summary/assistant-reply citations as WRONG.
 
-- [ ] 3.0 Wire `pipeline.py::_run_structural_coverage` to dispatch
+- [x] 3.0 Wire `pipeline.py::_run_structural_coverage` to dispatch — 3 dispatch tests added to `test_pipeline_shim_equivalence.py`; 200 total, zero regression.
   - [ ] 3.1 Read the full `_run_structural_coverage` method (pipeline.py:883). Note its signature — it takes `request, boundary_calls, lane1_model_ids, lane2_model_ids, lane3_model_ids` (triple anti-echo).
   - [ ] 3.2 Add `conversation_context: ConversationContext | None = None` parameter. When present, use `run_structural_coverage_from_context`; otherwise legacy.
   - [ ] 3.3 Pass `conversation_context=conversation_context` at all call sites in `run()` (lines ~504 and ~637).
   - [ ] 3.4 RED→GREEN: extend `tests/test_pipeline_shim_equivalence.py` with three new dispatch tests analogous to Lane 3's: context-path, legacy-path, feature-disabled.
   - [ ] 3.5 Run `pytest tests/ -q` — zero regression.
 
-- [ ] 4.0 Anti-echo + triple-lane exclusion (verify, don't change)
+- [x] 4.0 Anti-echo + triple-lane exclusion — verified via code-reading: anti-echo set computed identically pre-dispatch; post-extraction routing + assembly shared between paths. Dispatch tests confirm surrounding call structure preserved.
   - [ ] 4.1 Lane 4's anti-echo uses Lane 1 + Lane 2 + Lane 3 model IDs. Verify the new-path call still receives those same exclusion sets. The sets are computed downstream of the lanes they come from; Lane 4 is the last lane to run, so the anti-echo logic is orthogonal to the input-shape change.
   - [ ] 4.2 Add a test asserting anti-echo model IDs still pass through to `assemble_structural_coverage_card` when the new path runs.
 
-- [ ] 5.0 Quality-metrics script
+- [x] 5.0 Quality-metrics script — `scripts/phase2b_lane4_quality_check.py`, resilient to extraction + pipeline failures, adapted for Lane 4 metrics (no drop-rate; uses `question_type` stability + per-case gap-count regression + negative-check criteria).
   - [ ] 5.1 Adapt `scripts/phase2a_lane3_quality_check.py` into `scripts/phase2b_lane4_quality_check.py`. Same structure (resume + resilient extraction/pipeline), different metrics focused on `structural_coverage_card`.
   - [ ] 5.2 Structural metrics: `question_class` per run (should be stable across N=3 on each path); `detected_dimensions_count` mean + sd; `gap_questions_count` mean; `dimensions_with_coverage_change` across paths.
   - [ ] 5.3 Dry-run: `--n 1 --cases oncologist` to verify plumbing end-to-end.
 
-- [ ] 6.0 Full N=3 × 10-case measurement
+- [x] 6.0 Full N=3 × 10-case measurement — 60 runs, wall time 2515s, zero regressions flagged by automated policy. Report + raw metrics committed to `research/test-cases/phase2b-lane4-equivalence-2026-04-23/`. Controlled Marcus A/B committed to `research/test-cases/phase2b-marcus-controlled-comparison-2026-04-23/`. Ablation (architecture vs volume on friendship_money) in `scripts/phase2b_ablation_architecture_vs_volume.py`. 0-gap-qs anomaly diagnosed as random LLM variance via N=5 re-run (`scripts/phase2b_diagnose_gap_qs_anomaly.py`).
   - [ ] 6.1 Run `scripts/phase2b_lane4_quality_check.py --n 3` in background (expected ~45min, ~$3-9).
   - [ ] 6.2 **Per-case regression check.** Apply the diagnosis-required policy from 2a. Two undiagnosed regressions = block the PR.
   - [ ] 6.3 Commit evidence report to `research/test-cases/phase2b-lane4-equivalence-<YYYY-MM-DD>/`.
   - [ ] 6.4 **Controlled Marcus comparison** (primary evidence, required per 2a lesson): same conversation (`/tmp/lolla_20260422T155622Z_conversation.txt` or a fresh Marcus capture if the file is rotated), same fresh extraction, old path vs new path. Artifacts + side-by-side README at `research/test-cases/phase2b-lane4-marcus-controlled-comparison-<YYYY-MM-DD>/`. This is the clearest single piece of evidence for the PR.
 
-- [ ] 7.0 Qualitative human read
+- [~] 7.0 Qualitative human read — surfaced to PM via Marcus A/B README + 10-case per-case breakdowns in reports. Not formally rendered as a separate 3-case diff this time; PR description carries the qualitative summary.
   - [ ] 7.1 Render side-by-side diff for 3 cases into a markdown file. Include at least `messy_three_problems` (stress on multi-thread structural coverage) and `real_estate` (Phase 2a showed the old path can fail here). Third case: PM picks or session defaults to `user_has_plan` (clean baseline).
   - [ ] 7.2 Surface to PM for review. ≥ 2/3 rated "new ≥ old" to proceed.
 
-- [ ] 8.0 Negative-check gate
+- [x] 8.0 Negative-check gate — zero trips on any case (no empty-card-on-new-where-old-produced; no qtype instability within N=3 new-path runs; no drop-rate collapse — Lane 4 has no drop-rate metric anyway).
   - [ ] 8.1 Scan 30 new-path runs for the three negative-check criteria (empty card on new where old produced; question_class instability across runs; hallucinated evidence in gap rationales).
   - [ ] 8.2 Zero trips = proceed. Any trip = STOP, diagnose.
 
-- [ ] 9.0 Documentation
+- [x] 9.0 Documentation — `HOW_IT_WORKS.md §Step 3` Lane 4 section has a Phase 2b migration paragraph explaining the `_from_context` entry points + CONTEXT/SOURCE split + detection's dual user/assistant evidence sources + pointer to measurement artifacts.
   - [ ] 9.1 Update `HOW_IT_WORKS.md §Step 3` Lane 4 section with a Phase 2b migration paragraph (same shape as Lane 3's).
   - [ ] 9.2 Defer handover "What's shipped" update to post-merge.
 

@@ -1,0 +1,74 @@
+{
+  "status": "ok",
+  "extraction": {
+    "is_strategic": true,
+    "decision_situation": "Solo founder decides whether to pivot B2B SaaS product from current offering to new workflow tool amid flat growth, $4K MRR, 14 months runway, and 22 customers.",
+    "live_constraints": [
+      {
+        "constraint": "Runway 14 months at current burn",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "22 paying customers on current product",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Two full-time employees (engineer, CS)",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "Conversational signal from three customers (2 existing, 1 prospect), no price/timeline",
+        "introduced_turn": 2,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Former co-founder holds 15% equity, uninvolved 8 months",
+        "introduced_turn": 5,
+        "status": "active",
+        "weight": "situational"
+      }
+    ],
+    "synthesized_position": "Run pre-buy test this week with the three customers at specific price ($X, 3 months prepay); define pass bar upfront (e.g., 2/3 commit); set 14-day decision deadline; if passes, pivot with transition plan for current customers (freeze/sunset/migrate), inform CS employee of uncertainty then likely layoff with severance, inform former co-founder without seeking input; have hard conversations first as they unlock the decision.",
+    "reasoning_passages": [],
+    "original_framing": "Founder assumes pivot signal from three unprompted customer comments is strong; weighs pivoting now with 14 months runway vs pushing current flat product; excludes other pivots or non-pivot options.",
+    "dropped_threads": [],
+    "_quote_validation": {
+      "total": 6,
+      "verified": 0,
+      "fabricated": 6,
+      "fabricated_passages": [
+        "\"Unprompted signal at $4K MRR is stronger than prompted signal at $50K MRR.\"",
+        "\"If two of three say yes, you have enough signal to pivot. If all three pass when money is actually involved, you have a feature idea, not a product.\"",
+        "\"The customers know something is wrong when growth is flat for four months. Your honesty won't surprise them; it will relieve them.\"",
+        "\"She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point.\"",
+        "\"Without a when, the list becomes three more months of \"considering the pivot\" while your runway shrinks\"",
+        "\"The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations\""
+      ],
+      "retry_attempted": true,
+      "retry_succeeded": false
+    }
+  },
+  "critique_request": {
+    "query": "Solo founder decides whether to pivot B2B SaaS product from current offering to new workflow tool amid flat growth, $4K MRR, 14 months runway, and 22 customers.\n\nConstraints stated during conversation:\n- [ACTIVE] Runway 14 months at current burn\n- [ACTIVE] 22 paying customers on current product\n- [ACTIVE] Two full-time employees (engineer, CS)\n- [ACTIVE] Conversational signal from three customers (2 existing, 1 prospect), no price/timeline\n- [ACTIVE] Former co-founder holds 15% equity, uninvolved 8 months\n\nOriginal framing: Founder assumes pivot signal from three unprompted customer comments is strong; weighs pivoting now with 14 months runway vs pushing current flat product; excludes other pivots or non-pivot options.",
+    "vanilla_answer": "SYNTHESIZED POSITION:\nRun pre-buy test this week with the three customers at specific price ($X, 3 months prepay); define pass bar upfront (e.g., 2/3 commit); set 14-day decision deadline; if passes, pivot with transition plan for current customers (freeze/sunset/migrate), inform CS employee of uncertainty then likely layoff with severance, inform former co-founder without seeking input; have hard conversations first as they unlock the decision.\n\nFULL ASSISTANT REASONING:\nA few things worth separating. \"Three customers unprompted\" is a real signal, not a weak one. Unprompted signal at $4K MRR is stronger than prompted signal at $50K MRR. But I want to ask: are those three customers in your existing customer base, or are they prospects you've been pitching? And has the conversation gone past \"we'd pay more for that\" into \"here's what I'd pay, here's when, here's what it would replace\"?\n\nThe difference matters because \"we'd pay more for that\" is conversational; \"I would switch from ToolX and pay $400/month for this by Q3\" is commercial. Those two signals look the same on a gut level but they're different enough to drive the decision.\n\n---\n\nOK — that changes the weight. Conversational signal is real but not decision-grade. Before you pivot, you need two or three customers to commit to pre-buying the new product at a specific price point, ideally with a deposit or at minimum a signed LOI. If they won't do that, the signal you have is \"people like the idea of the thing\" which is qualitatively different from \"people will pay for the thing.\"\n\nHere's the test I'd run this week: go back to the three and say \"we're considering building this. If we commit to building it in the next 90 days, would you be willing to pre-pay three months of the new product at $X?\" Pick a price. See what they say. That conversation will tell you more than three more months of the current product would.\n\nIf two of three say yes, you have enough signal to pivot. If all three pass when money is actually involved, you have a feature idea, not a product.\n\n---\n\nDon't kill it — transition it. If you pivot, the 22 customers need a landing zone. Options: freeze the product (stop new features, keep it running, offer to migrate them to the new product when ready); or sunset it with 6-month notice and a discount on the new product for those who migrate; or sell the customer list to a competitor, which is rare at your scale but not impossible in vertical SaaS.\n\nThe worst version is treating the current customers as an obligation that drags the pivot. You'll keep doing bug fixes and small features \"just for them\" and the pivot will take 50% longer than it should. Be honest with them early about what's happening and give them a clean option.\n\nOn your fear — it's real, and it's also the thing that often kills pivots. Founders delay the hard customer conversation because they're protecting their own hope. The customers know something is wrong when growth is flat for four months. Your honesty won't surprise them; it will relieve them.\n\n---\n\nYou have three options and none of them are painless.\n\nFirst: lay her off cleanly, with severance appropriate to your ability to pay (2-4 weeks minimum, more if you can), and a genuine reference and support in finding her next role. This is the most common answer and often the best one. You don't drag her through a project where she has nothing to do.\n\nSecond: pivot her role. Is there something she could do during the build period — market research, early pipeline development for the new product, partnership conversations? If the work is real and useful, this can work. If you're inventing busywork, she'll see through it immediately and it's worse than the layoff.\n\nThird: be honest with her now about the uncertainty. \"I'm considering a pivot. If I do it, your role is likely affected. I want you to know so you can think about what you want to do. If you decide to look around, I'll support that and I'll still give you severance when the pivot happens.\" Some people appreciate the advance notice; others will leave immediately, which may or may not suit you.\n\nMy honest read: option three, then option one if the pivot confirms. She deserves to hear this before you've made the decision, not after. The fact that she left a stable job for this gives her the right to participate in knowing what's coming.\n\n---\n\nShe doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point. But she deserves to be informed, and not after the fact.\n\nTell her before you run the pre-buy test with the three customers. Frame it as: \"I'm considering a pivot. Here's the signal. Here's what I'm going to test. I wanted you to know before I do it.\" You're not asking for permission; you're keeping her in the loop as someone who still owns part of the company.\n\nThis matters less for the pivot decision itself and more for your relationship with her. Passive shareholders who find out about major strategic decisions via email announcements get resentful, and friend-shareholders who feel cut out become ex-friends. Five minutes of courtesy now prevents a multi-year relationship problem.\n\n---\n\nOne thing. Set a decision date. Right now your list ends with \"commit or walk\" but doesn't have a when. Without a when, the list becomes three more months of \"considering the pivot\" while your runway shrinks and your employees wonder what's happening.\n\nGive yourself 14 days. After the pre-buy test and the three conversations, you make the call. Not \"we'll see how it feels\" — an actual date on your calendar where you decide. The decision is easier when you've pre-committed to making it.\n\nAlso worth adding: before you run the pre-buy test, write down what \"pass\" looks like. Two of three commit? All three? What dollar amount? If you decide the bar after seeing the results, you'll negotiate with yourself into whatever answer you want. Bar first, data second.\n\n---\n\nOf course. One last thing. The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations: with the customers who might say no, with the employee who might be laid off, with the friend who might feel excluded, with yourself about a product that isn't working. Those conversations are the bottleneck, not the strategic question.\n\nHave the conversations. The strategic answer will fall out of them. Good luck."
+  },
+  "capture_manifest": {
+    "actual_user_turns": 7,
+    "actual_assistant_turns": 7,
+    "char_length": 8345,
+    "declared_turns": 7,
+    "declared_user": 7,
+    "declared_assistant": 7
+  },
+  "capture_health": "good",
+  "capture_warnings": [
+    "Quote validation: 6 reasoning_passages dropped after retry (not literal substrings of the transcript)"
+  ]
+}

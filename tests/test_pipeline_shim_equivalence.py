@@ -487,3 +487,110 @@ def test_run_frame_pressure_skips_both_paths_when_feature_disabled() -> None:
         conversation_context=_minimal_context(),
     )
     assert result is None
+
+
+# ---------- Phase 2b: Lane 4 dispatch ----------
+
+
+def test_run_structural_coverage_uses_context_path_when_context_present() -> None:
+    """Given a ConversationContext, Lane 4 must call
+    run_structural_coverage_from_context (not the legacy orchestrator)."""
+    from engine.system_b.pipeline import PipelineConfig
+    ctx = _minimal_context()
+    captured_from_context: list = []
+    captured_legacy: list = []
+
+    def _spy_from_context(*, boundary, context, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
+        captured_from_context.append(context)
+        raise _ShimDispatchedException()
+
+    def _spy_legacy(*, boundary, query, vanilla_answer, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
+        captured_legacy.append((query, vanilla_answer))
+        raise _ShimDispatchedException()
+
+    with patch(
+        "engine.system_b.pipeline.run_structural_coverage_from_context",
+        side_effect=_spy_from_context,
+    ), patch(
+        "engine.system_b.pipeline.run_structural_coverage",
+        side_effect=_spy_legacy,
+    ):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        pipeline._config = PipelineConfig(enable_structural_coverage=True)
+        pipeline._boundary = object()
+        pipeline._companion_knowledge_graph = {"structural_coverage_routing": {"dimensions": {}}}
+        try:
+            pipeline._run_structural_coverage(
+                CritiqueRequest(query="legacy_q", vanilla_answer="legacy_va"),
+                boundary_calls=[],
+                lane1_model_ids=set(),
+                lane2_model_ids=set(),
+                lane3_model_ids=set(),
+                conversation_context=ctx,
+            )
+        except _ShimDispatchedException:
+            pass
+
+    assert len(captured_from_context) == 1
+    assert captured_from_context[0] is ctx
+    assert captured_legacy == [], "legacy run_structural_coverage should NOT have been called"
+
+
+def test_run_structural_coverage_uses_legacy_path_when_no_context() -> None:
+    """Without a ConversationContext, Lane 4 must keep calling the legacy path."""
+    from engine.system_b.pipeline import PipelineConfig
+    critique = CritiqueRequest(query="qtext", vanilla_answer="vatext")
+    captured_from_context: list = []
+    captured_legacy: list = []
+
+    def _spy_from_context(*, boundary, context, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
+        captured_from_context.append(context)
+        raise _ShimDispatchedException()
+
+    def _spy_legacy(*, boundary, query, vanilla_answer, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
+        captured_legacy.append((query, vanilla_answer))
+        raise _ShimDispatchedException()
+
+    with patch(
+        "engine.system_b.pipeline.run_structural_coverage_from_context",
+        side_effect=_spy_from_context,
+    ), patch(
+        "engine.system_b.pipeline.run_structural_coverage",
+        side_effect=_spy_legacy,
+    ):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        pipeline._config = PipelineConfig(enable_structural_coverage=True)
+        pipeline._boundary = object()
+        pipeline._companion_knowledge_graph = {"structural_coverage_routing": {"dimensions": {}}}
+        try:
+            pipeline._run_structural_coverage(
+                critique,
+                boundary_calls=[],
+                lane1_model_ids=set(),
+                lane2_model_ids=set(),
+                lane3_model_ids=set(),
+                conversation_context=None,
+            )
+        except _ShimDispatchedException:
+            pass
+
+    assert len(captured_legacy) == 1
+    assert captured_legacy[0] == ("qtext", "vatext")
+    assert captured_from_context == [], "new from_context path should NOT have been called"
+
+
+def test_run_structural_coverage_skips_both_paths_when_feature_disabled() -> None:
+    """enable_structural_coverage=False short-circuits Lane 4 entirely."""
+    from engine.system_b.pipeline import PipelineConfig
+    pipeline = SystemBPipeline.__new__(SystemBPipeline)
+    pipeline._config = PipelineConfig(enable_structural_coverage=False)
+    pipeline._boundary = object()
+    result = pipeline._run_structural_coverage(
+        CritiqueRequest(query="q", vanilla_answer="a"),
+        boundary_calls=[],
+        lane1_model_ids=set(),
+        lane2_model_ids=set(),
+        lane3_model_ids=set(),
+        conversation_context=_minimal_context(),
+    )
+    assert result is None

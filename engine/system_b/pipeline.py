@@ -26,7 +26,11 @@ from .frame_pressure import (
     run_frame_extraction,
     run_frame_extraction_from_context,
 )
-from .structural_coverage import StructuralCoverageCard, run_structural_coverage
+from .structural_coverage import (
+    StructuralCoverageCard,
+    run_structural_coverage,
+    run_structural_coverage_from_context,
+)
 from .companion_routing import recall_candidates, run_fingerprint_call, run_verification_call
 from .companion_selection import CompanionCheatSheet, select_companion_cheat_sheet
 from .compound_catalog import COMPOUND_CATALOG
@@ -506,6 +510,7 @@ class SystemBPipeline:
                 lane1_model_ids=set(),
                 lane2_model_ids=_lane2_model_ids,
                 lane3_model_ids=_lane3_model_ids,
+                conversation_context=conversation_context,
             )
             audit = AuditTrace(
                 triage_scores=tuple(triage_scores),
@@ -639,6 +644,7 @@ class SystemBPipeline:
             lane1_model_ids=set(delta_card.selected_model_ids),
             lane2_model_ids=_lane2_model_ids,
             lane3_model_ids=_lane3_model_ids,
+            conversation_context=conversation_context,
         )
         audit = AuditTrace(
             triage_scores=tuple(triage_scores),
@@ -887,6 +893,7 @@ class SystemBPipeline:
         lane1_model_ids: set[str],
         lane2_model_ids: set[str],
         lane3_model_ids: set[str],
+        conversation_context: ConversationContext | None = None,
     ) -> StructuralCoverageCard | None:
         if not self._config.enable_structural_coverage:
             return None
@@ -898,13 +905,24 @@ class SystemBPipeline:
         # Anti-echo: exclude models from all other lanes
         anti_echo = lane1_model_ids | lane2_model_ids | lane3_model_ids
 
-        card = run_structural_coverage(
-            boundary=self._boundary,
-            query=request.query,
-            vanilla_answer=request.vanilla_answer,
-            structural_coverage_routing=routing,
-            anti_echo_model_ids=anti_echo,
-        )
+        # Phase 2b dispatch: conversation-first Lane 4 when context is present;
+        # otherwise legacy path on the shim-converted CritiqueRequest. Post-extraction
+        # routing + card assembly are shared between paths (input-shape agnostic).
+        if conversation_context is not None:
+            card = run_structural_coverage_from_context(
+                boundary=self._boundary,
+                context=conversation_context,
+                structural_coverage_routing=routing,
+                anti_echo_model_ids=anti_echo,
+            )
+        else:
+            card = run_structural_coverage(
+                boundary=self._boundary,
+                query=request.query,
+                vanilla_answer=request.vanilla_answer,
+                structural_coverage_routing=routing,
+                anti_echo_model_ids=anti_echo,
+            )
         if card is not None:
             boundary_calls.append(
                 _capture_boundary_call(self._boundary, stage="structural_coverage_classification")

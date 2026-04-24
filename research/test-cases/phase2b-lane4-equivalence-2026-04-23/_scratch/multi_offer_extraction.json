@@ -1,0 +1,86 @@
+{
+  "status": "ok",
+  "extraction": {
+    "is_strategic": true,
+    "decision_situation": "Senior SWE with 12 years FAANG experience deciding among three job offers (FAANG staff+, Series B founding engineer, stay) within 7 days amid family constraints.",
+    "live_constraints": [
+      {
+        "constraint": "No clear path to staff at current company (explicit feedback, structural)",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "7-day decision deadline",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "80% base comp cut for Option B, 0.8% equity",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "Family: wife physician (primary earner), two kids (7,4)",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Financially survivable for Option B (mortgage fine, modest cuts)",
+        "introduced_turn": 4,
+        "status": "active",
+        "weight": "situational"
+      }
+    ],
+    "synthesized_position": "Don't stay (C) as distraction persists and plateau declines optionality. Prioritize wife conversation to assess marriage-risk for B; if genuine yes, pursue B with negotiation (hours, remote), diligence (employee calls, equity review, CEO meet, extend deadline), as it answers core question of building from zero with high information value. If wife no, take A as 2-year bridge aware it's a delay not solution to underlying desire, avoiding repeat crisis later.",
+    "reasoning_passages": [
+      "Staying means accepting an indefinite plateau, and people who accept plateaus often discover that plateau becomes decline",
+      "The reason B keeps pulling you is that it solves a career-shape problem that A doesn't",
+      "From an information-value standpoint, B is the more interesting move",
+      "A gives you the clearer answer on the staff-path question but you probably already know that answer",
+      "If the wife conversation goes well, take B. If it doesn't, take A but with clear eyes about what it is. Don't stay. Staying is the answer that fails both tests."
+    ],
+    "original_framing": "User presents three job options (A: FAANG staff+ 15% comp bump; B: Series B founding engineer 80% base cut +0.8% equity; C: stay) with 7-day deadline, current FAANG plateau, and family (wife, two kids); assumes equal weighting and seeks help picking one.",
+    "dropped_threads": [
+      {
+        "thread": "Explicit performance feedback details on leadership",
+        "raised_by": "user",
+        "raised_turn": 2,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "shifted to structural plateau and career-shape dissatisfaction"
+      },
+      {
+        "thread": "Option A as diagnostic for staff path",
+        "raised_by": "user",
+        "raised_turn": 8,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "framed as delay costing optionality vs B's unique information value"
+      }
+    ],
+    "_quote_validation": {
+      "total": 5,
+      "verified": 5,
+      "fabricated": 0,
+      "fabricated_passages": [],
+      "retry_attempted": false,
+      "retry_succeeded": false
+    }
+  },
+  "critique_request": {
+    "query": "Senior SWE with 12 years FAANG experience deciding among three job offers (FAANG staff+, Series B founding engineer, stay) within 7 days amid family constraints.\n\nConstraints stated during conversation:\n- [ACTIVE] No clear path to staff at current company (explicit feedback, structural)\n- [ACTIVE] 7-day decision deadline\n- [ACTIVE] 80% base comp cut for Option B, 0.8% equity\n- [ACTIVE] Family: wife physician (primary earner), two kids (7,4)\n- [ACTIVE] Financially survivable for Option B (mortgage fine, modest cuts)\n\nOriginal framing: User presents three job options (A: FAANG staff+ 15% comp bump; B: Series B founding engineer 80% base cut +0.8% equity; C: stay) with 7-day deadline, current FAANG plateau, and family (wife, two kids); assumes equal weighting and seeks help picking one.\n\nDropped threads (raised but unresolved):\n- Explicit performance feedback details on leadership (raised by user, status: acknowledged_then_dropped) → superseded by: shifted to structural plateau and career-shape dissatisfaction\n- Option A as diagnostic for staff path (raised by user, status: acknowledged_then_dropped) → superseded by: framed as delay costing optionality vs B's unique information value",
+    "vanilla_answer": "SYNTHESIZED POSITION:\nDon't stay (C) as distraction persists and plateau declines optionality. Prioritize wife conversation to assess marriage-risk for B; if genuine yes, pursue B with negotiation (hours, remote), diligence (employee calls, equity review, CEO meet, extend deadline), as it answers core question of building from zero with high information value. If wife no, take A as 2-year bridge aware it's a delay not solution to underlying desire, avoiding repeat crisis later.\n\nFULL ASSISTANT REASONING:\nThree different decisions sitting in one. Option A is a career-stage bet (stepping to staff somewhere else because your current place won't). Option B is a compensation-and-risk bet (trading near-term comp for equity upside and a different role shape). Option C is a status-quo bet (your current situation is good enough that the alternatives don't clear the bar).\n\nBefore going deeper: when you say \"no clear path to staff at current company,\" is that based on explicit feedback (\"you need X, Y, Z and we don't see it in 2 years\") or on your read of the politics (\"I don't see how it happens here but no one has told me no\")?\n\n---\n\nOK — \"structural, not me\" changes things. You're not being told to grow; you're being told the path here requires projects that won't materialize. That's worth taking seriously. Staying means accepting an indefinite plateau, and people who accept plateaus often discover that plateau becomes decline — not because they get worse, but because peers at other companies move past them and opportunities re-calibrate to that reference point.\n\nOption A sounds like the lowest-friction response: same kind of company, same kind of work, new title, modest comp bump. What don't you like about it? I'm asking because I notice you're treating three options as equally weighted, and usually there's an unspoken ranking when someone says \"help.\"\n\n---\n\nThat's a telling phrasing. \"When I'm not being rational.\" You're framing the pull toward B as the irrational option, which suggests you've already decided the \"rational\" answer is A and you're asking me to confirm it.\n\nLet me push on that. What's actually irrational about B? The comp cut is real, yes. But you have 12 years of experience at a FAANG; you probably have savings, some equity vested, and a working-spouse household. The question of whether your family can absorb an 80% base cut is an answerable math problem, not a feelings-based one.\n\nWhat's the actual math? Can you pay your mortgage, save for the kids' college, and maintain your current lifestyle on the reduced comp while the startup equity hopefully pays out in 4-6 years?\n\n---\n\nYour EV calculation is roughly right but it's missing the part that matters most to you. You're treating this as a financial decision and the math on that is ambiguous. It's not actually a financial decision, or not primarily. The reason B keeps pulling you is that it solves a career-shape problem that A doesn't. At A you're still playing the staff-at-FAANG game, just at a different company with better odds. At B you're off that game entirely, for better or worse.\n\nThe question under your question is: do you want to find out whether you can build from zero? If yes, the financial EV doesn't need to be positive — you're paying to learn whether you're capable of something you currently can't know about yourself. If no, then B is a dare you don't actually want to take, and A is the right answer.\n\n---\n\nYou're right that it's not your decision alone. But also — noticing how you framed her into this: \"she's the one who moves everything.\" That phrasing already positions her as reactive to your choice. Is that the actual pattern in your marriage, or is that how you're anticipating this conversation going?\n\nThe conversation you need to have isn't \"I've decided to take B, what do you think.\" It's \"I'm realizing I want to try something harder. Here's what that would mean for us. Do you want that life?\" Those are different conversations and they get different answers.\n\nIf her answer is genuinely \"yes, I want to see you do that,\" then option B becomes a joint decision and a shared risk. If her answer is \"you've been distracted and unavailable for a year and this sounds like more of that,\" then B becomes a marriage-risk, not a career-risk.\n\n---\n\nNot necessarily C, and here's why. The distracted-for-a-year thing is data. You've been mentally checked out of your current job for a year. If you stay, that doesn't go away — in fact it gets worse, because now you've passed on two real opportunities and you'll resent yourself and possibly her for the passing.\n\nSo it's not really \"B is risky for the marriage so stay at C.\" It's more like: the distraction is going to be there regardless, and your options are (1) take A, which solves the career plateau but doesn't address the underlying \"I want something mine\" feeling — so you're probably in the same conversation with yourself in 2 years, (2) take B, which addresses the feeling but stress-tests the marriage, or (3) stay, which is the worst version of all three because you've told yourself no without even trying.\n\nThe marriage-risk conversation is a real one to have. But it's not a tiebreaker for staying. It's an input that tells you whether B is feasible in its current form or needs to be renegotiated.\n\n---\n\nYou'd be surprised. At a founding engineer level, there's more flexibility than candidates assume. You can ask for: a defined 6-month ramp period with explicit hours (50-55/week not 70+), remote or hybrid arrangement with a stated travel cap, delayed start date of 30-60 days for family transition, a communication cadence with the CEO about what \"too much\" looks like.\n\nNone of this makes the job easier, but it shifts some of the negotiation before you accept, not after you're underwater in month 4. The startup gets a committed senior engineer; you get a framework for protecting the marriage. Both parties have skin in it.\n\nThe question is whether you're willing to negotiate these things before signing. Founders who sign and then try to protect boundaries after joining usually lose that battle.\n\n---\n\nThat's actually a reasonable case for A. Platform play at staff scope is a different job shape than what you've been doing. If the role is designed to force you into technical leadership territory you haven't been in, it could tell you whether you want the staff path or not. You'd get paid to find out.\n\nBut I'd be honest with yourself about one thing: the staff path at a FAANG is a specific game, and learning more of it doesn't usually convince people they want it. It more often confirms they don't. So if your hidden question is \"do I want to keep being a FAANG staff engineer for the next decade,\" the answer from option A is likely \"no\" — and then you'd be in your current situation 2 years from now, except you'd be 14 years in instead of 12, and the startup-founding-engineer option would be harder to access.\n\n---\n\nMore or less, with caveats. A gives you the clearer answer on the staff-path question but you probably already know that answer. It also gives you a logo upgrade that may or may not help you later; at 14 years of experience the next logo matters less than the next few mostly do.\n\nB gives you a different kind of answer — whether you're capable of and want to build from zero. That answer is not accessible from A; it's only accessible from actually doing it.\n\nSo A answers a question you probably already know the answer to. B answers one you genuinely don't know. From an information-value standpoint, B is the more interesting move.\n\n---\n\nSay this, roughly: \"I've been distracted for a year, and I think I know why. There's part of me that wants to know if I can build something from scratch, and I haven't been admitting that to myself, which is why I've been half-present. I've been offered a founding engineer role at a Series B startup. It's an 80% base cut but we can afford it. It would probably mean 55-hour weeks during the first year, not 70 — I'd negotiate that up front. I'm not asking you to say yes tonight. I'm asking you to tell me honestly: does that version of the next 4 years sound like something you can live with, or does it sound like more of the last year?\"\n\nKey things: don't pitch it. Don't minimize the costs. Don't promise you'll be home more. And listen to her answer. She's watched you for a year; she probably has information about you that you don't have about yourself.\n\n---\n\nThat's the hardest version. If she says yes but you can tell she means \"I'll try,\" you don't get to treat it as a real yes. \"I'll try\" becomes resentment in 6 months, and resentment from the primary earner about the partner's lower-paid risky job is one of the things that ends marriages.\n\nIf you read that from her, name it in the moment: \"I hear you saying yes, and I can tell you're not sure. I don't want you to say yes if you don't mean it. Tell me what would have to be true for this to work for you.\" Then actually listen to the answer, and treat what she says as a constraint you have to solve for, not a preference to negotiate around.\n\nIf no terms make it work for her, option B is off the table. It's better to find that out now than 18 months in.\n\n---\n\nA few things. The ones I'd prioritize: talk to two current employees of the startup who are NOT the people interviewing you — someone senior, someone junior. Ask specifically how decisions get made, how hard they work in reality versus what they tell candidates, and what they'd change. If the answers from both people diverge wildly, that's a signal.\n\nSecond: review the equity grant terms carefully. 0.8% means different things depending on vesting (4-year standard?), acceleration triggers, and whether your equity is subject to strike-price refresh if there's a future down round. Have a lawyer you trust read this, not the startup's lawyer.\n\nThird: understand the cap table situation. How much runway does the company have? When's the next fundraise? A Series B that's 18 months from a potentially-hard Series C is a different bet than one that just raised and has 30 months of runway.\n\nFourth: if you can, meet the CEO in a non-interview context. Coffee, dinner, whatever. You're going to work for this person intensely for 4-6 years; the dynamic has to be right, and a structured interview tells you almost nothing about that.\n\n---\n\nPush back on the 7-day deadline. At this level, especially for a founding engineer role, a 10-14 day decision window is completely normal, and you can ask for it. \"I'm taking this seriously enough that I want to do the right diligence. Can we extend the decision window by a week?\" If they say no, that itself is information — if they're refusing to give a senior candidate a reasonable due diligence window, they're either desperate for someone or bad at managing their own process, neither of which is good news.\n\nMost offers' \"7 days\" is a negotiating position, not a hard deadline.\n\n---\n\nThat's a clean plan with one refinement. \"If wife is a hard or soft no, I take A\" is the default answer, but I'd hold space for a third possibility: she's a no, but you realize that the underlying issue — you wanting something mine — doesn't go away by taking A. In that case, A is a delay not a solution, and you should still take it (better than staying) but you should treat it as a 2-year bridge to trying B later, not as an answer.\n\nThe thing not to do: take A, tell yourself that solved it, and then repeat this conversation in 2 years with higher stakes (older kids, less runway, a partner who has even more claim on your time).\n\n---\n\nYou're welcome. One last thing. The fact that you said \"thank you\" and treated the conversation as useful — that's a reasonable proxy for whether you're ready for B right now. People who are ready to build usually want to do the hard thinking. People who aren't ready want someone to tell them A is fine.\n\nIf the wife conversation goes well, take B. If it doesn't, take A but with clear eyes about what it is. Don't stay. Staying is the answer that fails both tests."
+  },
+  "capture_manifest": {
+    "actual_user_turns": 15,
+    "actual_assistant_turns": 15,
+    "char_length": 15749,
+    "declared_turns": 15,
+    "declared_user": 15,
+    "declared_assistant": 15
+  },
+  "capture_health": "good",
+  "capture_warnings": []
+}
