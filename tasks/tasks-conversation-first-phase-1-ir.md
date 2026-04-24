@@ -66,6 +66,7 @@ reduction:
 - Do not add API calls or live OpenRouter dependencies. Phase 1 is local deterministic infrastructure.
 - Do not change lane prompts or lane selection. Later phases build lane packet builders and consume the IR.
 - Prefer exact spans only when a literal substring can be found. Paraphrased extraction fields get `turn_ref` or `derivation`, not fake spans.
+- Ignore `ExtractionPayload._quote_validation` / `quote_validation` in v1 IR construction. The constructor reads the final validated fields only, especially `reasoning_passages`; upstream quote validation already happened at extraction time.
 
 ## Testing Approach
 
@@ -158,7 +159,9 @@ Not TDD'd:
   - [ ] 3.12 GREEN: implement `FrameAnchor` construction from current extraction fields.
   - [ ] 3.13 RED: test the constructor never emits a `span` provenance when the literal text is not found.
   - [ ] 3.14 GREEN: implement exact-substring guard.
-  - [ ] 3.15 Run `python3 -m pytest tests/test_ir.py -q`.
+  - [ ] 3.15 RED: add a constructor smoke test on a non-Lane-3 fixture case, preferably `whistleblower` or `parenting_teen`, to prove mapping works beyond the `user_has_plan` drill-back spike.
+  - [ ] 3.16 GREEN: make the constructor handle that fixture without changing object scope or provenance honesty.
+  - [ ] 3.17 Run `python3 -m pytest tests/test_ir.py -q`.
 
 - [ ] 4.0 Implement drill-back resolver (TDD)
   - [ ] 4.1 RED: add `tests/test_ir_drillback.py::test_drillback_from_frame_source_ref_to_raw_turn_text` using the Phase 0.5 Chain 1 fixture.
@@ -186,9 +189,11 @@ Not TDD'd:
   - [ ] 6.3 GREEN: thread IR construction into `pipeline.py` without feeding it to lanes.
   - [ ] 6.4 RED: add a test proving legacy `CritiqueRequest` input does not require IR construction.
   - [ ] 6.5 GREEN: keep legacy path stable.
-  - [ ] 6.6 RED: if serialized output gains `audit_summary.ir_summary`, add a contract test for that field and update comparison tooling only if needed.
-  - [ ] 6.7 GREEN: keep output change scoped to observability.
-  - [ ] 6.8 Run `python3 -m pytest tests/test_pipeline_shim_equivalence.py tests/test_run_pipeline_contract_default.py -q`.
+  - [ ] 6.6 RED: add a test for constructor observability that counts provenance tiers per run: `span`, `turn_ref`, and `derivation`.
+  - [ ] 6.7 GREEN: emit an INFO-level log or audit-summary field with those tier counts. This is observability, not a blocker or lane input.
+  - [ ] 6.8 RED: if serialized output gains `audit_summary.ir_summary`, add a contract test for that field and update comparison tooling only if needed.
+  - [ ] 6.9 GREEN: keep output change scoped to observability.
+  - [ ] 6.10 Run `python3 -m pytest tests/test_pipeline_shim_equivalence.py tests/test_run_pipeline_contract_default.py -q`.
 
 - [ ] 7.0 Manual annotation exercise on protected cases
   - [ ] 7.1 Prepare a small annotation table for three protected cases: `user_has_plan`, `whistleblower`, and one messy multi-thread case.
