@@ -339,43 +339,88 @@ Same 5 cases used in Phase 3.0 for continuity:
 
 ## Result Table
 
-_To fill after both reviewers commit independently._
+Both reviewer passes committed independently (Reviewer B: commit `d3c646a`; Reviewer A: commit `9718c29`). Same-agent two-pass methodology disclosed in the Reviewer A commit message — re-classification from definitions, not copying.
 
 | Metric | Result |
 |---|---|
 | Candidate count | 20 |
-| Span convergence sum | — |
-| Span convergence rate | — |
-| Non-recoverable (both NONE) count | — |
-| Non-recoverable rate | — |
-| Kind agreement sum | — |
-| Kind agreement rate | — |
-| Gate outcome | — |
+| Span convergence sum | **15.0** |
+| Span convergence rate | **75%** (≥70% threshold → PASS) |
+| Non-recoverable (both NONE) count | **0** |
+| Non-recoverable rate | **0%** (≤25% threshold → PASS) |
+| Kind agreement sum | **17.5** |
+| Kind agreement rate | **87.5%** (≥80% threshold → PASS) |
+| Gate outcome | **PASS** |
 
 ### Per-item scoring
 
+Span excerpts shortened to first ~8 tokens for table-fit. Kind shown as `kind/ambiguity`.
+
 | ID | A span / turn / kind | B span / turn / kind | Span score | Kind score |
 |---|---|---|---:|---:|
-| UHP-C1 | — | — | — | — |
-| UHP-C2 | — | — | — | — |
-| UHP-C3 | — | — | — | — |
-| UHP-C4 | — | — | — | — |
-| WB-C1 | — | — | — | — |
-| WB-C2 | — | — | — | — |
-| WB-C3 | — | — | — | — |
-| WB-C4 | — | — | — | — |
-| PT-C1 | — | — | — | — |
-| PT-C2 | — | — | — | — |
-| PT-C3 | — | — | — | — |
-| PT-C4 | — | — | — | — |
-| MO-C1 | — | — | — | — |
-| MO-C2 | — | — | — | — |
-| MO-C3 | — | — | — | — |
-| MO-C4 | — | — | — | — |
-| SP-C1 | — | — | — | — |
-| SP-C2 | — | — | — | — |
-| SP-C3 | — | — | — | — |
-| SP-C4 | — | — | — | — |
+| UHP-C1 | `informal conversations with 4-5…` / T2 / constraint/no | `I've had informal conversations…` / T2 / constraint/no | 1.0 | 1.0 |
+| UHP-C2 | `I have 8 months runway saved.` / T1 / constraint/no | `8 months assumes zero revenue` / T2 / constraint/no | 0.0 | 1.0 |
+| UHP-C3 | `Our Q3 planning cycle ends mid-July…` / T2 / constraint/no | `Plan is to go independent starting in 6 weeks.` / T1 / constraint/no | 0.0 | 1.0 |
+| UHP-C4 | `Spouse is on board with the independent plan…` / T5 / constraint/yes | `Spouse is on board…kept that in my head.` / T5 / constraint/yes | 1.0 | 1.0 |
+| WB-C1 | `That account is in active audit…` / T1 / constraint/no | `That account is in active audit…` / T1 / constraint/no | 1.0 | 1.0 |
+| WB-C2 | `I saw the boxes — three of them…email printouts.` / T2 / constraint/no | `I saw the partner…email printouts.` / T2 / constraint/no | 1.0 | 1.0 |
+| WB-C3 | `I'd say 60-65%.` / T6 / constraint/no | `I'd say 60-65%. He's a good guy…quietly.` / T6 / constraint/no | 1.0 | 1.0 |
+| WB-C4 | `I have a mortgage, two kids…` / T4 / constraint/no | `I have a mortgage, two kids…` / T4 / constraint/yes | 1.0 | 0.5 |
+| PT-C1 | `she just shut down completely…` / T1 / constraint/yes | `she just shut down completely…` / T1 / concern/yes | 1.0 | 0.0 |
+| PT-C2 | `Her dad (we're divorced, share custody)…` / T1 / constraint/no | `Her dad (we're divorced, share custody)…` / T1 / constraint/no | 1.0 | 1.0 |
+| PT-C3 | `I've been going through her phone for months. She doesn't know this.` / T5 / constraint/no | `…for months…every couple of weeks…not proud of it` / T5 / constraint/yes | 1.0 | 0.5 |
+| PT-C4 | `She said if we report…"girl who reported."` / T7 / constraint/yes | `she said if we report…jurisdictional stuff is complicated` / T7 / constraint/yes | 1.0 | 1.0 |
+| MO-C1 | `I have to pick one within 7 days.` / T1 / constraint/no | `I have to pick one within 7 days.` / T1 / constraint/no | 1.0 | 1.0 |
+| MO-C2 | `Option B: well-funded Series B…80% base cut…` / T1 / constraint/no | `My wife is a physician…option B is survivable.` / T4 / constraint/no | 0.0 | 1.0 |
+| MO-C3 | `I've been here 5 years, no clear path to staff.` / T1 / constraint/no | `staff would require 18+ more months…structural problem…` / T2 / constraint/no | 0.0 | 1.0 |
+| MO-C4 | `She's the primary earner right now…70 hours a week.` / T5 / constraint/no | `She's the primary earner right now…70 hours a week.` / T5 / constraint/no | 1.0 | 1.0 |
+| SP-C1 | `We have maybe 14 months of runway…` / T1 / constraint/no | `We have maybe 14 months of runway…` / T1 / constraint/no | 1.0 | 1.0 |
+| SP-C2 | `The growth curve is bending toward flat…` / T1 / constraint/no | `18 months in, $4K MRR, 22 customers…flat for four months.` / T1 / constraint/no | 1.0 | 1.0 |
+| SP-C3 | `I have two full-time employees.` / T1 / constraint/no | `The two employees are something I've barely let myself think about…` / T4 / constraint/yes | 0.0 | 0.5 |
+| SP-C4 | `None of them have given me a specific price or timeline.` / T2 / constraint/no | `None of them have…"that's the product we actually need." Conversational, by your definition.` / T2 / constraint/no | 1.0 | 1.0 |
+
+## Gate Analysis
+
+### What passed cleanly (the 15 full-convergence items)
+
+For 15 of 20 items, both reviewers independently picked verbatim spans that fully overlap (one contains the other, or same tight single-sentence span). These items will be the gold set for the Phase 5 `live_constraints` specialist's eval harness.
+
+The convergence is strongest where:
+- The paraphrase maps to one sentence in one user turn (WB-C1, WB-C3, PT-C2, MO-C1, MO-C4, SP-C1)
+- The paraphrase summarises a short multi-sentence block contiguous in one turn (UHP-C1, WB-C2, UHP-C4, PT-C4, SP-C2, SP-C4)
+
+### What diverged (the 5 cross-turn items)
+
+Five items had 0.0 span scores — reviewers picked different turns:
+- **UHP-C2** (runway 8 months): turn 1 "I have 8 months runway saved" vs turn 2 "8 months assumes zero revenue"
+- **UHP-C3** (launch timeline): turn 1 "6 weeks" vs turn 2 "Q3 planning cycle"
+- **MO-C2** (80% cut survivable): turn 1 "80% base cut" vs turn 4 "option B is survivable"
+- **MO-C3** (no staff path): turn 1 compact "no clear path to staff" vs turn 2 structural rationale
+- **SP-C3** (two employees engineer/CS): turn 1 count vs turn 4 role specifics
+
+This is a real pattern, not a measurement error. **These paraphrases are architecturally multi-turn derivations** — the user stated the core fact in turn N and added a qualifier/elaboration in turn N+k. The current monolith extractor collapsed both into a single paraphrase with `introduced_turn=first`. A single-span specialist cannot faithfully encode them.
+
+### What this means for Phase 5 implementation
+
+The gate passes, but the 5 cross-turn items tell us the `live_constraints` specialist must handle two cases:
+
+1. **Single-span** (75% of current corpus): one verbatim substring suffices. Emit `UserIssueEvent` with `provenance=SpanProvenance`.
+2. **Cross-turn derivation** (25% of current corpus): the issue lives across 2+ user turns. Options:
+   - **(a) Pick the richest single span** and emit `provenance=SpanProvenance` + note the derivation in metadata
+   - **(b) Emit with `provenance=DerivationProvenance`** referencing both turns (current Phase 1 provenance tier already exists for this)
+   - **(c) Support multi-span** by extending `UserIssueEvent` to accept a tuple of spans
+
+Recommend **(b)** for Phase 5 v1: reuse the existing `derivation` provenance tier. Single-span where possible, `derivation` elsewhere. The specialist's LLM prompt should distinguish these and the validator should accept both. This matches how Phase 1 already tiers provenance across the three provenance kinds.
+
+### Kind ambiguity signal
+
+Three items scored +0.5 on kind (WB-C4, PT-C3, SP-C3) because B flagged `kind_ambiguity=yes` and A flagged `no` with a tighter span that excluded the concern-carrying clause. This is the same constraint-vs-concern seam Phase 2 annotations identified. The pattern: **longer spans capture more kind ambiguity; tighter spans come out cleaner**. The `kind_ambiguity` flag is span-scope-dependent, which is worth documenting in the specialist's prompt.
+
+PT-C1 scored 0.0 — both flagged ambiguity but picked different primary readings (concern vs constraint). This is a genuinely hard case; either reading is defensible from the 3-kind taxonomy.
+
+### Non-recoverable: zero
+
+No items returned NONE from either reviewer. Every paraphrased `live_constraint` has at least one anchorable substring in the user turns. The concern from Phase 2 — that extraction invents content entirely — is not borne out at the span level for `live_constraints` specifically. (Other fields — `original_framing`, `decision_situation` — may behave differently; each needs its own gate.)
 
 ## Post-Gate Actions
 
