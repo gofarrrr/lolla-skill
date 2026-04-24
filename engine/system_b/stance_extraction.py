@@ -80,6 +80,17 @@ RELATION TAXONOMY (pick ONE per stance, unless genuinely two apply):
 - "condition" — if/then gate, test, or criterion for deciding.
 - "deferral" — explicitly parks an action, topic, or decision for later.
 
+SPECIFIC GUIDANCE ON "revision" (commonly under-detected):
+
+Revision fires when the assistant is pushing back on the user's mental model of the decision — reframing WHAT the decision is really about, not just advising WHAT to do. Watch for these patterns:
+
+- "You don't have X; you have Y" (replacing a concept: "you don't have a pipeline; you have a network that might become a pipeline")
+- "It's not actually X" / "it's not really X, it's more like Y" (replacing the decision type: "it's not actually a financial decision")
+- "The first move here isn't X. It's Y" (reframing the priority: "the first move isn't to push on the 19-year-old; it's to create a way for her to re-enter the relationship")
+- "You're framing this as X, but actually Y" / "from an X standpoint, Y is the more interesting move" (explicit lens shift)
+
+These spans often lack a "recommend" or "you should" verb — the stance is the frame shift itself. Emit them as "revision" even when no directive appears in the same sentence. If the user's framing is wrong in the assistant's read, that correction is a stance event.
+
 If a span genuinely carries two relations (e.g., "call RAINN today, not the police" = commitment + deferral), set the PRIMARY relation in `relation` and mark `relation_ambiguity: true`. Primary = the dominant reading.
 
 CRITICAL EVIDENCE RULE:
