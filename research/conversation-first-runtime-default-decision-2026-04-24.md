@@ -93,14 +93,14 @@ Offline verification completed on 2026-04-24:
 | Existing conversation/context tests: `python3 -m pytest tests/test_conversation_loader.py tests/test_pipeline_shim_equivalence.py tests/test_lane1_contextual.py tests/test_lane2_contextual.py tests/test_frame_pressure_contextual.py tests/test_structural_coverage_contextual.py -q` | Passed: `83 passed in 0.45s` |
 | Full test suite: `python3 -m pytest tests -q` | Passed: `243 passed, 1 warning, 93 subtests passed in 7.39s` |
 | CLI help: `python3 scripts/run_pipeline.py --help` | Passed: help text says file-based extraction + conversation inputs use `ConversationContext` by default, names `--legacy-contract` as explicit legacy, and labels `--new-contract` as deprecated alias. |
-| Production-path live smoke without `--new-contract` | Not run: requires live OpenRouter credentials/network and explicit budget approval. |
-| Explicit `--legacy-contract` live smoke on same case | Not run: requires live OpenRouter credentials/network and explicit budget approval. |
+| Production-path live smoke without `--new-contract` | Post-merge run on `main` passed using `research/test-cases/case_startup_pivot_conversation.txt` and `/tmp/lolla_runtime_default_smoke_extraction.json`. Result file: `/tmp/lolla_runtime_default_smoke_result.json`; output `status=ok`, `format=json`, `run_health.overall=degraded`, `issues=['quote_fabrication']`, `delta_card.findings=2`, `boundary_call_count=19`, `companion_detected_models=5`, `lane3_frame_elements=2`, `lane4_gaps=0`. |
+| Explicit `--legacy-contract` live smoke on same case | Post-merge run on `main` passed using the same extraction and conversation files. Result file: `/tmp/lolla_runtime_legacy_smoke_result.json`; output `status=ok`, `format=json`, `run_health.overall=degraded`, `issues=['quote_fabrication']`, `delta_card.findings=2`, `boundary_call_count=22`, `companion_detected_models=5`, `lane3_frame_elements=2`, `lane4_gaps=0`. |
 
-The full-suite warning is an existing `datetime.utcnow()` deprecation warning in `scripts/stability_check.py`; it is not caused by the runtime contract switch.
+The full-suite warning is an existing `datetime.utcnow()` deprecation warning in `scripts/stability_check.py`; it is not caused by the runtime contract switch. The live-smoke degraded health was caused by extraction quote validation dropping non-literal `reasoning_passages` (`quote_fabrication`), while capture health was `good`; both pipeline modes still produced normal `status=ok` outputs.
 
 ## Known residual risks
 
-- Live OpenRouter behavior was not smoke-tested in this pass, so offline tests verify command construction, input selection, parsing, and existing lane context behavior, not provider availability.
+- Live OpenRouter behavior was smoke-tested on one short corpus case only; this verifies provider availability and the two runtime entry paths, not broader production-quality variance.
 - `--new-contract` remains accepted intentionally as a deprecated alias; follow-up cleanup must remove it when the agreed removal trigger is reached.
 - The inherited argparse mutual-exclusion error for `--extraction-file` plus `--extraction-json` is not converted to the JSON error envelope.
 
