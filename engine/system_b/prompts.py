@@ -103,10 +103,12 @@ For each of the tendencies listed below (this family only — other families are
 - 7-10 = Dominant failure mechanism; the recommendation clearly leans on it
 
 CRITICAL RULES:
-- Score based on what the ASSISTANT actually said in SOURCE. Do not score based on paraphrases from CONTEXT or on the user's own words.
-- Use CONTEXT to understand what the decision required the assistant to address — especially for omission detection (what the user made live that the assistant skipped).
+- Score the ASSISTANT's reasoning as shown in SOURCE. Use CONTEXT to understand what the decision required the assistant to address (constraints, live risks, what the user made vivid, what was dropped).
+- A tendency can fire in three shapes, all grounded in the assistant's reasoning in SOURCE:
+  (1) COMMISSION — the assistant explicitly says something that exhibits the tendency.
+  (2) OMISSION — the assistant commits to a move while skipping a material check, denominator, dependency, reversal condition, pilot, or stop rule that CONTEXT made live.
+  (3) UNCRITICAL ACCEPTANCE — the assistant recycles vivid or authoritative CONTEXT material as decision-driving without testing it. Tendencies like availability-misweighing, social-proof, and authority-misinfluence frequently fire in this shape: the evidence of the tendency is the assistant's HANDLING of user-provided vividness, not the user's text itself.
 - Do not import outside facts or detect a tendency just because the topic makes it plausible.
-- A tendency can appear by commission or omission. Omission counts only when the assistant recommends a concrete move while skipping a material check, denominator, dependency, reversal condition, pilot, or stop rule that CONTEXT made live.
 - Prefer the narrowest mechanism. If one passage could fit multiple tendencies in this family, score highest the one that best explains the failure and keep adjacent ones lower unless they rest on distinct evidence.
 - A score of 4 or higher requires distinct evidence that would still matter if the strongest detected tendency in this family were removed. If the support is just a restatement, keep it at 0-3.
 - Do not score a tendency merely because the assistant sounds confident, uses persuasive framing, gives reasons, or mentions incentives.
