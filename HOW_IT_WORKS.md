@@ -169,6 +169,8 @@ The v1 IR doctrine is **Option A** — a small substrate plus measured promotion
 | Deferred | `ActorRef` | Promote to v1.1 only if Phase 0.5 annotation or lane measurement shows real multi-actor ambiguity. |
 | Projections | `DecisionOption`, `ReasoningSegment`, `CoverageTarget` | Not first-class until the promotion rule is met. |
 
+Phase 1 implements this as `ConversationIR`: an immutable, local-only layer built from `ConversationContext` during conversation-context pipeline runs. Every derived IR object carries one of three provenance tiers: `span` for an exact substring in a source turn, `turn_ref` for a known source turn with paraphrased text, or `derivation` for lineage across turns and/or derived objects. The current extraction fields map conservatively: `live_constraints` and `dropped_threads` become `UserIssueEvent`s, `original_framing` becomes a `FrameAnchor`, and paraphrased summaries do **not** become fake spans. The constructor emits provenance-tier counts for observability only; lanes still consume their existing context paths until packet builders are introduced in later phases.
+
 The paused extraction-contract PRs now serve as archaeology, not revival candidates. Synthetic `canonical_key` slugs for constraints and dropped threads are expected to die once provenance-based identity exists. `synthesized_position` as a point-estimate becomes a projection over `StanceEvent` trajectory. The `move_type` taxonomy remains useful, but starts packet-local for Lane 1 / Lane 2 rather than becoming v1 IR. Phase 0.1 audits capture fidelity before provenance claims; Phase 0.5 validates these design claims against external systems and annotation evidence before Phase 1 freezes the IR.
 
 ### Conductor, Not Player
