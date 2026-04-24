@@ -111,12 +111,12 @@ Not TDD'd:
 
 ## Tasks
 
-- [ ] 0.0 Create feature branch and verify baseline
-  - [ ] 0.1 Confirm current branch and worktree: `git branch --show-current` and `git status --short`. Note user-owned untracked files and leave them untouched.
-  - [ ] 0.2 Confirm Phase 0.1 and Phase 0.5 artifacts exist: capture audit, adoption memo, drill-back spike, and this task file.
-  - [ ] 0.3 Create and checkout branch: `git switch -c feat/conversation-first-phase-1-ir`.
-  - [ ] 0.4 Run baseline local tests: `python3 -m pytest tests/test_conversation_context.py tests/test_conversation_loader.py tests/test_frame_pressure_contextual.py tests/test_pipeline_shim_equivalence.py -q`.
-  - [ ] 0.5 Record the baseline result in this task file before code changes.
+- [x] 0.0 Create feature branch and verify baseline
+  - [x] 0.1 Confirm current branch and worktree: `git branch --show-current` and `git status --short`. Note user-owned untracked files and leave them untouched. Started on `main`; user-owned untracked file present and untouched: `research/conversation-first-extraction-evaluation-2026-04-24.md`.
+  - [x] 0.2 Confirm Phase 0.1 and Phase 0.5 artifacts exist: capture audit, adoption memo, drill-back spike, and this task file.
+  - [x] 0.3 Create and checkout branch: `git switch -c feat/conversation-first-phase-1-ir`.
+  - [x] 0.4 Run baseline local tests: `python3 -m pytest tests/test_conversation_context.py tests/test_conversation_loader.py tests/test_frame_pressure_contextual.py tests/test_pipeline_shim_equivalence.py -q`.
+  - [x] 0.5 Record the baseline result in this task file before code changes. Result: `61 passed in 0.42s`.
 
 - [ ] 1.0 Define IR dataclasses and provenance union (TDD)
   - [ ] 1.1 RED: add `tests/test_ir.py::test_span_ref_resolves_exact_turn_relative_text` using the `user_has_plan` Turn 2 pipeline quote from the drill-back spike.
