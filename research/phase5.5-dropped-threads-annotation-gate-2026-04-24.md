@@ -140,7 +140,7 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
 - Source turn:
   > [Turn 1] USER: I've decided to quit my senior PM job at a large tech company and start an independent consulting practice. 12 years experience in product, specializing in B2B fintech. I have 8 months runway saved. Plan is to go independent starting in 6 weeks. Can you help me think through the launch plan? I want to hit the ground running.
 - Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span: `Can you help me think through the launch plan?` / turn: 1 / speaker: user / kind: open_loop / kind_ambiguity: no / note: the "(pricing, positioning, website, legal structure)" enumeration in the paraphrase is extractor expansion — none of those words appear in user turn 1
 
 ---
 
@@ -153,7 +153,7 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
 - Source turn:
   > [Turn 7] USER: There's something I should say. I'm not the only one who might have seen things. Two years ago, a senior manager in my group left abruptly. Everyone assumed burnout. In retrospect — she was working on this same client account. I wonder if she saw something too and left without reporting. If I report now, it might implicate her for not reporting two years ago.
 - Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span: `If I report now, it might implicate her for not reporting two years ago.` / turn: 7 / speaker: user / kind: open_loop / kind_ambiguity: yes / note: paraphrase uses "concern" language; span is factual but carries unresolved worry
 
 ---
 
@@ -167,7 +167,7 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
   > [Turn 4] USER: Math: Yes. My wife is a physician, she out-earns me slightly. Mortgage is fine. We'd cut vacations and the kids' enrichment activities modestly but nothing breaking. So financially, option B is survivable.
   > What I've been telling myself is that the "irrational" part is the EXPECTED value. 0.8% of a Series B at, let's say, a $1.2B future exit in 5 years is $9.6M pre-tax. But 80% of startups don't exit at that level. Median outcome is probably $0 or low-single-digit millions. So on expected value it's a hard question.
 - Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span: `0.8% of a Series B at, let's say, a $1.2B future exit in 5 years is $9.6M pre-tax. But 80% of startups don't exit at that level. Median outcome is probably $0 or low-single-digit millions.` / turn: 4 / speaker: user / kind: open_loop / kind_ambiguity: no / note: thread = explicit EV math; superseded by information-value reframe in assistant turn 4
 
 ---
 
@@ -182,7 +182,7 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
   > Husband is — we've talked about it in general. He's pro. But we haven't had the real conversation about what 3 nights a week away actually looks like for four-plus years. I've been kind of avoiding it.
   > And I don't know, I have this fellowship program with 4 fellows, two MDs two MD/PhDs, three of them I recruited specifically. One of them is honestly going to struggle if I leave, her project is really weird and it's hard to hand off. There's also my colleague David who could take them but he's already slammed and he doesn't mentor the way I do.
 - Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span: `I've been feeling a little stuck. Not burned out exactly but — I write grants, I supervise fellows, I run trials, and I keep thinking I'm going to be the person who moves the field and I'm starting to think that's just not me.` / turn: 2 / speaker: user / kind: open_loop / kind_ambiguity: yes / note: "as potential escape motive" is extractor's paraphrase framing; raw span reads as expressed concern that gets redirected
 
 **ONC-D2**
 - Paraphrased extraction: `"David overloaded as potential handoff mentor"`
@@ -190,7 +190,7 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
 - Superseded_by: `"emphasis on Priya's committee and other department support"`
 - Source turn: (same as ONC-D1 above)
 - Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span: `There's also my colleague David who could take them but he's already slammed and he doesn't mentor the way I do.` / turn: 2 / speaker: user / kind: open_loop / kind_ambiguity: no / note: clean single-sentence span; "overloaded" paraphrases "already slammed"
 
 ---
 
@@ -205,7 +205,7 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
   > If you went this route, the practical move would be identifying a single-cell lab at your institution that has a computational gap you could fill, and proposing a collaborative dissertation. Your advisor would be co-advisor, the single-cell PI would be co-advisor, and your project is hosted at their lab with their infrastructure.
   > That's a complicated political situation but not impossible. Whether it's worth it depends on whether you want it enough to navigate the politics.
 - Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span: `That's different from "my lab pivots into single-cell." The former is possibly viable; the latter isn't, based on what you've described.` / turn: 3 / speaker: assistant / kind: open_loop / kind_ambiguity: no / note: assistant flags pure option 2 (= "my lab pivots") as non-viable; thread redirected to collaborative version
 
 ---
 
@@ -218,7 +218,7 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
 - Source turn:
   > [Turn 4] USER: My husband's argument is that we love the neighborhood, houses there don't come up often, we'll regret walking away over $45K. Is that fair? I find that emotionally compelling but I don't know if I'm being sensible or just scared.
 - Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span: `My husband's argument is that we love the neighborhood, houses there don't come up often, we'll regret walking away over $45K.` / turn: 4 / speaker: user / kind: open_loop / kind_ambiguity: yes / note: paraphrase says "$950K push" but user said "$45K"; extractor may have substituted a price from elsewhere — still live concern since user asks "is that fair?"
 
 ---
 
@@ -231,7 +231,7 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
 - Source turn:
   > [Turn 4] USER: I don't think you understand the stakes here. She's going to be homeless. With her kids. If I don't help her.
 - Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span: `She's going to be homeless. With her kids. If I don't help her.` / turn: 4 / speaker: user / kind: open_loop / kind_ambiguity: yes / note: emphatic stakes statement; thread supersedes by assistant's shift to partial help + other resources, but the concern itself remains live
 
 ---
 
@@ -245,7 +245,7 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
   > [Turn 2] USER: They're not independent. If I take the Seattle job, I leave DC anyway, boyfriend situation becomes about long-distance or him coming with me. If I stay in DC I need to find a new apartment fast and the move-in-together question is about whether it's the same apartment. And I keep telling myself I've decided on Seattle but I haven't actually decided.
   > Also Seattle is a 40% pay bump and better career path but I love DC and my whole life is here. And he has a good job here. Also my mom lives 2 hours away in Baltimore and she's starting to need more help.
 - Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
-- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span: `I love DC and my whole life is here.` / turn: 2 / speaker: user / kind: open_loop / kind_ambiguity: yes / note: paraphrase "11 years" not in turn; reads as live sentiment/concern even though conversation moved to boyfriend/mom topics
 
 ---
 
