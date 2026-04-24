@@ -670,6 +670,22 @@ Every object should know:
 
 This phase can still use the current extraction prompt as a bootstrap if needed, but the system should start preferring span-backed objects over free-text paraphrases.
 
+### Status note - 2026-04-24
+
+Phase 2 exact-span enrichment was tested as a no-code feasibility gate after
+Phase 1 shipped. The first 3-case annotation looked promising, but widening to
+the 10-case corpus changed the conclusion: only 8 / 71 user-side objects (11%)
+had a useful >=4-word evidence span, and coverage collapsed to 0 on the
+complex/high-value cases (`messy_three_problems`, `parenting_teen`,
+`startup_pivot`, `whistleblower`).
+
+Decision: do not add dormant `evidence_spans` fields or algorithmic substring
+enrichment now. Current extraction is paraphrase-first; user-side context is
+recoverable at `turn_ref` / `derivation` granularity, but exact-span enrichment
+needs a real semantic quote producer. Revisit this phase when Phase 5
+specialist extraction, or a Phase 4 packet builder with a concrete consumer
+need, can populate quote-level anchors honestly.
+
 ### Phase gate
 
 - Structural artifact: framing, constraints, and concerns exist as provenance-bearing IR objects, with active vs archived vs superseded state explicit.

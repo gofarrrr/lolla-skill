@@ -10,9 +10,9 @@
 
 That's not a measurement error. It's the current extraction layer's uniform behavior: every `live_constraint`, `dropped_thread`, and `original_framing` is a *summary paraphrase*, not a verbatim quote. The Phase 1 constructor's all-`turn_ref`-zero-`span` distribution wasn't noise — it's the extraction contract.
 
-But there's nuance. Nearly every paraphrased object contains **embedded core assertions** that *are* exact substrings of the source turn (often as short phrases like `"6 weeks"`, `"8 months runway"`, `"teenage stuff"`, `"60-65%"`). The extractor wraps these in a summary prefix (`"Launch timeline:"`, `"Family financial stakes:"`) and adds interpretive content (`"aligned with Q3 planning end"`, `"nearing high school"`) that's inference, not quote.
+But there's nuance in the 3 protected cases. Many paraphrased objects contain **embedded core assertions** that *are* exact substrings of the source turn (often as short phrases like `"6 weeks"`, `"8 months runway"`, `"teenage stuff"`, `"60-65%"`). The extractor wraps these in a summary prefix (`"Launch timeline:"`, `"Family financial stakes:"`) and adds interpretive content (`"aligned with Q3 planning end"`, `"nearing high school"`) that's inference, not quote.
 
-This pattern opens a Phase 2 architectural option that doesn't require changing the extraction contract: **layer evidence-span anchoring on top of paraphrased text**. Discussed in §"Phase 2 scope options" below.
+That pattern initially suggested a Phase 2 architectural option: layer evidence-span anchoring on top of paraphrased text. The later 10-case widening below supersedes that initial read and rejects implementation for now.
 
 ## Annotations
 
@@ -22,7 +22,7 @@ Format: one row per object, 3 cases × 5-7 objects each. Notation:
 - **Source turn (actual)** is where the content actually lives after manual inspection — sometimes different from the declared turn.
 - **Exact quote available** lists any verbatim substrings of the object text in any user turn.
 - **Provenance tier** is the honest classification under Phase 1's taxonomy.
-- **Phase 2 action** is what a reasonable implementation would do.
+- **Phase 2 action** records the initial 3-case implementation instinct. These per-object action notes are retained for evidence history but are superseded by the 10-case widening and revised decision below.
 
 ---
 
@@ -204,79 +204,102 @@ The annotation reveals no objects unrecoverable from current extraction, but als
 
 **Secondary finding #3:** 4 of the 20 objects have `kind_ambiguity` between `constraint` and `concern` (P4 spouse, T1 daughter-shutdown, T3 surveillance, T4 RAINN). This matches the annotation-gate result (3 of 17 previously identified; slightly higher here because we included T1 which was judged ambiguous this pass). The `kind_ambiguity` flag added in Phase 1 is the designed handling.
 
-## Phase 2 scope options
+## Ten-case widening
 
-**Option A — Layered evidence spans.** Phase 2's key addition: objects keep `text` (paraphrased) + `provenance tier` (turn_ref/derivation) but gain an **optional `evidence_spans: list[SpanRef]`** that lists verified verbatim substrings from source turns. The constructor algorithmically finds these by searching each object's text for multi-word substrings (e.g., ≥4 words) that appear case-tolerantly in the declared source turn.
+After PM review, this 3-case artifact was widened to the full 10-case corpus.
+That wider check materially changed the recommendation.
 
-Benefits:
-- **No extraction contract change.** The old monolithic extractor keeps working.
-- **Provides real drill-back granularity** even while text is paraphrased. Observatory / memo rendering / lane packets (Phase 4) can highlight the actual user quotes that support each object.
-- **Self-documenting**: if an object has 0 evidence_spans, that's honest signal that it's pure paraphrase or multi-turn derivation, not verbatim quote.
-- **Addresses the turn-attribution bug naturally**: if evidence_spans come back empty for the declared turn but non-empty for a different turn, the constructor can flag or self-correct.
+| Measure | Count | % of 71 |
+|---|---:|---:|
+| Full-string span match | 1 | 1% |
+| Has at least 1 evidence span (>=4 words) | 8 | 11% |
+| No useful evidence span available | 63 | 89% |
 
-Costs:
-- Slightly more complex IR shape (extra optional field).
-- Algorithmic substring search needs to be robust to case-folding (already have `find_substring_tolerant`), whitespace normalization, and the "short match = likely spurious" boundary.
+Per-case breakdown:
 
-**Option B — Leave as-is, wait for Phase 5.** Phase 2 does NOT add evidence_spans. Provenance stays turn_ref/derivation with no span-level enrichment. Phase 5 specialist extraction eventually emits fields designed for exact-span representation.
+| Case | Total objects | Full-string span | Has evidence span | No evidence span |
+|---|---:|---:|---:|---:|
+| `phd_research` | 7 | 0 | 3 | 4 |
+| `friendship_money` | 6 | 0 | 1 | 5 |
+| `multi_offer` | 8 | 0 | 1 | 7 |
+| `oncologist` | 10 | 0 | 1 | 9 |
+| `real_estate` | 9 | 1 | 1 | 8 |
+| `user_has_plan` | 6 | 0 | 1 | 5 |
+| `messy_three_problems` | 6 | 0 | 0 | 6 |
+| `parenting_teen` | 6 | 0 | 0 | 6 |
+| `startup_pivot` | 6 | 0 | 0 | 6 |
+| `whistleblower` | 7 | 0 | 0 | 7 |
 
-Benefits:
-- Smallest scope.
-- No algorithmic span-search complexity.
+The 3-case result overestimated the value of algorithmic evidence spans. It
+counted short fragments such as `"6 weeks"`, `"teenage stuff"`, and `"60-65%"`
+as meaningful embedded assertions. At 10-case scale, with a safer >=4-word
+threshold, useful evidence-span coverage falls to 11%.
 
-Costs:
-- Observatory drill-back stays coarse (whole-turn granularity).
-- Phase 4 packet builders have less to project.
-- We know Phase 5 is at least months away; waiting loses ground.
+More importantly, coverage collapses on the complex/high-value cases where
+drill-back quality matters most:
 
-**Option C — Add evidence_spans AND fix the known bugs.** Option A + the turn-attribution bug fix + the assistant-raised dropped_thread taxonomy cleanup.
+- `messy_three_problems`: 0 / 6
+- `parenting_teen`: 0 / 6
+- `startup_pivot`: 0 / 6
+- `whistleblower`: 0 / 7
 
-Benefits:
-- Addresses multiple findings at once.
-- Self-correcting constructor (evidence_spans empty on declared turn → try other turns).
+## Superseded recommendation
 
-Costs:
-- Scope creep risk — once we start "fixing bugs in the constructor" the scope expands.
+The earlier recommendation in this artifact was:
 
-## Phase 2 recommendation
+> Add `evidence_spans: tuple[SpanRef, ...] = ()` to `UserIssueEvent` and
+> `FrameAnchor`, then populate it algorithmically by finding multi-word
+> substrings from object text in the source turn.
 
-**Option A, tightly scoped.** Add `evidence_spans: tuple[SpanRef, ...] = ()` to UserIssueEvent and FrameAnchor. Constructor algorithmically finds multi-word substrings of the object's text (≥4 consecutive words matching case-tolerantly) in the declared source turn. If found, attach as evidence_spans. If not found, leave empty.
+That recommendation is **rejected** after the 10-case widening.
 
-Do NOT:
-- Change the extraction prompt or contract
-- Fix the turn-attribution bug in the constructor itself (surface it in logs but don't silently rewrite turns)
-- Reclassify assistant-raised dropped_threads
-- Implement packet builders
-- Add evidence_spans to StanceEvent (separate concern, Phase 3)
+Reasons:
 
-This gives us:
-- A 60% bump in drill-back granularity without touching extraction
-- An honest signal for the 40% that remain turn_ref/derivation-only
-- Phase 3's assistant-side work unaffected
-- Phase 5's eventual specialist extraction can emit primary `span` provenance cleanly, with the Phase 2 algorithmic fallback remaining as resilience
+- The full-corpus benefit is too small: 8 / 71 objects get useful span anchors.
+- The benefit is concentrated in simpler cases, not the cases where fidelity is
+  most valuable.
+- A mostly-empty `evidence_spans` field risks false progress and future packet
+  builder fallback clutter.
+- Observatory or memo rendering could misread empty arrays as "missing evidence"
+  rather than the honest outcome of paraphrase-first extraction.
+- Phase 5 specialist extraction, or the first packet builder with a concrete
+  consumer need, may want a different field shape.
 
-## Kill criteria for Phase 2
+## Revised decision
 
-- If the multi-word-substring search proves unreliable (too many false positives where a common phrase like "the advice" matches coincidentally), narrow the minimum match length or add stopword filtering before shipping.
-- If Observatory/memo rendering can't meaningfully consume `evidence_spans` (unclear visual story, user confusion), defer until Phase 4 packet builders have a use for it.
-- If the algorithmic search pattern starts looking brittle across new cases added to the corpus, defer and wait for Phase 5.
+**No Phase 2 implementation PR now.**
 
-## Phase 2 task file outline (to be drafted after PM review)
+Do not add dormant `evidence_spans` fields. Do not implement algorithmic
+evidence-span search. Do not change extraction prompts, constructor behavior,
+lane behavior, or output serialization for Phase 2.
 
-1. Add `evidence_spans` field to `UserIssueEvent` and `FrameAnchor`
-2. Implement multi-word substring search helper (≥4 words, case-tolerant, whitespace-normalized)
-3. Extend `ir_constructor.py` to populate `evidence_spans` on build
-4. Extend `test_ir.py` for evidence_spans field presence + absence cases
-5. Extend `test_ir_drillback.py` for evidence_span-based drill-back
-6. Add provenance observability counter: how many objects got ≥1 evidence_span vs 0
-7. Update HOW_IT_WORKS with a brief evidence_spans paragraph
-8. Acceptance note with before/after provenance distribution on the 3 fixtures
+Phase 2's no-code finding is:
 
-Expected Phase 2 delivery size: ~half the size of Phase 1. One PR, one branch, ~1-2 days of coder work.
+- user-side context is recoverable from current extraction at `turn_ref` /
+  `derivation` granularity
+- current extraction is structurally paraphrase-first
+- exact-span enrichment requires a real semantic quote producer
+- the likely producer is Phase 5 specialist extraction, or a Phase 4 packet
+  builder that proves a concrete use for quote-level anchors
 
-## Summary for PM go/no-go
+## Falsification conditions
 
-- **Go:** Phase 2 is scoped, useful, non-extraction-changing, and builds on Phase 1 cleanly. Option A above.
-- **No-go would mean:** skip Phase 2, go straight to Phase 3 or Phase 5. Cost: we lose the opportunity to add drill-back granularity from current extraction without waiting for specialist extraction.
+Revisit `evidence_spans` or an equivalent field only if one of these becomes
+true:
 
-Recommend: Go. Option A as the Phase 2 shape.
+- a stricter non-spurious matcher reaches roughly 35-40% useful coverage on the
+  10-case corpus
+- a semantic quote-selection pass emits exact user quotes at high precision
+  within an approved cost budget
+- a Phase 4 packet builder has a concrete consumer need for quote-level anchors
+- Observatory or memo rendering has a clear UX that distinguishes "honest
+  paraphrase" from "missing evidence"
+
+## Next move
+
+Move to Phase 3.0: assistant trajectory annotation/design gate.
+
+Reason: assistant turns are raw source text, so stance candidates can be exact
+assistant spans. The hard question shifts from "can we recover quote anchors
+from paraphrased user-side extraction?" to "can reviewers agree on what counts
+as a `StanceEvent` and which relation it has?"
