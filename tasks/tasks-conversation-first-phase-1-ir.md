@@ -213,12 +213,12 @@ Not TDD'd:
   - [x] 8.5 Verify lane output surfaces did not change except approved audit observability. No normal output serialization change was made.
   - [x] 8.6 Update this task file with verification results.
 
-- [ ] 9.0 Documentation and ship gate
+- [x] 9.0 Documentation and ship gate
   - [x] 9.1 Update `HOW_IT_WORKS.md` with a concise Conversation IR paragraph after the existing `ConversationContext` discussion.
   - [x] 9.2 Update `plans/conversation-first-context-engineering-roadmap.md` only if implementation materially changed the approved Phase 1 shape. No roadmap update needed; implementation matched the approved shape.
   - [x] 9.3 Write a short Phase 1 acceptance note in `research/` summarizing provenance coverage, drill-back, annotation agreement, latency, and residual risks.
   - [x] 9.4 Stop for PM review before PR creation if any gate is ambiguous. No ambiguous gate triggered.
-  - [ ] 9.5 Commit implementation and open PR only after all gates are satisfied.
+  - [x] 9.5 Commit implementation and open PR only after all gates are satisfied. PM approved opening PR #23 on 2026-04-24.
 
 ## Phase 2 Preview (Do Not Do In This PR)
 
