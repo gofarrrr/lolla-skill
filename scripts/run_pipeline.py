@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Run the full Lolla pipeline against an extracted conversation.
 
-Takes extraction JSON (with query + vanilla_answer fields) and runs all
-three lanes (structural pressure, model companion, frame pressure) via
-OpenRouter.
+Takes extraction JSON plus a raw conversation transcript and runs all four
+lanes via OpenRouter. File-based extraction + conversation inputs use the
+ConversationContext runtime by default; CritiqueRequest is an explicit legacy
+compatibility path.
 
 Usage:
-    python3 scripts/run_pipeline.py --extraction-file /tmp/extraction.json
-    python3 scripts/run_pipeline.py --extraction-json '{"query":"...","vanilla_answer":"..."}'
+    python3 scripts/run_pipeline.py --extraction-file /tmp/extraction.json --conversation-file /tmp/conversation.txt
+    python3 scripts/run_pipeline.py --extraction-json '{"query":"...","vanilla_answer":"..."}' --legacy-contract
 
 Output: JSON to stdout with delta_card, companion_cheat_sheet, frame_pressure_card.
 """
@@ -263,13 +264,55 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
 # Main
 # ---------------------------------------------------------------------------
 
+def _contract_error(args: argparse.Namespace) -> str | None:
+    """Return a CLI contract error message, or None when flags are coherent."""
+    if args.new_contract and args.legacy_contract:
+        return "--new-contract and --legacy-contract cannot be used together"
+
+    if args.extraction_json and args.new_contract:
+        return (
+            "--extraction-json cannot be used with --new-contract; "
+            "ConversationContext requires --extraction-file and --conversation-file"
+        )
+
+    if args.extraction_json and not args.legacy_contract:
+        return (
+            "--extraction-json is only supported with --legacy-contract because "
+            "ConversationContext requires extraction and conversation files."
+        )
+
+    if args.new_contract and not (args.extraction_file and args.conversation_file):
+        return "--new-contract requires both --extraction-file and --conversation-file"
+
+    if args.extraction_file and not args.conversation_file and not args.legacy_contract:
+        return (
+            "--extraction-file requires --conversation-file for the default "
+            "ConversationContext runtime; pass --legacy-contract to run the "
+            "legacy CritiqueRequest path intentionally."
+        )
+
+    return None
+
+
+def _should_use_conversation_context(args: argparse.Namespace) -> bool:
+    return not args.legacy_contract and bool(
+        args.new_contract or (args.extraction_file and args.conversation_file)
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Run Lolla pipeline against extracted conversation"
+        description=(
+            "Run Lolla pipeline. File-based extraction + conversation inputs "
+            "use ConversationContext by default."
+        )
     )
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--extraction-file", help="Path to extraction JSON file")
-    group.add_argument("--extraction-json", help="Extraction JSON as string")
+    group.add_argument(
+        "--extraction-json",
+        help="Extraction JSON as string (legacy CritiqueRequest path only; requires --legacy-contract)",
+    )
     parser.add_argument(
         "--env-file",
         help="Optional .env file path",
@@ -291,28 +334,34 @@ def main() -> int:
     )
     parser.add_argument(
         "--conversation-file",
-        help="Path to raw conversation transcript (provides full context for BI evaluation)",
+        help=(
+            "Path to raw conversation transcript. With --extraction-file, this "
+            "selects the default ConversationContext runtime."
+        ),
     )
     parser.add_argument(
         "--new-contract",
         action="store_true",
         help=(
-            "Use the new ConversationContext contract (Phase 1). "
-            "Default: off (legacy CritiqueRequest path). During Phase 1 these paths "
-            "are behaviorally equivalent; Phase 2+ lane migrations will let the new "
-            "path produce richer lane output. "
-            "Requires --extraction-file and --conversation-file."
+            "Deprecated compatibility alias for the default ConversationContext "
+            "contract. No longer needed for file-based conversation runs. "
+            "Requires --extraction-file and --conversation-file. Scheduled for "
+            "removal after legacy-shim removal or a follow-up cleanup PR."
+        ),
+    )
+    parser.add_argument(
+        "--legacy-contract",
+        action="store_true",
+        help=(
+            "Use the legacy CritiqueRequest contract explicitly. "
+            "Default for file-based conversation runs is ConversationContext."
         ),
     )
     args = parser.parse_args()
 
-    if args.new_contract and not (args.extraction_file and args.conversation_file):
-        print(json.dumps({
-            "status": "error",
-            "error": (
-                "--new-contract requires both --extraction-file and --conversation-file"
-            ),
-        }))
+    contract_error = _contract_error(args)
+    if contract_error:
+        print(json.dumps({"status": "error", "error": contract_error}))
         return 1
 
     # Load env: explicit flag → project .claude/lolla.env → repo .env → ~/.config/lolla/.env
@@ -412,8 +461,9 @@ def main() -> int:
     if pipeline._bundle_selector is not None:
         _compiled_chunk_count = len(pipeline._bundle_selector._substrate.all_chunks())
 
-    # Run pipeline — Phase 1: either legacy CritiqueRequest or new ConversationContext
-    if args.new_contract:
+    # Run pipeline — either explicit/deprecated or default ConversationContext,
+    # with CritiqueRequest retained for compatibility paths.
+    if _should_use_conversation_context(args):
         from system_b.conversation_loader import load_conversation_context
         pipeline_input = load_conversation_context(
             extraction_path=Path(args.extraction_file),

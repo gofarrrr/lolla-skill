@@ -49,58 +49,59 @@ For implementation tasks, use vertical TDD slices:
 
 ## Tasks
 
-- [ ] 0.0 Create feature branch
-  - [ ] 0.1 Inspect current branch and working tree with `git status --short`; note any user-owned/untracked files and do not modify them unless the task explicitly requires it.
-  - [ ] 0.2 Create and checkout a new branch for this work, for example `git switch -c feat/conversation-first-runtime-default`.
-  - [ ] 0.3 Run a quick baseline test command that does not require network, such as `python3 -m pytest tests/test_conversation_loader.py tests/test_pipeline_shim_equivalence.py -q`, and record the result in this task file.
+- [x] 0.0 Create feature branch
+  - [x] 0.1 Inspect current branch and working tree with `git status --short`; note any user-owned/untracked files and do not modify them unless the task explicitly requires it. Started from `main`; existing untracked user-owned file: `research/conversation-first-extraction-evaluation-2026-04-24.md` (left untouched).
+  - [x] 0.2 Create and checkout a new branch for this work, for example `git switch -c feat/conversation-first-runtime-default`. Created `feat/conversation-first-runtime-default`.
+  - [x] 0.3 Run a quick baseline test command that does not require network, such as `python3 -m pytest tests/test_conversation_loader.py tests/test_pipeline_shim_equivalence.py -q`, and record the result in this task file. Result: `32 passed in 0.38s`.
 
-- [ ] 1.0 Make the production runtime contract explicit
-  - [ ] 1.1 Read `SKILL.md` Step 3, `scripts/run_pipeline.py` argparse/input-selection code, `HOW_IT_WORKS.md` Step 3, `plans/conversation-first-context-engineering-roadmap.md` current-state sections, and `research/legacy-pr-design-archaeology.md`.
-  - [ ] 1.2 Write the intended CLI contract in `research/conversation-first-runtime-default-decision-2026-04-24.md`, including the exact behavior for `--extraction-file` + `--conversation-file`, `--legacy-contract`, existing `--new-contract`, `--extraction-file` without `--conversation-file`, and `--extraction-json`.
-  - [ ] 1.3 Decide whether `--new-contract` remains as a deprecated no-op alias for one release or is removed/renamed immediately. Record the decision and rationale in the decision artifact.
-  - [ ] 1.4 Define the production invariant in one sentence: `/lolla` production invocations must exercise the same ConversationContext path that Phase 2 measurements exercised.
-  - [ ] 1.5 Stop for PM review before implementation. Do not edit runtime behavior until the contract artifact is approved.
+- [x] 1.0 Make the production runtime contract explicit
+  - [x] 1.1 Read `SKILL.md` Step 3, `scripts/run_pipeline.py` argparse/input-selection code, `HOW_IT_WORKS.md` Step 3, `plans/conversation-first-context-engineering-roadmap.md` current-state sections, and `research/legacy-pr-design-archaeology.md`.
+  - [x] 1.2 Write the intended CLI contract in `research/conversation-first-runtime-default-decision-2026-04-24.md`, including the exact behavior for `--extraction-file` + `--conversation-file`, `--legacy-contract`, existing `--new-contract`, `--extraction-file` without `--conversation-file`, and `--extraction-json`.
+  - [x] 1.3 Decide whether `--new-contract` remains as a deprecated no-op alias for one release or is removed/renamed immediately. Record the decision and rationale in the decision artifact.
+  - [x] 1.4 Define the production invariant in one sentence: `/lolla` production invocations must exercise the same ConversationContext path that Phase 2 measurements exercised.
+  - [x] 1.5 Stop for PM review before implementation. Do not edit runtime behavior until the contract artifact is approved.
+  - [x] 1.6 Caller inventory: grep for all `scripts/run_pipeline.py` callers, classify whether each relies on the legacy default or passes an explicit flag, and record the follow-up in `research/conversation-first-runtime-default-decision-2026-04-24.md`.
 
-- [ ] 2.0 Implement the ConversationContext-default runtime switch with legacy opt-out
-  - [ ] 2.1 RED: add one behavior test showing that `scripts/run_pipeline.py --extraction-file X --conversation-file Y --output-file Z --skip-revision` builds and passes a `ConversationContext` to `SystemBPipeline.run()` by default.
-  - [ ] 2.2 GREEN: implement the smallest change in `scripts/run_pipeline.py` that makes the test pass.
-  - [ ] 2.3 RED: add one behavior test showing that `--legacy-contract` with the same file inputs builds and passes a `CritiqueRequest` instead.
-  - [ ] 2.4 GREEN: add `--legacy-contract` and the corresponding input-selection branch.
-  - [ ] 2.5 RED: add one behavior test for the approved `--new-contract` compatibility behavior from Task 1.3, either deprecated alias behavior or explicit rejection with a clear error.
-  - [ ] 2.6 GREEN: implement the approved `--new-contract` compatibility behavior and update help text.
-  - [ ] 2.7 RED: add one behavior test for the approved no-conversation-file case from Task 1.2, covering either explicit error or legacy fallback.
-  - [ ] 2.8 GREEN: implement the no-conversation-file behavior without weakening the production invariant.
-  - [ ] 2.9 RED: add one behavior test for the approved `--extraction-json` behavior from Task 1.2.
-  - [ ] 2.10 GREEN: implement the `--extraction-json` behavior.
-  - [ ] 2.11 Refactor only after all contract tests are green; keep any helper introduced for input selection small and CLI-facing.
-  - [ ] 2.12 Run `python3 -m pytest tests/test_run_pipeline_contract_default.py -q`.
+- [x] 2.0 Implement the ConversationContext-default runtime switch with legacy opt-out
+  - [x] 2.1 RED: add one behavior test showing that `scripts/run_pipeline.py --extraction-file X --conversation-file Y --output-file Z --skip-revision` builds and passes a `ConversationContext` to `SystemBPipeline.run()` by default.
+  - [x] 2.2 GREEN: implement the smallest change in `scripts/run_pipeline.py` that makes the test pass.
+  - [x] 2.3 RED: add one behavior test showing that `--legacy-contract` with the same file inputs builds and passes a `CritiqueRequest` instead.
+  - [x] 2.4 GREEN: add `--legacy-contract` and the corresponding input-selection branch.
+  - [x] 2.5 RED: add one behavior test for the approved `--new-contract` compatibility behavior from Task 1.3, either deprecated alias behavior or explicit rejection with a clear error.
+  - [x] 2.6 GREEN: implement the approved `--new-contract` compatibility behavior and update help text.
+  - [x] 2.7 RED: add one behavior test for the approved no-conversation-file case from Task 1.2, covering either explicit error or legacy fallback.
+  - [x] 2.8 GREEN: implement the no-conversation-file behavior without weakening the production invariant.
+  - [x] 2.9 RED: add one behavior test for the approved `--extraction-json` behavior from Task 1.2.
+  - [x] 2.10 GREEN: implement the `--extraction-json` behavior.
+  - [x] 2.11 Refactor only after all contract tests are green; keep any helper introduced for input selection small and CLI-facing.
+  - [x] 2.12 Run `python3 -m pytest tests/test_run_pipeline_contract_default.py -q`. Result: `6 passed in 0.23s`.
 
-- [ ] 3.0 Preserve and update old-path/new-path measurement tooling
-  - [ ] 3.1 RED: add or update a test/helper check proving that an "old path" measurement command now includes `--legacy-contract`.
-  - [ ] 3.2 GREEN: update `scripts/phase2a_lane3_quality_check.py` so `new_contract=False` uses `--legacy-contract` and `new_contract=True` uses the new default path.
-  - [ ] 3.3 Repeat the same old/new command update for `scripts/phase2b_lane4_quality_check.py`.
-  - [ ] 3.4 Repeat the same old/new command update for `scripts/phase2c_lane1_quality_check.py`.
-  - [ ] 3.5 Repeat the same old/new command update for `scripts/phase2d_lane2_quality_check.py`.
-  - [ ] 3.6 Review `scripts/stability_check.py`; decide whether Mode B reruns should follow the new production default when a conversation file is available or expose an explicit `--legacy-contract` option.
-  - [ ] 3.7 Update measurement script docstrings and usage text so "old" means explicit legacy opt-out and "new" means default ConversationContext runtime.
-  - [ ] 3.8 Run targeted non-network tests for command construction if available. If no such tests exist, add the smallest useful command-builder tests rather than relying on live OpenRouter runs.
+- [x] 3.0 Preserve and update old-path/new-path measurement tooling
+  - [x] 3.1 RED: add or update a test/helper check proving that an "old path" measurement command now includes `--legacy-contract`.
+  - [x] 3.2 GREEN: update `scripts/phase2a_lane3_quality_check.py` so `new_contract=False` uses `--legacy-contract` and `new_contract=True` uses the new default path.
+  - [x] 3.3 Repeat the same old/new command update for `scripts/phase2b_lane4_quality_check.py`.
+  - [x] 3.4 Repeat the same old/new command update for `scripts/phase2c_lane1_quality_check.py`.
+  - [x] 3.5 Repeat the same old/new command update for `scripts/phase2d_lane2_quality_check.py`.
+  - [x] 3.6 Review `scripts/stability_check.py`; decide whether Mode B reruns should follow the new production default when a conversation file is available or expose an explicit `--legacy-contract` option. Decision: conversation-file Mode B follows the new production default; `--legacy-contract` is available for explicit old-path reruns and extraction-only compatibility.
+  - [x] 3.7 Update measurement script docstrings and usage text so "old" means explicit legacy opt-out and "new" means default ConversationContext runtime.
+  - [x] 3.8 Run targeted non-network tests for command construction if available. If no such tests exist, add the smallest useful command-builder tests rather than relying on live OpenRouter runs. Added `tests/test_measurement_command_contract.py`; ran `python3 -m pytest tests/test_measurement_command_contract.py -q` (`8 passed in 0.08s`) and `python3 -m pytest tests/test_stability_check.py -q` (`20 passed`, one existing utcnow deprecation warning).
 
-- [ ] 4.0 Align production instructions and architecture documentation
-  - [ ] 4.1 Update `SKILL.md` Step 3 command and explanation so it accurately states production `/lolla` runs through `ConversationContext` by default.
-  - [ ] 4.2 Update `HOW_IT_WORKS.md` Step 3 command and "Conversation-first contract" section to remove any misleading implication that `--new-contract` is still required for production.
-  - [ ] 4.3 Update `scripts/run_pipeline.py --help` text to present the default path and legacy escape hatch clearly.
-  - [ ] 4.4 Update `research/conversation-first-runtime-default-decision-2026-04-24.md` with the final implementation summary and any deviations from the approved contract.
-  - [ ] 4.5 Search for stale wording: `rg -n -- "--new-contract|new contract|legacy path|Default: off|Phase 1|Phase 2\\+" SKILL.md HOW_IT_WORKS.md scripts tests research tasks`.
+- [x] 4.0 Align production instructions and architecture documentation
+  - [x] 4.1 Update `SKILL.md` Step 3 command and explanation so it accurately states production `/lolla` runs through `ConversationContext` by default.
+  - [x] 4.2 Update `HOW_IT_WORKS.md` Step 3 command and "Conversation-first contract" section to remove any misleading implication that `--new-contract` is still required for production.
+  - [x] 4.3 Update `scripts/run_pipeline.py --help` text to present the default path and legacy escape hatch clearly.
+  - [x] 4.4 Update `research/conversation-first-runtime-default-decision-2026-04-24.md` with the final implementation summary and any deviations from the approved contract.
+  - [x] 4.5 Search for stale wording: `rg -n -- "--new-contract|new contract|legacy path|Default: off|Phase 1|Phase 2\\+" SKILL.md HOW_IT_WORKS.md scripts tests research tasks`. Result reviewed: remaining active `--new-contract` mentions are deprecated-alias/error/test coverage; historical shipped research/task artifacts left unchanged; user-owned `research/conversation-first-extraction-evaluation-2026-04-24.md` left untouched.
 
-- [ ] 5.0 Run verification and produce the runtime-switch acceptance artifact
-  - [ ] 5.1 Run the new contract tests: `python3 -m pytest tests/test_run_pipeline_contract_default.py -q`.
-  - [ ] 5.2 Run relevant existing tests: `python3 -m pytest tests/test_conversation_loader.py tests/test_pipeline_shim_equivalence.py tests/test_lane1_contextual.py tests/test_lane2_contextual.py tests/test_frame_pressure_contextual.py tests/test_structural_coverage_contextual.py -q`.
-  - [ ] 5.3 Run the full test suite: `python3 -m pytest tests -q`.
-  - [ ] 5.4 Run `python3 scripts/run_pipeline.py --help` and confirm the help text names the default and legacy escape hatch accurately.
-  - [ ] 5.5 If API credentials and budget are available, run one production-path smoke on a small corpus case without `--new-contract`; otherwise record "not run: requires live OpenRouter" in the decision artifact.
-  - [ ] 5.6 If API credentials and budget are available, run one explicit `--legacy-contract` smoke on the same small corpus case; otherwise record "not run: requires live OpenRouter" in the decision artifact.
-  - [ ] 5.7 Update `research/conversation-first-runtime-default-decision-2026-04-24.md` with verification results, known residual risks, and rollback path.
-  - [ ] 5.8 Stop for PM review before Phase 0.1 begins.
+- [x] 5.0 Run verification and produce the runtime-switch acceptance artifact
+  - [x] 5.1 Run the new contract tests: `python3 -m pytest tests/test_run_pipeline_contract_default.py -q`. Result: `6 passed in 0.21s`.
+  - [x] 5.2 Run relevant existing tests: `python3 -m pytest tests/test_conversation_loader.py tests/test_pipeline_shim_equivalence.py tests/test_lane1_contextual.py tests/test_lane2_contextual.py tests/test_frame_pressure_contextual.py tests/test_structural_coverage_contextual.py -q`. Result: `83 passed in 0.45s`.
+  - [x] 5.3 Run the full test suite: `python3 -m pytest tests -q`. Result: `243 passed, 1 warning, 93 subtests passed in 7.39s` (existing `datetime.utcnow()` deprecation warning in `scripts/stability_check.py`).
+  - [x] 5.4 Run `python3 scripts/run_pipeline.py --help` and confirm the help text names the default and legacy escape hatch accurately.
+  - [x] 5.5 If API credentials and budget are available, run one production-path smoke on a small corpus case without `--new-contract`; otherwise record "not run: requires live OpenRouter" in the decision artifact. Recorded: not run, requires live OpenRouter credentials/network and explicit budget approval.
+  - [x] 5.6 If API credentials and budget are available, run one explicit `--legacy-contract` smoke on the same small corpus case; otherwise record "not run: requires live OpenRouter" in the decision artifact. Recorded: not run, requires live OpenRouter credentials/network and explicit budget approval.
+  - [x] 5.7 Update `research/conversation-first-runtime-default-decision-2026-04-24.md` with verification results, known residual risks, and rollback path.
+  - [x] 5.8 Stop for PM review before Phase 0.1 begins.
 
 - [ ] 6.0 Complete Phase 0.1 Capture Fidelity Audit
   - [ ] 6.1 Read `SKILL.md` Step 1 capture instructions, `scripts/run_extract.py`, `engine/system_b/conversation_loader.py`, and the capture-related `run_health` logic in `scripts/run_pipeline.py`.

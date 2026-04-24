@@ -2,9 +2,9 @@
 """Phase 2c Lane 1 quality check — old-path vs new-path on the 10-case corpus.
 
 Runs `run_extract.py` once per case (shared input), then runs `run_pipeline.py`
-N times on the legacy path and N times on the --new-contract path. Parses
-Lane 1 outputs (detected_tendencies, delta_card) AND downstream cascade
-metrics (Lane 2/3/4 sizes) from each result.
+N times on the explicit legacy path (`--legacy-contract`) and N times on the
+default ConversationContext path. Parses Lane 1 outputs (detected_tendencies,
+delta_card) AND downstream cascade metrics (Lane 2/3/4 sizes) from each result.
 
 Why both: Lane 1's output drives anti-echo in Lanes 2/3/4 and compound
 detection. If Lane 1 migration shifts the selected_model_ids set, it can
@@ -167,8 +167,8 @@ def run_pipeline_once(
         "--output-file", str(result_output),
         "--skip-revision",
     ]
-    if new_contract:
-        cmd.append("--new-contract")
+    if not new_contract:
+        cmd.append("--legacy-contract")
     code, out, err = _run_subprocess(cmd)
     if code != 0:
         return (

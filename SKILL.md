@@ -161,7 +161,7 @@ echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.tx
 python3 $SKILL_DIR/scripts/run_extract.py --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json
 ```
 
-This calls OpenRouter to extract the decision situation, constraints, synthesized position, reasoning passages, framing, and dropped threads from the conversation. It maps these to a `CritiqueRequest(query, vanilla_answer)` for the pipeline. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_extraction.json`.
+This calls OpenRouter to extract the decision situation, constraints, synthesized position, reasoning passages, framing, and dropped threads from the conversation. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_extraction.json` and is combined with the raw conversation transcript in Step 3.
 
 Read the output file to check the `status` field:
 
@@ -179,7 +179,7 @@ The conversation capture is fundamentally broken — more than half the assistan
 python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision
 ```
 
-This runs the full Lolla pipeline — all four lanes — via OpenRouter. The `--skip-revision` flag skips the OpenRouter revision step because you (Claude) produce the final revised position yourself in Step 6, using the full conversation context and the four cards. The `--conversation-file` passes the raw conversation transcript so the Bullshit Index detector can see the full user context (what facts the user stated) and avoid flagging grounded claims as unverified. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_result.json`.
+This runs the full Lolla pipeline — all four lanes — via OpenRouter. With both `--extraction-file` and `--conversation-file`, the pipeline uses the production `ConversationContext` runtime by default: raw turns, extraction fields, and capture metadata are passed together so all four lanes audit the conversation directly. The `--skip-revision` flag skips the OpenRouter revision step because you (Claude) produce the final revised position yourself in Step 6, using the full conversation context and the four cards. The result is written directly to `/tmp/lolla_${LOLLA_RUN_ID}_result.json`.
 
 **If the output `status` is `error`:** Present the error to the user. Common causes: API timeout (try again), missing API key, data file issues.
 
