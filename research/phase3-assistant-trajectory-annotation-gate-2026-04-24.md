@@ -132,28 +132,28 @@ answer key; reviewers decide independently whether each span should become a
 - Speaker: `assistant`
 - Source: turn 2
 - Candidate span: `"if you were independent, we'd consider you" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero. You don't have a pipeline; you have a network that might become a pipeline.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / revision / reframes pipeline claim vs. polite interest; not mere explanation
 - Reviewer B include / relation / note: yes / revision / reframes user's "4-5 conversations = pipeline" premise
 
 **UHP-S2**
 - Speaker: `assistant`
 - Source: turn 3
 - Candidate span: `the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / qualification / when tactical advice is relevant
 - Reviewer B include / relation / note: yes / qualification / boundary on when tactical advice applies
 
 **UHP-S3**
 - Speaker: `assistant`
 - Source: turn 7
 - Candidate span: `Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / condition / viability gated on three explicit prerequisites
 - Reviewer B include / relation / note: yes / condition / "viable if X" — explicit if/then
 
 **UHP-S4**
 - Speaker: `assistant`
 - Source: turn 7
 - Candidate span: `If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / condition / trigger conditions for schedule pushback
 - Reviewer B include / relation / note: yes / condition / if/then gate for deferral trigger
 
 ### `whistleblower`
@@ -162,28 +162,28 @@ answer key; reviewers decide independently whether each span should become a
 - Speaker: `assistant`
 - Source: turn 1
 - Candidate span: `I cannot give you legal advice, and this is a situation where you need a lawyer within days, not weeks. The first concrete action I'd recommend is retaining a whistleblower attorney — typically free consultations, often working on contingency — before you do anything else.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / commitment / concrete retain-attorney directive; legal caveat secondary
 - Reviewer B include / relation / note: yes / commitment / "first concrete action I'd recommend is retaining..." — directive; qualification embedded ("I cannot give legal advice") but dominant move is commitment
 
 **WB-S2**
 - Speaker: `assistant`
 - Source: turn 4
 - Candidate span: `My honest read: your most protected path is probably a whistleblower attorney who files on your behalf with the regulator, anonymously to the firm.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / commitment / names preferred path
 - Reviewer B include / relation / note: yes / commitment / "your most protected path is..." — direct recommendation
 
 **WB-S3**
 - Speaker: `assistant`
 - Source: turn 6
 - Candidate span: `At 60-65% confidence in internal handling, with a senior partner involved, external-with-counsel is the defensible path.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / commitment / defensible path conclusion at stated confidence
 - Reviewer B include / relation / note: yes / commitment / firm conclusion on path despite conditional framing
 
 **WB-S4**
 - Speaker: `assistant`
 - Source: turn 8
 - Candidate span: `Within 7-14 days: with attorney, make the filing. Between now and then, say nothing to colleagues. Behave normally. Do not do any of your own investigation. Do not access files, systems, or communications related to the client beyond what you'd normally do for your work.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / commitment / time-bounded do/don't instructions
 - Reviewer B include / relation / note: yes / commitment / imperative directive list
 
 ### `parenting_teen`
@@ -192,28 +192,28 @@ answer key; reviewers decide independently whether each span should become a
 - Speaker: `assistant`
 - Source: turn 2
 - Candidate span: `The first move here isn't to push on the 19-year-old. It's to create a way for her to re-enter the relationship without losing all face.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / revision / reframes first move (trust re-entry vs. pressuring teen)
 - Reviewer B include / relation / note: yes / revision / redirects user's framing from "the guy" to trust repair
 
 **PT-S2**
 - Speaker: `assistant`
 - Source: turn 3
 - Candidate span: `The guy: you don't call the police today. You call the National Sexual Assault Hotline (RAINN — 800.656.HOPE) this afternoon and describe what you saw.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / commitment/deferral / defer police now + immediate hotline directive; two stance moves
 - Reviewer B include / relation / note: yes / commitment / concrete action directive (deferral component on "not today" but commitment dominant)
 
 **PT-S3**
 - Speaker: `assistant`
 - Source: turn 7
 - Candidate span: `My honest read: if your goal is protecting her, not reporting and getting her to a specialized therapist is probably the better path given your co-parenting situation.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / commitment / ranked path given stated goal; goal clause is framing not full condition taxonomy
 - Reviewer B include / relation / note: yes / commitment / recommendation conditional on user's goal (assumed shared)
 
 **PT-S4**
 - Speaker: `assistant`
 - Source: turn 11
 - Candidate span: `This week: DON'T report to police (decision made, stop re-litigating it); DON'T call Mia's mom; DON'T block the 19-year-old yet; DON'T take the phone away.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / commitment / this-week prohibitions; closes debate
 - Reviewer B include / relation / note: yes / commitment / firm directive list consolidating prior decisions ("decision made")
 
 ### `multi_offer`
@@ -222,28 +222,28 @@ answer key; reviewers decide independently whether each span should become a
 - Speaker: `assistant`
 - Source: turn 4
 - Candidate span: `It's not actually a financial decision, or not primarily. The reason B keeps pulling you is that it solves a career-shape problem that A doesn't.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / revision / reframes as career-shape vs. finance
 - Reviewer B include / relation / note: yes / revision / reframes decision type (financial → career-shape)
 
 **MO-S2**
 - Speaker: `assistant`
 - Source: turn 6
 - Candidate span: `So it's not really "B is risky for the marriage so stay at C." It's more like: the distraction is going to be there regardless`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / revision / corrects "B risky for marriage → stay at C" framing
 - Reviewer B include / relation / note: yes / revision / "not really X, it's more like Y" — reframe of user's mental model
 
 **MO-S3**
 - Speaker: `assistant`
 - Source: turn 9
 - Candidate span: `So A answers a question you probably already know the answer to. B answers one you genuinely don't know. From an information-value standpoint, B is the more interesting move.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / revision / information-value lens; reframes how to rank A vs. B
 - Reviewer B include / relation / note: yes / revision / information-value lens shift; borderline commitment but dominant move is reframe
 
 **MO-S4**
 - Speaker: `assistant`
 - Source: turn 15
 - Candidate span: `If the wife conversation goes well, take B. If it doesn't, take A but with clear eyes about what it is. Don't stay.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / condition / wife-outcome if/then plus embedded exit directive
 - Reviewer B include / relation / note: yes / condition / dual if/then gate; "don't stay" is embedded commitment
 
 ### `startup_pivot`
@@ -252,28 +252,28 @@ answer key; reviewers decide independently whether each span should become a
 - Speaker: `assistant`
 - Source: turn 2
 - Candidate span: `If two of three say yes, you have enough signal to pivot. If all three pass when money is actually involved, you have a feature idea, not a product.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / condition / threshold tests for pivot vs. feature-idea
 - Reviewer B include / relation / note: yes / condition / decision criteria for pivot/no-pivot
 
 **SP-S2**
 - Speaker: `assistant`
 - Source: turn 4
 - Candidate span: `My honest read: option three, then option one if the pivot confirms. She deserves to hear this before you've made the decision, not after.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / commitment / recommended sequence; pivot conditional branches option one
 - Reviewer B include / relation / note: yes / commitment / primary recommendation with nested condition
 
 **SP-S3**
 - Speaker: `assistant`
 - Source: turn 6
 - Candidate span: `Give yourself 14 days. After the pre-buy test and the three conversations, you make the call.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / deferral/condition / 14-day pause; call after pre-buy + convos
 - Reviewer B include / relation / note: yes / deferral / time-bound parking of decision; condition component embedded
 
 **SP-S4**
 - Speaker: `assistant`
 - Source: turn 7
 - Candidate span: `Those conversations are the bottleneck, not the strategic question.`
-- Reviewer A include / relation / note:
+- Reviewer A include / relation / note: yes / revision / reframes bottleneck to conversations; still a stance on priority
 - Reviewer B include / relation / note: yes / revision / frame-shift on where effort should go; borderline brief
 
 ## Result Table
