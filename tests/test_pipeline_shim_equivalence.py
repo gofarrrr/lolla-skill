@@ -353,6 +353,44 @@ def test_run_dispatches_conversation_context_through_shim() -> None:
     assert captured[0] is ctx
 
 
+def test_run_constructs_ir_for_conversation_context_before_lane_dispatch() -> None:
+    """IR construction is observational: context input builds IR, then keeps shim dispatch."""
+    ctx = ConversationContext(
+        turns=(Turn(turn_index=1, speaker="user", text="q"),),
+        extraction=ExtractionPayload(
+            decision_situation="D",
+            live_constraints=(),
+            synthesized_position="S",
+            reasoning_passages=(),
+            original_framing="",
+            dropped_threads=(),
+        ),
+    )
+    constructed: list[ConversationContext] = []
+
+    def _spy_constructor(context: ConversationContext):
+        constructed.append(context)
+        return object()
+
+    def _spy_converter(context: ConversationContext) -> CritiqueRequest:
+        raise _ShimDispatchedException()
+
+    with patch(
+        "engine.system_b.pipeline.construct_conversation_ir",
+        side_effect=_spy_constructor,
+    ), patch(
+        "engine.system_b.pipeline._context_to_critique",
+        side_effect=_spy_converter,
+    ):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        try:
+            pipeline.run(ctx)
+        except _ShimDispatchedException:
+            pass
+
+    assert constructed == [ctx]
+
+
 def test_run_passes_critique_request_through_without_shim() -> None:
     """A CritiqueRequest must NOT trigger the shim conversion."""
     critique = CritiqueRequest(query="q", vanilla_answer="a")
@@ -371,6 +409,23 @@ def test_run_passes_critique_request_through_without_shim() -> None:
             pipeline.run(critique)
         except AttributeError:
             # downstream access to self._boundary etc. — expected without __init__
+            pass
+
+
+def test_run_does_not_construct_ir_for_legacy_critique_request() -> None:
+    critique = CritiqueRequest(query="q", vanilla_answer="a")
+
+    def _fail_if_called(context: ConversationContext):
+        raise AssertionError("IR constructor should not run for CritiqueRequest input")
+
+    with patch(
+        "engine.system_b.pipeline.construct_conversation_ir",
+        side_effect=_fail_if_called,
+    ):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        try:
+            pipeline.run(critique)
+        except AttributeError:
             pass
 
 

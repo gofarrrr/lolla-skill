@@ -15,6 +15,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from .boundary_provider import BoundaryCallMetadata, load_boundary_client_from_env
 from .conversation_context import ConversationContext
+from .ir_constructor import construct_conversation_ir
 from .companion import CompanionCard, DetectedModel, FingerprintMove, FingerprintPayload, build_companion_card
 from .frame_pressure import (
     FramePressureCard,
@@ -479,6 +480,7 @@ class SystemBPipeline:
         conversation_context: ConversationContext | None = None
         if isinstance(request, ConversationContext):
             conversation_context = request
+            construct_conversation_ir(conversation_context)
             request = _context_to_critique(request)
         run_started = time.monotonic()
         boundary_calls: list[BoundaryCallTrace] = []
