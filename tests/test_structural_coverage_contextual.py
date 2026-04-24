@@ -1,0 +1,388 @@
+"""Tests for the Phase 2b conversation-first Lane 4 entry points.
+
+Covers:
+- `run_question_classification_from_context` — classifies the 4 question
+  types based on user-turn content; defaults on invalid output.
+- `run_dimension_detection_from_context` — reads both user and assistant
+  turns as SOURCE; extractor summaries are CONTEXT only.
+- `generate_gap_questions_from_context` — no-op when no gap routes; builds
+  a SOURCE-labelled user prompt when gaps exist.
+- `run_structural_coverage_from_context` — orchestrator delegates to the
+  three context-aware calls and reuses the legacy routing + assembly.
+
+Boundary calls are mocked; no real LLM work.
+"""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+from unittest.mock import MagicMock
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from engine.system_b.conversation_context import (
+    ConversationContext,
+    ExtractionPayload,
+    LiveConstraint,
+    Turn,
+)
+from engine.system_b.structural_coverage import (
+    DimensionRoute,
+    _DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT,
+    _QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT,
+    _format_classification_from_context_user_prompt,
+    _format_dimension_detection_from_context_user_prompt,
+    _format_gap_question_from_context_user_prompt,
+    generate_gap_questions_from_context,
+    run_dimension_detection_from_context,
+    run_question_classification_from_context,
+    run_structural_coverage_from_context,
+)
+
+
+def _ext(
+    *,
+    decision_situation: str = "Should I take the offer?",
+    original_framing: str = "Is this obvious or crazy?",
+    constraints: tuple[LiveConstraint, ...] = (),
+) -> ExtractionPayload:
+    return ExtractionPayload(
+        decision_situation=decision_situation,
+        live_constraints=constraints,
+        synthesized_position="",
+        reasoning_passages=(),
+        original_framing=original_framing,
+        dropped_threads=(),
+    )
+
+
+def _ctx(turns: tuple[tuple[int, str, str], ...], **ext_kwargs) -> ConversationContext:
+    return ConversationContext(
+        turns=tuple(Turn(turn_index=i, speaker=s, text=t) for (i, s, t) in turns),
+        extraction=_ext(**ext_kwargs),
+    )
+
+
+def _boundary_returning(payload: dict) -> MagicMock:
+    boundary = MagicMock()
+    boundary.run_json = MagicMock(return_value=payload)
+    return boundary
+
+
+def _minimal_routing() -> dict:
+    return {
+        "dimensions": {
+            "resource_allocation": {
+                "dimension_name": "Resource Allocation",
+                "cleaving_frame": "Supply vs Demand",
+                "detect_when": ["allocation decisions are discussed"],
+                "coverage_signals": ["trade-offs between competing uses"],
+                "materiality_test": "would change the recommendation if analyzed",
+                "question_types": ["decision-evaluation"],
+                "models": ["opportunity-cost", "second-order-thinking"],
+            },
+            "commitment_reversibility": {
+                "dimension_name": "Commitment & Reversibility",
+                "cleaving_frame": "Lock-in vs Optionality",
+                "detect_when": ["multi-year or hard-to-reverse moves"],
+                "coverage_signals": ["exit costs analyzed"],
+                "materiality_test": "lock-in could reverse the call",
+                "question_types": ["decision-evaluation"],
+                "models": ["optionality", "sunk-cost-fallacy"],
+            },
+        },
+    }
+
+
+# ---------- question classification ----------
+
+
+def test_run_question_classification_from_context_returns_valid_type() -> None:
+    ctx = _ctx(((1, "user", "Should I take this role?"), (1, "assistant", "Let's see.")))
+    boundary = _boundary_returning({"question_type": "decision-evaluation"})
+    assert run_question_classification_from_context(boundary, ctx) == "decision-evaluation"
+
+
+def test_run_question_classification_from_context_defaults_on_invalid_type() -> None:
+    ctx = _ctx(((1, "user", "X"), (1, "assistant", "Y")))
+    boundary = _boundary_returning({"question_type": "garbage"})
+    assert run_question_classification_from_context(boundary, ctx) == "decision-evaluation"
+
+
+def test_run_question_classification_from_context_calls_boundary_with_context_prompt() -> None:
+    ctx = _ctx(((1, "user", "q1"), (1, "assistant", "a1"), (2, "user", "q2")))
+    boundary = _boundary_returning({"question_type": "action-planning"})
+    run_question_classification_from_context(boundary, ctx)
+    args, _ = boundary.run_json.call_args
+    system_prompt, user_prompt = args
+    assert system_prompt is _QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT
+    assert "CONTEXT (scaffolding" in user_prompt
+    assert "SOURCE (the user's actual turns" in user_prompt
+    # SOURCE contains user turns, not assistant turns
+    src_section = user_prompt.split("SOURCE", 1)[1]
+    assert "q1" in src_section
+    assert "q2" in src_section
+    assert "a1" not in src_section
+
+
+def test_format_classification_user_prompt_renders_context_before_source() -> None:
+    ctx = _ctx(
+        ((1, "user", "user-turn-1"), (1, "assistant", "assistant-reply")),
+        decision_situation="D",
+        original_framing="F",
+    )
+    prompt = _format_classification_from_context_user_prompt(ctx)
+    # Ordering: CONTEXT first, then SOURCE
+    assert prompt.index("CONTEXT") < prompt.index("SOURCE")
+    # CONTEXT holds extractor summaries
+    ctx_block, src_block = prompt.split("SOURCE", 1)
+    assert "Decision situation: D" in ctx_block
+    assert "Framing extracted upstream: F" in ctx_block
+    # Assistant reply appears in CONTEXT (as scaffolding), not SOURCE
+    assert "assistant-reply" in ctx_block
+    assert "assistant-reply" not in src_block
+    # User turn appears in SOURCE
+    assert "user-turn-1" in src_block
+
+
+# ---------- dimension detection ----------
+
+
+def test_run_dimension_detection_from_context_parses_output() -> None:
+    ctx = _ctx(((1, "user", "q"), (1, "assistant", "a")))
+    boundary = _boundary_returning({
+        "dimensions": [
+            {
+                "dimension_id": "resource_allocation",
+                "dimension_name": "Resource Allocation",
+                "covered": False,
+                "coverage_evidence": "Answer never analyses opportunity cost.",
+                "materiality_note": "Could change the recommendation.",
+            }
+        ],
+    })
+    dims = run_dimension_detection_from_context(
+        boundary, ctx, "decision-evaluation", _minimal_routing(),
+    )
+    assert len(dims) == 1
+    assert dims[0].dimension_id == "resource_allocation"
+    assert dims[0].covered is False
+
+
+def test_run_dimension_detection_from_context_calls_boundary_with_context_system_prompt() -> None:
+    ctx = _ctx(((1, "user", "user-q"), (1, "assistant", "assistant-a")))
+    boundary = _boundary_returning({"dimensions": []})
+    run_dimension_detection_from_context(
+        boundary, ctx, "decision-evaluation", _minimal_routing(),
+    )
+    args, _ = boundary.run_json.call_args
+    system_prompt, user_prompt = args
+    assert system_prompt is _DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT
+    assert "CONTEXT (scaffolding" in user_prompt
+    # Both user and assistant turns go in SOURCE for detection (user for
+    # detect_when conditions, assistant for coverage signals)
+    src_section = user_prompt.split("SOURCE", 1)[1]
+    assert "user-q" in src_section
+    assert "assistant-a" in src_section
+
+
+def test_format_dimension_detection_user_prompt_includes_catalog_and_question_type() -> None:
+    ctx = _ctx(((1, "user", "q"),))
+    prompt = _format_dimension_detection_from_context_user_prompt(
+        ctx, "causal-diagnosis", "CATALOG TEXT HERE",
+    )
+    assert "QUESTION TYPE: causal-diagnosis" in prompt
+    assert "CATALOG TEXT HERE" in prompt
+
+
+# ---------- gap question generation ----------
+
+
+def test_generate_gap_questions_from_context_returns_empty_when_no_routes() -> None:
+    ctx = _ctx(((1, "user", "q"),))
+    boundary = _boundary_returning({})  # should never be called
+    result = generate_gap_questions_from_context(
+        boundary, ctx, "decision-evaluation", (), _minimal_routing(),
+    )
+    assert result == ()
+    assert not boundary.run_json.called
+
+
+def test_generate_gap_questions_from_context_produces_questions_for_routes() -> None:
+    ctx = _ctx(((1, "user", "q"), (1, "assistant", "a")))
+    routes = (
+        DimensionRoute(
+            dimension_id="resource_allocation",
+            dimension_name="Resource Allocation",
+            candidate_model_ids=("opportunity-cost",),
+            excluded_model_ids=(),
+        ),
+    )
+    boundary = _boundary_returning({
+        "gap_questions": {
+            "resource_allocation": [
+                "What are you giving up to make this investment?",
+                "What would make the alternative more attractive than this?",
+            ],
+        },
+    })
+    result = generate_gap_questions_from_context(
+        boundary, ctx, "decision-evaluation", routes, _minimal_routing(),
+    )
+    assert len(result) == 1
+    assert result[0].dimension_id == "resource_allocation"
+    assert len(result[0].questions) == 2
+
+
+def test_format_gap_question_prompt_labels_context_vs_source() -> None:
+    ctx = _ctx(
+        ((1, "user", "real user text here"), (1, "assistant", "assistant reply text")),
+        decision_situation="summarized decision",
+    )
+    routes = (
+        DimensionRoute(
+            dimension_id="resource_allocation",
+            dimension_name="Resource Allocation",
+            candidate_model_ids=("opportunity-cost",),
+            excluded_model_ids=(),
+        ),
+    )
+    prompt = _format_gap_question_from_context_user_prompt(
+        ctx, "decision-evaluation", routes, _minimal_routing(),
+    )
+    assert "CONTEXT (scaffolding" in prompt
+    assert "SOURCE (the real conversation" in prompt
+    # User + assistant turns both in SOURCE (gap generator needs full context
+    # to produce problem-specific questions)
+    src_section = prompt.split("SOURCE", 1)[1]
+    assert "real user text here" in src_section
+    assert "assistant reply text" in src_section
+    # Extractor summary lives in CONTEXT
+    ctx_section = prompt.split("SOURCE", 1)[0]
+    assert "summarized decision" in ctx_section
+    # Gap section appears
+    assert "GAP DIMENSION: Resource Allocation" in prompt
+
+
+# ---------- orchestrator ----------
+
+
+def test_run_structural_coverage_from_context_orchestrates_three_calls() -> None:
+    """The orchestrator wires classification -> detection -> gap gen correctly."""
+    ctx = _ctx(((1, "user", "should I?"), (1, "assistant", "maybe.")))
+
+    # Sequence: classification, detection, gap_questions — 3 calls
+    call_payloads = iter([
+        {"question_type": "decision-evaluation"},
+        {"dimensions": [
+            {
+                "dimension_id": "resource_allocation",
+                "dimension_name": "Resource Allocation",
+                "covered": False,
+                "coverage_evidence": "not addressed",
+                "materiality_note": "material",
+            },
+        ]},
+        {"gap_questions": {"resource_allocation": ["What would you give up?"]}},
+    ])
+    boundary = MagicMock()
+    boundary.run_json = MagicMock(side_effect=lambda *args, **kwargs: next(call_payloads))
+
+    card = run_structural_coverage_from_context(
+        boundary, ctx, _minimal_routing(), anti_echo_model_ids=set(),
+    )
+    assert card is not None
+    assert card.question_type == "decision-evaluation"
+    assert len(card.dimensions) == 1
+    assert len(card.gap_routes) == 1
+    assert len(card.gap_questions) == 1
+    # Boundary called exactly 3 times (classify + detect + gap)
+    assert boundary.run_json.call_count == 3
+
+
+def test_run_structural_coverage_from_context_skips_gap_gen_when_no_gaps() -> None:
+    """When no dimensions are uncovered, gap question generation is skipped."""
+    ctx = _ctx(((1, "user", "q"),))
+    call_payloads = iter([
+        {"question_type": "decision-evaluation"},
+        {"dimensions": []},  # no gaps
+    ])
+    boundary = MagicMock()
+    boundary.run_json = MagicMock(side_effect=lambda *args, **kwargs: next(call_payloads))
+
+    card = run_structural_coverage_from_context(
+        boundary, ctx, _minimal_routing(), anti_echo_model_ids=set(),
+    )
+    assert card is not None
+    assert card.gap_questions == ()
+    # Only 2 boundary calls (no gap gen)
+    assert boundary.run_json.call_count == 2
+
+
+def test_run_structural_coverage_from_context_returns_none_on_classification_failure() -> None:
+    ctx = _ctx(((1, "user", "q"),))
+    boundary = MagicMock()
+    boundary.run_json = MagicMock(side_effect=RuntimeError("network down"))
+    result = run_structural_coverage_from_context(
+        boundary, ctx, _minimal_routing(), anti_echo_model_ids=set(),
+    )
+    assert result is None
+
+
+def test_run_structural_coverage_from_context_applies_anti_echo() -> None:
+    """Anti-echo exclusion should pass through to route_gap_dimensions."""
+    ctx = _ctx(((1, "user", "q"),))
+    call_payloads = iter([
+        {"question_type": "decision-evaluation"},
+        {"dimensions": [
+            {
+                "dimension_id": "resource_allocation",
+                "dimension_name": "Resource Allocation",
+                "covered": False,
+                "coverage_evidence": "missing",
+                "materiality_note": "material",
+            },
+        ]},
+        {"gap_questions": {"resource_allocation": ["q?"]}},
+    ])
+    boundary = MagicMock()
+    boundary.run_json = MagicMock(side_effect=lambda *args, **kwargs: next(call_payloads))
+
+    # Exclude one of the two candidate models for resource_allocation
+    card = run_structural_coverage_from_context(
+        boundary, ctx, _minimal_routing(),
+        anti_echo_model_ids={"opportunity-cost"},
+    )
+    assert card is not None
+    assert len(card.gap_routes) == 1
+    route = card.gap_routes[0]
+    assert "opportunity-cost" in route.excluded_model_ids
+    assert "opportunity-cost" not in route.candidate_model_ids
+    assert "second-order-thinking" in route.candidate_model_ids
+
+
+def test_run_structural_coverage_from_context_empty_conversation_still_runs() -> None:
+    """Defensive: no turns → classification gets empty SOURCE, still returns a card."""
+    ctx = ConversationContext(turns=(), extraction=_ext())
+    call_payloads = iter([
+        {"question_type": "decision-evaluation"},
+        {"dimensions": []},
+    ])
+    boundary = MagicMock()
+    boundary.run_json = MagicMock(side_effect=lambda *args, **kwargs: next(call_payloads))
+    card = run_structural_coverage_from_context(
+        boundary, ctx, _minimal_routing(), anti_echo_model_ids=set(),
+    )
+    assert card is not None
+
+
+def test_system_prompts_explicitly_label_context_vs_source() -> None:
+    """Anti-regression: the Phase 2a lesson (explicit CONTEXT/SOURCE distinction
+    with do-not-quote language) is baked into both new system prompts."""
+    for name, prompt in (
+        ("classification", _QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT),
+        ("detection", _DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT),
+    ):
+        assert "CONTEXT" in prompt, f"{name} prompt missing CONTEXT label"
+        assert "SOURCE" in prompt, f"{name} prompt missing SOURCE label"
