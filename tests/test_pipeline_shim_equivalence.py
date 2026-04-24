@@ -594,3 +594,172 @@ def test_run_structural_coverage_skips_both_paths_when_feature_disabled() -> Non
         conversation_context=_minimal_context(),
     )
     assert result is None
+
+
+# ---------- Phase 2c: Lane 1 dispatch ----------
+#
+# Unlike Lane 3/4 (single orchestrator function), Lane 1 has two call sites
+# — _run_pass1_clusters_parallel + _run_pass2_parallel — and both must
+# dispatch on the presence of conversation_context. We test the dispatch by
+# giving each call a stub BoundaryClient that records the (system, user)
+# prompts received and asserting on the shape of the user prompts (CONTEXT
+# vs QUERY markers).
+
+class _RecordingBoundary:
+    """Minimal BoundaryClient-shaped stub. Records prompts passed in and
+    returns canned JSON so Pass 1 / Pass 2 parsers don't error out."""
+
+    supports_parallel_calls = False  # force sequential fallback (simpler)
+
+    def __init__(self) -> None:
+        self.calls: list[tuple[str, str]] = []
+
+    def run_json(self, system_prompt: str, user_prompt: str) -> dict:
+        self.calls.append((system_prompt, user_prompt))
+        return {"scores": [], "detected": False, "reason": "stub"}
+
+    def last_call_trace(self) -> dict:
+        return {"stage": "stub", "status": "ok", "latency_ms": 0}
+
+
+def _lane1_context_with_assistant() -> ConversationContext:
+    """Context with both user and assistant turns so Pass 1 SOURCE has material."""
+    return ConversationContext(
+        turns=(
+            Turn(turn_index=1, speaker="user", text="Should I take the Series B offer at 15%?"),
+            Turn(turn_index=2, speaker="assistant", text="You should take it — 15% is typical."),
+        ),
+        extraction=ExtractionPayload(
+            decision_situation="Founder considers Series B offer",
+            live_constraints=(),
+            synthesized_position="take the offer",
+            reasoning_passages=(),
+            original_framing="Is 15% too low?",
+            dropped_threads=(),
+        ),
+    )
+
+
+def _lane1_minimal_catalog():
+    """Minimal catalog with one tendency for Pass 2 dispatch tests."""
+    from engine.system_b.tendency_catalog import ModelBinding, TendencyCatalog, TendencyRef
+    tendency = TendencyRef(
+        tendency_id="authority-misinfluence-tendency",
+        display_name="Authority Misinfluence Tendency",
+        routing_key="authority_misinfluence",
+        antidote_model_ids=("first-principles-thinking",),
+        antidote_bindings=(ModelBinding(model_id="first-principles-thinking"),),
+        description="Prestige substitutes for evidence.",
+        tendency_number=7,
+    )
+    return TendencyCatalog(
+        tendencies={"authority-misinfluence-tendency": tendency},
+        alias_index={
+            "authority-misinfluence": "authority-misinfluence-tendency",
+            "authority-misinfluence-tendency": "authority-misinfluence-tendency",
+        },
+    )
+
+
+def test_run_pass1_clusters_parallel_uses_context_path_when_context_present() -> None:
+    """When conversation_context is provided, Pass 1 cluster prompts must
+    use the CONTEXT/SOURCE shape (not legacy query+vanilla_answer)."""
+    from engine.system_b.pipeline import _run_pass1_clusters_parallel
+    catalog = _lane1_minimal_catalog()
+    boundary = _RecordingBoundary()
+    ctx = _lane1_context_with_assistant()
+
+    _run_pass1_clusters_parallel(
+        request=CritiqueRequest(query="LEGACY_QUERY_SHOULD_NOT_APPEAR", vanilla_answer="LEGACY_VA_SHOULD_NOT_APPEAR"),
+        boundary=boundary,
+        catalog=catalog,
+        conversation_context=ctx,
+    )
+
+    # Expect 6 cluster calls; every user prompt must carry CONTEXT/SOURCE markers
+    # and must NOT use legacy-only markers.
+    assert len(boundary.calls) == 6
+    for _, user in boundary.calls:
+        assert "CONTEXT" in user
+        assert "SOURCE" in user
+        # The assistant turn should be quoted verbatim in SOURCE
+        assert "You should take it" in user
+        # Legacy markers must not appear
+        assert "LEGACY_QUERY_SHOULD_NOT_APPEAR" not in user
+        assert "LEGACY_VA_SHOULD_NOT_APPEAR" not in user
+
+
+def test_run_pass1_clusters_parallel_uses_legacy_path_when_no_context() -> None:
+    """Without a conversation_context, Pass 1 must keep using the legacy
+    query+vanilla_answer template."""
+    from engine.system_b.pipeline import _run_pass1_clusters_parallel
+    catalog = _lane1_minimal_catalog()
+    boundary = _RecordingBoundary()
+
+    _run_pass1_clusters_parallel(
+        request=CritiqueRequest(query="LEGACY_Q_VERBATIM", vanilla_answer="LEGACY_VA_VERBATIM"),
+        boundary=boundary,
+        catalog=catalog,
+        conversation_context=None,
+    )
+
+    assert len(boundary.calls) == 6
+    for _, user in boundary.calls:
+        assert "LEGACY_Q_VERBATIM" in user
+        assert "LEGACY_VA_VERBATIM" in user
+        # New-path markers must not appear
+        assert "CONTEXT" not in user or "VANILLA ANSWER" in user  # legacy template has "ANSWER", not "CONTEXT"
+        # Stricter: must not have the SOURCE section header
+        assert "SOURCE (PRIMARY AUDIT TARGET" not in user
+
+
+def test_run_pass2_parallel_uses_context_path_when_context_present() -> None:
+    """When conversation_context is provided, Pass 2 must use
+    format_pass2_prompt_from_context (CONTEXT/SOURCE shape + enum-checklist)."""
+    from engine.system_b.pipeline import TriggeredTendency, _run_pass2_parallel
+    catalog = _lane1_minimal_catalog()
+    boundary = _RecordingBoundary()
+    ctx = _lane1_context_with_assistant()
+    triggered = (TriggeredTendency(tendency_id="authority-misinfluence-tendency", source="triage", score=6),)
+
+    _run_pass2_parallel(
+        triggered_tendencies=triggered,
+        request=CritiqueRequest(query="LEGACY_Q_NO", vanilla_answer="LEGACY_VA_NO"),
+        boundary=boundary,
+        catalog=catalog,
+        conversation_context=ctx,
+    )
+
+    assert len(boundary.calls) == 1
+    system, user = boundary.calls[0]
+    assert "CONTEXT" in user
+    assert "SOURCE" in user
+    assert "You should take it" in user
+    # Legacy markers must not appear
+    assert "LEGACY_Q_NO" not in user
+    assert "LEGACY_VA_NO" not in user
+    # Enum-checklist reminder must be present in system prompt (2b durable lesson)
+    assert "ENUM CHECKLIST REMINDER" in system or "consider each" in system.lower()
+
+
+def test_run_pass2_parallel_uses_legacy_path_when_no_context() -> None:
+    """Without conversation_context, Pass 2 must keep using the legacy prompt."""
+    from engine.system_b.pipeline import TriggeredTendency, _run_pass2_parallel
+    catalog = _lane1_minimal_catalog()
+    boundary = _RecordingBoundary()
+    triggered = (TriggeredTendency(tendency_id="authority-misinfluence-tendency", source="triage", score=6),)
+
+    _run_pass2_parallel(
+        triggered_tendencies=triggered,
+        request=CritiqueRequest(query="LEGACY_Q_YES", vanilla_answer="LEGACY_VA_YES"),
+        boundary=boundary,
+        catalog=catalog,
+        conversation_context=None,
+    )
+
+    assert len(boundary.calls) == 1
+    _, user = boundary.calls[0]
+    assert "LEGACY_Q_YES" in user
+    assert "LEGACY_VA_YES" in user
+    # New-path SOURCE section header must not appear
+    assert "SOURCE (PRIMARY AUDIT TARGET" not in user

@@ -15,6 +15,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .conversation_context import ConversationContext
 from .tendency_catalog import TendencyCatalog
 
 
@@ -72,6 +73,66 @@ VANILLA ANSWER:
 Use the query only as context for what the answer skipped or overrode.
 
 Score ONLY the tendencies in this family (listed in the system prompt). Do NOT score tendencies outside this family. Respond with JSON only."""
+
+
+# ---------------------------------------------------------------------------
+# Phase 2c: conversation-first Pass 1 — CONTEXT / SOURCE split.
+#
+# Lane 1 audits the ASSISTANT's reasoning. SOURCE holds the assistant turns
+# verbatim (primary audit target — tendencies live here as commissions or
+# omissions). CONTEXT holds the user turns + extraction summaries
+# (scaffolding for understanding what the user made live; NOT the primary
+# scoring target).
+#
+# The system prompt mirrors the legacy `_PASS1_BASE_SYSTEM` but is rewritten
+# to explain the CONTEXT vs SOURCE structure and to carry the enum-checklist
+# reminder from the 2b lesson (consider every tendency in this family even
+# when it surfaces as omission rather than verbatim text).
+# ---------------------------------------------------------------------------
+
+_PASS1_BASE_SYSTEM_FROM_CONTEXT = """You are a cognitive-bias analyst specializing in Charlie Munger's "Psychology of Human Misjudgment." Your job is to audit a piece of AI reasoning for decision-distorting manifestations of ONE family of tendencies: {theme}
+
+You will receive the user prompt in two sections:
+- CONTEXT: the decision situation, framing, live constraints, dropped threads, and the user's own turns. Background only — NOT the primary audit target.
+- SOURCE: the assistant's turns verbatim. This is the PRIMARY AUDIT TARGET. Tendencies live here, as commissions (what the assistant said) or omissions (what the assistant skipped given what the CONTEXT made live).
+
+For each of the tendencies listed below (this family only — other families are handled by parallel analysts), score from 0-10 how strongly the tendency materially weakens the assistant's reasoning in SOURCE:
+- 0 = Not present at all
+- 1-3 = Faint or incidental signal; not decision-driving
+- 4-6 = Material signal; specific evidence or a clear omission makes the recommendation less trustworthy
+- 7-10 = Dominant failure mechanism; the recommendation clearly leans on it
+
+CRITICAL RULES:
+- Score the ASSISTANT's reasoning as shown in SOURCE. Use CONTEXT to understand what the decision required the assistant to address (constraints, live risks, what the user made vivid, what was dropped).
+- A tendency can fire in three shapes, all grounded in the assistant's reasoning in SOURCE:
+  (1) COMMISSION — the assistant explicitly says something that exhibits the tendency.
+  (2) OMISSION — the assistant commits to a move while skipping a material check, denominator, dependency, reversal condition, pilot, or stop rule that CONTEXT made live.
+  (3) UNCRITICAL ACCEPTANCE — the assistant recycles vivid or authoritative CONTEXT material as decision-driving without testing it. Tendencies like availability-misweighing, social-proof, and authority-misinfluence frequently fire in this shape: the evidence of the tendency is the assistant's HANDLING of user-provided vividness, not the user's text itself.
+- Do not import outside facts or detect a tendency just because the topic makes it plausible.
+- Prefer the narrowest mechanism. If one passage could fit multiple tendencies in this family, score highest the one that best explains the failure and keep adjacent ones lower unless they rest on distinct evidence.
+- A score of 4 or higher requires distinct evidence that would still matter if the strongest detected tendency in this family were removed. If the support is just a restatement, keep it at 0-3.
+- Do not score a tendency merely because the assistant sounds confident, uses persuasive framing, gives reasons, or mentions incentives.
+- A score of 0 is perfectly valid. Most tendencies should score 0 for any given answer.
+- Scores of 4 or higher should stay sparse unless the assistant's reasoning truly leans on the failure mechanism.
+- If unsure, score lower rather than higher. False negatives are better than false positives at this stage.
+- DO NOT score tendencies outside this family. Return ONLY entries for the tendencies listed below.
+- ENUM CHECKLIST: Before finalizing your scores, verify you've considered EACH tendency in this family individually — not just the ones that surface verbatim in SOURCE. Some tendencies manifest as omission (the assistant skipping a check CONTEXT made live) rather than as explicit claims. Return 0 when genuinely absent; do not skip a tendency just because it is not visible at surface level.{guardrails_block}
+
+THE TENDENCIES IN THIS FAMILY TO SCREEN:
+{tendency_list}
+
+Respond ONLY with valid JSON matching this exact schema:
+```json
+{{
+  "scores": [
+    {{
+      "tendency_id": "tendency-slug",
+      "score": 0,
+      "evidence": "Not detected" | "Brief 1-sentence evidence anchored to a specific assistant passage or reasoning leap in SOURCE"
+    }}
+  ]
+}}
+```"""
 
 
 # ---------------------------------------------------------------------------
@@ -238,6 +299,103 @@ def cluster_tendency_ids(cluster_id: str) -> tuple[str, ...]:
         if cluster.cluster_id == cluster_id:
             return cluster.tendency_ids
     return ()
+
+
+def _joined_assistant_turns_text(context: ConversationContext) -> str:
+    """Join all assistant-turn text. Empty string if no assistant turns.
+
+    Used by Pass 2 context formatting, embedding signal, and any caller that
+    needs a flattened view of the assistant reasoning under the new contract.
+    """
+    return "\n\n".join(t.text for t in context.turns if t.speaker == "assistant")
+
+
+def build_cluster_system_prompt_from_context(cluster: Pass1Cluster, catalog: TendencyCatalog) -> str:
+    """Phase 2c: build the per-cluster system prompt for the conversation-first path.
+
+    Shape-identical to the legacy `build_cluster_system_prompt` but uses the
+    CONTEXT/SOURCE base template — the user-prompt body is turn-structured
+    instead of a flattened query+vanilla_answer block.
+    """
+    return _PASS1_BASE_SYSTEM_FROM_CONTEXT.format(
+        theme=cluster.theme,
+        guardrails_block=_build_cluster_guardrails_block(cluster),
+        tendency_list=_build_cluster_tendency_list(cluster, catalog),
+    )
+
+
+def _format_pass1_from_context_user_prompt(context: ConversationContext) -> str:
+    """Build the CONTEXT/SOURCE-labelled Pass 1 user prompt body.
+
+    CONTEXT carries extraction summaries + user turns (scaffolding for
+    understanding what was live). SOURCE carries the assistant turns verbatim
+    (the primary audit target for Lane 1)."""
+    ext = context.extraction
+    parts: list[str] = [
+        "CONTEXT (background for understanding what the user made live — NOT the primary audit target):",
+    ]
+    if ext.decision_situation:
+        parts.append(f"- Decision situation: {ext.decision_situation}")
+    if ext.original_framing:
+        parts.append(f"- Framing (how the user posed the question): {ext.original_framing}")
+    if ext.live_constraints:
+        parts.append("- Live constraints:")
+        for c in ext.live_constraints:
+            status = (c.status or "active").upper()
+            weight = (c.weight or "situational").upper()
+            tag = status if status == "ACTIVE" else f"{status}/{weight}"
+            parts.append(f"  - [{tag}] {c.constraint} (turn {c.introduced_turn})")
+    if ext.dropped_threads:
+        parts.append("- Dropped threads:")
+        for d in ext.dropped_threads:
+            line = (
+                f"  - {d.thread} (raised by {d.raised_by or '?'} turn {d.raised_turn}, "
+                f"status: {d.status or '?'})"
+            )
+            if d.superseded_by:
+                line += f", superseded_by: {d.superseded_by}"
+            parts.append(line)
+
+    user_turns = [t for t in context.turns if t.speaker == "user"]
+    if user_turns:
+        parts.append("- User turns (CONTEXT only — what the user made live; not the primary scoring target):")
+        for t in user_turns:
+            parts.append(f"  [Turn {t.turn_index}] USER: {t.text}")
+
+    parts.append("")
+    parts.append(
+        "SOURCE (the PRIMARY AUDIT TARGET — assistant turns verbatim; score tendencies against commissions or omissions visible here):"
+    )
+    assistant_turns = [t for t in context.turns if t.speaker == "assistant"]
+    if not assistant_turns:
+        parts.append("(no assistant turns present)")
+    else:
+        for t in assistant_turns:
+            parts.append(f"[Turn {t.turn_index}] ASSISTANT:")
+            parts.append(t.text)
+            parts.append("")
+
+    parts.append(
+        "Score ONLY the tendencies in this family (listed in the system prompt). Respond with JSON only."
+    )
+    return "\n".join(parts)
+
+
+def format_pass1_cluster_prompts_from_context(
+    context: ConversationContext,
+    catalog: TendencyCatalog,
+) -> list[tuple[str, str, str]]:
+    """Phase 2c conversation-first entry point for Pass 1.
+
+    Returns [(cluster_id, system_prompt, user_prompt), ...] — one per cluster.
+    User prompt is shared across clusters (same input); system prompt differs
+    per cluster to narrow scope and confusion guardrails.
+    """
+    user = _format_pass1_from_context_user_prompt(context)
+    return [
+        (cluster.cluster_id, build_cluster_system_prompt_from_context(cluster, catalog), user)
+        for cluster in PASS1_CLUSTERS
+    ]
 
 
 def compute_cluster_prompt_hashes(catalog: TendencyCatalog) -> dict[str, str]:

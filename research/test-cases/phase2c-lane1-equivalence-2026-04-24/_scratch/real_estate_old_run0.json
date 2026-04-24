@@ -1,0 +1,1748 @@
+{
+  "status": "ok",
+  "format": "json",
+  "detected_tendencies": [],
+  "delta_card": {
+    "findings": [],
+    "top_findings": [],
+    "secondary_findings": [],
+    "secondary_findings_full": [],
+    "compound_groups": [],
+    "top_compound_groups": [],
+    "secondary_compound_groups": [],
+    "secondary_summarization_active": false,
+    "secondary_additional_pressures_note": "",
+    "secondary_additional_pressure_count": 0,
+    "secondary_additional_pressure_tendency_ids": [],
+    "detected_tendencies": [],
+    "selected_model_ids": [],
+    "challenge_statements": [],
+    "next_moves": [],
+    "major_tensions": [],
+    "top_challenge_statements": [],
+    "secondary_challenge_statements": [],
+    "top_next_moves": [],
+    "secondary_next_moves": []
+  },
+  "companion_cheat_sheet": {
+    "anchors": [
+      {
+        "model_id": "margin-of-safety",
+        "display_name": "Margin Of Safety",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "margin-of-safety",
+            "text": "Conjunctive-events bias can make timelines or budgets look safe even though success depends on too many steps going right.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "margin-of-safety",
+            "text": "What key facts or inputs have we ignored because they didn't fit our narrative?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "margin-of-safety",
+            "text": "Confirmation Bias: Confirmation-bias undermines margin-of-safety by selecting a safety estimate that confirms the current exposure is acceptable.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "confirmation-bias"
+            },
+            "affinity_rationale": "Prevents acknowledgment of potential failure modes — selects safety estimates that confirm the current exposure is acceptable rather than stress-testing honestly against adverse scenarios.",
+            "activation_condition": "When safety margin estimates are derived from data selected to validate the current plan rather than from adversarial stress-testing"
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "margin-of-safety",
+            "text": "Define failure first and devote effort to preventing it instead of describing only success.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "identity",
+            "source_model_id": "margin-of-safety",
+            "text": "Select when: Downside is hard to reverse and small forecast errors in time, capital, or quality could cascade into major loss. | Danger when: The assumed buffer is being treated as static even though burn rate, exposure, or environmental volatility is moving underneath it. | Reasoning: counterfactual, probabilistic",
+            "provenance": {
+              "source_layer": "wave1",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "At $950K, you'd be entering the house at zero liquid margin for anything unexpected. And old houses always have something unexpected.",
+        "presence_explanation": "The answer explicitly calculates the need for a financial buffer against forecast errors and unexpected costs in an old house, applying margin-of-safety by setting a lower ceiling to protect against downside cascades."
+      },
+      {
+        "model_id": "theory-of-constraints",
+        "display_name": "Theory Of Constraints",
+        "chunks": [
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "theory-of-constraints",
+            "text": "Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "theory-of-constraints",
+            "text": "Disaggregate and prioritize until only the branches affecting the binding constraint stay in focus.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "theory-of-constraints",
+            "text": "Constraint language becomes theater when no current cap, governing metric, or movement evidence is named.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "theory-of-constraints",
+            "text": "The model breaks when teams keep fixing the old bottleneck after the constraint has already shifted somewhere else.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "theory-of-constraints",
+            "text": "If this first bottleneck actually moves, what step becomes the next cap within two weeks?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "you're $40K short on known-needed work. If you stretch to $950K, you're paying $45K more AND you still don't have the $40K.",
+        "presence_explanation": "The answer identifies the binding financial constraint (shortfall for renovations) and shows that increasing the purchase price does not relieve it, focusing improvement on the throughput bottleneck."
+      }
+    ],
+    "total_chunk_count": 10,
+    "budget_max": 20,
+    "anti_echo_model_ids": [],
+    "reranker": {
+      "active": true,
+      "chunks_above_relevance_floor": 4,
+      "mean_relevance_score": 0.2402
+    }
+  },
+  "companion_card": {
+    "detected_models": [
+      {
+        "model_id": "margin-of-safety",
+        "model_name": "Margin Of Safety",
+        "evidence_quote": "At $950K, you'd be entering the house at zero liquid margin for anything unexpected. And old houses always have something unexpected.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer explicitly calculates the need for a financial buffer against forecast errors and unexpected costs in an old house, applying margin-of-safety by setting a lower ceiling to protect against downside cascades.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "theory-of-constraints",
+        "model_name": "Theory Of Constraints",
+        "evidence_quote": "you're $40K short on known-needed work. If you stretch to $950K, you're paying $45K more AND you still don't have the $40K.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer identifies the binding financial constraint (shortfall for renovations) and shows that increasing the purchase price does not relieve it, focusing improvement on the throughput bottleneck.",
+        "detection_confidence": "structural"
+      }
+    ],
+    "expansions": [
+      {
+        "source_model_id": "margin-of-safety",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias undermines margin-of-safety by selecting a safety estimate that confirms the current exposure is acceptable.",
+        "why_relevant": "Confirmation-bias undermines margin-of-safety by selecting a safety estimate that confirms the current exposure is acceptable.",
+        "affinity_rationale": "Prevents acknowledgment of potential failure modes — selects safety estimates that confirm the current exposure is acceptable rather than stress-testing honestly against adverse scenarios.",
+        "activation_condition": "When safety margin estimates are derived from data selected to validate the current plan rather than from adversarial stress-testing"
+      },
+      {
+        "source_model_id": "margin-of-safety",
+        "relation_type": "tension",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Margin-of-safety conflicts with confirmation-bias when safety estimates are chosen to validate the current plan rather than stress-test it honestly.",
+        "why_relevant": "Margin-of-safety conflicts with confirmation-bias when safety estimates are chosen to validate the current plan rather than stress-test it honestly.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "margin-of-safety",
+        "relation_type": "tension",
+        "model_id": "feedback-loops",
+        "model_name": "Feedback Loops",
+        "substrate_chunk": "Margin-of-safety conflicts with feedback-loops when delayed signals create false confidence in thin buffers.",
+        "why_relevant": "Margin-of-safety conflicts with feedback-loops when delayed signals create false confidence in thin buffers.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "relation_type": "tension",
+        "model_id": "commitment-bias",
+        "model_name": "Commitment Bias",
+        "substrate_chunk": "Theory-of-constraints conflicts with commitment-bias when the team keeps investing in the first bottleneck story instead of reassessing whether it is still binding.",
+        "why_relevant": "Theory-of-constraints conflicts with commitment-bias when the team keeps investing in the first bottleneck story instead of reassessing whether it is still binding.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias corrupts theory-of-constraints by making the team protect its favorite bottleneck story instead of measuring the real cap.",
+        "why_relevant": "Confirmation-bias corrupts theory-of-constraints by making the team protect its favorite bottleneck story instead of measuring the real cap.",
+        "affinity_rationale": "Canonical describes confirmation bias as encouraging substitution of familiar frameworks for objective constraint identification",
+        "activation_condition": "When teams substitute a familiar framework for objective identification of the actual binding constraint"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "relation_type": "tension",
+        "model_id": "optimization-theory",
+        "model_name": "Optimization Theory",
+        "substrate_chunk": "Theory-of-constraints conflicts with optimization-theory when local utilization improvements in non-constrained steps create the illusion of progress.",
+        "why_relevant": "Theory-of-constraints conflicts with optimization-theory when local utilization improvements in non-constrained steps create the illusion of progress.",
+        "tension_type": "conflicts"
+      }
+    ],
+    "failure_hints": [
+      {
+        "source_model_id": "margin-of-safety",
+        "text": "Conjunctive-events bias can make timelines or budgets look safe even though success depends on too many steps going right.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "margin-of-safety",
+        "text": "Overconfidence can shrink the needed margin because the operator assumes they know enough without further investigation.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "Constraint language becomes theater when no current cap, governing metric, or movement evidence is named.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "The model breaks when teams keep fixing the old bottleneck after the constraint has already shifted somewhere else.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "heuristic_hints": [
+      {
+        "source_model_id": "margin-of-safety",
+        "text": "Define failure first and devote effort to preventing it instead of describing only success.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "margin-of-safety",
+        "text": "Map known knowns, known unknowns, and unknown unknowns before deciding how much buffer the system needs.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "Define constraints rigorously up front so the problem scope and the bottleneck candidate are explicit before solutioning.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "Disaggregate and prioritize until only the branches affecting the binding constraint stay in focus.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "premortem_hints": [
+      {
+        "source_model_id": "margin-of-safety",
+        "text": "What key facts or inputs have we ignored because they didn't fit our narrative?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "margin-of-safety",
+        "text": "What would we have to believe for the opposite hypothesis to be true?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "If this first bottleneck actually moves, what step becomes the next cap within two weeks?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "identity_chunks": [
+      {
+        "model_id": "margin-of-safety",
+        "display_name": "Margin Of Safety",
+        "select_when": [
+          "Downside is hard to reverse and small forecast errors in time, capital, or quality could cascade into major loss.",
+          "Estimates are uncertain, but the team can still make buffers explicit instead of optimizing only the happy path.",
+          "Resilience can be built directly into budgets, staffing, inventory, thresholds, or decision rules before stress hits the system.",
+          "The real decision is whether the plan can survive volatility and error rather than merely whether the base case looks attractive."
+        ],
+        "danger_when": [
+          "The assumed buffer is being treated as static even though burn rate, exposure, or environmental volatility is moving underneath it.",
+          "Margin of safety is being used as an excuse for never shipping, never committing, or demanding certainty the situation cannot provide."
+        ],
+        "reasoning_types": [
+          "counterfactual",
+          "probabilistic"
+        ],
+        "input_type": "buffer-sensitive commitment",
+        "output_type": "downside buffer check"
+      },
+      {
+        "model_id": "theory-of-constraints",
+        "display_name": "Theory Of Constraints",
+        "select_when": [
+          "A conjunctive chain has a binding constraint, so improving non-binding stages will not raise throughput.",
+          "There are competing action options and the team can name the current bottleneck with a measured limit before ranking fixes.",
+          "Local optimization is masking the true leverage point because many high-quality improvements still leave key outcomes flat.",
+          "One blocking dependency, queue, approval step, scarce specialist, or handoff is visibly capping the whole delivery plan."
+        ],
+        "danger_when": [
+          "The environment is too unstable for one fixed bottleneck frame because the limiting factor is moving every cycle.",
+          "The team is performing bottleneck theater and cannot name the governing metric, current cap, or evidence that the cap moved after intervention."
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "input_type": "throughput bottleneck problem",
+        "output_type": "constraint-first sequence"
+      }
+    ],
+    "detection_model_count": 2,
+    "expansion_count": 6,
+    "failure_hint_count": 4,
+    "heuristic_hint_count": 4,
+    "premortem_hint_count": 4,
+    "identity_chunk_count": 2,
+    "detection_source": "independent_llm_pass"
+  },
+  "frame_pressure_card": {
+    "frame_elements": [
+      {
+        "element_text": "The couple must decide and submit the final offer by tomorrow noon, with no possibility of requesting an extension or delaying the decision process.",
+        "element_type": "mutable_constraint",
+        "evidence_quote": "deadline tomorrow",
+        "frame_pattern": "temporal_fixation",
+        "fragility_signal": "Seller granting a short extension for due diligence or personal circumstances allowing more time.",
+        "inquiry_stage": "how",
+        "likely_default": "inertia"
+      }
+    ],
+    "reframings": [
+      {
+        "reframed_question": "Could the seller grant a short extension on the noon deadline to allow the couple more time for due diligence on the $120K work?",
+        "what_opens": "Path to negotiating extra time with seller by citing personal circumstances or shared interest in smooth due diligence, potentially avoiding rushed $950K decision",
+        "reframe_move_type": "constraint_relaxation",
+        "grounding_model": "optionality",
+        "source_element_index": 0
+      }
+    ],
+    "anti_echo_model_ids": [],
+    "overlap_flags": [],
+    "dropped_frame_elements": []
+  },
+  "structural_coverage_card": {
+    "question_type": "decision-evaluation",
+    "dimensions": [
+      {
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
+        "covered": true,
+        "coverage_evidence": "Answer distinguishes sunk emotional investment (husband's regret, thin inventory) from future costs (zero buffer, unexpected repairs); values optionality of walking away (relief later, better house); recommends staging (live first month before reno) to preserve reversibility.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "covered": true,
+        "coverage_evidence": "Explicitly identifies $40K gap, year-one spend exhausting $80K savings, displaced alternatives (vacations, buffer for boiler); compares $950K (zero margin) vs $925K (buffer); sizes constraint binding at high end.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "covered": true,
+        "coverage_evidence": "Sizes downsides ($20-60K unexpected in 1940s house, boiler failure); distinguishes mitigate (buffer via lower bid) vs absorb (credit/HELOC at $950K); addresses recovery (no plan at zero buffer); recommends cautious posture.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "covered": false,
+        "coverage_evidence": "Acknowledges husband push ($950K due to neighborhood love) vs user's caution but does not analyze divergence (emotional vs financial incentives), info asymmetry, or mechanisms (beyond framing discussion); no failure mode or realignment strategy beyond talk.",
+        "materiality_note": "High materiality: Misaligned incentives could lead to overbid despite analysis, reversing recommendation if husband blocks lower ceiling."
+      },
+      {
+        "dimension_id": "information-quality",
+        "dimension_name": "Information Quality",
+        "covered": false,
+        "coverage_evidence": "Uses $120K estimate and inspection as given but does not assess reliability (inspector misses common in old houses flagged generally), confounders (aspiration vs reality of timelines), or missing evidence (actual kitchen/boiler state); no base rates or tests.",
+        "materiality_note": "High materiality: Better evidence on reno costs or inspection gaps could justify $950K or kill the deal entirely."
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "covered": false,
+        "coverage_evidence": "Mentions 'almost a certainty' of unexpected but treats as estimable risk ($20-60K) without classifying (epistemic from inspection vs Knightian house unknowns); no matching strategy (e.g., optionality via lower bid calibrated to type); false precision on costs.",
+        "materiality_note": "Medium materiality: Recognizing true uncertainty could shift to more robust/optional approach, altering ceiling."
+      },
+      {
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
+        "covered": false,
+        "coverage_evidence": "Notes 6-offer war, counters may lose, but no modeling of rivals' responses (their ceilings, retaliation via escalation); treats as auction without strategic best response.",
+        "materiality_note": "Medium materiality: Rival dynamics could change counter strategy or ceiling."
+      },
+      {
+        "dimension_id": "timing-sequencing",
+        "dimension_name": "Timing & Sequencing",
+        "covered": true,
+        "coverage_evidence": "Addresses deadline pressure (tomorrow noon) vs delay benefits (relief, better house); sequencing reno (live first, then work) with rationale (rewrite plans); counters now at real number.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "stakeholder-alignment",
+        "dimension_name": "Stakeholder Alignment",
+        "covered": true,
+        "coverage_evidence": "Identifies couple (user vs husband) positions; influence strategy (collaborative framing, test his scenario); distinguishes technical (financial) from feasible (regret); implementation via discussion.",
+        "materiality_note": "covered"
+      }
+    ],
+    "gap_routes": [
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "candidate_model_ids": [
+          "principal-agent-problem",
+          "moral-hazard",
+          "incentives",
+          "adverse-selection",
+          "information-asymmetry"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "information-quality",
+        "dimension_name": "Information Quality",
+        "candidate_model_ids": [
+          "survivorship-bias",
+          "base-rates",
+          "correlation-vs-causation",
+          "statistical-discipline",
+          "law-of-large-numbers",
+          "falsifiability"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "candidate_model_ids": [
+          "aleatory-epistemic-uncertainty-recognition",
+          "true-uncertainty-navigation",
+          "probabilistic-thinking",
+          "confidence-calibration",
+          "experimentation"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
+        "candidate_model_ids": [
+          "game-theory-payoffs",
+          "nash-equilibrium",
+          "prisoners-dilemma",
+          "batna",
+          "red-queen-effect"
+        ],
+        "excluded_model_ids": []
+      }
+    ],
+    "gap_questions": [
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "questions": [
+          "What does your husband value most about this specific house in Somerville that makes him willing to push to $950K?",
+          "If you win at $950K and the renovations exceed $120K, who in the family would bear the brunt of the financial stress?",
+          "What shared family goal, like staying in the neighborhood long-term, is driving the difference between your $905K limit and his $950K push?"
+        ]
+      },
+      {
+        "dimension_id": "information-quality",
+        "dimension_name": "Information Quality",
+        "questions": [
+          "What specific details from the inspection report make you most confident or uncertain about the $120K total renovation cost?",
+          "Have you seen comparable Somerville houses from the 1940s that sold recently and needed similar electrical and roof work—what were their actual renovation costs?",
+          "What feedback have you gotten from local contractors on the timeline and cost for the mandatory year-1 electrical upgrades?"
+        ]
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "questions": [
+          "What unexpected costs beyond the $120K, like hidden structural issues in a 1940s house, would you be least prepared to handle right after closing?",
+          "In past renovation projects or home purchases, what kinds of surprises turned out to be predictable risks versus total unknowns?",
+          "If the roof starts leaking sooner than the expected 2-3 years or the kitchen breaks down immediately, what's your plan B for those scenarios?"
+        ]
+      },
+      {
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
+        "questions": [
+          "What do you know about the other 5 bidders in this war, like if they're cash buyers or also need financing?",
+          "How do you think the sellers will prioritize offers—highest price alone, or factors like quickest close or fewest contingencies given the thin Somerville inventory?",
+          "If you counter at $925K instead of $950K, what might the sellers or other bidders do next before tomorrow's noon deadline?"
+        ]
+      }
+    ],
+    "anti_echo_model_ids": [
+      "margin-of-safety",
+      "optionality",
+      "theory-of-constraints"
+    ]
+  },
+  "audit_summary": {
+    "triage_scores": [
+      {
+        "tendency_id": "authority-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "social-proof-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "influence-from-mere-association-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "liking-loving-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reciprocation-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "doubt-avoidance-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "deprival-superreaction-tendency",
+        "score": 2,
+        "evidence": "Acknowledges husband's 'we'll regret walking away' due to thin inventory but counters with balanced future relief framing, without overreacting to the threatened loss of the house."
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reward-and-punishment-superresponse-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "envy-jealousy-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "kantian-fairness-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "score": 5,
+        "evidence": "Overweights vivid, recent specifics of this house's $120K needs, $80K savings gap, year-one electrical mandate, and 'old houses always have something unexpected' as dominant risks crowding out base rates for Somerville thin inventory and 18-month wait for comparable houses."
+      },
+      {
+        "tendency_id": "contrast-misreaction-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "excessive-self-regard-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "simple-pain-avoiding-psychological-denial",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "disliking-hating-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reason-respecting-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "curiosity-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "use-it-or-lose-it-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "drug-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "senescence-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "twaddle-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      }
+    ],
+    "triggered_tendencies": [
+      "availability-misweighing-tendency",
+      "contrast-misreaction-tendency",
+      "overoptimism-tendency",
+      "excessive-self-regard-tendency"
+    ],
+    "triggered_tendency_sources": [
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "source": "triage",
+        "score": 5
+      },
+      {
+        "tendency_id": "contrast-misreaction-tendency",
+        "source": "embedding",
+        "score": 0.34710472779356416
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "source": "embedding",
+        "score": 0.33168106167214206
+      },
+      {
+        "tendency_id": "excessive-self-regard-tendency",
+        "source": "embedding",
+        "score": 0.30201841345850283
+      }
+    ],
+    "boundary_call_count": 16,
+    "boundary_calls": [
+      {
+        "stage": "pass1_cluster_authority",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2644,
+        "completion_tokens": 177,
+        "total_tokens": 2821,
+        "cached_tokens": 197,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_closure",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2536,
+        "completion_tokens": 178,
+        "total_tokens": 2714,
+        "cached_tokens": 197,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_incentive",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2368,
+        "completion_tokens": 116,
+        "total_tokens": 2484,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_availability",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2370,
+        "completion_tokens": 131,
+        "total_tokens": 2501,
+        "cached_tokens": 197,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_self_regard",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2389,
+        "completion_tokens": 182,
+        "total_tokens": 2571,
+        "cached_tokens": 197,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_residual",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2349,
+        "completion_tokens": 178,
+        "total_tokens": 2527,
+        "cached_tokens": 197,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "availability-misweighing-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2905,
+        "completion_tokens": 87,
+        "total_tokens": 2992,
+        "cached_tokens": 172,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "contrast-misreaction-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2650,
+        "completion_tokens": 118,
+        "total_tokens": 2768,
+        "cached_tokens": 159,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "overoptimism-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3099,
+        "completion_tokens": 113,
+        "total_tokens": 3212,
+        "cached_tokens": 238,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "excessive-self-regard-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3241,
+        "completion_tokens": 92,
+        "total_tokens": 3333,
+        "cached_tokens": 238,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "companion_fingerprint",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 1803,
+        "completion_tokens": 1073,
+        "total_tokens": 2876,
+        "cached_tokens": 159,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "companion_verification",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 6571,
+        "completion_tokens": 1991,
+        "total_tokens": 8562,
+        "cached_tokens": 159,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "frame_extraction",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2715,
+        "completion_tokens": 227,
+        "total_tokens": 2942,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "frame_reframing",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 828,
+        "completion_tokens": 101,
+        "total_tokens": 929,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "structural_coverage_classification",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 1389,
+        "completion_tokens": 354,
+        "total_tokens": 1743,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "structural_coverage_detection",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 1389,
+        "completion_tokens": 354,
+        "total_tokens": 1743,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      }
+    ],
+    "warnings": [],
+    "embedding_swiss_cheese_active": true,
+    "compiled_substrate_chunk_count": 242,
+    "companion_fingerprint_raw": [
+      {
+        "move_id": "1",
+        "reasoning_move": "Identify the financial shortfall for renovations and highlight that increasing the purchase price exacerbates the existing gap without addressing it",
+        "evidence_quotes": [
+          "you're $40K short on known-needed work. If you stretch to $950K, you're paying $45K more AND you still don't have the $40K."
+        ],
+        "evidence_rationale": "This quote directly calculates the $40K renovation shortfall and shows how $950K adds purchase cost without solving it, establishing the core financial constraint.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "2",
+        "reasoning_move": "Break down year-one costs including mandatory electrical, potential roof, and kitchen stopgaps to show they consume all savings, leaving no buffer",
+        "evidence_quotes": [
+          "Electrical is actually mandatory year 1 for insurance.",
+          "That puts your year-one spend at closer to $65-80K (electrical + possibly roof + kitchen stopgaps), which is exactly your savings."
+        ],
+        "evidence_rationale": "These quotes specify the mandatory electrical timing and quantify year-one costs matching the $80K savings, demonstrating zero buffer at the margin.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "3",
+        "reasoning_move": "Emphasize the high likelihood of unexpected costs in an old house, which would be unmanageable without a financial buffer",
+        "evidence_quotes": [
+          "At $950K, you'd be entering the house at zero liquid margin for anything unexpected. And old houses always have something unexpected.",
+          "The second discovery — the thing the inspector didn't catch — is almost a certainty in a 1940s house."
+        ],
+        "evidence_rationale": "These quotes assert the inevitability of surprises in a 1940s house and link zero margin at $950K to inability to handle them.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "4",
+        "reasoning_move": "Counter the emotional regret of losing the house by contrasting it with the prolonged stress of financial overextension",
+        "evidence_quotes": [
+          "\"We'll regret walking away\" is a real argument and I don't want to dismiss it.",
+          "The forget-about-it argument (what it feels like to be stressed about money for 3 years, snapping at your husband about the kitchen, cancelling vacations because the roof went earlier than expected) doesn't have the same emotional voice"
+        ],
+        "evidence_rationale": "These quotes acknowledge regret but weigh it against tangible long-term financial and relational stress, reframing the decision.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "5",
+        "reasoning_move": "Advise against compromise bids in auctions, recommending counters at the true ceiling to avoid false middles",
+        "evidence_quotes": [
+          "in a bidding war with 6 offers, your counter of $920K might not win. You might be splitting the difference between \"buy the house\" and \"don't buy the house\"",
+          "If you're going to counter, counter at your real number, not a compromise number. Your real number is probably either $905K (what you offered, and walking if outbid) or $935K"
+        ],
+        "evidence_rationale": "These quotes critique middle-ground bidding like $920K and urge using actual ceilings like $905K or $935K in the auction context.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "6",
+        "reasoning_move": "Suggest a collaborative framing for husband discussion to test his $950K scenario and propose living in the house first to validate needs",
+        "evidence_quotes": [
+          "Don't frame it as \"I'm telling you the ceiling.\" Frame it as \"Here's what I can live with and why. Walk me through the scenario where $950K works for us\"",
+          "spend the first month after closing NOT doing any renovations. Live in the house as-is. You'll find out what actually needs to happen versus what felt urgent"
+        ],
+        "evidence_rationale": "These quotes provide tactical communication advice and a practical step to reassess post-purchase, supporting the $925K ceiling.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "7",
+        "reasoning_move": "Set a specific firm ceiling at $925K, predicting short-term pain of losing but long-term relief",
+        "evidence_quotes": [
+          "The AI advises setting a firm ceiling at $925K based on financial constraints",
+          "If you land at $925K and lose: it's going to feel awful for two weeks. Then a house will come up that you can actually afford to fix, and the loss will quietly become one of those \"thank god we didn't\" moments."
+        ],
+        "evidence_rationale": "This synthesizes the position with $925K as ceiling and normalizes the emotional aftermath of losing at that price.",
+        "confidence": "high"
+      }
+    ],
+    "companion_fingerprint_validated": [
+      {
+        "move_id": "1",
+        "reasoning_move": "Identify the financial shortfall for renovations and highlight that increasing the purchase price exacerbates the existing gap without addressing it",
+        "evidence_quotes": [
+          "you're $40K short on known-needed work. If you stretch to $950K, you're paying $45K more AND you still don't have the $40K."
+        ],
+        "evidence_rationale": "This quote directly calculates the $40K renovation shortfall and shows how $950K adds purchase cost without solving it, establishing the core financial constraint.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "2",
+        "reasoning_move": "Break down year-one costs including mandatory electrical, potential roof, and kitchen stopgaps to show they consume all savings, leaving no buffer",
+        "evidence_quotes": [
+          "Electrical is actually mandatory year 1 for insurance.",
+          "That puts your year-one spend at closer to $65-80K (electrical + possibly roof + kitchen stopgaps), which is exactly your savings."
+        ],
+        "evidence_rationale": "These quotes specify the mandatory electrical timing and quantify year-one costs matching the $80K savings, demonstrating zero buffer at the margin.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "3",
+        "reasoning_move": "Emphasize the high likelihood of unexpected costs in an old house, which would be unmanageable without a financial buffer",
+        "evidence_quotes": [
+          "At $950K, you'd be entering the house at zero liquid margin for anything unexpected. And old houses always have something unexpected.",
+          "The second discovery — the thing the inspector didn't catch — is almost a certainty in a 1940s house."
+        ],
+        "evidence_rationale": "These quotes assert the inevitability of surprises in a 1940s house and link zero margin at $950K to inability to handle them.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "4",
+        "reasoning_move": "Counter the emotional regret of losing the house by contrasting it with the prolonged stress of financial overextension",
+        "evidence_quotes": [
+          "\"We'll regret walking away\" is a real argument and I don't want to dismiss it.",
+          "The forget-about-it argument (what it feels like to be stressed about money for 3 years, snapping at your husband about the kitchen, cancelling vacations because the roof went earlier than expected) doesn't have the same emotional voice"
+        ],
+        "evidence_rationale": "These quotes acknowledge regret but weigh it against tangible long-term financial and relational stress, reframing the decision.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "5",
+        "reasoning_move": "Advise against compromise bids in auctions, recommending counters at the true ceiling to avoid false middles",
+        "evidence_quotes": [
+          "in a bidding war with 6 offers, your counter of $920K might not win. You might be splitting the difference between \"buy the house\" and \"don't buy the house\"",
+          "If you're going to counter, counter at your real number, not a compromise number. Your real number is probably either $905K (what you offered, and walking if outbid) or $935K"
+        ],
+        "evidence_rationale": "These quotes critique middle-ground bidding like $920K and urge using actual ceilings like $905K or $935K in the auction context.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "6",
+        "reasoning_move": "Suggest a collaborative framing for husband discussion to test his $950K scenario and propose living in the house first to validate needs",
+        "evidence_quotes": [
+          "Don't frame it as \"I'm telling you the ceiling.\" Frame it as \"Here's what I can live with and why. Walk me through the scenario where $950K works for us\"",
+          "spend the first month after closing NOT doing any renovations. Live in the house as-is. You'll find out what actually needs to happen versus what felt urgent"
+        ],
+        "evidence_rationale": "These quotes provide tactical communication advice and a practical step to reassess post-purchase, supporting the $925K ceiling.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "7",
+        "reasoning_move": "Set a specific firm ceiling at $925K, predicting short-term pain of losing but long-term relief",
+        "evidence_quotes": [
+          "The AI advises setting a firm ceiling at $925K based on financial constraints",
+          "If you land at $925K and lose: it's going to feel awful for two weeks. Then a house will come up that you can actually afford to fix, and the loss will quietly become one of those \"thank god we didn't\" moments."
+        ],
+        "evidence_rationale": "This synthesizes the position with $925K as ceiling and normalizes the emotional aftermath of losing at that price.",
+        "confidence": "high"
+      }
+    ],
+    "companion_fingerprint_dropped": [],
+    "companion_detected_models": [
+      {
+        "model_id": "margin-of-safety",
+        "model_name": "Margin Of Safety",
+        "evidence_quote": "At $950K, you'd be entering the house at zero liquid margin for anything unexpected. And old houses always have something unexpected.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer explicitly calculates the need for a financial buffer against forecast errors and unexpected costs in an old house, applying margin-of-safety by setting a lower ceiling to protect against downside cascades.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "theory-of-constraints",
+        "model_name": "Theory Of Constraints",
+        "evidence_quote": "you're $40K short on known-needed work. If you stretch to $950K, you're paying $45K more AND you still don't have the $40K.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer identifies the binding financial constraint (shortfall for renovations) and shows that increasing the purchase price does not relieve it, focusing improvement on the throughput bottleneck.",
+        "detection_confidence": "structural"
+      }
+    ],
+    "companion_rejected_models": [
+      {
+        "model_id": "regret-theory",
+        "rejection_reason": "execution_quote_not_literal_substring"
+      },
+      {
+        "model_id": "opportunity-cost",
+        "rejection_reason": "execution_quote_not_literal_substring"
+      },
+      {
+        "model_id": "mental-simulation",
+        "rejection_reason": "execution_quote_not_literal_substring"
+      },
+      {
+        "model_id": "representativeness-heuristic",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "inversion",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "aleatory-epistemic-uncertainty-recognition",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "reasoning-mode-router",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "learning-curve",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "prospect-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "time-tested-validation",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "branch-solve-merge",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "power-dynamics",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "agile-methodologies",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "chain-of-thought",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "constraints",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "obligations-controls-mapping",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "six-thinking-hats",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "feynman-technique",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "conjunction-fallacy",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "cross-cultural-communication-frameworks",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "einstellung-effect",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "experimentation",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "false-precision-avoidance",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "latticework-of-mental-models",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "leverage-points",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "persuasion-principles",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "scientific-method-evidence-testing",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "second-order-thinking",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "signaling",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "status-quo-bias",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "base-rates",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "calculated-risk-taking",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "intellectual-humility",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "lean-startup-methodology",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "optionality",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "price-discrimination",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "probabilistic-thinking",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "red-queen-effect",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "sunk-cost-fallacy",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "tipping-points",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "varied-practice-interleaving",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "abstraction",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "black-swan-events",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "boundaries",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "counterfactual-reasoning",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "endowment-effect",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "information-asymmetry",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "information-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "internal-locus-of-control",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "metacognitive-questioning",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "occams-razor",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "optimization-theory",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "true-uncertainty-navigation",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "usability-heuristics",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "variation-and-selection",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "anchoring",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "brainstorming",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "checklists",
+        "rejection_reason": "mechanism absent"
+      }
+    ],
+    "deep_check_results": [
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "tendency_name": "Availability-Misweighing Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
+      {
+        "tendency_id": "contrast-misreaction-tendency",
+        "tendency_name": "Contrast-Misreaction Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "tendency_name": "Overoptimism Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
+      {
+        "tendency_id": "excessive-self-regard-tendency",
+        "tendency_name": "Excessive Self-Regard Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      }
+    ],
+    "routing_decisions": []
+  },
+  "prompt_versions": {
+    "companion_fingerprint": "e32a3e09e737",
+    "companion_verification": "298be0125afe",
+    "frame_extraction": "6e6195c5c9d5",
+    "pass1_cluster_authority": "a4c507af93cf",
+    "pass1_cluster_availability": "5ba97c9a65ca",
+    "pass1_cluster_closure": "f06410862f57",
+    "pass1_cluster_incentive": "e86483f3df8e",
+    "pass1_cluster_residual": "4fee48df5db2",
+    "pass1_cluster_self_regard": "57fa97e91ec0",
+    "pass1_triage_user": "151e80b84ec4",
+    "pass2_deep_check": "b66388b9eaf4"
+  },
+  "query": "Whether the couple should raise their $905K offer on a $850K asking 1940s Somerville house needing $120K work, up to $950K in a 6-offer bidding war with deadline tomorrow.\n\nConstraints stated during conversation:\n- [ACTIVE] $120K needed work (electrical, roof, kitchen)\n- [ACTIVE] $80K saved for renovation\n- [ACTIVE] Electrical mandatory year 1 for insurance (knob-and-tube)\n- [ACTIVE] Roof flexible 2-3 years, no active leak\n- [ACTIVE] Kitchen functional-with-problems ($8-15K stopgaps estimated)\n- [ACTIVE] Bidding war with 6 offers, deadline tomorrow noon\n- [ACTIVE] Somerville neighborhood thin inventory\n\nOriginal framing: User seeks help deciding whether to raise $905K offer to $950K as husband wants, given $850K asking, $120K work needed, $80K saved, 6-offer bidding war; assumes inspection done and deadline tomorrow.\n\nDropped threads (raised but unresolved):\n- Husband's $950K push due to loving neighborhood and rarity (raised by user, status: acknowledged_then_dropped) → superseded by: focus on financial buffer, year-one costs, and auction counter strategy",
+  "vanilla_answer": "SYNTHESIZED POSITION:\nThe AI advises setting a firm ceiling at $925K based on financial constraints, framing the discussion with husband collaboratively to test his $950K scenario, counters at real numbers not compromises in auction, live in house first month post-closing before renovating, and notes losing bid will feel bad short-term but likely become relief.\n\nFULL ASSISTANT REASONING:\nTwo things to separate. One is the bidding question — what's the house actually worth to you, and what's the ceiling. The other is the financial question — can you actually do $120K in work on $80K saved, and what happens if you can't.\n\nOn the second one first: you're $40K short on known-needed work. If you stretch to $950K, you're paying $45K more AND you still don't have the $40K. Where does that second $40K come from? Credit card, HELOC once you close, delaying the work, or \"we'll figure it out\" — each of those is a different risk profile.\n\n---\n\nThat's a real plan — delaying a kitchen is normal and livable. But \"live with what's there\" is doing a lot of work in that sentence. Have you seen the current kitchen? Is it functional (ugly but works) or functional with problems (old wiring, appliances on their last legs, plumbing that will fail)? A kitchen that's ugly you can ignore for 3 years. A kitchen that needs repair during those 3 years turns into $20K of stopgap fixes that add up.\n\nThe other question: when you say electrical and roof within the first year — is that actually year 1, or is that aspirationally year 1 and realistically year 3? Many couples discover the \"$120K of work\" they planned actually takes 5-6 years to do because life happens and the house is livable as-is.\n\n---\n\nOK. Kitchen-with-problems means you're probably looking at $8-15K in stopgaps during the 3-year delay (replace oven, fix leak properly, replace dishwasher, maybe a counter refresh). Electrical is actually mandatory year 1 for insurance. That puts your year-one spend at closer to $65-80K (electrical + possibly roof + kitchen stopgaps), which is exactly your savings.\n\nAt $950K, you'd be entering the house at zero liquid margin for anything unexpected. And old houses always have something unexpected. The second discovery — the thing the inspector didn't catch — is almost a certainty in a 1940s house. That second thing could be $20K or $60K.\n\nSo the honest read on $950K: you can afford the purchase price. You likely can't afford the house in its actual need-state with no buffer. That's different from \"can you afford to buy it.\"\n\n---\n\n\"We'll regret walking away\" is a real argument and I don't want to dismiss it. Somerville inventory in specific neighborhoods is genuinely thin, and if this exact house in this exact block doesn't come up for 18 months, that's a real cost of walking.\n\nBut the regret argument usually cuts one way in a bidding war — toward \"go higher.\" The forget-about-it argument (what it feels like to be stressed about money for 3 years, snapping at your husband about the kitchen, cancelling vacations because the roof went earlier than expected) doesn't have the same emotional voice at 11pm the night before the deadline. Yet it's the one you'd live with.\n\nThe test question is: at $950K, with $0 buffer, and the mandatory year-one spend, do you know what you'd do if the boiler fails in December? Because at that price point, you wouldn't have a plan for that scenario — you'd have credit card debt.\n\n---\n\nIt would be a middle path, with a caveat: in a bidding war with 6 offers, your counter of $920K might not win. You might be splitting the difference between \"buy the house\" and \"don't buy the house\" and end up with \"didn't buy the house at a price you could afford.\" That's the downside of middle paths in auctions.\n\nIf you're going to counter, counter at your real number, not a compromise number. Your real number is probably either $905K (what you offered, and walking if outbid) or $935K (the number where you're stretching but not breaking), or $950K if your husband's regret argument is right. $920K doesn't correspond to any of those positions; it's a negotiation with your husband more than with the seller.\n\nWhat's your actual ceiling — the number where you wouldn't regret losing it?\n\n---\n\nThat's a clean answer. A few small things for the conversation with your husband.\n\nDon't frame it as \"I'm telling you the ceiling.\" Frame it as \"Here's what I can live with and why. Walk me through the scenario where $950K works for us, because maybe I'm missing something you're seeing.\" If he can give you a real answer — a bonus coming, a parental gift, a refinance plan — the number might move. If he can't, you're right.\n\nIf you land at $925K and lose: it's going to feel awful for two weeks. Then a house will come up that you can actually afford to fix, and the loss will quietly become one of those \"thank god we didn't\" moments. Not right away, but eventually.\n\nIf you land at $925K and win: spend the first month after closing NOT doing any renovations. Live in the house as-is. You'll find out what actually needs to happen versus what felt urgent in the excitement of buying. Most first-year renovation plans get rewritten after the first month of actually living in the place.",
+  "revised_answer": null,
+  "bullshit_profile": {
+    "passages": [
+      {
+        "passage": "On the second one first: you're $40K short on known-needed work. If you stretch to $950K, you're paying $45K more AND you still don't have the $40K. Where does that second $40K come from? Credit card, HELOC once you close, delaying the work, or \"we'll figure it out\" — each of those is a different risk profile.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "That's a real plan — delaying a kitchen is normal and livable. But \"live with what's there\" is doing a lot of work in that sentence. Have you seen the current kitchen? Is it functional (ugly but works) or functional with problems (old wiring, appliances on their last legs, plumbing that will fail)? A kitchen that's ugly you can ignore for 3 years. A kitchen that needs repair during those 3 years turns into $20K of stopgap fixes that add up.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage introduces a specific new figure '$20K of stopgap fixes' as a hypothetical cost for kitchen repairs over 3 years, which goes beyond the user-provided estimate of '$8-15K stopgaps estimated' (no timeframe specified) and is not a reasonable inference from established facts or common knowledge. This is stated as a concrete risk without evidence or qualification.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "The other question: when you say electrical and roof within the first year — is that actually year 1, or is that aspirationally year 1 and realistically year 3? Many couples discover the \"$120K of work\" they planned actually takes 5-6 years to do because life happens and the house is livable as-is.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'Many couples discover the \"$120K of work\" they planned actually takes 5-6 years to do' asserts a specific empirical fact (\"many couples\" experience this exact timeline extension) without evidence, beyond user facts or common knowledge. The question about timing is a legitimate clarification, but this is an unverified generalization.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "OK. Kitchen-with-problems means you're probably looking at $8-15K in stopgaps during the 3-year delay (replace oven, fix leak properly, replace dishwasher, maybe a counter refresh). Electrical is actually mandatory year 1 for insurance. That puts your year-one spend at closer to $65-80K (electrical + possibly roof + kitchen stopgaps), which is exactly your savings.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage introduces new, specific details about kitchen stopgaps ('replace oven, fix leak properly, replace dishwasher, maybe a counter refresh') that go beyond the user's stated fact of 'Kitchen functional-with-problems ($8-15K stopgaps estimated)' and are not reasonable inferences from established context or common knowledge. The year-one spend estimate of '$65-80K (electrical + possibly roof + kitchen stopgaps)' introduces unsubstantiated cost assumptions for electrical and roof (user provided no dollar figures for these, only that electrical is mandatory year 1 and roof flexible 2-3 years).",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "At $950K, you'd be entering the house at zero liquid margin for anything unexpected. And old houses always have something unexpected. The second discovery — the thing the inspector didn't catch — is almost a certainty in a 1940s house. That second thing could be $20K or $60K.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "\"The second discovery — the thing the inspector didn't catch — is almost a certainty in a 1940s house. That second thing could be $20K or $60K.\" These assert specific empirical facts (inevitability of missed inspector issues in 1940s houses, cost range) beyond user-provided facts ($120K known work, 1940s house), not common practitioner knowledge or reasonable inferences, and stated without evidence or qualification.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "So the honest read on $950K: you can afford the purchase price. You likely can't afford the house in its actual need-state with no buffer. That's different from \"can you afford to buy it.\"",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "\"We'll regret walking away\" is a real argument and I don't want to dismiss it. Somerville inventory in specific neighborhoods is genuinely thin, and if this exact house in this exact block doesn't come up for 18 months, that's a real cost of walking.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'if this exact house in this exact block doesn't come up for 18 months' asserts a specific timeline (18 months) as a 'real cost' without evidence; user provided 'thin inventory' in neighborhood (situational fact) but no details on block-level availability or 18-month period, which goes beyond reasonable inference from established facts.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "But the regret argument usually cuts one way in a bidding war — toward \"go higher.\" The forget-about-it argument (what it feels like to be stressed about money for 3 years, snapping at your husband about the kitchen, cancelling vacations because the roof went earlier than expected) doesn't have the same emotional voice at 11pm the night before the deadline. Yet it's the one you'd live with.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'The regret argument usually cuts one way in a bidding war — toward \"go higher\"' is an unverified claim asserting a specific empirical generalization about bidding wars and regret that goes beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge. The scenario paints a vivid picture grounded in user facts (e.g., roof flexible 2-3 years, kitchen issues) but the core assertion introduces unsupported behavioral psychology.",
+          "severity": "marginal"
+        }
+      },
+      {
+        "passage": "The test question is: at $950K, with $0 buffer, and the mandatory year-one spend, do you know what you'd do if the boiler fails in December? Because at that price point, you wouldn't have a plan for that scenario — you'd have credit card debt.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": true,
+          "reasoning": "The passage acknowledges the established $120K mandatory work and $80K savings (leaving $0 buffer after $950K purchase), but palters by introducing an acknowledged-then-abandoned tension: the new boiler failure scenario in December. It raises the question 'do you know what you'd do' without resolving its probability, cost, or how it changes the decision relative to the known risks (e.g., electrical, roof), then abandons it to assert credit card debt as inevitable. This creates misleading alarmism by implying unpreparedness for all contingencies without balancing against the thin inventory or bidding war context.",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "Introduces new specific scenario 'if the boiler fails in December' with no evidence from user facts (no mention of boiler age, condition, or history). Asserts as fact 'you wouldn't have a plan for that scenario — you'd have credit card debt,' an unverified causal claim about the couple's finances and behavior beyond established $80K savings and $120K work.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "It would be a middle path, with a caveat: in a bidding war with 6 offers, your counter of $920K might not win. You might be splitting the difference between \"buy the house\" and \"don't buy the house\" and end up with \"didn't buy the house at a price you could afford.\" That's the downside of middle paths in auctions.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'your counter of $920K' introduces a specific counteroffer amount not mentioned by the user or derivable from established facts (offers at $905K up to $950K range); stated as part of the proposed path without evidence or user reference.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "If you're going to counter, counter at your real number, not a compromise number. Your real number is probably either $905K (what you offered, and walking if outbid) or $935K (the number where you're stretching but not breaking), or $950K if your husband's regret argument is right. $920K doesn't correspond to any of those positions; it's a negotiation with your husband more than with the seller.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "What's your actual ceiling — the number where you wouldn't regret losing it?\n\nThat's a clean answer. A few small things for the conversation with your husband.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Don't frame it as \"I'm telling you the ceiling.\" Frame it as \"Here's what I can live with and why. Walk me through the scenario where $950K works for us, because maybe I'm missing something you're seeing.\" If he can give you a real answer — a bonus coming, a parental gift, a refinance plan — the number might move. If he can't, you're right.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "If you land at $925K and lose: it's going to feel awful for two weeks. Then a house will come up that you can actually afford to fix, and the loss will quietly become one of those \"thank god we didn't\" moments. Not right away, but eventually.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts as fact that 'a house will come up that you can actually afford to fix' and that losing the bid 'will quietly become one of those \"thank god we didn’t\" moments. Not right away, but eventually.' These are specific predictions about future market events (new affordable house appearing) and emotional/psychological outcomes, neither grounded in user-provided facts (e.g., thin inventory suggests scarcity, contradicting easy availability) nor common practitioner knowledge. No evidence or qualification provided.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "If you land at $925K and win: spend the first month after closing NOT doing any renovations. Live in the house as-is. You'll find out what actually needs to happen versus what felt urgent in the excitement of buying. Most first-year renovation plans get rewritten after the first month of actually living in the place.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'Most first-year renovation plans get rewritten after the first month of actually living in the place' is an unverified claim asserting a specific empirical fact (prevalence of plan changes) beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge. No evidence or qualification provided.",
+          "severity": "clear"
+        }
+      }
+    ],
+    "summary": {
+      "total_passages": 15,
+      "passages_with_detections": 10,
+      "total_clear": 10,
+      "total_marginal": 1
+    }
+  },
+  "run_health": {
+    "overall": "healthy",
+    "capture": "good",
+    "substrate": "ok",
+    "embeddings": "active",
+    "fingerprint": "ok",
+    "findings_produced": false,
+    "quote_fabrication_count": 0,
+    "quote_retry_attempted": true,
+    "capture_truncated": false,
+    "omitted_turns": 0,
+    "lane3_frame_drops_count": 0,
+    "lane3_frame_kept_count": 1,
+    "issues": [],
+    "warnings": [],
+    "activation_tiebreaker": "on",
+    "capture_manifest": {
+      "actual_user_turns": 6,
+      "actual_assistant_turns": 6,
+      "char_length": 6784,
+      "declared_turns": 6,
+      "declared_user": 6,
+      "declared_assistant": 6
+    }
+  }
+}

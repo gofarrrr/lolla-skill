@@ -1,0 +1,73 @@
+{
+  "status": "ok",
+  "extraction": {
+    "is_strategic": true,
+    "decision_situation": "Whether the user should accept the Seattle job offer given lease expiration, boyfriend cohabitation, and mother's care needs.",
+    "live_constraints": [
+      {
+        "constraint": "Lease ends in 60 days",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "Seattle job answer due in 10 days",
+        "introduced_turn": 9,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "Mom's memory slipping, every-other-weekend visits as local child",
+        "introduced_turn": 5,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Boyfriend withdrawn on Seattle offer, hypothetical commitment only",
+        "introduced_turn": 4,
+        "status": "active",
+        "weight": "structural"
+      }
+    ],
+    "synthesized_position": "Priority 1: full specifics conversation with boyfriend tonight on his commitment if Seattle accepted. Priority 2: conversation with brother and mom on her care trajectory, start cognitive evaluation. Ask Seattle for 2-week extension. Short-term rental search in parallel. Develop year-from-now vision to guide pressured decision.",
+    "reasoning_passages": [
+      "If he's really tied to DC and saying he'll come to avoid losing you, you're planning around a version of him that doesn't exist.",
+      "Seattle is not just a career move — it's a decision about how present you'll be during your mom's decline. 5-hour flight versus 2-hour drive is a substantially different relationship during early-stage cognitive decline.",
+      "these three things aren't three separate decisions, they're one set of entangled decisions about what the next 2-5 years of your life look like.",
+      "The problem you're having is that you've been treating \"60 days to figure out everything\" as the constraint, when actually the constraint is \"60 days to be out of this apartment.\" Those are different problems, and the second one has much easier answers.",
+      "Most offer deadlines are firmer than candidates assume in the negotiation phase, and softer than candidates assume once the company has decided they want you."
+    ],
+    "original_framing": "User faces simultaneous lease end in 60 days, boyfriend wanting to move in, and Seattle job offer; seeks where to start amid indecision.",
+    "dropped_threads": [
+      {
+        "thread": "Love for DC and life built over 11 years",
+        "raised_by": "user",
+        "raised_turn": 2,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "focus on boyfriend commitment and mom care plans"
+      }
+    ],
+    "_quote_validation": {
+      "total": 5,
+      "verified": 5,
+      "fabricated": 0,
+      "fabricated_passages": [],
+      "retry_attempted": true,
+      "retry_succeeded": true
+    }
+  },
+  "critique_request": {
+    "query": "Whether the user should accept the Seattle job offer given lease expiration, boyfriend cohabitation, and mother's care needs.\n\nConstraints stated during conversation:\n- [ACTIVE] Lease ends in 60 days\n- [ACTIVE] Seattle job answer due in 10 days\n- [ACTIVE] Mom's memory slipping, every-other-weekend visits as local child\n- [ACTIVE] Boyfriend withdrawn on Seattle offer, hypothetical commitment only\n\nOriginal framing: User faces simultaneous lease end in 60 days, boyfriend wanting to move in, and Seattle job offer; seeks where to start amid indecision.\n\nDropped threads (raised but unresolved):\n- Love for DC and life built over 11 years (raised by user, status: acknowledged_then_dropped) → superseded by: focus on boyfriend commitment and mom care plans",
+    "vanilla_answer": "SYNTHESIZED POSITION:\nPriority 1: full specifics conversation with boyfriend tonight on his commitment if Seattle accepted. Priority 2: conversation with brother and mom on her care trajectory, start cognitive evaluation. Ask Seattle for 2-week extension. Short-term rental search in parallel. Develop year-from-now vision to guide pressured decision.\n\nFULL ASSISTANT REASONING:\nThat's a lot landing at once. Before we try to untangle it, let me make sure I have the shape right. The lease is ending in 60 days and you have to be out. The boyfriend wants to cohabitate. The job offer is in a different city. Are those three things actually independent — or is the job offer one you'd take regardless, which means the question becomes about whether boyfriend moves with you, and the DC apartment question becomes moot?\n\n---\n\nOK, so the lease thing is secondary to the bigger question, which is: are you taking the Seattle job. That's actually the root decision, and everything else follows from it. Let me ask — when you say \"I keep telling myself I've decided on Seattle but I haven't actually decided,\" what's stopping you?\n\nBecause it sounds like you want to take it. The 40% pay bump and better career path are doing real work in your framing. But something is holding you back, and it's probably one or two of the other items rather than a thoughtful-but-neutral evaluation. Which is it — boyfriend, mom, DC itself, or \"my life is here\" in a more general sense?\n\n---\n\nYou just said two things that are worth sitting with. One is \"moving cities feels huge and I've never done it before.\" The other is \"I'm worried he won't come and I'll be alone.\"\n\nThese are different kinds of concerns. The first is adjustment anxiety — real but it fades once you're in the new place and making friends. It's not information about whether the move is right; it's just how anyone who hasn't moved before feels at the 60-day mark.\n\nThe second — \"he says he will but he's really tied to DC\" — is potential-reality information. If he's really tied to DC and saying he'll come to avoid losing you, you're planning around a version of him that doesn't exist. That's worth pressure-testing before you make the Seattle decision. Can you ask him concretely: \"If I accept Seattle and we move in 60 days, are you coming? What does that actually look like for your job? Your family? Your friends?\" If the answers come fast and specific, he's processed it. If they're vague, he hasn't.\n\n---\n\nThat's actually important information. \"Withdrawn when we'd normally be planning together\" is something to notice, not to explain away. You're being asked to make a major life decision based partly on an assumption (he'll come) that you've been too scared to test.\n\nI'd hold off on the Seattle decision until you have the specific conversation with him. Not \"would you come if I went?\" — that's the hypothetical he already answered. Something like: \"I need to give them an answer in X days. If I say yes, what would you actually do — what's your timeline for quitting your job, do we try to find a place together in Seattle, what about your family?\" That conversation will give you information you don't currently have. His answer shapes whether Seattle is a move-as-a-couple or a move-and-hope.\n\nNow, about your mom — separate track but urgent enough to name. \"Starting to need more help\" at 2 hours away in DC is a different math than 5-hour flight away in Seattle. What's actually going on with her?\n\n---\n\nOK. This is actually a third real decision sitting inside the Seattle decision, and it needs to be named separately. If your mom's memory is slipping and you're the local child and you've been doing every-other-weekend visits, Seattle is not just a career move — it's a decision about how present you'll be during your mom's decline. 5-hour flight versus 2-hour drive is a substantially different relationship during early-stage cognitive decline.\n\nThat doesn't mean the answer is \"don't take Seattle.\" It means the answer is \"if you take Seattle, you need a specific plan for your mom that accounts for this.\" Options: your brother moves back (probably not, since he has his own life), you hire a home aide starting now, you move her near family (either Denver with your brother or Seattle with you), or you accept that your presence during the decline will be trips of 3-5 days every 4-6 weeks rather than every other weekend.\n\nNone of these are free. All of them change what Seattle means. If you haven't factored any of this in, the Seattle decision is being made with incomplete information.\n\n---\n\nYou're not drowning, you're noticing the real shape of the decisions for the first time. That feels like drowning. It's actually clarity arriving suddenly, and the clarity is telling you something: these three things aren't three separate decisions, they're one set of entangled decisions about what the next 2-5 years of your life look like.\n\nTake a breath. Let me help you name the actual decisions cleanly so you can see them, not just feel them.\n\nOne: what's the real answer to the Seattle job? Not \"yes or no\" but \"yes under what conditions\" or \"no because of what.\" Specifically: boyfriend's actual commitment, plan for your mother, financial ability to fly back regularly, career pull vs life-in-DC pull.\n\nTwo: if you stay in DC, you're signing a new lease in the next 45 days, possibly with your boyfriend. That's a real decision about cohabitating that shouldn't be made on a lease deadline.\n\nThree: if you move to Seattle, you're reorganizing your mother's care. That's a decision you'd need to make with your brother.\n\nOne and two are the same decision; they're the same thing looked at from different angles. Three is a real-but-separate question that depends on one.\n\n---\n\nThe lease can be decoupled. Here are your options that buy you time.\n\nOption A: find a short-term rental in DC — 3-6 months, usually furnished, higher monthly cost but no lock-in. This lets you move out of your current apartment without committing to a new year lease. Gives you 3-6 months to decide on Seattle without the apartment pressure.\n\nOption B: sublet from someone going away for 3-6 months. Similar shape to A but cheaper. Requires you to find the right sublet, which takes some work.\n\nOption C: put your stuff in storage and stay with your boyfriend, your mom, or a close friend for the transition window. The cheapest option but stressful in its own way.\n\nAny of these buys you time. The problem you're having is that you've been treating \"60 days to figure out everything\" as the constraint, when actually the constraint is \"60 days to be out of this apartment.\" Those are different problems, and the second one has much easier answers.\n\n---\n\nPriority 1 is the conversation with your boyfriend. Specific version — not \"would you come,\" but the full what-if-I-accept-Seattle conversation. His real answer changes everything downstream.\n\nPriority 2, after priority 1, is the conversation with your mom and your brother together. Not \"I might move to Seattle\" — that's premature. More like \"how's mom doing, what are we thinking about for the next 2-3 years, and I want to be part of planning that.\" You need to know what your brother's capacity actually is, and what your mom's trajectory looks like from a medical perspective. Has she seen a neurologist? Has there been a formal cognitive evaluation?\n\nPriority 3 is starting the short-term rental search so the apartment thing stops feeling like an emergency. That's a weekend of Craigslist, Facebook marketplace, and asking friends. Might take 2-3 weekends to land one.\n\nPriority 4 is when you get back to evaluating the Seattle offer, armed with the information from priorities 1 and 2.\n\nWhen do you need to give Seattle an answer?\n\n---\n\n10 days is tight for all of this but not impossible. Here's a realistic sequence.\n\nTonight or tomorrow: the conversation with your boyfriend. This is non-negotiable. You cannot give Seattle an answer without it.\n\nDays 2-5: call your brother, have the conversation about mom. Ideally visit mom this weekend too. If possible, get a neurologist referral started — at minimum, call her primary care doctor and ask about a cognitive evaluation. You need data points about her trajectory, not your impressions.\n\nDays 4-8: ask Seattle for a 2-week extension if you need it. \"I need another week to finalize decisions on family care arrangements.\" Most employers will grant this if you're otherwise committed. If they won't, that tells you something about the company.\n\nDays 8-10: make the decision. Communicate it.\n\nStart the short-term rental search in parallel, not as a priority. It's a parallel task, not a competing one.\n\n---\n\nMost offer deadlines are firmer than candidates assume in the negotiation phase, and softer than candidates assume once the company has decided they want you. They already made the offer; they want you to say yes, not to lose you over 7 days. \"I'm working through family situations that are crystallizing over the next 2 weeks — can I have until [date]\" is a completely reasonable ask at your career level.\n\nPhrase it as a commitment to the process, not an apology. You're not asking for a favor; you're signaling that you're taking the decision seriously, which is what they want to see in a senior hire.\n\n---\n\nOne thing. You've named three decisions and a timeline, but you haven't named what you actually want. Not \"what should I do\" — that's what we've been working out. I mean: if you imagine yourself a year from now, and everything went well, what does that look like?\n\nThat matters because in 10 days you're going to be making decisions under pressure, and the pressure will push you toward the answer that feels safest rather than the one that's right. A year-from-now vision isn't a commitment; it's a signal about which of the options aligns with what you actually want.\n\nThink about it this week. Not to decide with it, but to keep it visible while everything else is noisy. The noise is about logistics and fears. Under the noise is a preference you can probably name if you listen for it."
+  },
+  "capture_manifest": {
+    "actual_user_turns": 11,
+    "actual_assistant_turns": 11,
+    "char_length": 13201,
+    "declared_turns": 11,
+    "declared_user": 11,
+    "declared_assistant": 11
+  },
+  "capture_health": "good",
+  "capture_warnings": []
+}
