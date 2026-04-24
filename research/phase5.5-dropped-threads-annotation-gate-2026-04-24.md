@@ -1,0 +1,288 @@
+# Phase 5.5 — Dropped-Threads Specialist Extraction Annotation Gate
+
+**Date:** 2026-04-24
+**Purpose:** decide whether span-level `dropped_threads` extraction is learnable — can two reviewers independently pick verbatim spans from the named speaker's turn that carry each paraphrased dropped thread, agree on the speaker (user vs assistant), and agree on the kind (concern vs open_loop)?
+**Scope:** annotation/design gate only. No code, no branch, no implementation.
+
+## Why This Gate Exists
+
+Phase 5 shipped the `live_constraints` specialist at 70% recall / 97% validation. Phase 5.5 applies the same pattern to the second user/assistant-side field: `dropped_threads`. These map to `UserIssueEvent(kind="concern")` or `UserIssueEvent(kind="open_loop")` depending on status and `superseded_by`. The monolith produces them as paraphrases; the specialist must ground them in verbatim substrings.
+
+This gate tests the load-bearing question before any code: **if two humans cannot independently converge on where the dropped thread lives in the transcript, an LLM specialist won't either.**
+
+## Differences from Phase 5.0
+
+Three structural adjustments:
+
+1. **9 items, not 20.** The 10-case corpus has exactly 9 dropped_threads in monolith output (parenting_teen and startup_pivot have zero). This is a smaller gate by necessity. Threshold interpretation is the same — a percentage passes or fails regardless of denominator.
+2. **Speaker is a new dimension.** Dropped threads can be raised by either party. 8 of 9 corpus items are user-raised; 1 is assistant-raised (phd_research). The specialist must therefore quote from the correct speaker's turn. Reviewers confirm the `raised_by` field by picking their span from that speaker's actual text.
+3. **Kind taxonomy is narrower.** All 9 corpus items have `status="acknowledged_then_dropped"` and a populated `superseded_by`, which maps to `kind="open_loop"` under Phase 1's discriminator. The interesting question is whether any item reads as `concern` (active unresolved worry) despite its monolith status label. Reviewers can flag `kind_ambiguity=yes` for genuinely mixed cases.
+
+## Object Under Test
+
+Target shape for the Phase 5.5 specialist output:
+
+```python
+UserIssueEvent(
+    issue_id="...",
+    text="verbatim substring from the raiser's turn",      # NEW: substring, not paraphrase
+    kind="open_loop" | "concern",
+    status="acknowledged_then_dropped" | "active" | "superseded",
+    provenance=SpanProvenance(span_ref=SpanRef(speaker=..., ...)),
+    introduced_at_turn=...,
+    superseded_by="short paraphrase label of what superseded this thread",  # stays as monolith-style label
+    kind_ambiguity=False | True,
+)
+```
+
+Key differences from `live_constraints`:
+- `speaker` field on the `SpanRef` can be `user` OR `assistant`.
+- `superseded_by` is kept as a paraphrase label (not substring-validated) because it's a "what replaced this thread" summary, often synthesized across the assistant's subsequent response.
+
+## What Reviewers Are Doing
+
+For each of 9 candidates, reviewers see:
+
+- The case name
+- The paraphrased extraction output (monolith's `thread` text)
+- `raised_by`, `raised_turn`, `status`, and `superseded_by` as declared
+- The source turn text (from the declared speaker)
+- A blank row to fill
+
+Reviewers independently decide:
+
+1. **span** — verbatim substring from the named speaker's turn that carries this thread, or `NONE` if not recoverable
+2. **turn_index** — which turn the span is in
+3. **speaker** — `user` | `assistant` (confirming the monolith's `raised_by`; flag mismatches)
+4. **kind** — `open_loop` | `concern` (if still active-feeling despite the status label)
+5. **kind_ambiguity** — `yes` | `no`
+6. **note** — optional short reason
+
+## Span Selection Guidance
+
+Same rule as Phase 5.0: pick the **minimum** span that carries the thread semantics. Usually one sentence or a short clause. Dropped threads are often more compact than live_constraints — a single question, a single aside — so span selection tends to be tighter.
+
+If the monolith's paraphrase has no recoverable substring in the named turn, mark `span: NONE`. Common failure mode for dropped_threads: the paraphrase is an extractor synthesis that combines user phrasing with assistant pushback, and no single substring captures the "thread" concept.
+
+If the `raised_by` field looks wrong (e.g., monolith says user but the actual thread-raising statement is in an assistant turn), note that — it's a latent taxonomy issue, same class as the W5 finding in Phase 2.
+
+## Kind Taxonomy (inherited from Phase 1)
+
+| Kind | Definition | Quick test for dropped_threads |
+|---|---|---|
+| `open_loop` | Raised and explicitly dropped, acknowledged-then-dropped, or superseded. | Does the status + superseded_by indicate closure by shift of focus? |
+| `concern` | Unresolved worry still carrying weight. | Does the thread feel live even though the conversation moved past it? |
+
+Most monolith-labelled `acknowledged_then_dropped` threads should map cleanly to `open_loop`. Flag `kind_ambiguity=yes` if the span genuinely reads as both (e.g., a concern that was also acknowledged-then-moved-past).
+
+## Protocol
+
+1. Each reviewer works independently, without seeing the other's answers.
+2. Do not revise after seeing the other reviewer's answers.
+3. Score span convergence, non-recoverable rate, speaker agreement, and kind agreement separately.
+4. Commit order: Reviewer B first, Reviewer A second (blind-first-reviewer protocol matching Phase 5.0).
+
+## Scoring
+
+Same rules as Phase 5.0, plus a speaker-agreement metric:
+
+### Span convergence (primary metric)
+
+- Full overlap (≥70% token overlap or one contains the other): +1.0
+- Partial overlap (same turn, ≥30% shared tokens): +0.5
+- Disjoint: 0.0
+- One NONE + other span: +0.5
+- Both NONE: +1.0
+
+### Non-recoverable rate
+
+Items where both reviewers marked `NONE`. High rate = monolith paraphrase is synthesized, not substring-anchorable.
+
+### Speaker agreement
+
+- Same speaker: +1.0
+- Different speaker: 0.0 (indicates a latent taxonomy issue with `raised_by`)
+
+### Kind agreement
+
+- Same kind: +1.0
+- One composite (kind_ambiguity=yes) + other single matching primary: +0.5
+- Different kinds: 0.0
+
+## Gate Thresholds
+
+- **Span convergence ≥70%** — primary test (same as Phase 5.0).
+- **Non-recoverable rate ≤25%** — most paraphrased threads should have a substring source.
+- **Speaker agreement ≥90%** — raised_by should be nearly always clear from the span.
+- **Kind agreement ≥80%** — narrow taxonomy on a small corpus should be easy.
+
+### Decision Rules
+
+- **All four pass:** draft Phase 5.5 implementation task for `dropped_threads` specialist. Reuse the Phase 5 specialist's prompt/validation scaffolding.
+- **Span convergence passes, non-recoverable high:** the specialist will need a `TurnRefProvenance`-ish fallback for synthesized threads. Design challenge: honest paraphrase-backed events alongside span-backed ones.
+- **Span convergence fails:** stop. Reviewers diverging on where the thread-raising statement is means the object definition needs narrowing.
+- **Speaker agreement fails:** the `raised_by` field in monolith is unreliable — flag as a separate quality issue.
+
+## Candidate Cases
+
+8 cases with non-empty `dropped_threads` in monolith output. 1-2 items per case; 9 total. Uses the broader 10-case corpus, not just the 5 gate-continuity cases from Phase 5.0 (which would cap us at 4 items).
+
+---
+
+## Annotation Items
+
+### `user_has_plan`
+
+**UHP-D1**
+- Paraphrased extraction: `"Tactical launch plan details (pricing, positioning, website, legal structure)"`
+- Declared: raised_by=user, raised_turn=1, status=acknowledged_then_dropped
+- Superseded_by: `"focus on fundamentals like pipeline conversion, runway realism, spouse alignment, and fractional bridge"`
+- Source turn:
+  > [Turn 1] USER: I've decided to quit my senior PM job at a large tech company and start an independent consulting practice. 12 years experience in product, specializing in B2B fintech. I have 8 months runway saved. Plan is to go independent starting in 6 weeks. Can you help me think through the launch plan? I want to hit the ground running.
+- Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+
+---
+
+### `whistleblower`
+
+**WB-D1**
+- Paraphrased extraction: `"concern that reporting might implicate prior senior manager who left abruptly from same account"`
+- Declared: raised_by=user, raised_turn=7, status=acknowledged_then_dropped
+- Superseded_by: `"focus on user's own obligation and post-filing notification option"`
+- Source turn:
+  > [Turn 7] USER: There's something I should say. I'm not the only one who might have seen things. Two years ago, a senior manager in my group left abruptly. Everyone assumed burnout. In retrospect — she was working on this same client account. I wonder if she saw something too and left without reporting. If I report now, it might implicate her for not reporting two years ago.
+- Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+
+---
+
+### `multi_offer`
+
+**MO-D1**
+- Paraphrased extraction: `"Explicit EV math making B irrational due to low median startup outcomes"`
+- Declared: raised_by=user, raised_turn=4, status=acknowledged_then_dropped
+- Superseded_by: `"reframed as non-financial career-shape and information-value decision"`
+- Source turn:
+  > [Turn 4] USER: Math: Yes. My wife is a physician, she out-earns me slightly. Mortgage is fine. We'd cut vacations and the kids' enrichment activities modestly but nothing breaking. So financially, option B is survivable.
+  > What I've been telling myself is that the "irrational" part is the EXPECTED value. 0.8% of a Series B at, let's say, a $1.2B future exit in 5 years is $9.6M pre-tax. But 80% of startups don't exit at that level. Median outcome is probably $0 or low-single-digit millions. So on expected value it's a hard question.
+- Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+
+---
+
+### `oncologist`
+
+**ONC-D1**
+- Paraphrased extraction: `"Feeling stuck in academic role as potential escape motive"`
+- Declared: raised_by=user, raised_turn=2, status=acknowledged_then_dropped
+- Superseded_by: `"focus on genuine career fit via portfolio leverage and Merck-specific due diligence"`
+- Source turn:
+  > [Turn 2] USER: Honestly? I've been feeling a little stuck. Not burned out exactly but — I write grants, I supervise fellows, I run trials, and I keep thinking I'm going to be the person who moves the field and I'm starting to think that's just not me. Which is fine but it's also like, if that's not going to happen, maybe I should take a role where I have more leverage on actual drugs getting to actual patients.
+  > Husband is — we've talked about it in general. He's pro. But we haven't had the real conversation about what 3 nights a week away actually looks like for four-plus years. I've been kind of avoiding it.
+  > And I don't know, I have this fellowship program with 4 fellows, two MDs two MD/PhDs, three of them I recruited specifically. One of them is honestly going to struggle if I leave, her project is really weird and it's hard to hand off. There's also my colleague David who could take them but he's already slammed and he doesn't mentor the way I do.
+- Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+
+**ONC-D2**
+- Paraphrased extraction: `"David overloaded as potential handoff mentor"`
+- Declared: raised_by=user, raised_turn=2, status=acknowledged_then_dropped
+- Superseded_by: `"emphasis on Priya's committee and other department support"`
+- Source turn: (same as ONC-D1 above)
+- Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+
+---
+
+### `phd_research`
+
+**PHD-D1**
+- Paraphrased extraction: `"Pure option 2 without collaboration"`
+- Declared: raised_by=**assistant**, raised_turn=3, status=acknowledged_then_dropped
+- Superseded_by: `"emphasis on collaborative version or hybrid option 3"`
+- Source turn:
+  > [Turn 3] ASSISTANT: Not ruling it out, but flagging it as the highest-risk option given your specific situation. There's a version where you take option 2 by joining a collaborating lab (officially or unofficially), use their infrastructure, and contribute the methods. That's different from "my lab pivots into single-cell." The former is possibly viable; the latter isn't, based on what you've described.
+  > If you went this route, the practical move would be identifying a single-cell lab at your institution that has a computational gap you could fill, and proposing a collaborative dissertation. Your advisor would be co-advisor, the single-cell PI would be co-advisor, and your project is hosted at their lab with their infrastructure.
+  > That's a complicated political situation but not impossible. Whether it's worth it depends on whether you want it enough to navigate the politics.
+- Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+
+---
+
+### `real_estate`
+
+**RE-D1**
+- Paraphrased extraction: `"Husband's $950K push due to loving neighborhood and rarity"`
+- Declared: raised_by=user, raised_turn=4, status=acknowledged_then_dropped
+- Superseded_by: `"focus on financial buffer, year-one spends, and regret scenarios"`
+- Source turn:
+  > [Turn 4] USER: My husband's argument is that we love the neighborhood, houses there don't come up often, we'll regret walking away over $45K. Is that fair? I find that emotionally compelling but I don't know if I'm being sensible or just scared.
+- Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+
+---
+
+### `friendship_money`
+
+**FRI-D1**
+- Paraphrased extraction: `"risk of her becoming homeless with kids if no help"`
+- Declared: raised_by=user, raised_turn=4, status=acknowledged_then_dropped
+- Superseded_by: `"shifted to other support resources and partial money instead of full $10K"`
+- Source turn:
+  > [Turn 4] USER: I don't think you understand the stakes here. She's going to be homeless. With her kids. If I don't help her.
+- Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+
+---
+
+### `messy_three_problems`
+
+**MSY-D1**
+- Paraphrased extraction: `"love for DC and life built over 11 years"`
+- Declared: raised_by=user, raised_turn=2, status=acknowledged_then_dropped
+- Superseded_by: `"focus on boyfriend commitment and mom care plans"`
+- Source turn:
+  > [Turn 2] USER: They're not independent. If I take the Seattle job, I leave DC anyway, boyfriend situation becomes about long-distance or him coming with me. If I stay in DC I need to find a new apartment fast and the move-in-together question is about whether it's the same apartment. And I keep telling myself I've decided on Seattle but I haven't actually decided.
+  > Also Seattle is a 40% pay bump and better career path but I love DC and my whole life is here. And he has a good job here. Also my mom lives 2 hours away in Baltimore and she's starting to need more help.
+- Reviewer A · span / turn / speaker / kind / kind_ambiguity / note:
+- Reviewer B · span / turn / speaker / kind / kind_ambiguity / note:
+
+---
+
+## Result Table
+
+_To fill after both reviewers commit independently._
+
+| Metric | Result |
+|---|---|
+| Candidate count | 9 |
+| Span convergence sum | — |
+| Span convergence rate | — |
+| Non-recoverable (both NONE) count | — |
+| Non-recoverable rate | — |
+| Speaker agreement sum | — |
+| Speaker agreement rate | — |
+| Kind agreement sum | — |
+| Kind agreement rate | — |
+| Gate outcome | — |
+
+### Per-item scoring
+
+| ID | A span / turn / speaker / kind | B span / turn / speaker / kind | Span | Speaker | Kind |
+|---|---|---|---:|---:|---:|
+| UHP-D1 | — | — | — | — | — |
+| WB-D1 | — | — | — | — | — |
+| MO-D1 | — | — | — | — | — |
+| ONC-D1 | — | — | — | — | — |
+| ONC-D2 | — | — | — | — | — |
+| PHD-D1 | — | — | — | — | — |
+| RE-D1 | — | — | — | — | — |
+| FRI-D1 | — | — | — | — | — |
+| MSY-D1 | — | — | — | — | — |
+
+## Post-Gate Actions
+
+- **PASS on all four metrics** → draft Phase 5.5 implementation task for `dropped_threads` specialist. Reuse the Phase 5 `live_constraints_extraction.py` scaffolding; add speaker field, supersede_by label passthrough, and a `dropped_threads_extractor` constructor hook parallel to `live_constraints_extractor`.
+- **Span passes, non-recoverable high** → implementation needs a `TurnRefProvenance` path for synthesized-only threads alongside the span-backed path. This is less of a design challenge than Phase 5's derivation mode because it's just paraphrase fallback, not multi-turn synthesis.
+- **Speaker disagreement** → monolith's `raised_by` field is unreliable. Specialist should independently determine speaker from the span's source turn rather than trusting the monolith's label. Minor prompt adjustment.
+- **FAIL** → write a blocking memo explaining what made reviewers diverge; revisit whether dropped_threads needs a different object model (e.g., an `IssueEvent` that carries speaker explicitly instead of extending `UserIssueEvent`).
