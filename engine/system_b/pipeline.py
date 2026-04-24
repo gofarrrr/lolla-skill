@@ -31,7 +31,14 @@ from .structural_coverage import (
     run_structural_coverage,
     run_structural_coverage_from_context,
 )
-from .companion_routing import recall_candidates, run_fingerprint_call, run_verification_call
+from .companion_routing import (
+    recall_candidates,
+    run_fingerprint_call,
+    run_fingerprint_call_from_context,
+    run_verification_call,
+    run_verification_call_from_context,
+)
+from .companion_routing import _joined_assistant_turns as _lane2_joined_assistant_turns
 from .companion_selection import CompanionCheatSheet, select_companion_cheat_sheet
 from .compound_catalog import COMPOUND_CATALOG
 from .contrast_misreaction_deep_check_packet_adapter import (
@@ -511,7 +518,7 @@ class SystemBPipeline:
 
         if not triggered_tendencies:
             companion_started = time.monotonic()
-            companion_result = self._run_companion(request, boundary_calls)
+            companion_result = self._run_companion(request, boundary_calls, conversation_context=conversation_context)
             companion_seconds = time.monotonic() - companion_started
             frame_card = self._run_frame_pressure(
                 request, boundary_calls,
@@ -646,7 +653,7 @@ class SystemBPipeline:
                 promoted_stress_results=promoted_stress_results,
             )
         companion_started = time.monotonic()
-        companion_result = self._run_companion(request, boundary_calls)
+        companion_result = self._run_companion(request, boundary_calls, conversation_context=conversation_context)
         companion_seconds = time.monotonic() - companion_started
         frame_card = self._run_frame_pressure(
             request, boundary_calls,
@@ -783,6 +790,7 @@ class SystemBPipeline:
         self,
         request: CritiqueRequest,
         boundary_calls: list[BoundaryCallTrace],
+        conversation_context: ConversationContext | None = None,
     ) -> CompanionRunResult:
         if not self._config.enable_companion:
             return CompanionRunResult()
@@ -795,26 +803,53 @@ class SystemBPipeline:
                 ),
             )
 
-        fingerprint_payload = run_fingerprint_call(
-            query=request.query,
-            vanilla_answer=request.vanilla_answer,
-            client=self._boundary,
-        )
+        # Phase 2d: when a ConversationContext is present, fingerprint + verify
+        # against turn-structured assistant text. Legacy vanilla_answer path
+        # remains intact for callers that don't pass a context.
+        if conversation_context is not None:
+            fingerprint_payload = run_fingerprint_call_from_context(
+                context=conversation_context,
+                client=self._boundary,
+            )
+        else:
+            fingerprint_payload = run_fingerprint_call(
+                query=request.query,
+                vanilla_answer=request.vanilla_answer,
+                client=self._boundary,
+            )
         boundary_calls.append(_capture_boundary_call(self._boundary, stage="companion_fingerprint"))
+
+        # Keyword recall operates on a flat-token string; under the new
+        # contract use joined assistant turns so recall is consistent with
+        # the turn-structured audit target instead of the flattened
+        # query+vanilla_answer. Recall remains deterministic and
+        # order-insensitive, so no behavior change on identical text content.
+        if conversation_context is not None:
+            recall_source_text = _lane2_joined_assistant_turns(conversation_context) or request.vanilla_answer
+        else:
+            recall_source_text = request.vanilla_answer
         candidates = recall_candidates(
-            vanilla_answer=request.vanilla_answer,
+            vanilla_answer=recall_source_text,
             fingerprint_payload=fingerprint_payload,
             knowledge_graph=self._companion_knowledge_graph,
             reasoning_signals=self._companion_reasoning_signals,
             embedding_retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             embedding_api_key=self._embedding_api_key,
         )
-        detected_models, rejected_models = run_verification_call(
-            vanilla_answer=request.vanilla_answer,
-            fingerprint_payload=fingerprint_payload,
-            candidates=candidates,
-            client=self._boundary,
-        )
+        if conversation_context is not None:
+            detected_models, rejected_models = run_verification_call_from_context(
+                context=conversation_context,
+                fingerprint_payload=fingerprint_payload,
+                candidates=candidates,
+                client=self._boundary,
+            )
+        else:
+            detected_models, rejected_models = run_verification_call(
+                vanilla_answer=request.vanilla_answer,
+                fingerprint_payload=fingerprint_payload,
+                candidates=candidates,
+                client=self._boundary,
+            )
         if candidates:
             boundary_calls.append(_capture_boundary_call(self._boundary, stage="companion_verification"))
         return CompanionRunResult(
