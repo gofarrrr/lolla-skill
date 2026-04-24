@@ -21,6 +21,8 @@ The only meaningful revision: we should adopt LangGraph's **reducer model** for 
 
 ## Per-system findings
 
+**Scope disclosure:** Systems not studied in this pass: OpenHands, MiroFish, Letta, Manus, Phoenix/OpenInference, and Promptfoo. The five archaeology claims are answerable from the studied systems; these remaining sources would reinforce adoption decisions rather than alter them. Phase 1 proceeds on the narrower scope; if post-Phase-1 evidence reveals a gap, extend then.
+
 ### GAIR-NLP Context-Engineering-2.0
 
 Curated bibliography + research positioning paper. Names two concepts we should keep in our vocabulary:

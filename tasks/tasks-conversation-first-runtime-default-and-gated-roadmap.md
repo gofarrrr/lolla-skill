@@ -116,22 +116,22 @@ For implementation tasks, use vertical TDD slices:
   - [x] 6.10 Stop for PM review before Phase 0.5 begins.
 
 - [ ] 7.0 Complete Phase 0.5 External Systems Study and drill-back spike
-  - [ ] 7.1 Create `research/phase0.5-adoption-memo-2026-04-XX.md` with sections for per-system summaries, pattern adoption/rejection, v1 IR impact, and the archaeology checklist response.
-  - [ ] 7.2 Study the agreed systems: `GAIR-NLP/Context-Engineering-2.0`, `microsoft/graphrag`, `langchain-ai/langgraph`, `OpenHands/OpenHands`, `666ghj/MiroFish`, `humanlayer/12-factor-agents`, Anthropic/Letta/Manus context-engineering writeups, and Phoenix/OpenInference/Promptfoo tracing/eval patterns.
-  - [ ] 7.3 For each system, write a 2-3 paragraph summary focused on state, provenance, compaction, memory/checkpointing, multi-view packet assembly, and observability.
-  - [ ] 7.4 Fill an adoption/rejection table: pattern, source system, adopt/adapt/reject, reason, risk, and effect on Lolla's roadmap.
-  - [ ] 7.5 Explicitly answer the five archaeology checklist claims from `research/legacy-pr-design-archaeology.md`: provenance-based identity, single-family `UserIssueEvent`, `StanceEvent` trajectory, packet-local `move_type`, and `ActorRef` deferral.
-  - [ ] 7.6 Build a lightweight drill-back spike on one existing corpus case: packet -> prototype IR object -> source span -> raw turn.
-  - [ ] 7.7 Save the drill-back output as `research/phase0.5-drillback-spike-2026-04-XX.md` or a similarly reviewable artifact.
-  - [ ] 7.8 If the external study materially changes the v1 IR design, stop and update `plans/conversation-first-context-engineering-roadmap.md` plus `research/legacy-pr-design-archaeology.md` before Phase 1 planning.
-  - [ ] 7.9 If the external study confirms the current direction, add a clear "Phase 1 may proceed" gate note to the memo.
-  - [ ] 7.10 Stop for PM review before creating the Phase 1 IR task list.
+  - [x] 7.1 Create `research/phase0.5-adoption-memo-2026-04-XX.md` with sections for per-system summaries, pattern adoption/rejection, v1 IR impact, and the archaeology checklist response. Artifact: `research/phase0.5-adoption-memo-2026-04-24.md`.
+  - [x] 7.2 Study the agreed systems: `GAIR-NLP/Context-Engineering-2.0`, `microsoft/graphrag`, `langchain-ai/langgraph`, `OpenHands/OpenHands`, `666ghj/MiroFish`, `humanlayer/12-factor-agents`, Anthropic/Letta/Manus context-engineering writeups, and Phoenix/OpenInference/Promptfoo tracing/eval patterns. Scope narrowed by PM review: studied GAIR, GraphRAG, LangGraph pattern knowledge, HumanLayer/12-factor, and Anthropic; memo now discloses remaining unstudied systems and why they are deferred.
+  - [x] 7.3 For each system, write a 2-3 paragraph summary focused on state, provenance, compaction, memory/checkpointing, multi-view packet assembly, and observability. Completed for the narrowed Phase 0.5 source set in the memo.
+  - [x] 7.4 Fill an adoption/rejection table: pattern, source system, adopt/adapt/reject, reason, risk, and effect on Lolla's roadmap.
+  - [x] 7.5 Explicitly answer the five archaeology checklist claims from `research/legacy-pr-design-archaeology.md`: provenance-based identity, single-family `UserIssueEvent`, `StanceEvent` trajectory, packet-local `move_type`, and `ActorRef` deferral.
+  - [x] 7.6 Build a lightweight drill-back spike on one existing corpus case: packet -> prototype IR object -> source span -> raw turn. Used existing `user_has_plan` Lane 3 artifacts; no fresh API run.
+  - [x] 7.7 Save the drill-back output as `research/phase0.5-drillback-spike-2026-04-XX.md` or a similarly reviewable artifact. Artifact: `research/phase0.5-drillback-spike-2026-04-24.md`.
+  - [x] 7.8 If the external study materially changes the v1 IR design, stop and update `plans/conversation-first-context-engineering-roadmap.md` plus `research/legacy-pr-design-archaeology.md` before Phase 1 planning. No material v1 design change required; Phase 1 task file captures the refined provenance tiers from the drill-back spike.
+  - [x] 7.9 If the external study confirms the current direction, add a clear "Phase 1 may proceed" gate note to the memo. Memo already contains the gate note; patched with explicit scope disclosure before closure.
+  - [ ] 7.10 Stop for PM review before creating the Phase 1 IR task list. PM explicitly directed drafting the Phase 1 task file after the spike; final stop remains before Phase 1 implementation.
 
 - [ ] 8.0 Prepare Phase 1 IR kickoff task list after Phase 0.5 approval
-  - [ ] 8.1 Confirm Phase 0.1 and Phase 0.5 artifacts are approved and no unresolved blockers remain.
-  - [ ] 8.2 Create `tasks/tasks-conversation-first-phase-1-ir.md` using the gated-program template: structural artifact, behavioral metric, cost/latency budget, and kill criteria.
-  - [ ] 8.3 Include task `0.0 Create feature branch` in the Phase 1 task list.
-  - [ ] 8.4 Scope Phase 1 to the approved v1 IR objects only: `Turn`, `SpanRef`, `FrameAnchor`, `UserIssueEvent`, and `StanceEvent`.
-  - [ ] 8.5 Explicitly mark `ActorRef`, `DecisionOption`, `ReasoningSegment`, and `CoverageTarget` as deferred/projection candidates unless Phase 0.5 changed that decision.
-  - [ ] 8.6 Define Phase 1 TDD slices around public behavior: IR construction from current artifacts, provenance coverage, drill-back, and serialization.
-  - [ ] 8.7 Stop after the Phase 1 task list is drafted. Do not implement Phase 1 IR until PM approval.
+  - [ ] 8.1 Confirm Phase 0.1 and Phase 0.5 artifacts are approved and no unresolved blockers remain. Pending PM review of the drill-back spike and task file.
+  - [x] 8.2 Create `tasks/tasks-conversation-first-phase-1-ir.md` using the gated-program template: structural artifact, behavioral metric, cost/latency budget, and kill criteria.
+  - [x] 8.3 Include task `0.0 Create feature branch` in the Phase 1 task list.
+  - [x] 8.4 Scope Phase 1 to the approved v1 IR objects only: `Turn`, `SpanRef`, `FrameAnchor`, `UserIssueEvent`, and `StanceEvent`.
+  - [x] 8.5 Explicitly mark `ActorRef`, `DecisionOption`, `ReasoningSegment`, and `CoverageTarget` as deferred/projection candidates unless Phase 0.5 changed that decision.
+  - [x] 8.6 Define Phase 1 TDD slices around public behavior: IR construction from current artifacts, provenance coverage, drill-back, and serialization.
+  - [x] 8.7 Stop after the Phase 1 task list is drafted. Do not implement Phase 1 IR until PM approval.
