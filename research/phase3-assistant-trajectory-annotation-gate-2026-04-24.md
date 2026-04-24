@@ -278,18 +278,69 @@ answer key; reviewers decide independently whether each span should become a
 
 ## Result Table
 
-Fill after both reviewers annotate independently.
+Both reviewers annotated independently; Reviewer B was committed first (commit `006e58f`) before Reviewer A (commit `b703a12`), preserving blind-first-reviewer protocol.
 
 | Metric | Result |
 |---|---|
 | Candidate count | 20 |
-| Detection agreement sum |  |
-| Detection agreement rate |  |
-| Relation-scored candidate count |  |
-| Relation agreement sum |  |
-| Relation agreement rate |  |
-| Included or unsure candidates |  |
-| Gate outcome |  |
+| Detection agreement sum | 20.0 |
+| Detection agreement rate | **100%** |
+| Relation-scored candidate count | 20 (both reviewers included all 20) |
+| Relation agreement sum | 19.0 |
+| Relation agreement rate | **95.0%** |
+| Included or unsure candidates | 20 of 20 |
+| Gate outcome | **PASS** |
+
+### Per-item relation scoring
+
+| ID | Reviewer A | Reviewer B | Score |
+|---|---|---|---:|
+| UHP-S1 | revision | revision | 1.0 |
+| UHP-S2 | qualification | qualification | 1.0 |
+| UHP-S3 | condition | condition | 1.0 |
+| UHP-S4 | condition | condition | 1.0 |
+| WB-S1 | commitment | commitment | 1.0 |
+| WB-S2 | commitment | commitment | 1.0 |
+| WB-S3 | commitment | commitment | 1.0 |
+| WB-S4 | commitment | commitment | 1.0 |
+| PT-S1 | revision | revision | 1.0 |
+| PT-S2 | commitment/deferral | commitment | 0.5 |
+| PT-S3 | commitment | commitment | 1.0 |
+| PT-S4 | commitment | commitment | 1.0 |
+| MO-S1 | revision | revision | 1.0 |
+| MO-S2 | revision | revision | 1.0 |
+| MO-S3 | revision | revision | 1.0 |
+| MO-S4 | condition | condition | 1.0 |
+| SP-S1 | condition | condition | 1.0 |
+| SP-S2 | commitment | commitment | 1.0 |
+| SP-S3 | deferral/condition | deferral | 0.5 |
+| SP-S4 | revision | revision | 1.0 |
+
+### Observed ontology seam — composite stance moves
+
+The two partial-disagreement items (PT-S2, SP-S3) share a structural pattern: **a stance span carries two of the six relations simultaneously**. One reviewer marked both; the other picked the dominant one.
+
+- **PT-S2** (`"you don't call the police today. You call RAINN this afternoon"`): commitment (call RAINN) + deferral (not police today).
+- **SP-S3** (`"Give yourself 14 days. After the pre-buy test and the three conversations, you make the call"`): deferral (14-day park) + condition (after specific tests).
+
+This is the same class of finding as the `constraint/concern` seam in the Phase 1 annotation exercise — real ambiguity where an object carries two legitimate labels.
+
+**Phase 3 implementation should mirror the Phase 1 `kind_ambiguity` pattern:** add `relation_ambiguity: bool = False` to `StanceEvent`. The primary `relation` field stays single (dominant reading); the flag is informational. The constructor sets it when a span carries two of the six relations.
+
+### Observed distribution (Reviewer A ∪ Reviewer B)
+
+- `commitment`: 7-8 (dominant for directive spans)
+- `revision`: 6 (reframing moves)
+- `condition`: 5-6 (if/then gates)
+- `qualification`: 1 (boundary on earlier advice)
+- `deferral`: 1-2 (explicit parking)
+- `initial`: 0 (not observed in candidate pool)
+
+Three observations:
+
+1. **`initial` is unpopulated** across both reviewers. On reflection, candidates were selected to be stance-meaningful, and the first stance on a decision axis is often already a revision-from-user-framing, so `initial` as-defined is thin. Phase 3 implementation can either drop `initial` from the v1 taxonomy or keep it for future population (e.g., by lane-2/lane-3 packet builders that track first-stance-per-axis). **Leaning: keep `initial` reserved in the taxonomy but document it as expected-rare for the current candidate shape.**
+2. **`commitment` is dominant.** Most assistant stance moves are firm recommendations. This confirms Phase 3's claim that assistant turns are span-friendly — the explicit "I recommend X" / "take Y" / "don't do Z" patterns produce clean verbatim anchors.
+3. **`qualification` is rare** (1 of 20). Might merit re-examination — is "UHP-S2 (tactical advice only matters if fundamentals solid)" the only qualification, or should some items labeled `condition` instead be `qualification`? The definitional boundary between the two may need sharpening during implementation.
 
 ## Decision Rules
 
