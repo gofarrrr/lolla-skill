@@ -31,6 +31,12 @@ from .ir_builders import (
 # to populate stance events; tests can inject deterministic fakes.
 StanceExtractor = Callable[[ConversationContext], list[StanceEvent]]
 
+# Phase 5: optional injectable callable that takes a ConversationContext and
+# returns a list of UserIssueEvent (live_constraints only). When provided, its
+# output REPLACES the monolith-extracted live_constraints mapping.
+# dropped_threads mapping from context.extraction.dropped_threads is unaffected.
+LiveConstraintsExtractor = Callable[[ConversationContext], list[UserIssueEvent]]
+
 
 _LOGGER = logging.getLogger("system_b.ir_constructor")
 
@@ -57,6 +63,7 @@ def construct_conversation_ir(
     context: ConversationContext,
     *,
     stance_extractor: StanceExtractor | None = None,
+    live_constraints_extractor: LiveConstraintsExtractor | None = None,
 ) -> ConversationIR:
     """Build the Phase 1 IR without changing lane behavior.
 
@@ -68,6 +75,13 @@ def construct_conversation_ir(
     LLM-free. When provided, each returned stance is appended via the
     reducer; the extractor is expected to have already validated each span
     as an exact substring of an assistant turn.
+
+    Phase 5: optional `live_constraints_extractor` REPLACES the monolith's
+    paraphrased `live_constraints` → `UserIssueEvent` mapping with
+    substring-validated span/derivation events. Default None preserves
+    Phase-1 behavior. When provided and it raises, a WARNING is logged
+    and live_constraint events stay empty from the specialist path;
+    dropped_threads are still mapped from the monolith regardless.
     """
 
     ir = ConversationIR()
@@ -81,23 +95,32 @@ def construct_conversation_ir(
             ),
         )
 
-    for index, constraint in enumerate(context.extraction.live_constraints, 1):
-        source_ref = _source_turn_ref(context, constraint.introduced_turn, "user")
-        ir = add_user_issue_event(
-            ir,
-            UserIssueEvent(
-                issue_id=f"live_constraint_{index:03d}",
-                text=constraint.constraint,
-                kind="constraint",
-                status=constraint.status or "active",
-                provenance=TurnRefProvenance(
-                    turn_refs=(source_ref,),
-                    note="live_constraints",
+    if live_constraints_extractor is not None:
+        try:
+            specialist_events = live_constraints_extractor(context)
+        except Exception as exc:  # noqa: BLE001
+            _LOGGER.warning("live_constraints_extractor_failed: %s", exc)
+            specialist_events = []
+        for event in specialist_events:
+            ir = add_user_issue_event(ir, event)
+    else:
+        for index, constraint in enumerate(context.extraction.live_constraints, 1):
+            source_ref = _source_turn_ref(context, constraint.introduced_turn, "user")
+            ir = add_user_issue_event(
+                ir,
+                UserIssueEvent(
+                    issue_id=f"live_constraint_{index:03d}",
+                    text=constraint.constraint,
+                    kind="constraint",
+                    status=constraint.status or "active",
+                    provenance=TurnRefProvenance(
+                        turn_refs=(source_ref,),
+                        note="live_constraints",
+                    ),
+                    introduced_at_turn=source_ref.turn_index,
+                    kind_ambiguity=_kind_ambiguity(constraint.constraint),
                 ),
-                introduced_at_turn=source_ref.turn_index,
-                kind_ambiguity=_kind_ambiguity(constraint.constraint),
-            ),
-        )
+            )
 
     for index, thread in enumerate(context.extraction.dropped_threads, 1):
         source_ref = _source_turn_ref(
