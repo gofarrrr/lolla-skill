@@ -7,7 +7,7 @@ source provenance without changing lane prompts, routing, or extraction.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Literal
+from typing import Any, Literal, Mapping
 
 
 Speaker = Literal["user", "assistant"]
@@ -372,6 +372,15 @@ class ConversationIR:
             )
         return turn.text[span_ref.start_char:span_ref.end_char]
 
+    def resolve_turn_ref(self, turn_ref: TurnRef) -> Turn:
+        turn = self.turn_map().get((turn_ref.turn_index, turn_ref.speaker))
+        if turn is None:
+            raise ValueError(
+                "TurnRef points to missing turn "
+                f"{turn_ref.turn_index}/{turn_ref.speaker}"
+            )
+        return turn
+
     def provenance_tier_counts(self) -> dict[ProvenanceKind, int]:
         counts: dict[ProvenanceKind, int] = {
             "span": 0,
@@ -413,3 +422,107 @@ class ConversationIR:
                 StanceEvent.from_dict(s) for s in raw.get("stance_events", ())
             ),
         )
+
+
+@dataclass(frozen=True)
+class DrillBackResult:
+    object_type: str
+    object_id: str
+    provenance_kind: ProvenanceKind
+    exact_text: str | None
+    source_turns: tuple[Turn, ...]
+    span_ref: SpanRef | None
+    source_object_ids: tuple[str, ...]
+    logical_hops: int
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "object_type": self.object_type,
+            "object_id": self.object_id,
+            "provenance_kind": self.provenance_kind,
+            "exact_text": self.exact_text,
+            "source_turns": [turn.to_dict() for turn in self.source_turns],
+            "span_ref": self.span_ref.to_dict() if self.span_ref else None,
+            "source_object_ids": list(self.source_object_ids),
+            "logical_hops": self.logical_hops,
+        }
+
+
+def drill_back(
+    ir: ConversationIR,
+    source_ref: Mapping[str, str],
+) -> DrillBackResult:
+    """Resolve a packet-like source ref to source text/provenance.
+
+    Expected source_ref shape:
+    `{"object_type": "frame_anchor|user_issue_event|stance_event", "object_id": "..."}`
+    """
+
+    object_type = source_ref.get("object_type", "")
+    object_id = source_ref.get("object_id", "")
+    obj = _find_ir_object(ir, object_type, object_id)
+    provenance = obj.provenance
+
+    if isinstance(provenance, SpanProvenance):
+        turn = ir.resolve_turn_ref(provenance.span_ref.to_turn_ref())
+        return DrillBackResult(
+            object_type=object_type,
+            object_id=object_id,
+            provenance_kind=provenance.kind,
+            exact_text=ir.resolve_span(provenance.span_ref),
+            source_turns=(turn,),
+            span_ref=provenance.span_ref,
+            source_object_ids=(),
+            logical_hops=3,
+        )
+
+    if isinstance(provenance, TurnRefProvenance):
+        return DrillBackResult(
+            object_type=object_type,
+            object_id=object_id,
+            provenance_kind=provenance.kind,
+            exact_text=None,
+            source_turns=tuple(
+                ir.resolve_turn_ref(turn_ref) for turn_ref in provenance.turn_refs
+            ),
+            span_ref=None,
+            source_object_ids=(),
+            logical_hops=3,
+        )
+
+    if isinstance(provenance, DerivationProvenance):
+        return DrillBackResult(
+            object_type=object_type,
+            object_id=object_id,
+            provenance_kind=provenance.kind,
+            exact_text=None,
+            source_turns=tuple(
+                ir.resolve_turn_ref(turn_ref) for turn_ref in provenance.turn_refs
+            ),
+            span_ref=None,
+            source_object_ids=provenance.source_object_ids,
+            logical_hops=3,
+        )
+
+    raise ValueError(f"Unsupported provenance for source ref: {source_ref!r}")
+
+
+def _find_ir_object(
+    ir: ConversationIR,
+    object_type: str,
+    object_id: str,
+) -> FrameAnchor | UserIssueEvent | StanceEvent:
+    normalized = object_type.strip().lower()
+    if normalized in {"frame_anchor", "frame_anchors"}:
+        for anchor in ir.frame_anchors:
+            if anchor.anchor_id == object_id:
+                return anchor
+    if normalized in {"user_issue_event", "user_issue_events", "issue"}:
+        for issue in ir.user_issue_events:
+            if issue.issue_id == object_id:
+                return issue
+    if normalized in {"stance_event", "stance_events"}:
+        for stance in ir.stance_events:
+            if stance.stance_id == object_id:
+                return stance
+    raise ValueError(f"Unknown IR object for source ref: {object_type}/{object_id}")

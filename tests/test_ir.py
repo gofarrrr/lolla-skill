@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import time
 from pathlib import Path
 
@@ -512,3 +513,16 @@ def test_construct_conversation_ir_completes_user_has_plan_under_50ms() -> None:
     elapsed = time.perf_counter() - start
 
     assert elapsed < 0.050
+
+
+def test_construct_conversation_ir_logs_provenance_tier_counts(caplog) -> None:
+    context = load_conversation_context(
+        USER_HAS_PLAN_EXTRACTION,
+        USER_HAS_PLAN_CONVERSATION,
+    )
+
+    with caplog.at_level(logging.INFO, logger="system_b.ir_constructor"):
+        construct_conversation_ir(context)
+
+    assert "conversation_ir_constructed" in caplog.text
+    assert "provenance_tiers={'span': 0, 'turn_ref': 6, 'derivation': 0}" in caplog.text
