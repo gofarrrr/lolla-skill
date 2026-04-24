@@ -226,6 +226,10 @@ class FrameAnchor:
     inquiry_stage: str = ""
     likely_default: str = ""
 
+    def __post_init__(self) -> None:
+        if self.provenance is None:
+            raise ValueError("FrameAnchor.provenance is required")
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "anchor_id": self.anchor_id,
@@ -273,6 +277,8 @@ class UserIssueEvent:
             raise ValueError(
                 f"UserIssueEvent.kind must be one of {valid_kinds}; got {self.kind!r}"
             )
+        if self.provenance is None:
+            raise ValueError("UserIssueEvent.provenance is required")
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -316,6 +322,8 @@ class StanceEvent:
             raise ValueError(
                 f"StanceEvent.speaker must be one of {_VALID_SPEAKERS}; got {self.speaker!r}"
             )
+        if self.provenance is None:
+            raise ValueError("StanceEvent.provenance is required")
 
     def to_dict(self) -> dict[str, Any]:
         return {
