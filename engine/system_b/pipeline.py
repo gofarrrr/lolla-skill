@@ -49,7 +49,12 @@ from .excessive_self_regard_deep_check_packet_adapter import (
 from .envy_jealousy_deep_check_packet_adapter import (
     map_envy_jealousy_result_to_subpattern,
 )
-from .deep_checks import DeepCheckResult, format_pass2_prompt, parse_pass2_result
+from .deep_checks import (
+    DeepCheckResult,
+    format_pass2_prompt,
+    format_pass2_prompt_from_context,
+    parse_pass2_result,
+)
 from .authority_phase1_builder import AuthorityPhase1Builder
 from .authority_deep_check_packet_adapter import (
     map_authority_result_to_subpattern,
@@ -74,8 +79,10 @@ from .pressure_bundle_selector import PressureBundleSelector
 from .pressure_bundle_selector import SelectedChunkRecord
 from .prompts import (
     PASS1_CLUSTERS,
+    _joined_assistant_turns_text,
     cluster_tendency_ids,
     format_pass1_cluster_prompts,
+    format_pass1_cluster_prompts_from_context,
 )
 from .relation_graph import RelationGraph
 from .reward_and_punishment_deep_check_packet_adapter import (
@@ -473,11 +480,20 @@ class SystemBPipeline:
             request=request,
             boundary=self._boundary,
             catalog=self._catalog,
+            conversation_context=conversation_context,
         )
         boundary_calls.extend(pass1_boundary_calls)
         pass1_seconds = time.monotonic() - pass1_started
+        # Embedding tendency signal reads a flat string of assistant reasoning.
+        # Under the new contract (Phase 2c), prefer joined assistant turns so the
+        # signal reflects turn-structured context consistently with Pass 1 / Pass 2.
+        # Fall back to legacy vanilla_answer when no context is present.
+        if conversation_context is not None:
+            embedding_input = _joined_assistant_turns_text(conversation_context) or request.vanilla_answer
+        else:
+            embedding_input = request.vanilla_answer
         embedding_tendency_hits = _embedding_tendency_signal(
-            vanilla_answer=request.vanilla_answer,
+            vanilla_answer=embedding_input,
             retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             api_key=self._embedding_api_key,
         )
@@ -596,6 +612,7 @@ class SystemBPipeline:
                 request=request,
                 boundary=self._boundary,
                 catalog=self._catalog,
+                conversation_context=conversation_context,
             )
             boundary_calls.extend(pass2_boundary_calls)
             pass2_seconds = time.monotonic() - pass2_started
@@ -1075,6 +1092,7 @@ def _run_pass1_clusters_parallel(
     request: CritiqueRequest,
     boundary: BoundaryClient,
     catalog: TendencyCatalog,
+    conversation_context: ConversationContext | None = None,
 ) -> tuple[list[TriageScore], list[BoundaryCallTrace]]:
     """Run all Pass 1 cluster triage calls in parallel and merge their scores.
 
@@ -1084,14 +1102,25 @@ def _run_pass1_clusters_parallel(
     deterministic compound-group logic, not by triage) are absent from the
     returned scores — downstream code treats absence as score=0.
 
+    When ``conversation_context`` is provided (Phase 2c migration path), the
+    cluster prompts use the CONTEXT/SOURCE turn-structured shape with
+    assistant turns as the primary audit target. Otherwise the legacy
+    query+vanilla_answer shape is used.
+
     Falls back to sequential execution if ``run_json_with_metadata`` is
     unavailable (e.g., test mocks).
     """
-    cluster_prompts = format_pass1_cluster_prompts(
-        query=request.query,
-        vanilla_answer=request.vanilla_answer,
-        catalog=catalog,
-    )
+    if conversation_context is not None:
+        cluster_prompts = format_pass1_cluster_prompts_from_context(
+            context=conversation_context,
+            catalog=catalog,
+        )
+    else:
+        cluster_prompts = format_pass1_cluster_prompts(
+            query=request.query,
+            vanilla_answer=request.vanilla_answer,
+            catalog=catalog,
+        )
 
     if not hasattr(boundary, "run_json_with_metadata") or not getattr(boundary, "supports_parallel_calls", False):
         # Fallback for test mocks or custom clients without the new method.
@@ -1133,14 +1162,26 @@ def _run_pass2_single(
     request: CritiqueRequest,
     boundary: BoundaryClient,
     catalog: TendencyCatalog,
+    conversation_context: ConversationContext | None = None,
 ) -> tuple[DeepCheckResult, BoundaryCallTrace]:
-    """Run a single Pass 2 deep check. Thread-safe — uses run_json_with_metadata."""
-    pass2_system, pass2_user = format_pass2_prompt(
-        query=request.query,
-        vanilla_answer=request.vanilla_answer,
-        tendency_key=tendency_id,
-        catalog=catalog,
-    )
+    """Run a single Pass 2 deep check. Thread-safe — uses run_json_with_metadata.
+
+    When ``conversation_context`` is provided (Phase 2c migration), the prompt
+    uses the CONTEXT/SOURCE shape with assistant turns as primary audit target.
+    """
+    if conversation_context is not None:
+        pass2_system, pass2_user = format_pass2_prompt_from_context(
+            context=conversation_context,
+            tendency_key=tendency_id,
+            catalog=catalog,
+        )
+    else:
+        pass2_system, pass2_user = format_pass2_prompt(
+            query=request.query,
+            vanilla_answer=request.vanilla_answer,
+            tendency_key=tendency_id,
+            catalog=catalog,
+        )
     payload, metadata = boundary.run_json_with_metadata(pass2_system, pass2_user)
     trace = _metadata_to_boundary_call_trace(metadata, stage="pass2", tendency_id=tendency_id)
     result = parse_pass2_result(
@@ -1157,26 +1198,38 @@ def _run_pass2_parallel(
     request: CritiqueRequest,
     boundary: BoundaryClient,
     catalog: TendencyCatalog,
+    conversation_context: ConversationContext | None = None,
 ) -> tuple[list[DeepCheckResult], list[BoundaryCallTrace]]:
     """Run Pass 2 deep checks in parallel using thread pool.
 
     Results are returned in the same order as triggered_tendencies.
     Falls back to sequential execution if run_json_with_metadata is unavailable.
+    When ``conversation_context`` is provided, prompts use the CONTEXT/SOURCE
+    turn-structured shape (Phase 2c migration path).
     """
     if not triggered_tendencies:
         return [], []
+
+    def _format_prompt_for(tendency_key: str) -> tuple[str, str]:
+        if conversation_context is not None:
+            return format_pass2_prompt_from_context(
+                context=conversation_context,
+                tendency_key=tendency_key,
+                catalog=catalog,
+            )
+        return format_pass2_prompt(
+            query=request.query,
+            vanilla_answer=request.vanilla_answer,
+            tendency_key=tendency_key,
+            catalog=catalog,
+        )
 
     if not hasattr(boundary, "run_json_with_metadata") or not getattr(boundary, "supports_parallel_calls", False):
         # Fallback for test mocks or custom clients without the new method
         results: list[DeepCheckResult] = []
         traces: list[BoundaryCallTrace] = []
         for tt in triggered_tendencies:
-            pass2_system, pass2_user = format_pass2_prompt(
-                query=request.query,
-                vanilla_answer=request.vanilla_answer,
-                tendency_key=tt.tendency_id,
-                catalog=catalog,
-            )
+            pass2_system, pass2_user = _format_prompt_for(tt.tendency_id)
             payload = boundary.run_json(pass2_system, pass2_user)
             traces.append(_capture_boundary_call(boundary, stage="pass2", tendency_id=tt.tendency_id))
             results.append(parse_pass2_result(payload, requested_tendency_key=tt.tendency_id, catalog=catalog))
@@ -1185,7 +1238,14 @@ def _run_pass2_parallel(
     max_workers = min(len(triggered_tendencies), 8)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [
-            executor.submit(_run_pass2_single, tt.tendency_id, request, boundary, catalog)
+            executor.submit(
+                _run_pass2_single,
+                tt.tendency_id,
+                request,
+                boundary,
+                catalog,
+                conversation_context,
+            )
             for tt in triggered_tendencies
         ]
     # Collect in submission order (preserves tendency ordering)
