@@ -46,6 +46,9 @@ for line in (REPO_ROOT / ".env").read_text().splitlines():
     if k and k not in os.environ:
         os.environ[k] = v
 
+import os
+import tempfile
+
 from system_b.boundary_provider import load_boundary_client_from_env
 from system_b.conversation_loader import load_conversation_context
 from system_b.prompts import (
@@ -54,6 +57,16 @@ from system_b.prompts import (
     _format_pass1_from_context_user_prompt,
 )
 from system_b.tendency_catalog import TendencyCatalog
+
+
+def _resolve_data_root() -> Path:
+    """Mirror run_pipeline.py — symlink data/ into a tmp build/ for catalog load."""
+    skill_data = REPO_ROOT / "data"
+    if not skill_data.exists():
+        raise SystemExit(f"data dir not found at {skill_data}")
+    tmp_root = Path(tempfile.mkdtemp(prefix="lolla_ablation_"))
+    os.symlink(str(skill_data), str(tmp_root / "build"))
+    return tmp_root
 
 
 def _trimmed_pass1_user(context) -> str:
@@ -93,7 +106,7 @@ def main() -> int:
     print(f"  trimmed ablation user prompt length: {len(trimmed)} chars")
     print()
 
-    catalog = TendencyCatalog.load(REPO_ROOT)
+    catalog = TendencyCatalog.load(_resolve_data_root())
     boundary = load_boundary_client_from_env("openrouter")
 
     # Run all 6 clusters with the ablation prompt
