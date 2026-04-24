@@ -36,10 +36,12 @@ reduction:
   - `live_constraints` -> `constraint`
   - `dropped_threads` with unresolved/active status -> `concern`
   - `dropped_threads` with `acknowledged_then_dropped` or `superseded_by` -> `open_loop`
+- `UserIssueEvent` includes `kind_ambiguity: bool = False`. This is an informational flag, not a fourth kind and not a confidence score. Set it when source text fits both `constraint` and `concern` under the definitions surfaced by the annotation exercise.
 - Lane 3 frame elements are `FrameAnchor`s, not `UserIssueEvent`s.
 - `StanceEvent` carries `speaker`; user commitments and assistant trajectory events share the primitive.
 - `ActorRef`, `DecisionOption`, `ReasoningSegment`, and `CoverageTarget` are deferred/projection candidates.
 - Reducer-style updates are adopted: named pure functions produce IR updates instead of ad-hoc mutation.
+- Pre-implementation annotation gate passed: `research/phase1-useriussevent-annotation-exercise-2026-04-24.md` scored 16.0 / 17 (94.1%). The main ontology seam was `constraint` vs `concern` on active ongoing issues; `kind_ambiguity` is the scoped response.
 
 ## Relevant Files
 
@@ -124,7 +126,7 @@ Not TDD'd:
   - [ ] 1.5 RED: add tests for provenance variants: `span`, `turn_ref`, and `derivation`. Each must serialize to a JSON-compatible dict.
   - [ ] 1.6 GREEN: implement provenance dataclasses or a typed union. Keep the public shape explicit enough for code review.
   - [ ] 1.7 RED: add tests for `FrameAnchor`, `UserIssueEvent`, `StanceEvent`, and `ConversationIR` minimal construction.
-  - [ ] 1.8 GREEN: implement the v1 dataclasses. Include `StanceEvent.speaker` and `UserIssueEvent.kind`.
+  - [ ] 1.8 GREEN: implement the v1 dataclasses. Include `StanceEvent.speaker`, `UserIssueEvent.kind`, and `UserIssueEvent.kind_ambiguity: bool = False`.
   - [ ] 1.9 RED: add tests that deferred candidates are not present as first-class v1 dataclasses: `ActorRef`, `DecisionOption`, `ReasoningSegment`, `CoverageTarget`.
   - [ ] 1.10 GREEN: keep the v1 object set narrow.
   - [ ] 1.11 Run `python3 -m pytest tests/test_ir.py -q`.
@@ -153,15 +155,17 @@ Not TDD'd:
   - [ ] 3.6 GREEN: implement dropped-thread mapping and lifecycle fields.
   - [ ] 3.7 RED: test unresolved/active dropped-thread-like fixtures map to `kind="concern"`.
   - [ ] 3.8 GREEN: implement the concern/open_loop discriminator.
-  - [ ] 3.9 RED: test the constructor does not fabricate stance events from `synthesized_position` or other paraphrased summaries.
-  - [ ] 3.10 GREEN: keep stance construction explicit through reducer builders in Phase 1; Phase 3 can add assistant trajectory extraction. If a stance event is added from a fixture, it must be backed by an exact `SpanRef`.
-  - [ ] 3.11 RED: test `original_framing` becomes a `FrameAnchor` with `turn_ref` provenance, not an exact span, because it is extractor paraphrase.
-  - [ ] 3.12 GREEN: implement `FrameAnchor` construction from current extraction fields.
-  - [ ] 3.13 RED: test the constructor never emits a `span` provenance when the literal text is not found.
-  - [ ] 3.14 GREEN: implement exact-substring guard.
-  - [ ] 3.15 RED: add a constructor smoke test on a non-Lane-3 fixture case, preferably `whistleblower` or `parenting_teen`, to prove mapping works beyond the `user_has_plan` drill-back spike.
-  - [ ] 3.16 GREEN: make the constructor handle that fixture without changing object scope or provenance honesty.
-  - [ ] 3.17 Run `python3 -m pytest tests/test_ir.py -q`.
+  - [ ] 3.9 RED: test active items that fit both `constraint` and `concern` can be represented as `kind="constraint", kind_ambiguity=True` without changing the kind taxonomy.
+  - [ ] 3.10 GREEN: implement conservative `kind_ambiguity` logic for current artifacts. Default mapping remains `live_constraints -> kind="constraint"`; the flag is informational only.
+  - [ ] 3.11 RED: test the constructor does not fabricate stance events from `synthesized_position` or other paraphrased summaries.
+  - [ ] 3.12 GREEN: keep stance construction explicit through reducer builders in Phase 1; Phase 3 can add assistant trajectory extraction. If a stance event is added from a fixture, it must be backed by an exact `SpanRef`.
+  - [ ] 3.13 RED: test `original_framing` becomes a `FrameAnchor` with `turn_ref` provenance, not an exact span, because it is extractor paraphrase.
+  - [ ] 3.14 GREEN: implement `FrameAnchor` construction from current extraction fields.
+  - [ ] 3.15 RED: test the constructor never emits a `span` provenance when the literal text is not found.
+  - [ ] 3.16 GREEN: implement exact-substring guard.
+  - [ ] 3.17 RED: add a constructor smoke test on a non-Lane-3 fixture case, preferably `whistleblower` or `parenting_teen`, to prove mapping works beyond the `user_has_plan` drill-back spike.
+  - [ ] 3.18 GREEN: make the constructor handle that fixture without changing object scope or provenance honesty.
+  - [ ] 3.19 Run `python3 -m pytest tests/test_ir.py -q`.
 
 - [ ] 4.0 Implement drill-back resolver (TDD)
   - [ ] 4.1 RED: add `tests/test_ir_drillback.py::test_drillback_from_frame_source_ref_to_raw_turn_text` using the Phase 0.5 Chain 1 fixture.
@@ -195,12 +199,11 @@ Not TDD'd:
   - [ ] 6.9 GREEN: keep output change scoped to observability.
   - [ ] 6.10 Run `python3 -m pytest tests/test_pipeline_shim_equivalence.py tests/test_run_pipeline_contract_default.py -q`.
 
-- [ ] 7.0 Manual annotation exercise on protected cases
-  - [ ] 7.1 Prepare a small annotation table for three protected cases: `user_has_plan`, `whistleblower`, and one messy multi-thread case.
-  - [ ] 7.2 Include each `UserIssueEvent` text, status, provenance tier, and candidate `kind`.
-  - [ ] 7.3 Stop for two-reviewer classification. Do not proceed if reviewers cannot complete the exercise.
-  - [ ] 7.4 Record agreement rate in this task file and in a research artifact.
-  - [ ] 7.5 If agreement is < 80%, STOP and narrow the ontology before shipping.
+- [ ] 7.0 Confirm completed annotation gate and preserve its finding
+  - [ ] 7.1 Read `research/phase1-useriussevent-annotation-exercise-2026-04-24.md` before implementation reaches PR review.
+  - [ ] 7.2 Confirm the recorded agreement result is 16.0 / 17 (94.1%) and that the gate passed.
+  - [ ] 7.3 Confirm the implementation includes `kind_ambiguity` and does not widen the kind taxonomy beyond `constraint`, `concern`, and `open_loop`.
+  - [ ] 7.4 If implementation changes `UserIssueEvent.kind` semantics, STOP and rerun the annotation exercise before shipping.
 
 - [ ] 8.0 Verification
   - [ ] 8.1 Run IR tests: `python3 -m pytest tests/test_ir.py tests/test_ir_drillback.py -q`.
