@@ -47,22 +47,28 @@ VALID_SPEAKERS: tuple[str, ...] = ("user", "assistant")
 
 DROPPED_THREADS_SYSTEM_PROMPT = """You are identifying DROPPED THREADS in a decision-support conversation.
 
-A DROPPED THREAD is a topic, concern, question, or option that was raised during the conversation and then left unresolved or superseded — set aside in favor of a different line of analysis, acknowledged but not addressed, or implicitly redirected by the other party.
+A DROPPED THREAD is a SUBSTANTIVE TOPIC raised by one party that the conversation then walked away from — the stakes, framing, or question it carried didn't get directly addressed; the conversation pivoted somewhere else.
 
-Dropped threads can be raised by EITHER the user OR the assistant. If the user raised a concern and the assistant redirected the conversation away from it, that's a user-raised dropped thread. If the assistant flagged an option or risk and then moved on without resolving it, that's an assistant-raised dropped thread.
+The key test: **would a thoughtful reader looking back think "they raised X but never really dealt with X — they dealt with Y instead"?**
+
+A thread is about CONTENT (stakes, framing, arguments, options, concerns), not conversation structure (clarifying questions, transitions, summaries).
 
 INCLUDE as a dropped thread:
-- a question the user asked that got acknowledged but not answered
-- a stake or concern the user raised that got redirected
-- an option the assistant flagged as viable-but-not-recommended
-- an implicit possibility that was explicitly de-prioritized
-- a topic that lost airtime after a more-pressing one took over
+- user raises emotional stakes/fears ("she's going to be homeless", "I love DC", "I've been feeling stuck") and the assistant redirects to a practical path without staying with the emotion
+- user makes an argument or presents logic (EV math, a spouse's position) and the assistant reframes the decision, not engaging the argument on its own terms
+- user flags a specific concern about a downstream consequence ("might implicate her") and the assistant says it's not theirs to solve
+- user asks for a specific deliverable ("help me think through the launch plan") and the assistant redirects to fundamentals instead
+- assistant flags an option or hypothesis as less viable and the conversation moves on without resolving it (e.g. "pure option 2 isn't viable" — not resolved, just set aside)
 
 EXCLUDE:
-- questions the assistant asked for clarification (those are conversation moves, not threads)
-- topics that were explicitly resolved (not dropped)
-- side details mentioned in passing without any "raise" quality
-- the user's ambient unease if they didn't articulate a specific thread
+- clarifying questions the assistant asked early in the conversation to gather context (these are conversation moves, not threads)
+- items in the assistant's final summary/action list (these are next steps, not dropped threads)
+- items the user explicitly accepted ("ok", "will do", "got it") — these are resolved
+- the assistant's closing reassurance or wrap-up
+- the user's questions the assistant answered directly in the next turn
+- side details mentioned in passing without real "raise" quality
+
+**Critical pattern to recognize:** the most common dropped threads are user-side emotional or logical content that the assistant acknowledges superficially and then redirects. If you see the user expressing weight ("the stakes here...", "I've been feeling...", "my argument is that...") and then the assistant's response pivots to a different framing or action — that's a dropped thread. The user's raised content is the span.
 
 KIND TAXONOMY (pick one; default to "open_loop"):
 
