@@ -36,10 +36,12 @@ reduction:
   - `live_constraints` -> `constraint`
   - `dropped_threads` with unresolved/active status -> `concern`
   - `dropped_threads` with `acknowledged_then_dropped` or `superseded_by` -> `open_loop`
+- `UserIssueEvent` includes `kind_ambiguity: bool = False`. This is an informational flag, not a fourth kind and not a confidence score. Set it when source text fits both `constraint` and `concern` under the definitions surfaced by the annotation exercise.
 - Lane 3 frame elements are `FrameAnchor`s, not `UserIssueEvent`s.
 - `StanceEvent` carries `speaker`; user commitments and assistant trajectory events share the primitive.
 - `ActorRef`, `DecisionOption`, `ReasoningSegment`, and `CoverageTarget` are deferred/projection candidates.
 - Reducer-style updates are adopted: named pure functions produce IR updates instead of ad-hoc mutation.
+- Pre-implementation annotation gate passed: `research/phase1-useriussevent-annotation-exercise-2026-04-24.md` scored 16.0 / 17 (94.1%). The main ontology seam was `constraint` vs `concern` on active ongoing issues; `kind_ambiguity` is the scoped response.
 
 ## Relevant Files
 
@@ -109,113 +111,114 @@ Not TDD'd:
 
 ## Tasks
 
-- [ ] 0.0 Create feature branch and verify baseline
-  - [ ] 0.1 Confirm current branch and worktree: `git branch --show-current` and `git status --short`. Note user-owned untracked files and leave them untouched.
-  - [ ] 0.2 Confirm Phase 0.1 and Phase 0.5 artifacts exist: capture audit, adoption memo, drill-back spike, and this task file.
-  - [ ] 0.3 Create and checkout branch: `git switch -c feat/conversation-first-phase-1-ir`.
-  - [ ] 0.4 Run baseline local tests: `python3 -m pytest tests/test_conversation_context.py tests/test_conversation_loader.py tests/test_frame_pressure_contextual.py tests/test_pipeline_shim_equivalence.py -q`.
-  - [ ] 0.5 Record the baseline result in this task file before code changes.
+- [x] 0.0 Create feature branch and verify baseline
+  - [x] 0.1 Confirm current branch and worktree: `git branch --show-current` and `git status --short`. Note user-owned untracked files and leave them untouched. Started on `main`; user-owned untracked file present and untouched: `research/conversation-first-extraction-evaluation-2026-04-24.md`.
+  - [x] 0.2 Confirm Phase 0.1 and Phase 0.5 artifacts exist: capture audit, adoption memo, drill-back spike, and this task file.
+  - [x] 0.3 Create and checkout branch: `git switch -c feat/conversation-first-phase-1-ir`.
+  - [x] 0.4 Run baseline local tests: `python3 -m pytest tests/test_conversation_context.py tests/test_conversation_loader.py tests/test_frame_pressure_contextual.py tests/test_pipeline_shim_equivalence.py -q`.
+  - [x] 0.5 Record the baseline result in this task file before code changes. Result: `61 passed in 0.42s`.
 
-- [ ] 1.0 Define IR dataclasses and provenance union (TDD)
-  - [ ] 1.1 RED: add `tests/test_ir.py::test_span_ref_resolves_exact_turn_relative_text` using the `user_has_plan` Turn 2 pipeline quote from the drill-back spike.
-  - [ ] 1.2 GREEN: create `engine/system_b/ir.py` with `SpanRef` and a resolver helper or method that returns the exact substring from a turn map.
-  - [ ] 1.3 RED: add tests for invalid spans: missing turn, speaker mismatch, negative offsets, end before start, and end beyond turn length.
-  - [ ] 1.4 GREEN: enforce span validation with clear `ValueError`s.
-  - [ ] 1.5 RED: add tests for provenance variants: `span`, `turn_ref`, and `derivation`. Each must serialize to a JSON-compatible dict.
-  - [ ] 1.6 GREEN: implement provenance dataclasses or a typed union. Keep the public shape explicit enough for code review.
-  - [ ] 1.7 RED: add tests for `FrameAnchor`, `UserIssueEvent`, `StanceEvent`, and `ConversationIR` minimal construction.
-  - [ ] 1.8 GREEN: implement the v1 dataclasses. Include `StanceEvent.speaker` and `UserIssueEvent.kind`.
-  - [ ] 1.9 RED: add tests that deferred candidates are not present as first-class v1 dataclasses: `ActorRef`, `DecisionOption`, `ReasoningSegment`, `CoverageTarget`.
-  - [ ] 1.10 GREEN: keep the v1 object set narrow.
-  - [ ] 1.11 Run `python3 -m pytest tests/test_ir.py -q`.
+- [x] 1.0 Define IR dataclasses and provenance union (TDD)
+  - [x] 1.1 RED: add `tests/test_ir.py::test_span_ref_resolves_exact_turn_relative_text` using the `user_has_plan` Turn 2 pipeline quote from the drill-back spike.
+  - [x] 1.2 GREEN: create `engine/system_b/ir.py` with `SpanRef` and a resolver helper or method that returns the exact substring from a turn map.
+  - [x] 1.3 RED: add tests for invalid spans: missing turn, speaker mismatch, negative offsets, end before start, and end beyond turn length.
+  - [x] 1.4 GREEN: enforce span validation with clear `ValueError`s.
+  - [x] 1.5 RED: add tests for provenance variants: `span`, `turn_ref`, and `derivation`. Each must serialize to a JSON-compatible dict.
+  - [x] 1.6 GREEN: implement provenance dataclasses or a typed union. Keep the public shape explicit enough for code review.
+  - [x] 1.7 RED: add tests for `FrameAnchor`, `UserIssueEvent`, `StanceEvent`, and `ConversationIR` minimal construction.
+  - [x] 1.8 GREEN: implement the v1 dataclasses. Include `StanceEvent.speaker`, `UserIssueEvent.kind`, and `UserIssueEvent.kind_ambiguity: bool = False`.
+  - [x] 1.9 RED: add tests that deferred candidates are not present as first-class v1 dataclasses: `ActorRef`, `DecisionOption`, `ReasoningSegment`, `CoverageTarget`.
+  - [x] 1.10 GREEN: keep the v1 object set narrow.
+  - [x] 1.11 Run `python3 -m pytest tests/test_ir.py -q`. Result: `17 passed`.
 
-- [ ] 2.0 Implement reducer-style builders (TDD)
-  - [ ] 2.1 RED: test `add_turn` returns a new `ConversationIR` with the appended/replaced turn while leaving the original IR unchanged.
-  - [ ] 2.2 GREEN: create `engine/system_b/ir_builders.py` and implement `add_turn`.
-  - [ ] 2.3 RED: test `add_span` validates the span against stored turns before adding it.
-  - [ ] 2.4 GREEN: implement `add_span`.
-  - [ ] 2.5 RED: test `add_frame_anchor` requires non-empty provenance and preserves the source frame fields.
-  - [ ] 2.6 GREEN: implement `add_frame_anchor`.
-  - [ ] 2.7 RED: test `add_user_issue_event(kind, status, provenance)` accepts only approved kinds/statuses.
-  - [ ] 2.8 GREEN: implement `add_user_issue_event`.
-  - [ ] 2.9 RED: test `supersede_issue(issue_id, by_ref)` updates lifecycle without mutating the original event.
-  - [ ] 2.10 GREEN: implement `supersede_issue`.
-  - [ ] 2.11 RED: test `add_stance_event` records `speaker`, stance label, and provenance.
-  - [ ] 2.12 GREEN: implement `add_stance_event`.
-  - [ ] 2.13 Run `python3 -m pytest tests/test_ir.py -q`.
+- [x] 2.0 Implement reducer-style builders (TDD)
+  - [x] 2.1 RED: test `add_turn` returns a new `ConversationIR` with the appended/replaced turn while leaving the original IR unchanged.
+  - [x] 2.2 GREEN: create `engine/system_b/ir_builders.py` and implement `add_turn`.
+  - [x] 2.3 RED: test `add_span` validates the span against stored turns before adding it.
+  - [x] 2.4 GREEN: implement `add_span`.
+  - [x] 2.5 RED: test `add_frame_anchor` requires non-empty provenance and preserves the source frame fields.
+  - [x] 2.6 GREEN: implement `add_frame_anchor`.
+  - [x] 2.7 RED: test `add_user_issue_event(kind, status, provenance)` accepts only approved kinds/statuses.
+  - [x] 2.8 GREEN: implement `add_user_issue_event`.
+  - [x] 2.9 RED: test `supersede_issue(issue_id, by_ref)` updates lifecycle without mutating the original event.
+  - [x] 2.10 GREEN: implement `supersede_issue`.
+  - [x] 2.11 RED: test `add_stance_event` records `speaker`, stance label, and provenance.
+  - [x] 2.12 GREEN: implement `add_stance_event`.
+  - [x] 2.13 Run `python3 -m pytest tests/test_ir.py -q`. Result: `17 passed`.
 
-- [ ] 3.0 Implement `ir_constructor.py` from current artifacts (TDD)
-  - [ ] 3.1 RED: test `construct_conversation_ir(context)` copies all `ConversationContext.turns` into `ConversationIR` with stable `(turn_index, speaker)` identity.
-  - [ ] 3.2 GREEN: create `engine/system_b/ir_constructor.py` and implement turn ingestion.
-  - [ ] 3.3 RED: test live constraints become `UserIssueEvent(kind="constraint")` with `turn_ref` provenance, not fake spans.
-  - [ ] 3.4 GREEN: map `ExtractionPayload.live_constraints` to `UserIssueEvent`s using introduced/source turns where available and conservative `turn_ref` provenance.
-  - [ ] 3.5 RED: test dropped threads map to `kind="open_loop"` when `status="acknowledged_then_dropped"` or `superseded_by` is present.
-  - [ ] 3.6 GREEN: implement dropped-thread mapping and lifecycle fields.
-  - [ ] 3.7 RED: test unresolved/active dropped-thread-like fixtures map to `kind="concern"`.
-  - [ ] 3.8 GREEN: implement the concern/open_loop discriminator.
-  - [ ] 3.9 RED: test the constructor does not fabricate stance events from `synthesized_position` or other paraphrased summaries.
-  - [ ] 3.10 GREEN: keep stance construction explicit through reducer builders in Phase 1; Phase 3 can add assistant trajectory extraction. If a stance event is added from a fixture, it must be backed by an exact `SpanRef`.
-  - [ ] 3.11 RED: test `original_framing` becomes a `FrameAnchor` with `turn_ref` provenance, not an exact span, because it is extractor paraphrase.
-  - [ ] 3.12 GREEN: implement `FrameAnchor` construction from current extraction fields.
-  - [ ] 3.13 RED: test the constructor never emits a `span` provenance when the literal text is not found.
-  - [ ] 3.14 GREEN: implement exact-substring guard.
-  - [ ] 3.15 RED: add a constructor smoke test on a non-Lane-3 fixture case, preferably `whistleblower` or `parenting_teen`, to prove mapping works beyond the `user_has_plan` drill-back spike.
-  - [ ] 3.16 GREEN: make the constructor handle that fixture without changing object scope or provenance honesty.
-  - [ ] 3.17 Run `python3 -m pytest tests/test_ir.py -q`.
+- [x] 3.0 Implement `ir_constructor.py` from current artifacts (TDD)
+  - [x] 3.1 RED: test `construct_conversation_ir(context)` copies all `ConversationContext.turns` into `ConversationIR` with stable `(turn_index, speaker)` identity.
+  - [x] 3.2 GREEN: create `engine/system_b/ir_constructor.py` and implement turn ingestion.
+  - [x] 3.3 RED: test live constraints become `UserIssueEvent(kind="constraint")` with `turn_ref` provenance, not fake spans.
+  - [x] 3.4 GREEN: map `ExtractionPayload.live_constraints` to `UserIssueEvent`s using introduced/source turns where available and conservative `turn_ref` provenance.
+  - [x] 3.5 RED: test dropped threads map to `kind="open_loop"` when `status="acknowledged_then_dropped"` or `superseded_by` is present.
+  - [x] 3.6 GREEN: implement dropped-thread mapping and lifecycle fields.
+  - [x] 3.7 RED: test unresolved/active dropped-thread-like fixtures map to `kind="concern"`.
+  - [x] 3.8 GREEN: implement the concern/open_loop discriminator.
+  - [x] 3.9 RED: test active items that fit both `constraint` and `concern` can be represented as `kind="constraint", kind_ambiguity=True` without changing the kind taxonomy.
+  - [x] 3.10 GREEN: implement conservative `kind_ambiguity` logic for current artifacts. Default mapping remains `live_constraints -> kind="constraint"`; the flag is informational only.
+  - [x] 3.11 RED: test the constructor does not fabricate stance events from `synthesized_position` or other paraphrased summaries.
+  - [x] 3.12 GREEN: keep stance construction explicit through reducer builders in Phase 1; Phase 3 can add assistant trajectory extraction. If a stance event is added from a fixture, it must be backed by an exact `SpanRef`.
+  - [x] 3.13 RED: test `original_framing` becomes a `FrameAnchor` with `turn_ref` provenance, not an exact span, because it is extractor paraphrase.
+  - [x] 3.14 GREEN: implement `FrameAnchor` construction from current extraction fields.
+  - [x] 3.15 RED: test the constructor never emits a `span` provenance when the literal text is not found.
+  - [x] 3.16 GREEN: implement exact-substring guard.
+  - [x] 3.17 RED: add a constructor smoke test on a non-Lane-3 fixture case, preferably `whistleblower` or `parenting_teen`, to prove mapping works beyond the `user_has_plan` drill-back spike.
+  - [x] 3.18 GREEN: make the constructor handle that fixture without changing object scope or provenance honesty.
+  - [x] 3.19 Run `python3 -m pytest tests/test_ir.py -q`. Result: `17 passed`.
 
-- [ ] 4.0 Implement drill-back resolver (TDD)
-  - [ ] 4.1 RED: add `tests/test_ir_drillback.py::test_drillback_from_frame_source_ref_to_raw_turn_text` using the Phase 0.5 Chain 1 fixture.
-  - [ ] 4.2 GREEN: implement a small resolver that maps a packet-like source ref to IR object id, then to provenance, then to source text.
-  - [ ] 4.3 RED: test `span` provenance returns exact text and metadata.
-  - [ ] 4.4 GREEN: implement span drill-back result.
-  - [ ] 4.5 RED: test `turn_ref` provenance returns the full source turn and marks span text unavailable.
-  - [ ] 4.6 GREEN: implement turn-ref drill-back result.
-  - [ ] 4.7 RED: test `derivation` provenance returns lineage refs without pretending to have one source span.
-  - [ ] 4.8 GREEN: implement derivation drill-back result.
-  - [ ] 4.9 RED: test missing source refs fail closed with a useful error.
-  - [ ] 4.10 GREEN: implement failure path.
-  - [ ] 4.11 Run `python3 -m pytest tests/test_ir_drillback.py -q`.
+- [x] 4.0 Implement drill-back resolver (TDD)
+  - [x] 4.1 RED: add `tests/test_ir_drillback.py::test_drillback_from_frame_source_ref_to_raw_turn_text` using the Phase 0.5 Chain 1 fixture.
+  - [x] 4.2 GREEN: implement a small resolver that maps a packet-like source ref to IR object id, then to provenance, then to source text.
+  - [x] 4.3 RED: test `span` provenance returns exact text and metadata.
+  - [x] 4.4 GREEN: implement span drill-back result.
+  - [x] 4.5 RED: test `turn_ref` provenance returns the full source turn and marks span text unavailable.
+  - [x] 4.6 GREEN: implement turn-ref drill-back result.
+  - [x] 4.7 RED: test `derivation` provenance returns lineage refs without pretending to have one source span.
+  - [x] 4.8 GREEN: implement derivation drill-back result.
+  - [x] 4.9 RED: test missing source refs fail closed with a useful error.
+  - [x] 4.10 GREEN: implement failure path.
+  - [x] 4.11 Run `python3 -m pytest tests/test_ir_drillback.py -q`. Result: `4 passed`.
 
-- [ ] 5.0 Serialization and local performance budget
-  - [ ] 5.1 RED: test `ConversationIR` serializes to a JSON-compatible dict and round-trips without losing provenance type.
-  - [ ] 5.2 GREEN: implement serialization helpers using local repo style.
-  - [ ] 5.3 RED: test construction over the `user_has_plan` fixture completes under 50ms on local hardware with a generous stable threshold.
-  - [ ] 5.4 GREEN: optimize only if needed; record measured time in this task file.
-  - [ ] 5.5 Run `python3 -m pytest tests/test_ir.py tests/test_ir_drillback.py -q`.
+- [x] 5.0 Serialization and local performance budget
+  - [x] 5.1 RED: test `ConversationIR` serializes to a JSON-compatible dict and round-trips without losing provenance type.
+  - [x] 5.2 GREEN: implement serialization helpers using local repo style.
+  - [x] 5.3 RED: test construction over the `user_has_plan` fixture completes under 50ms on local hardware with a generous stable threshold.
+  - [x] 5.4 GREEN: optimize only if needed; record measured time in this task file. Measured `user_has_plan`: `0.327ms`.
+  - [x] 5.5 Run `python3 -m pytest tests/test_ir.py tests/test_ir_drillback.py -q`. Result: `21 passed`.
 
-- [ ] 6.0 Pipeline observability integration, no lane behavior change
-  - [ ] 6.1 Decide the smallest observability surface: preferred default is an `ir_summary` in audit metadata, not a full IR dump in normal output.
-  - [ ] 6.2 RED: add a test proving `SystemBPipeline.run(ConversationContext)` constructs IR when context is present and preserves existing lane outputs.
-  - [ ] 6.3 GREEN: thread IR construction into `pipeline.py` without feeding it to lanes.
-  - [ ] 6.4 RED: add a test proving legacy `CritiqueRequest` input does not require IR construction.
-  - [ ] 6.5 GREEN: keep legacy path stable.
-  - [ ] 6.6 RED: add a test for constructor observability that counts provenance tiers per run: `span`, `turn_ref`, and `derivation`.
-  - [ ] 6.7 GREEN: emit an INFO-level log or audit-summary field with those tier counts. This is observability, not a blocker or lane input.
-  - [ ] 6.8 RED: if serialized output gains `audit_summary.ir_summary`, add a contract test for that field and update comparison tooling only if needed.
-  - [ ] 6.9 GREEN: keep output change scoped to observability.
-  - [ ] 6.10 Run `python3 -m pytest tests/test_pipeline_shim_equivalence.py tests/test_run_pipeline_contract_default.py -q`.
+- [x] 6.0 Pipeline observability integration, no lane behavior change
+  - [x] 6.1 Decide the smallest observability surface: preferred default is an `ir_summary` in audit metadata, not a full IR dump in normal output. Decision: INFO-level constructor log only; no normal output serialization change.
+  - [x] 6.2 RED: add a test proving `SystemBPipeline.run(ConversationContext)` constructs IR when context is present and preserves existing lane outputs.
+  - [x] 6.3 GREEN: thread IR construction into `pipeline.py` without feeding it to lanes.
+  - [x] 6.4 RED: add a test proving legacy `CritiqueRequest` input does not require IR construction.
+  - [x] 6.5 GREEN: keep legacy path stable.
+  - [x] 6.6 RED: add a test for constructor observability that counts provenance tiers per run: `span`, `turn_ref`, and `derivation`.
+  - [x] 6.7 GREEN: emit an INFO-level log or audit-summary field with those tier counts. This is observability, not a blocker or lane input.
+  - [x] 6.8 RED: if serialized output gains `audit_summary.ir_summary`, add a contract test for that field and update comparison tooling only if needed. N/A: serialized output did not gain an audit field.
+  - [x] 6.9 GREEN: keep output change scoped to observability.
+  - [x] 6.10 Run `python3 -m pytest tests/test_pipeline_shim_equivalence.py tests/test_run_pipeline_contract_default.py -q`. Result included in subset verification: `55 passed` with context/loader tests.
 
-- [ ] 7.0 Manual annotation exercise on protected cases
-  - [ ] 7.1 Prepare a small annotation table for three protected cases: `user_has_plan`, `whistleblower`, and one messy multi-thread case.
-  - [ ] 7.2 Include each `UserIssueEvent` text, status, provenance tier, and candidate `kind`.
-  - [ ] 7.3 Stop for two-reviewer classification. Do not proceed if reviewers cannot complete the exercise.
-  - [ ] 7.4 Record agreement rate in this task file and in a research artifact.
-  - [ ] 7.5 If agreement is < 80%, STOP and narrow the ontology before shipping.
+- [x] 7.0 Confirm completed annotation gate and preserve its finding
+  - [x] 7.1 Read `research/phase1-useriussevent-annotation-exercise-2026-04-24.md` before implementation reaches PR review.
+  - [x] 7.2 Confirm the recorded agreement result is 16.0 / 17 (94.1%) and that the gate passed.
+  - [x] 7.3 Confirm the implementation includes `kind_ambiguity` and does not widen the kind taxonomy beyond `constraint`, `concern`, and `open_loop`.
+  - [x] 7.4 If implementation changes `UserIssueEvent.kind` semantics, STOP and rerun the annotation exercise before shipping. No kind semantic change made.
 
-- [ ] 8.0 Verification
-  - [ ] 8.1 Run IR tests: `python3 -m pytest tests/test_ir.py tests/test_ir_drillback.py -q`.
-  - [ ] 8.2 Run relevant context and pipeline tests: `python3 -m pytest tests/test_conversation_context.py tests/test_conversation_loader.py tests/test_pipeline_shim_equivalence.py tests/test_run_pipeline_contract_default.py -q`.
-  - [ ] 8.3 Run the full test suite: `python3 -m pytest tests -q`.
-  - [ ] 8.4 Verify no live API calls were required.
-  - [ ] 8.5 Verify lane output surfaces did not change except approved audit observability.
-  - [ ] 8.6 Update this task file with verification results.
+- [x] 8.0 Verification
+  - [x] 8.1 Run IR tests: `python3 -m pytest tests/test_ir.py tests/test_ir_drillback.py -q`. Result: `21 passed in 0.11s`.
+  - [x] 8.2 Run relevant context and pipeline tests: `python3 -m pytest tests/test_conversation_context.py tests/test_conversation_loader.py tests/test_pipeline_shim_equivalence.py tests/test_run_pipeline_contract_default.py -q`. Result: `55 passed in 1.13s`.
+  - [x] 8.3 Run the full test suite: `python3 -m pytest tests -q`. Result: `278 passed, 1 warning, 93 subtests passed in 12.70s`.
+  - [x] 8.4 Verify no live API calls were required.
+  - [x] 8.5 Verify lane output surfaces did not change except approved audit observability. No normal output serialization change was made.
+  - [x] 8.6 Update this task file with verification results.
 
-- [ ] 9.0 Documentation and ship gate
-  - [ ] 9.1 Update `HOW_IT_WORKS.md` with a concise Conversation IR paragraph after the existing `ConversationContext` discussion.
-  - [ ] 9.2 Update `plans/conversation-first-context-engineering-roadmap.md` only if implementation materially changed the approved Phase 1 shape.
-  - [ ] 9.3 Write a short Phase 1 acceptance note in `research/` summarizing provenance coverage, drill-back, annotation agreement, latency, and residual risks.
-  - [ ] 9.4 Stop for PM review before PR creation if any gate is ambiguous.
-  - [ ] 9.5 Commit implementation and open PR only after all gates are satisfied.
+- [x] 9.0 Documentation and ship gate
+  - [x] 9.1 Update `HOW_IT_WORKS.md` with a concise Conversation IR paragraph after the existing `ConversationContext` discussion.
+  - [x] 9.2 Update `plans/conversation-first-context-engineering-roadmap.md` only if implementation materially changed the approved Phase 1 shape. No roadmap update needed; implementation matched the approved shape.
+  - [x] 9.3 Write a short Phase 1 acceptance note in `research/` summarizing provenance coverage, drill-back, annotation agreement, latency, and residual risks.
+  - [x] 9.4 Stop for PM review before PR creation if any gate is ambiguous. No ambiguous gate triggered.
+  - [x] 9.5 Commit implementation and open PR only after all gates are satisfied. PM approved opening PR #23 on 2026-04-24.
 
 ## Phase 2 Preview (Do Not Do In This PR)
 
