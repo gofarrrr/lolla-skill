@@ -310,12 +310,27 @@ class UserIssueEvent:
 
 @dataclass(frozen=True)
 class StanceEvent:
+    """Assistant or user stance event — a meaningful position in the reasoning
+    trajectory (commitment / revision / qualification / condition / deferral
+    / initial), anchored to an exact source span.
+
+    The `stance` field holds the relation label from the taxonomy confirmed
+    at 95% agreement in the Phase 3.0 annotation gate.
+
+    `relation_ambiguity=True` marks stance spans that carry two relations
+    simultaneously (observed as ~10% of gate items, e.g. "call RAINN today,
+    not the police" = commitment + deferral). The primary `stance` value
+    stays single (dominant reading); the flag is informational. Same pattern
+    as UserIssueEvent.kind_ambiguity.
+    """
+
     stance_id: str
     speaker: Speaker
     stance: str
     text: str
     provenance: Provenance
     turn_index: int | None = None
+    relation_ambiguity: bool = False
 
     def __post_init__(self) -> None:
         if self.speaker not in _VALID_SPEAKERS:
@@ -333,6 +348,7 @@ class StanceEvent:
             "text": self.text,
             "provenance": self.provenance.to_dict(),
             "turn_index": self.turn_index,
+            "relation_ambiguity": self.relation_ambiguity,
         }
 
     @classmethod
@@ -344,6 +360,7 @@ class StanceEvent:
             text=raw["text"],
             provenance=provenance_from_dict(raw["provenance"]),
             turn_index=raw.get("turn_index"),
+            relation_ambiguity=raw.get("relation_ambiguity", False),
         )
 
 

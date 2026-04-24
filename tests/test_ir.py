@@ -526,3 +526,75 @@ def test_construct_conversation_ir_logs_provenance_tier_counts(caplog) -> None:
 
     assert "conversation_ir_constructed" in caplog.text
     assert "provenance_tiers={'span': 0, 'turn_ref': 6, 'derivation': 0}" in caplog.text
+
+
+# ---------------------------------------------------------------------------
+# Phase 3a: relation_ambiguity flag on StanceEvent (annotation-gate finding)
+# ---------------------------------------------------------------------------
+
+def test_stance_event_relation_ambiguity_defaults_false() -> None:
+    """Existing call sites without the new field must continue to work."""
+    span = SpanRef(turn_index=1, speaker="assistant", start_char=0, end_char=10)
+    stance = StanceEvent(
+        stance_id="stance_default",
+        speaker="assistant",
+        stance="commitment",
+        text="Do this.",
+        provenance=SpanProvenance(span_ref=span),
+        turn_index=1,
+    )
+    assert stance.relation_ambiguity is False
+
+
+def test_stance_event_relation_ambiguity_marks_composite_relations() -> None:
+    """When a stance span carries two relations simultaneously (e.g., the
+    Phase 3.0 annotation-gate PT-S2 item = commitment + deferral), the
+    primary `stance` stays single (dominant reading) and `relation_ambiguity`
+    is True."""
+    span = SpanRef(turn_index=3, speaker="assistant", start_char=0, end_char=50)
+    stance = StanceEvent(
+        stance_id="stance_pt_s2",
+        speaker="assistant",
+        stance="commitment",  # dominant reading
+        text="you don't call the police today. You call RAINN this afternoon",
+        provenance=SpanProvenance(span_ref=span),
+        turn_index=3,
+        relation_ambiguity=True,  # composite: commitment + deferral
+    )
+    assert stance.relation_ambiguity is True
+    assert stance.stance == "commitment"  # primary unchanged
+
+
+def test_stance_event_relation_ambiguity_round_trips_through_json() -> None:
+    span = SpanRef(turn_index=6, speaker="assistant", start_char=0, end_char=30)
+    original = StanceEvent(
+        stance_id="stance_sp_s3",
+        speaker="assistant",
+        stance="deferral",
+        text="Give yourself 14 days.",
+        provenance=SpanProvenance(span_ref=span),
+        turn_index=6,
+        relation_ambiguity=True,
+    )
+    payload = original.to_dict()
+    assert payload["relation_ambiguity"] is True
+    restored = StanceEvent.from_dict(payload)
+    assert restored == original
+
+
+def test_stance_event_from_dict_tolerates_absent_relation_ambiguity() -> None:
+    """Old archived results predate the field; from_dict must accept payloads
+    without `relation_ambiguity` and default to False. Protects the archive
+    from schema version drift on a single-field addition."""
+    legacy_payload = {
+        "stance_id": "stance_legacy",
+        "speaker": "user",
+        "stance": "commitment",
+        "text": "I've decided.",
+        "provenance": SpanProvenance(
+            span_ref=SpanRef(turn_index=1, speaker="user", start_char=0, end_char=15)
+        ).to_dict(),
+        "turn_index": 1,
+    }
+    stance = StanceEvent.from_dict(legacy_payload)
+    assert stance.relation_ambiguity is False
