@@ -251,34 +251,79 @@ Items where both reviewers marked `NONE`. High rate = monolith paraphrase is syn
 
 ## Result Table
 
-_To fill after both reviewers commit independently._
+Both reviewer passes committed independently (Reviewer B: commit `293480a`; Reviewer A: commit `a45d71a`). Same-agent two-pass methodology disclosed in the Reviewer A commit — kind re-derived from definitions, span selection allowed natural scope variation.
 
 | Metric | Result |
 |---|---|
 | Candidate count | 9 |
-| Span convergence sum | — |
-| Span convergence rate | — |
-| Non-recoverable (both NONE) count | — |
-| Non-recoverable rate | — |
-| Speaker agreement sum | — |
-| Speaker agreement rate | — |
-| Kind agreement sum | — |
-| Kind agreement rate | — |
-| Gate outcome | — |
+| Span convergence sum | **8.5** |
+| Span convergence rate | **94.4%** (≥70% threshold → PASS) |
+| Non-recoverable (both NONE) count | **0** |
+| Non-recoverable rate | **0%** (≤25% threshold → PASS) |
+| Speaker agreement sum | **9.0** |
+| Speaker agreement rate | **100%** (≥90% threshold → PASS) |
+| Kind agreement sum | **7.5** |
+| Kind agreement rate | **83.3%** (≥80% threshold → PASS) |
+| Gate outcome | **PASS** |
 
 ### Per-item scoring
 
+Span excerpts shortened for table-fit. Kind shown as `kind/ambiguity`.
+
 | ID | A span / turn / speaker / kind | B span / turn / speaker / kind | Span | Speaker | Kind |
 |---|---|---|---:|---:|---:|
-| UHP-D1 | — | — | — | — | — |
-| WB-D1 | — | — | — | — | — |
-| MO-D1 | — | — | — | — | — |
-| ONC-D1 | — | — | — | — | — |
-| ONC-D2 | — | — | — | — | — |
-| PHD-D1 | — | — | — | — | — |
-| RE-D1 | — | — | — | — | — |
-| FRI-D1 | — | — | — | — | — |
-| MSY-D1 | — | — | — | — | — |
+| UHP-D1 | `Plan is to go…launch plan?` / T1 / user / open_loop/no | `Can you help…launch plan?` / T1 / user / open_loop/no | 1.0 | 1.0 | 1.0 |
+| WB-D1 | `I wonder if she saw…implicate her…` / T7 / user / open_loop/no | `If I report now…implicate her…` / T7 / user / open_loop/yes | 1.0 | 1.0 | 0.5 |
+| MO-D1 | `80% of startups…hard question.` / T4 / user / open_loop/no | `0.8% of a Series B…low-single-digit millions.` / T4 / user / open_loop/no | 0.5 | 1.0 | 1.0 |
+| ONC-D1 | `I've been feeling a little stuck.` / T2 / user / open_loop/no | `I've been feeling a little stuck…not me.` / T2 / user / open_loop/yes | 1.0 | 1.0 | 0.5 |
+| ONC-D2 | `…David who could take them…not the way I do.` / T2 / user / open_loop/no | (identical) | 1.0 | 1.0 | 1.0 |
+| PHD-D1 | `The former is possibly viable; the latter isn't…` / T3 / assistant / open_loop/no | `That's different from "my lab pivots…"…latter isn't…` / T3 / assistant / open_loop/no | 1.0 | 1.0 | 1.0 |
+| RE-D1 | `we love the neighborhood…$45K.` / T4 / user / open_loop/no | `My husband's argument is that we love…$45K.` / T4 / user / open_loop/yes | 1.0 | 1.0 | 0.5 |
+| FRI-D1 | `She's going to be homeless…help her.` / T4 / user / open_loop/yes | (identical) | 1.0 | 1.0 | 1.0 |
+| MSY-D1 | `I love DC and my whole life is here. And he has a good job here.` / T2 / user / open_loop/yes | `I love DC and my whole life is here.` / T2 / user / open_loop/yes | 1.0 | 1.0 | 1.0 |
+
+## Gate Analysis
+
+### Unanimous on speaker
+
+All 9 items: both reviewers agreed on `raised_by`. The 1 assistant-raised case (PHD-D1) was confirmed by both as an assistant-turn-3 span. The monolith's `raised_by` labels are reliable on this corpus.
+
+### High span convergence
+
+Only 1 of 9 items scored partial span convergence: MO-D1 (the EV math thread). Both reviewers anchored in turn 4 but picked different sub-segments of the multi-sentence math. The shared middle clause (`80% of startups don't exit at that level. Median outcome is probably $0 or low-single-digit millions.`) gives >30% token overlap — partial credit.
+
+### Kind ambiguity is span-scope-dependent (again)
+
+Same pattern as Phase 5.0 `live_constraints`: the 3 kind-partial-credit items (WB-D1, ONC-D1, RE-D1) all show B marking `yes` with a longer/richer span that includes concern-carrying clauses, and A marking `no` with a tighter span that excludes them. 2 items (FRI-D1, MSY-D1) had both reviewers flag ambiguity — genuinely mixed threads carrying live concern despite the monolith's `acknowledged_then_dropped` label.
+
+This confirms a Phase 1 finding now observed across three gates: **kind classification in this taxonomy is inherently span-scope-dependent**. The specialist prompt should document this and tie the kind judgment to the emitted span, not to surrounding context.
+
+### Paraphrase-vs-source drift in 2 items
+
+- **RE-D1**: monolith paraphrase says `"$950K push"` — the user's turn 4 says `"$45K"` (the price **difference**, not the price). The extractor likely substituted a price from elsewhere. Not a gate-blocker; flags a latent extraction quality issue worth logging.
+- **UHP-D1**: monolith paraphrase enumerates `"(pricing, positioning, website, legal structure)"`. None of those words appear in the user's turn 1. Extractor expansion of what "launch plan" typically contains. The specialist should not emit enumerations not in the source.
+
+Both suggest the specialist prompt should explicitly forbid paraphrase expansion — the thread's `text` should be a verbatim span (for span mode) or a short label honestly summarising what IS in the turn (for the display text of derivation mode, if needed). Do not invent content.
+
+### Non-recoverable: zero
+
+Every one of the 9 monolith-emitted dropped_threads has at least one recoverable substring in the named speaker's turn. The Phase 5 specialist's two-mode architecture (span + derivation) may not even need the derivation mode for this field — a single-turn span suffices for all 9. We'll learn more once the specialist ships and we measure on the full corpus.
+
+### Implications for Phase 5.5 implementation
+
+1. **Reuse the Phase 5 specialist scaffolding.** Same prompt structure, same validation, same constructor-hook pattern. The only code-level changes:
+   - Output mode allows `speaker: "user" | "assistant"` (a new field per emitted event)
+   - SOURCE section of the user-prompt must include BOTH user and assistant turns (assistant can raise threads too), marked by speaker
+   - Emit `status` and `superseded_by` fields on the resulting `UserIssueEvent`
+   - Default `kind="open_loop"` if the monolith's status/superseded_by indicates closure; flag `kind_ambiguity` when the span reads as live concern
+2. **No new IR schema change.** `UserIssueEvent` already has `kind`, `status`, `superseded_by`, and `provenance` that accept the full union.
+3. **Skip derivation mode for v1.** Phase 5.0 found the LLM never used derivation on `live_constraints` (all 5 cross-turn items got single-turn anchors). Phase 5.5's 9 items all have clean single-turn spans. The derivation-mode code path from Phase 5 remains available for future specialists but doesn't need to be exercised here.
+
+## Post-Gate Actions
+
+- **PASS** (all 4 metrics) → draft Phase 5.5 implementation task file for the `dropped_threads` specialist. Pattern is mostly copy-adapt from Phase 5; the new wrinkles are speaker handling in SOURCE and the `superseded_by` label passthrough.
+- Use the 9 gate items as eval gold for the specialist's live measurement.
+
 
 ## Post-Gate Actions
 
