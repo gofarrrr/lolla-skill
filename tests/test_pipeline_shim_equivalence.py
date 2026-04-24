@@ -763,3 +763,110 @@ def test_run_pass2_parallel_uses_legacy_path_when_no_context() -> None:
     assert "LEGACY_VA_YES" in user
     # New-path SOURCE section header must not appear
     assert "SOURCE (PRIMARY AUDIT TARGET" not in user
+
+
+# ---------- Phase 2d: Lane 2 (Companion) dispatch ----------
+
+
+def test_run_companion_uses_context_path_when_context_present() -> None:
+    """With a ConversationContext, Lane 2 must call the `_from_context`
+    fingerprint + verification helpers, not the legacy `vanilla_answer` ones."""
+    from engine.system_b.pipeline import PipelineConfig
+    ctx = _minimal_context()
+    captured_ctx_fp: list = []
+    captured_ctx_ver: list = []
+    captured_legacy_fp: list = []
+    captured_legacy_ver: list = []
+
+    def _fp_ctx(*, context, client):  # noqa: ARG001
+        captured_ctx_fp.append(context)
+        raise _ShimDispatchedException()
+
+    def _ver_ctx(*, context, fingerprint_payload, candidates, client):  # noqa: ARG001
+        captured_ctx_ver.append(context)
+        raise _ShimDispatchedException()
+
+    def _fp_legacy(*, query, vanilla_answer, client):  # noqa: ARG001
+        captured_legacy_fp.append((query, vanilla_answer))
+        raise _ShimDispatchedException()
+
+    def _ver_legacy(*, vanilla_answer, fingerprint_payload, candidates, client):  # noqa: ARG001
+        captured_legacy_ver.append(vanilla_answer)
+        raise _ShimDispatchedException()
+
+    with patch("engine.system_b.pipeline.run_fingerprint_call_from_context", side_effect=_fp_ctx), \
+         patch("engine.system_b.pipeline.run_verification_call_from_context", side_effect=_ver_ctx), \
+         patch("engine.system_b.pipeline.run_fingerprint_call", side_effect=_fp_legacy), \
+         patch("engine.system_b.pipeline.run_verification_call", side_effect=_ver_legacy):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        pipeline._config = PipelineConfig(enable_companion=True, enable_embeddings=False)
+        pipeline._boundary = object()
+        pipeline._companion_knowledge_graph = {"models": {}}
+        pipeline._companion_reasoning_signals = {}
+        pipeline._companion_relation_graph = {}
+        pipeline._embedding_retriever = None
+        pipeline._embedding_api_key = ""
+        try:
+            pipeline._run_companion(
+                CritiqueRequest(query="legacy_q", vanilla_answer="legacy_va"),
+                boundary_calls=[],
+                conversation_context=ctx,
+            )
+        except _ShimDispatchedException:
+            pass
+
+    assert len(captured_ctx_fp) == 1
+    assert captured_ctx_fp[0] is ctx
+    assert captured_legacy_fp == [], "legacy fingerprint must not run when context present"
+
+
+def test_run_companion_uses_legacy_path_when_no_context() -> None:
+    """Without a ConversationContext, Lane 2 keeps using the legacy fingerprint path."""
+    from engine.system_b.pipeline import PipelineConfig
+    captured_ctx_fp: list = []
+    captured_legacy_fp: list = []
+
+    def _fp_ctx(*, context, client):  # noqa: ARG001
+        captured_ctx_fp.append(context)
+        raise _ShimDispatchedException()
+
+    def _fp_legacy(*, query, vanilla_answer, client):  # noqa: ARG001
+        captured_legacy_fp.append((query, vanilla_answer))
+        raise _ShimDispatchedException()
+
+    with patch("engine.system_b.pipeline.run_fingerprint_call_from_context", side_effect=_fp_ctx), \
+         patch("engine.system_b.pipeline.run_fingerprint_call", side_effect=_fp_legacy):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        pipeline._config = PipelineConfig(enable_companion=True, enable_embeddings=False)
+        pipeline._boundary = object()
+        pipeline._companion_knowledge_graph = {"models": {}}
+        pipeline._companion_reasoning_signals = {}
+        pipeline._companion_relation_graph = {}
+        pipeline._embedding_retriever = None
+        pipeline._embedding_api_key = ""
+        try:
+            pipeline._run_companion(
+                CritiqueRequest(query="qtext", vanilla_answer="vatext"),
+                boundary_calls=[],
+                conversation_context=None,
+            )
+        except _ShimDispatchedException:
+            pass
+
+    assert captured_legacy_fp == [("qtext", "vatext")]
+    assert captured_ctx_fp == [], "context fingerprint must not run when context is absent"
+
+
+def test_run_companion_skips_both_paths_when_feature_disabled() -> None:
+    """enable_companion=False short-circuits Lane 2 entirely."""
+    from engine.system_b.pipeline import PipelineConfig
+    pipeline = SystemBPipeline.__new__(SystemBPipeline)
+    pipeline._config = PipelineConfig(enable_companion=False)
+    pipeline._boundary = object()
+    result = pipeline._run_companion(
+        CritiqueRequest(query="q", vanilla_answer="a"),
+        boundary_calls=[],
+        conversation_context=_minimal_context(),
+    )
+    # CompanionRunResult with no card present
+    assert result.companion_card is None

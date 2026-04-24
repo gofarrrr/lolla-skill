@@ -1,0 +1,1292 @@
+{
+  "status": "ok",
+  "format": "json",
+  "detected_tendencies": [],
+  "delta_card": {
+    "findings": [],
+    "top_findings": [],
+    "secondary_findings": [],
+    "secondary_findings_full": [],
+    "compound_groups": [],
+    "top_compound_groups": [],
+    "secondary_compound_groups": [],
+    "secondary_summarization_active": false,
+    "secondary_additional_pressures_note": "",
+    "secondary_additional_pressure_count": 0,
+    "secondary_additional_pressure_tendency_ids": [],
+    "detected_tendencies": [],
+    "selected_model_ids": [],
+    "challenge_statements": [],
+    "next_moves": [],
+    "major_tensions": [],
+    "top_challenge_statements": [],
+    "secondary_challenge_statements": [],
+    "top_next_moves": [],
+    "secondary_next_moves": []
+  },
+  "companion_cheat_sheet": {
+    "anchors": [],
+    "total_chunk_count": 0,
+    "budget_max": 20,
+    "anti_echo_model_ids": []
+  },
+  "companion_card": {
+    "detected_models": [],
+    "expansions": [],
+    "failure_hints": [],
+    "heuristic_hints": [],
+    "premortem_hints": [],
+    "identity_chunks": [],
+    "detection_model_count": 0,
+    "expansion_count": 0,
+    "failure_hint_count": 0,
+    "heuristic_hint_count": 0,
+    "premortem_hint_count": 0,
+    "identity_chunk_count": 0,
+    "detection_source": "independent_llm_pass"
+  },
+  "frame_pressure_card": {
+    "frame_elements": [
+      {
+        "element_text": "informal network conversations constitute a viable pipeline for launch",
+        "element_type": "assumption",
+        "evidence_quote": "Pipeline — I've had informal conversations with 4-5 former colleagues and people in my network who've said things like \"if you were independent, we'd consider you.\"",
+        "frame_pattern": "borrowed_premise",
+        "fragility_signal": "industry data showing <20% conversion rate from such conversations to signed engagements",
+        "inquiry_stage": "what_if",
+        "likely_default": "ego"
+      },
+      {
+        "element_text": "8 months zero-revenue runway is sufficient given the pipeline",
+        "element_type": "assumption",
+        "evidence_quote": "I figured if I can't get my first engagement in 8 months, something is fundamentally wrong.",
+        "frame_pattern": "temporal_fixation",
+        "fragility_signal": "typical 3-5 month lag to first paid engagement for first-time consultants",
+        "inquiry_stage": "why",
+        "likely_default": "inertia"
+      },
+      {
+        "element_text": "launch must proceed in exactly 6 weeks",
+        "element_type": "mutable_constraint",
+        "evidence_quote": "Plan is to go independent starting in 6 weeks.",
+        "frame_pattern": "temporal_fixation",
+        "fragility_signal": "option to delay 2-3 months until LOIs are secured",
+        "inquiry_stage": "what_if",
+        "likely_default": "commitment_escalation"
+      }
+    ],
+    "reframings": [
+      {
+        "reframed_question": "What would a realistic conversion rate from my 4-5 informal network conversations to signed engagements look like, given industry base rates under 20%?",
+        "what_opens": "Base-rate reasoning on conversion from informal talks to paid work, challenging over-optimism from specific anecdotes",
+        "reframe_move_type": "constraint_relaxation",
+        "grounding_model": "base-rates",
+        "source_element_index": 0
+      },
+      {
+        "reframed_question": "How does my 8-month runway compare to the typical 3-5 month lag for first-time consultants to land their first paid engagement?",
+        "what_opens": "Benchmarking personal financial buffer against empirical timelines for consultant ramp-up",
+        "reframe_move_type": "scope_expansion",
+        "grounding_model": "second-order-thinking",
+        "source_element_index": 1
+      }
+    ],
+    "anti_echo_model_ids": [],
+    "overlap_flags": [],
+    "dropped_frame_elements": []
+  },
+  "structural_coverage_card": {
+    "question_type": "action-planning",
+    "dimensions": [
+      {
+        "dimension_id": "timing-sequencing",
+        "dimension_name": "Timing & Sequencing",
+        "covered": true,
+        "coverage_evidence": "Assistant presents options with sequencing rationale: Option 1 delays 2-3 months to convert network to LOIs before launch (why delay: build pipeline first); Option 2 launches now but sequences months 1-3 as BD before delivery (critical path: BD then revenue); recommends 6-week checkpoint to assess if fundamentals align before final launch, addressing delay impact vs opportunity.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
+        "covered": true,
+        "coverage_evidence": "Assistant distinguishes quitting now (lock-in to BD phase, pressure-cooks into bad deals by month 5) vs delaying (preserves optionality via current job); Option 3 fractional as staged reversible commitment (predictable revenue without full lock-in); recommends checkpoint at 4 weeks to avoid irreversible quit without signals.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "stakeholder-alignment",
+        "dimension_name": "Stakeholder Alignment",
+        "covered": true,
+        "coverage_evidence": "Identifies spouse as key stakeholder (supports concept but not specifics); pushes for influence strategy: specific runway math conversation this week (vs vague buy-in); warns of divergence leading to fights; employer risk in Option 1 (noticed BD activity); integrates into launch decision.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "covered": false,
+        "coverage_evidence": "Names risks (runway pressure, bad-fit work, spouse fights) but does not size downside exposure (e.g., quantify burn rate impact), distinguish mitigate vs adapt strategies across options, or detail recovery paths (e.g., if fractional fails, fallback).",
+        "materiality_note": "High materiality: Different risk posture (e.g., more mitigation via longer runway buffer) could shift from launch-now options to full delay."
+      },
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "covered": false,
+        "coverage_evidence": "Acknowledges 8-month runway constraint but does not identify displaced alternatives (e.g., what current job income forgoes, other savings uses), compare marginal returns of options (e.g., delay preserves salary vs launch burns cash), or test if constraint binds under scenarios.",
+        "materiality_note": "High materiality: Reallocating runway (e.g., to extend via part-time retention) could favor aggressive launch."
+      },
+      {
+        "dimension_id": "behavioral-intervention",
+        "dimension_name": "Behavioral Intervention",
+        "covered": false,
+        "coverage_evidence": "Flags user's over-optimism on network as pipeline but does not analyze why it persists (e.g., optimism bias, politeness forces), specify mechanisms to change network behavior (e.g., nudge via specific LOI/fractional asks with deadlines), or address enforcement/sustainability.",
+        "materiality_note": "Medium materiality: Wrong mechanism (e.g., incentives over polite asks) could fail pipeline conversion, altering launch viability."
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "covered": false,
+        "coverage_evidence": "Notes low conversion rates (<1 in 5) but treats as estimable risk without classifying (epistemic: reducible via specific asks; Knightian: client reactions); no matching of strategy to type (e.g., experiments for reducible uncertainty) or calibration of confidence.",
+        "materiality_note": "Medium materiality: Recognizing higher true uncertainty could push for more optionality (e.g., delay), changing timing rec."
+      }
+    ],
+    "gap_routes": [
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "candidate_model_ids": [
+          "risk-assessment",
+          "black-swan-events",
+          "antifragility",
+          "margin-of-safety",
+          "calculated-risk-taking",
+          "resilience"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "candidate_model_ids": [
+          "opportunity-cost",
+          "comparative-advantage",
+          "trade-offs",
+          "pareto-principle",
+          "prioritization",
+          "optimization-theory"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "behavioral-intervention",
+        "dimension_name": "Behavioral Intervention",
+        "candidate_model_ids": [
+          "incentives",
+          "persuasion-principles",
+          "habit-formation",
+          "self-determination-theory",
+          "usability-heuristics",
+          "feedback-models-sbi"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "candidate_model_ids": [
+          "aleatory-epistemic-uncertainty-recognition",
+          "true-uncertainty-navigation",
+          "probabilistic-thinking",
+          "confidence-calibration",
+          "experimentation"
+        ],
+        "excluded_model_ids": []
+      }
+    ],
+    "gap_questions": [
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "questions": [
+          "What would make you feel comfortable mitigating risks by delaying the launch beyond the 4-week checkpoint versus adapting by proceeding even without fractional commitments?",
+          "Who in your network or family would push you toward a more cautious risk approach, and what specifically concerns them about launching in 6 weeks?",
+          "Under what scenarios would you accept higher financial risk by launching without spouse alignment on the 5-month revenue pressure?"
+        ]
+      },
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "questions": [
+          "What other personal or financial resources, beyond the 8-month runway, could you reallocate to extend your effective timeline for securing the first engagement?",
+          "How much of your current job's remaining 6 weeks could you dedicate to business development without risking your employer's notice?",
+          "What non-financial resources from your network, like introductions or endorsements, are you planning to allocate in the next 4 weeks to convert conversations to commitments?"
+        ]
+      },
+      {
+        "dimension_id": "behavioral-intervention",
+        "dimension_name": "Behavioral Intervention",
+        "questions": [
+          "What incentives, like a shared financial goal with your spouse, could you introduce to ensure alignment on the runway specifics beyond just having the conversation?",
+          "How might you nudge your 4-5 network contacts toward fractional commitments, such as offering a trial hour, rather than directly asking for $12K/month?",
+          "What personal rules or habits would you set for yourself in the next 4 weeks to regulate time spent on business development versus job responsibilities?"
+        ]
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "questions": [
+          "What aspects of converting your 4-5 network conversations to engagements feel like predictable risks you can measure, versus true unknowns you can't quantify?",
+          "In your experience with B2B fintech, what client behaviors create ignorance about pipeline conversion that no amount of network talks can resolve?",
+          "How does the uncertainty around your spouse's reaction to the 5-month revenue pressure differ from measurable risks like monthly burn rate?"
+        ]
+      }
+    ],
+    "anti_echo_model_ids": [
+      "base-rates",
+      "second-order-thinking"
+    ]
+  },
+  "audit_summary": {
+    "triage_scores": [
+      {
+        "tendency_id": "authority-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "social-proof-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "influence-from-mere-association-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "liking-loving-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reciprocation-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "doubt-avoidance-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "deprival-superreaction-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reward-and-punishment-superresponse-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "envy-jealousy-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "kantian-fairness-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "contrast-misreaction-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "excessive-self-regard-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "simple-pain-avoiding-psychological-denial",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "disliking-hating-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reason-respecting-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "curiosity-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "use-it-or-lose-it-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "drug-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "senescence-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "twaddle-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      }
+    ],
+    "triggered_tendencies": [
+      "inconsistency-avoidance-tendency",
+      "overoptimism-tendency"
+    ],
+    "triggered_tendency_sources": [
+      {
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "source": "embedding",
+        "score": 0.36089760924457864
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "source": "embedding",
+        "score": 0.35546238529531143
+      }
+    ],
+    "boundary_call_count": 14,
+    "boundary_calls": [
+      {
+        "stage": "pass1_cluster_authority",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3691,
+        "completion_tokens": 177,
+        "total_tokens": 3868,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_closure",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3583,
+        "completion_tokens": 147,
+        "total_tokens": 3730,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_incentive",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3415,
+        "completion_tokens": 116,
+        "total_tokens": 3531,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_availability",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3417,
+        "completion_tokens": 78,
+        "total_tokens": 3495,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_self_regard",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3436,
+        "completion_tokens": 182,
+        "total_tokens": 3618,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_residual",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3396,
+        "completion_tokens": 178,
+        "total_tokens": 3574,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 4021,
+        "completion_tokens": 108,
+        "total_tokens": 4129,
+        "cached_tokens": 172,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "overoptimism-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 4129,
+        "completion_tokens": 116,
+        "total_tokens": 4245,
+        "cached_tokens": 172,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "companion_fingerprint",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2709,
+        "completion_tokens": 1027,
+        "total_tokens": 3736,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "companion_verification",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 7594,
+        "completion_tokens": 30000,
+        "total_tokens": 37594,
+        "cached_tokens": 159,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "frame_extraction",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3873,
+        "completion_tokens": 297,
+        "total_tokens": 4170,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "frame_reframing",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 1015,
+        "completion_tokens": 473,
+        "total_tokens": 1488,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "structural_coverage_classification",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2968,
+        "completion_tokens": 357,
+        "total_tokens": 3325,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "structural_coverage_detection",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2968,
+        "completion_tokens": 357,
+        "total_tokens": 3325,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      }
+    ],
+    "warnings": [],
+    "embedding_swiss_cheese_active": true,
+    "compiled_substrate_chunk_count": 242,
+    "companion_fingerprint_raw": [
+      {
+        "move_id": "1",
+        "reasoning_move": "Identify critical uncertainties before providing tactical advice to ensure solving the right problem",
+        "evidence_quotes": [
+          "Before diving into tactics, can I ask a few things to make sure we're solving the right problem."
+        ],
+        "evidence_rationale": "This quote shows the assistant pausing tactics to probe key assumptions via targeted questions on pipeline, runway, and timing.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "2",
+        "reasoning_move": "Debunk optimistic assumptions by citing industry benchmarks on conversion rates and typical timelines",
+        "evidence_quotes": [
+          "\"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
+          "Industry experience suggests the first paid engagement often takes 3-5 months from launch, not including the 1-2 months you'll spend setting up legal/admin."
+        ],
+        "evidence_rationale": "These quotes use specific data to reframe 'network conversations' as non-pipeline and highlight realistic delays, countering user's premise.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "3",
+        "reasoning_move": "Prioritize fundamentals over tactics, explaining why shaky foundations undermine execution",
+        "evidence_quotes": [
+          "the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid. Right now the fundamentals are shaky in a specific way that a lot of first-time independents don't see until they're 4 months in and burning through savings."
+        ],
+        "evidence_rationale": "This quote justifies pushing back on tactics to address core risks like pipeline and runway first.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "4",
+        "reasoning_move": "Generate concrete options with tradeoffs to expand decision space beyond delay-or-launch binary",
+        "evidence_quotes": [
+          "Delay is one option but it's not the only one. Here are three real versions, with different tradeoffs. Option 1: ... Option 2: ... Option 3: ..."
+        ],
+        "evidence_rationale": "This structures alternatives (delay, launch with BD focus, fractional bridge), each with pros/cons, responding to user's pipeline concerns.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "5",
+        "reasoning_move": "Highlight distinction between conceptual and specific spousal alignment to uncover hidden risks",
+        "evidence_quotes": [
+          "Not \"are you on board with independent consulting\" — you already have that. It's \"here's the specific scenario where I launch in September with no signed engagements, here's the burn rate, here's when we'd be under financial pressure, here's what we'd do.\"",
+          "Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business."
+        ],
+        "evidence_rationale": "These quotes differentiate support levels and warn of downstream conflict from unaddressed specifics.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "6",
+        "reasoning_move": "Provide operational details for de-risking options to make them actionable",
+        "evidence_quotes": [
+          "you agree to provide 8-15 hours/week as a fractional CPO or senior product advisor at a single company, on a retainer basis (typically $10-20K/month for someone at your experience level).",
+          "\"Would your company be open to 10 hours/week at $12K/month for the next 6 months, starting in September?\" is a very specific ask."
+        ],
+        "evidence_rationale": "This delivers precise structure, targets, and scripting for fractional roles, bridging from idea to execution.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "7",
+        "reasoning_move": "Set testable milestones and decision criteria to enable evidence-based go/no-go",
+        "evidence_quotes": [
+          "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery. If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months."
+        ],
+        "evidence_rationale": "This defines clear actions, timeline, and exit criteria, turning advice into a checkpointed plan.",
+        "confidence": "high"
+      }
+    ],
+    "companion_fingerprint_validated": [
+      {
+        "move_id": "1",
+        "reasoning_move": "Identify critical uncertainties before providing tactical advice to ensure solving the right problem",
+        "evidence_quotes": [
+          "Before diving into tactics, can I ask a few things to make sure we're solving the right problem."
+        ],
+        "evidence_rationale": "This quote shows the assistant pausing tactics to probe key assumptions via targeted questions on pipeline, runway, and timing.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "2",
+        "reasoning_move": "Debunk optimistic assumptions by citing industry benchmarks on conversion rates and typical timelines",
+        "evidence_quotes": [
+          "\"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.",
+          "Industry experience suggests the first paid engagement often takes 3-5 months from launch, not including the 1-2 months you'll spend setting up legal/admin."
+        ],
+        "evidence_rationale": "These quotes use specific data to reframe 'network conversations' as non-pipeline and highlight realistic delays, countering user's premise.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "3",
+        "reasoning_move": "Prioritize fundamentals over tactics, explaining why shaky foundations undermine execution",
+        "evidence_quotes": [
+          "the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid. Right now the fundamentals are shaky in a specific way that a lot of first-time independents don't see until they're 4 months in and burning through savings."
+        ],
+        "evidence_rationale": "This quote justifies pushing back on tactics to address core risks like pipeline and runway first.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "4",
+        "reasoning_move": "Generate concrete options with tradeoffs to expand decision space beyond delay-or-launch binary",
+        "evidence_quotes": [
+          "Delay is one option but it's not the only one. Here are three real versions, with different tradeoffs. Option 1: ... Option 2: ... Option 3: ..."
+        ],
+        "evidence_rationale": "This structures alternatives (delay, launch with BD focus, fractional bridge), each with pros/cons, responding to user's pipeline concerns.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "5",
+        "reasoning_move": "Highlight distinction between conceptual and specific spousal alignment to uncover hidden risks",
+        "evidence_quotes": [
+          "Not \"are you on board with independent consulting\" — you already have that. It's \"here's the specific scenario where I launch in September with no signed engagements, here's the burn rate, here's when we'd be under financial pressure, here's what we'd do.\"",
+          "Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business."
+        ],
+        "evidence_rationale": "These quotes differentiate support levels and warn of downstream conflict from unaddressed specifics.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "6",
+        "reasoning_move": "Provide operational details for de-risking options to make them actionable",
+        "evidence_quotes": [
+          "you agree to provide 8-15 hours/week as a fractional CPO or senior product advisor at a single company, on a retainer basis (typically $10-20K/month for someone at your experience level).",
+          "\"Would your company be open to 10 hours/week at $12K/month for the next 6 months, starting in September?\" is a very specific ask."
+        ],
+        "evidence_rationale": "This delivers precise structure, targets, and scripting for fractional roles, bridging from idea to execution.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "7",
+        "reasoning_move": "Set testable milestones and decision criteria to enable evidence-based go/no-go",
+        "evidence_quotes": [
+          "Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery. If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months."
+        ],
+        "evidence_rationale": "This defines clear actions, timeline, and exit criteria, turning advice into a checkpointed plan.",
+        "confidence": "high"
+      }
+    ],
+    "companion_fingerprint_dropped": [],
+    "companion_detected_models": [],
+    "companion_rejected_models": [],
+    "deep_check_results": [
+      {
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "tendency_name": "Inconsistency-Avoidance Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "tendency_name": "Overoptimism Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      }
+    ],
+    "routing_decisions": []
+  },
+  "prompt_versions": {
+    "companion_fingerprint": "e32a3e09e737",
+    "companion_verification": "298be0125afe",
+    "frame_extraction": "6e6195c5c9d5",
+    "pass1_cluster_authority": "a4c507af93cf",
+    "pass1_cluster_availability": "5ba97c9a65ca",
+    "pass1_cluster_closure": "f06410862f57",
+    "pass1_cluster_incentive": "e86483f3df8e",
+    "pass1_cluster_residual": "4fee48df5db2",
+    "pass1_cluster_self_regard": "57fa97e91ec0",
+    "pass1_triage_user": "151e80b84ec4",
+    "pass2_deep_check": "b66388b9eaf4"
+  },
+  "query": "Whether the user should launch independent B2B fintech consulting practice in 6 weeks or delay, given no committed pipeline and 8-month zero-revenue runway.\n\nConstraints stated during conversation:\n- [ACTIVE] Pipeline: 4-5 informal network conversations, no signed LOIs or commitments\n- [ACTIVE] Runway: 8 months at zero revenue\n- [ACTIVE] Launch timeline: 6 weeks from now, aligned with Q3 planning cycle end\n- [ACTIVE] Spouse support: on board with concept, not specifics of runway pressure\n\nOriginal framing: User seeks tactical launch plan for independent consulting starting in 6 weeks, assuming 8-month runway and network conversations as sufficient pipeline; excludes delaying launch or questioning premise.\n\nDropped threads (raised but unresolved):\n- tactical launch plan details (pricing, positioning, website, legal structure) (raised by user, status: acknowledged_then_dropped) → superseded by: focus on fundamentals like pipeline conversion, runway realism, spouse alignment, and delay options",
+  "vanilla_answer": "SYNTHESIZED POSITION:\nLaunching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery. If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.\n\nFULL ASSISTANT REASONING:\nHappy to help with the launch plan. Before diving into tactics, can I ask a few things to make sure we're solving the right problem.\n\nFirst: what's your current pipeline of consulting leads? Specifically, do you have prospective clients who've said \"yes, once you're available, we want to engage you,\" or are you planning to build the pipeline during the transition?\n\nSecond: the 8 months runway — does that assume zero revenue, or is there an assumed ramp (like $0 for 2 months, then gradually increasing)? Those are different financial plans.\n\nThird: the 6-week transition — why 6 weeks specifically? Is that notice period, last day aligned with something at your current job, or did you pick a number that felt right?\n\n---\n\nOK, useful context. I want to flag some things that are worth addressing before you give notice rather than after.\n\nOn pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero. You don't have a pipeline; you have a network that might become a pipeline.\n\nOn runway: 8 months at zero revenue is tight for a first-time independent consultant. Industry experience suggests the first paid engagement often takes 3-5 months from launch, not including the 1-2 months you'll spend setting up legal/admin. If you don't have an engagement by month 5, your remaining 3 months of runway pressure-cooks you into taking whatever comes along, which is usually badly-fit work.\n\nOn timing: Q3 planning cycle is a clean exit for your employer but I'd argue it's the wrong exit for you. A better exit timing would be when you have at least one signed LOI or verbal commitment for an engagement that starts within 30-60 days of your last day. Launching without that is possible but harder than launching with it.\n\n---\n\nYou're right, I am. I'm doing that because the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid. Right now the fundamentals are shaky in a specific way that a lot of first-time independents don't see until they're 4 months in and burning through savings.\n\nI can absolutely help with launch tactics. But if you want me to, I want you to at least acknowledge that the \"network conversations aren't a pipeline\" issue is real, so the launch plan we build accounts for it rather than assumes it away. Does that land?\n\n---\n\nDelay is one option but it's not the only one. Here are three real versions, with different tradeoffs.\n\nOption 1: Delay launch by 2-3 months and spend that time converting network conversations into signed LOIs. This is the conservative path. You'd stay at your current job while explicitly telling your network \"I'm going independent in September — is this conversation the start of an actual engagement?\" The risk: your current employer may notice you're spending evening hours business-developing, which creates its own problems.\n\nOption 2: Launch on your current timeline but accept that months 1-3 are business development, not delivery. Use the 8 months runway with that plan: months 1-3 are pipeline-building, months 4-6 are first engagements, months 7-8 are consolidation. This is viable but tight, and requires you to mentally accept that \"8 months runway\" actually means \"5 months of revenue pressure\" because the first 3 months won't produce income.\n\nOption 3: Launch on current timeline but with a specific safety net — a part-time arrangement with a friendly ex-employer or fractional CTO/CPO role at one company that covers 30-40% of your baseline costs while the rest of the pipeline builds. This is the \"de-risked independent\" version. Much less common but also much less fragile.\n\nYour call depends on risk tolerance and what your spouse/partner thinks about the financial pressure.\n\n---\n\nThat's the conversation to have this week. Not \"are you on board with independent consulting\" — you already have that. It's \"here's the specific scenario where I launch in September with no signed engagements, here's the burn rate, here's when we'd be under financial pressure, here's what we'd do.\" If your spouse hasn't seen the specific math, their on-board-ness is for a concept, not for the reality.\n\nThe fact that you've kept the runway conversation in your head suggests you might be avoiding the specific version because you're worried it'll make your spouse less supportive. That's a warning sign. Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business.\n\n---\n\nFractional arrangements vary but here's the common shape: you agree to provide 8-15 hours/week as a fractional CPO or senior product advisor at a single company, on a retainer basis (typically $10-20K/month for someone at your experience level). This gives you predictable revenue from day one and doesn't consume your full-time capacity.\n\nThe companies that hire fractionals are usually: Series A-B startups that need senior product thinking but can't afford a full-time CPO; post-Series C companies with a specific 6-month initiative that needs a senior PM lead; PE-backed portfolio companies that want senior talent on specific projects.\n\nThe best fractional engagements come from your existing network. \"Would your company be open to 10 hours/week at $12K/month for the next 6 months, starting in September?\" is a very specific ask. Some of those 4-5 network conversations might convert to fractional arrangements even if they won't commit to full project engagements.\n\nThe tradeoff: fractional work locks you into a company's cadence, makes it harder to take on larger client engagements, and tends to pay less per hour than project work. But it's the de-risking move for month 1 if you don't have signed project engagements.\n\n---\n\nHere's my honest read. Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery.\n\nIf after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.\n\nDon't push back just because you're nervous. Push back only if the fundamentals haven't come together. The nervousness is always there; it's not good information by itself.\n\n---\n\nYou're welcome. The tactics matter, but only if the foundation is real. The foundation is: alignment with your spouse on the actual financial plan, and evidence that your network has at least some commercial intent, not just friendly interest. The launch plan we'd build on that foundation — pricing, positioning, website, legal structure — is the easier part.\n\nCome back in 4 weeks with results from those three things and we can build the actual launch plan then. You'll be building on real information rather than on hopes.",
+  "revised_answer": null,
+  "bullshit_profile": {
+    "passages": [
+      {
+        "passage": "First: what's your current pipeline of consulting leads? Specifically, do you have prospective clients who've said \"yes, once you're available, we want to engage you,\" or are you planning to build the pipeline during the transition?",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Second: the 8 months runway — does that assume zero revenue, or is there an assumed ramp (like $0 for 2 months, then gradually increasing)? Those are different financial plans.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Third: the 6-week transition — why 6 weeks specifically? Is that notice period, last day aligned with something at your current job, or did you pick a number that felt right?",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "OK, useful context. I want to flag some things that are worth addressing before you give notice rather than after.\n\nOn pipeline: \"if you were independent, we'd consider you\" is almost exactly zero in actual conversion terms. It means they like you and they're being polite. The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero. You don't have a pipeline; you have a network that might become a pipeline.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts specific empirical facts without evidence: 'The number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero.' This introduces a precise conversion statistic ('less than 1 in 5') and frequency claim ('often zero') beyond user-provided facts (4-5 informal conversations, no commitments), reasonable inferences therefrom, or common practitioner knowledge (which would not specify exact ratios like '1 in 5').",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "On runway: 8 months at zero revenue is tight for a first-time independent consultant. Industry experience suggests the first paid engagement often takes 3-5 months from launch, not including the 1-2 months you'll spend setting up legal/admin. If you don't have an engagement by month 5, your remaining 3 months of runway pressure-cooks you into taking whatever comes along, which is usually badly-fit work.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage introduces specific empirical facts beyond user-provided context or common knowledge: 'Industry experience suggests the first paid engagement often takes 3-5 months from launch, not including the 1-2 months you'll spend setting up legal/admin.' These timelines for first engagements and setup are not derived from user facts (e.g., no mention of setup time or industry norms by user) and exceed standard practitioner knowledge, stated as fact without evidence or qualification.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "On timing: Q3 planning cycle is a clean exit for your employer but I'd argue it's the wrong exit for you. A better exit timing would be when you have at least one signed LOI or verbal commitment for an engagement that starts within 30-60 days of your last day. Launching without that is possible but harder than launching with it.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "You're right, I am. I'm doing that because the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid. Right now the fundamentals are shaky in a specific way that a lot of first-time independents don't see until they're 4 months in and burning through savings.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "\"a lot of first-time independents don't see until they're 4 months in and burning through savings\" asserts a specific empirical pattern (timeline and situation) about independents' experiences without evidence, beyond user facts or common knowledge; not a reasonable inference from stated pipeline/runway.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "I can absolutely help with launch tactics. But if you want me to, I want you to at least acknowledge that the \"network conversations aren't a pipeline\" issue is real, so the launch plan we build accounts for it rather than assumes it away. Does that land?",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Delay is one option but it's not the only one. Here are three real versions, with different tradeoffs.\n\nOption 1: Delay launch by 2-3 months and spend that time converting network conversations into signed LOIs. This is the conservative path. You'd stay at your current job while explicitly telling your network \"I'm going independent in September — is this conversation the start of an actual engagement?\" The risk: your current employer may notice you're spending evening hours business-developing, which creates its own problems.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Option 2: Launch on your current timeline but accept that months 1-3 are business development, not delivery. Use the 8 months runway with that plan: months 1-3 are pipeline-building, months 4-6 are first engagements, months 7-8 are consolidation. This is viable but tight, and requires you to mentally accept that \"8 months runway\" actually means \"5 months of revenue pressure\" because the first 3 months won't produce income.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Option 3: Launch on current timeline but with a specific safety net — a part-time arrangement with a friendly ex-employer or fractional CTO/CPO role at one company that covers 30-40% of your baseline costs while the rest of the pipeline builds. This is the \"de-risked independent\" version. Much less common but also much less fragile.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts 'Much less common but also much less fragile' as a factual evaluation of 'Option 3' compared to other unstated options. This introduces unsubstantiated empirical claims about prevalence ('less common') and relative robustness ('less fragile') of this specific de-risking strategy, which go beyond user-provided facts (pipeline, runway, timeline, spouse support), reasonable inferences therefrom, or common practitioner knowledge. No evidence or qualification is provided for these comparative assertions.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Your call depends on risk tolerance and what your spouse/partner thinks about the financial pressure.\n\nThat's the conversation to have this week. Not \"are you on board with independent consulting\" — you already have that. It's \"here's the specific scenario where I launch in September with no signed engagements, here's the burn rate, here's when we'd be under financial pressure, here's what we'd do.\" If your spouse hasn't seen the specific math, their on-board-ness is for a concept, not for the reality.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "The fact that you've kept the runway conversation in your head suggests you might be avoiding the specific version because you're worried it'll make your spouse less supportive. That's a warning sign. Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business' asserts a specific causal relationship (this support gap leads to fights about money six months in) as empirical fact, without evidence, qualification, or grounding in user-provided facts or common knowledge. This goes beyond reasonable inference from 'spouse support: on board with concept, not specifics of runway pressure.'",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Fractional arrangements vary but here's the common shape: you agree to provide 8-15 hours/week as a fractional CPO or senior product advisor at a single company, on a retainer basis (typically $10-20K/month for someone at your experience level). This gives you predictable revenue from day one and doesn't consume your full-time capacity.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts specific empirical facts beyond user-provided context or common practitioner knowledge: 'typically $10-20K/month for someone at your experience level'. No user details on experience level or market rates were provided, and while fractional retainers are a known model, the precise $10-20K range tied to 'your experience level' is an unverified claim about market compensation standards.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "The companies that hire fractionals are usually: Series A-B startups that need senior product thinking but can't afford a full-time CPO; post-Series C companies with a specific 6-month initiative that needs a senior PM lead; PE-backed portfolio companies that want senior talent on specific projects.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts specific empirical facts about 'the companies that hire fractionals'—categorizing them as 'usually: Series A-B startups... post-Series C companies... PE-backed portfolio companies'—with no evidence, qualification, or reference to user-provided facts. This goes beyond common practitioner knowledge (which might note fractionals fill interim gaps generally) into unverified specificity about typical hirers and their funding stages/motivations.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "The best fractional engagements come from your existing network. \"Would your company be open to 10 hours/week at $12K/month for the next 6 months, starting in September?\" is a very specific ask. Some of those 4-5 network conversations might convert to fractional arrangements even if they won't commit to full project engagements.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "\"The best fractional engagements come from your existing network\" is an unverified claim asserting a specific empirical fact about where the best fractional engagements originate, beyond user-provided facts (4-5 network conversations), reasonable inferences therefrom, or common practitioner knowledge. The example ask and suggestion that \"some\" conversations \"might convert\" are actionable advice and speculative possibilities, not assertions stated as fact.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "The tradeoff: fractional work locks you into a company's cadence, makes it harder to take on larger client engagements, and tends to pay less per hour than project work. But it's the de-risking move for month 1 if you don't have signed project engagements.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts specific empirical facts about fractional work not grounded in user-provided facts or common practitioner knowledge: 'fractional work locks you into a company's cadence, makes it harder to take on larger client engagements, and tends to pay less per hour than project work.' These are stated as fact without evidence or qualification, going beyond reasonable inferences from the user's pipeline/runway details.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Here's my honest read. Launching in 6 weeks is viable if you do three things in those 6 weeks: (1) have the full runway conversation with your spouse, (2) go back to your network with the specific fractional ask and see if 1-2 convert, (3) prepare for months 1-3 as business development, not delivery.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": true,
+          "reasoning": "The phrase '5-months-of-revenue-pressure reality' technically derives from the established 8-month runway minus 4 weeks (~1 month), but omits key context that the spouse is only 'on board with concept, not specifics of runway pressure,' misleadingly implying spousal misalignment is solely about a specific 'reality' they haven't been briefed on. This acknowledged tension (spouse support status) is abandoned without resolution.",
+          "severity": "marginal"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Don't push back just because you're nervous. Push back only if the fundamentals haven't come together. The nervousness is always there; it's not good information by itself.",
+        "empty_rhetoric": {
+          "detected": true,
+          "reasoning": "The entire passage consists of motivational framing ('Don't push back just because you're nervous') without referencing user-provided facts (e.g., pipeline, runway) or providing any actionable analysis, alternatives, or decision criteria. It could be deleted without losing decision-relevant information; a decision-maker learns nothing specific to do differently regarding the 6-week launch.",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "You're welcome. The tactics matter, but only if the foundation is real. The foundation is: alignment with your spouse on the actual financial plan, and evidence that your network has at least some commercial intent, not just friendly interest. The launch plan we'd build on that foundation — pricing, positioning, website, legal structure — is the easier part.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Come back in 4 weeks with results from those three things and we can build the actual launch plan then. You'll be building on real information rather than on hopes.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      }
+    ],
+    "summary": {
+      "total_passages": 22,
+      "passages_with_detections": 11,
+      "total_clear": 10,
+      "total_marginal": 1
+    }
+  },
+  "run_health": {
+    "overall": "healthy",
+    "capture": "good",
+    "substrate": "ok",
+    "embeddings": "active",
+    "fingerprint": "ok",
+    "findings_produced": false,
+    "quote_fabrication_count": 0,
+    "quote_retry_attempted": false,
+    "capture_truncated": false,
+    "omitted_turns": 0,
+    "lane3_frame_drops_count": 0,
+    "lane3_frame_kept_count": 3,
+    "issues": [],
+    "warnings": [],
+    "activation_tiebreaker": "on",
+    "capture_manifest": {
+      "actual_user_turns": 8,
+      "actual_assistant_turns": 8,
+      "char_length": 9242,
+      "declared_turns": 8,
+      "declared_user": 8,
+      "declared_assistant": 8
+    }
+  }
+}

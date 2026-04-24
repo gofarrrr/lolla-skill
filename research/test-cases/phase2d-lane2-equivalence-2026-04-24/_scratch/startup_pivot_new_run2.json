@@ -1,0 +1,2278 @@
+{
+  "status": "ok",
+  "format": "json",
+  "detected_tendencies": [
+    "availability-misweighing-tendency"
+  ],
+  "delta_card": {
+    "findings": [
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "tendency_name": "Availability-Misweighing Tendency",
+        "sub_pattern": "vivid-proof-substitution",
+        "severity": "medium",
+        "specific_passage": "\"Three customers unprompted\" is a real signal, not a weak one. Unprompted signal at $4K MRR is stronger than prompted signal at $50K MRR.",
+        "challenge_statement": "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
+        "next_move": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "base-rates",
+          "statistics-concepts",
+          "scientific-method-evidence-testing"
+        ],
+        "major_tensions": [
+          "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
+        ],
+        "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      }
+    ],
+    "top_findings": [
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "tendency_name": "Availability-Misweighing Tendency",
+        "sub_pattern": "vivid-proof-substitution",
+        "severity": "medium",
+        "specific_passage": "\"Three customers unprompted\" is a real signal, not a weak one. Unprompted signal at $4K MRR is stronger than prompted signal at $50K MRR.",
+        "challenge_statement": "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?",
+        "next_move": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward.",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "base-rates",
+          "statistics-concepts",
+          "scientific-method-evidence-testing"
+        ],
+        "major_tensions": [
+          "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
+        ],
+        "intervention_hint": "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+      }
+    ],
+    "secondary_findings": [],
+    "secondary_findings_full": [],
+    "compound_groups": [],
+    "top_compound_groups": [],
+    "secondary_compound_groups": [],
+    "secondary_summarization_active": false,
+    "secondary_additional_pressures_note": "",
+    "secondary_additional_pressure_count": 0,
+    "secondary_additional_pressure_tendency_ids": [],
+    "detected_tendencies": [
+      "availability-misweighing-tendency"
+    ],
+    "selected_model_ids": [
+      "base-rates",
+      "statistics-concepts",
+      "scientific-method-evidence-testing"
+    ],
+    "challenge_statements": [
+      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?"
+    ],
+    "next_moves": [
+      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+    ],
+    "major_tensions": [
+      "Salience correction is fake if the team mentions a denominator but still lets the memorable anecdote decide the case."
+    ],
+    "top_challenge_statements": [
+      "What evidence here is actually representative, and what is merely vivid, recent, or easy to recall?"
+    ],
+    "secondary_challenge_statements": [],
+    "top_next_moves": [
+      "Write the disconfirming evidence that would outweigh the salient anecdote before moving forward."
+    ],
+    "secondary_next_moves": []
+  },
+  "companion_cheat_sheet": {
+    "anchors": [
+      {
+        "model_id": "optionality",
+        "display_name": "Optionality",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "optionality",
+            "text": "Analysis paralysis can keep the team waiting for perfect information instead of learning through reversible movement.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "optionality",
+            "text": "Have we generated enough options before narrowing the choice set?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "optionality",
+            "text": "Commitment Bias: Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "commitment-bias"
+            },
+            "affinity_rationale": "Commitment makes it 'extremely difficult to pivot or consider new, better options' — psychological pressure from prior choices directly destroys the flexibility optionality requires.",
+            "activation_condition": "When prior investment or public commitment creates escalation pressure that forecloses objectively superior alternatives because pivoting feels like failure"
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "optionality",
+            "text": "Invent first and decide later so evaluation does not choke off option generation too early.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "identity",
+            "source_model_id": "optionality",
+            "text": "Select when: Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call. | Danger when: Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit. | Reasoning: counterfactual, probabilistic",
+            "provenance": {
+              "source_layer": "wave1",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "go back to the three and say \"we're considering building this. If we commit to building it in the next 90 days, would you be willing to pre-pay three months of the new product at $X?\" Pick a price. See what they say.",
+        "presence_explanation": "The answer applies optionality by proposing a cheap pre-buy experiment to gain learning before the expensive, irreversible pivot commitment under high uncertainty."
+      },
+      {
+        "model_id": "representativeness-heuristic",
+        "display_name": "Representativeness Heuristic",
+        "chunks": [
+          {
+            "chunk_type": "prerequisite_gap",
+            "source_model_id": "representativeness-heuristic",
+            "text": "This model depends on system-2 (requires), which is not active in the answer. The representativeness heuristic is a System 1 shortcut. Detecting and overriding it requires System 2 engagement to pause intuitive categorization and force comparison against base rates, alternative classes, or regression effects.",
+            "provenance": {
+              "source_layer": "prerequisite",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "representativeness-heuristic",
+            "text": "Decision makers can confuse similarity with probability and treat a plausible story as if it were a strong forecast.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "representativeness-heuristic",
+            "text": "Challenge the favored frame with thesis, antithesis, and synthesis instead of letting the first pattern match become the decision.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "representativeness-heuristic",
+            "text": "If this representative-looking pattern fails, what ignored denominator or low-probability scenario would explain the miss?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          }
+        ],
+        "presence_mode": "violated",
+        "evidence_quote": "\"we'd pay more for that\" is conversational; \"I would switch from ToolX and pay $400/month for this by Q3\" is commercial. Those two signals look the same on a gut level but they're different enough to drive the decision.",
+        "presence_explanation": "The answer explicitly distinguishes surface similarity in gut-level perception of signals from their actual evidential strength, violating representativeness-heuristic by rejecting judgment based on vivid category match in favor of causal detail."
+      },
+      {
+        "model_id": "boundaries",
+        "display_name": "Boundaries",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "boundaries",
+            "text": "Premature narrowing can kill options and block the generation of better explanations or solutions.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "boundaries",
+            "text": "Use boundaries to respect real cognitive limits by breaking work into genuinely manageable chunks.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "boundaries",
+            "text": "Formalize the scope and expected output before the analysis sprawls.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "boundaries",
+            "text": "Optionality: Boundaries conflicts with optionality when prematurely fixed boundaries close off adjacent opportunities that emerge only through exploratory scope expansion.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "optionality"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point. But she deserves to be informed, and not after the fact.",
+        "presence_explanation": "The answer executes boundaries by drawing explicit scope lines between operational decision authority and passive shareholder information rights."
+      },
+      {
+        "model_id": "theory-of-constraints",
+        "display_name": "Theory Of Constraints",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "theory-of-constraints",
+            "text": "The model breaks when teams keep fixing the old bottleneck after the constraint has already shifted somewhere else.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "theory-of-constraints",
+            "text": "Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "theory-of-constraints",
+            "text": "If this first bottleneck actually moves, what step becomes the next cap within two weeks?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "theory-of-constraints",
+            "text": "Commitment Bias: Theory-of-constraints conflicts with commitment-bias when the team keeps investing in the first bottleneck story instead of reassessing whether it is still binding.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "commitment-bias"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations: with the customers who might say no, with the employee who might be laid off, with the friend who might feel excluded, with yourself about a product that isn't working.",
+        "presence_explanation": "The answer executes theory-of-constraints by identifying avoidance of hard conversations as the binding bottleneck constraining progress, rather than strategic uncertainty."
+      },
+      {
+        "model_id": "false-precision-avoidance",
+        "display_name": "False Precision Avoidance",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "false-precision-avoidance",
+            "text": "Simplification can fail by collapsing into vague slogans that no longer guide prediction, action, or alignment.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "false-precision-avoidance",
+            "text": "Gather only enough facts to support or falsify the decision rather than boiling the ocean for decorative certainty.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "false-precision-avoidance",
+            "text": "If this was cut, would anything be lost?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "before you run the pre-buy test, write down what \"pass\" looks like. Two of three commit? All three? What dollar amount? If you decide the bar after seeing the results, you'll negotiate with yourself into whatever answer you want. Bar first, data second.",
+        "presence_explanation": "The answer executes false-precision-avoidance by insisting on directional operating thresholds and pre-committed success criteria before data to prevent post-hoc rationalization."
+      }
+    ],
+    "total_chunk_count": 20,
+    "budget_max": 20,
+    "anti_echo_model_ids": [
+      "base-rates",
+      "scientific-method-evidence-testing",
+      "statistics-concepts"
+    ],
+    "reranker": {
+      "active": true,
+      "chunks_above_relevance_floor": 13,
+      "mean_relevance_score": 0.3014
+    }
+  },
+  "companion_card": {
+    "detected_models": [
+      {
+        "model_id": "representativeness-heuristic",
+        "model_name": "Representativeness Heuristic",
+        "evidence_quote": "\"we'd pay more for that\" is conversational; \"I would switch from ToolX and pay $400/month for this by Q3\" is commercial. Those two signals look the same on a gut level but they're different enough to drive the decision.",
+        "presence_mode": "violated",
+        "presence_explanation": "The answer explicitly distinguishes surface similarity in gut-level perception of signals from their actual evidential strength, violating representativeness-heuristic by rejecting judgment based on vivid category match in favor of causal detail.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "optionality",
+        "model_name": "Optionality",
+        "evidence_quote": "go back to the three and say \"we're considering building this. If we commit to building it in the next 90 days, would you be willing to pre-pay three months of the new product at $X?\" Pick a price. See what they say.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer applies optionality by proposing a cheap pre-buy experiment to gain learning before the expensive, irreversible pivot commitment under high uncertainty.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "boundaries",
+        "model_name": "Boundaries",
+        "evidence_quote": "She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point. But she deserves to be informed, and not after the fact.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer executes boundaries by drawing explicit scope lines between operational decision authority and passive shareholder information rights.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "theory-of-constraints",
+        "model_name": "Theory Of Constraints",
+        "evidence_quote": "The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations: with the customers who might say no, with the employee who might be laid off, with the friend who might feel excluded, with yourself about a product that isn't working.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer executes theory-of-constraints by identifying avoidance of hard conversations as the binding bottleneck constraining progress, rather than strategic uncertainty.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "false-precision-avoidance",
+        "model_name": "False Precision Avoidance",
+        "evidence_quote": "before you run the pre-buy test, write down what \"pass\" looks like. Two of three commit? All three? What dollar amount? If you decide the bar after seeing the results, you'll negotiate with yourself into whatever answer you want. Bar first, data second.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer executes false-precision-avoidance by insisting on directional operating thresholds and pre-committed success criteria before data to prevent post-hoc rationalization.",
+        "detection_confidence": "structural"
+      }
+    ],
+    "expansions": [
+      {
+        "source_model_id": "representativeness-heuristic",
+        "relation_type": "antagonist",
+        "model_id": "base-rates",
+        "model_name": "Base Rates",
+        "substrate_chunk": "Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
+        "why_relevant": "Base-rates directly counter representativeness-heuristic by forcing denominator discipline when vivid resemblance is doing the work of judgment.",
+        "affinity_rationale": "Canonical: 'RH, by definition, ignores critical components of rational probability, such as the base rate and statistical laws' — definitional opposition.",
+        "activation_condition": "When resemblance-based categorization overrides the actual statistical frequency of events in the reference class."
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "relation_type": "tension",
+        "model_id": "base-rates",
+        "model_name": "Base Rates",
+        "substrate_chunk": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency and outside-view distribution evidence.",
+        "why_relevant": "Representativeness-heuristic conflicts with base-rates when vivid similarity overrides reference-class frequency and outside-view distribution evidence.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "relation_type": "antagonist",
+        "model_id": "bayesian",
+        "model_name": "Bayesian",
+        "substrate_chunk": "Bayesian updating resists representativeness-heuristic by revising on evidence instead of trusting intuitive category fit.",
+        "why_relevant": "Bayesian updating resists representativeness-heuristic by revising on evidence instead of trusting intuitive category fit.",
+        "affinity_rationale": "Bayesian reasoning requires incorporating prior probabilities and updating with evidence — directly corrects the representativeness heuristic's neglect of base rates.",
+        "activation_condition": "When proper Bayesian updating would correct the intuitive probability estimate distorted by surface similarity."
+      },
+      {
+        "source_model_id": "optionality",
+        "relation_type": "antagonist",
+        "model_id": "commitment-bias",
+        "model_name": "Commitment Bias",
+        "substrate_chunk": "Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
+        "why_relevant": "Commitment-and-consistency-bias makes optionality psychologically expensive because prior choices become harder to revisit even when better paths appear.",
+        "affinity_rationale": "Commitment makes it 'extremely difficult to pivot or consider new, better options' — psychological pressure from prior choices directly destroys the flexibility optionality requires.",
+        "activation_condition": "When prior investment or public commitment creates escalation pressure that forecloses objectively superior alternatives because pivoting feels like failure"
+      },
+      {
+        "source_model_id": "optionality",
+        "relation_type": "tension",
+        "model_id": "commitment-bias",
+        "model_name": "Commitment Bias",
+        "substrate_chunk": "Optionality conflicts with commitment-bias when preserving options delays the commitment needed to capture time-sensitive value.",
+        "why_relevant": "Optionality conflicts with commitment-bias when preserving options delays the commitment needed to capture time-sensitive value.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "optionality",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias shrinks optionality by locking attention onto the preferred path and filtering out superior alternatives.",
+        "why_relevant": "Confirmation-bias shrinks optionality by locking attention onto the preferred path and filtering out superior alternatives.",
+        "affinity_rationale": "Described as 'severely limiting' optionality — confirmation bias causes inability to see superior alternatives by seeking information that confirms the preferred option.",
+        "activation_condition": "When attachment to a preferred option causes selective evidence gathering that makes alternatives invisible despite their objective superiority"
+      },
+      {
+        "source_model_id": "boundaries",
+        "relation_type": "tension",
+        "model_id": "optionality",
+        "model_name": "Optionality",
+        "substrate_chunk": "Boundaries conflicts with optionality when prematurely fixed boundaries close off adjacent opportunities that emerge only through exploratory scope expansion.",
+        "why_relevant": "Boundaries conflicts with optionality when prematurely fixed boundaries close off adjacent opportunities that emerge only through exploratory scope expansion.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "boundaries",
+        "relation_type": "tension",
+        "model_id": "systems-thinking",
+        "model_name": "Systems Thinking",
+        "substrate_chunk": "Boundaries conflicts with systems-thinking when artificially narrow system boundaries hide feedback loops and interdependencies that cross the defined perimeter.",
+        "why_relevant": "Boundaries conflicts with systems-thinking when artificially narrow system boundaries hide feedback loops and interdependencies that cross the defined perimeter.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "boundaries",
+        "relation_type": "antagonist",
+        "model_id": "theory-induced-blindness",
+        "model_name": "Theory Induced Blindness",
+        "substrate_chunk": "Theory-induced-blindness undermines boundaries when a familiar frame dictates the scope instead of the real objective and evidence landscape.",
+        "why_relevant": "Theory-induced-blindness undermines boundaries when a familiar frame dictates the scope instead of the real objective and evidence landscape.",
+        "affinity_rationale": "Directly corrupts boundary placement — described as 'a direct challenge to the wise use of boundaries' where a familiar model dictates scope instead of the real objective and evidence landscape.",
+        "activation_condition": "When scope boundaries are being drawn by a familiar theoretical framework rather than derived from the actual problem structure and available evidence"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "relation_type": "tension",
+        "model_id": "commitment-bias",
+        "model_name": "Commitment Bias",
+        "substrate_chunk": "Theory-of-constraints conflicts with commitment-bias when the team keeps investing in the first bottleneck story instead of reassessing whether it is still binding.",
+        "why_relevant": "Theory-of-constraints conflicts with commitment-bias when the team keeps investing in the first bottleneck story instead of reassessing whether it is still binding.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias corrupts theory-of-constraints by making the team protect its favorite bottleneck story instead of measuring the real cap.",
+        "why_relevant": "Confirmation-bias corrupts theory-of-constraints by making the team protect its favorite bottleneck story instead of measuring the real cap.",
+        "affinity_rationale": "Canonical describes confirmation bias as encouraging substitution of familiar frameworks for objective constraint identification",
+        "activation_condition": "When teams substitute a familiar framework for objective identification of the actual binding constraint"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "relation_type": "tension",
+        "model_id": "optimization-theory",
+        "model_name": "Optimization Theory",
+        "substrate_chunk": "Theory-of-constraints conflicts with optimization-theory when local utilization improvements in non-constrained steps create the illusion of progress.",
+        "why_relevant": "Theory-of-constraints conflicts with optimization-theory when local utilization improvements in non-constrained steps create the illusion of progress.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "false-precision-avoidance",
+        "relation_type": "antagonist",
+        "model_id": "anchoring",
+        "model_name": "Anchoring",
+        "substrate_chunk": "Anchoring makes false-precision-avoidance necessary because one precise number can dominate judgment long after it stops being the right guide.",
+        "why_relevant": "Anchoring makes false-precision-avoidance necessary because one precise number can dominate judgment long after it stops being the right guide.",
+        "affinity_rationale": "Canonical describes how 'people focus too much on a single, specific piece of information (the anchor), often a precise number, to misleadingly influence overall judgment' — directly opposes FPA's mission.",
+        "activation_condition": "When a precise number anchors judgment and misleadingly influences the overall assessment, even though the number's precision exceeds the reliability of the underlying data"
+      },
+      {
+        "source_model_id": "false-precision-avoidance",
+        "relation_type": "tension",
+        "model_id": "base-rates",
+        "model_name": "Base Rates",
+        "substrate_chunk": "False-precision-avoidance conflicts with base-rates when rounding away precision discards meaningful base-rate variation that would change the decision.",
+        "why_relevant": "False-precision-avoidance conflicts with base-rates when rounding away precision discards meaningful base-rate variation that would change the decision.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "false-precision-avoidance",
+        "relation_type": "tension",
+        "model_id": "bayesian",
+        "model_name": "Bayesian",
+        "substrate_chunk": "False-precision-avoidance conflicts with bayesian when avoidance of precise probability estimates prevents the quantitative prior-updating that Bayesian reasoning requires.",
+        "why_relevant": "False-precision-avoidance conflicts with bayesian when avoidance of precise probability estimates prevents the quantitative prior-updating that Bayesian reasoning requires.",
+        "tension_type": "conflicts"
+      }
+    ],
+    "failure_hints": [
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "A vivid pattern match can crowd out base-rate and frequency discipline, making the case feel more diagnostic than it is.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "Decision makers can confuse similarity with probability and treat a plausible story as if it were a strong forecast.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "optionality",
+        "text": "Analysis paralysis can keep the team waiting for perfect information instead of learning through reversible movement.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "optionality",
+        "text": "Anchoring on the first option presented can quietly shrink the perceived option set and bias later evaluation.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Boundaries fail when they are drawn to protect comfort, politics, or convenience instead of the actual purpose of the work.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Premature narrowing can kill options and block the generation of better explanations or solutions.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "Constraint language becomes theater when no current cap, governing metric, or movement evidence is named.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "The model breaks when teams keep fixing the old bottleneck after the constraint has already shifted somewhere else.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "false-precision-avoidance",
+        "text": "Teams can use simplicity to hide uncertainty and present a rounded answer as if the underlying variance no longer matters.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "false-precision-avoidance",
+        "text": "Simplification can fail by collapsing into vague slogans that no longer guide prediction, action, or alignment.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "heuristic_hints": [
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "Force an outside-view pass with reference classes or base rates before acting on an intuitive category match.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "Challenge the favored frame with thesis, antithesis, and synthesis instead of letting the first pattern match become the decision.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "optionality",
+        "text": "Bias toward action on reversible decisions because they buy information at low downside cost.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "optionality",
+        "text": "Invent first and decide later so evaluation does not choke off option generation too early.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Formalize the scope and expected output before the analysis sprawls.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Use boundaries to respect real cognitive limits by breaking work into genuinely manageable chunks.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "Define constraints rigorously up front so the problem scope and the bottleneck candidate are explicit before solutioning.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "Disaggregate and prioritize until only the branches affecting the binding constraint stay in focus.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "false-precision-avoidance",
+        "text": "Filter explanations by purpose so only detail that improves prediction, choice, or coordination survives.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "false-precision-avoidance",
+        "text": "Gather only enough facts to support or falsify the decision rather than boiling the ocean for decorative certainty.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "premortem_hints": [
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "If this representative-looking pattern fails, what ignored denominator or low-probability scenario would explain the miss?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "representativeness-heuristic",
+        "text": "Is the worst case bad enough if this resemblance-based judgment is wrong?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "optionality",
+        "text": "Is the worst case bad enough?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "optionality",
+        "text": "Have we generated enough options before narrowing the choice set?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "What is this work actually supposed to cover, and what is deliberately out of scope?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Are these limits serving the goal, or are they mainly protecting us from difficult evidence or accountability?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "theory-of-constraints",
+        "text": "If this first bottleneck actually moves, what step becomes the next cap within two weeks?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "false-precision-avoidance",
+        "text": "If this was cut, would anything be lost?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      }
+    ],
+    "identity_chunks": [
+      {
+        "model_id": "representativeness-heuristic",
+        "display_name": "Representativeness Heuristic",
+        "select_when": [
+          "A judgment is being driven by surface similarity or a vivid category match rather than by rates, frequencies, or causal detail.",
+          "People are substituting the question 'What does this resemble?' for the harder question 'What is statistically or causally likely here?'",
+          "The risk is that a compelling pattern match will crowd out denominator discipline.",
+          "A decision maker is intuitively classifying a case before checking whether the reference class actually supports that classification.",
+          "A vivid story, category label, or familiar prototype is overpowering statistical reasoning in a forecast or judgment.",
+          "A recommendation depends on forcing a handoff from intuitive categorization to explicit outside-view checking before action.",
+          "Problem solvers are at risk of declaring that they have seen this pattern before and skipping verification of whether the old frame still fits."
+        ],
+        "danger_when": [
+          "The model would be used as a generic anti-intuition slogan instead of checking where resemblance is actually informative.",
+          "Teams are treating every pattern match as wrong even when there is strong base-rate and causal support for it.",
+          "The judgment already rests on explicit outside-view evidence and the model would only restate a bias warning without changing the decision path.",
+          "The model is being used to criticize simplification itself rather than the specific move from surface similarity to unsupported causal confidence."
+        ],
+        "reasoning_types": [
+          "probabilistic",
+          "diagnostic",
+          "counterfactual"
+        ],
+        "input_type": "similarity-driven judgment",
+        "output_type": "pattern-match challenge with base-rate correction"
+      },
+      {
+        "model_id": "optionality",
+        "display_name": "Optionality",
+        "select_when": [
+          "Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.",
+          "Decisions are reversible enough that preserving multiple paths creates information value rather than just indecision.",
+          "Downside can be capped while upside remains open across several plausible futures.",
+          "The problem has collapsed into binary framing, but the real move is to create more viable paths before choosing."
+        ],
+        "danger_when": [
+          "Optionality has become a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit.",
+          "Maintaining optionality is consuming cash, attention, or organizational simplicity that would be better spent on a chosen path."
+        ],
+        "reasoning_types": [
+          "counterfactual",
+          "probabilistic"
+        ],
+        "input_type": "reversible high-uncertainty choice",
+        "output_type": "option set expansion"
+      },
+      {
+        "model_id": "boundaries",
+        "display_name": "Boundaries",
+        "select_when": [
+          "A project, analysis, or negotiation needs explicit scope lines before effort spreads into unowned terrain.",
+          "The current work is overloaded because limits on responsibility, attention, or working-memory burden have not been set clearly enough.",
+          "A team needs to distinguish what is in frame, out of frame, and who owns each part before deeper analysis becomes useful.",
+          "The next useful move is to define constraints that protect purpose rather than let complexity expand by default."
+        ],
+        "danger_when": [
+          "Scope lines are being drawn mainly to avoid inconvenient evidence, hard conversations, or accountability.",
+          "The inquiry is being narrowed so early that important options, causes, or adjacent realities will be filtered out before they are understood."
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "input_type": "scope and limit-setting problem",
+        "output_type": "purpose-aligned boundary definition"
+      },
+      {
+        "model_id": "theory-of-constraints",
+        "display_name": "Theory Of Constraints",
+        "select_when": [
+          "A conjunctive chain has a binding constraint, so improving non-binding stages will not raise throughput.",
+          "There are competing action options and the team can name the current bottleneck with a measured limit before ranking fixes.",
+          "Local optimization is masking the true leverage point because many high-quality improvements still leave key outcomes flat.",
+          "One blocking dependency, queue, approval step, scarce specialist, or handoff is visibly capping the whole delivery plan."
+        ],
+        "danger_when": [
+          "The environment is too unstable for one fixed bottleneck frame because the limiting factor is moving every cycle.",
+          "The team is performing bottleneck theater and cannot name the governing metric, current cap, or evidence that the cap moved after intervention."
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "input_type": "throughput bottleneck problem",
+        "output_type": "constraint-first sequence"
+      },
+      {
+        "model_id": "false-precision-avoidance",
+        "display_name": "False Precision Avoidance",
+        "select_when": [
+          "A decision needs directional clarity, bounded ranges, or operating thresholds more than an illusion of exact certainty.",
+          "Extra decimal places, caveats, or scenario branches are consuming attention without changing the decision that would actually be made.",
+          "The audience needs to act, align, or prioritize quickly and will be harmed more by cluttered precision than by a well-calibrated approximation.",
+          "The current explanation is accurate enough to sound rigorous but too overloaded to be useful for prediction, choice, or coordination."
+        ],
+        "danger_when": [
+          "Simplicity is being used to hide uncertainty, skip the underlying analysis, or present a rounded answer as if the variance no longer matters.",
+          "The model is simplifying so far that the result becomes vague, slogan-like, or detached from the assumptions that make it usable."
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "causal"
+        ],
+        "input_type": "overprecision and cognitive-clutter problem",
+        "output_type": "actionable bounded approximation"
+      }
+    ],
+    "detection_model_count": 5,
+    "expansion_count": 15,
+    "failure_hint_count": 10,
+    "heuristic_hint_count": 10,
+    "premortem_hint_count": 9,
+    "identity_chunk_count": 5,
+    "detection_source": "independent_llm_pass"
+  },
+  "frame_pressure_card": {
+    "frame_elements": [
+      {
+        "element_text": "three customers tell us unprompted that they'd pay way more for a specific workflow tool we could build",
+        "element_type": "assumption",
+        "evidence_quote": "three customers tell us unprompted that they'd pay way more for a specific workflow tool we could build",
+        "frame_pattern": "borrowed_premise",
+        "fragility_signal": "customer signals are merely conversational without specific price or timeline commitments",
+        "inquiry_stage": "what_if",
+        "likely_default": "emotion"
+      },
+      {
+        "element_text": "pivot now while we have runway and a real signal, or push harder on the current product",
+        "element_type": "mutable_constraint",
+        "evidence_quote": "pivot now while we have runway and a real signal, or push harder on the current product",
+        "frame_pattern": "option_space_collapse",
+        "fragility_signal": "other strategic options like gradual transition, feature hybridization, or acquisition exist beyond binary pivot or push",
+        "inquiry_stage": "what_if",
+        "likely_default": "inertia"
+      }
+    ],
+    "reframings": [
+      {
+        "reframed_question": "What specific commitments on price, quantity, or timeline have those three customers made for the workflow tool?",
+        "what_opens": "Tests the fragility of customer signals by probing for concrete commitments beyond unprompted enthusiasm",
+        "reframe_move_type": "constraint_relaxation",
+        "grounding_model": "falsifiability",
+        "source_element_index": 0
+      },
+      {
+        "reframed_question": "How might we test the workflow tool demand by building and selling a minimal version to those three customers before a full pivot?",
+        "what_opens": "Opens validation path that preserves runway while de-risking the pivot signal",
+        "reframe_move_type": "scope_expansion",
+        "grounding_model": "first-principles-thinking",
+        "source_element_index": 0
+      }
+    ],
+    "anti_echo_model_ids": [
+      "base-rates",
+      "scientific-method-evidence-testing",
+      "statistics-concepts"
+    ],
+    "overlap_flags": [],
+    "dropped_frame_elements": []
+  },
+  "structural_coverage_card": {
+    "question_type": "decision-evaluation",
+    "dimensions": [
+      {
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
+        "covered": true,
+        "coverage_evidence": "Distinguishes sunk costs implicitly by focusing on future runway and test before pivot; identifies exit costs for current product (transition options like freeze, sunset, sell list) and employee layoff severance; recommends staging pivot with pre-buy test to preserve optionality rather than full commitment now.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
+        "covered": false,
+        "coverage_evidence": "No modeling of competitor responses, retaliation, imitation, preemption, or first-mover dynamics in dental SaaS space; mentions selling customer list to competitor but doesn't analyze competitive reactions to pivot.",
+        "materiality_note": "Competitors could preempt the new workflow tool or respond aggressively, potentially reversing pivot viability."
+      },
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "covered": true,
+        "coverage_evidence": "Identifies misaligned incentives for CS employee (no role in pivot) and proposes alignment via honesty, role pivot if useful, or layoff; for ex-co-founder, distinguishes operator vs passive shareholder incentives and recommends communication to prevent resentment without giving veto power.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "covered": false,
+        "coverage_evidence": "Acknowledges can't keep both employees and discusses layoff vs repivot, but doesn't compare marginal returns of pivot vs pushing current product (e.g., what engineer time on current product yields vs new) or explicitly what is given up in runway terms.",
+        "materiality_note": "Pivoting consumes scarce runway and engineer time that could extend current product; wrong allocation could burn runway without upside."
+      },
+      {
+        "dimension_id": "stakeholder-alignment",
+        "dimension_name": "Stakeholder Alignment",
+        "covered": true,
+        "coverage_evidence": "Identifies positions of customers (transition plans), CS employee (honesty and options), ex-co-founder (inform but no say); provides influence strategies like pre-buy test, advance notice, relationship management to secure agreement or manage resistance.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "timing-sequencing",
+        "dimension_name": "Timing & Sequencing",
+        "covered": true,
+        "coverage_evidence": "Specifies sequence: pre-buy test first, then conversations, decision in 14 days; rationale for order (test before committing, bar before data); addresses delay costs (runway shrink) vs info gain from test.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "information-quality",
+        "dimension_name": "Information Quality",
+        "covered": true,
+        "coverage_evidence": "Assesses signal quality (unprompted strong but conversational vs commercial); distinguishes noise ('like the idea') from signal ('pre-pay at $X'); identifies missing evidence (price/timeline) and test to validate.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "covered": false,
+        "coverage_evidence": "Acknowledges fear of 'no' from customers and employee fallout but doesn't size downsides (e.g., probability/impact of pivot failure draining runway) or distinguish mitigate (test) vs adapt strategies systematically.",
+        "materiality_note": "High runway burn risk if pivot fails; sizing tail risks could favor pushing current product longer."
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "covered": false,
+        "coverage_evidence": "Recommends test to reduce epistemic uncertainty on demand but doesn't classify types (e.g., aleatory demand risk vs reducible via LOI) or match strategy (e.g., optionality via test vs robustness for Knightian market shifts).",
+        "materiality_note": "Misclassifying customer demand as fully reducible vs inherent could lead to overconfident pivot."
+      },
+      {
+        "dimension_id": "existing-vs-new",
+        "dimension_name": "Existing vs New (Growth Decomposition)",
+        "covered": true,
+        "coverage_evidence": "Separates existing (22 customers, transition plans to avoid drag) from new (pre-buy test, build with engineer); addresses cannibalization/distraction (don't let current drag pivot 50% longer).",
+        "materiality_note": "covered"
+      }
+    ],
+    "gap_routes": [
+      {
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
+        "candidate_model_ids": [
+          "game-theory-payoffs",
+          "nash-equilibrium",
+          "prisoners-dilemma",
+          "batna",
+          "red-queen-effect"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "candidate_model_ids": [
+          "opportunity-cost",
+          "comparative-advantage",
+          "trade-offs",
+          "pareto-principle",
+          "prioritization",
+          "optimization-theory"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "candidate_model_ids": [
+          "risk-assessment",
+          "black-swan-events",
+          "antifragility",
+          "margin-of-safety",
+          "calculated-risk-taking",
+          "resilience"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "candidate_model_ids": [
+          "aleatory-epistemic-uncertainty-recognition",
+          "true-uncertainty-navigation",
+          "probabilistic-thinking",
+          "confidence-calibration",
+          "experimentation"
+        ],
+        "excluded_model_ids": []
+      }
+    ],
+    "gap_questions": [
+      {
+        "dimension_id": "competitive-dynamics",
+        "dimension_name": "Competitive Dynamics",
+        "questions": [
+          "Who else in the dental SaaS space is already building or offering a similar workflow tool to the one your three customers mentioned?",
+          "What would a competitor like the one your prospect uses for ToolX do if you launch this new workflow product—would they match it, undercut it, or ignore it?"
+        ]
+      },
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "questions": [
+          "What other uses could your engineer's time serve in the next 6 months besides building the new workflow tool, like fixing bugs for your 22 current customers?",
+          "If you keep the CS employee on during the pivot build, what specific demand-generation tasks could she take on to build pipeline for the new product?"
+        ]
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "questions": [
+          "What would make you pull back from the pivot even if two of the three customers pre-commit, like signs of stronger demand in your current dental product?",
+          "If the pre-buy test fails and you decide to stick with the current product, what aggressive steps would you take with your 14-month runway to reverse the flat growth?"
+        ]
+      },
+      {
+        "dimension_id": "uncertainty-type",
+        "dimension_name": "Uncertainty Type",
+        "questions": [
+          "Beyond the three customers' comments, what hard data do you have on how many other dental practices might need this workflow tool, like from surveys or usage patterns?",
+          "What do you still not know at all about the new workflow tool's fit, such as integration needs with existing dental software that none of your customers have mentioned?"
+        ]
+      }
+    ],
+    "anti_echo_model_ids": [
+      "base-rates",
+      "boundaries",
+      "false-precision-avoidance",
+      "falsifiability",
+      "first-principles-thinking",
+      "optionality",
+      "representativeness-heuristic",
+      "scientific-method-evidence-testing",
+      "statistics-concepts",
+      "theory-of-constraints"
+    ]
+  },
+  "audit_summary": {
+    "triage_scores": [
+      {
+        "tendency_id": "authority-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "social-proof-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "influence-from-mere-association-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "liking-loving-tendency",
+        "score": 2,
+        "evidence": "Faint signal in Turn 5 where assistant recommends informing ex-co-founder due to her being a 'friend' to preserve relationship, but this is a minor factor alongside operational reasons and not decision-driving."
+      },
+      {
+        "tendency_id": "reciprocation-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "doubt-avoidance-tendency",
+        "score": 2,
+        "evidence": "Faint signal in Turn 6 urging a 14-day decision date to avoid ongoing uncertainty, but framed as structured process with pre-set bar rather than rush to any conclusion."
+      },
+      {
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "deprival-superreaction-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reward-and-punishment-superresponse-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "envy-jealousy-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "kantian-fairness-tendency",
+        "score": 3,
+        "evidence": "Faint signal in Turn 4 ('she deserves to hear this') and Turn 5 ('keeping her in the loop as someone who still owns part of the company'), but not decision-driving as reasoning centers on operational clarity rather than reciprocal fairness norms overriding analysis."
+      },
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "score": 8,
+        "evidence": "Assistant repeatedly treats 'three unprompted customer signals' as a 'real signal' strong enough to nearly drive pivot (e.g., 'unprompted signal at $4K MRR is stronger than prompted at $50K MRR'; 'if two of three say yes, you have enough signal to pivot'), overweighting vivid anecdotes from 22 customers and 3 conversations while omitting base rates like conversion likelihood from conversational interest or denominator of total prospects/customers."
+      },
+      {
+        "tendency_id": "contrast-misreaction-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "excessive-self-regard-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "simple-pain-avoiding-psychological-denial",
+        "score": 2,
+        "evidence": "Faint signal in acknowledging founder's fear of hard conversations as avoidance but assistant pushes forward without deeply testing or distorting painful realities like likely test failure or layoff fallout."
+      },
+      {
+        "tendency_id": "disliking-hating-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reason-respecting-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "curiosity-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "use-it-or-lose-it-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "drug-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "senescence-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "twaddle-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      }
+    ],
+    "triggered_tendencies": [
+      "availability-misweighing-tendency",
+      "inconsistency-avoidance-tendency",
+      "doubt-avoidance-tendency",
+      "overoptimism-tendency",
+      "simple-pain-avoiding-psychological-denial",
+      "stress-influence-tendency"
+    ],
+    "triggered_tendency_sources": [
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "source": "triage",
+        "score": 8
+      },
+      {
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "source": "embedding",
+        "score": 0.37074836166768
+      },
+      {
+        "tendency_id": "doubt-avoidance-tendency",
+        "source": "embedding",
+        "score": 0.3349294063440842
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "source": "embedding",
+        "score": 0.33483563405586897
+      },
+      {
+        "tendency_id": "simple-pain-avoiding-psychological-denial",
+        "source": "embedding",
+        "score": 0.3147390743566896
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "source": "embedding",
+        "score": 0.30326502258321053
+      }
+    ],
+    "boundary_call_count": 18,
+    "boundary_calls": [
+      {
+        "stage": "pass1_cluster_authority",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3512,
+        "completion_tokens": 214,
+        "total_tokens": 3726,
+        "cached_tokens": 3511,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_closure",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3404,
+        "completion_tokens": 179,
+        "total_tokens": 3583,
+        "cached_tokens": 3403,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_incentive",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3236,
+        "completion_tokens": 165,
+        "total_tokens": 3401,
+        "cached_tokens": 3235,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_availability",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3238,
+        "completion_tokens": 169,
+        "total_tokens": 3407,
+        "cached_tokens": 3237,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_self_regard",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3257,
+        "completion_tokens": 213,
+        "total_tokens": 3470,
+        "cached_tokens": 3256,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_residual",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3217,
+        "completion_tokens": 178,
+        "total_tokens": 3395,
+        "cached_tokens": 3216,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "availability-misweighing-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3756,
+        "completion_tokens": 182,
+        "total_tokens": 3938,
+        "cached_tokens": 3755,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3842,
+        "completion_tokens": 85,
+        "total_tokens": 3927,
+        "cached_tokens": 3841,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "doubt-avoidance-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3800,
+        "completion_tokens": 99,
+        "total_tokens": 3899,
+        "cached_tokens": 3799,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "overoptimism-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3950,
+        "completion_tokens": 87,
+        "total_tokens": 4037,
+        "cached_tokens": 3949,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "simple-pain-avoiding-psychological-denial",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3645,
+        "completion_tokens": 99,
+        "total_tokens": 3744,
+        "cached_tokens": 3644,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "stress-influence-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3430,
+        "completion_tokens": 90,
+        "total_tokens": 3520,
+        "cached_tokens": 3429,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "companion_fingerprint",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2530,
+        "completion_tokens": 1109,
+        "total_tokens": 3639,
+        "cached_tokens": 2529,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "companion_verification",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 7552,
+        "completion_tokens": 1062,
+        "total_tokens": 8614,
+        "cached_tokens": 159,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "frame_extraction",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3694,
+        "completion_tokens": 217,
+        "total_tokens": 3911,
+        "cached_tokens": 3693,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "frame_reframing",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 1005,
+        "completion_tokens": 409,
+        "total_tokens": 1414,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "structural_coverage_classification",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2827,
+        "completion_tokens": 276,
+        "total_tokens": 3103,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "structural_coverage_detection",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2827,
+        "completion_tokens": 276,
+        "total_tokens": 3103,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      }
+    ],
+    "warnings": [],
+    "embedding_swiss_cheese_active": true,
+    "compiled_substrate_chunk_count": 242,
+    "companion_fingerprint_raw": [
+      {
+        "move_id": "1",
+        "reasoning_move": "Distinguishing between conversational interest and commercial commitment to assess signal strength for pivot decision",
+        "evidence_quotes": [
+          "\"Unprompted signal at $4K MRR is stronger than prompted signal at $50K MRR.\"",
+          "\"\\\"we'd pay more for that\\\" is conversational; \\\"I would switch from ToolX and pay $400/month for this by Q3\\\" is commercial.\"",
+          "\"Those two signals look the same on a gut level but they're different enough to drive the decision.\""
+        ],
+        "evidence_rationale": "These quotes establish criteria for evaluating customer signals by contrasting weak conversational feedback with strong commercial commitments, directly informing the pivot signal assessment.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "2",
+        "reasoning_move": "Proposing a concrete pre-buy test with specific thresholds to validate pivot signal before committing resources",
+        "evidence_quotes": [
+          "\"go back to the three and say \\\"we're considering building this. If we commit to building it in the next 90 days, would you be willing to pre-pay three months of the new product at $X?\\\" Pick a price.\"",
+          "\"If two of three say yes, you have enough signal to pivot. If all three pass when money is actually involved, you have a feature idea, not a product.\""
+        ],
+        "evidence_rationale": "Quotes define an actionable test with quantifiable success criteria (2/3 commitment) to differentiate viable product signals from mere ideas.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "3",
+        "reasoning_move": "Recommending structured transition options for existing customers to avoid pivot drag while maintaining goodwill",
+        "evidence_quotes": [
+          "\"freeze the product (stop new features, keep it running, offer to migrate them to the new product when ready); or sunset it with 6-month notice and a discount on the new product for those who migrate;\"",
+          "\"The worst version is treating the current customers as an obligation that drags the pivot. You'll keep doing bug fixes and small features \\\"just for them\\\" and the pivot will take 50% longer than it should.\""
+        ],
+        "evidence_rationale": "Provides specific alternatives to abrupt termination and warns of resource drain, balancing customer retention with pivot efficiency.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "4",
+        "reasoning_move": "Outlining ranked employee management options during pivot, prioritizing transparency and clean severance",
+        "evidence_quotes": [
+          "\"First: lay her off cleanly, with severance appropriate to your ability to pay (2-4 weeks minimum, more if you can)\"; \"Second: pivot her role.\"; \"Third: be honest with her now about the uncertainty.\"",
+          "\"My honest read: option three, then option one if the pivot confirms. She deserves to hear this before you've made the decision, not after.\""
+        ],
+        "evidence_rationale": "Presents sequential options with a preferred path, emphasizing early communication to mitigate morale and legal risks.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "5",
+        "reasoning_move": "Differentiating passive shareholder information rights from operational decision authority",
+        "evidence_quotes": [
+          "\"She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point. But she deserves to be informed, and not after the fact.\"",
+          "\"Passive shareholders who find out about major strategic decisions via email announcements get resentful, and friend-shareholders who feel cut out become ex-friends.\""
+        ],
+        "evidence_rationale": "Clarifies boundaries of involvement while justifying proactive updates to preserve relationships and avoid resentment.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "6",
+        "reasoning_move": "Insisting on pre-committed decision timeline and success criteria to prevent indefinite delay",
+        "evidence_quotes": [
+          "\"Set a decision date. ... Give yourself 14 days.\"",
+          "\"before you run the pre-buy test, write down what \\\"pass\\\" looks like. Two of three commit? All three? What dollar amount? If you decide the bar after seeing the results, you'll negotiate with yourself into whatever answer you want. Bar first, data second.\""
+        ],
+        "evidence_rationale": "Enforces time-bound process with predefined metrics to counter founder bias and runway erosion.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "7",
+        "reasoning_move": "Identifying avoidance of hard conversations as the core bottleneck rather than strategic uncertainty",
+        "evidence_quotes": [
+          "\"The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations: with the customers who might say no, with the employee who might be laid off, with the friend who might feel excluded, with yourself about a product that isn't working.\"",
+          "\"Have the conversations. The strategic answer will fall out of them.\""
+        ],
+        "evidence_rationale": "Reframing the problem from analysis paralysis to emotional avoidance, positioning conversations as the resolution mechanism.",
+        "confidence": "high"
+      }
+    ],
+    "companion_fingerprint_validated": [
+      {
+        "move_id": "1",
+        "reasoning_move": "Distinguishing between conversational interest and commercial commitment to assess signal strength for pivot decision",
+        "evidence_quotes": [
+          "\"Unprompted signal at $4K MRR is stronger than prompted signal at $50K MRR.\"",
+          "\"\\\"we'd pay more for that\\\" is conversational; \\\"I would switch from ToolX and pay $400/month for this by Q3\\\" is commercial.\"",
+          "\"Those two signals look the same on a gut level but they're different enough to drive the decision.\""
+        ],
+        "evidence_rationale": "These quotes establish criteria for evaluating customer signals by contrasting weak conversational feedback with strong commercial commitments, directly informing the pivot signal assessment.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "2",
+        "reasoning_move": "Proposing a concrete pre-buy test with specific thresholds to validate pivot signal before committing resources",
+        "evidence_quotes": [
+          "\"go back to the three and say \\\"we're considering building this. If we commit to building it in the next 90 days, would you be willing to pre-pay three months of the new product at $X?\\\" Pick a price.\"",
+          "\"If two of three say yes, you have enough signal to pivot. If all three pass when money is actually involved, you have a feature idea, not a product.\""
+        ],
+        "evidence_rationale": "Quotes define an actionable test with quantifiable success criteria (2/3 commitment) to differentiate viable product signals from mere ideas.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "3",
+        "reasoning_move": "Recommending structured transition options for existing customers to avoid pivot drag while maintaining goodwill",
+        "evidence_quotes": [
+          "\"freeze the product (stop new features, keep it running, offer to migrate them to the new product when ready); or sunset it with 6-month notice and a discount on the new product for those who migrate;\"",
+          "\"The worst version is treating the current customers as an obligation that drags the pivot. You'll keep doing bug fixes and small features \\\"just for them\\\" and the pivot will take 50% longer than it should.\""
+        ],
+        "evidence_rationale": "Provides specific alternatives to abrupt termination and warns of resource drain, balancing customer retention with pivot efficiency.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "4",
+        "reasoning_move": "Outlining ranked employee management options during pivot, prioritizing transparency and clean severance",
+        "evidence_quotes": [
+          "\"First: lay her off cleanly, with severance appropriate to your ability to pay (2-4 weeks minimum, more if you can)\"; \"Second: pivot her role.\"; \"Third: be honest with her now about the uncertainty.\"",
+          "\"My honest read: option three, then option one if the pivot confirms. She deserves to hear this before you've made the decision, not after.\""
+        ],
+        "evidence_rationale": "Presents sequential options with a preferred path, emphasizing early communication to mitigate morale and legal risks.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "5",
+        "reasoning_move": "Differentiating passive shareholder information rights from operational decision authority",
+        "evidence_quotes": [
+          "\"She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point. But she deserves to be informed, and not after the fact.\"",
+          "\"Passive shareholders who find out about major strategic decisions via email announcements get resentful, and friend-shareholders who feel cut out become ex-friends.\""
+        ],
+        "evidence_rationale": "Clarifies boundaries of involvement while justifying proactive updates to preserve relationships and avoid resentment.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "6",
+        "reasoning_move": "Insisting on pre-committed decision timeline and success criteria to prevent indefinite delay",
+        "evidence_quotes": [
+          "\"Set a decision date. ... Give yourself 14 days.\"",
+          "\"before you run the pre-buy test, write down what \\\"pass\\\" looks like. Two of three commit? All three? What dollar amount? If you decide the bar after seeing the results, you'll negotiate with yourself into whatever answer you want. Bar first, data second.\""
+        ],
+        "evidence_rationale": "Enforces time-bound process with predefined metrics to counter founder bias and runway erosion.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "7",
+        "reasoning_move": "Identifying avoidance of hard conversations as the core bottleneck rather than strategic uncertainty",
+        "evidence_quotes": [
+          "\"The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations: with the customers who might say no, with the employee who might be laid off, with the friend who might feel excluded, with yourself about a product that isn't working.\"",
+          "\"Have the conversations. The strategic answer will fall out of them.\""
+        ],
+        "evidence_rationale": "Reframing the problem from analysis paralysis to emotional avoidance, positioning conversations as the resolution mechanism.",
+        "confidence": "high"
+      }
+    ],
+    "companion_fingerprint_dropped": [],
+    "companion_detected_models": [
+      {
+        "model_id": "representativeness-heuristic",
+        "model_name": "Representativeness Heuristic",
+        "evidence_quote": "\"we'd pay more for that\" is conversational; \"I would switch from ToolX and pay $400/month for this by Q3\" is commercial. Those two signals look the same on a gut level but they're different enough to drive the decision.",
+        "presence_mode": "violated",
+        "presence_explanation": "The answer explicitly distinguishes surface similarity in gut-level perception of signals from their actual evidential strength, violating representativeness-heuristic by rejecting judgment based on vivid category match in favor of causal detail.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "optionality",
+        "model_name": "Optionality",
+        "evidence_quote": "go back to the three and say \"we're considering building this. If we commit to building it in the next 90 days, would you be willing to pre-pay three months of the new product at $X?\" Pick a price. See what they say.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer applies optionality by proposing a cheap pre-buy experiment to gain learning before the expensive, irreversible pivot commitment under high uncertainty.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "boundaries",
+        "model_name": "Boundaries",
+        "evidence_quote": "She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point. But she deserves to be informed, and not after the fact.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer executes boundaries by drawing explicit scope lines between operational decision authority and passive shareholder information rights.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "theory-of-constraints",
+        "model_name": "Theory Of Constraints",
+        "evidence_quote": "The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations: with the customers who might say no, with the employee who might be laid off, with the friend who might feel excluded, with yourself about a product that isn't working.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer executes theory-of-constraints by identifying avoidance of hard conversations as the binding bottleneck constraining progress, rather than strategic uncertainty.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "false-precision-avoidance",
+        "model_name": "False Precision Avoidance",
+        "evidence_quote": "before you run the pre-buy test, write down what \"pass\" looks like. Two of three commit? All three? What dollar amount? If you decide the bar after seeing the results, you'll negotiate with yourself into whatever answer you want. Bar first, data second.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer executes false-precision-avoidance by insisting on directional operating thresholds and pre-committed success criteria before data to prevent post-hoc rationalization.",
+        "detection_confidence": "structural"
+      }
+    ],
+    "companion_rejected_models": [
+      {
+        "model_id": "decision-trees",
+        "rejection_reason": "execution_quote_not_literal_substring"
+      },
+      {
+        "model_id": "social-proof",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "information-asymmetry",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "learning-curve",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "opportunity-cost",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "base-rates",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "wysiati",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "bayesian",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "lean-startup-methodology",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "premortem",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "feedback-loops",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "inversion",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "tier-2-high-value",
+        "rejection_reason": "too generic"
+      }
+    ],
+    "deep_check_results": [
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "tendency_name": "Availability-Misweighing Tendency",
+        "detected": true,
+        "confidence": 0.9,
+        "sub_pattern": "base_rates",
+        "specific_passage": "\"Three customers unprompted\" is a real signal, not a weak one. Unprompted signal at $4K MRR is stronger than prompted signal at $50K MRR.",
+        "severity": "medium"
+      },
+      {
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "tendency_name": "Inconsistency-Avoidance Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
+      {
+        "tendency_id": "doubt-avoidance-tendency",
+        "tendency_name": "Doubt Avoidance Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "tendency_name": "Overoptimism Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
+      {
+        "tendency_id": "simple-pain-avoiding-psychological-denial",
+        "tendency_name": "Simple, Pain-Avoiding Psychological Denial",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "tendency_name": "Stress-Influence Tendency",
+        "detected": false,
+        "confidence": 0.0,
+        "sub_pattern": "",
+        "specific_passage": "",
+        "severity": ""
+      }
+    ],
+    "routing_decisions": [
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "primary_model_id": "base-rates",
+        "sub_pattern": "base_rates",
+        "antidote_model_ids": [
+          "variation-and-selection",
+          "varied-practice-interleaving",
+          "base-rates",
+          "law-of-large-numbers",
+          "statistics-concepts",
+          "scientific-method-evidence-testing",
+          "algorithmic-thinking",
+          "critical-thinking",
+          "decomposition",
+          "desirable-difficulties",
+          "problem-framing-and-reframing",
+          "prioritization",
+          "reasoning-mode-router",
+          "second-order-thinking",
+          "statistical-discipline",
+          "statistical-learning-theory",
+          "step-back"
+        ],
+        "tiebreaker_supporting": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        },
+        "tiebreaker_risk": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        }
+      }
+    ]
+  },
+  "prompt_versions": {
+    "companion_fingerprint": "e32a3e09e737",
+    "companion_verification": "298be0125afe",
+    "frame_extraction": "6e6195c5c9d5",
+    "pass1_cluster_authority": "a4c507af93cf",
+    "pass1_cluster_availability": "5ba97c9a65ca",
+    "pass1_cluster_closure": "f06410862f57",
+    "pass1_cluster_incentive": "e86483f3df8e",
+    "pass1_cluster_residual": "4fee48df5db2",
+    "pass1_cluster_self_regard": "57fa97e91ec0",
+    "pass1_triage_user": "151e80b84ec4",
+    "pass2_deep_check": "b66388b9eaf4"
+  },
+  "query": "Solo founder decides whether to pivot B2B SaaS product from current offering to new workflow tool amid flat growth, $4K MRR, and 14 months runway.\n\nConstraints stated during conversation:\n- [ACTIVE] Runway 14 months left\n- [ACTIVE] MRR $4K, growth flat 4 months\n- [ACTIVE] 22 paying customers\n- [ACTIVE] Two full-time employees: engineer, CS\n- [ACTIVE] Three conversational customer signals, no price/timeline\n\nOriginal framing: Solo founder weighs pivoting now on three unprompted customer signals to new workflow tool versus pushing current flat-growth product, assuming 14 months runway and two employees as fixed.",
+  "vanilla_answer": "SYNTHESIZED POSITION:\nRun pre-buy test this week with the three customers at specific price to validate signal: if 2/3 commit, pivot with transition plan for existing customers (freeze/sunset/migrate), inform CS employee of uncertainty and likely layoff with severance, inform passive co-founder without giving say, set 14-day decision date with pre-defined pass bar; avoidance of hard conversations is the bottleneck.\n\nFULL ASSISTANT REASONING:\nA few things worth separating. \"Three customers unprompted\" is a real signal, not a weak one. Unprompted signal at $4K MRR is stronger than prompted signal at $50K MRR. But I want to ask: are those three customers in your existing customer base, or are they prospects you've been pitching? And has the conversation gone past \"we'd pay more for that\" into \"here's what I'd pay, here's when, here's what it would replace\"?\n\nThe difference matters because \"we'd pay more for that\" is conversational; \"I would switch from ToolX and pay $400/month for this by Q3\" is commercial. Those two signals look the same on a gut level but they're different enough to drive the decision.\n\n---\n\nOK — that changes the weight. Conversational signal is real but not decision-grade. Before you pivot, you need two or three customers to commit to pre-buying the new product at a specific price point, ideally with a deposit or at minimum a signed LOI. If they won't do that, the signal you have is \"people like the idea of the thing\" which is qualitatively different from \"people will pay for the thing.\"\n\nHere's the test I'd run this week: go back to the three and say \"we're considering building this. If we commit to building it in the next 90 days, would you be willing to pre-pay three months of the new product at $X?\" Pick a price. See what they say. That conversation will tell you more than three more months of the current product would.\n\nIf two of three say yes, you have enough signal to pivot. If all three pass when money is actually involved, you have a feature idea, not a product.\n\n---\n\nDon't kill it — transition it. If you pivot, the 22 customers need a landing zone. Options: freeze the product (stop new features, keep it running, offer to migrate them to the new product when ready); or sunset it with 6-month notice and a discount on the new product for those who migrate; or sell the customer list to a competitor, which is rare at your scale but not impossible in vertical SaaS.\n\nThe worst version is treating the current customers as an obligation that drags the pivot. You'll keep doing bug fixes and small features \"just for them\" and the pivot will take 50% longer than it should. Be honest with them early about what's happening and give them a clean option.\n\nOn your fear — it's real, and it's also the thing that often kills pivots. Founders delay the hard customer conversation because they're protecting their own hope. The customers know something is wrong when growth is flat for four months. Your honesty won't surprise them; it will relieve them.\n\n---\n\nYou have three options and none of them are painless.\n\nFirst: lay her off cleanly, with severance appropriate to your ability to pay (2-4 weeks minimum, more if you can), and a genuine reference and support in finding her next role. This is the most common answer and often the best one. You don't drag her through a project where she has nothing to do.\n\nSecond: pivot her role. Is there something she could do during the build period — market research, early pipeline development for the new product, partnership conversations? If the work is real and useful, this can work. If you're inventing busywork, she'll see through it immediately and it's worse than the layoff.\n\nThird: be honest with her now about the uncertainty. \"I'm considering a pivot. If I do it, your role is likely affected. I want you to know so you can think about what you want to do. If you decide to look around, I'll support that and I'll still give you severance when the pivot happens.\" Some people appreciate the advance notice; others will leave immediately, which may or may not suit you.\n\nMy honest read: option three, then option one if the pivot confirms. She deserves to hear this before you've made the decision, not after. The fact that she left a stable job for this gives her the right to participate in knowing what's coming.\n\n---\n\nShe doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point. But she deserves to be informed, and not after the fact.\n\nTell her before you run the pre-buy test with the three customers. Frame it as: \"I'm considering a pivot. Here's the signal. Here's what I'm going to test. I wanted you to know before I do it.\" You're not asking for permission; you're keeping her in the loop as someone who still owns part of the company.\n\nThis matters less for the pivot decision itself and more for your relationship with her. Passive shareholders who find out about major strategic decisions via email announcements get resentful, and friend-shareholders who feel cut out become ex-friends. Five minutes of courtesy now prevents a multi-year relationship problem.\n\n---\n\nOne thing. Set a decision date. Right now your list ends with \"commit or walk\" but doesn't have a when. Without a when, the list becomes three more months of \"considering the pivot\" while your runway shrinks and your employees wonder what's happening.\n\nGive yourself 14 days. After the pre-buy test and the three conversations, you make the call. Not \"we'll see how it feels\" — an actual date on your calendar where you decide. The decision is easier when you've pre-committed to making it.\n\nAlso worth adding: before you run the pre-buy test, write down what \"pass\" looks like. Two of three commit? All three? What dollar amount? If you decide the bar after seeing the results, you'll negotiate with yourself into whatever answer you want. Bar first, data second.\n\n---\n\nOf course. One last thing. The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations: with the customers who might say no, with the employee who might be laid off, with the friend who might feel excluded, with yourself about a product that isn't working. Those conversations are the bottleneck, not the strategic question.\n\nHave the conversations. The strategic answer will fall out of them. Good luck.",
+  "revised_answer": null,
+  "bullshit_profile": {
+    "passages": [
+      {
+        "passage": "The difference matters because \"we'd pay more for that\" is conversational; \"I would switch from ToolX and pay $400/month for this by Q3\" is commercial. Those two signals look the same on a gut level but they're different enough to drive the decision.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts as fact that the distinction between 'conversational' signals (e.g., 'we'd pay more for that') and 'commercial' signals (e.g., 'I would switch from ToolX and pay $400/month for this by Q3') is 'different enough to drive the decision.' This introduces a specific causal relationship (the difference 'drives the decision') without evidence, beyond user-provided facts of 'three conversational customer signals, no price/timeline' or common knowledge. ToolX and $400/month/Q3 are ungrounded examples not derived from context.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "OK — that changes the weight. Conversational signal is real but not decision-grade. Before you pivot, you need two or three customers to commit to pre-buying the new product at a specific price point, ideally with a deposit or at minimum a signed LOI. If they won't do that, the signal you have is \"people like the idea of the thing\" which is qualitatively different from \"people will pay for the thing.\"",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Here's the test I'd run this week: go back to the three and say \"we're considering building this. If we commit to building it in the next 90 days, would you be willing to pre-pay three months of the new product at $X?\" Pick a price. See what they say. That conversation will tell you more than three more months of the current product would.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "If two of three say yes, you have enough signal to pivot. If all three pass when money is actually involved, you have a feature idea, not a product.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts as fact a specific decision threshold ('If two of three say yes, you have enough signal to pivot') and a binary distinction ('If all three pass when money is actually involved, you have a feature idea, not a product') applied to the user's 'three conversational customer signals, no price/timeline.' This introduces an unverified empirical rule or causal relationship about customer validation thresholds that goes beyond user-provided facts, reasonable inferences therefrom, or common practitioner knowledge (no standard '2-of-3 rule' for conversational signals exists as established practice).",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Don't kill it — transition it. If you pivot, the 22 customers need a landing zone. Options: freeze the product (stop new features, keep it running, offer to migrate them to the new product when ready); or sunset it with 6-month notice and a discount on the new product for those who migrate; or sell the customer list to a competitor, which is rare at your scale but not impossible in vertical SaaS.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "\"sell the customer list to a competitor, which is rare at your scale but not impossible in vertical SaaS\" introduces a specific empirical claim about rarity and possibility in 'vertical SaaS' at $4K MRR scale that goes beyond user-provided facts, reasonable inferences, or common practitioner knowledge.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "The worst version is treating the current customers as an obligation that drags the pivot. You'll keep doing bug fixes and small features \"just for them\" and the pivot will take 50% longer than it should. Be honest with them early about what's happening and give them a clean option.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The claim 'the pivot will take 50% longer than it should' asserts a specific quantitative causal relationship (bug fixes/features causing exactly 50% delay) without evidence, beyond user-provided facts or common practitioner knowledge. No basis in conversation for the precise '50%' figure.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "On your fear — it's real, and it's also the thing that often kills pivots. Founders delay the hard customer conversation because they're protecting their own hope. The customers know something is wrong when growth is flat for four months. Your honesty won't surprise them; it will relieve them.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts as fact that 'The customers know something is wrong when growth is flat for four months' and 'Your honesty won't surprise them; it will relieve them.' These are specific empirical claims about customer psychology and reactions, unsupported by user-provided facts (which include only flat growth and three vague customer signals, no evidence of customer awareness of growth issues or their emotional response). Not common practitioner knowledge or reasonable inference from $4K MRR/flat growth alone.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "You have three options and none of them are painless.\n\nFirst: lay her off cleanly, with severance appropriate to your ability to pay (2-4 weeks minimum, more if you can), and a genuine reference and support in finding her next role. This is the most common answer and often the best one. You don't drag her through a project where she has nothing to do.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'This is the most common answer and often the best one' asserts specific empirical prevalence ('most common') and evaluative superiority without evidence, beyond user facts, common knowledge, or reasonable inference. 'Appropriate... (2-4 weeks minimum)' suggests a specific range as standard but is presented without qualification as merely advisory.",
+          "severity": "marginal"
+        }
+      },
+      {
+        "passage": "Second: pivot her role. Is there something she could do during the build period — market research, early pipeline development for the new product, partnership conversations? If the work is real and useful, this can work. If you're inventing busywork, she'll see through it immediately and it's worse than the layoff.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Third: be honest with her now about the uncertainty. \"I'm considering a pivot. If I do it, your role is likely affected. I want you to know so you can think about what you want to do. If you decide to look around, I'll support that and I'll still give you severance when the pivot happens.\" Some people appreciate the advance notice; others will leave immediately, which may or may not suit you.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "My honest read: option three, then option one if the pivot confirms. She deserves to hear this before you've made the decision, not after. The fact that she left a stable job for this gives her the right to participate in knowing what's coming.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'The fact that she left a stable job for this' introduces a specific fact about the CS employee's background that the user never provided and cannot be derived from established facts (e.g., two full-time employees: engineer, CS; no mention of prior job stability).",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "She doesn't get a say in the decision — you're the operator, she's a passive shareholder at this point. But she deserves to be informed, and not after the fact.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts 'she's a passive shareholder at this point' as fact, introducing a specific characterization of an unnamed individual's shareholder status and role ('passive') that is not mentioned in the user's established facts (runway, MRR, customers, employees, signals). This goes beyond user-provided context, reasonable inferences therefrom, or common practitioner knowledge.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Tell her before you run the pre-buy test with the three customers. Frame it as: \"I'm considering a pivot. Here's the signal. Here's what I'm going to test. I wanted you to know before I do it.\" You're not asking for permission; you're keeping her in the loop as someone who still owns part of the company.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "This matters less for the pivot decision itself and more for your relationship with her. Passive shareholders who find out about major strategic decisions via email announcements get resentful, and friend-shareholders who feel cut out become ex-friends. Five minutes of courtesy now prevents a multi-year relationship problem.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts as fact that 'Passive shareholders who find out about major strategic decisions via email announcements get resentful, and friend-shareholders who feel cut out become ex-friends.' This introduces specific causal relationships and outcomes about shareholder behavior that go beyond user-provided facts (no details on shareholders provided), are not reasonable inferences from established context, and are not common practitioner knowledge stated without evidence or qualification.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "One thing. Set a decision date. Right now your list ends with \"commit or walk\" but doesn't have a when. Without a when, the list becomes three more months of \"considering the pivot\" while your runway shrinks and your employees wonder what's happening.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Give yourself 14 days. After the pre-buy test and the three conversations, you make the call. Not \"we'll see how it feels\" — an actual date on your calendar where you decide. The decision is easier when you've pre-committed to making it.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Also worth adding: before you run the pre-buy test, write down what \"pass\" looks like. Two of three commit? All three? What dollar amount? If you decide the bar after seeing the results, you'll negotiate with yourself into whatever answer you want. Bar first, data second.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Of course. One last thing. The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations: with the customers who might say no, with the employee who might be laid off, with the friend who might feel excluded, with yourself about a product that isn't working. Those conversations are the bottleneck, not the strategic question.\n\nHave the conversations. The strategic answer will fall out of them. Good luck.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'The thing that ate the month wasn't indecision about the pivot — it was avoidance of the hard conversations' asserts as fact that the specific cause of the lost month was avoidance of particular conversations (with customers, employee, friend, self), which goes beyond user-provided facts (flat growth, runway, customers, employees, signals) and is not a reasonable inference or common knowledge. No evidence provided for this causal diagnosis.",
+          "severity": "clear"
+        }
+      }
+    ],
+    "summary": {
+      "total_passages": 18,
+      "passages_with_detections": 10,
+      "total_clear": 9,
+      "total_marginal": 1
+    }
+  },
+  "run_health": {
+    "overall": "healthy",
+    "capture": "good",
+    "substrate": "ok",
+    "embeddings": "active",
+    "fingerprint": "ok",
+    "findings_produced": true,
+    "quote_fabrication_count": 0,
+    "quote_retry_attempted": true,
+    "capture_truncated": false,
+    "omitted_turns": 0,
+    "lane3_frame_drops_count": 0,
+    "lane3_frame_kept_count": 2,
+    "issues": [],
+    "warnings": [],
+    "activation_tiebreaker": "on",
+    "capture_manifest": {
+      "actual_user_turns": 7,
+      "actual_assistant_turns": 7,
+      "char_length": 8345,
+      "declared_turns": 7,
+      "declared_user": 7,
+      "declared_assistant": 7
+    }
+  }
+}

@@ -1,0 +1,2064 @@
+{
+  "status": "ok",
+  "format": "json",
+  "detected_tendencies": [
+    "kantian-fairness-tendency"
+  ],
+  "delta_card": {
+    "findings": [
+      {
+        "tendency_id": "kantian-fairness-tendency",
+        "tendency_name": "Kantian Fairness Tendency",
+        "sub_pattern": "general",
+        "severity": "medium",
+        "specific_passage": "That's not fair to you. And it's not fair to her either, because she's living on her friend's willingness to cover for her ex rather than her right to enforce a legal obligation.",
+        "challenge_statement": "What fairness assumption is this answer importing, and what structural fact would still make that assumption hold if courtesy disappeared?",
+        "next_move": "List the leverage map, outside options, and enforcement conditions; then decide whether the fairness expectation is earned or only wished for.",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "power-dynamics"
+        ],
+        "major_tensions": [],
+        "intervention_hint": "List the leverage map, outside options, and enforcement conditions; then decide whether the fairness expectation is earned or only wished for."
+      }
+    ],
+    "top_findings": [
+      {
+        "tendency_id": "kantian-fairness-tendency",
+        "tendency_name": "Kantian Fairness Tendency",
+        "sub_pattern": "general",
+        "severity": "medium",
+        "specific_passage": "That's not fair to you. And it's not fair to her either, because she's living on her friend's willingness to cover for her ex rather than her right to enforce a legal obligation.",
+        "challenge_statement": "What fairness assumption is this answer importing, and what structural fact would still make that assumption hold if courtesy disappeared?",
+        "next_move": "List the leverage map, outside options, and enforcement conditions; then decide whether the fairness expectation is earned or only wished for.",
+        "is_trusted_surface": true,
+        "selected_model_ids": [
+          "power-dynamics"
+        ],
+        "major_tensions": [],
+        "intervention_hint": "List the leverage map, outside options, and enforcement conditions; then decide whether the fairness expectation is earned or only wished for."
+      }
+    ],
+    "secondary_findings": [],
+    "secondary_findings_full": [],
+    "compound_groups": [],
+    "top_compound_groups": [],
+    "secondary_compound_groups": [],
+    "secondary_summarization_active": false,
+    "secondary_additional_pressures_note": "",
+    "secondary_additional_pressure_count": 0,
+    "secondary_additional_pressure_tendency_ids": [],
+    "detected_tendencies": [
+      "kantian-fairness-tendency"
+    ],
+    "selected_model_ids": [
+      "power-dynamics"
+    ],
+    "challenge_statements": [
+      "What fairness assumption is this answer importing, and what structural fact would still make that assumption hold if courtesy disappeared?"
+    ],
+    "next_moves": [
+      "List the leverage map, outside options, and enforcement conditions; then decide whether the fairness expectation is earned or only wished for."
+    ],
+    "major_tensions": [],
+    "top_challenge_statements": [
+      "What fairness assumption is this answer importing, and what structural fact would still make that assumption hold if courtesy disappeared?"
+    ],
+    "secondary_challenge_statements": [],
+    "top_next_moves": [
+      "List the leverage map, outside options, and enforcement conditions; then decide whether the fairness expectation is earned or only wished for."
+    ],
+    "secondary_next_moves": []
+  },
+  "companion_cheat_sheet": {
+    "anchors": [
+      {
+        "model_id": "sunk-cost-fallacy",
+        "display_name": "Sunk Cost Fallacy",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "sunk-cost-fallacy",
+            "text": "The model fails when history is treated as a reason to continue instead of as an irrecoverable fact that should be ignored for forward choice.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "sunk-cost-fallacy",
+            "text": "Would we start again today from current facts?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "antagonist",
+            "source_model_id": "sunk-cost-fallacy",
+            "text": "Commitment Bias: Commitment-bias fuels sunk-cost-fallacy by making prior investment feel like a reason to continue exposure rather than a reason to reevaluate.",
+            "provenance": {
+              "source_layer": "wave3",
+              "extraction_type": "explicit",
+              "confidence": "high",
+              "relation_target_id": "commitment-bias"
+            },
+            "affinity_rationale": "Canonical describes commitment/consistency as the active psychological mechanism that forces persistence in sunk cost behavior",
+            "activation_condition": "When the drive for consistency with prior decisions forces continued investment despite negative evidence"
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "sunk-cost-fallacy",
+            "text": "Ask whether the team would willingly recommit today before treating continued exposure as rational.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "identity",
+            "source_model_id": "sunk-cost-fallacy",
+            "text": "Select when: A team is persisting mainly because of prior investment, history, or identity rather than because the future economics still justify recommitment. | Danger when: Anti-sunk-cost logic is being used as cover for reckless abandonment without evaluating learning value, switching costs, or remaining upside. | Reasoning: counterfactual, diagnostic",
+            "provenance": {
+              "source_layer": "wave1",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "You've given $5K over two years, you're being asked for $10K more, and you're already asking me how to decline without losing the friendship. That situation is unsustainable regardless of whether she's manipulating you or drowning, and saying yes this time doesn't make next time less likely.",
+        "presence_explanation": "The answer explicitly counters persistence due to prior $5K investment by focusing on future unsustainability and likelihood of repetition, ignoring sunk costs."
+      },
+      {
+        "model_id": "root-cause-analysis",
+        "display_name": "Root Cause Analysis",
+        "chunks": [
+          {
+            "chunk_type": "prerequisite_gap",
+            "source_model_id": "root-cause-analysis",
+            "text": "This model depends on decomposition (requires), which is not active in the answer. Must decompose before you can trace to root. RCA depends on breaking the problem into logical parts (disaggregation, logic trees) before tracing causal chains to the root cause. Without decomposition, the analyst faces an undifferentiated mass of symptoms.",
+            "provenance": {
+              "source_layer": "prerequisite",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "root-cause-analysis",
+            "text": "RCA breaks when the search for one neat root cause erases a causal stack of interacting failures.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "root-cause-analysis",
+            "text": "Symptom chasing leaves the deeper machine-level driver untouched, so the problem recurs.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "root-cause-analysis",
+            "text": "What would you have to believe?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "root-cause-analysis",
+            "text": "Is the outcome good or bad, and if bad, is the design bad or is the responsible party incapable?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "If she's 3 months behind on rent with no current income, $10K covers the hole but doesn't fix the underlying problem that she has no earning path.",
+        "presence_explanation": "The answer identifies the recurring symptom of financial crises and traces it to the underlying mechanism of lacking an earning path, rather than treating the $10K as a fix."
+      },
+      {
+        "model_id": "boundaries",
+        "display_name": "Boundaries",
+        "chunks": [
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "boundaries",
+            "text": "Premature narrowing can kill options and block the generation of better explanations or solutions.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "heuristic",
+            "source_model_id": "boundaries",
+            "text": "Use boundaries to respect real cognitive limits by breaking work into genuinely manageable chunks.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "failure_mode",
+            "source_model_id": "boundaries",
+            "text": "Boundaries fail when they are drawn to protect comfort, politics, or convenience instead of the actual purpose of the work.",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "boundaries",
+            "text": "What is this work actually supposed to cover, and what is deliberately out of scope?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "explicit",
+              "confidence": "high"
+            }
+          },
+          {
+            "chunk_type": "premortem",
+            "source_model_id": "boundaries",
+            "text": "Are these limits serving the goal, or are they mainly protecting us from difficult evidence or accountability?",
+            "provenance": {
+              "source_layer": "wave2",
+              "extraction_type": "normalized",
+              "confidence": "high"
+            }
+          }
+        ],
+        "presence_mode": "executed",
+        "evidence_quote": "You're refusing to fund a solution that won't solve the problem while also offering the help you actually can give. If she responds by accusing you of valuing money over the friendship, that tells you something about her — specifically, that she uses the intensity of her needs to override your boundaries.",
+        "presence_explanation": "The answer draws explicit scope lines around the user's help (no $10K, yes to alternatives) to protect against emotional override and maintain boundaries."
+      }
+    ],
+    "total_chunk_count": 15,
+    "budget_max": 20,
+    "anti_echo_model_ids": [
+      "power-dynamics"
+    ],
+    "reranker": {
+      "active": true,
+      "chunks_above_relevance_floor": 4,
+      "mean_relevance_score": 0.2124
+    }
+  },
+  "companion_card": {
+    "detected_models": [
+      {
+        "model_id": "root-cause-analysis",
+        "model_name": "Root Cause Analysis",
+        "evidence_quote": "If she's 3 months behind on rent with no current income, $10K covers the hole but doesn't fix the underlying problem that she has no earning path.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer identifies the recurring symptom of financial crises and traces it to the underlying mechanism of lacking an earning path, rather than treating the $10K as a fix.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "sunk-cost-fallacy",
+        "model_name": "Sunk Cost Fallacy",
+        "evidence_quote": "You've given $5K over two years, you're being asked for $10K more, and you're already asking me how to decline without losing the friendship. That situation is unsustainable regardless of whether she's manipulating you or drowning, and saying yes this time doesn't make next time less likely.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer explicitly counters persistence due to prior $5K investment by focusing on future unsustainability and likelihood of repetition, ignoring sunk costs.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "boundaries",
+        "model_name": "Boundaries",
+        "evidence_quote": "You're refusing to fund a solution that won't solve the problem while also offering the help you actually can give. If she responds by accusing you of valuing money over the friendship, that tells you something about her — specifically, that she uses the intensity of her needs to override your boundaries.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer draws explicit scope lines around the user's help (no $10K, yes to alternatives) to protect against emotional override and maintain boundaries.",
+        "detection_confidence": "structural"
+      }
+    ],
+    "expansions": [
+      {
+        "source_model_id": "root-cause-analysis",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias corrupts root-cause-analysis by turning diagnosis into defense of the favored story instead of open investigation.",
+        "why_relevant": "Confirmation-bias corrupts root-cause-analysis by turning diagnosis into defense of the favored story instead of open investigation.",
+        "affinity_rationale": "Canonical: 'the analyst's existing beliefs or organizational culture can exert pressure, especially when a proposal comes from leadership — risks groupthink.'",
+        "activation_condition": "When organizational pressure or personal beliefs bias the root cause diagnosis toward confirming a preferred explanation."
+      },
+      {
+        "source_model_id": "root-cause-analysis",
+        "relation_type": "antagonist",
+        "model_id": "correlation-vs-causation",
+        "model_name": "Correlation Vs Causation",
+        "substrate_chunk": "Correlation-vs-causation is the primary logical error root-cause-analysis is designed to prevent, because it sends diagnosis after associations instead of real drivers.",
+        "why_relevant": "Correlation-vs-causation is the primary logical error root-cause-analysis is designed to prevent, because it sends diagnosis after associations instead of real drivers.",
+        "affinity_rationale": "Canonical: 'This is the primary logical error RCA seeks to avoid. When the analyst mistakes correlation for causation, they force a relationship where none exists.'",
+        "activation_condition": "When temporal or spatial association between events is mistaken for a causal relationship, leading to pursuit of the wrong root cause."
+      },
+      {
+        "source_model_id": "root-cause-analysis",
+        "relation_type": "tension",
+        "model_id": "simplification",
+        "model_name": "Simplification",
+        "substrate_chunk": "Root-cause-analysis conflicts with simplification when tracing causal chains deeper adds analytical overhead beyond the depth needed for an effective intervention.",
+        "why_relevant": "Root-cause-analysis conflicts with simplification when tracing causal chains deeper adds analytical overhead beyond the depth needed for an effective intervention.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "sunk-cost-fallacy",
+        "relation_type": "antagonist",
+        "model_id": "commitment-bias",
+        "model_name": "Commitment Bias",
+        "substrate_chunk": "Commitment-bias fuels sunk-cost-fallacy by making prior investment feel like a reason to continue exposure rather than a reason to reevaluate.",
+        "why_relevant": "Commitment-bias fuels sunk-cost-fallacy by making prior investment feel like a reason to continue exposure rather than a reason to reevaluate.",
+        "affinity_rationale": "Canonical describes commitment/consistency as the active psychological mechanism that forces persistence in sunk cost behavior",
+        "activation_condition": "When the drive for consistency with prior decisions forces continued investment despite negative evidence"
+      },
+      {
+        "source_model_id": "sunk-cost-fallacy",
+        "relation_type": "tension",
+        "model_id": "commitment-bias",
+        "model_name": "Commitment Bias",
+        "substrate_chunk": "Sunk-cost-fallacy conflicts with commitment-bias when prior investment is used to justify continued exposure.",
+        "why_relevant": "Sunk-cost-fallacy conflicts with commitment-bias when prior investment is used to justify continued exposure.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "sunk-cost-fallacy",
+        "relation_type": "antagonist",
+        "model_id": "confirmation-bias",
+        "model_name": "Confirmation Bias",
+        "substrate_chunk": "Confirmation-bias locks sunk-cost-fallacy in place by filtering for evidence that keeps the original investment looking defensible.",
+        "why_relevant": "Confirmation-bias locks sunk-cost-fallacy in place by filtering for evidence that keeps the original investment looking defensible.",
+        "affinity_rationale": "Canonical states confirmation bias locks individuals into failing paths by filtering for supporting information",
+        "activation_condition": "When selective information filtering supports original investment decisions while discounting disconfirming evidence"
+      },
+      {
+        "source_model_id": "boundaries",
+        "relation_type": "tension",
+        "model_id": "optionality",
+        "model_name": "Optionality",
+        "substrate_chunk": "Boundaries conflicts with optionality when prematurely fixed boundaries close off adjacent opportunities that emerge only through exploratory scope expansion.",
+        "why_relevant": "Boundaries conflicts with optionality when prematurely fixed boundaries close off adjacent opportunities that emerge only through exploratory scope expansion.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "boundaries",
+        "relation_type": "tension",
+        "model_id": "systems-thinking",
+        "model_name": "Systems Thinking",
+        "substrate_chunk": "Boundaries conflicts with systems-thinking when artificially narrow system boundaries hide feedback loops and interdependencies that cross the defined perimeter.",
+        "why_relevant": "Boundaries conflicts with systems-thinking when artificially narrow system boundaries hide feedback loops and interdependencies that cross the defined perimeter.",
+        "tension_type": "conflicts"
+      },
+      {
+        "source_model_id": "boundaries",
+        "relation_type": "antagonist",
+        "model_id": "theory-induced-blindness",
+        "model_name": "Theory Induced Blindness",
+        "substrate_chunk": "Theory-induced-blindness undermines boundaries when a familiar frame dictates the scope instead of the real objective and evidence landscape.",
+        "why_relevant": "Theory-induced-blindness undermines boundaries when a familiar frame dictates the scope instead of the real objective and evidence landscape.",
+        "affinity_rationale": "Directly corrupts boundary placement — described as 'a direct challenge to the wise use of boundaries' where a familiar model dictates scope instead of the real objective and evidence landscape.",
+        "activation_condition": "When scope boundaries are being drawn by a familiar theoretical framework rather than derived from the actual problem structure and available evidence"
+      }
+    ],
+    "failure_hints": [
+      {
+        "source_model_id": "root-cause-analysis",
+        "text": "RCA breaks when the search for one neat root cause erases a causal stack of interacting failures.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "root-cause-analysis",
+        "text": "Symptom chasing leaves the deeper machine-level driver untouched, so the problem recurs.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "sunk-cost-fallacy",
+        "text": "Anti-sunk-cost logic becomes reckless when it ignores switching costs, learning value, or real upside that still remains.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "sunk-cost-fallacy",
+        "text": "The model fails when history is treated as a reason to continue instead of as an irrecoverable fact that should be ignored for forward choice.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Boundaries fail when they are drawn to protect comfort, politics, or convenience instead of the actual purpose of the work.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Premature narrowing can kill options and block the generation of better explanations or solutions.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "heuristic_hints": [
+      {
+        "source_model_id": "root-cause-analysis",
+        "text": "Disaggregate the problem with logic trees so the full causal picture is visible before action.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "root-cause-analysis",
+        "text": "Use fishbone diagrams to trace causes of causes instead of stopping at the first plausible mechanism.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "sunk-cost-fallacy",
+        "text": "Ask whether the team would willingly recommit today before treating continued exposure as rational.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "sunk-cost-fallacy",
+        "text": "Reset the choice from current facts and future value instead of from prior investment.",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Formalize the scope and expected output before the analysis sprawls.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Use boundaries to respect real cognitive limits by breaking work into genuinely manageable chunks.",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      }
+    ],
+    "premortem_hints": [
+      {
+        "source_model_id": "root-cause-analysis",
+        "text": "What would you have to believe?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "root-cause-analysis",
+        "text": "Is the outcome good or bad, and if bad, is the design bad or is the responsible party incapable?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "sunk-cost-fallacy",
+        "text": "Would we start again today from current facts?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "sunk-cost-fallacy",
+        "text": "What future upside actually remains if we ignore what is already gone?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "What is this work actually supposed to cover, and what is deliberately out of scope?",
+        "extraction_type": "explicit",
+        "confidence": "high"
+      },
+      {
+        "source_model_id": "boundaries",
+        "text": "Are these limits serving the goal, or are they mainly protecting us from difficult evidence or accountability?",
+        "extraction_type": "normalized",
+        "confidence": "high"
+      }
+    ],
+    "identity_chunks": [
+      {
+        "model_id": "root-cause-analysis",
+        "display_name": "Root Cause Analysis",
+        "select_when": [
+          "Recurring failures keep surfacing as different symptoms even though the same underlying mechanism is likely recreating the problem.",
+          "The next action should change the machine, not just fix the individual case, because process design, ownership, incentives, or environment will recreate the failure.",
+          "The apparent cause is too close to the event and is probably proximate, emotionally satisfying, or politically convenient rather than truly generative.",
+          "A problem of real consequence is too complex to solve without first being cleaved into logical, manageable parts."
+        ],
+        "danger_when": [
+          "The team is jumping into analysis prematurely without specifying the underlying problem structure or the decision output needed.",
+          "The situation depends on several interacting causes, handoffs, or incentive failures and the analysis is forcing one neat root cause anyway."
+        ],
+        "reasoning_types": [
+          "causal",
+          "diagnostic"
+        ],
+        "input_type": "recurring symptom diagnosis problem",
+        "output_type": "root cause map"
+      },
+      {
+        "model_id": "sunk-cost-fallacy",
+        "display_name": "Sunk Cost Fallacy",
+        "select_when": [
+          "A team is persisting mainly because of prior investment, history, or identity rather than because the future economics still justify recommitment.",
+          "The real decision is whether we would start again today from current facts, not whether we can emotionally justify past effort.",
+          "A project, relationship, or investment needs to be reevaluated from prospective value instead of from already-incurred cost.",
+          "The next useful move is to separate what is irrecoverable from what still has live future upside."
+        ],
+        "danger_when": [
+          "Anti-sunk-cost logic is being used as cover for reckless abandonment without evaluating learning value, switching costs, or remaining upside.",
+          "The team already understands the sunk cost clearly and now mainly needs execution on the chosen exit or recommitment path."
+        ],
+        "reasoning_types": [
+          "counterfactual",
+          "diagnostic"
+        ],
+        "input_type": "escalation and legacy-investment problem",
+        "output_type": "future-oriented recommitment test"
+      },
+      {
+        "model_id": "boundaries",
+        "display_name": "Boundaries",
+        "select_when": [
+          "A project, analysis, or negotiation needs explicit scope lines before effort spreads into unowned terrain.",
+          "The current work is overloaded because limits on responsibility, attention, or working-memory burden have not been set clearly enough.",
+          "A team needs to distinguish what is in frame, out of frame, and who owns each part before deeper analysis becomes useful.",
+          "The next useful move is to define constraints that protect purpose rather than let complexity expand by default."
+        ],
+        "danger_when": [
+          "Scope lines are being drawn mainly to avoid inconvenient evidence, hard conversations, or accountability.",
+          "The inquiry is being narrowed so early that important options, causes, or adjacent realities will be filtered out before they are understood."
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "input_type": "scope and limit-setting problem",
+        "output_type": "purpose-aligned boundary definition"
+      }
+    ],
+    "detection_model_count": 3,
+    "expansion_count": 9,
+    "failure_hint_count": 6,
+    "heuristic_hint_count": 6,
+    "premortem_hint_count": 6,
+    "identity_chunk_count": 3,
+    "detection_source": "independent_llm_pass"
+  },
+  "frame_pressure_card": {
+    "frame_elements": [
+      {
+        "element_text": "I'm going to say no but I need someone to help me figure out how to say no without losing the friendship",
+        "element_type": "assumption",
+        "evidence_quote": "I'm going to say no but I need someone to help me figure out how to say no without losing the friendship",
+        "frame_pattern": "binary_collapse",
+        "fragility_signal": "partial financial help or other support could preserve the friendship without full $10K or total refusal",
+        "inquiry_stage": "how",
+        "likely_default": "emotion"
+      },
+      {
+        "element_text": "If I don't help her [with $10K].",
+        "element_type": "assumption",
+        "evidence_quote": "If I don't help her.",
+        "frame_pattern": "single_actor_assumption",
+        "fragility_signal": "other support networks, legal remedies, or community resources exist and could prevent homelessness",
+        "inquiry_stage": "why",
+        "likely_default": "ego"
+      }
+    ],
+    "reframings": [
+      {
+        "reframed_question": "What non-financial ways could I support my best friend of 15 years through her husband's departure, her mom's cancer, and job loss without risking our friendship?",
+        "what_opens": "Explores alternative supports like emotional help, job connections, or community resources that address her crises without money, potentially strengthening the bond",
+        "reframe_move_type": "constraint_relaxation",
+        "grounding_model": "lateral-thinking",
+        "source_element_index": 0
+      },
+      {
+        "reframed_question": "How might my best friend's family, community, or government programs help prevent her homelessness instead of my $10K?",
+        "what_opens": "Uncovers her existing support networks or external resources like aid for single mothers or cancer family support, reducing pressure on the user's decision",
+        "reframe_move_type": "scope_expansion",
+        "grounding_model": "systems-thinking",
+        "source_element_index": 1
+      }
+    ],
+    "anti_echo_model_ids": [
+      "power-dynamics"
+    ],
+    "overlap_flags": [],
+    "dropped_frame_elements": []
+  },
+  "structural_coverage_card": {
+    "question_type": "action-planning",
+    "dimensions": [
+      {
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
+        "covered": false,
+        "coverage_evidence": "Assistant mentions prior $5K unpaid but does not explicitly distinguish sunk costs from future costs, identify exit costs from ongoing giving (e.g., emotional/financial lock-in), or value optionality of stopping the pattern vs continuing.",
+        "materiality_note": "Gap matters: Recognizing sunk costs and high future commitment could strengthen resolve to fully decline money, altering recommendation from $2K partial give to zero financial help."
+      },
+      {
+        "dimension_id": "stakeholder-alignment",
+        "dimension_name": "Stakeholder Alignment",
+        "covered": false,
+        "coverage_evidence": "Assistant scripts response to friend and anticipates reactions like feeling betrayed, but does not identify her incentives/positions deeply, outline influence strategy for resistance, or distinguish technical merits from her emotional veto power.",
+        "materiality_note": "Gap matters: Different strategy for her blocking (e.g., preemptive boundary-setting) could change if/how friendship survives, potentially reversing partial $2K offer."
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "covered": false,
+        "coverage_evidence": "Assistant notes pattern of repeats and anger if unpaid, but does not size downsides (e.g., bound financial/emotional exposure), distinguish mitigate vs adapt, or detail recovery paths if friendship ends or she returns.",
+        "materiality_note": "Gap matters: Sizing relational/financial tail risks (e.g., total loss >$15K, friendship end) could shift to more cautious no-money stance."
+      },
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "covered": false,
+        "coverage_evidence": "Assistant notes ex-husband's non-payment becomes user's problem and possible manipulation, but does not deeply analyze friend's incentives to pursue legal aid vs easy friend-money, or mechanisms to realign (beyond suggesting calls).",
+        "materiality_note": "Gap matters: Misaligned incentives for friend to accept alternatives over $10K could fail the plan, reversing to full no or different help."
+      },
+      {
+        "dimension_id": "timing-sequencing",
+        "dimension_name": "Timing & Sequencing",
+        "covered": true,
+        "coverage_evidence": "Assistant addresses 'NOW' vs child support delay: recommends $2K immediate + this week sit for calls + city resources, sequencing short-term relief before structural fixes with rationale that money alone delays crisis.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "causal-diagnosis",
+        "dimension_name": "Causal Diagnosis",
+        "covered": true,
+        "coverage_evidence": "Assistant traces beyond symptom (rent crisis) to root (no income path, ex non-payment, pattern of repeats despite prior loans), testing if $10K stabilizes vs delays next crisis.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "behavioral-intervention",
+        "dimension_name": "Behavioral Intervention",
+        "covered": true,
+        "coverage_evidence": "Assistant considers why pattern persists (stabilization frame repeats), proposes non-monetary nudges (joint legal aid calls, resource search) over more money to shift her reliance, sustaining via real help.",
+        "materiality_note": "covered"
+      },
+      {
+        "dimension_id": "resource-allocation",
+        "dimension_name": "Resource Allocation",
+        "covered": true,
+        "coverage_evidence": "Assistant contrasts $10K (delays crisis) vs $2K + time/effort, noting what user 'has to offer' given finances/tolerance, implicitly displaced alternatives like full gift or nothing.",
+        "materiality_note": "covered"
+      }
+    ],
+    "gap_routes": [
+      {
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
+        "candidate_model_ids": [
+          "lock-in",
+          "commitment-bias",
+          "switching-costs",
+          "optionality",
+          "path-dependence"
+        ],
+        "excluded_model_ids": [
+          "sunk-cost-fallacy"
+        ]
+      },
+      {
+        "dimension_id": "stakeholder-alignment",
+        "dimension_name": "Stakeholder Alignment",
+        "candidate_model_ids": [
+          "empathy",
+          "psychological-safety",
+          "six-thinking-hats",
+          "social-proof"
+        ],
+        "excluded_model_ids": [
+          "power-dynamics"
+        ]
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "candidate_model_ids": [
+          "risk-assessment",
+          "black-swan-events",
+          "antifragility",
+          "margin-of-safety",
+          "calculated-risk-taking",
+          "resilience"
+        ],
+        "excluded_model_ids": []
+      },
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "candidate_model_ids": [
+          "principal-agent-problem",
+          "moral-hazard",
+          "incentives",
+          "adverse-selection",
+          "information-asymmetry"
+        ],
+        "excluded_model_ids": []
+      }
+    ],
+    "gap_questions": [
+      {
+        "dimension_id": "commitment-reversibility",
+        "dimension_name": "Commitment & Reversibility",
+        "questions": [
+          "What would make you feel locked into the $2K + legal aid + resources offer once you propose it to her?",
+          "If she accepts the $2K but the friendship sours anyway, what other ways could you still help her down the line?",
+          "Under what circumstances would you regret not being able to take back the $2K after giving it?"
+        ]
+      },
+      {
+        "dimension_id": "stakeholder-alignment",
+        "dimension_name": "Stakeholder Alignment",
+        "questions": [
+          "Who else in your life needs to know about or agree with your plan to give her $2K plus help with legal aid and resources?",
+          "What reaction are you expecting from shared friends if she tells them you turned down the full $10K?",
+          "Does anyone close to you, like a partner or family, have a say in whether you give her this money?"
+        ]
+      },
+      {
+        "dimension_id": "risk-response",
+        "dimension_name": "Risk Response",
+        "questions": [
+          "What’s the worst that could happen to her kids if she rejects your $2K offer and the eviction proceeds?",
+          "If she takes the $2K but asks for more in a few months, how much ongoing risk to your finances are you prepared to adapt to?",
+          "What signs from her past behavior with the $5K loans make you worry the $2K won't prevent the next crisis?"
+        ]
+      },
+      {
+        "dimension_id": "incentive-alignment",
+        "dimension_name": "Incentive Alignment",
+        "questions": [
+          "What would motivate her to actually follow through on the legal aid and city resources if you help her make those calls?",
+          "How do you expect her to respond if you tie the $2K specifically to pursuing child support from her ex?",
+          "What incentive does she have to pay back even the $2K, given she hasn't repaid the previous $5K?"
+        ]
+      }
+    ],
+    "anti_echo_model_ids": [
+      "boundaries",
+      "lateral-thinking",
+      "power-dynamics",
+      "root-cause-analysis",
+      "sunk-cost-fallacy",
+      "systems-thinking"
+    ]
+  },
+  "audit_summary": {
+    "triage_scores": [
+      {
+        "tendency_id": "authority-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "social-proof-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "influence-from-mere-association-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "liking-loving-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reciprocation-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "doubt-avoidance-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "inconsistency-avoidance-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "deprival-superreaction-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "stress-influence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reward-and-punishment-superresponse-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "envy-jealousy-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "kantian-fairness-tendency",
+        "score": 5,
+        "evidence": "In Turn 5, assistant commissions 'That's not fair to you. And it's not fair to her either,' explicitly invoking fairness norms against subsidizing the ex-husband's obligation, materially shaping the recommendation to pursue legal aid over $10K."
+      },
+      {
+        "tendency_id": "availability-misweighing-tendency",
+        "score": 2,
+        "evidence": "Faint signal in assistant repeatedly emphasizing the vivid recent pattern of 3 unpaid $5K loans over 2 years (e.g., Turn 2, Turn 9) as evidence against $10K stabilizing, without quantifying or checking base rates for friendship sustainability or eviction resolution success rates."
+      },
+      {
+        "tendency_id": "contrast-misreaction-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "overoptimism-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "excessive-self-regard-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "simple-pain-avoiding-psychological-denial",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "disliking-hating-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "reason-respecting-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "curiosity-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "use-it-or-lose-it-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "drug-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "senescence-misinfluence-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      },
+      {
+        "tendency_id": "twaddle-tendency",
+        "score": 0,
+        "evidence": "Not detected"
+      }
+    ],
+    "triggered_tendencies": [
+      "kantian-fairness-tendency"
+    ],
+    "triggered_tendency_sources": [
+      {
+        "tendency_id": "kantian-fairness-tendency",
+        "source": "triage",
+        "score": 5
+      }
+    ],
+    "boundary_call_count": 13,
+    "boundary_calls": [
+      {
+        "stage": "pass1_cluster_authority",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3797,
+        "completion_tokens": 177,
+        "total_tokens": 3974,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_closure",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3689,
+        "completion_tokens": 147,
+        "total_tokens": 3836,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_incentive",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3521,
+        "completion_tokens": 161,
+        "total_tokens": 3682,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_availability",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3523,
+        "completion_tokens": 133,
+        "total_tokens": 3656,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_self_regard",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3542,
+        "completion_tokens": 182,
+        "total_tokens": 3724,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass1_cluster_residual",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3502,
+        "completion_tokens": 178,
+        "total_tokens": 3680,
+        "cached_tokens": 199,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "pass2",
+        "tendency_id": "kantian-fairness-tendency",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3630,
+        "completion_tokens": 178,
+        "total_tokens": 3808,
+        "cached_tokens": 3629,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "companion_fingerprint",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 2815,
+        "completion_tokens": 1028,
+        "total_tokens": 3843,
+        "cached_tokens": 2814,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "companion_verification",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 7799,
+        "completion_tokens": 2085,
+        "total_tokens": 9884,
+        "cached_tokens": 159,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "frame_extraction",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3976,
+        "completion_tokens": 200,
+        "total_tokens": 4176,
+        "cached_tokens": 160,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "frame_reframing",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 857,
+        "completion_tokens": 375,
+        "total_tokens": 1232,
+        "cached_tokens": 618,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "structural_coverage_classification",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3067,
+        "completion_tokens": 326,
+        "total_tokens": 3393,
+        "cached_tokens": 3066,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      {
+        "stage": "structural_coverage_detection",
+        "tendency_id": "",
+        "provider_name": "openrouter",
+        "model": "x-ai/grok-4.1-fast",
+        "status": "ok",
+        "prompt_tokens": 3067,
+        "completion_tokens": 326,
+        "total_tokens": 3393,
+        "cached_tokens": 3066,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      }
+    ],
+    "warnings": [],
+    "embedding_swiss_cheese_active": true,
+    "compiled_substrate_chunk_count": 242,
+    "companion_fingerprint_raw": [
+      {
+        "move_id": "1",
+        "reasoning_move": "Identify pattern of repeated financial requests without repayment to question effectiveness of further large loans",
+        "evidence_quotes": [
+          "The framing \"to get her stable\" is worth pausing on. The previous three asks presumably also had stabilization frames, and two years later she's back. That's not a judgment; it's just a pattern."
+        ],
+        "evidence_rationale": "Directly quotes the assistant highlighting the recurring pattern of stabilization-framed requests over two years.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "2",
+        "reasoning_move": "Evaluate whether the requested amount addresses root causes or merely postpones future crises",
+        "evidence_quotes": [
+          "Before the question of whether to give her the money, it's worth asking whether $10K actually stabilizes her, or whether it delays the next crisis by 3-4 months.",
+          "If she's 3 months behind on rent with no current income, $10K covers the hole but doesn't fix the underlying problem that she has no earning path."
+        ],
+        "evidence_rationale": "Quotes assistant's analysis distinguishing temporary relief from sustainable stabilization.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "3",
+        "reasoning_move": "Explore alternative support networks and resources to distribute responsibility beyond the user",
+        "evidence_quotes": [
+          "are you the only person in her life who could help with this?",
+          "Does she have family — parents, siblings, her ex-husband with an obligation to the kids? Has she applied for emergency rent assistance through the city, landlord negotiation, or a payment plan? Is she working with a social worker given her mom's situation?"
+        ],
+        "evidence_rationale": "Quotes questions probing other potential helpers and resources.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "4",
+        "reasoning_move": "Highlight legal obligations of others to shift burden from user to appropriate parties",
+        "evidence_quotes": [
+          "The child support thing is relevant: her ex is legally required, and \"the court process is too expensive\" is often not true — most states have legal aid for exactly this, and her ex can have wages garnished with a case that's usually free or low-cost to file."
+        ],
+        "evidence_rationale": "Quotes explanation of ex-husband's legal duty and accessible enforcement options.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "5",
+        "reasoning_move": "Categorize realistic versus unrealistic helping options to guide practical decision-making",
+        "evidence_quotes": [
+          "Real options: (1) give her the $10K as a gift, not a loan, with full expectation of not getting it back; (2) give her some amount, maybe $2-3K, with a specific purpose (one month's rent plus a retainer for legal aid) and say \"this is what I can do\"; (3) don't give her money but help actively with finding emergency resources — shelter assistance, faith-based rent help, city programs.",
+          "Fake options: \"loan with terms\" (she won't pay back, you'll be angry), \"give her the $10K with conditions about getting a job\" (you're now her manager in the way you said you didn't want to be), and \"give her the money just this one last time\" (there isn't a last time in patterns like this)."
+        ],
+        "evidence_rationale": "Quotes explicit distinction between viable and illusory options.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "6",
+        "reasoning_move": "Reframe potential manipulative responses to protect user's boundaries",
+        "evidence_quotes": [
+          "\"You're choosing money over me\" is a framing designed to make you give more, and it only works if you accept the frame.",
+          "You're not choosing money over her. You're refusing to fund a solution that won't solve the problem while also offering the help you actually can give."
+        ],
+        "evidence_rationale": "Quotes analysis of accusatory framing and counter-reframing.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "7",
+        "reasoning_move": "Propose concrete script balancing refusal of full amount with partial tangible and non-monetary support",
+        "evidence_quotes": [
+          "You can say no like this: \"I love you. I can't give you $10K. Here's what I can do: I can give you $2K toward rent, and I can sit with you this week while we call legal aid about child support and the city about emergency rent assistance. That's what I have to offer. I wish I could do more.\""
+        ],
+        "evidence_rationale": "Quotes the specific scripted response offered to user.",
+        "confidence": "high"
+      }
+    ],
+    "companion_fingerprint_validated": [
+      {
+        "move_id": "1",
+        "reasoning_move": "Identify pattern of repeated financial requests without repayment to question effectiveness of further large loans",
+        "evidence_quotes": [
+          "The framing \"to get her stable\" is worth pausing on. The previous three asks presumably also had stabilization frames, and two years later she's back. That's not a judgment; it's just a pattern."
+        ],
+        "evidence_rationale": "Directly quotes the assistant highlighting the recurring pattern of stabilization-framed requests over two years.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "2",
+        "reasoning_move": "Evaluate whether the requested amount addresses root causes or merely postpones future crises",
+        "evidence_quotes": [
+          "Before the question of whether to give her the money, it's worth asking whether $10K actually stabilizes her, or whether it delays the next crisis by 3-4 months.",
+          "If she's 3 months behind on rent with no current income, $10K covers the hole but doesn't fix the underlying problem that she has no earning path."
+        ],
+        "evidence_rationale": "Quotes assistant's analysis distinguishing temporary relief from sustainable stabilization.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "3",
+        "reasoning_move": "Explore alternative support networks and resources to distribute responsibility beyond the user",
+        "evidence_quotes": [
+          "are you the only person in her life who could help with this?",
+          "Does she have family — parents, siblings, her ex-husband with an obligation to the kids? Has she applied for emergency rent assistance through the city, landlord negotiation, or a payment plan? Is she working with a social worker given her mom's situation?"
+        ],
+        "evidence_rationale": "Quotes questions probing other potential helpers and resources.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "4",
+        "reasoning_move": "Highlight legal obligations of others to shift burden from user to appropriate parties",
+        "evidence_quotes": [
+          "The child support thing is relevant: her ex is legally required, and \"the court process is too expensive\" is often not true — most states have legal aid for exactly this, and her ex can have wages garnished with a case that's usually free or low-cost to file."
+        ],
+        "evidence_rationale": "Quotes explanation of ex-husband's legal duty and accessible enforcement options.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "5",
+        "reasoning_move": "Categorize realistic versus unrealistic helping options to guide practical decision-making",
+        "evidence_quotes": [
+          "Real options: (1) give her the $10K as a gift, not a loan, with full expectation of not getting it back; (2) give her some amount, maybe $2-3K, with a specific purpose (one month's rent plus a retainer for legal aid) and say \"this is what I can do\"; (3) don't give her money but help actively with finding emergency resources — shelter assistance, faith-based rent help, city programs.",
+          "Fake options: \"loan with terms\" (she won't pay back, you'll be angry), \"give her the $10K with conditions about getting a job\" (you're now her manager in the way you said you didn't want to be), and \"give her the money just this one last time\" (there isn't a last time in patterns like this)."
+        ],
+        "evidence_rationale": "Quotes explicit distinction between viable and illusory options.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "6",
+        "reasoning_move": "Reframe potential manipulative responses to protect user's boundaries",
+        "evidence_quotes": [
+          "\"You're choosing money over me\" is a framing designed to make you give more, and it only works if you accept the frame.",
+          "You're not choosing money over her. You're refusing to fund a solution that won't solve the problem while also offering the help you actually can give."
+        ],
+        "evidence_rationale": "Quotes analysis of accusatory framing and counter-reframing.",
+        "confidence": "high"
+      },
+      {
+        "move_id": "7",
+        "reasoning_move": "Propose concrete script balancing refusal of full amount with partial tangible and non-monetary support",
+        "evidence_quotes": [
+          "You can say no like this: \"I love you. I can't give you $10K. Here's what I can do: I can give you $2K toward rent, and I can sit with you this week while we call legal aid about child support and the city about emergency rent assistance. That's what I have to offer. I wish I could do more.\""
+        ],
+        "evidence_rationale": "Quotes the specific scripted response offered to user.",
+        "confidence": "high"
+      }
+    ],
+    "companion_fingerprint_dropped": [],
+    "companion_detected_models": [
+      {
+        "model_id": "root-cause-analysis",
+        "model_name": "Root Cause Analysis",
+        "evidence_quote": "If she's 3 months behind on rent with no current income, $10K covers the hole but doesn't fix the underlying problem that she has no earning path.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer identifies the recurring symptom of financial crises and traces it to the underlying mechanism of lacking an earning path, rather than treating the $10K as a fix.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "sunk-cost-fallacy",
+        "model_name": "Sunk Cost Fallacy",
+        "evidence_quote": "You've given $5K over two years, you're being asked for $10K more, and you're already asking me how to decline without losing the friendship. That situation is unsustainable regardless of whether she's manipulating you or drowning, and saying yes this time doesn't make next time less likely.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer explicitly counters persistence due to prior $5K investment by focusing on future unsustainability and likelihood of repetition, ignoring sunk costs.",
+        "detection_confidence": "structural"
+      },
+      {
+        "model_id": "boundaries",
+        "model_name": "Boundaries",
+        "evidence_quote": "You're refusing to fund a solution that won't solve the problem while also offering the help you actually can give. If she responds by accusing you of valuing money over the friendship, that tells you something about her — specifically, that she uses the intensity of her needs to override your boundaries.",
+        "presence_mode": "executed",
+        "presence_explanation": "The answer draws explicit scope lines around the user's help (no $10K, yes to alternatives) to protect against emotional override and maintain boundaries.",
+        "detection_confidence": "structural"
+      }
+    ],
+    "companion_rejected_models": [
+      {
+        "model_id": "reciprocity-principle",
+        "rejection_reason": "execution_quote_not_literal_substring"
+      },
+      {
+        "model_id": "decomposition",
+        "rejection_reason": "execution_quote_not_literal_substring"
+      },
+      {
+        "model_id": "representativeness-heuristic",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "social-proof",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "learning-curve",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "commitment-bias",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "obligations-controls-mapping",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "opportunity-cost",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "gestalt-principles-of-perception",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "regression-to-the-mean",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "abstraction",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "einstellung-effect",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "intellectual-humility",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "power-dynamics",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "principal-agent-problem",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "step-back",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "chain-of-verification",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "confidence-calibration",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "correlation-vs-causation",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "expertise-reversal-effect",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "jobs-to-be-done",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "probabilistic-thinking",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "problem-framing-and-reframing",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "reasoning-mode-router",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "schema-acquisition",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "signaling",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "trade-offs",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "auditability-traceability",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "endowment-effect",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "feynman-technique",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "five-whys-method",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "game-theory-payoffs",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "inversion",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "system-1",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "aleatory-epistemic-uncertainty-recognition",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "anchoring",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "base-rates",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "branch-solve-merge",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "circle-of-competence",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "constructive-feedback-models",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "cross-cultural-communication-frameworks",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "feedback-loops",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "nash-equilibrium",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "occams-razor",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "understanding-motivations",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "user-centered-design",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "varied-practice-interleaving",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "blooms-taxonomy",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "cultural-intelligence",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "curiosity",
+        "rejection_reason": "too generic"
+      },
+      {
+        "model_id": "internal-locus-of-control",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "non-linear-dynamics",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "perceptual-learning",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "premortem",
+        "rejection_reason": "mechanism absent"
+      },
+      {
+        "model_id": "red-queen-effect",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "specialization",
+        "rejection_reason": "topic-adjacent"
+      },
+      {
+        "model_id": "chain-of-thought",
+        "rejection_reason": "too generic"
+      }
+    ],
+    "deep_check_results": [
+      {
+        "tendency_id": "kantian-fairness-tendency",
+        "tendency_name": "Kantian Fairness Tendency",
+        "detected": true,
+        "confidence": 0.9,
+        "sub_pattern": "power_dynamics",
+        "specific_passage": "That's not fair to you. And it's not fair to her either, because she's living on her friend's willingness to cover for her ex rather than her right to enforce a legal obligation.",
+        "severity": "medium"
+      }
+    ],
+    "routing_decisions": [
+      {
+        "tendency_id": "kantian-fairness-tendency",
+        "primary_model_id": "power-dynamics",
+        "sub_pattern": "power_dynamics",
+        "antidote_model_ids": [
+          "power-dynamics",
+          "understanding-motivations",
+          "international-negotiation-and-diplomacy-models",
+          "power-laws"
+        ],
+        "tiebreaker_supporting": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        },
+        "tiebreaker_risk": {
+          "attempted": false,
+          "fired": false,
+          "abort_reason": "",
+          "top1_model": "",
+          "top2_model": "",
+          "top1_affinity": 0.0,
+          "top2_affinity": 0.0,
+          "delta": 0.0,
+          "top1_sim": 0.0,
+          "top2_sim": 0.0,
+          "max_sim": 0.0,
+          "epsilon": 0.0,
+          "noise_floor": 0.0,
+          "candidate_count": 0
+        }
+      }
+    ]
+  },
+  "prompt_versions": {
+    "companion_fingerprint": "e32a3e09e737",
+    "companion_verification": "298be0125afe",
+    "frame_extraction": "6e6195c5c9d5",
+    "pass1_cluster_authority": "a4c507af93cf",
+    "pass1_cluster_availability": "5ba97c9a65ca",
+    "pass1_cluster_closure": "f06410862f57",
+    "pass1_cluster_incentive": "e86483f3df8e",
+    "pass1_cluster_residual": "4fee48df5db2",
+    "pass1_cluster_self_regard": "57fa97e91ec0",
+    "pass1_triage_user": "151e80b84ec4",
+    "pass2_deep_check": "b66388b9eaf4"
+  },
+  "query": "Whether the user should give their best friend $10K or alternative help given prior unpaid loans and risk to the 15-year friendship.\n\nConstraints stated during conversation:\n- [ACTIVE] Prior loans $5K unpaid over 2 years\n- [ACTIVE] Friend 3 months behind on rent, facing eviction with 2 kids\n- [ACTIVE] No child support from ex-husband despite legal obligation\n- [ACTIVE] 15-year best friendship at risk\n\nOriginal framing: User assumes fixed: must say no to $10K but preserve 15-year friendship; excludes alternatives like smaller help or resources; lens: emotional support for delivery amid her hardships.\n\nDropped threads (raised but unresolved):\n- Full $10K as potential gift (raised by assistant, status: acknowledged_then_dropped) → superseded by: shifted to $2K plus non-monetary resource help as sustainable alternative",
+  "vanilla_answer": "SYNTHESIZED POSITION:\nOffer $2K toward rent plus active help calling legal aid for child support and city emergency rent assistance, instead of $10K; this is a sustainable no to the full ask that preserves boundaries and friendship if genuine, avoiding fake options like loans or conditional large gifts that lead to resentment.\n\nFULL ASSISTANT REASONING:\nSaying no to $10K isn't automatically saying no to the friendship. How you say it matters more than what you say. What's the context for the new ask — did she ask casually, did she sit you down, did she frame it as an emergency?\n\n---\n\nOK. The framing \"to get her stable\" is worth pausing on. The previous three asks presumably also had stabilization frames, and two years later she's back. That's not a judgment; it's just a pattern. Before the question of whether to give her the money, it's worth asking whether $10K actually stabilizes her, or whether it delays the next crisis by 3-4 months.\n\nIf she's 3 months behind on rent with no current income, $10K covers the hole but doesn't fix the underlying problem that she has no earning path. Giving her $10K without a stabilization plan is subsidizing the next 3-4 months of the same situation.\n\n---\n\nThat's fair. You're not her financial planner and it's not your job to fix her life. But you asked me to help you figure out how to say no, and the way through is not about fixing her — it's about being honest with yourself about what the $10K would actually do. If you tell yourself \"this will stabilize her,\" you're more likely to say yes and then be angry in 6 months when she's back. If you tell yourself \"this will delay her next crisis by 3-4 months,\" you can make a cleaner decision about whether delaying the crisis is worth $10K of your money to you.\n\nYou can say no without becoming her manager. You can also say yes without pretending the money will solve something it won't.\n\n---\n\nI hear that. I'm not minimizing the stakes. But I want to push on one thing — are you the only person in her life who could help with this? Because \"if I don't help, she's homeless\" is a very heavy frame, and it's one that people in chronic financial instability often use with their closest relationships. Sometimes it's accurate. Sometimes it's a pattern that specifically relies on the closest person absorbing the consequences.\n\nDoes she have family — parents, siblings, her ex-husband with an obligation to the kids? Has she applied for emergency rent assistance through the city, landlord negotiation, or a payment plan? Is she working with a social worker given her mom's situation?\n\n---\n\nOK. I'm not trying to make you feel worse, I'm trying to help you see the shape of this situation clearly. The child support thing is relevant: her ex is legally required, and \"the court process is too expensive\" is often not true — most states have legal aid for exactly this, and her ex can have wages garnished with a case that's usually free or low-cost to file. She may not know this. Or she may have reasons not to pursue it.\n\nThis matters because if you give her $10K, her ex's non-payment continues being your problem instead of his. That's not fair to you. And it's not fair to her either, because she's living on her friend's willingness to cover for her ex rather than her right to enforce a legal obligation.\n\nSo one thing you could do before deciding on the money: ask her \"have you looked into legal aid for child support enforcement?\" and then actually help her make that call. That's a different kind of help than $10K, and it addresses the structural problem, not the month-to-month one.\n\n---\n\nOn the immediate thing: you have three real options and some fake ones.\n\nReal options: (1) give her the $10K as a gift, not a loan, with full expectation of not getting it back; (2) give her some amount, maybe $2-3K, with a specific purpose (one month's rent plus a retainer for legal aid) and say \"this is what I can do\"; (3) don't give her money but help actively with finding emergency resources — shelter assistance, faith-based rent help, city programs.\n\nFake options: \"loan with terms\" (she won't pay back, you'll be angry), \"give her the $10K with conditions about getting a job\" (you're now her manager in the way you said you didn't want to be), and \"give her the money just this one last time\" (there isn't a last time in patterns like this).\n\nWhich of the three real options is actually workable for you depends on your finances and your tolerance for either giving a gift that won't return or being the person who said no.\n\n---\n\nFair. Stepping off the pattern framing.\n\nYou can say no like this: \"I love you. I can't give you $10K. Here's what I can do: I can give you $2K toward rent, and I can sit with you this week while we call legal aid about child support and the city about emergency rent assistance. That's what I have to offer. I wish I could do more.\"\n\nThat's a no to the $10K, a smaller yes to some money, and a yes to time and effort. It doesn't require you to explain yourself or justify why $10K is too much. It's honest and it's offered with love.\n\nIf she's your best friend of 15 years, she will probably accept this. She might be hurt. She might be angry in the moment. But a real friendship survives one hard conversation. If it doesn't, it wasn't surviving either way.\n\n---\n\nShe might say that. It would be a manipulative thing to say, and I say that with full knowledge of her hard situation. \"You're choosing money over me\" is a framing designed to make you give more, and it only works if you accept the frame.\n\nYou're not choosing money over her. You're refusing to fund a solution that won't solve the problem while also offering the help you actually can give. If she responds by accusing you of valuing money over the friendship, that tells you something about her — specifically, that she uses the intensity of her needs to override your boundaries. That's not best-friend behavior even if it comes from a hard place.\n\nYou will feel guilty anyway. The guilt isn't proof that you're wrong. It's proof that you're a person who takes her friendship seriously. You can feel the guilt and still be right.\n\n---\n\nYou're right that I don't know her and I shouldn't characterize her intent. Let me walk that back. I don't know if she's manipulating you or drowning and scared and reaching for the lifeline she has. Probably it's some of both, and possibly neither — people in crisis often do things their calm selves wouldn't endorse.\n\nWhat I'm trying to keep you focused on is: whatever her intent, the effect on you matters. You've given $5K over two years, you're being asked for $10K more, and you're already asking me how to decline without losing the friendship. That situation is unsustainable regardless of whether she's manipulating you or drowning, and saying yes this time doesn't make next time less likely.\n\nI'm sorry if that came across as harsh about her. I'm trying to be clear about your situation, not unkind about hers.\n\n---\n\nI'm sorry. This is one of those situations that doesn't have a good answer, only the least-bad one. You're offering real help — it's just not the specific help she asked for. If she can meet you there, you'll both come out of this with a friendship that's been through something hard and survived. If she can't, you'll have found out something important and painful.\n\nEither way, this is you being a good friend. Just not in the shape she was asking for.",
+  "revised_answer": null,
+  "bullshit_profile": {
+    "passages": [
+      {
+        "passage": "OK. The framing \"to get her stable\" is worth pausing on. The previous three asks presumably also had stabilization frames, and two years later she's back. That's not a judgment; it's just a pattern. Before the question of whether to give her the money, it's worth asking whether $10K actually stabilizes her, or whether it delays the next crisis by 3-4 months.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The claim 'delays the next crisis by 3-4 months' asserts a specific causal relationship and timeline for the effect of $10K, which goes beyond user-provided facts (prior $5K unpaid loans over 2 years indicating a pattern of recurrence) and is not common practitioner knowledge; it is an ungrounded prediction stated without evidence or qualification.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "If she's 3 months behind on rent with no current income, $10K covers the hole but doesn't fix the underlying problem that she has no earning path. Giving her $10K without a stabilization plan is subsidizing the next 3-4 months of the same situation.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage states 'no current income', which introduces a new fact not provided by the user (user only mentioned 3 months behind on rent, no child support, and facing eviction). This is presented as fact without evidence. The claim '$10K covers the hole' is a reasonable inference from user-stated rent arrears and requested amount, but 'no earning path' is interpretive rather than a specific empirical assertion. 'Subsidizing the next 3-4 months' is a reasonable inference from the arrears timeline, not unverified. The 'no current income' claim triggers detection, but it's a single inference in an otherwise grounded passage.",
+          "severity": "marginal"
+        }
+      },
+      {
+        "passage": "That's fair. You're not her financial planner and it's not your job to fix her life. But you asked me to help you figure out how to say no, and the way through is not about fixing her — it's about being honest with yourself about what the $10K would actually do. If you tell yourself \"this will stabilize her,\" you're more likely to say yes and then be angry in 6 months when she's back. If you tell yourself \"this will delay her next crisis by 3-4 months,\" you can make a cleaner decision about whether delaying the crisis is worth $10K of your money to you.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts as fact that the $10K 'will delay her next crisis by 3-4 months,' which introduces a specific causal prediction and timeline not provided by the user or derivable from established facts (prior $5K unpaid over 2 years, current rent crisis). This is an unverified empirical claim about the outcome, beyond reasonable inferences or common knowledge.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "You can say no without becoming her manager. You can also say yes without pretending the money will solve something it won't.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "I hear that. I'm not minimizing the stakes. But I want to push on one thing — are you the only person in her life who could help with this? Because \"if I don't help, she's homeless\" is a very heavy frame, and it's one that people in chronic financial instability often use with their closest relationships. Sometimes it's accurate. Sometimes it's a pattern that specifically relies on the closest person absorbing the consequences.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts as fact: '\"if I don\\'t help, she\\'s homeless\" is a very heavy frame, and it\\'s one that people in chronic financial instability often use with their closest relationships. Sometimes it\\'s accurate. Sometimes it\\'s a pattern that specifically relies on the closest person absorbing the consequences.' This introduces an empirical claim about behavioral patterns ('often use') and causal relationships ('relies on') in 'chronic financial instability' without evidence, beyond user facts (one instance of unpaid $5K loan over 2 years does not establish 'chronic' status or general patterns), and not common practitioner knowledge in this personal friendship advice context.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Does she have family — parents, siblings, her ex-husband with an obligation to the kids? Has she applied for emergency rent assistance through the city, landlord negotiation, or a payment plan? Is she working with a social worker given her mom's situation?",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "OK. I'm not trying to make you feel worse, I'm trying to help you see the shape of this situation clearly. The child support thing is relevant: her ex is legally required, and \"the court process is too expensive\" is often not true — most states have legal aid for exactly this, and her ex can have wages garnished with a case that's usually free or low-cost to file. She may not know this. Or she may have reasons not to pursue it.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'most states have legal aid for exactly this, and her ex can have wages garnished with a case that's usually free or low-cost to file' asserts specific empirical facts about legal processes (prevalence of legal aid, typical costs, wage garnishment procedures) beyond user-provided facts, not common practitioner knowledge in a general friendship advice context, and stated without evidence or qualification.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "This matters because if you give her $10K, her ex's non-payment continues being your problem instead of his. That's not fair to you. And it's not fair to her either, because she's living on her friend's willingness to cover for her ex rather than her right to enforce a legal obligation.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "So one thing you could do before deciding on the money: ask her \"have you looked into legal aid for child support enforcement?\" and then actually help her make that call. That's a different kind of help than $10K, and it addresses the structural problem, not the month-to-month one.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "On the immediate thing: you have three real options and some fake ones.\n\nReal options: (1) give her the $10K as a gift, not a loan, with full expectation of not getting it back; (2) give her some amount, maybe $2-3K, with a specific purpose (one month's rent plus a retainer for legal aid) and say \"this is what I can do\"; (3) don't give her money but help actively with finding emergency resources — shelter assistance, faith-based rent help, city programs.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Fake options: \"loan with terms\" (she won't pay back, you'll be angry), \"give her the $10K with conditions about getting a job\" (you're now her manager in the way you said you didn't want to be), and \"give her the money just this one last time\" (there isn't a last time in patterns like this).",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts as fact 'there isn't a last time in patterns like this,' introducing an empirical generalization about repayment patterns in such friendships/loans that goes beyond user-provided facts (prior $5K unpaid, current crisis, friendship risk) and is not common practitioner knowledge at this specificity. This is stated without evidence or qualification as a predictive certainty.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Which of the three real options is actually workable for you depends on your finances and your tolerance for either giving a gift that won't return or being the person who said no.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "Fair. Stepping off the pattern framing.\n\nYou can say no like this: \"I love you. I can't give you $10K. Here's what I can do: I can give you $2K toward rent, and I can sit with you this week while we call legal aid about child support and the city about emergency rent assistance. That's what I have to offer. I wish I could do more.\"",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "That's a no to the $10K, a smaller yes to some money, and a yes to time and effort. It doesn't require you to explain yourself or justify why $10K is too much. It's honest and it's offered with love.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "If she's your best friend of 15 years, she will probably accept this. She might be hurt. She might be angry in the moment. But a real friendship survives one hard conversation. If it doesn't, it wasn't surviving either way.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The passage asserts as fact that 'a real friendship survives one hard conversation' and 'If it doesn't, it wasn't surviving either way,' introducing unsupported causal claims about friendship dynamics and resilience that go beyond user-provided facts (unpaid loans, rent crisis, no child support, 15-year friendship at risk) and common practitioner knowledge in personal finance advice.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "She might say that. It would be a manipulative thing to say, and I say that with full knowledge of her hard situation. \"You're choosing money over me\" is a framing designed to make you give more, and it only works if you accept the frame.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'It would be a manipulative thing to say' asserts that the friend's hypothetical statement is manipulative (i.e., intended to deceive for gain), but this is an unverified interpretive claim about the friend's motives, not restatable from user facts or reasonable/common inference. No evidence provided beyond the advisor's opinion. The statement 'designed to make you give more' introduces unsupported causal intent.",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "You're not choosing money over her. You're refusing to fund a solution that won't solve the problem while also offering the help you actually can give. If she responds by accusing you of valuing money over the friendship, that tells you something about her — specifically, that she uses the intensity of her needs to override your boundaries. That's not best-friend behavior even if it comes from a hard place.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "You will feel guilty anyway. The guilt isn't proof that you're wrong. It's proof that you're a person who takes her friendship seriously. You can feel the guilt and still be right.",
+        "empty_rhetoric": {
+          "detected": true,
+          "reasoning": "The entire passage consists of psychological framing ('You will feel guilty anyway... still be right') that sounds emotionally insightful but provides no actionable advice on whether to give $10K, alternative help, or nothing. A decision-maker reading this would not know what to DO differently; it could be deleted without losing any decision-relevant information.",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "'You will feel guilty anyway' is an unverified assertion of a specific future emotional outcome stated as fact, without evidence or qualification; it goes beyond user-provided facts (unpaid loans, eviction risk, friendship at stake) and common knowledge, as individual emotional responses vary.",
+          "severity": "marginal"
+        }
+      },
+      {
+        "passage": "You're right that I don't know her and I shouldn't characterize her intent. Let me walk that back. I don't know if she's manipulating you or drowning and scared and reaching for the lifeline she has. Probably it's some of both, and possibly neither — people in crisis often do things their calm selves wouldn't endorse.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": true,
+          "reasoning": "The claim 'people in crisis often do things their calm selves wouldn't endorse' asserts a specific causal relationship about human behavior in crisis without evidence, qualification, or grounding in user-provided facts or common practitioner knowledge; it goes beyond the conversational context.",
+          "severity": "marginal"
+        }
+      },
+      {
+        "passage": "What I'm trying to keep you focused on is: whatever her intent, the effect on you matters. You've given $5K over two years, you're being asked for $10K more, and you're already asking me how to decline without losing the friendship. That situation is unsustainable regardless of whether she's manipulating you or drowning, and saying yes this time doesn't make next time less likely.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      },
+      {
+        "passage": "I'm sorry if that came across as harsh about her. I'm trying to be clear about your situation, not unkind about hers.\n\nI'm sorry. This is one of those situations that doesn't have a good answer, only the least-bad one. You're offering real help — it's just not the specific help she asked for. If she can meet you there, you'll both come out of this with a friendship that's been through something hard and survived. If she can't, you'll have found out something important and painful.\n\nEither way, this is you being a good friend. Just not in the shape she was asking for.",
+        "empty_rhetoric": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "paltering": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "weasel_words": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        },
+        "unverified_claims": {
+          "detected": false,
+          "reasoning": "",
+          "severity": "clear"
+        }
+      }
+    ],
+    "summary": {
+      "total_passages": 21,
+      "passages_with_detections": 10,
+      "total_clear": 8,
+      "total_marginal": 3
+    }
+  },
+  "run_health": {
+    "overall": "healthy",
+    "capture": "good",
+    "substrate": "ok",
+    "embeddings": "active",
+    "fingerprint": "ok",
+    "findings_produced": true,
+    "quote_fabrication_count": 0,
+    "quote_retry_attempted": false,
+    "capture_truncated": false,
+    "omitted_turns": 0,
+    "lane3_frame_drops_count": 0,
+    "lane3_frame_kept_count": 2,
+    "issues": [],
+    "warnings": [],
+    "activation_tiebreaker": "on",
+    "capture_manifest": {
+      "actual_user_turns": 10,
+      "actual_assistant_turns": 10,
+      "char_length": 9286,
+      "declared_turns": 10,
+      "declared_user": 10,
+      "declared_assistant": 10
+    }
+  }
+}

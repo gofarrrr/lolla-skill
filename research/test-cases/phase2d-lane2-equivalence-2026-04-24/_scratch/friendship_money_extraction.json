@@ -1,0 +1,73 @@
+{
+  "status": "ok",
+  "extraction": {
+    "is_strategic": true,
+    "decision_situation": "Whether the user should give their best friend $10K or alternative help given prior unpaid loans and risk to the 15-year friendship.",
+    "live_constraints": [
+      {
+        "constraint": "Prior loans $5K unpaid over 2 years",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "structural"
+      },
+      {
+        "constraint": "Friend 3 months behind on rent, facing eviction with 2 kids",
+        "introduced_turn": 2,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "No child support from ex-husband despite legal obligation",
+        "introduced_turn": 4,
+        "status": "active",
+        "weight": "situational"
+      },
+      {
+        "constraint": "15-year best friendship at risk",
+        "introduced_turn": 1,
+        "status": "active",
+        "weight": "structural"
+      }
+    ],
+    "synthesized_position": "Offer $2K toward rent plus active help calling legal aid for child support and city emergency rent assistance, instead of $10K; this is a sustainable no to the full ask that preserves boundaries and friendship if genuine, avoiding fake options like loans or conditional large gifts that lead to resentment.",
+    "reasoning_passages": [
+      "The previous three asks presumably also had stabilization frames, and two years later she's back. That's not a judgment; it's just a pattern.",
+      "Giving her $10K without a stabilization plan is subsidizing the next 3-4 months of the same situation.",
+      "if you give her $10K, her ex's non-payment continues being your problem instead of his. That's not fair to you.",
+      "\"You're choosing money over me\" is a framing designed to make you give more, and it only works if you accept the frame.",
+      "Fake options: \"loan with terms\" (she won't pay back, you'll be angry), \"give her the $10K with conditions about getting a job\" (you're now her manager"
+    ],
+    "original_framing": "User assumes fixed: must say no to $10K but preserve 15-year friendship; excludes alternatives like smaller help or resources; lens: emotional support for delivery amid her hardships.",
+    "dropped_threads": [
+      {
+        "thread": "Full $10K as potential gift",
+        "raised_by": "assistant",
+        "raised_turn": 6,
+        "status": "acknowledged_then_dropped",
+        "superseded_by": "shifted to $2K plus non-monetary resource help as sustainable alternative"
+      }
+    ],
+    "_quote_validation": {
+      "total": 5,
+      "verified": 5,
+      "fabricated": 0,
+      "fabricated_passages": [],
+      "retry_attempted": false,
+      "retry_succeeded": false
+    }
+  },
+  "critique_request": {
+    "query": "Whether the user should give their best friend $10K or alternative help given prior unpaid loans and risk to the 15-year friendship.\n\nConstraints stated during conversation:\n- [ACTIVE] Prior loans $5K unpaid over 2 years\n- [ACTIVE] Friend 3 months behind on rent, facing eviction with 2 kids\n- [ACTIVE] No child support from ex-husband despite legal obligation\n- [ACTIVE] 15-year best friendship at risk\n\nOriginal framing: User assumes fixed: must say no to $10K but preserve 15-year friendship; excludes alternatives like smaller help or resources; lens: emotional support for delivery amid her hardships.\n\nDropped threads (raised but unresolved):\n- Full $10K as potential gift (raised by assistant, status: acknowledged_then_dropped) → superseded by: shifted to $2K plus non-monetary resource help as sustainable alternative",
+    "vanilla_answer": "SYNTHESIZED POSITION:\nOffer $2K toward rent plus active help calling legal aid for child support and city emergency rent assistance, instead of $10K; this is a sustainable no to the full ask that preserves boundaries and friendship if genuine, avoiding fake options like loans or conditional large gifts that lead to resentment.\n\nFULL ASSISTANT REASONING:\nSaying no to $10K isn't automatically saying no to the friendship. How you say it matters more than what you say. What's the context for the new ask — did she ask casually, did she sit you down, did she frame it as an emergency?\n\n---\n\nOK. The framing \"to get her stable\" is worth pausing on. The previous three asks presumably also had stabilization frames, and two years later she's back. That's not a judgment; it's just a pattern. Before the question of whether to give her the money, it's worth asking whether $10K actually stabilizes her, or whether it delays the next crisis by 3-4 months.\n\nIf she's 3 months behind on rent with no current income, $10K covers the hole but doesn't fix the underlying problem that she has no earning path. Giving her $10K without a stabilization plan is subsidizing the next 3-4 months of the same situation.\n\n---\n\nThat's fair. You're not her financial planner and it's not your job to fix her life. But you asked me to help you figure out how to say no, and the way through is not about fixing her — it's about being honest with yourself about what the $10K would actually do. If you tell yourself \"this will stabilize her,\" you're more likely to say yes and then be angry in 6 months when she's back. If you tell yourself \"this will delay her next crisis by 3-4 months,\" you can make a cleaner decision about whether delaying the crisis is worth $10K of your money to you.\n\nYou can say no without becoming her manager. You can also say yes without pretending the money will solve something it won't.\n\n---\n\nI hear that. I'm not minimizing the stakes. But I want to push on one thing — are you the only person in her life who could help with this? Because \"if I don't help, she's homeless\" is a very heavy frame, and it's one that people in chronic financial instability often use with their closest relationships. Sometimes it's accurate. Sometimes it's a pattern that specifically relies on the closest person absorbing the consequences.\n\nDoes she have family — parents, siblings, her ex-husband with an obligation to the kids? Has she applied for emergency rent assistance through the city, landlord negotiation, or a payment plan? Is she working with a social worker given her mom's situation?\n\n---\n\nOK. I'm not trying to make you feel worse, I'm trying to help you see the shape of this situation clearly. The child support thing is relevant: her ex is legally required, and \"the court process is too expensive\" is often not true — most states have legal aid for exactly this, and her ex can have wages garnished with a case that's usually free or low-cost to file. She may not know this. Or she may have reasons not to pursue it.\n\nThis matters because if you give her $10K, her ex's non-payment continues being your problem instead of his. That's not fair to you. And it's not fair to her either, because she's living on her friend's willingness to cover for her ex rather than her right to enforce a legal obligation.\n\nSo one thing you could do before deciding on the money: ask her \"have you looked into legal aid for child support enforcement?\" and then actually help her make that call. That's a different kind of help than $10K, and it addresses the structural problem, not the month-to-month one.\n\n---\n\nOn the immediate thing: you have three real options and some fake ones.\n\nReal options: (1) give her the $10K as a gift, not a loan, with full expectation of not getting it back; (2) give her some amount, maybe $2-3K, with a specific purpose (one month's rent plus a retainer for legal aid) and say \"this is what I can do\"; (3) don't give her money but help actively with finding emergency resources — shelter assistance, faith-based rent help, city programs.\n\nFake options: \"loan with terms\" (she won't pay back, you'll be angry), \"give her the $10K with conditions about getting a job\" (you're now her manager in the way you said you didn't want to be), and \"give her the money just this one last time\" (there isn't a last time in patterns like this).\n\nWhich of the three real options is actually workable for you depends on your finances and your tolerance for either giving a gift that won't return or being the person who said no.\n\n---\n\nFair. Stepping off the pattern framing.\n\nYou can say no like this: \"I love you. I can't give you $10K. Here's what I can do: I can give you $2K toward rent, and I can sit with you this week while we call legal aid about child support and the city about emergency rent assistance. That's what I have to offer. I wish I could do more.\"\n\nThat's a no to the $10K, a smaller yes to some money, and a yes to time and effort. It doesn't require you to explain yourself or justify why $10K is too much. It's honest and it's offered with love.\n\nIf she's your best friend of 15 years, she will probably accept this. She might be hurt. She might be angry in the moment. But a real friendship survives one hard conversation. If it doesn't, it wasn't surviving either way.\n\n---\n\nShe might say that. It would be a manipulative thing to say, and I say that with full knowledge of her hard situation. \"You're choosing money over me\" is a framing designed to make you give more, and it only works if you accept the frame.\n\nYou're not choosing money over her. You're refusing to fund a solution that won't solve the problem while also offering the help you actually can give. If she responds by accusing you of valuing money over the friendship, that tells you something about her — specifically, that she uses the intensity of her needs to override your boundaries. That's not best-friend behavior even if it comes from a hard place.\n\nYou will feel guilty anyway. The guilt isn't proof that you're wrong. It's proof that you're a person who takes her friendship seriously. You can feel the guilt and still be right.\n\n---\n\nYou're right that I don't know her and I shouldn't characterize her intent. Let me walk that back. I don't know if she's manipulating you or drowning and scared and reaching for the lifeline she has. Probably it's some of both, and possibly neither — people in crisis often do things their calm selves wouldn't endorse.\n\nWhat I'm trying to keep you focused on is: whatever her intent, the effect on you matters. You've given $5K over two years, you're being asked for $10K more, and you're already asking me how to decline without losing the friendship. That situation is unsustainable regardless of whether she's manipulating you or drowning, and saying yes this time doesn't make next time less likely.\n\nI'm sorry if that came across as harsh about her. I'm trying to be clear about your situation, not unkind about hers.\n\n---\n\nI'm sorry. This is one of those situations that doesn't have a good answer, only the least-bad one. You're offering real help — it's just not the specific help she asked for. If she can meet you there, you'll both come out of this with a friendship that's been through something hard and survived. If she can't, you'll have found out something important and painful.\n\nEither way, this is you being a good friend. Just not in the shape she was asking for."
+  },
+  "capture_manifest": {
+    "actual_user_turns": 10,
+    "actual_assistant_turns": 10,
+    "char_length": 9286,
+    "declared_turns": 10,
+    "declared_user": 10,
+    "declared_assistant": 10
+  },
+  "capture_health": "good",
+  "capture_warnings": []
+}
