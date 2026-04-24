@@ -10,6 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
+import stability_check as sc  # noqa: E402
 from stability_check import compute_extraction_drift  # noqa: E402
 
 # ---------------------------------------------------------------------------
@@ -17,6 +18,29 @@ from stability_check import compute_extraction_drift  # noqa: E402
 # ---------------------------------------------------------------------------
 
 import numpy as np  # noqa: E402
+
+
+def test_rerun_pipeline_legacy_contract_appends_explicit_flag(monkeypatch, tmp_path):
+    """Mode B can intentionally rerun the old CritiqueRequest path."""
+    captured: list[list[str]] = []
+
+    def _fake_run(cmd: list[str], *, check: bool, cwd: str) -> None:  # noqa: ARG001
+        captured.append(cmd)
+
+    monkeypatch.setattr(sc.subprocess, "run", _fake_run)
+    monkeypatch.setattr(sc.time, "sleep", lambda seconds: None)
+
+    sc._rerun_pipeline(
+        tmp_path / "extraction.json",
+        tmp_path / "conversation.txt",
+        1,
+        tmp_path,
+        legacy_contract=True,
+    )
+
+    assert len(captured) == 1
+    assert "--legacy-contract" in captured[0]
+    assert "--conversation-file" in captured[0]
 
 
 def test_cosine_identical_vectors_is_one():

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Phase 2d Lane 2 quality check — old-path vs new-path on the 10-case corpus.
 
-Runs `run_extract.py` once per case, then `run_pipeline.py` N times on legacy
-path + N times on --new-contract path. Parses Lane 2 outputs (companion_card,
-fingerprint moves, detected_models) and computes:
+Runs `run_extract.py` once per case, then `run_pipeline.py` N times on the
+explicit legacy path (`--legacy-contract`) and N times on the default
+ConversationContext path. Parses Lane 2 outputs (companion_card, fingerprint
+moves, detected_models) and computes:
 
 - Lane 2 direct: fingerprint_validated count, fingerprint_dropped count,
   drop_rate (analog to Lane 3's drop rate — substring-validation signal),
@@ -149,8 +150,8 @@ def run_pipeline_once(
         "--output-file", str(result_output),
         "--skip-revision",
     ]
-    if new_contract:
-        cmd.append("--new-contract")
+    if not new_contract:
+        cmd.append("--legacy-contract")
     code, out, err = _run_subprocess(cmd)
     if code != 0:
         return f"run_pipeline.py exit={code} ({'new' if new_contract else 'old'}-path). stderr: {err.strip()[:400]!r}"
@@ -293,7 +294,7 @@ def render_report(all_cases: list[CaseMetrics], *, n: int, duration_seconds: flo
     lines.append("")
     lines.append("**Lane 2 direct metrics:**")
     lines.append("- `fp_valid` / `fp_dropped`: fingerprint moves that passed/failed substring validation against the audit target (flattened `vanilla_answer` on old, joined assistant turns on new).")
-    lines.append("- `drop_rate`: `fp_dropped / (fp_valid + fp_dropped)`. Analog to Lane 3's drop rate. A drop here means the LLM cited evidence from CONTEXT (user turns or extractor summaries), which is rejected under the new contract.")
+    lines.append("- `drop_rate`: `fp_dropped / (fp_valid + fp_dropped)`. Analog to Lane 3's drop rate. A drop here means the LLM cited evidence from CONTEXT (user turns or extractor summaries), which is rejected on the default ConversationContext path.")
     lines.append("- `detected`: verified candidate models accepted into `companion_card.detected_models`.")
     lines.append("- `rejected`: candidates rejected at verification.")
     lines.append("")

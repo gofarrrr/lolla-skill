@@ -449,11 +449,10 @@ python3 $SKILL_DIR/scripts/run_pipeline.py \
   --extraction-file /tmp/lolla_{run_id}_extraction.json \
   --conversation-file /tmp/lolla_{run_id}_conversation.txt \
   --output-file /tmp/lolla_{run_id}_result.json \
-  --new-contract \
   --skip-revision
 ```
 
-The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. The `--new-contract` flag wraps the raw conversation, extraction JSON, and capture metadata as `ConversationContext`. This script initializes the full Lolla pipeline via OpenRouter and runs all four lanes:
+The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. With both `--extraction-file` and `--conversation-file`, `run_pipeline.py` wraps the raw conversation, extraction JSON, and capture metadata as `ConversationContext` by default. This script initializes the full Lolla pipeline via OpenRouter and runs all four lanes:
 
 ```
                          ┌──────────────────────────────┐
@@ -476,7 +475,7 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 #### Conversation-first contract (current baseline)
 
-`CritiqueRequest(query, vanilla_answer)` is the legacy two-string input that collapses richly structured extraction into flat text before lanes see it. As of 2026-04-24, the conversation-first migration is complete for the four lanes: `SystemBPipeline.run()` accepts a `ConversationContext` carrying the full turn-by-turn conversation, typed extraction fields (`LiveConstraint`, `DroppedThread`), and capture metadata; when that shape is present, Lanes 1-4 consume the conversation directly through their `_from_context` prompt paths. The `--new-contract` flag on `scripts/run_pipeline.py` routes through this entry point. The legacy path remains available for compatibility and regression comparison, but it is no longer the north-star architecture.
+`CritiqueRequest(query, vanilla_answer)` is the legacy two-string input that collapses richly structured extraction into flat text before lanes see it. As of 2026-04-24, the conversation-first migration is complete for the four lanes: `SystemBPipeline.run()` accepts a `ConversationContext` carrying the full turn-by-turn conversation, typed extraction fields (`LiveConstraint`, `DroppedThread`), and capture metadata; when that shape is present, Lanes 1-4 consume the conversation directly through their `_from_context` prompt paths. `scripts/run_pipeline.py` now routes file-based production calls with both extraction and conversation files through this entry point by default. The legacy path remains available for compatibility and regression comparison via `--legacy-contract`, but it is no longer the north-star architecture. `--new-contract` remains temporarily as a deprecated alias for the default path.
 
 The old "remove `CritiqueRequest` once all lanes migrate" milestone has been superseded by the context-engineering roadmap. `CritiqueRequest` should disappear only after the shared conversation IR and lane packet builders are proven; until then it stays as a compatibility surface. Equivalence at the original shim boundary is verified by `scripts/phase1_equivalence_check.py` and documented under `research/test-cases/phase1-equivalence-2026-04-24/`.
 
@@ -518,7 +517,7 @@ The old "remove `CritiqueRequest` once all lanes migrate" milestone has been sup
 
 Lane 3 is most powerful on short conversations where the question itself constrains the answer space. A question that assumes "we must grow" and never explores "should we grow?" is a frame pressure finding.
 
-**Phase 2a migration (conversation-first input):** when the pipeline receives a `ConversationContext` (via `--new-contract` or a direct lane call), Lane 3 uses `run_frame_extraction_from_context` and `generate_reframings_from_context` instead of the legacy `query`/`vanilla_answer` variants. The user-prompt body is split into a `CONTEXT` section (extractor summaries + assistant replies, NOT quotable as evidence) and a `SOURCE` section (raw user turns). `evidence_quote` validation requires a literal substring of a user turn. This grounds framing findings in the user's own words rather than the extractor's paraphrased `decision_situation`/`original_framing` text that the legacy collapsed `query` carried. Measurement evidence: `research/test-cases/phase2a-lane3-equivalence-2026-04-23/`.
+**Phase 2a migration (conversation-first input):** when the pipeline receives a `ConversationContext` (the default file-based CLI path or a direct lane call), Lane 3 uses `run_frame_extraction_from_context` and `generate_reframings_from_context` instead of the legacy `query`/`vanilla_answer` variants. The user-prompt body is split into a `CONTEXT` section (extractor summaries + assistant replies, NOT quotable as evidence) and a `SOURCE` section (raw user turns). `evidence_quote` validation requires a literal substring of a user turn. This grounds framing findings in the user's own words rather than the extractor's paraphrased `decision_situation`/`original_framing` text that the legacy collapsed `query` carried. Measurement evidence: `research/test-cases/phase2a-lane3-equivalence-2026-04-23/`.
 
 **Lane 4 — Structural Coverage (2-3 OpenRouter calls):**
 
