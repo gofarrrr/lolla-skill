@@ -76,7 +76,7 @@ Same four-signal shape as 2a/2b, adapted for Lane 1's output surface + downstrea
 
 ## Tasks
 
-- [ ] 0.0 Preflight
+- [x] 0.0 Preflight
   - [ ] 0.1 Confirm PR #16 (Phase 2b) merged to main: `git log --oneline main -10`. If not yet merged: **STOP, wait for merge.** 2c builds on 2b's pipeline.py state (Lane 4 dispatch) + 2b's conversation_context plumbing.
   - [ ] 0.2 Fresh main + branch: `git checkout main && git pull && git checkout -b feat/conversation-first-phase-2c-lane1-structural-pressure`.
   - [ ] 0.3 Verify Phase 1+2a+2b scaffolding: `ls engine/system_b/conversation_context.py engine/system_b/conversation_loader.py engine/system_b/frame_pressure.py engine/system_b/structural_coverage.py scripts/phase2a_lane3_quality_check.py scripts/phase2b_lane4_quality_check.py` (all present).
@@ -84,7 +84,7 @@ Same four-signal shape as 2a/2b, adapted for Lane 1's output surface + downstrea
   - [ ] 0.5 Re-read: `research/phase2c-lane1-migration-plan.md` (couplings + risks), `research/test-cases/phase2b-marcus-controlled-comparison-2026-04-23/README.md` (the coverage-evidence attribution pattern), `research/test-cases/phase2b-lane4-equivalence-2026-04-23/lane4-quality-report.md` (what "success with prompt iteration" looks like). Read `engine/system_b/prompts.py` + `engine/system_b/deep_checks.py` in full.
   - [ ] 0.6 Map Lane 1 orchestration in `pipeline.py` lines 375-551 — identify the two call sites for `_run_pass1_clusters_parallel` and `_run_pass2_parallel`. Both need `conversation_context` passed through.
 
-- [ ] 1.0 Conversation-aware Pass 1 + Pass 2 entry points (TDD)
+- [x] 1.0 Conversation-aware Pass 1 + Pass 2 entry points (TDD)
   - [ ] 1.1 Design user-prompt shape for Pass 1 (cluster triage):
     - CONTEXT section: user turns + extraction summaries (decision_situation, original_framing, constraints, dropped_threads). Marked "NOT the primary audit target."
     - SOURCE section: assistant turns verbatim, turn-structured. Marked "primary audit target — tendencies live here (commissions + omissions)."
@@ -96,46 +96,46 @@ Same four-signal shape as 2a/2b, adapted for Lane 1's output surface + downstrea
   - [ ] 1.5 RED→GREEN: add helper `_joined_assistant_turns_text(context)` if not present (analogous to Lane 3's `_joined_user_turns_text`). Can live in `conversation_context.py` or a new helper module. Used by Pass 1 + Pass 2 + embedding signal.
   - [ ] 1.6 RED→GREEN: add `_embedding_tendency_signal_from_context(context, ...)` OR decide to reuse legacy with `_joined_assistant_turns_text(context)` as input. Lean: reuse — embedding signal behavior should be stable across paths; only the input assembly changes.
 
-- [ ] 2.0 Prompts: CONTEXT/SOURCE + RIGHT/WRONG + enum-checklist (first draft, per 2b lesson)
+- [x] 2.0 Prompts: CONTEXT/SOURCE + RIGHT/WRONG + enum-checklist (first draft, per 2b lesson)
   - [ ] 2.1 Decide whether to rewrite the 6 Pass 1 cluster system prompts or just adjust the user-prompt template. Lean: minimal system prompt changes (one sentence about reading turn-structured input); rewrite the user prompt template with CONTEXT/SOURCE split.
   - [ ] 2.2 Pass 1 user prompt: CONTEXT section labelled "not the primary audit target"; SOURCE section with `[Turn N] ASSISTANT:` blocks; RIGHT/WRONG examples for evidence grounding (e.g., RIGHT: "The assistant claims X"; WRONG: paraphrase of X; WRONG: summary of extraction).
   - [ ] 2.3 Pass 2 system prompt: add CONTEXT/SOURCE wording + **enum-checklist reminder for sub-patterns** (per 2b lesson). Explicit: "Before finalizing sub_pattern selection, verify you've considered each sub_pattern in the menu — not just the ones that surface in assistant verbatim. Some sub-patterns manifest as omission or implicit bias rather than stated claims." Bake this into FIRST DRAFT, don't wait for measurement to force iteration.
   - [ ] 2.4 Pass 2 user prompt: CONTEXT/SOURCE split; `[Turn N] ASSISTANT:` structure.
 
-- [ ] 3.0 `pipeline.py` dispatch wiring
+- [x] 3.0 `pipeline.py` dispatch wiring
   - [ ] 3.1 Read current `_run_pass1_clusters_parallel` signature (pipeline.py ~line 943) + `_run_pass2_parallel` signature + `_embedding_tendency_signal` signature.
   - [ ] 3.2 Add `conversation_context: ConversationContext | None = None` to each; dispatch on presence (if context → `_from_context` variant; else legacy).
   - [ ] 3.3 Pass `conversation_context=conversation_context` at call sites in `run()`. Should already be held from 2a (Line 457-ish).
   - [ ] 3.4 RED→GREEN: extend `tests/test_pipeline_shim_equivalence.py` with dispatch tests for Pass 1 + Pass 2 (context-path, legacy-path, feature-disabled short-circuits already covered).
   - [ ] 3.5 Run full suite — zero regression.
 
-- [ ] 4.0 Anti-echo preservation
+- [x] 4.0 Anti-echo preservation
   - [ ] 4.1 Verify `lane1_tendency_ids` + `lane1_model_ids` are computed identically between paths when context is present. These are aggregated from `detected_tendencies` + `delta_card.selected_model_ids`; migration shouldn't change aggregation logic.
   - [ ] 4.2 Add a test asserting that downstream lane calls (`_run_companion`, `_run_frame_pressure`, `_run_structural_coverage`) receive correctly-populated `lane1_*_ids` sets on the new path.
   - [ ] 4.3 Spot-check: on the Marcus controlled A/B, confirm Lanes 2/3/4 receive a reasonable anti-echo set on both paths (not wildly different).
 
-- [ ] 5.0 Quality-metrics script
+- [x] 5.0 Quality-metrics script
   - [ ] 5.1 Adapt `scripts/phase2b_lane4_quality_check.py` into `scripts/phase2c_lane1_quality_check.py`. Same resilient-resume structure.
   - [ ] 5.2 Metrics to capture: Lane 1 output (detected_tendencies, delta_card findings count, compound groups count) + **downstream cascade metrics** (lane2_model_ids size, lane3_tendency_ids size, lane4_gap_count) per run.
   - [ ] 5.3 Dry-run: `--n 1 --cases oncologist` to verify plumbing end-to-end.
 
-- [ ] 6.0 Full N=3 × 10-case measurement + controlled Marcus A/B + ablation
+- [x] 6.0 Full N=3 × 10-case measurement + controlled Marcus A/B + ablation
   - [ ] 6.1 Run `scripts/phase2c_lane1_quality_check.py --n 3` in background (~45-60 min, ~$5-10 — larger than 2a/2b because Lane 1 makes 6+N boundary calls per pipeline run).
   - [ ] 6.2 **Controlled Marcus A/B** — reuse `research/test-cases/phase2b-marcus-controlled-comparison-2026-04-23/marcus_fresh_extraction.json`. Run old path + new path on Marcus, compare Lane 1 output + downstream cascades. Save to `research/test-cases/phase2c-marcus-controlled-comparison-2026-04-24/`. **Primary PR evidence.**
   - [ ] 6.3 **Ablation on friendship_money** (or whichever case shows the clearest architectural signal): SOURCE kept = assistant turns; CONTEXT trimmed to old-path-volume. Same pattern as 2a/2b ablations. Save to `scripts/phase2c_ablation_architecture_vs_volume.py`.
   - [ ] 6.4 **Per-case regression check.** Apply diagnosis-required policy.
 
-- [ ] 7.0 Qualitative human read (PROPER markdown diff, NOT `[~]`)
+- [x] 7.0 Qualitative human read (PROPER markdown diff, NOT `[~]`)
   - [ ] 7.1 Pick 3 cases spanning variance: one clean (friendship_money or startup_pivot), one messy (messy_three_problems or parenting_teen), one edge-case (phd_research longest OR whistleblower densest).
   - [ ] 7.2 Render side-by-side diff for each case: old path's delta_card.findings vs new path's. Include challenge_statement + passage + corrective_model per finding.
   - [ ] 7.3 Commit to `research/test-cases/phase2c-lane1-equivalence-2026-MM-DD/lane1-qualitative-diff.md`.
   - [ ] 7.4 Surface to PM for review. ≥ 2/3 rated "new ≥ old" to proceed.
 
-- [ ] 8.0 Negative-check gate
+- [x] 8.0 Negative-check gate
   - [ ] 8.1 Scan 30 new-path runs for criteria (empty delta_card, tendency disagreement >50% within N=3, compound collapse, cascade empty-lane events).
   - [ ] 8.2 Zero trips = proceed. Any trip = STOP, diagnose.
 
-- [ ] 9.0 Documentation
+- [x] 9.0 Documentation
   - [ ] 9.1 Update `HOW_IT_WORKS.md §Step 3` Lane 1 section with a Phase 2c migration paragraph (parallel structure to Lane 3/4's).
   - [ ] 9.2 Defer handover "What's shipped" to post-merge.
 
