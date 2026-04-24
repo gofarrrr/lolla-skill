@@ -3,17 +3,32 @@
 from __future__ import annotations
 
 import logging
+from typing import Callable
 
 from .conversation_context import ConversationContext
 from .ir import (
     ConversationIR,
     FrameAnchor,
+    StanceEvent,
     Turn,
     TurnRef,
     TurnRefProvenance,
     UserIssueEvent,
 )
-from .ir_builders import add_frame_anchor, add_turn, add_user_issue_event
+from .ir_builders import (
+    add_frame_anchor,
+    add_stance_event,
+    add_turn,
+    add_user_issue_event,
+)
+
+
+# Phase 3b: optional injectable callable that takes a ConversationContext and
+# returns a list of StanceEvent. Default is None (deterministic, no-LLM IR
+# construction — matches Phase 1 behavior). Production callers can pass
+# `stance_extractor=partial(extract_stance_events, boundary=boundary_client)`
+# to populate stance events; tests can inject deterministic fakes.
+StanceExtractor = Callable[[ConversationContext], list[StanceEvent]]
 
 
 _LOGGER = logging.getLogger("system_b.ir_constructor")
@@ -37,11 +52,21 @@ _KIND_AMBIGUITY_MARKERS = (
 )
 
 
-def construct_conversation_ir(context: ConversationContext) -> ConversationIR:
+def construct_conversation_ir(
+    context: ConversationContext,
+    *,
+    stance_extractor: StanceExtractor | None = None,
+) -> ConversationIR:
     """Build the Phase 1 IR without changing lane behavior.
 
     Current extraction fields are summaries or paraphrases, so constructor
     provenance is conservative by default: use `turn_ref`, not exact spans.
+
+    Phase 3b: optional `stance_extractor` populates `StanceEvent` objects
+    when provided. Default is None — constructor stays deterministic and
+    LLM-free. When provided, each returned stance is appended via the
+    reducer; the extractor is expected to have already validated each span
+    as an exact substring of an assistant turn.
     """
 
     ir = ConversationIR()
@@ -110,6 +135,18 @@ def construct_conversation_ir(context: ConversationContext) -> ConversationIR:
                 frame_pattern="original_framing",
             ),
         )
+
+    # Phase 3b: inject stance events if an extractor is provided. The extractor
+    # is responsible for validation (substring check, relation vocabulary);
+    # the constructor trusts what it gets back.
+    if stance_extractor is not None:
+        try:
+            stances = stance_extractor(context)
+        except Exception as exc:  # noqa: BLE001
+            _LOGGER.warning("stance_extractor_failed: %s", exc)
+            stances = []
+        for stance in stances:
+            ir = add_stance_event(ir, stance)
 
     _LOGGER.info(
         "conversation_ir_constructed turns=%s user_issue_events=%s "
