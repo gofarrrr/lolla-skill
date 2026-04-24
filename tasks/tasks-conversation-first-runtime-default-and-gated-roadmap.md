@@ -103,17 +103,17 @@ For implementation tasks, use vertical TDD slices:
   - [x] 5.7 Update `research/conversation-first-runtime-default-decision-2026-04-24.md` with verification results, known residual risks, and rollback path.
   - [x] 5.8 Stop for PM review before Phase 0.1 begins.
 
-- [ ] 6.0 Complete Phase 0.1 Capture Fidelity Audit
-  - [ ] 6.1 Read `SKILL.md` Step 1 capture instructions, `scripts/run_extract.py`, `engine/system_b/conversation_loader.py`, and the capture-related `run_health` logic in `scripts/run_pipeline.py`.
-  - [ ] 6.2 Create `research/capture-fidelity-audit-2026-04-25.md`.
-  - [ ] 6.3 Document exactly what the current capture path records: speaker labels, turn ids, user text, assistant prose, truncation markers, capture manifest fields, quote-validation fields, and health statuses.
-  - [ ] 6.4 Document exactly what the current capture path drops or excludes: tool calls, tool outputs, system/developer messages, meta-conversation, omitted middle turns, and any other normalized content.
-  - [ ] 6.5 Document what the capture path trusts implicitly: turn-boundary detection, speaker attribution, assistant/user alternation, declared vs parsed turn counts, truncation thresholds, and source text fidelity.
-  - [ ] 6.6 Sample representative corpus cases and compare raw conversation files against loader output. Record any mismatches with concrete file references.
-  - [ ] 6.7 Classify each observed or plausible failure mode as `blocker_for_ir_provenance`, `acceptable_with_flag`, or `fix_later`.
-  - [ ] 6.8 If any blocker is found, stop and create a fix plan before Phase 0.5 starts.
-  - [ ] 6.9 If no blockers are found, write a PM-review summary at the top of the audit with the minimum capture contract required for Phase 1 provenance.
-  - [ ] 6.10 Stop for PM review before Phase 0.5 begins.
+- [x] 6.0 Complete Phase 0.1 Capture Fidelity Audit
+  - [x] 6.1 Read `SKILL.md` Step 1 capture instructions, `scripts/run_extract.py`, `engine/system_b/conversation_loader.py`, and the capture-related `run_health` logic in `scripts/run_pipeline.py`.
+  - [x] 6.2 Create `research/capture-fidelity-audit-2026-04-25.md`.
+  - [x] 6.3 Document exactly what the current capture path records: speaker labels, turn ids, user text, assistant prose, truncation markers, capture manifest fields, quote-validation fields, and health statuses.
+  - [x] 6.4 Document exactly what the current capture path drops or excludes: tool calls, tool outputs, system/developer messages, meta-conversation, omitted middle turns, and any other normalized content.
+  - [x] 6.5 Document what the capture path trusts implicitly: turn-boundary detection, speaker attribution, assistant/user alternation, declared vs parsed turn counts, truncation thresholds, and source text fidelity.
+  - [x] 6.6 Sample representative corpus cases and compare raw conversation files against loader output. Record any mismatches with concrete file references. Sampled `case_startup_pivot`, `case_multi_offer`, `case_phd_research`, and `case_messy_three_problems`; no loader/raw marker mismatches observed.
+  - [x] 6.7 Classify each observed or plausible failure mode as `blocker_for_ir_provenance`, `acceptable_with_flag`, or `fix_later`.
+  - [x] 6.8 If any blocker is found, stop and create a fix plan before Phase 0.5 starts. No open blocker found; blocking failure classes are already handled by `capture_critical` decline before provider spend.
+  - [x] 6.9 If no blockers are found, write a PM-review summary at the top of the audit with the minimum capture contract required for Phase 1 provenance.
+  - [x] 6.10 Stop for PM review before Phase 0.5 begins.
 
 - [ ] 7.0 Complete Phase 0.5 External Systems Study and drill-back spike
   - [ ] 7.1 Create `research/phase0.5-adoption-memo-2026-04-XX.md` with sections for per-system summaries, pattern adoption/rejection, v1 IR impact, and the archaeology checklist response.
