@@ -146,6 +146,31 @@ These measurements follow a core constraint: **evals measure the process, not de
 
 ## Architecture
 
+### Current Architecture Status (2026-04-24)
+
+The conversation-first lane migration era is closed. Main no longer needs to prove whether lanes can consume the conversation: all four lanes have conversation-first entry points. `ConversationContext` carries the raw turn-by-turn transcript, typed extraction fields, and capture metadata; `CritiqueRequest(query, vanilla_answer)` is now a legacy compatibility and regression surface, not the architectural target.
+
+That does **not** mean Lolla is fully conversation-native yet. The current extraction layer still produces summary-shaped fields (`decision_situation`, `live_constraints`, `synthesized_position`, `original_framing`, `dropped_threads`), and lane context is still assembled mostly inside prompt-formatting functions. The bottleneck has moved upstream: capture fidelity, provenance, explicit conversation indexing, and lane-specific packet assembly.
+
+The next architectural program is **conversation-first context engineering**: reversible entropy reduction on conversations.
+
+- Raw transcript is the source of truth.
+- Derived objects must carry turn/span provenance.
+- Compression should be structural before narrative.
+- Lanes should consume narrow context packets rather than one global compressed story.
+- New first-class IR objects should be promoted only when measurement shows cross-lane value.
+
+The v1 IR doctrine is **Option A** — a small substrate plus measured promotions:
+
+| Layer | v1 families | Notes |
+|---|---|---|
+| Substrate | `Turn`, `SpanRef` | Minimal source/provenance substrate. |
+| Semantic | `FrameAnchor`, `UserIssueEvent`, `StanceEvent` | `UserIssueEvent` is one family with `kind` (`constraint`, `concern`, `open_loop`) plus lifecycle fields. |
+| Deferred | `ActorRef` | Promote to v1.1 only if Phase 0.5 annotation or lane measurement shows real multi-actor ambiguity. |
+| Projections | `DecisionOption`, `ReasoningSegment`, `CoverageTarget` | Not first-class until the promotion rule is met. |
+
+The paused extraction-contract PRs now serve as archaeology, not revival candidates. Synthetic `canonical_key` slugs for constraints and dropped threads are expected to die once provenance-based identity exists. `synthesized_position` as a point-estimate becomes a projection over `StanceEvent` trajectory. The `move_type` taxonomy remains useful, but starts packet-local for Lane 1 / Lane 2 rather than becoming v1 IR. Phase 0.1 audits capture fidelity before provenance claims; Phase 0.5 validates these design claims against external systems and annotation evidence before Phase 1 freezes the IR.
+
 ### Conductor, Not Player
 
 **Claude is a conductor, not a player — for the audit.** It captures the conversation, calls scripts, and presents results. It performs zero reasoning judgment inside extraction, triage, routing, fingerprinting, deep checks, or card generation. Every semantic decision in the audit pipeline goes through OpenRouter where prompts are calibrated and measurable.
@@ -378,16 +403,18 @@ This script reads the conversation, sends it to OpenRouter with a calibrated ext
 
 If not strategic → returns `{"status": "not_strategic", "decline_reason": "..."}` and Claude presents a polite decline.
 
-If strategic → extracts 6 fields:
+If strategic → extracts 6 current compatibility fields:
 
 | Field | What It Captures | Why the Pipeline Needs It |
 |-------|-----------------|--------------------------|
-| `decision_situation` | The core decision as a neutral problem statement — domain, stakeholders, what's at stake | Becomes the `query` for Lane 1 triage. Tells the triage model what constraints were live, what could be skipped. |
-| `live_constraints` | Every constraint the user stated. Each item carries a terse `constraint` string (≤120 chars, noun-phrase + state), plus `status: active / dropped / modified` and `weight: structural / situational`. | **The killer feature of conversation mode.** A constraint stated in turn 3 but absent from the recommendation in turn 8 is omission evidence. Lane 1 triage uses this to detect doubt-avoidance, availability-misweighing, etc. |
-| `synthesized_position` | The LLM's latest/most developed recommendation, preserving reasoning structure | Becomes the `vanilla_answer`. This is what all four lanes audit. Preserving structure (not just conclusions) is critical — Lane 2 needs to see HOW the LLM argued. |
-| `reasoning_passages` | 3-8 VERBATIM quotes from the assistant's messages — leaps, dismissals, assertions | Lane 2 (companion) fingerprints literal substrings to detect mental models. If these aren't exact quotes, fingerprint verification fails. |
-| `original_framing` | How the human posed the problem — what was assumed fixed, what perspectives were excluded | Lane 3 (frame pressure) audits framing. If the question assumed "we must grow" and never explored "should we grow?", Lane 3 catches that. |
-| `dropped_threads` | Concerns raised but never resolved — by either party | Enriches the `query` with explicit omission signals. When triage sees "user raised X, AI never addressed it", that's tendency-detection gold. |
+| `decision_situation` | The core decision as a neutral problem statement — domain, stakeholders, what's at stake | Provides a compact compatibility summary and helps classify whether the conversation is strategic. In the target architecture this is a derived view, not the source of truth. |
+| `live_constraints` | Every constraint the user stated. Each item carries a terse `constraint` string (≤120 chars, noun-phrase + state), plus `status: active / dropped / modified` and `weight: structural / situational`. | Transitional user-side issue signal. A constraint stated in turn 3 but absent from the recommendation in turn 8 is omission evidence. In the v1 IR this intent becomes `UserIssueEvent(kind="constraint")` with turn/span provenance. |
+| `synthesized_position` | The LLM's latest/most developed recommendation, preserving reasoning structure | Compatibility projection of the latest assistant position. It remains useful for legacy/headless paths, but the target architecture models this as a `StanceEvent` trajectory with "latest stance" as a projection. |
+| `reasoning_passages` | 3-8 VERBATIM quotes from the assistant's messages — leaps, dismissals, assertions | Evidence-eligible assistant substrings for Lane 2. If these aren't exact quotes, fingerprint verification fails. In the target architecture these become packet-local reasoning spans, and only graduate to `ReasoningSegment` if measurement justifies it. |
+| `original_framing` | How the human posed the problem — what was assumed fixed, what perspectives were excluded | Bootstrap input for Lane 3 frame pressure. In the v1 IR this intent becomes `FrameAnchor` with source-span provenance. |
+| `dropped_threads` | Concerns raised but never resolved — by either party | Transitional omission/open-loop signal. In the v1 IR this intent becomes `UserIssueEvent(kind="concern" \| "open_loop")` with lifecycle (`active`, `resolved`, `superseded`). |
+
+These fields are the current extraction contract, not the target ontology. The raw transcript inside `ConversationContext` remains canonical; extracted fields are derived context and compatibility surfaces until the provenance-bearing IR replaces summary-first extraction.
 
 **Capture validation, quote verification, and failure gates:**
 
@@ -399,9 +426,9 @@ Before sending the conversation to OpenRouter, the extraction script validates c
 
 These diagnostics surface in every output path — `ok`, `error`, `not_strategic`, and `capture_critical`.
 
-**CritiqueRequest mapping:**
+**Legacy compatibility mapping:**
 
-The 6 extracted fields get mapped to the 2 fields the pipeline expects:
+For the legacy path and old equivalence harnesses, the 6 extracted fields get mapped to a 2-field `CritiqueRequest`:
 
 ```
 query = decision_situation 
@@ -413,23 +440,26 @@ vanilla_answer = synthesized_position
                + numbered reasoning passages as verbatim quotes
 ```
 
-This mapping is deterministic — no LLM involved.
+This mapping is deterministic — no LLM involved. In the conversation-first path, the same extraction JSON is wrapped with the raw turns and capture metadata as `ConversationContext`, so lanes can validate evidence against source turns instead of trusting the flattened `query` / `vanilla_answer` strings.
 
 ### Step 3: Run Pipeline
 
 ```bash
 python3 $SKILL_DIR/scripts/run_pipeline.py \
   --extraction-file /tmp/lolla_{run_id}_extraction.json \
+  --conversation-file /tmp/lolla_{run_id}_conversation.txt \
   --output-file /tmp/lolla_{run_id}_result.json \
+  --new-contract \
   --skip-revision
 ```
 
-The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. This script parses the extraction JSON, initializes the full Lolla pipeline via OpenRouter, and runs all four lanes:
+The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. The `--new-contract` flag wraps the raw conversation, extraction JSON, and capture metadata as `ConversationContext`. This script initializes the full Lolla pipeline via OpenRouter and runs all four lanes:
 
 ```
                          ┌──────────────────────────────┐
-                         │  CritiqueRequest              │
-                         │  query + vanilla_answer       │
+                         │  ConversationContext          │
+                         │  raw turns + extraction       │
+                         │  + capture metadata           │
                          └──────────┬───────────────────┘
                                     │
               ┌─────────────┬───────┼───────┬─────────────┐
@@ -444,17 +474,19 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
        DeltaCard    CheatSheet    FrameCard    CoverageCard
 ```
 
-#### Conversation-first contract (Phase 1)
+#### Conversation-first contract (current baseline)
 
-`CritiqueRequest(query, vanilla_answer)` is a legacy two-string input that collapses richly structured extraction into flat text before lanes see it. As of Phase 1 of the conversation-first rearchitecture, `SystemBPipeline.run()` also accepts a `ConversationContext` — a structured shape carrying the full turn-by-turn conversation, typed extraction fields (`LiveConstraint`, `DroppedThread`), and capture metadata. During Phase 1 a shim converts `ConversationContext` into an equivalent `CritiqueRequest` so lane behavior is unchanged; the new shape is simply available at the entry point. Phase 2 migrates the four lanes one at a time to consume the context directly (each migration gated on old-path vs new-path quality comparison over the 10-case corpus), and Phase 3 removes `CritiqueRequest` entirely once all lanes are on the richer contract. The `--new-contract` flag on `scripts/run_pipeline.py` routes through the new entry point; omitted, the legacy path runs unchanged. Equivalence at the shim boundary is verified by `scripts/phase1_equivalence_check.py` and documented under `research/test-cases/phase1-equivalence-2026-04-24/`.
+`CritiqueRequest(query, vanilla_answer)` is the legacy two-string input that collapses richly structured extraction into flat text before lanes see it. As of 2026-04-24, the conversation-first migration is complete for the four lanes: `SystemBPipeline.run()` accepts a `ConversationContext` carrying the full turn-by-turn conversation, typed extraction fields (`LiveConstraint`, `DroppedThread`), and capture metadata; when that shape is present, Lanes 1-4 consume the conversation directly through their `_from_context` prompt paths. The `--new-contract` flag on `scripts/run_pipeline.py` routes through this entry point. The legacy path remains available for compatibility and regression comparison, but it is no longer the north-star architecture.
 
-**Lane 1 — Structural Pressure (3-5 OpenRouter calls):**
+The old "remove `CritiqueRequest` once all lanes migrate" milestone has been superseded by the context-engineering roadmap. `CritiqueRequest` should disappear only after the shared conversation IR and lane packet builders are proven; until then it stays as a compatibility surface. Equivalence at the original shim boundary is verified by `scripts/phase1_equivalence_check.py` and documented under `research/test-cases/phase1-equivalence-2026-04-24/`.
+
+**Lane 1 — Structural Pressure (6+N OpenRouter calls):**
 
 1. **Pass 1 (family-clustered triage):** Six OpenRouter calls run in parallel — one per tendency family (authority, closure, incentive, availability, self_regard, residual — see *Context Engineering: Two Passes* above for the full cluster taxonomy and rationale). Each cluster scores only its 3-5 assigned tendencies and carries only that family's confusion guardrails. Results are merged deterministically into a single `triage_scores` list covering all 24 canonical non-lollapalooza tendencies; lollapalooza is surfaced by deterministic compound detection (step 5 below), not by triage. Tendencies scoring ≥4 enter the "triggered" set.
 
-2. **Embedding swiss cheese** (optional, if `OPENAI_API_KEY` set): Embeds the vanilla answer and compares against 25 pre-computed tendency guidance vectors. Any tendency below the LLM threshold but above the embedding threshold gets promoted into the triggered set. This catches what the LLM missed — and vice versa. Each triggered tendency carries a `TriggeredTendency` record with its `source` (`triage`, `embedding`, or `always_include`) and `score` — enabling observability into which detection layer caught what. The result JSON includes both `triggered_tendencies` (IDs) and `triggered_tendency_sources` (full source/score records).
+2. **Embedding swiss cheese** (optional, if `OPENAI_API_KEY` set): Embeds the assistant text under audit (`vanilla_answer` on the legacy path, joined assistant turns on the conversation-first path) and compares against 25 pre-computed tendency guidance vectors. Any tendency below the LLM threshold but above the embedding threshold gets promoted into the triggered set. This catches what the LLM missed — and vice versa. Each triggered tendency carries a `TriggeredTendency` record with its `source` (`triage`, `embedding`, or `always_include`) and `score` — enabling observability into which detection layer caught what. The result JSON includes both `triggered_tendencies` (IDs) and `triggered_tendency_sources` (full source/score records).
 
-3. **Pass 2 (Deep Checks):** One OpenRouter call PER triggered tendency, run in parallel (up to 8 concurrent). Each call checks ONE tendency in isolation — seeing only that tendency's definition, its sub-pattern menu, and the vanilla answer. Context isolation prevents tendency contamination. Returns: detected/not-detected, confidence, sub-pattern, specific passage, severity.
+3. **Pass 2 (Deep Checks):** One OpenRouter call PER triggered tendency, run in parallel (up to 8 concurrent). Each call checks ONE tendency in isolation — seeing only that tendency's definition, its sub-pattern menu, and the assistant source text under audit. Context isolation prevents tendency contamination. Returns: detected/not-detected, confidence, sub-pattern, specific passage, severity.
 
 4. **Deterministic routing:** For each confirmed detection, the deterministic middle looks up corrective models from the knowledge graph (222 models, 241 bindings) and does 1-hop neighborhood expansion over allies and antagonists. Ranking uses fan-adjusted differentiated affinity (rubric 0.70/0.80/0.90/0.95, dampened by `1 / (1 + ln(degree))` at query time); within the narrow near-tie window `δ < 0.01` an activation-match tiebreaker can swap top-1 and top-2 if the curator-authored `activation_condition` embeddings score the reasoning context above `noise_floor = 0.45` and top-2 outscores top-1. The gate is traced per-route — `audit_summary.routing_decisions[].tiebreaker_supporting` / `.tiebreaker_risk` shows whether the gate fired, and if not which of seven clauses aborted it (`outside_epsilon_window`, `below_noise_floor`, `no_improvement`, etc.). Findings are assembled with curated failure modes, heuristics, and premortem questions attached to the routed models.
 
@@ -464,7 +496,7 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 **Lane 2 — Model Companion (2-3 OpenRouter calls):**
 
-1. **Fingerprint:** One OpenRouter call extracts 3-8 abstract reasoning moves from the vanilla answer. Each move has verbatim evidence quotes. No model names mentioned — just "weighing second-order consequences", "applying inversion", etc.
+1. **Fingerprint:** One OpenRouter call extracts 3-8 abstract reasoning moves from the assistant source text under audit. Each move has verbatim evidence quotes. No model names mentioned — just "weighing second-order consequences", "applying inversion", etc.
 
 2. **Recall:** Keyword overlap + optional embedding search identifies 15-20 candidate mental models from the 222-model substrate.
 
@@ -476,7 +508,7 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
 
 **Lane 3 — Frame Pressure (2 OpenRouter calls):**
 
-1. **Frame extraction:** One OpenRouter call reads the QUERY (not the answer) for embedded assumptions, mutable constraints, and suppressed counterfactuals. Returns 0-5 frame elements. **Validation:** Elements with empty `evidence_quote` or `frame_pattern` are rejected before routing — the extraction LLM sometimes produces structurally incomplete elements. Dropped elements and their drop reasons (`missing_evidence`, `missing_pattern`) are tracked in `dropped_frame_elements` on the FramePressureCard for observability.
+1. **Frame extraction:** One OpenRouter call reads the user's source turns for embedded assumptions, mutable constraints, and suppressed counterfactuals. Returns 0-5 frame elements. **Validation:** Elements with empty `evidence_quote` or `frame_pattern` are rejected before routing — the extraction LLM sometimes produces structurally incomplete elements. Dropped elements and their drop reasons (`missing_evidence`, `missing_pattern`) are tracked in `dropped_frame_elements` on the FramePressureCard for observability.
 
 2. **Deterministic routing:** Each frame element's `frame_pattern` is looked up in the Wave 5 reframing routing table → candidate models.
 
@@ -534,7 +566,7 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 
 **Calibration approach:** The detection prompt was tuned against 14 test scenarios (in `scripts/test_lane4.py` and `scripts/test_lane4_round2.py`) using the production model (grok-4.1-fast via OpenRouter). Calibration results: 67% recall on expected gaps, ~3 false positives per scenario (capped at 5), consistent across all 4 question types. This calibration level is appropriate for an informative lane where the human filters and the questions carry the value. Known limitations: `feedback-system-dynamics` and `uncertainty-type` are under-detected; `commitment-reversibility` and `stakeholder-alignment` are over-flagged. These can be revisited by tuning detect_when conditions in the knowledge graph.
 
-**Total OpenRouter calls:** Typically 10-13 (1 extraction + 1 triage + N deep checks + 1 fingerprint + 1 verify + 1 frame extract + 1 reframe + 1 question classification + 1 dimension detection + 0-1 gap questions). All use the calibrated boundary client with `temperature=0.2` and `response_format=json_object`. The revision step is skipped in the skill flow — Claude produces the updated position itself in Step 6, using the full conversation context and the four cards.
+**Total OpenRouter calls:** Typically 18-25 (1 extraction + 6 Pass 1 cluster triage calls + N deep checks + 1 fingerprint + 1 verify + 1 frame extract + 1 reframe + 1 question classification + 1 dimension detection + 0-1 gap questions, plus an extraction retry if quote fabrication is detected). All use the calibrated boundary client with `temperature=0.2` and `response_format=json_object`. The revision step is skipped in the skill flow — Claude produces the updated position itself in Step 6, using the full conversation context and the four cards.
 
 **Pipeline diagnostics (`run_health`):** The pipeline output includes a decomposed health status that rolls up capture diagnostics from extraction and pipeline state into one truthful object:
 
@@ -544,7 +576,7 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 - `embeddings` — `active` or `off`
 - `fingerprint` — `ok` if companion verified at least one model, `empty` otherwise
 - `findings_produced` — whether Lane 1 produced any findings
-- `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`
+- `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`
 - `warnings` — merged pipeline warnings + capture warnings
 - `capture_manifest` (optional) — actual vs. declared turn counts and character length from the conversation capture
 - `activation_tiebreaker` — `"on"` or `"off"` (reflects the `LOLLA_ACTIVATION_TIEBREAKER` kill switch; default on)
@@ -684,7 +716,7 @@ Lolla succeeds when it makes better reconsideration possible, not when it dictat
 
 ## Known Limitations
 
-- **Pass 1 can miss tendencies.** LLM triage balances 25 hypotheses simultaneously; adjacent tendencies can be confused. Embedding swiss cheese partially addresses this.
+- **Pass 1 can miss tendencies.** The old 25-in-one prompt is gone; six family-clustered specialists reduce load and improve stability, but each cluster is still probabilistic semantic triage. Adjacent tendencies can still be confused. Embedding swiss cheese partially addresses this.
 - **Pass 2 is single-shot.** No iterative refinement. If the deep check misses a sub-pattern, it stays missed.
 - **Routing is lookup-only.** 1-hop graph expansion with optional embedding reranking, no multi-hop reasoning or dynamic traversal.
 - **Embedding threshold is fixed.** 0.30 for tendency signal, not tuned per tendency.
@@ -755,4 +787,3 @@ A typical run makes 18-25 OpenRouter calls against `x-ai/grok-4.1-fast`:
 Total: roughly 60-110K tokens per run. At Grok 4.1 Fast pricing, approximately $0.04-0.10 per audit. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
 
 The cost bump compared to earlier versions is load-reduction working as designed. Pass 1 was previously a single monolithic call scoring all 25 tendencies under ~11 confusion guardrails; it is now six family-clustered specialists (3-5 tendencies each, family-relevant guardrails only). The trade-off is more calls for narrower per-call load — and measured Pass 1 stability moved from 0.50 → 0.70 Jaccard on a fixed Marcus extraction as a result.
-
