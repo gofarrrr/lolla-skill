@@ -146,34 +146,94 @@ These measurements follow a core constraint: **evals measure the process, not de
 
 ## Architecture
 
-### Current Architecture Status (2026-04-24)
+### Current State (2026-04-25)
 
-The conversation-first lane migration era is closed. Main no longer needs to prove whether lanes can consume the conversation: all four lanes have conversation-first entry points. `ConversationContext` carries the raw turn-by-turn transcript, typed extraction fields, and capture metadata; `CritiqueRequest(query, vanilla_answer)` is now a legacy compatibility and regression surface, not the architectural target.
+The pipeline is fully conversation-native. `SystemBPipeline.run()` accepts `ConversationContext` and nothing else — passing anything else raises `TypeError`. The legacy `CritiqueRequest(query, vanilla_answer)` data shape no longer exists in the codebase. Every lane reads from a typed, provenance-bearing `ConversationIR` projected through lane-specific packet builders.
 
-That does **not** mean Lolla is fully conversation-native yet. The current extraction layer still produces summary-shaped fields (`decision_situation`, `live_constraints`, `synthesized_position`, `original_framing`, `dropped_threads`), and lane context is still assembled mostly inside prompt-formatting functions. The bottleneck has moved upstream: capture fidelity, provenance, explicit conversation indexing, and lane-specific packet assembly.
+The substrate, top to bottom:
 
-The next architectural program is **conversation-first context engineering**: reversible entropy reduction on conversations.
+| Layer | Object | Module | What it owns |
+|---|---|---|---|
+| Input | `ConversationContext` | `engine/system_b/conversation_context.py` | Raw turns + typed extraction (`LiveConstraint`, `DroppedThread`, …) + capture metadata |
+| IR | `ConversationIR` | `engine/system_b/ir.py` | Immutable, provenance-bearing intermediate representation |
+| IR build | `construct_conversation_ir(...)` | `engine/system_b/ir_constructor.py` | Builds the IR at pipeline entry, optionally invoking specialist extractors |
+| Specialists (optional, injected) | `extract_stance_events`, `extract_live_constraints`, `extract_dropped_threads` | `stance_extraction.py`, `live_constraints_extraction.py`, `dropped_threads_extraction.py` | LLM-backed substring-validated upgrades to specific IR objects |
+| Packet | `Lane4Packet` | `engine/system_b/packet_builders/lane4.py` | Minimum projection of the IR each lane reads |
+| Lanes | Companion / Frame Pressure / Structural Coverage / Pass1+Pass2 | `companion_routing.py`, `frame_pressure.py`, `structural_coverage.py`, `pass1_runner.py` + `pass2_runner.py` | Each lane consumes the packet and produces a card |
+| Audit | `AuditTrace`, `build_pipeline_audit_trace` | `audit_assembly.py` | Aggregates per-call telemetry, lane outputs, warnings |
+| Telemetry | `BoundaryCallTrace`, `BoundaryCallMetadata` | `boundary_tracing.py`, `boundary_provider.py` | Per-call model + token counts (prompt/completion/total/cached/reasoning) |
 
-- Raw transcript is the source of truth.
-- Derived objects must carry turn/span provenance.
-- Compression should be structural before narrative.
-- Lanes should consume narrow context packets rather than one global compressed story.
-- New first-class IR objects should be promoted only when measurement shows cross-lane value.
+The IR's three provenance tiers — `span` (exact substring in one turn), `turn_ref` (paraphrase, source turn known), `derivation` (multi-turn synthesis with refs) — make the difference between substring-validated content and honest paraphrase visible to every consumer downstream. No paraphrase ever masquerades as a quote.
 
-The v1 IR doctrine is **Option A** — a small substrate plus measured promotions:
+### Evolution: How It Used to Work, How It Works Now, and Why
 
-| Layer | v1 families | Notes |
+The shape above isn't where Lolla started. It's the result of ~15 sequenced migrations that each replaced a load-bearing piece with a more honest version. The story matters because reading the codebase without it leaves the question "why is there a `Lane4Packet` projecting from an `ConversationIR` built from `ConversationContext`? why three layers?" — and that question has a real answer at every layer.
+
+#### Origins: The CritiqueRequest era
+
+Before the migration, the runtime contract was a single dataclass:
+
+```python
+@dataclass(frozen=True)
+class CritiqueRequest:
+    query: str
+    vanilla_answer: str
+```
+
+Two flat strings. Every lane received `(query, vanilla_answer)`. Even though extraction produced six richly-shaped fields (`decision_situation`, `live_constraints`, `synthesized_position`, `reasoning_passages`, `original_framing`, `dropped_threads`), they got collapsed into the `query` and `vanilla_answer` strings before lanes ever saw them via a helper called `_context_to_critique`.
+
+What broke under this shape:
+
+- **Quote fabrication.** When a lane wanted to validate "did the user actually say X?", the only string it could check against was the flattened `query` — which already contained extractor paraphrase. Lanes routinely produced `evidence_quote` claims that weren't in the original conversation because the extractor's paraphrase happened to contain a similar phrase.
+- **Provenance opacity.** Findings claimed authority but had no traceable line back to the source text. "The user said X in turn 3" was unverifiable because turns no longer existed at the lane boundary.
+- **Saturation.** A single extraction prompt was being asked to produce all six fields plus quote validation. New rules competed with existing rules in the same context. We hit a ceiling on extraction quality that wasn't fixable by prompt-engineering.
+- **Diminishing returns from "more context."** Adding more rules to extraction made things worse, not better. The structural problem wasn't extraction-prompt quality; it was the lane-input contract throwing away structure.
+
+#### The migration: one phase at a time, gated before and after
+
+Each phase had a four-step discipline: an annotation gate (humans reviewed candidates blind, looking for inter-reviewer agreement above a threshold) → only if the gate passed, write the specialist code → run a live LLM eval against the gate's gold set → ship only if recall, validation pass rate, and kind agreement cleared their thresholds. If the gate or eval failed, the phase didn't ship; the doctrine was "no specialist without measurement evidence."
+
+| Phase | What it changed | Why we picked this |
 |---|---|---|
-| Substrate | `Turn`, `SpanRef` | Minimal source/provenance substrate. |
-| Semantic | `FrameAnchor`, `UserIssueEvent`, `StanceEvent` | `UserIssueEvent` is one family with `kind` (`constraint`, `concern`, `open_loop`) plus lifecycle fields. |
-| Deferred | `ActorRef` | Promote to v1.1 only if Phase 0.5 annotation or lane measurement shows real multi-actor ambiguity. |
-| Projections | `DecisionOption`, `ReasoningSegment`, `CoverageTarget` | Not first-class until the promotion rule is met. |
+| **Phase 1** — `ConversationIR` | Added a typed substrate `engine/system_b/ir.py` with `Turn`, `SpanRef`, `FrameAnchor`, `UserIssueEvent`, `StanceEvent`, plus a 3-tier `Provenance` union (`span` / `turn_ref` / `derivation`). Built at pipeline entry from the context; populated conservatively from existing extraction fields. | The ontology gate (`research/phase1-useriussevent-annotation-exercise-2026-04-24.md`) scored 16/17 (94.1%) inter-reviewer agreement on the three-kind taxonomy `(constraint, concern, open_loop)`. That validated the smallest-possible substrate before any new extraction code shipped. The "promote only when measurement shows value" doctrine kept `ActorRef`, `DecisionOption`, `ReasoningSegment` deferred. |
+| **Phase 3a / 3b** — `StanceEvent` + LLM stance specialist | Added `relation_ambiguity: bool` to `StanceEvent`. Built `engine/system_b/stance_extraction.py`: an LLM specialist that pulls assistant-turn substrings using a 6-relation taxonomy (`commitment`, `revision`, `qualification`, `condition`, `deferral`, `initial`). Substring-validated via `find_substring_tolerant`; paraphrase fails and is dropped + counted. | Pre-code annotation gate (`research/phase3-assistant-trajectory-annotation-gate-2026-04-24.md`) scored 100% detection / 95% relation across 20 candidates with two reviewers. Live eval shipped at 60% recall / 97% validation pass / 83% relation agreement — proven mechanism, lower iteration risk than 25-tendency monolith. |
+| **Phase 5** — `live_constraints` specialist | `engine/system_b/live_constraints_extraction.py`: emits `UserIssueEvent(kind="constraint")` with either `SpanProvenance` (one-turn anchor) or `DerivationProvenance` (cross-turn synthesis, each excerpt validated). Single-turn derivation claims auto-downgrade to span mode (anti-bypass safeguard). | The Phase 2 evidence study found **0/71** live_constraints across 10 cases had a full exact substring source. Monolith extraction was architecturally paraphrase-only. Phase 5 specialist took the field substring-grounded. Live eval: 70% recall, 97% validation, 93% kind agreement, 100% derivation recall. |
+| **Phase 5.5** — `dropped_threads` specialist | `engine/system_b/dropped_threads_extraction.py`: same shape as Phase 5 but with a `speaker` field per event (user OR assistant). Single-span only; the gate found no items needing derivation. | Annotation gate scored 94% span convergence, 100% speaker agreement on 9 items. Live eval shipped at 56% recall / 92% validation / 100% speaker / 40% kind — partial pass. The kind drift (LLM picks `concern` where gate said `open_loop` on emotionally-weighted content) is a methodological disagreement, not a bug; PM accepted under documented caveat. |
+| **Phase 5.7** — `original_framing` heuristic | NOT a specialist. Replaced `FrameAnchor.provenance = TurnRefProvenance(first_user_turn_only)` with `DerivationProvenance(all_user_turns)` and an honest note. | The Phase 5.7 gate showed 0% inferred for situation parts, 50% for assumptions, **100% for exclusions**. An LLM specialist would need three emit modes (span/derivation/inferred) and would re-encode the same answer in a more complex form. Heuristic gives ~80% of the value at ~10% of the cost. |
+| **Phase 5.8** — `decision_situation` heuristic | Same heuristic as 5.7. Skipped formal annotation gate; used a memo with 10-case structural decomposition because the inferred-rate distribution was even more favorable than 5.7's. | Honest tech-lead call: when a directly comparable gate just fired, ceremony to re-discover the same answer is dead weight. Memo (`research/phase5.8-decision-situation-design-memo-2026-04-25.md`) listed falsification triggers for revisit. |
+| **Phase 4 + 4b + 4c** — Lane packet builders | Added `engine/system_b/packet_builders/lane4.py` with `Lane4Packet`. Wired all four lanes: `_run_companion`, `_run_frame_pressure`, `_run_structural_coverage`, `_run_pass2_*` now build a packet from IR and call `*_from_packet` formatters. Byte-equivalence tests prove identical prompts to the prior `*_from_context` path on lossless inputs. | Lanes now read from the typed substrate, not raw `extraction.X` paraphrases. When a specialist swaps in (substring-validated `live_constraints` or `dropped_threads`), every lane automatically gets the upgraded data with zero lane-side changes. The packet is the seam that decouples extraction quality from lane prompts. |
+| **Phase 4d** — dead `_from_context` dispatch fallbacks removed | Each lane orchestrator's `elif conversation_context is not None: ..._from_context(...)` branch deleted. Phase 4 made these unreachable in practice (IR always built when context present). | Pure cleanup; -91 lines. The `*_from_context` source functions themselves stayed — tests still use them as anti-regression. |
+| **Phase 7.1 / 7.2 / 7.3 / 7.5** — Split `pipeline.py` | `pipeline.py` was 2401 lines. Extracted into focused modules: `boundary_tracing.py` (88 lines), `pass1_runner.py` (121), `pass2_runner.py` (154), `audit_assembly.py` (261). Net: pipeline.py shrank to 2062 lines (−14%). Public re-exports preserved every external import path. | Phase 6 was about to delete a lot of code, and a 2400-line file makes deletion risky. Splitting first made Phase 6's surface tractable. 7.4 (lane orchestrators) was deliberately skipped — their instance-state dependency bag wasn't deep enough to justify a layer at this point. |
+| **Phase 6** — `CritiqueRequest` shim removed | -2179 net lines across 26 files. `CritiqueRequest`, `_context_to_critique`, every legacy lane entry point (`run_fingerprint_call`, `run_verification_call`, `run_frame_extraction`, `run_structural_coverage`, `format_pass2_prompt`, `format_pass1_cluster_prompts`), every legacy helper, the `--legacy-contract` CLI flag, the shim-equivalence test suite (927 lines), and `scripts/phase1_equivalence_check.py` all deleted. `SystemBPipeline.run()` now requires `ConversationContext`; raises `TypeError` on anything else. | Until Phase 6, the conversation-first migration had a parallel-paths shape: new code beside old code, dispatch checking which to run. That's transitional architecture, not target architecture. Deleting the legacy path is what makes the new contract real. |
 
-Phase 1 implements this as `ConversationIR`: an immutable, local-only layer built from `ConversationContext` during conversation-context pipeline runs. Every derived IR object carries one of three provenance tiers: `span` for an exact substring in a source turn, `turn_ref` for a known source turn with paraphrased text, or `derivation` for lineage across turns and/or derived objects. The current extraction fields map conservatively: `live_constraints` and `dropped_threads` become `UserIssueEvent`s, `original_framing` becomes a `FrameAnchor`, and paraphrased summaries do **not** become fake spans. The constructor emits provenance-tier counts for observability only; lanes still consume their existing context paths until packet builders are introduced in later phases.
+#### Today: ConversationContext → ConversationIR → Lane Packets
 
-Phases 3b and 5 upgrade two of these mappings from paraphrase to verbatim via optional LLM-backed specialist extractors, each injected via the constructor's `stance_extractor=` and `live_constraints_extractor=` hooks (default None preserves Phase 1 behavior). Phase 3b's `stance_extraction.py` populates `StanceEvent` objects with `SpanProvenance` — the 6-relation taxonomy (commitment, revision, qualification, condition, deferral, initial) passed 95% inter-reviewer relation agreement on a 20-candidate annotation gate, and live measurement shipped at 60% recall with 97% substring-validation pass. Phase 5's `live_constraints_extraction.py` populates `UserIssueEvent(kind="constraint")` objects with either `SpanProvenance` (single-turn anchor) or `DerivationProvenance` (2+ turn cross-references, each substring-validated) — the specialist's output replaces the monolith's paraphrased `live_constraints` mapping when injected. Live eval on the Phase 5.0 annotation gate cleared all five thresholds: 70% recall, 97% validation, 93% kind agreement, 60% span recall, 100% derivation recall. Every quote emitted by these specialists passes `find_substring_tolerant` against the named turn; fabrication and paraphrase get dropped and counted.
+The data flow from input to lane consumption now looks like:
 
-The paused extraction-contract PRs now serve as archaeology, not revival candidates. Synthetic `canonical_key` slugs for constraints and dropped threads are expected to die once provenance-based identity exists. `synthesized_position` as a point-estimate becomes a projection over `StanceEvent` trajectory. The `move_type` taxonomy remains useful, but starts packet-local for Lane 1 / Lane 2 rather than becoming v1 IR. Phase 0.1 audits capture fidelity before provenance claims; Phase 0.5 validates these design claims against external systems and annotation evidence before Phase 1 freezes the IR.
+```
+extraction.json + conversation.txt
+        ↓
+ConversationContext (turns + typed extraction + capture metadata)
+        ↓ construct_conversation_ir(...)
+ConversationIR (typed objects + provenance tiers)
+        ↓ optional: stance_extractor / live_constraints_extractor / dropped_threads_extractor
+ConversationIR (substring-validated where specialists ran)
+        ↓ build_lane4_packet(ir)
+Lane4Packet (minimum slice the lanes need + provenance_kind metadata)
+        ↓
+Lane 1 / Lane 2 / Lane 3 / Lane 4 → Cards → AuditTrace
+```
+
+Every step preserves more structure than the one before. Nothing collapses to flat strings.
+
+#### Why this shape, in one sentence per layer
+
+- **`ConversationContext`** exists so the raw turn-by-turn transcript stays canonical and quote-fabrication is mechanically detectable (every alleged quote has to literally appear in some turn).
+- **`ConversationIR`** exists because lanes need typed, provenance-bearing objects (not paraphrased strings) to produce findings that can be audited back to source text without re-parsing.
+- **Specialists** (Phase 3b / 5 / 5.5) exist because the monolith extraction prompt could not produce substring-grounded fields no matter how hard it was tuned — the architectural answer was a separate substring-validated specialist per field, gated by annotation evidence and measured against gold.
+- **Packet builders** (Phase 4) exist because lanes shouldn't depend on the IR's internal shape evolving — they consume a contract (`Lane4Packet`) that names exactly the slice they need, with `provenance_kind` metadata that lets future lane prompts mark "this is span-validated" vs "this is paraphrase".
+- **Module split** (Phase 7) exists because navigability matters when `pipeline.py` is the orchestration entry point and reviewers need to understand it quickly.
+- **Phase 6's removal** exists because keeping legacy alongside new is technical debt with a half-life — every refactor pays the cost of dispatching between paths.
 
 ### Conductor, Not Player
 
@@ -430,21 +490,11 @@ Before sending the conversation to OpenRouter, the extraction script validates c
 
 These diagnostics surface in every output path — `ok`, `error`, `not_strategic`, and `capture_critical`.
 
-**Legacy compatibility mapping:**
+**How the runtime reads these fields:**
 
-For the legacy path and old equivalence harnesses, the 6 extracted fields get mapped to a 2-field `CritiqueRequest`:
+The extraction JSON is wrapped together with the raw conversation text and capture metadata into a `ConversationContext`. From there `construct_conversation_ir(context)` builds a `ConversationIR`: each `live_constraint` becomes a `UserIssueEvent(kind="constraint")`, each `dropped_thread` becomes a `UserIssueEvent(kind="open_loop"|"concern")`, each of `original_framing` and `decision_situation` becomes a `FrameAnchor` with `DerivationProvenance` over all user turns, and `synthesized_position` is held as transitional text the runtime can read but never claims as a verbatim quote.
 
-```
-query = decision_situation 
-      + constraint summary (with [ACTIVE/STRUCTURAL], [DROPPED/SITUATIONAL] tags)
-      + original_framing
-      + dropped_threads
-
-vanilla_answer = synthesized_position
-               + numbered reasoning passages as verbatim quotes
-```
-
-This mapping is deterministic — no LLM involved. In the conversation-first path, the same extraction JSON is wrapped with the raw turns and capture metadata as `ConversationContext`, so lanes can validate evidence against source turns instead of trusting the flattened `query` / `vanilla_answer` strings.
+When a specialist extractor is injected (`stance_extractor`, `live_constraints_extractor`, `dropped_threads_extractor`), it replaces the corresponding paraphrased mapping with substring-validated events whose `text` is a literal substring of the named turn. Lanes then read the IR through `Lane4Packet` (no lane sees the raw `extraction.X` paraphrases at the prompt boundary).
 
 ### Step 3: Run Pipeline
 
@@ -477,17 +527,15 @@ The `--skip-revision` flag skips the OpenRouter revision step because Claude pro
        DeltaCard    CheatSheet    FrameCard    CoverageCard
 ```
 
-#### Conversation-first contract (current baseline)
+#### Conversation-first contract
 
-`CritiqueRequest(query, vanilla_answer)` is the legacy two-string input that collapses richly structured extraction into flat text before lanes see it. As of 2026-04-24, the conversation-first migration is complete for the four lanes: `SystemBPipeline.run()` accepts a `ConversationContext` carrying the full turn-by-turn conversation, typed extraction fields (`LiveConstraint`, `DroppedThread`), and capture metadata; when that shape is present, Lanes 1-4 consume the conversation directly through their `_from_context` prompt paths. `scripts/run_pipeline.py` now routes file-based production calls with both extraction and conversation files through this entry point by default. The legacy path remains available for compatibility and regression comparison via `--legacy-contract`, but it is no longer the north-star architecture. `--new-contract` remains temporarily as a deprecated alias for the default path.
-
-The old "remove `CritiqueRequest` once all lanes migrate" milestone has been superseded by the context-engineering roadmap. `CritiqueRequest` should disappear only after the shared conversation IR and lane packet builders are proven; until then it stays as a compatibility surface. Equivalence at the original shim boundary is verified by `scripts/phase1_equivalence_check.py` and documented under `research/test-cases/phase1-equivalence-2026-04-24/`.
+`SystemBPipeline.run()` accepts `ConversationContext` and only `ConversationContext`; passing anything else raises `TypeError`. The IR is constructed at entry (`conversation_ir = construct_conversation_ir(conversation_context)`) and threaded through every lane via `Lane4Packet`. There is no legacy two-string input shape, no `--legacy-contract` flag, no parallel dispatch — Phase 6 deleted all of it. See the *Evolution* section above for what was removed and why.
 
 **Lane 1 — Structural Pressure (6+N OpenRouter calls):**
 
 1. **Pass 1 (family-clustered triage):** Six OpenRouter calls run in parallel — one per tendency family (authority, closure, incentive, availability, self_regard, residual — see *Context Engineering: Two Passes* above for the full cluster taxonomy and rationale). Each cluster scores only its 3-5 assigned tendencies and carries only that family's confusion guardrails. Results are merged deterministically into a single `triage_scores` list covering all 24 canonical non-lollapalooza tendencies; lollapalooza is surfaced by deterministic compound detection (step 5 below), not by triage. Tendencies scoring ≥4 enter the "triggered" set.
 
-2. **Embedding swiss cheese** (optional, if `OPENAI_API_KEY` set): Embeds the assistant text under audit (`vanilla_answer` on the legacy path, joined assistant turns on the conversation-first path) and compares against 25 pre-computed tendency guidance vectors. Any tendency below the LLM threshold but above the embedding threshold gets promoted into the triggered set. This catches what the LLM missed — and vice versa. Each triggered tendency carries a `TriggeredTendency` record with its `source` (`triage`, `embedding`, or `always_include`) and `score` — enabling observability into which detection layer caught what. The result JSON includes both `triggered_tendencies` (IDs) and `triggered_tendency_sources` (full source/score records).
+2. **Embedding swiss cheese** (optional, if `OPENAI_API_KEY` set): Embeds the joined assistant-turn text and compares against 25 pre-computed tendency guidance vectors. Any tendency below the LLM threshold but above the embedding threshold gets promoted into the triggered set. This catches what the LLM missed — and vice versa. Each triggered tendency carries a `TriggeredTendency` record with its `source` (`triage`, `embedding`, or `always_include`) and `score` — enabling observability into which detection layer caught what. The result JSON includes both `triggered_tendencies` (IDs) and `triggered_tendency_sources` (full source/score records).
 
 3. **Pass 2 (Deep Checks):** One OpenRouter call PER triggered tendency, run in parallel (up to 8 concurrent). Each call checks ONE tendency in isolation — seeing only that tendency's definition, its sub-pattern menu, and the assistant source text under audit. Context isolation prevents tendency contamination. Returns: detected/not-detected, confidence, sub-pattern, specific passage, severity.
 
@@ -495,7 +543,7 @@ The old "remove `CritiqueRequest` once all lanes migrate" milestone has been sup
 
 5. **DeltaCard assembly:** Top findings get full treatment (challenge statement, reversal trigger, corrective model, supporting models, tensions). Secondary findings get one-line summaries. Compound patterns (multiple tendencies on overlapping evidence) get flagged.
 
-**Phase 2c migration (conversation-first input):** when the pipeline receives a `ConversationContext`, Lane 1's Pass 1 (family-clustered triage) and Pass 2 (per-tendency deep checks) use `format_pass1_cluster_prompts_from_context` and `format_pass2_prompt_from_context` instead of the legacy `query`/`vanilla_answer` variants. Both passes follow the same CONTEXT (extractor summaries + user turns, NOT the primary audit target) / SOURCE (assistant turns verbatim — primary audit target for Lane 1) split as Lanes 3/4. The Pass 1 base system prompt names three legitimate firing shapes explicitly: commission (assistant explicitly exhibits the tendency), omission (assistant commits to a move while skipping a check CONTEXT made live), and uncritical acceptance (assistant recycles vivid/authoritative CONTEXT material as decision-driving without testing it — the shape availability, social-proof, and authority-misinfluence frequently take). Both Pass 1 and Pass 2 prompts carry enum-checklist reminders (bake-in of the 2b durable lesson) that remind the LLM to consider every tendency / sub_pattern in the menu even when it manifests as omission or implicit bias rather than verbatim claim. The embedding swiss-cheese signal reuses the legacy function with joined assistant-turn text as input when `ConversationContext` is present. Routing, fan correction, activation tiebreaker, compound detection, and DeltaCard assembly are input-shape-invariant — they operate on DeepCheckResult objects whose structure is identical between paths. Measurement evidence: `research/test-cases/phase2c-lane1-equivalence-2026-04-24/` + `research/test-cases/phase2c-marcus-controlled-comparison-2026-04-24/`.
+**Lane 1 prompt structure.** Pass 1 (family-clustered triage) uses `format_pass1_cluster_prompts_from_context`; Pass 2 (per-tendency deep checks) uses `format_pass2_prompt_from_packet` (Phase 4c migrated Pass 2 to the packet path; Pass 1 still reads `ConversationContext` directly). Both passes follow the same CONTEXT (extractor summaries + user turns, NOT the primary audit target) / SOURCE (assistant turns verbatim — primary audit target for Lane 1) split as Lanes 3/4. The Pass 1 base system prompt names three legitimate firing shapes explicitly: commission (assistant explicitly exhibits the tendency), omission (assistant commits to a move while skipping a check CONTEXT made live), and uncritical acceptance (assistant recycles vivid/authoritative CONTEXT material as decision-driving without testing it — the shape availability, social-proof, and authority-misinfluence frequently take). Both Pass 1 and Pass 2 prompts carry enum-checklist reminders that remind the LLM to consider every tendency / sub_pattern in the menu even when it manifests as omission or implicit bias rather than verbatim claim. Routing, fan correction, activation tiebreaker, compound detection, and DeltaCard assembly are input-shape-invariant — they operate on `DeepCheckResult` objects.
 
 **Lane 2 — Model Companion (2-3 OpenRouter calls):**
 
@@ -507,7 +555,7 @@ The old "remove `CritiqueRequest` once all lanes migrate" milestone has been sup
 
 4. **Gather + Select:** Deterministic retrieval of curated chunks (failure modes, premortems, heuristics, antagonists) for verified models. Anti-echo filtering drops heuristic chunks for models already in the DeltaCard. Budget-constrained selection (20 chunks max, diversity guaranteed).
 
-**Phase 2d migration (conversation-first input):** when the pipeline receives a `ConversationContext`, Lane 2's fingerprint and verification calls use `run_fingerprint_call_from_context` and `run_verification_call_from_context` instead of the legacy `vanilla_answer` variants. User-prompt bodies follow the same CONTEXT (extractor summaries + user turns, NOT quotable) / SOURCE (assistant turns verbatim, audit target) split as Lanes 1/3/4. Lane 2 already had evidence-substring validation — the legacy `validate_fingerprint_moves` + `parse_verification_response` functions are reused but receive joined assistant turns as the validation target instead of the flattened `vanilla_answer`. The architectural effect is that fingerprint reasoning moves and verification evidence quotes are rejected if they come from user turns or extractor paraphrase — they must be literal substrings of the assistant's actual turns. Keyword recall (deterministic, not LLM-based) reads the same joined assistant text to stay consistent with the audit target. Lane 2 doesn't drive Lane 1/3/4 anti-echo (it consumes Lane 1's `selected_model_ids`, not the other way around), so cascade into other lanes is unchanged. Measurement evidence: `research/test-cases/phase2d-lane2-equivalence-2026-04-24/` + `research/test-cases/phase2d-marcus-controlled-comparison-2026-04-24/`.
+**Lane 2 prompt structure.** Fingerprint and verification calls use `run_fingerprint_call_from_packet` and `run_verification_call_from_packet` (Phase 4c). User-prompt bodies follow the same CONTEXT (extractor summaries + user turns, NOT quotable) / SOURCE (assistant turns verbatim, audit target) split as Lanes 1/3/4. Evidence-substring validation enforces that fingerprint reasoning moves and verification evidence quotes are literal substrings of the assistant's actual turns; user-turn quotes and extractor-paraphrase quotes are rejected. Keyword recall (deterministic, not LLM-based) reads joined assistant text to stay consistent with the audit target. Lane 2 consumes Lane 1's `selected_model_ids` (anti-echo) but does not drive Lane 1/3/4.
 
 **Lane 3 — Frame Pressure (2 OpenRouter calls):**
 
@@ -521,7 +569,7 @@ The old "remove `CritiqueRequest` once all lanes migrate" milestone has been sup
 
 Lane 3 is most powerful on short conversations where the question itself constrains the answer space. A question that assumes "we must grow" and never explores "should we grow?" is a frame pressure finding.
 
-**Phase 2a migration (conversation-first input):** when the pipeline receives a `ConversationContext` (the default file-based CLI path or a direct lane call), Lane 3 uses `run_frame_extraction_from_context` and `generate_reframings_from_context` instead of the legacy `query`/`vanilla_answer` variants. The user-prompt body is split into a `CONTEXT` section (extractor summaries + assistant replies, NOT quotable as evidence) and a `SOURCE` section (raw user turns). `evidence_quote` validation requires a literal substring of a user turn. This grounds framing findings in the user's own words rather than the extractor's paraphrased `decision_situation`/`original_framing` text that the legacy collapsed `query` carried. Measurement evidence: `research/test-cases/phase2a-lane3-equivalence-2026-04-23/`.
+**Lane 3 prompt structure.** Extraction uses `run_frame_extraction_from_packet` (Phase 4c). The user-prompt body is split into a `CONTEXT` section (extractor summaries + assistant replies, NOT quotable as evidence) and a `SOURCE` section (raw user turns). `evidence_quote` validation requires a literal substring of a user turn. Reframe generation still calls `generate_reframings_from_context` directly (a remaining context-driven entry point inside lane logic, not a dispatch fallback) — it's a candidate for migration in a future cleanup phase but harmless because reframe input is the user-stated framing, not extractor paraphrase.
 
 **Lane 4 — Structural Coverage (2-3 OpenRouter calls):**
 
@@ -545,7 +593,7 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 
 5. **Card assembly** (deterministic): Assemble detected dimensions, gap routes, gap questions, and anti-echo metadata into a StructuralCoverageCard.
 
-**Phase 2b migration (conversation-first input):** when the pipeline receives a `ConversationContext`, Lane 4 uses `run_structural_coverage_from_context` — which in turn uses `_from_context` variants of question classification, dimension detection, and gap question generation. User-prompt bodies follow the same CONTEXT (extractor summaries, NOT citable) / SOURCE (raw conversation turns) split as Lane 3. For detection specifically, SOURCE contains both user and assistant turns — detect_when conditions read user turns (the question), coverage assessments read assistant turns (the answer). Lane 4 has no evidence-substring validation downstream (unlike Lane 3), so the CONTEXT/SOURCE split is prompt guidance not a mechanical gate; the architectural effect shows up as `coverage_evidence` citations attributed to the assistant's actual replies ("Assistant mentions...", "Assistant proposes...") instead of extractor-paraphrased summaries. Measurement evidence: `research/test-cases/phase2b-lane4-equivalence-2026-04-23/` + `research/test-cases/phase2b-marcus-controlled-comparison-2026-04-23/`.
+**Lane 4 prompt structure.** Question classification, dimension detection, and gap question generation use `run_structural_coverage_from_ir` (Phase 4b) — the orchestrator builds a `Lane4Packet` from the IR and dispatches to the `_from_packet` formatters internally. User-prompt bodies follow the same CONTEXT (extractor summaries, NOT citable) / SOURCE (raw conversation turns) split as Lane 3. For detection specifically, SOURCE contains both user and assistant turns — detect_when conditions read user turns (the question), coverage assessments read assistant turns (the answer). Lane 4 has no evidence-substring validation downstream (unlike Lane 3), so the CONTEXT/SOURCE split is prompt guidance not a mechanical gate; the architectural effect shows up as `coverage_evidence` citations attributed to the assistant's actual replies ("Assistant mentions...", "Assistant proposes...") instead of extractor-paraphrased summaries.
 
 **The 15 structural dimensions:**
 
