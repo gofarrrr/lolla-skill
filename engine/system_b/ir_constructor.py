@@ -8,6 +8,7 @@ from typing import Callable
 from .conversation_context import ConversationContext
 from .ir import (
     ConversationIR,
+    DerivationProvenance,
     FrameAnchor,
     StanceEvent,
     Turn,
@@ -122,16 +123,42 @@ def construct_conversation_ir(
         )
 
     if context.extraction.original_framing:
-        source_ref = _first_user_turn_ref(context)
+        # Phase 5.7 heuristic: original_framing is a multi-turn synthesis,
+        # not a single-turn paraphrase. Reference all user turns rather than
+        # just the first. Annotation gate confirmed situation components are
+        # substring-grounded across user turns, assumptions are mixed, and
+        # exclusions are inferred-only.
+        user_turn_refs = tuple(
+            TurnRef(turn_index=turn.turn_index, speaker=turn.speaker)
+            for turn in context.turns
+            if turn.speaker == "user"
+        )
+        if user_turn_refs:
+            framing_provenance: TurnRefProvenance | DerivationProvenance = (
+                DerivationProvenance(
+                    turn_refs=user_turn_refs,
+                    source_object_ids=(),
+                    note=(
+                        "original_framing is multi-turn extractor synthesis; "
+                        "situation parts are substring-grounded across user turns, "
+                        "exclusions are inferred"
+                    ),
+                )
+            )
+        else:
+            # Defensive: no user turns at all → keep turn_ref to whatever's
+            # available so DerivationProvenance's "requires turn_refs or
+            # source_object_ids" invariant doesn't trip.
+            framing_provenance = TurnRefProvenance(
+                turn_refs=(_first_user_turn_ref(context),),
+                note="original_framing fallback (no user turns found)",
+            )
         ir = add_frame_anchor(
             ir,
             FrameAnchor(
                 anchor_id="frame_001",
                 text=context.extraction.original_framing,
-                provenance=TurnRefProvenance(
-                    turn_refs=(source_ref,),
-                    note="original_framing is extractor paraphrase",
-                ),
+                provenance=framing_provenance,
                 frame_pattern="original_framing",
             ),
         )

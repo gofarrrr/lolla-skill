@@ -389,17 +389,18 @@ def test_construct_conversation_ir_maps_real_artifact_with_honest_provenance() -
         "spouse alignment, and fractional bridge"
     )
 
-    assert ir.frame_anchors == (
-        FrameAnchor(
-            anchor_id="frame_001",
-            text=context.extraction.original_framing,
-            provenance=TurnRefProvenance(
-                turn_refs=(TurnRef(turn_index=1, speaker="user"),),
-                note="original_framing is extractor paraphrase",
-            ),
-            frame_pattern="original_framing",
-        ),
-    )
+    # Phase 5.7 heuristic: original_framing now claims DerivationProvenance
+    # over all user turns instead of TurnRefProvenance over only the first.
+    assert len(ir.frame_anchors) == 1
+    frame = ir.frame_anchors[0]
+    assert frame.anchor_id == "frame_001"
+    assert frame.text == context.extraction.original_framing
+    assert frame.frame_pattern == "original_framing"
+    assert isinstance(frame.provenance, DerivationProvenance)
+    user_turn_indices = sorted(t.turn_index for t in context.turns if t.speaker == "user")
+    assert sorted(r.turn_index for r in frame.provenance.turn_refs) == user_turn_indices
+    assert all(r.speaker == "user" for r in frame.provenance.turn_refs)
+    assert "multi-turn" in frame.provenance.note
     assert ir.stance_events == ()
     assert ir.spans == ()
 
@@ -525,7 +526,8 @@ def test_construct_conversation_ir_logs_provenance_tier_counts(caplog) -> None:
         construct_conversation_ir(context)
 
     assert "conversation_ir_constructed" in caplog.text
-    assert "provenance_tiers={'span': 0, 'turn_ref': 6, 'derivation': 0}" in caplog.text
+    # Phase 5.7: original_framing now contributes 1 derivation instead of 1 turn_ref
+    assert "provenance_tiers={'span': 0, 'turn_ref': 5, 'derivation': 1}" in caplog.text
 
 
 # ---------------------------------------------------------------------------
