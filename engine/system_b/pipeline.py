@@ -31,7 +31,9 @@ from .structural_coverage import (
     StructuralCoverageCard,
     run_structural_coverage,
     run_structural_coverage_from_context,
+    run_structural_coverage_from_ir,
 )
+from .ir import ConversationIR
 from .companion_routing import (
     recall_candidates,
     run_fingerprint_call,
@@ -477,10 +479,13 @@ class SystemBPipeline:
         # directly; Phase 3 removes CritiqueRequest entirely.
         # Phase 2a holds the original context alongside the converted request
         # so already-migrated lanes (Lane 3 as of PR 2a) can consume it directly.
+        # Phase 4b: also retain the IR so packet-driven lane callers (Lane 4) can
+        # consume it without re-constructing.
         conversation_context: ConversationContext | None = None
+        conversation_ir = None
         if isinstance(request, ConversationContext):
             conversation_context = request
-            construct_conversation_ir(conversation_context)
+            conversation_ir = construct_conversation_ir(conversation_context)
             request = _context_to_critique(request)
         run_started = time.monotonic()
         boundary_calls: list[BoundaryCallTrace] = []
@@ -536,6 +541,7 @@ class SystemBPipeline:
                 lane2_model_ids=_lane2_model_ids,
                 lane3_model_ids=_lane3_model_ids,
                 conversation_context=conversation_context,
+                conversation_ir=conversation_ir,
             )
             audit = AuditTrace(
                 triage_scores=tuple(triage_scores),
@@ -671,6 +677,7 @@ class SystemBPipeline:
             lane2_model_ids=_lane2_model_ids,
             lane3_model_ids=_lane3_model_ids,
             conversation_context=conversation_context,
+            conversation_ir=conversation_ir,
         )
         audit = AuditTrace(
             triage_scores=tuple(triage_scores),
@@ -948,6 +955,7 @@ class SystemBPipeline:
         lane2_model_ids: set[str],
         lane3_model_ids: set[str],
         conversation_context: ConversationContext | None = None,
+        conversation_ir: ConversationIR | None = None,
     ) -> StructuralCoverageCard | None:
         if not self._config.enable_structural_coverage:
             return None
@@ -959,10 +967,18 @@ class SystemBPipeline:
         # Anti-echo: exclude models from all other lanes
         anti_echo = lane1_model_ids | lane2_model_ids | lane3_model_ids
 
-        # Phase 2b dispatch: conversation-first Lane 4 when context is present;
-        # otherwise legacy path on the shim-converted CritiqueRequest. Post-extraction
-        # routing + card assembly are shared between paths (input-shape agnostic).
-        if conversation_context is not None:
+        # Phase 4b dispatch: prefer the IR-driven path when an IR is available
+        # (built once at pipeline entry). Falls back to the context-driven path
+        # if IR is absent (pre-Phase-1 callers), and the legacy CritiqueRequest
+        # path if neither IR nor context is present.
+        if conversation_ir is not None:
+            card = run_structural_coverage_from_ir(
+                boundary=self._boundary,
+                ir=conversation_ir,
+                structural_coverage_routing=routing,
+                anti_echo_model_ids=anti_echo,
+            )
+        elif conversation_context is not None:
             card = run_structural_coverage_from_context(
                 boundary=self._boundary,
                 context=conversation_context,

@@ -22,6 +22,8 @@ from typing import Protocol
 
 from .boundary_validation import coerce_str
 from .conversation_context import ConversationContext
+from .ir import ConversationIR
+from .packet_builders.lane4 import Lane4Packet, build_lane4_packet
 
 _LOGGER = logging.getLogger("system_b.structural_coverage")
 
@@ -1112,6 +1114,236 @@ def run_structural_coverage_from_context(
         )
     except Exception:
         _LOGGER.exception("Gap question generation (from_context) failed")
+
+    return assemble_structural_coverage_card(
+        question_type, dimensions, gap_routes, anti_echo_model_ids, gap_questions,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Phase 4b: packet-driven entry points
+# ---------------------------------------------------------------------------
+# The packet variants produce byte-identical prompts to the context variants
+# on inputs where the IR projection is lossless. Known drift: when a
+# constraint's status != "active", the packet path emits "[STATUS]" while
+# the context path emits "[STATUS/WEIGHT]" because the IR does not carry
+# the `weight` field by Phase 1 design.
+
+
+def _format_classification_from_packet_user_prompt(packet: Lane4Packet) -> str:
+    """Packet-driven counterpart to `_format_classification_from_context_user_prompt`."""
+    parts: list[str] = ["CONTEXT (scaffolding — classify the user's actual question, not this summary):"]
+    if packet.decision_situation:
+        parts.append(f"- Decision situation: {packet.decision_situation.text}")
+    if packet.original_framing:
+        parts.append(f"- Framing extracted upstream: {packet.original_framing.text}")
+
+    assistant_turns = [t for t in packet.turns if t.speaker == "assistant"]
+    if assistant_turns:
+        parts.append("- Assistant replies (context for what the user was engaging with):")
+        for t in assistant_turns:
+            parts.append(f"  [Turn {t.turn_index} ASSISTANT] {t.text[:500]}")
+
+    parts.append("")
+    parts.append("SOURCE (the user's actual turns — first user turn is the canonical question anchor):")
+    for t in packet.turns:
+        if t.speaker == "user":
+            parts.append(f"[Turn {t.turn_index}] USER:")
+            parts.append(t.text)
+            parts.append("")
+
+    return "\n".join(parts)
+
+
+def run_question_classification_from_packet(
+    boundary: _BoundaryClient,
+    packet: Lane4Packet,
+) -> str:
+    """Packet-driven question classification."""
+    user_prompt = _format_classification_from_packet_user_prompt(packet)
+    raw = boundary.run_json(_QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT, user_prompt)
+    qtype = coerce_str(raw.get("question_type", ""))
+    if qtype not in _VALID_QUESTION_TYPES:
+        _LOGGER.warning("Invalid question_type %r, defaulting to decision-evaluation", qtype)
+        qtype = "decision-evaluation"
+    return qtype
+
+
+def _format_dimension_detection_from_packet_user_prompt(
+    packet: Lane4Packet,
+    question_type: str,
+    dimension_catalog_text: str,
+) -> str:
+    """Packet-driven counterpart to `_format_dimension_detection_from_context_user_prompt`."""
+    parts: list[str] = [
+        f"QUESTION TYPE: {question_type}",
+        "",
+        f"DIMENSION CATALOG:",
+        dimension_catalog_text,
+        "",
+        "CONTEXT (scaffolding — not the primary source of truth for detection or coverage):",
+    ]
+    if packet.decision_situation:
+        parts.append(f"- Decision situation: {packet.decision_situation.text}")
+    if packet.original_framing:
+        parts.append(f"- Framing extracted upstream: {packet.original_framing.text}")
+    if packet.constraints:
+        parts.append("- Constraints:")
+        for c in packet.constraints:
+            status = c.status or "active"
+            tag = status.upper()  # weight not in IR; only matters for non-active
+            parts.append(f"  - [{tag}] {c.text} (turn {c.introduced_at_turn})")
+    if packet.issues:
+        parts.append("- Dropped threads:")
+        for i in packet.issues:
+            line = (
+                f"  - {i.text} (raised by {i.raised_by} turn {i.introduced_at_turn}, "
+                f"status: {i.status or '?'})"
+            )
+            if i.superseded_by:
+                line += f", superseded_by: {i.superseded_by}"
+            parts.append(line)
+
+    parts.append("")
+    parts.append("SOURCE (primary — USER turns establish the question for detection; ASSISTANT turns establish the answer for coverage):")
+    for t in packet.turns:
+        parts.append(f"[Turn {t.turn_index}] {t.speaker.upper()}:")
+        parts.append(t.text)
+        parts.append("")
+
+    return "\n".join(parts)
+
+
+def run_dimension_detection_from_packet(
+    boundary: _BoundaryClient,
+    packet: Lane4Packet,
+    question_type: str,
+    structural_coverage_routing: dict,
+) -> tuple[DetectedDimension, ...]:
+    """Packet-driven dimension detection."""
+    catalog_text = _build_dimension_catalog_text(structural_coverage_routing)
+    user_prompt = _format_dimension_detection_from_packet_user_prompt(
+        packet, question_type, catalog_text,
+    )
+    raw = boundary.run_json(_DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT, user_prompt)
+    return _parse_dimension_detection(raw)
+
+
+def _format_gap_question_from_packet_user_prompt(
+    packet: Lane4Packet,
+    question_type: str,
+    gap_routes: tuple[DimensionRoute, ...],
+    structural_coverage_routing: dict,
+) -> str:
+    """Packet-driven counterpart to `_format_gap_question_from_context_user_prompt`."""
+    routing_dims = structural_coverage_routing.get("dimensions", {})
+    gap_sections: list[str] = []
+    for route in gap_routes:
+        dim_def = routing_dims.get(route.dimension_id, {})
+        gap_sections.append(
+            f"GAP DIMENSION: {route.dimension_name} (id: {route.dimension_id})\n"
+            f"Cleaving frame: {dim_def.get('cleaving_frame', 'N/A')}\n"
+            f"What's missing: The assistant did not address this dimension.\n"
+            f"Why it matters: {dim_def.get('materiality_test', 'N/A')}"
+        )
+
+    parts: list[str] = [
+        f"QUESTION TYPE: {question_type}",
+        "",
+        "CONTEXT (scaffolding — do NOT quote verbatim into your questions; use only for grounding):",
+    ]
+    if packet.decision_situation:
+        parts.append(f"- Decision situation: {packet.decision_situation.text}")
+    if packet.original_framing:
+        parts.append(f"- Framing extracted upstream: {packet.original_framing.text}")
+    if packet.constraints:
+        parts.append("- Constraints:")
+        for c in packet.constraints:
+            status = c.status or "active"
+            tag = status.upper()
+            parts.append(f"  - [{tag}] {c.text} (turn {c.introduced_at_turn})")
+
+    parts.append("")
+    parts.append("SOURCE (the real conversation — your questions should reference particulars from here):")
+    for t in packet.turns:
+        parts.append(f"[Turn {t.turn_index}] {t.speaker.upper()}:")
+        parts.append(t.text)
+        parts.append("")
+
+    parts.append("")
+    parts.append("STRUCTURAL GAPS:")
+    parts.append("")
+    parts.append("\n\n".join(gap_sections))
+
+    return "\n".join(parts)
+
+
+def generate_gap_questions_from_packet(
+    boundary: _BoundaryClient,
+    packet: Lane4Packet,
+    question_type: str,
+    gap_routes: tuple[DimensionRoute, ...],
+    structural_coverage_routing: dict,
+) -> tuple[GapQuestion, ...]:
+    """Packet-driven gap question generation. No-op when no gap routes."""
+    if not gap_routes:
+        return ()
+
+    user_prompt = _format_gap_question_from_packet_user_prompt(
+        packet, question_type, gap_routes, structural_coverage_routing,
+    )
+    raw = boundary.run_json(_GAP_QUESTION_GENERATION_SYSTEM, user_prompt)
+    parsed = _parse_gap_questions(raw)
+
+    results: list[GapQuestion] = []
+    for route in gap_routes:
+        questions = parsed.get(route.dimension_id)
+        if questions:
+            results.append(GapQuestion(
+                dimension_id=route.dimension_id,
+                dimension_name=route.dimension_name,
+                questions=questions,
+            ))
+    return tuple(results)
+
+
+def run_structural_coverage_from_ir(
+    boundary: _BoundaryClient,
+    ir: ConversationIR,
+    structural_coverage_routing: dict,
+    anti_echo_model_ids: set[str],
+) -> StructuralCoverageCard | None:
+    """IR-driven orchestrator. Mirrors `run_structural_coverage_from_context`
+    but builds a Lane4Packet from the IR and delegates to packet-driven
+    classification, detection, and gap question generation. Deterministic
+    routing + assembly are shared (input-shape agnostic)."""
+    packet = build_lane4_packet(ir)
+
+    try:
+        question_type = run_question_classification_from_packet(boundary, packet)
+    except Exception:
+        _LOGGER.exception("Question classification (from_ir) failed")
+        return None
+
+    try:
+        dimensions = run_dimension_detection_from_packet(
+            boundary, packet, question_type, structural_coverage_routing,
+        )
+    except Exception:
+        _LOGGER.exception("Dimension detection (from_ir) failed")
+        return None
+
+    gap_routes = route_gap_dimensions(
+        dimensions, structural_coverage_routing, anti_echo_model_ids,
+    )
+
+    gap_questions: tuple[GapQuestion, ...] = ()
+    try:
+        gap_questions = generate_gap_questions_from_packet(
+            boundary, packet, question_type, gap_routes, structural_coverage_routing,
+        )
+    except Exception:
+        _LOGGER.exception("Gap question generation (from_ir) failed")
 
     return assemble_structural_coverage_card(
         question_type, dimensions, gap_routes, anti_echo_model_ids, gap_questions,
