@@ -286,49 +286,100 @@ Relevant user turn: 1.
 
 ## Result Table
 
-_To fill after both reviewers commit independently._
+Both reviewer passes committed (Reviewer B: `faa3a23`; Reviewer A: `b30e625`). Same-agent two-pass methodology disclosed in Reviewer A commit.
 
 | Metric | Result |
 |---|---|
 | Candidate count | 20 |
-| Anchorability agreement sum | — |
-| Anchorability agreement rate | — |
-| Span-claim count | — |
-| Derivation-claim count | — |
-| Inferred-claim count | — |
-| Inferred rate per type (situation/assumption/exclusion) | — |
-| Span convergence (where both said span) | — |
-| Derivation turn-set overlap (where both said derivation) | — |
-| Gate outcome | — |
+| Anchorability agreement sum | **16.5** |
+| Anchorability agreement rate | **82.5%** (≥70% → PASS) |
+| Both-agree `span` count | 10 |
+| `span` vs `derivation` (adjacent) count | 1 |
+| `span` vs `inferred` (opposite) count | 3 |
+| Both-agree `inferred` count | 6 |
+| Either-reviewer-says `inferred` rate | 9/20 = 45% |
+| Both-agree `inferred` rate | 6/20 = **30%** |
+| Inferred rate by type (both-agree) | situation 0/12 (0%) · assumption 2/4 (50%) · exclusion 4/4 (100%) |
+| Gate outcome | **PASS on agreement; type-stratified inferred rates** |
 
 ### Per-item scoring
 
 | ID | Type | A anchor | B anchor | Anchor score |
 |---|---|---|---|---:|
-| UHP-F1 | situation | — | — | — |
-| UHP-F2 | assumption | — | — | — |
-| UHP-F3 | assumption | — | — | — |
-| UHP-F4 | exclusion | — | — | — |
-| WB-F1 | situation | — | — | — |
-| WB-F2 | situation | — | — | — |
-| WB-F3 | assumption | — | — | — |
-| WB-F4 | exclusion | — | — | — |
-| PT-F1 | situation | — | — | — |
-| PT-F2 | situation | — | — | — |
-| PT-F3 | assumption | — | — | — |
-| PT-F4 | exclusion | — | — | — |
-| MO-F1 | situation | — | — | — |
-| MO-F2 | situation | — | — | — |
-| MO-F3 | situation | — | — | — |
-| MO-F4 | assumption | — | — | — |
-| SP-F1 | situation | — | — | — |
-| SP-F2 | situation | — | — | — |
-| SP-F3 | situation | — | — | — |
-| SP-F4 | exclusion | — | — | — |
+| UHP-F1 | situation | derivation | span | 0.5 |
+| UHP-F2 | assumption | span | span | 1.0 |
+| UHP-F3 | assumption | inferred | inferred | 1.0 |
+| UHP-F4 | exclusion | inferred | inferred | 1.0 |
+| WB-F1 | situation | span | span | 1.0 |
+| WB-F2 | situation | inferred | span | 0.0 |
+| WB-F3 | assumption | inferred | span | 0.0 |
+| WB-F4 | exclusion | inferred | inferred | 1.0 |
+| PT-F1 | situation | span | span | 1.0 |
+| PT-F2 | situation | span | span | 1.0 |
+| PT-F3 | assumption | inferred | span | 0.0 |
+| PT-F4 | exclusion | inferred | inferred | 1.0 |
+| MO-F1 | situation | span | span | 1.0 |
+| MO-F2 | situation | span | span | 1.0 |
+| MO-F3 | situation | span | span | 1.0 |
+| MO-F4 | assumption | inferred | inferred | 1.0 |
+| SP-F1 | situation | span | span | 1.0 |
+| SP-F2 | situation | span | span | 1.0 |
+| SP-F3 | situation | span | span | 1.0 |
+| SP-F4 | exclusion | inferred | inferred | 1.0 |
 
-## Post-Gate Actions
+## Gate Analysis
 
-- **Inferred rate <40%** → draft Phase 5.7 specialist (substring + derivation modes, similar to Phase 5).
-- **Inferred rate 40-60%** → specialist with explicit `inferred` marker; emit `DerivationProvenance` for anchorable parts and a separate flag for inferred-summary text.
-- **Inferred rate >60%** → no specialist. Ship a heuristic enhancement: `FrameAnchor` provenance becomes `DerivationProvenance` with refs to all user turns rather than just the first. No LLM call. Honest about synthesis nature.
-- **Anchorability agreement <70%** → component definitions are soft; narrow before code.
+### Hypothesis confirmed
+
+The pre-gate hypothesis was: situation mostly anchored, exclusion mostly inferred, assumption mixed. The data exactly matches:
+
+- **situation: 0% inferred** (12/12 anchored). Situation is the user-stated context — they wrote it, the framing quotes it.
+- **assumption: 50% inferred** (UHP-F3 "sufficient pipeline", MO-F4 "options equally weighted"). The inferred ones share a pattern: the extractor read user behavior (asking for help, treating options as parallel) and named it as an assumption the user didn't articulate.
+- **exclusion: 100% inferred** (4/4). Exclusions are by definition things the user *didn't* say. There's no substring source for what's missing.
+
+### The 3 reviewer disagreements share a pattern
+
+WB-F2 ("at odd hour"), WB-F3 ("incident relates to audit"), and PT-F3 ("ex's minimization is unhelpful") are all cases where the framing's component:
+
+- Has substring support for part of it (the factual content)
+- Adds an extractor judgment word that's NOT in the source ("odd", "relates to", "unhelpful")
+
+Reviewer B counted these as `span` because the underlying fact is substring-backed. Reviewer A counted them as `inferred` because the framing's specific phrasing (with the judgment) isn't in the source. Both readings are defensible. Same span-scope-dependence pattern observed in Phase 5.0 / 5.5 for `kind_ambiguity`.
+
+### What this means for implementation
+
+The type-stratified rate distribution argues for either:
+
+**(A) A hybrid LLM specialist** with three emit modes per component:
+- `situation` components: emit `DerivationProvenance` with refs to all contributing user turns and per-turn substring excerpts. Substring validation enforced.
+- `assumption` components: emit either `DerivationProvenance` (anchorable) or an `inferred` flag (purely extractor reading of user behavior).
+- `exclusion` components: ALWAYS emit as `inferred` text, no substring claim.
+
+More complex than Phase 5 / 5.5 (3 modes vs 1-2). Higher Pareto-trade risk.
+
+**(B) A heuristic FrameAnchor enhancement** (no LLM):
+- Replace current `TurnRefProvenance(turn_refs=(<first user turn>,))` with `DerivationProvenance(turn_refs=<all user turns>)`.
+- Update the note: `"original_framing is extractor paraphrase synthesizing across N user turns; situation parts are substring-grounded; exclusions are inferred"`.
+- No new specialist module, no LLM call, no eval, no Pareto trade-offs.
+
+**Quality compared to LLM specialist:**
+- Heuristic loses: per-component substring excerpts (downstream consumers can't drill into specific anchored phrases)
+- Heuristic gains: deterministic, free, no eval dependency
+- Roughly: 80% of the IR-quality value at 10% of the build cost
+
+## Post-Gate Recommendation
+
+**Ship the heuristic.** Three reasons:
+
+1. **The IR-quality delta is small** at this stage. Lane packet builders (Phase 4) don't exist yet — we'd be optimizing without a downstream consumer.
+2. **The hybrid specialist is genuinely complex.** Three emit modes per component, with ~50% of assumption components and 100% of exclusion components requiring inferred-only handling. High prompt complexity = high Pareto-trade risk per Phase 5.5's recall/kind trade.
+3. **Phase 5.5's partial pass is fresh.** We're already shipping with documented quality drift on `dropped_threads`. Adding another partial-pass specialist before the previous one has been exercised by real consumers compounds the risk.
+
+If lane packet builders later prove that per-component substring excerpts matter (e.g., "I need to drill into the user's stated decision context with exact quotes"), the LLM specialist becomes a worthwhile follow-up. Until then, the heuristic gives honest multi-turn provenance for free.
+
+### Decision Rules (per gate definitions)
+
+- Anchorability agreement 82.5% ≥ 70% → PASS
+- Inferred rate 30% (both-agree, strict) — falls in the <40% bucket → "specialist makes sense"
+- BUT type-stratified: 100% of exclusions are inferred → specialist must explicitly handle them as inferred-only
+- This is the hybrid case the original gate rules didn't cleanly cover. PM judgment call between hybrid specialist (A) and heuristic-first (B).
