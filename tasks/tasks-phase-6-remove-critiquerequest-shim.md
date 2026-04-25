@@ -73,7 +73,8 @@ Tests to migrate or delete:
 - [ ] 1.2 Confirm: the only callers are in `pipeline.py` (legacy dispatch branches). If any other file calls them, STOP and flag to PM.
 - [ ] 1.3 Note in this task file: which legacy functions have callers, where.
 - [ ] 1.4 Inventory `CritiqueRequest` parameter types: search for `request: CritiqueRequest` (note: `_run_pass1_clusters_parallel` and `build_run_record` both type against it). These signatures need migration.
-- [ ] 1.5 Decide what to do with `scripts/phase1_equivalence_check.py`: delete (it's historical), or archive to `research/`. Confirm with PM.
+- [ ] 1.5 Inventory legacy field READERS (not just type sigs): `grep -rn "request\.query\|request\.vanilla_answer" engine/ scripts/`. The cited reader at `pipeline.py:478-499` is one example; there may be others. Each is a migration site. List them in this task file before proceeding to step 2.0.
+- [ ] 1.6 Decide what to do with `scripts/phase1_equivalence_check.py`: delete (it's historical), or archive to `research/`. Confirm with PM.
 
 ### 2.0 Migrate pipeline input handling (TDD)
 
