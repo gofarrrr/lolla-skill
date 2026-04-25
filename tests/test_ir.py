@@ -389,17 +389,32 @@ def test_construct_conversation_ir_maps_real_artifact_with_honest_provenance() -
         "spouse alignment, and fractional bridge"
     )
 
-    assert ir.frame_anchors == (
-        FrameAnchor(
-            anchor_id="frame_001",
-            text=context.extraction.original_framing,
-            provenance=TurnRefProvenance(
-                turn_refs=(TurnRef(turn_index=1, speaker="user"),),
-                note="original_framing is extractor paraphrase",
-            ),
-            frame_pattern="original_framing",
-        ),
+    # Phase 5.7 + 5.8 heuristic: original_framing AND decision_situation each
+    # become a FrameAnchor with DerivationProvenance over all user turns.
+    assert len(ir.frame_anchors) == 2
+    user_turn_indices = sorted(
+        t.turn_index for t in context.turns if t.speaker == "user"
     )
+
+    framing = next(
+        f for f in ir.frame_anchors if f.frame_pattern == "original_framing"
+    )
+    assert framing.anchor_id == "frame_001"
+    assert framing.text == context.extraction.original_framing
+    assert isinstance(framing.provenance, DerivationProvenance)
+    assert sorted(r.turn_index for r in framing.provenance.turn_refs) == user_turn_indices
+    assert all(r.speaker == "user" for r in framing.provenance.turn_refs)
+    assert "multi-turn" in framing.provenance.note
+
+    decision = next(
+        f for f in ir.frame_anchors if f.frame_pattern == "decision_situation"
+    )
+    assert decision.anchor_id == "frame_002"
+    assert decision.text == context.extraction.decision_situation
+    assert isinstance(decision.provenance, DerivationProvenance)
+    assert sorted(r.turn_index for r in decision.provenance.turn_refs) == user_turn_indices
+    assert "Whether X should Y" in decision.provenance.note
+
     assert ir.stance_events == ()
     assert ir.spans == ()
 
@@ -525,7 +540,8 @@ def test_construct_conversation_ir_logs_provenance_tier_counts(caplog) -> None:
         construct_conversation_ir(context)
 
     assert "conversation_ir_constructed" in caplog.text
-    assert "provenance_tiers={'span': 0, 'turn_ref': 6, 'derivation': 0}" in caplog.text
+    # Phase 5.7 + 5.8: original_framing + decision_situation are now derivations
+    assert "provenance_tiers={'span': 0, 'turn_ref': 5, 'derivation': 2}" in caplog.text
 
 
 # ---------------------------------------------------------------------------
