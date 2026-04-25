@@ -146,99 +146,9 @@ class _BoundaryClient(Protocol):
 # Frame extraction prompt and parser
 # ---------------------------------------------------------------------------
 
-_FRAME_EXTRACTION_SYSTEM = """\
-You are a frame analyst. Your job is to read a QUESTION and identify embedded \
-frame-level assumptions, mutable constraints, and suppressed counterfactuals \
-that shape the answer space before any reasoning begins.
-
-You are NOT analyzing the answer. You are analyzing the QUESTION ITSELF as a \
-reasoning artifact.
-
-Return a JSON object with a single key "frame_elements" containing a list of \
-0-5 extracted elements. Each element has:
-  - element_text: what the question assumes, constrains, or suppresses
-  - element_type: "assumption" | "mutable_constraint" | "suppressed_counterfactual"
-  - evidence_quote: a LITERAL SUBSTRING of the query that grounds this element
-  - frame_pattern: the pattern from this taxonomy: binary_collapse, \
-borrowed_premise, scope_lock, temporal_fixation, proxy_optimization, \
-option_space_collapse, single_actor_assumption, commitment_escalation, \
-symptom_as_problem, counterfactual_suppression, habitual_frame, \
-premature_intellectualization, means_end_conflation, externalized_agency, \
-survivorship_frame
-  - fragility_signal: what fact or reframe would break this element
-  - inquiry_stage: "why" | "what_if" | "how" (where is the question stuck?)
-  - likely_default: "ego" | "social" | "inertia" | "emotion" | "none"
-
-CALIBRATION RULES:
-- A frame element is worth surfacing ONLY if dropping it would change the SET \
-OF ACCEPTABLE ANSWERS, not just the emphasis within the current answer.
-- SILENCE IS A VALID AND OFTEN CORRECT RESULT. If the question is already \
-well-formed, exploratory in the right way, or operational with a bounded \
-solution space, return {"frame_elements": []}.
-- OVERTHINKING GATE: Do NOT surface elements for routine operational/execution \
-queries where the solution space is known. Frame pressure is for decisions with \
-genuine ambiguity about what the right question is.
-- FELT DIFFICULTY TEST: If the query is already a genuine exploration, the \
-asker is in the right cognitive state. Focus on pre-packaged formulations.
-- If you are unsure whether an observation is a real frame error or merely \
-normal problem setup, choose SILENCE.
-- Do NOT extract frame elements from direct how-to, debugging, troubleshooting, \
-configuration, implementation, drafting, or prioritization requests when the \
-user is already asking for a systematic approach inside a known problem space.
-- TECHNICAL CONSTRAINT RULE: When a query names a specific technology, algorithm, \
-tool, or approach (e.g. "token bucket", "Redis", "Kubernetes", "polymorphic \
-relationship"), that is a LEGITIMATE TECHNICAL CHOICE, not a frame error. \
-Technical constraints chosen by the asker are part of the problem specification. \
-Do NOT flag them as scope_lock, option_space_collapse, or borrowed_premise \
-unless an external authority imposed the constraint and the asker is unaware \
-of alternatives.
-- OPERATIONAL EXECUTION RULE: Queries about sprint planning, report drafting, \
-CI/CD setup, database migration, performance reviews, cost optimization, rate \
-limiting, or similar bounded engineering/management tasks are operational. \
-Return silence unless the query contains a genuinely distorted assumption that \
-would change the acceptable answer set if removed.
-- NEGATIVE EXAMPLES (MUST return {"frame_elements": []}):
-  - "How should I configure resource limits for our Kubernetes pods ... ?"
-  - "What systematic approach should we take to find the leak?"
-  - "Can you help me draft Q3 OKRs for our platform engineering team?"
-  - "Should I use a token bucket or sliding window algorithm with Redis?"
-  - "How do I add a polymorphic relationship to our PostgreSQL schema?"
-  - "What should we prioritize in our technical debt sprint?"
-  - "How do I set up a CI/CD pipeline for a Go monorepo with 15 microservices?"
-  - "Help me write a performance review for an engineer who exceeded expectations"
-  - "Our AWS bill went from $45K to $120K. The CFO wants it under $80K."
-  - "How do I structure a board presentation showing mixed quarterly results?"
-  - "How do I set up path-based triggers in our CI/CD pipeline?"
-- `borrowed_premise` is HIGH BAR ONLY. Use it only when the question explicitly \
-inherits a premise from an authority, stakeholder, vendor, competitor, or \
-consensus source AND that inherited premise narrows the option space before \
-reasoning begins. A manager's goal, a CFO's budget target, or a team's \
-technical choice are NOT borrowed premises — they are normal constraints.
-- Do NOT use `borrowed_premise` just because the question contains goals, \
-constraints, accepted facts, or a normal project brief.
-- `scope_lock` requires that the question's boundary EXCLUDES relevant actors \
-or systems. A sprint scope, a single team, or a single service is NOT scope \
-lock unless there is evidence the real problem extends beyond that boundary.
-- `option_space_collapse` requires that VIABLE, QUALITATIVELY DIFFERENT options \
-are suppressed. Two standard algorithm choices for a known problem are NOT \
-option space collapse — they are the natural solution set.
-- Trivially true observations, routine planning constraints, and ordinary \
-technical parameters are NOT frame elements.
-- evidence_quote MUST be a literal substring of the query text.
-- If no frame elements meet the threshold, return {"frame_elements": []}.
-"""
-
-
 def get_prompt_template() -> str:
-    """Return the frame extraction system prompt for versioning."""
-    return _FRAME_EXTRACTION_SYSTEM
-
-
-def _format_frame_extraction_user_prompt(query: str, vanilla_answer: str) -> str:
-    return (
-        f"QUERY (primary signal — analyze this):\n{query}\n\n"
-        f"VANILLA ANSWER (secondary — shows where the answer inherited the frame):\n{vanilla_answer}"
-    )
+    """Return the active frame extraction system prompt for versioning."""
+    return _FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT
 
 
 def _normalize_quotes(text: str) -> str:
@@ -289,89 +199,9 @@ def _evidence_in_text(evidence: str, text: str) -> bool:
     return False
 
 
-def _parse_frame_extraction(
-    raw: dict, query: str,
-) -> tuple[tuple[ExtractedFrameElement, ...], list[dict]]:
-    """Parse frame extraction LLM output into typed dataclasses.
-
-    Returns (valid_elements, dropped_elements) where dropped_elements
-    tracks elements that were rejected with their drop reasons.
-    """
-    items = require_list_of_dicts(raw, "frame_elements", "frame_extraction")
-    elements: list[ExtractedFrameElement] = []
-    dropped: list[dict] = []
-    for item in items:
-        element_text = coerce_str(item.get("element_text"))
-        evidence = coerce_str(item.get("evidence_quote"))
-        pattern = coerce_str(item.get("frame_pattern"))
-
-        if not evidence:
-            _LOGGER.warning("Frame element missing evidence_quote, dropping: %r", element_text[:80])
-            dropped.append({"element_text": element_text, "drop_reason": "missing_evidence"})
-            continue
-
-        if not pattern:
-            _LOGGER.warning("Frame element missing frame_pattern, dropping: %r", element_text[:80])
-            dropped.append({"element_text": element_text, "drop_reason": "missing_pattern"})
-            continue
-
-        if not _evidence_in_text(evidence, query):
-            _LOGGER.warning(
-                "Frame element evidence_quote not found in query, skipping: %r",
-                evidence[:80],
-            )
-            dropped.append({"element_text": element_text, "drop_reason": "evidence_not_in_query"})
-            continue
-        try:
-            el = ExtractedFrameElement(
-                element_text=element_text,
-                element_type=coerce_str(item.get("element_type")) or "assumption",
-                evidence_quote=evidence,
-                frame_pattern=pattern,
-                fragility_signal=coerce_str(item.get("fragility_signal")),
-                inquiry_stage=coerce_str(item.get("inquiry_stage")) or "how",
-                likely_default=coerce_str(item.get("likely_default")) or "none",
-            )
-            elements.append(el)
-        except (TypeError, ValueError) as exc:
-            _LOGGER.warning("Could not parse frame element: %s", exc)
-            dropped.append({"element_text": element_text, "drop_reason": f"parse_error: {exc}"})
-    return tuple(elements), dropped
-
-
 # ---------------------------------------------------------------------------
-# Public entry point — called by pipeline.py
+# Conversation-first frame extraction
 # ---------------------------------------------------------------------------
-
-def run_frame_extraction(
-    boundary: _BoundaryClient,
-    query: str,
-    vanilla_answer: str,
-) -> FramePressureCard:
-    """Run the frame extraction boundary call and return a FramePressureCard.
-
-    Legacy entry point — consumes the collapsed `query` shape built by
-    `_map_to_critique_request` (via `_context_to_critique` under the shim).
-    Still serves the legacy path until Phase 3. For new conversation-first
-    callers use `run_frame_extraction_from_context` instead.
-    """
-    user_prompt = _format_frame_extraction_user_prompt(query, vanilla_answer)
-    raw = boundary.run_json(_FRAME_EXTRACTION_SYSTEM, user_prompt)
-    elements, dropped = _parse_frame_extraction(raw, query)
-    return FramePressureCard(frame_elements=elements, dropped_frame_elements=tuple(dropped))
-
-
-# ---------------------------------------------------------------------------
-# Phase 2a: Conversation-first frame extraction
-# ---------------------------------------------------------------------------
-#
-# Why a separate system prompt instead of retrofitting _FRAME_EXTRACTION_SYSTEM?
-# The legacy prompt's evidence rule says "literal substring of the query"; the
-# conversation-first path validates against user turns, which is a different
-# source-text set. Sharing a single prompt would require hedging language that
-# could drift either path's calibration. Costs a little duplication; keeps each
-# path's behavior crisp. Both prompts die together in Phase 3 when CritiqueRequest
-# is removed — at which point we collapse to the context-first prompt only.
 
 _FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT = """\
 You are a frame analyst. Your job is to read a CONVERSATION (user turns plus \
@@ -550,8 +380,7 @@ def _joined_user_turns_text(context: ConversationContext) -> str:
 def _parse_frame_extraction_from_context(
     raw: dict, context: ConversationContext,
 ) -> tuple[tuple[ExtractedFrameElement, ...], list[dict]]:
-    """Same shape as _parse_frame_extraction, but evidence is validated against
-    the user turns (not the legacy collapsed query)."""
+    """Parse frame extraction output, validating evidence against user turns."""
     user_text = _joined_user_turns_text(context)
     items = require_list_of_dicts(raw, "frame_elements", "frame_extraction_from_context")
     elements: list[ExtractedFrameElement] = []
@@ -837,30 +666,6 @@ _MIN_REFRAME_QUESTION_WORDS = 8
 _MIN_WHAT_OPENS_WORDS = 6
 
 
-def _format_reframe_generation_prompt(
-    query: str,
-    elements: tuple[ExtractedFrameElement, ...],
-    routes: tuple[FrameRoute, ...],
-) -> str:
-    parts = [f"ORIGINAL QUERY:\n{query}\n"]
-    for route in routes:
-        if route.element_index >= len(elements):
-            continue
-        el = elements[route.element_index]
-        models = ", ".join(route.candidate_model_ids) if route.candidate_model_ids else "(none)"
-        parts.append(
-            f"ELEMENT {route.element_index}:\n"
-            f"  text: {el.element_text}\n"
-            f"  type: {el.element_type}\n"
-            f"  evidence: \"{el.evidence_quote}\"\n"
-            f"  pattern: {el.frame_pattern}\n"
-            f"  fragility: {el.fragility_signal}\n"
-            f"  inquiry_stage: {el.inquiry_stage}\n"
-            f"  candidate models: {models}\n"
-        )
-    return "\n".join(parts)
-
-
 def _is_generic_reframe(reframed_question: str, what_opens: str) -> bool:
     """Return True if the reframe is too generic to be useful."""
     q_words = len(reframed_question.split())
@@ -902,23 +707,6 @@ def _parse_reframings(raw: dict) -> tuple[Reframing, ...]:
     return tuple(results)
 
 
-def generate_reframings(
-    *,
-    boundary: _BoundaryClient,
-    query: str,
-    elements: tuple[ExtractedFrameElement, ...],
-    routes: tuple[FrameRoute, ...],
-) -> tuple[Reframing, ...]:
-    """Run the reframe generation boundary call and return parsed reframings.
-
-    Legacy entry point — consumes the collapsed `query`. Kept alongside the
-    conversation-first variant until Phase 3.
-    """
-    user_prompt = _format_reframe_generation_prompt(query, elements, routes)
-    raw = boundary.run_json(_REFRAME_GENERATION_SYSTEM, user_prompt)
-    return _parse_reframings(raw)
-
-
 def _format_reframe_generation_from_context_prompt(
     context: ConversationContext,
     elements: tuple[ExtractedFrameElement, ...],
@@ -929,7 +717,7 @@ def _format_reframe_generation_from_context_prompt(
     The reframe system prompt (_REFRAME_GENERATION_SYSTEM) is shape-agnostic —
     it describes *how* to produce good reframes, not what shape the input is.
     We reuse it and only change the user-prompt body to ground reframings in
-    the actual first user turn instead of the collapsed query.
+    the actual first user turn.
     """
     first_user_turn = next(
         (t.text for t in context.turns if t.speaker == "user"),

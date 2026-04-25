@@ -285,17 +285,6 @@ If NOT DETECTED:
 ```"""
 
 
-PASS_2_DEEP_CHECK_USER = """QUERY:
-{query}
-
-VANILLA ANSWER:
-{vanilla_answer}
-
-Use the query only as context for what the answer skipped or overrode.
-
-Analyze this answer for the presence of {tendency_name} ONLY. Respond with JSON only."""
-
-
 # ---------------------------------------------------------------------------
 # Phase 2c: conversation-first Pass 2 — CONTEXT / SOURCE split + enum-checklist.
 #
@@ -408,30 +397,6 @@ def build_tendency_guidance(tendency_id: str) -> str:
         "Prefer not detected if the evidence fits a narrower adjacent tendency better.",
     )
     return f"- {guidance}"
-
-
-def format_pass2_prompt(
-    query: str,
-    vanilla_answer: str,
-    tendency_key: str,
-    catalog: TendencyCatalog,
-) -> tuple[str, str]:
-    tendency = catalog.lookup(tendency_key)
-    sub_pattern_menu = build_sub_pattern_menu(tendency.antidote_bindings)
-    system = PASS_2_DEEP_CHECK_SYSTEM.format(
-        tendency_name=tendency.display_name,
-        tendency_number=tendency.tendency_number,
-        tendency_description=tendency.description,
-        tendency_id=tendency.tendency_id,
-        tendency_guidance=build_tendency_guidance(tendency.tendency_id),
-        sub_pattern_menu=sub_pattern_menu,
-    )
-    user = PASS_2_DEEP_CHECK_USER.format(
-        query=query,
-        vanilla_answer=vanilla_answer,
-        tendency_name=tendency.display_name,
-    )
-    return system, user
 
 
 def _format_pass2_from_context_user_prompt(

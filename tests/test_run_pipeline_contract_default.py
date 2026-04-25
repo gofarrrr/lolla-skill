@@ -136,42 +136,12 @@ def test_file_inputs_with_conversation_use_conversation_context_by_default(
     assert isinstance(captured_inputs[0], context_mod.ConversationContext)
 
 
-def test_legacy_contract_with_file_inputs_uses_critique_request(
+def test_new_contract_flag_with_file_inputs_still_uses_conversation_context(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    import system_b.pipeline as pipeline_mod
+    import system_b.conversation_context as context_mod
 
-    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
-    output_path = tmp_path / "result.json"
-    captured_inputs = _install_live_pipeline_fakes(monkeypatch, tmp_path)
-
-    monkeypatch.setattr(
-        sys,
-        "argv",
-        [
-            "run_pipeline.py",
-            "--extraction-file",
-            str(extraction_path),
-            "--conversation-file",
-            str(conversation_path),
-            "--output-file",
-            str(output_path),
-            "--skip-revision",
-            "--legacy-contract",
-        ],
-    )
-
-    assert run_pipeline.main() == 0
-    assert len(captured_inputs) == 1
-    assert isinstance(captured_inputs[0], pipeline_mod.CritiqueRequest)
-
-
-def test_new_contract_and_legacy_contract_together_return_structured_error(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-    capsys: pytest.CaptureFixture[str],
-) -> None:
     extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
     output_path = tmp_path / "result.json"
     captured_inputs = _install_live_pipeline_fakes(monkeypatch, tmp_path)
@@ -189,19 +159,15 @@ def test_new_contract_and_legacy_contract_together_return_structured_error(
             str(output_path),
             "--skip-revision",
             "--new-contract",
-            "--legacy-contract",
         ],
     )
 
-    assert run_pipeline.main() == 1
-    payload = json.loads(capsys.readouterr().out)
-    assert payload["status"] == "error"
-    assert "--new-contract" in payload["error"]
-    assert "--legacy-contract" in payload["error"]
-    assert captured_inputs == []
+    assert run_pipeline.main() == 0
+    assert len(captured_inputs) == 1
+    assert isinstance(captured_inputs[0], context_mod.ConversationContext)
 
 
-def test_extraction_file_without_conversation_file_requires_explicit_legacy_contract(
+def test_extraction_file_without_conversation_file_requires_conversation_file(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     capsys: pytest.CaptureFixture[str],
@@ -227,11 +193,10 @@ def test_extraction_file_without_conversation_file_requires_explicit_legacy_cont
     payload = json.loads(capsys.readouterr().out)
     assert payload["status"] == "error"
     assert "--extraction-file requires --conversation-file" in payload["error"]
-    assert "--legacy-contract" in payload["error"]
     assert captured_inputs == []
 
 
-def test_extraction_json_requires_explicit_legacy_contract(
+def test_extraction_json_returns_structured_error(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     capsys: pytest.CaptureFixture[str],
@@ -260,7 +225,7 @@ def test_extraction_json_requires_explicit_legacy_contract(
     assert run_pipeline.main() == 1
     payload = json.loads(capsys.readouterr().out)
     assert payload["status"] == "error"
-    assert "--extraction-json is only supported with --legacy-contract" in payload["error"]
+    assert "--extraction-json is no longer supported" in payload["error"]
     assert captured_inputs == []
 
 
@@ -280,7 +245,6 @@ def test_extraction_file_and_extraction_json_remain_argparse_mutually_exclusive(
             str(extraction_path),
             "--extraction-json",
             json.dumps({"query": "q", "vanilla_answer": "a"}),
-            "--legacy-contract",
             "--skip-revision",
         ],
     )

@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-"""Phase 2b Lane 4 quality check — old-path vs new-path on the 10-case corpus.
+"""Phase 2b Lane 4 quality check over the conversation-first runtime.
 
 Runs `run_extract.py` once per case (shared input), then runs `run_pipeline.py`
-N times on the explicit legacy path (`--legacy-contract`) and N times on the
-default ConversationContext path. Parses `structural_coverage_card` from each
-result and computes structural metrics.
+N times on the ConversationContext path. Parses `structural_coverage_card` from
+each result and computes structural metrics.
 
-Why shell-out (same rationale as Phase 2a): verifies the default
-ConversationContext runtime and explicit legacy opt-out dispatch correctly
-end-to-end, matching the actual user path. Subprocess overhead is negligible
-vs the ~30-60s per pipeline run.
+Why shell-out (same rationale as Phase 2a): verifies the ConversationContext
+runtime end-to-end, matching the actual user path. Subprocess overhead is
+negligible vs the ~30-60s per pipeline run.
 
 Usage (dry-run, one case N=1):
     python3 scripts/phase2b_lane4_quality_check.py --n 1 --cases oncologist
@@ -154,8 +152,6 @@ def run_pipeline_once(
         "--output-file", str(result_output),
         "--skip-revision",
     ]
-    if not new_contract:
-        cmd.append("--legacy-contract")
     code, out, err = _run_subprocess(cmd)
     if code != 0:
         return (

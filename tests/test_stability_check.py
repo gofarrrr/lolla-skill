@@ -20,8 +20,8 @@ from stability_check import compute_extraction_drift  # noqa: E402
 import numpy as np  # noqa: E402
 
 
-def test_rerun_pipeline_legacy_contract_appends_explicit_flag(monkeypatch, tmp_path):
-    """Mode B can intentionally rerun the old CritiqueRequest path."""
+def test_rerun_pipeline_uses_conversation_contract(monkeypatch, tmp_path):
+    """Mode B reruns the conversation-first pipeline path."""
     captured: list[list[str]] = []
 
     def _fake_run(cmd: list[str], *, check: bool, cwd: str) -> None:  # noqa: ARG001
@@ -35,12 +35,11 @@ def test_rerun_pipeline_legacy_contract_appends_explicit_flag(monkeypatch, tmp_p
         tmp_path / "conversation.txt",
         1,
         tmp_path,
-        legacy_contract=True,
     )
 
     assert len(captured) == 1
-    assert "--legacy-contract" in captured[0]
     assert "--conversation-file" in captured[0]
+    assert not any(part.startswith("--legacy") for part in captured[0])
 
 
 def test_cosine_identical_vectors_is_one():

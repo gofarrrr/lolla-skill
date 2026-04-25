@@ -2,13 +2,10 @@
 """Run the full Lolla pipeline against an extracted conversation.
 
 Takes extraction JSON plus a raw conversation transcript and runs all four
-lanes via OpenRouter. File-based extraction + conversation inputs use the
-ConversationContext runtime by default; CritiqueRequest is an explicit legacy
-compatibility path.
+lanes via OpenRouter. The runtime contract is ConversationContext-only.
 
 Usage:
     python3 scripts/run_pipeline.py --extraction-file /tmp/extraction.json --conversation-file /tmp/conversation.txt
-    python3 scripts/run_pipeline.py --extraction-json '{"query":"...","vanilla_answer":"..."}' --legacy-contract
 
 Output: JSON to stdout with delta_card, companion_cheat_sheet, frame_pressure_card.
 """
@@ -266,38 +263,28 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
 
 def _contract_error(args: argparse.Namespace) -> str | None:
     """Return a CLI contract error message, or None when flags are coherent."""
-    if args.new_contract and args.legacy_contract:
-        return "--new-contract and --legacy-contract cannot be used together"
-
     if args.extraction_json and args.new_contract:
         return (
             "--extraction-json cannot be used with --new-contract; "
             "ConversationContext requires --extraction-file and --conversation-file"
         )
 
-    if args.extraction_json and not args.legacy_contract:
+    if args.extraction_json:
         return (
-            "--extraction-json is only supported with --legacy-contract because "
-            "ConversationContext requires extraction and conversation files."
+            "--extraction-json is no longer supported; use --extraction-file "
+            "together with --conversation-file"
         )
 
     if args.new_contract and not (args.extraction_file and args.conversation_file):
         return "--new-contract requires both --extraction-file and --conversation-file"
 
-    if args.extraction_file and not args.conversation_file and not args.legacy_contract:
+    if args.extraction_file and not args.conversation_file:
         return (
-            "--extraction-file requires --conversation-file for the default "
-            "ConversationContext runtime; pass --legacy-contract to run the "
-            "legacy CritiqueRequest path intentionally."
+            "--extraction-file requires --conversation-file for the "
+            "ConversationContext runtime"
         )
 
     return None
-
-
-def _should_use_conversation_context(args: argparse.Namespace) -> bool:
-    return not args.legacy_contract and bool(
-        args.new_contract or (args.extraction_file and args.conversation_file)
-    )
 
 
 def main() -> int:
@@ -311,7 +298,7 @@ def main() -> int:
     group.add_argument("--extraction-file", help="Path to extraction JSON file")
     group.add_argument(
         "--extraction-json",
-        help="Extraction JSON as string (legacy CritiqueRequest path only; requires --legacy-contract)",
+        help="Deprecated compatibility input. Use --extraction-file and --conversation-file instead.",
     )
     parser.add_argument(
         "--env-file",
@@ -344,17 +331,7 @@ def main() -> int:
         action="store_true",
         help=(
             "Deprecated compatibility alias for the default ConversationContext "
-            "contract. No longer needed for file-based conversation runs. "
-            "Requires --extraction-file and --conversation-file. Scheduled for "
-            "removal after legacy-shim removal or a follow-up cleanup PR."
-        ),
-    )
-    parser.add_argument(
-        "--legacy-contract",
-        action="store_true",
-        help=(
-            "Use the legacy CritiqueRequest contract explicitly. "
-            "Default for file-based conversation runs is ConversationContext."
+            "contract. No longer needed for file-based conversation runs."
         ),
     )
     args = parser.parse_args()
@@ -424,7 +401,7 @@ def main() -> int:
     # Resolve data root and load pipeline
     data_root = _resolve_data_root()
 
-    from system_b.pipeline import SystemBPipeline, CritiqueRequest, PipelineConfig
+    from system_b.pipeline import SystemBPipeline, PipelineConfig
 
     has_embeddings = bool(os.environ.get("OPENAI_API_KEY", ""))
 
@@ -461,16 +438,12 @@ def main() -> int:
     if pipeline._bundle_selector is not None:
         _compiled_chunk_count = len(pipeline._bundle_selector._substrate.all_chunks())
 
-    # Run pipeline — either explicit/deprecated or default ConversationContext,
-    # with CritiqueRequest retained for compatibility paths.
-    if _should_use_conversation_context(args):
-        from system_b.conversation_loader import load_conversation_context
-        pipeline_input = load_conversation_context(
-            extraction_path=Path(args.extraction_file),
-            conversation_path=Path(args.conversation_file),
-        )
-    else:
-        pipeline_input = CritiqueRequest(query=query, vanilla_answer=vanilla_answer)
+    from system_b.conversation_loader import load_conversation_context
+
+    pipeline_input = load_conversation_context(
+        extraction_path=Path(args.extraction_file),
+        conversation_path=Path(args.conversation_file),
+    )
 
     try:
         result = pipeline.run(pipeline_input)

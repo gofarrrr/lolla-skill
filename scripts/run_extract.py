@@ -3,13 +3,14 @@
 
 Takes a raw conversation transcript, calls OpenRouter to extract structured
 fields (decision situation, constraints, synthesized position, reasoning
-passages, framing, dropped threads), and maps them to a CritiqueRequest.
+passages, framing, dropped threads), and derives flat query/answer compatibility
+fields for downstream tooling.
 
 Usage:
     python3 scripts/run_extract.py --conversation-file /tmp/conv.txt
     python3 scripts/run_extract.py --conversation-file /tmp/conv.txt --env-file /path/to/.env
 
-Output: JSON to stdout with extraction fields and mapped CritiqueRequest.
+Output: JSON to stdout with extraction fields and flat query/answer compatibility fields.
 """
 from __future__ import annotations
 
@@ -409,7 +410,7 @@ def _validate_conversation_capture(conversation_text: str) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# CritiqueRequest mapping
+# Flat query/answer compatibility mapping
 # ---------------------------------------------------------------------------
 
 def _map_to_critique_request(
@@ -696,7 +697,7 @@ def main() -> int:
     # Extract full assistant responses from conversation for richer pipeline input
     assistant_text = _extract_assistant_responses(conversation_text)
 
-    # Map to CritiqueRequest
+    # Map to flat query/answer compatibility fields
     critique_request = _map_to_critique_request(payload, assistant_text=assistant_text)
 
     output = {
