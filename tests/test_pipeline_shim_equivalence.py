@@ -450,9 +450,68 @@ def _minimal_context() -> ConversationContext:
     )
 
 
-def test_run_frame_pressure_uses_context_path_when_context_present() -> None:
-    """When _run_frame_pressure is given a ConversationContext, Lane 3 must
-    call run_frame_extraction_from_context (not the legacy query-based one)."""
+def test_run_frame_pressure_uses_packet_path_when_ir_present() -> None:
+    """When IR is present, Lane 3 must use packet extraction rather than the
+    dead context fallback or the legacy query-based path."""
+    from engine.system_b.pipeline import PipelineConfig
+    ctx = _minimal_context()
+    ir = object()
+    packet = object()
+    captured_ir: list = []
+    captured_packet: list = []
+    captured_from_context: list = []
+    captured_legacy: list = []
+
+    def _build_packet(conversation_ir):
+        captured_ir.append(conversation_ir)
+        return packet
+
+    def _spy_packet(*, boundary, packet):  # noqa: ARG001
+        captured_packet.append(packet)
+        raise _ShimDispatchedException()
+
+    def _spy_from_context(*, boundary, context):  # noqa: ARG001
+        captured_from_context.append(context)
+        raise _ShimDispatchedException()
+
+    def _spy_legacy(*, boundary, query, vanilla_answer):  # noqa: ARG001
+        captured_legacy.append((query, vanilla_answer))
+        raise _ShimDispatchedException()
+
+    with patch(
+        "engine.system_b.pipeline.build_lane4_packet",
+        side_effect=_build_packet,
+    ), patch(
+        "engine.system_b.pipeline.run_frame_extraction_from_packet",
+        side_effect=_spy_packet,
+    ), patch(
+        "engine.system_b.pipeline.run_frame_extraction_from_context",
+        side_effect=_spy_from_context,
+    ), patch(
+        "engine.system_b.pipeline.run_frame_extraction",
+        side_effect=_spy_legacy,
+    ):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        pipeline._config = PipelineConfig(enable_frame_pressure=True)
+        pipeline._boundary = object()
+        try:
+            pipeline._run_frame_pressure(
+                CritiqueRequest(query="legacy_q", vanilla_answer="legacy_va"),
+                boundary_calls=[],
+                conversation_context=ctx,
+                conversation_ir=ir,
+            )
+        except _ShimDispatchedException:
+            pass
+
+    assert captured_ir == [ir]
+    assert captured_packet == [packet]
+    assert captured_from_context == []
+    assert captured_legacy == [], "legacy run_frame_extraction should NOT have been called"
+
+
+def test_run_frame_pressure_uses_legacy_path_when_context_present_without_ir() -> None:
+    """Without IR, Lane 3 must now fall back straight to the legacy path."""
     from engine.system_b.pipeline import PipelineConfig
     ctx = _minimal_context()
     captured_from_context: list = []
@@ -478,49 +537,9 @@ def test_run_frame_pressure_uses_context_path_when_context_present() -> None:
         pipeline._boundary = object()
         try:
             pipeline._run_frame_pressure(
-                CritiqueRequest(query="legacy_q", vanilla_answer="legacy_va"),
+                CritiqueRequest(query="qtext", vanilla_answer="vatext"),
                 boundary_calls=[],
                 conversation_context=ctx,
-            )
-        except _ShimDispatchedException:
-            pass
-
-    assert len(captured_from_context) == 1
-    assert captured_from_context[0] is ctx
-    assert captured_legacy == [], "legacy run_frame_extraction should NOT have been called"
-
-
-def test_run_frame_pressure_uses_legacy_path_when_no_context() -> None:
-    """Without a ConversationContext, _run_frame_pressure must keep calling the
-    legacy run_frame_extraction path — protects the existing shim behavior."""
-    from engine.system_b.pipeline import PipelineConfig
-    critique = CritiqueRequest(query="qtext", vanilla_answer="vatext")
-    captured_from_context: list = []
-    captured_legacy: list = []
-
-    def _spy_from_context(*, boundary, context):  # noqa: ARG001
-        captured_from_context.append(context)
-        raise _ShimDispatchedException()
-
-    def _spy_legacy(*, boundary, query, vanilla_answer):  # noqa: ARG001
-        captured_legacy.append((query, vanilla_answer))
-        raise _ShimDispatchedException()
-
-    with patch(
-        "engine.system_b.pipeline.run_frame_extraction_from_context",
-        side_effect=_spy_from_context,
-    ), patch(
-        "engine.system_b.pipeline.run_frame_extraction",
-        side_effect=_spy_legacy,
-    ):
-        pipeline = SystemBPipeline.__new__(SystemBPipeline)
-        pipeline._config = PipelineConfig(enable_frame_pressure=True)
-        pipeline._boundary = object()
-        try:
-            pipeline._run_frame_pressure(
-                critique,
-                boundary_calls=[],
-                conversation_context=None,
             )
         except _ShimDispatchedException:
             pass
@@ -547,9 +566,61 @@ def test_run_frame_pressure_skips_both_paths_when_feature_disabled() -> None:
 # ---------- Phase 2b: Lane 4 dispatch ----------
 
 
-def test_run_structural_coverage_uses_context_path_when_context_present() -> None:
-    """Given a ConversationContext, Lane 4 must call
-    run_structural_coverage_from_context (not the legacy orchestrator)."""
+def test_run_structural_coverage_uses_ir_path_when_ir_present() -> None:
+    """Given IR, Lane 4 must use the IR orchestrator, not context fallback."""
+    from engine.system_b.pipeline import PipelineConfig
+    ctx = _minimal_context()
+    ir = object()
+    captured_ir: list = []
+    captured_from_context: list = []
+    captured_legacy: list = []
+
+    def _spy_from_ir(*, boundary, ir, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
+        captured_ir.append(ir)
+        raise _ShimDispatchedException()
+
+    def _spy_from_context(*, boundary, context, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
+        captured_from_context.append(context)
+        raise _ShimDispatchedException()
+
+    def _spy_legacy(*, boundary, query, vanilla_answer, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
+        captured_legacy.append((query, vanilla_answer))
+        raise _ShimDispatchedException()
+
+    with patch(
+        "engine.system_b.pipeline.run_structural_coverage_from_ir",
+        side_effect=_spy_from_ir,
+    ), patch(
+        "engine.system_b.pipeline.run_structural_coverage_from_context",
+        side_effect=_spy_from_context,
+    ), patch(
+        "engine.system_b.pipeline.run_structural_coverage",
+        side_effect=_spy_legacy,
+    ):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        pipeline._config = PipelineConfig(enable_structural_coverage=True)
+        pipeline._boundary = object()
+        pipeline._companion_knowledge_graph = {"structural_coverage_routing": {"dimensions": {}}}
+        try:
+            pipeline._run_structural_coverage(
+                CritiqueRequest(query="legacy_q", vanilla_answer="legacy_va"),
+                boundary_calls=[],
+                lane1_model_ids=set(),
+                lane2_model_ids=set(),
+                lane3_model_ids=set(),
+                conversation_context=ctx,
+                conversation_ir=ir,
+            )
+        except _ShimDispatchedException:
+            pass
+
+    assert captured_ir == [ir]
+    assert captured_from_context == []
+    assert captured_legacy == [], "legacy run_structural_coverage should NOT have been called"
+
+
+def test_run_structural_coverage_uses_legacy_path_when_context_present_without_ir() -> None:
+    """Without IR, Lane 4 must now fall back straight to the legacy path."""
     from engine.system_b.pipeline import PipelineConfig
     ctx = _minimal_context()
     captured_from_context: list = []
@@ -576,55 +647,12 @@ def test_run_structural_coverage_uses_context_path_when_context_present() -> Non
         pipeline._companion_knowledge_graph = {"structural_coverage_routing": {"dimensions": {}}}
         try:
             pipeline._run_structural_coverage(
-                CritiqueRequest(query="legacy_q", vanilla_answer="legacy_va"),
+                CritiqueRequest(query="qtext", vanilla_answer="vatext"),
                 boundary_calls=[],
                 lane1_model_ids=set(),
                 lane2_model_ids=set(),
                 lane3_model_ids=set(),
                 conversation_context=ctx,
-            )
-        except _ShimDispatchedException:
-            pass
-
-    assert len(captured_from_context) == 1
-    assert captured_from_context[0] is ctx
-    assert captured_legacy == [], "legacy run_structural_coverage should NOT have been called"
-
-
-def test_run_structural_coverage_uses_legacy_path_when_no_context() -> None:
-    """Without a ConversationContext, Lane 4 must keep calling the legacy path."""
-    from engine.system_b.pipeline import PipelineConfig
-    critique = CritiqueRequest(query="qtext", vanilla_answer="vatext")
-    captured_from_context: list = []
-    captured_legacy: list = []
-
-    def _spy_from_context(*, boundary, context, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
-        captured_from_context.append(context)
-        raise _ShimDispatchedException()
-
-    def _spy_legacy(*, boundary, query, vanilla_answer, structural_coverage_routing, anti_echo_model_ids):  # noqa: ARG001
-        captured_legacy.append((query, vanilla_answer))
-        raise _ShimDispatchedException()
-
-    with patch(
-        "engine.system_b.pipeline.run_structural_coverage_from_context",
-        side_effect=_spy_from_context,
-    ), patch(
-        "engine.system_b.pipeline.run_structural_coverage",
-        side_effect=_spy_legacy,
-    ):
-        pipeline = SystemBPipeline.__new__(SystemBPipeline)
-        pipeline._config = PipelineConfig(enable_structural_coverage=True)
-        pipeline._boundary = object()
-        pipeline._companion_knowledge_graph = {"structural_coverage_routing": {"dimensions": {}}}
-        try:
-            pipeline._run_structural_coverage(
-                critique,
-                boundary_calls=[],
-                lane1_model_ids=set(),
-                lane2_model_ids=set(),
-                lane3_model_ids=set(),
-                conversation_context=None,
             )
         except _ShimDispatchedException:
             pass
@@ -768,9 +796,68 @@ def test_run_pass1_clusters_parallel_uses_legacy_path_when_no_context() -> None:
         assert "SOURCE (PRIMARY AUDIT TARGET" not in user
 
 
-def test_run_pass2_parallel_uses_context_path_when_context_present() -> None:
-    """When conversation_context is provided, Pass 2 must use
-    format_pass2_prompt_from_context (CONTEXT/SOURCE shape + enum-checklist)."""
+def test_run_pass2_parallel_uses_packet_path_when_ir_present() -> None:
+    """When IR is present, Pass 2 must use the packet formatter."""
+    from engine.system_b.pipeline import TriggeredTendency, _run_pass2_parallel
+    catalog = _lane1_minimal_catalog()
+    boundary = _RecordingBoundary()
+    ctx = _lane1_context_with_assistant()
+    ir = object()
+    packet = object()
+    triggered = (TriggeredTendency(tendency_id="authority-misinfluence-tendency", source="triage", score=6),)
+    captured_ir: list = []
+    captured_packets: list = []
+    captured_context: list = []
+    captured_legacy: list = []
+
+    def _build_packet(conversation_ir):
+        captured_ir.append(conversation_ir)
+        return packet
+
+    def _format_packet(*, packet, tendency_key, catalog):  # noqa: ARG001
+        captured_packets.append(packet)
+        return "PACKET_SYSTEM", "PACKET_USER"
+
+    def _format_context(*, context, tendency_key, catalog):  # noqa: ARG001
+        captured_context.append(context)
+        return "CONTEXT_SYSTEM", "CONTEXT_USER"
+
+    def _format_legacy(*, query, vanilla_answer, tendency_key, catalog):  # noqa: ARG001
+        captured_legacy.append((query, vanilla_answer))
+        return "LEGACY_SYSTEM", "LEGACY_USER"
+
+    with patch(
+        "engine.system_b.pipeline.build_lane4_packet",
+        side_effect=_build_packet,
+    ), patch(
+        "engine.system_b.pipeline.format_pass2_prompt_from_packet",
+        side_effect=_format_packet,
+    ), patch(
+        "engine.system_b.pipeline.format_pass2_prompt_from_context",
+        side_effect=_format_context,
+    ), patch(
+        "engine.system_b.pipeline.format_pass2_prompt",
+        side_effect=_format_legacy,
+    ):
+        _run_pass2_parallel(
+            triggered_tendencies=triggered,
+            request=CritiqueRequest(query="LEGACY_Q_NO", vanilla_answer="LEGACY_VA_NO"),
+            boundary=boundary,
+            catalog=catalog,
+            conversation_context=ctx,
+            conversation_ir=ir,
+        )
+
+    assert len(boundary.calls) == 1
+    assert boundary.calls[0] == ("PACKET_SYSTEM", "PACKET_USER")
+    assert captured_ir == [ir]
+    assert captured_packets == [packet]
+    assert captured_context == []
+    assert captured_legacy == []
+
+
+def test_run_pass2_parallel_uses_legacy_path_when_context_present_without_ir() -> None:
+    """Without IR, Pass 2 must now fall back straight to the legacy prompt."""
     from engine.system_b.pipeline import TriggeredTendency, _run_pass2_parallel
     catalog = _lane1_minimal_catalog()
     boundary = _RecordingBoundary()
@@ -786,15 +873,10 @@ def test_run_pass2_parallel_uses_context_path_when_context_present() -> None:
     )
 
     assert len(boundary.calls) == 1
-    system, user = boundary.calls[0]
-    assert "CONTEXT" in user
-    assert "SOURCE" in user
-    assert "You should take it" in user
-    # Legacy markers must not appear
-    assert "LEGACY_Q_NO" not in user
-    assert "LEGACY_VA_NO" not in user
-    # Enum-checklist reminder must be present in system prompt (2b durable lesson)
-    assert "ENUM CHECKLIST REMINDER" in system or "consider each" in system.lower()
+    _, user = boundary.calls[0]
+    assert "LEGACY_Q_NO" in user
+    assert "LEGACY_VA_NO" in user
+    assert "SOURCE (PRIMARY AUDIT TARGET" not in user
 
 
 def test_run_pass2_parallel_uses_legacy_path_when_no_context() -> None:
@@ -823,15 +905,31 @@ def test_run_pass2_parallel_uses_legacy_path_when_no_context() -> None:
 # ---------- Phase 2d: Lane 2 (Companion) dispatch ----------
 
 
-def test_run_companion_uses_context_path_when_context_present() -> None:
-    """With a ConversationContext, Lane 2 must call the `_from_context`
-    fingerprint + verification helpers, not the legacy `vanilla_answer` ones."""
+def test_run_companion_uses_packet_path_when_ir_present() -> None:
+    """With IR, Lane 2 must use packet helpers, not context or legacy ones."""
     from engine.system_b.pipeline import PipelineConfig
     ctx = _minimal_context()
+    ir = object()
+    packet = object()
+    captured_ir: list = []
+    captured_packet_fp: list = []
+    captured_packet_ver: list = []
     captured_ctx_fp: list = []
     captured_ctx_ver: list = []
     captured_legacy_fp: list = []
     captured_legacy_ver: list = []
+
+    def _build_packet(conversation_ir):
+        captured_ir.append(conversation_ir)
+        return packet
+
+    def _fp_packet(*, packet, client):  # noqa: ARG001
+        captured_packet_fp.append(packet)
+        return object()
+
+    def _ver_packet(*, packet, fingerprint_payload, candidates, client):  # noqa: ARG001
+        captured_packet_ver.append(packet)
+        raise _ShimDispatchedException()
 
     def _fp_ctx(*, context, client):  # noqa: ARG001
         captured_ctx_fp.append(context)
@@ -849,7 +947,11 @@ def test_run_companion_uses_context_path_when_context_present() -> None:
         captured_legacy_ver.append(vanilla_answer)
         raise _ShimDispatchedException()
 
-    with patch("engine.system_b.pipeline.run_fingerprint_call_from_context", side_effect=_fp_ctx), \
+    with patch("engine.system_b.pipeline.build_lane4_packet", side_effect=_build_packet), \
+         patch("engine.system_b.pipeline.run_fingerprint_call_from_packet", side_effect=_fp_packet), \
+         patch("engine.system_b.pipeline.run_verification_call_from_packet", side_effect=_ver_packet), \
+         patch("engine.system_b.pipeline.recall_candidates", return_value=[{"model_id": "m1"}]), \
+         patch("engine.system_b.pipeline.run_fingerprint_call_from_context", side_effect=_fp_ctx), \
          patch("engine.system_b.pipeline.run_verification_call_from_context", side_effect=_ver_ctx), \
          patch("engine.system_b.pipeline.run_fingerprint_call", side_effect=_fp_legacy), \
          patch("engine.system_b.pipeline.run_verification_call", side_effect=_ver_legacy):
@@ -866,13 +968,56 @@ def test_run_companion_uses_context_path_when_context_present() -> None:
                 CritiqueRequest(query="legacy_q", vanilla_answer="legacy_va"),
                 boundary_calls=[],
                 conversation_context=ctx,
+                conversation_ir=ir,
             )
         except _ShimDispatchedException:
             pass
 
-    assert len(captured_ctx_fp) == 1
-    assert captured_ctx_fp[0] is ctx
-    assert captured_legacy_fp == [], "legacy fingerprint must not run when context present"
+    assert captured_ir == [ir]
+    assert captured_packet_fp == [packet]
+    assert captured_packet_ver == [packet]
+    assert captured_ctx_fp == []
+    assert captured_ctx_ver == []
+    assert captured_legacy_fp == []
+    assert captured_legacy_ver == []
+
+
+def test_run_companion_uses_legacy_path_when_context_present_without_ir() -> None:
+    """Without IR, Lane 2 must now fall back straight to the legacy path."""
+    from engine.system_b.pipeline import PipelineConfig
+    ctx = _minimal_context()
+    captured_ctx_fp: list = []
+    captured_legacy_fp: list = []
+
+    def _fp_ctx(*, context, client):  # noqa: ARG001
+        captured_ctx_fp.append(context)
+        raise _ShimDispatchedException()
+
+    def _fp_legacy(*, query, vanilla_answer, client):  # noqa: ARG001
+        captured_legacy_fp.append((query, vanilla_answer))
+        raise _ShimDispatchedException()
+
+    with patch("engine.system_b.pipeline.run_fingerprint_call_from_context", side_effect=_fp_ctx), \
+         patch("engine.system_b.pipeline.run_fingerprint_call", side_effect=_fp_legacy):
+        pipeline = SystemBPipeline.__new__(SystemBPipeline)
+        pipeline._config = PipelineConfig(enable_companion=True, enable_embeddings=False)
+        pipeline._boundary = object()
+        pipeline._companion_knowledge_graph = {"models": {}}
+        pipeline._companion_reasoning_signals = {}
+        pipeline._companion_relation_graph = {}
+        pipeline._embedding_retriever = None
+        pipeline._embedding_api_key = ""
+        try:
+            pipeline._run_companion(
+                CritiqueRequest(query="qtext", vanilla_answer="vatext"),
+                boundary_calls=[],
+                conversation_context=ctx,
+            )
+        except _ShimDispatchedException:
+            pass
+
+    assert captured_legacy_fp == [("qtext", "vatext")]
+    assert captured_ctx_fp == [], "context fingerprint must not run without IR"
 
 
 def test_run_companion_uses_legacy_path_when_no_context() -> None:

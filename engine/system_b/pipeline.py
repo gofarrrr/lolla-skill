@@ -821,20 +821,16 @@ class SystemBPipeline:
                 ),
             )
 
-        # Phase 4c dispatch: prefer the IR-driven packet path when an IR is
-        # available; fall back to context-driven; legacy vanilla_answer path
-        # last. The packet is built once and reused across fingerprint +
-        # verification calls.
+        # Phase 4d dispatch: once ConversationContext enters the pipeline we
+        # always construct IR at entry, so the context-only fallback is dead.
+        # Keep the IR-driven packet path first and the legacy vanilla_answer
+        # path as the only remaining fallback. The packet is built once and
+        # reused across fingerprint + verification calls.
         packet = build_lane4_packet(conversation_ir) if conversation_ir is not None else None
 
         if packet is not None:
             fingerprint_payload = run_fingerprint_call_from_packet(
                 packet=packet,
-                client=self._boundary,
-            )
-        elif conversation_context is not None:
-            fingerprint_payload = run_fingerprint_call_from_context(
-                context=conversation_context,
                 client=self._boundary,
             )
         else:
@@ -865,13 +861,6 @@ class SystemBPipeline:
         if packet is not None:
             detected_models, rejected_models = run_verification_call_from_packet(
                 packet=packet,
-                fingerprint_payload=fingerprint_payload,
-                candidates=candidates,
-                client=self._boundary,
-            )
-        elif conversation_context is not None:
-            detected_models, rejected_models = run_verification_call_from_context(
-                context=conversation_context,
                 fingerprint_payload=fingerprint_payload,
                 candidates=candidates,
                 client=self._boundary,
@@ -909,10 +898,10 @@ class SystemBPipeline:
         if not self._config.enable_frame_pressure:
             return None
 
-        # Phase 4c dispatch: prefer the IR-driven packet path when an IR is
-        # available; fall back to context-driven; legacy CritiqueRequest path
-        # last. Reframe generation still uses the context path until its
-        # packet variant ships.
+        # Phase 4d dispatch: once ConversationContext enters the pipeline we
+        # always construct IR at entry, so extraction no longer needs a
+        # context-only fallback. Reframe generation still uses the context
+        # path until its packet variant ships.
         use_context = conversation_context is not None
 
         if conversation_ir is not None:
@@ -920,11 +909,6 @@ class SystemBPipeline:
             extraction_result = run_frame_extraction_from_packet(
                 boundary=self._boundary,
                 packet=packet,
-            )
-        elif use_context:
-            extraction_result = run_frame_extraction_from_context(
-                boundary=self._boundary,
-                context=conversation_context,
             )
         else:
             extraction_result = run_frame_extraction(
@@ -997,21 +981,14 @@ class SystemBPipeline:
         # Anti-echo: exclude models from all other lanes
         anti_echo = lane1_model_ids | lane2_model_ids | lane3_model_ids
 
-        # Phase 4b dispatch: prefer the IR-driven path when an IR is available
-        # (built once at pipeline entry). Falls back to the context-driven path
-        # if IR is absent (pre-Phase-1 callers), and the legacy CritiqueRequest
-        # path if neither IR nor context is present.
+        # Phase 4d dispatch: once ConversationContext enters the pipeline we
+        # always construct IR at entry, so the context-only fallback is dead.
+        # Keep the IR-driven path first and the legacy CritiqueRequest path as
+        # the only remaining fallback.
         if conversation_ir is not None:
             card = run_structural_coverage_from_ir(
                 boundary=self._boundary,
                 ir=conversation_ir,
-                structural_coverage_routing=routing,
-                anti_echo_model_ids=anti_echo,
-            )
-        elif conversation_context is not None:
-            card = run_structural_coverage_from_context(
-                boundary=self._boundary,
-                context=conversation_context,
                 structural_coverage_routing=routing,
                 anti_echo_model_ids=anti_echo,
             )
@@ -1250,19 +1227,14 @@ def _run_pass2_single(
 ) -> tuple[DeepCheckResult, BoundaryCallTrace]:
     """Run a single Pass 2 deep check. Thread-safe — uses run_json_with_metadata.
 
-    Phase 4c dispatch: prefer the IR-driven packet path when an IR is
-    available; fall back to context-driven; legacy CritiqueRequest last.
+    Phase 4d dispatch: once ConversationContext enters the pipeline we always
+    construct IR at entry, so Pass 2 keeps only the packet path and the legacy
+    CritiqueRequest fallback.
     """
     if conversation_ir is not None:
         packet = build_lane4_packet(conversation_ir)
         pass2_system, pass2_user = format_pass2_prompt_from_packet(
             packet=packet,
-            tendency_key=tendency_id,
-            catalog=catalog,
-        )
-    elif conversation_context is not None:
-        pass2_system, pass2_user = format_pass2_prompt_from_context(
-            context=conversation_context,
             tendency_key=tendency_id,
             catalog=catalog,
         )
@@ -1296,7 +1268,8 @@ def _run_pass2_parallel(
 
     Results are returned in the same order as triggered_tendencies.
     Falls back to sequential execution if run_json_with_metadata is unavailable.
-    Phase 4c dispatch: prefer IR-driven packet path → context → legacy.
+    Phase 4d dispatch: once ConversationContext enters the pipeline we always
+    construct IR at entry, so Pass 2 keeps only packet → legacy.
     """
     if not triggered_tendencies:
         return [], []
@@ -1309,12 +1282,6 @@ def _run_pass2_parallel(
         if packet is not None:
             return format_pass2_prompt_from_packet(
                 packet=packet,
-                tendency_key=tendency_key,
-                catalog=catalog,
-            )
-        if conversation_context is not None:
-            return format_pass2_prompt_from_context(
-                context=conversation_context,
                 tendency_key=tendency_key,
                 catalog=catalog,
             )
