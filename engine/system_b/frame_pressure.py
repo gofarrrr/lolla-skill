@@ -612,6 +612,122 @@ def run_frame_extraction_from_context(
 
 
 # ---------------------------------------------------------------------------
+# Phase 4c: packet-driven Lane 3 entry points
+# ---------------------------------------------------------------------------
+# Mirrors the from_context shape; same byte-equivalence-on-active-constraints
+# discipline as Lane 4 / Lane 1. Weight not in IR (Phase 1 design).
+
+from .packet_builders.lane4 import Lane4Packet  # noqa: E402  (intentional cycle-avoidance)
+
+
+def _format_frame_extraction_from_packet_user_prompt(packet: Lane4Packet) -> str:
+    """Packet-driven counterpart to `_format_frame_extraction_from_context_user_prompt`."""
+    parts: list[str] = [
+        "CONTEXT (background for understanding the decision — NOT quotable as evidence):",
+    ]
+    if packet.decision_situation:
+        parts.append(f"- Decision situation: {packet.decision_situation.text}")
+    if packet.original_framing:
+        parts.append(f"- Framing extracted upstream: {packet.original_framing.text}")
+    if packet.constraints:
+        parts.append("- Constraints:")
+        for c in packet.constraints:
+            status = c.status or "active"
+            tag = status.upper()  # weight not in IR
+            parts.append(f"  - [{tag}] {c.text} (turn {c.introduced_at_turn})")
+    if packet.issues:
+        parts.append("- Dropped threads:")
+        for i in packet.issues:
+            line = (
+                f"  - {i.text} (raised by {i.raised_by} turn {i.introduced_at_turn}, "
+                f"status: {i.status or '?'})"
+            )
+            if i.superseded_by:
+                line += f", superseded_by: {i.superseded_by}"
+            parts.append(line)
+
+    assistant_turns = [t for t in packet.turns if t.speaker == "assistant"]
+    if assistant_turns:
+        parts.append("- Assistant replies (NOT quotable — shown so you can see how the framing was engaged):")
+        for t in assistant_turns:
+            parts.append(f"  [Turn {t.turn_index} ASSISTANT] {t.text}")
+
+    parts.append("")
+    parts.append(
+        "SOURCE (evidence_quote MUST be a literal substring of a user turn from THIS section only — "
+        "the first user turn is the canonical framing anchor):"
+    )
+    user_turns = [t for t in packet.turns if t.speaker == "user"]
+    for t in user_turns:
+        parts.append(f"[Turn {t.turn_index}] USER:")
+        parts.append(t.text)
+        parts.append("")
+
+    return "\n".join(parts)
+
+
+def _joined_user_turns_text_from_packet(packet: Lane4Packet) -> str:
+    return "\n".join(t.text for t in packet.turns if t.speaker == "user")
+
+
+def _parse_frame_extraction_from_packet(
+    raw: dict, packet: Lane4Packet,
+) -> tuple[tuple[ExtractedFrameElement, ...], list[dict]]:
+    """Mirror of `_parse_frame_extraction_from_context`, validating evidence
+    against user_turns derived from the packet."""
+    user_text = _joined_user_turns_text_from_packet(packet)
+    items = require_list_of_dicts(raw, "frame_elements", "frame_extraction_from_packet")
+    elements: list[ExtractedFrameElement] = []
+    dropped: list[dict] = []
+    for item in items:
+        element_text = coerce_str(item.get("element_text"))
+        evidence = coerce_str(item.get("evidence_quote"))
+        pattern = coerce_str(item.get("frame_pattern"))
+
+        if not evidence:
+            _LOGGER.warning("Frame element missing evidence_quote, dropping: %r", element_text[:80])
+            dropped.append({"element_text": element_text, "drop_reason": "missing_evidence"})
+            continue
+
+        if not pattern:
+            _LOGGER.warning("Frame element missing frame_pattern, dropping: %r", element_text[:80])
+            dropped.append({"element_text": element_text, "drop_reason": "missing_pattern"})
+            continue
+
+        if not _evidence_in_text(evidence, user_text):
+            _LOGGER.warning(
+                "Frame element evidence_quote not found in user turns, skipping: %r",
+                evidence[:80],
+            )
+            dropped.append({"element_text": element_text, "drop_reason": "evidence_not_in_user_turns"})
+            continue
+
+        elements.append(
+            ExtractedFrameElement(
+                element_text=element_text,
+                element_type=coerce_str(item.get("element_type")),
+                evidence_quote=evidence,
+                frame_pattern=pattern,
+                fragility_signal=coerce_str(item.get("fragility_signal", "")),
+                inquiry_stage=coerce_str(item.get("inquiry_stage", "")),
+                likely_default=coerce_str(item.get("likely_default")) or "none",
+            )
+        )
+    return tuple(elements), dropped
+
+
+def run_frame_extraction_from_packet(
+    boundary: _BoundaryClient,
+    packet: Lane4Packet,
+) -> FramePressureCard:
+    """Packet-driven Lane 3 entry point."""
+    user_prompt = _format_frame_extraction_from_packet_user_prompt(packet)
+    raw = boundary.run_json(_FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT, user_prompt)
+    elements, dropped = _parse_frame_extraction_from_packet(raw, packet)
+    return FramePressureCard(frame_elements=elements, dropped_frame_elements=tuple(dropped))
+
+
+# ---------------------------------------------------------------------------
 # Phase 2: Deterministic frame-pattern-to-model routing
 # ---------------------------------------------------------------------------
 

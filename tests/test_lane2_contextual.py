@@ -274,3 +274,68 @@ def test_run_verification_from_context_empty_candidates_short_circuits():
     assert detected == []
     assert rejected == []
     assert client.calls == [], "no LLM call when there are no candidates"
+
+
+# ---------------------------------------------------------------------------
+# Phase 4c: packet-driven Lane 2 byte-equivalence tests
+# ---------------------------------------------------------------------------
+
+from engine.system_b.ir_constructor import construct_conversation_ir
+from engine.system_b.packet_builders.lane4 import build_lane4_packet
+from engine.system_b.companion_routing import (
+    _build_fingerprint_user_prompt_from_packet,
+    _build_verification_user_prompt_from_packet,
+    run_fingerprint_call_from_packet,
+    run_verification_call_from_packet,
+)
+
+
+def test_packet_fingerprint_user_prompt_matches_context_user_prompt() -> None:
+    ctx = _ctx()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+    ctx_prompt = _build_fingerprint_user_prompt_from_context(ctx)
+    pkt_prompt = _build_fingerprint_user_prompt_from_packet(packet)
+    assert ctx_prompt == pkt_prompt
+
+
+def test_packet_verification_user_prompt_matches_context_user_prompt() -> None:
+    ctx = _ctx()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+    fingerprint_payload = FingerprintPayload(raw=[], validated=[], dropped=[])
+    candidates = [{
+        "model_id": "first-principles-thinking",
+        "model_name": "First Principles Thinking",
+        "activation_trigger": "appeal-to-authority pattern",
+        "danger_when": "unverified expert claims",
+    }]
+    ctx_prompt = _build_verification_user_prompt_from_context(ctx, fingerprint_payload, candidates)
+    pkt_prompt = _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates)
+    assert ctx_prompt == pkt_prompt
+
+
+def test_run_fingerprint_call_from_packet_returns_same_payload_as_from_context() -> None:
+    ctx = _ctx()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+    payload = {"reasoning_moves": []}
+    ctx_pl = run_fingerprint_call_from_context(context=ctx, client=_RecordingClient(payload))
+    pkt_pl = run_fingerprint_call_from_packet(packet=packet, client=_RecordingClient(payload))
+    assert ctx_pl == pkt_pl
+
+
+def test_run_verification_from_packet_short_circuits_with_no_candidates() -> None:
+    ctx = _ctx()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+    client = _RecordingClient()
+    detected, rejected = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=[],
+        client=client,
+    )
+    assert detected == []
+    assert rejected == []
+    assert client.calls == []

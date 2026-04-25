@@ -426,10 +426,210 @@ def run_verification_call_from_context(
     if not candidates:
         return [], []
 
-    assistant_text = _joined_assistant_turns(context)
+    assistant_text = _joined_assistant_turns(context)  # used by parser below
     raw_payload = client.run_json(
         _build_verification_system_prompt(),
         _build_verification_user_prompt_from_context(context, fingerprint_payload, candidates),
+    )
+    accepted, rejected = parse_verification_response(
+        raw_payload,
+        assistant_text,
+        {candidate["model_id"] for candidate in candidates},
+    )
+    candidate_names = {
+        candidate["model_id"]: candidate["model_name"]
+        for candidate in candidates
+        if candidate.get("model_id") and candidate.get("model_name")
+    }
+    detected_models = [
+        DetectedModel(
+            model_id=item["model_id"],
+            model_name=candidate_names.get(item["model_id"], item["model_id"]),
+            evidence_quote=item.get("evidence_quote", ""),
+            presence_mode=item.get("presence_mode", "executed"),
+            presence_explanation=item.get("presence_explanation", ""),
+            detection_confidence="structural",
+        )
+        for item in accepted
+    ]
+    detected_models = detected_models[:5]
+    return detected_models, rejected
+
+
+# ---------------------------------------------------------------------------
+# Phase 4c: packet-driven Lane 2 entry points
+# ---------------------------------------------------------------------------
+# Same byte-equivalence-on-active-constraints discipline as Lane 4 / 1 / 3.
+# Weight not in IR (Phase 1 design).
+
+from .packet_builders.lane4 import Lane4Packet  # noqa: E402  (intentional cycle-avoidance)
+
+
+def _joined_assistant_turns_from_packet(packet: Lane4Packet) -> str:
+    """Mirror of `_joined_assistant_turns` for packet input."""
+    parts = [t.text for t in packet.turns if t.speaker == "assistant"]
+    return "\n".join(parts)
+
+
+def _build_fingerprint_user_prompt_from_packet(packet: Lane4Packet) -> str:
+    """Packet-driven counterpart to `_build_fingerprint_user_prompt_from_context`."""
+    parts: list[str] = [
+        "CONTEXT (background — NOT the audit target; use to understand what the user made live):",
+    ]
+    if packet.decision_situation:
+        parts.append(f"- Decision situation: {packet.decision_situation.text}")
+    if packet.original_framing:
+        parts.append(f"- Framing: {packet.original_framing.text}")
+    if packet.constraints:
+        parts.append("- Live constraints:")
+        for c in packet.constraints:
+            status = (c.status or "active").upper()
+            tag = status  # weight not in IR
+            parts.append(f"  - [{tag}] {c.text} (turn {c.introduced_at_turn})")
+    if packet.issues:
+        parts.append("- Dropped threads:")
+        for i in packet.issues:
+            line = (
+                f"  - {i.text} (raised by {i.raised_by} turn {i.introduced_at_turn}, "
+                f"status: {i.status or '?'})"
+            )
+            if i.superseded_by:
+                line += f", superseded_by: {i.superseded_by}"
+            parts.append(line)
+    user_turns = [t for t in packet.turns if t.speaker == "user"]
+    if user_turns:
+        parts.append("- User turns (CONTEXT only):")
+        for t in user_turns:
+            parts.append(f"  [Turn {t.turn_index}] USER: {t.text}")
+    parts.append("")
+    parts.append(
+        "SOURCE (assistant turns — extract reasoning moves from HERE; evidence quotes MUST be literal substrings of this section):"
+    )
+    assistant_turns = [t for t in packet.turns if t.speaker == "assistant"]
+    if not assistant_turns:
+        parts.append("(no assistant turns present)")
+    else:
+        for t in assistant_turns:
+            parts.append(f"[Turn {t.turn_index}] ASSISTANT:")
+            parts.append(t.text)
+            parts.append("")
+    parts.append(
+        "Extract 3-8 reasoning moves from SOURCE. "
+        "Each move must be supported by exact quotes copied from SOURCE. "
+        "Remember: every evidence_quotes entry must be a literal contiguous substring of assistant text in SOURCE — not from CONTEXT, not a paraphrase."
+    )
+    return "\n".join(parts)
+
+
+def run_fingerprint_call_from_packet(
+    *,
+    packet: Lane4Packet,
+    client,
+) -> FingerprintPayload:
+    """Packet-driven Lane 2 fingerprint call."""
+    assistant_text = _joined_assistant_turns_from_packet(packet)
+    raw_payload = client.run_json(
+        _build_fingerprint_system_prompt_from_context(),
+        _build_fingerprint_user_prompt_from_packet(packet),
+    )
+    fingerprint = parse_fingerprint_response(raw_payload, assistant_text)
+    validated = sorted(
+        fingerprint.validated,
+        key=lambda item: (0 if item.confidence == "high" else 1, item.move_id),
+    )[:8]
+    return FingerprintPayload(
+        raw=fingerprint.raw,
+        validated=validated,
+        dropped=fingerprint.dropped,
+    )
+
+
+def _build_verification_user_prompt_from_packet(
+    packet: Lane4Packet,
+    fingerprint_payload: FingerprintPayload,
+    candidates: list[dict[str, str]],
+) -> str:
+    """Packet-driven counterpart to `_build_verification_user_prompt_from_context`."""
+    parts: list[str] = [
+        "CONTEXT (background — what the user made live; NOT quotable as evidence):",
+    ]
+    if packet.decision_situation:
+        parts.append(f"- Decision situation: {packet.decision_situation.text}")
+    if packet.original_framing:
+        parts.append(f"- Framing: {packet.original_framing.text}")
+    if packet.constraints:
+        parts.append("- Live constraints:")
+        for c in packet.constraints:
+            status = (c.status or "active").upper()
+            tag = status  # weight not in IR
+            parts.append(f"  - [{tag}] {c.text} (turn {c.introduced_at_turn})")
+    user_turns = [t for t in packet.turns if t.speaker == "user"]
+    if user_turns:
+        parts.append("- User turns (CONTEXT only):")
+        for t in user_turns:
+            parts.append(f"  [Turn {t.turn_index}] USER: {t.text}")
+    parts.append("")
+    parts.append(
+        "SOURCE (assistant turns — evidence_quote for each accepted model MUST be a literal substring of this section):"
+    )
+    assistant_turns = [t for t in packet.turns if t.speaker == "assistant"]
+    if not assistant_turns:
+        parts.append("(no assistant turns present)")
+    else:
+        for t in assistant_turns:
+            parts.append(f"[Turn {t.turn_index}] ASSISTANT:")
+            parts.append(t.text)
+            parts.append("")
+
+    fingerprint_lines = [
+        "- {move_id} | {reasoning_move} | quotes: {quotes}".format(
+            move_id=move.move_id,
+            reasoning_move=move.reasoning_move,
+            quotes=" | ".join(move.evidence_quotes),
+        )
+        for move in fingerprint_payload.validated
+    ]
+    candidate_lines: list[str] = []
+    for candidate in candidates:
+        line = "- {model_id} | {model_name} | activation: {activation_trigger}".format(
+            model_id=candidate["model_id"],
+            model_name=candidate["model_name"],
+            activation_trigger=candidate["activation_trigger"],
+        )
+        dw = candidate.get("danger_when", "")
+        if dw:
+            line += f" | watches_for: {dw}"
+        candidate_lines.append(line)
+
+    parts.append("Validated fingerprint moves:")
+    parts.append("\n".join(fingerprint_lines) if fingerprint_lines else "(none)")
+    parts.append("")
+    parts.append("Candidate models:")
+    parts.append("\n".join(candidate_lines))
+    parts.append("")
+    parts.append(
+        "Return ONLY the JSON object described in the system prompt. "
+        "Do not return arrays of model ids. "
+        "Use exact evidence quotes copied from SOURCE (assistant turns) for every accepted model."
+    )
+    return "\n".join(parts)
+
+
+def run_verification_call_from_packet(
+    *,
+    packet: Lane4Packet,
+    fingerprint_payload: FingerprintPayload,
+    candidates: list[dict[str, str]],
+    client,
+) -> tuple[list[DetectedModel], list[dict[str, str]]]:
+    """Packet-driven Lane 2 verification call."""
+    if not candidates:
+        return [], []
+
+    assistant_text = _joined_assistant_turns_from_packet(packet)
+    raw_payload = client.run_json(
+        _build_verification_system_prompt(),
+        _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates),
     )
     accepted, rejected = parse_verification_response(
         raw_payload,

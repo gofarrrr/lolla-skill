@@ -26,6 +26,7 @@ from .frame_pressure import (
     route_frame_elements,
     run_frame_extraction,
     run_frame_extraction_from_context,
+    run_frame_extraction_from_packet,
 )
 from .structural_coverage import (
     StructuralCoverageCard,
@@ -37,6 +38,8 @@ from .ir import ConversationIR
 from .companion_routing import (
     recall_candidates,
     run_fingerprint_call,
+    run_fingerprint_call_from_packet,
+    run_verification_call_from_packet,
     run_fingerprint_call_from_context,
     run_verification_call,
     run_verification_call_from_context,
@@ -63,8 +66,10 @@ from .deep_checks import (
     DeepCheckResult,
     format_pass2_prompt,
     format_pass2_prompt_from_context,
+    format_pass2_prompt_from_packet,
     parse_pass2_result,
 )
+from .packet_builders.lane4 import build_lane4_packet
 from .authority_phase1_builder import AuthorityPhase1Builder
 from .authority_deep_check_packet_adapter import (
     map_authority_result_to_subpattern,
@@ -525,13 +530,14 @@ class SystemBPipeline:
 
         if not triggered_tendencies:
             companion_started = time.monotonic()
-            companion_result = self._run_companion(request, boundary_calls, conversation_context=conversation_context)
+            companion_result = self._run_companion(request, boundary_calls, conversation_context=conversation_context, conversation_ir=conversation_ir)
             companion_seconds = time.monotonic() - companion_started
             frame_card = self._run_frame_pressure(
                 request, boundary_calls,
                 lane1_tendency_ids=set(),
                 lane1_model_ids=set(),
                 conversation_context=conversation_context,
+                conversation_ir=conversation_ir,
             )
             _lane2_model_ids = _extract_companion_model_ids(companion_result)
             _lane3_model_ids = _extract_frame_model_ids(frame_card)
@@ -628,6 +634,7 @@ class SystemBPipeline:
                 boundary=self._boundary,
                 catalog=self._catalog,
                 conversation_context=conversation_context,
+                conversation_ir=conversation_ir,
             )
             boundary_calls.extend(pass2_boundary_calls)
             pass2_seconds = time.monotonic() - pass2_started
@@ -661,13 +668,14 @@ class SystemBPipeline:
                 promoted_stress_results=promoted_stress_results,
             )
         companion_started = time.monotonic()
-        companion_result = self._run_companion(request, boundary_calls, conversation_context=conversation_context)
+        companion_result = self._run_companion(request, boundary_calls, conversation_context=conversation_context, conversation_ir=conversation_ir)
         companion_seconds = time.monotonic() - companion_started
         frame_card = self._run_frame_pressure(
             request, boundary_calls,
             lane1_tendency_ids={route.tendency.tendency_id for route in routes},
             lane1_model_ids=set(delta_card.selected_model_ids),
             conversation_context=conversation_context,
+            conversation_ir=conversation_ir,
         )
         _lane2_model_ids = _extract_companion_model_ids(companion_result)
         _lane3_model_ids = _extract_frame_model_ids(frame_card)
@@ -800,6 +808,7 @@ class SystemBPipeline:
         request: CritiqueRequest,
         boundary_calls: list[BoundaryCallTrace],
         conversation_context: ConversationContext | None = None,
+        conversation_ir: ConversationIR | None = None,
     ) -> CompanionRunResult:
         if not self._config.enable_companion:
             return CompanionRunResult()
@@ -812,10 +821,18 @@ class SystemBPipeline:
                 ),
             )
 
-        # Phase 2d: when a ConversationContext is present, fingerprint + verify
-        # against turn-structured assistant text. Legacy vanilla_answer path
-        # remains intact for callers that don't pass a context.
-        if conversation_context is not None:
+        # Phase 4c dispatch: prefer the IR-driven packet path when an IR is
+        # available; fall back to context-driven; legacy vanilla_answer path
+        # last. The packet is built once and reused across fingerprint +
+        # verification calls.
+        packet = build_lane4_packet(conversation_ir) if conversation_ir is not None else None
+
+        if packet is not None:
+            fingerprint_payload = run_fingerprint_call_from_packet(
+                packet=packet,
+                client=self._boundary,
+            )
+        elif conversation_context is not None:
             fingerprint_payload = run_fingerprint_call_from_context(
                 context=conversation_context,
                 client=self._boundary,
@@ -845,7 +862,14 @@ class SystemBPipeline:
             embedding_retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             embedding_api_key=self._embedding_api_key,
         )
-        if conversation_context is not None:
+        if packet is not None:
+            detected_models, rejected_models = run_verification_call_from_packet(
+                packet=packet,
+                fingerprint_payload=fingerprint_payload,
+                candidates=candidates,
+                client=self._boundary,
+            )
+        elif conversation_context is not None:
             detected_models, rejected_models = run_verification_call_from_context(
                 context=conversation_context,
                 fingerprint_payload=fingerprint_payload,
@@ -880,18 +904,24 @@ class SystemBPipeline:
         lane1_tendency_ids: set[str] | None = None,
         lane1_model_ids: set[str] | None = None,
         conversation_context: ConversationContext | None = None,
+        conversation_ir: ConversationIR | None = None,
     ) -> FramePressureCard | None:
         if not self._config.enable_frame_pressure:
             return None
 
-        # Phase 2a dispatch: when the caller passed a ConversationContext at
-        # the pipeline entry point, Lane 3 uses the conversation-first
-        # extraction and reframe generators. Otherwise it runs the legacy
-        # path on the shim-converted CritiqueRequest. Legacy entry points
-        # stay alongside the new ones until Phase 3.
+        # Phase 4c dispatch: prefer the IR-driven packet path when an IR is
+        # available; fall back to context-driven; legacy CritiqueRequest path
+        # last. Reframe generation still uses the context path until its
+        # packet variant ships.
         use_context = conversation_context is not None
 
-        if use_context:
+        if conversation_ir is not None:
+            packet = build_lane4_packet(conversation_ir)
+            extraction_result = run_frame_extraction_from_packet(
+                boundary=self._boundary,
+                packet=packet,
+            )
+        elif use_context:
             extraction_result = run_frame_extraction_from_context(
                 boundary=self._boundary,
                 context=conversation_context,
@@ -1216,13 +1246,21 @@ def _run_pass2_single(
     boundary: BoundaryClient,
     catalog: TendencyCatalog,
     conversation_context: ConversationContext | None = None,
+    conversation_ir: ConversationIR | None = None,
 ) -> tuple[DeepCheckResult, BoundaryCallTrace]:
     """Run a single Pass 2 deep check. Thread-safe — uses run_json_with_metadata.
 
-    When ``conversation_context`` is provided (Phase 2c migration), the prompt
-    uses the CONTEXT/SOURCE shape with assistant turns as primary audit target.
+    Phase 4c dispatch: prefer the IR-driven packet path when an IR is
+    available; fall back to context-driven; legacy CritiqueRequest last.
     """
-    if conversation_context is not None:
+    if conversation_ir is not None:
+        packet = build_lane4_packet(conversation_ir)
+        pass2_system, pass2_user = format_pass2_prompt_from_packet(
+            packet=packet,
+            tendency_key=tendency_id,
+            catalog=catalog,
+        )
+    elif conversation_context is not None:
         pass2_system, pass2_user = format_pass2_prompt_from_context(
             context=conversation_context,
             tendency_key=tendency_id,
@@ -1252,18 +1290,28 @@ def _run_pass2_parallel(
     boundary: BoundaryClient,
     catalog: TendencyCatalog,
     conversation_context: ConversationContext | None = None,
+    conversation_ir: ConversationIR | None = None,
 ) -> tuple[list[DeepCheckResult], list[BoundaryCallTrace]]:
     """Run Pass 2 deep checks in parallel using thread pool.
 
     Results are returned in the same order as triggered_tendencies.
     Falls back to sequential execution if run_json_with_metadata is unavailable.
-    When ``conversation_context`` is provided, prompts use the CONTEXT/SOURCE
-    turn-structured shape (Phase 2c migration path).
+    Phase 4c dispatch: prefer IR-driven packet path → context → legacy.
     """
     if not triggered_tendencies:
         return [], []
 
+    # Phase 4c: build the packet ONCE per pipeline run if IR available, then
+    # reuse across all parallel Pass 2 calls (saves redundant projection work).
+    packet = build_lane4_packet(conversation_ir) if conversation_ir is not None else None
+
     def _format_prompt_for(tendency_key: str) -> tuple[str, str]:
+        if packet is not None:
+            return format_pass2_prompt_from_packet(
+                packet=packet,
+                tendency_key=tendency_key,
+                catalog=catalog,
+            )
         if conversation_context is not None:
             return format_pass2_prompt_from_context(
                 context=conversation_context,
@@ -1298,6 +1346,7 @@ def _run_pass2_parallel(
                 boundary,
                 catalog,
                 conversation_context,
+                conversation_ir,
             )
             for tt in triggered_tendencies
         ]
