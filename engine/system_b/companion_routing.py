@@ -811,7 +811,7 @@ def retrieve_candidate_models(
 
 def recall_candidates(
     *,
-    vanilla_answer: str,
+    assistant_text: str,
     fingerprint_payload: FingerprintPayload,
     knowledge_graph: dict,
     reasoning_signals: dict,
@@ -824,7 +824,7 @@ def recall_candidates(
         return []
 
     fingerprint_texts = [move.reasoning_move for move in fingerprint_payload.validated]
-    primary_texts = [vanilla_answer, *fingerprint_texts]
+    primary_texts = [assistant_text, *fingerprint_texts]
     ranked_primary: list[tuple[int, str, str, str]] = []
 
     for model_id, model_payload in models.items():

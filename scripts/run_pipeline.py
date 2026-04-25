@@ -186,6 +186,7 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         output["structural_coverage_card"] = None
 
     # Audit summary with companion diagnostics
+    from system_b.testing_harness import summarize_boundary_calls
     output["audit_summary"] = {
         "triage_scores": [
             {"tendency_id": s.tendency_id, "score": s.score, "evidence": s.evidence}
@@ -197,6 +198,7 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
             for tt in result.audit.triggered_tendencies
         ],
         "boundary_call_count": len(result.audit.boundary_calls),
+        "boundary_summary": summarize_boundary_calls(result.audit.boundary_calls),
         "boundary_calls": [
             {
                 "stage": bc.stage,

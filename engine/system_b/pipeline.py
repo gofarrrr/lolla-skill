@@ -353,7 +353,7 @@ class SystemBPipeline:
         boundary_calls.extend(pass1_boundary_calls)
         pass1_seconds = time.monotonic() - pass1_started
         embedding_tendency_hits = _embedding_tendency_signal(
-            vanilla_answer=assistant_text,
+            assistant_text=assistant_text,
             retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             api_key=self._embedding_api_key,
         )
@@ -672,7 +672,7 @@ class SystemBPipeline:
             conversation_context
         )
         candidates = recall_candidates(
-            vanilla_answer=recall_source_text,
+            assistant_text=recall_source_text,
             fingerprint_payload=fingerprint_payload,
             knowledge_graph=self._companion_knowledge_graph,
             reasoning_signals=self._companion_reasoning_signals,
@@ -843,10 +843,19 @@ def _user_query_text(conversation_context: ConversationContext) -> str:
 
 
 def _assistant_reasoning_text(conversation_context: ConversationContext) -> str:
+    """Return joined assistant-turn text. When no assistant turns exist
+    (degenerate input), returns empty string and logs a warning instead of
+    silently falling back to extractor paraphrase. Capture-health gating in
+    extraction prevents this from firing in production; the warning surfaces
+    if it ever does."""
     assistant_text = _joined_assistant_turns_text(conversation_context).strip()
     if assistant_text:
         return assistant_text
-    return str(conversation_context.extraction.synthesized_position or "").strip()
+    _LOGGER.warning(
+        "_assistant_reasoning_text: no assistant turns in ConversationContext; "
+        "returning empty string instead of falling back to synthesized_position"
+    )
+    return ""
 
 
 def _semantic_rerank_text(conversation_context: ConversationContext) -> str:
@@ -982,7 +991,7 @@ def _serialize_detected_models(models: list[DetectedModel]) -> list[dict[str, st
 
 
 def _embedding_tendency_signal(
-    vanilla_answer: str,
+    assistant_text: str,
     retriever,
     api_key: str,
     threshold: float = 0.30,
@@ -996,7 +1005,7 @@ def _embedding_tendency_signal(
     if retriever is None or not api_key:
         return {}
     try:
-        query_vec = retriever.embed_and_cache(vanilla_answer, api_key)
+        query_vec = retriever.embed_and_cache(assistant_text, api_key)
         if query_vec is None:
             _LOGGER.warning("embedding_tendency_signal: embed_and_cache returned None")
             return {}
