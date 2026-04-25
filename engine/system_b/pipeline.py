@@ -19,6 +19,10 @@ from .boundary_tracing import (
     _capture_boundary_call,
     _metadata_to_boundary_call_trace,
 )
+from .pass1_runner import (
+    _run_pass1_cluster_single,
+    _run_pass1_clusters_parallel,
+)
 from .conversation_context import ConversationContext
 from .ir_constructor import construct_conversation_ir
 from .companion import CompanionCard, DetectedModel, FingerprintMove, FingerprintPayload, build_companion_card
@@ -97,13 +101,7 @@ from .reciprocation_deep_check_packet_adapter import (
 from .pilot_deep_check_bridge import PilotDeepCheckBridge, PilotDeepCheckBridgeResult
 from .pressure_bundle_selector import PressureBundleSelector
 from .pressure_bundle_selector import SelectedChunkRecord
-from .prompts import (
-    PASS1_CLUSTERS,
-    _joined_assistant_turns_text,
-    cluster_tendency_ids,
-    format_pass1_cluster_prompts,
-    format_pass1_cluster_prompts_from_context,
-)
+from .prompts import _joined_assistant_turns_text
 from .relation_graph import RelationGraph
 from .reward_and_punishment_deep_check_packet_adapter import (
     map_reward_and_punishment_result_to_subpattern,
@@ -139,7 +137,7 @@ from .reason_respecting_deep_check_packet_adapter import (
     map_reason_respecting_result_to_subpattern,
 )
 from .tendency_catalog import TendencyCatalog
-from .triage import TriageScore, parse_pass1_scores
+from .triage import TriageScore
 
 
 class BoundaryClient(Protocol):
@@ -1096,99 +1094,10 @@ def _structural_coverage_audit_fields(card: StructuralCoverageCard | None) -> di
     }
 
 
-# _capture_boundary_call and _metadata_to_boundary_call_trace moved to
-# engine.system_b.boundary_tracing in Phase 7.1. Imported at the top of
-# this module and re-exported for backwards compatibility.
-
-
-def _run_pass1_cluster_single(
-    cluster_id: str,
-    system_prompt: str,
-    user_prompt: str,
-    boundary: BoundaryClient,
-    catalog: TendencyCatalog,
-) -> tuple[list[TriageScore], BoundaryCallTrace]:
-    """Run a single Pass 1 cluster triage call. Thread-safe — uses run_json_with_metadata."""
-    payload, metadata = boundary.run_json_with_metadata(system_prompt, user_prompt)
-    trace = _metadata_to_boundary_call_trace(metadata, stage=f"pass1_cluster_{cluster_id}")
-    # Parse all returned scores against the full catalog, then filter to this
-    # cluster's assigned tendencies. Belt-and-suspenders: if the LLM returns a
-    # score outside the family (despite the prompt's instructions), drop it
-    # here so downstream code sees only this cluster's output.
-    all_scores = parse_pass1_scores(payload, catalog)
-    assigned = set(cluster_tendency_ids(cluster_id))
-    filtered = [s for s in all_scores if s.tendency_id in assigned]
-    return filtered, trace
-
-
-def _run_pass1_clusters_parallel(
-    *,
-    request: CritiqueRequest,
-    boundary: BoundaryClient,
-    catalog: TendencyCatalog,
-    conversation_context: ConversationContext | None = None,
-) -> tuple[list[TriageScore], list[BoundaryCallTrace]]:
-    """Run all Pass 1 cluster triage calls in parallel and merge their scores.
-
-    Returns a single ``list[TriageScore]`` covering all clusters' assigned
-    tendencies, plus one BoundaryCallTrace per cluster call. Unassigned
-    tendencies (e.g., ``lollapalooza-tendency``, which is detected by the
-    deterministic compound-group logic, not by triage) are absent from the
-    returned scores — downstream code treats absence as score=0.
-
-    When ``conversation_context`` is provided (Phase 2c migration path), the
-    cluster prompts use the CONTEXT/SOURCE turn-structured shape with
-    assistant turns as the primary audit target. Otherwise the legacy
-    query+vanilla_answer shape is used.
-
-    Falls back to sequential execution if ``run_json_with_metadata`` is
-    unavailable (e.g., test mocks).
-    """
-    if conversation_context is not None:
-        cluster_prompts = format_pass1_cluster_prompts_from_context(
-            context=conversation_context,
-            catalog=catalog,
-        )
-    else:
-        cluster_prompts = format_pass1_cluster_prompts(
-            query=request.query,
-            vanilla_answer=request.vanilla_answer,
-            catalog=catalog,
-        )
-
-    if not hasattr(boundary, "run_json_with_metadata") or not getattr(boundary, "supports_parallel_calls", False):
-        # Fallback for test mocks or custom clients without the new method.
-        merged_scores: list[TriageScore] = []
-        traces: list[BoundaryCallTrace] = []
-        for cluster_id, system_prompt, user_prompt in cluster_prompts:
-            payload = boundary.run_json(system_prompt, user_prompt)
-            traces.append(_capture_boundary_call(boundary, stage=f"pass1_cluster_{cluster_id}"))
-            all_scores = parse_pass1_scores(payload, catalog)
-            assigned = set(cluster_tendency_ids(cluster_id))
-            merged_scores.extend(s for s in all_scores if s.tendency_id in assigned)
-        return merged_scores, traces
-
-    max_workers = min(len(cluster_prompts), 8)
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = [
-            executor.submit(
-                _run_pass1_cluster_single,
-                cluster_id,
-                system_prompt,
-                user_prompt,
-                boundary,
-                catalog,
-            )
-            for cluster_id, system_prompt, user_prompt in cluster_prompts
-        ]
-    # Collect in submission order (preserves cluster ordering)
-    merged_scores: list[TriageScore] = []
-    boundary_traces: list[BoundaryCallTrace] = []
-    for future in futures:
-        scores, trace = future.result()
-        merged_scores.extend(scores)
-        boundary_traces.append(trace)
-    return merged_scores, boundary_traces
+# _capture_boundary_call / _metadata_to_boundary_call_trace moved to
+# engine.system_b.boundary_tracing in Phase 7.1, and Pass 1 helpers moved to
+# engine.system_b.pass1_runner in Phase 7.2. Imported at the top of this
+# module and re-exported for backwards compatibility.
 
 
 def _run_pass2_single(
