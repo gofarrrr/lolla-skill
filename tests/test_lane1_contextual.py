@@ -1,12 +1,13 @@
-"""Tests for the Phase 2c conversation-first Lane 1 entry points.
+"""Tests for the Lane 1 (cognitive tendency) entry points.
 
 Covers:
-- `_joined_assistant_turns_text` — flat string of assistant turns for
-  embedding signal + backward-compat callers.
+- `_joined_assistant_turns_text` — flat string of assistant turns used by
+  the pipeline embedding signal + telemetry.
 - `format_pass1_cluster_prompts_from_context` — 6 cluster prompts with
   CONTEXT/SOURCE split; SOURCE = assistant turns (Lane 1 audits the
-  assistant's reasoning).
-- `format_pass2_prompt_from_context` — per-tendency deep-check prompt
+  assistant's reasoning). LIVE entry point — Pass 1 runner consumes
+  ConversationContext directly.
+- `format_pass2_prompt_from_packet` — per-tendency deep-check prompt
   with CONTEXT/SOURCE split + enum-checklist reminder for sub_patterns
   (durable 2b lesson: bake into first draft).
 
@@ -23,19 +24,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from engine.system_b.conversation_context import (
     ConversationContext,
+    DroppedThread,
     ExtractionPayload,
     LiveConstraint,
-    DroppedThread,
     Turn,
 )
+from engine.system_b.deep_checks import (
+    _format_pass2_from_packet_user_prompt,
+    format_pass2_prompt_from_packet,
+)
+from engine.system_b.ir_constructor import construct_conversation_ir
+from engine.system_b.packet_builders.lane4 import Lane4Packet, build_lane4_packet
 from engine.system_b.prompts import (
     PASS1_CLUSTERS,
     _joined_assistant_turns_text,
     format_pass1_cluster_prompts_from_context,
-)
-from engine.system_b.deep_checks import (
-    _format_pass2_from_context_user_prompt,
-    format_pass2_prompt_from_context,
 )
 from engine.system_b.tendency_catalog import (
     ModelBinding,
@@ -104,6 +107,10 @@ def _context(
     return ConversationContext(turns=tuple(turns), extraction=extraction)
 
 
+def _packet_from_ctx(ctx: ConversationContext) -> Lane4Packet:
+    return build_lane4_packet(construct_conversation_ir(ctx))
+
+
 # ---------------------------------------------------------------------------
 # _joined_assistant_turns_text
 # ---------------------------------------------------------------------------
@@ -135,7 +142,8 @@ def test_joined_assistant_turns_text_empty_when_no_assistant_turns():
 
 
 # ---------------------------------------------------------------------------
-# format_pass1_cluster_prompts_from_context
+# format_pass1_cluster_prompts_from_context (LIVE — Pass 1 runner consumes
+# ConversationContext directly)
 # ---------------------------------------------------------------------------
 
 def test_pass1_from_context_returns_one_entry_per_cluster():
@@ -188,7 +196,7 @@ def test_pass1_from_context_includes_extraction_context_fields():
         DroppedThread(
             thread="wife-first conversation",
             raised_by="user",
-            raised_turn=3,
+            raised_turn=1,
             status="acknowledged_then_dropped",
             superseded_by="focused on job offer",
         ),
@@ -217,34 +225,34 @@ def test_pass1_from_context_preserves_cluster_system_prompt_shape():
 
 
 # ---------------------------------------------------------------------------
-# format_pass2_prompt_from_context
+# format_pass2_prompt_from_packet (Pass 2 runner consumes Lane4Packet)
 # ---------------------------------------------------------------------------
 
-def test_pass2_from_context_returns_system_and_user_tuple():
+def test_pass2_from_packet_returns_system_and_user_tuple():
     catalog = _catalog()
-    ctx = _context()
+    packet = _packet_from_ctx(_context())
     # pick a common tendency
     tendency_key = "authority-misinfluence-tendency"
-    system, user = format_pass2_prompt_from_context(ctx, tendency_key, catalog)
+    system, user = format_pass2_prompt_from_packet(packet, tendency_key, catalog)
     assert isinstance(system, str)
     assert isinstance(user, str)
     assert len(system) > 0
     assert len(user) > 0
 
 
-def test_pass2_from_context_user_prompt_has_context_and_source_sections():
+def test_pass2_from_packet_user_prompt_has_context_and_source_sections():
     catalog = _catalog()
-    ctx = _context(
+    packet = _packet_from_ctx(_context(
         user_texts=("Should I take the offer?",),
         assistant_texts=("Yes, 15% is strong because reputable VCs know best.",),
-    )
-    _, user = format_pass2_prompt_from_context(ctx, "authority-misinfluence-tendency", catalog)
+    ))
+    _, user = format_pass2_prompt_from_packet(packet, "authority-misinfluence-tendency", catalog)
     assert "CONTEXT" in user
     assert "SOURCE" in user
     assert "Yes, 15% is strong" in user  # assistant turn in SOURCE
 
 
-def test_pass2_from_context_system_prompt_has_enum_checklist_reminder():
+def test_pass2_from_packet_system_prompt_has_enum_checklist_reminder():
     """Durable 2b lesson: bake enum-checklist reminder for sub_patterns into
     the first-draft system prompt — don't wait for measurement to force iteration.
 
@@ -252,8 +260,8 @@ def test_pass2_from_context_system_prompt_has_enum_checklist_reminder():
     menu, including ones that manifest as omission rather than surface in the
     assistant's verbatim text."""
     catalog = _catalog()
-    ctx = _context()
-    system, _ = format_pass2_prompt_from_context(ctx, "authority-misinfluence-tendency", catalog)
+    packet = _packet_from_ctx(_context())
+    system, _ = format_pass2_prompt_from_packet(packet, "authority-misinfluence-tendency", catalog)
     # The reminder should explicitly mention considering all sub_patterns, not just
     # ones obvious in surface text. Check for the key phrase.
     lowered = system.lower()
@@ -268,45 +276,31 @@ def test_pass2_from_context_system_prompt_has_enum_checklist_reminder():
     )
 
 
-def test_pass2_from_context_system_prompt_includes_tendency_specifics():
+def test_pass2_from_packet_system_prompt_includes_tendency_specifics():
     """Should still include tendency name, number, description, route menu."""
     catalog = _catalog()
-    ctx = _context()
+    packet = _packet_from_ctx(_context())
     tendency_key = "authority-misinfluence-tendency"
     tendency = catalog.lookup(tendency_key)
-    system, _ = format_pass2_prompt_from_context(ctx, tendency_key, catalog)
+    system, _ = format_pass2_prompt_from_packet(packet, tendency_key, catalog)
     assert tendency.display_name in system
     assert str(tendency.tendency_number) in system
 
 
-def test_pass2_from_context_user_prompt_does_not_use_legacy_query_vanilla_format():
+def test_pass2_from_packet_user_prompt_does_not_use_legacy_query_vanilla_format():
     """Sanity: the new-path user prompt should NOT use the legacy `QUERY:\\nVANILLA ANSWER:` structure."""
     catalog = _catalog()
-    ctx = _context()
-    _, user = format_pass2_prompt_from_context(ctx, "authority-misinfluence-tendency", catalog)
+    packet = _packet_from_ctx(_context())
+    _, user = format_pass2_prompt_from_packet(packet, "authority-misinfluence-tendency", catalog)
     # Legacy format has `QUERY:` and `VANILLA ANSWER:` as top-level blocks
     # New path uses CONTEXT/SOURCE instead
     assert "CONTEXT" in user
     assert "SOURCE" in user
 
 
-# ---------------------------------------------------------------------------
-# Phase 4c: packet-driven Lane 1 byte-equivalence tests
-# ---------------------------------------------------------------------------
-
-from engine.system_b.ir_constructor import construct_conversation_ir
-from engine.system_b.packet_builders.lane4 import build_lane4_packet
-from engine.system_b.deep_checks import (
-    _format_pass2_from_packet_user_prompt,
-    format_pass2_prompt_from_packet,
-)
-
-
-def _ctx_active_constraints_for_lane1() -> ConversationContext:
-    """Realistic Lane 1 context with all-active constraints (lossless
-    projection — the IR doesn't carry `weight` so non-active constraints
-    would render differently)."""
-    return _context(
+def test_pass2_from_packet_user_prompt_with_active_constraints() -> None:
+    """Realistic Lane 1 Pass 2 prompt with active constraints renders cleanly."""
+    ctx = _context(
         user_texts=("Should I take the 15% equity offer?",),
         assistant_texts=("You should definitely take it — 15% is standard for Series B and you'll make it up in secondary.",),
         decision_situation="Founder-CEO considering Series B equity offer.",
@@ -320,37 +314,19 @@ def _ctx_active_constraints_for_lane1() -> ConversationContext:
             ),
         ),
     )
+    packet = _packet_from_ctx(ctx)
+
+    user = _format_pass2_from_packet_user_prompt(packet, "Authority Misinfluence Tendency")
+    # constraints render in CONTEXT
+    assert "Series B stage" in user
+    # SOURCE has the assistant turn
+    assert "15% is standard for Series B" in user
+    # explicit instruction line
+    assert "Authority Misinfluence Tendency" in user
 
 
-def test_pass2_packet_user_prompt_matches_context_user_prompt() -> None:
-    """Byte-equivalence: packet-driven Pass 2 user prompt is identical to
-    context-driven prompt for the same input (lossless case)."""
-    ctx = _ctx_active_constraints_for_lane1()
-    ir = construct_conversation_ir(ctx)
-    packet = build_lane4_packet(ir)
-
-    tendency_name = "Authority Misinfluence Tendency"
-    ctx_user = _format_pass2_from_context_user_prompt(ctx, tendency_name)
-    packet_user = _format_pass2_from_packet_user_prompt(packet, tendency_name)
-    assert ctx_user == packet_user
-
-
-def test_format_pass2_prompt_from_packet_returns_same_system_user_as_from_context() -> None:
-    """End-to-end Lane 1 Pass 2 byte-equivalence: same (system, user) tuple."""
-    ctx = _ctx_active_constraints_for_lane1()
-    ir = construct_conversation_ir(ctx)
-    packet = build_lane4_packet(ir)
-    catalog = _catalog()
-    tendency_key = "authority-misinfluence-tendency"
-
-    ctx_system, ctx_user = format_pass2_prompt_from_context(ctx, tendency_key, catalog)
-    pkt_system, pkt_user = format_pass2_prompt_from_packet(packet, tendency_key, catalog)
-    assert ctx_system == pkt_system
-    assert ctx_user == pkt_user
-
-
-def test_format_pass2_prompt_from_packet_with_dropped_threads() -> None:
-    """Byte-equivalence with a user-raised dropped_thread populated."""
+def test_pass2_from_packet_with_dropped_threads() -> None:
+    """User-raised dropped_thread renders in CONTEXT under 'Dropped threads:'."""
     ctx = _context(
         user_texts=("Should I take the 15% equity offer?",),
         assistant_texts=("Take it.",),
@@ -374,12 +350,10 @@ def test_format_pass2_prompt_from_packet_with_dropped_threads() -> None:
             ),
         ),
     )
-    ir = construct_conversation_ir(ctx)
-    packet = build_lane4_packet(ir)
+    packet = _packet_from_ctx(ctx)
     catalog = _catalog()
     tendency_key = "authority-misinfluence-tendency"
 
-    ctx_system, ctx_user = format_pass2_prompt_from_context(ctx, tendency_key, catalog)
-    pkt_system, pkt_user = format_pass2_prompt_from_packet(packet, tendency_key, catalog)
-    assert ctx_system == pkt_system
-    assert ctx_user == pkt_user
+    _, user = format_pass2_prompt_from_packet(packet, tendency_key, catalog)
+    assert "vesting cliff details" in user
+    assert "Dropped threads:" in user

@@ -1,12 +1,12 @@
-"""Tests for the Phase 2a conversation-first Lane 3 entry points.
+"""Tests for the Lane 3 (Frame Pressure) packet-driven entry points.
 
 Covers:
-- `run_frame_extraction_from_context` — builds the user prompt from a
-  ConversationContext, validates evidence against user turns (not the
-  collapsed query), returns the same FramePressureCard shape as the legacy
-  entry point.
-- `generate_reframings_from_context` — reuses the existing reframe system
-  prompt but grounds reframings in the actual first user turn.
+- `run_frame_extraction_from_packet` — builds the user prompt from a Lane4Packet,
+  validates evidence against user turns (not the collapsed query), returns the
+  same FramePressureCard shape as the orchestrator path.
+- `generate_reframings_from_context` — the LIVE reframe generator, still
+  consumes ConversationContext directly because the pipeline orchestrator
+  calls it with the conversation in hand.
 
 Boundary calls are mocked; no real LLM work.
 """
@@ -28,14 +28,17 @@ from engine.system_b.conversation_context import (
 )
 from engine.system_b.frame_pressure import (
     ExtractedFrameElement,
+    FramePressureCard,
     FrameRoute,
     _FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT,
-    _format_frame_extraction_from_context_user_prompt,
+    _format_frame_extraction_from_packet_user_prompt,
     _format_reframe_generation_from_context_prompt,
-    _joined_user_turns_text,
+    _joined_user_turns_text_from_packet,
     generate_reframings_from_context,
-    run_frame_extraction_from_context,
+    run_frame_extraction_from_packet,
 )
+from engine.system_b.ir_constructor import construct_conversation_ir
+from engine.system_b.packet_builders.lane4 import Lane4Packet, build_lane4_packet
 
 
 def _minimal_payload() -> ExtractionPayload:
@@ -71,20 +74,54 @@ def _ctx(turns: tuple[tuple[int, str, str], ...]) -> ConversationContext:
     )
 
 
+def _packet_from_ctx(ctx: ConversationContext) -> Lane4Packet:
+    return build_lane4_packet(construct_conversation_ir(ctx))
+
+
+def _ctx_basic() -> ConversationContext:
+    """Context with only a decision_situation/original_framing — no
+    dropped_threads or constraints that would force a turn-2 anchor."""
+    return ConversationContext(
+        turns=(
+            Turn(turn_index=1, speaker="user", text="hello world"),
+            Turn(turn_index=1, speaker="assistant", text="hi"),
+        ),
+        extraction=ExtractionPayload(
+            decision_situation="Whether to take the offer",
+            live_constraints=(),
+            synthesized_position="",
+            reasoning_passages=(),
+            original_framing="",
+            dropped_threads=(),
+        ),
+    )
+
+
 def _boundary_returning(payload: dict) -> MagicMock:
     boundary = MagicMock()
     boundary.run_json = MagicMock(return_value=payload)
     return boundary
 
 
-# ---------- run_frame_extraction_from_context ----------
+# ---------- run_frame_extraction_from_packet ----------
 
 
-def test_run_frame_extraction_from_context_basic() -> None:
-    ctx = _ctx((
-        (1, "user", "I need to decide whether to take this job. It's 3x my salary but feels crazy."),
-        (1, "assistant", "Let's unpack that."),
-    ))
+def test_run_frame_extraction_from_packet_basic() -> None:
+    ctx = ConversationContext(
+        turns=(
+            Turn(turn_index=1, speaker="user", text="I need to decide whether to take this job. It's 3x my salary but feels crazy."),
+            Turn(turn_index=1, speaker="assistant", text="Let's unpack that."),
+        ),
+        extraction=ExtractionPayload(
+            decision_situation="Whether to take the job",
+            live_constraints=(),
+            synthesized_position="",
+            reasoning_passages=(),
+            original_framing="",
+            dropped_threads=(),
+        ),
+    )
+    packet = _packet_from_ctx(ctx)
     boundary = _boundary_returning({
         "frame_elements": [
             {
@@ -98,17 +135,28 @@ def test_run_frame_extraction_from_context_basic() -> None:
             }
         ]
     })
-    card = run_frame_extraction_from_context(boundary, ctx)
+    card = run_frame_extraction_from_packet(boundary, packet)
     assert len(card.frame_elements) == 1
     assert card.frame_elements[0].frame_pattern == "binary_collapse"
     assert card.dropped_frame_elements == ()
 
 
-def test_run_frame_extraction_from_context_rejects_evidence_not_in_user_turns() -> None:
-    ctx = _ctx((
-        (1, "user", "What's the right move here?"),
-        (1, "assistant", "Consider the opportunity cost carefully."),
-    ))
+def test_run_frame_extraction_from_packet_rejects_evidence_not_in_user_turns() -> None:
+    ctx = ConversationContext(
+        turns=(
+            Turn(turn_index=1, speaker="user", text="What's the right move here?"),
+            Turn(turn_index=1, speaker="assistant", text="Consider the opportunity cost carefully."),
+        ),
+        extraction=ExtractionPayload(
+            decision_situation="What to do next",
+            live_constraints=(),
+            synthesized_position="",
+            reasoning_passages=(),
+            original_framing="",
+            dropped_threads=(),
+        ),
+    )
+    packet = _packet_from_ctx(ctx)
     boundary = _boundary_returning({
         "frame_elements": [
             {
@@ -123,19 +171,30 @@ def test_run_frame_extraction_from_context_rejects_evidence_not_in_user_turns() 
             }
         ]
     })
-    card = run_frame_extraction_from_context(boundary, ctx)
+    card = run_frame_extraction_from_packet(boundary, packet)
     assert card.frame_elements == ()
     assert len(card.dropped_frame_elements) == 1
     assert card.dropped_frame_elements[0]["drop_reason"] == "evidence_not_in_user_turns"
 
 
-def test_run_frame_extraction_from_context_accepts_evidence_from_any_user_turn() -> None:
+def test_run_frame_extraction_from_packet_accepts_evidence_from_any_user_turn() -> None:
     """Evidence can come from a later user turn, not just the first."""
-    ctx = _ctx((
-        (1, "user", "I'm thinking about a career move."),
-        (1, "assistant", "Tell me more."),
-        (2, "user", "The thing is, I'm assuming I have to decide this week. Maybe I don't."),
-    ))
+    ctx = ConversationContext(
+        turns=(
+            Turn(turn_index=1, speaker="user", text="I'm thinking about a career move."),
+            Turn(turn_index=1, speaker="assistant", text="Tell me more."),
+            Turn(turn_index=2, speaker="user", text="The thing is, I'm assuming I have to decide this week. Maybe I don't."),
+        ),
+        extraction=ExtractionPayload(
+            decision_situation="Career move",
+            live_constraints=(),
+            synthesized_position="",
+            reasoning_passages=(),
+            original_framing="",
+            dropped_threads=(),
+        ),
+    )
+    packet = _packet_from_ctx(ctx)
     boundary = _boundary_returning({
         "frame_elements": [
             {
@@ -149,20 +208,23 @@ def test_run_frame_extraction_from_context_accepts_evidence_from_any_user_turn()
             }
         ]
     })
-    card = run_frame_extraction_from_context(boundary, ctx)
+    card = run_frame_extraction_from_packet(boundary, packet)
     assert len(card.frame_elements) == 1
     assert card.frame_elements[0].frame_pattern == "temporal_fixation"
 
 
-def test_run_frame_extraction_from_context_handles_empty_turns() -> None:
-    """A context with zero turns still returns a valid (empty) card.
+def test_run_frame_extraction_from_packet_handles_empty_turns() -> None:
+    """A packet with zero turns still returns a valid (empty) card.
 
     All evidence fails the literal-substring check against empty user text,
     so every element is dropped.
     """
-    ctx = ConversationContext(
+    packet = Lane4Packet(
         turns=(),
-        extraction=_minimal_payload(),
+        original_framing=None,
+        decision_situation=None,
+        constraints=(),
+        issues=(),
     )
     boundary = _boundary_returning({
         "frame_elements": [
@@ -177,30 +239,30 @@ def test_run_frame_extraction_from_context_handles_empty_turns() -> None:
             }
         ]
     })
-    card = run_frame_extraction_from_context(boundary, ctx)
+    card = run_frame_extraction_from_packet(boundary, packet)
     assert card.frame_elements == ()
     assert card.dropped_frame_elements[0]["drop_reason"] == "evidence_not_in_user_turns"
 
 
-def test_run_frame_extraction_from_context_drops_missing_evidence_and_pattern() -> None:
-    ctx = _ctx(((1, "user", "hello world"), (1, "assistant", "hi")))
+def test_run_frame_extraction_from_packet_drops_missing_evidence_and_pattern() -> None:
+    packet = _packet_from_ctx(_ctx_basic())
     boundary = _boundary_returning({
         "frame_elements": [
             {"element_text": "a", "evidence_quote": "", "frame_pattern": "x"},
             {"element_text": "b", "evidence_quote": "hello", "frame_pattern": ""},
         ]
     })
-    card = run_frame_extraction_from_context(boundary, ctx)
+    card = run_frame_extraction_from_packet(boundary, packet)
     assert card.frame_elements == ()
     reasons = [d["drop_reason"] for d in card.dropped_frame_elements]
     assert "missing_evidence" in reasons
     assert "missing_pattern" in reasons
 
 
-def test_run_frame_extraction_from_context_calls_boundary_with_context_system_prompt() -> None:
-    ctx = _ctx(((1, "user", "q"), (1, "assistant", "a")))
+def test_run_frame_extraction_from_packet_calls_boundary_with_context_system_prompt() -> None:
+    packet = _packet_from_ctx(_ctx_basic())
     boundary = _boundary_returning({"frame_elements": []})
-    run_frame_extraction_from_context(boundary, ctx)
+    run_frame_extraction_from_packet(boundary, packet)
     args, _ = boundary.run_json.call_args
     system_prompt, user_prompt = args
     assert system_prompt is _FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT
@@ -218,12 +280,15 @@ def test_run_frame_extraction_from_context_calls_boundary_with_context_system_pr
 
 
 def test_format_user_prompt_includes_extracted_structure_in_context_section() -> None:
+    """Decision situation + original_framing + constraints + dropped threads
+    all appear in the CONTEXT section (not quotable as evidence)."""
     ctx = _ctx((
         (1, "user", "first question"),
         (1, "assistant", "first reply"),
         (2, "user", "follow-up"),
     ))
-    prompt = _format_frame_extraction_from_context_user_prompt(ctx)
+    packet = _packet_from_ctx(ctx)
+    prompt = _format_frame_extraction_from_packet_user_prompt(packet)
     # Extracted structure lives in the CONTEXT section (not quotable)
     ctx_section_end = prompt.index("SOURCE")
     context_section = prompt[:ctx_section_end]
@@ -242,7 +307,8 @@ def test_format_user_prompt_places_user_turns_in_source_and_assistant_turns_in_c
         (1, "assistant", "first reply"),
         (2, "user", "follow-up"),
     ))
-    prompt = _format_frame_extraction_from_context_user_prompt(ctx)
+    packet = _packet_from_ctx(ctx)
+    prompt = _format_frame_extraction_from_packet_user_prompt(packet)
     # SOURCE section contains user-turn bodies; assistant-turn bodies appear
     # in the CONTEXT half only (marked non-quotable).
     context_section, source_section = prompt.split("SOURCE", 1)
@@ -256,20 +322,20 @@ def test_format_user_prompt_places_user_turns_in_source_and_assistant_turns_in_c
 
 
 def test_format_user_prompt_omits_empty_context_sections() -> None:
-    """If live_constraints + dropped_threads are empty, don't render dangling labels."""
-    empty_ext = ExtractionPayload(
-        decision_situation="D",
-        live_constraints=(),
-        synthesized_position="",
-        reasoning_passages=(),
-        original_framing="",
-        dropped_threads=(),
-    )
+    """If constraints + issues are empty, don't render dangling labels."""
     ctx = ConversationContext(
         turns=(Turn(turn_index=1, speaker="user", text="q"),),
-        extraction=empty_ext,
+        extraction=ExtractionPayload(
+            decision_situation="D",
+            live_constraints=(),
+            synthesized_position="",
+            reasoning_passages=(),
+            original_framing="",
+            dropped_threads=(),
+        ),
     )
-    prompt = _format_frame_extraction_from_context_user_prompt(ctx)
+    packet = _packet_from_ctx(ctx)
+    prompt = _format_frame_extraction_from_packet_user_prompt(packet)
     assert "- Constraints:" not in prompt
     assert "- Dropped threads:" not in prompt
     assert "Framing extracted upstream:" not in prompt
@@ -289,25 +355,39 @@ def test_system_prompt_explicitly_forbids_quoting_from_context() -> None:
     assert "WRONG:" in prompt
 
 
-def test_joined_user_turns_text_includes_user_only() -> None:
-    ctx = _ctx((
-        (1, "user", "hello"),
-        (1, "assistant", "world"),
-        (2, "user", "again"),
-    ))
-    joined = _joined_user_turns_text(ctx)
+def test_joined_user_turns_text_from_packet_includes_user_only() -> None:
+    ctx = ConversationContext(
+        turns=(
+            Turn(turn_index=1, speaker="user", text="hello"),
+            Turn(turn_index=1, speaker="assistant", text="world"),
+            Turn(turn_index=2, speaker="user", text="again"),
+        ),
+        extraction=ExtractionPayload(
+            decision_situation="D",
+            live_constraints=(),
+            synthesized_position="",
+            reasoning_passages=(),
+            original_framing="",
+            dropped_threads=(),
+        ),
+    )
+    packet = _packet_from_ctx(ctx)
+    joined = _joined_user_turns_text_from_packet(packet)
     assert "hello" in joined
     assert "again" in joined
     assert "world" not in joined
 
 
 # ---------- generate_reframings_from_context ----------
+# This entry point is LIVE — pipeline.py calls it directly with the
+# ConversationContext. Tests stay on the context shape.
 
 
 def test_generate_reframings_from_context_basic() -> None:
     ctx = _ctx((
         (1, "user", "Should I take this role? It's 3x my salary and I have 10 days."),
         (1, "assistant", "Let's think about it."),
+        (2, "user", "Mostly worried about my partner's reaction."),
     ))
     element = ExtractedFrameElement(
         element_text="time pressure assumed",
@@ -349,7 +429,7 @@ def test_format_reframe_from_context_prompt_grounds_in_first_user_turn() -> None
     ctx = _ctx((
         (1, "user", "I want to know if I should take this."),
         (1, "assistant", "Tell me more."),
-        (2, "user", "additional context"),
+        (2, "user", "additional context — partner's reaction matters"),
     ))
     element = ExtractedFrameElement(
         element_text="x",
@@ -379,70 +459,14 @@ def test_format_reframe_from_context_prompt_handles_context_without_user_turns()
     """Defensive: should not crash when no user turns exist."""
     ctx = ConversationContext(
         turns=(Turn(turn_index=1, speaker="assistant", text="reply only"),),
-        extraction=_minimal_payload(),
+        extraction=ExtractionPayload(
+            decision_situation="D",
+            live_constraints=(),
+            synthesized_position="",
+            reasoning_passages=(),
+            original_framing="",
+            dropped_threads=(),
+        ),
     )
     prompt = _format_reframe_generation_from_context_prompt(ctx, (), ())
     assert "USER'S FRAMING" in prompt  # header still rendered
-
-
-# ---------------------------------------------------------------------------
-# Phase 4c: packet-driven Lane 3 byte-equivalence tests
-# ---------------------------------------------------------------------------
-
-from engine.system_b.ir_constructor import construct_conversation_ir
-from engine.system_b.packet_builders.lane4 import build_lane4_packet
-from engine.system_b.frame_pressure import (
-    _format_frame_extraction_from_context_user_prompt,
-    _format_frame_extraction_from_packet_user_prompt,
-    run_frame_extraction_from_packet,
-)
-
-
-def _ctx_active_for_lane3() -> ConversationContext:
-    # raised_turn=2 in _minimal_payload requires an actual turn 2 for the
-    # IR's _source_turn_ref to anchor cleanly (otherwise it falls back to
-    # first user turn, breaking byte-equivalence).
-    return _ctx((
-        (1, "user", "Should I take this Series B offer with 15% equity?"),
-        (1, "assistant", "Tell me more about your alternatives."),
-        (2, "user", "Mostly worried about my partner's reaction."),
-    ))
-
-
-def test_packet_frame_extraction_user_prompt_matches_context_user_prompt() -> None:
-    """Phase 4c byte-equivalence: packet-driven Lane 3 user prompt is
-    identical to context-driven prompt (lossless case)."""
-    ctx = _ctx_active_for_lane3()
-    ir = construct_conversation_ir(ctx)
-    packet = build_lane4_packet(ir)
-
-    ctx_prompt = _format_frame_extraction_from_context_user_prompt(ctx)
-    pkt_prompt = _format_frame_extraction_from_packet_user_prompt(packet)
-    assert ctx_prompt == pkt_prompt
-
-
-def test_run_frame_extraction_from_packet_returns_same_card_as_from_context() -> None:
-    """Orchestrator equivalence with mocked boundary."""
-    ctx = _ctx_active_for_lane3()
-    ir = construct_conversation_ir(ctx)
-    packet = build_lane4_packet(ir)
-
-    payload = {
-        "frame_elements": [
-            {
-                "element_text": "binary framing",
-                "element_type": "assumption",
-                "evidence_quote": "Should I take this Series B offer",
-                "frame_pattern": "binary_collapse",
-                "fragility_signal": "",
-                "inquiry_stage": "why",
-                "likely_default": "",
-            },
-        ],
-    }
-    boundary_ctx = _boundary_returning(payload)
-    boundary_pkt = _boundary_returning(payload)
-
-    ctx_card = run_frame_extraction_from_context(boundary_ctx, ctx)
-    pkt_card = run_frame_extraction_from_packet(boundary_pkt, packet)
-    assert ctx_card == pkt_card

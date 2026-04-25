@@ -310,13 +310,15 @@ technical parameters are NOT frame elements.
 """
 
 
-def get_prompt_template_from_context() -> str:
-    """Return the conversation-first frame extraction system prompt (for versioning)."""
-    return _FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT
+# ---------------------------------------------------------------------------
+# Lane 3 packet-driven entry points
+# ---------------------------------------------------------------------------
+
+from .packet_builders.lane4 import Lane4Packet  # noqa: E402  (intentional cycle-avoidance)
 
 
-def _format_frame_extraction_from_context_user_prompt(context: ConversationContext) -> str:
-    """Render the user-prompt body with an explicit CONTEXT vs SOURCE split.
+def _format_frame_extraction_from_packet_user_prompt(packet: Lane4Packet) -> str:
+    """Render the frame-extraction user-prompt body from a Lane4Packet.
 
     CONTEXT holds everything that's summary/secondary (extracted fields +
     assistant replies). The LLM uses it to understand the decision but MUST
@@ -324,133 +326,8 @@ def _format_frame_extraction_from_context_user_prompt(context: ConversationConte
 
     SOURCE holds user turns verbatim. Evidence_quotes MUST be literal
     substrings of a user turn in SOURCE — enforced downstream by
-    `_evidence_in_text` against `_joined_user_turns_text`.
+    ``_evidence_in_text`` against ``_joined_user_turns_text_from_packet``.
     """
-    ext = context.extraction
-    parts: list[str] = [
-        "CONTEXT (background for understanding the decision — NOT quotable as evidence):",
-    ]
-    if ext.decision_situation:
-        parts.append(f"- Decision situation: {ext.decision_situation}")
-    if ext.original_framing:
-        parts.append(f"- Framing extracted upstream: {ext.original_framing}")
-    if ext.live_constraints:
-        parts.append("- Constraints:")
-        for c in ext.live_constraints:
-            status = c.status or "active"
-            weight = c.weight or "situational"
-            tag = status.upper() if status == "active" else f"{status.upper()}/{weight.upper()}"
-            parts.append(f"  - [{tag}] {c.constraint} (turn {c.introduced_turn})")
-    if ext.dropped_threads:
-        parts.append("- Dropped threads:")
-        for d in ext.dropped_threads:
-            line = (
-                f"  - {d.thread} (raised by {d.raised_by or '?'} turn {d.raised_turn}, "
-                f"status: {d.status or '?'})"
-            )
-            if d.superseded_by:
-                line += f", superseded_by: {d.superseded_by}"
-            parts.append(line)
-
-    assistant_turns = [t for t in context.turns if t.speaker == "assistant"]
-    if assistant_turns:
-        parts.append("- Assistant replies (NOT quotable — shown so you can see how the framing was engaged):")
-        for t in assistant_turns:
-            parts.append(f"  [Turn {t.turn_index} ASSISTANT] {t.text}")
-
-    parts.append("")
-    parts.append(
-        "SOURCE (evidence_quote MUST be a literal substring of a user turn from THIS section only — "
-        "the first user turn is the canonical framing anchor):"
-    )
-    user_turns = [t for t in context.turns if t.speaker == "user"]
-    for t in user_turns:
-        parts.append(f"[Turn {t.turn_index}] USER:")
-        parts.append(t.text)
-        parts.append("")
-
-    return "\n".join(parts)
-
-
-def _joined_user_turns_text(context: ConversationContext) -> str:
-    """Join all user-turn text for evidence-quote validation. Empty string if no user turns."""
-    return "\n".join(t.text for t in context.turns if t.speaker == "user")
-
-
-def _parse_frame_extraction_from_context(
-    raw: dict, context: ConversationContext,
-) -> tuple[tuple[ExtractedFrameElement, ...], list[dict]]:
-    """Parse frame extraction output, validating evidence against user turns."""
-    user_text = _joined_user_turns_text(context)
-    items = require_list_of_dicts(raw, "frame_elements", "frame_extraction_from_context")
-    elements: list[ExtractedFrameElement] = []
-    dropped: list[dict] = []
-    for item in items:
-        element_text = coerce_str(item.get("element_text"))
-        evidence = coerce_str(item.get("evidence_quote"))
-        pattern = coerce_str(item.get("frame_pattern"))
-
-        if not evidence:
-            _LOGGER.warning("Frame element missing evidence_quote, dropping: %r", element_text[:80])
-            dropped.append({"element_text": element_text, "drop_reason": "missing_evidence"})
-            continue
-
-        if not pattern:
-            _LOGGER.warning("Frame element missing frame_pattern, dropping: %r", element_text[:80])
-            dropped.append({"element_text": element_text, "drop_reason": "missing_pattern"})
-            continue
-
-        if not _evidence_in_text(evidence, user_text):
-            _LOGGER.warning(
-                "Frame element evidence_quote not found in user turns, skipping: %r",
-                evidence[:80],
-            )
-            dropped.append({"element_text": element_text, "drop_reason": "evidence_not_in_user_turns"})
-            continue
-        try:
-            el = ExtractedFrameElement(
-                element_text=element_text,
-                element_type=coerce_str(item.get("element_type")) or "assumption",
-                evidence_quote=evidence,
-                frame_pattern=pattern,
-                fragility_signal=coerce_str(item.get("fragility_signal")),
-                inquiry_stage=coerce_str(item.get("inquiry_stage")) or "how",
-                likely_default=coerce_str(item.get("likely_default")) or "none",
-            )
-            elements.append(el)
-        except (TypeError, ValueError) as exc:
-            _LOGGER.warning("Could not parse frame element: %s", exc)
-            dropped.append({"element_text": element_text, "drop_reason": f"parse_error: {exc}"})
-    return tuple(elements), dropped
-
-
-def run_frame_extraction_from_context(
-    boundary: _BoundaryClient,
-    context: ConversationContext,
-) -> FramePressureCard:
-    """Conversation-first entry point — Phase 2a.
-
-    Consumes ConversationContext directly: the LLM sees the full turn-by-turn
-    conversation plus the extracted structured context, evidence quotes are
-    validated against user turns (not the legacy collapsed query).
-    """
-    user_prompt = _format_frame_extraction_from_context_user_prompt(context)
-    raw = boundary.run_json(_FRAME_EXTRACTION_SYSTEM_FROM_CONTEXT, user_prompt)
-    elements, dropped = _parse_frame_extraction_from_context(raw, context)
-    return FramePressureCard(frame_elements=elements, dropped_frame_elements=tuple(dropped))
-
-
-# ---------------------------------------------------------------------------
-# Phase 4c: packet-driven Lane 3 entry points
-# ---------------------------------------------------------------------------
-# Mirrors the from_context shape; same byte-equivalence-on-active-constraints
-# discipline as Lane 4 / Lane 1. Weight not in IR (Phase 1 design).
-
-from .packet_builders.lane4 import Lane4Packet  # noqa: E402  (intentional cycle-avoidance)
-
-
-def _format_frame_extraction_from_packet_user_prompt(packet: Lane4Packet) -> str:
-    """Packet-driven counterpart to `_format_frame_extraction_from_context_user_prompt`."""
     parts: list[str] = [
         "CONTEXT (background for understanding the decision — NOT quotable as evidence):",
     ]
@@ -502,8 +379,8 @@ def _joined_user_turns_text_from_packet(packet: Lane4Packet) -> str:
 def _parse_frame_extraction_from_packet(
     raw: dict, packet: Lane4Packet,
 ) -> tuple[tuple[ExtractedFrameElement, ...], list[dict]]:
-    """Mirror of `_parse_frame_extraction_from_context`, validating evidence
-    against user_turns derived from the packet."""
+    """Parse frame extraction output, validating evidence against the
+    user-turn text derived from the packet."""
     user_text = _joined_user_turns_text_from_packet(packet)
     items = require_list_of_dicts(raw, "frame_elements", "frame_extraction_from_packet")
     elements: list[ExtractedFrameElement] = []

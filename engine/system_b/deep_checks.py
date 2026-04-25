@@ -3,7 +3,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from .boundary_validation import coerce_float, coerce_int, coerce_str
-from .conversation_context import ConversationContext
 from .packet_builders.lane4 import Lane4Packet
 from .tendency_catalog import ModelBinding, TendencyCatalog
 
@@ -229,72 +228,15 @@ _TENDENCY_SPECIFIC_GUIDANCE: dict[str, str] = {
 }
 
 
-PASS_2_DEEP_CHECK_SYSTEM = """You are performing a focused analysis of one specific cognitive tendency in a piece of reasoning. You have deep expertise in this single tendency and in the corrective models that challenge it.
-
-CRITICAL: You are checking for ONE tendency ONLY. Do not analyze any other tendency. Your entire focus is on determining whether the tendency described below is genuinely present in the reasoning.
-
-THE TENDENCY YOU ARE CHECKING:
-Name: {tendency_name}
-Number: {tendency_number}
-Description: {tendency_description}
-
-TENDENCY-SPECIFIC CALIBRATION:
-{tendency_guidance}
-
-ROUTE HINT MENU:
-If you detect the tendency, choose the single menu item that best points to the corrective model that should challenge this failure mechanism. Use "general" only when the tendency is real but no more specific route hint clearly fits.
-{sub_pattern_menu}
-
-RULES:
-1. Detect only decision-distorting manifestations of this tendency. Incidental tone, generic confidence, persuasive wording, or adjacent vocabulary are not enough.
-2. Use the QUERY to understand what constraints, downside, dependencies, denominators, or reversal conditions were live.
-3. Look for specific evidence in the vanilla answer, not generic vibes.
-4. Omission-based detection is valid only when the answer commits to a move without a necessary check, denominator, dependency treatment, reversal condition, pilot, or stop rule that this tendency would predictably require.
-5. If the tendency is genuinely present, cite the exact passage that proves it. For omission-based cases, quote the action sentence that exposes the unjustified leap.
-6. If you cannot point to a specific passage, the tendency is not detected.
-7. Prefer the narrowest mechanism. If another tendency would explain the issue better, return not detected.
-8. If your evidence is only generic missing downside, urgency, or confidence that would fit several tendencies equally well, return not detected for this tendency.
-9. The sub_pattern must come from the menu above. It is a route hint, not a free-text diagnosis.
-10. Severity levels: "low", "medium", or "high"
-
-Respond ONLY with valid JSON matching this exact schema:
-
-If DETECTED:
-```json
-{{
-  "tendency_id": "{tendency_id}",
-  "tendency_number": {tendency_number},
-  "detected": true,
-  "confidence": 0.0,
-  "evidence": "1-2 sentence explanation",
-  "sub_pattern": "exact sub-pattern slug from the menu above",
-  "specific_passage": "Exact quote from the vanilla answer",
-  "severity": "low"
-}}
-```
-
-If NOT DETECTED:
-```json
-{{
-  "tendency_id": "{tendency_id}",
-  "tendency_number": {tendency_number},
-  "detected": false,
-  "confidence": 0.0,
-  "reason": "Brief reason this tendency does not apply here"
-}}
-```"""
-
-
 # ---------------------------------------------------------------------------
-# Phase 2c: conversation-first Pass 2 — CONTEXT / SOURCE split + enum-checklist.
+# Pass 2 system prompt: CONTEXT / SOURCE split + enum-checklist.
 #
-# The system prompt is rebuilt to:
-#   1. Replace "QUERY / VANILLA ANSWER" language with CONTEXT / SOURCE, where
-#      SOURCE = assistant turns verbatim (primary audit target for this tendency).
-#   2. Add an ENUM CHECKLIST REMINDER for sub_pattern selection (durable 2b
-#      lesson: the LLM under-surfaces sub_patterns that manifest as omission
-#      or implicit bias rather than verbatim claims; prompt it to explicitly
-#      walk the menu before committing).
+# CONTEXT = the decision situation, extraction summaries, user turns.
+# SOURCE = assistant turns verbatim (primary audit target for the tendency).
+# The ENUM CHECKLIST REMINDER for sub_pattern selection is the durable 2b
+# lesson: the LLM under-surfaces sub_patterns that manifest as omission or
+# implicit bias rather than verbatim claims, so the prompt explicitly tells
+# it to walk the menu before committing.
 # ---------------------------------------------------------------------------
 
 PASS_2_DEEP_CHECK_SYSTEM_FROM_CONTEXT = """You are performing a focused analysis of one specific cognitive tendency in a piece of AI reasoning. You have deep expertise in this single tendency and in the corrective models that challenge it.
@@ -399,104 +341,20 @@ def build_tendency_guidance(tendency_id: str) -> str:
     return f"- {guidance}"
 
 
-def _format_pass2_from_context_user_prompt(
-    context: ConversationContext,
-    tendency_name: str,
-) -> str:
-    """Build the CONTEXT/SOURCE Pass 2 user body for one tendency.
-
-    CONTEXT: extraction summaries + user turns (background).
-    SOURCE: assistant turns verbatim (primary audit target).
-    """
-    ext = context.extraction
-    parts: list[str] = [
-        "CONTEXT (background — what the user made live; NOT the primary audit target):",
-    ]
-    if ext.decision_situation:
-        parts.append(f"- Decision situation: {ext.decision_situation}")
-    if ext.original_framing:
-        parts.append(f"- Framing: {ext.original_framing}")
-    if ext.live_constraints:
-        parts.append("- Live constraints:")
-        for c in ext.live_constraints:
-            status = (c.status or "active").upper()
-            weight = (c.weight or "situational").upper()
-            tag = status if status == "ACTIVE" else f"{status}/{weight}"
-            parts.append(f"  - [{tag}] {c.constraint} (turn {c.introduced_turn})")
-    if ext.dropped_threads:
-        parts.append("- Dropped threads:")
-        for d in ext.dropped_threads:
-            line = (
-                f"  - {d.thread} (raised by {d.raised_by or '?'} turn {d.raised_turn}, "
-                f"status: {d.status or '?'})"
-            )
-            if d.superseded_by:
-                line += f", superseded_by: {d.superseded_by}"
-            parts.append(line)
-
-    user_turns = [t for t in context.turns if t.speaker == "user"]
-    if user_turns:
-        parts.append("- User turns (CONTEXT only):")
-        for t in user_turns:
-            parts.append(f"  [Turn {t.turn_index}] USER: {t.text}")
-
-    parts.append("")
-    parts.append(
-        "SOURCE (PRIMARY AUDIT TARGET — assistant turns verbatim; the tendency lives here as commission or omission):"
-    )
-    assistant_turns = [t for t in context.turns if t.speaker == "assistant"]
-    if not assistant_turns:
-        parts.append("(no assistant turns present)")
-    else:
-        for t in assistant_turns:
-            parts.append(f"[Turn {t.turn_index}] ASSISTANT:")
-            parts.append(t.text)
-            parts.append("")
-
-    parts.append(
-        f"Analyze SOURCE for the presence of {tendency_name} ONLY. Respond with JSON only."
-    )
-    return "\n".join(parts)
-
-
-def format_pass2_prompt_from_context(
-    context: ConversationContext,
-    tendency_key: str,
-    catalog: TendencyCatalog,
-) -> tuple[str, str]:
-    """Phase 2c conversation-first entry point for Pass 2.
-
-    Returns (system_prompt, user_prompt) for one tendency. The system prompt
-    uses CONTEXT/SOURCE language and carries the enum-checklist reminder for
-    sub_pattern selection (2b durable lesson).
-    """
-    tendency = catalog.lookup(tendency_key)
-    sub_pattern_menu = build_sub_pattern_menu(tendency.antidote_bindings)
-    system = PASS_2_DEEP_CHECK_SYSTEM_FROM_CONTEXT.format(
-        tendency_name=tendency.display_name,
-        tendency_number=tendency.tendency_number,
-        tendency_description=tendency.description,
-        tendency_id=tendency.tendency_id,
-        tendency_guidance=build_tendency_guidance(tendency.tendency_id),
-        sub_pattern_menu=sub_pattern_menu,
-    )
-    user = _format_pass2_from_context_user_prompt(context, tendency.display_name)
-    return system, user
-
-
 # ---------------------------------------------------------------------------
-# Phase 4c: packet-driven Lane 1 Pass 2 (mirrors _from_context shape)
+# Pass 2 packet-driven prompt formatter + entry point
 # ---------------------------------------------------------------------------
-# Same byte-equivalence-on-active-constraints discipline as Lane 4. The IR
-# does not carry `weight` (Phase 1 design); when status != "active", the
-# packet path emits "[STATUS]" while context emits "[STATUS/WEIGHT]".
 
 
 def _format_pass2_from_packet_user_prompt(
     packet: Lane4Packet,
     tendency_name: str,
 ) -> str:
-    """Packet-driven counterpart to `_format_pass2_from_context_user_prompt`."""
+    """Build the CONTEXT/SOURCE Pass 2 user body from a Lane4Packet.
+
+    CONTEXT: extraction summaries + user turns (background).
+    SOURCE: assistant turns verbatim (primary audit target).
+    """
     parts: list[str] = [
         "CONTEXT (background — what the user made live; NOT the primary audit target):",
     ]

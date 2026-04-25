@@ -153,6 +153,47 @@ def _resolve_data_root() -> Path:
 # Result serialization
 # ---------------------------------------------------------------------------
 
+def _serialize_conversation_context(ctx) -> dict:
+    """Serialize a ConversationContext to a JSON-safe dict for result.json.
+
+    Observatory + render_memo derive their displayed query/vanilla_answer from
+    this block (joined user turns / joined assistant turns), and use
+    decision_situation for case naming. Carries the full conversation shape
+    so consumers don't need a separate channel for the source data.
+    """
+    ext = ctx.extraction
+    return {
+        "decision_situation": ext.decision_situation,
+        "original_framing": ext.original_framing,
+        "synthesized_position": ext.synthesized_position,
+        "reasoning_passages": list(ext.reasoning_passages),
+        "turns": [
+            {"turn_index": t.turn_index, "speaker": t.speaker, "text": t.text}
+            for t in ctx.turns
+        ],
+        "live_constraints": [
+            {
+                "constraint": c.constraint,
+                "introduced_turn": c.introduced_turn,
+                "status": c.status,
+                "weight": c.weight,
+                "canonical_key": c.canonical_key,
+            }
+            for c in ext.live_constraints
+        ],
+        "dropped_threads": [
+            {
+                "thread": d.thread,
+                "raised_by": d.raised_by,
+                "raised_turn": d.raised_turn,
+                "status": d.status,
+                "superseded_by": d.superseded_by,
+            }
+            for d in ext.dropped_threads
+        ],
+    }
+
+
 def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_count: int = 0) -> dict:
     """Serialize PipelineResult to a JSON-compatible dict."""
     from system_b.testing_harness import delta_card_to_payload, companion_card_to_payload
@@ -463,9 +504,11 @@ def main() -> int:
         compiled_chunk_count=_compiled_chunk_count,
     )
 
-    # Include query and vanilla_answer in output (for Observatory)
-    serialized["query"] = query
-    serialized["vanilla_answer"] = vanilla_answer
+    # Include the full conversation context as `extraction` for Observatory
+    # + render_memo. They derive displayed query/vanilla_answer from the
+    # joined user turns / joined assistant turns and use decision_situation
+    # for case naming.
+    serialized["extraction"] = _serialize_conversation_context(pipeline_input)
 
     # Revision step + Bullshit Index — run in parallel.
     # Revision: three cards through a second LLM to produce a revised answer.

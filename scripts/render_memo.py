@@ -39,9 +39,19 @@ def render_memo(result: dict) -> str:
     """Render a pipeline result dict into a standalone markdown memo."""
     sections: list[str] = []
 
-    # Heading with decision context
-    query = result.get("query", "")
-    heading_context = _truncate_to_sentences(query) if query else "Reasoning Audit"
+    # Heading with decision context — prefer the extraction's
+    # decision_situation (concise one-liner). Fall back to the first user
+    # turn's leading clause.
+    extraction = result.get("extraction", {})
+    decision_situation = extraction.get("decision_situation", "").strip()
+    if decision_situation:
+        heading_context = _truncate_to_sentences(decision_situation)
+    else:
+        first_user_turn = next(
+            (t.get("text", "") for t in extraction.get("turns", []) if t.get("speaker") == "user"),
+            "",
+        )
+        heading_context = _truncate_to_sentences(first_user_turn) if first_user_turn else "Reasoning Audit"
     sections.append(f"# Reasoning Audit: {heading_context}")
 
     # Key Findings — sorted by severity

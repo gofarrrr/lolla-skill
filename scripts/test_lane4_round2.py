@@ -24,7 +24,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from engine.system_b.boundary_provider import OpenAICompatibleBoundaryClient
 from engine.system_b.conversation_context import ConversationContext, ExtractionPayload, Turn
-from engine.system_b.structural_coverage import run_structural_coverage_from_context
+from engine.system_b.ir_constructor import construct_conversation_ir
+from engine.system_b.structural_coverage import run_structural_coverage_from_ir
 
 logging.basicConfig(level=logging.INFO, format="%(name)s  %(levelname)s  %(message)s")
 
@@ -351,9 +352,9 @@ def run_scenario(idx, scenario, boundary, routing, verbose=False):
     print()
 
     t0 = time.time()
-    card = run_structural_coverage_from_context(
+    card = run_structural_coverage_from_ir(
         boundary=boundary,
-        context=_make_context(question, answer),
+        ir=construct_conversation_ir(_make_context(question, answer)),
         structural_coverage_routing=routing, anti_echo_model_ids=set(),
     )
     elapsed = time.time() - t0
