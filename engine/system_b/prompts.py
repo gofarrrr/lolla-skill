@@ -29,24 +29,25 @@ from .tendency_catalog import TendencyCatalog
 # scoring target).
 # ---------------------------------------------------------------------------
 
-_PASS1_BASE_SYSTEM_FROM_CONTEXT = """You are a cognitive-bias analyst specializing in Charlie Munger's "Psychology of Human Misjudgment." Your job is to audit a piece of AI reasoning for decision-distorting manifestations of ONE family of tendencies: {theme}
+_PASS1_BASE_SYSTEM_FROM_CONTEXT = """You are a cognitive-bias analyst specializing in Charlie Munger's "Psychology of Human Misjudgment." Your job is to audit a CONVERSATION TRANSACTION (user + assistant) for decision-distorting manifestations of ONE family of tendencies: {theme}
 
 You will receive the user prompt in two sections:
-- CONTEXT: the decision situation, framing, live constraints, dropped threads, and the user's own turns. Background only — NOT the primary audit target.
-- SOURCE: the assistant's turns verbatim. This is the PRIMARY AUDIT TARGET. Tendencies live here, as commissions (what the assistant said) or omissions (what the assistant skipped given what the CONTEXT made live).
+- CONTEXT: extraction summaries (decision situation, original framing, live constraints, dropped threads). A paraphrased layer that helps you understand what the decision required, but is NOT itself the primary audit target.
+- SOURCE: the actual conversation, turn by turn — both the user's turns (how the question was posed, what framing was introduced) and the assistant's turns (how it was handled). This is the PRIMARY AUDIT TARGET. Tendencies live in the conversation transaction: what the assistant said, what the assistant skipped, what the assistant recycled from the user, AND what the assistant failed to challenge.
 
-For each of the tendencies listed below (this family only — other families are handled by parallel analysts), score from 0-10 how strongly the tendency materially weakens the assistant's reasoning in SOURCE:
+For each of the tendencies listed below (this family only — other families are handled by parallel analysts), score from 0-10 how strongly the tendency materially weakens the recommendation that emerged from the conversation in SOURCE:
 - 0 = Not present at all
 - 1-3 = Faint or incidental signal; not decision-driving
 - 4-6 = Material signal; specific evidence or a clear omission makes the recommendation less trustworthy
 - 7-10 = Dominant failure mechanism; the recommendation clearly leans on it
 
 CRITICAL RULES:
-- Score the ASSISTANT's reasoning as shown in SOURCE. Use CONTEXT to understand what the decision required the assistant to address (constraints, live risks, what the user made vivid, what was dropped).
-- A tendency can fire in three shapes, all grounded in the assistant's reasoning in SOURCE:
+- Score the CONVERSATION TRANSACTION as shown in SOURCE. The audit target is how the user's framing was handled by the assistant, including what the assistant added, what the assistant skipped, and what the assistant inherited without challenge — not the user's framing in isolation. CONTEXT (the extraction summary) helps you see what was live; SOURCE is where the tendency does its work.
+- A tendency can fire in four shapes, all grounded in how the conversation transaction unfolded:
   (1) COMMISSION — the assistant explicitly says something that exhibits the tendency.
-  (2) OMISSION — the assistant commits to a move while skipping a material check, denominator, dependency, reversal condition, pilot, or stop rule that CONTEXT made live. Hedging, caveating, or staging the answer in steps does NOT neutralize an omission: a structured multi-step plan that commits to a path without ever naming a reversal trigger or stop condition still carries the tendency.
-  (3) UNCRITICAL ACCEPTANCE — the assistant recycles vivid or authoritative CONTEXT material as decision-driving without testing it. Tendencies like availability-misweighing, social-proof, and authority-misinfluence frequently fire in this shape: the evidence of the tendency is the assistant's HANDLING of user-provided vividness, not the user's text itself.
+  (2) OMISSION — the assistant commits to a move while skipping a material check, denominator, dependency, reversal condition, pilot, or stop rule that the user's framing made live. Hedging, caveating, or staging the answer in steps does NOT neutralize an omission: a structured multi-step plan that commits to a path without ever naming a reversal trigger or stop condition still carries the tendency.
+  (3) UNCRITICAL ACCEPTANCE — the assistant inherits user-introduced framing, constraints, or assumptions — vivid OR structural — without testing them. Single-actor assumptions, binary collapses, fixed-constraint claims, authority-rank deference, and confident statistics all count, whether the assistant repeats them verbatim or simply builds on top of them. The evidence of the tendency is the assistant's HANDLING of what the user introduced, not the user's text itself.
+  (4) MISSED CHALLENGE — the user's framing carries a tendency-shaped move (a single-actor assumption, a binary framing, a confident factual claim presented as given, an authority-rank deference) AND the assistant proceeds without surfacing or testing it. Silent inheritance is a form of the tendency: the assistant does not need to QUOTE the user's move to CARRY it. The inherited frame becomes the foundation of the recommendation, and that is where the tendency does its work.
 - Do not import outside facts or detect a tendency just because the topic makes it plausible.
 - Prefer the narrowest mechanism. If one passage could fit multiple tendencies in this family, score highest the one that best explains the failure and keep adjacent ones lower unless they rest on distinct evidence.
 - A score of 4 or higher requires distinct evidence that would still matter if the strongest detected tendency in this family were removed. If the support is just a restatement, keep it at 0-3.
@@ -79,18 +80,16 @@ Respond ONLY with valid JSON matching this exact schema:
 # Template-only hash surface for prompt versioning. The rendered user prompt
 # is built dynamically from the conversation, but the stable section labels and
 # instructions still deserve a reproducibility stamp.
-PASS_1_TRIAGE_USER_FROM_CONTEXT_TEMPLATE = """CONTEXT (background for understanding what the user made live — NOT the primary audit target):
+PASS_1_TRIAGE_USER_FROM_CONTEXT_TEMPLATE = """CONTEXT (extraction summaries — paraphrased layer; NOT the primary audit target):
 - Decision situation: {decision_situation}
 - Framing (how the user posed the question): {original_framing}
 - Live constraints:
 {live_constraints}
 - Dropped threads:
 {dropped_threads}
-- User turns (CONTEXT only — what the user made live; not the primary scoring target):
-{user_turns}
 
-SOURCE (the PRIMARY AUDIT TARGET — assistant turns verbatim; score tendencies against commissions or omissions visible here):
-{assistant_turns}
+SOURCE (PRIMARY AUDIT TARGET — the actual conversation, both sides; score tendencies against the transaction: what the user introduced, what the assistant said, what the assistant skipped, what the assistant inherited from the user without challenge):
+{conversation_turns}
 
 Score ONLY the tendencies in this family (listed in the system prompt). Respond with JSON only."""
 
@@ -257,12 +256,14 @@ def build_cluster_system_prompt_from_context(cluster: Pass1Cluster, catalog: Ten
 def _format_pass1_from_context_user_prompt(context: ConversationContext) -> str:
     """Build the CONTEXT/SOURCE-labelled Pass 1 user prompt body.
 
-    CONTEXT carries extraction summaries + user turns (scaffolding for
-    understanding what was live). SOURCE carries the assistant turns verbatim
-    (the primary audit target for Lane 1)."""
+    CONTEXT carries extraction summaries (paraphrased layer — scaffolding for
+    understanding what was live). SOURCE carries the actual conversation,
+    turn by turn (both user and assistant) — the primary audit target for
+    Lane 1, since tendencies can fire as commission, omission, uncritical
+    acceptance of user-introduced framing, or missed challenge of it."""
     ext = context.extraction
     parts: list[str] = [
-        "CONTEXT (background for understanding what the user made live — NOT the primary audit target):",
+        "CONTEXT (extraction summaries — paraphrased layer; NOT the primary audit target):",
     ]
     if ext.decision_situation:
         parts.append(f"- Decision situation: {ext.decision_situation}")
@@ -286,22 +287,19 @@ def _format_pass1_from_context_user_prompt(context: ConversationContext) -> str:
                 line += f", superseded_by: {d.superseded_by}"
             parts.append(line)
 
-    user_turns = [t for t in context.turns if t.speaker == "user"]
-    if user_turns:
-        parts.append("- User turns (CONTEXT only — what the user made live; not the primary scoring target):")
-        for t in user_turns:
-            parts.append(f"  [Turn {t.turn_index}] USER: {t.text}")
-
     parts.append("")
     parts.append(
-        "SOURCE (the PRIMARY AUDIT TARGET — assistant turns verbatim; score tendencies against commissions or omissions visible here):"
+        "SOURCE (PRIMARY AUDIT TARGET — the actual conversation, both sides; "
+        "score tendencies against the transaction: what the user introduced, "
+        "what the assistant said, what the assistant skipped, what the assistant "
+        "inherited from the user without challenge):"
     )
-    assistant_turns = [t for t in context.turns if t.speaker == "assistant"]
-    if not assistant_turns:
-        parts.append("(no assistant turns present)")
+    if not context.turns:
+        parts.append("(no conversation turns present)")
     else:
-        for t in assistant_turns:
-            parts.append(f"[Turn {t.turn_index}] ASSISTANT:")
+        for t in context.turns:
+            speaker_label = "USER" if t.speaker == "user" else "ASSISTANT"
+            parts.append(f"[Turn {t.turn_index}] {speaker_label}:")
             parts.append(t.text)
             parts.append("")
 

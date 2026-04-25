@@ -239,13 +239,19 @@ _TENDENCY_SPECIFIC_GUIDANCE: dict[str, str] = {
 # it to walk the menu before committing.
 # ---------------------------------------------------------------------------
 
-PASS_2_DEEP_CHECK_SYSTEM_FROM_CONTEXT = """You are performing a focused analysis of one specific cognitive tendency in a piece of AI reasoning. You have deep expertise in this single tendency and in the corrective models that challenge it.
+PASS_2_DEEP_CHECK_SYSTEM_FROM_CONTEXT = """You are performing a focused analysis of one specific cognitive tendency in a CONVERSATION TRANSACTION (user + assistant). You have deep expertise in this single tendency and in the corrective models that challenge it.
 
-CRITICAL: You are checking for ONE tendency ONLY. Do not analyze any other tendency. Your entire focus is on determining whether the tendency described below is genuinely present in the assistant's reasoning.
+CRITICAL: You are checking for ONE tendency ONLY. Do not analyze any other tendency. Your entire focus is on determining whether the tendency described below is genuinely present in how the conversation transaction unfolded.
 
 You will receive the user prompt in two sections:
-- CONTEXT: the decision situation, framing, live constraints, dropped threads, and the user's turns. Background for understanding what was live. NOT the primary audit target.
-- SOURCE: the assistant's turns verbatim. This IS the primary audit target. The tendency (if present) manifests here as commission (what the assistant said) or omission (what the assistant skipped given CONTEXT).
+- CONTEXT: extraction summaries (decision situation, original framing, live constraints, dropped threads). A paraphrased layer that helps you understand what the decision required, but is NOT itself the primary audit target.
+- SOURCE: the actual conversation, turn by turn — both the user's turns (how the question was posed, what framing was introduced) and the assistant's turns (how it was handled). This IS the primary audit target. The tendency (if present) lives in the conversation transaction: what the assistant said, what the assistant skipped, what the assistant inherited from the user, OR what the assistant failed to challenge.
+
+The tendency can fire in four shapes:
+  (1) COMMISSION — the assistant explicitly says something that exhibits the tendency.
+  (2) OMISSION — the assistant commits to a move while skipping a material check, denominator, dependency, reversal condition, pilot, or stop rule that the user's framing made live. Hedging or staging the answer in steps does not neutralize an omission.
+  (3) UNCRITICAL ACCEPTANCE — the assistant inherits user-introduced framing, constraints, or assumptions (vivid OR structural — single-actor assumptions, binary collapses, fixed-constraint claims, authority-rank deference, confident statistics) without testing them. The tendency is in the assistant's HANDLING of what the user introduced, not the user's text itself.
+  (4) MISSED CHALLENGE — the user's framing carries a tendency-shaped move and the assistant proceeds without surfacing or testing it. Silent inheritance is a form of the tendency: the assistant does not need to QUOTE the move to CARRY it. The inherited frame becomes the foundation of the recommendation.
 
 THE TENDENCY YOU ARE CHECKING:
 Name: {tendency_name}
@@ -260,14 +266,14 @@ If you detect the tendency, choose the single menu item that best points to the 
 {sub_pattern_menu}
 
 ENUM CHECKLIST REMINDER (sub_pattern selection):
-Before finalizing your sub_pattern choice, verify you've considered EACH option in the menu — not just the ones that surface verbatim in SOURCE. Some sub_patterns manifest as omission (the assistant skipping a check or reversal condition) or implicit bias (reasoning leaning on the failure mechanism without stating it) rather than as explicit claims. Walk the menu and ask, for each sub_pattern, whether the evidence in SOURCE + the omissions highlighted by CONTEXT fit. Choose the single best match. Use "general" only if no menu item clearly applies to the detected tendency.
+Before finalizing your sub_pattern choice, verify you've considered EACH option in the menu — not just the ones that surface verbatim in SOURCE. Some sub_patterns manifest as omission (the assistant skipping a check or reversal condition), uncritical acceptance (the assistant building on user-introduced framing without testing it), or missed challenge (the user's tendency-shaped move silently inherited) rather than as explicit claims by the assistant. Walk the menu and ask, for each sub_pattern, whether the evidence anywhere in SOURCE — across the conversation transaction — fits. Choose the single best match. Use "general" only if no menu item clearly applies to the detected tendency.
 
 RULES:
 1. Detect only decision-distorting manifestations of this tendency. Incidental tone, generic confidence, persuasive wording, or adjacent vocabulary are not enough.
-2. Use CONTEXT to understand what constraints, downside, dependencies, denominators, or reversal conditions were live — especially for omission-based detection.
-3. Look for specific evidence in the assistant's turns (SOURCE). Generic vibes are not enough.
-4. Omission-based detection is valid only when the assistant commits to a move without a necessary check, denominator, dependency treatment, reversal condition, pilot, or stop rule that this tendency would predictably require AND that CONTEXT made live.
-5. If the tendency is genuinely present, cite the exact passage from an assistant turn in SOURCE. For omission-based cases, quote the assistant's action sentence that exposes the unjustified leap.
+2. Use CONTEXT to understand what the decision required (constraints, downside, dependencies, denominators, reversal conditions). The audit target is the conversation transaction in SOURCE.
+3. Look for specific evidence in SOURCE — in either the assistant's turns (commission, omission, recycling) or the user's turns followed by the assistant building on them without challenge (uncritical acceptance, missed challenge).
+4. Omission-based detection is valid only when the assistant commits to a move without a necessary check, denominator, dependency treatment, reversal condition, pilot, or stop rule that this tendency would predictably require AND that the user's framing made live.
+5. If the tendency is genuinely present, cite the exact passage that proves it: the assistant's commission, the assistant's action sentence (for omissions), the assistant's recycling, or — for missed-challenge cases — the user's framing that was silently inherited PLUS the assistant's first commitment built on top of it. The passage must be a verbatim substring of a turn in SOURCE.
 6. If you cannot point to a specific passage in SOURCE, the tendency is not detected.
 7. Prefer the narrowest mechanism. If another tendency would explain the issue better, return not detected.
 8. If your evidence is only generic missing downside, urgency, or confidence that would fit several tendencies equally well, return not detected for this tendency.
@@ -285,7 +291,7 @@ If DETECTED:
   "confidence": 0.0,
   "evidence": "1-2 sentence explanation",
   "sub_pattern": "exact sub-pattern slug from the menu above",
-  "specific_passage": "Exact quote from an assistant turn in SOURCE",
+  "specific_passage": "Exact quote from a turn in SOURCE — assistant's commission/action/recycling, OR user's inherited framing plus the assistant's first commitment on top of it",
   "severity": "low"
 }}
 ```
@@ -352,11 +358,13 @@ def _format_pass2_from_packet_user_prompt(
 ) -> str:
     """Build the CONTEXT/SOURCE Pass 2 user body from a Lane4Packet.
 
-    CONTEXT: extraction summaries + user turns (background).
-    SOURCE: assistant turns verbatim (primary audit target).
+    CONTEXT: extraction summaries (paraphrased layer; not the primary audit target).
+    SOURCE: the actual conversation, both sides — primary audit target for the
+    full conversation transaction (commission, omission, uncritical acceptance,
+    missed challenge).
     """
     parts: list[str] = [
-        "CONTEXT (background — what the user made live; NOT the primary audit target):",
+        "CONTEXT (extraction summaries — paraphrased layer; NOT the primary audit target):",
     ]
     if packet.decision_situation:
         parts.append(f"- Decision situation: {packet.decision_situation.text}")
@@ -379,22 +387,19 @@ def _format_pass2_from_packet_user_prompt(
                 line += f", superseded_by: {i.superseded_by}"
             parts.append(line)
 
-    user_turns = [t for t in packet.turns if t.speaker == "user"]
-    if user_turns:
-        parts.append("- User turns (CONTEXT only):")
-        for t in user_turns:
-            parts.append(f"  [Turn {t.turn_index}] USER: {t.text}")
-
     parts.append("")
     parts.append(
-        "SOURCE (PRIMARY AUDIT TARGET — assistant turns verbatim; the tendency lives here as commission or omission):"
+        "SOURCE (PRIMARY AUDIT TARGET — the actual conversation, both sides; "
+        "score the tendency against the transaction: what the user introduced, "
+        "what the assistant said, what the assistant skipped, what the assistant "
+        "inherited from the user without challenge):"
     )
-    assistant_turns = [t for t in packet.turns if t.speaker == "assistant"]
-    if not assistant_turns:
-        parts.append("(no assistant turns present)")
+    if not packet.turns:
+        parts.append("(no conversation turns present)")
     else:
-        for t in assistant_turns:
-            parts.append(f"[Turn {t.turn_index}] ASSISTANT:")
+        for t in packet.turns:
+            speaker_label = "USER" if t.speaker == "user" else "ASSISTANT"
+            parts.append(f"[Turn {t.turn_index}] {speaker_label}:")
             parts.append(t.text)
             parts.append("")
 
