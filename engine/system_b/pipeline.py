@@ -14,6 +14,11 @@ from .authority_pilot_bridge import AuthorityPilotBridge, AuthorityPilotBridgeRe
 from concurrent.futures import ThreadPoolExecutor
 
 from .boundary_provider import BoundaryCallMetadata, load_boundary_client_from_env
+from .boundary_tracing import (
+    BoundaryCallTrace,
+    _capture_boundary_call,
+    _metadata_to_boundary_call_trace,
+)
 from .conversation_context import ConversationContext
 from .ir_constructor import construct_conversation_ir
 from .companion import CompanionCard, DetectedModel, FingerprintMove, FingerprintPayload, build_companion_card
@@ -247,21 +252,9 @@ class PipelineConfig:
     activation_tiebreaker_enabled: bool = True
 
 
-@dataclass(frozen=True)
-class BoundaryCallTrace:
-    stage: str
-    tendency_id: str = ""
-    provider_name: str = ""
-    model: str = ""
-    status: str = "not_called"
-    prompt_tokens: int = 0
-    completion_tokens: int = 0
-    total_tokens: int = 0
-    cached_tokens: int = 0
-    cache_write_tokens: int = 0
-    reasoning_tokens: int = 0
-    reasoning_disabled: bool = False
-    reasoning_details_present: bool = False
+# BoundaryCallTrace moved to engine.system_b.boundary_tracing in Phase 7.1.
+# Re-exported below for backwards compatibility (testing_harness.py and
+# other callers still import it from here).
 
 
 @dataclass(frozen=True)
@@ -1103,51 +1096,9 @@ def _structural_coverage_audit_fields(card: StructuralCoverageCard | None) -> di
     }
 
 
-def _capture_boundary_call(
-    boundary: BoundaryClient,
-    *,
-    stage: str,
-    tendency_id: str = "",
-) -> BoundaryCallTrace:
-    metadata = getattr(boundary, "last_call_metadata", BoundaryCallMetadata())
-    return BoundaryCallTrace(
-        stage=stage,
-        tendency_id=tendency_id,
-        provider_name=metadata.provider_name,
-        model=metadata.model,
-        status=metadata.status,
-        prompt_tokens=metadata.prompt_tokens,
-        completion_tokens=metadata.completion_tokens,
-        total_tokens=metadata.total_tokens,
-        cached_tokens=metadata.cached_tokens,
-        cache_write_tokens=metadata.cache_write_tokens,
-        reasoning_tokens=metadata.reasoning_tokens,
-        reasoning_disabled=metadata.reasoning_disabled,
-        reasoning_details_present=metadata.reasoning_details_present,
-    )
-
-
-def _metadata_to_boundary_call_trace(
-    metadata: BoundaryCallMetadata,
-    *,
-    stage: str,
-    tendency_id: str = "",
-) -> BoundaryCallTrace:
-    return BoundaryCallTrace(
-        stage=stage,
-        tendency_id=tendency_id,
-        provider_name=metadata.provider_name,
-        model=metadata.model,
-        status=metadata.status,
-        prompt_tokens=metadata.prompt_tokens,
-        completion_tokens=metadata.completion_tokens,
-        total_tokens=metadata.total_tokens,
-        cached_tokens=metadata.cached_tokens,
-        cache_write_tokens=metadata.cache_write_tokens,
-        reasoning_tokens=metadata.reasoning_tokens,
-        reasoning_disabled=metadata.reasoning_disabled,
-        reasoning_details_present=metadata.reasoning_details_present,
-    )
+# _capture_boundary_call and _metadata_to_boundary_call_trace moved to
+# engine.system_b.boundary_tracing in Phase 7.1. Imported at the top of
+# this module and re-exported for backwards compatibility.
 
 
 def _run_pass1_cluster_single(
