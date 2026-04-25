@@ -138,22 +138,22 @@ Relevant user turns: 1, 2, 5 (others mostly responding to assistant pushback).
 
 **UHP-F1** — type: `situation`
 - Component: `"tactical launch plan for independent consulting starting in 6 weeks"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: derivation / turn(s): 1 / excerpt(s): `start an independent consulting practice` + `Plan is to go independent starting in 6 weeks` + `the launch plan` / note: component stitches three different turn-1 clauses; reading as derivation rather than single span
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `Plan is to go independent starting in 6 weeks. Can you help me think through the launch plan?` / note: 'tactical' is extractor word; rest of component is in turn 1
 
 **UHP-F2** — type: `assumption`
 - Component: `"8-month runway"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `8 months runway` / note: minimum anchor
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `I have 8 months runway saved` / note: exact substring
 
 **UHP-F3** — type: `assumption`
 - Component: `"network conversations as sufficient pipeline"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: inferred / turn(s): — / excerpt(s): — / note: 'sufficient pipeline' is the extractor's judgment of conversational signal; user never claimed sufficiency
 - Reviewer B · anchor: inferred / turn(s): — / excerpt(s): — / note: user mentions conversations + pipeline separately but never asserts they constitute *sufficient* pipeline
 
 **UHP-F4** — type: `exclusion`
 - Component: `"excludes delaying launch or questioning premise"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: inferred / turn(s): — / excerpt(s): — / note: exclusion is inferred from absence of delay-related language in turn 1 ask
 - Reviewer B · anchor: inferred / turn(s): — / excerpt(s): — / note: user's ask is for launch plan; exclusion is extractor inference from absence
 
 ---
@@ -171,22 +171,22 @@ Relevant user turns: 1, 2 (the witnessing detail is established in turns 1-2).
 
 **WB-F1** — type: `situation`
 - Component: `"senior partner shredding multiple boxes of documents from audited client account"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `found our senior partner shredding documents` / note: tighter anchor than B; full situation is in turn 1
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `found our senior partner shredding documents. Not regular shredding — multiple boxes, in a non-shred-room location` / note: turn 1 covers the situation; turn 2 adds detail but turn 1 is sufficient
 
 **WB-F2** — type: `situation`
 - Component: `"at odd hour"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: inferred / turn(s): — / excerpt(s): — / note: phrase 'odd hour' is not in any user turn; user said '6am' and 'an hour when no one is there' but extractor compressed to 'odd hour' which is interpretive
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `at an hour when no one is there` / note: framing's 'odd hour' compresses 'at 6am' + 'an hour when no one is there'; closest substring is the latter
 
 **WB-F3** — type: `assumption`
 - Component: `"incident relates to active regulator audit"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: inferred / turn(s): — / excerpt(s): — / note: 'incident relates to' is the extractor's logical connection; user states two separate facts (shredding + audit) but never explicitly links them in those words
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `That account is in active audit with a major regulator right now` / note: connection to shredding incident is implicit but user provides both facts in turn 1
 
 **WB-F4** — type: `exclusion`
 - Component: `"excludes immediate confrontation or casual advice"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: inferred / turn(s): — / excerpt(s): — / note: user's 'what do I do' is open ended
 - Reviewer B · anchor: inferred / turn(s): — / excerpt(s): — / note: user's ask 'what do I do' is open; exclusion is extractor inference
 
 ---
@@ -202,22 +202,22 @@ Relevant user turn: 1.
 
 **PT-F1** — type: `situation`
 - Component: `"daughter's secret Instagram use and intimate DMs with 19-year-old guy"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `she's been using Instagram for months` + `talking to a 19-year-old guy` + `the messages are — they're not like a random guy, they're intimate` / note: cluster within turn 1; could read as derivation-within-turn but I'm calling span since same turn
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `she's been using Instagram for months even though we said no social media until 16. ... she's been talking to a 19-year-old guy. For months. ... the messages are — they're not like a random guy, they're intimate.` / note: cluster of sentences in turn 1
 
 **PT-F2** — type: `situation`
 - Component: `"Mother seeks advice on handling..."` (the meta-ask)
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `I don't know what to do` / note: identical to B
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `I don't know what to do.` / note: user's open ask; extractor's 'seeks advice on handling' is template framing
 
 **PT-F3** — type: `assumption`
 - Component: `"ex's minimization is unhelpful"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: inferred / turn(s): — / excerpt(s): — / note: 'unhelpful' is the extractor's judgment, not the user's claim; the minimization fact is span-anchored ('says I'm overreacting and this is teenage stuff') but the judgment 'unhelpful' isn't in the user turn
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `Her dad (we're divorced, share custody) says I'm overreacting and this is teenage stuff.` / note: minimization fact is span-anchored; 'unhelpful' is mild interpretation
 
 **PT-F4** — type: `exclusion`
 - Component: `"excludes options like immediate police/police confrontation"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: inferred / turn(s): — / excerpt(s): — / note: police is raised in turn 3 but framing is *original*; turn 1 doesn't mention police
 - Reviewer B · anchor: inferred / turn(s): — / excerpt(s): — / note: user never raised police; exclusion is extractor inference from absence
 
 ---
@@ -233,22 +233,22 @@ Relevant user turn: 1.
 
 **MO-F1** — type: `situation`
 - Component: `"three job options (A: FAANG staff+...; B: Series B startup...; C: stay)"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `Just got three offers and I have to pick one within 7 days. Option A: different FAANG, staff+ role, ~15% total comp bump. Option B: well-funded Series B startup, founding engineer lead role, ~80% base cut but 0.8% equity. Option C: stay.` / note: full block in turn 1
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `Option A: different FAANG, staff+ role, ~15% total comp bump. Option B: well-funded Series B startup, founding engineer lead role, ~80% base cut but 0.8% equity. Option C: stay.` / note: full enumeration is in turn 1
 
 **MO-F2** — type: `situation`
 - Component: `"7-day deadline"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `I have to pick one within 7 days` / note: identical to B
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `I have to pick one within 7 days` / note: exact
 
 **MO-F3** — type: `situation`
 - Component: `"no path to staff currently"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `no clear path to staff` / note: identical
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `no clear path to staff` / note: exact
 
 **MO-F4** — type: `assumption`
 - Component: `"options equally weighted"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: inferred / turn(s): — / excerpt(s): — / note: 'options equally weighted' is the assistant's read in turn 2 of the assistant text, not a user statement
 - Reviewer B · anchor: inferred / turn(s): — / excerpt(s): — / note: user never ranked options; the 'equally weighted' assumption was assistant's read in turn 2, never user's claim
 
 ---
@@ -264,22 +264,22 @@ Relevant user turn: 1.
 
 **SP-F1** — type: `situation`
 - Component: `"pivot signal from three unprompted customers"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `three customers tell us unprompted that they'd pay way more for a specific workflow tool we could build` / note: tighter anchor
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `we've had three customers tell us unprompted that they'd pay way more for a specific workflow tool` / note: exact substring
 
 **SP-F2** — type: `situation`
 - Component: `"$4K MRR, 14mo runway"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `$4K MRR` + `14 months of runway left at current burn` / note: two clauses in same turn
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `$4K MRR, 22 customers. We have maybe 14 months of runway left at current burn` / note: $4K MRR + 14mo runway both in turn 1
 
 **SP-F3** — type: `situation`
 - Component: `"two employees"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: span / turn(s): 1 / excerpt(s): `two full-time employees` / note: identical
 - Reviewer B · anchor: span / turn(s): 1 / excerpt(s): `I have two full-time employees` / note: exact
 
 **SP-F4** — type: `exclusion`
 - Component: `"excludes other pivots or non-pivot growth tactics"`
-- Reviewer A · anchor / turn(s) / excerpt(s) / note:
+- Reviewer A · anchor: inferred / turn(s): — / excerpt(s): — / note: identical to B
 - Reviewer B · anchor: inferred / turn(s): — / excerpt(s): — / note: user named one specific pivot; exclusion of alternatives is extractor inference
 
 ---
