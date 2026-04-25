@@ -46,13 +46,43 @@ def _reload_result_if_changed():
         _RESULT_MTIME = mtime
 
 
+def _joined_user_turns(extraction: dict) -> str:
+    """Concatenate user-turn text from the serialized conversation."""
+    return "\n\n".join(
+        t.get("text", "")
+        for t in extraction.get("turns", [])
+        if t.get("speaker") == "user"
+    )
+
+
+def _joined_assistant_turns(extraction: dict) -> str:
+    """Concatenate assistant-turn text from the serialized conversation."""
+    return "\n\n".join(
+        t.get("text", "")
+        for t in extraction.get("turns", [])
+        if t.get("speaker") == "assistant"
+    )
+
+
 def _derive_case_name(result: dict) -> str:
-    """Derive a human-readable case name from the pipeline result."""
-    query = result.get("query", "")
-    if not query:
+    """Derive a human-readable case name from the pipeline result.
+
+    Prefers the extraction's decision_situation (a clean one-liner produced by
+    the extraction step). Falls back to the first user turn's leading clause.
+    """
+    extraction = result.get("extraction", {})
+    decision_situation = extraction.get("decision_situation", "").strip()
+    if decision_situation:
+        # decision_situation is already concise; just clip if abnormally long
+        if len(decision_situation) > 140:
+            return decision_situation[:140].rsplit(" ", 1)[0]
+        return decision_situation
+
+    first_user_turn = _joined_user_turns(extraction).split("\n\n", 1)[0].strip()
+    if not first_user_turn:
         return "Lolla Audit"
     # Take first line
-    first_line = query.split("\n")[0].strip()
+    first_line = first_user_turn.split("\n")[0].strip()
     # Try to find a natural sentence or clause break within 100 chars
     for sep in [". ", "; "]:
         idx = first_line.find(sep)
@@ -387,12 +417,14 @@ def _build_case_response() -> dict:
     structural_coverage_card = r.get("structural_coverage_card")
     revised_answer = r.get("revised_answer")
 
-    # Build case metadata from extraction if available
+    # Build case metadata from the serialized conversation. Observatory shows
+    # query (joined user turns) and vanilla_answer (joined assistant turns)
+    # in the case header for context alongside cards/audit data.
     extraction = r.get("extraction", {})
     case_meta = {
         "case_id": _CASE_ID,
-        "query": r.get("query", extraction.get("query", "")),
-        "vanilla_answer": r.get("vanilla_answer", extraction.get("vanilla_answer", "")),
+        "query": _joined_user_turns(extraction),
+        "vanilla_answer": _joined_assistant_turns(extraction),
     }
 
     audit_trace = r.get("audit_summary")

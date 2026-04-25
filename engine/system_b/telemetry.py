@@ -4,11 +4,14 @@ from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 import hashlib
 import json
+import logging
 from pathlib import Path
 import sqlite3
 import statistics
 from typing import TYPE_CHECKING, Mapping, Sequence
 import uuid
+
+_LOGGER = logging.getLogger("system_b.telemetry")
 
 from .prompts import _joined_assistant_turns_text
 from .testing_harness import normalize_text, summarize_boundary_calls
@@ -385,10 +388,18 @@ def _conversation_query_text(conversation_context: "ConversationContext") -> str
 
 
 def _conversation_vanilla_text(conversation_context: "ConversationContext") -> str:
+    """Return joined assistant-turn text for telemetry/scoring. When no
+    assistant turns exist, returns empty string and logs a warning rather
+    than silently falling back to extractor paraphrase. See
+    pipeline._assistant_reasoning_text for the matching runtime helper."""
     assistant_text = normalize_text(_joined_assistant_turns_text(conversation_context))
     if assistant_text:
         return assistant_text
-    return normalize_text(conversation_context.extraction.synthesized_position)
+    _LOGGER.warning(
+        "_conversation_vanilla_text: no assistant turns in ConversationContext; "
+        "returning empty string instead of falling back to synthesized_position"
+    )
+    return ""
 
 
 def process_quality_score(run_record: RunRecord) -> dict[str, object]:

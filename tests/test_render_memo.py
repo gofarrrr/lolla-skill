@@ -10,8 +10,21 @@ from scripts.render_memo import render_memo
 
 
 MINIMAL_RESULT = {
-    "query": "Should I grant 15% equity to Marcus? He built most of the platform.",
-    "vanilla_answer": "Yes, granting equity seems reasonable given his contributions.",
+    "extraction": {
+        "decision_situation": "Should I grant 15% equity to Marcus? He built most of the platform.",
+        "turns": [
+            {
+                "turn_index": 1,
+                "speaker": "user",
+                "text": "Should I grant 15% equity to Marcus? He built most of the platform.",
+            },
+            {
+                "turn_index": 1,
+                "speaker": "assistant",
+                "text": "Yes, granting equity seems reasonable given his contributions.",
+            },
+        ],
+    },
     "detected_tendencies": [],
 }
 
@@ -242,7 +255,7 @@ def test_duplicate_passage_rendered_once():
 
 
 def test_minimal_result_no_errors():
-    """Minimal result with only query/vanilla_answer/detected_tendencies produces valid memo."""
+    """Minimal result with only extraction + detected_tendencies produces valid memo."""
     output = render_memo(MINIMAL_RESULT)
     assert output.startswith("# ")
     # Should not contain any optional sections

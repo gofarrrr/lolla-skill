@@ -120,8 +120,8 @@ def test_pipeline_run_uses_joined_assistant_turns_for_embedding_signal() -> None
     )
     captured: dict[str, str] = {}
 
-    def _capture_embedding_input(*, vanilla_answer, retriever, api_key):  # noqa: ARG001
-        captured["vanilla_answer"] = vanilla_answer
+    def _capture_embedding_input(*, assistant_text, retriever, api_key):  # noqa: ARG001
+        captured["assistant_text"] = assistant_text
         return {}
 
     pipeline = SystemBPipeline.__new__(SystemBPipeline)
@@ -145,7 +145,7 @@ def test_pipeline_run_uses_joined_assistant_turns_for_embedding_signal() -> None
         pipeline._build_lane1_relevance_scores = lambda query_text: None  # type: ignore[method-assign]
         pipeline.run(context)
 
-    assert captured["vanilla_answer"] == "Use the assistant turns, not synthesized_position."
+    assert captured["assistant_text"] == "Use the assistant turns, not synthesized_position."
 
 
 def test_run_companion_recall_uses_joined_assistant_turns() -> None:
@@ -165,8 +165,8 @@ def test_run_companion_recall_uses_joined_assistant_turns() -> None:
     pipeline._embedding_retriever = None
     pipeline._embedding_api_key = ""
 
-    def _capture_recall(*, vanilla_answer, fingerprint_payload, knowledge_graph, reasoning_signals, embedding_retriever, embedding_api_key):  # noqa: ARG001
-        captured["vanilla_answer"] = vanilla_answer
+    def _capture_recall(*, assistant_text, fingerprint_payload, knowledge_graph, reasoning_signals, embedding_retriever, embedding_api_key):  # noqa: ARG001
+        captured["assistant_text"] = assistant_text
         return []
 
     with patch(
@@ -183,7 +183,7 @@ def test_run_companion_recall_uses_joined_assistant_turns() -> None:
         )
 
     assert isinstance(result, CompanionRunResult)
-    assert captured["vanilla_answer"] == "Assistant reasoning should feed recall."
+    assert captured["assistant_text"] == "Assistant reasoning should feed recall."
 
 
 def test_run_frame_pressure_uses_packet_extraction_and_context_reframing() -> None:

@@ -32,7 +32,7 @@ def compute_prompt_versions(catalog=None) -> dict[str, str]:
     pipeline) should always pass the real catalog.
     """
     from .companion_routing import get_prompt_templates as companion_templates
-    from .deep_checks import PASS_2_DEEP_CHECK_SYSTEM
+    from .deep_checks import PASS_2_DEEP_CHECK_SYSTEM_FROM_CONTEXT
     from .frame_pressure import get_prompt_template as frame_template
     from .prompts import compute_cluster_prompt_hashes
     from .tendency_catalog import TendencyCatalog
@@ -40,7 +40,7 @@ def compute_prompt_versions(catalog=None) -> dict[str, str]:
     companion = companion_templates()
 
     versions: dict[str, str] = {
-        "pass2_deep_check": _short_hash(PASS_2_DEEP_CHECK_SYSTEM),
+        "pass2_deep_check": _short_hash(PASS_2_DEEP_CHECK_SYSTEM_FROM_CONTEXT),
         "companion_fingerprint": _short_hash(companion["companion_fingerprint"]),
         "companion_verification": _short_hash(companion["companion_verification"]),
         "frame_extraction": _short_hash(frame_template()),

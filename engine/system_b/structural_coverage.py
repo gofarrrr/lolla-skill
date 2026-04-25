@@ -21,7 +21,6 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from .boundary_validation import coerce_str
-from .conversation_context import ConversationContext
 from .ir import ConversationIR
 from .packet_builders.lane4 import Lane4Packet, build_lane4_packet
 
@@ -222,50 +221,6 @@ CONTEXT summary if it diverges from what the user actually said.
 """
 
 
-def _format_classification_from_context_user_prompt(context: ConversationContext) -> str:
-    """User-prompt body for context-first question classification.
-
-    CONTEXT section holds extractor summaries + assistant replies (scaffolding).
-    SOURCE section holds user turns verbatim — the primary signal.
-    """
-    ext = context.extraction
-    parts: list[str] = ["CONTEXT (scaffolding — classify the user's actual question, not this summary):"]
-    if ext.decision_situation:
-        parts.append(f"- Decision situation: {ext.decision_situation}")
-    if ext.original_framing:
-        parts.append(f"- Framing extracted upstream: {ext.original_framing}")
-
-    assistant_turns = [t for t in context.turns if t.speaker == "assistant"]
-    if assistant_turns:
-        parts.append("- Assistant replies (context for what the user was engaging with):")
-        for t in assistant_turns:
-            parts.append(f"  [Turn {t.turn_index} ASSISTANT] {t.text[:500]}")
-
-    parts.append("")
-    parts.append("SOURCE (the user's actual turns — first user turn is the canonical question anchor):")
-    for t in context.turns:
-        if t.speaker == "user":
-            parts.append(f"[Turn {t.turn_index}] USER:")
-            parts.append(t.text)
-            parts.append("")
-
-    return "\n".join(parts)
-
-
-def run_question_classification_from_context(
-    boundary: _BoundaryClient,
-    context: ConversationContext,
-) -> str:
-    """Conversation-first entry point for question classification — Phase 2b."""
-    user_prompt = _format_classification_from_context_user_prompt(context)
-    raw = boundary.run_json(_QUESTION_CLASSIFICATION_SYSTEM_FROM_CONTEXT, user_prompt)
-    qtype = coerce_str(raw.get("question_type", ""))
-    if qtype not in _VALID_QUESTION_TYPES:
-        _LOGGER.warning("Invalid question_type %r, defaulting to decision-evaluation", qtype)
-        qtype = "decision-evaluation"
-    return qtype
-
-
 # ---------------------------------------------------------------------------
 # LLM Boundary Call 2: Dimension Detection + Coverage Check
 # ---------------------------------------------------------------------------
@@ -414,73 +369,6 @@ than false-negative omission.
 """
 
 
-def _format_dimension_detection_from_context_user_prompt(
-    context: ConversationContext,
-    question_type: str,
-    dimension_catalog_text: str,
-) -> str:
-    """User-prompt body for context-first dimension detection.
-
-    CONTEXT holds extractor summaries; SOURCE holds the full turn-by-turn
-    conversation with user and assistant turns clearly labelled so the LLM
-    can cite either side when judging coverage.
-    """
-    ext = context.extraction
-    parts: list[str] = [
-        f"QUESTION TYPE: {question_type}",
-        "",
-        f"DIMENSION CATALOG:",
-        dimension_catalog_text,
-        "",
-        "CONTEXT (scaffolding — not the primary source of truth for detection or coverage):",
-    ]
-    if ext.decision_situation:
-        parts.append(f"- Decision situation: {ext.decision_situation}")
-    if ext.original_framing:
-        parts.append(f"- Framing extracted upstream: {ext.original_framing}")
-    if ext.live_constraints:
-        parts.append("- Constraints:")
-        for c in ext.live_constraints:
-            status = c.status or "active"
-            weight = c.weight or "situational"
-            tag = status.upper() if status == "active" else f"{status.upper()}/{weight.upper()}"
-            parts.append(f"  - [{tag}] {c.constraint} (turn {c.introduced_turn})")
-    if ext.dropped_threads:
-        parts.append("- Dropped threads:")
-        for d in ext.dropped_threads:
-            line = (
-                f"  - {d.thread} (raised by {d.raised_by or '?'} turn {d.raised_turn}, "
-                f"status: {d.status or '?'})"
-            )
-            if d.superseded_by:
-                line += f", superseded_by: {d.superseded_by}"
-            parts.append(line)
-
-    parts.append("")
-    parts.append("SOURCE (primary — USER turns establish the question for detection; ASSISTANT turns establish the answer for coverage):")
-    for t in context.turns:
-        parts.append(f"[Turn {t.turn_index}] {t.speaker.upper()}:")
-        parts.append(t.text)
-        parts.append("")
-
-    return "\n".join(parts)
-
-
-def run_dimension_detection_from_context(
-    boundary: _BoundaryClient,
-    context: ConversationContext,
-    question_type: str,
-    structural_coverage_routing: dict,
-) -> tuple[DetectedDimension, ...]:
-    """Conversation-first dimension detection — Phase 2b."""
-    catalog_text = _build_dimension_catalog_text(structural_coverage_routing)
-    user_prompt = _format_dimension_detection_from_context_user_prompt(
-        context, question_type, catalog_text,
-    )
-    raw = boundary.run_json(_DIMENSION_DETECTION_SYSTEM_FROM_CONTEXT, user_prompt)
-    return _parse_dimension_detection(raw)
-
-
 _MAX_GAPS = 5  # Hard cap — even if the LLM returns more, we truncate.
 
 
@@ -618,101 +506,6 @@ Return ONLY the JSON object. No explanation.
 
 
 # ---------------------------------------------------------------------------
-# Phase 2b: Conversation-first gap question generation
-# ---------------------------------------------------------------------------
-#
-# Gap questions need to be problem-specific — they reference the actual
-# situation so the decision-maker can answer them without reading an AI-facing
-# spec. The CONTEXT/SOURCE split here steers the LLM to ground its question
-# wording in the real conversation rather than in extractor paraphrases.
-
-def _format_gap_question_from_context_user_prompt(
-    context: ConversationContext,
-    question_type: str,
-    gap_routes: tuple[DimensionRoute, ...],
-    structural_coverage_routing: dict,
-) -> str:
-    """User-prompt body for context-first gap question generation.
-
-    CONTEXT: extractor summaries. SOURCE: full conversation (user + assistant
-    turns). Questions generated should reference the conversation's real
-    details — the kind of particulars the user would recognize as being about
-    their situation, not the extractor's re-labelled framing.
-    """
-    routing_dims = structural_coverage_routing.get("dimensions", {})
-    gap_sections: list[str] = []
-    for route in gap_routes:
-        dim_def = routing_dims.get(route.dimension_id, {})
-        gap_sections.append(
-            f"GAP DIMENSION: {route.dimension_name} (id: {route.dimension_id})\n"
-            f"Cleaving frame: {dim_def.get('cleaving_frame', 'N/A')}\n"
-            f"What's missing: The assistant did not address this dimension.\n"
-            f"Why it matters: {dim_def.get('materiality_test', 'N/A')}"
-        )
-
-    ext = context.extraction
-    parts: list[str] = [
-        f"QUESTION TYPE: {question_type}",
-        "",
-        "CONTEXT (scaffolding — do NOT quote verbatim into your questions; use only for grounding):",
-    ]
-    if ext.decision_situation:
-        parts.append(f"- Decision situation: {ext.decision_situation}")
-    if ext.original_framing:
-        parts.append(f"- Framing extracted upstream: {ext.original_framing}")
-    if ext.live_constraints:
-        parts.append("- Constraints:")
-        for c in ext.live_constraints:
-            status = c.status or "active"
-            weight = c.weight or "situational"
-            tag = status.upper() if status == "active" else f"{status.upper()}/{weight.upper()}"
-            parts.append(f"  - [{tag}] {c.constraint} (turn {c.introduced_turn})")
-
-    parts.append("")
-    parts.append("SOURCE (the real conversation — your questions should reference particulars from here):")
-    for t in context.turns:
-        parts.append(f"[Turn {t.turn_index}] {t.speaker.upper()}:")
-        parts.append(t.text)
-        parts.append("")
-
-    parts.append("")
-    parts.append("STRUCTURAL GAPS:")
-    parts.append("")
-    parts.append("\n\n".join(gap_sections))
-
-    return "\n".join(parts)
-
-
-def generate_gap_questions_from_context(
-    boundary: _BoundaryClient,
-    context: ConversationContext,
-    question_type: str,
-    gap_routes: tuple[DimensionRoute, ...],
-    structural_coverage_routing: dict,
-) -> tuple[GapQuestion, ...]:
-    """Conversation-first gap question generation — Phase 2b."""
-    if not gap_routes:
-        return ()
-
-    user_prompt = _format_gap_question_from_context_user_prompt(
-        context, question_type, gap_routes, structural_coverage_routing,
-    )
-    raw = boundary.run_json(_GAP_QUESTION_GENERATION_SYSTEM, user_prompt)
-    parsed = _parse_gap_questions(raw)
-
-    results: list[GapQuestion] = []
-    for route in gap_routes:
-        questions = parsed.get(route.dimension_id)
-        if questions:
-            results.append(GapQuestion(
-                dimension_id=route.dimension_id,
-                dimension_name=route.dimension_name,
-                questions=questions,
-            ))
-    return tuple(results)
-
-
-# ---------------------------------------------------------------------------
 # Deterministic middle: Bridge + Anti-Echo
 # ---------------------------------------------------------------------------
 
@@ -784,54 +577,7 @@ def assemble_structural_coverage_card(
 
 
 # ---------------------------------------------------------------------------
-# Public API — single entry point for pipeline.py
-# ---------------------------------------------------------------------------
-
-def run_structural_coverage_from_context(
-    boundary: _BoundaryClient,
-    context: ConversationContext,
-    structural_coverage_routing: dict,
-    anti_echo_model_ids: set[str],
-) -> StructuralCoverageCard | None:
-    """Conversation-first orchestrator — Phase 2b.
-
-    Delegates to the `_from_context` variants of classification, detection,
-    and gap question generation. Deterministic routing (step 3) and assembly
-    (step 5) are unchanged — they don't depend on the input shape.
-    """
-    try:
-        question_type = run_question_classification_from_context(boundary, context)
-    except Exception:
-        _LOGGER.exception("Question classification (from_context) failed")
-        return None
-
-    try:
-        dimensions = run_dimension_detection_from_context(
-            boundary, context, question_type, structural_coverage_routing,
-        )
-    except Exception:
-        _LOGGER.exception("Dimension detection (from_context) failed")
-        return None
-
-    gap_routes = route_gap_dimensions(
-        dimensions, structural_coverage_routing, anti_echo_model_ids,
-    )
-
-    gap_questions: tuple[GapQuestion, ...] = ()
-    try:
-        gap_questions = generate_gap_questions_from_context(
-            boundary, context, question_type, gap_routes, structural_coverage_routing,
-        )
-    except Exception:
-        _LOGGER.exception("Gap question generation (from_context) failed")
-
-    return assemble_structural_coverage_card(
-        question_type, dimensions, gap_routes, anti_echo_model_ids, gap_questions,
-    )
-
-
-# ---------------------------------------------------------------------------
-# Phase 4b: packet-driven entry points
+# Public API — packet- and IR-driven entry points consumed by pipeline.py
 # ---------------------------------------------------------------------------
 # The packet variants produce byte-identical prompts to the context variants
 # on inputs where the IR projection is lossless. Known drift: when a
@@ -841,7 +587,11 @@ def run_structural_coverage_from_context(
 
 
 def _format_classification_from_packet_user_prompt(packet: Lane4Packet) -> str:
-    """Packet-driven counterpart to `_format_classification_from_context_user_prompt`."""
+    """User-prompt body for packet-driven question classification.
+
+    CONTEXT section holds extractor summaries + assistant replies (scaffolding).
+    SOURCE section holds user turns verbatim — the primary signal.
+    """
     parts: list[str] = ["CONTEXT (scaffolding — classify the user's actual question, not this summary):"]
     if packet.decision_situation:
         parts.append(f"- Decision situation: {packet.decision_situation.text}")
@@ -884,7 +634,12 @@ def _format_dimension_detection_from_packet_user_prompt(
     question_type: str,
     dimension_catalog_text: str,
 ) -> str:
-    """Packet-driven counterpart to `_format_dimension_detection_from_context_user_prompt`."""
+    """User-prompt body for packet-driven dimension detection.
+
+    CONTEXT holds extractor summaries; SOURCE holds the full turn-by-turn
+    conversation with user and assistant turns clearly labelled so the LLM
+    can cite either side when judging coverage.
+    """
     parts: list[str] = [
         f"QUESTION TYPE: {question_type}",
         "",
@@ -945,7 +700,13 @@ def _format_gap_question_from_packet_user_prompt(
     gap_routes: tuple[DimensionRoute, ...],
     structural_coverage_routing: dict,
 ) -> str:
-    """Packet-driven counterpart to `_format_gap_question_from_context_user_prompt`."""
+    """User-prompt body for packet-driven gap question generation.
+
+    CONTEXT: extractor summaries. SOURCE: full conversation (user + assistant
+    turns). Questions generated should reference the conversation's real
+    details — the kind of particulars the user would recognize as being about
+    their situation, not the extractor's re-labelled framing.
+    """
     routing_dims = structural_coverage_routing.get("dimensions", {})
     gap_sections: list[str] = []
     for route in gap_routes:
@@ -1023,10 +784,12 @@ def run_structural_coverage_from_ir(
     structural_coverage_routing: dict,
     anti_echo_model_ids: set[str],
 ) -> StructuralCoverageCard | None:
-    """IR-driven orchestrator. Mirrors `run_structural_coverage_from_context`
-    but builds a Lane4Packet from the IR and delegates to packet-driven
+    """IR-driven Lane 4 orchestrator.
+
+    Builds a Lane4Packet from the IR and delegates to packet-driven
     classification, detection, and gap question generation. Deterministic
-    routing + assembly are shared (input-shape agnostic)."""
+    routing + assembly are input-shape agnostic.
+    """
     packet = build_lane4_packet(ir)
 
     try:
