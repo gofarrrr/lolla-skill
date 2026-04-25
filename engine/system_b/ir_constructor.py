@@ -37,6 +37,12 @@ StanceExtractor = Callable[[ConversationContext], list[StanceEvent]]
 # dropped_threads mapping from context.extraction.dropped_threads is unaffected.
 LiveConstraintsExtractor = Callable[[ConversationContext], list[UserIssueEvent]]
 
+# Phase 5.5: optional injectable callable that returns a list of
+# UserIssueEvent representing dropped_threads (speaker can be user or
+# assistant). When provided, REPLACES the monolith's dropped_threads
+# mapping. live_constraints mapping unaffected.
+DroppedThreadsExtractor = Callable[[ConversationContext], list[UserIssueEvent]]
+
 
 _LOGGER = logging.getLogger("system_b.ir_constructor")
 
@@ -64,6 +70,7 @@ def construct_conversation_ir(
     *,
     stance_extractor: StanceExtractor | None = None,
     live_constraints_extractor: LiveConstraintsExtractor | None = None,
+    dropped_threads_extractor: DroppedThreadsExtractor | None = None,
 ) -> ConversationIR:
     """Build the Phase 1 IR without changing lane behavior.
 
@@ -82,6 +89,13 @@ def construct_conversation_ir(
     Phase-1 behavior. When provided and it raises, a WARNING is logged
     and live_constraint events stay empty from the specialist path;
     dropped_threads are still mapped from the monolith regardless.
+
+    Phase 5.5: optional `dropped_threads_extractor` REPLACES the monolith's
+    `dropped_threads` → `UserIssueEvent` mapping with substring-validated
+    events. Default None preserves Phase-1 behavior. When provided and it
+    raises, a WARNING is logged and dropped_thread events stay empty;
+    rest of IR still builds. Matches the Phase 5 `live_constraints_extractor`
+    failure contract — we don't fall back to a known-worse source.
     """
 
     ir = ConversationIR()
@@ -122,28 +136,37 @@ def construct_conversation_ir(
                 ),
             )
 
-    for index, thread in enumerate(context.extraction.dropped_threads, 1):
-        source_ref = _source_turn_ref(
-            context,
-            thread.raised_turn,
-            _normalize_speaker(thread.raised_by),
-        )
-        kind = _dropped_thread_kind(thread.status, thread.superseded_by)
-        ir = add_user_issue_event(
-            ir,
-            UserIssueEvent(
-                issue_id=f"dropped_thread_{index:03d}",
-                text=thread.thread,
-                kind=kind,
-                status=thread.status or "active",
-                provenance=TurnRefProvenance(
-                    turn_refs=(source_ref,),
-                    note="dropped_threads",
+    if dropped_threads_extractor is not None:
+        try:
+            specialist_events = dropped_threads_extractor(context)
+        except Exception as exc:  # noqa: BLE001
+            _LOGGER.warning("dropped_threads_extractor_failed: %s", exc)
+            specialist_events = []
+        for event in specialist_events:
+            ir = add_user_issue_event(ir, event)
+    else:
+        for index, thread in enumerate(context.extraction.dropped_threads, 1):
+            source_ref = _source_turn_ref(
+                context,
+                thread.raised_turn,
+                _normalize_speaker(thread.raised_by),
+            )
+            kind = _dropped_thread_kind(thread.status, thread.superseded_by)
+            ir = add_user_issue_event(
+                ir,
+                UserIssueEvent(
+                    issue_id=f"dropped_thread_{index:03d}",
+                    text=thread.thread,
+                    kind=kind,
+                    status=thread.status or "active",
+                    provenance=TurnRefProvenance(
+                        turn_refs=(source_ref,),
+                        note="dropped_threads",
+                    ),
+                    introduced_at_turn=source_ref.turn_index,
+                    superseded_by=thread.superseded_by,
                 ),
-                introduced_at_turn=source_ref.turn_index,
-                superseded_by=thread.superseded_by,
-            ),
-        )
+            )
 
     user_turn_refs = tuple(
         TurnRef(turn_index=turn.turn_index, speaker=turn.speaker)
