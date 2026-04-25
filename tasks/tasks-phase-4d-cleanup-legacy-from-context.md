@@ -58,8 +58,11 @@ The pipeline's `_run_structural_coverage` has three branches today: from_ir, fro
 
 ### 5.0 Final verification
 
-- [ ] 5.1 Search pipeline.py for any remaining `from_context` references in dispatch logic: `grep -n "from_context" engine/system_b/pipeline.py`. The only matches should be **import lines** (still imported because the symbols exist; tests use them). No dispatch branches should reference `_from_context`.
-- [ ] 5.2 Run full suite once more: `pytest tests -q`. Must be 383.
+- [ ] 5.1 Search pipeline.py for any remaining `from_context` references in **dispatch fallback** logic. The grep `grep -n "from_context" engine/system_b/pipeline.py` will surface three classes of match:
+  - **Import lines** (expected — symbols exist for tests)
+  - **Live callers** (expected — `generate_reframings_from_context` for reframe generation, `format_pass1_cluster_prompts_from_context` for Pass 1; these are NOT dead-fallback dispatch and are intentionally retained for Phase 6)
+  - **Dispatch fallback `elif conversation_context is not None: ... _from_context(...)` branches** — these MUST be zero. Inspect each match by hand to confirm category.
+- [ ] 5.2 Run full suite once more: `pytest tests -q`. Pass count may be slightly higher than baseline if the dispatch-test changes added coverage; that's fine. What matters is no regressions.
 - [ ] 5.3 Open PR. Title: `feat: Phase 4d — remove dead _from_context fallbacks in pipeline dispatch`.
 
 ## How to know you're done
