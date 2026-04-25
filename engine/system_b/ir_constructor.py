@@ -8,6 +8,7 @@ from typing import Callable
 from .conversation_context import ConversationContext
 from .ir import (
     ConversationIR,
+    DerivationProvenance,
     FrameAnchor,
     StanceEvent,
     Turn,
@@ -121,18 +122,72 @@ def construct_conversation_ir(
             ),
         )
 
+    user_turn_refs = tuple(
+        TurnRef(turn_index=turn.turn_index, speaker=turn.speaker)
+        for turn in context.turns
+        if turn.speaker == "user"
+    )
+
     if context.extraction.original_framing:
-        source_ref = _first_user_turn_ref(context)
+        # Phase 5.7 heuristic: original_framing is multi-turn synthesis; ref
+        # all user turns rather than just the first.
+        if user_turn_refs:
+            framing_provenance: TurnRefProvenance | DerivationProvenance = (
+                DerivationProvenance(
+                    turn_refs=user_turn_refs,
+                    source_object_ids=(),
+                    note=(
+                        "original_framing is multi-turn extractor synthesis; "
+                        "situation parts are substring-grounded across user turns, "
+                        "exclusions are inferred"
+                    ),
+                )
+            )
+        else:
+            framing_provenance = TurnRefProvenance(
+                turn_refs=(_first_user_turn_ref(context),),
+                note="original_framing fallback (no user turns found)",
+            )
         ir = add_frame_anchor(
             ir,
             FrameAnchor(
                 anchor_id="frame_001",
                 text=context.extraction.original_framing,
-                provenance=TurnRefProvenance(
-                    turn_refs=(source_ref,),
-                    note="original_framing is extractor paraphrase",
-                ),
+                provenance=framing_provenance,
                 frame_pattern="original_framing",
+            ),
+        )
+
+    if context.extraction.decision_situation:
+        # Phase 5.8 heuristic: decision_situation has the same multi-turn
+        # synthesis shape as original_framing — wrapper template inferred,
+        # decision/agent/context parts substring-grounded across user turns.
+        # See research/phase5.8-decision-situation-design-memo-2026-04-25.md.
+        if user_turn_refs:
+            decision_provenance: TurnRefProvenance | DerivationProvenance = (
+                DerivationProvenance(
+                    turn_refs=user_turn_refs,
+                    source_object_ids=(),
+                    note=(
+                        "decision_situation is multi-turn extractor synthesis; "
+                        "decision/agent/context parts are substring-grounded "
+                        "across user turns, the 'Whether X should Y' wrapper "
+                        "template is inferred"
+                    ),
+                )
+            )
+        else:
+            decision_provenance = TurnRefProvenance(
+                turn_refs=(_first_user_turn_ref(context),),
+                note="decision_situation fallback (no user turns found)",
+            )
+        ir = add_frame_anchor(
+            ir,
+            FrameAnchor(
+                anchor_id="frame_002",
+                text=context.extraction.decision_situation,
+                provenance=decision_provenance,
+                frame_pattern="decision_situation",
             ),
         )
 
