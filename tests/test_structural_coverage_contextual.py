@@ -386,3 +386,202 @@ def test_system_prompts_explicitly_label_context_vs_source() -> None:
     ):
         assert "CONTEXT" in prompt, f"{name} prompt missing CONTEXT label"
         assert "SOURCE" in prompt, f"{name} prompt missing SOURCE label"
+
+
+# ---------------------------------------------------------------------------
+# Phase 4b: packet-driven path byte-equivalence tests
+# ---------------------------------------------------------------------------
+# The packet-driven entry points must produce IDENTICAL prompts and results
+# to the context-driven path on inputs where the packet projection is lossless
+# (cases where all constraints have status="active" — the IR does not carry
+# the `weight` field that the context path uses for non-active constraint
+# tags).
+
+from engine.system_b.ir_constructor import construct_conversation_ir
+from engine.system_b.packet_builders.lane4 import build_lane4_packet
+from engine.system_b.structural_coverage import (
+    _format_classification_from_packet_user_prompt,
+    _format_dimension_detection_from_packet_user_prompt,
+    _format_gap_question_from_packet_user_prompt,
+    generate_gap_questions_from_packet,
+    run_dimension_detection_from_packet,
+    run_question_classification_from_packet,
+    run_structural_coverage_from_ir,
+)
+
+
+def _ctx_with_active_constraints() -> ConversationContext:
+    return ConversationContext(
+        turns=(
+            Turn(turn_index=1, speaker="user", text="I have 8 months runway. Plan to launch in 6 weeks."),
+            Turn(turn_index=1, speaker="assistant", text="Tell me about your pipeline."),
+            Turn(turn_index=2, speaker="user", text="4-5 informal conversations. None committed."),
+        ),
+        extraction=ExtractionPayload(
+            decision_situation="Whether the user should launch in 6 weeks or delay.",
+            live_constraints=(
+                LiveConstraint(
+                    constraint="Pipeline: 4-5 informal network conversations, no signed commitments",
+                    introduced_turn=1,
+                    status="active",
+                    weight="structural",
+                ),
+                LiveConstraint(
+                    constraint="Runway: 8 months at zero revenue",
+                    introduced_turn=1,
+                    status="active",
+                    weight="structural",
+                ),
+            ),
+            synthesized_position="",
+            reasoning_passages=(),
+            original_framing="User seeks tactical launch plan starting in 6 weeks.",
+            dropped_threads=(),
+        ),
+    )
+
+
+def test_packet_classification_prompt_matches_context_classification_prompt() -> None:
+    """Packet-driven classification prompt is byte-identical to the
+    context-driven prompt for the same input (when projection is lossless)."""
+    ctx = _ctx_with_active_constraints()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+
+    context_prompt = _format_classification_from_context_user_prompt(ctx)
+    packet_prompt = _format_classification_from_packet_user_prompt(packet)
+
+    assert context_prompt == packet_prompt
+
+
+def test_packet_dimension_detection_prompt_matches_context_dimension_detection_prompt() -> None:
+    """Packet-driven detection prompt byte-identical to context-driven."""
+    ctx = _ctx_with_active_constraints()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+
+    catalog = "(test catalog text)"
+    context_prompt = _format_dimension_detection_from_context_user_prompt(
+        ctx, "decision-evaluation", catalog,
+    )
+    packet_prompt = _format_dimension_detection_from_packet_user_prompt(
+        packet, "decision-evaluation", catalog,
+    )
+
+    assert context_prompt == packet_prompt
+
+
+def test_packet_gap_question_prompt_matches_context_gap_question_prompt() -> None:
+    """Packet-driven gap-question prompt byte-identical to context-driven
+    when at least one gap route exists."""
+    ctx = _ctx_with_active_constraints()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+
+    routing = _minimal_routing()
+    gap_routes = (
+        DimensionRoute(
+            dimension_id="resource_allocation",
+            dimension_name="Resource Allocation",
+            candidate_model_ids=("opportunity-cost",),
+            excluded_model_ids=(),
+        ),
+    )
+
+    context_prompt = _format_gap_question_from_context_user_prompt(
+        ctx, "decision-evaluation", gap_routes, routing,
+    )
+    packet_prompt = _format_gap_question_from_packet_user_prompt(
+        packet, "decision-evaluation", gap_routes, routing,
+    )
+
+    assert context_prompt == packet_prompt
+
+
+def test_run_question_classification_from_packet_returns_same_type_as_from_context() -> None:
+    ctx = _ctx_with_active_constraints()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+
+    boundary_ctx = _boundary_returning({"question_type": "decision-evaluation"})
+    boundary_pkt = _boundary_returning({"question_type": "decision-evaluation"})
+
+    ctx_result = run_question_classification_from_context(boundary_ctx, ctx)
+    pkt_result = run_question_classification_from_packet(boundary_pkt, packet)
+    assert ctx_result == pkt_result == "decision-evaluation"
+
+
+def test_run_dimension_detection_from_packet_parses_same_as_from_context() -> None:
+    ctx = _ctx_with_active_constraints()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+
+    payload = {
+        "dimensions": [
+            {
+                "dimension_id": "resource_allocation",
+                "dimension_name": "Resource Allocation",
+                "covered": False,
+                "coverage_evidence": "not addressed",
+                "materiality_note": "would change recommendation",
+            },
+        ],
+    }
+    ctx_dims = run_dimension_detection_from_context(
+        _boundary_returning(payload), ctx, "decision-evaluation", _minimal_routing(),
+    )
+    pkt_dims = run_dimension_detection_from_packet(
+        _boundary_returning(payload), packet, "decision-evaluation", _minimal_routing(),
+    )
+    assert ctx_dims == pkt_dims
+
+
+def test_generate_gap_questions_from_packet_no_op_when_no_routes() -> None:
+    """Same no-op contract as the context path when gap_routes is empty."""
+    ctx = _ctx_with_active_constraints()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+    boundary = MagicMock()
+    questions = generate_gap_questions_from_packet(
+        boundary, packet, "decision-evaluation", (), _minimal_routing(),
+    )
+    assert questions == ()
+    boundary.run_json.assert_not_called()
+
+
+def test_run_structural_coverage_from_ir_returns_same_card_as_from_context() -> None:
+    """End-to-end orchestrator equivalence: same boundary responses → same card."""
+    ctx = _ctx_with_active_constraints()
+    ir = construct_conversation_ir(ctx)
+
+    classification_payload = {"question_type": "decision-evaluation"}
+    detection_payload = {
+        "dimensions": [
+            {
+                "dimension_id": "resource_allocation",
+                "dimension_name": "Resource Allocation",
+                "covered": False,
+                "coverage_evidence": "not addressed",
+                "materiality_note": "would change recommendation",
+            },
+        ],
+    }
+    gap_payload = {
+        "questions": {
+            "resource_allocation": ["What would you sacrifice if you delayed?"],
+        },
+    }
+
+    def _boundary_factory():
+        payloads = iter([classification_payload, detection_payload, gap_payload])
+        boundary = MagicMock()
+        boundary.run_json = MagicMock(side_effect=lambda *a, **kw: next(payloads))
+        return boundary
+
+    ctx_card = run_structural_coverage_from_context(
+        _boundary_factory(), ctx, _minimal_routing(), anti_echo_model_ids=set(),
+    )
+    ir_card = run_structural_coverage_from_ir(
+        _boundary_factory(), ir, _minimal_routing(), anti_echo_model_ids=set(),
+    )
+    assert ctx_card == ir_card

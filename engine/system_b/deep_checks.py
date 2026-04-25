@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 from .boundary_validation import coerce_float, coerce_int, coerce_str
 from .conversation_context import ConversationContext
+from .packet_builders.lane4 import Lane4Packet
 from .tendency_catalog import ModelBinding, TendencyCatalog
 
 
@@ -515,6 +516,88 @@ def format_pass2_prompt_from_context(
         sub_pattern_menu=sub_pattern_menu,
     )
     user = _format_pass2_from_context_user_prompt(context, tendency.display_name)
+    return system, user
+
+
+# ---------------------------------------------------------------------------
+# Phase 4c: packet-driven Lane 1 Pass 2 (mirrors _from_context shape)
+# ---------------------------------------------------------------------------
+# Same byte-equivalence-on-active-constraints discipline as Lane 4. The IR
+# does not carry `weight` (Phase 1 design); when status != "active", the
+# packet path emits "[STATUS]" while context emits "[STATUS/WEIGHT]".
+
+
+def _format_pass2_from_packet_user_prompt(
+    packet: Lane4Packet,
+    tendency_name: str,
+) -> str:
+    """Packet-driven counterpart to `_format_pass2_from_context_user_prompt`."""
+    parts: list[str] = [
+        "CONTEXT (background — what the user made live; NOT the primary audit target):",
+    ]
+    if packet.decision_situation:
+        parts.append(f"- Decision situation: {packet.decision_situation.text}")
+    if packet.original_framing:
+        parts.append(f"- Framing: {packet.original_framing.text}")
+    if packet.constraints:
+        parts.append("- Live constraints:")
+        for c in packet.constraints:
+            status = (c.status or "active").upper()
+            tag = status  # weight not in IR; only matters for non-active
+            parts.append(f"  - [{tag}] {c.text} (turn {c.introduced_at_turn})")
+    if packet.issues:
+        parts.append("- Dropped threads:")
+        for i in packet.issues:
+            line = (
+                f"  - {i.text} (raised by {i.raised_by} turn {i.introduced_at_turn}, "
+                f"status: {i.status or '?'})"
+            )
+            if i.superseded_by:
+                line += f", superseded_by: {i.superseded_by}"
+            parts.append(line)
+
+    user_turns = [t for t in packet.turns if t.speaker == "user"]
+    if user_turns:
+        parts.append("- User turns (CONTEXT only):")
+        for t in user_turns:
+            parts.append(f"  [Turn {t.turn_index}] USER: {t.text}")
+
+    parts.append("")
+    parts.append(
+        "SOURCE (PRIMARY AUDIT TARGET — assistant turns verbatim; the tendency lives here as commission or omission):"
+    )
+    assistant_turns = [t for t in packet.turns if t.speaker == "assistant"]
+    if not assistant_turns:
+        parts.append("(no assistant turns present)")
+    else:
+        for t in assistant_turns:
+            parts.append(f"[Turn {t.turn_index}] ASSISTANT:")
+            parts.append(t.text)
+            parts.append("")
+
+    parts.append(
+        f"Analyze SOURCE for the presence of {tendency_name} ONLY. Respond with JSON only."
+    )
+    return "\n".join(parts)
+
+
+def format_pass2_prompt_from_packet(
+    packet: Lane4Packet,
+    tendency_key: str,
+    catalog: TendencyCatalog,
+) -> tuple[str, str]:
+    """Packet-driven entry point for Pass 2. Returns (system, user)."""
+    tendency = catalog.lookup(tendency_key)
+    sub_pattern_menu = build_sub_pattern_menu(tendency.antidote_bindings)
+    system = PASS_2_DEEP_CHECK_SYSTEM_FROM_CONTEXT.format(
+        tendency_name=tendency.display_name,
+        tendency_number=tendency.tendency_number,
+        tendency_description=tendency.description,
+        tendency_id=tendency.tendency_id,
+        tendency_guidance=build_tendency_guidance(tendency.tendency_id),
+        sub_pattern_menu=sub_pattern_menu,
+    )
+    user = _format_pass2_from_packet_user_prompt(packet, tendency.display_name)
     return system, user
 
 

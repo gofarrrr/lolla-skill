@@ -34,6 +34,7 @@ from engine.system_b.prompts import (
     format_pass1_cluster_prompts_from_context,
 )
 from engine.system_b.deep_checks import (
+    _format_pass2_from_context_user_prompt,
     format_pass2_prompt_from_context,
 )
 from engine.system_b.tendency_catalog import (
@@ -287,3 +288,98 @@ def test_pass2_from_context_user_prompt_does_not_use_legacy_query_vanilla_format
     # New path uses CONTEXT/SOURCE instead
     assert "CONTEXT" in user
     assert "SOURCE" in user
+
+
+# ---------------------------------------------------------------------------
+# Phase 4c: packet-driven Lane 1 byte-equivalence tests
+# ---------------------------------------------------------------------------
+
+from engine.system_b.ir_constructor import construct_conversation_ir
+from engine.system_b.packet_builders.lane4 import build_lane4_packet
+from engine.system_b.deep_checks import (
+    _format_pass2_from_packet_user_prompt,
+    format_pass2_prompt_from_packet,
+)
+
+
+def _ctx_active_constraints_for_lane1() -> ConversationContext:
+    """Realistic Lane 1 context with all-active constraints (lossless
+    projection — the IR doesn't carry `weight` so non-active constraints
+    would render differently)."""
+    return _context(
+        user_texts=("Should I take the 15% equity offer?",),
+        assistant_texts=("You should definitely take it — 15% is standard for Series B and you'll make it up in secondary.",),
+        decision_situation="Founder-CEO considering Series B equity offer.",
+        original_framing="Is 15% equity too low for Series B founding-engineer role?",
+        live_constraints=(
+            LiveConstraint(
+                constraint="Series B stage",
+                introduced_turn=1,
+                status="active",
+                weight="structural",
+            ),
+        ),
+    )
+
+
+def test_pass2_packet_user_prompt_matches_context_user_prompt() -> None:
+    """Byte-equivalence: packet-driven Pass 2 user prompt is identical to
+    context-driven prompt for the same input (lossless case)."""
+    ctx = _ctx_active_constraints_for_lane1()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+
+    tendency_name = "Authority Misinfluence Tendency"
+    ctx_user = _format_pass2_from_context_user_prompt(ctx, tendency_name)
+    packet_user = _format_pass2_from_packet_user_prompt(packet, tendency_name)
+    assert ctx_user == packet_user
+
+
+def test_format_pass2_prompt_from_packet_returns_same_system_user_as_from_context() -> None:
+    """End-to-end Lane 1 Pass 2 byte-equivalence: same (system, user) tuple."""
+    ctx = _ctx_active_constraints_for_lane1()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+    catalog = _catalog()
+    tendency_key = "authority-misinfluence-tendency"
+
+    ctx_system, ctx_user = format_pass2_prompt_from_context(ctx, tendency_key, catalog)
+    pkt_system, pkt_user = format_pass2_prompt_from_packet(packet, tendency_key, catalog)
+    assert ctx_system == pkt_system
+    assert ctx_user == pkt_user
+
+
+def test_format_pass2_prompt_from_packet_with_dropped_threads() -> None:
+    """Byte-equivalence with a user-raised dropped_thread populated."""
+    ctx = _context(
+        user_texts=("Should I take the 15% equity offer?",),
+        assistant_texts=("Take it.",),
+        decision_situation="Founder-CEO equity offer.",
+        original_framing="Is 15% too low?",
+        live_constraints=(
+            LiveConstraint(
+                constraint="Series B",
+                introduced_turn=1,
+                status="active",
+                weight="structural",
+            ),
+        ),
+        dropped_threads=(
+            DroppedThread(
+                thread="vesting cliff details",
+                raised_by="user",
+                raised_turn=1,
+                status="acknowledged_then_dropped",
+                superseded_by="moved to comp discussion",
+            ),
+        ),
+    )
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+    catalog = _catalog()
+    tendency_key = "authority-misinfluence-tendency"
+
+    ctx_system, ctx_user = format_pass2_prompt_from_context(ctx, tendency_key, catalog)
+    pkt_system, pkt_user = format_pass2_prompt_from_packet(packet, tendency_key, catalog)
+    assert ctx_system == pkt_system
+    assert ctx_user == pkt_user

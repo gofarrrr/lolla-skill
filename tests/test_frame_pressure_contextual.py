@@ -383,3 +383,66 @@ def test_format_reframe_from_context_prompt_handles_context_without_user_turns()
     )
     prompt = _format_reframe_generation_from_context_prompt(ctx, (), ())
     assert "USER'S FRAMING" in prompt  # header still rendered
+
+
+# ---------------------------------------------------------------------------
+# Phase 4c: packet-driven Lane 3 byte-equivalence tests
+# ---------------------------------------------------------------------------
+
+from engine.system_b.ir_constructor import construct_conversation_ir
+from engine.system_b.packet_builders.lane4 import build_lane4_packet
+from engine.system_b.frame_pressure import (
+    _format_frame_extraction_from_context_user_prompt,
+    _format_frame_extraction_from_packet_user_prompt,
+    run_frame_extraction_from_packet,
+)
+
+
+def _ctx_active_for_lane3() -> ConversationContext:
+    # raised_turn=2 in _minimal_payload requires an actual turn 2 for the
+    # IR's _source_turn_ref to anchor cleanly (otherwise it falls back to
+    # first user turn, breaking byte-equivalence).
+    return _ctx((
+        (1, "user", "Should I take this Series B offer with 15% equity?"),
+        (1, "assistant", "Tell me more about your alternatives."),
+        (2, "user", "Mostly worried about my partner's reaction."),
+    ))
+
+
+def test_packet_frame_extraction_user_prompt_matches_context_user_prompt() -> None:
+    """Phase 4c byte-equivalence: packet-driven Lane 3 user prompt is
+    identical to context-driven prompt (lossless case)."""
+    ctx = _ctx_active_for_lane3()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+
+    ctx_prompt = _format_frame_extraction_from_context_user_prompt(ctx)
+    pkt_prompt = _format_frame_extraction_from_packet_user_prompt(packet)
+    assert ctx_prompt == pkt_prompt
+
+
+def test_run_frame_extraction_from_packet_returns_same_card_as_from_context() -> None:
+    """Orchestrator equivalence with mocked boundary."""
+    ctx = _ctx_active_for_lane3()
+    ir = construct_conversation_ir(ctx)
+    packet = build_lane4_packet(ir)
+
+    payload = {
+        "frame_elements": [
+            {
+                "element_text": "binary framing",
+                "element_type": "assumption",
+                "evidence_quote": "Should I take this Series B offer",
+                "frame_pattern": "binary_collapse",
+                "fragility_signal": "",
+                "inquiry_stage": "why",
+                "likely_default": "",
+            },
+        ],
+    }
+    boundary_ctx = _boundary_returning(payload)
+    boundary_pkt = _boundary_returning(payload)
+
+    ctx_card = run_frame_extraction_from_context(boundary_ctx, ctx)
+    pkt_card = run_frame_extraction_from_packet(boundary_pkt, packet)
+    assert ctx_card == pkt_card
