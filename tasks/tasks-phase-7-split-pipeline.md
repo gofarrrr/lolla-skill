@@ -54,9 +54,11 @@ Roughly small-to-large. Each is its own PR.
 
 ### 7.4 Lane orchestrators
 
-- Methods on `SystemBPipeline`: `_run_companion`, `_run_frame_pressure`, `_run_structural_coverage`
-- Target: keep on the class, OR extract to free functions in `engine/system_b/lane_orchestrators.py` taking the pipeline as a parameter.
-- This one's larger; estimate ~1.5h. Consider doing it last.
+- Methods on `SystemBPipeline`: `_run_companion`, `_run_frame_pressure`, `_run_structural_coverage`, `_run_pass2_*`.
+- **Default decision: keep them as methods on `SystemBPipeline`.** They lean heavily on instance state (`self._config`, `self._companion_knowledge_graph`, `self._companion_reasoning_signals`, `self._embedding_retriever`, `self._embedding_api_key`, `self._boundary`, `self._catalog`). Extracting them as free functions would mean either passing the pipeline instance (still coupled) or a giant dependency bag (shallow refactor, no real deepening).
+- **Only extract if a clean dependency bag emerges naturally** — e.g. if you can identify a small, cohesive subset of `self.*` fields that justifies a `LaneRunner` class. Otherwise, leave them alone.
+- If you do extract: target `engine/system_b/lane_orchestrators.py` and pass the dependency bag explicitly.
+- Estimated time if you choose to extract: ~1.5h. Skip otherwise.
 
 ### 7.5 Audit trace assembly
 
