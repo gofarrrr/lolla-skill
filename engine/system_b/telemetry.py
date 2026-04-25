@@ -10,10 +10,12 @@ import statistics
 from typing import TYPE_CHECKING, Mapping, Sequence
 import uuid
 
+from .prompts import _joined_assistant_turns_text
 from .testing_harness import normalize_text, summarize_boundary_calls
 
 if TYPE_CHECKING:
-    from .pipeline import CritiqueRequest, PipelineConfig, PipelineResult
+    from .conversation_context import ConversationContext
+    from .pipeline import PipelineConfig, PipelineResult
 
 
 _BOUNDARY_FAILURE_STATUSES = frozenset({"timeout", "error", "not_called"})
@@ -271,7 +273,7 @@ def default_telemetry_db_path(root: Path) -> Path:
 
 def build_run_record(
     *,
-    request: "CritiqueRequest",
+    conversation_context: "ConversationContext",
     result: "PipelineResult",
     config: "PipelineConfig",
     tags: Sequence[str] = (),
@@ -298,8 +300,10 @@ def build_run_record(
     )
     lane_complementarity = _build_lane_complementarity(result)
     frame_pressure_metrics = _build_frame_pressure_metrics(result)
+    query_text = _conversation_query_text(conversation_context)
+    vanilla_text = _conversation_vanilla_text(conversation_context)
     novelty_report = score_novelty(
-        vanilla_answer=request.vanilla_answer,
+        vanilla_answer=vanilla_text,
         delta_card=result.delta_card,
         companion_card=result.companion_card,
         frame_pressure_card=result.frame_pressure_card,
@@ -308,7 +312,7 @@ def build_run_record(
     record = RunRecord(
         run_id=resolved_run_id,
         timestamp=normalized_timestamp,
-        request_hash=build_request_hash(request.query, request.vanilla_answer),
+        request_hash=build_request_hash(query_text, vanilla_text),
         config_snapshot=asdict(config),
         process_metrics={
             "boundary_summary": boundary_summary,
@@ -342,7 +346,7 @@ def build_run_record(
 def record_pipeline_run(
     *,
     store: TelemetryStore,
-    request: "CritiqueRequest",
+    conversation_context: "ConversationContext",
     result: "PipelineResult",
     config: "PipelineConfig",
     tags: Sequence[str] = (),
@@ -351,7 +355,7 @@ def record_pipeline_run(
     influence_report: Mapping[str, object] | None = None,
 ) -> RunRecord:
     run_record = build_run_record(
-        request=request,
+        conversation_context=conversation_context,
         result=result,
         config=config,
         tags=tags,
@@ -366,6 +370,25 @@ def record_pipeline_run(
 def build_request_hash(query: str, vanilla_answer: str) -> str:
     payload = "\x1f".join((normalize_text(query), normalize_text(vanilla_answer)))
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def _conversation_query_text(conversation_context: "ConversationContext") -> str:
+    decision_situation = normalize_text(conversation_context.extraction.decision_situation)
+    if decision_situation:
+        return decision_situation
+    user_turns = [
+        normalize_text(turn.text)
+        for turn in conversation_context.turns
+        if getattr(turn, "speaker", "") == "user" and normalize_text(turn.text)
+    ]
+    return "\n\n".join(user_turns)
+
+
+def _conversation_vanilla_text(conversation_context: "ConversationContext") -> str:
+    assistant_text = normalize_text(_joined_assistant_turns_text(conversation_context))
+    if assistant_text:
+        return assistant_text
+    return normalize_text(conversation_context.extraction.synthesized_position)
 
 
 def process_quality_score(run_record: RunRecord) -> dict[str, object]:

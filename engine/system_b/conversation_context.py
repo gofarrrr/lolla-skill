@@ -1,8 +1,7 @@
 """Conversation-first lane-input contract.
 
-Phase 1 data model. Lanes will migrate to consume this in Phase 2; for now the
-`SystemBPipeline.run()` shim builds a legacy `CritiqueRequest` from it so no
-lane behavior changes.
+Phase 1 data model. The runtime now treats ``ConversationContext`` as the
+pipeline's only entry shape.
 
 Shape rationale:
 - `Turn`, `LiveConstraint`, `DroppedThread`, `ExtractionPayload`,

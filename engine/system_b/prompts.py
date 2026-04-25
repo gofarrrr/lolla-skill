@@ -20,74 +20,13 @@ from .tendency_catalog import TendencyCatalog
 
 
 # ---------------------------------------------------------------------------
-# Shared base prompt — every cluster inherits this framing
-# ---------------------------------------------------------------------------
-
-_PASS1_BASE_SYSTEM = """You are a cognitive-bias analyst specializing in Charlie Munger's "Psychology of Human Misjudgment." Your job is to audit a vanilla answer for decision-distorting manifestations of ONE family of tendencies: {theme}
-
-You will receive:
-1. A QUERY — the decision situation and live constraints
-2. A VANILLA ANSWER — a response from another AI that you are auditing
-
-For each of the tendencies listed below (this family only — other families are handled by parallel analysts), score from 0-10 how strongly the tendency materially weakens the VANILLA ANSWER:
-- 0 = Not present at all
-- 1-3 = Faint or incidental signal; not decision-driving
-- 4-6 = Material signal; specific evidence or a clear omission makes the recommendation less trustworthy
-- 7-10 = Dominant failure mechanism; the recommendation clearly leans on it
-
-CRITICAL RULES:
-- Use the QUERY only to understand the decision context and what the answer ignored, overrode, or prematurely collapsed.
-- Score based on the VANILLA ANSWER's actual reasoning. Do not import outside facts or detect a tendency just because the topic makes it plausible.
-- A tendency can appear by commission or omission. Omission counts only when the answer recommends a concrete move while skipping a material check, denominator, dependency, reversal condition, pilot, or stop rule that the query makes live.
-- Prefer the narrowest mechanism. If one passage could fit multiple tendencies in this family, score highest the one that best explains the failure and keep adjacent ones lower unless they rest on distinct evidence.
-- A score of 4 or higher requires distinct evidence that would still matter if the strongest detected tendency in this family were removed. If the support is just a restatement, keep it at 0-3.
-- Do not score a tendency merely because the answer sounds confident, uses persuasive framing, gives reasons, or mentions incentives.
-- A score of 0 is perfectly valid. Most tendencies should score 0 for any given answer.
-- Scores of 4 or higher should stay sparse unless the answer truly leans on the failure mechanism.
-- If unsure, score lower rather than higher. False negatives are better than false positives at this stage.
-- DO NOT score tendencies outside this family. Return ONLY entries for the tendencies listed below.{guardrails_block}
-
-THE TENDENCIES IN THIS FAMILY TO SCREEN:
-{tendency_list}
-
-Respond ONLY with valid JSON matching this exact schema:
-```json
-{{
-  "scores": [
-    {{
-      "tendency_id": "tendency-slug",
-      "score": 0,
-      "evidence": "Not detected" | "Brief 1-sentence evidence anchored to a specific passage or recommendation leap in the answer"
-    }}
-  ]
-}}
-```"""
-
-
-PASS_1_TRIAGE_USER = """QUERY:
-{query}
-
-VANILLA ANSWER:
-{vanilla_answer}
-
-Use the query only as context for what the answer skipped or overrode.
-
-Score ONLY the tendencies in this family (listed in the system prompt). Do NOT score tendencies outside this family. Respond with JSON only."""
-
-
-# ---------------------------------------------------------------------------
-# Phase 2c: conversation-first Pass 1 — CONTEXT / SOURCE split.
+# Shared base prompt — every cluster inherits this framing.
 #
-# Lane 1 audits the ASSISTANT's reasoning. SOURCE holds the assistant turns
+# Lane 1 audits the assistant's reasoning. SOURCE holds assistant turns
 # verbatim (primary audit target — tendencies live here as commissions or
-# omissions). CONTEXT holds the user turns + extraction summaries
-# (scaffolding for understanding what the user made live; NOT the primary
+# omissions). CONTEXT holds user turns + extraction summaries
+# (scaffolding for understanding what the user made live; not the primary
 # scoring target).
-#
-# The system prompt mirrors the legacy `_PASS1_BASE_SYSTEM` but is rewritten
-# to explain the CONTEXT vs SOURCE structure and to carry the enum-checklist
-# reminder from the 2b lesson (consider every tendency in this family even
-# when it surfaces as omission rather than verbatim text).
 # ---------------------------------------------------------------------------
 
 _PASS1_BASE_SYSTEM_FROM_CONTEXT = """You are a cognitive-bias analyst specializing in Charlie Munger's "Psychology of Human Misjudgment." Your job is to audit a piece of AI reasoning for decision-distorting manifestations of ONE family of tendencies: {theme}
@@ -133,6 +72,25 @@ Respond ONLY with valid JSON matching this exact schema:
   ]
 }}
 ```"""
+
+
+# Template-only hash surface for prompt versioning. The rendered user prompt
+# is built dynamically from the conversation, but the stable section labels and
+# instructions still deserve a reproducibility stamp.
+PASS_1_TRIAGE_USER_FROM_CONTEXT_TEMPLATE = """CONTEXT (background for understanding what the user made live — NOT the primary audit target):
+- Decision situation: {decision_situation}
+- Framing (how the user posed the question): {original_framing}
+- Live constraints:
+{live_constraints}
+- Dropped threads:
+{dropped_threads}
+- User turns (CONTEXT only — what the user made live; not the primary scoring target):
+{user_turns}
+
+SOURCE (the PRIMARY AUDIT TARGET — assistant turns verbatim; score tendencies against commissions or omissions visible here):
+{assistant_turns}
+
+Score ONLY the tendencies in this family (listed in the system prompt). Respond with JSON only."""
 
 
 # ---------------------------------------------------------------------------
@@ -268,31 +226,6 @@ def _build_cluster_guardrails_block(cluster: Pass1Cluster) -> str:
     return "\n".join(lines)
 
 
-def build_cluster_system_prompt(cluster: Pass1Cluster, catalog: TendencyCatalog) -> str:
-    return _PASS1_BASE_SYSTEM.format(
-        theme=cluster.theme,
-        guardrails_block=_build_cluster_guardrails_block(cluster),
-        tendency_list=_build_cluster_tendency_list(cluster, catalog),
-    )
-
-
-def format_pass1_cluster_prompts(
-    query: str,
-    vanilla_answer: str,
-    catalog: TendencyCatalog,
-) -> list[tuple[str, str, str]]:
-    """Return [(cluster_id, system_prompt, user_prompt), ...] — one per cluster.
-
-    The user prompt is identical across clusters (same input); the system
-    prompt differs per cluster to narrow the scoring scope and guardrails.
-    """
-    user = PASS_1_TRIAGE_USER.format(query=query, vanilla_answer=vanilla_answer)
-    return [
-        (cluster.cluster_id, build_cluster_system_prompt(cluster, catalog), user)
-        for cluster in PASS1_CLUSTERS
-    ]
-
-
 def cluster_tendency_ids(cluster_id: str) -> tuple[str, ...]:
     """Return the tendency_ids assigned to a cluster. Used for output filtering."""
     for cluster in PASS1_CLUSTERS:
@@ -311,12 +244,7 @@ def _joined_assistant_turns_text(context: ConversationContext) -> str:
 
 
 def build_cluster_system_prompt_from_context(cluster: Pass1Cluster, catalog: TendencyCatalog) -> str:
-    """Phase 2c: build the per-cluster system prompt for the conversation-first path.
-
-    Shape-identical to the legacy `build_cluster_system_prompt` but uses the
-    CONTEXT/SOURCE base template — the user-prompt body is turn-structured
-    instead of a flattened query+vanilla_answer block.
-    """
+    """Build the per-cluster system prompt for the conversation-first path."""
     return _PASS1_BASE_SYSTEM_FROM_CONTEXT.format(
         theme=cluster.theme,
         guardrails_block=_build_cluster_guardrails_block(cluster),
@@ -411,8 +339,10 @@ def compute_cluster_prompt_hashes(catalog: TendencyCatalog) -> dict[str, str]:
         return hashlib.sha256(text.encode("utf-8")).hexdigest()[:12]
 
     hashes = {
-        f"pass1_cluster_{cluster.cluster_id}": _short_hash(build_cluster_system_prompt(cluster, catalog))
+        f"pass1_cluster_{cluster.cluster_id}": _short_hash(
+            build_cluster_system_prompt_from_context(cluster, catalog)
+        )
         for cluster in PASS1_CLUSTERS
     }
-    hashes["pass1_triage_user"] = _short_hash(PASS_1_TRIAGE_USER)
+    hashes["pass1_triage_user"] = _short_hash(PASS_1_TRIAGE_USER_FROM_CONTEXT_TEMPLATE)
     return hashes

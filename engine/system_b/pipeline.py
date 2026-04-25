@@ -37,28 +37,19 @@ from .frame_pressure import (
     FramePressureCard,
     assemble_frame_card,
     compute_pressure_concept_overlap,
-    generate_reframings,
     generate_reframings_from_context,
     route_frame_elements,
-    run_frame_extraction,
-    run_frame_extraction_from_context,
     run_frame_extraction_from_packet,
 )
 from .structural_coverage import (
     StructuralCoverageCard,
-    run_structural_coverage,
-    run_structural_coverage_from_context,
     run_structural_coverage_from_ir,
 )
 from .ir import ConversationIR
 from .companion_routing import (
     recall_candidates,
-    run_fingerprint_call,
     run_fingerprint_call_from_packet,
     run_verification_call_from_packet,
-    run_fingerprint_call_from_context,
-    run_verification_call,
-    run_verification_call_from_context,
 )
 from .companion_routing import _joined_assistant_turns as _lane2_joined_assistant_turns
 from .companion_selection import CompanionCheatSheet, select_companion_cheat_sheet
@@ -148,86 +139,6 @@ class BoundaryClient(Protocol):
         self, system_prompt: str, user_prompt: str
     ) -> tuple[dict, BoundaryCallMetadata]:
         ...
-
-
-@dataclass(frozen=True)
-class CritiqueRequest:
-    query: str
-    vanilla_answer: str
-
-
-# Phase 1 shim: mirrors scripts/run_extract.py::_map_to_critique_request so the
-# new ConversationContext entry point produces bit-identical lane inputs to
-# the legacy path. Kept inline (not imported from scripts/) because engine/
-# should not depend on scripts/. Deleted in Phase 3 alongside CritiqueRequest
-# once lanes no longer consume the legacy shape.
-_SHIM_VANILLA_ANSWER_CHAR_CAP = 40_000
-_SHIM_ASSISTANT_TEXT_JOIN = "\n\n---\n\n"
-
-
-def _context_to_critique(context: ConversationContext) -> CritiqueRequest:
-    extraction = context.extraction
-
-    query_parts = [extraction.decision_situation]
-
-    if extraction.live_constraints:
-        constraint_lines = []
-        for c in extraction.live_constraints:
-            status = c.status or "active"
-            weight = c.weight or "situational"
-            tag = (
-                f"{status.upper()}/{weight.upper()}"
-                if status != "active"
-                else status.upper()
-            )
-            constraint_lines.append(f"- [{tag}] {c.constraint}")
-        query_parts.append(
-            "\nConstraints stated during conversation:\n" + "\n".join(constraint_lines)
-        )
-
-    if extraction.original_framing:
-        query_parts.append(f"\nOriginal framing: {extraction.original_framing}")
-
-    if extraction.dropped_threads:
-        thread_lines = []
-        for d in extraction.dropped_threads:
-            line = (
-                f"- {d.thread} (raised by {d.raised_by or '?'}, "
-                f"status: {d.status or '?'})"
-            )
-            if d.superseded_by:
-                line += f" → superseded by: {d.superseded_by}"
-            thread_lines.append(line)
-        query_parts.append(
-            "\nDropped threads (raised but unresolved):\n" + "\n".join(thread_lines)
-        )
-
-    query = "\n".join(query_parts)
-
-    # Strip per-turn to match scripts/run_extract.py::_extract_assistant_responses,
-    # which calls `content.strip()` on each turn body before joining. The loader
-    # already strips, but hand-built ConversationContexts may not — belt and braces.
-    assistant_texts = [
-        t.text.strip() for t in context.turns if t.speaker == "assistant"
-    ]
-    assistant_text = _SHIM_ASSISTANT_TEXT_JOIN.join(s for s in assistant_texts if s)
-
-    if assistant_text and len(assistant_text) > 200:
-        vanilla_answer = (
-            f"SYNTHESIZED POSITION:\n{extraction.synthesized_position}\n\n"
-            f"FULL ASSISTANT REASONING:\n{assistant_text}"
-        )
-        if len(vanilla_answer) > _SHIM_VANILLA_ANSWER_CHAR_CAP:
-            vanilla_answer = vanilla_answer[:_SHIM_VANILLA_ANSWER_CHAR_CAP]
-    else:
-        vanilla_parts = [extraction.synthesized_position]
-        if extraction.reasoning_passages:
-            vanilla_parts.append("\n\nKey reasoning passages from the conversation:")
-            for i, p in enumerate(extraction.reasoning_passages, 1):
-                vanilla_parts.append(f"\n[{i}] \"{p}\"")
-        vanilla_answer = "\n".join(vanilla_parts)
-
-    return CritiqueRequest(query=query, vanilla_answer=vanilla_answer)
 
 
 @dataclass(frozen=True)
@@ -421,43 +332,28 @@ class SystemBPipeline:
         )
 
     def run(
-        self, request: CritiqueRequest | ConversationContext
+        self, request: ConversationContext
     ) -> PipelineResult:
-        # Phase 1 dispatch: ConversationContext is the new entry point; for
-        # now we shim it into the legacy CritiqueRequest shape so lane code
-        # stays untouched. Phase 2 migrates each lane to consume the context
-        # directly; Phase 3 removes CritiqueRequest entirely.
-        # Phase 2a holds the original context alongside the converted request
-        # so already-migrated lanes (Lane 3 as of PR 2a) can consume it directly.
-        # Phase 4b: also retain the IR so packet-driven lane callers (Lane 4) can
-        # consume it without re-constructing.
-        conversation_context: ConversationContext | None = None
-        conversation_ir = None
-        if isinstance(request, ConversationContext):
-            conversation_context = request
-            conversation_ir = construct_conversation_ir(conversation_context)
-            request = _context_to_critique(request)
+        if not isinstance(request, ConversationContext):
+            raise TypeError("SystemBPipeline.run() requires a ConversationContext input")
+
+        conversation_context = request
+        conversation_ir = construct_conversation_ir(conversation_context)
+        assistant_text = _assistant_reasoning_text(conversation_context)
+        semantic_rerank_text = _semantic_rerank_text(conversation_context)
+
         run_started = time.monotonic()
         boundary_calls: list[BoundaryCallTrace] = []
         pass1_started = time.monotonic()
         triage_scores, pass1_boundary_calls = _run_pass1_clusters_parallel(
-            request=request,
+            conversation_context=conversation_context,
             boundary=self._boundary,
             catalog=self._catalog,
-            conversation_context=conversation_context,
         )
         boundary_calls.extend(pass1_boundary_calls)
         pass1_seconds = time.monotonic() - pass1_started
-        # Embedding tendency signal reads a flat string of assistant reasoning.
-        # Under the new contract (Phase 2c), prefer joined assistant turns so the
-        # signal reflects turn-structured context consistently with Pass 1 / Pass 2.
-        # Fall back to legacy vanilla_answer when no context is present.
-        if conversation_context is not None:
-            embedding_input = _joined_assistant_turns_text(conversation_context) or request.vanilla_answer
-        else:
-            embedding_input = request.vanilla_answer
         embedding_tendency_hits = _embedding_tendency_signal(
-            vanilla_answer=embedding_input,
+            vanilla_answer=assistant_text,
             retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             api_key=self._embedding_api_key,
         )
@@ -470,29 +366,32 @@ class SystemBPipeline:
         )
 
         lane1_relevance = self._build_lane1_relevance_scores(
-            f"{request.query} {request.vanilla_answer}"
+            semantic_rerank_text,
         )
 
         if not triggered_tendencies:
             companion_started = time.monotonic()
-            companion_result = self._run_companion(request, boundary_calls, conversation_context=conversation_context, conversation_ir=conversation_ir)
-            companion_seconds = time.monotonic() - companion_started
-            frame_card = self._run_frame_pressure(
-                request, boundary_calls,
-                lane1_tendency_ids=set(),
-                lane1_model_ids=set(),
+            companion_result = self._run_companion(
                 conversation_context=conversation_context,
                 conversation_ir=conversation_ir,
+                boundary_calls=boundary_calls,
+            )
+            companion_seconds = time.monotonic() - companion_started
+            frame_card = self._run_frame_pressure(
+                conversation_context=conversation_context,
+                conversation_ir=conversation_ir,
+                boundary_calls=boundary_calls,
+                lane1_tendency_ids=set(),
+                lane1_model_ids=set(),
             )
             _lane2_model_ids = _extract_companion_model_ids(companion_result)
             _lane3_model_ids = _extract_frame_model_ids(frame_card)
-            structural_card = self._run_structural_coverage(
-                request, boundary_calls,
+            structural_card = self._run_lane4_structural_coverage(
+                conversation_ir=conversation_ir,
+                boundary_calls=boundary_calls,
                 lane1_model_ids=set(),
                 lane2_model_ids=_lane2_model_ids,
                 lane3_model_ids=_lane3_model_ids,
-                conversation_context=conversation_context,
-                conversation_ir=conversation_ir,
             )
             audit = build_empty_audit_trace(
                 triage_scores=triage_scores,
@@ -509,7 +408,7 @@ class SystemBPipeline:
             empty_delta = DeltaCard(findings=(), detected_tendencies=())
             cheat_sheet = select_companion_cheat_sheet(
                 companion_result.companion_card, empty_delta,
-                query_text=f"{request.query} {request.vanilla_answer}",
+                query_text=semantic_rerank_text,
                 embedding_retriever=self._embedding_retriever if self._config.enable_embeddings else None,
                 embedding_api_key=self._embedding_api_key,
                 prerequisite_edges=self._companion_knowledge_graph.get("prerequisite_edges"),
@@ -526,7 +425,7 @@ class SystemBPipeline:
                 prompt_versions=self._prompt_versions,
             )
             self._record_telemetry(
-                request=request,
+                conversation_context=conversation_context,
                 result=result,
                 timings={
                     "total_seconds": round(time.monotonic() - run_started, 3),
@@ -572,10 +471,8 @@ class SystemBPipeline:
             pass2_started = time.monotonic()
             deep_check_results, pass2_boundary_calls = _run_pass2_parallel(
                 triggered_tendencies=triggered_tendencies,
-                request=request,
                 boundary=self._boundary,
                 catalog=self._catalog,
-                conversation_context=conversation_context,
                 conversation_ir=conversation_ir,
             )
             boundary_calls.extend(pass2_boundary_calls)
@@ -610,24 +507,27 @@ class SystemBPipeline:
                 promoted_stress_results=promoted_stress_results,
             )
         companion_started = time.monotonic()
-        companion_result = self._run_companion(request, boundary_calls, conversation_context=conversation_context, conversation_ir=conversation_ir)
-        companion_seconds = time.monotonic() - companion_started
-        frame_card = self._run_frame_pressure(
-            request, boundary_calls,
-            lane1_tendency_ids={route.tendency.tendency_id for route in routes},
-            lane1_model_ids=set(delta_card.selected_model_ids),
+        companion_result = self._run_companion(
             conversation_context=conversation_context,
             conversation_ir=conversation_ir,
+            boundary_calls=boundary_calls,
+        )
+        companion_seconds = time.monotonic() - companion_started
+        frame_card = self._run_frame_pressure(
+            conversation_context=conversation_context,
+            conversation_ir=conversation_ir,
+            boundary_calls=boundary_calls,
+            lane1_tendency_ids={route.tendency.tendency_id for route in routes},
+            lane1_model_ids=set(delta_card.selected_model_ids),
         )
         _lane2_model_ids = _extract_companion_model_ids(companion_result)
         _lane3_model_ids = _extract_frame_model_ids(frame_card)
-        structural_card = self._run_structural_coverage(
-            request, boundary_calls,
+        structural_card = self._run_lane4_structural_coverage(
+            conversation_ir=conversation_ir,
+            boundary_calls=boundary_calls,
             lane1_model_ids=set(delta_card.selected_model_ids),
             lane2_model_ids=_lane2_model_ids,
             lane3_model_ids=_lane3_model_ids,
-            conversation_context=conversation_context,
-            conversation_ir=conversation_ir,
         )
         audit = build_pipeline_audit_trace(
             triage_scores=triage_scores,
@@ -649,7 +549,7 @@ class SystemBPipeline:
         )
         cheat_sheet = select_companion_cheat_sheet(
             companion_result.companion_card, delta_card,
-            query_text=f"{request.query} {request.vanilla_answer}",
+            query_text=semantic_rerank_text,
             embedding_retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             embedding_api_key=self._embedding_api_key,
             prerequisite_edges=self._companion_knowledge_graph.get("prerequisite_edges"),
@@ -666,7 +566,7 @@ class SystemBPipeline:
             prompt_versions=self._prompt_versions,
         )
         self._record_telemetry(
-            request=request,
+            conversation_context=conversation_context,
             result=result,
             timings={
                 "total_seconds": round(time.monotonic() - run_started, 3),
@@ -745,10 +645,10 @@ class SystemBPipeline:
 
     def _run_companion(
         self,
-        request: CritiqueRequest,
+        *,
+        conversation_context: ConversationContext,
+        conversation_ir: ConversationIR,
         boundary_calls: list[BoundaryCallTrace],
-        conversation_context: ConversationContext | None = None,
-        conversation_ir: ConversationIR | None = None,
     ) -> CompanionRunResult:
         if not self._config.enable_companion:
             return CompanionRunResult()
@@ -761,39 +661,16 @@ class SystemBPipeline:
                 ),
             )
 
-        # Phase 4c dispatch: prefer the IR-driven packet path when an IR is
-        # available; fall back to context-driven; legacy vanilla_answer path
-        # last. The packet is built once and reused across fingerprint +
-        # verification calls.
-        packet = build_lane4_packet(conversation_ir) if conversation_ir is not None else None
-
-        if packet is not None:
-            fingerprint_payload = run_fingerprint_call_from_packet(
-                packet=packet,
-                client=self._boundary,
-            )
-        elif conversation_context is not None:
-            fingerprint_payload = run_fingerprint_call_from_context(
-                context=conversation_context,
-                client=self._boundary,
-            )
-        else:
-            fingerprint_payload = run_fingerprint_call(
-                query=request.query,
-                vanilla_answer=request.vanilla_answer,
-                client=self._boundary,
-            )
+        packet = build_lane4_packet(conversation_ir)
+        fingerprint_payload = run_fingerprint_call_from_packet(
+            packet=packet,
+            client=self._boundary,
+        )
         boundary_calls.append(_capture_boundary_call(self._boundary, stage="companion_fingerprint"))
 
-        # Keyword recall operates on a flat-token string; under the new
-        # contract use joined assistant turns so recall is consistent with
-        # the turn-structured audit target instead of the flattened
-        # query+vanilla_answer. Recall remains deterministic and
-        # order-insensitive, so no behavior change on identical text content.
-        if conversation_context is not None:
-            recall_source_text = _lane2_joined_assistant_turns(conversation_context) or request.vanilla_answer
-        else:
-            recall_source_text = request.vanilla_answer
+        recall_source_text = _lane2_joined_assistant_turns(conversation_context) or _assistant_reasoning_text(
+            conversation_context
+        )
         candidates = recall_candidates(
             vanilla_answer=recall_source_text,
             fingerprint_payload=fingerprint_payload,
@@ -802,27 +679,12 @@ class SystemBPipeline:
             embedding_retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             embedding_api_key=self._embedding_api_key,
         )
-        if packet is not None:
-            detected_models, rejected_models = run_verification_call_from_packet(
-                packet=packet,
-                fingerprint_payload=fingerprint_payload,
-                candidates=candidates,
-                client=self._boundary,
-            )
-        elif conversation_context is not None:
-            detected_models, rejected_models = run_verification_call_from_context(
-                context=conversation_context,
-                fingerprint_payload=fingerprint_payload,
-                candidates=candidates,
-                client=self._boundary,
-            )
-        else:
-            detected_models, rejected_models = run_verification_call(
-                vanilla_answer=request.vanilla_answer,
-                fingerprint_payload=fingerprint_payload,
-                candidates=candidates,
-                client=self._boundary,
-            )
+        detected_models, rejected_models = run_verification_call_from_packet(
+            packet=packet,
+            fingerprint_payload=fingerprint_payload,
+            candidates=candidates,
+            client=self._boundary,
+        )
         if candidates:
             boundary_calls.append(_capture_boundary_call(self._boundary, stage="companion_verification"))
         return CompanionRunResult(
@@ -839,39 +701,21 @@ class SystemBPipeline:
 
     def _run_frame_pressure(
         self,
-        request: CritiqueRequest,
+        *,
+        conversation_context: ConversationContext,
+        conversation_ir: ConversationIR,
         boundary_calls: list[BoundaryCallTrace],
         lane1_tendency_ids: set[str] | None = None,
         lane1_model_ids: set[str] | None = None,
-        conversation_context: ConversationContext | None = None,
-        conversation_ir: ConversationIR | None = None,
     ) -> FramePressureCard | None:
         if not self._config.enable_frame_pressure:
             return None
 
-        # Phase 4c dispatch: prefer the IR-driven packet path when an IR is
-        # available; fall back to context-driven; legacy CritiqueRequest path
-        # last. Reframe generation still uses the context path until its
-        # packet variant ships.
-        use_context = conversation_context is not None
-
-        if conversation_ir is not None:
-            packet = build_lane4_packet(conversation_ir)
-            extraction_result = run_frame_extraction_from_packet(
-                boundary=self._boundary,
-                packet=packet,
-            )
-        elif use_context:
-            extraction_result = run_frame_extraction_from_context(
-                boundary=self._boundary,
-                context=conversation_context,
-            )
-        else:
-            extraction_result = run_frame_extraction(
-                boundary=self._boundary,
-                query=request.query,
-                vanilla_answer=request.vanilla_answer,
-            )
+        packet = build_lane4_packet(conversation_ir)
+        extraction_result = run_frame_extraction_from_packet(
+            boundary=self._boundary,
+            packet=packet,
+        )
         boundary_calls.append(_capture_boundary_call(self._boundary, stage="frame_extraction"))
 
         if extraction_result is None or not extraction_result.frame_elements:
@@ -893,20 +737,12 @@ class SystemBPipeline:
         )
 
         # Phase 3: Generate reframings + assemble card
-        if use_context:
-            reframings = generate_reframings_from_context(
-                boundary=self._boundary,
-                context=conversation_context,
-                elements=elements,
-                routes=routes,
-            )
-        else:
-            reframings = generate_reframings(
-                boundary=self._boundary,
-                query=request.query,
-                elements=elements,
-                routes=routes,
-            )
+        reframings = generate_reframings_from_context(
+            boundary=self._boundary,
+            context=conversation_context,
+            elements=elements,
+            routes=routes,
+        )
         boundary_calls.append(_capture_boundary_call(self._boundary, stage="frame_reframing"))
 
         return assemble_frame_card(
@@ -917,15 +753,14 @@ class SystemBPipeline:
             overlap_flags=overlap_flags,
         )
 
-    def _run_structural_coverage(
+    def _run_lane4_structural_coverage(
         self,
-        request: CritiqueRequest,
+        *,
+        conversation_ir: ConversationIR,
         boundary_calls: list[BoundaryCallTrace],
         lane1_model_ids: set[str],
         lane2_model_ids: set[str],
         lane3_model_ids: set[str],
-        conversation_context: ConversationContext | None = None,
-        conversation_ir: ConversationIR | None = None,
     ) -> StructuralCoverageCard | None:
         if not self._config.enable_structural_coverage:
             return None
@@ -937,32 +772,12 @@ class SystemBPipeline:
         # Anti-echo: exclude models from all other lanes
         anti_echo = lane1_model_ids | lane2_model_ids | lane3_model_ids
 
-        # Phase 4b dispatch: prefer the IR-driven path when an IR is available
-        # (built once at pipeline entry). Falls back to the context-driven path
-        # if IR is absent (pre-Phase-1 callers), and the legacy CritiqueRequest
-        # path if neither IR nor context is present.
-        if conversation_ir is not None:
-            card = run_structural_coverage_from_ir(
-                boundary=self._boundary,
-                ir=conversation_ir,
-                structural_coverage_routing=routing,
-                anti_echo_model_ids=anti_echo,
-            )
-        elif conversation_context is not None:
-            card = run_structural_coverage_from_context(
-                boundary=self._boundary,
-                context=conversation_context,
-                structural_coverage_routing=routing,
-                anti_echo_model_ids=anti_echo,
-            )
-        else:
-            card = run_structural_coverage(
-                boundary=self._boundary,
-                query=request.query,
-                vanilla_answer=request.vanilla_answer,
-                structural_coverage_routing=routing,
-                anti_echo_model_ids=anti_echo,
-            )
+        card = run_structural_coverage_from_ir(
+            boundary=self._boundary,
+            ir=conversation_ir,
+            structural_coverage_routing=routing,
+            anti_echo_model_ids=anti_echo,
+        )
         if card is not None:
             boundary_calls.append(
                 _capture_boundary_call(self._boundary, stage="structural_coverage_classification")
@@ -975,7 +790,7 @@ class SystemBPipeline:
     def _record_telemetry(
         self,
         *,
-        request: CritiqueRequest,
+        conversation_context: ConversationContext,
         result: PipelineResult,
         timings: dict[str, float],
         companion_candidates: list[dict[str, object]],
@@ -987,7 +802,7 @@ class SystemBPipeline:
 
             record_pipeline_run(
                 store=self._telemetry_store,
-                request=request,
+                conversation_context=conversation_context,
                 result=result,
                 config=self._config,
                 tags=self._config.telemetry_tags,
@@ -1014,6 +829,35 @@ def _extract_frame_model_ids(frame_card: FramePressureCard | None) -> set[str]:
     if frame_card is None:
         return set()
     return {r.grounding_model for r in frame_card.reframings if r.grounding_model}
+
+
+def _user_query_text(conversation_context: ConversationContext) -> str:
+    if str(conversation_context.extraction.decision_situation).strip():
+        return conversation_context.extraction.decision_situation.strip()
+    user_turns = [
+        turn.text.strip()
+        for turn in conversation_context.turns
+        if turn.speaker == "user" and turn.text.strip()
+    ]
+    return "\n\n".join(user_turns)
+
+
+def _assistant_reasoning_text(conversation_context: ConversationContext) -> str:
+    assistant_text = _joined_assistant_turns_text(conversation_context).strip()
+    if assistant_text:
+        return assistant_text
+    return str(conversation_context.extraction.synthesized_position or "").strip()
+
+
+def _semantic_rerank_text(conversation_context: ConversationContext) -> str:
+    return " ".join(
+        part
+        for part in (
+            _user_query_text(conversation_context),
+            _assistant_reasoning_text(conversation_context),
+        )
+        if part
+    )
 
 
 # _capture_boundary_call / _metadata_to_boundary_call_trace moved to
@@ -2059,4 +1903,3 @@ def _env_truthy(name: str, *, default: bool = False) -> bool:
     if raw is None:
         return default
     return str(raw).strip().lower() not in {"", "0", "false", "no", "off"}
-

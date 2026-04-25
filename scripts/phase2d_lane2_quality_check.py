@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Phase 2d Lane 2 quality check — old-path vs new-path on the 10-case corpus.
+"""Phase 2d Lane 2 quality check over the conversation-first runtime.
 
 Runs `run_extract.py` once per case, then `run_pipeline.py` N times on the
-explicit legacy path (`--legacy-contract`) and N times on the default
 ConversationContext path. Parses Lane 2 outputs (companion_card, fingerprint
 moves, detected_models) and computes:
 
@@ -150,8 +149,6 @@ def run_pipeline_once(
         "--output-file", str(result_output),
         "--skip-revision",
     ]
-    if not new_contract:
-        cmd.append("--legacy-contract")
     code, out, err = _run_subprocess(cmd)
     if code != 0:
         return f"run_pipeline.py exit={code} ({'new' if new_contract else 'old'}-path). stderr: {err.strip()[:400]!r}"

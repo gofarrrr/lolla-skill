@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Phase 2a Lane 3 quality check — old-path vs new-path on the 10-case corpus.
+"""Phase 2a Lane 3 quality check over the conversation-first runtime.
 
 Runs `run_extract.py` once per case (shared input), then runs `run_pipeline.py`
-N times on the explicit legacy path (`--legacy-contract`) and N times on the
-default ConversationContext path. Parses `frame_pressure_card` from each result
-and computes structural metrics.
+N times on the ConversationContext path. Parses `frame_pressure_card` from each
+result and computes structural metrics.
 
 Evidence output: markdown report with per-case tables + aggregate summary +
 per-case regression flags, saved to a timestamped directory under
@@ -16,10 +15,9 @@ Usage (dry-run, one case N=1 to verify plumbing):
 Usage (full measurement, N=3 across all 10 cases — costs ~$3-9 of API time):
     python3 scripts/phase2a_lane3_quality_check.py --n 3
 
-Why shell-out (not in-process): running through the CLI verifies that the
-default ConversationContext runtime and explicit legacy opt-out dispatch
-correctly end-to-end, which is the actual user path. Subprocess overhead is
-negligible vs the 30-60s per pipeline run.
+Why shell-out (not in-process): running through the CLI verifies the actual
+ConversationContext user path end-to-end. Subprocess overhead is negligible vs
+the 30-60s per pipeline run.
 """
 from __future__ import annotations
 
@@ -170,8 +168,6 @@ def run_pipeline_once(
         "--output-file", str(result_output),
         "--skip-revision",
     ]
-    if not new_contract:
-        cmd.append("--legacy-contract")
     code, out, err = _run_subprocess(cmd)
     if code != 0:
         # Don't crash the whole measurement — one flaky run is noise.

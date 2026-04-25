@@ -15,11 +15,8 @@ from .boundary_tracing import (
     _capture_boundary_call,
     _metadata_to_boundary_call_trace,
 )
-from .conversation_context import ConversationContext
 from .deep_checks import (
     DeepCheckResult,
-    format_pass2_prompt,
-    format_pass2_prompt_from_context,
     format_pass2_prompt_from_packet,
     parse_pass2_result,
 )
@@ -29,44 +26,27 @@ from .tendency_catalog import TendencyCatalog
 
 if TYPE_CHECKING:
     # Avoid circular import: the runtime only relies on duck-typed access to
-    # BoundaryClient / CritiqueRequest / TriggeredTendency members, so these
+    # BoundaryClient / TriggeredTendency members, so these
     # imports are for type checking only.
-    from .pipeline import BoundaryClient, CritiqueRequest, TriggeredTendency
+    from .pipeline import BoundaryClient, TriggeredTendency
 
 
 def _run_pass2_single(
     tendency_id: str,
-    request: "CritiqueRequest",
     boundary: "BoundaryClient",
     catalog: TendencyCatalog,
-    conversation_context: ConversationContext | None = None,
-    conversation_ir: ConversationIR | None = None,
+    conversation_ir: ConversationIR,
 ) -> tuple[DeepCheckResult, BoundaryCallTrace]:
     """Run a single Pass 2 deep check. Thread-safe — uses run_json_with_metadata.
 
-    Phase 4c dispatch: prefer the IR-driven packet path when an IR is
-    available; fall back to context-driven; legacy CritiqueRequest last.
+    Phase 6 contract: Pass 2 runs from the conversation IR only.
     """
-    if conversation_ir is not None:
-        packet = build_lane4_packet(conversation_ir)
-        pass2_system, pass2_user = format_pass2_prompt_from_packet(
-            packet=packet,
-            tendency_key=tendency_id,
-            catalog=catalog,
-        )
-    elif conversation_context is not None:
-        pass2_system, pass2_user = format_pass2_prompt_from_context(
-            context=conversation_context,
-            tendency_key=tendency_id,
-            catalog=catalog,
-        )
-    else:
-        pass2_system, pass2_user = format_pass2_prompt(
-            query=request.query,
-            vanilla_answer=request.vanilla_answer,
-            tendency_key=tendency_id,
-            catalog=catalog,
-        )
+    packet = build_lane4_packet(conversation_ir)
+    pass2_system, pass2_user = format_pass2_prompt_from_packet(
+        packet=packet,
+        tendency_key=tendency_id,
+        catalog=catalog,
+    )
     payload, metadata = boundary.run_json_with_metadata(pass2_system, pass2_user)
     trace = _metadata_to_boundary_call_trace(metadata, stage="pass2", tendency_id=tendency_id)
     result = parse_pass2_result(
@@ -80,41 +60,26 @@ def _run_pass2_single(
 def _run_pass2_parallel(
     *,
     triggered_tendencies: tuple["TriggeredTendency", ...],
-    request: "CritiqueRequest",
     boundary: "BoundaryClient",
     catalog: TendencyCatalog,
-    conversation_context: ConversationContext | None = None,
-    conversation_ir: ConversationIR | None = None,
+    conversation_ir: ConversationIR,
 ) -> tuple[list[DeepCheckResult], list[BoundaryCallTrace]]:
     """Run Pass 2 deep checks in parallel using thread pool.
 
     Results are returned in the same order as triggered_tendencies.
     Falls back to sequential execution if run_json_with_metadata is unavailable.
-    Phase 4c dispatch: prefer IR-driven packet path → context → legacy.
+    Phase 6 contract: Pass 2 runs from the IR-driven packet path only.
     """
     if not triggered_tendencies:
         return [], []
 
-    # Phase 4c: build the packet ONCE per pipeline run if IR available, then
-    # reuse across all parallel Pass 2 calls (saves redundant projection work).
-    packet = build_lane4_packet(conversation_ir) if conversation_ir is not None else None
+    # Build the packet ONCE per pipeline run, then reuse across all parallel
+    # Pass 2 calls (saves redundant projection work).
+    packet = build_lane4_packet(conversation_ir)
 
     def _format_prompt_for(tendency_key: str) -> tuple[str, str]:
-        if packet is not None:
-            return format_pass2_prompt_from_packet(
-                packet=packet,
-                tendency_key=tendency_key,
-                catalog=catalog,
-            )
-        if conversation_context is not None:
-            return format_pass2_prompt_from_context(
-                context=conversation_context,
-                tendency_key=tendency_key,
-                catalog=catalog,
-            )
-        return format_pass2_prompt(
-            query=request.query,
-            vanilla_answer=request.vanilla_answer,
+        return format_pass2_prompt_from_packet(
+            packet=packet,
             tendency_key=tendency_key,
             catalog=catalog,
         )
@@ -136,10 +101,8 @@ def _run_pass2_parallel(
             executor.submit(
                 _run_pass2_single,
                 tt.tendency_id,
-                request,
                 boundary,
                 catalog,
-                conversation_context,
                 conversation_ir,
             )
             for tt in triggered_tendencies

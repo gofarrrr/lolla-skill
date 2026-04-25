@@ -18,7 +18,6 @@ from .boundary_tracing import (
 from .conversation_context import ConversationContext
 from .prompts import (
     cluster_tendency_ids,
-    format_pass1_cluster_prompts,
     format_pass1_cluster_prompts_from_context,
 )
 from .tendency_catalog import TendencyCatalog
@@ -26,9 +25,8 @@ from .triage import TriageScore, parse_pass1_scores
 
 if TYPE_CHECKING:
     # Avoid circular import: the runtime only relies on duck-typed access to
-    # BoundaryClient / CritiqueRequest members, so these imports are for type
-    # checking only.
-    from .pipeline import BoundaryClient, CritiqueRequest
+    # BoundaryClient members, so this import is for type checking only.
+    from .pipeline import BoundaryClient
 
 
 def _run_pass1_cluster_single(
@@ -53,10 +51,9 @@ def _run_pass1_cluster_single(
 
 def _run_pass1_clusters_parallel(
     *,
-    request: "CritiqueRequest",
+    conversation_context: ConversationContext,
     boundary: "BoundaryClient",
     catalog: TendencyCatalog,
-    conversation_context: ConversationContext | None = None,
 ) -> tuple[list[TriageScore], list[BoundaryCallTrace]]:
     """Run all Pass 1 cluster triage calls in parallel and merge their scores.
 
@@ -66,25 +63,13 @@ def _run_pass1_clusters_parallel(
     deterministic compound-group logic, not by triage) are absent from the
     returned scores — downstream code treats absence as score=0.
 
-    When ``conversation_context`` is provided (Phase 2c migration path), the
-    cluster prompts use the CONTEXT/SOURCE turn-structured shape with
-    assistant turns as the primary audit target. Otherwise the legacy
-    query+vanilla_answer shape is used.
-
     Falls back to sequential execution if ``run_json_with_metadata`` is
     unavailable (e.g., test mocks).
     """
-    if conversation_context is not None:
-        cluster_prompts = format_pass1_cluster_prompts_from_context(
-            context=conversation_context,
-            catalog=catalog,
-        )
-    else:
-        cluster_prompts = format_pass1_cluster_prompts(
-            query=request.query,
-            vanilla_answer=request.vanilla_answer,
-            catalog=catalog,
-        )
+    cluster_prompts = format_pass1_cluster_prompts_from_context(
+        context=conversation_context,
+        catalog=catalog,
+    )
 
     if not hasattr(boundary, "run_json_with_metadata") or not getattr(boundary, "supports_parallel_calls", False):
         # Fallback for test mocks or custom clients without the new method.

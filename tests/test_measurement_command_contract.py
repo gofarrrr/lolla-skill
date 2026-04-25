@@ -1,4 +1,4 @@
-"""Command-construction tests for old/new runtime measurement scripts."""
+"""Command-construction tests for measurement scripts after Phase 6 cleanup."""
 
 from __future__ import annotations
 
@@ -12,7 +12,13 @@ import scripts.phase2c_lane1_quality_check as phase2c
 import scripts.phase2d_lane2_quality_check as phase2d
 
 
-def _capture_phase2_command(monkeypatch: pytest.MonkeyPatch, module, tmp_path: Path, *, new_contract: bool) -> list[str]:
+def _capture_phase2_command(
+    monkeypatch: pytest.MonkeyPatch,
+    module,
+    tmp_path: Path,
+    *,
+    new_contract: bool,
+) -> list[str]:
     captured: list[list[str]] = []
 
     def _fake_run_subprocess(cmd: list[str]) -> tuple[int, str, str]:
@@ -33,81 +39,32 @@ def _capture_phase2_command(monkeypatch: pytest.MonkeyPatch, module, tmp_path: P
     return captured[0]
 
 
-def test_phase2a_old_path_uses_explicit_legacy_contract(
+@pytest.mark.parametrize(
+    ("module", "new_contract"),
+    [
+        (phase2a, False),
+        (phase2a, True),
+        (phase2b, False),
+        (phase2b, True),
+        (phase2c, False),
+        (phase2c, True),
+        (phase2d, False),
+        (phase2d, True),
+    ],
+)
+def test_phase2_scripts_build_conversation_contract_commands(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
+    module,
+    new_contract: bool,
 ) -> None:
-    cmd = _capture_phase2_command(monkeypatch, phase2a, tmp_path, new_contract=False)
+    cmd = _capture_phase2_command(
+        monkeypatch,
+        module,
+        tmp_path,
+        new_contract=new_contract,
+    )
 
-    assert "--legacy-contract" in cmd
-    assert "--new-contract" not in cmd
-
-
-def test_phase2a_new_path_uses_default_contract(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    cmd = _capture_phase2_command(monkeypatch, phase2a, tmp_path, new_contract=True)
-
-    assert "--legacy-contract" not in cmd
-    assert "--new-contract" not in cmd
-
-
-def test_phase2b_old_path_uses_explicit_legacy_contract(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    cmd = _capture_phase2_command(monkeypatch, phase2b, tmp_path, new_contract=False)
-
-    assert "--legacy-contract" in cmd
-    assert "--new-contract" not in cmd
-
-
-def test_phase2b_new_path_uses_default_contract(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    cmd = _capture_phase2_command(monkeypatch, phase2b, tmp_path, new_contract=True)
-
-    assert "--legacy-contract" not in cmd
-    assert "--new-contract" not in cmd
-
-
-def test_phase2c_old_path_uses_explicit_legacy_contract(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    cmd = _capture_phase2_command(monkeypatch, phase2c, tmp_path, new_contract=False)
-
-    assert "--legacy-contract" in cmd
-    assert "--new-contract" not in cmd
-
-
-def test_phase2c_new_path_uses_default_contract(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    cmd = _capture_phase2_command(monkeypatch, phase2c, tmp_path, new_contract=True)
-
-    assert "--legacy-contract" not in cmd
-    assert "--new-contract" not in cmd
-
-
-def test_phase2d_old_path_uses_explicit_legacy_contract(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    cmd = _capture_phase2_command(monkeypatch, phase2d, tmp_path, new_contract=False)
-
-    assert "--legacy-contract" in cmd
-    assert "--new-contract" not in cmd
-
-
-def test_phase2d_new_path_uses_default_contract(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    cmd = _capture_phase2_command(monkeypatch, phase2d, tmp_path, new_contract=True)
-
-    assert "--legacy-contract" not in cmd
+    assert "--conversation-file" in cmd
+    assert not any(part.startswith("--legacy") for part in cmd)
     assert "--new-contract" not in cmd

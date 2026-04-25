@@ -25,7 +25,8 @@ import time
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from engine.system_b.boundary_provider import OpenAICompatibleBoundaryClient
-from engine.system_b.structural_coverage import run_structural_coverage
+from engine.system_b.conversation_context import ConversationContext, ExtractionPayload, Turn
+from engine.system_b.structural_coverage import run_structural_coverage_from_context
 
 # ── logging ─────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -40,6 +41,23 @@ def _load_structural_routing() -> dict:
     with open(_KG_PATH) as f:
         kg = json.load(f)
     return kg["structural_coverage_routing"]
+
+
+def _make_context(question: str, vanilla_answer: str) -> ConversationContext:
+    return ConversationContext(
+        turns=(
+            Turn(turn_index=1, speaker="user", text=question),
+            Turn(turn_index=2, speaker="assistant", text=vanilla_answer),
+        ),
+        extraction=ExtractionPayload(
+            decision_situation=question,
+            live_constraints=(),
+            synthesized_position=vanilla_answer,
+            reasoning_passages=(),
+            original_framing=question,
+            dropped_threads=(),
+        ),
+    )
 
 # ── boundary client ─────────────────────────────────────────────────────
 def _make_boundary() -> OpenAICompatibleBoundaryClient:
@@ -347,10 +365,9 @@ def run_scenario(
     print()
 
     t0 = time.time()
-    card = run_structural_coverage(
+    card = run_structural_coverage_from_context(
         boundary=boundary,
-        query=question,
-        vanilla_answer=answer,
+        context=_make_context(question, answer),
         structural_coverage_routing=routing,
         anti_echo_model_ids=set(),  # no anti-echo in isolation test
     )

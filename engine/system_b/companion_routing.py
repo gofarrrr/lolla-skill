@@ -191,39 +191,6 @@ def parse_fingerprint_response(
     return FingerprintPayload(raw=raw_moves, validated=validated, dropped=dropped)
 
 
-def _build_fingerprint_system_prompt() -> str:
-    return (
-        "You are extracting reasoning moves from a vanilla answer. "
-        "Return strict JSON with a top-level 'reasoning_moves' list. "
-        "Each move must include move_id, reasoning_move, evidence_quotes, evidence_rationale, and confidence. "
-        "Do not name mental models. Describe abstract reasoning moves only.\n\n"
-        "CRITICAL RULE FOR evidence_quotes:\n"
-        "Every evidence_quotes entry must be a LITERAL SUBSTRING copied character-for-character "
-        "from the vanilla answer text. It must pass a simple `quote in vanilla_answer` check. "
-        "Do NOT paraphrase, summarize, compress, or combine multiple passages into one quote. "
-        "If a reasoning move spans multiple passages, include each passage as a SEPARATE entry "
-        "in the evidence_quotes array. Each entry must be a verbatim contiguous substring. "
-        "Quotes that are not literal substrings will be rejected by the validation layer."
-    )
-
-
-def _build_fingerprint_user_prompt(query: str, vanilla_answer: str) -> str:
-    return "\n".join(
-        [
-            "Query:",
-            query.strip(),
-            "",
-            "Vanilla answer:",
-            vanilla_answer.strip(),
-            "",
-            "Extract 3-8 reasoning moves from the answer. "
-            "Each move must be supported by exact quotes copied from the answer. "
-            "Remember: every evidence_quotes entry must be a literal contiguous substring "
-            "from the vanilla answer above — not a paraphrase or summary.",
-        ]
-    )
-
-
 def _joined_assistant_turns(context: ConversationContext) -> str:
     """Flat string of assistant turns for substring validation + keyword recall.
 
@@ -317,11 +284,7 @@ def run_fingerprint_call_from_context(
     context: ConversationContext,
     client,
 ) -> FingerprintPayload:
-    """Phase 2d conversation-first fingerprint call.
-
-    Validates evidence quotes against joined assistant turns (not legacy
-    vanilla_answer). Otherwise identical behavior to `run_fingerprint_call`.
-    """
+    """Conversation-first fingerprint call with SOURCE-only quote validation."""
     assistant_text = _joined_assistant_turns(context)
     raw_payload = client.run_json(
         _build_fingerprint_system_prompt_from_context(),
@@ -418,11 +381,7 @@ def run_verification_call_from_context(
     candidates: list[dict[str, str]],
     client,
 ) -> tuple[list[DetectedModel], list[dict[str, str]]]:
-    """Phase 2d conversation-first verification call.
-
-    Validates evidence quotes against joined assistant turns. Otherwise
-    identical behavior to `run_verification_call`.
-    """
+    """Conversation-first verification call with SOURCE-only quote validation."""
     if not candidates:
         return [], []
 
@@ -656,28 +615,6 @@ def run_verification_call_from_packet(
     return detected_models, rejected
 
 
-def run_fingerprint_call(
-    *,
-    query: str,
-    vanilla_answer: str,
-    client,
-) -> FingerprintPayload:
-    raw_payload = client.run_json(
-        _build_fingerprint_system_prompt(),
-        _build_fingerprint_user_prompt(query, vanilla_answer),
-    )
-    fingerprint = parse_fingerprint_response(raw_payload, vanilla_answer)
-    validated = sorted(
-        fingerprint.validated,
-        key=lambda item: (0 if item.confidence == "high" else 1, item.move_id),
-    )[:8]
-    return FingerprintPayload(
-        raw=fingerprint.raw,
-        validated=validated,
-        dropped=fingerprint.dropped,
-    )
-
-
 def parse_verification_response(
     raw_payload: dict,
     vanilla_answer: str,
@@ -824,92 +761,11 @@ def _build_verification_system_prompt() -> str:
 
 
 def get_prompt_templates() -> dict[str, str]:
-    """Return companion lane prompt templates keyed by boundary name."""
+    """Return the active companion lane prompt templates keyed by boundary name."""
     return {
-        "companion_fingerprint": _build_fingerprint_system_prompt(),
+        "companion_fingerprint": _build_fingerprint_system_prompt_from_context(),
         "companion_verification": _build_verification_system_prompt(),
     }
-
-
-def _build_verification_user_prompt(
-    vanilla_answer: str,
-    fingerprint_payload: FingerprintPayload,
-    candidates: list[dict[str, str]],
-) -> str:
-    fingerprint_lines = [
-        "- {move_id} | {reasoning_move} | quotes: {quotes}".format(
-            move_id=move.move_id,
-            reasoning_move=move.reasoning_move,
-            quotes=" | ".join(move.evidence_quotes),
-        )
-        for move in fingerprint_payload.validated
-    ]
-    candidate_lines = []
-    for candidate in candidates:
-        line = "- {model_id} | {model_name} | activation: {activation_trigger}".format(
-            model_id=candidate["model_id"],
-            model_name=candidate["model_name"],
-            activation_trigger=candidate["activation_trigger"],
-        )
-        dw = candidate.get("danger_when", "")
-        if dw:
-            line += f" | watches_for: {dw}"
-        candidate_lines.append(line)
-    return "\n".join(
-        [
-            "Vanilla answer:",
-            vanilla_answer.strip(),
-            "",
-            "Validated fingerprint moves:",
-            "\n".join(fingerprint_lines) if fingerprint_lines else "(none)",
-            "",
-            "Candidate models:",
-            "\n".join(candidate_lines),
-            "",
-            "Return ONLY the JSON object described in the system prompt. "
-            "Do not return arrays of model ids. "
-            "Use exact evidence quotes copied from the vanilla answer for every accepted model.",
-        ]
-    )
-
-
-def run_verification_call(
-    *,
-    vanilla_answer: str,
-    fingerprint_payload: FingerprintPayload,
-    candidates: list[dict[str, str]],
-    client,
-) -> tuple[list[DetectedModel], list[dict[str, str]]]:
-    if not candidates:
-        return [], []
-
-    raw_payload = client.run_json(
-        _build_verification_system_prompt(),
-        _build_verification_user_prompt(vanilla_answer, fingerprint_payload, candidates),
-    )
-    accepted, rejected = parse_verification_response(
-        raw_payload,
-        vanilla_answer,
-        {candidate["model_id"] for candidate in candidates},
-    )
-    candidate_names = {
-        candidate["model_id"]: candidate["model_name"]
-        for candidate in candidates
-        if candidate.get("model_id") and candidate.get("model_name")
-    }
-    detected_models = [
-        DetectedModel(
-            model_id=item["model_id"],
-            model_name=candidate_names.get(item["model_id"], item["model_id"]),
-            evidence_quote=item.get("evidence_quote", ""),
-            presence_mode=item.get("presence_mode", "executed"),
-            presence_explanation=item.get("presence_explanation", ""),
-            detection_confidence="structural",
-        )
-        for item in accepted
-    ]
-    detected_models = detected_models[:5]
-    return detected_models, rejected
 
 
 def retrieve_candidate_models(

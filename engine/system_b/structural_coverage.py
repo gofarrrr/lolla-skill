@@ -157,70 +157,12 @@ class _BoundaryClient(Protocol):
 # LLM Boundary Call 1: Question Classification
 # ---------------------------------------------------------------------------
 
-_QUESTION_CLASSIFICATION_SYSTEM = """\
-You are a question classifier. Your job is to classify a question into exactly \
-one of four structural types based on what kind of answer the question demands.
-
-The four types:
-  - "causal-diagnosis" — The question asks WHY something happened or is happening. \
-It demands root-cause reasoning. Examples: "Why are sales down?", \
-"What's causing the high churn rate?"
-  - "decision-evaluation" — The question asks WHETHER to do something. \
-It demands trade-off and commitment reasoning. Examples: "Should we sign \
-the deal?", "Is it worth expanding into Europe?"
-  - "action-planning" — The question asks HOW to do something. \
-It demands sequencing and execution reasoning. The decision is already made; \
-the question is about implementation. Examples: "How do we restructure \
-the engineering org?", "What's the plan for the product launch?"
-  - "prediction" — The question asks WHAT WILL HAPPEN. It demands forecasting \
-and scenario reasoning. Examples: "What happens if we raise prices 20%?", \
-"Where will the market be in 3 years?"
-
-Return a JSON object: {"question_type": "<type>"}
-
-Rules:
-- Pick the DOMINANT type. Many questions blend types — choose the one that \
-best captures what kind of reasoning the answer needs.
-- If the question is ambiguous, default to "decision-evaluation" — most \
-strategic questions are fundamentally about whether to act.
-- Return ONLY the JSON object. No explanation.
-"""
-
-
-def _format_classification_user_prompt(query: str, vanilla_answer: str) -> str:
-    return (
-        f"QUESTION:\n{query}\n\n"
-        f"ANSWER (for context only — classify the QUESTION, not the answer):\n"
-        f"{vanilla_answer[:1000]}"
-    )
-
-
 _VALID_QUESTION_TYPES = frozenset({
     "causal-diagnosis",
     "decision-evaluation",
     "action-planning",
     "prediction",
 })
-
-
-def run_question_classification(
-    boundary: _BoundaryClient,
-    query: str,
-    vanilla_answer: str,
-) -> str:
-    """Classify the question into one of 4 structural types.
-
-    Legacy entry point — consumes the collapsed `query` built from extraction
-    summaries via the shim. Still serves the legacy path until Phase 3. For
-    new conversation-first callers use `run_question_classification_from_context`.
-    """
-    user_prompt = _format_classification_user_prompt(query, vanilla_answer)
-    raw = boundary.run_json(_QUESTION_CLASSIFICATION_SYSTEM, user_prompt)
-    qtype = coerce_str(raw.get("question_type", ""))
-    if qtype not in _VALID_QUESTION_TYPES:
-        _LOGGER.warning("Invalid question_type %r, defaulting to decision-evaluation", qtype)
-        qtype = "decision-evaluation"
-    return qtype
 
 
 # ---------------------------------------------------------------------------
@@ -345,118 +287,6 @@ def _build_dimension_catalog_text(dimension_routing: dict) -> str:
         lines.append(f"Applicable question types: {', '.join(dim.get('question_types', []))}")
         lines.append("")
     return "\n".join(lines)
-
-
-_DIMENSION_DETECTION_SYSTEM = """\
-You are a structural coverage analyst. Your job is to examine a QUESTION and \
-its ANSWER and determine which structural dimensions of the problem are present \
-and whether the answer addresses each one.
-
-You will receive:
-1. The question type (causal-diagnosis, decision-evaluation, action-planning, prediction)
-2. A catalog of 15 structural dimensions with detect_when conditions and coverage signals
-3. The question and vanilla answer
-
-Your task:
-1. DETECT: Which dimensions are structurally present in this problem? Use the \
-detect_when conditions. A dimension is present if at least 1 of its detect_when \
-conditions is clearly met by the QUESTION (not the answer). Only consider \
-dimensions whose question_types include the classified question type. \
-Think broadly — typically 6-10 dimensions fire for a strategic question.
-2. ASSESS COVERAGE: For each detected dimension, does the answer engage with \
-the structural tension described by the dimension's cleaving frame? \
-A dimension is "covered" ONLY if the answer:
-  (a) explicitly identifies the tension or trade-off described by the cleaving frame, AND
-  (b) reasons through both sides of that tension (not just one), AND
-  (c) reaches or recommends a position on how to resolve it.
-If the answer merely MENTIONS a related topic, uses a KEYWORD associated with \
-the dimension, or ACKNOWLEDGES that the issue exists without analyzing it — \
-that is NOT coverage. Coverage requires analytical depth, not topic presence.
-3. MATERIALITY RANKING: After coverage assessment, RANK all uncovered dimensions \
-by materiality — how likely is it that analyzing this dimension would REVERSE \
-or SUBSTANTIALLY ALTER the recommendation? Then keep ONLY the top 3-5 as gaps. \
-Mark the rest as covered with coverage_evidence: "Immaterial: [reason]".
-
-Return a JSON object:
-{
-  "dimensions": [
-    {
-      "dimension_id": "<id from catalog>",
-      "dimension_name": "<name from catalog>",
-      "covered": true/false,
-      "coverage_evidence": "<what in the answer addresses this, OR what's missing>",
-      "materiality_note": "<why this gap matters for the decision, or 'covered'/'immaterial'>"
-    }
-  ]
-}
-
-HARD CONSTRAINT: Maximum 5 dimensions with covered=false. If your initial \
-assessment yields more than 5 gaps, you MUST demote the least material ones \
-to covered. This is not optional.
-
-Rules:
-- Return ONLY dimensions that are structurally present (6-10 typical).
-- Maximum 5 gaps. Typical is 2-4. A gap must be able to CHANGE the recommendation.
-- Mentioning is not covering. For every dimension, test: "Does the answer \
-reason through BOTH SIDES of this dimension's cleaving frame?" Examples:
-  * Stakeholder Alignment: Discussing people is NOT coverage. Requires: who \
-APPROVES, who BLOCKS, influence strategy.
-  * Timing & Sequencing: Listing timeframes is NOT coverage. Requires: why \
-this ORDER, critical path, delay impact.
-  * Commitment & Reversibility: Proposing terms is NOT coverage. Requires: \
-EXIT costs, lock-in, optionality consumed.
-  * Uncertainty Type: Presenting numbers is NOT coverage. Requires: what is \
-KNOWABLE vs genuinely UNKNOWABLE.
-  * Information Quality: Adjusting for risks is NOT coverage. Requires: \
-questioning data RELIABILITY, missing evidence.
-  * Competitive Dynamics: Mentioning competitors is NOT coverage. Requires: \
-modeling how they RESPOND.
-  * Resource Allocation: Stating budget is NOT coverage. Requires: what you \
-GIVE UP and why this beats alternatives.
-  * Scaling Dynamics: Mentioning growth is NOT coverage. Requires: what \
-BREAKS or CHANGES at scale.
-  * Incentive Alignment: Listing parties is NOT coverage. Requires: where \
-incentives DIVERGE and realignment mechanism.
-  * Feedback & System Dynamics: Describing cause-effect is NOT coverage. \
-Requires: identifying FEEDBACK LOOPS.
-- Return ONLY the JSON object. No explanation.
-"""
-
-
-def _format_dimension_detection_user_prompt(
-    query: str,
-    vanilla_answer: str,
-    question_type: str,
-    dimension_catalog_text: str,
-) -> str:
-    return (
-        f"QUESTION TYPE: {question_type}\n\n"
-        f"DIMENSION CATALOG:\n{dimension_catalog_text}\n\n"
-        f"QUESTION:\n{query}\n\n"
-        f"VANILLA ANSWER:\n{vanilla_answer}"
-    )
-
-
-def run_dimension_detection(
-    boundary: _BoundaryClient,
-    query: str,
-    vanilla_answer: str,
-    question_type: str,
-    structural_coverage_routing: dict,
-) -> tuple[DetectedDimension, ...]:
-    """Detect structural dimensions and assess coverage.
-
-    Legacy entry point — consumes the collapsed `query` + `vanilla_answer`
-    via the shim. Still serves the legacy path until Phase 3. For new
-    conversation-first callers use `run_dimension_detection_from_context`.
-    """
-    catalog_text = _build_dimension_catalog_text(structural_coverage_routing)
-    user_prompt = _format_dimension_detection_user_prompt(
-        query, vanilla_answer, question_type, catalog_text,
-    )
-    raw = boundary.run_json(_DIMENSION_DETECTION_SYSTEM, user_prompt)
-    return _parse_dimension_detection(raw)
-
 
 # ---------------------------------------------------------------------------
 # Phase 2b: Conversation-first dimension detection
@@ -785,67 +615,6 @@ Return ONLY the JSON object. No explanation.
 """
 
 
-def _format_gap_question_user_prompt(
-    query: str,
-    vanilla_answer: str,
-    question_type: str,
-    gap_routes: tuple[DimensionRoute, ...],
-    structural_coverage_routing: dict,
-) -> str:
-    """Build the user prompt for gap question generation."""
-    routing_dims = structural_coverage_routing.get("dimensions", {})
-    gap_sections: list[str] = []
-    for route in gap_routes:
-        dim_def = routing_dims.get(route.dimension_id, {})
-        gap_sections.append(
-            f"GAP DIMENSION: {route.dimension_name} (id: {route.dimension_id})\n"
-            f"Cleaving frame: {dim_def.get('cleaving_frame', 'N/A')}\n"
-            f"What's missing: The answer does not address this dimension.\n"
-            f"Why it matters: {dim_def.get('materiality_test', 'N/A')}"
-        )
-    return (
-        f"QUESTION TYPE: {question_type}\n\n"
-        f"QUESTION:\n{query}\n\n"
-        f"VANILLA ANSWER (first 1500 chars):\n{vanilla_answer[:1500]}\n\n"
-        f"STRUCTURAL GAPS:\n\n" + "\n\n".join(gap_sections)
-    )
-
-
-def generate_gap_questions(
-    boundary: _BoundaryClient,
-    query: str,
-    vanilla_answer: str,
-    question_type: str,
-    gap_routes: tuple[DimensionRoute, ...],
-    structural_coverage_routing: dict,
-) -> tuple[GapQuestion, ...]:
-    """Generate discovery questions for each gap dimension.
-
-    Returns an empty tuple if there are no gaps (no LLM call made).
-
-    Legacy entry point — consumes the collapsed `query` + `vanilla_answer` via
-    the shim. For new conversation-first callers use
-    `generate_gap_questions_from_context`.
-    """
-    if not gap_routes:
-        return ()
-
-    user_prompt = _format_gap_question_user_prompt(
-        query, vanilla_answer, question_type, gap_routes, structural_coverage_routing,
-    )
-    raw = boundary.run_json(_GAP_QUESTION_GENERATION_SYSTEM, user_prompt)
-    parsed = _parse_gap_questions(raw)
-
-    results: list[GapQuestion] = []
-    for route in gap_routes:
-        questions = parsed.get(route.dimension_id)
-        if questions:
-            results.append(GapQuestion(
-                dimension_id=route.dimension_id,
-                dimension_name=route.dimension_name,
-                questions=questions,
-            ))
-    return tuple(results)
 
 
 # ---------------------------------------------------------------------------
@@ -1017,65 +786,6 @@ def assemble_structural_coverage_card(
 # ---------------------------------------------------------------------------
 # Public API — single entry point for pipeline.py
 # ---------------------------------------------------------------------------
-
-def run_structural_coverage(
-    boundary: _BoundaryClient,
-    query: str,
-    vanilla_answer: str,
-    structural_coverage_routing: dict,
-    anti_echo_model_ids: set[str],
-) -> StructuralCoverageCard | None:
-    """Run the full Structural Coverage lane.
-
-    1. Classify the question type
-    2. Detect dimensions and assess coverage
-    3. Route uncovered dimensions to models (deterministic, with anti-echo)
-    4. Generate gap questions (LLM call, only when gaps exist)
-    5. Assemble the coverage card
-
-    Returns ``None`` on hard failure (boundary errors). Returns a card with
-    empty dimensions if no dimensions fire (a valid result).
-
-    Legacy orchestrator — consumes the collapsed `query` + `vanilla_answer`.
-    For conversation-first callers use `run_structural_coverage_from_context`.
-    """
-    try:
-        # Step 1: Question classification
-        question_type = run_question_classification(boundary, query, vanilla_answer)
-    except Exception:
-        _LOGGER.exception("Question classification failed")
-        return None
-
-    try:
-        # Step 2: Dimension detection + coverage check
-        dimensions = run_dimension_detection(
-            boundary, query, vanilla_answer,
-            question_type, structural_coverage_routing,
-        )
-    except Exception:
-        _LOGGER.exception("Dimension detection failed")
-        return None
-
-    # Step 3: Deterministic routing (no LLM call)
-    gap_routes = route_gap_dimensions(
-        dimensions, structural_coverage_routing, anti_echo_model_ids,
-    )
-
-    # Step 4: Gap question generation (LLM call 3, only when gaps exist)
-    gap_questions: tuple[GapQuestion, ...] = ()
-    try:
-        gap_questions = generate_gap_questions(
-            boundary, query, vanilla_answer,
-            question_type, gap_routes, structural_coverage_routing,
-        )
-    except Exception:
-        _LOGGER.exception("Gap question generation failed")
-
-    # Step 5: Assembly
-    return assemble_structural_coverage_card(
-        question_type, dimensions, gap_routes, anti_echo_model_ids, gap_questions,
-    )
-
 
 def run_structural_coverage_from_context(
     boundary: _BoundaryClient,

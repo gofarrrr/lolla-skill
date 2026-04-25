@@ -7,9 +7,8 @@ outputs) across N runs of the same conversation. Two modes:
 
 - Aggregate: given a set of existing result.json paths, compute stability.
 - Rerun: given one extraction.json and conversation.txt, invoke
-  run_pipeline.py --skip-revision N times through the default ConversationContext
-  path, then aggregate the new result.json files. Pass --legacy-contract for an
-  intentional CritiqueRequest rerun.
+  run_pipeline.py --skip-revision N times through the ConversationContext
+  runtime, then aggregate the new result.json files.
 
 Design principles (from research/llm-decomposition-handover.md §3.6, §5c):
   * 1.0 Jaccard is a warning, not a target — signals a specialist that
@@ -35,13 +34,6 @@ Usage:
       --case-id marcus-pipeline-variance \
       --extraction /tmp/lolla_XXX_extraction.json \
       --conversation /tmp/lolla_XXX_conversation.txt \
-      -n 3
-
-  # Mode B legacy compatibility rerun:
-  python3 scripts/stability_check.py \
-      --case-id marcus-pipeline-variance-legacy \
-      --extraction /tmp/lolla_XXX_extraction.json \
-      --legacy-contract \
       -n 3
 
   # Mode C (extraction-drift — re-run run_extract.py N times on same
@@ -420,11 +412,9 @@ def render_markdown(stability: dict, prompt_cfg: dict, case_id: str,
 
 def _rerun_pipeline(
     extraction: Path,
-    conversation: Path | None,
+    conversation: Path,
     n: int,
     skill_dir: Path,
-    *,
-    legacy_contract: bool = False,
 ) -> list[Path]:
     paths: list[Path] = []
     for i in range(n):
@@ -434,13 +424,10 @@ def _rerun_pipeline(
         cmd = [
             "python3", str(skill_dir / "scripts" / "run_pipeline.py"),
             "--extraction-file", str(extraction),
+            "--conversation-file", str(conversation),
             "--output-file", str(result_path),
             "--skip-revision",
         ]
-        if conversation:
-            cmd.extend(["--conversation-file", str(conversation)])
-        if legacy_contract:
-            cmd.append("--legacy-contract")
         print(f"  [{i+1}/{n}] rid={rid}", file=sys.stderr)
         subprocess.run(cmd, check=True, cwd=str(skill_dir))
         paths.append(result_path)
@@ -795,9 +782,7 @@ def main() -> int:
     ap.add_argument("--runs", nargs="*", help="existing result.json paths (aggregate mode)")
     ap.add_argument("--extraction", help="extraction.json path (rerun mode)")
     ap.add_argument("--conversation",
-                    help="conversation.txt path. Required for --drift mode and for default --extraction reruns.")
-    ap.add_argument("--legacy-contract", action="store_true",
-                    help="Mode B only: rerun the legacy CritiqueRequest path explicitly.")
+                    help="conversation.txt path. Required for --drift mode and for --extraction reruns.")
     ap.add_argument("--drift", action="store_true",
                     help="extraction-drift mode — re-run run_extract.py N times on --conversation, measure per-field drift")
     ap.add_argument("--from-extractions", nargs="*", dest="from_extractions",
@@ -924,8 +909,8 @@ def main() -> int:
     if args.extraction:
         ext = Path(args.extraction).resolve()
         conv = Path(args.conversation).resolve() if args.conversation else None
-        if conv is None and not args.legacy_contract:
-            ap.error("--extraction rerun mode requires --conversation unless --legacy-contract is supplied")
+        if conv is None:
+            ap.error("--extraction rerun mode requires --conversation")
         print(f"[rerun] {args.n} pipeline runs from {ext.name}", file=sys.stderr)
         run_paths.extend(
             _rerun_pipeline(
@@ -933,7 +918,6 @@ def main() -> int:
                 conv,
                 args.n,
                 skill_dir,
-                legacy_contract=args.legacy_contract,
             )
         )
     if args.runs:
