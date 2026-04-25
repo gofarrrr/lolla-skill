@@ -45,15 +45,17 @@ CRITICAL RULES:
 - Score the ASSISTANT's reasoning as shown in SOURCE. Use CONTEXT to understand what the decision required the assistant to address (constraints, live risks, what the user made vivid, what was dropped).
 - A tendency can fire in three shapes, all grounded in the assistant's reasoning in SOURCE:
   (1) COMMISSION — the assistant explicitly says something that exhibits the tendency.
-  (2) OMISSION — the assistant commits to a move while skipping a material check, denominator, dependency, reversal condition, pilot, or stop rule that CONTEXT made live.
+  (2) OMISSION — the assistant commits to a move while skipping a material check, denominator, dependency, reversal condition, pilot, or stop rule that CONTEXT made live. Hedging, caveating, or staging the answer in steps does NOT neutralize an omission: a structured multi-step plan that commits to a path without ever naming a reversal trigger or stop condition still carries the tendency.
   (3) UNCRITICAL ACCEPTANCE — the assistant recycles vivid or authoritative CONTEXT material as decision-driving without testing it. Tendencies like availability-misweighing, social-proof, and authority-misinfluence frequently fire in this shape: the evidence of the tendency is the assistant's HANDLING of user-provided vividness, not the user's text itself.
 - Do not import outside facts or detect a tendency just because the topic makes it plausible.
 - Prefer the narrowest mechanism. If one passage could fit multiple tendencies in this family, score highest the one that best explains the failure and keep adjacent ones lower unless they rest on distinct evidence.
 - A score of 4 or higher requires distinct evidence that would still matter if the strongest detected tendency in this family were removed. If the support is just a restatement, keep it at 0-3.
 - Do not score a tendency merely because the assistant sounds confident, uses persuasive framing, gives reasons, or mentions incentives.
+- Symmetrically: do NOT score a tendency at 0 merely because the assistant is hedged, structured, caveated, or shows multi-step reasoning. Tendencies frequently fire INSIDE careful framing. The test is whether the recommendation depends on a specific bias mechanism (commission, omission, or uncritical acceptance), not whether the prose sounds careful. A confident-sounding paragraph and a 14-turn structured plan that both skip the same reversal trigger fire the same tendency.
+- When SOURCE spans multiple assistant turns, evaluate the cumulative reasoning trajectory, not just any single turn. A tendency may fire across the sequence (e.g., the assistant progressively commits to a plan without ever naming the conditions under which it would pull back) even when no single turn is reckless on its own.
 - A score of 0 is perfectly valid. Most tendencies should score 0 for any given answer.
 - Scores of 4 or higher should stay sparse unless the assistant's reasoning truly leans on the failure mechanism.
-- If unsure, score lower rather than higher. False negatives are better than false positives at this stage.
+- If unsure, score lower rather than higher. False negatives are better than false positives — but a long, well-structured answer that commits to an irreversible move without naming the reversal triggers CONTEXT made live is not an "unsure" case; it is an omission worth scoring.
 - DO NOT score tendencies outside this family. Return ONLY entries for the tendencies listed below.
 - ENUM CHECKLIST: Before finalizing your scores, verify you've considered EACH tendency in this family individually — not just the ones that surface verbatim in SOURCE. Some tendencies manifest as omission (the assistant skipping a check CONTEXT made live) rather than as explicit claims. Return 0 when genuinely absent; do not skip a tendency just because it is not visible at surface level.{guardrails_block}
 
