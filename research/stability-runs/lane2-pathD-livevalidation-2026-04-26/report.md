@@ -108,9 +108,55 @@ Compared to archive baseline distribution (proposed): primary 26 (68%), secondar
 
 Zero. All 4 outputs were written by the implementer (me) following the new SKILL.md as the contract; no LLM API calls were made in this validation step. The next-level validation (fresh Claude reading SKILL.md cold via `/lolla` flow) is the PR review surface.
 
+## Fresh-reader validation (post-implementer-validation gate)
+
+The implementer-authored validation above tests *coherence and producibility* but cannot test what fresh Claude readers actually produce when reading SKILL.md cold. To close that gap before merge, ran a fresh-reader test on `mid-level-consultant-decides` — same Lane 2 cards, no implementer scaffolding, just the edited SKILL.md as the contract.
+
+### Round 1 — FAILED
+
+Output: `freshreader_round1_consultant-decides_FAILED.md` (preserved as evidence).
+
+Three drift modes uncovered that the audit + implementer-authored validation did NOT catch:
+
+| Drift mode | What happened | Why audit missed it |
+|---|---|---|
+| **Naming** | Fresh reader wrote anchors as lowercase hyphenated prose ("the principal-agent problem", "information-asymmetry") instead of verbatim `display_name` | Audit checked existence of anchor reference, not exact-string fidelity |
+| **Treatment inflation** | 4 of 5 anchors got primary pressure, including PA-Problem and Probabilistic Thinking competing for the same passage as Information Asymmetry and Confidence Calibration | Audit's `proposed_overclaim_rate` measured against `primary_eligible`, but the contract had no rule preventing two anchors from sharing one reasoning move |
+| **Section shape** | §1 had 5 paragraphs, one anchor each — anchor-parade rhythm masked by paragraph-level coherence | Audit's `not_mushy` reviewer pass looked at prose quality, not anchor-to-paragraph density |
+
+### Tightenings (commit 616b8c0)
+
+Three SKILL.md amendments addressed the three drift modes:
+
+1. **Exact-string rule** (`SKILL.md:350`): Changed "use the `display_name`" to "use the `display_name` **verbatim** — the exact string ... Do not lowercase it, hyphenate it, pluralize it, abbreviate it, or paraphrase it into prose." with concrete examples.
+2. **One primary-pressure anchor per reasoning move**: New paragraph after the *Anchor treatment* opening forbidding two anchors sharing one structural move. Role-distinction clause: "If two anchors both receive primary pressure, their roles must be clearly distinct (different reasoning moves, not the same move described two ways)."
+3. **Section-shape test**: Added to anti-enumeration paragraph. "Test: if §1 becomes one paragraph per anchor, you have drifted into anchor-parade shape." with right-shape vs wrong-shape examples.
+
+`HOW_IT_WORKS.md` updated with the same mutual-exclusion paragraph for big-picture coherence.
+
+### Round 2 — PASSED
+
+Output: `freshreader_round2_consultant-decides_PASSED.md`. Same case, same input cards, fresh reader on the tightened SKILL.md.
+
+| Gate | Round 1 | Round 2 | Evidence (round 2) |
+|---|---|---|---|
+| Naming invariant (verbatim) | FAIL (5/5 lowercase prose) | PASS (5/5 verbatim) | "*Principal Agent Problem*", "*Information Asymmetry*", "*Authority Bias*", "*Probabilistic Thinking*", "*Confidence Calibration*" |
+| Overclaim rate ≤ 10% | FAIL (≥2 inflations) | PASS (0/5) | PA-Problem and Information Asymmetry are *distinct reasoning moves* (incentive misalignment vs. information topology); §1 makes that distinction explicit |
+| Secondary framing ≥ 90% | n/a (inflated) | PASS (2/2) | Authority Bias and Probabilistic Thinking integrated as related lenses, not competing primaries |
+| Anti-enumeration | FAIL (5 paragraphs / 5 anchors) | PASS | §1 = 4 paragraphs covering 4 anchors; paragraph 5 integrates Authority Bias + Probabilistic Thinking together; §2 covers Confidence Calibration set-aside; §3 adds reframings without anchor-parade rhythm |
+| not_mushy (definite recommendation) | PASS | PASS | "external-with-counsel, anonymously to the firm, document tonight, lawyer this week, attend Wednesday normally, no one at work knows" |
+
+Round-2 distribution: 2 primary (PAP, Information Asymmetry — distinct moves), 2 secondary lens (Authority Bias, Probabilistic Thinking), 1 set aside with a reason (Confidence Calibration).
+
+### What this proves
+
+The wording-only contract change *plus* the three tightenings produce evidence-proportional Step 6 output when read cold by a fresh Claude reader. The round-1 failure is preserved as evidence that fresh-reader tests catch behavioral drift that implementer-authored validation misses; the round-2 pass is evidence that the tightened contract closes those drift modes.
+
+Cost: zero (in-session fresh reader, no API calls).
+
 ## Verdict
 
-**All five D1 gates pass.** Ready for PR.
+**All five D1 gates pass — both implementer-authored and fresh-reader.** Ready for PR.
 
 Caveats carried forward to PR description:
 1. Implementer-authored fresh outputs introduce author bias. The PR review is the check that fresh Claude readers produce similar evidence-proportional output. If review surfaces enumeration drift or overclaim regression, we tighten before merge.
