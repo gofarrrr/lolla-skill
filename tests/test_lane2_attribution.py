@@ -234,7 +234,7 @@ def test_verifier_returns_capped_models_separately_from_rejected():
         {"model_id": f"model-{i}", "model_name": f"Model {i}", "activation_trigger": "x"}
         for i in range(n_accepted)
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -266,7 +266,7 @@ def test_verifier_no_cap_overflow_returns_empty_capped():
     candidates = [
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet("weighing the opportunity cost of staying"),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -332,7 +332,7 @@ def test_verifier_dedupes_duplicate_accepted_model_ids():
     candidates = [
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -390,7 +390,7 @@ def test_verifier_no_duplicates_yields_empty_duplicate_accepts():
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"},
         {"model_id": "second-order-thinking", "model_name": "Second-Order Thinking", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -438,62 +438,79 @@ def _candidate(model_id: str, reasoning_type: str, final_rank: int,
     }
 
 
-def test_verifier_partitions_candidates_by_reasoning_type():
-    """Each bucket gets exactly one LLM call; bucket prompts contain ONLY
-    that bucket's model_ids."""
-    text = "anchor-phrase-A and anchor-phrase-B and anchor-phrase-C"
+def test_verifier_shards_candidates_by_rank_stratification():
+    """v3: candidates are sharded by `(final_rank - 1) % 3`. With ranks 1, 2,
+    3, 4 → shards 0, 1, 2, 0 → 3 non-empty shards → 3 LLM calls. Stages are
+    `companion_verification_shard_<n>`. Each shard prompt contains ONLY its
+    own model_ids and shard_breakdown reflects the partition."""
+    text = "anchor-A and anchor-B and anchor-C and anchor-D"
     candidates = [
-        _candidate("diag-1", "diagnostic", 1),
-        _candidate("diag-2", "diagnostic", 2),
-        _candidate("sys-1",  "systems",    3),
-        _candidate("prob-1", "probabilistic", 4),
+        _candidate("rank-1", "diagnostic",   1),  # shard_0
+        _candidate("rank-2", "systems",      2),  # shard_1
+        _candidate("rank-3", "probabilistic",3),  # shard_2
+        _candidate("rank-4", "metacognitive",4),  # shard_0 (round-robin)
     ]
     client = _RecordingClient(
         payloads_by_bucket_signal={
-            "diag-1": {
-                "accepted": [{"model_id": "diag-1", "presence_mode": "executed",
-                              "evidence_quote": "anchor-phrase-A", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
+            # shard_0 contains rank-1 + rank-4. The verifier accepts both.
+            "rank-1": {
+                "accepted": [
+                    {"model_id": "rank-1", "presence_mode": "executed",
+                     "evidence_quote": "anchor-A", "presence_explanation": "ok",
+                     "activation_strength": "strong", "why_not_merely_compatible": "mechanism"},
+                    {"model_id": "rank-4", "presence_mode": "executed",
+                     "evidence_quote": "anchor-D", "presence_explanation": "ok",
+                     "activation_strength": "strong", "why_not_merely_compatible": "mechanism"},
+                ],
                 "rejected": [],
             },
-            "sys-1": {
-                "accepted": [{"model_id": "sys-1", "presence_mode": "executed",
-                              "evidence_quote": "anchor-phrase-B", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
+            "rank-2": {
+                "accepted": [{"model_id": "rank-2", "presence_mode": "executed",
+                              "evidence_quote": "anchor-B", "presence_explanation": "ok",
+                              "activation_strength": "strong", "why_not_merely_compatible": "mechanism"}],
                 "rejected": [],
             },
-            "prob-1": {
-                "accepted": [{"model_id": "prob-1", "presence_mode": "executed",
-                              "evidence_quote": "anchor-phrase-C", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
+            "rank-3": {
+                "accepted": [{"model_id": "rank-3", "presence_mode": "executed",
+                              "evidence_quote": "anchor-C", "presence_explanation": "ok",
+                              "activation_strength": "strong", "why_not_merely_compatible": "mechanism"}],
                 "rejected": [],
             },
         },
     )
-    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_pre, capped, dups, weak, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
         client=client,
     )
-    # 3 distinct reasoning_types → 3 LLM calls → 3 traces.
+    # 3 non-empty shards → 3 LLM calls → 3 traces.
     assert len(client.calls) == 3
     assert len(traces) == 3
     stages = sorted(t.stage for t in traces)
-    assert stages == sorted([
-        "companion_verification_diagnostic",
-        "companion_verification_systems",
-        "companion_verification_probabilistic",
-    ])
-    # Each call's user prompt mentions only its bucket's model_ids.
-    for system_prompt, user_prompt in client.calls:
-        if "diag-1" in user_prompt:
-            assert "sys-1" not in user_prompt and "prob-1" not in user_prompt
-        elif "sys-1" in user_prompt:
-            assert "diag-1" not in user_prompt and "prob-1" not in user_prompt
-        elif "prob-1" in user_prompt:
-            assert "diag-1" not in user_prompt and "sys-1" not in user_prompt
+    assert stages == ["companion_verification_shard_0", "companion_verification_shard_1", "companion_verification_shard_2"]
+    # Each call's user prompt mentions only its shard's model_ids.
+    for _, user_prompt in client.calls:
+        if "rank-1" in user_prompt:
+            # shard_0 also has rank-4 (round-robin); should NOT see rank-2 or rank-3.
+            assert "rank-4" in user_prompt
+            assert "rank-2" not in user_prompt and "rank-3" not in user_prompt
+        elif "rank-2" in user_prompt:
+            assert "rank-1" not in user_prompt and "rank-3" not in user_prompt and "rank-4" not in user_prompt
+        elif "rank-3" in user_prompt:
+            assert "rank-1" not in user_prompt and "rank-2" not in user_prompt and "rank-4" not in user_prompt
     detected_ids = {m.model_id for m in detected}
-    assert detected_ids == {"diag-1", "sys-1", "prob-1"}
-    assert len(accepted_pre) == 3
-    assert capped == []
+    assert detected_ids == {"rank-1", "rank-2", "rank-3", "rank-4"}
+    # Shard breakdown reflects the round-robin partition.
+    assert "shard_0" in shard_breakdown
+    assert "shard_1" in shard_breakdown
+    assert "shard_2" in shard_breakdown
+    assert sorted(shard_breakdown["shard_0"]["accepted"]) == ["rank-1", "rank-4"]
+    assert shard_breakdown["shard_1"]["accepted"] == ["rank-2"]
+    assert shard_breakdown["shard_2"]["accepted"] == ["rank-3"]
+    assert shard_breakdown["shard_0"]["candidate_count"] == 2
+    assert shard_breakdown["shard_1"]["candidate_count"] == 1
+    assert shard_breakdown["shard_2"]["candidate_count"] == 1
 
 
 def test_verifier_partition_dedupes_cross_bucket_duplicates():
@@ -522,7 +539,7 @@ def test_verifier_partition_dedupes_cross_bucket_duplicates():
             },
         },
     )
-    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_pre, capped, dups, weak, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -541,69 +558,86 @@ def test_verifier_partition_dedupes_cross_bucket_duplicates():
 
 def test_verifier_partition_sorts_fan_in_by_final_rank_then_model_id():
     """Pre-registered fan-in: (final_rank, model_id). Independent of which
-    bucket finished first or LLM response order. Protects the top-5 cap from
-    parallel-execution non-determinism."""
+    shard finished first or LLM response order. Protects the top-5 cap from
+    parallel-execution non-determinism. Under v3 round-robin sharding,
+    candidates with ranks 1..10 land in:
+      shard_0: ranks 1, 4, 7, 10
+      shard_1: ranks 2, 5, 8
+      shard_2: ranks 3, 6, 9
+    """
     text = "p1 p2 p3 p4 p5 p6 p7"
     candidates = [
-        _candidate("d-low-priority",  "diagnostic", 10),
-        _candidate("d-mid-priority",  "diagnostic", 5),
-        _candidate("s-top-priority",  "systems", 1),
-        _candidate("s-second",        "systems", 2),
-        _candidate("s-third",         "systems", 3),
-        _candidate("s-fourth",        "systems", 4),
+        _candidate("rank-10", "x", 10),  # shard_0
+        _candidate("rank-5",  "x", 5),   # shard_1
+        _candidate("rank-1",  "x", 1),   # shard_0
+        _candidate("rank-2",  "x", 2),   # shard_1
+        _candidate("rank-3",  "x", 3),   # shard_2
+        _candidate("rank-4",  "x", 4),   # shard_0
     ]
+    # Use the LOWEST rank in each shard as the signal — guaranteed unique
+    # within shards because the shard partition is rank-based.
     client = _RecordingClient(
         payloads_by_bucket_signal={
-            "d-low-priority": {
+            # shard_0 prompt contains rank-1, rank-4, rank-10
+            "rank-1": {
                 "accepted": [
-                    {"model_id": "d-low-priority", "presence_mode": "executed",
-                     "evidence_quote": "p1", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
-                    {"model_id": "d-mid-priority", "presence_mode": "executed",
-                     "evidence_quote": "p2", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
+                    {"model_id": "rank-1", "presence_mode": "executed",
+                     "evidence_quote": "p1", "presence_explanation": "ok",
+                     "activation_strength": "strong", "why_not_merely_compatible": "mechanism"},
+                    {"model_id": "rank-4", "presence_mode": "executed",
+                     "evidence_quote": "p4", "presence_explanation": "ok",
+                     "activation_strength": "strong", "why_not_merely_compatible": "mechanism"},
+                    {"model_id": "rank-10", "presence_mode": "executed",
+                     "evidence_quote": "p7", "presence_explanation": "ok",
+                     "activation_strength": "strong", "why_not_merely_compatible": "mechanism"},
                 ],
                 "rejected": [],
             },
-            "s-top-priority": {
+            # shard_1 prompt contains rank-2, rank-5
+            "rank-2": {
                 "accepted": [
-                    {"model_id": "s-top-priority", "presence_mode": "executed",
-                     "evidence_quote": "p3", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
-                    {"model_id": "s-second", "presence_mode": "executed",
-                     "evidence_quote": "p4", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
-                    {"model_id": "s-third", "presence_mode": "executed",
-                     "evidence_quote": "p5", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
-                    {"model_id": "s-fourth", "presence_mode": "executed",
-                     "evidence_quote": "p6", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
+                    {"model_id": "rank-2", "presence_mode": "executed",
+                     "evidence_quote": "p2", "presence_explanation": "ok",
+                     "activation_strength": "strong", "why_not_merely_compatible": "mechanism"},
+                    {"model_id": "rank-5", "presence_mode": "executed",
+                     "evidence_quote": "p5", "presence_explanation": "ok",
+                     "activation_strength": "strong", "why_not_merely_compatible": "mechanism"},
+                ],
+                "rejected": [],
+            },
+            # shard_2 prompt contains rank-3
+            "rank-3": {
+                "accepted": [
+                    {"model_id": "rank-3", "presence_mode": "executed",
+                     "evidence_quote": "p3", "presence_explanation": "ok",
+                     "activation_strength": "strong", "why_not_merely_compatible": "mechanism"},
                 ],
                 "rejected": [],
             },
         },
     )
-    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_pre, capped, dups, weak, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
         client=client,
     )
+    # Fan-in sort by (final_rank, model_id), independent of shard order.
     assert [m.model_id for m in accepted_pre] == [
-        "s-top-priority",  # final_rank=1
-        "s-second",        # 2
-        "s-third",         # 3
-        "s-fourth",        # 4
-        "d-mid-priority",  # 5
-        "d-low-priority",  # 10
+        "rank-1", "rank-2", "rank-3", "rank-4", "rank-5", "rank-10",
     ]
     # Top-5 cap applies AFTER the deterministic sort.
     assert [m.model_id for m in detected] == [
-        "s-top-priority", "s-second", "s-third", "s-fourth", "d-mid-priority",
+        "rank-1", "rank-2", "rank-3", "rank-4", "rank-5",
     ]
     assert len(capped) == 1
-    assert capped[0]["model_id"] == "d-low-priority"
+    assert capped[0]["model_id"] == "rank-10"
 
 
 def test_verifier_partition_empty_candidates_short_circuits():
     """No candidates → no LLM calls → empty 6-tuple."""
     client = _RecordingClient()
-    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_pre, capped, dups, weak, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet("any text"),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=[],
@@ -614,22 +648,23 @@ def test_verifier_partition_empty_candidates_short_circuits():
     assert client.calls == []
 
 
-def test_verifier_single_bucket_runs_one_call():
-    """All candidates same reasoning_type → exactly one bucket → exactly one
-    LLM call. Architecture degenerates cleanly when the substrate gives no
-    diversity."""
+def test_verifier_single_shard_runs_one_call():
+    """When all candidates' (final_rank - 1) % 3 collapses to the same shard
+    (e.g., 1 candidate, or all candidates at ranks {1, 4, 7, ...}), only that
+    shard runs. Architecture degenerates cleanly under low-volume cases."""
     text = "phrase-one"
+    # All ranks ≡ 0 (mod 3, 0-indexed) → all in shard_0.
     candidates = [
-        _candidate("a", "diagnostic", 1),
-        _candidate("b", "diagnostic", 2),
-        _candidate("c", "diagnostic", 3),
+        _candidate("a", "x", 1),  # shard_0
+        _candidate("b", "x", 4),  # shard_0
+        _candidate("c", "x", 7),  # shard_0
     ]
     client = _RecordingClient(default_payload={
         "accepted": [{"model_id": "a", "presence_mode": "executed",
                       "evidence_quote": "phrase-one", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
         "rejected": [],
     })
-    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_pre, capped, dups, weak, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -637,7 +672,7 @@ def test_verifier_single_bucket_runs_one_call():
     )
     assert len(client.calls) == 1
     assert len(traces) == 1
-    assert traces[0].stage == "companion_verification_diagnostic"
+    assert traces[0].stage == "companion_verification_shard_0"
 
 
 # ---------- Strict shared rubric / weak_matches (PR-B v2) ----------
@@ -665,7 +700,7 @@ def test_verifier_demotes_accepted_without_activation_strength_to_weak():
         _candidate("m-weak-strength", "diagnostic", 2),
     ]
     client = _RecordingClient(default_payload={"accepted": accepted_payload, "rejected": []})
-    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_pre, capped, dups, weak, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -696,7 +731,7 @@ def test_verifier_demotes_accepted_without_why_not_merely_compatible_to_weak():
     ]
     candidates = [_candidate("m-no-why", "diagnostic", 1)]
     client = _RecordingClient(default_payload={"accepted": accepted_payload, "rejected": []})
-    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_pre, capped, dups, weak, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -727,7 +762,7 @@ def test_verifier_passes_through_explicit_weak_matches_array():
         _candidate("m2", "diagnostic", 2),
     ]
     client = _RecordingClient(default_payload=payload)
-    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_pre, capped, dups, weak, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -757,7 +792,7 @@ def test_verifier_strict_rubric_lets_strong_well_specified_items_through():
     }
     candidates = [_candidate("m1", "diagnostic", 1)]
     client = _RecordingClient(default_payload=payload)
-    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_pre, capped, dups, weak, shard_breakdown, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,

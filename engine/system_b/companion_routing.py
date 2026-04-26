@@ -404,46 +404,72 @@ def _build_verification_user_prompt_from_packet(
 _DETECTED_MODELS_CAP = 5
 
 
-def _bucket_candidates_by_reasoning_type(
+_NUM_VERIFIER_SHARDS = 3
+
+
+def _shard_candidates_rank_stratified(
     candidates: list[dict[str, object]],
 ) -> dict[str, list[dict[str, object]]]:
-    """Partition candidates by ``reasoning_type`` (primary, single bucket per
-    candidate). Empty buckets are not present in the returned dict.
+    """Partition candidates into rank-stratified shards (PR-B v3).
 
-    Iteration order of buckets is the order each bucket first appeared in the
-    candidate list — gives a stable, deterministic submission order to the
-    parallel executor regardless of run-to-run set order.
+    Shard assignment: ``shard_index = (final_rank - 1) % _NUM_VERIFIER_SHARDS``.
+    Each shard receives a top/middle/tail slice of recall — final_rank 1 → shard
+    0, rank 2 → shard 1, rank 3 → shard 2, rank 4 → shard 0, ... So every shard
+    sees a mixed competitive field (high-rank + middle + tail), not a clustered
+    cognitive type. This is the v3 architecture: same number of LLM calls (3)
+    regardless of input volume; competition preserved within each shard via
+    the rank stratification.
+
+    v1/v2 used reasoning-type partitioning here. v3 changes the decomposition
+    AXIS, not the decomposition direction. The granularity finding from v1/v2:
+    cognitive-type partition was too fine (4-9 shards × per-shard accept floor
+    overflowed the global product budget). Rank-stratified at 3 shards is
+    coarser AND restores cross-cognitive competition inside each shard.
+
+    Returns a dict keyed by shard_id (``"shard_0"``, ``"shard_1"``,
+    ``"shard_2"``); empty shards are omitted. Insertion order is shard_0 →
+    shard_1 → shard_2, giving deterministic submission order to the executor.
+    Candidates without a numeric ``final_rank`` go to ``"shard_unranked"``
+    (defensive — production candidates always have final_rank set by recall).
     """
-    buckets: dict[str, list[dict[str, object]]] = {}
+    shards: dict[str, list[dict[str, object]]] = {}
     for c in candidates:
-        bucket_id = str(c.get("reasoning_type") or "unknown")
-        buckets.setdefault(bucket_id, []).append(c)
-    return buckets
+        rank = c.get("final_rank")
+        if not isinstance(rank, int) or rank < 1:
+            shard_id = "shard_unranked"
+        else:
+            shard_id = f"shard_{(rank - 1) % _NUM_VERIFIER_SHARDS}"
+        shards.setdefault(shard_id, []).append(c)
+    # Sort shard keys deterministically so submission order is stable across
+    # runs (dict insertion order would otherwise depend on which shard got
+    # its first member first, which depends on candidate ordering).
+    return {sid: shards[sid] for sid in sorted(shards.keys())}
 
 
-def _run_verifier_single_bucket(
+def _run_verifier_single_shard(
     *,
-    bucket_id: str,
+    shard_id: str,
     packet: Lane4Packet,
     fingerprint_payload: FingerprintPayload,
-    bucket_candidates: list[dict[str, object]],
+    shard_candidates: list[dict[str, object]],
     assistant_text: str,
     candidate_ids: set[str],
     client,
     use_metadata: bool,
 ):
-    """Run one verifier LLM call for a single reasoning-type bucket.
+    """Run one verifier LLM call for a single rank-stratified shard.
 
-    Returns ``(accepted_items, rejected_items, BoundaryCallTrace)``. When
-    ``use_metadata`` is True, uses ``client.run_json_with_metadata`` (thread-
-    safe; required for parallel execution). When False, falls back to
-    ``client.run_json`` + ``_capture_boundary_call`` (sequential test mocks).
+    Returns ``(accepted_items, rejected_items, weak_matches_items,
+    BoundaryCallTrace)``. When ``use_metadata`` is True, uses
+    ``client.run_json_with_metadata`` (thread-safe; required for parallel
+    execution). When False, falls back to ``client.run_json`` +
+    ``_capture_boundary_call`` (sequential test mocks).
     """
     user_prompt = _build_verification_user_prompt_from_packet(
-        packet, fingerprint_payload, bucket_candidates
+        packet, fingerprint_payload, shard_candidates
     )
     system_prompt = _build_verification_system_prompt()
-    stage = f"companion_verification_{bucket_id}"
+    stage = f"companion_verification_{shard_id}"
     if use_metadata:
         raw_payload, metadata = client.run_json_with_metadata(system_prompt, user_prompt)
         trace = _metadata_to_boundary_call_trace(metadata, stage=stage)
@@ -467,43 +493,50 @@ def run_verification_call_from_packet(
     list[dict[str, str]],
     list[dict[str, str]],
     list[dict[str, str]],
+    dict[str, dict[str, object]],
     list["BoundaryCallTrace"],
 ]:
-    """Packet-driven Lane 2 verification call — reasoning-type partitioned (PR-B).
+    """Packet-driven Lane 2 verification call — rank-stratified shards (PR-B v3).
 
-    Partitions ``candidates`` by primary ``reasoning_type`` (attached during
-    recall — see ``_primary_reasoning_type``), runs one verifier LLM call per
-    non-empty bucket in parallel (mirrors Pass 1 family-cluster pattern), and
-    fans in deterministically. Each per-bucket call sees the FULL assistant
-    source text and FULL validated fingerprint — only the candidates are
-    bucket-local. No information loss; obligation narrowed.
+    Partitions ``candidates`` into ``_NUM_VERIFIER_SHARDS`` (3) shards via
+    rank stratification: ``shard_index = (final_rank - 1) % 3``. Each shard
+    receives a top/middle/tail slice of recall, so every shard sees a mixed
+    competitive field (cross-cognitive-shape comparison preserved within
+    the call). Each per-shard call sees the FULL assistant source text and
+    FULL validated fingerprint — only the candidates are shard-local.
 
-    The pre-registered fan-in ordering (deterministic, independent of which
-    bucket finishes first):
+    Architecture progression (committed on this branch):
+      v1: reasoning-type partition (4-9 shards × variable size). Removed
+          monolithic-call overload but lost cross-bucket competition →
+          accepted count exploded to ~14.6 per run.
+      v2: + strict shared rubric. Routed compatible-but-not-load-bearing
+          candidates to weak_matches but couldn't break the per-bucket
+          accept floor (~10.8 per run).
+      v3 (this code): rank-stratified shards. Same number of LLM calls (3)
+          regardless of input volume; competition restored INSIDE each
+          shard via rank stratification. Test of the granularity
+          hypothesis: was the v1/v2 issue too-fine partitioning, or
+          something deeper?
 
-    1. Concatenate accepted lists from every bucket in stable bucket-iteration
-       order (which itself is the order each bucket first appeared in
-       ``candidates``).
-    2. Dedupe by ``model_id`` — first valid occurrence wins, surplus go into
-       ``duplicate_accepts`` (NOT into ``rejected_models``; that would corrupt
-       ``telemetry.verification_precision``).
+    Pre-registered fan-in (deterministic, independent of which shard
+    finishes first):
+
+    1. Concatenate accepted lists from every shard in stable shard-id order
+       (shard_0 → shard_1 → shard_2; empties skipped).
+    2. Dedupe by ``model_id`` — first valid occurrence wins, surplus go to
+       ``duplicate_accepts`` (NOT ``rejected_models``).
     3. Sort the deduped accepted list by ``(candidate.final_rank, model_id)``.
-       This is a ranking-semantics change vs. pre-PR-B (which preserved LLM
-       output order); it is a corrective architecture change explicitly
-       authorized by research/lane2-followup-tracking-2026-04-26.md, and the
-       acceptance gates in the same doc require it.
-    4. Apply the existing top-5 surfacing budget. Overflow lands in
-       ``capped_models``.
+    4. Apply the existing top-5 surfacing budget. Overflow → ``capped_models``.
 
-    Returns a 6-tuple: ``(detected_models, rejected_models,
-    accepted_before_cap, capped_models, duplicate_accepts, boundary_traces)``.
-    The added 6th element is one ``BoundaryCallTrace`` per bucket call so the
-    pipeline can extend ``audit_summary.boundary_calls`` cleanly and per-
-    bucket cost is measurable. Falls back to sequential execution when the
-    boundary client doesn't expose ``run_json_with_metadata`` (test mocks).
+    Returns a 7-tuple: ``(detected_models, rejected_models,
+    accepted_before_cap, capped_models, duplicate_accepts, weak_matches,
+    boundary_traces)``. ``boundary_traces`` is one per non-empty shard.
+
+    Falls back to sequential execution when the boundary client doesn't
+    expose ``run_json_with_metadata`` (test mocks).
     """
     if not candidates:
-        return [], [], [], [], [], [], []
+        return [], [], [], [], [], [], {}, []
 
     assistant_text = _joined_assistant_turns_from_packet(packet)
     candidate_names = {
@@ -517,7 +550,7 @@ def run_verification_call_from_packet(
         if candidate.get("model_id")
     }
 
-    buckets = _bucket_candidates_by_reasoning_type(candidates)
+    shards = _shard_candidates_rank_stratified(candidates)
 
     # Determine execution mode. Parallel requires `run_json_with_metadata` and
     # the explicit `supports_parallel_calls` opt-in. Test mocks typically have
@@ -527,56 +560,77 @@ def run_verification_call_from_packet(
         and getattr(client, "supports_parallel_calls", False)
     )
 
-    per_bucket_results: list[tuple[str, list[dict], list[dict], list[dict], BoundaryCallTrace]] = []
+    per_shard_results: list[tuple[str, list[dict], list[dict], list[dict], BoundaryCallTrace]] = []
 
-    if use_metadata and len(buckets) > 1:
-        max_workers = min(len(buckets), 9)  # 9 is the substrate's reasoning_types ceiling
+    if use_metadata and len(shards) > 1:
+        max_workers = min(len(shards), _NUM_VERIFIER_SHARDS)
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = []
-            for bucket_id, bucket_cands in buckets.items():
-                bucket_ids = {c["model_id"] for c in bucket_cands if c.get("model_id")}
+            for shard_id, shard_cands in shards.items():
+                shard_ids = {c["model_id"] for c in shard_cands if c.get("model_id")}
                 fut = executor.submit(
-                    _run_verifier_single_bucket,
-                    bucket_id=bucket_id,
+                    _run_verifier_single_shard,
+                    shard_id=shard_id,
                     packet=packet,
                     fingerprint_payload=fingerprint_payload,
-                    bucket_candidates=bucket_cands,
+                    shard_candidates=shard_cands,
                     assistant_text=assistant_text,
-                    candidate_ids=bucket_ids,
+                    candidate_ids=shard_ids,
                     client=client,
                     use_metadata=True,
                 )
-                futures.append((bucket_id, fut))
-        for bucket_id, fut in futures:
-            accepted, rejected, bucket_weak, trace = fut.result()
-            per_bucket_results.append((bucket_id, accepted, rejected, bucket_weak, trace))
+                futures.append((shard_id, fut))
+        for shard_id, fut in futures:
+            accepted, rejected, shard_weak, trace = fut.result()
+            per_shard_results.append((shard_id, accepted, rejected, shard_weak, trace))
     else:
-        # Sequential path: single-bucket cases, test mocks, or boundary clients
+        # Sequential path: single-shard cases, test mocks, or boundary clients
         # that don't support parallel calls.
-        for bucket_id, bucket_cands in buckets.items():
-            bucket_ids = {c["model_id"] for c in bucket_cands if c.get("model_id")}
-            accepted, rejected, bucket_weak, trace = _run_verifier_single_bucket(
-                bucket_id=bucket_id,
+        for shard_id, shard_cands in shards.items():
+            shard_ids = {c["model_id"] for c in shard_cands if c.get("model_id")}
+            accepted, rejected, shard_weak, trace = _run_verifier_single_shard(
+                shard_id=shard_id,
                 packet=packet,
                 fingerprint_payload=fingerprint_payload,
-                bucket_candidates=bucket_cands,
+                shard_candidates=shard_cands,
                 assistant_text=assistant_text,
-                candidate_ids=bucket_ids,
+                candidate_ids=shard_ids,
                 client=client,
                 use_metadata=use_metadata,
             )
-            per_bucket_results.append((bucket_id, accepted, rejected, bucket_weak, trace))
+            per_shard_results.append((shard_id, accepted, rejected, shard_weak, trace))
 
-    # Fan-in step 1: concatenate in deterministic bucket-iteration order.
+    # Fan-in step 1: concatenate in deterministic shard-id order.
     raw_accepted: list[dict] = []
     rejected: list[dict] = []
     weak_matches: list[dict] = []
     boundary_traces: list[BoundaryCallTrace] = []
-    for _, accepted, bucket_rejected, bucket_weak, trace in per_bucket_results:
+    # Per-shard breakdown — diagnostic; persisted via the verifier->pipeline
+    # boundary so stability_check.py can compute per-shard accept/weak counts.
+    accepted_by_shard: dict[str, list[str]] = {}
+    weak_by_shard: dict[str, list[str]] = {}
+    for shard_id, accepted, shard_rejected, shard_weak, trace in per_shard_results:
         raw_accepted.extend(accepted)
-        rejected.extend(bucket_rejected)
-        weak_matches.extend(bucket_weak)
+        rejected.extend(shard_rejected)
+        weak_matches.extend(shard_weak)
         boundary_traces.append(trace)
+        accepted_by_shard[shard_id] = [a.get("model_id", "") for a in accepted if a.get("model_id")]
+        weak_by_shard[shard_id] = [w.get("model_id", "") for w in shard_weak if w.get("model_id")]
+
+    # Build the shard_breakdown diagnostic surface. Per-shard accept/weak
+    # counts answer the question "is one shard the over-acceptance source,
+    # or are all three contributing?" — important for v3 gate evaluation.
+    shard_breakdown: dict[str, dict[str, object]] = {}
+    rejected_per_shard: dict[str, int] = {}
+    for shard_id, _, shard_rejected, _, _ in per_shard_results:
+        rejected_per_shard[shard_id] = len(shard_rejected)
+    for shard_id in sorted(set(accepted_by_shard) | set(weak_by_shard) | set(rejected_per_shard)):
+        shard_breakdown[shard_id] = {
+            "accepted": accepted_by_shard.get(shard_id, []),
+            "weak_matches": weak_by_shard.get(shard_id, []),
+            "rejected_count": rejected_per_shard.get(shard_id, 0),
+            "candidate_count": len(shards.get(shard_id, [])),
+        }
 
     # Fan-in step 2: dedupe by model_id (first valid occurrence wins).
     seen_model_ids: set[str] = set()
@@ -637,6 +691,7 @@ def run_verification_call_from_packet(
         capped_models,
         duplicate_accepts,
         weak_matches,
+        shard_breakdown,
         boundary_traces,
     )
 
@@ -757,10 +812,19 @@ def _build_verification_system_prompt() -> str:
     return (
         "You are verifying whether candidate mental models are structurally present in a vanilla answer.\n"
         "\n"
-        "THIS RUN IS PART OF A PARTITIONED VERIFIER. You see only the candidates from one reasoning-type bucket. "
-        "Other buckets are running in parallel. To preserve a global product budget without per-bucket competition, "
-        "you must apply a SHARED STRICT RUBRIC. Be deliberately conservative: when in doubt, downgrade to weak_matches; "
-        "do NOT accept.\n"
+        "THIS RUN IS PART OF A RANK-STRATIFIED PARTITIONED VERIFIER. You see one of 3 shards — a mixed slice of "
+        "candidates spanning recall ranks (top, middle, tail) and cognitive types. Other shards are running in "
+        "parallel. To preserve a global product budget under partition, you must apply a SHARED STRICT RUBRIC. "
+        "Be deliberately conservative: when in doubt, downgrade to weak_matches; do NOT accept.\n"
+        "\n"
+        "SHARD BUDGET CALIBRATION (soft):\n"
+        "Most shards should have 0-2 strong accepts. The total surface across the full run is capped at 5 detected "
+        "models, so each shard's acceptance budget is roughly 1-2. If you mark 3+ candidates strong, EACH must have "
+        "independent quoted evidence showing the assistant actually used that model's distinct mechanism — not "
+        "similarity, adjacency, or compatibility. Otherwise route the third+ candidate to weak_matches with reason "
+        "'compatible_but_not_executed' or 'more_specific_model_likely'. This is a calibration nudge, not a hard cap; "
+        "if you genuinely see 3+ independently load-bearing models in this shard, mark them all strong with "
+        "individual evidence.\n"
         "\n"
         "OUTPUT THREE CATEGORIES, NOT TWO:\n"
         "  1. accepted (strong only) — the model's specific mechanism is RUNNING in the answer with a literal evidence quote.\n"

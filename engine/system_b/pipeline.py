@@ -273,6 +273,10 @@ class CompanionRunResult:
     # weak_match count alongside a low accepted count is healthy; both high
     # is over-acceptance; both low is under-recall).
     weak_matches: list[dict[str, str]] = field(default_factory=list)
+    # PR-B v3: per-shard breakdown of accepted / weak / rejected counts +
+    # candidate counts. Diagnostic; answers "is one shard the over-acceptance
+    # source, or are all three contributing?" without requiring re-run.
+    shard_breakdown: dict[str, dict[str, object]] = field(default_factory=dict)
 
 
 class SystemBPipeline:
@@ -433,6 +437,7 @@ class SystemBPipeline:
                 companion_verification_capped_models=list(companion_result.capped_models),
                 companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
                 companion_verification_weak_matches=list(companion_result.weak_matches),
+                companion_verification_shard_breakdown=dict(companion_result.shard_breakdown),
                 companion_candidate_cap=self._config.companion_candidate_cap,
                 embedding_mode="on" if self._config.enable_embeddings else "off",
                 frame_card=frame_card,
@@ -579,6 +584,7 @@ class SystemBPipeline:
             companion_verification_capped_models=list(companion_result.capped_models),
             companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
             companion_verification_weak_matches=list(companion_result.weak_matches),
+            companion_verification_shard_breakdown=dict(companion_result.shard_breakdown),
             companion_candidate_cap=self._config.companion_candidate_cap,
             embedding_mode="on" if self._config.enable_embeddings else "off",
             frame_card=frame_card,
@@ -727,6 +733,7 @@ class SystemBPipeline:
             capped_models,
             duplicate_accepts,
             weak_matches,
+            shard_breakdown,
             verification_traces,
         ) = run_verification_call_from_packet(
             packet=packet,
@@ -753,6 +760,7 @@ class SystemBPipeline:
             capped_models=capped_models,
             duplicate_accepts=duplicate_accepts,
             weak_matches=weak_matches,
+            shard_breakdown=shard_breakdown,
             candidates=candidates,
         )
 

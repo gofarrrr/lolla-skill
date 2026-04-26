@@ -231,7 +231,7 @@ def test_run_verification_from_packet_accepts_quote_substring_of_assistant():
     candidates = [
         {"model_id": "authority-bias", "model_name": "Authority Bias", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, shard_breakdown, traces = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=fingerprint,
         candidates=candidates,
@@ -269,7 +269,7 @@ def test_run_verification_from_packet_rejects_quote_not_in_assistant_turns():
     candidates = [
         {"model_id": "authority-bias", "model_name": "Authority Bias", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, shard_breakdown, traces = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=fingerprint,
         candidates=candidates,
@@ -286,7 +286,7 @@ def test_run_verification_from_packet_empty_candidates_short_circuits():
     client = _RecordingClient()
     ctx = _ctx()
     packet = _packet_from_ctx(ctx)
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, shard_breakdown, traces = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=[],

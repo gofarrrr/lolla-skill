@@ -366,6 +366,7 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_verification_capped_models": list(result.audit.companion_verification_capped_models),
         "companion_verification_duplicate_accepts": list(result.audit.companion_verification_duplicate_accepts),
         "companion_verification_weak_matches": list(result.audit.companion_verification_weak_matches),
+        "companion_verification_shard_breakdown": dict(result.audit.companion_verification_shard_breakdown),
         "companion_candidate_cap": result.audit.companion_candidate_cap,
         "embedding_mode": result.audit.embedding_mode,
         "deep_check_results": [

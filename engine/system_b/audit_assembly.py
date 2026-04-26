@@ -79,6 +79,10 @@ class AuditTrace:
     # populated weak_matches list AND a small accepted list (the rubric is
     # sorting correctly).
     companion_verification_weak_matches: list[dict[str, str]] = field(default_factory=list)
+    # PR-B v3: per-shard breakdown for the rank-stratified verifier.
+    # {shard_id: {"accepted": [model_ids], "weak_matches": [model_ids],
+    # "rejected_count": N, "candidate_count": N}}. Diagnostic only.
+    companion_verification_shard_breakdown: dict[str, dict[str, object]] = field(default_factory=dict)
     companion_candidate_cap: int = 0
     # Embedding mode in effect for this run: "on" | "off". Recorded so
     # downstream stability/attribution reports can group by mode without
@@ -113,6 +117,7 @@ def build_empty_audit_trace(
     companion_verification_capped_models: list[dict[str, str]] | None = None,
     companion_verification_duplicate_accepts: list[dict[str, str]] | None = None,
     companion_verification_weak_matches: list[dict[str, str]] | None = None,
+    companion_verification_shard_breakdown: dict[str, dict[str, object]] | None = None,
     companion_candidate_cap: int = 0,
     embedding_mode: str = "",
 ) -> AuditTrace:
@@ -133,6 +138,7 @@ def build_empty_audit_trace(
         companion_verification_capped_models=list(companion_verification_capped_models or []),
         companion_verification_duplicate_accepts=list(companion_verification_duplicate_accepts or []),
         companion_verification_weak_matches=list(companion_verification_weak_matches or []),
+        companion_verification_shard_breakdown=dict(companion_verification_shard_breakdown or {}),
         companion_candidate_cap=companion_candidate_cap,
         embedding_mode=embedding_mode,
         **_frame_audit_fields(frame_card),
@@ -163,6 +169,7 @@ def build_pipeline_audit_trace(
     companion_verification_capped_models: list[dict[str, str]] | None = None,
     companion_verification_duplicate_accepts: list[dict[str, str]] | None = None,
     companion_verification_weak_matches: list[dict[str, str]] | None = None,
+    companion_verification_shard_breakdown: dict[str, dict[str, object]] | None = None,
     companion_candidate_cap: int = 0,
     embedding_mode: str = "",
 ) -> AuditTrace:
@@ -188,6 +195,7 @@ def build_pipeline_audit_trace(
         companion_verification_capped_models=list(companion_verification_capped_models or []),
         companion_verification_duplicate_accepts=list(companion_verification_duplicate_accepts or []),
         companion_verification_weak_matches=list(companion_verification_weak_matches or []),
+        companion_verification_shard_breakdown=dict(companion_verification_shard_breakdown or {}),
         companion_candidate_cap=companion_candidate_cap,
         embedding_mode=embedding_mode,
         **_frame_audit_fields(frame_card),
