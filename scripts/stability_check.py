@@ -242,18 +242,116 @@ def _step6_anchor_mentions(d: dict) -> dict:
 
 
 def _cost_and_timing(d: dict) -> dict:
-    """Sum per-call tokens from audit_summary.boundary_calls."""
+    """Sum per-call tokens from audit_summary.boundary_calls.
+
+    Adds Lane 2 attribution sidecar fields:
+    - per_stage: token totals grouped by boundary call stage.
+    - boundary_only_total: sum across all boundary calls (same as total_tokens).
+    - embedding_expansion_observed: best-effort counter for embedding/query-
+      expansion calls. Currently 0 because embedding_retriever bypasses
+      BoundaryClient and is not traced. Reported explicitly so the report
+      label "boundary_only" is honest, not implicit.
+    """
     summ = d.get("audit_summary", {}) or {}
     calls = summ.get("boundary_calls", []) or []
     prompt_tokens = sum((c.get("prompt_tokens") or 0) for c in calls)
     completion_tokens = sum((c.get("completion_tokens") or 0) for c in calls)
     total_tokens = sum((c.get("total_tokens") or 0) for c in calls)
+    per_stage: dict[str, dict[str, int]] = {}
+    for c in calls:
+        stage = c.get("stage", "unknown") or "unknown"
+        bucket = per_stage.setdefault(stage, {
+            "n_calls": 0, "prompt_tokens": 0,
+            "completion_tokens": 0, "total_tokens": 0,
+        })
+        bucket["n_calls"] += 1
+        bucket["prompt_tokens"] += c.get("prompt_tokens") or 0
+        bucket["completion_tokens"] += c.get("completion_tokens") or 0
+        bucket["total_tokens"] += c.get("total_tokens") or 0
     return {
         "n_boundary_calls": len(calls),
         "prompt_tokens": prompt_tokens,
         "completion_tokens": completion_tokens,
         "total_tokens": total_tokens,
+        "per_stage_boundary_only": per_stage,
+        "embedding_expansion_observed": 0,
+        "embedding_expansion_note": (
+            "embedding_retriever calls bypass BoundaryClient tracing; "
+            "cost not captured here. Treat boundary_only as a lower bound "
+            "when embedding_mode is 'on'."
+        ),
     }
+
+
+# ---------------------------------------------------------------------------
+# Lane 2 attribution accessors
+# ---------------------------------------------------------------------------
+#
+# All read from audit_summary fields added in
+# fix/lane2-variance-attribution-2026-04-26 (see
+# research/lane2-attribution-design-2026-04-26.md). Older result.json files
+# without these fields return empty sets — no crash, just no signal.
+
+def _lane2_fingerprint_move_set(d: dict) -> set[str]:
+    """Lane 2 fingerprint stability — keyed on normalized reasoning_move text,
+    NOT LLM-generated move_id. The latter is labile across runs and would
+    inflate apparent drift on identical reasoning."""
+    summ = d.get("audit_summary", {}) or {}
+    moves = summ.get("companion_fingerprint_validated", []) or []
+    out: set[str] = set()
+    for m in moves:
+        if not isinstance(m, dict):
+            continue
+        text = (m.get("reasoning_move") or "").strip().lower()
+        if text:
+            out.add(text)
+    return out
+
+
+def _lane2_candidate_set(d: dict) -> set[str]:
+    """Lane 2 recall stability — model_ids in the recalled candidate list."""
+    summ = d.get("audit_summary", {}) or {}
+    cands = summ.get("companion_candidates", []) or []
+    return {c.get("model_id", "") for c in cands if c.get("model_id")}
+
+
+def _lane2_accepted_before_cap_set(d: dict) -> set[str]:
+    """Lane 2 verifier-judgment stability (before top-5 surfacing budget)."""
+    summ = d.get("audit_summary", {}) or {}
+    accepted = summ.get("companion_verification_accepted_before_cap", []) or []
+    return {a.get("model_id", "") for a in accepted if a.get("model_id")}
+
+
+def _lane2_detected_after_cap_set(d: dict) -> set[str]:
+    """Lane 2 surfaced detected models (post-cap)."""
+    summ = d.get("audit_summary", {}) or {}
+    detected = summ.get("companion_detected_models", []) or []
+    return {m.get("model_id", "") for m in detected if m.get("model_id")}
+
+
+def _lane2_capped_set(d: dict) -> set[str]:
+    """Lane 2 accepted-but-not-surfaced (top-5 truncation casualties)."""
+    summ = d.get("audit_summary", {}) or {}
+    capped = summ.get("companion_verification_capped_models", []) or []
+    return {c.get("model_id", "") for c in capped if c.get("model_id")}
+
+
+def _lane2_recall_source_distribution(d: dict) -> dict[str, int]:
+    """Distribution of recall sources across candidates: keyword/embedding/both."""
+    summ = d.get("audit_summary", {}) or {}
+    cands = summ.get("companion_candidates", []) or []
+    dist: dict[str, int] = {}
+    for c in cands:
+        src = c.get("recall_source") or "unknown"
+        dist[src] = dist.get(src, 0) + 1
+    return dist
+
+
+def _embedding_mode(d: dict) -> str:
+    """Read embedding_mode persisted by run_pipeline.py. Empty string when
+    the result was produced before this field existed."""
+    summ = d.get("audit_summary", {}) or {}
+    return (summ.get("embedding_mode") or "").strip()
 
 
 # ---------------------------------------------------------------------------
@@ -294,13 +392,50 @@ def compute_stability(results: list[tuple[str, dict]]) -> dict:
     anchor_sets = [_anchor_set(r) for _, r in results]
     reframing_sets = [_reframing_set(r) for _, r in results]
     gap_sets = [_gap_dimension_set(r) for _, r in results]
+    # Lane 2 attribution substages.
+    fp_move_sets = [_lane2_fingerprint_move_set(r) for _, r in results]
+    cand_sets = [_lane2_candidate_set(r) for _, r in results]
+    accepted_sets = [_lane2_accepted_before_cap_set(r) for _, r in results]
+    detected_sets = [_lane2_detected_after_cap_set(r) for _, r in results]
+    capped_sets = [_lane2_capped_set(r) for _, r in results]
+    embedding_modes = [_embedding_mode(r) for _, r in results]
     return {
         "n_runs": len(results),
         "run_ids": [rid for rid, _ in results],
+        "embedding_mode_per_run": embedding_modes,
+        "embedding_mode_consistent": len(set(embedding_modes)) == 1,
         "pass1_tendencies": {
             "per_run": [sorted(s) for s in tendency_sets],
             "stability": pairwise_stability(tendency_sets),
         },
+        # Lane 2 attribution substages — design memo
+        # research/lane2-attribution-design-2026-04-26.md.
+        "lane2_fingerprint_moves": {
+            "per_run": [sorted(s) for s in fp_move_sets],
+            "stability": pairwise_stability(fp_move_sets),
+        },
+        "lane2_candidates": {
+            "per_run": [sorted(s) for s in cand_sets],
+            "stability": pairwise_stability(cand_sets),
+            "recall_source_distribution_per_run": [
+                _lane2_recall_source_distribution(r) for _, r in results
+            ],
+        },
+        "lane2_accepted_before_cap": {
+            "per_run": [sorted(s) for s in accepted_sets],
+            "stability": pairwise_stability(accepted_sets),
+        },
+        "lane2_detected_after_cap": {
+            "per_run": [sorted(s) for s in detected_sets],
+            "stability": pairwise_stability(detected_sets),
+        },
+        "lane2_capped_models": {
+            "per_run": [sorted(s) for s in capped_sets],
+            "stability": pairwise_stability(capped_sets),
+        },
+        # Existing post-cap anchor measurement (kept for backward compat with
+        # existing reports). With the new substages above this is roughly
+        # equivalent to lane2_detected_after_cap modulo cheat-sheet selection.
         "lane2_anchors": {
             "per_run": [sorted(s) for s in anchor_sets],
             "stability": pairwise_stability(anchor_sets),
@@ -357,14 +492,38 @@ def render_markdown(stability: dict, prompt_cfg: dict, case_id: str,
     out.append("| Stage | Mean | Min | Max |")
     out.append("|---|---|---|---|")
     for label, key in [
-        ("Pass 1 (tendencies)", "pass1_tendencies"),
-        ("Lane 2 (anchors)",    "lane2_anchors"),
-        ("Lane 3 (reframings)", "lane3_reframings"),
-        ("Lane 4 (gap dims)",   "lane4_gaps"),
+        ("Pass 1 (tendencies)",            "pass1_tendencies"),
+        ("Lane 2 — fingerprint moves",     "lane2_fingerprint_moves"),
+        ("Lane 2 — recalled candidates",   "lane2_candidates"),
+        ("Lane 2 — accepted (pre-cap)",    "lane2_accepted_before_cap"),
+        ("Lane 2 — detected (post-cap)",   "lane2_detected_after_cap"),
+        ("Lane 2 — capped (top-5 drops)",  "lane2_capped_models"),
+        ("Lane 2 (cheat-sheet anchors)",   "lane2_anchors"),
+        ("Lane 3 (reframings)",            "lane3_reframings"),
+        ("Lane 4 (gap dims)",              "lane4_gaps"),
     ]:
         st = stability[key]["stability"]
         out.append(f"| {label} | {_fmt(st['mean'])} | {_fmt(st['min'])} | {_fmt(st['max'])} |")
     out.append("")
+    # Embedding-mode strip
+    modes = stability.get("embedding_mode_per_run", [])
+    if modes:
+        out.append(f"Embedding mode per run: {modes}  ·  consistent: {stability.get('embedding_mode_consistent')}")
+        out.append("")
+    # Recall-source distribution per run (helps spot embedding-induced reordering)
+    rsd = stability.get("lane2_candidates", {}).get("recall_source_distribution_per_run", [])
+    if any(rsd):
+        out.append("### Recall-source distribution per run")
+        out.append("")
+        out.append("| Run | keyword | embedding | both | other |")
+        out.append("|---|---|---|---|---|")
+        for rid, dist in zip(stability["run_ids"], rsd):
+            out.append(
+                f"| `{rid}` | {dist.get('keyword', 0)} | {dist.get('embedding', 0)} | "
+                f"{dist.get('both', 0)} | "
+                f"{sum(v for k, v in dist.items() if k not in ('keyword', 'embedding', 'both'))} |"
+            )
+        out.append("")
     # Step 6 table
     out.append("## Step 6 anchor naming (per-run)")
     out.append("")
@@ -385,24 +544,55 @@ def render_markdown(stability: dict, prompt_cfg: dict, case_id: str,
     out.append("## Per-run item diff")
     out.append("")
     for label, key in [
-        ("Pass 1 tendencies", "pass1_tendencies"),
-        ("Lane 2 anchors",    "lane2_anchors"),
-        ("Lane 3 reframings", "lane3_reframings"),
-        ("Lane 4 gap dims",   "lane4_gaps"),
+        ("Pass 1 tendencies",                 "pass1_tendencies"),
+        ("Lane 2 fingerprint moves",          "lane2_fingerprint_moves"),
+        ("Lane 2 recalled candidates",        "lane2_candidates"),
+        ("Lane 2 accepted (pre-cap)",         "lane2_accepted_before_cap"),
+        ("Lane 2 detected (post-cap)",        "lane2_detected_after_cap"),
+        ("Lane 2 capped (top-5 drops)",       "lane2_capped_models"),
+        ("Lane 2 cheat-sheet anchors",        "lane2_anchors"),
+        ("Lane 3 reframings",                 "lane3_reframings"),
+        ("Lane 4 gap dims",                   "lane4_gaps"),
     ]:
         out.append(f"### {label}")
         for rid, items in zip(stability["run_ids"], stability[key]["per_run"]):
             out.append(f"- `{rid}`: {items if items else '[]'}")
         out.append("")
-    # Cost / tokens table
-    out.append("## Cost per run (boundary-call tokens)")
+    # Cost / tokens table — boundary-only is labelled honestly; embedding/
+    # query-expansion calls are not traced through BoundaryClient and are
+    # reported as a separate sidecar (currently 0 with a caveat note).
+    out.append("## Cost per run (boundary-call tokens, lower bound when embeddings on)")
     out.append("")
-    out.append("| Run | Calls | Prompt tok | Completion tok | Total tok |")
-    out.append("|---|---|---|---|---|")
+    out.append("| Run | Calls | Prompt tok | Completion tok | Total tok | Embedding-expansion observed |")
+    out.append("|---|---|---|---|---|---|")
     for c in stability["cost_per_run"]:
-        out.append(f"| `{c['run_id']}` | {c['n_boundary_calls']} | "
-                   f"{c['prompt_tokens']} | {c['completion_tokens']} | {c['total_tokens']} |")
+        out.append(
+            f"| `{c['run_id']}` | {c['n_boundary_calls']} | "
+            f"{c['prompt_tokens']} | {c['completion_tokens']} | {c['total_tokens']} | "
+            f"{c.get('embedding_expansion_observed', 0)} |"
+        )
     out.append("")
+    out.append("> Embedding-expansion calls (gpt-4o-mini, temp=0.7) bypass `BoundaryClient` "
+               "tracing — reported here as 0 with a caveat. Treat boundary_only totals as a "
+               "lower bound on Lane 2 cost when `embedding_mode = on`.")
+    out.append("")
+    # Per-stage cost breakdown (boundary-only)
+    out.append("### Per-stage boundary token cost")
+    out.append("")
+    for c in stability["cost_per_run"]:
+        out.append(f"#### `{c['run_id']}`")
+        out.append("")
+        per_stage = c.get("per_stage_boundary_only", {}) or {}
+        if not per_stage:
+            out.append("(no per-stage data)")
+            out.append("")
+            continue
+        out.append("| Stage | Calls | Total tok |")
+        out.append("|---|---|---|")
+        for stage in sorted(per_stage):
+            row = per_stage[stage]
+            out.append(f"| {stage} | {row['n_calls']} | {row['total_tokens']} |")
+        out.append("")
     return "\n".join(out)
 
 
@@ -415,7 +605,15 @@ def _rerun_pipeline(
     conversation: Path,
     n: int,
     skill_dir: Path,
+    embedding_mode: str = "auto",
+    candidate_cap: int | None = None,
 ) -> list[Path]:
+    """Invoke run_pipeline.py N times against the same extraction+conversation.
+
+    `embedding_mode` is forwarded to `--embeddings` so the same case can be
+    measured under both `on` and `off` without env-var manipulation.
+    `candidate_cap`, if set, is forwarded to `--companion-candidate-cap`.
+    """
     paths: list[Path] = []
     for i in range(n):
         # Spacing-safe run id so parallel/rapid runs don't collide.
@@ -427,8 +625,11 @@ def _rerun_pipeline(
             "--conversation-file", str(conversation),
             "--output-file", str(result_path),
             "--skip-revision",
+            "--embeddings", embedding_mode,
         ]
-        print(f"  [{i+1}/{n}] rid={rid}", file=sys.stderr)
+        if candidate_cap is not None:
+            cmd.extend(["--companion-candidate-cap", str(candidate_cap)])
+        print(f"  [{i+1}/{n}] rid={rid} embeddings={embedding_mode}", file=sys.stderr)
         subprocess.run(cmd, check=True, cwd=str(skill_dir))
         paths.append(result_path)
         time.sleep(1)
@@ -791,6 +992,23 @@ def main() -> int:
     ap.add_argument("-n", type=int, default=3, help="rerun count for --extraction or --drift (1-5)")
     ap.add_argument("--output-dir", help="override research/stability-runs/{case-id}-{date}/")
     ap.add_argument("--skill-dir", default=str(SKILL_DIR), help="path to skill root")
+    ap.add_argument(
+        "--embeddings",
+        choices=("auto", "on", "off"),
+        default="auto",
+        help=(
+            "Embedding-mode control for rerun mode (--extraction). Forwarded "
+            "to run_pipeline.py --embeddings. Use 'on' / 'off' explicitly when "
+            "comparing modes for Lane 2 attribution; 'auto' (default) inherits "
+            "OPENAI_API_KEY presence."
+        ),
+    )
+    ap.add_argument(
+        "--companion-candidate-cap",
+        type=int,
+        default=None,
+        help="Override Lane 2 candidate cap (default: 60). Forwarded to run_pipeline.py.",
+    )
     args = ap.parse_args()
 
     if args.n < 1 or args.n > 5:
@@ -918,6 +1136,8 @@ def main() -> int:
                 conv,
                 args.n,
                 skill_dir,
+                embedding_mode=args.embeddings,
+                candidate_cap=args.companion_candidate_cap,
             )
         )
     if args.runs:

@@ -395,16 +395,37 @@ def _build_verification_user_prompt_from_packet(
     return "\n".join(parts)
 
 
+_DETECTED_MODELS_CAP = 5
+
+
 def run_verification_call_from_packet(
     *,
     packet: Lane4Packet,
     fingerprint_payload: FingerprintPayload,
     candidates: list[dict[str, str]],
     client,
-) -> tuple[list[DetectedModel], list[dict[str, str]]]:
-    """Packet-driven Lane 2 verification call."""
+) -> tuple[list[DetectedModel], list[dict[str, str]], list[DetectedModel], list[dict[str, str]]]:
+    """Packet-driven Lane 2 verification call.
+
+    Returns a 4-tuple ``(detected_models, rejected_models,
+    accepted_before_cap, capped_models)``:
+
+    - ``detected_models``: post-cap surfaced models (top-N by LLM order, where
+      N = ``_DETECTED_MODELS_CAP``).
+    - ``rejected_models``: semantically rejected by the verifier (or
+      validation-demoted, e.g. fabricated quotes).
+    - ``accepted_before_cap``: every model the verifier accepted, before the
+      surfacing budget. Equals ``detected_models`` when ``len(accepted) <=
+      _DETECTED_MODELS_CAP``.
+    - ``capped_models``: accepted-but-not-surfaced — models the verifier
+      accepted that fell outside the top-N budget. Each item carries
+      ``{model_id, model_name, drop_reason="capped_at_top_5"}``. These are
+      NOT the same semantic as ``rejected_models`` and must not be merged
+      into it; ``telemetry.verification_precision`` depends on rejected
+      meaning rejected.
+    """
     if not candidates:
-        return [], []
+        return [], [], [], []
 
     assistant_text = _joined_assistant_turns_from_packet(packet)
     raw_payload = client.run_json(
@@ -421,7 +442,7 @@ def run_verification_call_from_packet(
         for candidate in candidates
         if candidate.get("model_id") and candidate.get("model_name")
     }
-    detected_models = [
+    accepted_before_cap = [
         DetectedModel(
             model_id=item["model_id"],
             model_name=candidate_names.get(item["model_id"], item["model_id"]),
@@ -432,8 +453,16 @@ def run_verification_call_from_packet(
         )
         for item in accepted
     ]
-    detected_models = detected_models[:5]
-    return detected_models, rejected
+    detected_models = accepted_before_cap[:_DETECTED_MODELS_CAP]
+    capped_models = [
+        {
+            "model_id": m.model_id,
+            "model_name": m.model_name,
+            "drop_reason": "capped_at_top_5",
+        }
+        for m in accepted_before_cap[_DETECTED_MODELS_CAP:]
+    ]
+    return detected_models, rejected, accepted_before_cap, capped_models
 
 
 def parse_verification_response(
@@ -639,7 +668,22 @@ def recall_candidates(
     max_candidates: int = 60,
     embedding_retriever=None,
     embedding_api_key: str = "",
-) -> list[dict[str, str]]:
+) -> list[dict[str, object]]:
+    """Build the Lane 2 candidate list fed into the verifier.
+
+    Each returned candidate carries Lane 2 attribution metadata:
+    - ``recall_source``: ``"keyword"`` | ``"embedding"`` | ``"both"``.
+    - ``keyword_rank``: 1-indexed position in keyword recall, or ``None``.
+    - ``embedding_rank``: 1-indexed position in embedding recall, or ``None``.
+    - ``final_rank``: 1-indexed position in the returned list.
+
+    The "keyword" path covers both primary keyword overlap and the
+    reasoning-signals fallback (both are deterministic). The "embedding"
+    path is the optional ``embedding_retriever.rank_models_expanded`` route.
+
+    Backwards-compatible: the verifier only reads ``model_id`` and
+    ``model_name`` from each entry; new fields are additive.
+    """
     models = knowledge_graph.get("models", {})
     if not isinstance(models, dict):
         return []
@@ -664,13 +708,17 @@ def recall_candidates(
         )
 
     ranked_primary.sort(key=lambda item: (-item[0], item[2], item[1]))
-    results: list[dict[str, str]] = []
+    results: list[dict[str, object]] = []
     seen: set[str] = set()
+    # Keyword rank counter — 1-indexed across the primary keyword pass and the
+    # reasoning-signals fallback (both are deterministic keyword paths).
+    keyword_rank_counter = 0
 
     for _, model_id, model_name, activation_trigger in ranked_primary:
         if model_id in seen:
             continue
         seen.add(model_id)
+        keyword_rank_counter += 1
         mp = models.get(model_id, {})
         dw = mp.get("danger_when", []) if isinstance(mp, dict) else []
         results.append(
@@ -679,12 +727,15 @@ def recall_candidates(
                 "model_name": model_name,
                 "activation_trigger": activation_trigger,
                 "danger_when": dw[0] if isinstance(dw, list) and dw and isinstance(dw[0], str) else "",
+                "recall_source": "keyword",
+                "keyword_rank": keyword_rank_counter,
+                "embedding_rank": None,
             }
         )
         if len(results) >= max_candidates:
-            return results[:max_candidates]
+            break
 
-    if isinstance(reasoning_signals, dict):
+    if isinstance(reasoning_signals, dict) and len(results) < max_candidates:
         for model_id, signals in reasoning_signals.items():
             if model_id in seen or not isinstance(signals, list):
                 continue
@@ -696,6 +747,7 @@ def recall_candidates(
             if score <= 0:
                 continue
             seen.add(model_id)
+            keyword_rank_counter += 1
             sig_model = models.get(model_id, {})
             sig_dw = sig_model.get("danger_when", []) if isinstance(sig_model, dict) else []
             results.append(
@@ -703,7 +755,9 @@ def recall_candidates(
                     "model_id": model_id,
                     "model_name": str(signal_payload["display_name"]),
                     "activation_trigger": _pick_activation_trigger(signal_payload, fallback=model_id),
-                    "recall_source": "keyword_recall",
+                    "recall_source": "keyword",
+                    "keyword_rank": keyword_rank_counter,
+                    "embedding_rank": None,
                     "danger_when": sig_dw[0] if isinstance(sig_dw, list) and sig_dw and isinstance(sig_dw[0], str) else "",
                 }
             )
@@ -711,20 +765,32 @@ def recall_candidates(
                 break
 
     # --- Embedding recall path (swiss cheese: additive, never gating) ---
-    if embedding_retriever is not None and embedding_api_key:
+    # Guard `len(results) < max_candidates` preserves the pre-refactor behavior:
+    # when keyword recall has already filled the cap, the embedding path does
+    # not run. This avoids (a) untraced `rank_models_expanded` cost on cap-
+    # saturated runs and (b) `recall_source="both"` metadata leakage that would
+    # falsely imply embedding contributed when it was structurally prevented
+    # from doing so. Whether embedding *should* be allowed to displace low-rank
+    # keyword candidates when the cap is full is an open question deferred to
+    # the post-attribution fix PR (see research/lane2-attribution-design-2026-04-26.md).
+    if embedding_retriever is not None and embedding_api_key and len(results) < max_candidates:
         try:
             query_text = " ".join(primary_texts)
             ranked = embedding_retriever.rank_models_expanded(
                 query_text, embedding_api_key, top_k=max_candidates,
             )
             if ranked:
-                for hit in ranked:
+                for emb_idx, hit in enumerate(ranked, start=1):
                     mid = hit["model_id"]
                     if mid in seen:
-                        # Tag existing entry if not already tagged
+                        # Existing keyword candidate also surfaced by embedding:
+                        # promote recall_source to "both" and record the
+                        # embedding_rank for diagnosis.
                         for r in results:
-                            if r["model_id"] == mid and "recall_source" not in r:
-                                r["recall_source"] = "keyword_recall+embedding_recall"
+                            if r["model_id"] == mid:
+                                r["recall_source"] = "both"
+                                if r.get("embedding_rank") is None:
+                                    r["embedding_rank"] = emb_idx
                                 break
                         continue
                     model_payload = models.get(mid)
@@ -737,7 +803,9 @@ def recall_candidates(
                             "model_id": mid,
                             "model_name": str(model_payload.get("display_name", mid)),
                             "activation_trigger": _pick_activation_trigger(model_payload, fallback=mid),
-                            "recall_source": "embedding_recall",
+                            "recall_source": "embedding",
+                            "keyword_rank": None,
+                            "embedding_rank": emb_idx,
                             "danger_when": emb_dw[0] if isinstance(emb_dw, list) and emb_dw and isinstance(emb_dw[0], str) else "",
                         }
                     )
@@ -746,7 +814,10 @@ def recall_candidates(
         except Exception:
             _LOGGER.warning("embedding_recall: failed in companion recall", exc_info=True)
 
-    return results[:max_candidates]
+    capped = results[:max_candidates]
+    for idx, candidate in enumerate(capped, start=1):
+        candidate["final_rank"] = idx
+    return capped
 
 
 def parse_detection_response(

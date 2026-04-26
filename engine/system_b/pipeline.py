@@ -159,6 +159,11 @@ class PipelineConfig:
     telemetry_db_path: str = ""
     telemetry_tags: tuple[str, ...] = ()
     activation_tiebreaker_enabled: bool = True
+    # Lane 2 candidate cap: max models recall passes to the verifier. Default
+    # preserves prior implicit behavior (recall_candidates default=60) while
+    # making the value an explicit, audit-visible config knob. See
+    # research/lane2-attribution-design-2026-04-26.md.
+    companion_candidate_cap: int = 60
 
 
 # BoundaryCallTrace moved to engine.system_b.boundary_tracing in Phase 7.1.
@@ -247,6 +252,15 @@ class CompanionRunResult:
     detected_models: list[DetectedModel] = field(default_factory=list)
     rejected_models: list[dict[str, str]] = field(default_factory=list)
     candidates: list[dict[str, object]] = field(default_factory=list)
+    # Lane 2 attribution: pre-cap accepted models from verification (before
+    # the top-5 surfacing budget) and the accepted-but-not-surfaced subset.
+    # `accepted_before_cap` is the full LLM-accepted set; `capped_models` are
+    # those dropped only because the top-5 budget kicked in. They are NOT
+    # the same semantic as `rejected_models` (which means semantically
+    # rejected by the verifier) and must not be merged into it — telemetry's
+    # verification_precision metric depends on that distinction.
+    accepted_before_cap: list[DetectedModel] = field(default_factory=list)
+    capped_models: list[dict[str, str]] = field(default_factory=list)
 
 
 class SystemBPipeline:
@@ -402,6 +416,11 @@ class SystemBPipeline:
                 companion_fingerprint_dropped=_serialize_dropped_fingerprint_moves(companion_result.fingerprint_payload.dropped),
                 companion_detected_models=_serialize_detected_models(companion_result.detected_models),
                 companion_rejected_models=list(companion_result.rejected_models),
+                companion_candidates=list(companion_result.candidates),
+                companion_verification_accepted_before_cap=_serialize_detected_models(companion_result.accepted_before_cap),
+                companion_verification_capped_models=list(companion_result.capped_models),
+                companion_candidate_cap=self._config.companion_candidate_cap,
+                embedding_mode="on" if self._config.enable_embeddings else "off",
                 frame_card=frame_card,
                 structural_card=structural_card,
             )
@@ -541,6 +560,11 @@ class SystemBPipeline:
             companion_fingerprint_dropped=_serialize_dropped_fingerprint_moves(companion_result.fingerprint_payload.dropped),
             companion_detected_models=_serialize_detected_models(companion_result.detected_models),
             companion_rejected_models=list(companion_result.rejected_models),
+            companion_candidates=list(companion_result.candidates),
+            companion_verification_accepted_before_cap=_serialize_detected_models(companion_result.accepted_before_cap),
+            companion_verification_capped_models=list(companion_result.capped_models),
+            companion_candidate_cap=self._config.companion_candidate_cap,
+            embedding_mode="on" if self._config.enable_embeddings else "off",
             frame_card=frame_card,
             structural_card=structural_card,
             promoted_overoptimism_results=promoted_overoptimism_results,
@@ -676,10 +700,11 @@ class SystemBPipeline:
             fingerprint_payload=fingerprint_payload,
             knowledge_graph=self._companion_knowledge_graph,
             reasoning_signals=self._companion_reasoning_signals,
+            max_candidates=self._config.companion_candidate_cap,
             embedding_retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             embedding_api_key=self._embedding_api_key,
         )
-        detected_models, rejected_models = run_verification_call_from_packet(
+        detected_models, rejected_models, accepted_before_cap, capped_models = run_verification_call_from_packet(
             packet=packet,
             fingerprint_payload=fingerprint_payload,
             candidates=candidates,
@@ -696,6 +721,8 @@ class SystemBPipeline:
             fingerprint_payload=fingerprint_payload,
             detected_models=detected_models,
             rejected_models=rejected_models,
+            accepted_before_cap=accepted_before_cap,
+            capped_models=capped_models,
             candidates=candidates,
         )
 
