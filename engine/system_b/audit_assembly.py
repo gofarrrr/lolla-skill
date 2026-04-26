@@ -58,6 +58,21 @@ class AuditTrace:
     companion_fingerprint_dropped: list[dict[str, object]] = field(default_factory=list)
     companion_detected_models: list[dict[str, str]] = field(default_factory=list)
     companion_rejected_models: list[dict[str, str]] = field(default_factory=list)
+    # Lane 2 attribution (research/lane2-attribution-design-2026-04-26.md):
+    # `companion_candidates` mirrors the recall input to the verifier with
+    # per-source rank metadata. `companion_verification_accepted_before_cap`
+    # is the full accepted set before the top-5 surfacing budget is applied;
+    # `companion_verification_capped_models` is the accepted-but-not-surfaced
+    # subset (drop_reason="capped_at_top_5"). Capped is NOT rejected; they
+    # are persisted separately so verification_precision stays meaningful.
+    companion_candidates: list[dict[str, object]] = field(default_factory=list)
+    companion_verification_accepted_before_cap: list[dict[str, str]] = field(default_factory=list)
+    companion_verification_capped_models: list[dict[str, str]] = field(default_factory=list)
+    companion_candidate_cap: int = 0
+    # Embedding mode in effect for this run: "on" | "off". Recorded so
+    # downstream stability/attribution reports can group by mode without
+    # having to inspect environment variables after the fact.
+    embedding_mode: str = ""
     # Frame Pressure lane (Lane 3) — additive metadata, absent when lane is off
     frame_extraction_element_count: int = 0
     frame_extraction_pattern_ids: tuple[str, ...] = ()
@@ -82,6 +97,11 @@ def build_empty_audit_trace(
     companion_rejected_models: list[dict[str, str]],
     frame_card: FramePressureCard | None,
     structural_card: StructuralCoverageCard | None,
+    companion_candidates: list[dict[str, object]] | None = None,
+    companion_verification_accepted_before_cap: list[dict[str, str]] | None = None,
+    companion_verification_capped_models: list[dict[str, str]] | None = None,
+    companion_candidate_cap: int = 0,
+    embedding_mode: str = "",
 ) -> AuditTrace:
     return AuditTrace(
         triage_scores=tuple(triage_scores),
@@ -95,6 +115,11 @@ def build_empty_audit_trace(
         companion_fingerprint_dropped=companion_fingerprint_dropped,
         companion_detected_models=companion_detected_models,
         companion_rejected_models=companion_rejected_models,
+        companion_candidates=list(companion_candidates or []),
+        companion_verification_accepted_before_cap=list(companion_verification_accepted_before_cap or []),
+        companion_verification_capped_models=list(companion_verification_capped_models or []),
+        companion_candidate_cap=companion_candidate_cap,
+        embedding_mode=embedding_mode,
         **_frame_audit_fields(frame_card),
         **_structural_coverage_audit_fields(structural_card),
     )
@@ -118,6 +143,11 @@ def build_pipeline_audit_trace(
     promoted_overoptimism_results: dict[str, object],
     promoted_authority_results: dict[str, object],
     promoted_stress_results: dict[str, object],
+    companion_candidates: list[dict[str, object]] | None = None,
+    companion_verification_accepted_before_cap: list[dict[str, str]] | None = None,
+    companion_verification_capped_models: list[dict[str, str]] | None = None,
+    companion_candidate_cap: int = 0,
+    embedding_mode: str = "",
 ) -> AuditTrace:
     return AuditTrace(
         triage_scores=tuple(triage_scores),
@@ -136,6 +166,11 @@ def build_pipeline_audit_trace(
         companion_fingerprint_dropped=companion_fingerprint_dropped,
         companion_detected_models=companion_detected_models,
         companion_rejected_models=companion_rejected_models,
+        companion_candidates=list(companion_candidates or []),
+        companion_verification_accepted_before_cap=list(companion_verification_accepted_before_cap or []),
+        companion_verification_capped_models=list(companion_verification_capped_models or []),
+        companion_candidate_cap=companion_candidate_cap,
+        embedding_mode=embedding_mode,
         **_frame_audit_fields(frame_card),
         **_structural_coverage_audit_fields(structural_card),
     )
