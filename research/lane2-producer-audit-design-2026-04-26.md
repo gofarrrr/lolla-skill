@@ -229,7 +229,7 @@ For every current Lane 2 anchor — including those that DO map to a cluster's e
 | `observed_model` | current Lane 2 anchor |
 | `best_matching_cluster` | gold cluster_id or `none` |
 | `classification` | one of:<br>• `acceptable_primary_match` — anchor IS the cluster's expected primary, evidence quote sources from this cluster<br>• `acceptable_primary_match_with_quote_drift` — anchor IS the cluster's expected primary, but evidence quote sources from a different cluster than where the anchor is most load-bearing<br>• `acceptable_secondary` — anchor is the cluster's `acceptable_secondary_model`, evidence quote aligned<br>• `acceptable_secondary_with_quote_drift` — anchor is the cluster's secondary, but evidence quote sources from a different cluster<br>• `noisy_adjacent` — keyword/lexically adjacent, semantically wrong fit<br>• `false_positive` — clearly wrong |
-| `failure_owner` | `none` (for the four `acceptable_*` classifications); `verifier` or `recall` (for `noisy_adjacent` / `false_positive`) |
+| `failure_owner` | `none` (for the four `acceptable_*` classifications); `verifier_failed` or `recall_failed` (for `noisy_adjacent` / `false_positive`) — values match §7.1 enum |
 | `notes` | reviewer notes |
 
 This catches false positives AND surfaces evidence-quote drift, which is a separate trust signal: an anchor can be the right model for a cluster while the verifier's evidence quote points at the wrong source. That's not a leak, but it is information about Lane 2's anchor-to-evidence attribution quality.

@@ -197,11 +197,11 @@ The directional read is that verifier judgment is doing strict over-rejection on
 
 ### F2 — A 6th failure stage emerged: post_verifier_validation
 
-The design memo's chain has 5 stages (fingerprint / recall / verifier / surfacing / Step 6). This case surfaced a 6th: a quote-validation gate downstream of verifier judgment that drops models when the verifier's evidence quote is not a literal substring of the source. *Base Rates* was rejected on C2 with `execution_quote_not_literal_substring` — meaning the verifier judged it executed but the validation gate dropped it.
+The design memo's chain originally had 5 stages (fingerprint / recall / verifier / surfacing / Step 6). This case surfaced a 6th: a quote-validation gate downstream of verifier judgment that drops models when the verifier's evidence quote is not a literal substring of the source (`engine/system_b/companion_routing.py:521-549`). *Base Rates* was rejected on C2 with `execution_quote_not_literal_substring` — meaning the verifier judged it executed but the validation gate dropped it.
 
 This is a real but separate failure mode. It's not "verifier disagreed"; it's "verifier agreed but the quote it produced wasn't an exact substring." That's a code-level guard against verifier hallucination, and it's catching legitimate cases when the verifier paraphrases the evidence slightly.
 
-The audit table schema and metrics need a `post_verifier_validation_failed` failure-owner value. Memo §7.1 patch needed.
+The 6th stage is now part of the design memo (§6.5 failure owners, §7.1 schema, §8.1 metrics including `post_verifier_validation_failure_rate`, §9 decision tree).
 
 ### F3 — Recall correctly screens broad models (C5 should_reject check passed)
 
@@ -227,7 +227,7 @@ That is the case-1 conclusion. It is *not* "the verifier is the bottleneck" — 
 
 ## Surprises
 
-1. **Post-verifier validation gate.** I did not know (or had forgotten) that there's a literal-substring check downstream of the verifier judgment. This is a 6th failure stage and the memo + audit table schema need a patch.
+1. **Post-verifier validation gate.** I did not know (or had forgotten) that there's a literal-substring check downstream of the verifier judgment. This was a 6th failure stage and is now reflected in the memo (resolved in commit `a4c865d`).
 2. **Validated rejection volume is high; raw verifier rejection is slightly lower.** The persisted artifact shows 58/60 candidates in the rejected list. That count includes the post-verifier validation demotions, not pure verifier judgment. The clean breakdown is:
    - Final accepted (post-validation): **2/60**
    - Final rejected (validated): **58/60**
@@ -237,10 +237,16 @@ That is the case-1 conclusion. It is *not* "the verifier is the bottleneck" — 
    The distinction matters: blaming "the verifier" for what is partly a code guard would route us to the wrong fix. The quote-validation gate is correctly protecting against hallucinated evidence; the candidate fix when this stage dominates is "make the verifier produce verbatim quotes" or "add fuzzy quote repair before demotion," not "trust paraphrased quotes."
 3. **Fingerprint quality is good.** I expected fingerprint to be a major leak source on at least some clusters; on this case, it is not. Every cluster has at least one move targeting it. M7 and M3 are slightly under-specific, but not failure-mode under-specific.
 
-## Open questions for Marcin
+## Resolved notes
 
-1. **Add `post_verifier_validation_failed` to the design memo.** This is a new failure-owner value. It belongs in §7.1 schema and §6.5 attribution rules, and the §9 decision tree should mention it (e.g., "if `post_verifier_validation_failed` is the dominant rejection reason, the fix is at the validation gate or at making the verifier produce verbatim quotes, not at recall or verifier judgment").
-2. **Cross-cluster evidence-quote attribution.** Should this get its own metric (`anchor_evidence_attribution_correctness`) or is it sub-noise for now?
-3. **Pre-attribution hypothesis confirmation.** I predicted "medium-precision low-recall" with possible Optimism Bias false-positive. The actual result is high-precision very-low-recall (0 false positives). Hypothesis confirmation: closer to the optimistic end of my prediction. Lane 2 is doing a strict job; the strictness is dropping anchor-worthy primaries.
-4. **Generalization caution.** Per your discipline, I will NOT proceed to label cases 2–7 yet. Want to see whether F1 (verifier "mechanism absent" over-rejection) holds on the calibration case (`year-old-oncologist-accept`, which you'll source-first) and on the failure-rich cases. If F1 is consistent across cases, the audit's decision-tree call is "revisit verifier with narrower slates."
-5. **Should I write the F2 patch (post-verifier-validation stage) into the design memo now**, or hold it until the calibration case confirms whether the pattern recurs?
+Items raised by this case that have since landed in the memo:
+
+- `post_verifier_validation_failed` added as a failure owner with code reference (commit `a4c865d`).
+- Two-axis frame (trust + friction yield) added to memo §1, §8.3, §9, §11 (commit `5fa7b5d`).
+- Strict / broad metric variants added to make scoring harder to game (commit `623fc0e`).
+- Observed-anchor schema enriched to capture evidence-quote drift as a first-class trust signal (commit `623fc0e`).
+- Cross-cluster evidence-quote attribution: handled via `acceptable_*_with_quote_drift` classifications and the strict/broad friction-yield split, which together surface the drift without forcing a separate metric.
+
+## Remaining open question
+
+**Cross-case recurrence is the only thing left.** Whether F1 (verifier over-strictness) and the low friction-yield signal repeat on `year-old-oncologist-accept` (calibration case, source-first by Marcin) and on the failure-rich cases. If they do, the audit's decision-tree call is the friction-yield branch from §9 — calibration design questions (verifier-quote literalness, fuzzy quote repair, hypothesis-grade soft-friction surfacing), not a verifier resplit. If they don't, case 1 may be a fintech-launch-specific outlier.
