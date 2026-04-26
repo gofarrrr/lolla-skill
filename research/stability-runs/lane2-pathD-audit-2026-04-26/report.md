@@ -18,7 +18,7 @@ Rubric: `research/lane2-pathD-step6-wording-design-2026-04-26.md`
 | `proposed_overclaim_rate` | 0/38 = 0.0% | ≤ 10% | ✅ |
 | `primary_preservation` | 26/34 = 76.5% | ≥ 75% | ✅ |
 | `secondary_framing` | 4/4 = 100.0% | ≥ 90% | ✅ |
-| `not_mushy` | qualitative; see Section below | run-level pass | tbd |
+| `not_mushy` | reviewer PASS with caveat | run-level pass | ✅ (caveat) |
 | `anchor_naming_failures` | 0 | 0 | ✅ |
 
 ## Per-run metrics
@@ -52,6 +52,14 @@ Per the rubric (Section 9c), implementer-scored audit + reviewer audits a high-l
 1. **The dominant baseline failure mode is silent omission, not overclaim.** 11/38 = 28.9% of anchors are hidden in the current `revised_answer`s. Baseline overclaim rate is 0.0%. This reframes the Path D pivot: the wording rules are not primarily about reducing overclaim (there's little to reduce); they're about restoring the anchor-naming invariant when Step 6 currently drops anchors.
 2. **Hidden anchors concentrate on the consultant cases.** mid-level-consultant-decides has 4 of 5 anchors hidden (80%); mid-level-consultant-report has 2 of 3 hidden (67%). These are exactly the cases the PR #39 sanity check flagged as low-Step-6-consumption (20% and 33%).
 3. **The proposed wording rules add Lane 2 anchor coverage without adding overclaim.** Proposed overclaim rate is 0.0%, well below the 10% gate. The rules cover the 11 hidden anchors via secondary-lens or set-aside framing, with full anchor-naming invariant compliance (38/38).
+
+### Reviewer addendum (2026-04-26): not_mushy = PASS with caveat
+
+After grouped review of the 38 proposed sketches: the rewrites are mostly sharp and do not collapse into "everything might apply" hedging. Sketches still make definite primary reads where evidence supports one (Confidence Calibration for consultant; Feedback Loops for mother; Premortem / Base Rates / Problem Framing And Reframing for phd; Inversion / Optionality / Opportunity Cost for the equity cases; etc.).
+
+**Caveat to carry into the SKILL.md edit:** the wording rules per-anchor are sound, but if Step 6 mechanically *enumerates* every anchor in sequence the output collapses into a checklist regardless of how good each individual sketch is. The implementation must include an explicit instruction to **integrate anchors into the existing §1 / §2 / §3 reasoning by treatment strength**, not list them as a separate parade.
+
+This is a prompt-side risk, not an audit-rubric problem. The live-validation step on the 4 required cases is the right place to catch enumerative drift.
 
 ### Distribution shifts
 
