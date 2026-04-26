@@ -696,6 +696,274 @@ def run_verification_call_from_packet(
     )
 
 
+# ---------------------------------------------------------------------------
+# Path B: global anchor calibrator
+# ---------------------------------------------------------------------------
+#
+# After the rank-stratified shards return their strong accepts, an additional
+# LLM call selects the TOP-5 most structurally load-bearing for downstream
+# Step 6 consumption. This restores the cross-shard competition that the
+# monolithic verifier did silently and that the partition removed.
+#
+# Crucial framing (research/lane2-prb-v3-2026-04-26/interpretation.md):
+# the calibrator does NOT make per-shard verifier judgments more stable.
+# It produces a stable downstream PRODUCT (calibrated anchors) despite
+# per-shard verifier noise. Gates are anchor-Jaccard, not Cand-cond.
+#
+# The calibrator sees ONLY strong accepts (typically 4-9 items). Weak
+# matches are NOT included — they are not candidates for surfacing,
+# they are diagnostic. Including them would re-create the overload v3
+# fixed.
+
+_CALIBRATOR_TARGET_COUNT = 5
+
+
+def _build_calibrator_system_prompt() -> str:
+    return (
+        "You are calibrating a final anchor selection for downstream consumption.\n"
+        "\n"
+        "An upstream rank-stratified verifier has already accepted N candidate mental models as STRONG "
+        "activations in the assistant's reasoning. Each comes with a literal evidence quote. Your job is "
+        "NOT to re-judge whether they are strong. Your job is to select the TOP 5 most STRUCTURALLY "
+        "LOAD-BEARING anchors.\n"
+        "\n"
+        "LOAD-BEARING means: removing this model from the analysis would meaningfully weaken the downstream "
+        "reasoning audit's ability to challenge or sharpen the assistant's reasoning. A model that is "
+        "strongly executed but redundant with another, more load-bearing accept, should be dropped — "
+        "NOT because it is weak, but because surfacing it crowds out a more load-bearing model.\n"
+        "\n"
+        "RULES:\n"
+        "  - Maximum 5 calibrated_anchors.\n"
+        "  - Every input model_id must appear in EITHER calibrated_anchors OR calibration_dropped.\n"
+        "  - Dropped models are NOT 'weak' and NOT 'rejected'. Their drop_reason is\n"
+        "    'strong_locally_but_less_load_bearing_globally' — they were correctly accepted as strong,\n"
+        "    just out-competed by more load-bearing peers in this run's anchor budget.\n"
+        "  - Prefer specific-mechanism models over broad-overlay models when both exist.\n"
+        "  - Prefer models whose evidence quote names a load-bearing structural error or mechanism\n"
+        "    (e.g. 'authority-bias on this rank-attestation') over models whose evidence is broad\n"
+        "    framing language (e.g. 'second-order-thinking on a passing mention').\n"
+        "  - You may rank fewer than 5 if input has fewer than 5 strong accepts (do not pad).\n"
+        "\n"
+        "Return ONLY valid JSON in this exact shape:\n"
+        "{\n"
+        '  "calibrated_anchors": [\n'
+        "    {\n"
+        '      "model_id": "candidate-model-id",\n'
+        '      "rank": 1,\n'
+        '      "calibration_reason": "one sentence: why this is more load-bearing than a peer"\n'
+        "    }\n"
+        "  ],\n"
+        '  "calibration_dropped": [\n'
+        "    {\n"
+        '      "model_id": "candidate-model-id",\n'
+        '      "drop_reason": "strong_locally_but_less_load_bearing_globally",\n'
+        '      "drop_explanation": "one sentence: which other accept it lost to and why"\n'
+        "    }\n"
+        "  ]\n"
+        "}\n"
+        "\n"
+        "Every input model_id MUST appear exactly once across the two lists. Do not invent new model_ids. "
+        "If you mark fewer than 5 as anchors, the rest go to calibration_dropped."
+    )
+
+
+def _build_calibrator_user_prompt(
+    *,
+    packet: Lane4Packet,
+    fingerprint_payload: FingerprintPayload,
+    accepted_before_cap: list["DetectedModel"],
+    accepted_to_shard: dict[str, str],
+) -> str:
+    assistant_text = _joined_assistant_turns_from_packet(packet)
+    fingerprint_lines: list[str] = []
+    for move in fingerprint_payload.validated[:8]:
+        fingerprint_lines.append(f"- {move.reasoning_move}")
+    fingerprint_block = "\n".join(fingerprint_lines) if fingerprint_lines else "(no validated moves)"
+    accepted_lines: list[str] = []
+    for i, m in enumerate(accepted_before_cap, start=1):
+        shard_hint = accepted_to_shard.get(m.model_id, "?")
+        accepted_lines.append(
+            f"{i}. model_id: {m.model_id}\n"
+            f"   model_name: {m.model_name}\n"
+            f"   source_verifier_shard: {shard_hint}\n"
+            f"   presence_mode: {m.presence_mode}\n"
+            f"   evidence_quote: {m.evidence_quote!r}\n"
+            f"   presence_explanation: {m.presence_explanation}"
+        )
+    accepted_block = "\n".join(accepted_lines)
+    return (
+        f"ASSISTANT'S REASONING (the audit target):\n"
+        f"{assistant_text}\n\n"
+        f"FINGERPRINT (validated reasoning moves):\n"
+        f"{fingerprint_block}\n\n"
+        f"STRONG ACCEPTS FROM VERIFIER (calibrate these):\n"
+        f"{accepted_block}\n"
+    )
+
+
+def parse_calibrator_response(
+    raw_payload: dict,
+    input_model_ids: set[str],
+) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+    """Parse calibrator output. Returns ``(calibrated_anchors, calibration_dropped)``.
+
+    Defensive: ensures every input model_id appears exactly once across the
+    two lists. Models the calibrator omits go to calibration_dropped with
+    drop_reason="missing_from_calibrator_output". Models the calibrator
+    invents (not in input_model_ids) are silently filtered.
+    """
+    anchors_entries = (
+        require_list_of_dicts(raw_payload, "calibrated_anchors", "companion_calibration")
+        if isinstance(raw_payload.get("calibrated_anchors"), list)
+        else []
+    )
+    dropped_entries = (
+        require_list_of_dicts(raw_payload, "calibration_dropped", "companion_calibration")
+        if isinstance(raw_payload.get("calibration_dropped"), list)
+        else []
+    )
+
+    calibrated_anchors: list[dict[str, str]] = []
+    seen_in_anchors: set[str] = set()
+    for item in anchors_entries:
+        mid = coerce_str(item.get("model_id")).strip()
+        if not mid or mid not in input_model_ids or mid in seen_in_anchors:
+            continue
+        if len(calibrated_anchors) >= _CALIBRATOR_TARGET_COUNT:
+            # Calibrator went over budget; route excess to dropped.
+            continue
+        seen_in_anchors.add(mid)
+        rank = item.get("rank")
+        try:
+            rank_int = int(rank) if rank is not None else len(calibrated_anchors) + 1
+        except (TypeError, ValueError):
+            rank_int = len(calibrated_anchors) + 1
+        calibrated_anchors.append(
+            {
+                "model_id": mid,
+                "rank": str(rank_int),
+                "calibration_reason": coerce_str(item.get("calibration_reason")).strip(),
+            }
+        )
+
+    calibration_dropped: list[dict[str, str]] = []
+    seen_in_dropped: set[str] = set()
+    for item in dropped_entries:
+        mid = coerce_str(item.get("model_id")).strip()
+        if not mid or mid not in input_model_ids or mid in seen_in_anchors or mid in seen_in_dropped:
+            continue
+        seen_in_dropped.add(mid)
+        calibration_dropped.append(
+            {
+                "model_id": mid,
+                "drop_reason": coerce_str(item.get("drop_reason")).strip()
+                or "strong_locally_but_less_load_bearing_globally",
+                "drop_explanation": coerce_str(item.get("drop_explanation")).strip(),
+            }
+        )
+
+    # Defensive: any input model_id not seen in either list goes to dropped
+    # with a defensive reason. Keeps the contract "every input appears once".
+    for mid in input_model_ids:
+        if mid in seen_in_anchors or mid in seen_in_dropped:
+            continue
+        calibration_dropped.append(
+            {
+                "model_id": mid,
+                "drop_reason": "missing_from_calibrator_output",
+                "drop_explanation": "calibrator did not list this model in either calibrated_anchors or calibration_dropped",
+            }
+        )
+
+    # Also: if the calibrator went over budget, route the excess (anchors
+    # beyond target count) to dropped. This already happened above in the
+    # loop, but if the calibrator returned more than _CALIBRATOR_TARGET_COUNT
+    # we want the excess as dropped (already in seen_in_anchors test above).
+    # No-op here.
+
+    return calibrated_anchors, calibration_dropped
+
+
+def run_calibrator_call_from_packet(
+    *,
+    packet: Lane4Packet,
+    fingerprint_payload: FingerprintPayload,
+    accepted_before_cap: list[DetectedModel],
+    shard_breakdown: dict[str, dict[str, object]],
+    client,
+) -> tuple[
+    list[DetectedModel],   # calibrated_anchors (≤ _CALIBRATOR_TARGET_COUNT)
+    list[dict[str, str]],  # calibration_dropped — strong-but-not-selected (NOT weak)
+    BoundaryCallTrace | None,  # boundary trace; None if calibration was skipped
+]:
+    """Path B global anchor calibrator.
+
+    Skipped (no LLM call) when ``len(accepted_before_cap) <= _CALIBRATOR_TARGET_COUNT``
+    — the entire input is already within budget; no calibration needed. The
+    return mirrors the input as calibrated_anchors with rank-by-position and
+    empty calibration_dropped.
+
+    When called, returns a (calibrated_anchors, calibration_dropped, trace)
+    tuple. Calibration_dropped models are NOT weak_matches and NOT
+    rejected_models — they are correctly-accepted strong models that lost to
+    more load-bearing peers in the run's surfacing budget.
+    """
+    n_input = len(accepted_before_cap)
+    if n_input == 0:
+        return [], [], None
+    if n_input <= _CALIBRATOR_TARGET_COUNT:
+        # Skip the call. The input is already within budget; pass through
+        # as calibrated_anchors in input order. No rank-by-load-bearingness
+        # because there's no selection pressure.
+        return list(accepted_before_cap), [], None
+
+    # Map model_id -> source shard for diagnostics.
+    accepted_to_shard: dict[str, str] = {}
+    for shard_id, info in (shard_breakdown or {}).items():
+        for mid in info.get("accepted", []) or []:
+            if isinstance(mid, str):
+                accepted_to_shard[mid] = shard_id
+
+    user_prompt = _build_calibrator_user_prompt(
+        packet=packet,
+        fingerprint_payload=fingerprint_payload,
+        accepted_before_cap=accepted_before_cap,
+        accepted_to_shard=accepted_to_shard,
+    )
+    system_prompt = _build_calibrator_system_prompt()
+    stage = "companion_calibrator"
+
+    use_metadata = (
+        hasattr(client, "run_json_with_metadata")
+        and getattr(client, "supports_parallel_calls", False)
+    )
+    if use_metadata:
+        raw_payload, metadata = client.run_json_with_metadata(system_prompt, user_prompt)
+        trace = _metadata_to_boundary_call_trace(metadata, stage=stage)
+    else:
+        raw_payload = client.run_json(system_prompt, user_prompt)
+        trace = _capture_boundary_call(client, stage=stage)
+
+    input_model_ids = {m.model_id for m in accepted_before_cap}
+    parsed_anchors, parsed_dropped = parse_calibrator_response(raw_payload, input_model_ids)
+
+    # Convert parsed_anchors back into DetectedModel objects, preserving the
+    # original DetectedModel fields from accepted_before_cap (the calibrator
+    # only ranks; it doesn't change presence_mode, evidence, or explanation).
+    by_mid = {m.model_id: m for m in accepted_before_cap}
+    # Sort by rank field (1-indexed).
+    parsed_anchors.sort(key=lambda a: int(a.get("rank") or 99))
+    calibrated_anchors: list[DetectedModel] = []
+    for entry in parsed_anchors:
+        mid = entry["model_id"]
+        if mid in by_mid:
+            calibrated_anchors.append(by_mid[mid])
+        if len(calibrated_anchors) >= _CALIBRATOR_TARGET_COUNT:
+            break
+
+    return calibrated_anchors, parsed_dropped, trace
+
+
 def parse_verification_response(
     raw_payload: dict,
     vanilla_answer: str,

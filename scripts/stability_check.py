@@ -336,6 +336,19 @@ def _lane2_capped_set(d: dict) -> set[str]:
     return {c.get("model_id", "") for c in capped if c.get("model_id")}
 
 
+def _lane2_calibrated_anchors_set(d: dict) -> set[str]:
+    """Path B: model_ids of the global anchor calibrator's calibrated set.
+
+    This is the *product-facing* anchor stability metric — what Step 6
+    actually consumes from Lane 2. Distinct from `lane2_anchors` (cheat-sheet
+    anchors after rerank) and `lane2_detected_after_cap` (post-verifier
+    top-5). Older result.json files lack this field; return empty set so
+    cross-version comparison works cleanly."""
+    summ = d.get("audit_summary", {}) or {}
+    cals = summ.get("companion_calibrated_anchors", []) or []
+    return {c.get("model_id", "") for c in cals if c.get("model_id")}
+
+
 def _lane2_weak_matches_set(d: dict) -> set[str]:
     """Lane 2 weak_matches — plausible-but-not-load-bearing candidates the
     strict shared rubric routed away from accepted (PR-B v2). Diagnostic
@@ -477,6 +490,7 @@ def compute_stability(results: list[tuple[str, dict]]) -> dict:
     accepted_sets = [_lane2_accepted_before_cap_set(r) for _, r in results]
     detected_sets = [_lane2_detected_after_cap_set(r) for _, r in results]
     capped_sets = [_lane2_capped_set(r) for _, r in results]
+    calibrated_sets = [_lane2_calibrated_anchors_set(r) for _, r in results]
     weak_sets = [_lane2_weak_matches_set(r) for _, r in results]
     embedding_modes = [_embedding_mode(r) for _, r in results]
     return {
@@ -518,6 +532,12 @@ def compute_stability(results: list[tuple[str, dict]]) -> dict:
         "lane2_capped_models": {
             "per_run": [sorted(s) for s in capped_sets],
             "stability": pairwise_stability(capped_sets),
+        },
+        # Path B: calibrated anchor stability (the product-facing metric).
+        # This is what Step 6 actually consumes; the B gate of record.
+        "lane2_calibrated_anchors": {
+            "per_run": [sorted(s) for s in calibrated_sets],
+            "stability": pairwise_stability(calibrated_sets),
         },
         # PR-B v2 diagnostic: weak_matches per run. Not a pass/fail gate;
         # populated weak_matches alongside small accepted means the strict

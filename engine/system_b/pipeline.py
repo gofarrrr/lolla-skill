@@ -48,6 +48,7 @@ from .structural_coverage import (
 from .ir import ConversationIR
 from .companion_routing import (
     recall_candidates,
+    run_calibrator_call_from_packet,
     run_fingerprint_call_from_packet,
     run_verification_call_from_packet,
 )
@@ -277,6 +278,13 @@ class CompanionRunResult:
     # candidate counts. Diagnostic; answers "is one shard the over-acceptance
     # source, or are all three contributing?" without requiring re-run.
     shard_breakdown: dict[str, dict[str, object]] = field(default_factory=dict)
+    # Path B: global anchor calibrator output. `calibrated_anchors` is the
+    # final top-5 selection that the cheat sheet / Step 6 consume.
+    # `calibration_dropped` are accepted-strong models that lost the global
+    # load-bearing comparison — semantically distinct from rejected (wrong)
+    # and capped (ran out of room) and weak (not strong in the first place).
+    calibrated_anchors: list[DetectedModel] = field(default_factory=list)
+    calibration_dropped: list[dict[str, str]] = field(default_factory=list)
 
 
 class SystemBPipeline:
@@ -438,6 +446,8 @@ class SystemBPipeline:
                 companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
                 companion_verification_weak_matches=list(companion_result.weak_matches),
                 companion_verification_shard_breakdown=dict(companion_result.shard_breakdown),
+                companion_calibrated_anchors=_serialize_detected_models(companion_result.calibrated_anchors),
+                companion_calibration_dropped=list(companion_result.calibration_dropped),
                 companion_candidate_cap=self._config.companion_candidate_cap,
                 embedding_mode="on" if self._config.enable_embeddings else "off",
                 frame_card=frame_card,
@@ -585,6 +595,8 @@ class SystemBPipeline:
             companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
             companion_verification_weak_matches=list(companion_result.weak_matches),
             companion_verification_shard_breakdown=dict(companion_result.shard_breakdown),
+            companion_calibrated_anchors=_serialize_detected_models(companion_result.calibrated_anchors),
+            companion_calibration_dropped=list(companion_result.calibration_dropped),
             companion_candidate_cap=self._config.companion_candidate_cap,
             embedding_mode="on" if self._config.enable_embeddings else "off",
             frame_card=frame_card,
@@ -747,6 +759,29 @@ class SystemBPipeline:
         # `audit_summary.boundary_summary` aggregates across all stages, so cost
         # accounting stays correct.
         boundary_calls.extend(verification_traces)
+
+        # Path B: global anchor calibrator. Selects top-5 most load-bearing
+        # from the deduped strong accepts. Skipped (no LLM call) when
+        # accepted_before_cap already fits the budget. Restores the cross-
+        # shard competitive comparison the partition removed.
+        # See research/stability-runs/lane2-prb-v3-2026-04-26/interpretation.md.
+        calibrated_anchors, calibration_dropped, calibrator_trace = run_calibrator_call_from_packet(
+            packet=packet,
+            fingerprint_payload=fingerprint_payload,
+            accepted_before_cap=accepted_before_cap,
+            shard_breakdown=shard_breakdown,
+            client=self._boundary,
+        )
+        if calibrator_trace is not None:
+            boundary_calls.append(calibrator_trace)
+        # Replace the verifier's top-5 truncation with the calibrator's
+        # global selection. The legacy `capped_models` field stays for
+        # backwards compat but is empty under the calibrator path —
+        # accepted-but-not-surfaced now lives in calibration_dropped with
+        # semantically distinct meaning ("strong but not load-bearing
+        # globally"), NOT "ran out of room at the top-5 cliff."
+        detected_models = calibrated_anchors
+        capped_models = []
         return CompanionRunResult(
             companion_card=build_companion_card(
                 detected_models=detected_models,
@@ -761,6 +796,8 @@ class SystemBPipeline:
             duplicate_accepts=duplicate_accepts,
             weak_matches=weak_matches,
             shard_breakdown=shard_breakdown,
+            calibrated_anchors=calibrated_anchors,
+            calibration_dropped=calibration_dropped,
             candidates=candidates,
         )
 

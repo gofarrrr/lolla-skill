@@ -803,6 +803,196 @@ def test_verifier_strict_rubric_lets_strong_well_specified_items_through():
     assert weak == []
 
 
+# ---------- Path B: global anchor calibrator ----------
+
+
+from engine.system_b.companion_routing import (
+    _CALIBRATOR_TARGET_COUNT,
+    run_calibrator_call_from_packet,
+)
+from engine.system_b.companion import DetectedModel as _DM
+
+
+def _detected(model_id: str, evidence: str = "evidence") -> _DM:
+    return _DM(
+        model_id=model_id,
+        model_name=model_id.replace("-", " ").title(),
+        evidence_quote=evidence,
+        presence_mode="executed",
+        presence_explanation="ok",
+        detection_confidence="structural",
+    )
+
+
+def test_calibrator_skips_when_input_within_budget():
+    """Input <= _CALIBRATOR_TARGET_COUNT (5) → no LLM call, pass-through.
+    The calibrator is a top-5 selector; if the verifier already produced
+    <=5 strong, there's nothing to select among. Saves cost."""
+    text = "any text"
+    packet = _packet(text)
+    fp = FingerprintPayload(raw=[], validated=[], dropped=[])
+    accepted = [_detected(f"m{i}") for i in range(_CALIBRATOR_TARGET_COUNT)]
+    client = _RecordingClient()  # default empty payload
+    calibrated, dropped, trace = run_calibrator_call_from_packet(
+        packet=packet,
+        fingerprint_payload=fp,
+        accepted_before_cap=accepted,
+        shard_breakdown={},
+        client=client,
+    )
+    # No LLM call.
+    assert client.calls == []
+    assert trace is None
+    # Pass-through preserves the input.
+    assert [m.model_id for m in calibrated] == [m.model_id for m in accepted]
+    # Nothing dropped.
+    assert dropped == []
+
+
+def test_calibrator_selects_top_5_when_input_exceeds_budget():
+    """Input > 5 → one LLM call → returns ≤5 calibrated_anchors and
+    dropped strong models with drop_reason='strong_locally_but_less_load_bearing_globally'.
+    The dropped items are NOT weak_matches and NOT rejected — they are
+    correctly-strong but lost the global load-bearing comparison."""
+    text = "any"
+    packet = _packet(text)
+    fp = FingerprintPayload(raw=[], validated=[], dropped=[])
+    accepted = [_detected(f"m{i}") for i in range(8)]  # 8 strong → 5 surface, 3 drop
+    payload = {
+        "calibrated_anchors": [
+            {"model_id": "m0", "rank": 1, "calibration_reason": "most load-bearing"},
+            {"model_id": "m2", "rank": 2, "calibration_reason": "specific mechanism"},
+            {"model_id": "m4", "rank": 3, "calibration_reason": "evidence is structural"},
+            {"model_id": "m6", "rank": 4, "calibration_reason": "named tension"},
+            {"model_id": "m1", "rank": 5, "calibration_reason": "completes the picture"},
+        ],
+        "calibration_dropped": [
+            {"model_id": "m3", "drop_reason": "strong_locally_but_less_load_bearing_globally",
+             "drop_explanation": "lost to m0"},
+            {"model_id": "m5", "drop_reason": "strong_locally_but_less_load_bearing_globally",
+             "drop_explanation": "lost to m2"},
+            {"model_id": "m7", "drop_reason": "strong_locally_but_less_load_bearing_globally",
+             "drop_explanation": "lost to m6"},
+        ],
+    }
+    client = _RecordingClient(default_payload=payload)
+    calibrated, dropped, trace = run_calibrator_call_from_packet(
+        packet=packet,
+        fingerprint_payload=fp,
+        accepted_before_cap=accepted,
+        shard_breakdown={},
+        client=client,
+    )
+    # Exactly one LLM call.
+    assert len(client.calls) == 1
+    assert trace is not None
+    assert trace.stage == "companion_calibrator"
+    # Top-5 surfaced in rank order.
+    assert [m.model_id for m in calibrated] == ["m0", "m2", "m4", "m6", "m1"]
+    # Three dropped, all with the right drop_reason.
+    assert len(dropped) == 3
+    assert {d["model_id"] for d in dropped} == {"m3", "m5", "m7"}
+    for d in dropped:
+        assert d["drop_reason"] == "strong_locally_but_less_load_bearing_globally"
+
+
+def test_calibrator_dropped_are_not_weak_or_rejected():
+    """Semantic separation pin: calibration_dropped ≠ weak_matches ≠
+    rejected_models. The branch's audit trail keeps these distinct so
+    telemetry, downstream consumers, and the synthesis report each see
+    the right semantic state."""
+    text = "any"
+    packet = _packet(text)
+    fp = FingerprintPayload(raw=[], validated=[], dropped=[])
+    accepted = [_detected(f"m{i}") for i in range(7)]
+    payload = {
+        "calibrated_anchors": [
+            {"model_id": "m0", "rank": 1, "calibration_reason": "load-bearing"},
+            {"model_id": "m1", "rank": 2, "calibration_reason": "load-bearing"},
+            {"model_id": "m2", "rank": 3, "calibration_reason": "load-bearing"},
+            {"model_id": "m3", "rank": 4, "calibration_reason": "load-bearing"},
+            {"model_id": "m4", "rank": 5, "calibration_reason": "load-bearing"},
+        ],
+        "calibration_dropped": [
+            {"model_id": "m5", "drop_reason": "strong_locally_but_less_load_bearing_globally"},
+            {"model_id": "m6", "drop_reason": "strong_locally_but_less_load_bearing_globally"},
+        ],
+    }
+    client = _RecordingClient(default_payload=payload)
+    calibrated, dropped, trace = run_calibrator_call_from_packet(
+        packet=packet,
+        fingerprint_payload=fp,
+        accepted_before_cap=accepted,
+        shard_breakdown={},
+        client=client,
+    )
+    # The dropped reason is distinct from weak/rejected reason vocabulary.
+    for d in dropped:
+        assert d["drop_reason"] not in {
+            "duplicate_accept_dedupe",        # dedupe semantic
+            "capped_at_top_5",                 # pre-B legacy semantic
+            "topic-adjacent",                  # weak semantic
+            "compatible_but_not_executed",     # weak semantic
+            "missing_or_non_strong_activation_strength",  # weak demotion semantic
+            "wrong-domain",                    # rejected semantic
+        }
+
+
+def test_calibrator_handles_empty_input():
+    """Empty accepted_before_cap → no LLM call → empty calibrated_anchors
+    and empty dropped. No errors."""
+    text = "any"
+    packet = _packet(text)
+    fp = FingerprintPayload(raw=[], validated=[], dropped=[])
+    client = _RecordingClient()
+    calibrated, dropped, trace = run_calibrator_call_from_packet(
+        packet=packet,
+        fingerprint_payload=fp,
+        accepted_before_cap=[],
+        shard_breakdown={},
+        client=client,
+    )
+    assert calibrated == []
+    assert dropped == []
+    assert trace is None
+    assert client.calls == []
+
+
+def test_calibrator_defensive_routes_omitted_inputs_to_dropped():
+    """If the calibrator omits a model_id from BOTH calibrated_anchors and
+    calibration_dropped, the parser's defensive layer routes it to dropped
+    with drop_reason='missing_from_calibrator_output'. Preserves the
+    'every input appears once' contract."""
+    text = "any"
+    packet = _packet(text)
+    fp = FingerprintPayload(raw=[], validated=[], dropped=[])
+    accepted = [_detected(f"m{i}") for i in range(7)]
+    payload = {
+        "calibrated_anchors": [
+            {"model_id": "m0", "rank": 1, "calibration_reason": "ok"},
+            {"model_id": "m1", "rank": 2, "calibration_reason": "ok"},
+        ],
+        # Only m2 is in dropped. m3, m4, m5, m6 are missing entirely.
+        "calibration_dropped": [
+            {"model_id": "m2", "drop_reason": "strong_locally_but_less_load_bearing_globally"},
+        ],
+    }
+    client = _RecordingClient(default_payload=payload)
+    calibrated, dropped, trace = run_calibrator_call_from_packet(
+        packet=packet,
+        fingerprint_payload=fp,
+        accepted_before_cap=accepted,
+        shard_breakdown={},
+        client=client,
+    )
+    # Every input appears exactly once across the two lists.
+    all_appearing = {m.model_id for m in calibrated} | {d["model_id"] for d in dropped}
+    assert all_appearing == {f"m{i}" for i in range(7)}
+    # The 4 omitted-by-LLM inputs landed in dropped with the defensive reason.
+    defensive_drops = [d for d in dropped if d["drop_reason"] == "missing_from_calibrator_output"]
+    assert {d["model_id"] for d in defensive_drops} == {"m3", "m4", "m5", "m6"}
+
+
 # ---------- PipelineConfig.companion_candidate_cap is threaded ----------
 
 

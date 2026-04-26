@@ -207,6 +207,9 @@ _LANE2_COLUMNS = [
     ("Cand-cond.",   "lane2_shared_available_acceptance_agreement"),
     ("Detected",     "lane2_detected_after_cap"),
     ("Capped",       "lane2_capped_models"),
+    # Path B: calibrated anchors are the product-facing surface (what Step 6
+    # actually consumes). Distinct from `Anchors` (cheat-sheet rerank).
+    ("Calibrated",   "lane2_calibrated_anchors"),
     ("Anchors",      "lane2_anchors"),
 ]
 
