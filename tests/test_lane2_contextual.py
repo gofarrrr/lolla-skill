@@ -229,7 +229,7 @@ def test_run_verification_from_packet_accepts_quote_substring_of_assistant():
     candidates = [
         {"model_id": "authority-bias", "model_name": "Authority Bias", "activation_trigger": "x"},
     ]
-    detected, rejected = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=fingerprint,
         candidates=candidates,
@@ -239,6 +239,9 @@ def test_run_verification_from_packet_accepts_quote_substring_of_assistant():
     assert detected[0].model_id == "authority-bias"
     assert detected[0].evidence_quote == "reputable VCs know best"
     assert rejected == []
+    # Single accepted model: pre-cap == post-cap; capped is empty.
+    assert len(accepted_before_cap) == 1
+    assert capped == []
 
 
 def test_run_verification_from_packet_rejects_quote_not_in_assistant_turns():
@@ -262,7 +265,7 @@ def test_run_verification_from_packet_rejects_quote_not_in_assistant_turns():
     candidates = [
         {"model_id": "authority-bias", "model_name": "Authority Bias", "activation_trigger": "x"},
     ]
-    detected, rejected = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=fingerprint,
         candidates=candidates,
@@ -271,13 +274,15 @@ def test_run_verification_from_packet_rejects_quote_not_in_assistant_turns():
     assert len(detected) == 0
     assert len(rejected) == 1
     assert rejected[0]["rejection_reason"] == "execution_quote_not_literal_substring"
+    assert accepted_before_cap == []
+    assert capped == []
 
 
 def test_run_verification_from_packet_empty_candidates_short_circuits():
     client = _RecordingClient()
     ctx = _ctx()
     packet = _packet_from_ctx(ctx)
-    detected, rejected = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=[],
@@ -285,4 +290,6 @@ def test_run_verification_from_packet_empty_candidates_short_circuits():
     )
     assert detected == []
     assert rejected == []
+    assert accepted_before_cap == []
+    assert capped == []
     assert client.calls == [], "no LLM call when there are no candidates"

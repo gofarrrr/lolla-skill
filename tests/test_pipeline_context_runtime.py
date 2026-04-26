@@ -165,8 +165,9 @@ def test_run_companion_recall_uses_joined_assistant_turns() -> None:
     pipeline._embedding_retriever = None
     pipeline._embedding_api_key = ""
 
-    def _capture_recall(*, assistant_text, fingerprint_payload, knowledge_graph, reasoning_signals, embedding_retriever, embedding_api_key):  # noqa: ARG001
+    def _capture_recall(*, assistant_text, fingerprint_payload, knowledge_graph, reasoning_signals, max_candidates=60, embedding_retriever=None, embedding_api_key=""):  # noqa: ARG001
         captured["assistant_text"] = assistant_text
+        captured["max_candidates"] = max_candidates
         return []
 
     with patch(
