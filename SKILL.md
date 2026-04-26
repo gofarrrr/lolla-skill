@@ -333,7 +333,7 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 
 - **Treat DeltaCard findings as challenge pressure, not corrections.** The audit says "this passage shows signs of doubt-avoidance" — it doesn't say your conclusion is wrong. Maybe you were right to be decisive. But if the finding names a specific missing check or reversal trigger, consider whether it belongs.
 
-- **Treat CompanionCheatSheet as enrichment — and name the anchors.** Each model in `companion_cheat_sheet.anchors[]` has a `display_name`. These are curated mental models the pipeline detected in your reasoning. Weave them into your updated position by name: "Your attachment to the company you built is a textbook endowment effect" lands with specificity that "you might be overly attached" does not. Failure modes warn where the approaches you're already using could break. Premortem questions surface what the models you're relying on would ask. Antagonists highlight productive tensions. Use the material to strengthen, not to second-guess. If an anchor doesn't fit this decision, set it aside in §2 below with a specific reason — don't silently skip it.
+- **Treat CompanionCheatSheet as enrichment — and name the anchors.** Each model in `companion_cheat_sheet.anchors[]` has a `display_name`. These are curated mental models the pipeline detected in your reasoning. **Anchors are evidence-bearing hypotheses about your reasoning's structure, not canonical diagnoses** — surface them with strength proportional to their evidence (see *Anchor treatment* below). Weave them into your updated position by name: "Your attachment to the company you built is a textbook endowment effect" lands with specificity that "you might be overly attached" does not. Failure modes warn where the approaches you're already using could break. Premortem questions surface what the models you're relying on would ask. Antagonists highlight productive tensions. Use the material to strengthen, not to second-guess. If an anchor doesn't fit this decision, set it aside in §2 below with a specific reason — don't silently skip it.
 
 - **Treat FramePressureCard as an invitation to widen the frame.** If the audit found an embedded assumption in the question, you don't have to abandon your answer — but you might want to acknowledge what changes if that assumption is relaxed.
 
@@ -347,7 +347,42 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 
 3. **What actually shifted.** Name what changed in your position and why, and name the mental models that drove the shift. Be specific: "I was more definitive than warranted about X because I hadn't accounted for endowment effect — the emotional weight of something you built distorts exit math." This should be the smallest section if your original advice was sound.
 
-**Anchor-naming invariant.** Every anchor in `companion_cheat_sheet.anchors[]` ends up in §1 (its pressure was already priced into your original advice and still holds), §2 (you considered it and set it aside for a specific reason), or §3 (it drove a change in your position). No anchor is silently skipped. When you name an anchor, use the `display_name` — the specificity is the point.
+**Anchor-naming invariant.** Every anchor in `companion_cheat_sheet.anchors[]` ends up in §1 (its pressure was already priced into your original advice and still holds), §2 (you considered it and set it aside for a specific reason), or §3 (it drove a change in your position). No anchor is silently skipped. When you name an anchor, use the `display_name` **verbatim** — the exact string as it appears in `companion_cheat_sheet.anchors[]`, including capitalization, spacing, and punctuation. Do not lowercase it, hyphenate it, pluralize it, abbreviate it, or paraphrase it into prose. Use *Endowment Effect*, not "the endowment effect"; *Principal Agent Problem*, not "the principal-agent problem." The exact curated term is part of the product.
+
+**Anchor treatment.** "Addressed" is no longer uniform. Each anchor gets ONE of three rhetorical treatments based on YOUR reading of its evidence quote, the model's specificity, and the surrounding answer. These are internal writing rules — **do not** create user-visible "primary / secondary / set-aside" headings. They shape *how* an anchor lands inside §1 / §2 / §3, not where the anchor goes.
+
+**One primary-pressure anchor per reasoning move.** When multiple anchors describe the same move or evidence quote, the most specific / load-bearing anchor gets primary treatment; the others — even if their evidence is direct — become secondary lenses or are set aside with a reason. Treating two anchors as equally primary for the same move is overclaim by structure: it implies two independently load-bearing reads where the answer is really making one. If two anchors both receive primary pressure, their roles must be clearly distinct (different reasoning moves, not the same move described two ways).
+
+- **Primary pressure** — the anchor directly explains a load-bearing reasoning move. Evidence is direct, specific, and central. The model named is specific enough to be the right structural read (not a broad overlay that could apply anywhere). Use stronger framing: *"appears to rely on"*, *"the structural pressure point is"*, *"the answer instantiates"*.
+- **Secondary lens** — the anchor is plausible and useful, but the evidence is weaker, broader, or adjacent. Could explain part of the structure but not the load-bearing move. Or several anchors compete for the same passage and this is one of them. Use softer framing: *"a related lens is"*, *"a possible second read"*, *"an adjacent risk"*, *"may be overweighting"*.
+- **Set aside with a reason** — the anchor was surfaced by the pipeline but your reading of the evidence says it's not load-bearing here. Acknowledge briefly to satisfy the invariant; do not rely on it heavily; explain why. Use acknowledging framing: *"was surfaced as a possible lens but..."*, *"is not the load-bearing read here because..."*, *"set aside in favor of..."*.
+
+**Use stronger (primary pressure) language only when ALL of these hold:**
+- The evidence quote shows the assistant *using the model's mechanism*, not just adjacent vocabulary.
+- The model is *specific enough* to explain THIS passage without applying to most answers.
+- The anchor is *central* to the answer's reasoning, not a tangential framing.
+- No competing anchor with stronger evidence claims the same passage.
+
+**Use softer (secondary lens) language when:**
+- The evidence quote is short, generic, or compatible rather than diagnostic.
+- The model is broad-overlay (systems-thinking, second-order-thinking, multi-criteria-decision-analysis are typical examples) or could plausibly explain many answers.
+- Multiple anchors compete for the same passage and this anchor is not the strongest candidate.
+- The model is useful as a lens but not necessary to explain the answer.
+
+**Use "set aside with a reason" framing when:**
+- A different anchor better explains the same passage and you want to avoid double-claiming it.
+- The evidence quote is vocabulary mention without the mechanism running.
+- The anchor is plausible in general but not load-bearing for this specific case.
+
+**Critical: do NOT enumerate anchors mechanically.** Integrate them into your existing §1 / §2 / §3 reasoning at the point where each one earns its mention. A primary-pressure anchor lands inside the §1 or §3 sentence where the structural move it names is happening. A secondary-lens anchor folds into a related sentence as a softer second read. A "set aside with a reason" anchor goes into §2 with its dismissal explained alongside other set-aside findings.
+
+**Test:** if §1 becomes one paragraph per anchor, you have drifted into anchor-parade shape. Right shape: each paragraph carries the *reasoning move* it is making, names the primary anchor as part of that move, and folds related lenses inline only where they clarify the point. Wrong shape: paragraph 1 = anchor A, paragraph 2 = anchor B, paragraph 3 = anchor C, regardless of whether A/B/C describe one structural move or three. Wrong shape stays wrong even when each individual paragraph reads well.
+
+**Forbidden:**
+- Probability percentages or "high/moderate/low confidence" claims about anchors. We do not have multi-run sampling at the latency we operate at; do not invent confidence numbers.
+- Hiding an anchor entirely. Silent omission violates the anchor-naming invariant. Even a "set aside with a reason" mention satisfies the invariant; nothing else does.
+- "The answer is using X" framing on weak anchors. That's overclaim. Use *"appears to lean on"*, *"a possible lens"*, or set-aside framing.
+- Collapsing into hedging. The point of evidence-proportional language is more honest reading, not less commitment. Where evidence supports a primary read, commit to it.
 
 **What good looks like:**
 
