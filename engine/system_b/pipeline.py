@@ -751,6 +751,7 @@ class SystemBPipeline:
             candidate_reframings=reframings,
             anti_echo_model_ids=anti_echo_ids,
             overlap_flags=overlap_flags,
+            dropped_frame_elements=extraction_result.dropped_frame_elements,
         )
 
     def _run_lane4_structural_coverage(
