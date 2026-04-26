@@ -45,7 +45,7 @@ The anchor is plausible and useful, but the evidence is weaker, broader, or adja
 
 Use softer framing. "A related lens", "a possible second read", "an adjacent risk", "may be overweighting", "could also apply" are appropriate.
 
-### Set-aside caveat
+### Set aside with a reason
 
 The anchor appeared in Lane 2 but Step 6 reads the evidence as not load-bearing. Mention briefly to satisfy the invariant; do not rely on it heavily; explain why it's set aside.
 
@@ -71,7 +71,7 @@ These are reading instructions for Claude in Step 6, not programmatic gates. Phr
 - Multiple anchors **compete for the same passage** and this anchor is not the strongest candidate.
 - The model is **useful as a lens but not necessary** to explain the answer.
 
-### Use set-aside framing when
+### Use "set aside with a reason" framing when
 
 - Step 6's reading of the actual answer says **a different anchor better explains the same passage**.
 - The evidence quote was a **vocabulary mention** without the mechanism running.
@@ -89,8 +89,8 @@ It's three patterns Claude chooses among based on reading the actual content.
 
 - **No probability percentages.** "70% likely", "high confidence", "moderate confidence" require multi-run data we don't have.
 - **No formal stability tier metadata** in `companion_cheat_sheet.anchors[]`. The cheat-sheet shape stays unchanged.
-- **No "the answer is using X" for weak anchors.** That's overclaim. Use "appears to lean on", "a possible lens", or set-aside framing.
-- **No hiding anchors.** The anchor-naming invariant requires every anchor to be addressed in some form. Set-aside framing satisfies the invariant; silent omission does not.
+- **No "the answer is using X" for weak anchors.** That's overclaim. Use "appears to lean on", "a possible lens", or "set aside with a reason" framing.
+- **No hiding anchors.** The anchor-naming invariant requires every anchor to be addressed in some form. "Set aside with a reason" framing satisfies the invariant; silent omission does not.
 - **No "every reading is plausible" mush.** This is the failure mode the not-mushy gate catches. Step 6 still has to commit to a primary read where evidence supports one.
 
 ## 6. Acceptance gates
@@ -107,7 +107,7 @@ Sharpened from the Path D scoping doc:
 
 ### Secondary framing ≥ 90%
 
-**Operational definition:** Weak / broad / adjacent anchors are framed as possible lenses, adjacent risks, or set-aside caveats rather than canonical diagnoses. Counted as fraction of "non-primary-eligible" anchors that get secondary or set-aside treatment.
+**Operational definition:** Weak / broad / adjacent anchors are framed as possible lenses, adjacent risks, or "set aside with a reason" rather than canonical diagnoses. Counted as fraction of "non-primary-eligible" anchors that get secondary lens or "set aside with a reason" treatment.
 
 ### Not-mushy review (qualitative)
 
@@ -156,7 +156,7 @@ The row template separates BASELINE state (what the current `revised_answer` alr
 
 #### Anchor-naming invariant audit failure
 
-If `proposed_wording_sketch` omits the anchor's `display_name` verbatim, the row **fails the anchor-naming invariant** unless the anchor is genuinely absent from the run data (e.g., empty `companion_cheat_sheet.anchors[]`). Set-aside framing must still name the anchor; otherwise it becomes a vague unnamed caveat that hides the signal — exactly the failure mode the invariant exists to prevent.
+If `proposed_wording_sketch` omits the anchor's `display_name` verbatim, the row **fails the anchor-naming invariant** unless the anchor is genuinely absent from the run data (e.g., empty `companion_cheat_sheet.anchors[]`). "Set aside with a reason" framing must still name the anchor; otherwise it becomes a vague unnamed caveat that hides the signal — exactly the failure mode the invariant exists to prevent.
 
 Audit-failure rows are reported separately from the gate metrics and require row-level remediation (rewrite the sketch to include the `display_name`) before aggregate metrics are computed.
 
