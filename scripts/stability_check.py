@@ -336,6 +336,18 @@ def _lane2_capped_set(d: dict) -> set[str]:
     return {c.get("model_id", "") for c in capped if c.get("model_id")}
 
 
+def _lane2_weak_matches_set(d: dict) -> set[str]:
+    """Lane 2 weak_matches — plausible-but-not-load-bearing candidates the
+    strict shared rubric routed away from accepted (PR-B v2). Diagnostic
+    only; not a pass/fail gate. A healthy run has a populated weak_matches
+    list AND a small accepted list (the rubric is sorting correctly).
+    Older result.json files (pre-PR-B v2) have no weak_matches field;
+    return empty set so cross-version comparisons work."""
+    summ = d.get("audit_summary", {}) or {}
+    weak = summ.get("companion_verification_weak_matches", []) or []
+    return {w.get("model_id", "") for w in weak if w.get("model_id")}
+
+
 def _lane2_recall_source_distribution(d: dict) -> dict[str, int]:
     """Distribution of recall sources across candidates: keyword/embedding/both."""
     summ = d.get("audit_summary", {}) or {}
@@ -465,6 +477,7 @@ def compute_stability(results: list[tuple[str, dict]]) -> dict:
     accepted_sets = [_lane2_accepted_before_cap_set(r) for _, r in results]
     detected_sets = [_lane2_detected_after_cap_set(r) for _, r in results]
     capped_sets = [_lane2_capped_set(r) for _, r in results]
+    weak_sets = [_lane2_weak_matches_set(r) for _, r in results]
     embedding_modes = [_embedding_mode(r) for _, r in results]
     return {
         "n_runs": len(results),
@@ -505,6 +518,14 @@ def compute_stability(results: list[tuple[str, dict]]) -> dict:
         "lane2_capped_models": {
             "per_run": [sorted(s) for s in capped_sets],
             "stability": pairwise_stability(capped_sets),
+        },
+        # PR-B v2 diagnostic: weak_matches per run. Not a pass/fail gate;
+        # populated weak_matches alongside small accepted means the strict
+        # shared rubric is sorting correctly. Empty across all runs (with
+        # an older verifier prompt) is also valid.
+        "lane2_weak_matches": {
+            "per_run": [sorted(s) for s in weak_sets],
+            "per_run_count": [len(s) for s in weak_sets],
         },
         # Existing post-cap anchor measurement (kept for backward compat with
         # existing reports). With the new substages above this is roughly

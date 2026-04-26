@@ -267,6 +267,12 @@ class CompanionRunResult:
     # twice. Surfaced separately so verification_precision telemetry stays
     # honest and so we can quantify how often the verifier double-accepts.
     duplicate_accepts: list[dict[str, str]] = field(default_factory=list)
+    # PR-B v2: weak_matches surface plausible-but-not-load-bearing candidates.
+    # NOT entered into detected/anchors. Kept audit-visible as a diagnostic so
+    # we can see the strict rubric is sorting candidates correctly (a high
+    # weak_match count alongside a low accepted count is healthy; both high
+    # is over-acceptance; both low is under-recall).
+    weak_matches: list[dict[str, str]] = field(default_factory=list)
 
 
 class SystemBPipeline:
@@ -426,6 +432,7 @@ class SystemBPipeline:
                 companion_verification_accepted_before_cap=_serialize_detected_models(companion_result.accepted_before_cap),
                 companion_verification_capped_models=list(companion_result.capped_models),
                 companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
+                companion_verification_weak_matches=list(companion_result.weak_matches),
                 companion_candidate_cap=self._config.companion_candidate_cap,
                 embedding_mode="on" if self._config.enable_embeddings else "off",
                 frame_card=frame_card,
@@ -571,6 +578,7 @@ class SystemBPipeline:
             companion_verification_accepted_before_cap=_serialize_detected_models(companion_result.accepted_before_cap),
             companion_verification_capped_models=list(companion_result.capped_models),
             companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
+            companion_verification_weak_matches=list(companion_result.weak_matches),
             companion_candidate_cap=self._config.companion_candidate_cap,
             embedding_mode="on" if self._config.enable_embeddings else "off",
             frame_card=frame_card,
@@ -718,14 +726,20 @@ class SystemBPipeline:
             accepted_before_cap,
             capped_models,
             duplicate_accepts,
+            weak_matches,
+            verification_traces,
         ) = run_verification_call_from_packet(
             packet=packet,
             fingerprint_payload=fingerprint_payload,
             candidates=candidates,
             client=self._boundary,
         )
-        if candidates:
-            boundary_calls.append(_capture_boundary_call(self._boundary, stage="companion_verification"))
+        # PR-B: verifier emits one trace per reasoning-type bucket. Pre-PR-B
+        # this stage appended a single "companion_verification" trace; now we
+        # extend with the per-bucket traces (stage="companion_verification_<bucket>").
+        # `audit_summary.boundary_summary` aggregates across all stages, so cost
+        # accounting stays correct.
+        boundary_calls.extend(verification_traces)
         return CompanionRunResult(
             companion_card=build_companion_card(
                 detected_models=detected_models,
@@ -738,6 +752,7 @@ class SystemBPipeline:
             accepted_before_cap=accepted_before_cap,
             capped_models=capped_models,
             duplicate_accepts=duplicate_accepts,
+            weak_matches=weak_matches,
             candidates=candidates,
         )
 

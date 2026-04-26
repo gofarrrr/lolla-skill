@@ -3,9 +3,15 @@ from __future__ import annotations
 import logging
 import re
 from collections.abc import Iterable
+from concurrent.futures import ThreadPoolExecutor
 
 _LOGGER = logging.getLogger("system_b.companion_routing")
 
+from .boundary_tracing import (
+    BoundaryCallTrace,
+    _capture_boundary_call,
+    _metadata_to_boundary_call_trace,
+)
 from .boundary_validation import coerce_str, require_list_of_dicts
 from .companion import (
     CompanionExpansion,
@@ -398,6 +404,56 @@ def _build_verification_user_prompt_from_packet(
 _DETECTED_MODELS_CAP = 5
 
 
+def _bucket_candidates_by_reasoning_type(
+    candidates: list[dict[str, object]],
+) -> dict[str, list[dict[str, object]]]:
+    """Partition candidates by ``reasoning_type`` (primary, single bucket per
+    candidate). Empty buckets are not present in the returned dict.
+
+    Iteration order of buckets is the order each bucket first appeared in the
+    candidate list — gives a stable, deterministic submission order to the
+    parallel executor regardless of run-to-run set order.
+    """
+    buckets: dict[str, list[dict[str, object]]] = {}
+    for c in candidates:
+        bucket_id = str(c.get("reasoning_type") or "unknown")
+        buckets.setdefault(bucket_id, []).append(c)
+    return buckets
+
+
+def _run_verifier_single_bucket(
+    *,
+    bucket_id: str,
+    packet: Lane4Packet,
+    fingerprint_payload: FingerprintPayload,
+    bucket_candidates: list[dict[str, object]],
+    assistant_text: str,
+    candidate_ids: set[str],
+    client,
+    use_metadata: bool,
+):
+    """Run one verifier LLM call for a single reasoning-type bucket.
+
+    Returns ``(accepted_items, rejected_items, BoundaryCallTrace)``. When
+    ``use_metadata`` is True, uses ``client.run_json_with_metadata`` (thread-
+    safe; required for parallel execution). When False, falls back to
+    ``client.run_json`` + ``_capture_boundary_call`` (sequential test mocks).
+    """
+    user_prompt = _build_verification_user_prompt_from_packet(
+        packet, fingerprint_payload, bucket_candidates
+    )
+    system_prompt = _build_verification_system_prompt()
+    stage = f"companion_verification_{bucket_id}"
+    if use_metadata:
+        raw_payload, metadata = client.run_json_with_metadata(system_prompt, user_prompt)
+        trace = _metadata_to_boundary_call_trace(metadata, stage=stage)
+    else:
+        raw_payload = client.run_json(system_prompt, user_prompt)
+        trace = _capture_boundary_call(client, stage=stage)
+    accepted, rejected, weak_matches = parse_verification_response(raw_payload, assistant_text, candidate_ids)
+    return accepted, rejected, weak_matches, trace
+
+
 def run_verification_call_from_packet(
     *,
     packet: Lane4Packet,
@@ -410,64 +466,123 @@ def run_verification_call_from_packet(
     list[DetectedModel],
     list[dict[str, str]],
     list[dict[str, str]],
+    list[dict[str, str]],
+    list["BoundaryCallTrace"],
 ]:
-    """Packet-driven Lane 2 verification call.
+    """Packet-driven Lane 2 verification call — reasoning-type partitioned (PR-B).
 
-    Returns a 5-tuple ``(detected_models, rejected_models,
-    accepted_before_cap, capped_models, duplicate_accepts)``:
+    Partitions ``candidates`` by primary ``reasoning_type`` (attached during
+    recall — see ``_primary_reasoning_type``), runs one verifier LLM call per
+    non-empty bucket in parallel (mirrors Pass 1 family-cluster pattern), and
+    fans in deterministically. Each per-bucket call sees the FULL assistant
+    source text and FULL validated fingerprint — only the candidates are
+    bucket-local. No information loss; obligation narrowed.
 
-    - ``detected_models``: post-cap surfaced models (top-N by LLM order, where
-      N = ``_DETECTED_MODELS_CAP``). Computed from the deduplicated
-      ``accepted_before_cap``.
-    - ``rejected_models``: semantically rejected by the verifier (or
-      validation-demoted, e.g. fabricated quotes).
-    - ``accepted_before_cap``: every model the verifier accepted, before the
-      surfacing budget. Deduplicated by ``model_id`` — see below.
-    - ``capped_models``: accepted-but-not-surfaced — models the verifier
-      accepted that fell outside the top-N budget. Each item carries
-      ``{model_id, model_name, drop_reason="capped_at_top_5"}``. NOT
-      the same semantic as ``rejected_models``; merging them would
-      corrupt ``telemetry.verification_precision``.
-    - ``duplicate_accepts``: accepted entries dropped by the model_id
-      dedupe step. Each item carries ``{model_id, model_name,
-      drop_reason="duplicate_accept_dedupe"}``. Also NOT rejected — these
-      are accepted models the verifier listed more than once (typically
-      with slightly different evidence quotes); dedupe preserves the
-      first occurrence's evidence/explanation. Without dedupe, downstream
-      ``CompanionCard`` builds two ``DetectedModel`` objects for the same
-      ``model_id``, ``expand_detected_model`` runs twice, and the
-      ``CompanionCard cannot contain more than 3 expansions per detected
-      model`` invariant trips. See research/lane2-followup-tracking-2026-04-26.md.
+    The pre-registered fan-in ordering (deterministic, independent of which
+    bucket finishes first):
+
+    1. Concatenate accepted lists from every bucket in stable bucket-iteration
+       order (which itself is the order each bucket first appeared in
+       ``candidates``).
+    2. Dedupe by ``model_id`` — first valid occurrence wins, surplus go into
+       ``duplicate_accepts`` (NOT into ``rejected_models``; that would corrupt
+       ``telemetry.verification_precision``).
+    3. Sort the deduped accepted list by ``(candidate.final_rank, model_id)``.
+       This is a ranking-semantics change vs. pre-PR-B (which preserved LLM
+       output order); it is a corrective architecture change explicitly
+       authorized by research/lane2-followup-tracking-2026-04-26.md, and the
+       acceptance gates in the same doc require it.
+    4. Apply the existing top-5 surfacing budget. Overflow lands in
+       ``capped_models``.
+
+    Returns a 6-tuple: ``(detected_models, rejected_models,
+    accepted_before_cap, capped_models, duplicate_accepts, boundary_traces)``.
+    The added 6th element is one ``BoundaryCallTrace`` per bucket call so the
+    pipeline can extend ``audit_summary.boundary_calls`` cleanly and per-
+    bucket cost is measurable. Falls back to sequential execution when the
+    boundary client doesn't expose ``run_json_with_metadata`` (test mocks).
     """
     if not candidates:
-        return [], [], [], [], []
+        return [], [], [], [], [], [], []
 
     assistant_text = _joined_assistant_turns_from_packet(packet)
-    raw_payload = client.run_json(
-        _build_verification_system_prompt(),
-        _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates),
-    )
-    accepted, rejected = parse_verification_response(
-        raw_payload,
-        assistant_text,
-        {candidate["model_id"] for candidate in candidates},
-    )
     candidate_names = {
         candidate["model_id"]: candidate["model_name"]
         for candidate in candidates
         if candidate.get("model_id") and candidate.get("model_name")
     }
+    candidate_final_rank = {
+        candidate["model_id"]: int(candidate.get("final_rank") or 0)
+        for candidate in candidates
+        if candidate.get("model_id")
+    }
 
-    # Deduplicate accepted entries by model_id, preserving the first valid
-    # occurrence (which carries the first valid evidence_quote — already
-    # validated as a literal substring upstream by parse_verification_response).
-    # Subsequent duplicates are diverted to `duplicate_accepts` so downstream
-    # CompanionCard build doesn't see duplicate DetectedModels for the same
-    # model_id (which would trip the per-source expansion invariant).
+    buckets = _bucket_candidates_by_reasoning_type(candidates)
+
+    # Determine execution mode. Parallel requires `run_json_with_metadata` and
+    # the explicit `supports_parallel_calls` opt-in. Test mocks typically have
+    # neither, so they route through the sequential path automatically.
+    use_metadata = (
+        hasattr(client, "run_json_with_metadata")
+        and getattr(client, "supports_parallel_calls", False)
+    )
+
+    per_bucket_results: list[tuple[str, list[dict], list[dict], list[dict], BoundaryCallTrace]] = []
+
+    if use_metadata and len(buckets) > 1:
+        max_workers = min(len(buckets), 9)  # 9 is the substrate's reasoning_types ceiling
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = []
+            for bucket_id, bucket_cands in buckets.items():
+                bucket_ids = {c["model_id"] for c in bucket_cands if c.get("model_id")}
+                fut = executor.submit(
+                    _run_verifier_single_bucket,
+                    bucket_id=bucket_id,
+                    packet=packet,
+                    fingerprint_payload=fingerprint_payload,
+                    bucket_candidates=bucket_cands,
+                    assistant_text=assistant_text,
+                    candidate_ids=bucket_ids,
+                    client=client,
+                    use_metadata=True,
+                )
+                futures.append((bucket_id, fut))
+        for bucket_id, fut in futures:
+            accepted, rejected, bucket_weak, trace = fut.result()
+            per_bucket_results.append((bucket_id, accepted, rejected, bucket_weak, trace))
+    else:
+        # Sequential path: single-bucket cases, test mocks, or boundary clients
+        # that don't support parallel calls.
+        for bucket_id, bucket_cands in buckets.items():
+            bucket_ids = {c["model_id"] for c in bucket_cands if c.get("model_id")}
+            accepted, rejected, bucket_weak, trace = _run_verifier_single_bucket(
+                bucket_id=bucket_id,
+                packet=packet,
+                fingerprint_payload=fingerprint_payload,
+                bucket_candidates=bucket_cands,
+                assistant_text=assistant_text,
+                candidate_ids=bucket_ids,
+                client=client,
+                use_metadata=use_metadata,
+            )
+            per_bucket_results.append((bucket_id, accepted, rejected, bucket_weak, trace))
+
+    # Fan-in step 1: concatenate in deterministic bucket-iteration order.
+    raw_accepted: list[dict] = []
+    rejected: list[dict] = []
+    weak_matches: list[dict] = []
+    boundary_traces: list[BoundaryCallTrace] = []
+    for _, accepted, bucket_rejected, bucket_weak, trace in per_bucket_results:
+        raw_accepted.extend(accepted)
+        rejected.extend(bucket_rejected)
+        weak_matches.extend(bucket_weak)
+        boundary_traces.append(trace)
+
+    # Fan-in step 2: dedupe by model_id (first valid occurrence wins).
     seen_model_ids: set[str] = set()
-    deduped_accepted: list[dict[str, str]] = []
+    deduped_accepted: list[dict] = []
     duplicate_accepts: list[dict[str, str]] = []
-    for item in accepted:
+    for item in raw_accepted:
         mid = item.get("model_id", "")
         if not mid:
             continue
@@ -483,6 +598,17 @@ def run_verification_call_from_packet(
         seen_model_ids.add(mid)
         deduped_accepted.append(item)
 
+    # Fan-in step 3: deterministic sort by (final_rank, model_id). High recall
+    # rank (small final_rank) surfaces first; ties broken alphabetically. This
+    # makes the post-cap surfacing budget independent of which bucket finished
+    # first AND independent of the LLM's per-bucket response order.
+    deduped_accepted.sort(
+        key=lambda item: (
+            candidate_final_rank.get(item.get("model_id", ""), 10_000),
+            item.get("model_id", ""),
+        )
+    )
+
     accepted_before_cap = [
         DetectedModel(
             model_id=item["model_id"],
@@ -494,6 +620,7 @@ def run_verification_call_from_packet(
         )
         for item in deduped_accepted
     ]
+    # Fan-in step 4: apply the existing top-5 surfacing budget.
     detected_models = accepted_before_cap[:_DETECTED_MODELS_CAP]
     capped_models = [
         {
@@ -503,50 +630,85 @@ def run_verification_call_from_packet(
         }
         for m in accepted_before_cap[_DETECTED_MODELS_CAP:]
     ]
-    return detected_models, rejected, accepted_before_cap, capped_models, duplicate_accepts
+    return (
+        detected_models,
+        rejected,
+        accepted_before_cap,
+        capped_models,
+        duplicate_accepts,
+        weak_matches,
+        boundary_traces,
+    )
 
 
 def parse_verification_response(
     raw_payload: dict,
     vanilla_answer: str,
     candidate_ids: set[str] | list[str] | tuple[str, ...],
-) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    """Parse verifier output into the strict shared-rubric three-category form.
+
+    Returns ``(accepted, rejected, weak_matches)``. The strict acceptance bar
+    (PR-B v2) is enforced HERE — if the LLM didn't supply
+    ``activation_strength="strong"`` or ``why_not_merely_compatible``, the
+    item is demoted to ``weak_matches`` regardless of what the LLM put it in.
+    This protects against per-bucket verifiers becoming under-discriminating
+    after partition removed cross-bucket competition.
+    """
     allowed_ids = {str(item).strip() for item in candidate_ids if str(item).strip()}
     accepted_entries = require_list_of_dicts(raw_payload, "accepted", "companion_verification")
     rejected_entries = require_list_of_dicts(raw_payload, "rejected", "companion_verification")
+    # weak_matches is optional in the schema (PR-B v2 introduces it). Older
+    # responses without this field continue to work — they just produce no
+    # weak_matches entries from this branch.
+    weak_matches_entries = (
+        require_list_of_dicts(raw_payload, "weak_matches", "companion_verification")
+        if isinstance(raw_payload.get("weak_matches"), list)
+        else []
+    )
     accepted: list[dict[str, str]] = []
     rejected: list[dict[str, str]] = []
+    weak_matches: list[dict[str, str]] = []
     answer_text = vanilla_answer if isinstance(vanilla_answer, str) else str(vanilla_answer or "")
+
+    def _record_weak(model_id: str, reason: str) -> None:
+        weak_matches.append({"model_id": model_id, "weak_match_reason": reason})
 
     for item in accepted_entries:
         model_id = coerce_str(item.get("model_id")).strip()
         presence_mode = coerce_str(item.get("presence_mode")).strip().lower()
         evidence_quote = coerce_str(item.get("evidence_quote")).strip()
         presence_explanation = coerce_str(item.get("presence_explanation")).strip()
+        activation_strength = coerce_str(item.get("activation_strength")).strip().lower()
+        why_not_merely_compatible = coerce_str(item.get("why_not_merely_compatible")).strip()
         if not model_id or model_id not in allowed_ids:
             continue
         if presence_mode not in {"executed", "violated"}:
+            rejected.append({"model_id": model_id, "rejection_reason": "invalid_presence_mode"})
+            continue
+        if not (evidence_quote and evidence_quote in answer_text):
             rejected.append(
-                {
-                    "model_id": model_id,
-                    "rejection_reason": "invalid_presence_mode",
-                }
+                {"model_id": model_id, "rejection_reason": "execution_quote_not_literal_substring"}
             )
             continue
-        if evidence_quote and evidence_quote in answer_text:
-            accepted.append(
-                {
-                    "model_id": model_id,
-                    "presence_mode": presence_mode,
-                    "evidence_quote": evidence_quote,
-                    "presence_explanation": presence_explanation,
-                }
-            )
+        # Strict shared-rubric bar (PR-B v2). The verifier must explicitly
+        # declare strength and explain the distinction-from-compatibility.
+        # If either is missing/non-strong, demote — do not reward
+        # under-specified acceptance.
+        if activation_strength != "strong":
+            _record_weak(model_id, "missing_or_non_strong_activation_strength")
             continue
-        rejected.append(
+        if not why_not_merely_compatible:
+            _record_weak(model_id, "missing_why_not_merely_compatible")
+            continue
+        accepted.append(
             {
                 "model_id": model_id,
-                "rejection_reason": "execution_quote_not_literal_substring",
+                "presence_mode": presence_mode,
+                "evidence_quote": evidence_quote,
+                "presence_explanation": presence_explanation,
+                "activation_strength": "strong",
+                "why_not_merely_compatible": why_not_merely_compatible,
             }
         )
 
@@ -556,15 +718,25 @@ def parse_verification_response(
         if not model_id or model_id not in allowed_ids:
             continue
         rejected.append(
-            {
-                "model_id": model_id,
-                "rejection_reason": rejection_reason or "rejected_without_reason",
-            }
+            {"model_id": model_id, "rejection_reason": rejection_reason or "rejected_without_reason"}
         )
 
-    # Post-processing: if a broad overlay model shares a substantially overlapping
-    # evidence_quote with a specific mechanism model already in the accepted list,
-    # demote it to rejected. Broad models must find their own distinct passage.
+    for item in weak_matches_entries:
+        model_id = coerce_str(item.get("model_id")).strip()
+        reason = coerce_str(item.get("weak_match_reason")).strip()
+        if not model_id or model_id not in allowed_ids:
+            continue
+        # Allow LLM to put plausible-but-not-load-bearing items here directly,
+        # without forcing a demotion through the accepted->weak path.
+        weak_matches.append(
+            {"model_id": model_id, "weak_match_reason": reason or "unspecified_weak_match"}
+        )
+
+    # Post-processing: passage exclusivity. If a broad overlay model shares a
+    # substantially overlapping evidence_quote with a specific mechanism model
+    # already in the accepted list, demote it — to weak_matches now (was
+    # rejected pre-PR-B v2). The mechanism is plausibly present, just not
+    # load-bearing once a more specific model has claimed the same passage.
     specific_quotes = [
         item["evidence_quote"]
         for item in accepted
@@ -574,33 +746,62 @@ def parse_verification_response(
     for item in accepted:
         if item["model_id"] in _BROAD_OVERLAY_MODELS:
             if any(_quotes_overlap(item["evidence_quote"], sq) for sq in specific_quotes):
-                rejected.append(
-                    {
-                        "model_id": item["model_id"],
-                        "rejection_reason": "passage claimed by more specific model",
-                    }
-                )
+                _record_weak(item["model_id"], "broad_overlay_without_distinct_passage")
                 continue
         final_accepted.append(item)
 
-    return final_accepted, rejected
+    return final_accepted, rejected, weak_matches
 
 
 def _build_verification_system_prompt() -> str:
     return (
         "You are verifying whether candidate mental models are structurally present in a vanilla answer.\n"
-        "A model may be ACCEPTED in exactly two ways: executed or violated.\n"
-        "ACCEPT as EXECUTED only if the answer applies the model's specific mechanism and you can quote the exact passage where the mechanism runs.\n"
-        "ACCEPT as VIOLATED only if the answer explicitly deploys a substitute mechanism the model guards against, and you can quote that substitute mechanism directly from the answer.\n"
-        "REJECT a model if the answer is merely compatible with it.\n"
-        "REJECT a model if the evidence only shows broad good reasoning, problem decomposition, or multi-factor thinking.\n"
-        "REJECT a model if the model's name or vocabulary appears without the mechanism being executed or violated.\n"
-        "REJECT a violated-mode claim if the answer simply omits the discipline rather than substituting an alternative.\n"
-        "Broad models that must be actively declined unless specifically executed or violated: second-order-thinking, multi-criteria-decision-analysis, systems-thinking, power-laws, tier-2-high-value, butterfly-effect.\n"
-        "CRITICAL for tier-2-high-value: the model is EXECUTED only when the answer's own reasoning performs a value-tier classification AND uses that classification as the central decision mechanism. "
-        "Reject if another specific model (authority-bias, reciprocity-principle, liking-loving, etc.) already explains the structural error — tier-2-high-value is background context, not the read. "
-        "Reject if the answer merely describes something as valuable, strategic, or high-priority — compatibility is not execution. "
-        "Reject if the 'value tier' language comes from an external party (e.g., the vendor calling the company 'tier-one') rather than from the answer's own reasoning.\n"
+        "\n"
+        "THIS RUN IS PART OF A PARTITIONED VERIFIER. You see only the candidates from one reasoning-type bucket. "
+        "Other buckets are running in parallel. To preserve a global product budget without per-bucket competition, "
+        "you must apply a SHARED STRICT RUBRIC. Be deliberately conservative: when in doubt, downgrade to weak_matches; "
+        "do NOT accept.\n"
+        "\n"
+        "OUTPUT THREE CATEGORIES, NOT TWO:\n"
+        "  1. accepted (strong only) — the model's specific mechanism is RUNNING in the answer with a literal evidence quote.\n"
+        "  2. weak_matches — the model is plausibly compatible or topically adjacent, but the mechanism is not actually executed/violated.\n"
+        "  3. rejected — the model is structurally off (wrong domain, wrong frame, no plausible connection).\n"
+        "\n"
+        "ACCEPTANCE BAR (strong only):\n"
+        "An item enters `accepted` ONLY when ALL of these hold:\n"
+        "  (a) `presence_mode` is exactly 'executed' or 'violated'.\n"
+        "  (b) `evidence_quote` is a literal verbatim substring of the assistant's answer (not paraphrased).\n"
+        "  (c) `activation_strength` is exactly 'strong' — meaning the answer's reasoning performs the model's mechanism, "
+        "      not merely uses adjacent language or makes a judgment compatible with the model.\n"
+        "  (d) `why_not_merely_compatible` names the SPECIFIC structural feature that distinguishes execution from compatibility: "
+        "      what the answer is doing that a 'merely compatible' answer would NOT do.\n"
+        "  (e) The acceptance survives the COMPETITION TEST: would a more specific model elsewhere explain the same passage better? "
+        "      If yes, demote to weak_matches with reason 'more_specific_model_likely'.\n"
+        "If ANY of (a)-(e) is uncertain, route to weak_matches. Do NOT borderline-accept.\n"
+        "\n"
+        "WEAK_MATCHES BAR:\n"
+        "Use weak_matches when the model is in the right neighborhood but the mechanism is not executed:\n"
+        "  - 'topic-adjacent' — answer mentions related ideas without using the model's mechanism.\n"
+        "  - 'compatible_but_not_executed' — answer's reasoning is consistent with the model but doesn't perform it.\n"
+        "  - 'broad_overlay_without_distinct_passage' — broad/overlay model whose passage is better explained by a more specific model.\n"
+        "  - 'more_specific_model_likely' — there is plausibly a more specific model in another bucket that better fits this passage.\n"
+        "  - 'name_or_vocabulary_only' — model's name or vocabulary appears but the mechanism is not executed.\n"
+        "Weak matches stay audit-visible but do NOT enter the surfaced cheat sheet.\n"
+        "\n"
+        "BROAD-MODEL DEFAULT:\n"
+        "These models default to weak_matches unless there is unmistakable evidence the answer's reasoning RUNS the mechanism: "
+        "second-order-thinking, multi-criteria-decision-analysis, systems-thinking, power-laws, tier-2-high-value, butterfly-effect. "
+        "For these, the bar for accepted is higher: the answer must perform the model's distinctive operation (not merely consider tradeoffs, "
+        "not merely think about consequences, not merely classify value).\n"
+        "\n"
+        "PASSAGE EXCLUSIVITY:\n"
+        "Even within a single bucket, a passage already cited by a specific-mechanism model in your accepted list MUST NOT also be claimed by "
+        "a broad/overlay model. The broad model must find a distinct passage or be routed to weak_matches with reason 'broad_overlay_without_distinct_passage'.\n"
+        "\n"
+        "REJECT (not weak_matches):\n"
+        "Reject only when the model is structurally off — wrong domain, wrong frame, no plausible connection at all. "
+        "Anything plausible-but-not-load-bearing belongs in weak_matches, not rejected.\n"
+        "\n"
         "Return ONLY valid JSON matching this exact structure and nothing else:\n"
         "{\n"
         '  "accepted": [\n'
@@ -608,46 +809,54 @@ def _build_verification_system_prompt() -> str:
         '      "model_id": "candidate-model-id",\n'
         '      "presence_mode": "executed | violated",\n'
         '      "evidence_quote": "exact literal substring from vanilla_answer",\n'
-        '      "presence_explanation": "one sentence: how the mechanism is executed, or how the discipline is violated"\n'
+        '      "presence_explanation": "one sentence: how the mechanism is executed, or how the discipline is violated",\n'
+        '      "activation_strength": "strong",\n'
+        '      "why_not_merely_compatible": "one sentence naming the structural feature that distinguishes execution from compatibility"\n'
+        "    }\n"
+        "  ],\n"
+        '  "weak_matches": [\n'
+        "    {\n"
+        '      "model_id": "candidate-model-id",\n'
+        '      "weak_match_reason": "topic-adjacent | compatible_but_not_executed | broad_overlay_without_distinct_passage | more_specific_model_likely | name_or_vocabulary_only"\n'
         "    }\n"
         "  ],\n"
         '  "rejected": [\n'
         "    {\n"
         '      "model_id": "candidate-model-id",\n'
-        '      "rejection_reason": "too generic | topic-adjacent | mechanism absent | omission not violation"\n'
+        '      "rejection_reason": "wrong-domain | wrong-frame | no-plausible-connection"\n'
         "    }\n"
         "  ]\n"
         "}\n"
-        "Never return arrays of bare model ids. Every accepted item must be an object with model_id, presence_mode, evidence_quote, and presence_explanation. "
-        "Every rejected item must be an object with model_id and rejection_reason. "
-        "If nothing is accepted or rejected, return empty lists, not strings and not model-id arrays.\n"
-        "EXAMPLE — executed:\n"
+        "\n"
+        "Every accepted item must include all six fields above (model_id, presence_mode, evidence_quote, presence_explanation, "
+        "activation_strength, why_not_merely_compatible). If activation_strength is anything other than 'strong', or if "
+        "why_not_merely_compatible is missing or generic ('it's relevant', 'it applies'), the item will be auto-demoted to weak_matches.\n"
+        "\n"
+        "If nothing is accepted, return an empty `accepted` list. The same applies for `weak_matches` and `rejected`. "
+        "Never return arrays of bare model ids. Never return strings.\n"
+        "\n"
+        "EXAMPLE — accepted (executed, strong):\n"
         '  model_id: "authority-bias"\n'
         '  presence_mode: "executed"\n'
         '  evidence_quote: "the account executive says the customer\'s CTO personally vouched for their internal security posture"\n'
         '  presence_explanation: "The answer treats a senior executive\'s personal attestation as sufficient assurance, instantiating authority-bias by substituting rank for independent evidence."\n'
+        '  activation_strength: "strong"\n'
+        '  why_not_merely_compatible: "The answer does not just acknowledge the CTO\'s opinion exists — it uses the CTO\'s rank as the load-bearing reason to skip independent verification, which is the precise mechanism authority-bias names."\n'
         "\n"
-        "EXAMPLE — violated:\n"
-        '  model_id: "scientific-method-evidence-testing"\n'
-        '  presence_mode: "violated"\n'
-        '  evidence_quote: "The CTO\'s personal vouching for their security posture provides reasonable assurance"\n'
-        '  presence_explanation: "The answer accepts credentialed attestation as a substitute for independent technical verification, directly violating the discipline scientific-method-evidence-testing exists to enforce."\n'
-        "\n"
-        "TIE-BREAKER RULE: when high-value opportunity language and rank-backed assurance appear in the same passage, ask: is the decisive epistemic move (a) classifying this as top-tier value, or (b) treating a credentialed person's say-so as sufficient? "
-        "If rank or credential is doing the justificatory work, authority-bias is correct and tier-2-high-value must be rejected as coincident framing — even if value language is also present in the same sentence. "
-        "Only accept tier-2-high-value when the value-tier classification itself — not rank, not credential — is the mechanism that drives the decision.\n"
-        "\n"
-        "PASSAGE EXCLUSIVITY RULE: if a specific mechanism model (authority-bias, reciprocity-principle, liking-loving, etc.) already cites a passage, a broad overlay model (tier-2-high-value, second-order-thinking, systems-thinking, power-laws) MUST NOT cite the same or substantially overlapping passage. "
-        "The broad model must find a distinct passage that exclusively instantiates its own mechanism, or it must be rejected. "
-        "Piggybacking on a passage already used by a specific model is not acceptance — it is rejection with reason 'passage already claimed by more specific model'.\n"
-        "\n"
-        "EXAMPLE — rejected (broad model):\n"
+        "EXAMPLE — weak_match (broad overlay):\n"
         '  model_id: "second-order-thinking"\n'
-        '  rejection_reason: "too generic — the answer considers downstream implications but does not specifically apply second-order causal chain analysis; compatible but not executed or violated"\n'
+        '  weak_match_reason: "broad_overlay_without_distinct_passage"\n'
+        "  (commentary: the answer considers downstream implications, but the passage where it does so is already cited by a more specific model; second-order-thinking has no distinct passage of its own here.)\n"
         "\n"
-        "EXAMPLE — rejected (broad strategic overlay):\n"
+        "EXAMPLE — weak_match (more specific model likely):\n"
         '  model_id: "tier-2-high-value"\n'
-        '  rejection_reason: "too generic — the answer mentions value or makes a judgment about worth, but does not specifically apply the mechanism of identifying top-tier value opportunities and concentrating attention there; framing-level mention is not execution"'
+        '  weak_match_reason: "more_specific_model_likely"\n'
+        "  (commentary: the answer makes a judgment about worth, but the structural error is better explained by a specific bias model in another reasoning-type bucket.)\n"
+        "\n"
+        "EXAMPLE — rejected (truly off):\n"
+        '  model_id: "monte-carlo-methods"\n'
+        '  rejection_reason: "wrong-domain"\n'
+        "  (commentary: the answer concerns interpersonal trust, not stochastic simulation. No plausible connection.)"
     )
 
 
@@ -700,6 +909,23 @@ def retrieve_candidate_models(
     ]
 
 
+def _primary_reasoning_type(model_payload: dict | None) -> str:
+    """Extract `reasoning_types[0]` for a model, with `"unknown"` fallback.
+
+    The verifier-partition substrate. Always single primary type for
+    deterministic bucketing — list-aware bucketing is a deferred follow-up
+    (see research/lane2-followup-tracking-2026-04-26.md open questions).
+    """
+    if not isinstance(model_payload, dict):
+        return "unknown"
+    types = model_payload.get("reasoning_types")
+    if isinstance(types, list) and types:
+        first = types[0]
+        if isinstance(first, str) and first.strip():
+            return first.strip()
+    return "unknown"
+
+
 def recall_candidates(
     *,
     assistant_text: str,
@@ -717,6 +943,9 @@ def recall_candidates(
     - ``keyword_rank``: 1-indexed position in keyword recall, or ``None``.
     - ``embedding_rank``: 1-indexed position in embedding recall, or ``None``.
     - ``final_rank``: 1-indexed position in the returned list.
+    - ``reasoning_type``: primary ``reasoning_types[0]`` from
+      ``knowledge_graph.models[mid]``, fallback ``"unknown"`` when absent.
+      Used by the partitioned verifier (PR-B) to bucket candidates.
 
     The "keyword" path covers both primary keyword overlap and the
     reasoning-signals fallback (both are deterministic). The "embedding"
@@ -771,6 +1000,7 @@ def recall_candidates(
                 "recall_source": "keyword",
                 "keyword_rank": keyword_rank_counter,
                 "embedding_rank": None,
+                "reasoning_type": _primary_reasoning_type(mp),
             }
         )
         if len(results) >= max_candidates:
@@ -799,6 +1029,7 @@ def recall_candidates(
                     "recall_source": "keyword",
                     "keyword_rank": keyword_rank_counter,
                     "embedding_rank": None,
+                    "reasoning_type": _primary_reasoning_type(sig_model),
                     "danger_when": sig_dw[0] if isinstance(sig_dw, list) and sig_dw and isinstance(sig_dw[0], str) else "",
                 }
             )
@@ -847,6 +1078,7 @@ def recall_candidates(
                             "recall_source": "embedding",
                             "keyword_rank": None,
                             "embedding_rank": emb_idx,
+                            "reasoning_type": _primary_reasoning_type(model_payload),
                             "danger_when": emb_dw[0] if isinstance(emb_dw, list) and emb_dw and isinstance(emb_dw[0], str) else "",
                         }
                     )

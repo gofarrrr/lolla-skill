@@ -223,7 +223,9 @@ def test_verifier_returns_capped_models_separately_from_rejected():
             "model_id": f"model-{i}",
             "presence_mode": "executed",
             "evidence_quote": f"phrase{i}",
-            "presence_explanation": "ok",
+            "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",
+            "activation_strength": "strong",
+            "why_not_merely_compatible": "answer performs the model's mechanism",
         }
         for i in range(n_accepted)
     ]
@@ -232,7 +234,7 @@ def test_verifier_returns_capped_models_separately_from_rejected():
         {"model_id": f"model-{i}", "model_name": f"Model {i}", "activation_trigger": "x"}
         for i in range(n_accepted)
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -255,14 +257,16 @@ def test_verifier_no_cap_overflow_returns_empty_capped():
             "model_id": "opportunity-cost",
             "presence_mode": "executed",
             "evidence_quote": "weighing the opportunity cost",
-            "presence_explanation": "ok",
+            "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",
+            "activation_strength": "strong",
+            "why_not_merely_compatible": "answer performs the model's mechanism",
         }
     ]
     client = _FakeClient({"accepted": accepted_payload, "rejected": []})
     candidates = [
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
         packet=_packet("weighing the opportunity cost of staying"),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -302,19 +306,25 @@ def test_verifier_dedupes_duplicate_accepted_model_ids():
             "model_id": "opportunity-cost",
             "presence_mode": "executed",
             "evidence_quote": "phrase one",
-            "presence_explanation": "first explanation",
+            "presence_explanation": "first explanation", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",
+            "activation_strength": "strong",
+            "why_not_merely_compatible": "answer performs the model's mechanism",
         },
         {
             "model_id": "opportunity-cost",  # duplicate model_id
             "presence_mode": "executed",
             "evidence_quote": "phrase two",
-            "presence_explanation": "second explanation (should be discarded)",
+            "presence_explanation": "second explanation (should be discarded)", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",
+            "activation_strength": "strong",
+            "why_not_merely_compatible": "answer performs the model's mechanism",
         },
         {
             "model_id": "opportunity-cost",  # third occurrence — also dropped
             "presence_mode": "violated",
             "evidence_quote": "phrase one and phrase two",
-            "presence_explanation": "third explanation (also discarded)",
+            "presence_explanation": "third explanation (also discarded)", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",
+            "activation_strength": "strong",
+            "why_not_merely_compatible": "answer performs the model's mechanism",
         },
     ]
     rejected_payload: list = []
@@ -322,7 +332,7 @@ def test_verifier_dedupes_duplicate_accepted_model_ids():
     candidates = [
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -362,13 +372,17 @@ def test_verifier_no_duplicates_yields_empty_duplicate_accepts():
             "model_id": "opportunity-cost",
             "presence_mode": "executed",
             "evidence_quote": "weighing the opportunity cost",
-            "presence_explanation": "ok",
+            "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",
+            "activation_strength": "strong",
+            "why_not_merely_compatible": "answer performs the model's mechanism",
         },
         {
             "model_id": "second-order-thinking",
             "presence_mode": "executed",
             "evidence_quote": "of staying",
-            "presence_explanation": "ok",
+            "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",
+            "activation_strength": "strong",
+            "why_not_merely_compatible": "answer performs the model's mechanism",
         },
     ]
     client = _FakeClient({"accepted": accepted_payload, "rejected": []})
@@ -376,7 +390,7 @@ def test_verifier_no_duplicates_yields_empty_duplicate_accepts():
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"},
         {"model_id": "second-order-thinking", "model_name": "Second-Order Thinking", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, weak_matches, traces = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -386,6 +400,372 @@ def test_verifier_no_duplicates_yields_empty_duplicate_accepts():
     assert len(accepted_before_cap) == 2
     assert duplicate_accepts == []
     assert capped == []
+
+
+# ---------- Partitioned verifier (PR-B) ----------
+
+
+class _RecordingClient:
+    """Sequential boundary client that records each (system_prompt, user_prompt)
+    pair plus the payload returned. Used to assert per-bucket call counts and
+    that each bucket sees only its own candidates."""
+
+    def __init__(self, payloads_by_bucket_signal: dict[str, dict] | None = None,
+                 default_payload: dict | None = None):
+        self._payloads = payloads_by_bucket_signal or {}
+        self._default = default_payload or {"accepted": [], "rejected": []}
+        self.calls: list[tuple[str, str]] = []
+
+    def run_json(self, system_prompt: str, user_prompt: str) -> dict:
+        self.calls.append((system_prompt, user_prompt))
+        for signal, payload in self._payloads.items():
+            if signal in user_prompt:
+                return payload
+        return self._default
+
+
+def _candidate(model_id: str, reasoning_type: str, final_rank: int,
+               model_name: str | None = None) -> dict:
+    return {
+        "model_id": model_id,
+        "model_name": model_name or model_id.replace("-", " ").title(),
+        "activation_trigger": "x",
+        "recall_source": "keyword",
+        "keyword_rank": final_rank,
+        "embedding_rank": None,
+        "final_rank": final_rank,
+        "reasoning_type": reasoning_type,
+    }
+
+
+def test_verifier_partitions_candidates_by_reasoning_type():
+    """Each bucket gets exactly one LLM call; bucket prompts contain ONLY
+    that bucket's model_ids."""
+    text = "anchor-phrase-A and anchor-phrase-B and anchor-phrase-C"
+    candidates = [
+        _candidate("diag-1", "diagnostic", 1),
+        _candidate("diag-2", "diagnostic", 2),
+        _candidate("sys-1",  "systems",    3),
+        _candidate("prob-1", "probabilistic", 4),
+    ]
+    client = _RecordingClient(
+        payloads_by_bucket_signal={
+            "diag-1": {
+                "accepted": [{"model_id": "diag-1", "presence_mode": "executed",
+                              "evidence_quote": "anchor-phrase-A", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
+                "rejected": [],
+            },
+            "sys-1": {
+                "accepted": [{"model_id": "sys-1", "presence_mode": "executed",
+                              "evidence_quote": "anchor-phrase-B", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
+                "rejected": [],
+            },
+            "prob-1": {
+                "accepted": [{"model_id": "prob-1", "presence_mode": "executed",
+                              "evidence_quote": "anchor-phrase-C", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
+                "rejected": [],
+            },
+        },
+    )
+    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    # 3 distinct reasoning_types → 3 LLM calls → 3 traces.
+    assert len(client.calls) == 3
+    assert len(traces) == 3
+    stages = sorted(t.stage for t in traces)
+    assert stages == sorted([
+        "companion_verification_diagnostic",
+        "companion_verification_systems",
+        "companion_verification_probabilistic",
+    ])
+    # Each call's user prompt mentions only its bucket's model_ids.
+    for system_prompt, user_prompt in client.calls:
+        if "diag-1" in user_prompt:
+            assert "sys-1" not in user_prompt and "prob-1" not in user_prompt
+        elif "sys-1" in user_prompt:
+            assert "diag-1" not in user_prompt and "prob-1" not in user_prompt
+        elif "prob-1" in user_prompt:
+            assert "diag-1" not in user_prompt and "sys-1" not in user_prompt
+    detected_ids = {m.model_id for m in detected}
+    assert detected_ids == {"diag-1", "sys-1", "prob-1"}
+    assert len(accepted_pre) == 3
+    assert capped == []
+
+
+def test_verifier_partition_dedupes_cross_bucket_duplicates():
+    """A model_id accepted in two buckets gets deduplicated at fan-in. First
+    valid occurrence wins, surplus go to duplicate_accepts (NOT rejected)."""
+    text = "phrase-A and phrase-B"
+    candidates = [
+        _candidate("shared-model", "diagnostic", 1),
+        # Duplicate model_id in a different bucket — only happens under
+        # list-aware bucketing (deferred). Dedupe must hold either way.
+        _candidate("shared-model", "systems", 2),
+    ]
+    candidates[0]["activation_trigger"] = "anchor:diag"
+    candidates[1]["activation_trigger"] = "anchor:sys"
+    client = _RecordingClient(
+        payloads_by_bucket_signal={
+            "anchor:diag": {
+                "accepted": [{"model_id": "shared-model", "presence_mode": "executed",
+                              "evidence_quote": "phrase-A", "presence_explanation": "diag explanation", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
+                "rejected": [],
+            },
+            "anchor:sys": {
+                "accepted": [{"model_id": "shared-model", "presence_mode": "violated",
+                              "evidence_quote": "phrase-B", "presence_explanation": "sys explanation", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
+                "rejected": [],
+            },
+        },
+    )
+    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert len(detected) == 1
+    assert detected[0].model_id == "shared-model"
+    # First valid occurrence wins (the diagnostic-bucket payload).
+    assert detected[0].evidence_quote == "phrase-A"
+    assert detected[0].presence_explanation == "diag explanation"
+    assert len(dups) == 1
+    assert dups[0]["model_id"] == "shared-model"
+    assert dups[0]["drop_reason"] == "duplicate_accept_dedupe"
+    assert all(r.get("model_id") != "shared-model" for r in rejected)
+
+
+def test_verifier_partition_sorts_fan_in_by_final_rank_then_model_id():
+    """Pre-registered fan-in: (final_rank, model_id). Independent of which
+    bucket finished first or LLM response order. Protects the top-5 cap from
+    parallel-execution non-determinism."""
+    text = "p1 p2 p3 p4 p5 p6 p7"
+    candidates = [
+        _candidate("d-low-priority",  "diagnostic", 10),
+        _candidate("d-mid-priority",  "diagnostic", 5),
+        _candidate("s-top-priority",  "systems", 1),
+        _candidate("s-second",        "systems", 2),
+        _candidate("s-third",         "systems", 3),
+        _candidate("s-fourth",        "systems", 4),
+    ]
+    client = _RecordingClient(
+        payloads_by_bucket_signal={
+            "d-low-priority": {
+                "accepted": [
+                    {"model_id": "d-low-priority", "presence_mode": "executed",
+                     "evidence_quote": "p1", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
+                    {"model_id": "d-mid-priority", "presence_mode": "executed",
+                     "evidence_quote": "p2", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
+                ],
+                "rejected": [],
+            },
+            "s-top-priority": {
+                "accepted": [
+                    {"model_id": "s-top-priority", "presence_mode": "executed",
+                     "evidence_quote": "p3", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
+                    {"model_id": "s-second", "presence_mode": "executed",
+                     "evidence_quote": "p4", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
+                    {"model_id": "s-third", "presence_mode": "executed",
+                     "evidence_quote": "p5", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
+                    {"model_id": "s-fourth", "presence_mode": "executed",
+                     "evidence_quote": "p6", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",},
+                ],
+                "rejected": [],
+            },
+        },
+    )
+    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert [m.model_id for m in accepted_pre] == [
+        "s-top-priority",  # final_rank=1
+        "s-second",        # 2
+        "s-third",         # 3
+        "s-fourth",        # 4
+        "d-mid-priority",  # 5
+        "d-low-priority",  # 10
+    ]
+    # Top-5 cap applies AFTER the deterministic sort.
+    assert [m.model_id for m in detected] == [
+        "s-top-priority", "s-second", "s-third", "s-fourth", "d-mid-priority",
+    ]
+    assert len(capped) == 1
+    assert capped[0]["model_id"] == "d-low-priority"
+
+
+def test_verifier_partition_empty_candidates_short_circuits():
+    """No candidates → no LLM calls → empty 6-tuple."""
+    client = _RecordingClient()
+    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+        packet=_packet("any text"),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=[],
+        client=client,
+    )
+    assert detected == [] and rejected == [] and accepted_pre == []
+    assert capped == [] and dups == [] and traces == []
+    assert client.calls == []
+
+
+def test_verifier_single_bucket_runs_one_call():
+    """All candidates same reasoning_type → exactly one bucket → exactly one
+    LLM call. Architecture degenerates cleanly when the substrate gives no
+    diversity."""
+    text = "phrase-one"
+    candidates = [
+        _candidate("a", "diagnostic", 1),
+        _candidate("b", "diagnostic", 2),
+        _candidate("c", "diagnostic", 3),
+    ]
+    client = _RecordingClient(default_payload={
+        "accepted": [{"model_id": "a", "presence_mode": "executed",
+                      "evidence_quote": "phrase-one", "presence_explanation": "ok", "activation_strength": "strong", "why_not_merely_compatible": "answer performs the model's mechanism",}],
+        "rejected": [],
+    })
+    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert len(client.calls) == 1
+    assert len(traces) == 1
+    assert traces[0].stage == "companion_verification_diagnostic"
+
+
+# ---------- Strict shared rubric / weak_matches (PR-B v2) ----------
+
+
+def test_verifier_demotes_accepted_without_activation_strength_to_weak():
+    """The shared strict rubric requires `activation_strength="strong"` on
+    every accepted item. If the LLM omits it (or sets it to anything other
+    than 'strong'), the parser must demote to weak_matches with reason
+    'missing_or_non_strong_activation_strength'. Protects against the per-
+    bucket verifier becoming under-discriminating after partition removed
+    cross-bucket competition."""
+    text = "phrase-A and phrase-B"
+    accepted_payload = [
+        {"model_id": "m-no-strength", "presence_mode": "executed",
+         "evidence_quote": "phrase-A", "presence_explanation": "ok",
+         "why_not_merely_compatible": "answer performs the mechanism"},
+        {"model_id": "m-weak-strength", "presence_mode": "executed",
+         "evidence_quote": "phrase-B", "presence_explanation": "ok",
+         "activation_strength": "weak",
+         "why_not_merely_compatible": "answer performs the mechanism"},
+    ]
+    candidates = [
+        _candidate("m-no-strength",   "diagnostic", 1),
+        _candidate("m-weak-strength", "diagnostic", 2),
+    ]
+    client = _RecordingClient(default_payload={"accepted": accepted_payload, "rejected": []})
+    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert detected == [] and accepted_pre == []
+    weak_by_id = {w["model_id"]: w for w in weak}
+    assert "m-no-strength" in weak_by_id
+    assert "m-weak-strength" in weak_by_id
+    assert weak_by_id["m-no-strength"]["weak_match_reason"] == "missing_or_non_strong_activation_strength"
+    assert weak_by_id["m-weak-strength"]["weak_match_reason"] == "missing_or_non_strong_activation_strength"
+    rejected_ids = {r.get("model_id") for r in rejected}
+    assert "m-no-strength" not in rejected_ids
+    assert "m-weak-strength" not in rejected_ids
+
+
+def test_verifier_demotes_accepted_without_why_not_merely_compatible_to_weak():
+    """The shared strict rubric requires `why_not_merely_compatible` on every
+    accepted item. Missing or empty → demote to weak_matches. The rubric is
+    enforced at the parser, not just the prompt — the LLM cannot bypass it
+    by claiming `activation_strength="strong"` while omitting the
+    distinction-from-compatibility justification."""
+    text = "phrase-A"
+    accepted_payload = [
+        {"model_id": "m-no-why", "presence_mode": "executed",
+         "evidence_quote": "phrase-A", "presence_explanation": "ok",
+         "activation_strength": "strong"},
+    ]
+    candidates = [_candidate("m-no-why", "diagnostic", 1)]
+    client = _RecordingClient(default_payload={"accepted": accepted_payload, "rejected": []})
+    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert detected == [] and accepted_pre == []
+    assert len(weak) == 1
+    assert weak[0]["model_id"] == "m-no-why"
+    assert weak[0]["weak_match_reason"] == "missing_why_not_merely_compatible"
+
+
+def test_verifier_passes_through_explicit_weak_matches_array():
+    """When the LLM puts an item directly in the `weak_matches` array (with
+    `weak_match_reason`), it's surfaced as-is. Items not in the candidate
+    set are filtered out."""
+    text = "phrase-A"
+    payload = {
+        "accepted": [],
+        "rejected": [],
+        "weak_matches": [
+            {"model_id": "m1", "weak_match_reason": "topic-adjacent"},
+            {"model_id": "m2", "weak_match_reason": "compatible_but_not_executed"},
+            {"model_id": "m-not-in-candidates", "weak_match_reason": "topic-adjacent"},
+        ],
+    }
+    candidates = [
+        _candidate("m1", "diagnostic", 1),
+        _candidate("m2", "diagnostic", 2),
+    ]
+    client = _RecordingClient(default_payload=payload)
+    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert detected == [] and accepted_pre == [] and rejected == []
+    weak_ids = {w["model_id"] for w in weak}
+    assert weak_ids == {"m1", "m2"}
+    weak_by_id = {w["model_id"]: w for w in weak}
+    assert weak_by_id["m1"]["weak_match_reason"] == "topic-adjacent"
+    assert weak_by_id["m2"]["weak_match_reason"] == "compatible_but_not_executed"
+
+
+def test_verifier_strict_rubric_lets_strong_well_specified_items_through():
+    """Backwards-compat sanity: when the LLM correctly populates all six
+    required fields, the item enters detected — same as before PR-B v2 for
+    properly-formatted responses."""
+    text = "phrase-A"
+    payload = {
+        "accepted": [
+            {"model_id": "m1", "presence_mode": "executed",
+             "evidence_quote": "phrase-A", "presence_explanation": "ok",
+             "activation_strength": "strong",
+             "why_not_merely_compatible": "the answer performs the mechanism specifically"},
+        ],
+        "rejected": [],
+    }
+    candidates = [_candidate("m1", "diagnostic", 1)]
+    client = _RecordingClient(default_payload=payload)
+    detected, rejected, accepted_pre, capped, dups, weak, traces = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert len(detected) == 1
+    assert detected[0].model_id == "m1"
+    assert weak == []
 
 
 # ---------- PipelineConfig.companion_candidate_cap is threaded ----------
