@@ -3,14 +3,15 @@
 
 Takes a raw conversation transcript, calls OpenRouter to extract structured
 fields (decision situation, constraints, synthesized position, reasoning
-passages, framing, dropped threads), and derives flat query/answer compatibility
-fields for downstream tooling.
+passages, framing, dropped threads), and derives an explicit audit seed plus
+flat query/answer compatibility fields for older downstream tooling.
 
 Usage:
     python3 scripts/run_extract.py --conversation-file /tmp/conv.txt
     python3 scripts/run_extract.py --conversation-file /tmp/conv.txt --env-file /path/to/.env
 
-Output: JSON to stdout with extraction fields and flat query/answer compatibility fields.
+Output: JSON to stdout with extraction fields, audit_seed, and legacy
+critique_request compatibility fields.
 """
 from __future__ import annotations
 
@@ -410,23 +411,14 @@ def _validate_conversation_capture(conversation_text: str) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Flat query/answer compatibility mapping
+# Audit seed + flat query/answer compatibility mapping
 # ---------------------------------------------------------------------------
 
-def _map_to_critique_request(
-    extraction: dict,
-    assistant_text: str = "",
-) -> dict:
-    """Map extracted fields to query + vanilla_answer for the pipeline.
-
-    The query carries the decision structure (for Lane 1 triage and Lane 3
-    frame pressure).  The vanilla_answer carries the full assistant reasoning
-    (for Lane 2 companion fingerprinting/verification and Lane 1 deep checks).
-    """
+def _build_case_focus(extraction: dict) -> str:
+    """Build the compact decision focus used by artifact/post-processing code."""
     decision = extraction.get("decision_situation", "")
 
-    # Build enriched query
-    query_parts = [decision]
+    case_focus_parts = [decision]
 
     constraints = extraction.get("live_constraints", [])
     if constraints:
@@ -436,11 +428,13 @@ def _map_to_critique_request(
             weight = c.get("weight", "situational")
             tag = f"{status.upper()}/{weight.upper()}" if status != "active" else status.upper()
             constraint_lines.append(f"- [{tag}] {c.get('constraint', '')}")
-        query_parts.append("\nConstraints stated during conversation:\n" + "\n".join(constraint_lines))
+        case_focus_parts.append(
+            "\nConstraints stated during conversation:\n" + "\n".join(constraint_lines)
+        )
 
     framing = extraction.get("original_framing", "")
     if framing:
-        query_parts.append(f"\nOriginal framing: {framing}")
+        case_focus_parts.append(f"\nOriginal framing: {framing}")
 
     dropped = extraction.get("dropped_threads", [])
     if dropped:
@@ -454,13 +448,16 @@ def _map_to_critique_request(
             if superseded:
                 line += f" → superseded by: {superseded}"
             thread_lines.append(line)
-        query_parts.append(
+        case_focus_parts.append(
             "\nDropped threads (raised but unresolved):\n" + "\n".join(thread_lines)
         )
 
-    query = "\n".join(query_parts)
+    return "\n".join(case_focus_parts)
 
-    # Build vanilla answer — prefer full assistant text, fall back to synthesis
+
+def _legacy_answer_text(extraction: dict, assistant_text: str = "") -> str:
+    """Build the old vanilla_answer field without changing compatibility."""
+
     if assistant_text and len(assistant_text) > 200:
         # Use synthesized position as a preamble for focus, then full text
         synthesis = extraction.get("synthesized_position", "")
@@ -480,6 +477,37 @@ def _map_to_critique_request(
             for i, p in enumerate(passages, 1):
                 vanilla_parts.append(f"\n[{i}] \"{p}\"")
         vanilla_answer = "\n".join(vanilla_parts)
+
+    return vanilla_answer
+
+
+def _build_audit_seed(
+    extraction: dict,
+    assistant_text: str = "",
+) -> dict:
+    """Build the explicit post-processing seed for conversation-native runs."""
+    audit_target = assistant_text.strip() or _legacy_answer_text(extraction)
+    if len(audit_target) > MAX_VANILLA_ANSWER_CHARS:
+        audit_target = audit_target[:MAX_VANILLA_ANSWER_CHARS]
+
+    return {
+        "case_focus": _build_case_focus(extraction),
+        "audit_target_assistant_text": audit_target,
+    }
+
+
+def _map_to_critique_request(
+    extraction: dict,
+    assistant_text: str = "",
+) -> dict:
+    """Map extracted fields to legacy query + vanilla_answer compatibility.
+
+    The pipeline no longer consumes this shape. It remains in the extraction
+    artifact so older tools and stored captures can continue to run during the
+    compatibility window.
+    """
+    query = _build_case_focus(extraction)
+    vanilla_answer = _legacy_answer_text(extraction, assistant_text=assistant_text)
 
     return {"query": query, "vanilla_answer": vanilla_answer}
 
@@ -697,12 +725,14 @@ def main() -> int:
     # Extract full assistant responses from conversation for richer pipeline input
     assistant_text = _extract_assistant_responses(conversation_text)
 
-    # Map to flat query/answer compatibility fields
+    # Emit explicit conversation-native audit seed plus legacy compatibility.
+    audit_seed = _build_audit_seed(payload, assistant_text=assistant_text)
     critique_request = _map_to_critique_request(payload, assistant_text=assistant_text)
 
     output = {
         "status": "ok",
         "extraction": payload,
+        "audit_seed": audit_seed,
         "critique_request": critique_request,
         **capture_result,
     }

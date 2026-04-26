@@ -22,6 +22,28 @@ def _short(text: str, limit: int = 80) -> str:
     return text[:limit] + "\u2026" if len(text) > limit else text
 
 
+def _case_focus(result: dict) -> str:
+    audit_seed = result.get("audit_seed") or {}
+    if isinstance(audit_seed, dict) and audit_seed.get("case_focus"):
+        return str(audit_seed["case_focus"])
+
+    extraction = result.get("extraction") or {}
+    if isinstance(extraction, dict):
+        decision = extraction.get("decision_situation")
+        if decision:
+            return str(decision)
+        turns = extraction.get("turns") or []
+        user_turns = [
+            str(turn.get("text", "")).strip()
+            for turn in turns
+            if isinstance(turn, dict) and turn.get("speaker") == "user"
+        ]
+        if user_turns:
+            return "\n\n".join(t for t in user_turns if t)
+
+    return str(result.get("query", "") or "")
+
+
 def _fmt_trace(trace: dict | None, label: str) -> str:
     if trace is None:
         return f"  {label:<11} not traced"
@@ -67,7 +89,7 @@ def inspect(result_path: Path) -> None:
     print("=" * 78)
 
     # Overview
-    print(f"\nQuery:  {_short(result.get('query', ''), 120)}")
+    print(f"\nCase:   {_short(_case_focus(result), 120)}")
     print(f"Status: {result.get('status', 'unknown')}")
     print(
         f"Health: {run_health.get('overall', '?')}  "

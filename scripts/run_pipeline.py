@@ -26,6 +26,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
 ENGINE_DIR = SKILL_ROOT / "engine"
+MAX_POSTPROCESSING_ASSISTANT_CHARS = 40_000
 
 if (ENGINE_DIR / "system_b" / "__init__.py").exists():
     sys.path.insert(0, str(ENGINE_DIR))
@@ -69,24 +70,6 @@ def _load_env_file(path: Path) -> list[str]:
     return loaded
 
 
-def _extract_user_turns(conversation_path: Path) -> str:
-    """Extract user messages from a conversation transcript.
-
-    Returns the full text of all user turns, giving the BI judge
-    visibility into what facts were established in conversation.
-    """
-    import re
-    text = conversation_path.read_text(encoding="utf-8")
-    parts = re.split(r"\[Turn \d+\] (USER|ASSISTANT):", text)
-    user_texts = []
-    for i in range(1, len(parts) - 1, 2):
-        role = parts[i].strip()
-        content = parts[i + 1].strip()
-        if role == "USER" and content:
-            user_texts.append(content)
-    return "\n\n".join(user_texts)
-
-
 def _build_fact_registry(extraction: dict) -> str:
     """Build a structured fact registry from the extraction JSON.
 
@@ -125,6 +108,114 @@ def _build_fact_registry(extraction: dict) -> str:
     return "\n".join(parts) if parts else ""
 
 
+def _joined_turn_text(ctx, speaker: str) -> str:
+    """Join non-empty turn bodies for one speaker from ConversationContext."""
+    return "\n\n".join(
+        t.text.strip()
+        for t in ctx.turns
+        if t.speaker == speaker and t.text.strip()
+    )
+
+
+def _build_case_focus_from_context(ctx) -> str:
+    """Derive a compact post-processing focus from ConversationContext.
+
+    This replaces the legacy CLI-level `query` requirement. It is only used
+    by post-processing surfaces such as revision, BI fallback context, and
+    inspection; the pipeline lanes already receive the full ConversationContext.
+    """
+    ext = ctx.extraction
+    parts: list[str] = []
+
+    if ext.decision_situation.strip():
+        parts.append(ext.decision_situation.strip())
+
+    if ext.live_constraints:
+        constraint_lines = []
+        for constraint in ext.live_constraints:
+            status = constraint.status or "active"
+            weight = constraint.weight or "situational"
+            tag = (
+                f"{status.upper()}/{weight.upper()}"
+                if status != "active"
+                else status.upper()
+            )
+            constraint_lines.append(f"- [{tag}] {constraint.constraint}")
+        parts.append("Constraints stated during conversation:\n" + "\n".join(constraint_lines))
+
+    if ext.original_framing.strip():
+        parts.append(f"Original framing: {ext.original_framing.strip()}")
+
+    if ext.dropped_threads:
+        thread_lines = []
+        for thread in ext.dropped_threads:
+            line = (
+                f"- {thread.thread} (raised by {thread.raised_by}, "
+                f"status: {thread.status})"
+            )
+            if thread.superseded_by:
+                line += f" -> superseded by: {thread.superseded_by}"
+            thread_lines.append(line)
+        parts.append("Dropped threads (raised but unresolved):\n" + "\n".join(thread_lines))
+
+    if not parts:
+        user_turns = _joined_turn_text(ctx, "user")
+        if user_turns:
+            parts.append(user_turns)
+
+    return "\n\n".join(parts).strip()
+
+
+def _legacy_seed_from_extraction(extraction: dict) -> tuple[str, str]:
+    """Read deprecated artifact seed fields as a fallback only.
+
+    `audit_seed` is the new explicit artifact shape. `critique_request` and
+    raw top-level `query` / `vanilla_answer` remain accepted so older captured
+    artifacts can still run.
+    """
+    audit_seed = extraction.get("audit_seed")
+    if isinstance(audit_seed, dict):
+        case_focus = str(audit_seed.get("case_focus", "") or "")
+        audit_target = str(audit_seed.get("audit_target_assistant_text", "") or "")
+        if case_focus or audit_target:
+            return case_focus, audit_target
+
+    critique_request = extraction.get("critique_request")
+    if isinstance(critique_request, dict):
+        cr = critique_request
+    else:
+        cr = extraction
+
+    return (
+        str(cr.get("query", "") or ""),
+        str(cr.get("vanilla_answer", "") or ""),
+    )
+
+
+def _derive_postprocessing_seed(extraction: dict, ctx) -> dict[str, str]:
+    """Derive post-processing text from ConversationContext first.
+
+    This keeps the runtime contract conversation-native while preserving old
+    artifact compatibility if a malformed/older context lacks the needed text.
+    """
+    legacy_case_focus, legacy_audit_target = _legacy_seed_from_extraction(extraction)
+
+    case_focus = _build_case_focus_from_context(ctx) or legacy_case_focus
+    audit_target = (
+        _joined_turn_text(ctx, "assistant")
+        or ctx.extraction.synthesized_position.strip()
+        or legacy_audit_target
+    )
+
+    if len(audit_target) > MAX_POSTPROCESSING_ASSISTANT_CHARS:
+        audit_target = audit_target[:MAX_POSTPROCESSING_ASSISTANT_CHARS]
+
+    return {
+        "case_focus": case_focus,
+        "audit_target_assistant_text": audit_target,
+    }
+
+
 # ---------------------------------------------------------------------------
 # Data root resolution
 # ---------------------------------------------------------------------------
@@ -156,10 +247,10 @@ def _resolve_data_root() -> Path:
 def _serialize_conversation_context(ctx) -> dict:
     """Serialize a ConversationContext to a JSON-safe dict for result.json.
 
-    Observatory + render_memo derive their displayed query/vanilla_answer from
-    this block (joined user turns / joined assistant turns), and use
-    decision_situation for case naming. Carries the full conversation shape
-    so consumers don't need a separate channel for the source data.
+    Observatory + render_memo derive their displayed case focus / assistant
+    audit target from this block, and use decision_situation for case naming.
+    Carries the full conversation shape so consumers don't need a separate
+    channel for the source data.
     """
     ext = ctx.extraction
     return {
@@ -406,22 +497,6 @@ def main() -> int:
     else:
         extraction = json.loads(args.extraction_json)
 
-    # Support both raw {query, vanilla_answer} and wrapped {critique_request: {...}}
-    if "critique_request" in extraction:
-        cr = extraction["critique_request"]
-    else:
-        cr = extraction
-
-    query = cr.get("query", "")
-    vanilla_answer = cr.get("vanilla_answer", "")
-
-    # Load full conversation context for BI evaluation if available
-    _conversation_context = ""
-    if args.conversation_file:
-        conv_path = Path(args.conversation_file)
-        if conv_path.exists():
-            _conversation_context = _extract_user_turns(conv_path)
-
     # Read upstream capture diagnostics (from run_extract.py)
     _capture_health = extraction.get("capture_health", "unknown")
     _capture_warnings = extraction.get("capture_warnings", [])
@@ -433,13 +508,6 @@ def main() -> int:
         (_capture_manifest or {}).get("truncation_applied", False)
     )
     _omitted_turns = int((_capture_manifest or {}).get("omitted_turns", 0) or 0)
-
-    if not query or not vanilla_answer:
-        print(json.dumps({
-            "status": "error",
-            "error": "Extraction must contain non-empty 'query' and 'vanilla_answer' fields",
-        }))
-        return 1
 
     # Resolve data root and load pipeline
     data_root = _resolve_data_root()
@@ -487,6 +555,10 @@ def main() -> int:
         extraction_path=Path(args.extraction_file),
         conversation_path=Path(args.conversation_file),
     )
+    postprocessing_seed = _derive_postprocessing_seed(extraction, pipeline_input)
+    case_focus = postprocessing_seed["case_focus"]
+    audit_target_assistant_text = postprocessing_seed["audit_target_assistant_text"]
+    user_context_text = _joined_turn_text(pipeline_input, "user")
 
     try:
         result = pipeline.run(pipeline_input)
@@ -505,28 +577,31 @@ def main() -> int:
     )
 
     # Include the full conversation context as `extraction` for Observatory
-    # + render_memo. They derive displayed query/vanilla_answer from the
-    # joined user turns / joined assistant turns and use decision_situation
-    # for case naming.
+    # + render_memo. They derive displayed case focus / audit target from the
+    # joined turns and use decision_situation for case naming.
     serialized["extraction"] = _serialize_conversation_context(pipeline_input)
 
     # Revision step + Bullshit Index — run in parallel.
     # Revision: three cards through a second LLM to produce a revised answer.
-    # BI: four-subtype detector on the vanilla answer (always-on).
+    # BI: four-subtype detector on the assistant audit target (always-on).
     from concurrent.futures import ThreadPoolExecutor, as_completed
 
     revised_answer = None
     bullshit_profile_payload = None
 
     def _run_revision():
-        if args.skip_revision or not (result.delta_card and result.delta_card.findings):
+        if (
+            args.skip_revision
+            or not audit_target_assistant_text
+            or not (result.delta_card and result.delta_card.findings)
+        ):
             return None
         from system_b.testing_harness import build_revision_prompt
         from system_b.boundary_provider import load_boundary_client_from_env
 
         revision_prompt = build_revision_prompt(
-            query=query,
-            vanilla_answer=vanilla_answer,
+            query=case_focus,
+            vanilla_answer=audit_target_assistant_text,
             delta_card=result.delta_card,
             companion_card=result.companion_card,
             companion_cheat_sheet=result.companion_cheat_sheet,
@@ -548,12 +623,12 @@ def main() -> int:
         fact_registry = _build_fact_registry(extraction)
         if fact_registry:
             bi_context = fact_registry
-        elif _conversation_context:
-            bi_context = _conversation_context[:4000]
+        elif user_context_text:
+            bi_context = user_context_text[:4000]
         else:
-            bi_context = query
+            bi_context = case_focus
         profile = evaluate_text(
-            vanilla_answer,
+            audit_target_assistant_text,
             client,
             context_summary=bi_context,
         )

@@ -10,7 +10,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from run_extract import _validate_canonical_key, _apply_canonical_key_validation  # noqa: E402
+from run_extract import (  # noqa: E402
+    _apply_canonical_key_validation,
+    _build_audit_seed,
+    _map_to_critique_request,
+    _validate_canonical_key,
+)
 
 
 def test_valid_four_token_slug():
@@ -150,3 +155,21 @@ def test_post_validation_empty_string_counts_as_invalid():
     assert offenders == [""]
     assert len(warnings) == 1
     assert payload["live_constraints"][0]["canonical_key"] == ""
+
+
+def test_audit_seed_prefers_actual_assistant_text_without_changing_legacy_mapping():
+    payload = {
+        "decision_situation": "Should we accept the offer?",
+        "synthesized_position": "Legacy synthesis.",
+        "reasoning_passages": [],
+    }
+
+    audit_seed = _build_audit_seed(payload, assistant_text="Actual assistant reply.")
+    critique_request = _map_to_critique_request(
+        payload,
+        assistant_text="Actual assistant reply.",
+    )
+
+    assert audit_seed["case_focus"] == "Should we accept the offer?"
+    assert audit_seed["audit_target_assistant_text"] == "Actual assistant reply."
+    assert critique_request["vanilla_answer"] == "Legacy synthesis."
