@@ -355,6 +355,17 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_fingerprint_dropped": list(result.audit.companion_fingerprint_dropped),
         "companion_detected_models": list(result.audit.companion_detected_models),
         "companion_rejected_models": list(result.audit.companion_rejected_models),
+        # Lane 2 attribution surfaces (research/lane2-attribution-design-2026-04-26.md):
+        # - companion_candidates: full recall input to verifier (with per-source ranks)
+        # - companion_verification_accepted_before_cap: full LLM-accepted set
+        # - companion_verification_capped_models: accepted-but-not-surfaced (top-5 budget)
+        # - companion_candidate_cap: explicit recall cap in effect
+        # - embedding_mode: "on" or "off" so reports group cleanly without env inspection
+        "companion_candidates": list(result.audit.companion_candidates),
+        "companion_verification_accepted_before_cap": list(result.audit.companion_verification_accepted_before_cap),
+        "companion_verification_capped_models": list(result.audit.companion_verification_capped_models),
+        "companion_candidate_cap": result.audit.companion_candidate_cap,
+        "embedding_mode": result.audit.embedding_mode,
         "deep_check_results": [
             {
                 "tendency_id": dcr.tendency_id,
@@ -468,6 +479,29 @@ def main() -> int:
             "contract. No longer needed for file-based conversation runs."
         ),
     )
+    parser.add_argument(
+        "--embeddings",
+        choices=("auto", "on", "off"),
+        default="auto",
+        help=(
+            "Embedding-mode control for Lane 2 attribution: "
+            "'auto' (default) enables embeddings when OPENAI_API_KEY is set; "
+            "'on' requires the key and fails if absent; "
+            "'off' disables embeddings regardless of env. The chosen mode is "
+            "persisted in audit_summary.embedding_mode so reports can group "
+            "without inspecting environment variables after the fact."
+        ),
+    )
+    parser.add_argument(
+        "--companion-candidate-cap",
+        type=int,
+        default=None,
+        help=(
+            "Override the Lane 2 candidate cap (default: 60). Diagnostic knob; "
+            "do not tune this in production runs without an attribution-driven "
+            "rationale (see research/lane2-attribution-design-2026-04-26.md)."
+        ),
+    )
     args = parser.parse_args()
 
     contract_error = _contract_error(args)
@@ -514,7 +548,17 @@ def main() -> int:
 
     from system_b.pipeline import SystemBPipeline, PipelineConfig
 
-    has_embeddings = bool(os.environ.get("OPENAI_API_KEY", ""))
+    # Resolve embedding mode from explicit flag, falling back to env-driven auto.
+    has_key = bool(os.environ.get("OPENAI_API_KEY", ""))
+    if args.embeddings == "on":
+        if not has_key:
+            print(json.dumps({"status": "error", "error": "--embeddings on requires OPENAI_API_KEY"}))
+            return 1
+        enable_embeddings = True
+    elif args.embeddings == "off":
+        enable_embeddings = False
+    else:  # auto
+        enable_embeddings = has_key
 
     _tiebreaker_env = os.environ.get("LOLLA_ACTIVATION_TIEBREAKER", "").strip().lower()
     if _tiebreaker_env in ("0", "false", "no", "off"):
@@ -522,12 +566,15 @@ def main() -> int:
     else:
         activation_tiebreaker_enabled = True
 
+    candidate_cap = args.companion_candidate_cap if args.companion_candidate_cap is not None else 60
+
     config = PipelineConfig(
         enable_companion=True,
         enable_frame_pressure=True,
         enable_structural_coverage=True,
-        enable_embeddings=has_embeddings,
+        enable_embeddings=enable_embeddings,
         activation_tiebreaker_enabled=activation_tiebreaker_enabled,
+        companion_candidate_cap=candidate_cap,
     )
 
     try:
@@ -543,8 +590,10 @@ def main() -> int:
         }))
         return 1
 
-    # Capture diagnostics for audit output
-    _embedding_active = pipeline._embedding_retriever is not None
+    # Capture diagnostics for audit output. Gate on config as well as retriever
+    # presence so `--embeddings off` is reflected accurately even when an
+    # OPENAI_API_KEY is set (retriever may be loaded but unused).
+    _embedding_active = pipeline._embedding_retriever is not None and config.enable_embeddings
     _compiled_chunk_count = 0
     if pipeline._bundle_selector is not None:
         _compiled_chunk_count = len(pipeline._bundle_selector._substrate.all_chunks())
