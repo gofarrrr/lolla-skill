@@ -765,7 +765,15 @@ def recall_candidates(
                 break
 
     # --- Embedding recall path (swiss cheese: additive, never gating) ---
-    if embedding_retriever is not None and embedding_api_key:
+    # Guard `len(results) < max_candidates` preserves the pre-refactor behavior:
+    # when keyword recall has already filled the cap, the embedding path does
+    # not run. This avoids (a) untraced `rank_models_expanded` cost on cap-
+    # saturated runs and (b) `recall_source="both"` metadata leakage that would
+    # falsely imply embedding contributed when it was structurally prevented
+    # from doing so. Whether embedding *should* be allowed to displace low-rank
+    # keyword candidates when the cap is full is an open question deferred to
+    # the post-attribution fix PR (see research/lane2-attribution-design-2026-04-26.md).
+    if embedding_retriever is not None and embedding_api_key and len(results) < max_candidates:
         try:
             query_text = " ".join(primary_texts)
             ranked = embedding_retriever.rank_models_expanded(

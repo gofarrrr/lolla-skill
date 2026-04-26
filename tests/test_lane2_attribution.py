@@ -91,6 +91,60 @@ def test_recall_candidates_max_candidates_caps_results():
     assert sorted(c["final_rank"] for c in candidates) == list(range(1, 11))
 
 
+def test_recall_skips_embedding_when_cap_filled_by_keyword():
+    """Measurement contract: when primary keyword recall fills max_candidates,
+    the embedding path MUST NOT run.
+
+    Pins three guarantees the 24-run attribution campaign depends on:
+
+    1. ``rank_models_expanded`` is never called → no untraced
+       embedding/expansion cost is paid.
+    2. No returned candidate carries ``recall_source="both"`` → the
+       diagnostic metric does not falsely imply embedding contributed when
+       it was structurally prevented from doing so.
+    3. Returned candidates still carry dense, 1-indexed ``final_rank``
+       values → the audit shape is identical to the cap-not-yet-full case.
+
+    Whether embedding *should* be allowed to displace low-rank keyword
+    candidates in this case is an explicit open question deferred to the
+    post-attribution fix PR.
+    """
+    # 5 keyword-matching models + cap=5 → primary keyword fills the cap.
+    kg = _kg([f"model-{i}" for i in range(5)])
+    fp = FingerprintPayload(raw=[], validated=[], dropped=[])
+    text = " ".join(f"model {i}" for i in range(5))
+
+    rank_calls: list[tuple] = []
+
+    class FakeRetriever:
+        def rank_models_expanded(self, query_text, api_key, top_k):
+            rank_calls.append((query_text[:30], api_key, top_k))
+            return [{"model_id": "extra-model", "score": 0.9}]
+
+    candidates = recall_candidates(
+        assistant_text=text,
+        fingerprint_payload=fp,
+        knowledge_graph=kg,
+        reasoning_signals={},
+        max_candidates=5,
+        embedding_retriever=FakeRetriever(),
+        embedding_api_key="fake-key",
+    )
+
+    # (1) Embedding path was not invoked.
+    assert rank_calls == [], (
+        "rank_models_expanded must NOT be called when keyword recall already "
+        "filled max_candidates — would pay untraced cost on cap-saturated runs"
+    )
+    # (2) No 'both' tag leakage from a never-ran embedding path.
+    assert all(c["recall_source"] == "keyword" for c in candidates), (
+        "recall_source must stay 'keyword' across all candidates when embedding "
+        "never ran; 'both' would falsely imply embedding contributed"
+    )
+    # (3) final_rank is dense and 1-indexed regardless of cap-saturation path.
+    assert sorted(c["final_rank"] for c in candidates) == [1, 2, 3, 4, 5]
+
+
 def test_recall_candidates_embedding_path_tags_both_when_overlapping():
     """When embedding recall surfaces a model already found by keyword recall,
     recall_source is promoted to 'both' and embedding_rank is set."""

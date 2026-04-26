@@ -243,6 +243,25 @@ def render(rows: list[dict], generated_at: str, archive_root: Path) -> str:
                "matched to the case_id by token overlap. Read variance in cases with low consumption "
                "with that caveat — Lane 2 stability is an upper bound on user-visible quality there.")
     out.append("")
+    out.append("**Implementation literacy — what each row actually measures:**")
+    out.append("")
+    out.append("- `Candidates`, `Accepted-pre`, `Detected`, `Capped` — clean Lane 2 recall→verify "
+               "measurements. Pass 1 does not feed Lane 2 recall and cheat-sheet rerank is downstream, "
+               "so these rows isolate the recall-and-verifier pipeline.")
+    out.append("- `Anchors` — downstream product-facing row, but **contaminated by cheat-sheet "
+               "selection/reranking** when embeddings flip globally. The `--embeddings on/off` switch "
+               "is global to the pipeline, not Lane-2-only — flipping it also affects Pass 1 embedding "
+               "tendency hits, Lane 1 relevance scoring, and cheat-sheet semantic reranking. Read "
+               "`Anchors` ON-vs-OFF deltas with that caveat; read `Candidates` ON-vs-OFF deltas as "
+               "the cleanest Lane-2-recall isolation.")
+    out.append("- `FP moves` — keyed on normalized `reasoning_move` text, **not** the LLM-generated "
+               "`move_id`. If the LLM paraphrases the same move differently across runs (e.g. "
+               "\"weighing opportunity cost\" vs. \"considers opportunity costs\"), this metric "
+               "under-reports stability. Cross-check with the per-run diff list before concluding "
+               "fingerprint is unstable.")
+    out.append("- `Capped` stability is meaningful only when `Accepted-pre` exceeds the top-5 "
+               "surfacing budget; otherwise capped is empty by construction across runs.")
+    out.append("")
 
     # Group by embedding mode so the on/off question is answerable per case.
     modes = sorted({r["embedding_mode"] for r in rows})
