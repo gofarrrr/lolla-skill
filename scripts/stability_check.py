@@ -355,6 +355,73 @@ def _embedding_mode(d: dict) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Candidate-conditional verifier-stability metric (PR-A)
+# ---------------------------------------------------------------------------
+#
+# Set Jaccard on accepted_before_cap collapses two distinct failure modes:
+# "candidate not present in run B" vs "candidate present in B but rejected
+# there." Those have different fixes — the former is recall-side noise, the
+# latter is verifier-side judgment instability.
+#
+# `shared_available_acceptance_agreement` controls for candidate availability:
+#
+#   intersection / union, restricted to model_ids that were CANDIDATES in
+#   BOTH runs. Numerator: accepted in both. Denominator: accepted in either,
+#   AND present as a candidate in both.
+#
+# When recall is perfectly stable, this collapses back to ordinary Jaccard.
+# When recall churns, it discards the churn from the denominator and
+# isolates per-judgment instability.
+#
+# Read alongside Accepted-pre Jaccard, not as a replacement: the difference
+# between the two tells us how much of the variance is recall-induced vs
+# verifier-induced.
+
+
+def _shared_available_acceptance_agreement_pair(a: dict, b: dict) -> float | None:
+    """Compute the metric for one pair of run results.
+
+    Returns None when undefined (no candidate appears in both runs AND is
+    accepted in either) — caller should treat None as "no judgment to score."
+    """
+    cands_a = _lane2_candidate_set(a)
+    cands_b = _lane2_candidate_set(b)
+    accepted_a = _lane2_accepted_before_cap_set(a)
+    accepted_b = _lane2_accepted_before_cap_set(b)
+
+    shared_candidates = cands_a & cands_b
+    if not shared_candidates:
+        return None
+    accepted_either = accepted_a | accepted_b
+    eligible = accepted_either & shared_candidates
+    if not eligible:
+        return None
+    accepted_both = accepted_a & accepted_b & shared_candidates
+    return len(accepted_both) / len(eligible)
+
+
+def _shared_available_acceptance_agreement_aggregate(
+    results: list[tuple[str, dict]],
+) -> dict:
+    """Pairwise mean / min / max of the candidate-conditional metric across
+    a set of N runs of the same case+mode. None pairs are excluded from the
+    mean; if every pair is undefined, returns None for all stats."""
+    pairs: list[dict] = []
+    for i, j in combinations(range(len(results)), 2):
+        score = _shared_available_acceptance_agreement_pair(results[i][1], results[j][1])
+        pairs.append({"i": i, "j": j, "score": score})
+    valid = [p["score"] for p in pairs if p["score"] is not None]
+    if not valid:
+        return {"mean": None, "min": None, "max": None, "pairs": pairs}
+    return {
+        "mean": round(sum(valid) / len(valid), 4),
+        "min": round(min(valid), 4),
+        "max": round(max(valid), 4),
+        "pairs": pairs,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Stability math
 # ---------------------------------------------------------------------------
 
@@ -424,6 +491,12 @@ def compute_stability(results: list[tuple[str, dict]]) -> dict:
         "lane2_accepted_before_cap": {
             "per_run": [sorted(s) for s in accepted_sets],
             "stability": pairwise_stability(accepted_sets),
+        },
+        # Candidate-conditional verifier-stability metric (PR-A). Controls
+        # for candidate availability so set-Jaccard's "absent in B" doesn't
+        # mask "present in B but rejected." See the metric helper docstring.
+        "lane2_shared_available_acceptance_agreement": {
+            "stability": _shared_available_acceptance_agreement_aggregate(results),
         },
         "lane2_detected_after_cap": {
             "per_run": [sorted(s) for s in detected_sets],
@@ -496,6 +569,7 @@ def render_markdown(stability: dict, prompt_cfg: dict, case_id: str,
         ("Lane 2 — fingerprint moves",     "lane2_fingerprint_moves"),
         ("Lane 2 — recalled candidates",   "lane2_candidates"),
         ("Lane 2 — accepted (pre-cap)",    "lane2_accepted_before_cap"),
+        ("Lane 2 — shared-avail. accept agreement",  "lane2_shared_available_acceptance_agreement"),
         ("Lane 2 — detected (post-cap)",   "lane2_detected_after_cap"),
         ("Lane 2 — capped (top-5 drops)",  "lane2_capped_models"),
         ("Lane 2 (cheat-sheet anchors)",   "lane2_anchors"),

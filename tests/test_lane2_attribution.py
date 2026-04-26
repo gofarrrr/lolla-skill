@@ -232,7 +232,7 @@ def test_verifier_returns_capped_models_separately_from_rejected():
         {"model_id": f"model-{i}", "model_name": f"Model {i}", "activation_trigger": "x"}
         for i in range(n_accepted)
     ]
-    detected, rejected, accepted_before_cap, capped = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -262,7 +262,7 @@ def test_verifier_no_cap_overflow_returns_empty_capped():
     candidates = [
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
     ]
-    detected, rejected, accepted_before_cap, capped = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
         packet=_packet("weighing the opportunity cost of staying"),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -272,6 +272,120 @@ def test_verifier_no_cap_overflow_returns_empty_capped():
     assert len(accepted_before_cap) == 1
     assert capped == []
     assert rejected == []
+
+
+# ---------- Verifier dedupe by model_id ----------
+
+
+def test_verifier_dedupes_duplicate_accepted_model_ids():
+    """The verifier sometimes lists the same model_id more than once with
+    slightly-different evidence. Dedupe MUST happen before DetectedModel
+    construction so downstream CompanionCard.expand_detected_model is not
+    called twice for the same source_model_id (which trips the
+    'CompanionCard cannot contain more than 3 expansions per detected model'
+    invariant). See research/lane2-followup-tracking-2026-04-26.md.
+
+    Pins five guarantees:
+    1. Exactly one DetectedModel per unique model_id reaches detected/accepted.
+    2. The first valid occurrence's evidence_quote and presence_explanation win.
+    3. duplicate_accepts surfaces dropped duplicates with
+       drop_reason="duplicate_accept_dedupe".
+    4. duplicate_accepts is NOT merged into rejected_models — semantic
+       rejection is different and verification_precision telemetry depends
+       on rejected meaning rejected.
+    5. Subsequent CompanionCard build does not violate the expansion invariant.
+    """
+    from engine.system_b.companion import build_companion_card
+    text = "phrase one and phrase two from the assistant turn"
+    accepted_payload = [
+        {
+            "model_id": "opportunity-cost",
+            "presence_mode": "executed",
+            "evidence_quote": "phrase one",
+            "presence_explanation": "first explanation",
+        },
+        {
+            "model_id": "opportunity-cost",  # duplicate model_id
+            "presence_mode": "executed",
+            "evidence_quote": "phrase two",
+            "presence_explanation": "second explanation (should be discarded)",
+        },
+        {
+            "model_id": "opportunity-cost",  # third occurrence — also dropped
+            "presence_mode": "violated",
+            "evidence_quote": "phrase one and phrase two",
+            "presence_explanation": "third explanation (also discarded)",
+        },
+    ]
+    rejected_payload: list = []
+    client = _FakeClient({"accepted": accepted_payload, "rejected": rejected_payload})
+    candidates = [
+        {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    # (1) Exactly one DetectedModel.
+    assert len(detected) == 1
+    assert len(accepted_before_cap) == 1
+    assert detected[0].model_id == "opportunity-cost"
+    # (2) First valid occurrence's evidence/explanation wins.
+    assert detected[0].evidence_quote == "phrase one"
+    assert detected[0].presence_explanation == "first explanation"
+    # (3) Duplicates surfaced with the right drop_reason.
+    assert len(duplicate_accepts) == 2
+    for d in duplicate_accepts:
+        assert d["model_id"] == "opportunity-cost"
+        assert d["drop_reason"] == "duplicate_accept_dedupe"
+    # (4) Not merged into rejected_models.
+    assert rejected == []
+    assert all(r.get("drop_reason") != "duplicate_accept_dedupe" for r in rejected)
+    # (5) CompanionCard build with the deduped detected list does NOT
+    #     violate the per-source expansion invariant.
+    card = build_companion_card(
+        detected_models=detected,
+        knowledge_graph={"models": {"opportunity-cost": {"display_name": "Opportunity Cost"}}},
+        relation_graph={},
+    )
+    assert card.detection_model_count == 1
+
+
+def test_verifier_no_duplicates_yields_empty_duplicate_accepts():
+    """Backwards-compat: a payload with no duplicate model_ids produces
+    empty duplicate_accepts."""
+    text = "weighing the opportunity cost of staying"
+    accepted_payload = [
+        {
+            "model_id": "opportunity-cost",
+            "presence_mode": "executed",
+            "evidence_quote": "weighing the opportunity cost",
+            "presence_explanation": "ok",
+        },
+        {
+            "model_id": "second-order-thinking",
+            "presence_mode": "executed",
+            "evidence_quote": "of staying",
+            "presence_explanation": "ok",
+        },
+    ]
+    client = _FakeClient({"accepted": accepted_payload, "rejected": []})
+    candidates = [
+        {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"},
+        {"model_id": "second-order-thinking", "model_name": "Second-Order Thinking", "activation_trigger": "x"},
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+        packet=_packet(text),
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert len(detected) == 2
+    assert len(accepted_before_cap) == 2
+    assert duplicate_accepts == []
+    assert capped == []
 
 
 # ---------- PipelineConfig.companion_candidate_cap is threaded ----------

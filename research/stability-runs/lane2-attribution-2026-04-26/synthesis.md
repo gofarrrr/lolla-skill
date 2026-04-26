@@ -1,6 +1,6 @@
 # Lane 2 attribution — cross-case synthesis
 
-Generated: 2026-04-26T11:20:20Z
+Generated: 2026-04-26T12:09:04Z
 Archive root for Step 6 consumption baseline: `/Users/marcin/.local/share/lolla/runs`
 
 Contract: research/lane2-attribution-design-2026-04-26.md
@@ -16,23 +16,25 @@ Reading guide:
 - `Anchors` — downstream product-facing row, but **contaminated by cheat-sheet selection/reranking** when embeddings flip globally. The `--embeddings on/off` switch is global to the pipeline, not Lane-2-only — flipping it also affects Pass 1 embedding tendency hits, Lane 1 relevance scoring, and cheat-sheet semantic reranking. Read `Anchors` ON-vs-OFF deltas with that caveat; read `Candidates` ON-vs-OFF deltas as the cleanest Lane-2-recall isolation.
 - `FP moves` — keyed on normalized `reasoning_move` text, **not** the LLM-generated `move_id`. If the LLM paraphrases the same move differently across runs (e.g. "weighing opportunity cost" vs. "considers opportunity costs"), this metric under-reports stability. Cross-check with the per-run diff list before concluding fingerprint is unstable.
 - `Capped` stability is meaningful only when `Accepted-pre` exceeds the top-5 surfacing budget; otherwise capped is empty by construction across runs.
+- `Cand-cond.` (candidate-conditional shared-available acceptance agreement) — the verifier-quality metric introduced post-campaign. Numerator: model_ids accepted in BOTH runs. Denominator: model_ids accepted in EITHER, AND present as a candidate in BOTH runs. Renders "—" when no candidate was accepted in either run (undefined). Read alongside `Accepted-pre`: when `Accepted-pre` and `Cand-cond.` diverge, the gap is recall-induced variance; when they agree, verifier judgment instability is the story.
 
 ## Embedding mode: `off`
 
-| Case | N | FP moves | Candidates | Accepted-pre | Detected | Capped | Anchors | Step 6 cons. | Boundary tok | Decision |
-|---|---|---|---|---|---|---|---|---|---|---|
-| `marcus-equity-lane2-off` | 3 | 0.03 | 0.70 | 0.13 | 0.13 | 1.00 | 0.13 | 100% (n=1) | 428458 | `fix_fingerprint_or_query_construction` |
-| `mid-level-consultant-decides-lane2-off` | 3 | 0.05 | 0.68 | 0.16 | 0.16 | 1.00 | 0.16 | 20% (n=1) | 246034 | `fix_fingerprint_or_query_construction` |
-| `third-year-phd-student-lane2-off` | 3 | 0.00 | 0.75 | 0.39 | 0.30 | 0.00 | 0.30 | 80% (n=1) | 323533 | `inconclusive_widen_n_or_cases` |
+| Case | N | FP moves | Candidates | Accepted-pre | Cand-cond. | Detected | Capped | Anchors | Step 6 cons. | Boundary tok | Decision |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| `marcus-equity-lane2-off` | 3 | 0.03 | 0.70 | 0.13 | 0.13 | 0.13 | 1.00 | 0.13 | 100% (n=1) | 428458 | `fix_fingerprint_or_query_construction` |
+| `mid-level-consultant-decides-lane2-off` | 3 | 0.05 | 0.68 | 0.16 | 0.17 | 0.16 | 1.00 | 0.16 | 20% (n=1) | 246034 | `fix_fingerprint_or_query_construction` |
+| `mother-deciding-address-year-lane2-off` | 3 | 0.08 | 0.81 | 0.20 | 0.23 | 0.23 | 0.33 | 0.23 | 60% (n=1) | 289303 | `inconclusive_widen_n_or_cases` |
+| `third-year-phd-student-lane2-off` | 3 | 0.00 | 0.75 | 0.39 | 0.58 | 0.30 | 0.00 | 0.30 | 80% (n=1) | 323533 | `inconclusive_widen_n_or_cases` |
 
 ## Embedding mode: `on`
 
-| Case | N | FP moves | Candidates | Accepted-pre | Detected | Capped | Anchors | Step 6 cons. | Boundary tok | Decision |
-|---|---|---|---|---|---|---|---|---|---|---|
-| `marcus-equity-lane2-on` | 3 | 0.00 | 0.72 | 0.17 | 0.17 | 1.00 | 0.17 | 100% (n=1) | 439143 | `inconclusive_widen_n_or_cases` |
-| `mid-level-consultant-decides-lane2-on` | 3 | 0.00 | 0.72 | 0.22 | 0.22 | 1.00 | 0.22 | 20% (n=1) | 327970 | `inconclusive_widen_n_or_cases` |
-| `mother-deciding-address-year-lane2-on` | 3 | 0.12 | 0.75 | 0.06 | 0.06 | 1.00 | 0.06 | 60% (n=1) | 228994 | `inconclusive_widen_n_or_cases` |
-| `third-year-phd-student-lane2-on` | 3 | 0.20 | 0.76 | 0.37 | 0.37 | 1.00 | 0.37 | 80% (n=1) | 443305 | `inconclusive_widen_n_or_cases` |
+| Case | N | FP moves | Candidates | Accepted-pre | Cand-cond. | Detected | Capped | Anchors | Step 6 cons. | Boundary tok | Decision |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| `marcus-equity-lane2-on` | 3 | 0.00 | 0.72 | 0.17 | 0.33 | 0.17 | 1.00 | 0.17 | 100% (n=1) | 439143 | `inconclusive_widen_n_or_cases` |
+| `mid-level-consultant-decides-lane2-on` | 3 | 0.00 | 0.72 | 0.22 | 0.25 | 0.22 | 1.00 | 0.22 | 20% (n=1) | 327970 | `inconclusive_widen_n_or_cases` |
+| `mother-deciding-address-year-lane2-on` | 3 | 0.12 | 0.75 | 0.06 | 0.06 | 0.06 | 1.00 | 0.06 | 60% (n=1) | 228994 | `inconclusive_widen_n_or_cases` |
+| `third-year-phd-student-lane2-on` | 3 | 0.20 | 0.76 | 0.37 | 0.47 | 0.37 | 1.00 | 0.37 | 80% (n=1) | 443305 | `inconclusive_widen_n_or_cases` |
 
 ## Embedding-induced delta (paired ON vs OFF)
 
@@ -42,6 +44,7 @@ Difference of `Candidates` Jaccard mean (`off` − `on`). Positive = embeddings 
 |---|---|---|---|
 | `marcus-equity-lane2` | 0.72 | 0.70 | -0.02 |
 | `mid-level-consultant-decides-lane2` | 0.72 | 0.68 | -0.04 |
+| `mother-deciding-address-year-lane2` | 0.75 | 0.81 | +0.06 |
 | `third-year-phd-student-lane2` | 0.76 | 0.75 | -0.01 |
 
 ## Sources
@@ -53,3 +56,4 @@ Difference of `Candidates` Jaccard mean (`off` − `on`). Positive = embeddings 
 - `third-year-phd-student-lane2-on` (on): N=3
 - `third-year-phd-student-lane2-off` (off): N=3
 - `mother-deciding-address-year-lane2-on` (on): N=3
+- `mother-deciding-address-year-lane2-off` (off): N=3

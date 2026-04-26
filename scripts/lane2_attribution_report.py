@@ -201,15 +201,66 @@ _LANE2_COLUMNS = [
     ("FP moves",     "lane2_fingerprint_moves"),
     ("Candidates",   "lane2_candidates"),
     ("Accepted-pre", "lane2_accepted_before_cap"),
+    # Candidate-conditional metric — controls for candidate availability,
+    # isolates verifier per-judgment instability. Read alongside
+    # Accepted-pre, not as a replacement.
+    ("Cand-cond.",   "lane2_shared_available_acceptance_agreement"),
     ("Detected",     "lane2_detected_after_cap"),
     ("Capped",       "lane2_capped_models"),
     ("Anchors",      "lane2_anchors"),
 ]
 
 
+def _backfill_shared_available(stability: dict) -> dict:
+    """Compute lane2_shared_available_acceptance_agreement from per-run
+    candidate + accepted sets stored in stability.json. Used when the
+    field is missing (stability files generated before the metric existed
+    are missing it). Returns the same shape stability.compute_stability
+    writes for the field."""
+    cands_per_run = stability.get("lane2_candidates", {}).get("per_run", []) or []
+    accepted_per_run = (
+        stability.get("lane2_accepted_before_cap", {}).get("per_run", []) or []
+    )
+    if len(cands_per_run) != len(accepted_per_run) or len(cands_per_run) < 2:
+        return {"stability": {"mean": None, "min": None, "max": None, "pairs": []}}
+    cands_sets = [set(x) for x in cands_per_run]
+    accepted_sets = [set(x) for x in accepted_per_run]
+    pairs: list[dict] = []
+    valid: list[float] = []
+    n = len(cands_sets)
+    for i in range(n):
+        for j in range(i + 1, n):
+            shared_candidates = cands_sets[i] & cands_sets[j]
+            accepted_either = accepted_sets[i] | accepted_sets[j]
+            eligible = accepted_either & shared_candidates
+            if not shared_candidates or not eligible:
+                pairs.append({"i": i, "j": j, "score": None})
+                continue
+            accepted_both = accepted_sets[i] & accepted_sets[j] & shared_candidates
+            score = len(accepted_both) / len(eligible)
+            pairs.append({"i": i, "j": j, "score": round(score, 4)})
+            valid.append(score)
+    if not valid:
+        return {"stability": {"mean": None, "min": None, "max": None, "pairs": pairs}}
+    return {
+        "stability": {
+            "mean": round(sum(valid) / len(valid), 4),
+            "min": round(min(valid), 4),
+            "max": round(max(valid), 4),
+            "pairs": pairs,
+        }
+    }
+
+
 def _row_for_case(stability: dict, baseline: dict[str, dict]) -> dict:
     case_id = stability["_case_id"]
     bl = _match_baseline(case_id, baseline)
+    # Backfill the candidate-conditional metric for stability files written
+    # before the harness emitted it (see PR-A scope memo). Computable from
+    # the per_run candidate + accepted sets that all stability.json files
+    # already contain.
+    if "lane2_shared_available_acceptance_agreement" not in stability:
+        stability["lane2_shared_available_acceptance_agreement"] = _backfill_shared_available(stability)
     cells: dict[str, str] = {}
     for label, key in _LANE2_COLUMNS:
         st = (stability.get(key, {}) or {}).get("stability", {})
@@ -261,6 +312,13 @@ def render(rows: list[dict], generated_at: str, archive_root: Path) -> str:
                "fingerprint is unstable.")
     out.append("- `Capped` stability is meaningful only when `Accepted-pre` exceeds the top-5 "
                "surfacing budget; otherwise capped is empty by construction across runs.")
+    out.append("- `Cand-cond.` (candidate-conditional shared-available acceptance agreement) — "
+               "the verifier-quality metric introduced post-campaign. Numerator: model_ids "
+               "accepted in BOTH runs. Denominator: model_ids accepted in EITHER, AND present "
+               "as a candidate in BOTH runs. Renders \"—\" when no candidate was accepted in "
+               "either run (undefined). Read alongside `Accepted-pre`: when `Accepted-pre` and "
+               "`Cand-cond.` diverge, the gap is recall-induced variance; when they agree, "
+               "verifier judgment instability is the story.")
     out.append("")
 
     # Group by embedding mode so the on/off question is answerable per case.

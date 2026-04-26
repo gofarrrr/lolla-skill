@@ -364,6 +364,7 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_candidates": list(result.audit.companion_candidates),
         "companion_verification_accepted_before_cap": list(result.audit.companion_verification_accepted_before_cap),
         "companion_verification_capped_models": list(result.audit.companion_verification_capped_models),
+        "companion_verification_duplicate_accepts": list(result.audit.companion_verification_duplicate_accepts),
         "companion_candidate_cap": result.audit.companion_candidate_cap,
         "embedding_mode": result.audit.embedding_mode,
         "deep_check_results": [

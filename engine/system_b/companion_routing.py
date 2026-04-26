@@ -404,28 +404,43 @@ def run_verification_call_from_packet(
     fingerprint_payload: FingerprintPayload,
     candidates: list[dict[str, str]],
     client,
-) -> tuple[list[DetectedModel], list[dict[str, str]], list[DetectedModel], list[dict[str, str]]]:
+) -> tuple[
+    list[DetectedModel],
+    list[dict[str, str]],
+    list[DetectedModel],
+    list[dict[str, str]],
+    list[dict[str, str]],
+]:
     """Packet-driven Lane 2 verification call.
 
-    Returns a 4-tuple ``(detected_models, rejected_models,
-    accepted_before_cap, capped_models)``:
+    Returns a 5-tuple ``(detected_models, rejected_models,
+    accepted_before_cap, capped_models, duplicate_accepts)``:
 
     - ``detected_models``: post-cap surfaced models (top-N by LLM order, where
-      N = ``_DETECTED_MODELS_CAP``).
+      N = ``_DETECTED_MODELS_CAP``). Computed from the deduplicated
+      ``accepted_before_cap``.
     - ``rejected_models``: semantically rejected by the verifier (or
       validation-demoted, e.g. fabricated quotes).
     - ``accepted_before_cap``: every model the verifier accepted, before the
-      surfacing budget. Equals ``detected_models`` when ``len(accepted) <=
-      _DETECTED_MODELS_CAP``.
+      surfacing budget. Deduplicated by ``model_id`` — see below.
     - ``capped_models``: accepted-but-not-surfaced — models the verifier
       accepted that fell outside the top-N budget. Each item carries
-      ``{model_id, model_name, drop_reason="capped_at_top_5"}``. These are
-      NOT the same semantic as ``rejected_models`` and must not be merged
-      into it; ``telemetry.verification_precision`` depends on rejected
-      meaning rejected.
+      ``{model_id, model_name, drop_reason="capped_at_top_5"}``. NOT
+      the same semantic as ``rejected_models``; merging them would
+      corrupt ``telemetry.verification_precision``.
+    - ``duplicate_accepts``: accepted entries dropped by the model_id
+      dedupe step. Each item carries ``{model_id, model_name,
+      drop_reason="duplicate_accept_dedupe"}``. Also NOT rejected — these
+      are accepted models the verifier listed more than once (typically
+      with slightly different evidence quotes); dedupe preserves the
+      first occurrence's evidence/explanation. Without dedupe, downstream
+      ``CompanionCard`` builds two ``DetectedModel`` objects for the same
+      ``model_id``, ``expand_detected_model`` runs twice, and the
+      ``CompanionCard cannot contain more than 3 expansions per detected
+      model`` invariant trips. See research/lane2-followup-tracking-2026-04-26.md.
     """
     if not candidates:
-        return [], [], [], []
+        return [], [], [], [], []
 
     assistant_text = _joined_assistant_turns_from_packet(packet)
     raw_payload = client.run_json(
@@ -442,6 +457,32 @@ def run_verification_call_from_packet(
         for candidate in candidates
         if candidate.get("model_id") and candidate.get("model_name")
     }
+
+    # Deduplicate accepted entries by model_id, preserving the first valid
+    # occurrence (which carries the first valid evidence_quote — already
+    # validated as a literal substring upstream by parse_verification_response).
+    # Subsequent duplicates are diverted to `duplicate_accepts` so downstream
+    # CompanionCard build doesn't see duplicate DetectedModels for the same
+    # model_id (which would trip the per-source expansion invariant).
+    seen_model_ids: set[str] = set()
+    deduped_accepted: list[dict[str, str]] = []
+    duplicate_accepts: list[dict[str, str]] = []
+    for item in accepted:
+        mid = item.get("model_id", "")
+        if not mid:
+            continue
+        if mid in seen_model_ids:
+            duplicate_accepts.append(
+                {
+                    "model_id": mid,
+                    "model_name": candidate_names.get(mid, mid),
+                    "drop_reason": "duplicate_accept_dedupe",
+                }
+            )
+            continue
+        seen_model_ids.add(mid)
+        deduped_accepted.append(item)
+
     accepted_before_cap = [
         DetectedModel(
             model_id=item["model_id"],
@@ -451,7 +492,7 @@ def run_verification_call_from_packet(
             presence_explanation=item.get("presence_explanation", ""),
             detection_confidence="structural",
         )
-        for item in accepted
+        for item in deduped_accepted
     ]
     detected_models = accepted_before_cap[:_DETECTED_MODELS_CAP]
     capped_models = [
@@ -462,7 +503,7 @@ def run_verification_call_from_packet(
         }
         for m in accepted_before_cap[_DETECTED_MODELS_CAP:]
     ]
-    return detected_models, rejected, accepted_before_cap, capped_models
+    return detected_models, rejected, accepted_before_cap, capped_models, duplicate_accepts
 
 
 def parse_verification_response(
