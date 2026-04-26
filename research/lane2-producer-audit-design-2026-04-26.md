@@ -168,8 +168,9 @@ For each `expected_primary_model` and `acceptable_secondary_model`, assign one f
 
 - `fingerprint_failed` — the cluster's source quote(s) were not extracted, or were extracted in language too generic to support recall
 - `recall_failed` — the expected model was not in the candidate slate
-- `verifier_failed` — the expected model was a candidate but verifier rejected it
-- `surfacing_failed` — verifier accepted but the model didn't survive top-5 / cheat-sheet selection
+- `verifier_failed` — the expected model was a candidate but verifier rejected it (e.g., `mechanism absent`, `too generic`, `topic-adjacent`)
+- `post_verifier_validation_failed` — verifier accepted the model, but its evidence quote failed literal-substring validation, so the acceptance was demoted before surfacing. (Code reference: `engine/system_b/companion_routing.py:521-549` — `if evidence_quote in answer_text` gate; demotion reason `execution_quote_not_literal_substring`.) This is a code-level guard against hallucinated evidence and is distinct from verifier judgment.
+- `surfacing_failed` — model passed validation but didn't survive top-5 / cheat-sheet selection
 - `step6_failed` — surfaced but Step 6 dropped or mistreated it
 - `gold_disagreement` — on review, the expected label was wrong
 
@@ -204,7 +205,7 @@ Any cluster where the draft gold set has more than one plausible primary, OR whe
 | `verifier_accepted` | yes / no |
 | `surfaced_top5` | yes / no |
 | `step6_treatment` | primary / secondary / set_aside / hidden / not_applicable |
-| `failure_owner` | fingerprint / recall / verifier / surfacing / step6 / none / gold_disagreement |
+| `failure_owner` | fingerprint / recall / verifier / post_verifier_validation / surfacing / step6 / none / gold_disagreement |
 | `ambiguous` | yes / no |
 | `reviewer_notes` | Marcin's final judgment if ambiguous |
 
@@ -232,8 +233,9 @@ This is how false positives get caught. Without §7.2, the audit only measures r
 - `fingerprint_specificity` — share of fingerprint-extracted moves that are *specific enough* to support model recall (judged by reviewer; "weighing options" = not specific; "balancing $1.3M cost against $6M of value" = specific)
 - `candidate_recall@60` — share of `expected_primary_models` + `acceptable_secondary_models` present in companion_candidates before verification
 - `candidate_rank_distribution` — where in the candidate list the expected models land (top-10, top-20, tail, absent)
-- `verifier_acceptance_rate` — share of expected models accepted *given that they were candidates*
-- `surfacing_recall@5` — share of accepted expected models that survive top-5
+- `verifier_acceptance_rate` — share of expected models *judged executed/violated by the verifier* given that they were candidates. **Note: this is the raw verifier judgment, before post-verifier validation.** A model that the verifier accepted but the literal-substring quote gate demoted counts as "accepted by verifier" here.
+- `post_verifier_validation_failure_rate` — share of *raw verifier acceptances* demoted by the literal-substring quote gate (`engine/system_b/companion_routing.py:521-549`). Independent of `verifier_acceptance_rate`. If this rate dominates the leak, the fix is at quote validation / quote literalness, not at verifier judgment.
+- `surfacing_recall@5` — share of accepted expected models (post-validation) that survive top-5
 - `noisy_anchor_rate` — share of observed-anchor rows classified as `noisy_adjacent` or `false_positive`
 - `step6_treatment_accuracy` — share of surfaced anchors handled correctly by Step 6 (primary anchor used as primary, etc.)
 
@@ -254,6 +256,7 @@ The memo commits to this mapping from audit results to next-track work, *before*
 - If `cluster_recall` is weak (< threshold), **decompose fingerprint first.**
 - If cluster recall is good but `candidate_recall@60` is weak, **fix recall** (shape-scoped recall, embedding recall, or substrate change).
 - If candidate recall is good but `verifier_acceptance_rate` is weak, **revisit verifier** with narrower slates.
+- If `post_verifier_validation_failure_rate` dominates the leak (verifier accepts but the literal-substring quote gate demotes), **fix quote validation / quote literalness** — make the verifier produce verbatim quotes, or add fuzzy quote repair before demotion. Do *not* trust paraphrased quotes; the gate is correctly protecting against hallucinated evidence.
 - If upstream works but `noisy_anchor_rate` is high, **fix surfacing/fan-in.**
 - If upstream works and Step 6 mistreats anchors, **continue PR #41-style consumer work.**
 - **If all stages are acceptable, do not redesign Lane 2 just because Sully makes decomposition feel elegant.** We are not trying to cosplay decomposition. We are trying to find the leak.

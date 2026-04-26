@@ -157,8 +157,10 @@ Cluster denominator excludes C5 (`no_clean_primary`) for primary-recall metrics,
 | `cluster_recall` (fingerprint) | 7/7 = 100% (or 6/7 = 85.7% if C3's missing LOI half counts as partial) | Fingerprint extraction is strong on this case. Every cluster has at least one move targeting it. |
 | `fingerprint_specificity` | 6/8 moves specific enough; 2 moves (M7 implementation, partial M3) are slightly too generic | Mostly fine. M7 captures fractional context but not tradeoff structure; M3 captures runway but not LOI exit-trigger. |
 | `candidate_recall@60` (expected primaries that reached candidates) | 5/6 = 83.3% (Problem Framing And Reframing missing; Base Rates, Optionality, Margin Of Safety, Opportunity Cost, Premortem present) | Strong but C1 leak. |
-| `verifier_acceptance_rate` (expected primaries that were candidates) | 1/5 = 20% (Margin Of Safety only; Base Rates rejected on quote-validation; Optionality, Opportunity Cost, Premortem rejected with "mechanism absent") | **Low.** The dominant failure mode on this case is verifier rejection. |
-| `surfacing_recall@5` | 1/1 = 100% (every accepted model survived top-5; cap not binding here with 2 accepted) | n/a (denominator too small) |
+| `verifier_acceptance_rate` (raw verifier judgment on expected primaries that were candidates) | 2/5 = 40% (*Margin Of Safety* and *Base Rates*; Optionality / Opportunity Cost / Premortem rejected with "mechanism absent") | This is **raw verifier judgment**, before post-verifier validation. *Base Rates* was accepted by the verifier and demoted afterwards. |
+| `post_verifier_validation_failure_rate` | 1/2 = 50% (1 of 2 raw verifier acceptances demoted by the literal-substring gate; *Base Rates*) | One demotion on one case. Existence established (code at `companion_routing.py:521-549`); significance pending recurrence on other cases. |
+| Final validated acceptance on expected primaries | 1/5 = 20% (Margin Of Safety only; Base Rates demoted, three rejected at verifier) | The user-visible result: 1 of 5 candidate-stage primaries reached the cheat sheet. |
+| `surfacing_recall@5` | 1/1 = 100% (every validated-accepted model survived top-5; cap not binding here with 2 accepted) | n/a (denominator too small) |
 | `noisy_anchor_rate` | 0/2 = 0% — both surfaced anchors are correct primaries somewhere in the cluster table; no false-positive observed-anchor rows | Clean precision. |
 | `step6_treatment_accuracy` | 2/2 — both surfaced anchors get primary treatment in revised.txt, which matches the cluster mapping for Margin Of Safety on C3 | Step 6 consumed correctly. |
 
@@ -168,16 +170,15 @@ Cluster denominator excludes C5 (`no_clean_primary`) for primary-recall metrics,
 
 These are findings *for this single case, single run*. Do not generalize until at least the failure-rich and FP-risk cases have been audited. The "verifier over-rejects" pattern below could be case-specific (the verifier prompt may struggle with this particular conversation's reasoning style) or systemic.
 
-### F1 — Verifier "mechanism absent" rejection is the dominant failure mode
+### F1 — Verifier "mechanism absent" rejection accounts for most low-recall on this case
 
-Four of six expected primaries (Optionality, Opportunity Cost, Premortem, plus Optimism Bias as secondary on C2 — wait, Optimism Bias was accepted; correction: three primaries) were rejected by the verifier with `mechanism absent`. The fingerprint extracted these moves clearly; recall surfaced them as candidates; the verifier rejected them with a flat low-information rationale. This is high precision (no false positives) bought at high recall cost.
+Three expected primaries on this case were rejected by the verifier with `mechanism absent`:
 
-Models rejected with "mechanism absent" on this case where I would have expected acceptance:
-- *Optionality* (clearly executed in the three-options structure of C4)
-- *Opportunity Cost* (explicitly framed tradeoff in C6)
-- *Premortem* (pre-registered conditions for reversal in C7)
+- *Optionality* on C4 — clearly executed in the three-options structure with named tradeoffs. Looks like a clean verifier miss.
+- *Premortem* on C7 — pre-registered conditions for reversal with explicit signal/noise discipline. Looks like a clean verifier miss.
+- *Opportunity Cost* on C6 — explicitly framed tradeoff ("locks you into cadence / makes larger engagements harder / pays less per hour"). **Mixed signal**: the fingerprint captured the fractional-work *implementation detail* (Move 7) but not the tradeoff *structure*. The verifier may be too strict when the fingerprint gives it surrounding context but not the exact mechanism language. C6 stays `verifier_failed` with a `fingerprint_specificity_partial` caveat.
 
-These don't match the spirit of "mechanism absent." The mechanisms are present and specific.
+The directional read is that verifier judgment is doing strict over-rejection on this case. The certainty is one notch lower than "the verifier is the bottleneck": Optionality and Premortem look unambiguously like verifier misses, but Opportunity Cost has a fingerprint-specificity shadow. Hold this distinction across cases 2–7 before drawing a verifier-side architectural conclusion.
 
 ### F2 — A 6th failure stage emerged: post_verifier_validation
 
@@ -199,12 +200,24 @@ This validates that the verifier IS doing real work on screening adjacency; the 
 
 ### F5 — Hidden anchor rate is high relative to expected primary count
 
-5 expected primaries (out of 6) hidden vs 1 surfaced. **Lane 2 on this case is high-precision, very-low-recall.** If this pattern holds on the failure-rich cases, the audit's leak map points strongly at verifier rejection (F1) as the dominant intervention target — not fingerprint, not recall.
+5 expected primaries (out of 6) hidden vs 1 surfaced. **Lane 2 on this case is high-precision, very-low-recall.**
+
+### Locked bottom-line for this case
+
+`user-launch-independent-fintech` shows **high precision and low validated recall.** Fingerprint and recall mostly worked. **One primary failed recall** (*Problem Framing And Reframing* on C1), **one primary failed post-verifier quote validation** (*Base Rates* on C2 — `execution_quote_not_literal_substring`), and **three expected primaries failed verifier judgment** (*Optionality* on C4, *Opportunity Cost* on C6, *Premortem* on C7), with C6's miss carrying a fingerprint-specificity caveat.
+
+That is the case-1 conclusion. It is *not* "the verifier is the bottleneck" — that generalization is held until the calibration case and the failure-rich cases are audited. It is also not "post-verifier validation is significant" — one demotion on one case does not establish significance, only existence. Recurrence across cases is what decides which leak stage to target.
 
 ## Surprises
 
 1. **Post-verifier validation gate.** I did not know (or had forgotten) that there's a literal-substring check downstream of the verifier judgment. This is a 6th failure stage and the memo + audit table schema need a patch.
-2. **Verifier rejection volume.** Of 60 candidates, 58 were rejected. That's a 96.7% rejection rate. The verifier is operating in extreme-precision-trade-off territory. This matches what we already knew from the v1/v2/v3/B work on verifier instability, but seeing it stage-by-stage on a single case makes the magnitude more vivid.
+2. **Validated rejection volume is high; raw verifier rejection is slightly lower.** The persisted artifact shows 58/60 candidates in the rejected list. That count includes the post-verifier validation demotions, not pure verifier judgment. The clean breakdown is:
+   - Final accepted (post-validation): **2/60**
+   - Final rejected (validated): **58/60**
+   - Known post-verifier validation demotions: **1** (Base Rates on C2)
+   - Raw verifier rejection is therefore **at most 57/60**, possibly lower if other accepted entries were demoted and collapsed in the persisted artifact.
+
+   The distinction matters: blaming "the verifier" for what is partly a code guard would route us to the wrong fix. The quote-validation gate is correctly protecting against hallucinated evidence; the candidate fix when this stage dominates is "make the verifier produce verbatim quotes" or "add fuzzy quote repair before demotion," not "trust paraphrased quotes."
 3. **Fingerprint quality is good.** I expected fingerprint to be a major leak source on at least some clusters; on this case, it is not. Every cluster has at least one move targeting it. M7 and M3 are slightly under-specific, but not failure-mode under-specific.
 
 ## Open questions for Marcin
