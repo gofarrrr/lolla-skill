@@ -82,3 +82,66 @@ def test_frame_pressure_card_carries_dropped_elements():
     assert card.dropped_frame_elements == dropped
     payload = card.to_payload()
     assert payload["dropped_frame_elements"] == list(dropped)
+
+
+def test_assemble_frame_card_preserves_partial_drops():
+    """When at least one frame element survives, partial-drop list still
+    reaches the final FramePressureCard. Regression: pre-fix the assembled
+    card discarded dropped_frame_elements when surviving elements existed."""
+    from engine.system_b.frame_pressure import (
+        ExtractedFrameElement,
+        Reframing,
+        assemble_frame_card,
+    )
+
+    surviving = ExtractedFrameElement(
+        element_text="kept element",
+        element_type="assumption",
+        evidence_quote="invest $50k in my friend's startup",
+        frame_pattern="option_space_collapse",
+        fragility_signal="",
+        inquiry_stage="why",
+        likely_default="none",
+    )
+    dropped = (
+        {"element_text": "missing evidence one", "drop_reason": "missing_evidence"},
+        {"element_text": "evidence not in user turns", "drop_reason": "evidence_not_in_user_turns"},
+    )
+    card = assemble_frame_card(
+        elements=(surviving,),
+        routes=(),
+        candidate_reframings=(),
+        anti_echo_model_ids=set(),
+        overlap_flags=(),
+        dropped_frame_elements=dropped,
+    )
+    assert len(card.frame_elements) == 1
+    assert card.dropped_frame_elements == dropped
+    assert card.to_payload()["dropped_frame_elements"] == list(dropped)
+
+
+def test_assemble_frame_card_default_dropped_is_empty():
+    """Backwards-compatible default: callers that don't pass the new kwarg
+    still get an empty drops tuple."""
+    from engine.system_b.frame_pressure import (
+        ExtractedFrameElement,
+        assemble_frame_card,
+    )
+
+    el = ExtractedFrameElement(
+        element_text="x",
+        element_type="assumption",
+        evidence_quote="invest $50k in my friend's startup",
+        frame_pattern="option_space_collapse",
+        fragility_signal="",
+        inquiry_stage="why",
+        likely_default="none",
+    )
+    card = assemble_frame_card(
+        elements=(el,),
+        routes=(),
+        candidate_reframings=(),
+        anti_echo_model_ids=set(),
+        overlap_flags=(),
+    )
+    assert card.dropped_frame_elements == ()

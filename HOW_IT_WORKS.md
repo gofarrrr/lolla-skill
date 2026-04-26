@@ -148,7 +148,7 @@ These measurements follow a core constraint: **evals measure the process, not de
 
 ### Current State (2026-04-25)
 
-The pipeline is fully conversation-native. `SystemBPipeline.run()` accepts `ConversationContext` and nothing else — passing anything else raises `TypeError`. The legacy `CritiqueRequest(query, vanilla_answer)` data shape no longer exists in the codebase. Every lane reads from a typed, provenance-bearing `ConversationIR` projected through lane-specific packet builders.
+The pipeline runtime is fully conversation-native. `SystemBPipeline.run()` accepts `ConversationContext` and nothing else — passing anything else raises `TypeError`. The legacy `CritiqueRequest(query, vanilla_answer)` runtime contract and lane shims have been removed from the engine. The extraction/CLI artifact layer still preserves compatibility fields for older captured runs, but normal file-based runs now derive post-processing text (`case_focus`, `audit_target_assistant_text`) from `ConversationContext` first. Every lane reads from a typed, provenance-bearing `ConversationIR` projected through the IR packet layer.
 
 The substrate, top to bottom:
 
@@ -156,8 +156,8 @@ The substrate, top to bottom:
 |---|---|---|---|
 | Input | `ConversationContext` | `engine/system_b/conversation_context.py` | Raw turns + typed extraction (`LiveConstraint`, `DroppedThread`, …) + capture metadata |
 | IR | `ConversationIR` | `engine/system_b/ir.py` | Immutable, provenance-bearing intermediate representation |
-| IR build | `construct_conversation_ir(...)` | `engine/system_b/ir_constructor.py` | Builds the IR at pipeline entry, optionally invoking specialist extractors |
-| Specialists (optional, injected) | `extract_stance_events`, `extract_live_constraints`, `extract_dropped_threads` | `stance_extraction.py`, `live_constraints_extraction.py`, `dropped_threads_extraction.py` | LLM-backed substring-validated upgrades to specific IR objects |
+| IR build | `construct_conversation_ir(...)` | `engine/system_b/ir_constructor.py` | Builds the IR at pipeline entry. Accepts optional specialist callables as keyword args (`stance_extractor`, `live_constraints_extractor`, `dropped_threads_extractor`); the production `SystemBPipeline.run()` path calls it WITHOUT specialists, so the default IR is built deterministically from extraction fields. |
+| Specialists (supported, not default-wired) | `extract_stance_events`, `extract_live_constraints`, `extract_dropped_threads` | `stance_extraction.py`, `live_constraints_extraction.py`, `dropped_threads_extraction.py` | LLM-backed substring-validated upgrades to specific IR objects. Available as injectable dependencies; not invoked by the default pipeline. Used today by tests, eval harnesses, and ad-hoc callers; will graduate to default wiring once promotion criteria documented in the *Evolution* section are met per field. |
 | Packet | `Lane4Packet` | `engine/system_b/packet_builders/lane4.py` | Minimum projection of the IR each lane reads |
 | Lanes | Companion / Frame Pressure / Structural Coverage / Pass1+Pass2 | `companion_routing.py`, `frame_pressure.py`, `structural_coverage.py`, `pass1_runner.py` + `pass2_runner.py` | Each lane consumes the packet and produces a card |
 | Audit | `AuditTrace`, `build_pipeline_audit_trace` | `audit_assembly.py` | Aggregates per-call telemetry, lane outputs, warnings |
@@ -204,8 +204,8 @@ Each phase had a four-step discipline: an annotation gate (humans reviewed candi
 | **Phase 4 + 4b + 4c** — Lane packet builders | Added `engine/system_b/packet_builders/lane4.py` with `Lane4Packet`. Wired all four lanes: `_run_companion`, `_run_frame_pressure`, `_run_structural_coverage`, `_run_pass2_*` now build a packet from IR and call `*_from_packet` formatters. Byte-equivalence tests prove identical prompts to the prior `*_from_context` path on lossless inputs. | Lanes now read from the typed substrate, not raw `extraction.X` paraphrases. When a specialist swaps in (substring-validated `live_constraints` or `dropped_threads`), every lane automatically gets the upgraded data with zero lane-side changes. The packet is the seam that decouples extraction quality from lane prompts. |
 | **Phase 4d** — dead `_from_context` dispatch fallbacks removed | Each lane orchestrator's `elif conversation_context is not None: ..._from_context(...)` branch deleted. Phase 4 made these unreachable in practice (IR always built when context present). | Pure cleanup; -91 lines. The `*_from_context` source functions themselves stayed — tests still use them as anti-regression. |
 | **Phase 7.1 / 7.2 / 7.3 / 7.5** — Split `pipeline.py` | `pipeline.py` was 2401 lines. Extracted into focused modules: `boundary_tracing.py` (88 lines), `pass1_runner.py` (121), `pass2_runner.py` (154), `audit_assembly.py` (261). Net: pipeline.py shrank to 2062 lines (−14%). Public re-exports preserved every external import path. | Phase 6 was about to delete a lot of code, and a 2400-line file makes deletion risky. Splitting first made Phase 6's surface tractable. 7.4 (lane orchestrators) was deliberately skipped — their instance-state dependency bag wasn't deep enough to justify a layer at this point. |
-| **Phase 6** — `CritiqueRequest` shim removed | -2179 net lines across 26 files. `CritiqueRequest`, `_context_to_critique`, every legacy lane entry point (`run_fingerprint_call`, `run_verification_call`, `run_frame_extraction`, `run_structural_coverage`, `format_pass2_prompt`, `format_pass1_cluster_prompts`), every legacy helper, the `--legacy-contract` CLI flag, the shim-equivalence test suite (927 lines), and `scripts/phase1_equivalence_check.py` all deleted. `SystemBPipeline.run()` now requires `ConversationContext`; raises `TypeError` on anything else. | Until Phase 6, the conversation-first migration had a parallel-paths shape: new code beside old code, dispatch checking which to run. That's transitional architecture, not target architecture. Deleting the legacy path is what makes the new contract real. |
-| **Post-Phase-7 audit cleanup (PR #36, 2026-04-25)** | Six findings: (1) `audit_summary.boundary_summary` aggregate (call_count + token totals + cache hit rate + reasoning-leak flag) replaces having to walk individual boundary calls for cost review; (2) silent `synthesized_position or ""` fallbacks replaced with explicit empty + warning when extraction is degenerate; (3) `vanilla_answer` parameter renamed to `assistant_text` in helpers that receive joined assistant turns; (4) top-level `query` / `vanilla_answer` keys in `result.json` replaced with an `extraction` block carrying the full serialized `ConversationContext` (turns + extraction summaries) — Observatory + render_memo derive displayed query/vanilla_answer from joined turns and use `decision_situation` for case naming; (5) ~20 orphan `*_from_context` lane functions deleted (~1100 lines net); (6) Pass 1 prompt: added a "hedging is not absence" rule symmetric to the existing "don't score on confidence alone" rule + SKILL.md `CompanionCheatSheet` schema correctly documents `presence_mode` instead of stale `status` (which had caused inline debug prints to render `[None]` because Claude was reading a non-existent field). | Post-Phase-7 cleanup of leftovers from the migration. Found a silent drift bug: `prompt_versioning.py` was hashing a legacy `PASS_2_DEEP_CHECK_SYSTEM` constant the runtime no longer used — version stamps no longer reflected reality. Fixed. |
+| **Phase 6** — `CritiqueRequest` runtime shim removed | -2179 net lines across 26 files. `CritiqueRequest`, `_context_to_critique`, every legacy lane entry point (`run_fingerprint_call`, `run_verification_call`, `run_frame_extraction`, `run_structural_coverage`, `format_pass2_prompt`, `format_pass1_cluster_prompts`), every legacy helper, the `--legacy-contract` CLI flag, the shim-equivalence test suite (927 lines), and `scripts/phase1_equivalence_check.py` all deleted. `SystemBPipeline.run()` now requires `ConversationContext`; raises `TypeError` on anything else. | Until Phase 6, the conversation-first migration had a parallel-paths shape: new code beside old code, dispatch checking which to run. That's transitional architecture, not target architecture. Deleting the legacy lane path is what makes the new runtime contract real. Artifact compatibility fields may still exist outside the engine; they are not lane inputs. |
+| **Post-Phase-7 audit cleanup (PR #36 + follow-up, 2026-04-25/26)** | Six findings plus compatibility-boundary cleanup: (1) `audit_summary.boundary_summary` aggregate (call_count + token totals + cache hit rate + reasoning-leak flag) replaces having to walk individual boundary calls for cost review; (2) silent `synthesized_position or ""` fallbacks replaced with explicit empty + warning when extraction is degenerate; (3) `vanilla_answer` parameter renamed to `assistant_text` in helpers that receive joined assistant turns; (4) top-level `query` / `vanilla_answer` keys in `result.json` replaced with an `extraction` block carrying the full serialized `ConversationContext` (turns + extraction summaries) — Observatory + render_memo derive displayed case focus / assistant audit target from joined turns and use `decision_situation` for case naming; (5) ~20 orphan `*_from_context` lane functions deleted (~1100 lines net); (6) Pass 1 prompt: added a "hedging is not absence" rule symmetric to the existing "don't score on confidence alone" rule + SKILL.md `CompanionCheatSheet` schema correctly documents `presence_mode` instead of stale `status` (which had caused inline debug prints to render `[None]` because Claude was reading a non-existent field); (7) `scripts/run_pipeline.py` stopped requiring legacy `query` / `vanilla_answer` fields for normal file-based runs, derives `case_focus` and `audit_target_assistant_text` from `ConversationContext`, and treats `audit_seed` / `critique_request` only as compatibility fallback. | Post-Phase-7 cleanup of leftovers from the migration. Found a silent drift bug: `prompt_versioning.py` was hashing a legacy `PASS_2_DEEP_CHECK_SYSTEM` constant the runtime no longer used — version stamps no longer reflected reality. Fixed. The later compatibility-boundary cleanup keeps old artifacts runnable without letting old names define the live contract. |
 | **Lane 1 conversation-scope expansion (PR #37, 2026-04-25)** | Pass 1 + Pass 2 system prompts in `engine/system_b/prompts.py` and `engine/system_b/deep_checks.py`: SOURCE is now the actual conversation transaction (both speakers), CONTEXT is extraction summaries only (paraphrased layer). Added `MISSED CHALLENGE` as a fourth tendency shape; broadened `UNCRITICAL ACCEPTANCE` from "recycles vivid material" to "inherits user-introduced framing — vivid OR structural — without testing it." Materiality bar preserved. | Pre-PR-#37, Lane 1 audited the assistant in isolation. Whistleblower (0 findings, P2c baseline 1) and oncologist (0 findings, P2c baseline 2) were silent because the bias lived at the user/assistant junction — the user introduced a tendency-shaped frame and the assistant absorbed it silently. Lane 1 had no shape for "the assistant carries the tendency by silent inheritance." Validation across the 10-case corpus + Marcus: whistleblower 0 → 2, real_estate 0 → 1 (bonus correct detection), Marcus 3 → 4, others stable; net findings basically flat against P2c baseline; one Phase 2c detection (parenting_teen authority-misinfluence on RAINN references) corrected as an over-fire on legitimate evidence-application. The discipline that emerged: never tune a prompt to "recover" a single case without re-reading the conversation first — Phase 2c got parenting_teen wrong reliably, and reliability isn't accuracy. |
 
 #### Today: ConversationContext → ConversationIR → Lane Packets
@@ -496,7 +496,7 @@ These diagnostics surface in every output path — `ok`, `error`, `not_strategic
 
 The extraction JSON is wrapped together with the raw conversation text and capture metadata into a `ConversationContext`. From there `construct_conversation_ir(context)` builds a `ConversationIR`: each `live_constraint` becomes a `UserIssueEvent(kind="constraint")`, each `dropped_thread` becomes a `UserIssueEvent(kind="open_loop"|"concern")`, each of `original_framing` and `decision_situation` becomes a `FrameAnchor` with `DerivationProvenance` over all user turns, and `synthesized_position` is held as transitional text the runtime can read but never claims as a verbatim quote.
 
-When a specialist extractor is injected (`stance_extractor`, `live_constraints_extractor`, `dropped_threads_extractor`), it replaces the corresponding paraphrased mapping with substring-validated events whose `text` is a literal substring of the named turn. Lanes then read the IR through `Lane4Packet` (no lane sees the raw `extraction.X` paraphrases at the prompt boundary).
+The default production pipeline (`SystemBPipeline.run()`) calls `construct_conversation_ir(context)` with no specialist extractors — the IR is built deterministically from the extraction fields above. `construct_conversation_ir` *also* accepts optional `stance_extractor`, `live_constraints_extractor`, and `dropped_threads_extractor` keyword arguments; when an injected specialist is provided, it replaces the corresponding paraphrased mapping with substring-validated events whose `text` is a literal substring of the named turn. This injection path is exercised today by tests, eval harnesses, and ad-hoc callers; default wiring is gated on the promotion criteria documented in the *Evolution* section. Either way, lanes read the IR through `Lane4Packet` (no lane sees the raw `extraction.X` paraphrases at the prompt boundary).
 
 ### Step 3: Run Pipeline
 
@@ -667,16 +667,76 @@ Claude reads the pipeline output JSON and presents a focused chat summary — no
 
 **Bridge anti-bullshit constraints** apply to every bridge sentence: no bridge that could stand alone without the finding (anti-empty-rhetoric), no bridge that softens a finding's force (anti-paltering), no hedging language (anti-weasel), no claims not traceable to a specific passage (anti-unverified).
 
-**Updated Position (Step 6):**
+After Step 4 chat, Claude continues into the reasoning + persistence + pressure-check arc (Steps 6–8b) before opening the Observatory in Step 9 and archiving in Step 10. The full lifecycle is documented in `SKILL.md`; the steps below summarize each stage's product role.
+
+### Step 5: Observatory Placeholder (deferred)
+
+Step 5 in the SKILL flow is intentionally a no-op. The Observatory is *not* offered here — it is deferred to Step 9 so the launched view contains the complete artifact set (cards + revised answer + pressure check + memo). Offering Observatory mid-cycle would show an incomplete run.
+
+### Step 6: Update Your Position (Claude reconsiders)
+
 After presenting findings, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging.
 
 An **anchor-naming invariant** constrains the reconsideration: every anchor in `companion_cheat_sheet.anchors[]` is routed through §1 (its pressure was already priced into the original advice), §2 (considered and set aside with a specific reason), or §3 (drove a change). No anchor is silently skipped. When Claude names an anchor, it uses the `display_name` verbatim — specificity is the point. This rule extends Lane 2's curated substrate from "enrichment the reviser may use" to "enrichment the reviser must account for," closing the anchor-dropout regression observed in earlier runs. Claude holds each curated chunk against the specific conversation to see if there's a live connection — some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
 
-**Narrative closing:** The run ends with 2-3 sentences in human language — what the audit found, where to go deeper (Observatory, memo), and what to do next. No STATUS codes, no lane counts, no CI-report formatting.
+**Timing detail:** Before writing Step 6, Claude *also* fires off Step 7's pressure-check sub-agents in the background (parallel Agent calls per non-empty lane). They run while Step 6 / 6b are written, so their outputs are ready by Step 8.
 
-### Step 5: Observatory (Optional)
+### Step 6b: Persist Revised Answer
 
-The Observatory is a full run viewer — not just a pipeline output viewer. It renders the complete audit artifact: the four cards, the revised answer, and the run's health context.
+The Step 6 reconsideration text is written into the result JSON via a small inline Python merge that sets `revised_answer`, `revised_answer_source: "claude_step6"`, `revised_answer_present: true`, and `revised_answer_written_at`. Without this step the Observatory would render an incomplete run (four cards but no revised answer). The persisted revised answer is the first-class artifact downstream tooling reads.
+
+### Step 6c: Generate Memo
+
+```bash
+python3 $SKILL_DIR/scripts/render_memo.py \
+  --result /tmp/lolla_{run_id}_result.json \
+  --output /tmp/lolla_{run_id}_memo.md
+```
+
+Deterministic template rendering — no API calls, no LLM. Produces a portable markdown document with up to 8 sections, each with guard clauses so the memo degrades gracefully when optional data is absent:
+
+1. **Heading** — decision context truncated to first 2 sentences
+2. **Key Findings** — from `delta_card.findings`, sorted by severity (high → medium → low), with passage deduplication (same passage blockquote rendered only once even if multiple findings reference it)
+3. **Mental Model Connections** — from `companion_cheat_sheet.anchors` with presence mode
+4. **Frame Alternatives** — from `frame_pressure_card.reframings`
+5. **Structural Gaps** — from `structural_coverage_card.gap_questions` with dimension names
+6. **Delivery Check** — from `bullshit_profile.summary` when detections exist, naming count and dominant subtype
+7. **Updated Position** — `revised_answer` rendered as-is
+8. **Pressure Check** — from `gap_check.lanes`, only lanes with divergences, with card names translated to human labels
+
+The memo is the shareable artifact — it can be emailed, pasted into a doc, or read without the Observatory. The Pressure Check section depends on Step 8b having persisted `gap_check`; on weaker orchestrators that skip Step 7/8/8b it simply degrades to absent.
+
+### Step 7: Pressure-Check Sub-Agents
+
+Up to 4 Agent sub-agents (one per non-empty lane) are spawned in parallel via the Agent tool **in the background** (`run_in_background: true`), launched *before* Claude writes Step 6. Each sub-agent receives the extracted decision structure and ONE audit card — no conversation history, no other lanes, no session context. They read the position cold and assess what should shift.
+
+**Why this exists.** The system's own thesis says "an LLM auditing its own reasoning is sampling from the same distribution that produced the flaw." Steps 1–4 honor this — Grok does the detection. But Step 6 asks Claude to reconsider advice it argued for in this conversation. Sub-agents break that loop: same model class as the orchestrator (Opus), but in a clean context that never argued the position.
+
+**Skip conditions.** A lane's sub-agent is skipped when its card is empty:
+- Lane 1: `delta_card.top_findings` empty/null
+- Lane 2: `companion_cheat_sheet.anchors` empty/null
+- Lane 3: both `frame_pressure_card.frame_elements` AND `reframings` empty/null
+- Lane 4: `structural_coverage_card.dimensions` empty/null OR every dimension has `covered: true`
+
+A sub-agent that times out or errors is logged as `skipped_error`; it does not block Step 8.
+
+### Step 8: Pressure-Check Comparison
+
+After Step 6, Step 6b, and all sub-agent results are in, Claude compares its Step 6 reconsideration against each sub-agent's output by asking three questions:
+
+1. Did the sub-agent identify a shift I dismissed or minimized in Step 6?
+2. Did the sub-agent treat a finding as material that I treated as noise?
+3. Did the sub-agent connect a finding to the position in a way I didn't?
+
+Only "yes" answers get reported, under a `### Pressure Check` heading after the Step 6 updated position. If all sub-agents aligned, a single line is rendered ("Pressure check: a fresh look aligned with the assessment above."). The user never hears about the sub-agent machinery — divergences are attributed to the *argument*, not its source. Claude is also expected to cross-check Step 6 against the `bullshit_profile` to confirm it didn't reproduce the patterns the BI flagged in the original.
+
+### Step 8b: Persist Pressure Check
+
+Two artifacts are persisted into `result.json`: a human-readable summary string (`gap_check_summary`), and a structured per-lane object (`gap_check`) with one entry per lane recording `lane_number`, `lane_name`, `status` (`completed` / `skipped_empty` / `skipped_error`), and a `divergences[]` array (each tagged with the question that surfaced it). The Observatory's Pressure Check view and the memo's Pressure Check section both consume the structured object. Without this step the run is observable only as far as Step 6b — the pressure-check loop disappears.
+
+### Step 9: Open Observatory
+
+After the full cycle is complete (cards, updated position, pressure check, and memo all persisted), the Observatory is launched.
 
 ```bash
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_{run_id}_result.json
@@ -685,12 +745,13 @@ python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_{run_id}_resu
 Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backend API serves:
 
 **Primary product:**
-- Query and vanilla answer (expandable drawers)
+- Case focus and assistant audit target (expandable drawers)
 - DeltaCard — findings with severity, passages, challenges, reversal triggers
 - CompanionCheatSheet — model anchors with presence badges (EXECUTED/VIOLATED), evidence quotes, presence explanations, and typed chunks (failure modes, premortems, antagonists, heuristics, identity)
 - FramePressureCard — frame elements with reframings
 - StructuralCoverageCard — gap dimensions with discovery questions
 - Revised answer with source provenance badge (`claude_step6`)
+- Pressure Check — per-lane divergences from `gap_check`
 
 **Trust / health context:**
 - Run health — overall, capture, substrate, embeddings, fingerprint status
@@ -704,40 +765,9 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 - Structural coverage summary
 - Knowledge substrate stats
 
-### Step 5b: Memo Artifact
+### Step 10: Archive Run
 
-After the Observatory, the pipeline also produces a standalone markdown memo:
-
-```bash
-python3 $SKILL_DIR/scripts/render_memo.py \
-  --result /tmp/lolla_{run_id}_result.json \
-  --output /tmp/lolla_{run_id}_memo.md
-```
-
-The memo renderer is deterministic — no API calls, no LLM, pure template rendering from the result JSON. It produces a portable markdown document with up to 7 sections, each with guard clauses so the memo degrades gracefully when optional data is absent:
-
-1. **Heading** — decision context truncated to first 2 sentences
-2. **Key Findings** — from `delta_card.findings`, sorted by severity (high → medium → low), with passage deduplication (same passage blockquote rendered only once even if multiple findings reference it)
-3. **Mental Model Connections** — from `companion_cheat_sheet.anchors` with presence mode
-4. **Frame Alternatives** — from `frame_pressure_card.reframings`
-5. **Structural Gaps** — from `structural_coverage_card.gap_questions` with dimension names
-6. **Delivery Check** — from `bullshit_profile.summary` when detections exist, naming count and dominant subtype
-7. **Updated Position** — `revised_answer` rendered as-is
-8. **Pressure Check** — from `gap_check.lanes`, only lanes with divergences, with card names translated to human labels
-
-The memo is the shareable artifact — it can be emailed, pasted into a doc, or read without the Observatory.
-
-### Bullshit Index — Fact Registry
-
-The Bullshit Index (adapted from Hannigan et al., 2025) evaluates the vanilla answer for four subtypes of bullshit: empty rhetoric, paltering, weasel words, and unverified claims. To reduce false positives on unverified claims, the BI judge receives a **fact registry** — a structured summary of what the user established in conversation.
-
-The fact registry extracts `decision_situation`, `live_constraints`, and `dropped_threads` from the extraction JSON into a compact context block (~1500 chars vs. the previous 4000-char raw conversation truncation). The `_CONTEXT_BLOCK` instructs the judge that claims referencing, restating, paraphrasing, or drawing reasonable inferences from user-stated facts are grounded — only claims introducing information the user never provided should be flagged.
-
-This structured approach gives the judge a cleaner signal about what counts as established context, reducing over-flagging of claims that are grounded in conversational facts.
-
-### Run Archival
-
-After the Observatory launches, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or `scripts/stability_check.py` analysis. `scripts/archive_run.py` copies 7 files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `gapcheck.txt`, `gapcheck_lanes.json`) into `{archive_root}/{case_id}/{run_id}/`. `/tmp` originals are not touched.
+After launching the Observatory, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or `scripts/stability_check.py` analysis. `scripts/archive_run.py` copies 7 files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `gapcheck.txt`, `gapcheck_lanes.json`) into `{archive_root}/{case_id}/{run_id}/`. Missing artifacts (e.g. on a weaker orchestrator that skipped Step 6b/8b) are skipped gracefully. `/tmp` originals are not touched.
 
 The "which case is this?" question is solved without asking the user: the archive computes a **case fingerprint** from `extraction.decision_situation` (first 120 chars, normalized — lowercased, punctuation stripped, whitespace collapsed) and matches it against fingerprints stored in `{case_folder}/.case-manifest.json`:
 
@@ -748,9 +778,18 @@ The "which case is this?" question is solved without asking the user: the archiv
 Escape hatches:
 
 - `$LOLLA_CASE_ID` — force a specific folder name, skipping fingerprint match. Useful when grouping a run with an existing case despite mismatched decision_situation, or when the user wants a clean folder name from the first run.
+- `$LOLLA_ARCHIVE_DIR` — override the archive root.
 - The manifest is a plain JSON file editable by hand (rename the `case_id`, merge fingerprints, adjust the `runs[]` list after manual moves).
 
 Orchestrator scratch files (`preamble.json`, `lane*.json`) are intentionally NOT archived — they are Claude-side working files regenerable from `result.json` if ever needed, and they may or may not exist depending on how the orchestrator staged Step 7 sub-agents.
+
+### Bullshit Index — Fact Registry (cross-cutting feature)
+
+The Bullshit Index (adapted from Hannigan et al., 2025) is not a separate step; it runs inside the pipeline (Step 3) and is consumed by Steps 4 / 6 / 8 / 6c. It evaluates the assistant audit target for four subtypes of bullshit: empty rhetoric, paltering, weasel words, and unverified claims. In normal file-based runs, that target is derived from joined assistant turns in `ConversationContext`; legacy `vanilla_answer` fields are fallback-only. To reduce false positives on unverified claims, the BI judge receives a **fact registry** — a structured summary of what the user established in conversation.
+
+The fact registry extracts `decision_situation`, `live_constraints`, and `dropped_threads` from the extraction JSON into a compact context block (~1500 chars vs. the previous 4000-char raw conversation truncation). The `_CONTEXT_BLOCK` instructs the judge that claims referencing, restating, paraphrasing, or drawing reasonable inferences from user-stated facts are grounded — only claims introducing information the user never provided should be flagged.
+
+This structured approach gives the judge a cleaner signal about what counts as established context, reducing over-flagging of claims that are grounded in conversational facts.
 
 ---
 
@@ -791,14 +830,14 @@ The skill carries its own copy of the compiled knowledge substrate:
 
 | File | Size | Contents |
 |------|------|----------|
-| `data/knowledge_graph.json` | 1.9M | 222 models, 25 tendencies, 241 bindings, 1,742 edges, 15 prerequisite edges |
-| `data/relationship_graph.json` | 853K | 1,358 relationship edges (allies, antagonists, tensions) |
-| `data/embeddings.db` | 31M | 2,496 pre-computed vectors (text-embedding-3-large, 3072d) |
-| `data/curation/` | 225 files | Wave 1 activation semantics per model |
-| `data/curation/intervention_semantics/` | 225 files | Wave 2 failure modes, heuristics, premortems |
-| `data/curation/relation_semantics/` | 225 files | Wave 3 relationship edge data |
-| `data/curated/subpattern_catalog.json` | 45K | Sub-pattern definitions for deep checks |
-| `data/curated/compiled_chunks.json` | 380K | Pre-compiled knowledge chunks for bundle selection |
+| `data/knowledge_graph.json` | 3.0M | 222 models, 25 tendencies, 241 antidote bindings, 1,742 edges, 15 prerequisite edges, 15-dimension structural coverage routing, 15 reframing patterns |
+| `data/relationship_graph.json` | 1.2M | 1,358 relationship edges (allies, antagonists, tensions) |
+| `data/embeddings.db` | 42M | Pre-computed vectors (text-embedding-3-large, 3072d): 2,032 chunk_embeddings + 444 model_signals + 25 tendency_guidance + 867 edge_activation_conditions (~3,368 total) |
+| `data/curation/` | 222 model files (+ subdirs) | Wave 1 activation semantics per model |
+| `data/curation/intervention_semantics/` | 222 files | Wave 2 failure modes, heuristics, premortems |
+| `data/curation/relation_semantics/` | 222 files | Wave 3 relationship edge data |
+| `data/curated/subpattern_catalog.json` | 276K | Sub-pattern definitions for deep checks |
+| `data/curated/compiled_chunks.json` | 199K | Pre-compiled knowledge chunks for bundle selection |
 | `data/curated/structural_signal_lexicon.json` | 18K | Signal lexicon for trusted bundle selection |
 | `data/curated/reasoning_signals.json` | 174K | Companion lane recall fallback signals |
 
@@ -828,7 +867,7 @@ When running inside the repo, the pipeline uses the repo's `build/` directly. Wh
 | Conversation is 1-2 turns | Extraction still works. Less material for Lane 2 fingerprinting. Lane 3 (frame pressure) is most useful on short conversations. |
 | Conversation is 100+ turns | Claude truncates: first 3 + last 15 turns. Early turns preserve constraints. |
 | Pipeline finds zero tendencies | Valid outcome. "No structural pressures detected." |
-| OpenRouter times out | Boundary client handles retries internally. If all attempts fail, pipeline returns partial results. |
+| OpenRouter times out | Boundary client returns empty payload + a degraded `BoundaryCallMetadata` (status `timeout` / `http_error_*` / `url_error` / `response_json_error`). No internal retry loop. The pipeline degrades — affected lanes return empty/partial results, the run continues, and the failure is visible in `audit_summary.boundary_calls[]`. The only application-level retry is extraction's single quote-fabrication retry (see *Capture validation* in Step 2). |
 | `OPENAI_API_KEY` not set | Embeddings disabled. Pipeline runs purely on LLM triage + deterministic routing. Works fine, just without the swiss cheese redundancy layer. |
 | Multiple strategic threads in one conversation | Extraction captures the most developed/recent thread. |
 

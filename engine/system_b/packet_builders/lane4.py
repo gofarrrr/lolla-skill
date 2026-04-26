@@ -1,7 +1,12 @@
-"""Phase 4: Lane 4 (Structural Coverage) packet builder.
+"""Lane packet builder (originally Phase 4 — Lane 4 / Structural Coverage).
 
-Projects ConversationIR into the minimum slice Lane 4 needs:
-- All turns (the lane's prompt-builders need full conversation context)
+Despite the historical name, the packet is now consumed by all four lanes
+(Companion, Frame Pressure, Structural Coverage, and the Pass1+Pass2 Lane 1
+runners) via their `*_from_packet` formatters. The original `_from_context`
+fallbacks are gone (Phase 4d).
+
+Projects ConversationIR into the minimum slice the lanes need:
+- All turns (lane prompt-builders need full conversation context)
 - Original framing text + provenance flag (substring-grounded vs paraphrase)
 - Decision situation text + provenance flag
 - Live constraints (`UserIssueEvent` with kind="constraint") with status
@@ -10,10 +15,7 @@ Projects ConversationIR into the minimum slice Lane 4 needs:
 
 The packet is provenance-aware: each text-bearing field carries a
 `provenance_kind` literal so downstream consumers can distinguish
-substring-validated content from paraphrase. Today's Phase 4 PoC scope
-emits the packet but does NOT yet rewire Lane 4's prompt-builders to
-consume it — that's Phase 4b. This PoC proves the projection is
-correct and stable.
+substring-validated content from paraphrase.
 """
 
 from __future__ import annotations

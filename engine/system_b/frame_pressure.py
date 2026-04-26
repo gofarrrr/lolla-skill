@@ -653,6 +653,7 @@ def assemble_frame_card(
     candidate_reframings: tuple[Reframing, ...],
     anti_echo_model_ids: set[str],
     overlap_flags: tuple[str, ...],
+    dropped_frame_elements: tuple[dict, ...] = (),
 ) -> FramePressureCard:
     """Select up to MAX_REFRAMINGS from candidates, preferring move-type diversity.
 
@@ -666,6 +667,7 @@ def assemble_frame_card(
         reframings=tuple(selected),
         anti_echo_model_ids=tuple(sorted(anti_echo_model_ids)),
         overlap_flags=overlap_flags,
+        dropped_frame_elements=tuple(dropped_frame_elements),
     )
 
 

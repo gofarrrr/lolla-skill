@@ -16,41 +16,49 @@ import pytest
 import scripts.run_pipeline as run_pipeline
 
 
-def _write_extraction_and_conversation(tmp_path: Path) -> tuple[Path, Path]:
+def _write_extraction_and_conversation(
+    tmp_path: Path,
+    *,
+    include_legacy_fields: bool = True,
+) -> tuple[Path, Path]:
     extraction_path = tmp_path / "extraction.json"
     conversation_path = tmp_path / "conversation.txt"
-    extraction_path.write_text(
-        json.dumps(
+    payload = {
+        "status": "ok",
+        "extraction": {
+            "is_strategic": True,
+            "decision_situation": "Should we accept the offer?",
+            "live_constraints": [
+                {
+                    "constraint": "Budget is capped.",
+                    "introduced_turn": 1,
+                    "status": "active",
+                    "weight": "structural",
+                }
+            ],
+            "synthesized_position": "Accept it with safeguards.",
+            "reasoning_passages": ["Accept it with safeguards."],
+            "original_framing": "Is this too risky?",
+            "dropped_threads": [],
+            "_quote_validation": {"fabricated": 0},
+        },
+        "capture_health": "good",
+        "capture_warnings": [],
+        "capture_manifest": {
+            "declared_turns": 1,
+            "actual_user_turns": 1,
+            "actual_assistant_turns": 1,
+        },
+    }
+    if include_legacy_fields:
+        payload.update(
             {
-                "status": "ok",
                 "query": "Should we accept the offer?",
                 "vanilla_answer": "Accept it with safeguards.",
-                "extraction": {
-                    "is_strategic": True,
-                    "decision_situation": "Should we accept the offer?",
-                    "live_constraints": [
-                        {
-                            "constraint": "Budget is capped.",
-                            "introduced_turn": 1,
-                            "status": "active",
-                            "weight": "structural",
-                        }
-                    ],
-                    "synthesized_position": "Accept it with safeguards.",
-                    "reasoning_passages": ["Accept it with safeguards."],
-                    "original_framing": "Is this too risky?",
-                    "dropped_threads": [],
-                    "_quote_validation": {"fabricated": 0},
-                },
-                "capture_health": "good",
-                "capture_warnings": [],
-                "capture_manifest": {
-                    "declared_turns": 1,
-                    "actual_user_turns": 1,
-                    "actual_assistant_turns": 1,
-                },
             }
-        ),
+        )
+    extraction_path.write_text(
+        json.dumps(payload),
         encoding="utf-8",
     )
     conversation_path.write_text(
@@ -134,6 +142,86 @@ def test_file_inputs_with_conversation_use_conversation_context_by_default(
     assert run_pipeline.main() == 0
     assert len(captured_inputs) == 1
     assert isinstance(captured_inputs[0], context_mod.ConversationContext)
+
+
+def test_file_inputs_do_not_require_legacy_query_answer_fields(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import system_b.conversation_context as context_mod
+
+    extraction_path, conversation_path = _write_extraction_and_conversation(
+        tmp_path,
+        include_legacy_fields=False,
+    )
+    output_path = tmp_path / "result.json"
+    captured_inputs = _install_live_pipeline_fakes(monkeypatch, tmp_path)
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    assert len(captured_inputs) == 1
+    assert isinstance(captured_inputs[0], context_mod.ConversationContext)
+
+
+def test_postprocessing_uses_conversation_context_before_stale_legacy_fields(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import system_b.bullshit_index as bullshit_index
+
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    payload = json.loads(extraction_path.read_text(encoding="utf-8"))
+    payload["query"] = "STALE LEGACY QUERY"
+    payload["vanilla_answer"] = "STALE LEGACY ANSWER"
+    extraction_path.write_text(json.dumps(payload), encoding="utf-8")
+
+    output_path = tmp_path / "result.json"
+    _install_live_pipeline_fakes(monkeypatch, tmp_path)
+    captured_bi: dict[str, str] = {}
+
+    class _FakeBullshitProfile:
+        def to_payload(self) -> dict:
+            return {"status": "skipped-test-double"}
+
+    def _capture_bi(text, client, *, context_summary):  # noqa: ANN001, ARG001
+        captured_bi["text"] = text
+        captured_bi["context_summary"] = context_summary
+        return _FakeBullshitProfile()
+
+    monkeypatch.setattr(bullshit_index, "evaluate_text", _capture_bi)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    assert captured_bi["text"] == "Accept it with safeguards."
+    assert "STALE LEGACY" not in captured_bi["text"]
+    assert "Decision: Should we accept the offer?" in captured_bi["context_summary"]
 
 
 def test_new_contract_flag_with_file_inputs_still_uses_conversation_context(
