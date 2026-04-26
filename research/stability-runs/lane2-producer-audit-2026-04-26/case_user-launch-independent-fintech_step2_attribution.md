@@ -1,0 +1,216 @@
+# Step 2 attribution — `user-launch-independent-fintech`
+
+Status: **STEP 4–6 attribution** (per design memo §6.4–§6.6). Source: gold cluster table from `case_user-launch-independent-fintech_step1_source_first.md` v2 (locked by Marcin).
+
+Artifacts opened in this step:
+- `result.json.audit_summary.companion_fingerprint_validated` (8 fingerprint moves)
+- `result.json.audit_summary.companion_detected_models` (2 accepted)
+- `result.json.audit_summary.companion_rejected_models` (58 rejected with reason)
+- `result.json.companion_cheat_sheet.anchors` (2 surfaced)
+- `revised.txt` (Step 6 output)
+
+Total candidate slate: 60 (58 rejected + 2 accepted). Cap was filled.
+
+## Gold cluster rows
+
+### C1 — Refuse tactics-first framing
+
+| Field | Value |
+|---|---|
+| `expected_primary_models` | *Problem Framing And Reframing* |
+| `acceptable_secondary_models` | *Theory Of Constraints* |
+| `fingerprint_found_cluster` | yes (Move 1 + Move 4) |
+| `fingerprint_move_text` | M1: "Identify critical uncertainties before providing tactical advice…"; M4: "Prioritize fundamentals over tactics, insisting on acknowledgment of risks before proceeding to details." |
+| `candidate_recall_hit` (Problem Framing) | **no** — `problem-framing-and-reframing` not in candidate list |
+| `verifier_accepted` (Problem Framing) | n/a |
+| `surfaced_top5` | n/a |
+| `step6_treatment` | hidden |
+| `failure_owner` | **recall_failed** |
+| `notes` | Fingerprint extraction was clean and specific. Recall did not surface *Problem Framing And Reframing* despite Move 1 and Move 4 both naming "tactics" / "fundamentals" / "right problem" — keyword overlap should have hit. This is a real producer leak. |
+
+### C2 — Network interest is not pipeline (base-rate correction)
+
+| Field | Value |
+|---|---|
+| `expected_primary_models` | *Base Rates* |
+| `acceptable_secondary_models` | *Optimism Bias And Planning Fallacy* |
+| `fingerprint_found_cluster` | yes (Move 2) |
+| `fingerprint_move_text` | "Debunk optimistic assumptions about network conversations by citing typical low conversion rates and reclassifying them as potential rather than actual pipeline." |
+| `candidate_recall_hit` (Base Rates) | **yes** |
+| `verifier_accepted` (Base Rates) | **no** — rejection_reason: `execution_quote_not_literal_substring` |
+| `failure_owner` (Base Rates) | **post_verifier_validation_failed** (NEW stage — see §"Surprises") |
+| `candidate_recall_hit` (Optimism Bias) | yes |
+| `verifier_accepted` (Optimism Bias) | yes |
+| `surfaced_top5` (Optimism Bias) | yes |
+| `step6_treatment` (Optimism Bias) | primary (revised.txt: "This is planning fallacy territory — I built the three-phase…timeline at the optimistic end of the same base rates I'd just cited.") |
+| `failure_owner` (Optimism Bias) | **none** (secondary hit, but see partial-credit ruling below) |
+| `partial_credit_ruling` | per Marcin v2 verdict: secondary hit + primary miss. Optimism Bias is NOT a clean true positive on C2 because the *evidence quote Lane 2 attached to it* is from C3's source text ("8 months at zero revenue is tight…"), not from C2's "1-in-5 conversion" content. The semantic concept is plausible across both clusters, but the quote attribution lands on C3. See observed-anchor row for full handling. |
+
+### C3 — Runway as safety buffer + signed-LOI exit trigger
+
+| Field | Value |
+|---|---|
+| `expected_primary_models` | *Margin Of Safety* |
+| `acceptable_secondary_models` | *Optionality* |
+| `should_reject_models` | *Loss Aversion* |
+| `fingerprint_found_cluster` | partial (Move 3 captures runway, LOI exit-trigger not in any move's evidence_quotes) |
+| `fingerprint_move_text` | M3: "Assess runway adequacy against realistic timelines for first engagements and setup, highlighting pressure points." |
+| `candidate_recall_hit` (Margin Of Safety) | yes |
+| `verifier_accepted` (Margin Of Safety) | yes |
+| `surfaced_top5` (Margin Of Safety) | yes |
+| `step6_treatment` (Margin Of Safety) | primary (revised.txt: "The Margin Of Safety frame was already running in the original advice…") |
+| `failure_owner` (Margin Of Safety) | **none** — primary HIT |
+| `evidence_attribution_note` | Lane 2's evidence_quote for Margin Of Safety is from C4 ("Option 3: Launch on current timeline but with a specific safety net — a part-time arrangement…"), not C3's runway/LOI text. The anchor is a primary hit; the evidence selection picked the C4 instance over the C3 instance. Sub-optimal but not a leak. |
+| `candidate_recall_hit` (Optionality, secondary) | yes |
+| `verifier_accepted` (Optionality, secondary) | **no** — rejection_reason: `mechanism absent` |
+| `failure_owner` (Optionality, secondary) | verifier_failed (also see C4) |
+
+### C4 — Three launch paths with explicit tradeoffs
+
+| Field | Value |
+|---|---|
+| `expected_primary_models` | *Optionality* |
+| `acceptable_secondary_models` | *Second Order Thinking* |
+| `should_reject_models` | *Decomposition* |
+| `fingerprint_found_cluster` | yes (Move 5) |
+| `fingerprint_move_text` | "Generate structured decision options with tradeoffs, incorporating delay, aggressive launch, and de-risked hybrid paths." |
+| `candidate_recall_hit` (Optionality) | yes |
+| `verifier_accepted` (Optionality) | **no** — rejection_reason: `mechanism absent` |
+| `surfaced_top5` (Optionality) | n/a |
+| `step6_treatment` (Optionality) | hidden |
+| `failure_owner` (Optionality) | **verifier_failed** |
+| `notes` | The cluster is "generate three explicit options with named tradeoffs" — a textbook Optionality move. Fingerprint named it. Recall surfaced it. Verifier rejected with "mechanism absent" — that rejection looks wrong on inspection. This is the v1/v2/v3/B verifier-instability story playing out as systematic over-rejection on a single run. |
+| `should_reject_check` (Decomposition) | not in candidate list — no false-positive triggered |
+
+### C5 — Spouse alignment on specifics, not concept
+
+| Field | Value |
+|---|---|
+| `expected_primary_models` | `no_clean_primary` |
+| `acceptable_secondary_models` | *Information Asymmetry* |
+| `should_reject_models` | *Principal Agent Problem* |
+| `fingerprint_found_cluster` | yes (Move 6) |
+| `fingerprint_move_text` | "Insist on explicit spousal alignment on specific financial risks rather than conceptual support." |
+| `candidate_recall_hit` (Information Asymmetry, secondary) | yes |
+| `verifier_accepted` (Information Asymmetry, secondary) | **no** — rejection_reason: `mechanism absent` |
+| `failure_owner` | **none** — `no_clean_primary` means there's no expected primary to lose. The verifier correctly did not surface either Information Asymmetry or Principal Agent Problem as anchors for this cluster. |
+| `should_reject_check` (Principal Agent Problem) | in candidate list, rejected with "mechanism absent" — verifier correctly rejected the should_reject candidate ✓ |
+| `notes` | This cluster validates the `no_clean_primary` rule. Lane 2 also did not force-fit a model here, which is the correct behavior. |
+
+### C6 — Fractional work tradeoff
+
+| Field | Value |
+|---|---|
+| `expected_primary_models` | *Opportunity Cost* |
+| `acceptable_secondary_models` | *Margin Of Safety* |
+| `fingerprint_found_cluster` | partial — Move 7 captures the implementation detail ("specific ask"), not the tradeoff structure |
+| `fingerprint_move_text` | "Provide concrete implementation details for de-risking options like fractional roles to make them actionable." |
+| `candidate_recall_hit` (Opportunity Cost) | yes |
+| `verifier_accepted` (Opportunity Cost) | **no** — rejection_reason: `mechanism absent` |
+| `surfaced_top5` (Opportunity Cost) | n/a |
+| `step6_treatment` (Opportunity Cost) | hidden |
+| `failure_owner` (Opportunity Cost) | **verifier_failed** (or possibly `fingerprint_failed`/partial — see notes) |
+| `notes` | Fingerprint Move 7 captures the fractional context but the *tradeoff reasoning* (locks you into cadence / makes larger engagements harder / pays less per hour) is not in any move's evidence quote. Verifier still saw Opportunity Cost as a candidate (via keyword match elsewhere) and rejected with "mechanism absent" — same pattern as C4 Optionality. The deeper question: would a fingerprint move that named the *tradeoff* explicitly have caused the verifier to accept Opportunity Cost? Cannot answer from this case alone. |
+
+### C7 — Pre-registered checkpoint and signal discipline
+
+| Field | Value |
+|---|---|
+| `expected_primary_models` | *Premortem* |
+| `acceptable_secondary_models` | *Confidence Calibration* |
+| `fingerprint_found_cluster` | yes (Move 8) |
+| `fingerprint_move_text` | "Set conditional checkpoints for launch decision based on evidence from key actions, distinguishing signal from noise." |
+| `candidate_recall_hit` (Premortem) | yes |
+| `verifier_accepted` (Premortem) | **no** — rejection_reason: `mechanism absent` |
+| `surfaced_top5` | n/a |
+| `step6_treatment` | hidden |
+| `failure_owner` (Premortem) | **verifier_failed** |
+| `notes` | Same pattern as C4, C6: fingerprint move was clear and specific ("conditional checkpoints… distinguishing signal from noise"), keyword recall surfaced *Premortem* into candidates, verifier rejected with "mechanism absent". |
+
+## Observed-anchor rows
+
+### Observed: *Margin Of Safety*
+
+| Field | Value |
+|---|---|
+| `best_matching_cluster` | C3 (primary) — the runway/LOI safety reasoning is the strongest primary fit |
+| `secondary_match` | C4 (secondary) — Option 3's "specific safety net" also fits |
+| `evidence_quote_attribution` | Lane 2 attached the C4 quote ("Option 3: Launch on current timeline but with a specific safety net — a part-time arrangement…") |
+| `classification` | **acceptable_primary_match** — anchor is the right primary for C3, but Lane 2 picked the C4 instance as evidence. The anchor is correct; the evidence-quote selection is sub-optimal but not wrong. |
+| `failure_owner` | none |
+
+### Observed: *Optimism Bias And Planning Fallacy*
+
+| Field | Value |
+|---|---|
+| `best_matching_cluster` | C2 (where I labeled it acceptable_secondary) OR a meta-pattern crossing C2 + C3 (the user's general optimism) |
+| `evidence_quote_attribution` | Lane 2 attached a C3 quote ("8 months at zero revenue is tight for a first-time independent consultant. Industry experience suggests the first paid engagement often takes 3-5 months from launch…") |
+| `classification` | **acceptable_secondary_with_quote_drift** — the anchor concept is plausible (the user's runway optimism is the model's mechanism), and Step 6 uses it well as a primary critique. But Lane 2's evidence quote is sourced from C3, not C2. Per Marcin's partial-credit discipline: this is **secondary hit + primary miss on C2** (where Base Rates was rejected) — not a clean true positive. |
+| `failure_owner` | none on Optimism Bias itself, but the C2 `Base Rates` post-validation rejection means C2's primary expectation was missed. |
+
+## Aggregate metrics (this case only — N=1, single run)
+
+Cluster denominator excludes C5 (`no_clean_primary`) for primary-recall metrics, since it has no expected primary to recover.
+
+| Metric | Value | Reading |
+|---|---|---|
+| `cluster_recall` (fingerprint) | 7/7 = 100% (or 6/7 = 85.7% if C3's missing LOI half counts as partial) | Fingerprint extraction is strong on this case. Every cluster has at least one move targeting it. |
+| `fingerprint_specificity` | 6/8 moves specific enough; 2 moves (M7 implementation, partial M3) are slightly too generic | Mostly fine. M7 captures fractional context but not tradeoff structure; M3 captures runway but not LOI exit-trigger. |
+| `candidate_recall@60` (expected primaries that reached candidates) | 5/6 = 83.3% (Problem Framing And Reframing missing; Base Rates, Optionality, Margin Of Safety, Opportunity Cost, Premortem present) | Strong but C1 leak. |
+| `verifier_acceptance_rate` (expected primaries that were candidates) | 1/5 = 20% (Margin Of Safety only; Base Rates rejected on quote-validation; Optionality, Opportunity Cost, Premortem rejected with "mechanism absent") | **Low.** The dominant failure mode on this case is verifier rejection. |
+| `surfacing_recall@5` | 1/1 = 100% (every accepted model survived top-5; cap not binding here with 2 accepted) | n/a (denominator too small) |
+| `noisy_anchor_rate` | 0/2 = 0% — both surfaced anchors are correct primaries somewhere in the cluster table; no false-positive observed-anchor rows | Clean precision. |
+| `step6_treatment_accuracy` | 2/2 — both surfaced anchors get primary treatment in revised.txt, which matches the cluster mapping for Margin Of Safety on C3 | Step 6 consumed correctly. |
+
+## Findings — case 1 only
+
+### Discipline first
+
+These are findings *for this single case, single run*. Do not generalize until at least the failure-rich and FP-risk cases have been audited. The "verifier over-rejects" pattern below could be case-specific (the verifier prompt may struggle with this particular conversation's reasoning style) or systemic.
+
+### F1 — Verifier "mechanism absent" rejection is the dominant failure mode
+
+Four of six expected primaries (Optionality, Opportunity Cost, Premortem, plus Optimism Bias as secondary on C2 — wait, Optimism Bias was accepted; correction: three primaries) were rejected by the verifier with `mechanism absent`. The fingerprint extracted these moves clearly; recall surfaced them as candidates; the verifier rejected them with a flat low-information rationale. This is high precision (no false positives) bought at high recall cost.
+
+Models rejected with "mechanism absent" on this case where I would have expected acceptance:
+- *Optionality* (clearly executed in the three-options structure of C4)
+- *Opportunity Cost* (explicitly framed tradeoff in C6)
+- *Premortem* (pre-registered conditions for reversal in C7)
+
+These don't match the spirit of "mechanism absent." The mechanisms are present and specific.
+
+### F2 — A 6th failure stage emerged: post_verifier_validation
+
+The design memo's chain has 5 stages (fingerprint / recall / verifier / surfacing / Step 6). This case surfaced a 6th: a quote-validation gate downstream of verifier judgment that drops models when the verifier's evidence quote is not a literal substring of the source. *Base Rates* was rejected on C2 with `execution_quote_not_literal_substring` — meaning the verifier judged it executed but the validation gate dropped it.
+
+This is a real but separate failure mode. It's not "verifier disagreed"; it's "verifier agreed but the quote it produced wasn't an exact substring." That's a code-level guard against verifier hallucination, and it's catching legitimate cases when the verifier paraphrases the evidence slightly.
+
+The audit table schema and metrics need a `post_verifier_validation_failed` failure-owner value. Memo §7.1 patch needed.
+
+### F3 — Recall correctly screens broad models (C5 should_reject check passed)
+
+*Principal Agent Problem* was a `should_reject_models` candidate on C5 (spouse alignment). It appeared in the candidate list and was rejected with "mechanism absent". That's the correct behavior — the verifier correctly screened a broad model that recall surfaced via lexical adjacency.
+
+This validates that the verifier IS doing real work on screening adjacency; the F1 problem is over-rejection of in-domain models, not a precision problem.
+
+### F4 — Lane 2 evidence-quote selection is sometimes cross-cluster
+
+*Margin Of Safety* on C3 (primary) and *Optimism Bias* on C2 (secondary) both have evidence quotes that source from a different cluster than where the anchor is structurally most load-bearing. The anchors are correct; the evidence-quote selection picks a different sentence. Not a leak, but worth flagging as a sub-finding for the leak map: anchor-to-quote attribution is not always to the most load-bearing source.
+
+### F5 — Hidden anchor rate is high relative to expected primary count
+
+5 expected primaries (out of 6) hidden vs 1 surfaced. **Lane 2 on this case is high-precision, very-low-recall.** If this pattern holds on the failure-rich cases, the audit's leak map points strongly at verifier rejection (F1) as the dominant intervention target — not fingerprint, not recall.
+
+## Surprises
+
+1. **Post-verifier validation gate.** I did not know (or had forgotten) that there's a literal-substring check downstream of the verifier judgment. This is a 6th failure stage and the memo + audit table schema need a patch.
+2. **Verifier rejection volume.** Of 60 candidates, 58 were rejected. That's a 96.7% rejection rate. The verifier is operating in extreme-precision-trade-off territory. This matches what we already knew from the v1/v2/v3/B work on verifier instability, but seeing it stage-by-stage on a single case makes the magnitude more vivid.
+3. **Fingerprint quality is good.** I expected fingerprint to be a major leak source on at least some clusters; on this case, it is not. Every cluster has at least one move targeting it. M7 and M3 are slightly under-specific, but not failure-mode under-specific.
+
+## Open questions for Marcin
+
+1. **Add `post_verifier_validation_failed` to the design memo.** This is a new failure-owner value. It belongs in §7.1 schema and §6.5 attribution rules, and the §9 decision tree should mention it (e.g., "if `post_verifier_validation_failed` is the dominant rejection reason, the fix is at the validation gate or at making the verifier produce verbatim quotes, not at recall or verifier judgment").
+2. **Cross-cluster evidence-quote attribution.** Should this get its own metric (`anchor_evidence_attribution_correctness`) or is it sub-noise for now?
+3. **Pre-attribution hypothesis confirmation.** I predicted "medium-precision low-recall" with possible Optimism Bias false-positive. The actual result is high-precision very-low-recall (0 false positives). Hypothesis confirmation: closer to the optimistic end of my prediction. Lane 2 is doing a strict job; the strictness is dropping anchor-worthy primaries.
+4. **Generalization caution.** Per your discipline, I will NOT proceed to label cases 2–7 yet. Want to see whether F1 (verifier "mechanism absent" over-rejection) holds on the calibration case (`year-old-oncologist-accept`, which you'll source-first) and on the failure-rich cases. If F1 is consistent across cases, the audit's decision-tree call is "revisit verifier with narrower slates."
+5. **Should I write the F2 patch (post-verifier-validation stage) into the design memo now**, or hold it until the calibration case confirms whether the pattern recurs?
