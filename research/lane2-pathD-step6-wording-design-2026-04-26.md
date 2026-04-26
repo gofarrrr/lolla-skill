@@ -134,33 +134,63 @@ From the PR #39 archive sanity check: 11 archived full skill runs qualified. All
 
 ### Audit method
 
-Per audited run, fill in this structured review (one row per `companion_cheat_sheet.anchors[]` entry):
+Per audited run, fill in this structured review (one row per `companion_cheat_sheet.anchors[]` entry).
+
+The row template separates BASELINE state (what the current `revised_answer` already does) from PROPOSED state (what the wording sketch under these rules would produce). Acceptance gates measure the proposed state. Baseline is reported as context to confirm the rules actually move the needle.
 
 | Field | What to record |
 |---|---|
 | `case_id` | from archive |
 | `run_id` | from archive |
 | `model_id` | the anchor |
+| `display_name` | from `companion_cheat_sheet.anchors[].display_name` (used by anchor-naming invariant check below) |
 | `evidence_quote` | from `companion_cheat_sheet.anchors[].evidence_quote` |
-| `current_wording` | how Step 6 (`revised_answer`) currently treats this anchor — quote the relevant sentence |
+| `current_revised_answer_quote` | the verbatim sentence in `revised_answer` that addresses (or fails to address) this anchor. **No paraphrase.** If the scorer cannot point to a sentence, the row is not auditable. |
 | `current_classification` | overclaim / appropriate-primary / appropriate-secondary / appropriate-set-aside / hidden |
-| `proposed_treatment` | primary / secondary / set-aside |
-| `proposed_wording_sketch` | one-sentence rewrite per the rules above |
+| `primary_eligible` | yes / no — does the anchor have direct, specific evidence + central role in the answer's reasoning? Decided BEFORE choosing `proposed_treatment`. |
+| `proposed_treatment` | primary pressure / secondary lens / set aside with a reason |
+| `proposed_wording_sketch` | one-sentence rewrite per the rules above. Must include the anchor's `display_name` verbatim (see anchor-naming invariant audit failure below). |
+| `proposed_classification` | overclaim / appropriate-primary / appropriate-secondary / appropriate-set-aside — **judges the sketch as written, not the intention**. Answers: "if this one-sentence rewrite shipped, would it read as overclaim?" Prevents rows where `proposed_treatment=secondary lens` while the actual wording still overclaims. |
+| `uncertain` | yes / no — flag for human review |
 | `reviewer_notes` | edge cases, judgment calls |
 
-Aggregate metrics (per acceptance gate):
-- `overclaim_rate` = `current_classification == "overclaim"` / total anchors
-- `primary_preservation` = (proposed=primary AND model has direct/specific evidence) / (model has direct/specific evidence)
-- `secondary_framing` = (proposed in {secondary, set-aside}) / (model is broad/adjacent/competing)
-- `not_mushy` = run-level qualitative judgment, marked yes/no per run
+#### Anchor-naming invariant audit failure
+
+If `proposed_wording_sketch` omits the anchor's `display_name` verbatim, the row **fails the anchor-naming invariant** unless the anchor is genuinely absent from the run data (e.g., empty `companion_cheat_sheet.anchors[]`). Set-aside framing must still name the anchor; otherwise it becomes a vague unnamed caveat that hides the signal — exactly the failure mode the invariant exists to prevent.
+
+Audit-failure rows are reported separately from the gate metrics and require row-level remediation (rewrite the sketch to include the `display_name`) before aggregate metrics are computed.
+
+#### Aggregate metrics (per-run AND pooled across all runs)
+
+Report metrics at two levels: per-run (so single-case failures are visible) and pooled (so we evaluate against gates on the full audit corpus). Acceptance gates apply to **pooled metrics**.
+
+```
+baseline_overclaim_rate    = count(current_classification == "overclaim")            / total_anchors
+proposed_overclaim_rate    = count(proposed_classification == "overclaim")           / total_anchors    ← gate ≤ 10%
+primary_preservation       = count(proposed_treatment == primary AND
+                                   primary_eligible == yes)                          / count(primary_eligible == yes)
+secondary_framing          = count(proposed_treatment ∈ {secondary lens,
+                                   set aside with a reason} AND
+                                   primary_eligible == no)                           / count(primary_eligible == no)
+not_mushy                  = run-level qualitative judgment on the proposed-rewrite
+                             sketches (per run; not per anchor)
+anchor_naming_failures     = count(rows that fail the anchor-naming invariant audit)
+```
+
+**Zero-denominator handling:**
+- If a run has zero `primary_eligible == yes` anchors, `primary_preservation` is **n/a for that run** (not pass, not fail). The pooled metric drops the run from the denominator.
+- Symmetrically, if every anchor in a run is `primary_eligible == yes`, `secondary_framing` is **n/a for that run**. Pooled metric drops the run.
+- `proposed_overclaim_rate` and `not_mushy` always have valid denominators (every anchor has a `proposed_classification`; every run has a not-mushy judgment).
+
+Per-run metrics are reported as a table; pooled metrics are reported as a single column gated against the acceptance bars.
 
 ### No LLM calls for the design audit
 
 The audit reviews existing archived `revised_answer` outputs against the proposed rules. We do not generate new Step 6 outputs in this phase — that comes after the rules are accepted, and live validation happens then.
 
 If the audit shows the rules are sound and would not introduce mushiness, we proceed to:
-- Implementation: edit `SKILL.md` Step 6 and the anchor-treatment vocabulary it references.
-- Live validation: future runs of the 4 required cases + spot-check on the wider archive.
+- Implementation: edit `SKILL.md` Step 6 and `HOW_IT_WORKS.md` Step 6 prose **on an implementation branch** (not directly on main). The design docs live on main; the behavior-contract edits go through branch + live validation + PR so the prompt-contract change is reviewable before merge.
+- Live validation: required pre-merge gate. 4 required cases (Marcus, consultant, PhD, mother), one live run each, score Step 6 outputs against D1 gates. ~$0.30 in OpenRouter, ~5-min wall.
 
 ## 8. What this design does NOT do
 
