@@ -17,9 +17,18 @@ Before anything else, this memo commits to five things. Every later section is b
 
 ## 1. Purpose
 
-Determine whether Lane 2 producer quality is limited by **fingerprint, recall, verifier, surfacing, or Step 6 consumption.**
+Determine whether Lane 2 is calibrated to deliver **trustworthy friction** — defensible anchors that create useful structural pressure on Step 6, AND enough recall that curated knowledge actually reaches the conversation.
 
-Concretely: for every expected mental model on every reasoning cluster in the audit corpus, we want to attribute presence/absence to one of those five stages, plus a `gold_disagreement` bucket for cases where the expected label itself was wrong.
+The product thesis (`HOW_IT_WORKS.md:25, 49, 274`) is that Lolla exists to *reintroduce the friction that fluent LLM prose removes* by importing curated mental-model pressure that the base model would not surface on its own. That has two axes, not one:
+
+- **Trust axis** — are surfaced anchors defensible, evidence quotes real, false positives bounded, Step 6 framing honest? Protected by the literal-substring quote gate (`engine/system_b/companion_routing.py:521-549`), `should_reject_models`, `noisy_anchor_rate`, and PR #41's wording contract.
+- **Friction-yield axis** — does enough anchor-worthy pressure survive the chain to create friction Step 6 can lean on? If almost nothing surfaces, Lane 2 is "safe" but it has stopped importing the curated substrate, and Lolla collapses back into ordinary LLM reasoning with better manners.
+
+The audit answers both. **Leak attribution** (where in the chain expected anchors die) tells us where to fix. **Friction-yield measurement** (whether enough survives at all) tells us whether the current calibration is right.
+
+Concretely: for every expected mental model on every reasoning cluster in the audit corpus, we attribute presence/absence to one of the producer chain's stages (`fingerprint`, `recall`, `verifier`, `post_verifier_validation`, `surfacing`, `step6_consumption`), plus `gold_disagreement` for cases where the expected label itself was wrong. Then we measure whether the surviving validated anchors deliver enough friction to be product-load-bearing.
+
+**Interpretive rule (load-bearing).** High precision with low friction yield is not acceptable just because `noisy_anchor_rate` is low. The product fails when Lane 2 is too clean to import curated pressure. Strictness that protects trust but starves friction is a calibration problem, not a feature.
 
 ## 2. Why this, why now
 
@@ -249,6 +258,14 @@ For each expected model on each gold cluster, across the 3 runs:
 
 This is especially important for `marcus-equity`, where Step 6 consumption is high (100%) but `Accepted-pre` stability is low (0.13). The hypothesis: each run picks different anchors, all of which Step 6 happily uses. The recurrence metrics will show whether expected models are absent in many runs (producer leak) or present but inconsistently surfaced (downstream variance).
 
+### 8.3 Product-level friction metrics
+
+The §8.1 metrics measure leak attribution (where anchors die). These additional metrics measure whether enough survives to do the product's job (`HOW_IT_WORKS.md:25, 49, 274`).
+
+- `friction_yield` — count/share of gold *anchor-worthy* clusters (i.e., gold clusters with an `expected_primary_model` other than `no_clean_primary`) that produce *either* a validated primary anchor, a validated secondary anchor, *or* an explicitly reviewed soft-friction candidate that reaches Step 6. A cluster counts toward friction yield if anchor-worthy curated pressure survived the chain in some honest form.
+- `strictness_failure_rate` — share of gold anchor-worthy clusters where fingerprint + recall succeeded (the cluster was extracted and the expected model reached the candidate list), but **nothing** reached Step 6 because the verifier and/or post-verifier validation rejected every relevant model. This is the metric that makes "too strict" measurable.
+- **Interpretive rule.** High precision with low friction yield is not acceptable just because `noisy_anchor_rate` is low. If the trust axis (`noisy_anchor_rate` ≤ V%, false positives bounded) clears but `friction_yield` stays low and `strictness_failure_rate` is high, the calibration problem is on the friction axis. The fix space for that is *not* at the trust gates (do not loosen the literal-substring quote validation; do not trust paraphrased evidence). It is around them: better verifier-quote literalness, fuzzy quote repair before demotion, hypothesis-grade soft-friction surfacing alongside (not replacing) validated anchors. These are next-track design questions surfaced by the audit, not implemented by it.
+
 ## 9. Pre-registered decision tree
 
 The memo commits to this mapping from audit results to next-track work, *before* the audit runs. This protects against post-hoc story-fitting (the same discipline that protected Path D when v3 failed gates).
@@ -259,7 +276,8 @@ The memo commits to this mapping from audit results to next-track work, *before*
 - If `post_verifier_validation_failure_rate` dominates the leak (verifier accepts but the literal-substring quote gate demotes), **fix quote validation / quote literalness** — make the verifier produce verbatim quotes, or add fuzzy quote repair before demotion. Do *not* trust paraphrased quotes; the gate is correctly protecting against hallucinated evidence.
 - If upstream works but `noisy_anchor_rate` is high, **fix surfacing/fan-in.**
 - If upstream works and Step 6 mistreats anchors, **continue PR #41-style consumer work.**
-- **If all stages are acceptable, do not redesign Lane 2 just because Sully makes decomposition feel elegant.** We are not trying to cosplay decomposition. We are trying to find the leak.
+- **Friction-yield branch (load-bearing).** If trust metrics clear (low `noisy_anchor_rate`, false positives bounded) but `friction_yield` stays low and `strictness_failure_rate` is high, the calibration is too strict for the product job. The fix is *not* loosening the trust gates. The fix space includes: making the verifier produce verbatim quotes; adding fuzzy quote repair before quote-validation demotion; introducing a clearly-separated hypothesis-grade soft-friction surface that does not corrupt the trust layer. This is a calibration design question, not a leak.
+- **If all stages are acceptable AND friction yield is acceptable, do not redesign Lane 2 just because Sully makes decomposition feel elegant.** We are not trying to cosplay decomposition. We are trying to find the leak — or to confirm the calibration is starving the product, which is its own kind of leak.
 
 ## 10. What this memo does NOT do
 
@@ -278,11 +296,20 @@ To prevent the audit from ending in "mediocre but not terrible, let's redesign a
 
 **Threshold values are deferred to a calibration step with Marcin before the audit script runs.** This memo locks the *shape* of the gate, not the numbers. Suggested shape:
 
+**Stage gates (leak attribution):**
+
 - `cluster_recall` ≥ X% — fingerprint extracts the moves we care about
 - `candidate_recall@60` ≥ Y% on `expected_primary_models` — the right model reaches the verifier
 - `verifier_acceptance_rate` ≥ Z% on candidates that were present — verifier doesn't reject correct candidates
 - `surfacing_recall@5` ≥ W% — top-5 budget doesn't drop them
 - `noisy_anchor_rate` ≤ V% — false-positive rate is bounded
+
+**Product gates (friction yield):**
+
+- `friction_yield` ≥ F% — enough anchor-worthy curated pressure survives to do the product job
+- `strictness_failure_rate` ≤ S% — the chain is not so strict that anchor-worthy clusters routinely surface nothing
+
+The two gate sets are AND-ed. **Stage gates passing while product gates fail is a real failure mode** — it means Lane 2 is precise but starves Step 6 of curated pressure. The interpretive rule from §1 applies: high precision with low friction yield is not acceptable.
 
 If all five clear, **Lane 2 producer is acceptable** and the next track is consumer-side polish, not decomposition. If any fails, the decision tree in §9 routes to a specific next-track design.
 

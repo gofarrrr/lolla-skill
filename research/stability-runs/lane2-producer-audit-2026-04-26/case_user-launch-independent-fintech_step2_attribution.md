@@ -164,6 +164,17 @@ Cluster denominator excludes C5 (`no_clean_primary`) for primary-recall metrics,
 | `noisy_anchor_rate` | 0/2 = 0% — both surfaced anchors are correct primaries somewhere in the cluster table; no false-positive observed-anchor rows | Clean precision. |
 | `step6_treatment_accuracy` | 2/2 — both surfaced anchors get primary treatment in revised.txt, which matches the cluster mapping for Margin Of Safety on C3 | Step 6 consumed correctly. |
 
+### Product-level friction metrics (per memo §8.3)
+
+Anchor-worthy denominator: 6 clusters (C1, C2, C3, C4, C6, C7). C5 is `no_clean_primary` and excluded.
+
+| Metric | Value | Reading |
+|---|---|---|
+| `friction_yield` | 2/6 = 33.3% | C3 (Margin Of Safety primary) and C2 (Optimism Bias And Planning Fallacy validated secondary, used as primary critique pressure in Step 6) are the two clusters that delivered curated friction. C1, C4, C6, C7 surfaced no anchor that reached Step 6. |
+| `strictness_failure_rate` | 3/5 = 60% | Of the 5 clusters where fingerprint + recall succeeded (C2, C3, C4, C6, C7), three (C4, C6, C7) had nothing reach Step 6 because every relevant model was rejected by the verifier. C2 also had its primary (Base Rates) rejected at quote validation, but its secondary (Optimism Bias) survived, so C2 does not count as strictness-failed. C1 is excluded from the denominator because recall failed there (not strictness). |
+| Trust axis (this case) | clean | `noisy_anchor_rate` 0%, both surfaced anchors are correct primaries somewhere in the cluster table, Step 6 used them honestly. |
+| Friction axis (this case) | weak | 33% friction yield, 60% strictness failure on anchor-worthy clusters where the producer chain successfully extracted the move. Three anchor-worthy clusters (Optionality on three named options, Opportunity Cost on a literal tradeoff, Premortem on pre-registered conditions) had nothing reach Step 6 even though fingerprint and recall both succeeded. |
+
 ## Findings — case 1 only
 
 ### Discipline first
@@ -206,7 +217,9 @@ This validates that the verifier IS doing real work on screening adjacency; the 
 
 `user-launch-independent-fintech` shows **high precision and low validated recall.** Fingerprint and recall mostly worked. **One primary failed recall** (*Problem Framing And Reframing* on C1), **one primary failed post-verifier quote validation** (*Base Rates* on C2 — `execution_quote_not_literal_substring`), and **three expected primaries failed verifier judgment** (*Optionality* on C4, *Opportunity Cost* on C6, *Premortem* on C7), with C6's miss carrying a fingerprint-specificity caveat.
 
-That is the case-1 conclusion. It is *not* "the verifier is the bottleneck" — that generalization is held until the calibration case and the failure-rich cases are audited. It is also not "post-verifier validation is significant" — one demotion on one case does not establish significance, only existence. Recurrence across cases is what decides which leak stage to target.
+**Two-axis read.** Trust is high (no false positives, evidence quotes real, Step 6 framing honest). Friction yield is low (33%, with 60% strictness failure on clusters where the producer chain successfully extracted the move). Per the memo's interpretive rule, high precision with low friction yield is not acceptable just because `noisy_anchor_rate` is low — the product job is to import curated pressure into Step 6, and on this case three anchor-worthy clusters (Optionality, Opportunity Cost, Premortem) imported nothing despite the producer chain doing its job up through recall.
+
+That is the case-1 conclusion. It is *not* "the verifier is the bottleneck" — that generalization is held until the calibration case and the failure-rich cases are audited. It is also not "post-verifier validation is significant" — one demotion on one case does not establish significance, only existence. The friction-yield signal is similarly first-only: case 1 alone says "this calibration may be too strict for the product on this kind of conversation"; recurrence across cases decides whether the calibration is systematically too strict, or whether case 1 is an outlier.
 
 ## Surprises
 
