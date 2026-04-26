@@ -145,7 +145,7 @@ The row template separates BASELINE state (what the current `revised_answer` alr
 | `model_id` | the anchor |
 | `display_name` | from `companion_cheat_sheet.anchors[].display_name` (used by anchor-naming invariant check below) |
 | `evidence_quote` | from `companion_cheat_sheet.anchors[].evidence_quote` |
-| `current_revised_answer_quote` | the verbatim sentence in `revised_answer` that addresses (or fails to address) this anchor. **No paraphrase.** If the scorer cannot point to a sentence, the row is not auditable. |
+| `current_revised_answer_quote` | the verbatim sentence in `revised_answer` that addresses this anchor. **No paraphrase.** Two valid record types: (1) a verbatim sentence quoted from `revised_answer`; (2) the literal sentinel `MISSING: no sentence names or addresses <display_name>` when the anchor was hidden — i.e., `current_classification=hidden`. The sentinel keeps hidden-anchor rows auditable so silent omission counts toward the baseline. "Not auditable" is reserved for malformed archive data only: missing `revised_answer`, missing anchor fields, or genuinely ambiguous extraction failures. |
 | `current_classification` | overclaim / appropriate-primary / appropriate-secondary / appropriate-set-aside / hidden |
 | `primary_eligible` | yes / no — does the anchor have direct, specific evidence + central role in the answer's reasoning? Decided BEFORE choosing `proposed_treatment`. |
 | `proposed_treatment` | primary pressure / secondary lens / set aside with a reason |
@@ -164,14 +164,16 @@ Audit-failure rows are reported separately from the gate metrics and require row
 
 Report metrics at two levels: per-run (so single-case failures are visible) and pooled (so we evaluate against gates on the full audit corpus). Acceptance gates apply to **pooled metrics**.
 
+Exact label strings (must match the row template's `proposed_treatment` and `proposed_classification` vocabularies verbatim):
+
 ```
-baseline_overclaim_rate    = count(current_classification == "overclaim")            / total_anchors
-proposed_overclaim_rate    = count(proposed_classification == "overclaim")           / total_anchors    ← gate ≤ 10%
-primary_preservation       = count(proposed_treatment == primary AND
-                                   primary_eligible == yes)                          / count(primary_eligible == yes)
-secondary_framing          = count(proposed_treatment ∈ {secondary lens,
-                                   set aside with a reason} AND
-                                   primary_eligible == no)                           / count(primary_eligible == no)
+baseline_overclaim_rate    = count(current_classification == "overclaim")                / total_anchors
+proposed_overclaim_rate    = count(proposed_classification == "overclaim")               / total_anchors    ← gate ≤ 10%
+primary_preservation       = count(proposed_treatment == "primary pressure" AND
+                                   primary_eligible == "yes")                            / count(primary_eligible == "yes")
+secondary_framing          = count(proposed_treatment ∈ {"secondary lens",
+                                   "set aside with a reason"} AND
+                                   primary_eligible == "no")                             / count(primary_eligible == "no")
 not_mushy                  = run-level qualitative judgment on the proposed-rewrite
                              sketches (per run; not per anchor)
 anchor_naming_failures     = count(rows that fail the anchor-naming invariant audit)
@@ -202,16 +204,40 @@ If the audit shows the rules are sound and would not introduce mushiness, we pro
 
 It is a contract change at the Step 6 prompt boundary, validated against existing archived outputs.
 
-## 9. Open questions for review
+## 9. Resolved review decisions
 
-Before I touch `SKILL.md`, I'd like a check on:
+These were open questions in an earlier draft; resolved in design conversation 2026-04-26 and locked here so the audit and implementation work against settled framing.
 
-a. **Anchor-treatment vocabulary names.** "Primary pressure / secondary lens / set-aside caveat" — clear enough? Or do they need different framing for Claude's reading at Step 6 time? (The current `SKILL.md:336` vocabulary uses §1 / §2 / §3 — primary/secondary/set-aside roughly maps but isn't 1:1.)
+a. **Anchor-treatment vocabulary names.** Resolved: **"primary pressure / secondary lens / set aside with a reason"** — the third category as a phrase, not "set-aside caveat." Reason: "caveat" can read as a buried hedge; the contract requires Claude to actively address the anchor without inflating it. These are rhetorical strength categories, NOT competing with the existing §1 / §2 / §3 section taxonomy at `SKILL.md:342`. A primary-pressure anchor can land in §1 or §3; a "set aside with a reason" anchor mostly lives in §2. The treatment vocabulary is an internal writing rule and does NOT appear as user-visible headings.
 
-b. **Where does the wording-rule guidance live in `SKILL.md`?** I'd propose: a new sub-section at Step 6 (after `:336`) titled "**Anchor treatment**" that defines the three categories + the qualitative reading rules. The structure of `SKILL.md` Step 6 stays the same; the anchor handling instructions get an explicit treatment-vocabulary upgrade.
+b. **Where the wording rules live in `SKILL.md`.** Resolved:
+   - Short bridge sentence at the `CompanionCheatSheet` bullet around `SKILL.md:336`: "anchors are evidence-bearing hypotheses, not canonical diagnoses."
+   - Full **Anchor treatment** sub-section immediately after the existing anchor-naming invariant at `SKILL.md:350`. Hard contract first ("every anchor must be addressed"), then "here is how strongly to address it."
+   - Step 6's overall structure (§1 / §2 / §3) stays unchanged.
 
-c. **Who runs the audit?** The audit corpus is small (~11 runs), and the structured review is mechanical. I can do an initial pass writing up the per-anchor classifications and aggregate metrics. You review and adjust. Or you'd rather do it yourself first to avoid me biasing the audit.
+c. **Who runs the audit.** Resolved: implementer runs the initial pass with bias controls; reviewer audits the high-leverage subset.
+   - Bias controls in the row template: `primary_eligible` decided BEFORE `proposed_treatment`; `current_classification` and `proposed_classification` scored independently; `proposed_classification` judges the sketch as written (not the intention); every row cites verbatim quotes (`evidence_quote` and `current_revised_answer_quote`).
+   - Reviewer surface: all `uncertain == yes` rows + all Marcus rows + all rows where `proposed_treatment ∈ {"primary pressure", "set aside with a reason"}` + all `anchor_naming_failures`.
 
-d. **What's the "live validation" gate after `SKILL.md` ships?** The acceptance gates above measure proposal quality on archived outputs. After implementation, we'd want a small live re-run on the 4 required cases to confirm the new wording actually emerges. That's ~$0.20–0.40 in OpenRouter. Want it as a hard gate before merge, or a post-merge spot check?
+d. **Live validation as a hard pre-merge gate.** Resolved: yes, hard gate (not post-merge spot-check). Sequence:
+   1. Run archive audit against proposed rules.
+   2. If audit gates pass, edit `SKILL.md` + `HOW_IT_WORKS.md` **on an implementation branch** (not main).
+   3. Run the 4 required cases (Marcus, consultant, PhD, mother) live once each. ~$0.30, ~5-min wall.
+   4. Score Step 6 / `revised_answer` outputs against D1 gates.
+   5. Merge only if no overclaim/mushiness regression appears.
 
-After answering (a)-(d), I do the audit, write up the results, and if gates pass I propose the `SKILL.md` edits. If gates fail, the rules need tightening before any code/contract change.
+Reason: the archive audit can answer "are these rules coherent against known outputs" but CANNOT answer "will Claude actually obey the edited `SKILL.md`." Prompt behavior is the thing being changed, so post-merge spot-check would be too late.
+
+## 10. Pre-audit checklist
+
+Before scoring rows, the implementer confirms:
+
+- [x] Audit-template metric split (baseline vs proposed) is reflected in Section 7's row template.
+- [x] Zero-denominator handling and pooled-vs-per-run reporting are specified.
+- [x] Anchor-naming invariant audit failure is defined (sketch must include `display_name` verbatim).
+- [x] Hidden anchors stay auditable via the `MISSING: ...` sentinel — Section 7's `current_revised_answer_quote` row.
+- [x] Aggregate metric formulas use exact string labels matching the row template.
+- [x] Resolved review decisions are captured in Section 9 (no stale open questions).
+- [x] Implementation-branch + hard live-validation gate is captured in Section 7's "No LLM calls" subsection.
+
+When all boxes are checked and the doc has had a second read, the audit is ready to run.
