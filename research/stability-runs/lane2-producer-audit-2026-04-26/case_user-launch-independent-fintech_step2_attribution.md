@@ -136,7 +136,7 @@ Total candidate slate: 60 (58 rejected + 2 accepted). Cap was filled.
 | `best_matching_cluster` | C3 (primary) — the runway/LOI safety reasoning is the strongest primary fit |
 | `secondary_match` | C4 (secondary) — Option 3's "specific safety net" also fits |
 | `evidence_quote_attribution` | Lane 2 attached the C4 quote ("Option 3: Launch on current timeline but with a specific safety net — a part-time arrangement…") |
-| `classification` | **acceptable_primary_match** — anchor is the right primary for C3, but Lane 2 picked the C4 instance as evidence. The anchor is correct; the evidence-quote selection is sub-optimal but not wrong. |
+| `classification` | **`acceptable_primary_match_with_quote_drift`** — anchor is the right primary for C3, but evidence quote sources from C4. The anchor is correct; the evidence-quote selection is sub-optimal but traceable. |
 | `failure_owner` | none |
 
 ### Observed: *Optimism Bias And Planning Fallacy*
@@ -145,7 +145,7 @@ Total candidate slate: 60 (58 rejected + 2 accepted). Cap was filled.
 |---|---|
 | `best_matching_cluster` | C2 (where I labeled it acceptable_secondary) OR a meta-pattern crossing C2 + C3 (the user's general optimism) |
 | `evidence_quote_attribution` | Lane 2 attached a C3 quote ("8 months at zero revenue is tight for a first-time independent consultant. Industry experience suggests the first paid engagement often takes 3-5 months from launch…") |
-| `classification` | **acceptable_secondary_with_quote_drift** — the anchor concept is plausible (the user's runway optimism is the model's mechanism), and Step 6 uses it well as a primary critique. But Lane 2's evidence quote is sourced from C3, not C2. Per Marcin's partial-credit discipline: this is **secondary hit + primary miss on C2** (where Base Rates was rejected) — not a clean true positive. |
+| `classification` | **`acceptable_secondary_with_quote_drift`** — the anchor concept is plausible (the user's runway optimism is the model's mechanism), and Step 6 uses it well as a primary critique. But Lane 2's evidence quote is sourced from C3, not C2. Per Marcin's partial-credit discipline: this is **secondary hit + primary miss on C2** (where Base Rates was rejected) — not a clean true positive. |
 | `failure_owner` | none on Optimism Bias itself, but the C2 `Base Rates` post-validation rejection means C2's primary expectation was missed. |
 
 ## Aggregate metrics (this case only — N=1, single run)
@@ -168,12 +168,16 @@ Cluster denominator excludes C5 (`no_clean_primary`) for primary-recall metrics,
 
 Anchor-worthy denominator: 6 clusters (C1, C2, C3, C4, C6, C7). C5 is `no_clean_primary` and excluded.
 
-| Metric | Value | Reading |
+Strict and broad variants are reported per memo §8.3, so the metric is harder to game and evidence-quote drift / fingerprint-specificity caveats stay visible.
+
+| Metric | Value | What's counted (and what's caveated) |
 |---|---|---|
-| `friction_yield` | 2/6 = 33.3% | C3 (Margin Of Safety primary) and C2 (Optimism Bias And Planning Fallacy validated secondary, used as primary critique pressure in Step 6) are the two clusters that delivered curated friction. C1, C4, C6, C7 surfaced no anchor that reached Step 6. |
-| `strictness_failure_rate` | 3/5 = 60% | Of the 5 clusters where fingerprint + recall succeeded (C2, C3, C4, C6, C7), three (C4, C6, C7) had nothing reach Step 6 because every relevant model was rejected by the verifier. C2 also had its primary (Base Rates) rejected at quote validation, but its secondary (Optimism Bias) survived, so C2 does not count as strictness-failed. C1 is excluded from the denominator because recall failed there (not strictness). |
-| Trust axis (this case) | clean | `noisy_anchor_rate` 0%, both surfaced anchors are correct primaries somewhere in the cluster table, Step 6 used them honestly. |
-| Friction axis (this case) | weak | 33% friction yield, 60% strictness failure on anchor-worthy clusters where the producer chain successfully extracted the move. Three anchor-worthy clusters (Optionality on three named options, Opportunity Cost on a literal tradeoff, Premortem on pre-registered conditions) had nothing reach Step 6 even though fingerprint and recall both succeeded. |
+| `friction_yield_strict` | **1/6 = 16.7%** | Only C3: Margin Of Safety is the cluster's expected primary AND survived validation AND Step 6 used it as primary pressure. C2 is excluded from the strict numerator: although Optimism Bias And Planning Fallacy survived as a validated anchor, its evidence quote sources from C3 (`acceptable_secondary_with_quote_drift`), so the cluster-aligned reading does not credit it. |
+| `friction_yield_any_honest` | **2/6 = 33.3%** | C3 (clean primary) + C2 (validated secondary with quote drift, but Step 6 used it as primary critique pressure — honest curated friction reached the user). |
+| `strictness_failure_rate_strict` | **2/4 = 50%** | C4 (*Optionality*) and C7 (*Premortem*) — fingerprint specificity was sufficient, expected model reached candidates, verifier rejected with "mechanism absent." C6 (*Opportunity Cost*) is excluded because fingerprint specificity was partial (Move 7 captured implementation detail, not the tradeoff structure). C2 is excluded because Optimism Bias secondary survived, so the cluster did not fully strictness-fail. C1 is excluded because the failure was at recall, not strictness. |
+| `strictness_failure_rate_broad` | **3/5 = 60%** | Above plus C6, on the broader reading that the verifier was strict even given partial fingerprint context. The strict/broad gap (10 pts) is a measure of how much the strictness signal depends on what we treat as "fingerprint did its job." |
+| Trust axis (this case) | clean | `noisy_anchor_rate` 0%, both surfaced anchors map to expected models on some cluster, Step 6 used them honestly. Quote drift on both anchors is a sub-signal but not a trust violation. |
+| Friction axis (this case) | weak under either reading | Strict: 16.7% friction yield, 50% strictness failure. Generous: 33.3% friction yield, 60% strictness failure. Under either reading, anchor-worthy clusters delivered nothing on at least half of the cases where the producer chain successfully extracted them. |
 
 ## Findings — case 1 only
 
@@ -217,9 +221,9 @@ This validates that the verifier IS doing real work on screening adjacency; the 
 
 `user-launch-independent-fintech` shows **high precision and low validated recall.** Fingerprint and recall mostly worked. **One primary failed recall** (*Problem Framing And Reframing* on C1), **one primary failed post-verifier quote validation** (*Base Rates* on C2 — `execution_quote_not_literal_substring`), and **three expected primaries failed verifier judgment** (*Optionality* on C4, *Opportunity Cost* on C6, *Premortem* on C7), with C6's miss carrying a fingerprint-specificity caveat.
 
-**Two-axis read.** Trust is high (no false positives, evidence quotes real, Step 6 framing honest). Friction yield is low (33%, with 60% strictness failure on clusters where the producer chain successfully extracted the move). Per the memo's interpretive rule, high precision with low friction yield is not acceptable just because `noisy_anchor_rate` is low — the product job is to import curated pressure into Step 6, and on this case three anchor-worthy clusters (Optionality, Opportunity Cost, Premortem) imported nothing despite the producer chain doing its job up through recall.
+**Two-axis read.** Trust is high (no false positives, evidence quotes real, Step 6 framing honest). Friction yield is weak under either scoring: even under generous credit, only 2/6 anchor-worthy clusters delivered usable pressure; under strict cluster-aligned scoring, only 1/6 did. Per the memo's interpretive rule, high precision with low friction yield is not acceptable just because `noisy_anchor_rate` is low — the product job is to import curated pressure into Step 6, and on this case Optionality / Opportunity Cost / Premortem (and Base Rates and Problem Framing And Reframing) all failed to surface despite being clearly executed in the assistant's reasoning.
 
-That is the case-1 conclusion. It is *not* "the verifier is the bottleneck" — that generalization is held until the calibration case and the failure-rich cases are audited. It is also not "post-verifier validation is significant" — one demotion on one case does not establish significance, only existence. The friction-yield signal is similarly first-only: case 1 alone says "this calibration may be too strict for the product on this kind of conversation"; recurrence across cases decides whether the calibration is systematically too strict, or whether case 1 is an outlier.
+That is the case-1 conclusion. It is *not* "the verifier is the bottleneck" — that generalization is held until the calibration case and the failure-rich cases are audited. It is also not "post-verifier validation is significant" — one demotion on one case does not establish significance, only existence. The friction-yield signal is similarly first-only: case 1 alone says "this calibration may be too strict for the product on this kind of conversation"; recurrence across cases decides whether the calibration is systematically too strict, or whether case 1 is a fintech-launch-specific outlier or a labeling-granularity artifact.
 
 ## Surprises
 

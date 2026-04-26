@@ -129,7 +129,7 @@ This is the single most important methodological rule in this memo. Without it, 
 
 ### 6.1 Source-first cluster pass
 
-Read **`conversation.txt` Turn N ASSISTANT messages only.** Mark anchor-worthy reasoning clusters with `assistant_quote` and `cluster_id`. **Do not open** `revised.txt`, `result.json`, `companion_cheat_sheet`, or any prior anchor analysis at this stage. `revised.txt` is Step 6 output and contains anchor mentions and Step-6-shaped reasoning that would leak back into gold labels — it is opened only in §6.4 attribution, when scoring Step 6 consumption.
+Read **`conversation.txt` Turn N ASSISTANT messages only.** Mark anchor-worthy reasoning clusters with `cluster_id` and `source_quotes` (one or more exact assistant substrings). **Do not open** `revised.txt`, `result.json`, `companion_cheat_sheet`, or any prior anchor analysis at this stage. `revised.txt` is Step 6 output and contains anchor mentions and Step-6-shaped reasoning that would leak back into gold labels — it is opened only in §6.4 attribution, when scoring Step 6 consumption.
 
 **Anchor-worthiness rule.** A good assistant answer can contain many locally valid cognitive moves; not every one of them is anchor-worthy. The audit unit is a *load-bearing reasoning cluster that deserves a mental-model anchor*, not every reasoning sentence. If a turn contains five sentences of correct reasoning that are all serving one structural move, that's one cluster, not five. Pseudo-precision (over-splitting) biases the audit toward "Lane 2 has terrible recall" before that conclusion is earned. Right granularity for a typical case is roughly 5–8 clusters; if you find yourself at 10+, reconsider whether you're splitting on real structural shifts or on local sentence variation.
 
@@ -214,25 +214,25 @@ Any cluster where the draft gold set has more than one plausible primary, OR whe
 | `verifier_accepted` | yes / no |
 | `surfaced_top5` | yes / no |
 | `step6_treatment` | primary / secondary / set_aside / hidden / not_applicable |
-| `failure_owner` | fingerprint / recall / verifier / post_verifier_validation / surfacing / step6 / none / gold_disagreement |
+| `failure_owner` | `fingerprint_failed` / `recall_failed` / `verifier_failed` / `post_verifier_validation_failed` / `surfacing_failed` / `step6_failed` / `none` / `gold_disagreement` |
 | `ambiguous` | yes / no |
 | `reviewer_notes` | Marcin's final judgment if ambiguous |
 
 ### 7.2 Observed-anchor rows (false-positive catcher)
 
-For every current Lane 2 anchor that does NOT map cleanly to an expected_primary_model on a gold cluster:
+For every current Lane 2 anchor — including those that DO map to a cluster's expected primary, since evidence-quote attribution can drift even when the anchor is correct:
 
 | Field | Meaning |
 |---|---|
 | `case_id` | archived case |
 | `run_id` | run identifier |
 | `observed_model` | current Lane 2 anchor |
-| `best_matching_cluster` | gold cluster_id or none |
-| `classification` | acceptable_secondary / noisy_adjacent / false_positive |
-| `failure_owner` | usually verifier or recall |
+| `best_matching_cluster` | gold cluster_id or `none` |
+| `classification` | one of:<br>• `acceptable_primary_match` — anchor IS the cluster's expected primary, evidence quote sources from this cluster<br>• `acceptable_primary_match_with_quote_drift` — anchor IS the cluster's expected primary, but evidence quote sources from a different cluster than where the anchor is most load-bearing<br>• `acceptable_secondary` — anchor is the cluster's `acceptable_secondary_model`, evidence quote aligned<br>• `acceptable_secondary_with_quote_drift` — anchor is the cluster's secondary, but evidence quote sources from a different cluster<br>• `noisy_adjacent` — keyword/lexically adjacent, semantically wrong fit<br>• `false_positive` — clearly wrong |
+| `failure_owner` | `none` (for the four `acceptable_*` classifications); `verifier` or `recall` (for `noisy_adjacent` / `false_positive`) |
 | `notes` | reviewer notes |
 
-This is how false positives get caught. Without §7.2, the audit only measures recall and misses precision.
+This catches false positives AND surfaces evidence-quote drift, which is a separate trust signal: an anchor can be the right model for a cluster while the verifier's evidence quote points at the wrong source. That's not a leak, but it is information about Lane 2's anchor-to-evidence attribution quality.
 
 ## 8. Metrics
 
@@ -262,9 +262,13 @@ This is especially important for `marcus-equity`, where Step 6 consumption is hi
 
 The §8.1 metrics measure leak attribution (where anchors die). These additional metrics measure whether enough survives to do the product's job (`HOW_IT_WORKS.md:25, 49, 274`).
 
-- `friction_yield` — count/share of gold *anchor-worthy* clusters (i.e., gold clusters with an `expected_primary_model` other than `no_clean_primary`) that produce *either* a validated primary anchor, a validated secondary anchor, *or* an explicitly reviewed soft-friction candidate that reaches Step 6. A cluster counts toward friction yield if anchor-worthy curated pressure survived the chain in some honest form.
-- `strictness_failure_rate` — share of gold anchor-worthy clusters where fingerprint + recall succeeded (the cluster was extracted and the expected model reached the candidate list), but **nothing** reached Step 6 because the verifier and/or post-verifier validation rejected every relevant model. This is the metric that makes "too strict" measurable.
-- **Interpretive rule.** High precision with low friction yield is not acceptable just because `noisy_anchor_rate` is low. If the trust axis (`noisy_anchor_rate` ≤ V%, false positives bounded) clears but `friction_yield` stays low and `strictness_failure_rate` is high, the calibration problem is on the friction axis. The fix space for that is *not* at the trust gates (do not loosen the literal-substring quote validation; do not trust paraphrased evidence). It is around them: better verifier-quote literalness, fuzzy quote repair before demotion, hypothesis-grade soft-friction surfacing alongside (not replacing) validated anchors. These are next-track design questions surfaced by the audit, not implemented by it.
+Anchor-worthy denominator excludes any cluster with `expected_primary_models = no_clean_primary`. Each metric has a strict variant (cluster-aligned credit only) and a broad variant (any honest pressure counts).
+
+- `friction_yield_strict` — share of gold anchor-worthy clusters where a validated anchor reaches Step 6 *and* the anchor's evidence quote sources from that cluster. This is the cluster-aligned reading: the anchor is correctly placed AND its evidence is correctly attributed. Quote drift does not count.
+- `friction_yield_any_honest` — share of gold anchor-worthy clusters that produce *any* honest curated pressure reaching Step 6: a validated primary, a validated secondary, an `acceptable_*_with_quote_drift` anchor, or an explicitly reviewed soft-friction candidate. This is the generous reading. The gap between strict and broad is itself information about evidence-quote attribution quality.
+- `strictness_failure_rate_strict` — share of gold anchor-worthy clusters where fingerprint extracted the cluster *with sufficient specificity to support model recall* AND the expected model reached the candidate list, but **nothing** reached Step 6 because the verifier and/or post-verifier validation rejected every relevant model. Excludes clusters where fingerprint specificity was partial (the verifier may have been correctly strict given under-specific fingerprint context). This is the cleaner version of "too strict" — when the system *had* what it needed and still let nothing through.
+- `strictness_failure_rate_broad` — same as strict but includes partial-fingerprint-specificity clusters in the numerator. Easier to attack but useful as an upper bound on the strictness signal.
+- **Interpretive rule.** High precision with low friction yield is not acceptable just because `noisy_anchor_rate` is low. If the trust axis (`noisy_anchor_rate` ≤ V%, false positives bounded) clears but `friction_yield_strict` stays low and `strictness_failure_rate_strict` is high, the calibration problem is on the friction axis. The fix space for that is *not* at the trust gates (do not loosen the literal-substring quote validation; do not trust paraphrased evidence). It is around them: better verifier-quote literalness, fuzzy quote repair before demotion, hypothesis-grade soft-friction surfacing alongside (not replacing) validated anchors. These are next-track design questions surfaced by the audit, not implemented by it.
 
 ## 9. Pre-registered decision tree
 
@@ -276,7 +280,7 @@ The memo commits to this mapping from audit results to next-track work, *before*
 - If `post_verifier_validation_failure_rate` dominates the leak (verifier accepts but the literal-substring quote gate demotes), **fix quote validation / quote literalness** — make the verifier produce verbatim quotes, or add fuzzy quote repair before demotion. Do *not* trust paraphrased quotes; the gate is correctly protecting against hallucinated evidence.
 - If upstream works but `noisy_anchor_rate` is high, **fix surfacing/fan-in.**
 - If upstream works and Step 6 mistreats anchors, **continue PR #41-style consumer work.**
-- **Friction-yield branch (load-bearing).** If trust metrics clear (low `noisy_anchor_rate`, false positives bounded) but `friction_yield` stays low and `strictness_failure_rate` is high, the calibration is too strict for the product job. The fix is *not* loosening the trust gates. The fix space includes: making the verifier produce verbatim quotes; adding fuzzy quote repair before quote-validation demotion; introducing a clearly-separated hypothesis-grade soft-friction surface that does not corrupt the trust layer. This is a calibration design question, not a leak.
+- **Friction-yield branch (load-bearing).** If trust metrics clear (low `noisy_anchor_rate`, false positives bounded) but `friction_yield_strict` stays low and `strictness_failure_rate_strict` is high, the calibration is too strict for the product job. The fix is *not* loosening the trust gates. The fix space includes: making the verifier produce verbatim quotes; adding fuzzy quote repair before quote-validation demotion; introducing a clearly-separated hypothesis-grade soft-friction surface that does not corrupt the trust layer. This is a calibration design question, not a leak.
 - **If all stages are acceptable AND friction yield is acceptable, do not redesign Lane 2 just because Sully makes decomposition feel elegant.** We are not trying to cosplay decomposition. We are trying to find the leak — or to confirm the calibration is starving the product, which is its own kind of leak.
 
 ## 10. What this memo does NOT do
@@ -306,12 +310,14 @@ To prevent the audit from ending in "mediocre but not terrible, let's redesign a
 
 **Product gates (friction yield):**
 
-- `friction_yield` ≥ F% — enough anchor-worthy curated pressure survives to do the product job
-- `strictness_failure_rate` ≤ S% — the chain is not so strict that anchor-worthy clusters routinely surface nothing
+- `friction_yield_strict` ≥ F% — cluster-aligned curated pressure survives to do the product job (anchor at the right cluster, evidence quote sources from that cluster)
+- `strictness_failure_rate_strict` ≤ S% — when fingerprint specificity is sufficient AND the expected model reached candidates, the chain is not so strict that nothing survives
+
+The broad variants (`friction_yield_any_honest`, `strictness_failure_rate_broad`) are reported alongside as upper/lower bounds. The gate is set on the strict variants because they are the harder-to-game version.
 
 The two gate sets are AND-ed. **Stage gates passing while product gates fail is a real failure mode** — it means Lane 2 is precise but starves Step 6 of curated pressure. The interpretive rule from §1 applies: high precision with low friction yield is not acceptable.
 
-If all five clear, **Lane 2 producer is acceptable** and the next track is consumer-side polish, not decomposition. If any fails, the decision tree in §9 routes to a specific next-track design.
+If both gate sets clear, **Lane 2 producer is acceptable** and the next track is consumer-side polish, not decomposition. If any fails, the decision tree in §9 routes to a specific next-track design.
 
 ## 12. Author-bias safeguards
 
