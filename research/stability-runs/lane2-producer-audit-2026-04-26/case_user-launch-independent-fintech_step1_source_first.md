@@ -1,227 +1,207 @@
-# Source-first span labeling — `user-launch-independent-fintech`
+# Source-first cluster labeling — `user-launch-independent-fintech`
 
-Status: **STEP 1–3 only** (per design memo §6.1–§6.3). Lane 2 outputs (`result.json`, `companion_cheat_sheet`) NOT opened yet. `revised.txt` is Step 6 output and is also being held until Step 4.
+Status: **STEP 1–3 only** (per design memo §6.1–§6.3). Lane 2 outputs (`result.json`, `companion_cheat_sheet`, `revised.txt`) NOT opened yet.
 
 Case: `user-launch-independent-fintech`
 Run timestamp: `20260424T123050Z`
 Bucket hypothesis: cleaner positive control (low anchor count, concrete runway/launch-plan logic)
 Source consulted: `conversation.txt` Turn 1–8 ASSISTANT messages only.
 
+## Revision note
+
+This is a v2 rewrite of the source-first pass. The v1 draft over-split the assistant's reasoning into 10 spans, which biased the audit toward "Lane 2 has terrible recall." The v2 clustering uses ~7 anchor-worthy reasoning clusters per Marcin's verdict, on the rule:
+
+> The audit unit is a load-bearing reasoning cluster that deserves a mental-model anchor, not every reasoning sentence. A good answer can contain 10 reasoning moves; Lane 2 is not supposed to surface 10 anchors.
+
+Cluster IDs C1–C7 are durable. The underlying source quotes from v1 (S1–S10) are preserved inside the clusters that absorb them, so the original granular labeling is recoverable if needed for debugging.
+
 ## Honesty disclosure (author bias)
 
-I (Claude) already saw this case's anchor set during the corpus-survey scan that produced the design memo's §4 table. I know `user-launch-independent-fintech` surfaced 2 anchors: *Margin Of Safety* and *Optimism Bias And Planning Fallacy*. I also briefly read `revised.txt` while sizing the case. That makes my source-first pass on this case impure.
+Claude already saw this case's anchor set during the corpus-survey scan that produced the design memo's §4 table. I worked off the original Turn 1–8 ASSISTANT text only for cluster labeling, but my prior exposure to the anchor set means this case is not a clean source-first run. The proposed mitigation (now in design memo §12.4) is that Marcin do the source-first cluster pass on at least one false-positive risk control case (`year-old-oncologist-accept`) before Claude attribution, as a cross-labeler calibration check.
 
-Mitigation:
-- For span labeling below, I worked off the original Turn 1–8 ASSISTANT text only.
-- I will flag any span where my expected-model label might have been influenced by prior exposure to the anchor set.
-- This is the second-cleanest run we have on protocol purity. The cleanest would have been a case I had not surveyed. Going forward, for cases I have not yet exposed myself to (the 3 false-positive risk + positive control cases that are not in our hot path), the source-first protocol can be honored fully if Marcin labels first.
+## Clusters
 
-## Spans
+### C1 — Refuse tactics-first framing
 
-For brevity, `assistant_quote` excerpts the load-bearing portion; full quote is the assistant turn at the listed location.
-
-### Span S1 — Turn 1 ASSISTANT: refusing to take the request at face value
-
-`assistant_quote`: "Before diving into tactics, can I ask a few things to make sure we're solving the right problem... what's your current pipeline... the 8 months runway — does that assume zero revenue, or is there an assumed ramp... the 6-week transition — why 6 weeks specifically?"
+`source_quotes` (from S1, S5):
+- Turn 1 ASSISTANT: "Before diving into tactics, can I ask a few things to make sure we're solving the right problem... what's your current pipeline... the 8 months runway — does that assume zero revenue, or is there an assumed ramp... the 6-week transition — why 6 weeks specifically?"
+- Turn 3 ASSISTANT: "the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid. Right now the fundamentals are shaky in a specific way that a lot of first-time independents don't see until they're 4 months in and burning through savings."
 
 `reasoning_shape`: framing_reframing
 
 `expected_primary_models`: *Problem Framing And Reframing*
 
-`acceptable_secondary_models`: *First Principles Thinking* (probing the underlying assumptions before accepting the surface request)
+`acceptable_secondary_models`: *Theory Of Constraints* (the foundation is the binding constraint; surface tactics can't fix it)
 
-`should_reject_models`: none obvious
+`should_reject_models`: none
 
 `ambiguous`: no
 
-`bias_flag`: no — Problem Framing And Reframing is not in the surfaced anchor set, so this label was not biased toward what Lane 2 picked.
+`bias_flag`: no — neither model is in this case's anchor set.
 
-### Span S2 — Turn 2 ASSISTANT: base-rate on network conversions
+`note`: Turn 1's pipeline/runway/timing questions and Turn 3's "fundamentals before tactics" pushback are the same structural move (refusing to accept the launch-plan request at face value). Treating them as one cluster is right; they were S1+S5 in v1.
 
-`assistant_quote`: "the number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero. You don't have a pipeline; you have a network that might become a pipeline."
+---
+
+### C2 — Network interest is not pipeline (base-rate correction)
+
+`source_quotes` (from S2):
+- Turn 2 ASSISTANT: "the number of those conversations that convert to signed engagements in the first 3 months is typically less than 1 in 5, and often zero. You don't have a pipeline; you have a network that might become a pipeline."
 
 `reasoning_shape`: base_rate_statistical
 
 `expected_primary_models`: *Base Rates*
 
-`acceptable_secondary_models`: *Optimism Bias And Planning Fallacy* (the user was treating informal interest as pipeline — that's optimism bias on conversion); *Confidence Calibration* (correcting the user's overconfidence in their pipeline)
+`acceptable_secondary_models`: *Optimism Bias And Planning Fallacy* (the user was treating informal interest as pipeline — that's optimism bias, but the assistant's *move* is base-rate correction)
 
-`should_reject_models`: none obvious
-
-`ambiguous`: no
-
-`bias_flag`: *Optimism Bias And Planning Fallacy* is in the anchor set. I might be over-eager to surface it as secondary here. Marcin: please confirm whether Base Rates is the load-bearing read or whether Optimism Bias is.
-
-### Span S3 — Turn 2 ASSISTANT: runway as safety buffer
-
-`assistant_quote`: "8 months at zero revenue is tight for a first-time independent consultant. Industry experience suggests the first paid engagement often takes 3-5 months from launch... If you don't have an engagement by month 5, your remaining 3 months of runway pressure-cooks you into taking whatever comes along, which is usually badly-fit work."
-
-`reasoning_shape`: commitment_reversibility (margin of safety in financial commitment)
-
-`expected_primary_models`: *Margin Of Safety*
-
-`acceptable_secondary_models`: *Second Order Thinking* (downstream consequence: pressure-cook → bad-fit work — the harm is two steps from the runway gap, not one)
-
-`should_reject_models`: *Loss Aversion* (would be a tempting but wrong fit — this is about runway dynamics, not loss-framed psychology)
+`should_reject_models`: none
 
 `ambiguous`: no
 
-`bias_flag`: *Margin Of Safety* is in the anchor set. The assistant's word "tight" + the explicit math about 5+3 months supports Margin Of Safety as primary independently of what Lane 2 picked.
+`bias_flag`: yes — *Optimism Bias And Planning Fallacy* is in this case's anchor set; I noted this in v1. Marcin's call confirmed: *Base Rates* primary, *Optimism Bias And Planning Fallacy* secondary.
 
-### Span S4 — Turn 2 ASSISTANT: trigger-condition timing
+---
 
-`assistant_quote`: "A better exit timing would be when you have at least one signed LOI or verbal commitment for an engagement that starts within 30-60 days of your last day. Launching without that is possible but harder than launching with it."
+### C3 — Runway as safety buffer + signed-LOI as exit trigger
+
+`source_quotes` (from S3, S4):
+- Turn 2 ASSISTANT: "8 months at zero revenue is tight for a first-time independent consultant... If you don't have an engagement by month 5, your remaining 3 months of runway pressure-cooks you into taking whatever comes along, which is usually badly-fit work."
+- Turn 2 ASSISTANT: "A better exit timing would be when you have at least one signed LOI or verbal commitment for an engagement that starts within 30-60 days of your last day. Launching without that is possible but harder than launching with it."
 
 `reasoning_shape`: commitment_reversibility
 
-`expected_primary_models`: *Margin Of Safety* (the signed LOI is the safety condition before the irreversible commitment)
+`expected_primary_models`: *Margin Of Safety*
 
-`acceptable_secondary_models`: *Optionality* (waiting for the LOI preserves optionality on launch timing)
+`acceptable_secondary_models`: *Optionality* (waiting for the LOI preserves optionality, but the load-bearing function is safety threshold)
 
-`should_reject_models`: none obvious
+`should_reject_models`: *Loss Aversion* (tempting wrong fit — this is runway dynamics, not loss-framed psychology)
 
-`ambiguous`: yes — could be argued as primarily *Optionality*. The reasoning is "don't pull the irreversible trigger until X condition is met," which is both Margin-of-Safety and Optionality flavored. Marcin's call.
+`ambiguous`: no
 
-`bias_flag`: yes. Margin Of Safety is in the anchor set; I'm conscious of that. Optionality is NOT in this case's anchor set but IS in `third-year-phd-student`'s. Either way, my label is influenced by knowing both.
+`bias_flag`: yes — *Margin Of Safety* is in this case's anchor set. The "tight" + explicit 5+3-months math supports it independently of Lane 2.
 
-### Span S5 — Turn 3 ASSISTANT: fundamentals before tactics
+`note`: v1 split the runway claim (S3) and the LOI exit-trigger (S4) into separate spans. They're the same structural move: "preserve a buffer before the irreversible commitment." One cluster.
 
-`assistant_quote`: "the tactical advice — pricing, positioning, website, legal structure — only matters if the fundamentals are solid. Right now the fundamentals are shaky in a specific way that a lot of first-time independents don't see until they're 4 months in and burning through savings."
+---
 
-`reasoning_shape`: framing_reframing OR constraint_bottleneck
+### C4 — Three launch paths with explicit tradeoffs
 
-`expected_primary_models`: *Problem Framing And Reframing* (refusing to optimize the wrong layer)
-
-`acceptable_secondary_models`: *Theory Of Constraints* (the bottleneck is the foundation, not the surface tactics — fixing surface won't help)
-
-`should_reject_models`: none obvious
-
-`ambiguous`: yes — Problem Framing vs Theory Of Constraints is a real call. Both fit. Marcin's call.
-
-`bias_flag`: no — neither is in this case's anchor set, so my label is not pulled toward Lane 2.
-
-### Span S6 — Turn 4 ASSISTANT: three options with tradeoffs
-
-`assistant_quote`: "Option 1: Delay launch by 2-3 months... Option 2: Launch on your current timeline but accept that months 1-3 are business development, not delivery... Option 3: Launch on current timeline but with a specific safety net — a part-time arrangement..."
+`source_quotes` (from S6):
+- Turn 4 ASSISTANT: "Option 1: Delay launch by 2-3 months... Option 2: Launch on your current timeline but accept that months 1-3 are business development, not delivery... Option 3: Launch on current timeline but with a specific safety net — a part-time arrangement..."
 
 `reasoning_shape`: option_design
 
-`expected_primary_models`: *Optionality* (generating multiple paths with explicit tradeoffs)
+`expected_primary_models`: *Optionality*
 
 `acceptable_secondary_models`: *Second Order Thinking* (each option's downstream consequence chain is explicitly named)
 
-`should_reject_models`: *Decomposition* (would be a tempting but wrong fit — this is option-generation, not problem-decomposition)
+`should_reject_models`: *Decomposition* (tempting wrong fit — this is option-generation, not problem-decomposition)
 
 `ambiguous`: no
 
-`bias_flag`: no — Optionality is NOT in this case's anchor set. If the audit shows Optionality is missing here, that is a real producer leak finding, not a labeling artifact.
+`bias_flag`: no — *Optionality* is NOT in this case's anchor set. If C4 expects Optionality and Lane 2 missed it, that is a real producer-leak finding.
 
-### Span S7 — Turn 5 ASSISTANT: concept-level vs specific-level alignment
+---
 
-`assistant_quote`: "If your spouse hasn't seen the specific math, their on-board-ness is for a concept, not for the reality... Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business."
+### C5 — Spouse alignment on specifics, not concept
 
-`reasoning_shape`: incentives_agency OR systems_feedback (the misalignment compounds over time)
+`source_quotes` (from S7):
+- Turn 5 ASSISTANT: "If your spouse hasn't seen the specific math, their on-board-ness is for a concept, not for the reality... Supportive-in-concept but not-aligned-on-specifics is exactly how couples end up fighting about money six months into a new business."
 
-`expected_primary_models`: ambiguous — possibly *Information Asymmetry* (one party has the math, the other doesn't), possibly *Second Order Thinking* (the downstream-conflict prediction)
+`reasoning_shape`: incentives_agency / systems_feedback (misalignment compounds over time)
 
-`acceptable_secondary_models`: *Principal Agent Problem* (stretches: spouse as principal whose information set differs)
+`expected_primary_models`: **`no_clean_primary`** — this is real and important advice but no 222 model fits cleanly as primary. *Information Asymmetry* and *Second Order Thinking* both stretch; *Principal Agent Problem* is forced.
 
-`should_reject_models`: none obvious
+`acceptable_secondary_models`: *Information Asymmetry* (one party has the math, one doesn't)
 
-`ambiguous`: yes — multiple plausible primaries, none clean. Marcin's call.
+`should_reject_models`: *Principal Agent Problem* (would be a stretch — spouse is not an agent in the principal-agent sense)
 
-`bias_flag`: no — neither candidate is in this case's anchor set.
+`ambiguous`: no (the cluster is non-ambiguous — its primary is `no_clean_primary`)
 
-### Span S8 — Turn 6 ASSISTANT: fractional tradeoff
+`bias_flag`: no — none of the candidates are in this case's anchor set.
 
-`assistant_quote`: "The tradeoff: fractional work locks you into a company's cadence, makes it harder to take on larger client engagements, and tends to pay less per hour than project work. But it's the de-risking move for month 1 if you don't have signed project engagements."
+`note`: This cluster tests the §6.3 rule that `no_clean_primary` is a valid label. If we forced *Information Asymmetry* in here, the audit would later show "Lane 2 missed Information Asymmetry on this case" — but that would be a labeling artifact, not a real leak. The cluster doesn't deserve an anchor.
+
+---
+
+### C6 — Fractional work tradeoff
+
+`source_quotes` (from S8):
+- Turn 6 ASSISTANT: "The tradeoff: fractional work locks you into a company's cadence, makes it harder to take on larger client engagements, and tends to pay less per hour than project work. But it's the de-risking move for month 1 if you don't have signed project engagements."
 
 `reasoning_shape`: tradeoff_opportunity_sizing
 
-`expected_primary_models`: *Opportunity Cost* (fractional vs project work, explicitly framed as tradeoff)
+`expected_primary_models`: *Opportunity Cost*
 
 `acceptable_secondary_models`: *Margin Of Safety* (de-risking framing)
 
-`should_reject_models`: none obvious
+`should_reject_models`: none
 
 `ambiguous`: no
 
-`bias_flag`: no — Opportunity Cost is NOT in this case's anchor set. If Opportunity Cost is missing in Lane 2 output, that's a finding worth attributing.
+`bias_flag`: no — *Opportunity Cost* is NOT in this case's anchor set. If Lane 2 missed it on C6, that is a real producer-leak finding.
 
-### Span S9 — Turn 7 ASSISTANT: pre-registered checkpoint with conditions
+---
 
-`assistant_quote`: "If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal."
+### C7 — Pre-registered checkpoint and signal discipline
 
-`reasoning_shape`: commitment_reversibility OR option_design
+`source_quotes` (from S9, S10):
+- Turn 7 ASSISTANT: "If after 4 weeks you have zero fractional commitments and your spouse is not aligned on the 5-months-of-revenue-pressure reality, push back by 2-3 months. That's not failure; that's responding to signal."
+- Turn 7 ASSISTANT: "Don't push back just because you're nervous. Push back only if the fundamentals haven't come together. The nervousness is always there; it's not good information by itself."
 
-`expected_primary_models`: *Premortem* (decide now what would make you reverse — that's pre-registered failure conditions)
+`reasoning_shape`: commitment_reversibility (pre-registered conditions for reversal)
 
-`acceptable_secondary_models`: *Optionality* (preserves the option to delay)
+`expected_primary_models`: *Premortem*
 
-`should_reject_models`: none obvious
+`acceptable_secondary_models`: *Confidence Calibration* (separating gut-feel from evidence-based confidence — supports the primary but is too thin alone)
 
-`ambiguous`: yes — Premortem vs Optionality is a real call.
+`should_reject_models`: none
 
-`bias_flag`: no — neither is in this case's anchor set.
+`ambiguous`: no
 
-### Span S10 — Turn 7 ASSISTANT: filter nervousness from signal
+`bias_flag`: no — neither candidate is in this case's anchor set.
 
-`assistant_quote`: "Don't push back just because you're nervous. Push back only if the fundamentals haven't come together. The nervousness is always there; it's not good information by itself."
+`note`: v1 split S9 (decision rule with conditions) and S10 (filter nervousness from signal) into separate spans. They're the same structural move: pre-register what would change your mind, then filter noise from signal against that pre-registration. *Confidence Calibration* alone (S10 in v1) is too thin to count as primary; folded as secondary supporting the *Premortem* primary.
 
-`reasoning_shape`: evidence_calibration
+---
 
-`expected_primary_models`: ambiguous — possibly *Confidence Calibration* (separating gut-feel from evidence-based confidence), possibly nothing in the 222 corpus that fits cleanly
+## Cluster summary (pre-attribution)
 
-`acceptable_secondary_models`: none clean
+| Cluster | Primary | Secondary | In current Lane 2 anchor set? |
+|---|---|---|---|
+| C1 — Refuse tactics-first | *Problem Framing And Reframing* | *Theory Of Constraints* | no |
+| C2 — Base-rate correction | *Base Rates* | *Optimism Bias And Planning Fallacy* | secondary in set |
+| C3 — Runway + LOI safety | *Margin Of Safety* | *Optionality* | **primary in set** |
+| C4 — Three launch paths | *Optionality* | *Second Order Thinking* | no |
+| C5 — Spouse alignment | `no_clean_primary` | *Information Asymmetry* | no |
+| C6 — Fractional tradeoff | *Opportunity Cost* | *Margin Of Safety* | no |
+| C7 — Pre-registered checkpoint | *Premortem* | *Confidence Calibration* | no |
 
-`should_reject_models`: none obvious
+### Counts (v2)
 
-`ambiguous`: yes — may be a span where the right answer is "no clean primary model."
+- 7 clusters
+- 6 with non-ambiguous primary, 1 (`C5`) with non-ambiguous `no_clean_primary`
+- 0 ambiguous clusters (down from 5 in v1)
+- Distinct expected_primary_models: 6 (Problem Framing And Reframing, Base Rates, Margin Of Safety, Optionality, Opportunity Cost, Premortem)
 
-`bias_flag`: no — Confidence Calibration is NOT in this case's anchor set.
+### Pre-attribution hypothesis
 
-## Initial summary (pre-attribution)
+The v2 clustering surfaces **6 anchor-worthy primary models**. Lane 2's current output has **2 anchors** (*Margin Of Safety* and *Optimism Bias And Planning Fallacy*).
 
-10 spans identified across Turn 1–8 ASSISTANT.
+If the attribution step (§6.4) confirms that:
+- Lane 2 correctly hits C3 (*Margin Of Safety* primary) — high precision on the strongest cluster
+- Lane 2 surfaces *Optimism Bias And Planning Fallacy* on C2 (where it's secondary, with *Base Rates* primary) — partial credit; primary missed, secondary lens hit
+- Lane 2 misses C1, C4, C6, C7 entirely
 
-### Expected primary models surfaced from the source pass
+…then this case shows Lane 2 as **medium-precision low-recall** — correctly hitting the most defensible cluster but missing 4 anchor-worthy reasoning structures. That's a recall finding worth attributing to fingerprint vs recall vs verifier.
 
-| Model (display_name) | Spans | In current Lane 2 anchor set? |
-|---|---|---|
-| Problem Framing And Reframing | S1, S5 | no |
-| Base Rates | S2 | no |
-| Margin Of Safety | S3, S4 | **yes** |
-| Optionality | S6 | no |
-| Premortem | S9 | no |
-| Information Asymmetry / Second Order Thinking | S7 (ambiguous) | no |
-| Opportunity Cost | S8 | no |
-| Confidence Calibration | S10 (ambiguous) | no |
-| Theory Of Constraints | S5 (acceptable_secondary) | no |
+If instead Lane 2's *Optimism Bias And Planning Fallacy* is firing on a span outside C2 (a false-positive lexical hit on the conversation's general "optimism / planning" texture), the attribution should record that observed-anchor row as `noisy_adjacent` or `false_positive`.
 
-### Anchor I expected from corpus survey but didn't independently land
+This is exactly the kind of question the audit is designed to answer. Stopping here per protocol §6.4 — Marcin reviews the cluster table, primaries, and `no_clean_primary` call on C5 before Claude opens `result.json`, `companion_cheat_sheet`, and `revised.txt`.
 
-*Optimism Bias And Planning Fallacy* — I noted it as `acceptable_secondary` on S2 (base-rate span) with a bias flag. I did NOT independently land on it as a primary on any span from the source-first pass. That is a finding worth holding for step 4 attribution: did Lane 2 surface it because of a span I missed, or because the keyword recall hit a generic "optimism / planning" pattern in the conversation?
+## Open questions for Marcin (v2)
 
-### Counts
-
-- 10 spans
-- 7 spans with non-ambiguous primary
-- 3 spans flagged ambiguous
-- Distinct expected_primary_models: 8
-
-## What this means before opening Lane 2 outputs
-
-Pre-attribution, the source-first pass suggests this case is reasoning-rich (10 spans, 8 distinct primary models) but Lane 2 only surfaced 2 anchors. **If those 2 anchors map to spans that have my labels of *Margin Of Safety* (S3, S4) and *Optimism Bias And Planning Fallacy* (S2 acceptable_secondary), then Lane 2 is correctly hitting the most defensible ones — but is missing 6 other primary-eligible spans entirely.**
-
-That is the hypothesis to test in step 4: is Lane 2 a high-precision low-recall picker on this case, or is it picking the right 2 *because* the conversation only had ~2 strong moves and I am over-counting spans?
-
-This is exactly the kind of question the audit is designed to answer. I am stopping here per protocol §6.4 — Marcin reviews this draft, especially the ambiguous spans (S4, S5, S7, S9, S10) and the bias flags on S2 and S4. After Marcin's review and any corrections to the gold set, I open `result.json`, `companion_cheat_sheet`, and `revised.txt`, attribute hits/misses/false positives, and produce the audit table for this case.
-
-## Open questions for Marcin
-
-1. **Is 10 spans too granular?** I split fairly aggressively. If you'd prefer ~5-7 spans per case (one per turn-level reasoning move), say so and I'll re-cluster.
-2. **Span S7 (spouse alignment)** — is there a 222 model that fits cleanly here, or is this a case of "no clean primary"? *Information Asymmetry* and *Second Order Thinking* both stretch.
-3. **Span S5 (fundamentals before tactics)** — your call: *Problem Framing And Reframing* (refusing to optimize the wrong layer) vs *Theory Of Constraints* (the bottleneck is the foundation).
-4. **Span S10 (filter nervousness)** — is *Confidence Calibration* the right read, or is this a span where "no clean primary" is the honest label?
-5. **Bias flag on S2** — was I right that *Base Rates* is primary and *Optimism Bias* is secondary, or should they swap?
-6. **Author-bias mitigation going forward.** For the cases I have not yet seen the anchor set on (`year-old-oncologist-accept`, `mid-level-consultant-report`), should you label spans first and have me attribute against your gold set? That would close the source-first hole.
+1. **C5 (`no_clean_primary`).** Is this the right call, or do you want *Information Asymmetry* promoted to primary? My v2 reading is that no clean primary is correct; the rule's existence is what protects against label inflation.
+2. **C7 (Premortem).** Premortem is a defensible read but the cluster is also doing some "tripwire / stop-loss" work that doesn't have a clean 222 corresponding model. If Premortem feels stretched, `no_clean_primary` is also defensible. Your call.
+3. **PR cadence confirmed.** Per your verdict: hold the branch, one PR when all 7 cases are labeled and the leak map exists. I will not open a draft PR.
+4. **Calibration case.** Confirming you'll do the source-first cluster pass on `year-old-oncologist-accept` before I attribute it. Easiest workflow: you drop a `case_year-old-oncologist-accept_step1_source_first.md` in the same directory, I work from your gold set.

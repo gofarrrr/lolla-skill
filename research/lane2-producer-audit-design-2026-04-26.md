@@ -120,7 +120,9 @@ This is the single most important methodological rule in this memo. Without it, 
 
 ### 6.1 Source-first span pass
 
-Read `conversation.txt` and `revised.txt` from the archived run. Mark spans with `assistant_quote` and span_id. **Do not open** `result.json`, `companion_cheat_sheet`, or any prior anchor analysis at this stage.
+Read **`conversation.txt` Turn N ASSISTANT messages only.** Mark anchor-worthy reasoning clusters with `assistant_quote` and `cluster_id`. **Do not open** `revised.txt`, `result.json`, `companion_cheat_sheet`, or any prior anchor analysis at this stage. `revised.txt` is Step 6 output and contains anchor mentions and Step-6-shaped reasoning that would leak back into gold labels — it is opened only in §6.4 attribution, when scoring Step 6 consumption.
+
+**Anchor-worthiness rule.** A good assistant answer can contain many locally valid cognitive moves; not every one of them is anchor-worthy. The audit unit is a *load-bearing reasoning cluster that deserves a mental-model anchor*, not every reasoning sentence. If a turn contains five sentences of correct reasoning that are all serving one structural move, that's one cluster, not five. Pseudo-precision (over-splitting) biases the audit toward "Lane 2 has terrible recall" before that conclusion is earned. Right granularity for a typical case is roughly 5–8 clusters; if you find yourself at 10+, reconsider whether you're splitting on real structural shifts or on local sentence variation.
 
 ### 6.2 Shape label
 
@@ -142,9 +144,9 @@ The `other` bucket exists so we don't force-fit. If `other` shows up frequently,
 
 ### 6.3 Gold model labels
 
-For each span:
+For each cluster:
 
-- `expected_primary_models` — 1 preferred model if there is a clear one. Max 2 *only* if the span genuinely contains two distinct reasoning moves (the "one primary per reasoning move" rule from PR #41 applies here too).
+- `expected_primary_models` — 1 preferred model if there is a clear one. Max 2 *only* if the cluster genuinely contains two distinct reasoning moves (the "one primary per reasoning move" rule from PR #41 applies here too). **`no_clean_primary` is a valid label.** If the cluster contains real reasoning but no model in the 222 corpus fits cleanly as primary, mark it `no_clean_primary` rather than force-fitting a stretched model. We are auditing whether Lane 2 preserves load-bearing reasoning structures that *deserve* anchors — not whether every reasoning move maps to a 222 model.
 - `acceptable_secondary_models` — plausible related lenses, optional.
 - `should_reject_models` — tempting false-positive candidates that the audit is *expecting* the system to NOT surface.
 
@@ -288,8 +290,9 @@ I (Claude) authored PR #41 and lean toward the consumer-side narrative. Three co
 1. **Source-first labeling** (§5.2). Spans are drafted before opening current Lane 2 outputs.
 2. **Marcin owns expected_primary_models.** Especially when the expected model is NOT in the current Lane 2 output — that is the case most likely to surface a real producer leak, and the case most vulnerable to Claude's "the system was probably right" bias.
 3. **Ambiguous spans escalate.** Any span where Claude's draft has multiple plausible primaries goes to Marcin. The default should be "ambiguous" if there is genuine doubt, not "Claude picks a primary and moves on."
+4. **Cross-labeler calibration on at least one case.** For at least one false-positive risk control case (preferably `year-old-oncologist-accept`), Marcin does the source-first cluster pass *before* Claude attribution. If Marcin's clustering and primary labels diverge meaningfully from Claude's style on the other cases, pause and recalibrate before completing the rest. This is the cheapest way to detect systematic Claude-bias in clustering or label selection without forcing Marcin to label all 7 cases.
 
-A fourth informal control: this memo gets a once-over before audit work starts. If the framing is wrong, we want to find that out *before* gold labels are built on top of it.
+A fifth informal control: this memo gets a once-over before audit work starts. If the framing is wrong, we want to find that out *before* gold labels are built on top of it.
 
 ## 13. Next artifact
 
