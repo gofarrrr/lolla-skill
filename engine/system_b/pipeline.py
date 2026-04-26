@@ -261,6 +261,12 @@ class CompanionRunResult:
     # verification_precision metric depends on that distinction.
     accepted_before_cap: list[DetectedModel] = field(default_factory=list)
     capped_models: list[dict[str, str]] = field(default_factory=list)
+    # Verifier-side dedupe: accepted entries the verifier listed more than
+    # once with the same model_id. Drop reason: "duplicate_accept_dedupe".
+    # NOT semantically rejected — the model was accepted, it just appeared
+    # twice. Surfaced separately so verification_precision telemetry stays
+    # honest and so we can quantify how often the verifier double-accepts.
+    duplicate_accepts: list[dict[str, str]] = field(default_factory=list)
 
 
 class SystemBPipeline:
@@ -419,6 +425,7 @@ class SystemBPipeline:
                 companion_candidates=list(companion_result.candidates),
                 companion_verification_accepted_before_cap=_serialize_detected_models(companion_result.accepted_before_cap),
                 companion_verification_capped_models=list(companion_result.capped_models),
+                companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
                 companion_candidate_cap=self._config.companion_candidate_cap,
                 embedding_mode="on" if self._config.enable_embeddings else "off",
                 frame_card=frame_card,
@@ -563,6 +570,7 @@ class SystemBPipeline:
             companion_candidates=list(companion_result.candidates),
             companion_verification_accepted_before_cap=_serialize_detected_models(companion_result.accepted_before_cap),
             companion_verification_capped_models=list(companion_result.capped_models),
+            companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
             companion_candidate_cap=self._config.companion_candidate_cap,
             embedding_mode="on" if self._config.enable_embeddings else "off",
             frame_card=frame_card,
@@ -704,7 +712,13 @@ class SystemBPipeline:
             embedding_retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             embedding_api_key=self._embedding_api_key,
         )
-        detected_models, rejected_models, accepted_before_cap, capped_models = run_verification_call_from_packet(
+        (
+            detected_models,
+            rejected_models,
+            accepted_before_cap,
+            capped_models,
+            duplicate_accepts,
+        ) = run_verification_call_from_packet(
             packet=packet,
             fingerprint_payload=fingerprint_payload,
             candidates=candidates,
@@ -723,6 +737,7 @@ class SystemBPipeline:
             rejected_models=rejected_models,
             accepted_before_cap=accepted_before_cap,
             capped_models=capped_models,
+            duplicate_accepts=duplicate_accepts,
             candidates=candidates,
         )
 

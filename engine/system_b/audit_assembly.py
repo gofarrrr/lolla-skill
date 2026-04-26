@@ -68,6 +68,11 @@ class AuditTrace:
     companion_candidates: list[dict[str, object]] = field(default_factory=list)
     companion_verification_accepted_before_cap: list[dict[str, str]] = field(default_factory=list)
     companion_verification_capped_models: list[dict[str, str]] = field(default_factory=list)
+    # Verifier-side dedupe of accepted entries by model_id. Drop reason
+    # "duplicate_accept_dedupe". NOT semantically rejected (verification_precision
+    # depends on rejected meaning rejected). Lives separately so we can quantify
+    # how often the verifier double-accepts and detect regressions.
+    companion_verification_duplicate_accepts: list[dict[str, str]] = field(default_factory=list)
     companion_candidate_cap: int = 0
     # Embedding mode in effect for this run: "on" | "off". Recorded so
     # downstream stability/attribution reports can group by mode without
@@ -100,6 +105,7 @@ def build_empty_audit_trace(
     companion_candidates: list[dict[str, object]] | None = None,
     companion_verification_accepted_before_cap: list[dict[str, str]] | None = None,
     companion_verification_capped_models: list[dict[str, str]] | None = None,
+    companion_verification_duplicate_accepts: list[dict[str, str]] | None = None,
     companion_candidate_cap: int = 0,
     embedding_mode: str = "",
 ) -> AuditTrace:
@@ -118,6 +124,7 @@ def build_empty_audit_trace(
         companion_candidates=list(companion_candidates or []),
         companion_verification_accepted_before_cap=list(companion_verification_accepted_before_cap or []),
         companion_verification_capped_models=list(companion_verification_capped_models or []),
+        companion_verification_duplicate_accepts=list(companion_verification_duplicate_accepts or []),
         companion_candidate_cap=companion_candidate_cap,
         embedding_mode=embedding_mode,
         **_frame_audit_fields(frame_card),
@@ -146,6 +153,7 @@ def build_pipeline_audit_trace(
     companion_candidates: list[dict[str, object]] | None = None,
     companion_verification_accepted_before_cap: list[dict[str, str]] | None = None,
     companion_verification_capped_models: list[dict[str, str]] | None = None,
+    companion_verification_duplicate_accepts: list[dict[str, str]] | None = None,
     companion_candidate_cap: int = 0,
     embedding_mode: str = "",
 ) -> AuditTrace:
@@ -169,6 +177,7 @@ def build_pipeline_audit_trace(
         companion_candidates=list(companion_candidates or []),
         companion_verification_accepted_before_cap=list(companion_verification_accepted_before_cap or []),
         companion_verification_capped_models=list(companion_verification_capped_models or []),
+        companion_verification_duplicate_accepts=list(companion_verification_duplicate_accepts or []),
         companion_candidate_cap=companion_candidate_cap,
         embedding_mode=embedding_mode,
         **_frame_audit_fields(frame_card),
