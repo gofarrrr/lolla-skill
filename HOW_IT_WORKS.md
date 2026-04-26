@@ -686,6 +686,8 @@ The invariant is now paired with a **three-treatment vocabulary** (`SKILL.md` St
 - **Secondary lens** for anchors with weaker, broader, or competing evidence (softer framing — *"a related lens"*, *"a possible second read"*).
 - **"Set aside with a reason"** for anchors the pipeline surfaced but Step 6 reads as not load-bearing (acknowledged in §2 with explicit reason; not silently dropped).
 
+A structural rule pairs with the vocabulary: **one primary-pressure anchor per reasoning move**. When two anchors describe the same move or evidence quote, the most specific / load-bearing anchor gets primary treatment; the others — even if their evidence is direct — become secondary lenses or are set aside with a reason. Treating two anchors as equally primary on the same move is overclaim by structure.
+
 Claude integrates anchors into the §1/§2/§3 reasoning where each one earns its mention — never as a mechanical anchor-by-anchor parade — with rhetorical strength matching the evidence the anchor carries. Some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
 
 **Timing detail:** Before writing Step 6, Claude *also* fires off Step 7's pressure-check sub-agents in the background (parallel Agent calls per non-empty lane). They run while Step 6 / 6b are written, so their outputs are ready by Step 8.
