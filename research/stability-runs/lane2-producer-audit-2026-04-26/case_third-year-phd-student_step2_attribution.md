@@ -141,16 +141,16 @@ All 5 surfaced anchors classify cleanly:
 
 ### Product-level friction metrics
 
-Anchor-worthy denominator: 7 (or 5 if C5 + C6 count as `no_clean_primary`).
+Three reporting cuts, each with a different question:
 
-| Metric | Value (denom=7) | Value (denom=5) | What's counted |
+| Metric | Value | Denominator | Question it answers |
 |---|---|---|---|
-| `friction_yield_strict` | **4/7 = 57.1%** | **4/5 = 80%** | C1, C2, C3, C4 — all cluster-aligned, quote-aligned, named in Step 6. C7 excluded due to quote drift. |
-| `friction_yield_any_honest` | **5/7 = 71.4%** | **5/5 = 100%** | Adds C7 with quote drift. |
-| `strictness_failure_rate_strict` | **0/2 = 0%** | same | Denominator: clusters with sufficient fingerprint specificity AND expected model in candidates. C4 + C7 qualify; both accepted. |
-| `strictness_failure_rate_broad` | **0/5 = 0%** | same | Denominator: clusters where expected primary in candidates. All 5 accepted. |
-| Trust axis | clean | | 0% noisy_anchor_rate, 0% post-verifier validation. |
-| Friction axis | **strongest in audit** | | 57-100% friction yield depending on denominator interpretation. |
+| `friction_yield_strict` (cross-case conservative) | **4/7 = 57.1%** | All 7 source-first clusters | Cross-case comparison: how much of the conversation's anchor-worthy reasoning surfaced cluster- and quote-aligned. Apples-to-apples with cases 1-5. |
+| `friction_yield_strict` on clean expected primaries (F2 theory testing) | **4/5 = 80%** | 5 clusters with non-ambiguous expected primary (excludes C5+C6 with `gold_ambiguity_note`) | F2 prediction quality: when a cluster has a clean canonical 222 fit, does Lane 2 surface it cluster- and quote-aligned? |
+| `friction_yield_any_honest` on clean expected primaries (with caveat) | **5/5 = 100%** | Same 5 clusters | Product yield with quote-drift admitted. Caveat: Premortem on C7 has quote drift — model is right, evidence quote sources from Turn 6 sub-cluster I missed in labeling. |
+| `strictness_failure_rate_strict` | **0/2 = 0%** | Clusters with sufficient fingerprint specificity AND expected model in candidates (C4, C7 partial) | Did the verifier reject anything that the producer chain delivered with clean fingerprint context? |
+| `strictness_failure_rate_broad` | **0/5 = 0%** | All clusters where expected primary reached candidates | Did the verifier reject any expected primary at all? |
+| Trust axis | clean | | 0% `noisy_anchor_rate`, 0% post-verifier validation across this case. Cumulative 0/26 across cases 1-6. |
 
 ## Findings
 
