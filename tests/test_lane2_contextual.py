@@ -395,6 +395,46 @@ def test_run_verification_does_not_repair_meaning_flipped_quote():
     assert rejected[0]["rejection_reason"] == "execution_quote_not_literal_substring"
 
 
+def test_run_verification_does_not_repair_contracted_negation_flip():
+    client = _RecordingClient({
+        "accepted": [
+            {
+                "model_id": "confidence-calibration",
+                "presence_mode": "executed",
+                "evidence_quote": "The team doesn't have a strong delivery record.",
+                "presence_explanation": "claims weak evidence",
+            }
+        ],
+        "rejected": [],
+    })
+    ctx = _ctx(
+        user_texts=("q",),
+        assistant_texts=("The team has a strong delivery record.",),
+    )
+    packet = _packet_from_ctx(ctx)
+    candidates = [
+        {
+            "model_id": "confidence-calibration",
+            "model_name": "Confidence Calibration",
+            "activation_trigger": "x",
+        },
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert detected == []
+    assert accepted_before_cap == []
+    assert capped == []
+    assert duplicate_accepts == []
+    assert quote_repairs == []
+    assert len(rejected) == 1
+    assert rejected[0]["model_id"] == "confidence-calibration"
+    assert rejected[0]["rejection_reason"] == "execution_quote_not_literal_substring"
+
+
 def test_run_verification_from_packet_empty_candidates_short_circuits():
     client = _RecordingClient()
     ctx = _ctx()

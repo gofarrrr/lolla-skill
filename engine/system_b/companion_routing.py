@@ -197,7 +197,12 @@ def _quote_repair_tokens(text: str) -> set[str]:
 
 
 def _negation_tokens(text: str) -> set[str]:
-    return _tokenize(text) & _QUOTE_REPAIR_NEGATION_TOKENS
+    normalized = text.lower().replace("’", "'")
+    tokens = set(re.findall(r"[a-z0-9]+", normalized))
+    negations = tokens & _QUOTE_REPAIR_NEGATION_TOKENS
+    if re.search(r"\b[a-z]+n't\b", normalized):
+        negations.add("not")
+    return negations
 
 
 def _candidate_repair_spans(answer_text: str) -> list[str]:
