@@ -1,11 +1,17 @@
-"""Tests for Track 1 (Path B verifier prompt restructure) and Track 2 (Checklists KG bullet 4 tightening).
+"""Tests for Lane 2 verifier prompt invariants and Track 2 (Checklists KG bullet 4 tightening).
 
-Covers:
-- System prompt content presence: mechanism-not-topic rule, Tier 1 anchor negatives
-  (RMR/CD/Checklists), Tier 3 anchor markers (Step Back/WYSIATI/RH), danger_when respect,
-  extended rejection_reason vocabulary in JSON schema example.
-- Parser compatibility: parse_verification_response preserves new rejection_reason strings.
-- User-prompt protection: watches_for clause reaches the verifier when a candidate has danger_when.
+Track 1 (Path B verifier prompt restructure) was rolled back after E6 caught
+catastrophic regression (PR #55). Prompt-content tests for the rolled-back blocks
+were removed with the revert. The independent tests below remain in force:
+
+- Existing governing-rules regression guard (broad-models decline list, tie-breaker,
+  passage exclusivity, JSON schema fields).
+- Parser compatibility: parse_verification_response preserves arbitrary
+  rejection_reason strings (regression guard for future Track 1 v2 vocabulary
+  additions).
+- User-prompt protection: watches_for clause reaches the verifier when a candidate
+  has danger_when (covers existing user-prompt formatting behavior at
+  engine/system_b/companion_routing.py:660).
 - Track 2 KG: checklists.select_when has 4 bullets, bullet 4 requires recurrence.
 """
 from __future__ import annotations
@@ -50,65 +56,8 @@ def _minimal_packet():
 
 
 # ---------------------------------------------------------------------------
-# Track 1: prompt content presence
+# Verifier prompt invariants (governing rules that must remain present)
 # ---------------------------------------------------------------------------
-
-def test_verification_prompt_contains_mechanism_not_topic_rule():
-    p = _build_verification_system_prompt()
-    assert "MECHANISM-NOT-TOPIC RULE" in p
-    assert "topically adjacent" in p
-
-
-def test_verification_prompt_contains_rmr_negative():
-    p = _build_verification_system_prompt()
-    assert "reasoning-mode-router" in p
-    assert "clarifying questions" in p
-    # KG-grounded modes vocabulary (from select_when AND reframing_when)
-    assert "analytical" in p and "intuitive" in p
-    assert "convergent" in p and "divergent" in p
-    assert "diagnosis" in p and "execution planning" in p
-
-
-def test_verification_prompt_contains_cognitive_dissonance_negative():
-    p = _build_verification_system_prompt()
-    assert "cognitive-dissonance" in p
-    assert "holder" in p
-    assert "motivated reframing" in p or "evidence avoidance" in p
-
-
-def test_verification_prompt_contains_checklists_negative():
-    p = _build_verification_system_prompt()
-    assert "checklists" in p
-    assert "recurring execution" in p
-    assert "omission risk" in p
-
-
-def test_verification_prompt_contains_tier3_markers():
-    p = _build_verification_system_prompt()
-    for anchor in ("step-back", "wysiati", "representativeness-heuristic"):
-        assert anchor in p, f"missing tier-3 anchor marker: {anchor}"
-    # Tier 3 must read as mechanism evidence requirement, not as a hard gate
-    assert "TIER 3 ANCHOR MARKERS" in p
-    assert "mechanism shape to look for" in p
-    # Specific markers
-    assert "reframing" in p
-    assert "what's missing from the data" in p or "we don't see" in p
-    assert "base-rate" in p or "category-membership" in p
-
-
-def test_verification_prompt_respects_danger_when():
-    p = _build_verification_system_prompt()
-    assert "DANGER_WHEN RESPECT" in p
-    assert "watches_for" in p
-    assert "evidence AGAINST" in p
-    assert "do not accept" in p.lower()
-
-
-def test_verification_prompt_extended_rejection_vocabulary():
-    p = _build_verification_system_prompt()
-    assert "mechanism_topical_only" in p
-    assert "recurring_execution_required" in p
-
 
 def test_verification_prompt_preserves_existing_governing_rules():
     """Track 1 is incremental — existing rules must still be present (not replacement)."""
