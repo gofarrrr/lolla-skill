@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from engine.system_b.boundary_provider import BoundaryCallMetadata
+from engine.system_b.boundary_provider import BoundaryCallMetadata, _build_call_metadata
 from engine.system_b.companion_routing import (
     FingerprintPayload,
     _build_verification_system_prompt,
@@ -274,3 +274,70 @@ def test_boundary_metadata_has_temperature_field():
     md = BoundaryCallMetadata()
     assert hasattr(md, "temperature")
     assert md.temperature == 0.0
+
+
+def test_build_call_metadata_captures_finish_reason_and_content():
+    """End-to-end wiring: a payload-shaped input should produce metadata with
+    finish_reason populated from choices[0].finish_reason and
+    raw_message_content + temperature populated from the call-site arguments.
+    Field-presence tests prove the dataclass shape; this test proves the
+    capture path actually works."""
+    payload = {
+        "choices": [
+            {"message": {"content": "{}"}, "finish_reason": "stop"},
+        ],
+        "usage": {"prompt_tokens": 100, "completion_tokens": 5, "total_tokens": 105},
+    }
+    md = _build_call_metadata(
+        provider_name="test-provider",
+        model="test-model",
+        payload=payload,
+        reasoning_config=None,
+        status="ok",
+        temperature=0.7,
+        raw_message_content="{}",
+    )
+    assert md.finish_reason == "stop"
+    assert md.raw_message_content == "{}"
+    assert md.temperature == 0.7
+    assert md.status == "ok"
+    # Existing fields still wire correctly so this PR doesn't silently break them
+    assert md.prompt_tokens == 100
+    assert md.completion_tokens == 5
+    assert md.total_tokens == 105
+
+
+def test_build_call_metadata_handles_empty_finish_reason():
+    """If choices[0].finish_reason is missing or null, finish_reason should
+    default to empty string, not None — preserving the dataclass's str type."""
+    payload = {"choices": [{"message": {"content": ""}}], "usage": {}}
+    md = _build_call_metadata(
+        provider_name="test-provider",
+        model="test-model",
+        payload=payload,
+        reasoning_config=None,
+        status="ok",
+        temperature=0.0,
+        raw_message_content="",
+    )
+    assert md.finish_reason == ""
+    assert isinstance(md.finish_reason, str)
+
+
+def test_build_call_metadata_defaults_when_temperature_and_content_omitted():
+    """The new keyword-only parameters have safe defaults so existing
+    construction sites in non-success paths (timeout, missing_choices, etc.)
+    do not need to pass them explicitly."""
+    payload = {"choices": [{"message": {"content": "x"}, "finish_reason": "stop"}], "usage": {}}
+    md = _build_call_metadata(
+        provider_name="p",
+        model="m",
+        payload=payload,
+        reasoning_config=None,
+        status="ok",
+    )
+    assert md.temperature == 0.0
+    assert md.raw_message_content == ""
+    # finish_reason still captured from payload — the default applies only to
+    # the call-site arguments, not the payload-derived fields
+    assert md.finish_reason == "stop"
