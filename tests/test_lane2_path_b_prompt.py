@@ -22,10 +22,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from engine.system_b.boundary_provider import BoundaryCallMetadata
 from engine.system_b.companion_routing import (
     FingerprintPayload,
     _build_verification_system_prompt,
     _build_verification_user_prompt_from_packet,
+    is_malformed_verifier_response,
     parse_verification_response,
 )
 from engine.system_b.conversation_context import (
@@ -207,3 +209,68 @@ def test_checklists_select_when_bullet_4_no_longer_reads_as_any_multistep_task()
     # The pre-fix wording was: "Working memory limits are turning a complex multi-step task into ..."
     # The fix replaces "complex multi-step task" with "recurring multi-step process".
     assert "complex multi-step task" not in bullet_4
+
+
+# ---------------------------------------------------------------------------
+# Output-contract integrity (Track 1 v2 design memo §4)
+# ---------------------------------------------------------------------------
+
+def test_malformed_detector_flags_empty_dict():
+    """The verifier returning {} (a valid empty JSON object that satisfies JSON
+    mode without committing to either accepted or rejected) is the canonical
+    malformed case observed in E6 v1 (PR #55)."""
+    assert is_malformed_verifier_response({}) is True
+
+
+def test_malformed_detector_flags_dict_missing_both_fields():
+    assert is_malformed_verifier_response({"foo": "bar"}) is True
+
+
+def test_malformed_detector_flags_non_list_accepted():
+    assert is_malformed_verifier_response({"accepted": "not a list", "rejected": "also not a list"}) is True
+
+
+def test_malformed_detector_flags_non_dict_input():
+    assert is_malformed_verifier_response(None) is True
+    assert is_malformed_verifier_response("string") is True
+    assert is_malformed_verifier_response([]) is True
+
+
+def test_malformed_detector_passes_well_formed_empty_lists():
+    """A deliberate reject-all looks like {accepted: [], rejected: [...]} (or
+    even {accepted: [], rejected: []}). That is NOT malformed; it is a
+    legitimate verifier judgment that no anchors apply."""
+    assert is_malformed_verifier_response({"accepted": [], "rejected": []}) is False
+    assert is_malformed_verifier_response({"accepted": [], "rejected": [{"model_id": "x", "rejection_reason": "y"}]}) is False
+
+
+def test_malformed_detector_passes_one_field_present():
+    """The existing parser contract treats missing accepted or rejected as
+    permissive (require_list_of_dicts normalises to []). The malformed
+    detector must only fire when BOTH list fields are missing — the
+    distinction is 'schema-incomplete' vs 'partially populated.'"""
+    assert is_malformed_verifier_response({"accepted": []}) is False
+    assert is_malformed_verifier_response({"rejected": []}) is False
+    assert is_malformed_verifier_response({"accepted": [{"model_id": "x", "presence_mode": "executed"}]}) is False
+
+
+# ---------------------------------------------------------------------------
+# Boundary metadata capture (Track 1 v2 design memo §4 + memo §7 commitment)
+# ---------------------------------------------------------------------------
+
+def test_boundary_metadata_has_finish_reason_field():
+    md = BoundaryCallMetadata()
+    assert hasattr(md, "finish_reason")
+    assert md.finish_reason == ""
+
+
+def test_boundary_metadata_has_raw_message_content_field():
+    md = BoundaryCallMetadata()
+    assert hasattr(md, "raw_message_content")
+    assert md.raw_message_content == ""
+
+
+def test_boundary_metadata_has_temperature_field():
+    md = BoundaryCallMetadata()
+    assert hasattr(md, "temperature")
+    assert md.temperature == 0.0

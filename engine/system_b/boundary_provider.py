@@ -18,6 +18,9 @@ class BoundaryCallMetadata:
     provider_name: str = ""
     model: str = ""
     status: str = "not_called"
+    finish_reason: str = ""
+    raw_message_content: str = ""
+    temperature: float = 0.0
     prompt_tokens: int = 0
     completion_tokens: int = 0
     total_tokens: int = 0
@@ -183,6 +186,7 @@ class OpenAICompatibleBoundaryClient:
                 payload=payload,
                 reasoning_config=reasoning_config,
                 status="missing_choices",
+                temperature=self.temperature,
             )
 
         message = choices[0].get("message", {})
@@ -194,14 +198,17 @@ class OpenAICompatibleBoundaryClient:
                 if isinstance(part, dict)
             ]
             content = "\n".join(part for part in parts if part.strip())
+        raw_message_content = str(content)
         metadata = _build_call_metadata(
             provider_name=self.provider_name,
             model=self.model,
             payload=payload,
             reasoning_config=reasoning_config,
             status="ok",
+            temperature=self.temperature,
+            raw_message_content=raw_message_content,
         )
-        return _extract_json_payload(str(content)), metadata
+        return _extract_json_payload(raw_message_content), metadata
 
     def _reasoning_config(self) -> dict[str, object]:
         if _is_openrouter_grok_fast(self.provider_name, self.model):
@@ -370,6 +377,8 @@ def _build_call_metadata(
     payload: Mapping[str, object],
     reasoning_config: Mapping[str, object] | None,
     status: str,
+    temperature: float = 0.0,
+    raw_message_content: str = "",
 ) -> BoundaryCallMetadata:
     usage = payload.get("usage", {})
     usage_map = usage if isinstance(usage, Mapping) else {}
@@ -381,13 +390,19 @@ def _build_call_metadata(
     completion_details_map = completion_details if isinstance(completion_details, Mapping) else {}
     choices = payload.get("choices", [])
     first_choice = choices[0] if isinstance(choices, list) and choices else {}
-    message = first_choice.get("message", {}) if isinstance(first_choice, Mapping) else {}
+    first_choice_map = first_choice if isinstance(first_choice, Mapping) else {}
+    message = first_choice_map.get("message", {})
     message_map = message if isinstance(message, Mapping) else {}
     reasoning_details_present = bool(message_map.get("reasoning")) or bool(message_map.get("reasoning_details"))
+    finish_reason_raw = first_choice_map.get("finish_reason", "")
+    finish_reason = str(finish_reason_raw) if finish_reason_raw is not None else ""
     return BoundaryCallMetadata(
         provider_name=provider_name,
         model=model,
         status=status,
+        finish_reason=finish_reason,
+        raw_message_content=raw_message_content,
+        temperature=temperature,
         prompt_tokens=_usage_int(usage_map, "prompt_tokens"),
         completion_tokens=_usage_int(usage_map, "completion_tokens"),
         total_tokens=_usage_int(usage_map, "total_tokens"),
