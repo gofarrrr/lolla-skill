@@ -267,6 +267,10 @@ class CompanionRunResult:
     # twice. Surfaced separately so verification_precision telemetry stays
     # honest and so we can quantify how often the verifier double-accepts.
     duplicate_accepts: list[dict[str, str]] = field(default_factory=list)
+    # Verifier accepted a model, but its quote was not literal until repaired
+    # to a substring from the assistant source. These stay accepted; the list
+    # exists so quote-gate repairs are measurable.
+    quote_repairs: list[dict[str, str]] = field(default_factory=list)
 
 
 class SystemBPipeline:
@@ -426,6 +430,7 @@ class SystemBPipeline:
                 companion_verification_accepted_before_cap=_serialize_detected_models(companion_result.accepted_before_cap),
                 companion_verification_capped_models=list(companion_result.capped_models),
                 companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
+                companion_verification_quote_repairs=list(companion_result.quote_repairs),
                 companion_candidate_cap=self._config.companion_candidate_cap,
                 embedding_mode="on" if self._config.enable_embeddings else "off",
                 frame_card=frame_card,
@@ -571,6 +576,7 @@ class SystemBPipeline:
             companion_verification_accepted_before_cap=_serialize_detected_models(companion_result.accepted_before_cap),
             companion_verification_capped_models=list(companion_result.capped_models),
             companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
+            companion_verification_quote_repairs=list(companion_result.quote_repairs),
             companion_candidate_cap=self._config.companion_candidate_cap,
             embedding_mode="on" if self._config.enable_embeddings else "off",
             frame_card=frame_card,
@@ -718,6 +724,7 @@ class SystemBPipeline:
             accepted_before_cap,
             capped_models,
             duplicate_accepts,
+            quote_repairs,
         ) = run_verification_call_from_packet(
             packet=packet,
             fingerprint_payload=fingerprint_payload,
@@ -738,6 +745,7 @@ class SystemBPipeline:
             accepted_before_cap=accepted_before_cap,
             capped_models=capped_models,
             duplicate_accepts=duplicate_accepts,
+            quote_repairs=quote_repairs,
             candidates=candidates,
         )
 

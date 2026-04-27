@@ -31,6 +31,68 @@ _BROAD_OVERLAY_MODELS: frozenset[str] = frozenset(
     }
 )
 
+_QUOTE_REPAIR_STOPWORDS: frozenset[str] = frozenset(
+    {
+        "about",
+        "after",
+        "all",
+        "also",
+        "and",
+        "any",
+        "are",
+        "because",
+        "before",
+        "being",
+        "between",
+        "but",
+        "can",
+        "could",
+        "does",
+        "doing",
+        "for",
+        "from",
+        "had",
+        "has",
+        "have",
+        "into",
+        "itself",
+        "just",
+        "like",
+        "more",
+        "must",
+        "only",
+        "our",
+        "out",
+        "over",
+        "should",
+        "that",
+        "the",
+        "their",
+        "them",
+        "then",
+        "there",
+        "these",
+        "they",
+        "this",
+        "through",
+        "was",
+        "were",
+        "what",
+        "when",
+        "where",
+        "which",
+        "while",
+        "with",
+        "would",
+        "you",
+        "your",
+    }
+)
+
+_QUOTE_REPAIR_NEGATION_TOKENS: frozenset[str] = frozenset(
+    {"no", "not", "never", "without"}
+)
+
 
 def _quotes_overlap(quote_a: str, quote_b: str) -> bool:
     """Return True if two evidence quotes share substantial content."""
@@ -123,6 +185,225 @@ def _fuzzy_quote_in_answer(quote: str, answer_text: str, threshold: float = 0.80
     if not answer_tokens:
         return False
     return len(quote_tokens & answer_tokens) / len(quote_tokens) >= threshold
+
+
+def _quote_repair_tokens(text: str) -> set[str]:
+    return {
+        token
+        for token in re.findall(r"[a-z0-9]+", text.lower())
+        if (len(token) >= 3 or (token.isdigit() and len(token) >= 2))
+        if token not in _QUOTE_REPAIR_STOPWORDS
+    }
+
+
+def _negation_tokens(text: str) -> set[str]:
+    normalized = text.lower().replace("’", "'")
+    tokens = set(re.findall(r"[a-z0-9]+", normalized))
+    negations = tokens & _QUOTE_REPAIR_NEGATION_TOKENS
+    if re.search(r"\b[a-z]+n't\b", normalized):
+        negations.add("not")
+    return negations
+
+
+def _candidate_repair_spans(answer_text: str) -> list[str]:
+    spans: list[str] = []
+    seen: set[str] = set()
+
+    def add_span(span: str) -> None:
+        literal = span.strip()
+        if not literal or literal in seen:
+            return
+        if len(literal) < 20 or len(literal) > 900:
+            return
+        seen.add(literal)
+        spans.append(literal)
+
+    paragraphs = [p for p in re.split(r"\n\s*\n", answer_text) if p.strip()]
+    for paragraph in paragraphs:
+        add_span(paragraph)
+        sentences = [
+            match.group(0)
+            for match in re.finditer(r"[^.!?\n]+(?:[.!?]+|$)", paragraph)
+            if match.group(0).strip()
+        ]
+        for sentence in sentences:
+            add_span(sentence)
+        for window_size in (2, 3):
+            for idx in range(0, max(len(sentences) - window_size + 1, 0)):
+                add_span(" ".join(s.strip() for s in sentences[idx : idx + window_size]))
+
+    if not spans:
+        add_span(answer_text)
+
+    return spans
+
+
+def _find_normalized_literal_quote(quote: str, answer_text: str) -> str | None:
+    if quote in answer_text:
+        return quote
+
+    normalized_quote = _normalize_quotes(quote)
+    variants = {
+        normalized_quote,
+        normalized_quote.replace('"', '\\"'),
+        normalized_quote.replace("'", "\\'"),
+        normalized_quote.replace('"', '\\"').replace("'", "\\'"),
+    }
+    for variant in variants:
+        if variant and variant in answer_text:
+            return variant
+
+    whitespace_quote = _find_whitespace_normalized_literal_quote(normalized_quote, answer_text)
+    if whitespace_quote:
+        return whitespace_quote
+
+    return None
+
+
+def _collapse_whitespace_with_source_map(text: str) -> tuple[str, list[int]]:
+    collapsed_chars: list[str] = []
+    source_indexes: list[int] = []
+    in_whitespace = False
+    for idx, char in enumerate(text):
+        if char.isspace():
+            if collapsed_chars and not in_whitespace:
+                collapsed_chars.append(" ")
+                source_indexes.append(idx)
+            in_whitespace = True
+            continue
+        collapsed_chars.append(char)
+        source_indexes.append(idx)
+        in_whitespace = False
+    if collapsed_chars and collapsed_chars[-1] == " ":
+        collapsed_chars.pop()
+        source_indexes.pop()
+    return "".join(collapsed_chars), source_indexes
+
+
+def _find_whitespace_normalized_literal_quote(quote: str, answer_text: str) -> str | None:
+    collapsed_quote = re.sub(r"\s+", " ", quote).strip()
+    if len(collapsed_quote) < 20:
+        return None
+    collapsed_answer, source_indexes = _collapse_whitespace_with_source_map(answer_text)
+    match_at = collapsed_answer.find(collapsed_quote)
+    if match_at < 0:
+        return None
+    start = source_indexes[match_at]
+    end = source_indexes[match_at + len(collapsed_quote) - 1] + 1
+    repaired = answer_text[start:end]
+    if repaired in answer_text:
+        return repaired
+    return None
+
+
+_MAX_ELLIPSIS_BRIDGE_CHARS = 500
+_ELLIPSIS_PATTERN = re.compile(r"(?:\.{3}|…)")
+
+
+def _repair_ellipsis_quote_both_halves(
+    quote: str, answer_text: str
+) -> tuple[str, float, str] | None:
+    """Both-halves ellipsis repair.
+
+    Only succeeds if every nontrivial half of an ellipsis-bearing verifier
+    quote can be found literally in source order, and the contiguous literal
+    span from the first match to the last match fits within a bounded window
+    (≤ ``_MAX_ELLIPSIS_BRIDGE_CHARS`` characters).
+
+    Does NOT fall back to single-fragment salvage. Ellipsis quotes that fail
+    this test are not repaired by any other path. This is load-bearing: the
+    earlier single-fragment ellipsis repair produced trust-axis breaches by
+    accepting a literal-but-undercovering first half (e.g. case-1 Reasoning
+    Mode Router on Turn 1 alone, missing the Turn 3 fundamentals-vs-tactics
+    half the verifier was citing).
+    """
+    raw_fragments = _ELLIPSIS_PATTERN.split(_normalize_quotes(quote))
+    nontrivial_fragments: list[str] = []
+    for raw in raw_fragments:
+        cleaned = raw.strip()
+        if not cleaned:
+            continue
+        if len(cleaned) < 20:
+            continue
+        if len(_quote_repair_tokens(cleaned)) < 4:
+            continue
+        nontrivial_fragments.append(cleaned)
+
+    if len(nontrivial_fragments) < 2:
+        return None
+
+    positions: list[tuple[int, int]] = []
+    cursor = 0
+    for fragment in nontrivial_fragments:
+        literal = _find_normalized_literal_quote(fragment, answer_text)
+        if literal is None:
+            return None
+        idx = answer_text.find(literal, cursor)
+        if idx < 0:
+            return None
+        positions.append((idx, idx + len(literal)))
+        cursor = idx + len(literal)
+
+    span_start = positions[0][0]
+    span_end = positions[-1][1]
+    if span_end - span_start > _MAX_ELLIPSIS_BRIDGE_CHARS:
+        return None
+
+    span = answer_text[span_start:span_end]
+    return span, 1.0, "ellipsis_both_halves_literal"
+
+
+def _repair_evidence_quote(
+    quote: str,
+    answer_text: str,
+    *,
+    min_quote_coverage: float = 0.82,
+    min_span_precision: float = 0.50,
+) -> tuple[str, float, str] | None:
+    """Find a literal source span that safely repairs a verifier paraphrase."""
+    quote_tokens = _quote_repair_tokens(quote)
+    if len(quote_tokens) < 4:
+        return None
+
+    if _ELLIPSIS_PATTERN.search(_normalize_quotes(quote)):
+        # Ellipsis quotes get the both-halves rule and do NOT fall back to
+        # token-overlap repair. Removing this guarantee re-opens the trust
+        # breach the rule was introduced to fix.
+        return _repair_ellipsis_quote_both_halves(quote, answer_text)
+
+    quote_negations = _negation_tokens(quote)
+    best_span = ""
+    best_score = 0.0
+
+    for span in _candidate_repair_spans(answer_text):
+        if span not in answer_text:
+            continue
+        span_tokens = _quote_repair_tokens(span)
+        if len(span_tokens) < 4:
+            continue
+        # Symmetric negation check: a polarity mismatch in either direction
+        # blocks the repair. The earlier asymmetric form (quote_negations -
+        # span_negations) only blocked "verifier quote has negation, span
+        # lacks it"; it accepted the inverse case where the verifier quote
+        # drops a source negation and the resulting literal span flips
+        # meaning. Token-overlap repair is a salvage path, not a primary
+        # trust path — for salvage, polarity mismatch must fail closed.
+        span_negations = _negation_tokens(span)
+        if quote_negations != span_negations:
+            continue
+        overlap = quote_tokens & span_tokens
+        quote_coverage = len(overlap) / len(quote_tokens)
+        span_precision = len(overlap) / len(span_tokens)
+        if quote_coverage < min_quote_coverage or span_precision < min_span_precision:
+            continue
+        score = (quote_coverage * 0.75) + (span_precision * 0.25)
+        if score > best_score:
+            best_span = span
+            best_score = score
+
+    if not best_span:
+        return None
+    return best_span, best_score, "token_overlap_literal_span"
 
 
 def validate_fingerprint_moves(
@@ -410,11 +691,12 @@ def run_verification_call_from_packet(
     list[DetectedModel],
     list[dict[str, str]],
     list[dict[str, str]],
+    list[dict[str, str]],
 ]:
     """Packet-driven Lane 2 verification call.
 
-    Returns a 5-tuple ``(detected_models, rejected_models,
-    accepted_before_cap, capped_models, duplicate_accepts)``:
+    Returns a 6-tuple ``(detected_models, rejected_models,
+    accepted_before_cap, capped_models, duplicate_accepts, quote_repairs)``:
 
     - ``detected_models``: post-cap surfaced models (top-N by LLM order, where
       N = ``_DETECTED_MODELS_CAP``). Computed from the deduplicated
@@ -438,16 +720,19 @@ def run_verification_call_from_packet(
       ``model_id``, ``expand_detected_model`` runs twice, and the
       ``CompanionCard cannot contain more than 3 expansions per detected
       model`` invariant trips. See research/lane2-followup-tracking-2026-04-26.md.
+    - ``quote_repairs``: accepted verifier entries whose non-literal quote
+      was repaired to a literal substring before acceptance. These are
+      accepted, not rejected, and are persisted for quote-gate observability.
     """
     if not candidates:
-        return [], [], [], [], []
+        return [], [], [], [], [], []
 
     assistant_text = _joined_assistant_turns_from_packet(packet)
     raw_payload = client.run_json(
         _build_verification_system_prompt(),
         _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates),
     )
-    accepted, rejected = parse_verification_response(
+    accepted, rejected, quote_repairs = parse_verification_response(
         raw_payload,
         assistant_text,
         {candidate["model_id"] for candidate in candidates},
@@ -503,19 +788,20 @@ def run_verification_call_from_packet(
         }
         for m in accepted_before_cap[_DETECTED_MODELS_CAP:]
     ]
-    return detected_models, rejected, accepted_before_cap, capped_models, duplicate_accepts
+    return detected_models, rejected, accepted_before_cap, capped_models, duplicate_accepts, quote_repairs
 
 
 def parse_verification_response(
     raw_payload: dict,
     vanilla_answer: str,
     candidate_ids: set[str] | list[str] | tuple[str, ...],
-) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
     allowed_ids = {str(item).strip() for item in candidate_ids if str(item).strip()}
     accepted_entries = require_list_of_dicts(raw_payload, "accepted", "companion_verification")
     rejected_entries = require_list_of_dicts(raw_payload, "rejected", "companion_verification")
     accepted: list[dict[str, str]] = []
     rejected: list[dict[str, str]] = []
+    quote_repairs: list[dict[str, str]] = []
     answer_text = vanilla_answer if isinstance(vanilla_answer, str) else str(vanilla_answer or "")
 
     for item in accepted_entries:
@@ -533,13 +819,35 @@ def parse_verification_response(
                 }
             )
             continue
-        if evidence_quote and evidence_quote in answer_text:
+        literal_quote = _find_normalized_literal_quote(evidence_quote, answer_text)
+        if evidence_quote and literal_quote:
             accepted.append(
                 {
                     "model_id": model_id,
                     "presence_mode": presence_mode,
-                    "evidence_quote": evidence_quote,
+                    "evidence_quote": literal_quote,
                     "presence_explanation": presence_explanation,
+                }
+            )
+            continue
+        repaired = _repair_evidence_quote(evidence_quote, answer_text) if evidence_quote else None
+        if repaired is not None:
+            repaired_quote, repair_score, repair_method = repaired
+            accepted.append(
+                {
+                    "model_id": model_id,
+                    "presence_mode": presence_mode,
+                    "evidence_quote": repaired_quote,
+                    "presence_explanation": presence_explanation,
+                }
+            )
+            quote_repairs.append(
+                {
+                    "model_id": model_id,
+                    "original_evidence_quote": evidence_quote,
+                    "repaired_evidence_quote": repaired_quote,
+                    "repair_method": repair_method,
+                    "repair_score": f"{repair_score:.3f}",
                 }
             )
             continue
@@ -547,6 +855,7 @@ def parse_verification_response(
             {
                 "model_id": model_id,
                 "rejection_reason": "execution_quote_not_literal_substring",
+                "original_evidence_quote": evidence_quote,
             }
         )
 
@@ -583,7 +892,12 @@ def parse_verification_response(
                 continue
         final_accepted.append(item)
 
-    return final_accepted, rejected
+    final_model_ids = {item["model_id"] for item in final_accepted}
+    quote_repairs = [
+        repair for repair in quote_repairs if repair.get("model_id", "") in final_model_ids
+    ]
+
+    return final_accepted, rejected, quote_repairs
 
 
 def _build_verification_system_prompt() -> str:
