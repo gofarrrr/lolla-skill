@@ -23,7 +23,7 @@ This memo was substantively revised before merge to address ten holes identified
 2. **Track 1 Tier 3 protection** (§3 #3 + §3 Track 4 cross-reference): added explicit prompt-level markers for Step Back / WYSIATI / RH so Tier 3 has real protection (was previously gate-resistant with no prompt coverage).
 3. **Reject-reason taxonomy compatibility** (§3 Track 1): added consumer list, compatibility tests, migration-note requirement.
 4. **Track 2 form commitment** (§3 Track 2): committed to Form B (in-place tightening). Form A rejected to preserve the bullet 4 vs bullet 2 curation distinction.
-5. **E6 sensitivity scope** (§3 Track 3): expanded from one frozen slate (rerun4) to two (rerun4 + rerun5) to guard against rerun4-specific friendliness/hostility to the new prompt.
+5. **E6 sensitivity scope** (§3 Track 3): expanded from one frozen slate to two (E2/rerun4 primary slate + E3 run-3 target-present sensitivity slate) to guard against primary-slate friendliness/hostility to the new prompt.
 6. **E6 thresholds** (§3 Track 3): mean Jaccard threshold downgraded from 0.85 (unjustified, above E1 baseline) to 0.75 (below baseline, appropriate for tighter prompt). Catastrophic threshold set at 0.60. Friction-yield collapse rule added to fire at Phase A, not Phase B.
 7. **Friction-yield recovery rule** (§3 Track 3): explicit Phase-A rollback trigger if accept count or stable-core acceptance collapses — was previously detectable only at Phase B.
 8. **Phase B reporting tables** (§4): four required tables operationalized — repair-local trust, whole-run trust, strict-yield regression guard, Path D attribution.
@@ -111,7 +111,7 @@ The reject-reason field is consumed by:
 - A snapshot test in `tests/test_lane2_contextual.py` capturing the new reason strings (so future renames are detected).
 - A migration note in the implementation PR description if any consumer in this list turns out to enumerate reject reasons (verify by grep for the existing enum values across the repo before merge).
 
-This is a single-file change in `engine/system_b/companion_routing.py` (verifier prompt builder + reject-reason enum extension) plus the regression tests above.
+This is a single-file change in `engine/system_b/companion_routing.py` (verifier prompt builder + reject-reason vocabulary extension) plus the regression tests above.
 
 ### Track 2 — Curation tightening on Checklists bullet 4 (parallel to Track 1)
 
@@ -134,11 +134,13 @@ After Track 1 and Track 2 ship, run **E6 — verifier prompt-test on frozen slat
 E6 runs against **two frozen slates**, not one:
 
 - **E6.a — primary slate**: rerun4 fingerprint → 60-candidate slate from E2 (the same setup as E1). N=5 verifier reruns. This is the direct E1-comparable measurement.
-- **E6.b — sensitivity slate**: rerun5 fingerprint → fresh 60-candidate slate from `recall_candidates`. N=5 verifier reruns. This guards against the failure mode "rerun4's fingerprint is uniquely friendly/hostile to the new prompt."
+- **E6.b — target-present sensitivity slate**: E3 fingerprint run 3 → 60-candidate slate from `recall_candidates`. N=5 verifier reruns. E3 run 3 is selected because it contains the key target/stress anchors (`cognitive-dissonance`, `checklists`, `time-tested-validation`, `reasoning-mode-router`, `optionality`, and `optimism-bias-and-planning-fallacy`) while still being a distinct fingerprint-derived slate from the E1/E2 primary setup. This guards against the failure mode "the primary fingerprint is uniquely friendly/hostile to the new prompt" without accidentally declaring an anchor fixed on a slate where it never reached the verifier.
 
 Total E6 cost: ~10 verifier calls. The two-slate scope is the minimum sensitivity check; if E6.a and E6.b disagree on the decision-rule outcomes below, E6 is treated as ambiguous and the prompt is iterated before Track 4 deployment.
 
-If team capacity allows, E6.c–E6.e (rerun6–7 fingerprints + a fresh 5th rerun fingerprint per E5's k=5 protocol) are encouraged but not required for Track 4 deployment dispatch.
+Important scoring rule: an E6 slate can only clear or fail a target anchor if that anchor is present in the slate. If a proposed sensitivity slate lacks `cognitive-dissonance` or `checklists`, it cannot be used to decide Tier 1 deployment for the missing anchor; choose a different saved E3 slate or add another fresh fingerprint-derived slate.
+
+If team capacity allows, E6.c–E6.e (additional E3/fresh fingerprint-derived slates, prioritizing slates where CD and Checklists are present) are encouraged but not required for Track 4 deployment dispatch.
 
 #### Pre-registered decision rules (per slate; both must agree)
 
@@ -155,7 +157,7 @@ If team capacity allows, E6.c–E6.e (rerun6–7 fingerprints + a fresh 5th reru
 - **Mean Jaccard ≥ 0.75 (down from earlier draft 0.85)**: E1 baseline is 0.800. A tighter prompt that rejects more anchors mechanically introduces more variance possibilities at the boundary. Setting the bar above the E1 baseline (0.85) was unjustified — it implicitly assumed prompt tightening would also stabilize, but tightening typically does the opposite. 0.75 is "close to E1 baseline, not catastrophically worse" — appropriate for a tighter prompt.
 - **Mean Jaccard < 0.60 catastrophic**: 25 percentage points below E1 baseline. If we drop that far, the prompt is producing different acceptance sets every run; no reasonable claim about effect can be made. Roll back.
 - **Accept count ≥ 4 in ≥ 4/5 runs**: protects against the prompt over-tightening into "rejects everything." E1 baseline was exactly 5 every run; allowing 4 absorbs single-anchor rejection variance without permitting collapse.
-- **Friction-yield collapse rule (new)**: the {wysiati, TTV, OB+PF} set is the verifier-stable acceptable core that the audit gold reads as legitimate friction. If those drop out, the prompt is rejecting good anchors, not just bad ones. This catches over-tightening at Phase A rather than letting it ride into Phase B.
+- **Friction-yield collapse rule (new)**: the {wysiati, TTV, OB+PF} set protects legitimate friction from over-tightening: WYSIATI and TTV are E1 stable accepts, while OB+PF is the E4 clean positive control and case-1 gold acceptable secondary. If these drop out, the prompt is rejecting good anchors, not just bad ones. This catches over-tightening at Phase A rather than letting it ride into Phase B.
 
 E6 reuses E1's harness (the script in `/tmp/run_e1.py` should be promoted to `scripts/run_e6.py` or similar with a CLI flag for slate selection — this is part of the E6 implementation PR). The pre-registration prevents the "rationalize after results" failure mode the design memo warned against.
 
@@ -241,8 +243,8 @@ Baselines come from PR #43 audit synthesis, with re-measurement against the same
 
 If any noisy_adjacent rows remain after Phase B, Table 4 classifies each per §5:
 
-| Case | rerun | model_id | classification | (if slate-rotation) was model_id in top-60 on ≥4/5 fresh fingerprints? |
-|---|---|---|---|---|
+| Case | rerun | noisy_model_id | source_cluster | classification | if slate-rotation: missing/unstable gate-covered target |
+|---|---|---|---|---|---|
 
 This table is what feeds the Path D-fingerprint contingent trigger.
 
@@ -252,17 +254,18 @@ This table is what feeds the Path D-fingerprint contingent trigger.
 
 Path D-fingerprint is triggered when, after Track 1 + Track 4 ship and Phase B testing completes:
 
-> **Whole-run noisy_adjacent rate stays > 10% AND attribution analysis shows the residual noise traces to anchors that the gate would catch when present in the slate but where the gate doesn't always see them because fingerprint-induced slate rotation dropped them out of the top-60.**
+> **Whole-run noisy_adjacent rate stays > 10% AND attribution analysis shows the residual noise traces to source clusters where the gate-covered target anchor is absent from the candidate slate often enough that adjacent/sibling anchors fill the pressure slot instead.**
 
 ### Attribution rule (operational, per sparring-partner refinement)
 
 For each noisy_adjacent row in Phase B's whole-run reporting, classify it as:
 
-- **Gate failure** (the bad anchor was in the slate but the gate accepted it anyway) — this is a Path A+B residual, not a Path D-fingerprint signal.
-- **Slate-rotation miss** (the bad anchor was NOT in the top-60 on the run that surfaced it; it surfaced via a sibling anchor or via Step 6) — this is the Path D-fingerprint signal.
-- **Step 6 enrichment** (the bad anchor came from Step 6's independent enrichment, not from Lane 2's verifier output) — this is a Step 6 issue, out of scope for Path D-fingerprint.
+- **Gate failure** (the noisy anchor was in the slate, was in scope for Track 1/4 protection, and still passed) — this is a Path A+B residual, not a Path D-fingerprint signal.
+- **Prompt-scope failure** (the noisy anchor is outside the deployed gate set and was accepted directly by the verifier) — this is a Track 1/Tier 3 prompt residual, not a Path D-fingerprint signal.
+- **Slate-rotation signal** (the noisy anchor is adjacent to a gate-covered target for the same source cluster, and that gate-covered target is missing from the run's top-60 or appears in fewer than 4/5 fresh-fingerprint slates for that case) — this is the Path D-fingerprint signal.
+- **Step 6 enrichment** (the noisy anchor came from Step 6's independent enrichment, not from Lane 2's verifier output) — this is a Step 6 issue, out of scope for Path D-fingerprint.
 
-Concretely: per noisy row, was that `model_id` in the top-60 candidate slate on **≥4 of 5 fresh fingerprints** for that case? If yes → gate-failure or Step-6-enrichment classification. If no → slate-rotation classification, and Path D-fingerprint trigger fires once the rate of slate-rotation-classified noise crosses a threshold.
+Concretely: per noisy row, first identify the source cluster and the relevant gate-covered target model(s) for that cluster. If the noisy `model_id` itself was protected and still accepted, classify as gate failure. If no deployed gate/prompt rule covered it, classify as prompt-scope failure. Only classify as slate-rotation when the better gate-covered target for that cluster was absent or unstable in the top-60, allowing a sibling/adjacent anchor to occupy the verifier's accepted slot. Path D-fingerprint trigger fires once the rate of slate-rotation-classified noise crosses a threshold.
 
 #### Threshold rationale (committed at ≥ 25%)
 
@@ -325,7 +328,7 @@ For audit completeness, alternatives that were considered and explicitly rejecte
 
 The next deliverables this memo expects:
 1. Implementation PR for Track 1 (Path B prompt) + Track 2 (Checklists KG bullet 4 Form B)
-2. E6 results memo (`research/stability-runs/lane2-stability-experiments-2026-04-27/e6-prompt-test-residual.md`) after Track 1+2 ship — must include both E6.a (rerun4 slate) and E6.b (rerun5 slate) results
+2. E6 results memo (`research/stability-runs/lane2-stability-experiments-2026-04-27/e6-prompt-test-residual.md`) after Track 1+2 ship — must include both E6.a (E2/rerun4 primary slate) and E6.b (E3 run-3 target-present sensitivity slate) results
 3. Implementation PR for Track 4 (whichever Path A tiers E6 indicates per §3 Track 3 decision rules)
 4. Phase B cross-case testing report (≥3 cases including Marcus) with all four required tables (§4)
 5. Merge of the consolidated implementation PR
