@@ -229,7 +229,7 @@ def test_run_verification_from_packet_accepts_quote_substring_of_assistant():
     candidates = [
         {"model_id": "authority-bias", "model_name": "Authority Bias", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=fingerprint,
         candidates=candidates,
@@ -242,6 +242,7 @@ def test_run_verification_from_packet_accepts_quote_substring_of_assistant():
     # Single accepted model: pre-cap == post-cap; capped is empty.
     assert len(accepted_before_cap) == 1
     assert capped == []
+    assert quote_repairs == []
 
 
 def test_run_verification_from_packet_rejects_quote_not_in_assistant_turns():
@@ -265,7 +266,7 @@ def test_run_verification_from_packet_rejects_quote_not_in_assistant_turns():
     candidates = [
         {"model_id": "authority-bias", "model_name": "Authority Bias", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=fingerprint,
         candidates=candidates,
@@ -276,13 +277,129 @@ def test_run_verification_from_packet_rejects_quote_not_in_assistant_turns():
     assert rejected[0]["rejection_reason"] == "execution_quote_not_literal_substring"
     assert accepted_before_cap == []
     assert capped == []
+    assert quote_repairs == []
+
+
+def test_run_verification_accepts_normalized_literal_quote():
+    client = _RecordingClient({
+        "accepted": [
+            {
+                "model_id": "base-rates",
+                "presence_mode": "executed",
+                "evidence_quote": 'He wrote "protect the downside" in the memo.',
+                "presence_explanation": "uses the quoted downside evidence",
+            }
+        ],
+        "rejected": [],
+    })
+    ctx = _ctx(
+        user_texts=("q",),
+        assistant_texts=('He wrote \\"protect the downside\\" in the memo.',),
+    )
+    packet = _packet_from_ctx(ctx)
+    candidates = [
+        {"model_id": "base-rates", "model_name": "Base Rates", "activation_trigger": "x"},
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert len(detected) == 1
+    assert detected[0].evidence_quote == 'He wrote \\"protect the downside\\" in the memo.'
+    assert rejected == []
+    assert len(accepted_before_cap) == 1
+    assert capped == []
+    assert duplicate_accepts == []
+    assert quote_repairs == []
+
+
+def test_run_verification_repairs_paraphrased_quote_to_literal_source_span():
+    client = _RecordingClient({
+        "accepted": [
+            {
+                "model_id": "base-rates",
+                "presence_mode": "executed",
+                "evidence_quote": "The base rate is 20-30%, not 50%.",
+                "presence_explanation": "uses base-rate correction",
+            }
+        ],
+        "rejected": [],
+    })
+    source_sentence = (
+        "The actual base rate is 20-30%, not 50%, once you remove the visible winners."
+    )
+    ctx = _ctx(user_texts=("q",), assistant_texts=(source_sentence,))
+    packet = _packet_from_ctx(ctx)
+    candidates = [
+        {"model_id": "base-rates", "model_name": "Base Rates", "activation_trigger": "x"},
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert len(detected) == 1
+    assert detected[0].evidence_quote == source_sentence
+    assert rejected == []
+    assert len(accepted_before_cap) == 1
+    assert capped == []
+    assert duplicate_accepts == []
+    assert len(quote_repairs) == 1
+    assert quote_repairs[0]["model_id"] == "base-rates"
+    assert quote_repairs[0]["original_evidence_quote"] == "The base rate is 20-30%, not 50%."
+    assert quote_repairs[0]["repaired_evidence_quote"] == source_sentence
+    assert quote_repairs[0]["repair_method"] == "token_overlap_literal_span"
+    assert float(quote_repairs[0]["repair_score"]) >= 0.80
+
+
+def test_run_verification_does_not_repair_meaning_flipped_quote():
+    client = _RecordingClient({
+        "accepted": [
+            {
+                "model_id": "confidence-calibration",
+                "presence_mode": "executed",
+                "evidence_quote": "The team does not have a strong record of delivery.",
+                "presence_explanation": "claims weak evidence",
+            }
+        ],
+        "rejected": [],
+    })
+    ctx = _ctx(
+        user_texts=("q",),
+        assistant_texts=("The team has a strong record of delivery.",),
+    )
+    packet = _packet_from_ctx(ctx)
+    candidates = [
+        {
+            "model_id": "confidence-calibration",
+            "model_name": "Confidence Calibration",
+            "activation_trigger": "x",
+        },
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert detected == []
+    assert accepted_before_cap == []
+    assert capped == []
+    assert duplicate_accepts == []
+    assert quote_repairs == []
+    assert len(rejected) == 1
+    assert rejected[0]["model_id"] == "confidence-calibration"
+    assert rejected[0]["rejection_reason"] == "execution_quote_not_literal_substring"
 
 
 def test_run_verification_from_packet_empty_candidates_short_circuits():
     client = _RecordingClient()
     ctx = _ctx()
     packet = _packet_from_ctx(ctx)
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=[],
@@ -292,4 +409,5 @@ def test_run_verification_from_packet_empty_candidates_short_circuits():
     assert rejected == []
     assert accepted_before_cap == []
     assert capped == []
+    assert quote_repairs == []
     assert client.calls == [], "no LLM call when there are no candidates"

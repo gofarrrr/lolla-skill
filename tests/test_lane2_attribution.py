@@ -4,9 +4,10 @@ fix/lane2-variance-attribution-2026-04-26.
 Covers:
 - recall_candidates emits per-source rank metadata (keyword_rank,
   embedding_rank, final_rank, recall_source ∈ {keyword, embedding, both}).
-- run_verification_call_from_packet returns the 4-tuple (detected,
-  rejected, accepted_before_cap, capped_models) and the cap enforcement
-  surfaces capped models — separately from rejected.
+- run_verification_call_from_packet returns Lane 2 attribution surfaces
+  (detected, rejected, accepted_before_cap, capped_models, duplicate accepts,
+  quote repairs) and the cap enforcement surfaces capped models — separately
+  from rejected.
 - companion_candidate_cap config flows from PipelineConfig through to
   recall_candidates.
 
@@ -178,7 +179,7 @@ def test_recall_candidates_embedding_path_tags_both_when_overlapping():
     assert by_id["inversion"]["embedding_rank"] == 3
 
 
-# ---------- run_verification_call_from_packet 4-tuple shape + cap ----------
+# ---------- run_verification_call_from_packet attribution surfaces + cap ----------
 
 
 def _ctx(assistant_text: str) -> ConversationContext:
@@ -232,7 +233,7 @@ def test_verifier_returns_capped_models_separately_from_rejected():
         {"model_id": f"model-{i}", "model_name": f"Model {i}", "activation_trigger": "x"}
         for i in range(n_accepted)
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -241,6 +242,7 @@ def test_verifier_returns_capped_models_separately_from_rejected():
     assert len(detected) == _DETECTED_MODELS_CAP
     assert len(accepted_before_cap) == n_accepted
     assert len(capped) == 3
+    assert quote_repairs == []
     assert all(c["drop_reason"] == "capped_at_top_5" for c in capped)
     # Rejected stays empty: capped is NOT rejected. This is the
     # verification_precision-preservation contract from the design memo.
@@ -262,7 +264,7 @@ def test_verifier_no_cap_overflow_returns_empty_capped():
     candidates = [
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
         packet=_packet("weighing the opportunity cost of staying"),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -271,6 +273,7 @@ def test_verifier_no_cap_overflow_returns_empty_capped():
     assert len(detected) == 1
     assert len(accepted_before_cap) == 1
     assert capped == []
+    assert quote_repairs == []
     assert rejected == []
 
 
@@ -322,7 +325,7 @@ def test_verifier_dedupes_duplicate_accepted_model_ids():
     candidates = [
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -337,6 +340,7 @@ def test_verifier_dedupes_duplicate_accepted_model_ids():
     assert detected[0].presence_explanation == "first explanation"
     # (3) Duplicates surfaced with the right drop_reason.
     assert len(duplicate_accepts) == 2
+    assert quote_repairs == []
     for d in duplicate_accepts:
         assert d["model_id"] == "opportunity-cost"
         assert d["drop_reason"] == "duplicate_accept_dedupe"
@@ -376,7 +380,7 @@ def test_verifier_no_duplicates_yields_empty_duplicate_accepts():
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"},
         {"model_id": "second-order-thinking", "model_name": "Second-Order Thinking", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -386,6 +390,7 @@ def test_verifier_no_duplicates_yields_empty_duplicate_accepts():
     assert len(accepted_before_cap) == 2
     assert duplicate_accepts == []
     assert capped == []
+    assert quote_repairs == []
 
 
 # ---------- PipelineConfig.companion_candidate_cap is threaded ----------

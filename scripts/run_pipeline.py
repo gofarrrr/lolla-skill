@@ -359,12 +359,14 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         # - companion_candidates: full recall input to verifier (with per-source ranks)
         # - companion_verification_accepted_before_cap: full LLM-accepted set
         # - companion_verification_capped_models: accepted-but-not-surfaced (top-5 budget)
+        # - companion_verification_quote_repairs: accepted entries rescued by literal quote repair
         # - companion_candidate_cap: explicit recall cap in effect
         # - embedding_mode: "on" or "off" so reports group cleanly without env inspection
         "companion_candidates": list(result.audit.companion_candidates),
         "companion_verification_accepted_before_cap": list(result.audit.companion_verification_accepted_before_cap),
         "companion_verification_capped_models": list(result.audit.companion_verification_capped_models),
         "companion_verification_duplicate_accepts": list(result.audit.companion_verification_duplicate_accepts),
+        "companion_verification_quote_repairs": list(result.audit.companion_verification_quote_repairs),
         "companion_candidate_cap": result.audit.companion_candidate_cap,
         "embedding_mode": result.audit.embedding_mode,
         "deep_check_results": [
