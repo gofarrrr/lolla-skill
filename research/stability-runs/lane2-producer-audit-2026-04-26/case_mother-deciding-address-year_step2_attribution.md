@@ -22,11 +22,11 @@ This is the headline of case 4. Predictions were locked in commit `29daaf7` BEFO
 | C3 | *Second Order Thinking* | high | accept (with "too generic" hedge) | **ACCEPTED** with cluster-aligned quote | ✓ — hedge unnecessary |
 | C4 | *Power Dynamics* | high | accept (per F1''') | **ACCEPTED** with cluster-aligned quote | ✓ — first PD acceptance in audit |
 | C5 | *Problem Framing And Reframing* | medium | recall-risk | **NOT IN CANDIDATES** | ✓ |
-| C6 | *Opportunity Cost* | medium-to-high | reject (per prior pattern) | **ACCEPTED** with cluster-aligned quote | ✗ — but in F1'''-supporting direction (mutual-exclusion phrasing operationalizes OC) |
+| C6 | *Opportunity Cost* | medium-to-high | reject (per prior pattern) | **ACCEPTED** with cluster-aligned quote | **`prediction_miss_but_hypothesis_strengthening`** — prior-pattern prediction said reject; operational-language theory would have predicted accept once mutual-exclusion language was admitted as sufficient operationalization. Hypothesis improved; the prediction itself was wrong. |
 | C7 | `no_clean_primary` | n/a | n/a | (no anchor surfaced for C7 — correct behavior) | ✓ |
 | C8 | *Premortem* | high (literal if-when-then) | accept per F1''' (KEY TEST) | **NOT IN CANDIDATES** (fingerprint missed Turn 12 entirely; recall didn't surface Premortem) | ✗ — **cannot test the F1''' prediction at the verifier-blind-spot level because the candidate never reached the verifier** |
 
-**Score: 6/7 prediction-actual matches; 1 unable-to-test (C8 Premortem); 0 outright wrong.** The OC mismatch on C6 is a *strengthening* of F1''' — explicit mutual-exclusion phrasing operationalizes OC sufficiently for the verifier, contradicting the prior-pattern hypothesis. F1''' predicted better than category history.
+**Score: 5/7 clean matches; 1 `prediction_miss_but_hypothesis_strengthening` (C6 OC); 1 unable-to-test (C8 Premortem).** Per audit discipline, the C6 OC outcome is recorded as a miss — the prior-pattern prediction said reject; the actual was accept. The miss was *productive* because it surfaced an extension to F1''' (mutual-exclusion phrasing operationalizes OC), but the prediction itself was wrong. Counting it as a "match" would conflate hypothesis evolution with predictive accuracy.
 
 The Premortem test is unresolved. C8's source has the highest operationalization in the audit so far (literal "When [X] happens, remember [Y]" + explicit goal-redefinition), but fingerprint M6 didn't quote Turn 12 and recall didn't surface Premortem from broader text. We still don't know whether Premortem rejects under operational language because the producer chain didn't deliver it to the verifier.
 
