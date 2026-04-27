@@ -7,6 +7,15 @@ Prior experiments: `e5-consensus-simulation.md`, `e4-broad-meta-sufficiency-rubr
 Runs JSON: `research/stability-runs/lane2-stability-experiments-2026-04-27/e3-fingerprint-variance-runs.json`
 Downstream-slate JSON: `research/stability-runs/lane2-stability-experiments-2026-04-27/e3-fingerprint-variance-downstream-slates.json`
 
+## Correction note (2026-04-27, pre-merge)
+
+The initial draft of this report contained two factual errors that have been corrected against the saved JSON artifacts:
+
+1. **"`optionality` and `reasoning-mode-router` appear in 0/5 fresh-fingerprint slates" — false.** Both anchors are in **all 5** slates (Optionality at positions 3, 7, 7, 8, 10; RMR at positions 13, 14, 15, 21, 31). E1's RMR/Optionality substitution is therefore **pure verifier-side variance**, not a slate-presence artifact.
+2. **"Same 7 reasoning moves recur across all 5 runs" — over-smoothed.** The high-level *trajectory* is consistent, but granularity varies across runs (run 1 splits trajectory into 8 moves; runs 3–5 introduce a "signal vs noise" theme that runs 1–2 lack). The corrected framing is "trajectory-stable, granularity-moderately-unstable, text-unstable."
+
+Both errors originated in writing from memory rather than re-checking the JSON. Numerical claims (Jaccard 0.519/0.6151/0.7391, union 89, intersection 30, validated counts 8-7-7-7-7) were verified correct against the runs JSON. The corrected sections are: §"Direct stability summary," §"Anchor slate-presence across runs" (renamed from "Noisy-anchor robustness"), §"H2 verdict," §"Hypothesis state," §"§7 decision-tree application — Why Path A or B is still the first lever."
+
 ## Scope
 
 Tests **H2** from the design memo:
@@ -62,9 +71,9 @@ This isolates fingerprint variance as the only varying input. If slates differ, 
 
 The LLM emits `move_id` as a sequential ordinal index (`"1"`, `"2"`, ...), so move-id-set comparison is meaningless across runs (the set `{"1"..."7"}` always intersects). The semantic identity of each move lives in the `reasoning_move` and `evidence_quotes` fields.
 
-**Validated count is mostly stable (7), with one outlier (run 1: 8).** Run 1's 8th move was "Provide actionable specifics for de-risking options like fractional roles" — a sub-aspect that runs 2–5 absorbed into a single broader move about fractional structure. The cap (top 8) was hit only by run 1; the other runs returned <8 to begin with.
+**Validated count is mostly stable (7), with one outlier (run 1: 8).** Run 1 split runway-assessment into a distinct move (#3) and split fractional-specifics into its own move (#7) — both of which other runs absorb into adjacent moves. The cap (top 8) was hit only by run 1; the other runs returned <8 to begin with.
 
-**Reasoning-move strings vary on every run.** All 5 runs emit 5 distinct `reasoning_move` strings per ordinal slot. The semantic content is consistent (same reasoning trajectory: clarifying questions → debunk pipeline assumption → assess runway → prioritize fundamentals → multi-option generation → spouse alignment → fractional ask → conditional launch), but the LLM rephrases each move on every run.
+**Reasoning-move strings vary on every run.** All 5 runs emit 5 distinct `reasoning_move` strings per ordinal slot. The high-level reasoning trajectory is consistent (clarify before tactics → challenge optimistic assumptions → prioritize fundamentals → generate multi-option tradeoffs → insist on specific spouse alignment → conditional/checkpoint commitment), but the LLM rephrases each move on every run AND chooses a different granularity (see split-vs-merge below).
 
 **Evidence-quote lists vary on every run.** For each move slot present in all 5 runs, the LLM selects 2–5 distinct evidence-quote sets. Some runs return shorter, more focused quotes; others return longer, multi-sentence spans; some compress multiple quotes into one or split one quote into multiple.
 
@@ -72,11 +81,16 @@ The LLM emits `move_id` as a sequential ordinal index (`"1"`, `"2"`, ...), so mo
 
 ### Direct stability summary
 
-- **Semantic stability**: HIGH. The same 7 reasoning moves recur across all 5 runs (with one extra move in run 1 from a finer split).
-- **Textual stability**: LOW. Free-text fields (`reasoning_move`, `evidence_rationale`) and evidence-quote selection vary every run.
+- **Trajectory stability**: HIGH. The same high-level reasoning trajectory recurs across all 5 runs: *clarify before tactics → challenge optimistic assumptions → prioritize fundamentals over tactics → generate multiple options with tradeoffs → insist on specific spouse alignment → conditional/checkpoint commitment.*
+- **Granularity instability**: MODERATE. The trajectory is split into different numbers of moves across runs:
+  - **Run 1** (8 moves) separates "runway assessment with industry timelines" (#3) from "challenge optimistic assumptions" (#2), and separates "actionable specifics for fractional roles" (#7) from "conditional checkpoint" (#8).
+  - **Runs 2, 3, 4** (each 7 moves) collapse runway-assessment into challenge-assumptions and merge fractional-specifics into adjacent moves.
+  - **Run 5** (7 moves) restores runway-assessment as a distinct move (#3) — like run 1 — but absorbs fractional specifics elsewhere.
+  - **Runs 3, 4, 5** introduce a "signal vs noise / emotion vs evidence" theme as a distinct move; runs 1 and 2 do not.
+- **Textual stability**: LOW. Free-text fields (`reasoning_move`, `evidence_rationale`) and evidence-quote selection vary every run, even where the underlying move is the same.
 - **Count stability**: NEAR-STABLE. Validated count is 7 in 4/5 runs, 8 in 1/5.
 
-A surface-level move-id-set comparison would say "intersection 7/7, jaccard 1.0" — that is misleading because the LLM is emitting ordinal placeholders, not semantic identifiers. The substantive variance is in the free-text and evidence-quote fields, which feed downstream.
+A surface-level move-id-set comparison would say "intersection 7/7, jaccard 1.0" — that is misleading because the LLM is emitting ordinal placeholders, not semantic identifiers. The substantive variance is in: (1) granularity of the move split, (2) free-text phrasing, and (3) evidence-quote selection. All three feed downstream.
 
 ### Downstream slate variance
 
@@ -99,45 +113,47 @@ For comparison:
 - E2 (frozen fingerprint, recall N=5): Jaccard 1.000. Recall is deterministic given fixed input.
 - E3 (varying fingerprint, recall once each): Jaccard 0.615. Recall remains deterministic, but its input changes enough that the slate composition shifts substantially.
 
-### Noisy-anchor robustness across slates
+### Anchor slate-presence across runs
 
-The two anchors E1 found verifier-stable (5/5) and E5 found rerun-recurring (CD and Checklists) appear in:
+Slate-presence (was the anchor `model_id` in the top-60 candidate slate produced from each fresh fingerprint?) measured directly from the runs JSON. **In-slate is distinct from accepted-by-verifier**; this section covers presence only.
 
-| Anchor | Slates containing (of 5) |
-|---|---:|
-| `cognitive-dissonance` | 4 |
-| `checklists` | 4 |
-| `time-tested-validation` | 4 |
-| `wysiati` | (in slate intersection — all 5) |
+| Anchor | In slate (of 5) | Missing run | E1 verifier behavior |
+|---|---:|---|---|
+| `cognitive-dissonance` | 4/5 | run 5 | accepted 5/5 (E1 stable) |
+| `checklists` | 4/5 | run 1 | accepted 5/5 (E1 stable) |
+| `time-tested-validation` | 4/5 | run 2 | accepted 5/5 (E1 stable) |
+| `wysiati` | 5/5 | none | accepted 5/5 (E1 stable) |
+| `reasoning-mode-router` | 5/5 | none | accepted 3/5 (E1 stochastic edge) |
+| `optionality` | 5/5 | none | accepted 2/5 (E1 stochastic edge) |
 
-The noisy-recurrence pattern persists through fingerprint variance. The verifier-stable failure class is robustly presented to the verifier even when the slate around them shifts. **A Path A sufficiency gate that catches CD and Checklists would catch them across fingerprint-induced slate variance.**
+Two distinct patterns:
 
-The H5-shaped marginal anchors are more fragile:
-- `optionality` appears in 0/5 of these slates (ordinal cap effect: it ranks below 60 for all 5 fingerprints' keyword scores).
-- `reasoning-mode-router` appears in 0/5 of these slates either.
+1. **Verifier-stable failure class (CD, Checklists, TTV)** is missing from exactly 1/5 fresh-fingerprint slates. Fingerprint variance hides each from the slate ~20% of the time. **A Path A sufficiency gate would catch each anchor in 80% of fresh runs and not see it in 20%.** That is a real residual for Path A's reach.
+2. **E1 stochastic-edge anchors (RMR, Optionality)** are present in **all 5** fresh-fingerprint slates (RMR positions 13–31; Optionality positions 3–10). Their E1 substitution churn (RMR 3/5, Optionality 2/5 accepted) is therefore **purely verifier-side**, not slate-presence-mediated. The verifier sees both candidates on every run and chooses one to accept.
 
-Both surfaced in E1 because E1 used rerun4's specific fingerprint, which happened to push them into the top-60. The fact that fresh fingerprint runs do NOT push them in is consistent with the marginal/boundary character E1 already established for them.
+This correction strengthens E1's reading: **E1's RMR/Optionality substitution is pure verifier variance under the tested slate conditions, not a fingerprint-input artifact.**
 
 ## H2 verdict — supported, with structure
 
 **H2 is supported.** The fingerprint LLM is stochastic on identical input.
 
 Specifically:
-- **Semantic content of moves is stable** (same 7 reasoning moves recur across all 5 runs).
-- **Textual representation is unstable** (5 distinct `reasoning_move` phrasings per slot, 2–5 distinct evidence-quote selections per slot, 1 extra move in 1/5 runs).
-- **The textual variance has downstream impact**: 5 distinct candidate slates, pairwise Jaccard mean 0.615.
+- **High-level trajectory is stable** (same 6-step reasoning trajectory recurs across all 5 runs).
+- **Granularity is moderately unstable** (run 1 splits trajectory into 8 moves; runs 2–5 into 7, with different absorption choices; runs 3–5 introduce a "signal vs noise" move that runs 1–2 do not).
+- **Textual representation is unstable** (5 distinct `reasoning_move` phrasings per slot, 2–5 distinct evidence-quote selections per slot).
+- **The variance has downstream impact**: 5 distinct candidate slates, pairwise Jaccard mean 0.615.
 
-H2 is **supported but bounded**, similar to H1's structure: the LLM is not chaotic; the high-level reasoning is consistent. But the surface output that downstream stages consume (evidence quotes, especially) varies enough to produce non-trivial slate divergence.
+H2 is **supported but bounded**, similar to H1's structure: the LLM is not chaotic; the high-level reasoning is consistent. But the granularity choices and surface output that downstream stages consume vary enough to produce non-trivial slate divergence.
 
 ## Hypothesis state after E3
 
 | Hypothesis | Pre-E3 status | Post-E3 status |
 |---|---|---|
-| H1 — verifier stochasticity | SUPPORTED with structure (E1) | unchanged |
-| **H2 — fingerprint variance** | open | **SUPPORTED with structure**: semantic-stable, text-unstable, downstream Jaccard 0.615 |
+| H1 — verifier stochasticity | SUPPORTED with structure (E1) | **strengthened**: RMR/Optionality are 5/5 in fresh-fingerprint slates, so their E1 churn is pure verifier variance, not slate-presence-mediated |
+| **H2 — fingerprint variance** | open | **SUPPORTED with structure**: trajectory-stable, granularity-unstable, text-unstable, downstream Jaccard 0.615 |
 | H3 — recall is deterministic | SUPPORTED (E2) | unchanged |
-| H4 — broad/meta sufficiency blind spot | strongly supported (E4) + further strengthened (E1) | **further strengthened**: CD and Checklists survive fingerprint variance into 4/5 slates |
-| H5 — honest hypothesis diversity | partially supported (E5), refined (E1) | unchanged. RMR and Optionality NOT in any of these 5 fresh fingerprint slates → their E1 surfacing was specific to rerun4's particular fingerprint output |
+| H4 — broad/meta sufficiency blind spot | strongly supported (E4) + further strengthened (E1) | **further strengthened**: CD, Checklists, TTV are each in 4/5 fresh-fingerprint slates (~20% per-anchor slate-rotation miss) — survives fingerprint variance the majority of runs |
+| H5 — honest hypothesis diversity | partially supported (E5), refined (E1) | unchanged. RMR and Optionality remain marginal at the **verifier acceptance** layer (E1: 3/5 and 2/5 accepted), even though they are slate-stable. Their churn is verifier-side judgment diversity, not slate-input diversity |
 
 ## Smoke variance — full decomposition
 
@@ -162,10 +178,10 @@ The §7 tree is pre-registered. Both rows are now firing. The implementation tra
 
 ### Why Path A or B is still the first lever
 
-1. **Path A targets the verifier-stable failure class** (CD, Checklists) which survives fingerprint variance into 4/5 slates. The failure recurs across both variance sources. A sufficiency gate that catches it captures the largest single trust improvement.
-2. **Path D variant for fingerprint is more invasive.** It would refactor extraction stage. Trust-axis benefit may be smaller per unit cost than Path A.
+1. **Path A targets the verifier-stable failure class** (CD, Checklists, TTV). Each is in 4/5 fresh-fingerprint slates (~20% per-anchor slate-rotation miss rate). For the 80% of runs where the gate sees the bad anchor, a sufficiency gate catches it. For the 20% where slate rotation hides the anchor, the gate doesn't get to act — that residual is the boundary of Path A's reach and the natural Path D-fingerprint trigger surface.
+2. **Path D variant for fingerprint is more invasive.** It would refactor the extraction stage. The trust-axis benefit per unit cost is bounded by the residual after Path A+B (per-anchor slate-rotation miss rate observed at ~20% on this case).
 3. **Path A and Path D-fingerprint are independent**, not competing. Path A goes between verifier-acceptance and Step 6; Path D-fingerprint changes the upstream input. Both can be implemented; the question is order.
-4. **The implementation memo should commit to Path A+B first**, then evaluate Path D-fingerprint as a follow-on track based on remaining failure modes after Path A+B ships.
+4. **The implementation memo should commit to Path A+B first**, then evaluate Path D-fingerprint as a follow-on track based on residual noise classified as slate-rotation-mediated after Path A+B ships.
 
 ### What Path D-fingerprint would target (for the implementation memo)
 
@@ -188,13 +204,13 @@ These are not architectural commitments; they are options the implementation mem
 
 - Did not generalize to other cases. Fingerprint variance on Marcus and case 3 may have different structure. Path D-fingerprint scoping would need cross-case data before committing.
 - Did not test fingerprint with `--embeddings on`. If embeddings change downstream slate sensitivity to fingerprint phrasing, the Jaccard 0.615 number would shift.
-- Did not score fingerprint quality against a gold reference. The semantic-stability claim is from reading the runs and noting all 5 produce the same trajectory; a gold-labeled fingerprint quality test was not part of this experiment's scope.
+- Did not score fingerprint quality against a gold reference. The trajectory-stability claim is from reading the runs and noting all 5 produce the same high-level trajectory; a gold-labeled fingerprint quality test was not part of this experiment's scope.
 - Did not evaluate whether the per-run slate's intersection (30 models) is "the right 30 models." That is a recall-vocabulary question (PR #43 leak mode 1).
 - Did not test fingerprint determinism under `temperature=0` or other LLM parameter settings. That is a parameter-tuning question, not a hypothesis-discrimination question.
 
 ## Status
 
-- E3: **complete**. H2 supported with structure (semantic-stable, text-unstable, downstream Jaccard 0.615).
+- E3: **complete**. H2 supported with structure (trajectory-stable, granularity-unstable, text-unstable, downstream Jaccard 0.615).
 - All 5 pre-registered experiments closed: E1 ✓, E2 ✓, E3 ✓, E4 ✓, E5 ✓.
 - §7 decision tree: **two rows fire.** Path A+B is the first lever (E1+E4). Path D-fingerprint is a contingent second track (E3).
 - **Next deliverable: implementation memo** — single document committing to Path A+B as first track and Path D-fingerprint as contingent second track. The investigation phase is closed; architecture commitment is the next decision.
