@@ -238,15 +238,22 @@ This is informative for the audit's product question: the user-visible Step 6 ha
 2. **Trust axis stays clean.** 0/21 false positives across 5 cases.
 3. **F1''' is partially supported, partially falsified.** Hypothesis evolution needed: operational language is correlated with acceptance but not sufficient. Other factors (slate size, model-specific verifier rules, conversation vocabulary) matter.
 
-### Marcus is a different failure shape
+### Marcus is a different failure shape — but the leak modes were already known
 
-Cases 1-4 had verifier or step6 issues with full candidate slates. Marcus has recall truncation + post-validation aggression. The distinct shape suggests the producer chain has at least three independent leak modes:
+Cases 1-4 had verifier or step6 issues with full candidate slates. Marcus has recall truncation + post-validation aggression. The producer chain has at least three independent leak modes that the audit has surfaced cumulatively (none discovered freshly on Marcus, but Marcus makes one of them dominant):
 
-1. **Recall vocabulary gaps** (Marcus): some conversation domains produce thin candidate slates. Equity/founder-dynamics may be one such domain.
-2. **Quote-validation strictness** (case 1 + Marcus): the literal-substring gate drops models the verifier accepted, especially when the verifier paraphrases evidence.
-3. **Verifier interpretive rejection** (cases 1+5 OC, cases 1+3 Premortem, multiple PFR): even with operational language, certain models get rejected.
+1. **Recall vocabulary gaps**: some conversation domains produce thin candidate slates. Equity/founder-dynamics is the first such domain in the audit. The recall-substrate hole was already known via the PFR pattern across cases 1-4; Marcus's broader thin-slate behavior extends the same kind of finding.
+2. **Quote-validation strictness**: existed already in case 1 (Base Rates demoted on C2). Marcus makes it dominant — 67% of raw acceptances dropped vs case 1's 50% on a much smaller numerator.
+3. **Verifier interpretive rejection**: cases 1+5 OC, cases 1+3 Premortem, PFR across all 5 cases. F1''' (now F2) describes this.
 
-These are addressable by different fixes. F1''' only addresses pattern 3.
+The Marcus-distinctive *combination* — not the individual modes — is:
+
+- Thin slate (13 candidates, not the usual 56–60)
+- Very high post-verifier demotion (67%)
+- Verifier rejection even on highly operational source language (C5 OC, C3 SOT)
+- Genuine ambiguity around C6 that makes low cross-run stability partly *honest hypothesis diversity*, not merely broken producer
+
+That combination is what makes Marcus a different audit case, not the individual leak modes themselves. The product diagnosis becomes: **Marcus is not "Lane 2 unstable." Marcus is "thin recall + quote-gate loss + model-family verifier strictness + honest hypothesis diversity."** That richer diagnosis is the productive output of case 5.
 
 ## Locked bottom-line for case 5
 
