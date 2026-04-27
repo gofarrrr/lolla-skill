@@ -64,7 +64,7 @@ That last one is interesting — PD reached candidates on case 7 but not on case
 
 ### Test 3 — Trust axis stress
 
-Cumulative N=6 trust: 0/26 false positives. Case 7 with its more-generic-feeling anchor set (PD + PT + CC) is a good final stress test. If any of the three anchors are noisy-adjacent or generic-overlay rather than locally mechanized, this is where I'd expect them.
+Cumulative N=6 trust: 0/23 false positives. Case 7 with its more-generic-feeling anchor set (PD + PT + CC) is a good final stress test. If any of the three anchors are noisy-adjacent or generic-overlay rather than locally mechanized, this is where I'd expect them.
 
 ## Pre-registered predictions for case 7 (run-stability + sharpened F2)
 

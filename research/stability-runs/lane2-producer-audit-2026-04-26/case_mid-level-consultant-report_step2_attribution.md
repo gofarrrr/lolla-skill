@@ -152,7 +152,7 @@ The producer chain is stochastic at every stage. Trust axis is the only consiste
 
 ### Trust axis stays clean across N=7
 
-0/29 false positives across 7 cases. All 3 case-7 anchors satisfied Marcin's strict criteria for not being noisy-adjacent:
+0/26 false positives across 7 cases. All 3 case-7 anchors satisfied Marcin's strict criteria for not being noisy-adjacent:
 - PT quote has explicit probability language ("non-zero chance")
 - CC quote has explicit confidence thresholds ("90%+", "70% or below")
 - PD quote names concrete hierarchy + authority + dependency mechanism
@@ -184,7 +184,7 @@ This is a stability problem the audit hadn't fully named before. The cumulative 
 | `friction_yield_strict` (cross-case conservative) | 17% | 43% | 43% | 57% | 14% | 57% | 43% |
 | `strictness_failure_rate_strict` | 50% | 40% | 0% | 0% | 75% | 0% | 25% |
 
-### Cumulative trust axis: 0/29 false positives across 7 cases
+### Cumulative trust axis: 0/26 false positives across 7 cases
 
 The most robust finding in the audit. Across very different conversation domains (fintech, oncology, regulatory ethics, parent-teen safety, founder equity, academic dissertation, and a stability re-run), the trust gates have not produced a single false positive. This is the audit's strongest product confidence signal.
 
@@ -214,7 +214,7 @@ These five modes are cumulative findings across the audit. F2 explains pattern 3
 
 **Run-to-run variance happens at every producer stage**: recall (PAP missing on case 7), verifier judgment (IA rejected on case 7), quote validation (57% demotion rate vs case 3's 17%).
 
-**Trust axis stays clean across all 7 cases**: 0/29 false positives. The trust gates are the most stable property in the producer chain.
+**Trust axis stays clean across all 7 cases**: 0/26 false positives. The trust gates are the most stable property in the producer chain.
 
 **Friction yield varies significantly across runs of the same conversation**: case 3's 4/5 = 80% on clean expected primaries vs case 7's 2/5 = 40%. A product-level instability the audit hadn't directly named before this case.
 
@@ -231,7 +231,7 @@ That's the audit's final picture at N=7.
 ## Resolved notes
 
 - F2 partially supported, not deterministic. Run-stochasticity is a separate effect F2 doesn't fully model.
-- Trust axis clean across all 7 cases — 0/29 false positives. Strongest finding.
+- Trust axis clean across all 7 cases — 0/26 false positives. Strongest finding.
 - Producer chain has 5 cumulative leak modes (recall vocabulary, quote validation, verifier interpretive rejection, run-stochasticity at all stages, anchor identity stochasticity within clusters).
 - Step 6 has independent enrichment patterns (introduces models not in cheat sheet on cases 5+7) and stable hidden patterns (PT consistently Step-6-hidden on cases 3+7).
 - Case 7 was the final pre-registered case in the audit corpus. The audit corpus is now complete.

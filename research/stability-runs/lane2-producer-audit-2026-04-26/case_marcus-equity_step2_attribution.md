@@ -235,7 +235,7 @@ This is informative for the audit's product question: the user-visible Step 6 ha
 ### Recurring patterns N=5
 
 1. **PFR consistently absent** (5/5 cases now). Different mechanisms continue: recall on cases 1, 3, 4 (×2); verifier on cases 2, 5 (×3 across C1, C2, C7).
-2. **Trust axis stays clean.** 0/21 false positives across 5 cases.
+2. **Trust axis stays clean.** 0/18 false positives across 5 cases.
 3. **F1''' is partially supported, partially falsified.** Hypothesis evolution needed: operational language is correlated with acceptance but not sufficient. Other factors (slate size, model-specific verifier rules, conversation vocabulary) matter.
 
 ### Marcus is a different failure shape — but the leak modes were already known

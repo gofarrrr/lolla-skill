@@ -23,7 +23,7 @@ The design memo has been patched (§4 erratum) to reflect the corrected corpus.
 
 **Lane 2 is high-trust but uneven-friction.**
 
-- **Trust axis:** 0 false positives across 29 surfaced anchor rows in 7 runs. Every observed anchor classifies as `acceptable_primary_match`, `acceptable_secondary`, or `acceptable_*_with_quote_drift`. No `noisy_adjacent` or `false_positive` rows.
+- **Trust axis:** 0 false positives across 26 surfaced anchor rows in 7 runs. Every observed anchor classifies as `acceptable_primary_match`, `acceptable_secondary`, or `acceptable_*_with_quote_drift`. No `noisy_adjacent` or `false_positive` rows.
 - **Friction axis:** strict yield varies materially by case, including a same-source 80% → 40% drop between case 3 and case 7 on clean expected primaries.
 
 The product implication: **a user re-running the same conversation can get materially different curated pressure** while the false-positive rate stays at zero. That is a stability problem on the friction axis alone.

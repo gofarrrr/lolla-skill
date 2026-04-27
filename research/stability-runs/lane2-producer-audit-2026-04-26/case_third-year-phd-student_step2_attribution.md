@@ -150,7 +150,7 @@ Three reporting cuts, each with a different question:
 | `friction_yield_any_honest` on clean expected primaries (with caveat) | **5/5 = 100%** | Same 5 clusters | Product yield with quote-drift admitted. Caveat: Premortem on C7 has quote drift — model is right, evidence quote sources from Turn 6 sub-cluster I missed in labeling. |
 | `strictness_failure_rate_strict` | **0/2 = 0%** | Clusters with sufficient fingerprint specificity AND expected model in candidates (C4, C7 partial) | Did the verifier reject anything that the producer chain delivered with clean fingerprint context? |
 | `strictness_failure_rate_broad` | **0/5 = 0%** | All clusters where expected primary reached candidates | Did the verifier reject any expected primary at all? |
-| Trust axis | clean | | 0% `noisy_anchor_rate`, 0% post-verifier validation across this case. Cumulative 0/26 across cases 1-6. |
+| Trust axis | clean | | 0% `noisy_anchor_rate`, 0% post-verifier validation across this case. Cumulative 0/23 across cases 1-6. |
 
 ## Findings
 
@@ -216,7 +216,7 @@ This is a labeling lesson, not a producer-chain finding. For future cases I shou
 
 ### Recurring patterns N=6
 
-1. **Trust axis stays clean** across all 6 cases. 0/26 false positives. The trust gates are reliably correct.
+1. **Trust axis stays clean** across all 6 cases. 0/23 false positives. The trust gates are reliably correct.
 2. **F2 holds for most cases** — operational language predicts acceptance with high accuracy (5/5 expected primaries accepted on case 6).
 3. **PFR and Premortem are not model-specific blind spots.** Both passed when source operationalized their mechanisms. The chronic-fail patterns from cases 1-5 were conversation-shape-specific.
 
@@ -253,6 +253,6 @@ Holding case 7 (mid-level-consultant-report) per discipline. Per Marcin's pre-re
 - F2 strongly validated on case 6. PFR + Premortem + Optionality all accept when source operationalizes mechanism per F2 predictions.
 - The "chronic-fail" pattern is now best understood as conversation-shape-specific source variation, not model-specific verifier blind spots.
 - Marcus C5 OC remains the only clean F2 counter-example. Refinement question, not falsification.
-- Trust axis clean across all 6 cases (0/26 false positives).
+- Trust axis clean across all 6 cases (0/23 false positives).
 - C7 labeling lesson: Premortem-flavored reasoning can span multiple turns; don't draw cluster boundaries too narrowly.
 - Case 7 (consultant-report) is the final case.

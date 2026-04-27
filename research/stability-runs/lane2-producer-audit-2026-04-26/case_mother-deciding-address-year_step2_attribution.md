@@ -168,7 +168,7 @@ Anchor-worthy denominator: 7 clusters.
 | `friction_yield_any_honest` | 4/7 = 57.1% | Same as strict — no quote drift. |
 | `strictness_failure_rate_strict` | **0/4 = 0%** | Denominator: clusters with sufficient fingerprint specificity AND expected model in candidates. C2/C3/C4/C6 qualify; all accepted. **No verifier strictness failure on the strict denominator** — same as case 3. |
 | `strictness_failure_rate_broad` | **0/4 = 0%** | Same as strict on this case. |
-| Trust axis | clean | 0% noisy_anchor_rate, 0% post-verifier validation, all anchors aligned. Across all 4 cases now: 0/19 false positives. |
+| Trust axis | clean | 0% noisy_anchor_rate, 0% post-verifier validation, all anchors aligned. Across all 4 cases now: 0/16 false positives. |
 | Friction axis | mid-strong | 57% friction yield (best in audit so far), 0% strictness failure (matches case 3). |
 
 ## Findings
@@ -219,7 +219,7 @@ Cases 1 and 3 are the closest data we have: both have Premortem rejecting at the
 ### Recurring patterns N=4
 
 1. **PFR consistently absent.** 4/4 cases. Different mechanisms. The recall-substrate hole is the most consistent finding in the audit.
-2. **Trust axis stays clean.** 0/19 false positives across 4 cases. The trust gates are reliably correct.
+2. **Trust axis stays clean.** 0/16 false positives across 4 cases. The trust gates are reliably correct.
 3. **F1''' predictions are tracking.** Case 4 had 6/7 prediction matches. Case 3 broke the prior family hypothesis and supported F1'''. The cumulative N=4 picture is consistent with operational-language-presence as the verifier-acceptance differentiator.
 
 ### Pattern that reversed
@@ -252,5 +252,5 @@ Cross-case (N=4) signal: F1''' is the best-supported hypothesis, with two distin
 - The case-1+2 strictness pattern is now well-explained as conversation-specific (interpretive content) rather than systematic.
 - PFR's 4-case absence pattern points at a recall-substrate problem distinct from F1'''.
 - Premortem has a still-untested model-specific blind-spot question.
-- Trust axis remains clean across all 4 cases (0/19 false positives).
+- Trust axis remains clean across all 4 cases (0/16 false positives).
 - Cases 5 (marcus-equity), 6 (mother variants), 7 (phd-student) still pending.
