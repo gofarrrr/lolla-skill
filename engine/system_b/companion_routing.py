@@ -910,16 +910,6 @@ def _build_verification_system_prompt() -> str:
         "REJECT a model if the evidence only shows broad good reasoning, problem decomposition, or multi-factor thinking.\n"
         "REJECT a model if the model's name or vocabulary appears without the mechanism being executed or violated.\n"
         "REJECT a violated-mode claim if the answer simply omits the discipline rather than substituting an alternative.\n"
-        "MECHANISM-NOT-TOPIC RULE: a literal quote must instantiate the model's local mechanism markers, not just be topically adjacent. A quote that is *about* the same domain as the model is not evidence the model is *in play*. Topical adjacency without mechanism execution is rejected with rejection_reason 'mechanism_topical_only'.\n"
-        "ANCHOR-SPECIFIC NEGATIVES (do not accept these models on these patterns):\n"
-        "- reasoning-mode-router: clarifying questions before tactics is NOT mode/path selection. RMR's mechanism is naming distinct reasoning modes or problem types and selecting between them — e.g., analytical vs intuitive/creative/dialectical, convergent vs divergent, or diagnosis vs creative exploration vs adversarial critique vs execution planning. 'Asking before answering' or 'let me ask a few things first' does NOT satisfy RMR. Reject as 'mechanism_topical_only' unless the answer literally names distinct reasoning modes/types and selects between them.\n"
-        "- cognitive-dissonance: the assistant pushing back on the user's optimistic assumption is NOT cognitive dissonance. CD requires a *holder* of a commitment whose reasoning is bent to protect it — motivated reframing, evidence avoidance, post-hoc rationalization. Pushback on someone else's claim is not CD. Reject as 'mechanism_topical_only'.\n"
-        "- checklists: a numbered list of options or one-time recommendations is NOT a checklist. Checklists require *recurring execution with omission risk* — e.g., 'every time,' 'always,' 'each instance,' explicit repetition across multiple executions. Reject as 'recurring_execution_required' when the source shows a one-time decision, sequence of options, or single-instance plan.\n"
-        "TIER 3 ANCHOR MARKERS (these models require local mechanism evidence in the quote, not generic advisory language; the following describes the mechanism shape to look for):\n"
-        "- step-back: requires explicit reframing or distance from the immediate problem — 'zoom out,' 'first principles,' 'before getting tactical,' 'let's reframe.' General advisory language without explicit reframing is not step-back. Reject as 'mechanism_topical_only'.\n"
-        "- wysiati: requires the source surfacing what is NOT visible/known/measured — 'we don't see,' 'what's missing from the data,' 'the part we're not measuring.' General incomplete-information language is not wysiati. Reject as 'mechanism_topical_only'.\n"
-        "- representativeness-heuristic: requires the source naming a base-rate or category-membership confusion — treating an instance as the category, ignoring base rates. Generic similarity language is not RH. Reject as 'mechanism_topical_only'.\n"
-        "DANGER_WHEN RESPECT: each candidate may include a 'watches_for:' clause when its KG entry has danger_when markers. If the source matches a candidate's watches_for marker, that is evidence AGAINST selecting the model — danger_when describes when the model misfires, not when it applies. Do not accept a model whose watches_for marker is satisfied by the source.\n"
         "Broad models that must be actively declined unless specifically executed or violated: second-order-thinking, multi-criteria-decision-analysis, systems-thinking, power-laws, tier-2-high-value, butterfly-effect.\n"
         "CRITICAL for tier-2-high-value: the model is EXECUTED only when the answer's own reasoning performs a value-tier classification AND uses that classification as the central decision mechanism. "
         "Reject if another specific model (authority-bias, reciprocity-principle, liking-loving, etc.) already explains the structural error — tier-2-high-value is background context, not the read. "
@@ -938,7 +928,7 @@ def _build_verification_system_prompt() -> str:
         '  "rejected": [\n'
         "    {\n"
         '      "model_id": "candidate-model-id",\n'
-        '      "rejection_reason": "too generic | topic-adjacent | mechanism absent | omission not violation | mechanism_topical_only | recurring_execution_required"\n'
+        '      "rejection_reason": "too generic | topic-adjacent | mechanism absent | omission not violation"\n'
         "    }\n"
         "  ]\n"
         "}\n"
