@@ -22,7 +22,7 @@ For each unique surfaced `model_id` across rerun4–rerun7, count the number of 
 - **Friction yield** at the cluster level: how many of the 6 anchor-worthy case-1 clusters (C1, C2, C3, C4, C6, C7; C5 excluded as `no_clean_primary`) have ≥1 acceptable anchor pass the threshold.
 - **Lost-but-honest** anchors: acceptable at k=1, absent at k=2.
 
-Trust classifications and cluster mappings are taken from the prior characterization (cross-checked here, not re-judged). All five clusters appear in source-first order C1–C7.
+Trust classifications and cluster mappings are taken from the prior characterization (cross-checked here, not re-judged). Cluster mappings follow the source-first case-1 gold table, with C5 excluded as `no_clean_primary`.
 
 ## Results
 
@@ -92,12 +92,12 @@ Applied to the data:
 
 - **k=2 does NOT improve trust.** Noisy rate goes from 31% to 50% (worse). The trust improvement promise is falsified — consensus does not reliably select for acceptable anchors here.
 - **k=2 leaves friction_yield_strict unchanged at 33% but loses drift-yield** (drops from 67% any-honest at k=1 to 33% any-honest at k=2). 4 acceptable anchors are pruned. The "kills friction" promise partially holds at k=2.
-- **k=3 improves trust to 0% noisy but collapses friction** (17%, single cluster yielding). The single-digit-friction outcome holds at k=3.
-- **k=4 yields nothing.**
+- **k=3 improves trust to 0% noisy but reduces yield to a single cluster** (1/6 = 17%). This does not literally meet the pre-registered "single-digit friction" criterion, but it is still too narrow to be a viable product shape.
+- **k=4 then collapses to 0%.** That literally satisfies the "kills friction" dead-end condition.
 
 **Verdict: Consensus is not the first architecture lever.**
 
-The k=2 path fails the "improves trust" condition. The k=3 path satisfies the "kills friction" dead-end condition. Neither threshold offers a viable consensus product shape on this case.
+The k=2 path fails the "improves trust" condition. The k=3 path does not literally satisfy the single-digit criterion but collapses usable friction to one cluster; k=4 then satisfies the dead-end condition at 0%. Since k=2 worsens trust and k≥3 over-prunes, **Path C is ruled out as the first lever on this case.** No tested consensus threshold improves trust while preserving useful friction.
 
 ## Mapping to §7 decision tree
 
