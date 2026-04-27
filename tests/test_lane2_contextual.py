@@ -315,6 +315,87 @@ def test_run_verification_accepts_normalized_literal_quote():
     assert quote_repairs == []
 
 
+def test_run_verification_accepts_whitespace_normalized_literal_quote():
+    client = _RecordingClient({
+        "accepted": [
+            {
+                "model_id": "problem-framing-and-reframing",
+                "presence_mode": "executed",
+                "evidence_quote": "Before diving into tactics, can I ask a few things to make sure we're solving the right problem. First: what's your current pipeline?",
+                "presence_explanation": "reframes the request before tactics",
+            }
+        ],
+        "rejected": [],
+    })
+    source_span = (
+        "Before diving into tactics, can I ask a few things to make sure we're solving the right problem.\n\n"
+        "First: what's your current pipeline?"
+    )
+    ctx = _ctx(user_texts=("q",), assistant_texts=(source_span,))
+    packet = _packet_from_ctx(ctx)
+    candidates = [
+        {
+            "model_id": "problem-framing-and-reframing",
+            "model_name": "Problem Framing And Reframing",
+            "activation_trigger": "x",
+        },
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert len(detected) == 1
+    assert detected[0].evidence_quote == source_span
+    assert rejected == []
+    assert len(accepted_before_cap) == 1
+    assert capped == []
+    assert duplicate_accepts == []
+    assert quote_repairs == []
+
+
+def test_run_verification_repairs_ellipsis_quote_to_literal_fragment():
+    client = _RecordingClient({
+        "accepted": [
+            {
+                "model_id": "margin-of-safety",
+                "presence_mode": "executed",
+                "evidence_quote": "8 months at zero revenue is tight for a first-time independent consultant... Launching without signed LOI is possible but harder.",
+                "presence_explanation": "uses runway buffer",
+            }
+        ],
+        "rejected": [],
+    })
+    source_sentence = "On runway: 8 months at zero revenue is tight for a first-time independent consultant."
+    ctx = _ctx(
+        user_texts=("q",),
+        assistant_texts=(source_sentence + " Launching without that is possible but harder.",),
+    )
+    packet = _packet_from_ctx(ctx)
+    candidates = [
+        {"model_id": "margin-of-safety", "model_name": "Margin Of Safety", "activation_trigger": "x"},
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert len(detected) == 1
+    assert detected[0].evidence_quote == "8 months at zero revenue is tight for a first-time independent consultant"
+    assert rejected == []
+    assert len(accepted_before_cap) == 1
+    assert capped == []
+    assert duplicate_accepts == []
+    assert len(quote_repairs) == 1
+    assert quote_repairs[0]["model_id"] == "margin-of-safety"
+    assert quote_repairs[0]["original_evidence_quote"].startswith("8 months at zero revenue")
+    assert quote_repairs[0]["repaired_evidence_quote"] == detected[0].evidence_quote
+    assert quote_repairs[0]["repair_method"] == "ellipsis_literal_fragment"
+    assert quote_repairs[0]["repair_score"] == "1.000"
+
+
 def test_run_verification_repairs_paraphrased_quote_to_literal_source_span():
     client = _RecordingClient({
         "accepted": [

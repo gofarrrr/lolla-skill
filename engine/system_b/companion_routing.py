@@ -253,7 +253,70 @@ def _find_normalized_literal_quote(quote: str, answer_text: str) -> str | None:
         if variant and variant in answer_text:
             return variant
 
+    whitespace_quote = _find_whitespace_normalized_literal_quote(normalized_quote, answer_text)
+    if whitespace_quote:
+        return whitespace_quote
+
     return None
+
+
+def _collapse_whitespace_with_source_map(text: str) -> tuple[str, list[int]]:
+    collapsed_chars: list[str] = []
+    source_indexes: list[int] = []
+    in_whitespace = False
+    for idx, char in enumerate(text):
+        if char.isspace():
+            if collapsed_chars and not in_whitespace:
+                collapsed_chars.append(" ")
+                source_indexes.append(idx)
+            in_whitespace = True
+            continue
+        collapsed_chars.append(char)
+        source_indexes.append(idx)
+        in_whitespace = False
+    if collapsed_chars and collapsed_chars[-1] == " ":
+        collapsed_chars.pop()
+        source_indexes.pop()
+    return "".join(collapsed_chars), source_indexes
+
+
+def _find_whitespace_normalized_literal_quote(quote: str, answer_text: str) -> str | None:
+    collapsed_quote = re.sub(r"\s+", " ", quote).strip()
+    if len(collapsed_quote) < 20:
+        return None
+    collapsed_answer, source_indexes = _collapse_whitespace_with_source_map(answer_text)
+    match_at = collapsed_answer.find(collapsed_quote)
+    if match_at < 0:
+        return None
+    start = source_indexes[match_at]
+    end = source_indexes[match_at + len(collapsed_quote) - 1] + 1
+    repaired = answer_text[start:end]
+    if repaired in answer_text:
+        return repaired
+    return None
+
+
+def _repair_ellipsis_fragment_quote(quote: str, answer_text: str) -> tuple[str, float, str] | None:
+    fragments = [
+        fragment.strip()
+        for fragment in re.split(r"(?:\.{3}|…)", _normalize_quotes(quote))
+        if fragment.strip()
+    ]
+    best_fragment = ""
+    best_token_count = 0
+    for fragment in fragments:
+        literal = _find_normalized_literal_quote(fragment, answer_text)
+        if not literal:
+            continue
+        token_count = len(_quote_repair_tokens(literal))
+        if token_count < 5 or len(literal) < 30:
+            continue
+        if token_count > best_token_count:
+            best_fragment = literal
+            best_token_count = token_count
+    if not best_fragment:
+        return None
+    return best_fragment, 1.0, "ellipsis_literal_fragment"
 
 
 def _repair_evidence_quote(
@@ -262,11 +325,15 @@ def _repair_evidence_quote(
     *,
     min_quote_coverage: float = 0.82,
     min_span_precision: float = 0.50,
-) -> tuple[str, float] | None:
+) -> tuple[str, float, str] | None:
     """Find a literal source span that safely repairs a verifier paraphrase."""
     quote_tokens = _quote_repair_tokens(quote)
     if len(quote_tokens) < 4:
         return None
+
+    ellipsis_repair = _repair_ellipsis_fragment_quote(quote, answer_text)
+    if ellipsis_repair is not None:
+        return ellipsis_repair
 
     quote_negations = _negation_tokens(quote)
     best_span = ""
@@ -292,7 +359,7 @@ def _repair_evidence_quote(
 
     if not best_span:
         return None
-    return best_span, best_score
+    return best_span, best_score, "token_overlap_literal_span"
 
 
 def validate_fingerprint_moves(
@@ -721,7 +788,7 @@ def parse_verification_response(
             continue
         repaired = _repair_evidence_quote(evidence_quote, answer_text) if evidence_quote else None
         if repaired is not None:
-            repaired_quote, repair_score = repaired
+            repaired_quote, repair_score, repair_method = repaired
             accepted.append(
                 {
                     "model_id": model_id,
@@ -735,7 +802,7 @@ def parse_verification_response(
                     "model_id": model_id,
                     "original_evidence_quote": evidence_quote,
                     "repaired_evidence_quote": repaired_quote,
-                    "repair_method": "token_overlap_literal_span",
+                    "repair_method": repair_method,
                     "repair_score": f"{repair_score:.3f}",
                 }
             )
