@@ -88,3 +88,60 @@ Approx 2–3 sessions of human review time per audit run, mostly on gold-label s
 ## Audit closure
 
 The corpus is complete. The leak map is consolidated in §4 + §6. Trust axis is the most robust finding. F2 is the best-supported hypothesis with named limits. The next-track decision is now a separate exercise.
+
+## §8 Post-script (added 2026-04-27 after the quote-repair smoke and N=5 characterization)
+
+This post-script narrows §2's main finding in light of evidence that surfaced *after* the audit closed. It does not change the §4–§7 leak map. It updates how readers should interpret §2's "0 false positives" headline.
+
+### What's still true
+
+The §2 archived-corpus claim:
+
+> 0 false positives across 26 surfaced anchor rows in 7 runs.
+
+remains literally true for the audit's archived corpus. The PR #43 audit findings, leak modes, F2 hypothesis, and decision-tree input are all anchored on those archived runs and are unchanged.
+
+### What we now know is NOT a stable property of Lane 2
+
+While validating a producer-side change (quote-validation repair, branch `feat/lane2-quote-validation-repair-2026-04-27`), we ran a baseline characterization on case 1 (`user-launch-independent-fintech`): N=5 fresh runs of identical source, against the same archived extraction + conversation. Findings (`research/stability-runs/lane2-quote-repair-smoke-2026-04-27/characterization.md`):
+
+- **14 unique anchors surfaced across 5 reruns** of the same conversation. Only Optimism Bias And Planning Fallacy appeared in 4 of 5 reruns; everything else churned (12 of 14 anchors appeared in ≤ 2 reruns).
+- **23 surfaced anchor rows total. 7 (30%) classified `noisy_adjacent` per the §7.2 schema.** 2 more were borderline.
+- **Every rerun produced at least one noisy or borderline anchor.**
+- **All 7 noisy anchors entered Step 6 via direct literal verifier acceptance** — they did not go through quote repair. The quote-repair branch's behavior was independent.
+
+The audit's 0-FP signal was therefore **conditional on the archive sample being favorable, not a stable property of Lane 2 across reruns**. Fresh reruns on the same source produce a non-trivial rate of noisy anchors that the audit's single-archived-run methodology would not have caught.
+
+### What this changes for future Lane 2 evaluation
+
+Two adjustments are now load-bearing for any future Lane 2 producer-side investigation:
+
+1. **Single-run validation is insufficient for producer-side changes.** A fresh single rerun can show noisy anchors that have nothing to do with the change being evaluated. Producer-side changes need multi-run characterization or, at minimum, the two-layer reporting described below.
+2. **Two-layer trust reporting.** Validation must separately report:
+   - **Repair-local trust** — among anchors that went through the change (e.g. quote repair), did any become noisy? This isolates the change's effect.
+   - **Whole-run trust** — among all surfaced anchors regardless of the change, did the producer surface noisy anchors? This measures the broader producer-stability problem, which a local change does not address.
+
+A whole-run trust failure blocks product-readiness for any producer change but **does not automatically falsify the specific change**. The two layers must be evaluated separately.
+
+The methodology amendment that records this lives at `research/lane2-quote-repair-validation-amendment-2026-04-27.md`.
+
+### What this implies for the next-track decision (synthesis §6)
+
+The §6 decision-tree input still holds, but the trust axis verdict deserves a refinement:
+
+| Stage | Original verdict | Updated reading after rerun characterization |
+|---|---|---|
+| Trust axis | pass | pass on archived rows; **NOT pass as a stable rerun-level property**. The fix space is no longer "do nothing" — producer-stability work is needed to make the trust axis hold across reruns, not just on archive-favorable samples. |
+
+This adds a new entry to §4's five leak modes (or refines #4 "run-to-run variance at all producer stages"): **the verifier accepts noisy_adjacent anchors with literal evidence quotes at a non-trivial rate on fresh reruns of the same source.** That is *separate* from quote-validation strictness or recall vocabulary gaps. It points at verifier prompt hardening for mechanism specificity, post-acceptance sufficiency gates, or multi-run consensus as candidate next-track architectures.
+
+### What this post-script does NOT do
+
+- Does not invalidate PR #43's archived findings.
+- Does not redo any case attribution.
+- Does not propose architecture (the producer-stability design memo is a separate next deliverable).
+- Does not change §4–§7 of the synthesis. Those sections describe properties of the audited archive, which remain accurate. The §2 headline interpretation is what's narrowed.
+
+### Why this post-script exists
+
+PR #43's "0 false positives" was the audit's strongest finding. It was easy to overread as a stable system property. Without this post-script, future readers (or future-Claude) would reach for that finding and design from it. The honest reading is narrower: the trust axis was clean for the runs we audited, and we now have evidence that fresh reruns produce noisy anchors at ~30% on at least one case. The audit-as-test-set framing for future Lane 2 changes needs the two-layer reporting before it can be relied on.
