@@ -63,7 +63,7 @@ Anchors that surfaced in each rerun. `R` = repaired by quote repair, `L` = liter
 | Rerun | Anchors | Acceptable | Borderline | Noisy_adjacent / false_positive |
 |---|---|---|---|---|
 | r3 (pre-fix) | 5 | Optimism Bias (sec C2), Premortem (drift C7), Optionality (drift C4), WYSIATI (sec C2) | 0 | RMR (false-positive via single-fragment ellipsis repair) |
-| r4 | 5 | Step Back (sec C1), TTV (borderline sec C2), WYSIATI (sec C1) | 0 | Checklists (noisy on C7), Cognitive Dissonance (noisy on C1) |
+| r4 | 5 | Step Back (sec C1), WYSIATI (sec C1) | TTV (borderline sec C2) | Checklists (noisy on C7), Cognitive Dissonance (noisy on C1) |
 | r5 | 3 | Optimism Bias (sec C2), Optionality (drift C4) | 0 | Checklists (noisy on C7) |
 | r6 | 5 | Premortem (drift C7), Optimism Bias (sec C2) | Commitment Bias (defensible-borderline sec C3) | Cognitive Dissonance (noisy), Probabilistic Thinking on runway-pressure quote (noisy — runway is deterministic if-then, not probabilistic) |
 | r7 | 5 | Optimism Bias (sec C2), WYSIATI (sec C1), RH (defensible alternative on C2) | Information Asymmetry (borderline sec on spouse-keep-in-head quote) | Feedback Loops on Turn-7 pre-registered-checkpoint quote (noisy on C7 — checkpoint is Premortem-flavored, not feedback-loop-flavored) |
@@ -71,8 +71,8 @@ Anchors that surfaced in each rerun. `R` = repaired by quote repair, `L` = liter
 ### Cumulative trust score across N=5 reruns
 
 - **Total surfaced anchors**: 23 (5+5+3+5+5)
-- **Acceptable (primary-match / drift / secondary / defensible alternative)**: 14 (61%)
-- **Borderline**: 2 (9%)
+- **Acceptable (primary-match / drift / secondary / defensible alternative)**: 13 (57%)
+- **Borderline**: 3 (13%)
 - **Noisy_adjacent / false_positive**: 7 (30%)
 
 **Every rerun produced at least one noisy or borderline anchor.** Case 1's trust axis is not clean on any single fresh rerun.

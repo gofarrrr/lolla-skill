@@ -381,7 +381,15 @@ def _repair_evidence_quote(
         span_tokens = _quote_repair_tokens(span)
         if len(span_tokens) < 4:
             continue
-        if quote_negations - _negation_tokens(span):
+        # Symmetric negation check: a polarity mismatch in either direction
+        # blocks the repair. The earlier asymmetric form (quote_negations -
+        # span_negations) only blocked "verifier quote has negation, span
+        # lacks it"; it accepted the inverse case where the verifier quote
+        # drops a source negation and the resulting literal span flips
+        # meaning. Token-overlap repair is a salvage path, not a primary
+        # trust path — for salvage, polarity mismatch must fail closed.
+        span_negations = _negation_tokens(span)
+        if quote_negations != span_negations:
             continue
         overlap = quote_tokens & span_tokens
         quote_coverage = len(overlap) / len(quote_tokens)
