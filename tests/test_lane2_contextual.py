@@ -355,23 +355,23 @@ def test_run_verification_accepts_whitespace_normalized_literal_quote():
     assert quote_repairs == []
 
 
-def test_run_verification_repairs_ellipsis_quote_to_literal_fragment():
+def test_run_verification_repairs_ellipsis_quote_with_both_halves_in_bounded_span():
     client = _RecordingClient({
         "accepted": [
             {
                 "model_id": "margin-of-safety",
                 "presence_mode": "executed",
-                "evidence_quote": "8 months at zero revenue is tight for a first-time independent consultant... Launching without signed LOI is possible but harder.",
+                "evidence_quote": "8 months at zero revenue is tight for a first-time independent consultant... Launching without that is possible but harder.",
                 "presence_explanation": "uses runway buffer",
             }
         ],
         "rejected": [],
     })
-    source_sentence = "On runway: 8 months at zero revenue is tight for a first-time independent consultant."
-    ctx = _ctx(
-        user_texts=("q",),
-        assistant_texts=(source_sentence + " Launching without that is possible but harder.",),
+    source_text = (
+        "On runway: 8 months at zero revenue is tight for a first-time "
+        "independent consultant. Launching without that is possible but harder."
     )
+    ctx = _ctx(user_texts=("q",), assistant_texts=(source_text,))
     packet = _packet_from_ctx(ctx)
     candidates = [
         {"model_id": "margin-of-safety", "model_name": "Margin Of Safety", "activation_trigger": "x"},
@@ -383,7 +383,11 @@ def test_run_verification_repairs_ellipsis_quote_to_literal_fragment():
         client=client,
     )
     assert len(detected) == 1
-    assert detected[0].evidence_quote == "8 months at zero revenue is tight for a first-time independent consultant"
+    expected_span = (
+        "8 months at zero revenue is tight for a first-time "
+        "independent consultant. Launching without that is possible but harder."
+    )
+    assert detected[0].evidence_quote == expected_span
     assert rejected == []
     assert len(accepted_before_cap) == 1
     assert capped == []
@@ -391,9 +395,165 @@ def test_run_verification_repairs_ellipsis_quote_to_literal_fragment():
     assert len(quote_repairs) == 1
     assert quote_repairs[0]["model_id"] == "margin-of-safety"
     assert quote_repairs[0]["original_evidence_quote"].startswith("8 months at zero revenue")
-    assert quote_repairs[0]["repaired_evidence_quote"] == detected[0].evidence_quote
-    assert quote_repairs[0]["repair_method"] == "ellipsis_literal_fragment"
+    assert quote_repairs[0]["repaired_evidence_quote"] == expected_span
+    assert quote_repairs[0]["repair_method"] == "ellipsis_both_halves_literal"
     assert quote_repairs[0]["repair_score"] == "1.000"
+
+
+def test_run_verification_does_not_repair_ellipsis_when_only_one_half_in_source():
+    """Reproduces the case-1 Reasoning Mode Router trust breach.
+
+    The verifier cited two halves separated by an ellipsis. Only the first half
+    appears literally in the source; the second half does not. The old single-
+    fragment ellipsis repair would have accepted the first half. The both-halves
+    rule rejects the repair, demoting the model.
+    """
+    client = _RecordingClient({
+        "accepted": [
+            {
+                "model_id": "reasoning-mode-router",
+                "presence_mode": "executed",
+                "evidence_quote": (
+                    "Before diving into tactics, can I ask a few things to make "
+                    "sure we're solving the right problem. ... the tactical advice — "
+                    "pricing, positioning, website, legal structure — only matters "
+                    "if the fundamentals are solid."
+                ),
+                "presence_explanation": "claims meta-cognitive routing",
+            }
+        ],
+        "rejected": [],
+    })
+    # Source contains the first half but NOT the second half (the
+    # fundamentals/tactics passage lives in a different turn that we
+    # deliberately omit).
+    ctx = _ctx(
+        user_texts=("q",),
+        assistant_texts=(
+            "Before diving into tactics, can I ask a few things to make "
+            "sure we're solving the right problem.",
+        ),
+    )
+    packet = _packet_from_ctx(ctx)
+    candidates = [
+        {
+            "model_id": "reasoning-mode-router",
+            "model_name": "Reasoning Mode Router",
+            "activation_trigger": "x",
+        },
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert detected == []
+    assert accepted_before_cap == []
+    assert capped == []
+    assert duplicate_accepts == []
+    assert quote_repairs == []
+    assert len(rejected) == 1
+    assert rejected[0]["model_id"] == "reasoning-mode-router"
+    assert rejected[0]["rejection_reason"] == "execution_quote_not_literal_substring"
+
+
+def test_run_verification_does_not_repair_ellipsis_when_halves_exceed_bounded_window():
+    """Both halves exist in source, but separated by more than 500 chars.
+
+    The bounded contiguous span guarantee blocks the repair: a giant passage
+    that happens to contain both halves is not a faithful reconstruction of
+    what the verifier was citing.
+    """
+    bridge = " ".join(["Filler sentence number {} that has zero relation.".format(i) for i in range(1, 12)])
+    assert len(bridge) > 500  # sanity check: bridge alone exceeds the window
+    source_text = (
+        "First fragment about explicit option design with three named paths. "
+        + bridge
+        + " Second fragment about preserving alternative routes for later commitment."
+    )
+    client = _RecordingClient({
+        "accepted": [
+            {
+                "model_id": "optionality",
+                "presence_mode": "executed",
+                "evidence_quote": (
+                    "First fragment about explicit option design with three named paths. ... "
+                    "Second fragment about preserving alternative routes for later commitment."
+                ),
+                "presence_explanation": "claims option design",
+            }
+        ],
+        "rejected": [],
+    })
+    ctx = _ctx(user_texts=("q",), assistant_texts=(source_text,))
+    packet = _packet_from_ctx(ctx)
+    candidates = [
+        {"model_id": "optionality", "model_name": "Optionality", "activation_trigger": "x"},
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert detected == []
+    assert quote_repairs == []
+    assert len(rejected) == 1
+    assert rejected[0]["model_id"] == "optionality"
+    assert rejected[0]["rejection_reason"] == "execution_quote_not_literal_substring"
+
+
+def test_run_verification_ellipsis_quote_does_not_fall_back_to_token_overlap():
+    """Ellipsis quotes must use the both-halves rule exclusively.
+
+    If both-halves fails, the token-overlap repair MUST NOT be tried as a
+    fallback. Otherwise the original case-1 trust breach reopens through the
+    side door: a generic single sentence with high token overlap could rescue
+    a quote whose two halves never existed contiguously.
+    """
+    # Source contains a single sentence with high token overlap to ONE half of
+    # the verifier's ellipsis quote, but the second half is absent. If the
+    # implementation falls back to token-overlap repair, this single sentence
+    # would be returned — re-creating the bug.
+    source_text = (
+        "Before diving into tactics, can I ask a few things to make sure "
+        "we're solving the right problem first."
+    )
+    client = _RecordingClient({
+        "accepted": [
+            {
+                "model_id": "reasoning-mode-router",
+                "presence_mode": "executed",
+                "evidence_quote": (
+                    "Before diving into tactics, can I ask a few things to make "
+                    "sure we're solving the right problem. ... the tactical advice "
+                    "only matters if the fundamentals are solid."
+                ),
+                "presence_explanation": "claims meta-cognitive routing",
+            }
+        ],
+        "rejected": [],
+    })
+    ctx = _ctx(user_texts=("q",), assistant_texts=(source_text,))
+    packet = _packet_from_ctx(ctx)
+    candidates = [
+        {
+            "model_id": "reasoning-mode-router",
+            "model_name": "Reasoning Mode Router",
+            "activation_trigger": "x",
+        },
+    ]
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+        packet=packet,
+        fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
+        candidates=candidates,
+        client=client,
+    )
+    assert detected == []
+    assert quote_repairs == []
+    assert len(rejected) == 1
+    assert rejected[0]["rejection_reason"] == "execution_quote_not_literal_substring"
 
 
 def test_run_verification_repairs_paraphrased_quote_to_literal_source_span():

@@ -296,27 +296,61 @@ def _find_whitespace_normalized_literal_quote(quote: str, answer_text: str) -> s
     return None
 
 
-def _repair_ellipsis_fragment_quote(quote: str, answer_text: str) -> tuple[str, float, str] | None:
-    fragments = [
-        fragment.strip()
-        for fragment in re.split(r"(?:\.{3}|…)", _normalize_quotes(quote))
-        if fragment.strip()
-    ]
-    best_fragment = ""
-    best_token_count = 0
-    for fragment in fragments:
-        literal = _find_normalized_literal_quote(fragment, answer_text)
-        if not literal:
+_MAX_ELLIPSIS_BRIDGE_CHARS = 500
+_ELLIPSIS_PATTERN = re.compile(r"(?:\.{3}|…)")
+
+
+def _repair_ellipsis_quote_both_halves(
+    quote: str, answer_text: str
+) -> tuple[str, float, str] | None:
+    """Both-halves ellipsis repair.
+
+    Only succeeds if every nontrivial half of an ellipsis-bearing verifier
+    quote can be found literally in source order, and the contiguous literal
+    span from the first match to the last match fits within a bounded window
+    (≤ ``_MAX_ELLIPSIS_BRIDGE_CHARS`` characters).
+
+    Does NOT fall back to single-fragment salvage. Ellipsis quotes that fail
+    this test are not repaired by any other path. This is load-bearing: the
+    earlier single-fragment ellipsis repair produced trust-axis breaches by
+    accepting a literal-but-undercovering first half (e.g. case-1 Reasoning
+    Mode Router on Turn 1 alone, missing the Turn 3 fundamentals-vs-tactics
+    half the verifier was citing).
+    """
+    raw_fragments = _ELLIPSIS_PATTERN.split(_normalize_quotes(quote))
+    nontrivial_fragments: list[str] = []
+    for raw in raw_fragments:
+        cleaned = raw.strip()
+        if not cleaned:
             continue
-        token_count = len(_quote_repair_tokens(literal))
-        if token_count < 5 or len(literal) < 30:
+        if len(cleaned) < 20:
             continue
-        if token_count > best_token_count:
-            best_fragment = literal
-            best_token_count = token_count
-    if not best_fragment:
+        if len(_quote_repair_tokens(cleaned)) < 4:
+            continue
+        nontrivial_fragments.append(cleaned)
+
+    if len(nontrivial_fragments) < 2:
         return None
-    return best_fragment, 1.0, "ellipsis_literal_fragment"
+
+    positions: list[tuple[int, int]] = []
+    cursor = 0
+    for fragment in nontrivial_fragments:
+        literal = _find_normalized_literal_quote(fragment, answer_text)
+        if literal is None:
+            return None
+        idx = answer_text.find(literal, cursor)
+        if idx < 0:
+            return None
+        positions.append((idx, idx + len(literal)))
+        cursor = idx + len(literal)
+
+    span_start = positions[0][0]
+    span_end = positions[-1][1]
+    if span_end - span_start > _MAX_ELLIPSIS_BRIDGE_CHARS:
+        return None
+
+    span = answer_text[span_start:span_end]
+    return span, 1.0, "ellipsis_both_halves_literal"
 
 
 def _repair_evidence_quote(
@@ -331,9 +365,11 @@ def _repair_evidence_quote(
     if len(quote_tokens) < 4:
         return None
 
-    ellipsis_repair = _repair_ellipsis_fragment_quote(quote, answer_text)
-    if ellipsis_repair is not None:
-        return ellipsis_repair
+    if _ELLIPSIS_PATTERN.search(_normalize_quotes(quote)):
+        # Ellipsis quotes get the both-halves rule and do NOT fall back to
+        # token-overlap repair. Removing this guarantee re-opens the trust
+        # breach the rule was introduced to fix.
+        return _repair_ellipsis_quote_both_halves(quote, answer_text)
 
     quote_negations = _negation_tokens(quote)
     best_span = ""
