@@ -174,16 +174,24 @@ This is a manual audit, not a coding experiment. Output is a per-model "sufficie
 
 ### Experiment 5 — Consensus simulation (tests H5 + product viability)
 
-Using the existing N=5 characterization, compute "consensus anchors" at thresholds k=1, 2, 3, 4, 5: anchors that surface in at least k of 5 runs.
+Compute "consensus anchors" at thresholds k=1, 2, 3, 4, 5: anchors that surface in at least k of N runs on the same source.
+
+**Sample discipline (load-bearing).** The primary decision input for E5 must use **only post-fix reruns** generated after PR #44's both-halves ellipsis rule and symmetric negation check. The historical N=5 table from `characterization.md` may be reported as context, but `rerun3` is **pre-fix** and includes the trust-breaching single-fragment ellipsis repair (Reasoning Mode Router) that the current system cannot produce. Mixing pre- and post-fix samples would muddy the very thing E5 is supposed to clarify.
+
+Concretely:
+
+- **Default sample**: post-fix `rerun4`–`rerun7` from `research/stability-runs/lane2-quote-repair-smoke-2026-04-27/`. That is N=4 of current-system behavior — sufficient for k=1–4 thresholds and a meaningful first read.
+- **If k=5 thresholds are desired**: run one additional post-fix rerun on the same archived case-1 inputs to create a clean current-code N=5 sample. Do not synthesize this by including `rerun3`.
+- **Reporting**: separate "historical N=5 (mixed pre/post-fix, including rerun3)" from "current-code consensus evidence (post-fix only)." The current-code sample is what feeds the §7 decision tree.
 
 **Measures:**
 - Friction yield at each threshold (how many anchor-worthy clusters yield at least one consensus anchor)
 - Trust at each threshold (do consensus anchors have lower noisy_adjacent rate)
 - Lost-but-honest yield (does requiring consensus kill rare-but-defensible anchors)
 
-**Implementation:** post-hoc analysis of existing rerun JSONs. No new runs.
+**Implementation:** post-hoc analysis of `rerun4`–`rerun7` JSONs. Optional: one additional fresh post-fix rerun if k=5 evidence is wanted.
 
-**Cost:** zero.
+**Cost:** zero for the N=4 default; one fresh pipeline call if N=5 is desired.
 
 **Decision rule:** if consensus at k≥2 substantially improves trust without killing friction → multi-run product shape becomes a real architecture candidate. If consensus at k≥2 kills friction yield to single digits → consensus is a dead-end and the answer must be in single-run quality.
 
@@ -271,13 +279,13 @@ This memo's stated hypothesis (not conclusion):
 
 > First test verifier/sufficiency instability. The latest hard failure was direct verifier acceptance of noisy anchors with literal quotes. That suggests the immediate problem is sufficiency — the verifier accepts because the quote is topically adjacent, not because the quote actually carries the model's mechanism.
 
-Pre-experiment ordering:
+Pre-experiment ordering — **decision-priority order**, not strictly cheapest-first. Zero-cost upstream checks come before paid downstream tests so each test runs on cleaner inputs:
 
-1. **Experiment 5 (consensus simulation) first** — zero cost, post-hoc on existing rerun JSONs. Tells us whether multi-run consensus is even a viable product shape before spending on new runs.
-2. **Experiment 4 (sufficiency rubric audit) second** — session-level cost. Tells us whether per-model sufficiency rules can be specified for the noisy-adjacent models we observed.
-3. **Experiment 1 (verifier stochasticity) third** — small LLM cost. Direct test of H1, the leading hypothesis.
-4. **Experiment 2 (recall determinism) fourth** — zero cost. Confirms H3 or surfaces unexpected recall variance.
-5. **Experiment 3 (fingerprint variance) last** — small LLM cost. Tests H2; if 1+4 together don't fully explain churn, fingerprint is the next suspect.
+1. **Experiment 5 (consensus simulation) first** — zero cost, post-hoc on `rerun4`–`rerun7` (post-fix only). Tells us whether multi-run consensus is even a viable product shape before spending on new runs.
+2. **Experiment 4 (sufficiency rubric audit) second** — session-level cost, no LLM calls. Tells us whether per-model sufficiency rules can be specified for the noisy-adjacent models we observed.
+3. **Experiment 2 (recall determinism) third** — zero cost. Confirms H3 or surfaces unexpected recall variance. **Run before E1** so that if recall has hidden nondeterminism, we know it before designing E1's verifier-isolation test. If recall proves deterministic, E1's verifier read is cleaner; if not, E1's design must control for the recall variance.
+4. **Experiment 1 (verifier stochasticity) fourth** — small LLM cost. Direct test of H1, the leading hypothesis.
+5. **Experiment 3 (fingerprint variance) last** — small LLM cost. Tests H2; if E1 + E2 together don't fully explain churn, fingerprint is the next suspect.
 
 After scoring all five, apply the §7 decision tree.
 
