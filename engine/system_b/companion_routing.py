@@ -791,6 +791,28 @@ def run_verification_call_from_packet(
     return detected_models, rejected, accepted_before_cap, capped_models, duplicate_accepts, quote_repairs
 
 
+def is_malformed_verifier_response(raw_payload: object) -> bool:
+    """Return True when the verifier returned a schema-incomplete response.
+
+    Distinguishes (a) the LLM returning ``{}`` or a dict missing both
+    ``accepted`` and ``rejected`` list fields — schema-incomplete output —
+    from (b) a deliberate empty-list response such as
+    ``{"accepted": [], "rejected": []}`` or ``{"accepted": []}`` which is
+    the verifier validly judging zero anchors apply.
+
+    Surface for callers (E6 scripts, future ablation tests) that need to
+    classify malformed runs separately from genuine empty-list judgments.
+    The harness's existing ``require_list_of_dicts`` permissively normalises
+    missing fields to ``[]``; this helper preserves the distinction without
+    changing that normalisation behaviour.
+    """
+    if not isinstance(raw_payload, dict):
+        return True
+    has_accepted = isinstance(raw_payload.get("accepted"), list)
+    has_rejected = isinstance(raw_payload.get("rejected"), list)
+    return not (has_accepted or has_rejected)
+
+
 def parse_verification_response(
     raw_payload: dict,
     vanilla_answer: str,
