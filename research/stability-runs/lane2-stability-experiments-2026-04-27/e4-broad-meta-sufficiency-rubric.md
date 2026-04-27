@@ -23,11 +23,13 @@ For each model, define:
 6. **Rubric confidence** — high / medium / low
 7. **Implementation implication** — `gate_buildable` / `prompt_only` / `too_fuzzy` / `needs_model_metadata`
 
+> **Note on `gate_buildable`.** This means a local quote-level sufficiency test can be **specified**. It does not decide implementation form. The gate may be deterministic only where markers are truly mechanical; otherwise it may require a narrow LLM sufficiency check or model metadata. **E4 proves rubric buildability, not regex buildability.**
+
 Anchors covered (per design memo §5 + Marcin's E4 scope):
 
 - **Primary noisy** (target): `cognitive-dissonance`, `checklists`
 - **Boundary / stress-test**: `step-back`, `time-tested-validation`, `wysiati`, `feedback-loops`, `probabilistic-thinking`
-- **Control (clearly acceptable)**: `optimism-bias-and-planning-fallacy`, `representativeness-heuristic`
+- **Control / overlap stress-test**: `optimism-bias-and-planning-fallacy` (clean positive control), `representativeness-heuristic` (overlap stress-test against Base Rates / OB+PF — not a clean control)
 
 ## Per-anchor rubric
 
@@ -249,7 +251,7 @@ This is a **pre-registered checkpoint with a decision rule** — Premortem-shape
 **Mechanism core:** distribution / range / expected-value thinking — explicitly weighting multiple probabilistic outcomes.
 
 **Positive quote markers:**
-- Explicit probability / likelihood / range language ("less than 1 in 5", "70%+", "non-zero chance")
+- Explicit probability / likelihood / distribution / expected-value language ("less than 1 in 5", "70%+", "non-zero chance"). **Numeric ranges alone do not satisfy the marker** unless framed as uncertainty, likelihood, or distributional reasoning ("the actual band is 3-5 months but most fall closer to 5" passes; "takes 3-5 months" alone does not).
 - Distribution-thinking comparing weighted outcomes
 - Conditional probability or expected-value framing
 - Multiple weighted outcomes considered simultaneously
@@ -353,8 +355,8 @@ But the assistant's MOVE in the quote is closer to "literal interpretation" / ba
 | `time-tested-validation` | fails-or-borderline | medium-high | `gate_buildable` |
 | `feedback-loops` | **FAILS** | high | `gate_buildable` |
 | `probabilistic-thinking` | **FAILS** | medium | `gate_buildable` |
-| `optimism-bias-and-planning-fallacy` (control) | **PASSES** | high | control validates rubric |
-| `representativeness-heuristic` (control) | borderline-acceptable | medium | `prompt_only` |
+| `optimism-bias-and-planning-fallacy` (clean positive control) | **PASSES** | high | control validates rubric |
+| `representativeness-heuristic` (overlap stress-test) | borderline-acceptable | medium | `prompt_only` |
 
 ### Tally
 
@@ -363,7 +365,7 @@ But the assistant's MOVE in the quote is closer to "literal interpretation" / ba
 - **Prompt-only / needs-metadata**: step-back, wysiati, representativeness-heuristic — 3 models where the distinction is interpretive (Step Back vs PFR; WYSIATI vs generic clarifying; RH vs Base Rates). A clean deterministic gate would over-reject; verifier prompt with explicit mechanism-marker framing might handle these.
 - **Control passes**: optimism-bias-and-planning-fallacy
 
-**5 of 9 anchors are gate-buildable. 3 of 9 are prompt-only. 1 control validates the rubric.**
+**5 of 9 anchors are gate-buildable (rubric specifiable, implementation form TBD). 3 of 9 are prompt-only. One clean positive control passes; one overlap stress-test (RH) lands borderline and is routed `prompt_only`.**
 
 ## E4 decision rule application
 
@@ -374,7 +376,7 @@ Per design memo §5 + Marcin's E4 framing:
 - Rubric cleanly rejects cognitive-dissonance and checklists ✓ (both HIGH confidence FAILS)
 - Rubric preserves wysiati, step-back, and optimism-bias-and-planning-fallacy ✓ (OB+PF passes high confidence; WYSIATI borderline-acceptable; Step Back borderline)
 - Rule can be stated locally at quote level — **partially**: 5 of 9 yes, 3 of 9 no
-- Most rubrics are high or medium confidence — **yes** (5 high + 3 medium + 1 low-medium)
+- Most rubrics are medium-or-higher confidence — **yes** (4 high, 1 medium-high, 3 medium, 1 low-medium)
 
 **Path A supported for the worst noisy offenders** (CD, Checklists, FL, and likely TTV, PT). The cleanest E4 outcome — these anchors have substrate-grounded mechanism markers that would catch the observed noisy acceptances.
 
@@ -389,12 +391,14 @@ Per design memo §5 + Marcin's E4 framing:
 
 E4 supports a **hybrid track**, not a single-path commitment:
 
-- **Path A first for high-confidence gate-buildable models** (cognitive-dissonance, checklists, feedback-loops, plus probably time-tested-validation and probabilistic-thinking with the marker tests).
+- **Path A is buildable for high-confidence models** (cognitive-dissonance, checklists, feedback-loops, plus probably time-tested-validation and probabilistic-thinking with the marker tests). **Implementation form is still TBD** — deterministic markers, narrow LLM sufficiency check, or model metadata are all candidates; the rubric proves the test is specifiable, not which engine should run it.
 - **Path B alongside, scoped narrowly** to the prompt-restructure-needed models (step-back, wysiati, representativeness-heuristic). The verifier prompt would gain mechanism-marker requirements for these specific model families.
 
 **This matches Marcin's stated prior:** "E4 will probably show that some broad/meta models are gate-buildable (checklists seems very gateable), while others are fuzzier (step-back, wysiati, maybe cognitive-dissonance). That would suggest a hybrid: targeted sufficiency gates for the worst broad/meta models, plus verifier prompt restructuring for the rest."
 
 The data supports the prior. **One refinement**: cognitive-dissonance is actually MORE gate-buildable than the prior expected (high confidence FAILS on the observed quote with a clean two-belief / motivated-reframing test). Step-back, wysiati, RH are the genuinely fuzzy ones — those are the prompt-restructure cases.
+
+**Important framing.** E4 makes a hybrid track plausible and concrete enough to **test on more cases**. It does not yet authorize implementation. The N=1-conversation caveat in §"What evidence would be needed" is binding: the rubric needs to hold across additional cases before any code is written. The §7 decision tree is also still binding pending E2 / E1 / E3.
 
 ## What evidence would be needed before implementing either
 
