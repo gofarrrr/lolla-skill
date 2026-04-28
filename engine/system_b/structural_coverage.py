@@ -33,13 +33,22 @@ _LOGGER = logging.getLogger("system_b.structural_coverage")
 
 @dataclass(frozen=True)
 class DetectedDimension:
-    """A structural dimension detected in the problem."""
+    """A structural dimension considered for this run.
+
+    PR 4 of the 2026-04-28 visibility roadmap: the parser now returns ALL
+    15 catalog dimensions, not just the ~7-10 the LLM judges present.
+    Non-detected dimensions carry ``present=False`` + ``presence_reason``
+    (the LLM's brief "why this dimension does not apply"). Coverage and
+    materiality fields are only meaningful when ``present=True``.
+    """
 
     dimension_id: str
     dimension_name: str
     covered: bool
     coverage_evidence: str  # what in the answer addresses this, or why it's absent
     materiality_note: str  # the "so what" for this gap
+    present: bool = True  # default True for backwards compatibility with pre-PR-4 artifacts
+    presence_reason: str = ""  # populated when present=False; empty when present=True
 
 
 @dataclass(frozen=True)
@@ -82,6 +91,8 @@ class StructuralCoverageCard:
                     "covered": d.covered,
                     "coverage_evidence": d.coverage_evidence,
                     "materiality_note": d.materiality_note,
+                    "present": d.present,
+                    "presence_reason": d.presence_reason,
                 }
                 for d in self.dimensions
             ],
@@ -115,6 +126,8 @@ class StructuralCoverageCard:
                 covered=bool(d.get("covered", True)),
                 coverage_evidence=d.get("coverage_evidence", ""),
                 materiality_note=d.get("materiality_note", ""),
+                present=bool(d.get("present", True)),
+                presence_reason=d.get("presence_reason", ""),
             )
             for d in data.get("dimensions", [])
         )
@@ -274,14 +287,26 @@ You will receive:
 3. CONTEXT + SOURCE (as described above)
 
 Your task:
-1. DETECT: Which dimensions are structurally present in this problem? Use the \
-detect_when conditions. A dimension is present if at least 1 of its detect_when \
-conditions is clearly met by the USER'S QUESTION (SOURCE — user turns, primarily \
-the first). Only consider dimensions whose question_types include the classified \
-question type. Think broadly — typically 6-10 dimensions fire for a strategic question.
-2. ASSESS COVERAGE: For each detected dimension, does the ANSWER (SOURCE — \
-assistant turns) engage with the structural tension described by the dimension's \
-cleaving frame? A dimension is "covered" ONLY if the assistant's replies:
+1. DETECT: For EACH of the 15 catalog dimensions, decide whether it is \
+structurally present in this problem. Use the detect_when conditions. A \
+dimension is present ONLY if at least 1 of its detect_when conditions is \
+*clearly and specifically* met by the USER'S QUESTION (SOURCE — user turns, \
+primarily the first). Surface relevance, vague applicability, or "this could \
+matter in a similar problem" are NOT enough — the detect_when must point at \
+something concrete in the user's text. Only consider dimensions whose \
+question_types include the classified question type; otherwise mark \
+``present: false``. Typical strategic question: 6-10 of the 15 are present, \
+the remaining 5-9 are NOT structurally implicated and must be marked \
+``present: false`` with a 1-2 sentence ``presence_reason`` specific to this \
+conversation (e.g. "the decision doesn't depend on scale-related effects — \
+team size and infra are stated as fixed", not "scaling dynamics not \
+applicable"). Be conservative: when in doubt about whether a dimension is \
+present, mark ``present: false`` with reasoning. Adding a marginal dimension \
+costs you a slot the materiality cap will then demote the real gap into.
+2. ASSESS COVERAGE: For each PRESENT dimension, does the ANSWER (SOURCE — \
+assistant turns) engage with the structural tension described by the \
+dimension's cleaving frame? A dimension is "covered" ONLY if the assistant's \
+replies:
   (a) explicitly identify the tension or trade-off described by the cleaving frame, AND
   (b) reason through both sides of that tension (not just one), AND
   (c) reach or recommend a position on how to resolve it.
@@ -290,30 +315,49 @@ the dimension, or ACKNOWLEDGES that the issue exists without analyzing it — \
 that is NOT coverage. Coverage requires analytical depth, not topic presence. \
 Coverage evidence you cite should be recognizable to the user/reviewer as \
 something the assistant actually said.
-3. MATERIALITY RANKING: After coverage assessment, RANK all uncovered dimensions \
-by materiality — how likely is it that analyzing this dimension would REVERSE \
-or SUBSTANTIALLY ALTER the recommendation? Then keep ONLY the top 3-5 as gaps. \
-Mark the rest as covered with coverage_evidence: "Immaterial: [reason]".
+3. MATERIALITY RANKING: After coverage assessment, RANK all uncovered \
+present-dimensions by materiality — how likely is it that analyzing this \
+dimension would REVERSE or SUBSTANTIALLY ALTER the recommendation? Then keep \
+ONLY the top 3-5 as gaps. Mark the rest as covered with coverage_evidence: \
+"Immaterial: [reason]". Non-detected dimensions are NEVER counted toward this \
+cap; they have no coverage assessment.
 
-Return a JSON object:
+Return a JSON object containing ALL 15 dimensions from the catalog, including \
+the ones that are not structurally present:
 {
   "dimensions": [
     {
       "dimension_id": "<id from catalog>",
       "dimension_name": "<name from catalog>",
+      "present": true,
       "covered": true/false,
       "coverage_evidence": "<what in the assistant's replies addresses this, OR what's missing>",
-      "materiality_note": "<why this gap matters for the decision, or 'covered'/'immaterial'>"
+      "materiality_note": "<why this gap matters for the decision, or 'covered'/'immaterial'>",
+      "presence_reason": ""
+    },
+    {
+      "dimension_id": "<id from catalog>",
+      "dimension_name": "<name from catalog>",
+      "present": false,
+      "presence_reason": "<1-2 sentences specific to THIS conversation explaining why this dimension does not structurally apply>"
     }
   ]
 }
 
-HARD CONSTRAINT: Maximum 5 dimensions with covered=false. If your initial \
-assessment yields more than 5 gaps, you MUST demote the least material ones \
-to covered. This is not optional.
+HARD CONSTRAINTS:
+- Return ALL 15 dimensions. The catalog is fixed — do NOT invent new IDs and \
+do NOT omit catalog entries. Each entry's ``present`` field is required.
+- Maximum 5 dimensions with ``present: true AND covered: false``. If your \
+initial assessment yields more than 5 gaps, you MUST demote the least \
+material ones to covered. This is not optional. Non-detected (``present: false``) \
+dimensions are not gaps and do NOT count toward this cap.
+- For ``present: false`` rows, the ``presence_reason`` field is required and \
+must be specific to this conversation. The other fields (covered, \
+coverage_evidence, materiality_note) may be omitted.
 
 Rules:
-- Return ONLY dimensions that are structurally present (6-10 typical).
+- Return ALL 15 dimensions. Typical: 6-10 marked ``present: true``, the \
+remaining 5-9 marked ``present: false`` with reasons.
 - Maximum 5 gaps. Typical is 2-4. A gap must be able to CHANGE the recommendation.
 - Mentioning is not covering. For every dimension, test: "Does the assistant \
 reason through BOTH SIDES of this dimension's cleaving frame?" Examples:
@@ -391,16 +435,25 @@ def _parse_dimension_detection(raw: dict) -> tuple[DetectedDimension, ...]:
         dim_id = coerce_str(d.get("dimension_id", ""))
         if not dim_id:
             continue
+        # `present` defaults to True for backwards compatibility with pre-PR-4
+        # payloads (which only enumerated present dimensions). Coverage fields
+        # are only meaningful when present=True; for present=False rows the
+        # LLM may omit them entirely, hence the safe defaults.
+        present = bool(d.get("present", True))
         dims.append(DetectedDimension(
             dimension_id=dim_id,
             dimension_name=coerce_str(d.get("dimension_name", "")),
-            covered=bool(d.get("covered", True)),
+            covered=bool(d.get("covered", False if not present else True)),
             coverage_evidence=coerce_str(d.get("coverage_evidence", "")),
             materiality_note=coerce_str(d.get("materiality_note", "")),
+            present=present,
+            presence_reason=coerce_str(d.get("presence_reason", "")),
         ))
 
-    # Enforce hard gap cap — demote excess gaps to covered
-    gap_count = sum(1 for d in dims if not d.covered)
+    # Enforce hard gap cap — demote excess gaps to covered.
+    # Only `present=True AND covered=False` entries count as gaps; non-detected
+    # dimensions don't consume the budget.
+    gap_count = sum(1 for d in dims if d.present and not d.covered)
     if gap_count > _MAX_GAPS:
         _LOGGER.info(
             "Demoting %d excess gaps (LLM returned %d, cap is %d)",
@@ -410,7 +463,7 @@ def _parse_dimension_detection(raw: dict) -> tuple[DetectedDimension, ...]:
         seen_gaps = 0
         capped: list[DetectedDimension] = []
         for d in dims:
-            if not d.covered:
+            if d.present and not d.covered:
                 seen_gaps += 1
                 if seen_gaps > _MAX_GAPS:
                     d = DetectedDimension(
@@ -419,6 +472,8 @@ def _parse_dimension_detection(raw: dict) -> tuple[DetectedDimension, ...]:
                         covered=True,
                         coverage_evidence=f"Immaterial (demoted): {d.coverage_evidence}",
                         materiality_note=d.materiality_note,
+                        present=d.present,
+                        presence_reason=d.presence_reason,
                     )
             capped.append(d)
         dims = capped
@@ -525,7 +580,12 @@ def route_gap_dimensions(
     routes: list[DimensionRoute] = []
 
     for dim in dimensions:
-        if dim.covered:
+        # Only route present-and-uncovered. Non-detected dimensions
+        # (present=False) have no gap to fill — they were ruled out at
+        # detection time. Pre-PR-4 every entry in `dimensions` was implicitly
+        # detected; post-PR-4 the list contains all 15, so this guard is
+        # load-bearing.
+        if not dim.present or dim.covered:
             continue
 
         dim_def = routing_dims.get(dim.dimension_id)

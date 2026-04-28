@@ -379,9 +379,10 @@ def run_scenario(
         return {"name": name, "status": "FAIL", "reason": "returned None"}
 
     # Classify results
-    actual_gaps = {d.dimension_id for d in card.dimensions if not d.covered}
-    actual_covered = {d.dimension_id for d in card.dimensions if d.covered}
-    detected = {d.dimension_id for d in card.dimensions}
+    present_dims = [d for d in card.dimensions if getattr(d, "present", True)]
+    actual_gaps = {d.dimension_id for d in present_dims if not d.covered}
+    actual_covered = {d.dimension_id for d in present_dims if d.covered}
+    detected = {d.dimension_id for d in present_dims}
 
     # Expected gaps that were correctly flagged
     true_positives = expected_gaps & actual_gaps
@@ -393,7 +394,7 @@ def run_scenario(
     false_positives = actual_gaps - expected_gaps
 
     print(f"  Question type: {card.question_type}")
-    print(f"  Dimensions detected: {len(card.dimensions)}")
+    print(f"  Dimensions present: {len(present_dims)} (of {len(card.dimensions)} catalog)")
     print(f"  Gaps found: {len(actual_gaps)}  |  Covered: {len(actual_covered)}")
     print(f"  Gap questions: {len(card.gap_questions)}")
     print(f"  Time: {elapsed:.1f}s")
@@ -449,7 +450,7 @@ def run_scenario(
         "name": name,
         "grade": grade,
         "question_type": card.question_type,
-        "detected": len(card.dimensions),
+        "detected": len(present_dims),
         "true_positives": sorted(true_positives),
         "false_negatives": sorted(false_negatives),
         "missed_entirely": sorted(missed_entirely),
