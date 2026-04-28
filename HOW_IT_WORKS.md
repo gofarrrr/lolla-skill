@@ -800,6 +800,18 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 - Structural coverage summary
 - Knowledge substrate stats
 
+**Server-rendered audit panels** (PR 3 of the 2026-04-28 visibility roadmap; portable, no SPA dependency):
+- `/audit` — index of the panels below
+- `/audit/lane1` — Pass 1 + Pass 2 funnel: 24 triage scores, threshold, triggered set with source attribution (triage / embedding / always_include), Pass 2 outcomes with `reason`, full top-25 embedding ranks (sub-threshold close-calls visible)
+- `/audit/lane2` — Companion selection funnel: 60 candidates → accepted-before-cap → final cheat-sheet anchors, plus per-bucket views (rejected with reason, capped, duplicates, quote repairs, silently-omitted)
+- `/audit/lane4` — All 15 catalog dimensions with detected/not-detected, covered/gap, gap routes (candidate + excluded models), gap questions
+- `/audit/anti-echo` — Excluded models with lane-of-origin attribution, computed at render time by intersecting against each upstream lane's surfaced models
+- `/audit/routing` — Per-tendency primary, antidotes, activation-tiebreaker traces (fired or aborted with human-readable clause)
+- `/audit/expansions` — Companion expansions grouped by source anchor: relation type, activation condition, why relevant
+- `/usage` — per-run cost & call breakdown (existing, with cross-link to `/audit` added)
+
+Every audit panel is server-rendered HTML and works whether or not `observatory/build/` (the React SPA bundle) exists — design intent is skill portability: anyone downloading the skill can use the panels without a Node toolchain.
+
 ### Step 10: Archive Run
 
 After launching the Observatory, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or `scripts/stability_check.py` analysis. `scripts/archive_run.py` copies 7 files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `gapcheck.txt`, `gapcheck_lanes.json`) into `{archive_root}/{case_id}/{run_id}/`. Missing artifacts (e.g. on a weaker orchestrator that skipped Step 6b/8b) are skipped gracefully. `/tmp` originals are not touched.
