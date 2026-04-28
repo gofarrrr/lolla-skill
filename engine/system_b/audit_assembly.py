@@ -82,6 +82,12 @@ class AuditTrace:
     # downstream stability/attribution reports can group by mode without
     # having to inspect environment variables after the fact.
     embedding_mode: str = ""
+    # Pass 1 swiss-cheese embedding signal: full top-25 ranked tendencies
+    # with `promoted: bool` flag. Promoted rows (≥ 0.30) drove Pass 2; the
+    # sub-threshold rows are the close-call telemetry — useful to spot
+    # "tendency X scored 0.28, almost made it" patterns. Empty list when
+    # embeddings are off.
+    embedding_tendency_ranks: list[dict[str, object]] = field(default_factory=list)
     # Frame Pressure lane (Lane 3) — additive metadata, absent when lane is off
     frame_extraction_element_count: int = 0
     frame_extraction_pattern_ids: tuple[str, ...] = ()
@@ -113,6 +119,7 @@ def build_empty_audit_trace(
     companion_verification_quote_repairs: list[dict[str, str]] | None = None,
     companion_candidate_cap: int = 0,
     embedding_mode: str = "",
+    embedding_tendency_ranks: list[dict[str, object]] | None = None,
 ) -> AuditTrace:
     return AuditTrace(
         triage_scores=tuple(triage_scores),
@@ -133,6 +140,7 @@ def build_empty_audit_trace(
         companion_verification_quote_repairs=list(companion_verification_quote_repairs or []),
         companion_candidate_cap=companion_candidate_cap,
         embedding_mode=embedding_mode,
+        embedding_tendency_ranks=list(embedding_tendency_ranks or []),
         **_frame_audit_fields(frame_card),
         **_structural_coverage_audit_fields(structural_card),
     )
@@ -163,6 +171,7 @@ def build_pipeline_audit_trace(
     companion_verification_quote_repairs: list[dict[str, str]] | None = None,
     companion_candidate_cap: int = 0,
     embedding_mode: str = "",
+    embedding_tendency_ranks: list[dict[str, object]] | None = None,
 ) -> AuditTrace:
     return AuditTrace(
         triage_scores=tuple(triage_scores),
@@ -188,6 +197,7 @@ def build_pipeline_audit_trace(
         companion_verification_quote_repairs=list(companion_verification_quote_repairs or []),
         companion_candidate_cap=companion_candidate_cap,
         embedding_mode=embedding_mode,
+        embedding_tendency_ranks=list(embedding_tendency_ranks or []),
         **_frame_audit_fields(frame_card),
         **_structural_coverage_audit_fields(structural_card),
     )

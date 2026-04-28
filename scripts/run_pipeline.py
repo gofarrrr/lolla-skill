@@ -372,6 +372,7 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_verification_quote_repairs": list(result.audit.companion_verification_quote_repairs),
         "companion_candidate_cap": result.audit.companion_candidate_cap,
         "embedding_mode": result.audit.embedding_mode,
+        "embedding_tendency_ranks": list(result.audit.embedding_tendency_ranks),
         "deep_check_results": [
             {
                 "tendency_id": dcr.tendency_id,

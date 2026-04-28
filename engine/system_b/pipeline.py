@@ -376,7 +376,7 @@ class SystemBPipeline:
         )
         boundary_calls.extend(pass1_boundary_calls)
         pass1_seconds = time.monotonic() - pass1_started
-        embedding_tendency_hits = _embedding_tendency_signal(
+        embedding_tendency_hits, embedding_tendency_ranks = _embedding_tendency_signal(
             assistant_text=assistant_text,
             retriever=self._embedding_retriever if self._config.enable_embeddings else None,
             api_key=self._embedding_api_key,
@@ -433,6 +433,7 @@ class SystemBPipeline:
                 companion_verification_quote_repairs=list(companion_result.quote_repairs),
                 companion_candidate_cap=self._config.companion_candidate_cap,
                 embedding_mode="on" if self._config.enable_embeddings else "off",
+                embedding_tendency_ranks=embedding_tendency_ranks,
                 frame_card=frame_card,
                 structural_card=structural_card,
             )
@@ -579,6 +580,7 @@ class SystemBPipeline:
             companion_verification_quote_repairs=list(companion_result.quote_repairs),
             companion_candidate_cap=self._config.companion_candidate_cap,
             embedding_mode="on" if self._config.enable_embeddings else "off",
+            embedding_tendency_ranks=embedding_tendency_ranks,
             frame_card=frame_card,
             structural_card=structural_card,
             promoted_overoptimism_results=promoted_overoptimism_results,
@@ -1046,25 +1048,46 @@ def _embedding_tendency_signal(
     retriever,
     api_key: str,
     threshold: float = 0.30,
-) -> dict[str, float]:
-    """Return {tendency_id: score} for tendencies above embedding threshold.
+) -> tuple[dict[str, float], list[dict[str, object]]]:
+    """Return (promoted_dict, full_ranked_list) for embedding-based tendency signal.
 
     Swiss cheese: these are additive candidates for Pass 2, not replacements
     for the LLM triage. The threshold is intentionally conservative —
     only strong semantic matches get promoted.
+
+    Returns:
+        promoted_dict: ``{tendency_id: score}`` for rows ≥ ``threshold``;
+            consumed by ``_select_triggered_tendencies`` to drive Pass 2.
+        full_ranked_list: full top-25 in rank order, each row
+            ``{tendency_id, score, promoted}``. The sub-threshold rows are
+            the close-call telemetry the audit memo flagged as silently
+            discarded; persisted to ``audit_summary.embedding_tendency_ranks``.
     """
     if retriever is None or not api_key:
-        return {}
+        return {}, []
     try:
         query_vec = retriever.embed_and_cache(assistant_text, api_key)
         if query_vec is None:
             _LOGGER.warning("embedding_tendency_signal: embed_and_cache returned None")
-            return {}
+            return {}, []
         ranked = retriever.rank_tendencies(query_vec, top_k=25)
-        return {r["tendency_id"]: r["score"] for r in ranked if r["score"] >= threshold}
+        full_ranks: list[dict[str, object]] = [
+            {
+                "tendency_id": r["tendency_id"],
+                "score": r["score"],
+                "promoted": r["score"] >= threshold,
+            }
+            for r in ranked
+        ]
+        promoted = {
+            r["tendency_id"]: r["score"]
+            for r in full_ranks
+            if r["promoted"]
+        }
+        return promoted, full_ranks
     except Exception:
         _LOGGER.warning("embedding_tendency_signal: failed", exc_info=True)
-        return {}
+        return {}, []
 
 
 def _select_triggered_tendencies(
