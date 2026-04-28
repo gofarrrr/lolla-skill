@@ -589,9 +589,11 @@ print(f'Pressure check persisted to {result_path}')
 
 Map each divergence to the question that triggered it: (1) shift I dismissed, (2) finding I treated as noise, (3) connection I didn't make. If a divergence spans multiple lanes or questions, pick the primary one.
 
-**Then**, fold sub-agent token usage into `usage_summary`. Each sub-agent's task notification includes a `<usage>` block with `total_tokens`. Build a list of one record per sub-agent (whether `completed`, `skipped_empty`, or `skipped_error` — skipped lanes contribute zero tokens), then merge it in via `merge_subagent_calls`. Without this, the run's anthropic_subagents cost stays at zero and the grand total under-reports by the dominant cost line.
+**Then**, fold sub-agent token usage into `usage_summary`. Each spawned sub-agent's task notification includes a `<usage>` block with `total_tokens`. Build records **only for lanes that actually ran and produced a real `<usage>` block** — `skipped_empty` and `skipped_error` lanes already appear in `gap_check`, but they did not call Anthropic and must not be serialized as vendor call records. Otherwise `vendors.anthropic_subagents.calls` is inflated by phantom zero-token "calls" that never happened.
 
 ```bash
+# Include rows ONLY for spawned, completed sub-agents. Omit any lane whose
+# Step 7 status is skipped_empty or skipped_error.
 cat > /tmp/lolla_${LOLLA_RUN_ID}_subagents.json << 'LOLLA_SUBAGENTS_EOF'
 [
   {"lane": 1, "model": "claude-opus-4-7", "total_tokens": 39202, "duration_ms": 61008, "tool_uses": 1, "status": "completed"},
@@ -609,7 +611,13 @@ run_id = '${LOLLA_RUN_ID}'
 result_path = f'/tmp/lolla_{run_id}_result.json'
 sub_path = f'/tmp/lolla_{run_id}_subagents.json'
 d = json.loads(pathlib.Path(result_path).read_text())
-subs = json.loads(pathlib.Path(sub_path).read_text())
+# Defensive filter — even if the subagents file accidentally includes
+# zero-token rows, drop them before merging so phantom calls can't slip
+# into vendors.anthropic_subagents.calls.
+subs = [
+    s for s in json.loads(pathlib.Path(sub_path).read_text())
+    if int(s.get('total_tokens', 0) or 0) > 0
+]
 us = d.get('usage_summary') or {}
 merge_subagent_calls(us, subs)
 d['usage_summary'] = us

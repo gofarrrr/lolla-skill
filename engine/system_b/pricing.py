@@ -107,12 +107,20 @@ def estimate_chat_cost_usd(
     Cached prompt tokens are billed at ``cached_input_usd_per_mtok``; the
     remaining ``prompt_tokens - cached_tokens`` are billed at
     ``input_usd_per_mtok``.
+
+    Defensive clamp: cached_tokens is bounded above by prompt_tokens. xAI
+    occasionally reports cached_tokens slightly above prompt_tokens for
+    short responses; without clamping, the surplus would be billed at the
+    cached rate and inflate the estimate.
     """
-    fresh_input = max(0, prompt_tokens - cached_tokens)
+    p = max(0, prompt_tokens)
+    c = max(0, completion_tokens)
+    cached = min(max(0, cached_tokens), p)
+    fresh_input = p - cached
     return (
         fresh_input * price.input_usd_per_mtok
-        + cached_tokens * price.cached_input_usd_per_mtok
-        + completion_tokens * price.output_usd_per_mtok
+        + cached * price.cached_input_usd_per_mtok
+        + c * price.output_usd_per_mtok
     ) / 1_000_000
 
 

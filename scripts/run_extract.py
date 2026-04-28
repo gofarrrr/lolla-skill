@@ -754,6 +754,8 @@ def main() -> int:
     # file path uses $LOLLA_RUN_ID (set by the SKILL preamble); falls back
     # to deriving the run_id from the output_file path if unset.
     try:
+        from system_b.usage_summary import is_valid_run_id
+
         run_id = os.getenv("LOLLA_RUN_ID", "")
         if not run_id and args.output_file:
             stem = Path(args.output_file).stem  # e.g., "lolla_20260428T064421Z_extraction"
@@ -761,15 +763,26 @@ def main() -> int:
             if len(parts) >= 2 and parts[0] == "lolla":
                 run_id = parts[1]
         if run_id:
-            sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
-            sidecar_path.write_text(
-                json.dumps(
-                    [r.to_dict() for r in client.call_log],
-                    indent=2,
-                ),
-                encoding="utf-8",
-            )
-    except Exception as exc:  # non-fatal: telemetry, not correctness
+            if not is_valid_run_id(run_id):
+                # Refuse to interpolate a malformed run_id into a /tmp path.
+                # Printing the literal bytes lets the operator see what's
+                # wrong without us silently writing somewhere unexpected.
+                print(
+                    f"warning: refusing to write extraction sidecar — "
+                    f"run_id {run_id!r} contains characters outside "
+                    f"[A-Za-z0-9_-]",
+                    file=sys.stderr,
+                )
+            else:
+                sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+                sidecar_path.write_text(
+                    json.dumps(
+                        [r.to_dict() for r in client.call_log],
+                        indent=2,
+                    ),
+                    encoding="utf-8",
+                )
+    except (OSError, ImportError) as exc:  # non-fatal: telemetry, not correctness
         print(
             f"warning: extraction call-log sidecar write failed: {exc}",
             file=sys.stderr,

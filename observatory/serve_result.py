@@ -10,6 +10,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
@@ -491,6 +492,12 @@ def _render_usage_html() -> str:
         except (TypeError, ValueError):
             return "—"
 
+    def _esc(x) -> str:
+        """HTML-escape any value before interpolation to prevent injection
+        from a crafted result.json. Numeric-formatted helpers above already
+        produce safe output; everything else flows through this."""
+        return html.escape(str(x), quote=True)
+
     rows = []
     rows.append(
         "<tr><th>Vendor</th><th>Calls</th><th>Tokens (in / cached / out)</th>"
@@ -521,7 +528,7 @@ def _render_usage_html() -> str:
             tokens = f"{_fmt_int(v.get('total_tokens'))} (total only)"
             cache = "n/a"
         rows.append(
-            f"<tr><td>{label}</td><td>{_fmt_int(v.get('calls'))}</td>"
+            f"<tr><td>{_esc(label)}</td><td>{_fmt_int(v.get('calls'))}</td>"
             f"<td>{tokens}</td><td>{cache}</td>"
             f"<td>{_fmt_usd(v.get('estimated_cost_usd'))}</td></tr>"
         )
@@ -531,13 +538,13 @@ def _render_usage_html() -> str:
     stage_rows = []
     for stage, totals in (or_block.get("stages") or {}).items():
         stage_rows.append(
-            f"<tr><td>{stage}</td>"
+            f"<tr><td>{_esc(stage)}</td>"
             f"<td>{_fmt_int(totals.get('calls'))}</td>"
             f"<td>{_fmt_int(totals.get('prompt_tokens'))}</td>"
             f"<td>{_fmt_int(totals.get('cached_tokens'))}</td>"
             f"<td>{_fmt_int(totals.get('completion_tokens'))}</td></tr>"
         )
-    notes_html = "".join(f"<li>{n}</li>" for n in (us.get("notes") or []))
+    notes_html = "".join(f"<li>{_esc(n)}</li>" for n in (us.get("notes") or []))
 
     return f"""<!doctype html>
 <html><head><meta charset="utf-8"><title>Lolla — Usage Summary</title>
@@ -557,8 +564,8 @@ code {{ background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-si
 </style></head><body>
 <h1>Usage Summary</h1>
 <div class="meta">
-  Run: <code>{us.get("run_id", "—")}</code> ·
-  Pricing table verified: <code>{us.get("pricing_table_version", "—")}</code> ·
+  Run: <code>{_esc(us.get("run_id", "—"))}</code> ·
+  Pricing table verified: <code>{_esc(us.get("pricing_table_version", "—"))}</code> ·
   <a href="/">back to Observatory</a>
 </div>
 <div class="total">Total estimated cost: <strong>{_fmt_usd(us.get("estimated_total_cost_usd"))}</strong></div>

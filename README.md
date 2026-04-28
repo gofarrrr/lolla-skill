@@ -126,7 +126,13 @@ See **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)** — the full technical reference cove
 
 ## Cost
 
-A typical audit makes ~75 LLM calls across three vendors: ~18 OpenRouter calls for the four pipeline lanes, ~50 OpenRouter calls for the Bullshit Index (one per passage of the audited answer), 1 OpenRouter call for extraction, ~10 OpenAI calls for embeddings/query expansion, and 4 Anthropic calls for the Step-7 sub-agents. Total: typically $0.05–0.15 OpenRouter + ~$0.01 OpenAI + a larger Anthropic line that depends on which Claude model the orchestrator runs (Opus dominates).
+A typical audit makes ~83 LLM calls across three vendors:
+
+- **OpenRouter (~75 calls):** ~17 for the four pipeline lanes (6 Pass 1 family-cluster triage calls + 4-7 Pass 2 deep checks + 2 companion + 2 frame + 2 coverage), ~50 for the Bullshit Index (one per passage of the audited answer), and 1-2 for extraction (the second only fires on the quote-fabrication retry path).
+- **OpenAI (~4 calls):** embeddings + query expansion through the model retrieval layer.
+- **Anthropic (4 calls):** the Step-7 pressure-check sub-agents.
+
+Total: typically $0.05–0.15 OpenRouter + ~$0.01 OpenAI + a larger Anthropic line that depends on which Claude model the orchestrator runs (Opus dominates).
 
 Every run produces a self-describing `usage_summary` block in the result JSON with per-vendor cost, per-stage call counts, prompt-cache hit rate, and the version date of the price table. Three places to read it:
 - Visual: `http://localhost:8080/usage` (when the Observatory is running)

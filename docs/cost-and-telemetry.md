@@ -46,7 +46,7 @@ Stages currently recorded:
 |---|---|---|
 | `extraction` | `scripts/run_extract.py` | 1 |
 | `extraction_retry` | retry path on quote-fabrication | 0–1 |
-| `pass1_cluster_<cluster_id>` | `engine/system_b/pass1_runner.py` | 5 (one per tendency cluster) |
+| `pass1_cluster_<cluster_id>` | `engine/system_b/pass1_runner.py` | 6 (one per family cluster: authority, closure, incentive, availability, self_regard, residual) |
 | `pass2` | `engine/system_b/pass2_runner.py`, one per triggered tendency | 0–8 |
 | `frame_extraction` | frame pressure lane, element detection | 1 |
 | `frame_reframing` | frame pressure lane, alternative-question generation | 1 |
@@ -184,8 +184,8 @@ Two checks:
 
 1. **Call count sanity check.** After a run, compare:
    - `usage_summary.vendors.openrouter.calls`
-   - against `len(audit_summary.boundary_calls) + len(bullshit_profile.passages) + 1 (extraction) + (0 or 1 revision)`
-   These should match. If they don't, a call site is missing a `stage=` label or a code path is bypassing the boundary client.
+   - against `len(audit_summary.boundary_calls) + len(bullshit_profile.passages) + (1 or 2 — extraction, plus retry on quote-fabrication ~14% of runs) + (0 or 1 — revision, only when not skipped)`
+   These should match. If they don't, a call site is missing a `stage=` label or a code path is bypassing the boundary client. Read `usage_summary.vendors.openrouter.stages.extraction.calls` and `.extraction_retry.calls` to see which extraction path the run actually took.
 
 2. **Coverage check.** Look at `cost_estimate_coverage.calls_with_unknown_price` for each vendor. If any are non-zero, a model is being used that isn't in the price table — add it to `pricing.py`.
 

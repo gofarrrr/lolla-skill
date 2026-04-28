@@ -735,13 +735,26 @@ def main() -> int:
     # Plus embedding_usage_records and (later) Step-7 subagent records.
     from system_b.usage_summary import build_usage_summary, load_extraction_sidecar
 
-    _run_id = os.getenv("LOLLA_RUN_ID", "")
-    if not _run_id and args.output_file:
-        # Derive from output filename: lolla_<run_id>_result.json
-        _stem = Path(args.output_file).stem
-        _parts = _stem.split("_")
-        if len(_parts) >= 2 and _parts[0] == "lolla":
-            _run_id = _parts[1]
+    def _derive_run_id_from_path(raw_path: str | None) -> str:
+        """Pull <run_id> out of a path like ``lolla_<run_id>_*.{json,txt}``."""
+        if not raw_path:
+            return ""
+        stem = Path(raw_path).stem
+        parts = stem.split("_")
+        if len(parts) >= 2 and parts[0] == "lolla":
+            return parts[1]
+        return ""
+
+    # Resolve run_id with three fallbacks. The third (extraction_file) covers
+    # the standard headless invocation in the docstring, where only
+    # --extraction-file and --conversation-file are passed; without it,
+    # load_extraction_sidecar("") returns [] and extraction's calls drop
+    # silently from usage_summary.
+    _run_id = (
+        os.getenv("LOLLA_RUN_ID", "")
+        or _derive_run_id_from_path(args.output_file)
+        or _derive_run_id_from_path(args.extraction_file)
+    )
 
     serialized["usage_summary"] = build_usage_summary(
         run_id=_run_id,
