@@ -6,9 +6,17 @@ import os
 import subprocess
 import threading
 import time
+import uuid
 from dataclasses import asdict, dataclass
 from typing import Mapping
 from urllib import error, request
+
+
+# Stable namespace for deriving x-grok-conv-id from $LOLLA_RUN_ID.
+# Random uuid generated once and frozen here so all boundary client
+# instances in any future run derive identical conv_ids from the same
+# run_id (uuid5 is deterministic given a fixed namespace).
+_LOLLA_CONV_ID_NAMESPACE = uuid.UUID("c0c4c1d2-1010-4011-8a1a-15b1ab2c5d57")
 
 
 _LOGGER = logging.getLogger("system_b.boundary_provider")
@@ -315,11 +323,33 @@ class OpenAICompatibleBoundaryClient:
             headers["HTTP-Referer"] = referer
         if title:
             headers["X-Title"] = title
+
+        model = os.getenv("LOLLA_OPENROUTER_MODEL", "x-ai/grok-4.1-fast")
+
+        # Cache stickiness for xAI Grok models: x-grok-conv-id pins all
+        # requests in a single Lolla run to the same xAI backend server,
+        # which maximizes the chance that a cache built by call N is still
+        # there for call N+1. xAI documents this header at
+        # docs.x.ai/developers/advanced-api-usage/prompt-caching/how-it-works
+        # and recommends a uuid4 — we derive a deterministic uuid5 from
+        # $LOLLA_RUN_ID so every BoundaryClient instance spawned during the
+        # same run (pipeline + BI + revision + extraction) emits the same
+        # conv_id and lands on the same backend. Falls back to a fresh
+        # uuid4 per process when LOLLA_RUN_ID is unset (e.g., ad-hoc
+        # scripts and tests).
+        if model.startswith("x-ai/grok"):
+            run_id = os.getenv("LOLLA_RUN_ID", "")
+            if run_id:
+                conv_id = str(uuid.uuid5(_LOLLA_CONV_ID_NAMESPACE, run_id))
+            else:
+                conv_id = str(uuid.uuid4())
+            headers["x-grok-conv-id"] = conv_id
+
         return cls(
             provider_name="openrouter",
             api_key=os.getenv("LOLLA_OPENROUTER_API_KEY", os.getenv("OPENROUTER_API_KEY", "")),
             base_url=os.getenv("LOLLA_OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"),
-            model=os.getenv("LOLLA_OPENROUTER_MODEL", "x-ai/grok-4.1-fast"),
+            model=model,
             extra_headers=headers,
         )
 
