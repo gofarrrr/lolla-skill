@@ -450,7 +450,132 @@ def _build_case_response() -> dict:
     if run_health:
         response["run_health"] = run_health
 
+    # Usage summary — per-run cost & call-count telemetry. Built by
+    # run_pipeline.py and (for sub-agent calls) topped up by SKILL Step 8b.
+    usage_summary = r.get("usage_summary")
+    if usage_summary:
+        response["usage_summary"] = usage_summary
+
     return response
+
+
+def _render_usage_html() -> str:
+    """Standalone HTML page that visualizes usage_summary.
+
+    Lives at /usage so the user can inspect cost/calls without depending on
+    the React SPA being rebuilt to consume the new field. The SPA already
+    receives ``usage_summary`` via /api/case/<id>; this page is a fallback
+    that's guaranteed to render whatever the pipeline wrote.
+    """
+    _reload_result_if_changed()
+    us = _RESULT.get("usage_summary") or {}
+    if not us:
+        return (
+            "<!doctype html><html><body style='font-family:system-ui;padding:2rem'>"
+            "<h1>Usage Summary</h1>"
+            "<p>No <code>usage_summary</code> in this result. "
+            "Re-run the pipeline with the updated <code>run_pipeline.py</code> "
+            "to populate it.</p></body></html>"
+        )
+    vendors = us.get("vendors", {}) or {}
+
+    def _fmt_usd(x):
+        try:
+            return f"${float(x):.4f}"
+        except (TypeError, ValueError):
+            return "—"
+
+    def _fmt_int(x):
+        try:
+            return f"{int(x):,}"
+        except (TypeError, ValueError):
+            return "—"
+
+    rows = []
+    rows.append(
+        "<tr><th>Vendor</th><th>Calls</th><th>Tokens (in / cached / out)</th>"
+        "<th>Cache hit</th><th>Estimated cost</th></tr>"
+    )
+    for key, label in [
+        ("openrouter", "OpenRouter"),
+        ("openai_embeddings", "OpenAI (embeddings + expansion)"),
+        ("anthropic_subagents", "Anthropic (Step-7 sub-agents)"),
+    ]:
+        v = vendors.get(key) or {}
+        if not v:
+            continue
+        if key == "openrouter":
+            tokens = (
+                f"{_fmt_int(v.get('prompt_tokens'))} / "
+                f"{_fmt_int(v.get('cached_tokens'))} / "
+                f"{_fmt_int(v.get('completion_tokens'))}"
+            )
+            cache = f"{(v.get('cache_hit_rate') or 0) * 100:.1f}%"
+        elif key == "openai_embeddings":
+            tokens = (
+                f"{_fmt_int(v.get('input_tokens'))} / — / "
+                f"{_fmt_int(v.get('output_tokens'))}"
+            )
+            cache = "n/a"
+        else:
+            tokens = f"{_fmt_int(v.get('total_tokens'))} (total only)"
+            cache = "n/a"
+        rows.append(
+            f"<tr><td>{label}</td><td>{_fmt_int(v.get('calls'))}</td>"
+            f"<td>{tokens}</td><td>{cache}</td>"
+            f"<td>{_fmt_usd(v.get('estimated_cost_usd'))}</td></tr>"
+        )
+
+    # OpenRouter per-stage breakdown
+    or_block = vendors.get("openrouter") or {}
+    stage_rows = []
+    for stage, totals in (or_block.get("stages") or {}).items():
+        stage_rows.append(
+            f"<tr><td>{stage}</td>"
+            f"<td>{_fmt_int(totals.get('calls'))}</td>"
+            f"<td>{_fmt_int(totals.get('prompt_tokens'))}</td>"
+            f"<td>{_fmt_int(totals.get('cached_tokens'))}</td>"
+            f"<td>{_fmt_int(totals.get('completion_tokens'))}</td></tr>"
+        )
+    notes_html = "".join(f"<li>{n}</li>" for n in (us.get("notes") or []))
+
+    return f"""<!doctype html>
+<html><head><meta charset="utf-8"><title>Lolla — Usage Summary</title>
+<style>
+body {{ font-family: system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1rem; color: #222; }}
+h1 {{ margin: 0 0 0.5rem; }}
+.meta {{ color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }}
+.total {{ font-size: 1.6rem; font-weight: 600; margin: 1rem 0 1.5rem; }}
+table {{ border-collapse: collapse; width: 100%; margin-bottom: 2rem; font-size: 0.95rem; }}
+th, td {{ text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #eee; }}
+th {{ background: #f6f6f6; font-weight: 600; }}
+td:nth-child(n+2) {{ font-variant-numeric: tabular-nums; }}
+h2 {{ margin-top: 2rem; }}
+.notes {{ background: #fafafa; border-left: 3px solid #ccc; padding: 0.5rem 1rem; font-size: 0.9rem; }}
+.notes li {{ margin: 0.4rem 0; }}
+code {{ background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.9em; }}
+</style></head><body>
+<h1>Usage Summary</h1>
+<div class="meta">
+  Run: <code>{us.get("run_id", "—")}</code> ·
+  Pricing table verified: <code>{us.get("pricing_table_version", "—")}</code> ·
+  <a href="/">back to Observatory</a>
+</div>
+<div class="total">Total estimated cost: <strong>{_fmt_usd(us.get("estimated_total_cost_usd"))}</strong></div>
+
+<h2>By vendor</h2>
+<table>{"".join(rows)}</table>
+
+<h2>OpenRouter — by stage</h2>
+<table>
+<tr><th>Stage</th><th>Calls</th><th>Prompt tokens</th><th>Cached tokens</th><th>Completion tokens</th></tr>
+{"".join(stage_rows) if stage_rows else "<tr><td colspan='5'>No OpenRouter calls recorded.</td></tr>"}
+</table>
+
+<h2>Notes</h2>
+<ul class="notes">{notes_html}</ul>
+</body></html>
+"""
 
 
 class ResultHandler(SimpleHTTPRequestHandler):
@@ -487,6 +612,19 @@ class ResultHandler(SimpleHTTPRequestHandler):
             if len(parts) == 5 and parts[4] == "graph":
                 self._json_response(_build_graph_response())
                 return
+            if len(parts) == 5 and parts[4] == "usage":
+                self._json_response(_RESULT.get("usage_summary") or {})
+                return
+
+        if path == "/usage":
+            body = _render_usage_html().encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(body)
+            return
 
         if path.startswith("/api/model/"):
             model_id = path.split("/")[3] if len(path.split("/")) >= 4 else ""
