@@ -233,7 +233,7 @@ def test_verifier_returns_capped_models_separately_from_rejected():
         {"model_id": f"model-{i}", "model_name": f"Model {i}", "activation_trigger": "x"}
         for i in range(n_accepted)
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -264,7 +264,7 @@ def test_verifier_no_cap_overflow_returns_empty_capped():
     candidates = [
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=_packet("weighing the opportunity cost of staying"),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -325,7 +325,7 @@ def test_verifier_dedupes_duplicate_accepted_model_ids():
     candidates = [
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"}
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -380,7 +380,7 @@ def test_verifier_no_duplicates_yields_empty_duplicate_accepts():
         {"model_id": "opportunity-cost", "model_name": "Opportunity Cost", "activation_trigger": "x"},
         {"model_id": "second-order-thinking", "model_name": "Second-Order Thinking", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=_packet(text),
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,

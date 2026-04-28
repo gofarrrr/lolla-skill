@@ -271,6 +271,12 @@ class CompanionRunResult:
     # to a substring from the assistant source. These stay accepted; the list
     # exists so quote-gate repairs are measurable.
     quote_repairs: list[dict[str, str]] = field(default_factory=list)
+    # Verifier silent-omission bucket: candidates sent in that the LLM did
+    # not mention in either accepted or rejected. Drop reason
+    # "not_in_verifier_response". NOT semantically rejected — the verifier
+    # just dropped them. Surfaced so the audit trail accounts for every
+    # candidate that entered verification.
+    silently_omitted: list[dict[str, str]] = field(default_factory=list)
 
 
 class SystemBPipeline:
@@ -431,6 +437,7 @@ class SystemBPipeline:
                 companion_verification_capped_models=list(companion_result.capped_models),
                 companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
                 companion_verification_quote_repairs=list(companion_result.quote_repairs),
+                companion_verification_silently_omitted=list(companion_result.silently_omitted),
                 companion_candidate_cap=self._config.companion_candidate_cap,
                 embedding_mode="on" if self._config.enable_embeddings else "off",
                 embedding_tendency_ranks=embedding_tendency_ranks,
@@ -578,6 +585,7 @@ class SystemBPipeline:
             companion_verification_capped_models=list(companion_result.capped_models),
             companion_verification_duplicate_accepts=list(companion_result.duplicate_accepts),
             companion_verification_quote_repairs=list(companion_result.quote_repairs),
+            companion_verification_silently_omitted=list(companion_result.silently_omitted),
             companion_candidate_cap=self._config.companion_candidate_cap,
             embedding_mode="on" if self._config.enable_embeddings else "off",
             embedding_tendency_ranks=embedding_tendency_ranks,
@@ -727,6 +735,7 @@ class SystemBPipeline:
             capped_models,
             duplicate_accepts,
             quote_repairs,
+            silently_omitted,
         ) = run_verification_call_from_packet(
             packet=packet,
             fingerprint_payload=fingerprint_payload,
@@ -748,6 +757,7 @@ class SystemBPipeline:
             capped_models=capped_models,
             duplicate_accepts=duplicate_accepts,
             quote_repairs=quote_repairs,
+            silently_omitted=silently_omitted,
             candidates=candidates,
         )
 
