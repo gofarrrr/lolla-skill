@@ -1,13 +1,18 @@
-# Lane 3 Issues A & B — Investigation Memo (2026-04-28)
+# Quote Handling Issues (A, B, C) — Investigation Memo (2026-04-28)
 
-**Purpose.** Two anomalies in Lane 3 (Frame Pressure) surfaced during the verification audit of run `mother-deciding-protect-year/20260428T093545Z`. This memo documents root causes, the evidence behind each claim, and a reproduction recipe so anyone can confirm — or disconfirm — the findings before we change code. The intent is to fix both for good, not patch around them.
+**Purpose.** Three anomalies in how Lolla handles LLM-produced quotes — two in Lane 3 (Frame Pressure), one in extraction. All three surfaced during verification audits of two consecutive runs (`mother-deciding-protect-year/20260428T093545Z` and `mid-level-consultant-report-1/20260428T110004Z`). This memo documents root causes, the evidence behind each claim, and a reproduction recipe so anyone can confirm — or disconfirm — the findings before we change code. The intent is to fix them for good, not patch around them.
 
 **Authoring constraint.** Every claim has either a file/line citation or a reproducible command. If you can't verify a claim from the artifacts, the claim is suspect.
 
+**Status.** This memo is the working to-do list for these three issues. No code changes will be made until each finding is independently verified on more runs and the user (or another investigator) approves the fix shape. Pick up where the "Open items" section at the bottom leaves off.
+
 **TL;DR.**
 
-- **Issue A** is a confirmed, mechanical bug in `_parse_frame_extraction_from_packet`. Confidence ≥ 95 %. Fix is mechanical (~5 lines).
-- **Issue B** is a real interaction problem between LLM compression behaviour and a strict validator, not a bug in any single component. Confidence in mechanism ≥ 90 %. Fix is a design choice with a tradeoff to weigh.
+- **Issue A** (Lane 3 — `dropped_frame_elements` opacity) is a confirmed, mechanical bug in `_parse_frame_extraction_from_packet`. Confidence ≥ 95 %. Fix is mechanical (~5 lines).
+- **Issue B** (Lane 3 — `_evidence_in_text` rejects LLM ellipsis compression) is a real interaction problem between LLM compression behaviour and a strict validator, not a bug in any single component. Confidence in mechanism ≥ 90 %. Fix is a design choice with a tradeoff to weigh.
+- **Issue C** (extraction — `_validate_passages` rejects LLM quote-style substitution) is the same *class* of issue as Issue B but in a different code path with a stricter validator. Confidence in mechanism ≥ 95 % on the specific case observed. Whether the same kind of drift recurs on other runs needs more data.
+
+**One thing worth knowing up front.** B and C are the same meta-pattern: the LLM produces a quote that is semantically identical to the source but with minor character-level drift (ellipsis, quote style, possibly more), and a strict substring validator rejects it. Lane 3 has 4 tolerance tiers; extraction has 1. So extraction is structurally more sensitive to this drift class than Lane 3. The unifying-fix candidate is at the bottom under "Open items."
 
 ---
 
@@ -274,11 +279,181 @@ The right pattern is roughly `\s+\.\.\.\s+` or `\s+…\s+` — the ellipsis must
 
 ---
 
+## Issue C — extraction `quote_fabrication` rejected a real quote with substituted quote characters
+
+### Symptom
+
+In `mid-level-consultant-report-1/20260428T110004Z`, the run finished with `run_health.overall = "degraded"`, `issues = ["quote_fabrication"]`, `quote_fabrication_count = 1`, `quote_retry_attempted = True`. The chat output flagged this upfront ("Audit partially degraded: extraction had 1 reasoning passage that couldn't be verified..."). One of the LLM-extracted `reasoning_passages` couldn't be matched as a literal substring of the transcript even after the retry, so it was dropped from the persisted extraction and the audit ran on 4 passages instead of 5.
+
+Unlike Lane 3 (Issue A), the extraction layer **does preserve** the rejected passages: they live in `extraction._quote_validation.fabricated_passages` in the result JSON. That's what allowed this investigation to proceed without re-running.
+
+### Root cause
+
+The single rejected passage from this run:
+
+```
+"the weight of institutional inertia at firms like yours usually produces 'quiet handling' for senior partners even when GCs mean well."
+```
+
+The corresponding text on transcript line 67:
+
+```
+the weight of institutional inertia at firms like yours usually produces "quiet handling" for senior partners even when GCs mean well.
+```
+
+Byte-level diff (using `difflib.SequenceMatcher`):
+
+```
+replace: LLM[73:74]="'"  → transcript[73:74]='"'
+replace: LLM[88:89]="'"  → transcript[88:89]='"'
+```
+
+Two characters differ. The LLM substituted single quotes (`'`) for the transcript's double quotes (`"`) around `quiet handling`. The rest matches character-for-character. After normalizing single→double on the LLM output, the passage IS a literal substring of the transcript.
+
+The extraction validator is `scripts/run_extract.py:_validate_passages` (lines 653-669), which calls `engine/system_b/text_matching.py:find_substring_tolerant`. That helper has **only one tolerance tier** — case-insensitive — explicitly documented at the top of the file:
+
+> The helper intentionally tolerates ONLY case differences. Whitespace, punctuation, and word-substitution differences are all rejected — those are paraphrase or hallucination signatures that the substring validation is supposed to catch.
+
+A quote-character substitution is not "case difference" — it's a punctuation difference. So the validator rejected it. Correct by the helper's documented contract; wrong for the actual semantic content.
+
+### Evidence
+
+Three independent confirmations:
+
+1. **The persisted artifact carries the rejected text.** `extraction._quote_validation.fabricated_passages[0]` is the LLM-produced string above. Pulled directly from the result JSON (no stderr capture needed).
+
+2. **The transcript contains the source text on line 67.** Verified by `grep -n "institutional inertia" conversation.txt`. The fragment on either side of the differing characters matches verbatim.
+
+3. **Byte-level diff confirms only the two quote characters differ.** Programmatic `difflib.SequenceMatcher` over the two strings produced exactly two `replace` operations, each at a single character position, both replacing `'` with `"`. After `replace("'", '"')` normalization on the LLM string, `string in transcript` returns `True`.
+
+### Reproduction recipe
+
+To confirm Issue C in any future run:
+
+```bash
+# After /lolla finishes, pull the rejected passages from the run's extraction
+python3 -c "
+import json, sys
+d = json.load(open(sys.argv[1]))
+qv = d.get('extraction', {}).get('_quote_validation', {})
+if qv.get('fabricated', 0) > 0:
+    print(f'fabricated={qv[\"fabricated\"]}/{qv[\"total\"]}, retry_succeeded={qv[\"retry_succeeded\"]}')
+    for p in qv.get('fabricated_passages', []):
+        print(f'  REJECTED: {p!r}')
+" ~/.local/share/lolla/runs/<case>/<run_id>/result.json
+```
+
+Then for each rejected passage, look for a near-match in the transcript:
+
+```bash
+# Try increasingly specific substrings until you find one that matches
+grep -n "<some-fragment-of-the-rejected-text>" ~/.local/share/lolla/runs/<case>/<run_id>/conversation.txt
+```
+
+If you find a near-match, run `difflib.SequenceMatcher` to see exactly which characters differ:
+
+```python
+import difflib, json
+d = json.load(open("/path/to/result.json"))
+fab = d['extraction']['_quote_validation']['fabricated_passages'][0]
+tx = open("/path/to/conversation.txt").read()
+# Pull a window around the suspected match and diff
+import re
+m = re.search(r"<a-distinctive-prefix-from-the-rejected-text>.*?<a-distinctive-suffix>", tx, re.DOTALL)
+if m:
+    sm = difflib.SequenceMatcher(None, fab, m.group(0))
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        if tag != "equal":
+            print(f"{tag}: LLM[{i1}:{i2}]={fab[i1:i2]!r} → transcript[{j1}:{j2}]={m.group(0)[j1:j2]!r}")
+```
+
+**Confirms Issue C** if the diff shows only minor character drift (quote style, ellipsis, smart quotes, dashes, whitespace) and the LLM string is otherwise a literal substring after normalization.
+
+**Disconfirms Issue C** if the diff shows actual word substitutions or multi-character paraphrase. In that case the validator was correctly rejecting a paraphrase, not over-rejecting a near-literal quote.
+
+### Predicted drift modes (in priority order)
+
+If you see more `quote_fabrication` events on future runs, the most likely culprits — in roughly the order I'd expect, given today's data point and what's documented in LLM behaviour:
+
+1. **Quote-style substitution** (`'` ↔ `"`) — confirmed today
+2. **Smart-quote ↔ ASCII** (`“”` ↔ `"`, `‘’` ↔ `'`) — common when LLM "polishes" quoted text
+3. **Em-dash ↔ hyphen-hyphen** (`—` ↔ `--`)
+4. **Trailing/leading whitespace** drift
+5. **`\\n` ↔ `\n` ↔ literal newline** in multi-line quotes
+
+If the next runs surface non-quote drift modes, add them to this list with the byte-level diff that proves it.
+
+### Proposed fix shape (parked until the rate is known)
+
+Same shape as Issue B's validator-tier fix, applied to the extraction validator. Two reasonable scopes:
+
+| Scope | What | When to choose |
+|---|---|---|
+| **Local** | Add a `_normalize_quotes` tier (and possibly more) directly to `find_substring_tolerant`, mirroring Lane 3's `_evidence_in_text` tolerance ladder. | If you only want to fix Issue C without touching Lane 3. |
+| **Unified** | Extract the tolerance-ladder logic into a shared helper that both `_validate_passages` (extraction) and `_evidence_in_text` (Lane 3) consume. Eliminates the strictness drift between the two validators and gives Issue B's eventual fix one place to land. | If you're touching either validator. |
+
+I'd recommend **Unified**. The current divergence (Lane 3 has 4 tiers; extraction has 1) is exactly the kind of structural inconsistency that produces drift bugs over time. One shared validator with documented tiers, one set of tests, one decision point.
+
+### Confidence
+
+**≥ 95 % on the specific case observed.** I have a byte-level diff and the validator's documented contract — both align with the rejection. **Lower on rate.** This is one observed event. Whether quote-style substitution is the dominant drift mode, or whether other drift modes will surface, requires more runs.
+
+---
+
+## How they relate
+
+Visualizing A, B, C in one table makes the structure clear:
+
+| Issue | Surface | Validator | What's strict about it | Tolerates |
+|---|---|---|---|---|
+| **A** | Lane 3 dropped record persistence | n/a (data-loss bug) | Stores only `element_text` + `drop_reason` when dropping; discards `evidence_quote`, `element_type`, `frame_pattern`, etc. | nothing — it's an opacity bug, not a strictness issue |
+| **B** | Lane 3 quote validator (`_evidence_in_text`) | LLM ellipsis (`...`) for compression | exact substring, JSON-escape normalize, wrapping-quote strip, case-insensitive (4 tiers) |
+| **C** | Extraction quote validator (`find_substring_tolerant` via `_validate_passages`) | LLM quote-style substitution (`'` ↔ `"`) | case-insensitive only (1 tier) |
+
+**B and C share a meta-pattern.** Both are "LLM produces text that's semantically identical to the source but has minor character-level drift; strict validator rejects." The drift modes differ (compression vs. quote style) but the underlying class is the same. **A is structurally different** — it's about what the system records when validation fails, not about whether validation should succeed.
+
+**Extraction is the more sensitive surface.** Lane 3 has 4 tolerance tiers; extraction has 1. So a quote that survives Lane 3 might still be rejected by extraction. If you encounter a drift class that hits extraction but not Lane 3, that's the signal that extraction's validator is the more urgent one to fix.
+
+**A's data-loss is independent.** Even after B and C are fixed, A's opacity remains useful work because it makes the *next* class of validation failure investigable from persisted artifacts alone, without needing stderr capture or re-runs. Investigators 6 months from now will thank you.
+
+---
+
 ## How to use this memo
 
-1. **Run another conversation through `/lolla`.** Pick something different from the cases already archived — the recipe above lists what to look for. Multiple runs of the same case (with fresh `LOLLA_RUN_ID` each time so conv_id rotates) will give you a rate.
-2. **Try a different LLM** (set `LOLLA_OPENROUTER_MODEL` to something other than `x-ai/grok-4.1-fast`) and re-run. If a different model never produces ellipsis-compressed quotes, that confirms the LLM-behaviour theory and lowers urgency on the validator fix; if other models also do it, the validator fix becomes more important. Either way it isolates whether this is a Grok-specific quirk or a general LLM compression pattern.
-3. **Inspect the persisted `dropped_frame_elements`.** If they are still empty stubs (`element_text` + `drop_reason` only), Issue A is confirmed. If they carry the original `evidence_quote`, Issue A was already silently fixed somewhere I missed.
-4. **Decide on fixes.** Issue A is mechanical and low-risk — open a small PR whenever convenient. Issue B has the design choice; once you've seen the rate of occurrence in your runs, the answer (validator tolerance, prompt tightening, or both) becomes clearer.
+1. **Run another conversation through `/lolla`.** Pick something different from cases already archived. Multiple runs of the same case (with fresh `LOLLA_RUN_ID` each time so the cache rotates) give you a rate per drift mode.
+2. **Try a different LLM** (set `LOLLA_OPENROUTER_MODEL` to something other than `x-ai/grok-4.1-fast`). If a different model never produces ellipsis-compressed or quote-substituted quotes, that confirms LLM-behaviour theory and lowers urgency on the validator fixes; if other models also do it, the unified-validator fix becomes more important. Either way it isolates whether B/C are Grok-specific quirks or a general LLM character-drift pattern.
+3. **Inspect the persisted artifacts on every run.** Run the Issue A check on `dropped_frame_elements` and the Issue C check on `_quote_validation.fabricated_passages`. Log what you find — over 5-10 runs, you'll have a rate for each.
+4. **Look for new drift modes.** If a future `quote_fabrication` rejection isn't quote-style or ellipsis, add it to Issue C's "Predicted drift modes" list with the byte-level diff. This memo grows as data grows.
+5. **Decide on fixes once the rate justifies them.** If A fires every few runs, fix it (mechanical, ~5 lines, no risk). If B and C combined fire less than once every 10-20 runs and only on specific content, the cost of building a unified validator may exceed the benefit — keep watching. If they fire often, the unified validator becomes worth the work.
 
-If during your verification you see anything that contradicts these claims — different `dropped_frame_elements` shape, no ellipsis in the rejected quotes, the validator rejecting non-ellipsis quotes — please flag it. The whole point of writing this as a verifiable memo rather than a declarative one is so disconfirming evidence has somewhere to land.
+If during verification you see anything that contradicts these claims — different `dropped_frame_elements` shape, no ellipsis or quote drift in the rejected quotes, validators rejecting actual paraphrases — please flag it. The whole point of writing this as a verifiable memo rather than a declarative one is so disconfirming evidence has somewhere to land.
+
+---
+
+## Open items (the working to-do list)
+
+Tracked here so the memo functions as a single source of truth for these three issues. Strike through items as they're resolved; add new items as data comes in.
+
+### Verification before any fix
+
+- [ ] Issue A — confirm `dropped_frame_elements` opacity reproduces on at least one more run with non-empty drops. Reproduction recipe is in Issue A's section.
+- [ ] Issue B — confirm rate of LLM ellipsis insertion across 5-10 runs (different cases, different conversation lengths). Reproduction recipe is in Issue B's section.
+- [ ] Issue C — confirm rate of LLM quote-style substitution (and any other drift modes) across 5-10 runs. Reproduction recipe is in Issue C's section.
+- [ ] Cross-model — run any one case with a non-Grok model (`LOLLA_OPENROUTER_MODEL=anthropic/claude-...`, `openai/gpt-...`) to test whether B and C are Grok-specific or general LLM behaviour.
+
+### When verification justifies a fix
+
+- [ ] **Issue A fix** — preserve `evidence_quote`, `element_type`, `frame_pattern`, `fragility_signal`, `inquiry_stage`, `likely_default` in every dropped record in `_parse_frame_extraction_from_packet`. Backward-compatible (additive). Mechanical, low-risk, 5 lines. Open as standalone PR whenever convenient.
+- [ ] **Issues B + C unified fix** — extract the tolerance-ladder logic into a shared validator that both Lane 3 (`_evidence_in_text`) and extraction (`_validate_passages`) consume. Tiers documented and tested. The list of tolerated drift modes (case, JSON-escape, wrapping quotes, ellipsis, quote style, smart quotes, dashes, whitespace) is the design surface. **Don't bundle with A** — different code path, different review concerns.
+- [ ] **Prompt hardening** (parallel to validator fixes, not replacement) — add explicit "do not use ellipsis" / "preserve quote characters exactly" instructions to the frame_extraction and extraction prompts, with negative examples. Cheap, partial, brittle on its own; useful as a rate-reducer alongside the validator fix.
+
+### Adjacent observations to keep an eye on
+
+- The extraction layer's `_quote_validation` block (which made Issue C investigable) is a good pattern; consider whether Lane 3 should adopt it when fixing Issue A.
+- The `find_substring_tolerant` helper is also used by `engine/system_b/live_constraints_extraction.py` and `engine/system_b/stance_extraction.py` (per repo grep). Any change to its tolerance behaviour affects all four call sites — that's a feature for the unified fix but worth knowing before changing it.
+
+### Disconfirming evidence to add as it appears
+
+If any future verification produces a result that contradicts a claim in this memo, append it here with the run_id and the contradicting evidence. The memo's value depends on staying honest as data accumulates.
+
+(none yet)
