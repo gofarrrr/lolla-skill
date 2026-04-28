@@ -32,6 +32,121 @@ _KG_CACHE: dict | None = None
 _FAMILY_CACHE: list[dict] | None = None
 
 
+# ---------------------------------------------------------------------------
+# Module-scope rendering helpers — shared across /usage and /audit/* panels.
+# Each helper is small and stable so all server-rendered pages can rely on
+# the same primitives without re-importing or wrapping. Lifting them out of
+# the original `_render_usage_html` enclosure was the prerequisite for
+# adding the audit panel family in PR 3 of the 2026-04-28 visibility roadmap.
+# ---------------------------------------------------------------------------
+
+
+def _esc(value) -> str:
+    """HTML-escape any value before interpolation.
+
+    Defends against injection from a crafted result.json: model names,
+    rejection reasons, evidence quotes, dimension materiality notes, etc.
+    Numeric helpers (``_fmt_int``, ``_fmt_usd``) already produce safe output;
+    everything else flows through this.
+    """
+    return html.escape(str(value), quote=True)
+
+
+def _fmt_int(value) -> str:
+    try:
+        return f"{int(value):,}"
+    except (TypeError, ValueError):
+        return "—"
+
+
+def _fmt_usd(value) -> str:
+    try:
+        return f"${float(value):.4f}"
+    except (TypeError, ValueError):
+        return "—"
+
+
+def _fmt_pct(value, *, fraction: bool = False) -> str:
+    """Format a number as a percentage. ``fraction=True`` if input is 0..1."""
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return "—"
+    if fraction:
+        n *= 100
+    return f"{n:.1f}%"
+
+
+# Audit panel routes, ordered for the top nav. The first column is the URL
+# fragment (used in href + active-state matching); the second is the label
+# the operator sees. Keep the index page (/audit) first so the nav reads
+# left-to-right from "everything" to specific panels.
+_AUDIT_NAV = (
+    ("/audit", "Audit Index"),
+    ("/audit/lane1", "Lane 1"),
+    ("/audit/lane2", "Lane 2"),
+    ("/audit/lane4", "Lane 4"),
+    ("/audit/anti-echo", "Anti-echo"),
+    ("/audit/routing", "Routing"),
+    ("/audit/expansions", "Expansions"),
+    ("/usage", "Usage"),
+)
+
+
+_SHARED_PANEL_CSS = """
+body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+h1 { margin: 0 0 0.5rem; }
+h2 { margin-top: 2rem; }
+h3 { margin-top: 1.5rem; }
+.meta { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+.hint { color: #666; font-size: 0.85rem; margin-top: -0.5rem; margin-bottom: 1rem; }
+table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; font-size: 0.92rem; }
+th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #eee; vertical-align: top; }
+th { background: #f6f6f6; font-weight: 600; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.detected-true { color: #c2410c; font-weight: 600; }
+.detected-false { color: #666; }
+.empty { color: #777; font-style: italic; padding: 0.75rem 1rem; background: #fafafa; border-left: 3px solid #ccc; }
+.tagrow { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag { display: inline-block; padding: 0.05rem 0.5rem; border-radius: 3px; background: #eef; font-size: 0.85rem; color: #336; border: 1px solid #ccd; }
+.tag.warn { background: #fdecec; color: #832; border-color: #e5b8b8; }
+.tag.ok { background: #eafde9; color: #246; border-color: #b8e5b8; }
+nav.audit-nav { font-size: 0.9rem; padding: 0.5rem 0 1rem; border-bottom: 1px solid #eee; margin-bottom: 1.5rem; }
+nav.audit-nav a { color: #336; text-decoration: none; padding: 0.25rem 0.5rem; }
+nav.audit-nav a.active { font-weight: 600; color: #222; background: #eef; border-radius: 3px; }
+nav.audit-nav a:hover { text-decoration: underline; }
+code { background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.9em; }
+details { margin: 0.5rem 0; }
+details summary { cursor: pointer; color: #336; }
+"""
+
+
+def _render_scaffold(*, title: str, body: str, current_path: str = "") -> str:
+    """Wrap a page body in the shared HTML scaffold (header, nav, footer).
+
+    All audit panels and the existing /usage page use the same look so
+    operators can move between them without re-orienting. ``current_path``
+    is matched exactly against ``_AUDIT_NAV`` URLs to highlight the active
+    tab.
+    """
+    nav_links = "".join(
+        f'<a href="{_esc(href)}"'
+        f'{" class=\"active\"" if current_path == href else ""}'
+        f">{_esc(label)}</a>"
+        for href, label in _AUDIT_NAV
+    )
+    return f"""<!doctype html>
+<html><head><meta charset="utf-8"><title>{_esc(title)}</title>
+<style>{_SHARED_PANEL_CSS}</style></head><body>
+<nav class="audit-nav">
+  <a href="/">Observatory</a> ·
+  {nav_links}
+</nav>
+{body}
+</body></html>
+"""
+
+
 def _reload_result_if_changed():
     """Re-read the result JSON from disk if the file has been modified."""
     global _RESULT, _RESULT_MTIME
@@ -479,32 +594,17 @@ def _render_usage_html() -> str:
     _reload_result_if_changed()
     us = _RESULT.get("usage_summary") or {}
     if not us:
-        return (
-            "<!doctype html><html><body style='font-family:system-ui;padding:2rem'>"
-            "<h1>Usage Summary</h1>"
-            "<p>No <code>usage_summary</code> in this result. "
-            "Re-run the pipeline with the updated <code>run_pipeline.py</code> "
-            "to populate it.</p></body></html>"
+        return _render_scaffold(
+            title="Lolla — Usage Summary",
+            current_path="/usage",
+            body=(
+                "<h1>Usage Summary</h1>"
+                "<div class=\"empty\">No <code>usage_summary</code> in this result. "
+                "Re-run the pipeline with the updated <code>run_pipeline.py</code> "
+                "to populate it.</div>"
+            ),
         )
     vendors = us.get("vendors", {}) or {}
-
-    def _fmt_usd(x):
-        try:
-            return f"${float(x):.4f}"
-        except (TypeError, ValueError):
-            return "—"
-
-    def _fmt_int(x):
-        try:
-            return f"{int(x):,}"
-        except (TypeError, ValueError):
-            return "—"
-
-    def _esc(x) -> str:
-        """HTML-escape any value before interpolation to prevent injection
-        from a crafted result.json. Numeric-formatted helpers above already
-        produce safe output; everything else flows through this."""
-        return html.escape(str(x), quote=True)
 
     rows = []
     rows.append(
@@ -623,30 +723,15 @@ def _render_usage_html() -> str:
 
     notes_html = "".join(f"<li>{_esc(n)}</li>" for n in (us.get("notes") or []))
 
-    return f"""<!doctype html>
-<html><head><meta charset="utf-8"><title>Lolla — Usage Summary</title>
-<style>
-body {{ font-family: system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1rem; color: #222; }}
-h1 {{ margin: 0 0 0.5rem; }}
-.meta {{ color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }}
-.total {{ font-size: 1.6rem; font-weight: 600; margin: 1rem 0 1.5rem; }}
-table {{ border-collapse: collapse; width: 100%; margin-bottom: 2rem; font-size: 0.95rem; }}
-th, td {{ text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #eee; }}
-th {{ background: #f6f6f6; font-weight: 600; }}
-td:nth-child(n+2) {{ font-variant-numeric: tabular-nums; }}
-h2 {{ margin-top: 2rem; }}
-.notes {{ background: #fafafa; border-left: 3px solid #ccc; padding: 0.5rem 1rem; font-size: 0.9rem; }}
-.notes li {{ margin: 0.4rem 0; }}
-code {{ background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.9em; }}
-.hint {{ color: #666; font-size: 0.85rem; margin-top: -1.5rem; margin-bottom: 1rem; }}
-</style></head><body>
+    body = f"""
 <h1>Usage Summary</h1>
 <div class="meta">
   Run: <code>{_esc(us.get("run_id", "—"))}</code> ·
   Pricing table verified: <code>{_esc(us.get("pricing_table_version", "—"))}</code> ·
-  <a href="/">back to Observatory</a>
+  <a href="/">back to Observatory</a> ·
+  <a href="/audit">audit panels</a>
 </div>
-<div class="total">Total estimated cost: <strong>{_fmt_usd(us.get("estimated_total_cost_usd"))}</strong></div>
+<div style="font-size:1.6rem;font-weight:600;margin:1rem 0 1.5rem;">Total estimated cost: <strong>{_fmt_usd(us.get("estimated_total_cost_usd"))}</strong></div>
 
 <h2>By vendor</h2>
 <table>{"".join(rows)}</table>
@@ -679,13 +764,624 @@ code {{ background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-si
 </table>
 
 <h2>Notes</h2>
-<ul class="notes">{notes_html}</ul>
-</body></html>
+<ul class="empty" style="list-style:disc;padding-left:1.5rem;">{notes_html}</ul>
 """
+    return _render_scaffold(title="Lolla — Usage Summary", body=body, current_path="/usage")
+
+
+# ---------------------------------------------------------------------------
+# Audit panels (PR 3 of the 2026-04-28 visibility roadmap).
+#
+# Each panel is server-rendered HTML, mirrors the shape of `_render_usage_html`,
+# and works whether or not the SPA bundle is present. They surface the
+# `audit_summary` fields the React SPA never renders. Fields added by PR 1
+# (raw_message_content per boundary call) and PR 2 (embedding_tendency_ranks,
+# deep_check_results.reason, companion_verification_silently_omitted) are
+# rendered when present and degrade silently when absent — so panels work
+# against both fresh runs and older archived result.json files.
+# ---------------------------------------------------------------------------
+
+
+_TRIAGE_THRESHOLD_DEFAULT = 4
+_EMBEDDING_PROMOTION_THRESHOLD = 0.30
+
+
+def _audit_summary() -> dict:
+    """Pull the audit_summary block, returning ``{}`` for ancient artifacts."""
+    return _RESULT.get("audit_summary") or {}
+
+
+def _empty_panel(*, title: str, message: str, current_path: str) -> str:
+    body = f'<h1>{_esc(title)}</h1><div class="empty">{message}</div>'
+    return _render_scaffold(title=f"Lolla — {title}", body=body, current_path=current_path)
+
+
+# ---------------- Panel 1: /audit/lane1 ----------------
+
+
+def _render_lane1_html() -> str:
+    _reload_result_if_changed()
+    audit = _audit_summary()
+    if not audit:
+        return _empty_panel(
+            title="Lane 1 — Pass 1 + Pass 2 funnel",
+            message=(
+                "No <code>audit_summary</code> in this result — likely a "
+                "pre-Phase-7 artifact. Re-run the pipeline to populate it."
+            ),
+            current_path="/audit/lane1",
+        )
+
+    triage = audit.get("triage_scores") or []
+    triggered_sources = audit.get("triggered_tendency_sources") or []
+    deep_results = audit.get("deep_check_results") or []
+    embedding_ranks = audit.get("embedding_tendency_ranks") or []
+
+    # Pass 1 triage table — every scored tendency, sorted by score desc
+    triage_rows = []
+    for s in sorted(triage, key=lambda r: -int(r.get("score") or 0)):
+        triage_rows.append(
+            f"<tr><td>{_esc(s.get('tendency_id', ''))}</td>"
+            f"<td class='num'>{_esc(s.get('score', 0))}</td>"
+            f"<td>{_esc(s.get('evidence', ''))}</td></tr>"
+        )
+
+    # Triggered set with source attribution
+    src_rows = []
+    for t in triggered_sources:
+        source = t.get("source", "")
+        score = t.get("score", "")
+        score_str = f"{float(score):.3f}" if isinstance(score, float) else _esc(score)
+        src_rows.append(
+            f"<tr><td>{_esc(t.get('tendency_id', ''))}</td>"
+            f"<td><span class='tag'>{_esc(source)}</span></td>"
+            f"<td class='num'>{score_str}</td></tr>"
+        )
+
+    # Pass 2 deep_check outcomes
+    pass2_rows = []
+    for d in deep_results:
+        detected = bool(d.get("detected"))
+        cls = "detected-true" if detected else "detected-false"
+        verdict = "DETECTED" if detected else "not detected"
+        reason = d.get("reason") or ""
+        sub_pattern = d.get("sub_pattern") or ""
+        pass2_rows.append(
+            f"<tr><td>{_esc(d.get('tendency_id', ''))}</td>"
+            f"<td class='{cls}'>{verdict}</td>"
+            f"<td>{_esc(sub_pattern)}</td>"
+            f"<td>{_esc(reason)}</td></tr>"
+        )
+
+    # Embedding close-calls (sub-threshold rows from PR 2)
+    close_call_rows = []
+    for r in embedding_ranks:
+        promoted = bool(r.get("promoted"))
+        cls = "tag ok" if promoted else "tag warn"
+        label = "promoted" if promoted else "close call"
+        score = r.get("score")
+        score_str = f"{float(score):.3f}" if isinstance(score, (int, float)) else _esc(score)
+        close_call_rows.append(
+            f"<tr><td>{_esc(r.get('tendency_id', ''))}</td>"
+            f"<td class='num'>{score_str}</td>"
+            f"<td><span class='{cls}'>{label}</span></td></tr>"
+        )
+
+    body = f"""
+<h1>Lane 1 — Pass 1 + Pass 2 funnel</h1>
+<p class="hint">What the LLM triage saw across all 24 tendencies, which ones got promoted to Pass 2 (and how — triage / embedding / always-include), and what Pass 2 returned with rationale.</p>
+
+<h2>Pass 1 — Triage scores ({len(triage_rows)} tendencies)</h2>
+<p class="hint">Triage threshold: <code>{_TRIAGE_THRESHOLD_DEFAULT}</code> — tendencies scoring ≥ threshold are promoted to Pass 2.</p>
+<table>
+<tr><th>Tendency</th><th class="num">Score</th><th>Evidence</th></tr>
+{"".join(triage_rows) if triage_rows else "<tr><td colspan='3' class='empty'>No triage scores recorded.</td></tr>"}
+</table>
+
+<h2>Triggered set ({len(src_rows)} promoted to Pass 2)</h2>
+<table>
+<tr><th>Tendency</th><th>Source</th><th class="num">Score</th></tr>
+{"".join(src_rows) if src_rows else "<tr><td colspan='3' class='empty'>No tendencies promoted to Pass 2.</td></tr>"}
+</table>
+
+<h2>Pass 2 — Deep check outcomes</h2>
+<table>
+<tr><th>Tendency</th><th>Verdict</th><th>Sub-pattern</th><th>Reason</th></tr>
+{"".join(pass2_rows) if pass2_rows else "<tr><td colspan='4' class='empty'>No Pass 2 calls fired (no triggered tendencies).</td></tr>"}
+</table>
+
+<h2>Embedding close-calls — full top-25 ranks</h2>
+<p class="hint">Sub-threshold (&lt; {_EMBEDDING_PROMOTION_THRESHOLD}) rows are the "tendency X scored 0.28, almost made it" telemetry. Persisted by PR 2 of the 2026-04-28 roadmap; this panel surfaces it.</p>
+<table>
+<tr><th>Tendency</th><th class="num">Cosine</th><th>Status</th></tr>
+{"".join(close_call_rows) if close_call_rows else "<tr><td colspan='3' class='empty'>No embedding ranks recorded (embeddings off, or run pre-dates PR 2).</td></tr>"}
+</table>
+"""
+    return _render_scaffold(title="Lolla — Lane 1", body=body, current_path="/audit/lane1")
+
+
+# ---------------- Panel 2: /audit/lane2 ----------------
+
+
+def _render_lane2_html() -> str:
+    _reload_result_if_changed()
+    audit = _audit_summary()
+    if not audit:
+        return _empty_panel(
+            title="Lane 2 — Companion selection funnel",
+            message="No <code>audit_summary</code> in this result.",
+            current_path="/audit/lane2",
+        )
+
+    candidates = audit.get("companion_candidates") or []
+    if not candidates and not audit.get("companion_verification_accepted_before_cap"):
+        return _empty_panel(
+            title="Lane 2 — Companion selection funnel",
+            message="Lane 2 didn't fire on this run (no candidates surfaced).",
+            current_path="/audit/lane2",
+        )
+
+    accepted = audit.get("companion_verification_accepted_before_cap") or []
+    capped = audit.get("companion_verification_capped_models") or []
+    rejected = audit.get("companion_rejected_models") or []
+    duplicates = audit.get("companion_verification_duplicate_accepts") or []
+    quote_repairs = audit.get("companion_verification_quote_repairs") or []
+    silently_omitted = audit.get("companion_verification_silently_omitted") or []
+    candidate_cap = audit.get("companion_candidate_cap", 0)
+
+    final_anchors = (_RESULT.get("companion_cheat_sheet") or {}).get("anchors") or []
+
+    # Funnel totals (Candidates → Accepted-before-cap → Final cheat-sheet)
+    totals = (
+        f"<p class='hint'>Funnel: <strong>{len(candidates)}</strong> candidates → "
+        f"<strong>{len(accepted)}</strong> accepted (before cap) → "
+        f"<strong>{len(final_anchors)}</strong> final cheat-sheet anchors. "
+        f"Recall cap: <code>{_esc(candidate_cap)}</code>.</p>"
+    )
+
+    cand_rows = []
+    for c in candidates:
+        cand_rows.append(
+            f"<tr><td>{_esc(c.get('model_id', ''))}</td>"
+            f"<td>{_esc(c.get('recall_source', ''))}</td>"
+            f"<td class='num'>{_esc(c.get('keyword_rank', ''))}</td>"
+            f"<td class='num'>{_esc(c.get('embedding_rank', ''))}</td>"
+            f"<td class='num'>{_esc(c.get('final_rank', ''))}</td>"
+            f"<td>{_esc(c.get('activation_trigger', ''))}</td></tr>"
+        )
+
+    acc_rows = []
+    for a in accepted:
+        acc_rows.append(
+            f"<tr><td>{_esc(a.get('model_id', ''))}</td>"
+            f"<td>{_esc(a.get('presence_mode', ''))}</td>"
+            f"<td>{_esc(a.get('evidence_quote', ''))}</td>"
+            f"<td>{_esc(a.get('presence_explanation', ''))}</td></tr>"
+        )
+
+    rej_rows = []
+    for r in rejected:
+        rej_rows.append(
+            f"<tr><td>{_esc(r.get('model_id', ''))}</td>"
+            f"<td>{_esc(r.get('rejection_reason', ''))}</td></tr>"
+        )
+
+    cap_rows = [
+        f"<tr><td>{_esc(c.get('model_id', ''))}</td><td>{_esc(c.get('drop_reason', ''))}</td></tr>"
+        for c in capped
+    ]
+    dup_rows = [
+        f"<tr><td>{_esc(d.get('model_id', ''))}</td><td>{_esc(d.get('drop_reason', ''))}</td></tr>"
+        for d in duplicates
+    ]
+    qr_rows = [
+        f"<tr><td>{_esc(q.get('model_id', ''))}</td>"
+        f"<td>{_esc(q.get('repair_method', ''))}</td>"
+        f"<td>{_esc(q.get('original_evidence_quote', ''))}</td>"
+        f"<td>{_esc(q.get('repaired_evidence_quote', ''))}</td></tr>"
+        for q in quote_repairs
+    ]
+    so_rows = [
+        f"<tr><td>{_esc(s.get('model_id', ''))}</td><td>{_esc(s.get('drop_reason', ''))}</td></tr>"
+        for s in silently_omitted
+    ]
+
+    body = f"""
+<h1>Lane 2 — Companion selection funnel</h1>
+{totals}
+
+<h2>Candidates ({len(candidates)} sent to verifier)</h2>
+<table>
+<tr><th>Model</th><th>Recall source</th><th class="num">Kw rank</th><th class="num">Emb rank</th><th class="num">Final rank</th><th>Activation trigger</th></tr>
+{"".join(cand_rows) if cand_rows else "<tr><td colspan='6' class='empty'>No candidates.</td></tr>"}
+</table>
+
+<h2>Accepted (before top-{_DETECTED_MODELS_CAP_LABEL} cap, {len(accepted)})</h2>
+<table>
+<tr><th>Model</th><th>Mode</th><th>Evidence quote</th><th>Explanation</th></tr>
+{"".join(acc_rows) if acc_rows else "<tr><td colspan='4' class='empty'>None accepted.</td></tr>"}
+</table>
+
+<h2>Rejected ({len(rejected)})</h2>
+<table>
+<tr><th>Model</th><th>Rejection reason</th></tr>
+{"".join(rej_rows) if rej_rows else "<tr><td colspan='2' class='empty'>None rejected.</td></tr>"}
+</table>
+
+<h2>Capped accepted-but-not-surfaced ({len(capped)})</h2>
+<table>
+<tr><th>Model</th><th>Drop reason</th></tr>
+{"".join(cap_rows) if cap_rows else "<tr><td colspan='2' class='empty'>None capped.</td></tr>"}
+</table>
+
+<h2>Duplicate accepts ({len(duplicates)})</h2>
+<table>
+<tr><th>Model</th><th>Drop reason</th></tr>
+{"".join(dup_rows) if dup_rows else "<tr><td colspan='2' class='empty'>No verifier-side duplicates.</td></tr>"}
+</table>
+
+<h2>Quote repairs ({len(quote_repairs)})</h2>
+<table>
+<tr><th>Model</th><th>Method</th><th>Original</th><th>Repaired</th></tr>
+{"".join(qr_rows) if qr_rows else "<tr><td colspan='4' class='empty'>No quote repairs.</td></tr>"}
+</table>
+
+<h2>Silently omitted by verifier ({len(silently_omitted)})</h2>
+<p class="hint">Candidates sent to the verifier that never appeared in either accepted or rejected — the LLM dropped them on the floor. New bucket from PR 2 of the 2026-04-28 roadmap. Drop reason <code>not_in_verifier_response</code>.</p>
+<table>
+<tr><th>Model</th><th>Drop reason</th></tr>
+{"".join(so_rows) if so_rows else "<tr><td colspan='2' class='empty'>No silently-omitted candidates (or run pre-dates PR 2).</td></tr>"}
+</table>
+"""
+    return _render_scaffold(title="Lolla — Lane 2", body=body, current_path="/audit/lane2")
+
+
+_DETECTED_MODELS_CAP_LABEL = "5"  # mirrors engine.system_b.companion_routing._DETECTED_MODELS_CAP
+
+
+# ---------------- Panel 4: /audit/lane4 ----------------
+
+
+def _load_lane4_dimension_catalog() -> list[dict[str, str]]:
+    """Return the 15-dimension catalog from data/knowledge_graph.json.
+
+    Cached at module level via ``_KG_CACHE``. Each row carries
+    ``dimension_id`` + ``dimension_name``. Loaded at render time so the
+    panel always reflects the live catalog.
+    """
+    global _KG_CACHE
+    if _KG_CACHE is None:
+        try:
+            with open(SKILL_DATA_DIR / "knowledge_graph.json") as f:
+                _KG_CACHE = json.load(f)
+        except OSError:
+            return []
+    sc = (_KG_CACHE or {}).get("structural_coverage_routing", {}) or {}
+    dims = sc.get("dimensions", {}) or {}
+    return [
+        {"dimension_id": d_id, "dimension_name": d.get("dimension_name", d_id)}
+        for d_id, d in dims.items()
+    ]
+
+
+def _render_lane4_html() -> str:
+    _reload_result_if_changed()
+    coverage = _RESULT.get("structural_coverage_card") or {}
+    catalog = _load_lane4_dimension_catalog()
+    if not catalog:
+        return _empty_panel(
+            title="Lane 4 — Dimension coverage",
+            message="Dimension catalog not found in <code>data/knowledge_graph.json</code>.",
+            current_path="/audit/lane4",
+        )
+
+    detected_dims = coverage.get("dimensions") or []
+    detected_by_id = {d.get("dimension_id"): d for d in detected_dims if d.get("dimension_id")}
+    gap_routes_by_id = {
+        r.get("dimension_id"): r
+        for r in (coverage.get("gap_routes") or [])
+        if r.get("dimension_id")
+    }
+    gap_questions_by_id: dict[str, list[str]] = {}
+    for gq in coverage.get("gap_questions") or []:
+        if isinstance(gq, dict) and gq.get("dimension_id"):
+            qs = gq.get("questions") or []
+            if isinstance(qs, list):
+                gap_questions_by_id[gq["dimension_id"]] = [str(q) for q in qs]
+
+    question_type = coverage.get("question_type", "")
+
+    # 15-row dimension table
+    dim_rows = []
+    for cat in catalog:
+        d_id = cat["dimension_id"]
+        d_name = cat["dimension_name"]
+        dim = detected_by_id.get(d_id)
+        if not dim:
+            status = "<span class='tag'>not detected</span>"
+            covered = "—"
+            note = "—"
+        elif dim.get("covered"):
+            status = "<span class='tag ok'>covered</span>"
+            covered = _esc(dim.get("coverage_evidence", ""))
+            note = _esc(dim.get("materiality_note", ""))
+        else:
+            status = "<span class='tag warn'>gap</span>"
+            covered = "—"
+            note = _esc(dim.get("materiality_note", ""))
+        dim_rows.append(
+            f"<tr><td>{_esc(d_id)}</td><td>{_esc(d_name)}</td>"
+            f"<td>{status}</td><td>{covered}</td><td>{note}</td></tr>"
+        )
+
+    # Gap routes
+    route_rows = []
+    for r in (coverage.get("gap_routes") or []):
+        cands = ", ".join(_esc(m) for m in (r.get("candidate_model_ids") or []))
+        excluded = ", ".join(_esc(m) for m in (r.get("excluded_model_ids") or []))
+        route_rows.append(
+            f"<tr><td>{_esc(r.get('dimension_id', ''))}</td>"
+            f"<td>{cands or '—'}</td><td>{excluded or '—'}</td></tr>"
+        )
+
+    # Gap questions
+    gq_rows = []
+    for d_id, qs in gap_questions_by_id.items():
+        for q in qs:
+            gq_rows.append(f"<tr><td>{_esc(d_id)}</td><td>{_esc(q)}</td></tr>")
+
+    body = f"""
+<h1>Lane 4 — Dimension coverage</h1>
+<p class="hint">Question classified as <code>{_esc(question_type) or "—"}</code>. Of the 15 catalog dimensions, the system records which are present and whether each is covered by the answer or sits as a gap.</p>
+
+<h2>15-dimension catalog</h2>
+<table>
+<tr><th>Dimension ID</th><th>Name</th><th>Status</th><th>Coverage evidence</th><th>Materiality</th></tr>
+{"".join(dim_rows)}
+</table>
+
+<h2>Gap routes</h2>
+<p class="hint">For each dimension flagged as a gap, the curated routing surfaces candidate corrective models and any excluded by anti-echo.</p>
+<table>
+<tr><th>Dimension</th><th>Candidate models</th><th>Excluded (anti-echo)</th></tr>
+{"".join(route_rows) if route_rows else "<tr><td colspan='3' class='empty'>No gap routes — every detected dimension is covered or no gaps surfaced.</td></tr>"}
+</table>
+
+<h2>Gap questions</h2>
+<table>
+<tr><th>Dimension</th><th>Question</th></tr>
+{"".join(gq_rows) if gq_rows else "<tr><td colspan='2' class='empty'>No gap questions generated.</td></tr>"}
+</table>
+"""
+    return _render_scaffold(title="Lolla — Lane 4", body=body, current_path="/audit/lane4")
+
+
+# ---------------- Panel: /audit/anti-echo ----------------
+
+
+def _render_anti_echo_html() -> str:
+    _reload_result_if_changed()
+    coverage = _RESULT.get("structural_coverage_card") or {}
+    excluded = coverage.get("anti_echo_model_ids") or []
+    if not excluded:
+        return _empty_panel(
+            title="Anti-echo cascade",
+            message="No anti-echo exclusions on this run — every Lane 4 candidate was untouched.",
+            current_path="/audit/anti-echo",
+        )
+
+    # Compute per-lane source attribution.
+    # Lane 1: delta_card.findings[*].selected_model_ids
+    lane1_models: set[str] = set()
+    for f in (_RESULT.get("delta_card") or {}).get("findings") or []:
+        for mid in (f.get("selected_model_ids") or []):
+            if mid:
+                lane1_models.add(mid)
+
+    # Lane 2: companion_cheat_sheet.anchors[*].model_id
+    lane2_models: set[str] = set()
+    for a in (_RESULT.get("companion_cheat_sheet") or {}).get("anchors") or []:
+        if a.get("model_id"):
+            lane2_models.add(a["model_id"])
+
+    # Lane 3: frame_pressure_card.reframings[*].grounding_model
+    lane3_models: set[str] = set()
+    for r in (_RESULT.get("frame_pressure_card") or {}).get("reframings") or []:
+        gm = r.get("grounding_model")
+        if gm:
+            lane3_models.add(gm)
+
+    rows = []
+    for mid in excluded:
+        sources = []
+        if mid in lane1_models:
+            sources.append("Lane 1")
+        if mid in lane2_models:
+            sources.append("Lane 2")
+        if mid in lane3_models:
+            sources.append("Lane 3")
+        tag_html = (
+            "".join(f"<span class='tag'>{s}</span>" for s in sources)
+            if sources
+            else "<span class='tag warn'>unattributed</span>"
+        )
+        rows.append(
+            f"<tr><td>{_esc(mid)}</td><td><div class='tagrow'>{tag_html}</div></td></tr>"
+        )
+
+    body = f"""
+<h1>Anti-echo cascade</h1>
+<p class="hint">Each model excluded from Lane 4's candidate pool because it was already surfaced upstream. Source attribution is reconstructed at render time by intersecting <code>anti_echo_model_ids</code> against each upstream lane's surfaced models — no new telemetry needed.</p>
+
+<table>
+<tr><th>Excluded model</th><th>Source lane(s)</th></tr>
+{"".join(rows)}
+</table>
+"""
+    return _render_scaffold(title="Lolla — Anti-echo", body=body, current_path="/audit/anti-echo")
+
+
+# ---------------- Panel: /audit/routing ----------------
+
+
+_TIEBREAKER_ABORT_REASONS_HUMAN = {
+    "fewer_than_2_candidates": "Fewer than 2 candidates — gate doesn't apply.",
+    "fewer_than_2_after_dedup": "Fewer than 2 candidates after dedup — gate doesn't apply.",
+    "outside_epsilon_window": "Outside near-tie window — affinity gap was decisive.",
+    "matcher_exception": "Matcher raised an exception — gate aborted defensively.",
+    "matcher_empty_result": "Matcher returned no activation match — fell back to top-1.",
+    "below_noise_floor": "Both top-2 below the activation noise floor — fell back to top-1.",
+    "no_improvement": "Activation match didn't favour top-2 — kept original top-1.",
+}
+
+
+def _render_tiebreaker_cell(trace: dict | None) -> str:
+    if not trace:
+        return "<span class='empty'>—</span>"
+    if trace.get("fired"):
+        return f"<span class='tag ok'>fired</span>"
+    abort_reason = str(trace.get("abort_reason") or "")
+    human = _TIEBREAKER_ABORT_REASONS_HUMAN.get(abort_reason, abort_reason or "—")
+    return f"<span class='tag'>aborted</span> <small>{_esc(human)}</small>"
+
+
+def _render_routing_html() -> str:
+    _reload_result_if_changed()
+    audit = _audit_summary()
+    decisions = audit.get("routing_decisions") or []
+    if not decisions:
+        return _empty_panel(
+            title="Routing decisions",
+            message=(
+                "No routing decisions on this run — no detected tendencies. "
+                "See <a href=\"/audit/lane1\">Lane 1 funnel</a> for the Pass 1/2 picture."
+            ),
+            current_path="/audit/routing",
+        )
+
+    rows = []
+    for rd in decisions:
+        antidotes = ", ".join(_esc(m) for m in (rd.get("antidote_model_ids") or []))
+        rows.append(
+            f"<tr><td>{_esc(rd.get('tendency_id', ''))}</td>"
+            f"<td>{_esc(rd.get('primary_model_id', ''))}</td>"
+            f"<td>{antidotes or '—'}</td>"
+            f"<td>{_render_tiebreaker_cell(rd.get('tiebreaker_supporting'))}</td>"
+            f"<td>{_render_tiebreaker_cell(rd.get('tiebreaker_risk'))}</td></tr>"
+        )
+
+    body = f"""
+<h1>Routing decisions</h1>
+<p class="hint">For each detected tendency: the curated primary model, antidotes, and the activation-tiebreaker trace (whether the gate fired or which clause aborted it).</p>
+
+<table>
+<tr><th>Tendency</th><th>Primary model</th><th>Antidotes</th><th>Supporting tiebreaker</th><th>Risk tiebreaker</th></tr>
+{"".join(rows)}
+</table>
+"""
+    return _render_scaffold(title="Lolla — Routing", body=body, current_path="/audit/routing")
+
+
+# ---------------- Panel: /audit/expansions ----------------
+
+
+def _render_expansions_html() -> str:
+    _reload_result_if_changed()
+    expansions = (_RESULT.get("companion_card") or {}).get("expansions") or []
+    if not expansions:
+        return _empty_panel(
+            title="Companion expansions",
+            message=(
+                "No expansions on this run. See "
+                "<a href=\"/audit/lane2\">Lane 2 funnel</a> for the candidate picture."
+            ),
+            current_path="/audit/expansions",
+        )
+
+    by_anchor: dict[str, list[dict]] = {}
+    for e in expansions:
+        anchor = e.get("source_model_id") or "(unknown anchor)"
+        by_anchor.setdefault(anchor, []).append(e)
+
+    sections = []
+    for anchor, entries in by_anchor.items():
+        rows = []
+        for e in entries:
+            rows.append(
+                f"<tr><td>{_esc(e.get('model_id', ''))}</td>"
+                f"<td><span class='tag'>{_esc(e.get('relation_type', ''))}</span></td>"
+                f"<td>{_esc(e.get('activation_condition', ''))}</td>"
+                f"<td>{_esc(e.get('affinity_rationale', ''))}</td>"
+                f"<td>{_esc(e.get('why_relevant', ''))}</td></tr>"
+            )
+        sections.append(
+            f"<h3>From anchor: <code>{_esc(anchor)}</code> ({len(entries)} expansions)</h3>"
+            f"<table><tr><th>Expanded model</th><th>Relation</th>"
+            f"<th>Activation condition</th><th>Affinity rationale</th>"
+            f"<th>Why relevant</th></tr>{''.join(rows)}</table>"
+        )
+
+    body = f"""
+<h1>Companion expansions</h1>
+<p class="hint">Relation-graph traversal output per Lane 2 anchor. Each anchor expands into ~3 neighbours via curated relations (ally, antagonist, tension).</p>
+
+{"".join(sections)}
+"""
+    return _render_scaffold(title="Lolla — Expansions", body=body, current_path="/audit/expansions")
+
+
+# ---------------- Index: /audit ----------------
+
+
+def _render_audit_index_html() -> str:
+    _reload_result_if_changed()
+    audit_present = bool(_audit_summary())
+    items = [
+        ("/audit/lane1", "Lane 1 — Pass 1 + Pass 2 funnel",
+         "Triage scores across all 24 tendencies, the threshold, the triggered set with source attribution, and Pass 2 outcomes with rationale."),
+        ("/audit/lane2", "Lane 2 — Companion selection funnel",
+         "All 60 candidates → accepted-before-cap → final cheat-sheet anchors, plus rejection reasons, capped, duplicates, quote repairs, and silently-omitted buckets."),
+        ("/audit/lane4", "Lane 4 — Dimension coverage",
+         "All 15 catalog dimensions marked detected/not-detected, covered/gap, with gap routes and gap questions."),
+        ("/audit/anti-echo", "Anti-echo cascade",
+         "Every model excluded from Lane 4 because an upstream lane already surfaced it, with lane-of-origin attribution computed at render time."),
+        ("/audit/routing", "Routing decisions",
+         "For each detected tendency: primary, antidotes, and the activation-tiebreaker trace (fired or which clause aborted)."),
+        ("/audit/expansions", "Companion expansions",
+         "Relation-graph traversal output per Lane 2 anchor — ~3 neighbours per anchor with relation type, activation condition, why relevant."),
+    ]
+    cards = []
+    for href, title, desc in items:
+        cards.append(
+            f'<li><a href="{_esc(href)}"><strong>{_esc(title)}</strong></a><br>'
+            f'<span style="color:#555">{_esc(desc)}</span></li>'
+        )
+    if not audit_present:
+        notice = (
+            '<div class="empty">This result has no <code>audit_summary</code> '
+            'block — likely a pre-Phase-7 artifact. Panels will render their '
+            'empty states; re-run the pipeline to populate them.</div>'
+        )
+    else:
+        notice = ""
+    body = f"""
+<h1>Audit panels</h1>
+<p class="hint">Operator surface for the <code>audit_summary</code> data the React SPA does not render. Each panel is server-rendered HTML and works whether or not the SPA bundle is present.</p>
+{notice}
+<ul style="list-style:none;padding:0;">
+{"".join(f'<div style="margin-bottom:1.5rem">{c}</div>' for c in cards)}
+</ul>
+"""
+    return _render_scaffold(title="Lolla — Audit", body=body, current_path="/audit")
 
 
 class ResultHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
+        # Pass STATIC_DIR even if it doesn't exist — SimpleHTTPRequestHandler
+        # accepts a non-existent directory string. The /audit/* and /usage
+        # routes do not depend on the SPA bundle being present (skill
+        # portability — see PR 3 of the 2026-04-28 visibility roadmap); only
+        # the SPA fallback path checks ``STATIC_DIR.is_dir()`` before serving.
         super().__init__(*args, directory=str(STATIC_DIR), **kwargs)
 
     def do_GET(self):
@@ -723,13 +1419,21 @@ class ResultHandler(SimpleHTTPRequestHandler):
                 return
 
         if path == "/usage":
-            body = _render_usage_html().encode("utf-8")
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.send_header("Content-Length", str(len(body)))
-            self.send_header("Access-Control-Allow-Origin", "*")
-            self.end_headers()
-            self.wfile.write(body)
+            self._html_response(_render_usage_html())
+            return
+
+        # Audit panels — server-rendered HTML, no SPA dependency.
+        _audit_routes = {
+            "/audit": _render_audit_index_html,
+            "/audit/lane1": _render_lane1_html,
+            "/audit/lane2": _render_lane2_html,
+            "/audit/lane4": _render_lane4_html,
+            "/audit/anti-echo": _render_anti_echo_html,
+            "/audit/routing": _render_routing_html,
+            "/audit/expansions": _render_expansions_html,
+        }
+        if path in _audit_routes:
+            self._html_response(_audit_routes[path]())
             return
 
         if path.startswith("/api/model/"):
@@ -773,6 +1477,15 @@ class ResultHandler(SimpleHTTPRequestHandler):
         else:
             self._error_response(503, "Observatory frontend not built.")
 
+    def _html_response(self, body_str: str, status: int = 200):
+        body = body_str.encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(body)
+
     def _json_response(self, data, status: int = 200):
         body = json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8")
         self.send_response(status)
@@ -811,10 +1524,16 @@ def main():
 
     _CASE_NAME = args.name if args.name else _derive_case_name(_RESULT)
 
+    # SPA bundle is optional (skill portability): /audit/* and /usage are
+    # server-rendered HTML and work without it. Only warn when the bundle is
+    # absent so the operator knows the React app at /  won't render.
     if not STATIC_DIR.is_dir():
-        print(f"Error: Observatory build not found at {STATIC_DIR}", file=sys.stderr)
-        print("Expected: observatory/build/index.html", file=sys.stderr)
-        sys.exit(1)
+        print(
+            f"Note: Observatory SPA bundle not found at {STATIC_DIR} — "
+            "the React app at / will be unavailable, but /audit/* and /usage "
+            "panels still work.",
+            file=sys.stderr,
+        )
 
     # Try ports starting from the requested one
     port = args.port
