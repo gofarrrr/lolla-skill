@@ -32,6 +32,14 @@ Three places to read it:
 
 The chat summary at end of Step 4 prints a one-line version (`Run cost so far: $X.XX • Y OpenRouter calls • Z.Z% cache hit`).
 
+The `/usage` page surfaces the following blocks (server-side rendered, no SPA rebuild required):
+
+- **By vendor** — OpenRouter / OpenAI / Anthropic totals, calls, tokens, cache-hit rate, cost.
+- **OpenRouter — by stage** — per-stage call count, prompt / cached / completion tokens, and **cache-hit % per stage**. This per-stage cache rate is the highest-value diagnostic on the page: stages with identical system prompts across calls (e.g. `bullshit_index` across 50+ passages) cache at 80 %+ on a typical run; stages with per-call-varying system prompts (most pipeline lanes) cache at 2-3 % and are the candidates for the prompt-restructure follow-up.
+- **OpenAI — by model** — embedding model vs. expansion model split.
+- **Anthropic Step-7 sub-agents — by lane** — which Step-7 lane (1 = Delta, 2 = Companion, 3 = Frame, 4 = Coverage) was spawned, its model, status, total tokens, duration, and estimated cost. Lanes that were `skipped_empty` or `skipped_error` do not appear because they were never spawned (per the SKILL Step 8b filter — see `merge_subagent_calls` and the input-record validation).
+- **Prompt versions** — 12-char hash of the system prompt used at each pipeline stage. Useful for reproducibility ("which prompt revision produced this finding?") and for diffing two runs of the same case.
+
 ## What gets measured
 
 Lolla makes calls to three vendors. Each is recorded into `usage_summary.vendors.<vendor>`.
