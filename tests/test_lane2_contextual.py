@@ -229,7 +229,7 @@ def test_run_verification_from_packet_accepts_quote_substring_of_assistant():
     candidates = [
         {"model_id": "authority-bias", "model_name": "Authority Bias", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=fingerprint,
         candidates=candidates,
@@ -266,7 +266,7 @@ def test_run_verification_from_packet_rejects_quote_not_in_assistant_turns():
     candidates = [
         {"model_id": "authority-bias", "model_name": "Authority Bias", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=fingerprint,
         candidates=candidates,
@@ -300,7 +300,7 @@ def test_run_verification_accepts_normalized_literal_quote():
     candidates = [
         {"model_id": "base-rates", "model_name": "Base Rates", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -340,7 +340,7 @@ def test_run_verification_accepts_whitespace_normalized_literal_quote():
             "activation_trigger": "x",
         },
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -376,7 +376,7 @@ def test_run_verification_repairs_ellipsis_quote_with_both_halves_in_bounded_spa
     candidates = [
         {"model_id": "margin-of-safety", "model_name": "Margin Of Safety", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -442,7 +442,7 @@ def test_run_verification_does_not_repair_ellipsis_when_only_one_half_in_source(
             "activation_trigger": "x",
         },
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -491,7 +491,7 @@ def test_run_verification_does_not_repair_ellipsis_when_halves_exceed_bounded_wi
     candidates = [
         {"model_id": "optionality", "model_name": "Optionality", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -544,7 +544,7 @@ def test_run_verification_ellipsis_quote_does_not_fall_back_to_token_overlap():
             "activation_trigger": "x",
         },
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -576,7 +576,7 @@ def test_run_verification_repairs_paraphrased_quote_to_literal_source_span():
     candidates = [
         {"model_id": "base-rates", "model_name": "Base Rates", "activation_trigger": "x"},
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -620,7 +620,7 @@ def test_run_verification_does_not_repair_meaning_flipped_quote():
             "activation_trigger": "x",
         },
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -660,7 +660,7 @@ def test_run_verification_does_not_repair_contracted_negation_flip():
             "activation_trigger": "x",
         },
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -708,7 +708,7 @@ def test_run_verification_does_not_repair_quote_that_drops_source_negation():
             "activation_trigger": "x",
         },
     ]
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=candidates,
@@ -728,7 +728,7 @@ def test_run_verification_from_packet_empty_candidates_short_circuits():
     client = _RecordingClient()
     ctx = _ctx()
     packet = _packet_from_ctx(ctx)
-    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs = run_verification_call_from_packet(
+    detected, rejected, accepted_before_cap, capped, duplicate_accepts, quote_repairs, _silently_omitted = run_verification_call_from_packet(
         packet=packet,
         fingerprint_payload=FingerprintPayload(raw=[], validated=[], dropped=[]),
         candidates=[],

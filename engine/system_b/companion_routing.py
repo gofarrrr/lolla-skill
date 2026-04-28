@@ -692,11 +692,13 @@ def run_verification_call_from_packet(
     list[dict[str, str]],
     list[dict[str, str]],
     list[dict[str, str]],
+    list[dict[str, str]],
 ]:
     """Packet-driven Lane 2 verification call.
 
-    Returns a 6-tuple ``(detected_models, rejected_models,
-    accepted_before_cap, capped_models, duplicate_accepts, quote_repairs)``:
+    Returns a 7-tuple ``(detected_models, rejected_models,
+    accepted_before_cap, capped_models, duplicate_accepts, quote_repairs,
+    silently_omitted)``:
 
     - ``detected_models``: post-cap surfaced models (top-N by LLM order, where
       N = ``_DETECTED_MODELS_CAP``). Computed from the deduplicated
@@ -723,16 +725,21 @@ def run_verification_call_from_packet(
     - ``quote_repairs``: accepted verifier entries whose non-literal quote
       was repaired to a literal substring before acceptance. These are
       accepted, not rejected, and are persisted for quote-gate observability.
+    - ``silently_omitted``: candidates the verifier never mentioned in
+      either accepted or rejected. NOT semantically rejected — the LLM
+      just dropped them on the floor. Surfaced so the audit trail
+      accounts for every candidate sent in (closes the
+      ``cognitive-dissonance`` ghost from the consultant case).
     """
     if not candidates:
-        return [], [], [], [], [], []
+        return [], [], [], [], [], [], []
 
     assistant_text = _joined_assistant_turns_from_packet(packet)
     raw_payload = client.run_json(
         _build_verification_system_prompt(),
         _build_verification_user_prompt_from_packet(packet, fingerprint_payload, candidates),
     )
-    accepted, rejected, quote_repairs = parse_verification_response(
+    accepted, rejected, quote_repairs, silently_omitted = parse_verification_response(
         raw_payload,
         assistant_text,
         {candidate["model_id"] for candidate in candidates},
@@ -788,7 +795,15 @@ def run_verification_call_from_packet(
         }
         for m in accepted_before_cap[_DETECTED_MODELS_CAP:]
     ]
-    return detected_models, rejected, accepted_before_cap, capped_models, duplicate_accepts, quote_repairs
+    return (
+        detected_models,
+        rejected,
+        accepted_before_cap,
+        capped_models,
+        duplicate_accepts,
+        quote_repairs,
+        silently_omitted,
+    )
 
 
 def is_malformed_verifier_response(raw_payload: object) -> bool:
@@ -817,7 +832,25 @@ def parse_verification_response(
     raw_payload: dict,
     vanilla_answer: str,
     candidate_ids: set[str] | list[str] | tuple[str, ...],
-) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+) -> tuple[
+    list[dict[str, str]],
+    list[dict[str, str]],
+    list[dict[str, str]],
+    list[dict[str, str]],
+]:
+    """Parse verifier response into four buckets.
+
+    Returns ``(accepted, rejected, quote_repairs, silently_omitted)``:
+
+    - ``accepted`` / ``rejected`` / ``quote_repairs``: existing semantics
+      unchanged.
+    - ``silently_omitted``: candidates the LLM did NOT mention in either
+      ``accepted`` or ``rejected``. Each item carries
+      ``{model_id, drop_reason: "not_in_verifier_response"}``. Surfaced so
+      the audit trail accounts for every candidate we sent in (the
+      consultant case from the 2026-04-28 audit memo had a
+      ``cognitive-dissonance`` ghost — sent in, never mentioned, invisible).
+    """
     allowed_ids = {str(item).strip() for item in candidate_ids if str(item).strip()}
     accepted_entries = require_list_of_dicts(raw_payload, "accepted", "companion_verification")
     rejected_entries = require_list_of_dicts(raw_payload, "rejected", "companion_verification")
@@ -825,6 +858,15 @@ def parse_verification_response(
     rejected: list[dict[str, str]] = []
     quote_repairs: list[dict[str, str]] = []
     answer_text = vanilla_answer if isinstance(vanilla_answer, str) else str(vanilla_answer or "")
+    mentioned_ids: set[str] = set()
+    for entry in accepted_entries:
+        mid = coerce_str(entry.get("model_id")).strip()
+        if mid:
+            mentioned_ids.add(mid)
+    for entry in rejected_entries:
+        mid = coerce_str(entry.get("model_id")).strip()
+        if mid:
+            mentioned_ids.add(mid)
 
     for item in accepted_entries:
         model_id = coerce_str(item.get("model_id")).strip()
@@ -914,12 +956,20 @@ def parse_verification_response(
                 continue
         final_accepted.append(item)
 
+    silently_omitted = sorted(
+        (
+            {"model_id": mid, "drop_reason": "not_in_verifier_response"}
+            for mid in (allowed_ids - mentioned_ids)
+        ),
+        key=lambda item: item["model_id"],
+    )
+
     final_model_ids = {item["model_id"] for item in final_accepted}
     quote_repairs = [
         repair for repair in quote_repairs if repair.get("model_id", "") in final_model_ids
     ]
 
-    return final_accepted, rejected, quote_repairs
+    return final_accepted, rejected, quote_repairs, silently_omitted
 
 
 def _build_verification_system_prompt() -> str:

@@ -370,17 +370,21 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
         "companion_verification_capped_models": list(result.audit.companion_verification_capped_models),
         "companion_verification_duplicate_accepts": list(result.audit.companion_verification_duplicate_accepts),
         "companion_verification_quote_repairs": list(result.audit.companion_verification_quote_repairs),
+        "companion_verification_silently_omitted": list(result.audit.companion_verification_silently_omitted),
         "companion_candidate_cap": result.audit.companion_candidate_cap,
         "embedding_mode": result.audit.embedding_mode,
+        "embedding_tendency_ranks": list(result.audit.embedding_tendency_ranks),
         "deep_check_results": [
             {
                 "tendency_id": dcr.tendency_id,
                 "tendency_name": dcr.tendency_name,
                 "detected": dcr.detected,
                 "confidence": dcr.confidence,
+                "evidence": dcr.evidence,
                 "sub_pattern": dcr.sub_pattern,
                 "specific_passage": dcr.specific_passage[:200] if dcr.specific_passage else "",
                 "severity": dcr.severity,
+                "reason": dcr.reason,
             }
             for dcr in result.audit.deep_check_results
         ],

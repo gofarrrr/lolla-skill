@@ -88,7 +88,7 @@ def test_parser_preserves_new_rejection_reason_mechanism_topical_only():
             {"model_id": "reasoning-mode-router", "rejection_reason": "mechanism_topical_only"},
         ],
     }
-    accepted, rejected, quote_repairs = parse_verification_response(
+    accepted, rejected, quote_repairs, _silently_omitted = parse_verification_response(
         raw,
         vanilla_answer="some assistant answer",
         candidate_ids={"reasoning-mode-router"},
@@ -106,7 +106,7 @@ def test_parser_preserves_new_rejection_reason_recurring_execution_required():
             {"model_id": "checklists", "rejection_reason": "recurring_execution_required"},
         ],
     }
-    accepted, rejected, _ = parse_verification_response(
+    accepted, rejected, _, _ = parse_verification_response(
         raw,
         vanilla_answer="numbered list of three options",
         candidate_ids={"checklists"},
@@ -123,7 +123,7 @@ def test_parser_preserves_existing_rejection_reason_strings_unchanged():
             {"model_id": "tier-2-high-value", "rejection_reason": "passage already claimed by more specific model"},
         ],
     }
-    _, rejected, _ = parse_verification_response(
+    _, rejected, _, _ = parse_verification_response(
         raw,
         vanilla_answer="x",
         candidate_ids={"second-order-thinking", "tier-2-high-value"},

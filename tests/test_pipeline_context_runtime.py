@@ -122,7 +122,7 @@ def test_pipeline_run_uses_joined_assistant_turns_for_embedding_signal() -> None
 
     def _capture_embedding_input(*, assistant_text, retriever, api_key):  # noqa: ARG001
         captured["assistant_text"] = assistant_text
-        return {}
+        return {}, []
 
     pipeline = SystemBPipeline.__new__(SystemBPipeline)
     pipeline._config = PipelineConfig(
