@@ -457,6 +457,14 @@ def _build_case_response() -> dict:
     if usage_summary:
         response["usage_summary"] = usage_summary
 
+    # Prompt versions — per-stage hashes of the system prompts used in this
+    # run. Useful for reproducibility (which prompt revision produced this
+    # finding) and for diffing two runs of the same case. Include the field
+    # whenever the key exists (even if `{}`) so consumers can distinguish
+    # "supported but empty" from "not provided" — keeps the API shape stable.
+    if "prompt_versions" in r:
+        response["prompt_versions"] = r.get("prompt_versions") or {}
+
     return response
 
 
@@ -533,17 +541,86 @@ def _render_usage_html() -> str:
             f"<td>{_fmt_usd(v.get('estimated_cost_usd'))}</td></tr>"
         )
 
-    # OpenRouter per-stage breakdown
+    # OpenRouter per-stage breakdown — now includes cache-hit % per stage,
+    # which is the key signal for "where is caching actually working." On a
+    # typical Lolla run BI pulls high cache rates (shared system prompt
+    # across passages); pipeline lanes pull low rates because each stage
+    # has a different system prompt. Surfacing the gap directly tells the
+    # operator where the next prompt-restructuring win lives.
     or_block = vendors.get("openrouter") or {}
     stage_rows = []
-    for stage, totals in (or_block.get("stages") or {}).items():
+    for stage, totals in sorted(
+        (or_block.get("stages") or {}).items(),
+        key=lambda kv: -kv[1].get("calls", 0),
+    ):
+        prompt_tok = totals.get("prompt_tokens", 0) or 0
+        cached_tok = totals.get("cached_tokens", 0) or 0
+        hit_rate = (cached_tok / prompt_tok * 100) if prompt_tok else 0.0
         stage_rows.append(
             f"<tr><td>{_esc(stage)}</td>"
             f"<td>{_fmt_int(totals.get('calls'))}</td>"
-            f"<td>{_fmt_int(totals.get('prompt_tokens'))}</td>"
-            f"<td>{_fmt_int(totals.get('cached_tokens'))}</td>"
+            f"<td>{_fmt_int(prompt_tok)}</td>"
+            f"<td>{_fmt_int(cached_tok)}</td>"
+            f"<td>{hit_rate:.1f}%</td>"
             f"<td>{_fmt_int(totals.get('completion_tokens'))}</td></tr>"
         )
+
+    # OpenAI by-model breakdown — surfaces the embed vs. expansion split
+    # that the vendor row aggregates away.
+    embed_block = vendors.get("openai_embeddings") or {}
+    embed_rows = []
+    for model, info in (embed_block.get("by_model") or {}).items():
+        embed_rows.append(
+            f"<tr><td>{_esc(model)}</td>"
+            f"<td>{_fmt_int(info.get('calls'))}</td>"
+            f"<td>{_fmt_int(info.get('input_tokens'))}</td>"
+            f"<td>{_fmt_int(info.get('output_tokens'))}</td>"
+            f"<td>{_fmt_usd(info.get('estimated_cost_usd'))}</td></tr>"
+        )
+
+    # Anthropic sub-agents by lane — built by the enhanced
+    # _build_subagent_vendor_block. Tells the operator which Step-7 lane
+    # (1=Delta, 2=Companion, 3=Frame, 4=Coverage) was actually spawned and
+    # what each cost. Lanes that were skipped_empty / skipped_error are
+    # absent because they shouldn't be in the input records (per the SKILL
+    # Step 8b filter).
+    sub_block = vendors.get("anthropic_subagents") or {}
+    sub_rows = []
+    LANE_NAMES = {
+        "1": "DeltaCard",
+        "2": "CompanionCheatSheet",
+        "3": "FramePressureCard",
+        "4": "StructuralCoverageCard",
+    }
+    for lane_key, info in (sub_block.get("by_lane") or {}).items():
+        lane_label = f"{lane_key} ({LANE_NAMES.get(lane_key, '?')})" if lane_key in LANE_NAMES else lane_key
+        sub_rows.append(
+            f"<tr><td>{_esc(lane_label)}</td>"
+            f"<td>{_esc(info.get('model'))}</td>"
+            f"<td>{_esc(info.get('status'))}</td>"
+            f"<td>{_fmt_int(info.get('calls'))}</td>"
+            f"<td>{_fmt_int(info.get('total_tokens'))}</td>"
+            f"<td>{_fmt_int(info.get('duration_ms'))} ms</td>"
+            f"<td>{_fmt_usd(info.get('estimated_cost_usd'))}</td></tr>"
+        )
+
+    # Prompt versions — per-stage system-prompt hashes, useful for
+    # reproducibility ("which prompt revision produced this finding?") and
+    # for diffing two runs of the same case.
+    prompt_versions = _RESULT.get("prompt_versions") or {}
+    pv_rows = []
+    for stage, ver_hash in sorted(prompt_versions.items()):
+        # Display the documented 12-char hash form. Upstream currently emits
+        # 12 chars already so this is a no-op today; truncating defensively
+        # keeps the UI contract stable if upstream ever switches to longer
+        # hashes. Full hash is preserved in the title attribute for hover.
+        full = str(ver_hash)
+        short = full[:12]
+        pv_rows.append(
+            f"<tr><td>{_esc(stage)}</td>"
+            f"<td><code title=\"{_esc(full)}\">{_esc(short)}</code></td></tr>"
+        )
+
     notes_html = "".join(f"<li>{_esc(n)}</li>" for n in (us.get("notes") or []))
 
     return f"""<!doctype html>
@@ -561,6 +638,7 @@ h2 {{ margin-top: 2rem; }}
 .notes {{ background: #fafafa; border-left: 3px solid #ccc; padding: 0.5rem 1rem; font-size: 0.9rem; }}
 .notes li {{ margin: 0.4rem 0; }}
 code {{ background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.9em; }}
+.hint {{ color: #666; font-size: 0.85rem; margin-top: -1.5rem; margin-bottom: 1rem; }}
 </style></head><body>
 <h1>Usage Summary</h1>
 <div class="meta">
@@ -574,9 +652,30 @@ code {{ background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-si
 <table>{"".join(rows)}</table>
 
 <h2>OpenRouter — by stage</h2>
+<p class="hint">Cache-hit % per stage tells you where prompt-prefix sharing is actually working. Stages whose system prompt is identical across calls (e.g. <code>bullshit_index</code> across all passages) cache well; stages with per-call-varying system prompts (most pipeline lanes) cache poorly.</p>
 <table>
-<tr><th>Stage</th><th>Calls</th><th>Prompt tokens</th><th>Cached tokens</th><th>Completion tokens</th></tr>
-{"".join(stage_rows) if stage_rows else "<tr><td colspan='5'>No OpenRouter calls recorded.</td></tr>"}
+<tr><th>Stage</th><th>Calls</th><th>Prompt tokens</th><th>Cached tokens</th><th>Cache hit %</th><th>Completion tokens</th></tr>
+{"".join(stage_rows) if stage_rows else "<tr><td colspan='6'>No OpenRouter calls recorded.</td></tr>"}
+</table>
+
+<h2>OpenAI — by model</h2>
+<table>
+<tr><th>Model</th><th>Calls</th><th>Input tokens</th><th>Output tokens</th><th>Estimated cost</th></tr>
+{"".join(embed_rows) if embed_rows else "<tr><td colspan='5'>No OpenAI calls recorded.</td></tr>"}
+</table>
+
+<h2>Anthropic Step-7 sub-agents — by lane</h2>
+<p class="hint">Sub-agent token counts come from Claude Code task notifications, which expose <code>total_tokens</code> only — no prompt/completion split. The cost estimate treats the whole total as input (conservative over-estimate).</p>
+<table>
+<tr><th>Lane</th><th>Model</th><th>Status</th><th>Calls</th><th>Total tokens</th><th>Duration</th><th>Estimated cost</th></tr>
+{"".join(sub_rows) if sub_rows else "<tr><td colspan='7'>No sub-agent calls recorded yet (added by SKILL Step 8b after Step 7 completes).</td></tr>"}
+</table>
+
+<h2>Prompt versions</h2>
+<p class="hint">12-char hash of the system prompt used at each stage. Two runs of the same case with the same hashes received identical prompts. Different hashes mean a prompt revision happened in between.</p>
+<table>
+<tr><th>Stage</th><th>Prompt hash</th></tr>
+{"".join(pv_rows) if pv_rows else "<tr><td colspan='2'>No prompt versions recorded.</td></tr>"}
 </table>
 
 <h2>Notes</h2>
@@ -733,7 +832,8 @@ def main():
         sys.exit(1)
 
     print(f"Lolla Observatory at http://localhost:{port}")
-    print(f"  Case: {_CASE_NAME}")
+    print(f"  Case:  {_CASE_NAME}")
+    print(f"  Usage: http://localhost:{port}/usage  (per-run cost & call breakdown)")
     print(f"  Result: {result_path}")
     print(f"  Knowledge graph: {SKILL_DATA_DIR / 'knowledge_graph.json'}")
 

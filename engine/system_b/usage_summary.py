@@ -285,6 +285,16 @@ def _build_subagent_vendor_block(subagent_calls: Sequence[Mapping]) -> dict:
     by_model: dict[str, dict] = defaultdict(
         lambda: {"calls": 0, "total_tokens": 0, "estimated_cost_usd": 0.0}
     )
+    by_lane: dict[str, dict] = defaultdict(
+        lambda: {
+            "calls": 0,
+            "total_tokens": 0,
+            "estimated_cost_usd": 0.0,
+            "model": "",
+            "status": "",
+            "duration_ms": 0,
+        }
+    )
     cost_total = 0.0
     cost_known_calls = 0
     cost_unknown_calls = 0
@@ -294,8 +304,36 @@ def _build_subagent_vendor_block(subagent_calls: Sequence[Mapping]) -> dict:
             continue
         model = str(raw.get("model", ""))
         total = _safe_int(raw.get("total_tokens"))
+        # Lane labels keep the original int/string form intact, falling back to
+        # "unlabeled" for older sub-agent records that pre-date the lane field.
+        lane_raw = raw.get("lane")
+        lane_key = str(lane_raw) if lane_raw is not None else "unlabeled"
+        status = str(raw.get("status", ""))
+        duration_ms = _safe_int(raw.get("duration_ms"))
+
         by_model[model]["calls"] += 1
         by_model[model]["total_tokens"] += total
+        by_lane[lane_key]["calls"] += 1
+        by_lane[lane_key]["total_tokens"] += total
+        # Prefer last non-empty for model/status (rather than first-write-wins).
+        # On a single-record-per-lane run this is identical; if a lane ever has
+        # multiple records (retries, fallbacks) we don't want to lock in the
+        # first one and report stale metadata while calls/tokens accumulate.
+        # If two distinct non-empty values disagree, surface "mixed" so the
+        # operator sees the inconsistency rather than us silently picking one.
+        if model:
+            existing_model = by_lane[lane_key]["model"]
+            if existing_model and existing_model != model and existing_model != "mixed":
+                by_lane[lane_key]["model"] = "mixed"
+            else:
+                by_lane[lane_key]["model"] = model
+        if status:
+            existing_status = by_lane[lane_key]["status"]
+            if existing_status and existing_status != status and existing_status != "mixed":
+                by_lane[lane_key]["status"] = "mixed"
+            else:
+                by_lane[lane_key]["status"] = status
+        by_lane[lane_key]["duration_ms"] += duration_ms
 
         price = lookup_chat_price("anthropic", model)
         if price is None:
@@ -311,6 +349,7 @@ def _build_subagent_vendor_block(subagent_calls: Sequence[Mapping]) -> dict:
         )
         cost_total += call_cost
         by_model[model]["estimated_cost_usd"] += call_cost
+        by_lane[lane_key]["estimated_cost_usd"] += call_cost
 
     return {
         "provider": "anthropic",
@@ -329,6 +368,22 @@ def _build_subagent_vendor_block(subagent_calls: Sequence[Mapping]) -> dict:
                 "estimated_cost_usd": round(v["estimated_cost_usd"], 6),
             }
             for model, v in sorted(by_model.items())
+        },
+        # Per-lane breakdown — surfaces which Step-7 lane was the most
+        # expensive without losing the model-level aggregate. Lane keys are
+        # the lane numbers the SKILL Step 8b sends ("1", "2", "3", "4"); the
+        # "unlabeled" bucket catches older records that pre-date the lane
+        # field.
+        "by_lane": {
+            lane: {
+                "model": v["model"],
+                "status": v["status"],
+                "calls": v["calls"],
+                "total_tokens": v["total_tokens"],
+                "duration_ms": v["duration_ms"],
+                "estimated_cost_usd": round(v["estimated_cost_usd"], 6),
+            }
+            for lane, v in sorted(by_lane.items())
         },
     }
 
