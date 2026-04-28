@@ -78,6 +78,26 @@ def test_parser_captures_reason_on_detected_false_branch():
     assert result.reason.startswith("The assistant explicitly questioned")
 
 
+def test_run_pipeline_serializer_includes_reason_in_deep_check_results():
+    """The audit_summary serializer must surface DeepCheckResult.reason.
+
+    Regression guard: an earlier version of this PR fixed the parser and the
+    prompt but left `reason` off the serializer dict in scripts/run_pipeline.py,
+    so the field landed on the in-memory dataclass and was dropped at JSON
+    write time. Pin the serializer source so the field stays in.
+    """
+    serializer_source = (
+        Path(__file__).resolve().parents[1] / "scripts" / "run_pipeline.py"
+    ).read_text()
+    deep_check_block_start = serializer_source.find('"deep_check_results": [')
+    assert deep_check_block_start > 0, "deep_check_results serializer block not found"
+    deep_check_block = serializer_source[deep_check_block_start:deep_check_block_start + 800]
+    assert '"reason": dcr.reason' in deep_check_block, (
+        "Pass 2 reason rationale must appear in audit_summary.deep_check_results "
+        "or it disappears at JSON serialization despite being captured by the parser"
+    )
+
+
 def test_pass2_prompt_template_requires_reason_on_both_branches():
     """The prompt must explicitly require `reason` on the detected:true branch.
 

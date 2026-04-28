@@ -380,9 +380,11 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
                 "tendency_name": dcr.tendency_name,
                 "detected": dcr.detected,
                 "confidence": dcr.confidence,
+                "evidence": dcr.evidence,
                 "sub_pattern": dcr.sub_pattern,
                 "specific_passage": dcr.specific_passage[:200] if dcr.specific_passage else "",
                 "severity": dcr.severity,
+                "reason": dcr.reason,
             }
             for dcr in result.audit.deep_check_results
         ],
