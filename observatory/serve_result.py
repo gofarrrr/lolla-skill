@@ -459,10 +459,11 @@ def _build_case_response() -> dict:
 
     # Prompt versions — per-stage hashes of the system prompts used in this
     # run. Useful for reproducibility (which prompt revision produced this
-    # finding) and for diffing two runs of the same case.
-    prompt_versions = r.get("prompt_versions")
-    if prompt_versions:
-        response["prompt_versions"] = prompt_versions
+    # finding) and for diffing two runs of the same case. Include the field
+    # whenever the key exists (even if `{}`) so consumers can distinguish
+    # "supported but empty" from "not provided" — keeps the API shape stable.
+    if "prompt_versions" in r:
+        response["prompt_versions"] = r.get("prompt_versions") or {}
 
     return response
 
@@ -609,8 +610,15 @@ def _render_usage_html() -> str:
     prompt_versions = _RESULT.get("prompt_versions") or {}
     pv_rows = []
     for stage, ver_hash in sorted(prompt_versions.items()):
+        # Display the documented 12-char hash form. Upstream currently emits
+        # 12 chars already so this is a no-op today; truncating defensively
+        # keeps the UI contract stable if upstream ever switches to longer
+        # hashes. Full hash is preserved in the title attribute for hover.
+        full = str(ver_hash)
+        short = full[:12]
         pv_rows.append(
-            f"<tr><td>{_esc(stage)}</td><td><code>{_esc(ver_hash)}</code></td></tr>"
+            f"<tr><td>{_esc(stage)}</td>"
+            f"<td><code title=\"{_esc(full)}\">{_esc(short)}</code></td></tr>"
         )
 
     notes_html = "".join(f"<li>{_esc(n)}</li>" for n in (us.get("notes") or []))

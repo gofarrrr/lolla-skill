@@ -315,10 +315,24 @@ def _build_subagent_vendor_block(subagent_calls: Sequence[Mapping]) -> dict:
         by_model[model]["total_tokens"] += total
         by_lane[lane_key]["calls"] += 1
         by_lane[lane_key]["total_tokens"] += total
-        if not by_lane[lane_key]["model"]:
-            by_lane[lane_key]["model"] = model
-        if not by_lane[lane_key]["status"]:
-            by_lane[lane_key]["status"] = status
+        # Prefer last non-empty for model/status (rather than first-write-wins).
+        # On a single-record-per-lane run this is identical; if a lane ever has
+        # multiple records (retries, fallbacks) we don't want to lock in the
+        # first one and report stale metadata while calls/tokens accumulate.
+        # If two distinct non-empty values disagree, surface "mixed" so the
+        # operator sees the inconsistency rather than us silently picking one.
+        if model:
+            existing_model = by_lane[lane_key]["model"]
+            if existing_model and existing_model != model and existing_model != "mixed":
+                by_lane[lane_key]["model"] = "mixed"
+            else:
+                by_lane[lane_key]["model"] = model
+        if status:
+            existing_status = by_lane[lane_key]["status"]
+            if existing_status and existing_status != status and existing_status != "mixed":
+                by_lane[lane_key]["status"] = "mixed"
+            else:
+                by_lane[lane_key]["status"] = status
         by_lane[lane_key]["duration_ms"] += duration_ms
 
         price = lookup_chat_price("anthropic", model)
