@@ -67,7 +67,7 @@ Stages currently recorded:
 
 Most expensive lane: **bullshit_index** (1 call per passage, in parallel — easily 50+ calls on a long answer).
 
-Per-call records carry: `prompt_tokens`, `completion_tokens`, `cached_tokens`, `total_tokens`, `status`. Status is `ok` for successful calls, an HTTP error code, `timeout`, `missing_api_key`, or `response_json_error` for failures.
+Per-call records carry: `stage`, `tendency_id`, `provider_name`, `model`, `status`, `finish_reason`, `raw_message_content`, `temperature`, `prompt_tokens`, `completion_tokens`, `total_tokens`, `cached_tokens`, `cache_write_tokens`, `reasoning_tokens`. Status is `ok` for successful calls, an HTTP error code, `timeout`, `missing_api_key`, or `response_json_error` for failures. `raw_message_content` is the full LLM response string per call — persisted so any LLM decision is investigable from `result.json` alone without re-running the pipeline. Adds ~10–50 KB to a typical `result.json`, scaling roughly linearly with call count and per-call output size.
 
 ### OpenAI (embeddings + query expansion)
 

@@ -54,6 +54,9 @@ class BoundaryCallRecord:
     provider_name: str = ""
     model: str = ""
     status: str = "not_called"
+    finish_reason: str = ""
+    raw_message_content: str = ""
+    temperature: float = 0.0
     prompt_tokens: int = 0
     completion_tokens: int = 0
     total_tokens: int = 0
@@ -79,6 +82,9 @@ def _record_from_metadata(
         provider_name=metadata.provider_name,
         model=metadata.model,
         status=metadata.status,
+        finish_reason=metadata.finish_reason,
+        raw_message_content=metadata.raw_message_content,
+        temperature=metadata.temperature,
         prompt_tokens=metadata.prompt_tokens,
         completion_tokens=metadata.completion_tokens,
         total_tokens=metadata.total_tokens,
