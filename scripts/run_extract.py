@@ -616,7 +616,9 @@ def main() -> int:
     user_prompt = EXTRACTION_USER_PROMPT.format(conversation_text=conversation_text)
 
     try:
-        payload = client.run_json(EXTRACTION_SYSTEM_PROMPT, user_prompt)
+        payload = client.run_json(
+            EXTRACTION_SYSTEM_PROMPT, user_prompt, stage="extraction"
+        )
     except Exception as exc:
         err = {"status": "error", "error": f"OpenRouter call failed: {exc}"}
         err.update(capture_result)
@@ -681,7 +683,9 @@ def main() -> int:
             failed_passages_block=failed_list,
         )
         try:
-            retry_payload = client.run_json(EXTRACTION_SYSTEM_PROMPT, retry_user)
+            retry_payload = client.run_json(
+                EXTRACTION_SYSTEM_PROMPT, retry_user, stage="extraction_retry"
+            )
         except Exception as exc:
             capture_warnings.append(f"Quote-fabrication retry failed: {exc}")
             retry_payload = None
@@ -743,6 +747,34 @@ def main() -> int:
         print(f"Extraction written to {args.output_file}")
     else:
         print(output_text)
+
+    # Sidecar: write the client's call_log so run_pipeline.py can merge
+    # extraction's OpenRouter calls into the unified usage_summary. Without
+    # this bridge the extraction call is invisible to cost telemetry. The
+    # file path uses $LOLLA_RUN_ID (set by the SKILL preamble); falls back
+    # to deriving the run_id from the output_file path if unset.
+    try:
+        run_id = os.getenv("LOLLA_RUN_ID", "")
+        if not run_id and args.output_file:
+            stem = Path(args.output_file).stem  # e.g., "lolla_20260428T064421Z_extraction"
+            parts = stem.split("_")
+            if len(parts) >= 2 and parts[0] == "lolla":
+                run_id = parts[1]
+        if run_id:
+            sidecar_path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
+            sidecar_path.write_text(
+                json.dumps(
+                    [r.to_dict() for r in client.call_log],
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
+    except Exception as exc:  # non-fatal: telemetry, not correctness
+        print(
+            f"warning: extraction call-log sidecar write failed: {exc}",
+            file=sys.stderr,
+        )
+
     return 0
 
 

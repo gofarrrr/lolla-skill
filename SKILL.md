@@ -258,9 +258,15 @@ Use each anchor's `display_name` verbatim (not paraphrased). This primes the rea
 
 If `summary.total_clear` is 0: skip — don't mention it. Clean delivery is the default, not an achievement.
 
+**Run cost line (always shown):** Read `usage_summary` from the result JSON and render one line. Pull `estimated_total_cost_usd` from the top, and from `vendors.openrouter` pull `calls` and `cache_hit_rate`. The Anthropic sub-agent portion is appended later by Step 8b — at this point in the run it is zero, so phrase the line as a pre-subagent figure:
+
+> **Run cost so far:** $X.XX • Y OpenRouter calls (Z.Z% prompt cache hit) • Sub-agent cost added after Step 8b.
+
+If `usage_summary` is absent (e.g., older pipeline run): skip the line silently.
+
 **Closing line:** One sentence pointing to Observatory for the full picture:
 
-> *Open the Observatory to explore all [N] findings, [N] mental model connections, and [N] structural dimensions in detail.*
+> *Open the Observatory to explore all [N] findings, [N] mental model connections, and [N] structural dimensions in detail. Cost & call breakdown at <code>http://localhost:8080/usage</code>.*
 
 **Zero detections across all lanes:** "No material structural weaknesses detected. The reasoning appears structurally sound across tendency detection, model companion, frame pressure, and structural coverage."
 
@@ -583,6 +589,37 @@ print(f'Pressure check persisted to {result_path}')
 
 Map each divergence to the question that triggered it: (1) shift I dismissed, (2) finding I treated as noise, (3) connection I didn't make. If a divergence spans multiple lanes or questions, pick the primary one.
 
+**Then**, fold sub-agent token usage into `usage_summary`. Each sub-agent's task notification includes a `<usage>` block with `total_tokens`. Build a list of one record per sub-agent (whether `completed`, `skipped_empty`, or `skipped_error` — skipped lanes contribute zero tokens), then merge it in via `merge_subagent_calls`. Without this, the run's anthropic_subagents cost stays at zero and the grand total under-reports by the dominant cost line.
+
+```bash
+cat > /tmp/lolla_${LOLLA_RUN_ID}_subagents.json << 'LOLLA_SUBAGENTS_EOF'
+[
+  {"lane": 1, "model": "claude-opus-4-7", "total_tokens": 39202, "duration_ms": 61008, "tool_uses": 1, "status": "completed"},
+  {"lane": 2, "model": "claude-opus-4-7", "total_tokens": 36433, "duration_ms": 60605, "tool_uses": 1, "status": "completed"},
+  {"lane": 3, "model": "claude-opus-4-7", "total_tokens": 32161, "duration_ms": 42133, "tool_uses": 1, "status": "completed"},
+  {"lane": 4, "model": "claude-opus-4-7", "total_tokens": 33066, "duration_ms": 47550, "tool_uses": 1, "status": "completed"}
+]
+LOLLA_SUBAGENTS_EOF
+
+python3 -c "
+import json, sys, pathlib
+sys.path.insert(0, '${SKILL_DIR}/engine')
+from system_b.usage_summary import merge_subagent_calls
+run_id = '${LOLLA_RUN_ID}'
+result_path = f'/tmp/lolla_{run_id}_result.json'
+sub_path = f'/tmp/lolla_{run_id}_subagents.json'
+d = json.loads(pathlib.Path(result_path).read_text())
+subs = json.loads(pathlib.Path(sub_path).read_text())
+us = d.get('usage_summary') or {}
+merge_subagent_calls(us, subs)
+d['usage_summary'] = us
+pathlib.Path(result_path).write_text(json.dumps(d, indent=2, ensure_ascii=False))
+print(f'Sub-agent usage merged: ${us[\"vendors\"][\"anthropic_subagents\"][\"calls\"]} calls, total run cost \\\${us[\"estimated_total_cost_usd\"]:.4f}')
+"
+```
+
+Use the model name your orchestrator is running on (`claude-opus-4-7`, `claude-sonnet-4-6`, etc.) for `model`. Sub-agents inherit the parent model. If you don't know the exact model ID with confidence, use `"unknown"` — calls and tokens still record, only the cost estimate falls back to zero (see `cost_estimate_coverage.calls_with_unknown_price` in the result).
+
 ### Step 9: Open Observatory
 
 After the full cycle is complete (cards, updated position, and pressure check all persisted), **launch the Observatory**. The Observatory is the primary detail surface — it renders full card breakdowns, chunk lists, gap questions, delivery audit passages, the revised answer with markdown, and the pressure check with per-lane divergences. The chat summary from Step 4 is designed to be incomplete — it points users here for the full picture.
@@ -595,7 +632,7 @@ python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_I
 
 This starts a local server at http://localhost:8080. Tell the user the URL and that they can press Ctrl+C in the terminal to stop the server.
 
-Say something like: *"The Observatory is live at http://localhost:8080 — it has the full audit: all [N] findings with challenge questions and reversal triggers, [N] mental model connections with failure modes and premortems, [N] frame elements with alternative questions, and [N] structural dimensions. Everything the chat summary pointed to is there in detail. The full memo is at /tmp/lolla_${LOLLA_RUN_ID}_memo.md — a standalone summary you can share or reference without the Observatory."*
+Say something like: *"The Observatory is live at http://localhost:8080 — it has the full audit: all [N] findings with challenge questions and reversal triggers, [N] mental model connections with failure modes and premortems, [N] frame elements with alternative questions, and [N] structural dimensions. Cost & call breakdown for this run: http://localhost:8080/usage. Full memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md."*
 
 ### Step 10: Archive Run
 
@@ -655,6 +692,7 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | `references/anti-bullshit-doctrine.md` | **Read at the start of Step 6** (alongside presentation-voice.md) — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid, negation test as mental model. Also read before Step 8. |
 | `references/presentation-research.md` | When thinking about how to present findings in chat vs. Observatory — book research on scanning, BLUF, story turns, formatting overuse, and the golden pocket between McKinsey-dry and fiction-entertaining |
 | `HOW_IT_WORKS.md` (repo root) | When the user asks "how does this work", "what just happened", or about the architecture — full technical reference including research foundations, step-by-step pipeline flow, and knowledge substrate |
+| `docs/cost-and-telemetry.md` | When the user asks about cost, call counts, prompt caching, or what's measured per run — single canonical doc covering the `usage_summary` block, vendor tracking, pricing table, and how to add a new vendor or stage |
 
 ## Sub-Agent Prompt Templates
 

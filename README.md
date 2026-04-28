@@ -126,7 +126,14 @@ See **[HOW_IT_WORKS.md](HOW_IT_WORKS.md)** — the full technical reference cove
 
 ## Cost
 
-A typical audit makes 18-25 OpenRouter calls against the configured model (default: `x-ai/grok-4.1-fast`) — one extraction call (plus an optional retry on quote fabrication, ~14% of runs), six Pass 1 cluster specialists in parallel, 2-7 deep checks, two companion calls, two frame-pressure calls, and 2-3 structural-coverage calls. Total: ~60-110K tokens, approximately $0.04-0.10 per run. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus batch embedding for 3 query variants (~$0.0002). See [HOW_IT_WORKS.md §Cost Per Run](HOW_IT_WORKS.md#cost-per-run) for the full breakdown and the rationale behind the cost increase (family-clustered Pass 1 trades more calls for narrower per-call load).
+A typical audit makes ~75 LLM calls across three vendors: ~18 OpenRouter calls for the four pipeline lanes, ~50 OpenRouter calls for the Bullshit Index (one per passage of the audited answer), 1 OpenRouter call for extraction, ~10 OpenAI calls for embeddings/query expansion, and 4 Anthropic calls for the Step-7 sub-agents. Total: typically $0.05–0.15 OpenRouter + ~$0.01 OpenAI + a larger Anthropic line that depends on which Claude model the orchestrator runs (Opus dominates).
+
+Every run produces a self-describing `usage_summary` block in the result JSON with per-vendor cost, per-stage call counts, prompt-cache hit rate, and the version date of the price table. Three places to read it:
+- Visual: `http://localhost:8080/usage` (when the Observatory is running)
+- API: `GET http://localhost:8080/api/case/<case_id>/usage`
+- Raw: `jq .usage_summary /tmp/lolla_<run_id>_result.json`
+
+Full doc: **[docs/cost-and-telemetry.md](docs/cost-and-telemetry.md)** — single source of truth for what's measured, where it lives, how to bump prices, and how to add a new vendor or stage.
 
 ## Inspiration and Credits
 

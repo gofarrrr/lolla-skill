@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 import json
 import logging
 import os
 import subprocess
+import threading
 import time
+from dataclasses import asdict, dataclass
 from typing import Mapping
 from urllib import error, request
 
@@ -29,6 +30,56 @@ class BoundaryCallMetadata:
     reasoning_tokens: int = 0
     reasoning_disabled: bool = False
     reasoning_details_present: bool = False
+
+
+@dataclass(frozen=True)
+class BoundaryCallRecord:
+    """Per-call record auto-appended to ``BoundaryClient.call_log``.
+
+    Captures the same fields as ``BoundaryCallMetadata`` plus the stage label
+    that the call was made under. Stage is passed per-call (not per-instance)
+    so parallel callers on the same client never clobber each other.
+    """
+
+    stage: str = "unlabeled"
+    tendency_id: str = ""
+    provider_name: str = ""
+    model: str = ""
+    status: str = "not_called"
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    total_tokens: int = 0
+    cached_tokens: int = 0
+    cache_write_tokens: int = 0
+    reasoning_tokens: int = 0
+    reasoning_disabled: bool = False
+    reasoning_details_present: bool = False
+
+    def to_dict(self) -> dict[str, object]:
+        return asdict(self)
+
+
+def _record_from_metadata(
+    metadata: BoundaryCallMetadata,
+    *,
+    stage: str,
+    tendency_id: str,
+) -> BoundaryCallRecord:
+    return BoundaryCallRecord(
+        stage=stage or "unlabeled",
+        tendency_id=tendency_id,
+        provider_name=metadata.provider_name,
+        model=metadata.model,
+        status=metadata.status,
+        prompt_tokens=metadata.prompt_tokens,
+        completion_tokens=metadata.completion_tokens,
+        total_tokens=metadata.total_tokens,
+        cached_tokens=metadata.cached_tokens,
+        cache_write_tokens=metadata.cache_write_tokens,
+        reasoning_tokens=metadata.reasoning_tokens,
+        reasoning_disabled=metadata.reasoning_disabled,
+        reasoning_details_present=metadata.reasoning_details_present,
+    )
 
 
 def _provider_timeout() -> float:
@@ -95,9 +146,20 @@ class OpenAICompatibleBoundaryClient:
             provider_name=self.provider_name,
             model=self.model,
         )
+        self.call_log: list[BoundaryCallRecord] = []
+        self._call_log_lock = threading.Lock()
 
-    def run_json(self, system_prompt: str, user_prompt: str) -> dict[str, object]:
-        result, metadata = self.run_json_with_metadata(system_prompt, user_prompt)
+    def run_json(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        *,
+        stage: str = "unlabeled",
+        tendency_id: str = "",
+    ) -> dict[str, object]:
+        result, metadata = self.run_json_with_metadata(
+            system_prompt, user_prompt, stage=stage, tendency_id=tendency_id
+        )
         self.last_call_metadata = metadata
         if metadata.reasoning_disabled and metadata.reasoning_details_present:
             _LOGGER.warning(
@@ -107,9 +169,29 @@ class OpenAICompatibleBoundaryClient:
         return result
 
     def run_json_with_metadata(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        *,
+        stage: str = "unlabeled",
+        tendency_id: str = "",
+    ) -> tuple[dict[str, object], BoundaryCallMetadata]:
+        """Thread-safe variant: returns (result, metadata) without side effects.
+
+        Every call (success or failure) is auto-appended to ``self.call_log``
+        with the supplied stage label, so no caller needs to remember a
+        separate recording hook.
+        """
+        result, metadata = self._do_call(system_prompt, user_prompt)
+        with self._call_log_lock:
+            self.call_log.append(
+                _record_from_metadata(metadata, stage=stage, tendency_id=tendency_id)
+            )
+        return result, metadata
+
+    def _do_call(
         self, system_prompt: str, user_prompt: str
     ) -> tuple[dict[str, object], BoundaryCallMetadata]:
-        """Thread-safe variant: returns (result, metadata) without side effects."""
         if not self.api_key:
             return {}, BoundaryCallMetadata(
                 provider_name=self.provider_name,
@@ -258,16 +340,46 @@ class GeminiCliBoundaryClient:
             provider_name=self.provider_name,
             model=self.model,
         )
+        self.call_log: list[BoundaryCallRecord] = []
+        self._call_log_lock = threading.Lock()
 
-    def run_json(self, system_prompt: str, user_prompt: str) -> dict[str, object]:
-        result, metadata = self.run_json_with_metadata(system_prompt, user_prompt)
+    def run_json(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        *,
+        stage: str = "unlabeled",
+        tendency_id: str = "",
+    ) -> dict[str, object]:
+        result, metadata = self.run_json_with_metadata(
+            system_prompt, user_prompt, stage=stage, tendency_id=tendency_id
+        )
         self.last_call_metadata = metadata
         return result
 
     def run_json_with_metadata(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        *,
+        stage: str = "unlabeled",
+        tendency_id: str = "",
+    ) -> tuple[dict[str, object], BoundaryCallMetadata]:
+        """Thread-safe variant: returns (result, metadata) without side effects.
+
+        Every call (success or failure) is auto-appended to ``self.call_log``
+        with the supplied stage label.
+        """
+        result, metadata = self._do_call(system_prompt, user_prompt)
+        with self._call_log_lock:
+            self.call_log.append(
+                _record_from_metadata(metadata, stage=stage, tendency_id=tendency_id)
+            )
+        return result, metadata
+
+    def _do_call(
         self, system_prompt: str, user_prompt: str
     ) -> tuple[dict[str, object], BoundaryCallMetadata]:
-        """Thread-safe variant: returns (result, metadata) without side effects."""
         combined = "\n\n".join(
             part.strip()
             for part in (str(system_prompt or ""), str(user_prompt or ""))

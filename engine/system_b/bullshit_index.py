@@ -334,7 +334,9 @@ def evaluate_passage(
         user_prompt = EVAL_PROMPT_TEMPLATE.format(passage=passage)
 
     try:
-        result, _metadata = client.run_json_with_metadata(system_prompt, user_prompt)
+        result, _metadata = client.run_json_with_metadata(
+            system_prompt, user_prompt, stage="bullshit_index"
+        )
     except Exception as exc:
         _LOGGER.warning("BI evaluation failed for passage: %s", exc)
         return PassageBIResult(passage=passage)

@@ -919,4 +919,10 @@ A typical run makes 18-25 OpenRouter calls against `x-ai/grok-4.1-fast`:
 
 Total: roughly 60-110K tokens per run. At Grok 4.1 Fast pricing, approximately $0.04-0.10 per audit. Embeddings (if enabled) add one gpt-4o-mini expansion call (~$0.001) plus a batch embedding call for the original query + 2 domain variants (~$0.0002). The revision step is available for headless/eval runs but skipped in the skill flow — Claude produces the updated position directly.
 
+The Bullshit Index runs one OpenRouter call per passage of the audited answer (typically 30-60 calls in parallel). On a long answer this can dominate the OpenRouter call count. It runs in `_run_bullshit_index` after the lanes complete and is recorded under `stage="bullshit_index"` in the per-run telemetry.
+
+The Step-7 pressure-check sub-agents fire from inside the SKILL via Claude Code's Agent tool, *not* through the OpenRouter boundary client. They run on whatever Claude model the orchestrator inherits (typically Opus). On most runs this is the dominant cost line. Their `total_tokens` (no prompt/completion split available) is recorded into the same `usage_summary` block by Step 8b.
+
 The cost bump compared to earlier versions is load-reduction working as designed. Pass 1 was previously a single monolithic call scoring all 25 tendencies under ~11 confusion guardrails; it is now six family-clustered specialists (3-5 tendencies each, family-relevant guardrails only). The trade-off is more calls for narrower per-call load — and measured Pass 1 stability moved from 0.50 → 0.70 Jaccard on a fixed Marcus extraction as a result.
+
+**Per-run telemetry** lives in the `usage_summary` block of the result JSON. See **[docs/cost-and-telemetry.md](docs/cost-and-telemetry.md)** for the canonical reference: what's measured, where it's stored, how to verify it, how to bump prices, and how to add a new vendor or stage. The Observatory's `/usage` page renders the same data visually.

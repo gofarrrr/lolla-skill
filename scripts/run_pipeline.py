@@ -612,9 +612,20 @@ def main() -> int:
     audit_target_assistant_text = postprocessing_seed["audit_target_assistant_text"]
     user_context_text = _joined_turn_text(pipeline_input, "user")
 
+    # Open a per-run embedding-usage scope. Every OpenAI embedding/expansion
+    # call inside this scope is auto-recorded into ``embedding_usage_records``;
+    # outside the scope, calls are silent. ContextVar-based, so per-run
+    # isolation holds even under threading.
+    from system_b.embedding_retriever import capture_usage as _capture_embedding_usage
+
+    embedding_usage_records: list[dict] = []
+    _embedding_capture_cm = _capture_embedding_usage()
+    embedding_usage_records = _embedding_capture_cm.__enter__()
+
     try:
         result = pipeline.run(pipeline_input)
     except Exception as exc:
+        _embedding_capture_cm.__exit__(None, None, None)
         print(json.dumps({
             "status": "error",
             "error": f"Pipeline execution failed: {exc}",
@@ -640,6 +651,8 @@ def main() -> int:
 
     revised_answer = None
     bullshit_profile_payload = None
+    revision_call_log: list = []
+    bi_call_log: list = []
 
     def _run_revision():
         if (
@@ -647,7 +660,7 @@ def main() -> int:
             or not audit_target_assistant_text
             or not (result.delta_card and result.delta_card.findings)
         ):
-            return None
+            return None, []
         from system_b.testing_harness import build_revision_prompt
         from system_b.boundary_provider import load_boundary_client_from_env
 
@@ -662,8 +675,9 @@ def main() -> int:
         revision_result = client.run_json(
             system_prompt="You revise answers after reasoning pressure. Return strict JSON.",
             user_prompt=revision_prompt,
+            stage="revision",
         )
-        return revision_result.get("revised_answer")
+        return revision_result.get("revised_answer"), list(client.call_log)
 
     def _run_bullshit_index():
         from system_b.boundary_provider import load_boundary_client_from_env
@@ -684,14 +698,14 @@ def main() -> int:
             client,
             context_summary=bi_context,
         )
-        return profile.to_payload()
+        return profile.to_payload(), list(client.call_log)
 
     with ThreadPoolExecutor(max_workers=2) as post_pool:
         revision_future = post_pool.submit(_run_revision)
         bi_future = post_pool.submit(_run_bullshit_index)
 
         try:
-            revised_answer = revision_future.result()
+            revised_answer, revision_call_log = revision_future.result()
         except Exception as exc:
             print(
                 json.dumps({"warning": f"Revision step failed (non-fatal): {exc}"}),
@@ -699,7 +713,7 @@ def main() -> int:
             )
 
         try:
-            bullshit_profile_payload = bi_future.result()
+            bullshit_profile_payload, bi_call_log = bi_future.result()
         except Exception as exc:
             print(
                 json.dumps({"warning": f"Bullshit index failed (non-fatal): {exc}"}),
@@ -708,6 +722,37 @@ def main() -> int:
 
     serialized["revised_answer"] = revised_answer
     serialized["bullshit_profile"] = bullshit_profile_payload
+
+    # Close the embedding-usage scope. All embedding/expansion calls made
+    # during pipeline + post-processing are now in ``embedding_usage_records``.
+    _embedding_capture_cm.__exit__(None, None, None)
+
+    # Build the canonical per-run usage_summary block from four streams:
+    #   1. result.audit.boundary_calls — pipeline lane calls (already labeled)
+    #   2. bi_call_log                  — Bullshit Index (auto-labeled "bullshit_index")
+    #   3. revision_call_log            — Revision (labeled "revision")
+    #   4. extraction sidecar           — Extraction (labeled "extraction" / "extraction_retry")
+    # Plus embedding_usage_records and (later) Step-7 subagent records.
+    from system_b.usage_summary import build_usage_summary, load_extraction_sidecar
+
+    _run_id = os.getenv("LOLLA_RUN_ID", "")
+    if not _run_id and args.output_file:
+        # Derive from output filename: lolla_<run_id>_result.json
+        _stem = Path(args.output_file).stem
+        _parts = _stem.split("_")
+        if len(_parts) >= 2 and _parts[0] == "lolla":
+            _run_id = _parts[1]
+
+    serialized["usage_summary"] = build_usage_summary(
+        run_id=_run_id,
+        pipeline_boundary_calls=result.audit.boundary_calls,
+        bi_boundary_calls=bi_call_log,
+        revision_boundary_calls=revision_call_log,
+        extraction_boundary_calls=load_extraction_sidecar(_run_id),
+        embedding_records=embedding_usage_records,
+        # subagent_calls are added by SKILL.md Step 8b after sub-agents return.
+        subagent_calls=(),
+    )
 
     # Decomposed run health
     _substrate_ok = _compiled_chunk_count > 0

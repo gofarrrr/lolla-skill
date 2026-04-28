@@ -12,6 +12,8 @@ import math
 import os
 import sqlite3
 import urllib.request
+from contextlib import contextmanager
+from contextvars import ContextVar
 from pathlib import Path
 
 _LOGGER = logging.getLogger("system_b.embedding_retriever")
@@ -23,6 +25,58 @@ EMBEDDING_MODEL = "text-embedding-3-large"
 EMBEDDING_ENDPOINT = "https://api.openai.com/v1/embeddings"
 EXPANSION_MODEL = "gpt-4o-mini"
 EXPANSION_ENDPOINT = "https://api.openai.com/v1/chat/completions"
+
+
+# ---------------------------------------------------------------------------
+# Per-run usage capture (ContextVar — thread/asyncio-safe, no module globals)
+# ---------------------------------------------------------------------------
+# A scope is opened with ``capture_usage()`` at the top of a pipeline run.
+# Every embedding / expansion call inside that scope appends a record to the
+# scoped list. Outside the scope, calls are silent (no leakage between runs).
+
+_USAGE_LOG: ContextVar[list | None] = ContextVar("lolla_embedding_usage", default=None)
+
+
+@contextmanager
+def capture_usage():
+    """Open a usage-capture scope for the duration of a pipeline run.
+
+    Yields the captured list. Use as::
+
+        with capture_usage() as usage_records:
+            ...  # run pipeline
+        # usage_records is now populated with one dict per OpenAI call
+
+    Each record: {"endpoint": "embeddings"|"chat", "model": ..., "input_tokens": int,
+                  "output_tokens": int, "status": "ok"|"error"}
+    """
+    log: list[dict] = []
+    token = _USAGE_LOG.set(log)
+    try:
+        yield log
+    finally:
+        _USAGE_LOG.reset(token)
+
+
+def _record_usage(
+    *,
+    endpoint: str,
+    model: str,
+    input_tokens: int = 0,
+    output_tokens: int = 0,
+    status: str = "ok",
+) -> None:
+    """Append one usage record to the active scope (if any)."""
+    log = _USAGE_LOG.get()
+    if log is None:
+        return
+    log.append({
+        "endpoint": endpoint,
+        "model": model,
+        "input_tokens": int(input_tokens),
+        "output_tokens": int(output_tokens),
+        "status": status,
+    })
 
 
 # ---------------------------------------------------------------------------
@@ -72,6 +126,13 @@ def _expand_query(
         )
         with urllib.request.urlopen(req, timeout=30) as resp:
             body = json.loads(resp.read().decode("utf-8"))
+        usage = body.get("usage", {}) or {}
+        _record_usage(
+            endpoint="chat",
+            model=EXPANSION_MODEL,
+            input_tokens=int(usage.get("prompt_tokens", 0) or 0),
+            output_tokens=int(usage.get("completion_tokens", 0) or 0),
+        )
         content = body["choices"][0]["message"]["content"].strip()
         # Strip markdown fences if present
         if content.startswith("```"):
@@ -83,6 +144,7 @@ def _expand_query(
             return [str(v) for v in variants if v][:2]
         return []
     except Exception:
+        _record_usage(endpoint="chat", model=EXPANSION_MODEL, status="error")
         _LOGGER.debug("_expand_query: failed, using original query only", exc_info=True)
         return []
 
@@ -106,9 +168,16 @@ def _embed_batch(texts: list[str], api_key: str) -> list[list[float]] | None:
         )
         with urllib.request.urlopen(req, timeout=30) as resp:
             body = json.loads(resp.read().decode("utf-8"))
+        usage = body.get("usage", {}) or {}
+        _record_usage(
+            endpoint="embeddings",
+            model=EMBEDDING_MODEL,
+            input_tokens=int(usage.get("prompt_tokens", 0) or 0),
+        )
         data = sorted(body["data"], key=lambda d: d["index"])
         return [d["embedding"] for d in data]
     except Exception:
+        _record_usage(endpoint="embeddings", model=EMBEDDING_MODEL, status="error")
         _LOGGER.debug("_embed_batch: API call failed", exc_info=True)
         return None
 
@@ -171,8 +240,15 @@ def embed_query(text: str, api_key: str) -> list[float] | None:
         )
         with urllib.request.urlopen(req, timeout=30) as resp:
             body = json.loads(resp.read().decode("utf-8"))
+        usage = body.get("usage", {}) or {}
+        _record_usage(
+            endpoint="embeddings",
+            model=EMBEDDING_MODEL,
+            input_tokens=int(usage.get("prompt_tokens", 0) or 0),
+        )
         return body["data"][0]["embedding"]
     except Exception:
+        _record_usage(endpoint="embeddings", model=EMBEDDING_MODEL, status="error")
         _LOGGER.warning("embed_query: API call failed", exc_info=True)
         return None
 
