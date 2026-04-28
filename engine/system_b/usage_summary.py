@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Mapping, Sequence
@@ -47,6 +48,17 @@ from .pricing import (
 _LOGGER = logging.getLogger("system_b.usage_summary")
 
 
+# Run IDs are interpolated into /tmp paths. Restrict to the alphabet the
+# SKILL preamble actually generates (timestamps, slugs, dashes/underscores)
+# so a malicious or malformed value can't traverse the filesystem.
+RUN_ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]+$")
+
+
+def is_valid_run_id(run_id: str) -> bool:
+    """Return True iff run_id is safe to interpolate into a sidecar path."""
+    return bool(run_id) and bool(RUN_ID_PATTERN.fullmatch(run_id))
+
+
 # ---------------------------------------------------------------------------
 # Sidecar I/O
 # ---------------------------------------------------------------------------
@@ -57,7 +69,7 @@ def load_extraction_sidecar(run_id: str) -> list[dict]:
     /tmp/lolla_<run_id>_extraction_calls.json and is one JSON list of
     BoundaryCallRecord dicts (the dict form of ``BoundaryCallRecord``).
     """
-    if not run_id:
+    if not is_valid_run_id(run_id):
         return []
     path = Path(f"/tmp/lolla_{run_id}_extraction_calls.json")
     if not path.exists():
@@ -66,7 +78,7 @@ def load_extraction_sidecar(run_id: str) -> list[dict]:
         data = json.loads(path.read_text(encoding="utf-8"))
         if isinstance(data, list):
             return [d for d in data if isinstance(d, dict)]
-    except Exception:
+    except (OSError, json.JSONDecodeError):
         _LOGGER.warning("Failed to read extraction sidecar at %s", path, exc_info=True)
     return []
 

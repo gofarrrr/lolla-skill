@@ -106,6 +106,13 @@ def _expand_query(
         f"{vocab_hint}\n\n"
         "Return ONLY a JSON array of 2 strings, no markdown fences."
     )
+    # Single-record discipline: record the usage entry exactly once per HTTP
+    # response — either after a successful parse OR as a single error entry
+    # if anything (network, JSON, choices, ...) blew up. Recording before
+    # validation and again in the except block double-counts in the cost
+    # totals.
+    usage: dict = {}
+    recorded = False
     try:
         payload = json.dumps({
             "model": EXPANSION_MODEL,
@@ -127,12 +134,6 @@ def _expand_query(
         with urllib.request.urlopen(req, timeout=30) as resp:
             body = json.loads(resp.read().decode("utf-8"))
         usage = body.get("usage", {}) or {}
-        _record_usage(
-            endpoint="chat",
-            model=EXPANSION_MODEL,
-            input_tokens=int(usage.get("prompt_tokens", 0) or 0),
-            output_tokens=int(usage.get("completion_tokens", 0) or 0),
-        )
         content = body["choices"][0]["message"]["content"].strip()
         # Strip markdown fences if present
         if content.startswith("```"):
@@ -140,11 +141,28 @@ def _expand_query(
             lines = [ln for ln in lines if not ln.startswith("```")]
             content = "\n".join(lines)
         variants = json.loads(content)
+        _record_usage(
+            endpoint="chat",
+            model=EXPANSION_MODEL,
+            input_tokens=int(usage.get("prompt_tokens", 0) or 0),
+            output_tokens=int(usage.get("completion_tokens", 0) or 0),
+        )
+        recorded = True
         if isinstance(variants, list):
             return [str(v) for v in variants if v][:2]
         return []
     except Exception:
-        _record_usage(endpoint="chat", model=EXPANSION_MODEL, status="error")
+        if not recorded:
+            # Use whatever usage we did manage to extract (the API may have
+            # billed us even if downstream parsing failed); fall back to
+            # zeros otherwise.
+            _record_usage(
+                endpoint="chat",
+                model=EXPANSION_MODEL,
+                input_tokens=int(usage.get("prompt_tokens", 0) or 0),
+                output_tokens=int(usage.get("completion_tokens", 0) or 0),
+                status="error",
+            )
         _LOGGER.debug("_expand_query: failed, using original query only", exc_info=True)
         return []
 
@@ -153,6 +171,9 @@ def _embed_batch(texts: list[str], api_key: str) -> list[list[float]] | None:
     """Embed multiple texts in a single API call. Returns None on failure."""
     if not texts:
         return []
+    # Single-record discipline — see _expand_query for rationale.
+    usage: dict = {}
+    recorded = False
     try:
         payload = json.dumps({
             "model": EMBEDDING_MODEL,
@@ -169,15 +190,23 @@ def _embed_batch(texts: list[str], api_key: str) -> list[list[float]] | None:
         with urllib.request.urlopen(req, timeout=30) as resp:
             body = json.loads(resp.read().decode("utf-8"))
         usage = body.get("usage", {}) or {}
+        data = sorted(body["data"], key=lambda d: d["index"])
+        embeddings = [d["embedding"] for d in data]
         _record_usage(
             endpoint="embeddings",
             model=EMBEDDING_MODEL,
             input_tokens=int(usage.get("prompt_tokens", 0) or 0),
         )
-        data = sorted(body["data"], key=lambda d: d["index"])
-        return [d["embedding"] for d in data]
+        recorded = True
+        return embeddings
     except Exception:
-        _record_usage(endpoint="embeddings", model=EMBEDDING_MODEL, status="error")
+        if not recorded:
+            _record_usage(
+                endpoint="embeddings",
+                model=EMBEDDING_MODEL,
+                input_tokens=int(usage.get("prompt_tokens", 0) or 0),
+                status="error",
+            )
         _LOGGER.debug("_embed_batch: API call failed", exc_info=True)
         return None
 
@@ -225,6 +254,9 @@ def _cosine_similarity(a: list[float], b: list[float]) -> float:
 # ---------------------------------------------------------------------------
 def embed_query(text: str, api_key: str) -> list[float] | None:
     """Embed a single query string. Returns None on failure."""
+    # Single-record discipline — see _expand_query for rationale.
+    usage: dict = {}
+    recorded = False
     try:
         payload = json.dumps({
             "model": EMBEDDING_MODEL,
@@ -241,14 +273,22 @@ def embed_query(text: str, api_key: str) -> list[float] | None:
         with urllib.request.urlopen(req, timeout=30) as resp:
             body = json.loads(resp.read().decode("utf-8"))
         usage = body.get("usage", {}) or {}
+        embedding = body["data"][0]["embedding"]
         _record_usage(
             endpoint="embeddings",
             model=EMBEDDING_MODEL,
             input_tokens=int(usage.get("prompt_tokens", 0) or 0),
         )
-        return body["data"][0]["embedding"]
+        recorded = True
+        return embedding
     except Exception:
-        _record_usage(endpoint="embeddings", model=EMBEDDING_MODEL, status="error")
+        if not recorded:
+            _record_usage(
+                endpoint="embeddings",
+                model=EMBEDDING_MODEL,
+                input_tokens=int(usage.get("prompt_tokens", 0) or 0),
+                status="error",
+            )
         _LOGGER.warning("embed_query: API call failed", exc_info=True)
         return None
 
