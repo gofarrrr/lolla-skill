@@ -166,17 +166,30 @@ If the model used on a run isn't in the price table, the call counts and tokens 
 
 The structural rule: **every API call is recorded by default**. If you add a new call site that needs a manual recording hook, you've taken a step backward from the design — refactor so recording happens automatically.
 
-## Caching — why the hit rate is low and what to do about it
+## Caching — how it works on Grok via OpenRouter
 
-Current cache hit rate on most runs: ~2-5%. Achievable: ~60-75%.
+xAI Grok caches automatically — no `cache_control` configuration needed. The cache works **from the start of the messages array**: when a request arrives, xAI checks how many messages at the beginning match a previous request *exactly*, and the matching portion becomes the cached prefix. Both system and user messages participate in prefix matching.
 
-**Why it's low:** xAI Grok via OpenRouter caches the longest matching prompt prefix from position zero (system message first, then user message). Lolla currently puts the **per-stage instructions** in the system message and the **conversation transcript + extraction context** (the big stable block — same across ~16 pipeline calls) in the user message. Since the system message diverges first, the cache prefix breaks before reaching the conversation. Only the small shared preamble at the top of system prompts caches (~160 tokens/call).
+Two server-side caveats from the xAI docs ([How Prompt Caching Works](https://docs.x.ai/developers/advanced-api-usage/prompt-caching/how-it-works)):
 
-**The fix:** swap message slots. Put the stable conversation+extraction in the system message; put per-stage instructions in the user message. Estimated impact: cache hit rate to ~70%, total run cost down ~40% (cached input is ~25% of fresh input on Grok). 
+- Cache entries can be evicted under memory pressure — there is no published TTL
+- Requests may be routed to different backend servers, and each server has its own cache
 
-**Why it isn't done yet:** reordering prompt slots is content-equivalent on paper but can shift model behavior in practice. Some models weight system vs. user content differently. This change requires running the existing test cases (in `tests/`) before/after to confirm audit findings don't drift. Telemetry first, optimization second.
+To minimize the routing problem, xAI provides the `x-grok-conv-id` header — a constant uuid that pins requests to the same backend.
 
-The cache hit rate is surfaced as `vendors.openrouter.cache_hit_rate` in `usage_summary` and on the Observatory `/usage` page, so the savings (or lack thereof) from any future prompt restructuring will be visible directly.
+### What Lolla does about it
+
+**(implemented)** The boundary client sets `x-grok-conv-id` on every Grok request, derived deterministically from `$LOLLA_RUN_ID` via `uuid5`. This means every BoundaryClient instance spawned during the same run (pipeline + BI + revision + extraction) emits the same conv_id and lands on the same xAI backend, maximizing cross-call cache reuse within a run. Different runs get different conv_ids (per-run isolation).
+
+If `$LOLLA_RUN_ID` is unset (e.g., ad-hoc scripts or tests), the client falls back to a fresh `uuid4` per process. The header is only added for `x-ai/grok*` models.
+
+**(not implemented — future work)** Lolla currently puts the **per-stage instructions** in the system message and the **conversation transcript + extraction context** (the big stable block — same across ~16 pipeline calls) in the user message. Since the system message diverges first, the prefix breaks before reaching the conversation, and only the small shared preamble at the top of the system prompts caches.
+
+The fix is to swap message slots — put the stable conversation+extraction in the system message and the per-stage instructions in the user message. Estimated impact: cache hit rate from ~20% (current, with conv_id stickiness) to ~60-75%, total run cost down ~30-40%.
+
+Why it isn't done yet: reordering prompt slots is content-equivalent on paper but can shift model behavior in practice. Some models weight system vs. user content differently. This change requires running the existing test cases (in `tests/`) before/after to confirm audit findings don't drift. Telemetry first, optimization second.
+
+The cache hit rate is surfaced as `vendors.openrouter.cache_hit_rate` in `usage_summary` and on the Observatory `/usage` page, so the savings (or lack thereof) from any change to the prompt structure will be visible directly.
 
 ## Verifying the telemetry is honest
 
