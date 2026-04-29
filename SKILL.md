@@ -29,13 +29,20 @@ The system audits conversations for structural reasoning weaknesses using four i
 
 ## Model Requirements
 
-Calibrated on Claude Opus 4.7. Cross-model validation (2026-04-22):
+Calibrated on Claude Opus 4.7. Cross-model validation (2026-04-22) yielded three tiers:
 
 - **Opus 4.7** — recommended. Full doctrine compliance (anchor naming, machinery-leak avoidance, all 9 pipeline steps executed).
-- **Sonnet 4.6** — acceptable. Completes the full 9-step pipeline with sub-agents and artifact persistence; modest phrasing regressions (anchor-naming rate ~66% vs 100% on Opus; occasional machinery-term leaks in the revised answer like "sub-agents" or "the audit changes").
-- **Haiku 4.5** — below floor. Skips Steps 6b / 6c / 7 / 8b (no revised_answer persistence, no memo render, no pressure-check sub-agents, no gap_check persistence) while generating plausible-looking output for the steps that didn't run — including a fake Pressure Check. Do not use.
+- **Sonnet 4.6** — acceptable. Completes the full 9-step pipeline with sub-agents and artifact persistence; modest phrasing regressions (anchor-naming rate ~66% vs 100% on Opus; occasional machinery-term leaks like "sub-agents" or "the audit changes").
+- **Haiku 4.5** — below floor. Skips Steps 6b / 6c / 7 / 8b (no revised_answer persistence, no memo render, no pressure-check sub-agents, no gap_check persistence) while generating plausible-looking output for the steps that didn't run. Do not use.
 
-If running on a model below Opus, expect silent degradation in the Observatory and memo.
+The skill cannot detect the orchestrator model mechanically (`$CLAUDE_MODEL` is not exposed). Self-identify before Step 1:
+
+- **Opus 4.7 or later** — proceed normally.
+- **Sonnet 4.6 or later** — proceed; append a one-line advisory after Step 4 findings: *"⚠ Orchestrator: Sonnet — phrasing quality may be mildly degraded vs Opus (see Model Requirements)."*
+- **Haiku (any version)** — STOP. Tell the user, verbatim: *"This skill requires Opus or Sonnet as the orchestrator. Haiku has been observed to skip critical pipeline steps (sub-agent spawning, artifact persistence) while generating plausible-looking output for the steps that didn't run. Please re-run on Opus or Sonnet."*
+- **Cannot identify with confidence** — proceed; append a one-line caveat at the end of Step 4: *"⚠ Could not verify orchestrator model. If this run is on Haiku or below, some outputs may be incomplete — check Observatory for missing artifacts."*
+
+Only refuse when highly confident the orchestrator is Haiku. Don't false-refuse on uncertainty — the user should be able to proceed and investigate.
 
 ## Preamble (run first)
 
@@ -102,17 +109,6 @@ echo "MODEL: ${LOLLA_OPENROUTER_MODEL:-x-ai/grok-4.1-fast}"
 ```
 
 If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
-
-### Model self-check (before Step 1)
-
-The skill cannot detect the orchestrator model mechanically — no `$CLAUDE_MODEL` env var exists; `CLAUDECODE=1` and the exec path are all the preamble can see. This check relies on your self-identification. Before proceeding to Step 1:
-
-- **If you know you are Claude Opus 4.7 or later**: proceed normally.
-- **If you know you are Claude Sonnet 4.6 or later**: proceed, but append a one-line advisory to the Step 4 chat output after the findings: *"⚠ Orchestrator: Sonnet — phrasing quality may be mildly degraded vs Opus (see Model Requirements)."*
-- **If you know you are Claude Haiku (any version)**: STOP. Tell the user, verbatim: *"This skill requires Opus or Sonnet as the orchestrator. Haiku has been observed to skip critical pipeline steps (sub-agent spawning, artifact persistence) while generating plausible-looking output for the steps that didn't run. Please re-run on Opus or Sonnet."* Do NOT proceed to Step 1.
-- **If you cannot identify your model with confidence**: proceed, but surface a one-line caveat at the end of Step 4: *"⚠ Could not verify orchestrator model. If this run is on Haiku or below, some outputs may be incomplete — check Observatory for missing artifacts."*
-
-Only refuse to run when you are highly confident the orchestrator is Haiku. Don't false-refuse on uncertainty — the user should be able to proceed and investigate.
 
 ---
 
@@ -185,125 +181,12 @@ This runs the full Lolla pipeline — all four lanes — via OpenRouter. With bo
 
 ### Step 4: Present Results
 
-Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json`. Before presenting, read `references/output-field-guide.md` for full field definitions.
+**Before rendering the chat output, read these two references:**
 
-**Step 4 produces a focused chat summary, not a full card dump.** The detailed card rendering lives in the Observatory. The chat output uses a "finish/start/finish" structure: open with the single most important finding, walk through the 2-3 highest-signal findings across all lanes, then hand off to Step 6 for the turn.
+- `references/output-field-guide.md` — full field definitions (DeltaCard, CompanionCheatSheet, FramePressureCard, StructuralCoverageCard, BullshitProfile, chunk types, element types, reframe moves).
+- `references/chat-output-format.md` — the render specification: run-health surface mapping, BLUF rules, finding block format, anchor-naming line, alternative-question line, structural-gaps line, delivery-check line, run-cost line, closing line, "what NOT to put in chat".
 
-**Design principles (from presentation research — see `references/presentation-research.md`):**
-- BLUF: the most important structural weakness in the first sentence
-- Maximum 3-5 findings across ALL lanes combined — pick by signal, not by lane completeness
-- One bridge sentence per finding — connects the abstract pattern to THIS conversation
-- No template scaffolding, no severity labels, no JSON field names in chat output
-- No formatting overload — bold for finding names only, not for every field label
-- The user is the hero, not the system — frame findings around their decision, not around pipeline mechanics
-- Translate, don't display — human language, not detection metadata
-
-**Bridge anti-bullshit constraints** (these still apply to every bridge sentence):
-- No bridge that could stand alone without the finding (anti-empty-rhetoric)
-- No bridge that softens a finding's force (anti-paltering)
-- No "may," "could," "potentially," "largely," "arguably" (anti-weasel)
-- No claims not traceable to a specific passage in the extraction (anti-unverified)
-
----
-
-#### Chat Output Format
-
-**Run-health surface (conditional):** Before the BLUF, read `run_health.overall` and `run_health.issues` from the result JSON. If `overall` is `degraded` or `critical` AND at least one *material* issue is present, insert ONE short line naming the degradation so the reader knows the audit was partial. Silent otherwise — clean delivery is the default, not an achievement.
-
-Material issues (surface these):
-- `capture_degraded` or `capture_critical` — *"⚠ Audit partially degraded: conversation capture missed assistant turns. Some reasoning wasn't audited."*
-- `substrate_empty` — *"⚠ Curated knowledge base did not load for this run. This is a generic critique, not a Lolla audit."*
-- `no_fingerprint` — *"⚠ No mental-model activations found in the reasoning — may indicate a very short conversation or a genuine gap."*
-- `quote_fabrication` — *"⚠ Extraction partially degraded: [N] reasoning passages couldn't be verified as literal substrings of the transcript. Lane 2 companion analysis may be weaker than usual."* — substitute `N` from `run_health.quote_fabrication_count`. If `run_health.quote_retry_attempted` is true, append "(retry attempted)" to the line.
-- `capture_truncated` — *"⚠ Long conversation truncated: [N] middle turns were omitted to fit the size cap. The audit ran on early + late slices; context from the middle may be missing."* — substitute `N` from `run_health.omitted_turns`.
-- `lane3_all_dropped` — *"⚠ Frame pressure analysis produced no reframings — all [N] detected frame elements were dropped by the evidence-quote validator. This is different from 'no frame issues found'; the lane attempted but every candidate failed validation."* — substitute `N` from `run_health.lane3_frame_drops_count`.
-- Multiple material issues — combine with a semicolon: *"⚠ Audit degraded: capture missed turns; no fingerprint."*
-
-Non-material (do NOT surface — these are soft signals, not audit-quality breaks):
-- `embeddings_off` — audit still works via deterministic routing.
-- `pipeline_warnings` (alone) — flag only if combined with a material issue above.
-
-Skip the block entirely when no material issue is present, even if `overall` is technically `degraded`.
-
-**Opening line (the BLUF):** One sentence naming the single most important structural weakness found across all four lanes. This is your Sinatra Test — if this one finding lands, credibility for the whole audit follows. Pick the finding with the highest severity, the most specific passage match, and the most direct connection to the decision.
-
-Example: *"Your recommendation commits to a 3-year vendor lock-in without naming a single condition that would make you walk away."*
-
-**Then present 2-4 additional findings**, each as a short block. Select across finding types — don't dump all tendency findings before touching frame alternatives. Pick by signal strength, not by type. For each finding:
-
-> **[Finding name]** — [bridge sentence connecting to this conversation]
->
-> [One concrete detail: the challenge question, the reversal trigger, the reframed question, or the gap question. Pick whichever is most actionable for this finding. Quote verbatim from the JSON.]
-
-That's it per finding. Do NOT include severity in parentheses like "(High severity)" or "(high)" after the finding name — severity informs your selection of which findings to show and in what order, not how you label them. No "Pattern found:" field markers, no chunk lists.
-
-**If the companion cheat sheet surfaced anchors**, name them explicitly in one line before any reframing or gap lines:
-
-> **Mental models active:** [display_name_1], [display_name_2], [display_name_3] — see Observatory for failure modes, premortem questions, and curated antagonists.
-
-Use each anchor's `display_name` verbatim (not paraphrased). This primes the reader to recognize the models you'll reference in Step 6. Skip this line if `companion_cheat_sheet.anchors` is empty or absent. Do not add commentary on each model — this is a naming line, not a findings block.
-
-**If the audit found a strong reframing** (from frame pressure analysis), include one:
-
-> **Alternative question:** "[reframed_question from frame_pressure_card.reframings]"
-> [what_opens — one line on what this reframing changes]
-
-**If structural coverage found gaps**, name them in a single line:
-
-> **Structural gaps:** [dimension_name_1], [dimension_name_2] — [N] questions to answer before deciding (see Observatory for full list)
-
-**Delivery Audit (Bullshit Index):** Read `bullshit_profile` from the result JSON. If `summary.total_clear` > 0, add one line after the findings:
-
-> **Delivery check:** [total_clear] patterns of weak delivery detected in the original advice — [name the most significant subtype and a short quote]. Full profile in Observatory.
-
-If `summary.total_clear` is 0: skip — don't mention it. Clean delivery is the default, not an achievement.
-
-**Run cost line (always shown):** Read `usage_summary` from the result JSON and render one line. Pull `estimated_total_cost_usd` from the top, and from `vendors.openrouter` pull `calls` and `cache_hit_rate`. The Anthropic sub-agent portion is appended later by Step 8b — at this point in the run it is zero, so phrase the line as a pre-subagent figure:
-
-> **Run cost so far:** $X.XX • Y OpenRouter calls (Z.Z% prompt cache hit) • Sub-agent cost added after Step 8b.
-
-If `usage_summary` is absent (e.g., older pipeline run): skip the line silently.
-
-**Closing line:** One sentence pointing to Observatory for the full picture:
-
-> *Open the Observatory to explore all [N] findings, [N] mental model connections, and [N] structural dimensions in detail. Cost & call breakdown at <code>http://localhost:8080/usage</code>.*
-
-**Zero detections across all lanes:** "No material structural weaknesses detected. The reasoning appears structurally sound across tendency detection, model companion, frame pressure, and structural coverage."
-
----
-
-#### What NOT to put in chat
-
-These belong in Observatory only. Claude reads them from the JSON to inform Step 6 reasoning, but does NOT render them in the chat:
-
-**Process artifacts (never in chat):** card names (DeltaCard, CompanionCheatSheet, FramePressureCard, StructuralCoverageCard), pipeline stages, lane numbers (Lane 1, Lane 2, etc.), triage scores, boundary call counts, fingerprint diagnostics, audit trace internals, JSON field names, embedding scores, prompt versions.
-
-**Detail artifacts (Observatory only):** full finding blocks with all fields, companion anchor chunk lists (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap), frame element blocks with evidence_quote and fragility_signal, dimension-by-dimension structural gap listings, compound pattern groups, secondary/low-severity findings, bullshit profile passage-by-passage breakdown.
-
-**The rule:** process artifacts never appear in chat. Product artifacts (findings, challenge questions, reframings, gap questions, mental model connections) are presented in human language — no field names, no card names, no lane numbers.
-
----
-
-#### Card Reference (for Claude's Step 6 reasoning and Observatory rendering)
-
-You still need to understand the full card structures to write a good Step 6 reconsideration and to know what the Observatory will show. Read the JSON fields below to inform your reasoning, but do not render them in chat.
-
-**Understanding what the cards contain and where they come from:**
-
-1. **Source layer.** 222 canonical articles, each a deep treatment of one mental model. These are the only semantic root.
-2. **Curation.** Each article's operational knowledge extracted and validated: activation semantics, failure modes, relationship edges, reframing patterns, prerequisite orderings.
-3. **Compilation.** Compiled into a knowledge graph: models as nodes, typed relationships as edges, chunks attached to each node.
-4. **This run.** The pipeline extracted which reasoning patterns are active from the conversation, then walked the knowledge graph to retrieve failure modes, tensions, antagonists, and premortems that travel with those patterns.
-
-**DeltaCard fields:** `top_findings[]` with tendency_name, sub_pattern, corrective_model, severity, specific_passage, challenge_statement, next_move, is_trusted_surface. Also: `top_compound_groups`, `secondary_findings`, `major_tensions`, `intervention_hint`.
-
-**CompanionCheatSheet fields:** `anchors[]` with `model_id`, `display_name`, `presence_mode` (`"executed"` or `"violated"` — never None or absent on a confirmed anchor), `evidence_quote`, `presence_explanation`, and `chunks` grouped by type (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap). Each chunk has curated text and provenance.confidence. Ally and antagonist chunks may also carry `affinity_rationale` (curator's sentence on why these two models pair) and `activation_condition` (when the pairing is relevant) — both are verbatim curator text. Use them in Step 6 to explain what a connection means; quote them as-is, do not paraphrase.
-
-**FramePressureCard fields:** `frame_elements[]` with element_type (assumption/mutable_constraint/suppressed_counterfactual), frame_pattern, element_text, evidence_quote, fragility_signal. `reframings[]` with reframed_question, reframe_move_type, what_opens, grounding_model.
-
-**StructuralCoverageCard fields:** `dimensions[]` with dimension_name, covered (bool), coverage_evidence, materiality_note. `gap_questions[]` with dimension_id and questions[].
-
-**BullshitProfile fields:** `summary` with total_passages, passages_with_detections, total_clear, total_marginal. `passages[]` with passage text and four subtypes (empty_rhetoric, paltering, weasel_words, unverified_claims), each with detected, reasoning, severity.
+Then read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and present the chat summary per `chat-output-format.md`. The chat output is a focused summary, not a card dump — detailed card rendering lives in the Observatory (Step 9). Use human language exclusively: process artifacts (card names, lane numbers, JSON field names) never appear; product artifacts (findings, challenge questions, reframings, gap questions, mental model connections) are translated into prose.
 
 ### Step 5: Open Observatory
 
@@ -311,21 +194,13 @@ You still need to understand the full card structures to write a good Step 6 rec
 
 ---
 
-## Quality Doctrine
-
-When presenting results:
-
-1. **Curated knowledge IS the product.** Present failure modes, heuristics, premortems, and challenge statements from the pipeline output. Do NOT generate your own versions. The curated material has been validated against source articles — your generated alternatives have not.
-
-2. **Specificity over generality.** "Consider the risks" is not a finding. "The reasoning closes on a recommendation without naming what evidence would reverse it — operating on this specific passage" is a finding. Specificity means naming the reasoning pattern and the passage where it appears. If the pipeline output is specific, present it specifically.
-
-3. **No finding without evidence.** Every finding must be traceable to a specific passage or omission. If the pipeline returned it, it has evidence — present that evidence.
-
-4. **False negatives over false positives.** Zero detections is a valid outcome. Do not pad the output with your own speculative concerns.
-
 ### Step 6: Update Your Position
 
-Before writing this section, read `references/presentation-voice.md` for voice guidance and `references/anti-bullshit-doctrine.md` for the anti-bullshit thinking framework. Voice tells you HOW to write. Doctrine tells you what patterns to avoid in your own output. **This is the section where voice and interpretation belong.** Step 4 rendered the raw audit; Step 6 is where you reason about it.
+**Before writing this section, read these three references:**
+
+- `references/presentation-voice.md` — voice guidance: Munger-inspired directness, concrete antidotes, earn the right to challenge, what good prose sounds like.
+- `references/anti-bullshit-doctrine.md` — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid (paltering +57.8pp, empty rhetoric +20.9pp), the negation test.
+- `references/anchor-treatment.md` — how to handle `companion_cheat_sheet.anchors[]`: the naming invariant, three rhetorical modes (primary pressure / secondary lens / set aside), the "one primary anchor per move" rule, what good vs. bad anchor integration looks like.
 
 After presenting the four cards, **reconsider your earlier advice in this conversation and produce your updated position.** This is the most important step — your updated position IS the product. The four cards are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
 
@@ -336,77 +211,18 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 **How to use the audit material:**
 
 - **Cherry-pick what genuinely matters.** Not every finding deserves equal weight. A tendency detection with high severity and a specific passage is stronger signal than a marginal detection. Read the evidence — does it ring true for THIS conversation, or is it a pattern match that doesn't quite fit? Trust your judgment.
-
 - **Treat DeltaCard findings as challenge pressure, not corrections.** The audit says "this passage shows signs of doubt-avoidance" — it doesn't say your conclusion is wrong. Maybe you were right to be decisive. But if the finding names a specific missing check or reversal trigger, consider whether it belongs.
-
-- **Treat CompanionCheatSheet as enrichment — and name the anchors.** Each model in `companion_cheat_sheet.anchors[]` has a `display_name`. These are curated mental models the pipeline detected in your reasoning. **Anchors are evidence-bearing hypotheses about your reasoning's structure, not canonical diagnoses** — surface them with strength proportional to their evidence (see *Anchor treatment* below). Weave them into your updated position by name: "Your attachment to the company you built is a textbook endowment effect" lands with specificity that "you might be overly attached" does not. Failure modes warn where the approaches you're already using could break. Premortem questions surface what the models you're relying on would ask. Antagonists highlight productive tensions. Use the material to strengthen, not to second-guess. If an anchor doesn't fit this decision, set it aside in §2 below with a specific reason — don't silently skip it.
-
+- **Treat CompanionCheatSheet as enrichment — and apply `anchor-treatment.md`.** Each anchor has a `display_name`. Anchors are evidence-bearing hypotheses, not canonical diagnoses; surface them with strength proportional to their evidence. The naming invariant requires every anchor to land in §1, §2, or §3 below — none silently skipped. Use `display_name` verbatim.
 - **Treat FramePressureCard as an invitation to widen the frame.** If the audit found an embedded assumption in the question, you don't have to abandon your answer — but you might want to acknowledge what changes if that assumption is relaxed.
-
-- **Treat StructuralCoverageCard as territory you cannot address alone.** When structural coverage identifies gaps, acknowledge them as dimensions you cannot address without user input. Do NOT attempt to answer gap questions yourself. Gap questions are an invitation for the user to deepen the conversation — they ask for situation knowledge only the decision-maker has. Your role is to flag these gaps honestly and let the user decide which ones matter enough to explore.
+- **Treat StructuralCoverageCard as territory you cannot address alone.** When structural coverage identifies gaps, acknowledge them as dimensions you cannot address without user input. Do NOT attempt to answer gap questions yourself. Gap questions are an invitation for the user to deepen the conversation — they ask for situation knowledge only the decision-maker has.
 
 **Structure your updated position in this order:**
 
 1. **What survived.** Start with what you'd say again unchanged. This forces you to affirm your position before modifying it, which is harder than it sounds — the temptation is to hedge everything after seeing the cards.
-
 2. **What you'd set aside.** Name which findings you considered and deliberately chose not to act on, with a specific reason for each. "The contrast-misreaction finding flagged my comparison, but the comparison itself is the right frame for this decision because [reason]." This is the hardest part — it requires genuine judgment, not performance.
+3. **What actually shifted.** Name what changed in your position and why, and name the mental models that drove the shift. Be specific. This should be the smallest section if your original advice was sound.
 
-3. **What actually shifted.** Name what changed in your position and why, and name the mental models that drove the shift. Be specific: "I was more definitive than warranted about X because I hadn't accounted for endowment effect — the emotional weight of something you built distorts exit math." This should be the smallest section if your original advice was sound.
-
-**Anchor-naming invariant.** Every anchor in `companion_cheat_sheet.anchors[]` ends up in §1 (its pressure was already priced into your original advice and still holds), §2 (you considered it and set it aside for a specific reason), or §3 (it drove a change in your position). No anchor is silently skipped. When you name an anchor, use the `display_name` **verbatim** — the exact string as it appears in `companion_cheat_sheet.anchors[]`, including capitalization, spacing, and punctuation. Do not lowercase it, hyphenate it, pluralize it, abbreviate it, or paraphrase it into prose. Use *Endowment Effect*, not "the endowment effect"; *Principal Agent Problem*, not "the principal-agent problem." The exact curated term is part of the product.
-
-**Anchor treatment.** "Addressed" is no longer uniform. Each anchor gets ONE of three rhetorical treatments based on YOUR reading of its evidence quote, the model's specificity, and the surrounding answer. These are internal writing rules — **do not** create user-visible "primary / secondary / set-aside" headings. They shape *how* an anchor lands inside §1 / §2 / §3, not where the anchor goes.
-
-**One primary-pressure anchor per reasoning move.** When multiple anchors describe the same move or evidence quote, the most specific / load-bearing anchor gets primary treatment; the others — even if their evidence is direct — become secondary lenses or are set aside with a reason. Treating two anchors as equally primary for the same move is overclaim by structure: it implies two independently load-bearing reads where the answer is really making one. If two anchors both receive primary pressure, their roles must be clearly distinct (different reasoning moves, not the same move described two ways).
-
-- **Primary pressure** — the anchor directly explains a load-bearing reasoning move. Evidence is direct, specific, and central. The model named is specific enough to be the right structural read (not a broad overlay that could apply anywhere). Use stronger framing: *"appears to rely on"*, *"the structural pressure point is"*, *"the answer instantiates"*.
-- **Secondary lens** — the anchor is plausible and useful, but the evidence is weaker, broader, or adjacent. Could explain part of the structure but not the load-bearing move. Or several anchors compete for the same passage and this is one of them. Use softer framing: *"a related lens is"*, *"a possible second read"*, *"an adjacent risk"*, *"may be overweighting"*.
-- **Set aside with a reason** — the anchor was surfaced by the pipeline but your reading of the evidence says it's not load-bearing here. Acknowledge briefly to satisfy the invariant; do not rely on it heavily; explain why. Use acknowledging framing: *"was surfaced as a possible lens but..."*, *"is not the load-bearing read here because..."*, *"set aside in favor of..."*.
-
-**Use stronger (primary pressure) language only when ALL of these hold:**
-- The evidence quote shows the assistant *using the model's mechanism*, not just adjacent vocabulary.
-- The model is *specific enough* to explain THIS passage without applying to most answers.
-- The anchor is *central* to the answer's reasoning, not a tangential framing.
-- No competing anchor with stronger evidence claims the same passage.
-
-**Use softer (secondary lens) language when:**
-- The evidence quote is short, generic, or compatible rather than diagnostic.
-- The model is broad-overlay (systems-thinking, second-order-thinking, multi-criteria-decision-analysis are typical examples) or could plausibly explain many answers.
-- Multiple anchors compete for the same passage and this anchor is not the strongest candidate.
-- The model is useful as a lens but not necessary to explain the answer.
-
-**Use "set aside with a reason" framing when:**
-- A different anchor better explains the same passage and you want to avoid double-claiming it.
-- The evidence quote is vocabulary mention without the mechanism running.
-- The anchor is plausible in general but not load-bearing for this specific case.
-
-**Critical: do NOT enumerate anchors mechanically.** Integrate them into your existing §1 / §2 / §3 reasoning at the point where each one earns its mention. A primary-pressure anchor lands inside the §1 or §3 sentence where the structural move it names is happening. A secondary-lens anchor folds into a related sentence as a softer second read. A "set aside with a reason" anchor goes into §2 with its dismissal explained alongside other set-aside findings.
-
-**Test:** if §1 becomes one paragraph per anchor, you have drifted into anchor-parade shape. Right shape: each paragraph carries the *reasoning move* it is making, names the primary anchor as part of that move, and folds related lenses inline only where they clarify the point. Wrong shape: paragraph 1 = anchor A, paragraph 2 = anchor B, paragraph 3 = anchor C, regardless of whether A/B/C describe one structural move or three. Wrong shape stays wrong even when each individual paragraph reads well.
-
-**Forbidden:**
-- Probability percentages or "high/moderate/low confidence" claims about anchors. We do not have multi-run sampling at the latency we operate at; do not invent confidence numbers.
-- Hiding an anchor entirely. Silent omission violates the anchor-naming invariant. Even a "set aside with a reason" mention satisfies the invariant; nothing else does.
-- "The answer is using X" framing on weak anchors. That's overclaim. Use *"appears to lean on"*, *"a possible lens"*, or set-aside framing.
-- Collapsing into hedging. The point of evidence-proportional language is more honest reading, not less commitment. Where evidence supports a primary read, commit to it.
-
-**What good looks like:**
-
-Your updated position should sound like you thought more deeply about the problem — not like you got scolded and are now hedging everything. Good updates:
-
-- Add a specific condition you missed: "One thing I should flag — if the integration timeline slips past Q3, the cost assumptions change significantly."
-- Name a mental model that sharpens what's going on: "Your attachment to the company you built is endowment effect — the emotional weight of something you made does not update the exit math. The number you'd pay to buy this back from a stranger is almost certainly lower than the number you'd accept to sell it."
-- Surface a tension you glossed over: "I framed this as straightforward, but there's a real tension between speed-to-market and the compliance review timeline — which is exactly where margin of safety applies."
-- Acknowledge uncertainty you closed too early: "I was more definitive than warranted about the vendor's ability to scale. That depends on assumptions we haven't verified."
-
-Bad updates:
-
-- Generic hedging: "Of course, there are risks to consider..."
-- Wholesale reversal: completely rewriting your position because the audit said so
-- Mentioning the audit machinery: "The pipeline found that..." / "The delta card suggests..." / "The companion cheat sheet includes..." / "The sub-agent's reading..." / "Nothing in the audit changes..." / "Isolated review argues..." — the mechanism is for you, not the user. But the **mental models themselves** (endowment effect, inversion, opportunity cost, margin of safety) are reasoning tools — name them freely. The rule is: no pipeline terms in the user-facing output; model names are fine and encouraged. When setting aside a concern that Step 7's pressure-check surfaces, attribute the *argument* ("the case for heavily caveating the equity direction"), not its source ("the sub-agent's suggestion").
-- Treating every finding as significant: performing reconsideration instead of actually reconsidering
-
-**Bullshit Index as internal quality signal:** If `bullshit_profile` exists in the result JSON, read it before writing. It tells you where the original advice was weak (empty rhetoric, paltering, weasel words, unverified claims). Your Step 6 must be stronger in exactly those places. Do NOT mention the BI to the user. Do NOT present BI results as separate findings. See `references/anti-bullshit-doctrine.md` for the full thinking framework.
+`anchor-treatment.md` governs HOW each anchor lands inside §1 / §2 / §3 (rhetorical strength matched to evidence) and what's forbidden (probability percentages, silent omission, "the answer is using X" framing on weak anchors, hedging-as-style). Read it before writing.
 
 ### Step 6b: Persist Revised Answer
 
@@ -450,31 +266,23 @@ This produces a persistent markdown artifact the user can reference or share wit
 
 **Launch these BEFORE writing Step 6** — they run in the background while you write your reconsideration. By the time you finish Step 6 and Step 6b, results are ready.
 
+**Read `references/sub-agent-prompts.md`** for the full templates: shared preamble (with `{DECISION_SITUATION}`, `{LIVE_CONSTRAINTS}`, `{SYNTHESIZED_POSITION}`, `{REASONING_PASSAGES}`, `{ORIGINAL_FRAMING}`, `{DROPPED_THREADS}` placeholders) plus four lane-specific suffixes.
+
 Spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-agent receives the extracted decision structure and ONE audit card — no conversation history, no other lanes, no session context. They read the position cold and assess what should shift.
 
 **Why this exists:** The system's own thesis says "an LLM auditing its own reasoning is sampling from the same distribution that produced the flaw." Steps 1-4 respect this — Grok does the detection. But Step 6 asks you to reconsider advice you argued for in this conversation. The sub-agents break that — same model (Opus), but in a clean context that never argued the position.
 
 **Procedure:**
 
-1. Read `/tmp/lolla_${LOLLA_RUN_ID}_extraction.json` and extract these fields:
-   - `extraction.decision_situation`
-   - `extraction.live_constraints`
-   - `extraction.synthesized_position`
-   - `extraction.reasoning_passages`
-   - `extraction.original_framing`
-   - `extraction.dropped_threads`
-
-2. Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and extract the 4 card sections.
-
-3. Check skip conditions — do NOT spawn a sub-agent for empty lanes:
+1. Read `/tmp/lolla_${LOLLA_RUN_ID}_extraction.json` for the extraction fields (decision_situation, live_constraints, synthesized_position, reasoning_passages, original_framing, dropped_threads).
+2. Read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` for the 4 card sections.
+3. Check skip conditions — do NOT spawn for empty lanes:
    - Lane 1: skip if `delta_card.top_findings` is empty or null
    - Lane 2: skip if `companion_cheat_sheet.anchors` is empty or null
    - Lane 3: skip if `frame_pressure_card.frame_elements` is empty/null AND `frame_pressure_card.reframings` is empty/null
    - Lane 4: skip if `structural_coverage_card.dimensions` is empty/null OR all dimensions have `covered: true`
-
-4. For each non-empty lane, spawn an Agent tool call **in the background** (`run_in_background: true`). All non-empty lanes are spawned in a single message (parallel). Each agent receives the prompt from the Sub-Agent Prompt Templates section below — the shared preamble (with extraction fields interpolated) + the lane-specific suffix (with that lane's card JSON interpolated).
-
-5. The sub-agent prompt must be fully self-contained — no file reads, no bash calls, no tool access. The sub-agent reasons over the text it receives and returns a text response.
+4. For each non-empty lane, spawn an Agent tool call **in the background** (`run_in_background: true`). All non-empty lanes are spawned in a single message (parallel). Build each prompt by combining the shared preamble + the appropriate lane suffix from `sub-agent-prompts.md`, with placeholders substituted.
+5. The sub-agent prompt must be fully self-contained — no file reads, no bash calls, no tool access.
 
 **If a sub-agent fails or times out:** log that lane as `skipped_error` and continue. Do not block Step 8 on any single lane's failure.
 
@@ -693,120 +501,14 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | File | When to read |
 |------|-------------|
 | `references/output-field-guide.md` | **Read at the start of Step 4** — full field definitions, chunk types, compound patterns, element types, reframe moves |
-| `references/presentation-voice.md` | **Read at the start of Step 6** — how to voice your updated position: Munger-inspired directness, concrete antidotes, earn the right to challenge. Do NOT read this for Step 4 — Step 4 is structured rendering, not voiced narrative. |
+| `references/chat-output-format.md` | **Read at the start of Step 4** — render specification: run-health surface, BLUF, finding blocks, anchors line, alternative-question line, structural-gaps line, delivery-check line, run-cost line, closing line, "what NOT to put in chat" |
+| `references/presentation-voice.md` | **Read at the start of Step 6** — how to voice your updated position: Munger-inspired directness, concrete antidotes, earn the right to challenge |
+| `references/anti-bullshit-doctrine.md` | **Read at the start of Step 6** — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid, negation test as mental model. Also cross-check before Step 8. |
+| `references/anchor-treatment.md` | **Read at the start of Step 6** — how to handle `companion_cheat_sheet.anchors[]`: naming invariant, three rhetorical modes (primary pressure / secondary lens / set aside), one-primary-per-move rule, what good vs. bad anchor integration looks like |
+| `references/sub-agent-prompts.md` | **Read at Step 7** — shared preamble + four lane-specific suffixes for pressure-check sub-agents |
 | `references/tendency-catalog.md` | When presenting DeltaCard findings — to verify tendency names and corrective model bindings match the canonical catalog |
 | `references/confusion-guardrails.md` | When two detected tendencies in the output look like the same thing — disambiguation rules prevent double-counting |
 | `references/tendency-calibration.md` | When a detection feels marginal or the user questions a finding — contains detection boundaries and threshold guidance per tendency |
-| `references/anti-bullshit-doctrine.md` | **Read at the start of Step 6** (alongside presentation-voice.md) — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid, negation test as mental model. Also read before Step 8. |
-| `references/presentation-research.md` | When thinking about how to present findings in chat vs. Observatory — book research on scanning, BLUF, story turns, formatting overuse, and the golden pocket between McKinsey-dry and fiction-entertaining |
+| `references/presentation-research.md` | When thinking about how to present findings in chat vs. Observatory — book research on scanning, BLUF, story turns, formatting overuse |
 | `HOW_IT_WORKS.md` (repo root) | When the user asks "how does this work", "what just happened", or about the architecture — full technical reference including research foundations, step-by-step pipeline flow, and knowledge substrate |
 | `docs/cost-and-telemetry.md` | When the user asks about cost, call counts, prompt caching, or what's measured per run — single canonical doc covering the `usage_summary` block, vendor tracking, pricing table, and how to add a new vendor or stage |
-
-## Sub-Agent Prompt Templates
-
-These are the prompts for the Step 7 pressure-check sub-agents. Each agent receives a **shared preamble** (with extraction fields interpolated) plus a **lane-specific suffix** (with that lane's card JSON interpolated). The prompt must be fully self-contained — the sub-agent has no tool access.
-
-### Shared Preamble
-
-Use this as the first section of every sub-agent prompt. Replace `{DECISION_SITUATION}`, `{LIVE_CONSTRAINTS}`, `{SYNTHESIZED_POSITION}`, `{REASONING_PASSAGES}`, `{ORIGINAL_FRAMING}`, and `{DROPPED_THREADS}` with the actual values from the extraction JSON.
-
-```
-You are reviewing a strategic decision cold. You have never seen the conversation that produced this position. You have no history with this topic, no prior arguments, no commitment to any conclusion. You are reading this for the first time.
-
-Your job: given the decision structure below and ONE set of audit findings, identify what specifically should shift in the synthesized position. Be concrete — name the specific part of the position that should change, not generic "consider the risks" advice.
-
-If nothing material should shift, say so honestly. Not every finding requires a position change. But if you see a genuine gap — something the position dismissed, underweighted, or failed to connect — name it specifically.
-
-## Decision Structure
-
-**Decision situation:**
-{DECISION_SITUATION}
-
-**Constraints:**
-{LIVE_CONSTRAINTS}
-
-**Synthesized position (the thing being audited):**
-{SYNTHESIZED_POSITION}
-
-**Key reasoning passages:**
-{REASONING_PASSAGES}
-
-**How the question was framed:**
-{ORIGINAL_FRAMING}
-
-**Threads raised but not resolved:**
-{DROPPED_THREADS}
-```
-
-### Lane 1 Suffix — DeltaCard (Structural Pressure)
-
-```
-## Audit Findings — Structural Pressure
-
-The following cognitive tendency detections were found in the reasoning above. Each detection identifies a specific reasoning pattern, the passage where it appears, and a challenge from a curated knowledge base.
-
-{DELTA_CARD_JSON}
-
-## Your Assessment
-
-For each finding above:
-1. Does the specific_passage + challenge_statement warrant a concrete shift in the synthesized position?
-2. What specifically should change in the position, and why?
-3. If the detection is noise given this decision situation, explain why.
-
-Be direct. Name the shift or say there isn't one.
-```
-
-### Lane 2 Suffix — CompanionCheatSheet (Mental Models Active)
-
-```
-## Audit Findings — Mental Model Companion
-
-The following mental models were detected as active in the reasoning above. Each comes with failure modes, premortem questions, and tensions from a curated knowledge base.
-
-{COMPANION_CHEAT_SHEET_JSON}
-
-## Your Assessment
-
-For each model's failure modes and premortem questions:
-1. Does the synthesized position adequately account for them?
-2. Name any failure mode or premortem question that the position ignores or underweights.
-3. If the model's material is already well-handled by the position, say so.
-
-Be direct. Name the gap or confirm there isn't one.
-```
-
-### Lane 3 Suffix — FramePressureCard (Question-Level Audit)
-
-```
-## Audit Findings — Frame Pressure
-
-The following embedded assumptions and alternative framings were found in how the question was posed. Each identifies what was assumed fixed and what opens if that assumption is relaxed.
-
-{FRAME_PRESSURE_CARD_JSON}
-
-## Your Assessment
-
-For each frame element and reframing:
-1. Does the synthesized position acknowledge this embedded assumption?
-2. Would the position change materially if the assumption were relaxed?
-3. If the frame is genuinely fixed (not an assumption), explain why.
-
-Be direct. Name what shifts or say the frame holds.
-```
-
-### Lane 4 Suffix — StructuralCoverageCard (Gap Discovery)
-
-**Before interpolating:** Strip the card JSON to only gap dimensions (`covered: false`) and their matching `gap_questions`. Drop all covered dimensions — the sub-agent doesn't need them. This keeps the payload small and focused.
-
-```
-## Audit Findings — Structural Coverage Gaps
-
-The following structural dimensions were identified as gaps — territory the answer didn't enter. Each includes discovery questions for the decision-maker.
-
-{STRUCTURAL_COVERAGE_GAPS_ONLY_JSON}
-
-## Your Assessment
-
-For each gap: is this a genuine blind spot, or is it addressed implicitly in the position? Would filling it change the recommendation? Be direct and brief.
-```
