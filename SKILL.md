@@ -284,6 +284,8 @@ Spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-ag
 4. For each non-empty lane, spawn an Agent tool call **in the background** (`run_in_background: true`). All non-empty lanes are spawned in a single message (parallel). Build each prompt by combining the shared preamble + the appropriate lane suffix from `sub-agent-prompts.md`, with placeholders substituted.
 5. The sub-agent prompt must be fully self-contained — no file reads, no bash calls, no tool access.
 
+**Do not stage prompts or card JSONs to `/tmp/` files first.** Build each prompt inline as the Agent tool's `prompt` parameter by reading the templates from `references/sub-agent-prompts.md` and interpolating directly into the Agent call. Disk-staging (writing `lane*_prompt.txt`, `delta.json`, `companion.json`, `frame.json`, `coverage_gaps.json`, `preamble.txt` to `/tmp/`) adds 4+ extra tool uses per run with no benefit and risks tool-budget exhaustion before sub-agents spawn.
+
 **If a sub-agent fails or times out:** log that lane as `skipped_error` and continue. Do not block Step 8 on any single lane's failure.
 
 ### Step 8: Pressure-Check Comparison
@@ -318,6 +320,8 @@ Only "yes" answers get reported. Present divergences under a `### Pressure Check
 - Just: "I said X. There's a case for Y that I may be underweighting."
 - Be honest. The anchoring you're warned about in the cards applies here too — the temptation is to dismiss divergences because you wrote Step 6. Fight that.
 - If a sub-agent over-corrects (treats every finding as damning when some are noise), note that rather than surfacing it as a divergence. Use your judgment — but lean toward surfacing rather than suppressing.
+
+**Watch for Question-3 suppression specifically.** If your draft pressure check contains phrases like "mostly aligned", "all incorporated above", or "already covered" — re-read the sub-agent outputs for any *named alternative mechanism* (an alternative reporting channel, a different contractual instrument, a distinct stakeholder forum, a specific tripwire pattern, a particular legal-instrumental framing) that your Step 6 §3 didn't enumerate. A named alternative the sub-agent surfaced that your §3 didn't list IS a Question-3 divergence — surface it even when the underlying *concern* was addressed structurally. Confident closure that suppresses named alternatives is the failure mode this step exists to defeat.
 
 **Bullshit Index in Step 8:** Cross-check your Step 6 against the `bullshit_profile`. Did you reproduce patterns the BI flagged in the original? See `references/anti-bullshit-doctrine.md` for the specific RLHF patterns to watch for in your own output.
 
