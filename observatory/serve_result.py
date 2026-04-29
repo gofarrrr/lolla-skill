@@ -143,23 +143,47 @@ p.lede strong { color: #111; }
 # FAB only renders on /; the audit panels and /usage never carry it.
 _TELEMETRY_FAB_HTML = (
     '<a href="/audit" class="telemetry-fab" '
-    'aria-label="View run telemetry">Telemetry &rarr;</a>'
+    'aria-label="View run telemetry">TELEMETRY <span aria-hidden="true">&rarr;</span></a>'
 )
 
 _TELEMETRY_FAB_STYLE = """
 <style>
+/* Telemetry FAB lives at bottom-right so it never sits in the lane of
+   the SPA's right-side .sidebar (which fills the top-right vertical band)
+   or its on-demand .drawer-panel close button. z-index 50 keeps it above
+   ordinary page content but below any SPA modal/overlay (which sit at
+   100/101). The original bug shipped at top-right z=9999 — that visually
+   cropped the sidebar's first card and intercepted clicks on the drawer's
+   close X. Bottom-right is empty real estate in the SPA bundle. */
+/* Match the SPA's design tokens (deep indigo bg, teal accent, mono uppercase
+   labels) so the FAB reads as part of the system, not a tacked-on add-on. */
 .telemetry-fab {
-  position: fixed; top: 16px; right: 16px; z-index: 9999;
-  padding: 0.45rem 0.95rem; border-radius: 999px;
-  background: #fafafa; color: #336; border: 1px solid #ccd;
-  font-family: system-ui, sans-serif; font-size: 0.9rem; text-decoration: none;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  transition: transform 120ms ease, box-shadow 120ms ease;
+  position: fixed; bottom: 20px; right: 20px; z-index: 50;
+  padding: 0.55rem 1.1rem; border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #41FFA7;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; text-decoration: none;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: background 120ms ease, border-color 120ms ease;
 }
-.telemetry-fab:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.14); text-decoration: none; }
-.telemetry-fab:focus-visible { outline: 2px solid #336; outline-offset: 2px; }
+.telemetry-fab:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #41FFA7; text-decoration: none;
+}
+.telemetry-fab:focus-visible { outline: 2px solid #41FFA7; outline-offset: 2px; }
 @media (max-width: 600px) {
-  .telemetry-fab { top: 10px; right: 10px; padding: 0.35rem 0.7rem; font-size: 0.85rem; }
+  .telemetry-fab { bottom: 14px; right: 14px; padding: 0.45rem 0.85rem; font-size: 11px; }
+}
+/* Belt-and-suspenders: when the SPA opens its modal drawer, hide the FAB
+   entirely so it cannot intercept clicks on the drawer's close button even
+   under unusual stacking contexts. */
+body:has(.drawer-overlay) .telemetry-fab,
+body:has(.drawer-panel) .telemetry-fab {
+  display: none;
 }
 </style>
 """
