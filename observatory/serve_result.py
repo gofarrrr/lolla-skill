@@ -6,6 +6,13 @@ result JSON file and serves it through the Observatory Svelte app.
 Usage:
     python3 observatory/serve_result.py --result /tmp/lolla_result.json
     python3 observatory/serve_result.py --result /tmp/lolla_result.json --port 9000
+
+SPA source: the bundle in ``observatory/build/`` is compiled output from
+``Lolla-system-b/observatory/svelte-app`` (separate repo). To change SPA
+behaviour, edit the Svelte source there, run ``npm run build``, and copy
+``build/`` over the skill's ``observatory/build/``. The ``/audit/*`` and
+``/usage`` panels rendered from this Python file are independent of the
+SPA bundle and stay portable when ``observatory/build/`` is empty.
 """
 from __future__ import annotations
 
