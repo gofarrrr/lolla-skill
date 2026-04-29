@@ -568,3 +568,71 @@ def test_smoke_all_panels_serve_200_without_spa_bundle(running_server):
         status, body = _http_get(f"{running_server}{p}")
         assert status == 200, f"{p} returned {status}"
         assert "<html" in body or "<!doctype" in body.lower(), f"{p} did not return HTML"
+
+
+# ---------------------------------------------------------------------------
+# Telemetry FAB injection — bridge from / (SPA) to /audit
+# ---------------------------------------------------------------------------
+
+
+def test_telemetry_fab_injection_inserts_before_body_close():
+    """The FAB injection must place the anchor + style before </body>."""
+    src = b"<html><head></head><body><div id='root'></div></body></html>"
+    out = serve_result._inject_telemetry_fab(src).decode("utf-8")
+    assert "telemetry-fab" in out
+    assert 'href="/audit"' in out
+    # Injected before </body>, not after
+    assert out.index("telemetry-fab") < out.index("</body>")
+
+
+def test_telemetry_fab_injection_is_idempotent():
+    """Serving the same bytes twice must not double-inject the FAB."""
+    src = b"<html><body><div id='root'></div></body></html>"
+    once = serve_result._inject_telemetry_fab(src)
+    twice = serve_result._inject_telemetry_fab(once)
+    assert once == twice
+    # Marker appears exactly once
+    assert twice.decode("utf-8").count('class="telemetry-fab"') == 1
+
+
+def test_telemetry_fab_injection_appends_when_no_body_close():
+    """Edge case: malformed bundle without </body> — injection still happens."""
+    src = b"<html><body><div id='root'></div>"
+    out = serve_result._inject_telemetry_fab(src).decode("utf-8")
+    assert "telemetry-fab" in out
+
+
+def test_root_serves_spa_with_fab_injected(tmp_path, monkeypatch):
+    """End-to-end: GET / returns the SPA index.html with the Telemetry FAB
+    injected. Confirms the do_GET wiring intercepts / before the static-file
+    fallback, and that the injection runs on a fresh request."""
+    # Stand up a synthetic SPA bundle with a placeholder index.html
+    fake_static = tmp_path / "build"
+    fake_static.mkdir()
+    (fake_static / "index.html").write_bytes(
+        b"<html><head><title>SPA</title></head>"
+        b"<body><div id='root'>SPA app mount</div></body></html>"
+    )
+    result_path = tmp_path / "result.json"
+    result_path.write_text(json.dumps(_fixture_result()), encoding="utf-8")
+
+    monkeypatch.setattr(serve_result, "_RESULT", _fixture_result())
+    monkeypatch.setattr(serve_result, "_RESULT_PATH", result_path)
+    monkeypatch.setattr(serve_result, "_RESULT_MTIME", result_path.stat().st_mtime)
+    monkeypatch.setattr(serve_result, "STATIC_DIR", fake_static)
+
+    port = _free_port()
+    server = HTTPServer(("127.0.0.1", port), serve_result.ResultHandler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    time.sleep(0.05)
+    try:
+        status, body = _http_get(f"http://127.0.0.1:{port}/")
+        assert status == 200
+        assert "SPA app mount" in body  # original bundle still there
+        assert "telemetry-fab" in body  # FAB injected
+        assert 'href="/audit"' in body  # FAB navigates to /audit
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=2.0)

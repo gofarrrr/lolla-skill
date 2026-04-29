@@ -117,8 +117,74 @@ nav.audit-nav a.active { font-weight: 600; color: #222; background: #eef; border
 nav.audit-nav a:hover { text-decoration: underline; }
 code { background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.9em; }
 details { margin: 0.5rem 0; }
-details summary { cursor: pointer; color: #336; }
+details summary { cursor: pointer; color: #336; padding: 0.25rem 0; }
+details[open] summary { margin-bottom: 0.5rem; }
+
+/* Headline summary — one sentence after the run-header, before sections */
+p.lede { font-size: 1rem; color: #222; margin: 0.5rem 0 1.5rem; line-height: 1.5; }
+p.lede strong { color: #111; }
+
+/* Run-header strip — case identity + back-link, on every /audit/* page */
+.run-header { color: #666; font-size: 0.9rem; margin: 0 0 1rem; }
+.run-header strong { color: #222; }
+.run-header a { color: #336; text-decoration: none; }
+.run-header a:hover { text-decoration: underline; }
+
+/* Run-vitals strip on /audit index — at-a-glance pulse of this run */
+.vitals { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0 1.5rem; }
+.vitals .tag { background: #f6f6f6; color: #222; border-color: #ddd; font-size: 0.9rem; padding: 0.2rem 0.6rem; }
+
 """
+
+
+# Telemetry FAB — injected into the SPA's index.html on /, the *only* bridge
+# from the case/factual product surface to the system-reasoning surface at
+# /audit. Lives in its own constant (not in _SHARED_PANEL_CSS) because the
+# FAB only renders on /; the audit panels and /usage never carry it.
+_TELEMETRY_FAB_HTML = (
+    '<a href="/audit" class="telemetry-fab" '
+    'aria-label="View run telemetry">Telemetry &rarr;</a>'
+)
+
+_TELEMETRY_FAB_STYLE = """
+<style>
+.telemetry-fab {
+  position: fixed; top: 16px; right: 16px; z-index: 9999;
+  padding: 0.45rem 0.95rem; border-radius: 999px;
+  background: #fafafa; color: #336; border: 1px solid #ccd;
+  font-family: system-ui, sans-serif; font-size: 0.9rem; text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.telemetry-fab:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.14); text-decoration: none; }
+.telemetry-fab:focus-visible { outline: 2px solid #336; outline-offset: 2px; }
+@media (max-width: 600px) {
+  .telemetry-fab { top: 10px; right: 10px; padding: 0.35rem 0.7rem; font-size: 0.85rem; }
+}
+</style>
+"""
+
+
+def _inject_telemetry_fab(html_bytes: bytes) -> bytes:
+    """Insert the Telemetry FAB anchor + style into the SPA's index.html.
+
+    String-injection at the byte-stream layer — does NOT modify the bundle on
+    disk and works whether the SPA was built recently or long ago. Idempotent
+    via the ``telemetry-fab`` marker so accidental double-serves don't render
+    two buttons. Falls back to appending if the bundle has no ``</body>`` tag.
+    """
+    try:
+        text = html_bytes.decode("utf-8")
+    except UnicodeDecodeError:
+        return html_bytes
+    if "telemetry-fab" in text:
+        return html_bytes
+    inject = _TELEMETRY_FAB_STYLE + _TELEMETRY_FAB_HTML
+    if "</body>" in text:
+        text = text.replace("</body>", inject + "</body>", 1)
+    else:
+        text = text + inject
+    return text.encode("utf-8")
 
 
 def _render_scaffold(*, title: str, body: str, current_path: str = "") -> str:
@@ -145,6 +211,61 @@ def _render_scaffold(*, title: str, body: str, current_path: str = "") -> str:
 {body}
 </body></html>
 """
+
+
+def _captured_at_str() -> str:
+    """Derive a human run-capture timestamp from the result file path.
+
+    Archived runs live at ``runs/<case-slug>/<UTC-stamp>/result.json`` where
+    ``<UTC-stamp>`` is e.g. ``20260425T121607Z``. We surface that as the
+    "Captured" field in the run-header. Returns ``""`` when no path is
+    known (e.g. fixture-driven tests, ad-hoc result loads).
+    """
+    if _RESULT_PATH is None:
+        return ""
+    parent = _RESULT_PATH.parent.name
+    if len(parent) == 16 and parent.endswith("Z") and parent[8:9] == "T":
+        return f"{parent[0:4]}-{parent[4:6]}-{parent[6:8]} {parent[9:11]}:{parent[11:13]}:{parent[13:15]}Z"
+    return parent
+
+
+def _render_run_header() -> str:
+    """Compact run identity strip rendered above the lede on every /audit/* panel.
+
+    Defensive about field availability — older archived runs don't carry
+    ``run_id`` or top-level ``fingerprint``. We always show the case name
+    and the back-link to the SPA; the rest is best-effort.
+    """
+    bits: list[str] = []
+
+    case_name = _CASE_NAME or "—"
+    bits.append(f"Case: <strong>{_esc(case_name)}</strong>")
+
+    captured = _captured_at_str()
+    if captured:
+        bits.append(f"Captured: <code>{_esc(captured)}</code>")
+
+    rh = _RESULT.get("run_health") or {}
+    overall = rh.get("overall")
+    if overall:
+        bits.append(f"Health: <code>{_esc(overall)}</code>")
+
+    us = _RESULT.get("usage_summary") or {}
+    run_id = us.get("run_id")
+    if run_id:
+        run_id_str = str(run_id)
+        bits.append(
+            f'Run: <code title="{_esc(run_id_str)}">{_esc(run_id_str[:24])}</code>'
+        )
+
+    bits.append('<a href="/">← back to result</a>')
+
+    return f'<div class="run-header">{" · ".join(bits)}</div>'
+
+
+def _empty_inline(message: str) -> str:
+    """Inline empty-state block — keeps page chrome (nav + run-header + h1)."""
+    return f'<div class="empty">{message}</div>'
 
 
 def _reload_result_if_changed():
@@ -784,16 +905,13 @@ def _render_usage_html() -> str:
 
 _TRIAGE_THRESHOLD_DEFAULT = 4
 _EMBEDDING_PROMOTION_THRESHOLD = 0.30
+_DETECTED_MODELS_CAP_LABEL = "5"  # mirrors engine.system_b.companion_routing._DETECTED_MODELS_CAP
+_LANE2_AUTO_OPEN_THRESHOLD = 20  # candidates table opens by default if pool ≤ this; collapsed otherwise
 
 
 def _audit_summary() -> dict:
     """Pull the audit_summary block, returning ``{}`` for ancient artifacts."""
     return _RESULT.get("audit_summary") or {}
-
-
-def _empty_panel(*, title: str, message: str, current_path: str) -> str:
-    body = f'<h1>{_esc(title)}</h1><div class="empty">{message}</div>'
-    return _render_scaffold(title=f"Lolla — {title}", body=body, current_path=current_path)
 
 
 # ---------------- Panel 1: /audit/lane1 ----------------
@@ -802,15 +920,20 @@ def _empty_panel(*, title: str, message: str, current_path: str) -> str:
 def _render_lane1_html() -> str:
     _reload_result_if_changed()
     audit = _audit_summary()
+
+    header = _render_run_header()
+
     if not audit:
-        return _empty_panel(
-            title="Lane 1 — Pass 1 + Pass 2 funnel",
-            message=(
-                "No <code>audit_summary</code> in this result — likely a "
-                "pre-Phase-7 artifact. Re-run the pipeline to populate it."
-            ),
-            current_path="/audit/lane1",
+        body = (
+            "<h1>Lane 1 — Pass 1 + Pass 2 funnel</h1>"
+            f"{header}"
+            + _empty_inline(
+                "This run was captured before Phase-7 audit observability — "
+                "no <code>audit_summary</code> in the result. Re-run the "
+                "pipeline to populate the Lane 1 trace."
+            )
         )
+        return _render_scaffold(title="Lolla — Lane 1", body=body, current_path="/audit/lane1")
 
     triage = audit.get("triage_scores") or []
     triggered_sources = audit.get("triggered_tendency_sources") or []
@@ -840,10 +963,13 @@ def _render_lane1_html() -> str:
 
     # Pass 2 deep_check outcomes
     pass2_rows = []
+    detected_count = 0
     for d in deep_results:
         detected = bool(d.get("detected"))
+        if detected:
+            detected_count += 1
         cls = "detected-true" if detected else "detected-false"
-        verdict = "DETECTED" if detected else "not detected"
+        verdict = "detected" if detected else "not detected"
         reason = d.get("reason") or ""
         sub_pattern = d.get("sub_pattern") or ""
         pass2_rows.append(
@@ -853,11 +979,11 @@ def _render_lane1_html() -> str:
             f"<td>{_esc(reason)}</td></tr>"
         )
 
-    # Embedding close-calls (sub-threshold rows from PR 2)
+    # Embedding close-calls — full top-25 ranks (promoted + sub-threshold)
     close_call_rows = []
     for r in embedding_ranks:
         promoted = bool(r.get("promoted"))
-        cls = "tag ok" if promoted else "tag warn"
+        cls = "tag ok" if promoted else "tag"
         label = "promoted" if promoted else "close call"
         score = r.get("score")
         score_str = f"{float(score):.3f}" if isinstance(score, (int, float)) else _esc(score)
@@ -867,34 +993,43 @@ def _render_lane1_html() -> str:
             f"<td><span class='{cls}'>{label}</span></td></tr>"
         )
 
+    lede = (
+        f"Of <strong>{len(triage)}</strong> tendencies the system triaged, "
+        f"<strong>{len(triggered_sources)}</strong> crossed the Pass 1 threshold "
+        f"and Pass 2 confirmed <strong>{detected_count}</strong>."
+    )
+
     body = f"""
 <h1>Lane 1 — Pass 1 + Pass 2 funnel</h1>
-<p class="hint">What the LLM triage saw across all 24 tendencies, which ones got promoted to Pass 2 (and how — triage / embedding / always-include), and what Pass 2 returned with rationale.</p>
+{header}
+<p class="lede">{lede}</p>
 
 <h2>Pass 1 — Triage scores ({len(triage_rows)} tendencies)</h2>
-<p class="hint">Triage threshold: <code>{_TRIAGE_THRESHOLD_DEFAULT}</code> — tendencies scoring ≥ threshold are promoted to Pass 2.</p>
+<p class="hint">Triage threshold: <code>{_TRIAGE_THRESHOLD_DEFAULT}</code>. Tendencies at or above this score advance to Pass 2 deep-check; the rest stay observed but unverified.</p>
 <table>
 <tr><th>Tendency</th><th class="num">Score</th><th>Evidence</th></tr>
-{"".join(triage_rows) if triage_rows else "<tr><td colspan='3' class='empty'>No triage scores recorded.</td></tr>"}
+{"".join(triage_rows) if triage_rows else "<tr><td colspan='3' class='empty'>No triage scores recorded for this run.</td></tr>"}
 </table>
 
-<h2>Triggered set ({len(src_rows)} promoted to Pass 2)</h2>
+<h2>Triggered set ({len(src_rows)} advanced to Pass 2)</h2>
+<p class="hint">Where each promotion came from — <code>triage</code> (Pass 1 score), <code>embedding</code> (cosine match against the catalog), or <code>always_include</code> (rules-based, surfaces regardless of score).</p>
 <table>
 <tr><th>Tendency</th><th>Source</th><th class="num">Score</th></tr>
-{"".join(src_rows) if src_rows else "<tr><td colspan='3' class='empty'>No tendencies promoted to Pass 2.</td></tr>"}
+{"".join(src_rows) if src_rows else "<tr><td colspan='3' class='empty'>The Pass 1 triage promoted no tendencies on this run.</td></tr>"}
 </table>
 
 <h2>Pass 2 — Deep check outcomes</h2>
+<p class="hint">For each promoted tendency, the deep check returns a verdict, a sub-pattern label when relevant, and the model's reasoning for either outcome.</p>
 <table>
 <tr><th>Tendency</th><th>Verdict</th><th>Sub-pattern</th><th>Reason</th></tr>
-{"".join(pass2_rows) if pass2_rows else "<tr><td colspan='4' class='empty'>No Pass 2 calls fired (no triggered tendencies).</td></tr>"}
+{"".join(pass2_rows) if pass2_rows else "<tr><td colspan='4' class='empty'>No Pass 2 outcomes — the triage promoted nothing to deep-check.</td></tr>"}
 </table>
 
 <h2>Embedding close-calls — full top-25 ranks</h2>
-<p class="hint">Sub-threshold (&lt; {_EMBEDDING_PROMOTION_THRESHOLD}) rows are the "tendency X scored 0.28, almost made it" telemetry. Persisted by PR 2 of the 2026-04-28 roadmap; this panel surfaces it.</p>
+<p class="hint">Cosine match scores for every catalog tendency, including those below the <code>{_EMBEDDING_PROMOTION_THRESHOLD}</code> promotion floor. Sub-threshold rows surface "almost-made-it" cases — useful when calibrating where the floor sits.</p>
 <table>
 <tr><th>Tendency</th><th class="num">Cosine</th><th>Status</th></tr>
-{"".join(close_call_rows) if close_call_rows else "<tr><td colspan='3' class='empty'>No embedding ranks recorded (embeddings off, or run pre-dates PR 2).</td></tr>"}
+{"".join(close_call_rows) if close_call_rows else "<tr><td colspan='3' class='empty'>No embedding ranks recorded (embeddings off for this run, or run pre-dates PR 2).</td></tr>"}
 </table>
 """
     return _render_scaffold(title="Lolla — Lane 1", body=body, current_path="/audit/lane1")
@@ -906,22 +1041,35 @@ def _render_lane1_html() -> str:
 def _render_lane2_html() -> str:
     _reload_result_if_changed()
     audit = _audit_summary()
+
+    header = _render_run_header()
+
     if not audit:
-        return _empty_panel(
-            title="Lane 2 — Companion selection funnel",
-            message="No <code>audit_summary</code> in this result.",
-            current_path="/audit/lane2",
+        body = (
+            "<h1>Lane 2 — Companion selection funnel</h1>"
+            f"{header}"
+            + _empty_inline(
+                "This run was captured before Phase-7 audit observability — "
+                "no <code>audit_summary</code> in the result."
+            )
         )
+        return _render_scaffold(title="Lolla — Lane 2", body=body, current_path="/audit/lane2")
 
     candidates = audit.get("companion_candidates") or []
-    if not candidates and not audit.get("companion_verification_accepted_before_cap"):
-        return _empty_panel(
-            title="Lane 2 — Companion selection funnel",
-            message="Lane 2 didn't fire on this run (no candidates surfaced).",
-            current_path="/audit/lane2",
-        )
+    accepted_before_cap = audit.get("companion_verification_accepted_before_cap") or []
 
-    accepted = audit.get("companion_verification_accepted_before_cap") or []
+    if not candidates and not accepted_before_cap:
+        body = (
+            "<h1>Lane 2 — Companion selection funnel</h1>"
+            f"{header}"
+            + _empty_inline(
+                "Lane 2 stayed quiet on this case — the system surfaced no "
+                "companion-model candidates worth verifying."
+            )
+        )
+        return _render_scaffold(title="Lolla — Lane 2", body=body, current_path="/audit/lane2")
+
+    accepted = accepted_before_cap
     capped = audit.get("companion_verification_capped_models") or []
     rejected = audit.get("companion_rejected_models") or []
     duplicates = audit.get("companion_verification_duplicate_accepts") or []
@@ -930,14 +1078,6 @@ def _render_lane2_html() -> str:
     candidate_cap = audit.get("companion_candidate_cap", 0)
 
     final_anchors = (_RESULT.get("companion_cheat_sheet") or {}).get("anchors") or []
-
-    # Funnel totals (Candidates → Accepted-before-cap → Final cheat-sheet)
-    totals = (
-        f"<p class='hint'>Funnel: <strong>{len(candidates)}</strong> candidates → "
-        f"<strong>{len(accepted)}</strong> accepted (before cap) → "
-        f"<strong>{len(final_anchors)}</strong> final cheat-sheet anchors. "
-        f"Recall cap: <code>{_esc(candidate_cap)}</code>.</p>"
-    )
 
     cand_rows = []
     for c in candidates:
@@ -986,57 +1126,80 @@ def _render_lane2_html() -> str:
         for s in silently_omitted
     ]
 
+    lede = (
+        f"From <strong>{len(candidates)}</strong> companion candidates, the system "
+        f"surfaced <strong>{len(final_anchors)}</strong> cheat-sheet anchors. "
+        f"<strong>{len(quote_repairs)}</strong> arrived via verifier-repaired quotes; "
+        f"<strong>{len(silently_omitted)}</strong> the verifier never named."
+    )
+
+    # Threshold-based collapse — small candidate pools open inline (operator
+    # sees everything at a glance); larger ones collapse to keep the page
+    # scannable. Threshold lives in _LANE2_AUTO_OPEN_THRESHOLD.
+    cand_open_attr = " open" if len(candidates) <= _LANE2_AUTO_OPEN_THRESHOLD else ""
+    cand_table = (
+        "<table>"
+        '<tr><th>Model</th><th>Recall source</th><th class="num">Kw rank</th>'
+        '<th class="num">Emb rank</th><th class="num">Final rank</th>'
+        "<th>Activation trigger</th></tr>"
+        + ("".join(cand_rows) if cand_rows else "<tr><td colspan='6' class='empty'>No candidates on this run.</td></tr>")
+        + "</table>"
+    )
+
     body = f"""
 <h1>Lane 2 — Companion selection funnel</h1>
-{totals}
+{header}
+<p class="lede">{lede}</p>
+<p class="hint">Candidate pool cap: <code>{_esc(candidate_cap)}</code>. The system pulls candidates via keyword, embedding, and curated activation triggers, then verifies each against the conversation before promoting up to the top {_DETECTED_MODELS_CAP_LABEL} as cheat-sheet anchors.</p>
 
-<h2>Candidates ({len(candidates)} sent to verifier)</h2>
-<table>
-<tr><th>Model</th><th>Recall source</th><th class="num">Kw rank</th><th class="num">Emb rank</th><th class="num">Final rank</th><th>Activation trigger</th></tr>
-{"".join(cand_rows) if cand_rows else "<tr><td colspan='6' class='empty'>No candidates.</td></tr>"}
-</table>
+<details{cand_open_attr}>
+<summary><strong>Candidates ({len(candidates)} sent to verifier)</strong>{" · click to expand" if not cand_open_attr else ""}</summary>
+{cand_table}
+</details>
 
-<h2>Accepted (before top-{_DETECTED_MODELS_CAP_LABEL} cap, {len(accepted)})</h2>
+<h2>Accepted before top-{_DETECTED_MODELS_CAP_LABEL} cap ({len(accepted)})</h2>
+<p class="hint">Verifier-confirmed candidates that carried evidence the system could quote. The cap then trims to the strongest few; surplus rows show under <em>Capped</em>.</p>
 <table>
 <tr><th>Model</th><th>Mode</th><th>Evidence quote</th><th>Explanation</th></tr>
-{"".join(acc_rows) if acc_rows else "<tr><td colspan='4' class='empty'>None accepted.</td></tr>"}
+{"".join(acc_rows) if acc_rows else "<tr><td colspan='4' class='empty'>The verifier confirmed none of the candidates on this run.</td></tr>"}
 </table>
 
 <h2>Rejected ({len(rejected)})</h2>
+<p class="hint">Candidates the verifier examined and declined to surface, with the reasoning the model gave.</p>
 <table>
 <tr><th>Model</th><th>Rejection reason</th></tr>
-{"".join(rej_rows) if rej_rows else "<tr><td colspan='2' class='empty'>None rejected.</td></tr>"}
+{"".join(rej_rows) if rej_rows else "<tr><td colspan='2' class='empty'>The verifier rejected none — every candidate it considered passed muster.</td></tr>"}
 </table>
 
-<h2>Capped accepted-but-not-surfaced ({len(capped)})</h2>
+<h2>Capped — accepted but not surfaced ({len(capped)})</h2>
+<p class="hint">Candidates the verifier accepted but the top-{_DETECTED_MODELS_CAP_LABEL} cap held back. Visible here so the operator can see what would have surfaced if the cap were higher.</p>
 <table>
 <tr><th>Model</th><th>Drop reason</th></tr>
-{"".join(cap_rows) if cap_rows else "<tr><td colspan='2' class='empty'>None capped.</td></tr>"}
+{"".join(cap_rows) if cap_rows else "<tr><td colspan='2' class='empty'>The accepted set fit under the cap on this run.</td></tr>"}
 </table>
 
 <h2>Duplicate accepts ({len(duplicates)})</h2>
+<p class="hint">When the verifier names the same model twice, only the first is kept. Duplicates often signal a verifier-prompt clarity issue worth tuning.</p>
 <table>
 <tr><th>Model</th><th>Drop reason</th></tr>
-{"".join(dup_rows) if dup_rows else "<tr><td colspan='2' class='empty'>No verifier-side duplicates.</td></tr>"}
+{"".join(dup_rows) if dup_rows else "<tr><td colspan='2' class='empty'>The verifier named each accepted model once.</td></tr>"}
 </table>
 
 <h2>Quote repairs ({len(quote_repairs)})</h2>
+<p class="hint">When the verifier returns an evidence quote that doesn't match the source verbatim, the repair pass fixes it. Visible repairs are healthy — invisible ones would be drift.</p>
 <table>
 <tr><th>Model</th><th>Method</th><th>Original</th><th>Repaired</th></tr>
-{"".join(qr_rows) if qr_rows else "<tr><td colspan='4' class='empty'>No quote repairs.</td></tr>"}
+{"".join(qr_rows) if qr_rows else "<tr><td colspan='4' class='empty'>Every accepted quote matched its source on the first pass.</td></tr>"}
 </table>
 
 <h2>Silently omitted by verifier ({len(silently_omitted)})</h2>
-<p class="hint">Candidates sent to the verifier that never appeared in either accepted or rejected — the LLM dropped them on the floor. New bucket from PR 2 of the 2026-04-28 roadmap. Drop reason <code>not_in_verifier_response</code>.</p>
+<p class="hint">Candidates sent to the verifier that never appeared in either accepted or rejected. A verifier prompt-tuning signal — when this grows, the verifier is dropping context. Drop reason: <code>not_in_verifier_response</code>.</p>
 <table>
 <tr><th>Model</th><th>Drop reason</th></tr>
-{"".join(so_rows) if so_rows else "<tr><td colspan='2' class='empty'>No silently-omitted candidates (or run pre-dates PR 2).</td></tr>"}
+{"".join(so_rows) if so_rows else "<tr><td colspan='2' class='empty'>The verifier named every candidate it received (or the run pre-dates PR 2).</td></tr>"}
 </table>
 """
     return _render_scaffold(title="Lolla — Lane 2", body=body, current_path="/audit/lane2")
-
-
-_DETECTED_MODELS_CAP_LABEL = "5"  # mirrors engine.system_b.companion_routing._DETECTED_MODELS_CAP
 
 
 # ---------------- Panel 4: /audit/lane4 ----------------
@@ -1068,20 +1231,22 @@ def _render_lane4_html() -> str:
     _reload_result_if_changed()
     coverage = _RESULT.get("structural_coverage_card") or {}
     catalog = _load_lane4_dimension_catalog()
+
+    header = _render_run_header()
+
     if not catalog:
-        return _empty_panel(
-            title="Lane 4 — Dimension coverage",
-            message="Dimension catalog not found in <code>data/knowledge_graph.json</code>.",
-            current_path="/audit/lane4",
+        body = (
+            "<h1>Lane 4 — Dimension coverage</h1>"
+            f"{header}"
+            + _empty_inline(
+                "Dimension catalog not found in "
+                "<code>data/knowledge_graph.json</code>."
+            )
         )
+        return _render_scaffold(title="Lolla — Lane 4", body=body, current_path="/audit/lane4")
 
     detected_dims = coverage.get("dimensions") or []
     detected_by_id = {d.get("dimension_id"): d for d in detected_dims if d.get("dimension_id")}
-    gap_routes_by_id = {
-        r.get("dimension_id"): r
-        for r in (coverage.get("gap_routes") or [])
-        if r.get("dimension_id")
-    }
     gap_questions_by_id: dict[str, list[str]] = {}
     for gq in coverage.get("gap_questions") or []:
         if isinstance(gq, dict) and gq.get("dimension_id"):
@@ -1093,6 +1258,8 @@ def _render_lane4_html() -> str:
 
     # 15-row dimension table
     dim_rows = []
+    covered_count = 0
+    gap_count = 0
     for cat in catalog:
         d_id = cat["dimension_id"]
         d_name = cat["dimension_name"]
@@ -1102,10 +1269,12 @@ def _render_lane4_html() -> str:
             covered = "—"
             note = "—"
         elif dim.get("covered"):
+            covered_count += 1
             status = "<span class='tag ok'>covered</span>"
             covered = _esc(dim.get("coverage_evidence", ""))
             note = _esc(dim.get("materiality_note", ""))
         else:
+            gap_count += 1
             status = "<span class='tag warn'>gap</span>"
             covered = "—"
             note = _esc(dim.get("materiality_note", ""))
@@ -1130,27 +1299,40 @@ def _render_lane4_html() -> str:
         for q in qs:
             gq_rows.append(f"<tr><td>{_esc(d_id)}</td><td>{_esc(q)}</td></tr>")
 
+    observed_count = len(detected_dims)
+
+    lede = (
+        f"Of <strong>{len(catalog)}</strong> catalog dimensions, the system "
+        f"observed <strong>{observed_count}</strong> in this case — "
+        f"<strong>{covered_count}</strong> covered, "
+        f"<strong>{gap_count}</strong> flagged as gaps. "
+        f"Question type: <code>{_esc(question_type) or '—'}</code>."
+    )
+
     body = f"""
 <h1>Lane 4 — Dimension coverage</h1>
-<p class="hint">Question classified as <code>{_esc(question_type) or "—"}</code>. Of the 15 catalog dimensions, the system records which are present and whether each is covered by the answer or sits as a gap.</p>
+{header}
+<p class="lede">{lede}</p>
 
-<h2>15-dimension catalog</h2>
+<h2>{len(catalog)}-dimension catalog</h2>
+<p class="hint">Every catalog dimension, marked by status: <span class="tag ok">covered</span> when the answer addresses it, <span class="tag warn">gap</span> when the system observed but the answer didn't address, <span class="tag">not detected</span> when the case never raised it.</p>
 <table>
 <tr><th>Dimension ID</th><th>Name</th><th>Status</th><th>Coverage evidence</th><th>Materiality</th></tr>
 {"".join(dim_rows)}
 </table>
 
 <h2>Gap routes</h2>
-<p class="hint">For each dimension flagged as a gap, the curated routing surfaces candidate corrective models and any excluded by anti-echo.</p>
+<p class="hint">For each gap dimension, the curated routing names corrective models. <em>Excluded</em> column shows models held back by anti-echo because earlier lanes already surfaced them — see <a href="/audit/anti-echo">/audit/anti-echo</a> for the cascade view.</p>
 <table>
 <tr><th>Dimension</th><th>Candidate models</th><th>Excluded (anti-echo)</th></tr>
-{"".join(route_rows) if route_rows else "<tr><td colspan='3' class='empty'>No gap routes — every detected dimension is covered or no gaps surfaced.</td></tr>"}
+{"".join(route_rows) if route_rows else "<tr><td colspan='3' class='empty'>No gap routes on this run — every observed dimension was covered or no gaps surfaced.</td></tr>"}
 </table>
 
 <h2>Gap questions</h2>
+<p class="hint">Questions the user can pose to themselves to address each gap directly — generated from the curated dimension materiality.</p>
 <table>
 <tr><th>Dimension</th><th>Question</th></tr>
-{"".join(gq_rows) if gq_rows else "<tr><td colspan='2' class='empty'>No gap questions generated.</td></tr>"}
+{"".join(gq_rows) if gq_rows else "<tr><td colspan='2' class='empty'>No gap questions on this run.</td></tr>"}
 </table>
 """
     return _render_scaffold(title="Lolla — Lane 4", body=body, current_path="/audit/lane4")
@@ -1163,12 +1345,19 @@ def _render_anti_echo_html() -> str:
     _reload_result_if_changed()
     coverage = _RESULT.get("structural_coverage_card") or {}
     excluded = coverage.get("anti_echo_model_ids") or []
+
+    header = _render_run_header()
+
     if not excluded:
-        return _empty_panel(
-            title="Anti-echo cascade",
-            message="No anti-echo exclusions on this run — every Lane 4 candidate was untouched.",
-            current_path="/audit/anti-echo",
+        body = (
+            "<h1>Anti-echo cascade</h1>"
+            f"{header}"
+            + _empty_inline(
+                "No anti-echo cascading on this run — every Lane 4 candidate "
+                "stood on its own."
+            )
         )
+        return _render_scaffold(title="Lolla — Anti-echo", body=body, current_path="/audit/anti-echo")
 
     # Compute per-lane source attribution.
     # Lane 1: delta_card.findings[*].selected_model_ids
@@ -1209,9 +1398,16 @@ def _render_anti_echo_html() -> str:
             f"<tr><td>{_esc(mid)}</td><td><div class='tagrow'>{tag_html}</div></td></tr>"
         )
 
+    lede = (
+        f"<strong>{len(excluded)}</strong> models held back from Lane 4 because "
+        "earlier lanes already surfaced them. Redundancy prevention, not defect."
+    )
+
     body = f"""
 <h1>Anti-echo cascade</h1>
-<p class="hint">Each model excluded from Lane 4's candidate pool because it was already surfaced upstream. Source attribution is reconstructed at render time by intersecting <code>anti_echo_model_ids</code> against each upstream lane's surfaced models — no new telemetry needed.</p>
+{header}
+<p class="lede">{lede}</p>
+<p class="hint">Each row names a model the system removed from Lane 4's candidate pool because an upstream lane (1, 2, or 3) already surfaced it. The lane-of-origin tag is reconstructed at render time by intersecting <code>anti_echo_model_ids</code> against each upstream lane's surfaced models — no new telemetry needed.</p>
 
 <table>
 <tr><th>Excluded model</th><th>Source lane(s)</th></tr>
@@ -1249,30 +1445,48 @@ def _render_routing_html() -> str:
     _reload_result_if_changed()
     audit = _audit_summary()
     decisions = audit.get("routing_decisions") or []
-    if not decisions:
-        return _empty_panel(
-            title="Routing decisions",
-            message=(
-                "No routing decisions on this run — no detected tendencies. "
-                "See <a href=\"/audit/lane1\">Lane 1 funnel</a> for the Pass 1/2 picture."
-            ),
-            current_path="/audit/routing",
-        )
 
+    header = _render_run_header()
+
+    if not decisions:
+        body = (
+            "<h1>Routing decisions</h1>"
+            f"{header}"
+            + _empty_inline(
+                "No routing decisions on this run — the system detected no "
+                "tendencies. See the <a href=\"/audit/lane1\">Lane 1 funnel</a> "
+                "for the triage picture."
+            )
+        )
+        return _render_scaffold(title="Lolla — Routing", body=body, current_path="/audit/routing")
+
+    tiebreakers_fired = 0
     rows = []
     for rd in decisions:
         antidotes = ", ".join(_esc(m) for m in (rd.get("antidote_model_ids") or []))
+        sup = rd.get("tiebreaker_supporting")
+        risk = rd.get("tiebreaker_risk")
+        if (sup and sup.get("fired")) or (risk and risk.get("fired")):
+            tiebreakers_fired += 1
         rows.append(
             f"<tr><td>{_esc(rd.get('tendency_id', ''))}</td>"
             f"<td>{_esc(rd.get('primary_model_id', ''))}</td>"
             f"<td>{antidotes or '—'}</td>"
-            f"<td>{_render_tiebreaker_cell(rd.get('tiebreaker_supporting'))}</td>"
-            f"<td>{_render_tiebreaker_cell(rd.get('tiebreaker_risk'))}</td></tr>"
+            f"<td>{_render_tiebreaker_cell(sup)}</td>"
+            f"<td>{_render_tiebreaker_cell(risk)}</td></tr>"
         )
+
+    lede = (
+        f"For each of <strong>{len(decisions)}</strong> detected tendencies, the "
+        "system picked a primary lens and antidotes. Tiebreakers fired on "
+        f"<strong>{tiebreakers_fired}</strong>."
+    )
 
     body = f"""
 <h1>Routing decisions</h1>
-<p class="hint">For each detected tendency: the curated primary model, antidotes, and the activation-tiebreaker trace (whether the gate fired or which clause aborted it).</p>
+{header}
+<p class="lede">{lede}</p>
+<p class="hint">For each detected tendency: the curated primary model, the antidote set, and the activation-tiebreaker trace. The trace shows whether the near-tie gate fired (and swapped top-1 with top-2) or which clause kept the original choice.</p>
 
 <table>
 <tr><th>Tendency</th><th>Primary model</th><th>Antidotes</th><th>Supporting tiebreaker</th><th>Risk tiebreaker</th></tr>
@@ -1288,15 +1502,21 @@ def _render_routing_html() -> str:
 def _render_expansions_html() -> str:
     _reload_result_if_changed()
     expansions = (_RESULT.get("companion_card") or {}).get("expansions") or []
+
+    header = _render_run_header()
+
     if not expansions:
-        return _empty_panel(
-            title="Companion expansions",
-            message=(
-                "No expansions on this run. See "
-                "<a href=\"/audit/lane2\">Lane 2 funnel</a> for the candidate picture."
-            ),
-            current_path="/audit/expansions",
+        body = (
+            "<h1>Companion expansions</h1>"
+            f"{header}"
+            + _empty_inline(
+                "No companion expansions on this run — either Lane 2 stayed "
+                "quiet or the surfaced anchors had no curated relations to "
+                "traverse. See the <a href=\"/audit/lane2\">Lane 2 funnel</a> "
+                "for the candidate picture."
+            )
         )
+        return _render_scaffold(title="Lolla — Expansions", body=body, current_path="/audit/expansions")
 
     by_anchor: dict[str, list[dict]] = {}
     for e in expansions:
@@ -1321,9 +1541,17 @@ def _render_expansions_html() -> str:
             f"<th>Why relevant</th></tr>{''.join(rows)}</table>"
         )
 
+    lede = (
+        f"From <strong>{len(by_anchor)}</strong> anchors, the relation graph "
+        f"traversed to <strong>{len(expansions)}</strong> expansions across "
+        "allies, antagonists, and tensions."
+    )
+
     body = f"""
 <h1>Companion expansions</h1>
-<p class="hint">Relation-graph traversal output per Lane 2 anchor. Each anchor expands into ~3 neighbours via curated relations (ally, antagonist, tension).</p>
+{header}
+<p class="lede">{lede}</p>
+<p class="hint">For each Lane 2 anchor, the system walks the curated relation graph one hop out — surfacing allies (mutually-reinforcing models), antagonists (corrective opposites), and tensions (sibling models that pull in different directions).</p>
 
 {"".join(sections)}
 """
@@ -1333,22 +1561,65 @@ def _render_expansions_html() -> str:
 # ---------------- Index: /audit ----------------
 
 
+def _render_audit_run_vitals() -> str:
+    """Run-vitals strip for /audit index — at-a-glance pulse of this run.
+
+    Pulls from audit_summary, structural_coverage_card, companion_cheat_sheet,
+    and companion_card. Each tag is a single number with a label, in the
+    panel order so operators can scan left-to-right and click into whichever
+    catches their eye.
+    """
+    audit = _audit_summary()
+    if not audit:
+        return ""
+
+    detected_count = sum(
+        1 for d in (audit.get("deep_check_results") or []) if d.get("detected")
+    )
+    candidates_count = len(audit.get("companion_candidates") or [])
+    anchors_count = len(
+        (_RESULT.get("companion_cheat_sheet") or {}).get("anchors") or []
+    )
+
+    coverage = _RESULT.get("structural_coverage_card") or {}
+    gaps_count = sum(
+        1
+        for d in (coverage.get("dimensions") or [])
+        if d.get("dimension_id") and not d.get("covered")
+    )
+    anti_echo_count = len(coverage.get("anti_echo_model_ids") or [])
+    expansions_count = len(
+        (_RESULT.get("companion_card") or {}).get("expansions") or []
+    )
+
+    chips = [
+        f"<strong>{detected_count}</strong> detected",
+        f"<strong>{candidates_count}</strong> candidates → "
+        f"<strong>{anchors_count}</strong> anchors",
+        f"<strong>{gaps_count}</strong> dimension gaps",
+        f"<strong>{anti_echo_count}</strong> anti-echo exclusions",
+        f"<strong>{expansions_count}</strong> expansions",
+    ]
+    chip_html = "".join(f'<span class="tag">{c}</span>' for c in chips)
+    return f'<div class="vitals">{chip_html}</div>'
+
+
 def _render_audit_index_html() -> str:
     _reload_result_if_changed()
     audit_present = bool(_audit_summary())
     items = [
         ("/audit/lane1", "Lane 1 — Pass 1 + Pass 2 funnel",
-         "Triage scores across all 24 tendencies, the threshold, the triggered set with source attribution, and Pass 2 outcomes with rationale."),
+         "Triage scores across the catalog, the threshold, the triggered set with source attribution, and Pass 2 outcomes with rationale."),
         ("/audit/lane2", "Lane 2 — Companion selection funnel",
-         "All 60 candidates → accepted-before-cap → final cheat-sheet anchors, plus rejection reasons, capped, duplicates, quote repairs, and silently-omitted buckets."),
+         "Candidate pool → accepted-before-cap → final cheat-sheet anchors, with verifier accepts/rejects/capped/duplicates/quote-repairs/silently-omitted bucket views."),
         ("/audit/lane4", "Lane 4 — Dimension coverage",
-         "All 15 catalog dimensions marked detected/not-detected, covered/gap, with gap routes and gap questions."),
+         "Every catalog dimension marked covered / gap / not-detected, with gap routes (corrective models) and gap questions."),
         ("/audit/anti-echo", "Anti-echo cascade",
-         "Every model excluded from Lane 4 because an upstream lane already surfaced it, with lane-of-origin attribution computed at render time."),
+         "Models held back from Lane 4 because an upstream lane already surfaced them. Lane-of-origin attribution computed at render time."),
         ("/audit/routing", "Routing decisions",
-         "For each detected tendency: primary, antidotes, and the activation-tiebreaker trace (fired or which clause aborted)."),
+         "For each detected tendency: primary lens, antidotes, and the activation-tiebreaker trace (fired, or which clause kept top-1)."),
         ("/audit/expansions", "Companion expansions",
-         "Relation-graph traversal output per Lane 2 anchor — ~3 neighbours per anchor with relation type, activation condition, why relevant."),
+         "Relation-graph traversal per Lane 2 anchor — allies, antagonists, and tensions, with activation conditions and why-relevant rationale."),
     ]
     cards = []
     for href, title, desc in items:
@@ -1356,23 +1627,28 @@ def _render_audit_index_html() -> str:
             f'<li><a href="{_esc(href)}"><strong>{_esc(title)}</strong></a><br>'
             f'<span style="color:#555">{_esc(desc)}</span></li>'
         )
+    header = _render_run_header()
+    vitals = _render_audit_run_vitals() if audit_present else ""
+
     if not audit_present:
         notice = (
             '<div class="empty">This result has no <code>audit_summary</code> '
-            'block — likely a pre-Phase-7 artifact. Panels will render their '
-            'empty states; re-run the pipeline to populate them.</div>'
+            "block — likely a pre-Phase-7 artifact. Panels render their "
+            "empty states; re-run the pipeline to populate the trace.</div>"
         )
     else:
         notice = ""
     body = f"""
-<h1>Audit panels</h1>
-<p class="hint">Operator surface for the <code>audit_summary</code> data the React SPA does not render. Each panel is server-rendered HTML and works whether or not the SPA bundle is present.</p>
+<h1>Telemetry — how the system reasoned</h1>
+{header}
+<p class="lede">A separate lens on the same case. Each panel below shows what the system observed, considered, and surfaced — the reasoning trace behind the answer at <a href="/">/</a>.</p>
+{vitals}
 {notice}
 <ul style="list-style:none;padding:0;">
 {"".join(f'<div style="margin-bottom:1.5rem">{c}</div>' for c in cards)}
 </ul>
 """
-    return _render_scaffold(title="Lolla — Audit", body=body, current_path="/audit")
+    return _render_scaffold(title="Lolla — Telemetry", body=body, current_path="/audit")
 
 
 class ResultHandler(SimpleHTTPRequestHandler):
@@ -1467,6 +1743,26 @@ class ResultHandler(SimpleHTTPRequestHandler):
                     return
                 self._json_response(data)
                 return
+
+        # SPA root — inject the Telemetry FAB before serving index.html.
+        # This is the only bridge from the case/product surface (/) to the
+        # system-reasoning surface (/audit). Done as a byte-stream injection
+        # so the SPA bundle on disk stays untouched and the skill remains
+        # rebuildable-free.
+        if path in ("/", "/index.html") and STATIC_DIR.is_dir():
+            index_path = STATIC_DIR / "index.html"
+            if index_path.is_file():
+                try:
+                    injected = _inject_telemetry_fab(index_path.read_bytes())
+                    self.send_response(200)
+                    self.send_header("Content-Type", "text/html; charset=utf-8")
+                    self.send_header("Content-Length", str(len(injected)))
+                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self.end_headers()
+                    self.wfile.write(injected)
+                    return
+                except OSError:
+                    pass  # fall through to default handler below
 
         # Static files / SPA fallback
         if STATIC_DIR.is_dir():
