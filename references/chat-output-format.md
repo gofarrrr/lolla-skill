@@ -20,7 +20,7 @@ These apply across every beat and every receipt.
 ### Pronoun policy
 
 - **"Lolla"** when describing the product doing work in functional receipts. *"Lolla captured the conversation"*, *"Lolla is auditing the answer."*
-- **"I"** in substantive content beats because the orchestrator is reading and revising its own advice. *"I argued..."*, *"I closed Turn 4 with..."*, *"What I'd take back..."*
+- **"I"** in substantive content beats because the orchestrator is reading and revising its own advice. *"I argued..."*, *"I closed Turn 4 with..."*, *"What I'd take back or set aside..."*
 - **Avoid** "the assistant" and "the model" in user-facing chat. Both create a third-person distance the user does not need.
 
 ### No empathy theater
@@ -185,12 +185,12 @@ After Step 3 pipeline returns, present the strongest counterargument as a story 
 
 ### Rule
 
-After Step 6 reconsideration is written, present the orchestrator's revised position. Three-section structure: §1 What survived / §2 What I'd take back / §3 What actually shifted. **Length: 550–800 words total; hard cap 900.**
+After Step 6 reconsideration is written, present the orchestrator's revised position. Three-section structure: §1 What survived / §2 What I'd take back or set aside / §3 What actually shifted. **Length: 550–800 words total; hard cap 900.**
 
 ### Structure
 
 - **§1 What survived** — 1–2 paragraphs, names what holds.
-- **§2 What I'd take back** — 1–2 paragraphs, names what to set aside with reason.
+- **§2 What I'd take back or set aside** — 1–2 paragraphs, names what to set aside with reason.
 - **§3 What actually shifted** — **capped at 3–4 distinct shifts**. Each ~3–4 sentences. Anchors woven in by name where they ground the shift.
 - Optional: one closing line landing the road choice or actionable summary.
 
@@ -229,7 +229,7 @@ After Step 8 sub-agent comparison, surface what the independent pressure-check c
 1. **Counter-frame opening sentence.** Use one of: *"One more angle worth surfacing"*, *"A fresh read pushed on something I underweighted"*, *"Two things the position above softened or skipped"*. **Never** *"mostly aligned"*, *"all incorporated above"*, or *"the rest is in the position above."* See § Watch for Question-3 suppression below.
 2. **1–4 divergences**, each one sentence + 2–3 sentences of substance. Each divergence should name a concrete alternative mechanism (alternative reporting channel, contractual instrument, stakeholder forum, tripwire pattern, legal-instrumental framing) — not a vague "consider also" gesture.
 3. **Closing before Step 9:** *"Audit complete. I'm opening the full breakdown now."*
-4. **Final functional receipt after Step 9/10:** *"Observatory is live at [link]. Memo at [path]. Total run cost: $X.XX. Archived to [path]."* This appears only after the Observatory server is actually launched.
+4. **Final functional receipt after Step 9/10:** *"Observatory is live at [link]. Memo at [path]. Total run cost: $X.XX. Archived to [path]."* This appears only after the Observatory server is actually launched. **Use the actual Observatory URL.** If the server fell back to a non-default port (e.g., 8081 because 8080 was held), report `http://localhost:8081` directly — do NOT explain the fallback in the receipt. The receipt stays artifact-focused; explanations of port fallback or other operational detail leak machinery.
 
 ### Watch for Question-3 suppression
 

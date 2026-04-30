@@ -153,6 +153,20 @@ echo "Conversation written: $(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.tx
 
 ### Step 2: Extract Decision Structure
 
+**Pre-extraction guard.** Before running the extract script, verify the conversation file exists, is non-empty, and that `LOLLA_RUN_ID` is set. If any check fails, surface a clean capture-failure message to the user — do NOT proceed and let Python emit a raw traceback.
+
+```bash
+if [ -z "$LOLLA_RUN_ID" ]; then
+  echo "FATAL: LOLLA_RUN_ID is not set. Re-run /lolla — the preamble must initialize before Step 2."
+elif [ ! -s "/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt" ]; then
+  echo "FATAL: conversation file missing or empty at /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt. Step 1 capture failed; please rerun /lolla."
+else
+  echo "Pre-extraction guard: conversation file present ($(wc -c < /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt) bytes)."
+fi
+```
+
+If the guard prints `FATAL`, stop. Tell the user the capture failed and ask them to re-run `/lolla`. Do not call the extract script. Otherwise:
+
 ```bash
 python3 $SKILL_DIR/scripts/run_extract.py --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json
 ```
@@ -227,7 +241,7 @@ Do **not** link to Observatory; the server is not running until Step 9. Do not i
 
 After the counterargument lead (Step 4), **reconsider your earlier advice and render the updated position directly.** This is the most important step — the updated position IS the product. The audit's findings are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
 
-**Render the content directly. Do NOT introduce it with "Beat 3," "Step 6," "Now writing the updated position," or any internal section label.** The user-facing transcript opens at the `## Updated position` heading and the `### What survived` / `### What I'd take back` / `### What actually shifted` subheadings — those ARE the section labels the user sees. No additional preamble.
+**Render the content directly. Do NOT introduce it with "Beat 3," "Step 6," "Now writing the updated position," or any internal section label.** The user-facing transcript opens at the `## Updated position` heading and the `### What survived` / `### What I'd take back or set aside` / `### What actually shifted` subheadings — those ARE the section labels the user sees. No additional preamble.
 
 **Timing note:** Before you begin writing your reconsideration, launch the pressure-check sub-agents from Step 7 below. They run in the background while you write. By the time you finish Step 6 and Step 6b, the sub-agent results will be ready for Step 8.
 
@@ -244,7 +258,7 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 **Structure your updated position in this order:**
 
 1. **What survived.** Start with what you'd say again unchanged. This forces you to affirm your position before modifying it, which is harder than it sounds — the temptation is to hedge everything after seeing the cards.
-2. **What you'd take back.** Name which findings you considered and deliberately chose to set aside, with a specific reason for each. "The contrast-misreaction finding flagged my comparison, but the comparison itself is the right frame for this decision because [reason]." This is the hardest part — it requires genuine judgment, not performance.
+2. **What you'd take back or set aside.** This section covers two related moves: (a) self-corrections of your own reasoning (*"my mechanism was soft, recommendation is the same"*), and (b) audit-raised pressure you considered and chose not to adopt (*"the contrast-misreaction finding flagged my comparison, but the comparison itself is the right frame for this decision because [reason]"*). The combined heading prevents the awkward case where §2 contains an audit-rejection but the heading reads as if only self-corrections belong there. This is the hardest section to write — it requires genuine judgment, not performance.
 
    **§2 anti-overcorrection rule:** §2 should include at least one **audit-raised pressure you considered and did not adopt** when such a pressure exists in the audit output. Without it, Beat 3 reads as "the audit was right about everything" — pure absorption, no judgment. Self-corrections of your own reasoning ("I had soft mechanism here, recommendation is the same") are valid §2 content but do not substitute for an audit-grounded rejection when one is available.
 
@@ -319,6 +333,17 @@ Spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-ag
    - Lane 3: skip if `frame_pressure_card.frame_elements` is empty/null AND `frame_pressure_card.reframings` is empty/null
    - Lane 4: skip if `structural_coverage_card.dimensions` is empty/null OR all dimensions have `covered: true`
 4. For each non-empty lane, spawn an Agent tool call **in the background** (`run_in_background: true`). All non-empty lanes are spawned in a single message (parallel). Build each prompt by combining the shared preamble + the appropriate lane suffix from `sub-agent-prompts.md`, with placeholders substituted.
+
+   **Use neutral product-facing labels for the Agent tool's `description` parameter.** Claude Code's tool-use UI displays these descriptions to the user as the agents run; the user must not see "Lane N" or card names there. Use the following neutral mapping:
+
+   | Lane | Internal name | Agent description (user-facing) |
+   |------|---------------|----------------------------------|
+   | Lane 1 | DeltaCard | `Pressure check — structural challenge` |
+   | Lane 2 | CompanionCheatSheet | `Pressure check — model tension` |
+   | Lane 3 | FramePressureCard | `Pressure check — frame` |
+   | Lane 4 | StructuralCoverageCard | `Pressure check — missing dimensions` |
+
+   Do NOT use `Lane 1`, `Lane 2`, `DeltaCard`, `CompanionCheatSheet`, `FramePressureCard`, `StructuralCoverageCard`, or `sub-agent` in the Agent description. The tool-use UI is part of the felt product surface; scaffolding leaks there break the experience the same way they do in chat prose.
 5. The sub-agent prompt must be fully self-contained — no file reads, no bash calls, no tool access.
 
 **Do not stage prompts or card JSONs to `/tmp/` files first.** Build each prompt inline as the Agent tool's `prompt` parameter by reading the templates from `references/sub-agent-prompts.md` and interpolating directly into the Agent call. Disk-staging (writing `lane*_prompt.txt`, `delta.json`, `companion.json`, `frame.json`, `coverage_gaps.json`, `preamble.txt` to `/tmp/`) adds 4+ extra tool uses per run with no benefit and risks tool-budget exhaustion before sub-agents spawn.
@@ -527,6 +552,8 @@ After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → Beat 4
 **If all lanes completed successfully:**
 
 > *Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
+
+**Report the actual Observatory URL** — if the server fell back to a non-default port (e.g., 8081 because 8080 was held by an older run), use the actual URL. **Do NOT explain the port fallback in the receipt.** *"Observatory is live at http://localhost:8081 (port 8080 was held by an older run's server)"* leaks operational detail. The receipt stays artifact-focused; if the user asks why it's not 8080, explain then.
 
 This is a functional receipt: artifact paths, cost, archive location. It is **not** a narrative summary like *"Audited your equity decision for Marcus. Found 3 structural patterns…"* — that pattern is banned because it (a) restates what the user just read in Beats 2/3/4, (b) re-introduces machinery vocabulary at the close, and (c) drifts toward sales register. The functional receipt closes the run cleanly without narrative restatement.
 
