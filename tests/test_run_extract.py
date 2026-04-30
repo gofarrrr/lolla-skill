@@ -14,6 +14,7 @@ from run_extract import (  # noqa: E402
     _apply_canonical_key_validation,
     _build_audit_seed,
     _map_to_critique_request,
+    _validate_conversation_capture,
     _validate_canonical_key,
 )
 
@@ -173,3 +174,38 @@ def test_audit_seed_prefers_actual_assistant_text_without_changing_legacy_mappin
     assert audit_seed["case_focus"] == "Should we accept the offer?"
     assert audit_seed["audit_target_assistant_text"] == "Actual assistant reply."
     assert critique_request["vanilla_answer"] == "Legacy synthesis."
+
+
+def test_capture_validation_marks_final_user_turn_critical():
+    transcript = """CONVERSATION: 3 turns, 2 user messages, 1 assistant responses
+[Turn 1] USER:
+Should I take the job?
+
+[Turn 1] ASSISTANT:
+Only if the role survives a downside test.
+
+[Turn 2] USER:
+What downside test?
+"""
+
+    result = _validate_conversation_capture(transcript)
+
+    assert result["capture_health"] == "critical"
+    assert result["capture_manifest"]["last_turn_role"] == "USER"
+    assert any("ends on a user turn" in warning for warning in result["capture_warnings"])
+
+
+def test_capture_validation_accepts_complete_last_assistant_turn():
+    transcript = """CONVERSATION: 2 turns, 1 user messages, 1 assistant responses
+[Turn 1] USER:
+Should I take the job?
+
+[Turn 1] ASSISTANT:
+Only if the role survives a downside test.
+"""
+
+    result = _validate_conversation_capture(transcript)
+
+    assert result["capture_health"] == "good"
+    assert result["capture_manifest"]["last_turn_role"] == "ASSISTANT"
+    assert result["capture_warnings"] == []

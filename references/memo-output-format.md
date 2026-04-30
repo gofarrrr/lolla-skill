@@ -102,6 +102,7 @@ Rules:
 - Keep each shift scannable.
 - Prefer short subheadings with verbs.
 - Do not add tail notes that change advice outside the cap.
+- If a shift changes sequencing, state the boundary precisely. Example: *formal proposal after advisor buy-in; low-cost availability probe before the meeting*. Do not leave the reader with two conflicting orders.
 
 ### What still holds
 
@@ -112,6 +113,7 @@ Rules:
 - Compress.
 - Preserve only what the user should remember later.
 - Use 1-3 bullets or 1-2 short paragraphs.
+- Do not preserve unverified numbers as if they are settled facts. If a base rate, market number, deadline, or probability was flagged as ungrounded, either omit it or label it as an illustrative placeholder whose direction may survive while the precision does not.
 
 ### What I'd take back or set aside
 
@@ -133,6 +135,7 @@ Rules:
 - Include only if a material divergence exists.
 - Do not group by lane.
 - Do not mention sub-agents or isolated review.
+- Scan all pressure-check divergences before writing. A materially different decision path, fallback, channel, commitment shape, or instrument is not optional just because another concern is easier to summarize. Include it or explicitly set it aside.
 - If no divergence survives, leave `memo_pressure_check` empty.
 
 ## Questions Still Unanswered
@@ -144,6 +147,11 @@ Rules for Claude:
 - Do not answer these questions in the memo note fields.
 - Do not invent new gap questions.
 - If you reference one in the orientation, quote or paraphrase it as a question the user still has to settle.
+
+Renderer behavior:
+
+- The decision-note layer shows only the first three unique structural gap questions.
+- Any remaining questions are preserved under `Appendix: Audit trace` so the memo stays scannable instead of becoming a backlog dump.
 
 ## Banned Language
 

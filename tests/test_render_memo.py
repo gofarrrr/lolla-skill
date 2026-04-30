@@ -317,6 +317,34 @@ def test_new_memo_questions_replace_structural_gaps_section():
     assert "## Structural Gaps" not in output
 
 
+def test_new_memo_questions_are_capped_in_decision_note_with_remainder_in_appendix():
+    """The decision note should not become a structural-gaps backlog."""
+    result = {
+        **NEW_MEMO_RESULT,
+        "structural_coverage_card": {
+            "gap_questions": [
+                {"questions": ["Question one?", "Question two?"]},
+                {"questions": ["Question three?", "Question four?", "Question five?"]},
+            ],
+        },
+    }
+
+    output = render_memo(result)
+    decision_questions = output.split("## Appendix: Audit trace", 1)[0].split(
+        "## Questions still unanswered", 1
+    )[1]
+    appendix = output.split("## Appendix: Audit trace", 1)[1]
+
+    assert "Question one?" in decision_questions
+    assert "Question two?" in decision_questions
+    assert "Question three?" in decision_questions
+    assert "Question four?" not in decision_questions
+    assert "2 more unresolved question(s)" in decision_questions
+    assert "### Additional unresolved questions" in appendix
+    assert "Question four?" in appendix
+    assert "Question five?" in appendix
+
+
 def test_new_memo_omits_empty_pressure_check_section():
     """No empty pressure-check heading when no memo divergence survives."""
     result = {**NEW_MEMO_RESULT, "memo_pressure_check": ""}
@@ -341,6 +369,34 @@ def test_new_memo_decision_note_layer_has_no_machinery_terms():
     ]
     for term in banned:
         assert term not in layer
+
+
+def test_new_memo_appendix_cleans_machine_shaped_challenge_wrappers():
+    """Raw challenge wrappers should not make the appendix read like JSON plumbing."""
+    result = {
+        **NEW_MEMO_RESULT,
+        "delta_card": {
+            "findings": [
+                {
+                    "tendency_name": "Social-Proof Tendency",
+                    "severity": "medium",
+                    "specific_passage": "USER [Turn 5]: 'Everyone does this.' ASSISTANT [Turn 5]: 'Then it is not differentiating.'",
+                    "challenge_statement": (
+                        "Social-Proof: challenge 'USER [Turn 5]: "
+                        "'Everyone does this.' ASSISTANT [Turn 5]: "
+                        "'Then it is not differentiating.'' because the answer "
+                        "used visible consensus as evidence without checking whether the pool was self-selecting"
+                    ),
+                },
+            ],
+        },
+    }
+
+    output = render_memo(result)
+
+    assert "Social-Proof: challenge" not in output
+    assert "used visible consensus as evidence" in output
+    assert " ...\n" not in output
 
 
 def test_new_memo_can_parse_revised_answer_sections_when_fields_missing():

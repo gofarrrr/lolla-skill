@@ -61,6 +61,7 @@ class SubtypeResult:
 class PassageBIResult:
     """Bullshit profile for a single passage."""
     passage: str = ""
+    evaluation_error: str = ""
     empty_rhetoric: SubtypeResult = field(default_factory=SubtypeResult)
     paltering: SubtypeResult = field(default_factory=SubtypeResult)
     weasel_words: SubtypeResult = field(default_factory=SubtypeResult)
@@ -111,6 +112,7 @@ class BullshitProfile:
             "passages": [
                 {
                     "passage": p.passage,
+                    "evaluation_error": p.evaluation_error,
                     "empty_rhetoric": asdict(p.empty_rhetoric),
                     "paltering": asdict(p.paltering),
                     "weasel_words": asdict(p.weasel_words),
@@ -123,6 +125,7 @@ class BullshitProfile:
                 "passages_with_detections": sum(1 for p in self.passages if p.any_detected),
                 "total_clear": self.total_clear,
                 "total_marginal": self.total_marginal,
+                "evaluation_failures": sum(1 for p in self.passages if p.evaluation_error),
             },
         }
 
@@ -339,11 +342,11 @@ def evaluate_passage(
         )
     except Exception as exc:
         _LOGGER.warning("BI evaluation failed for passage: %s", exc)
-        return PassageBIResult(passage=passage)
+        return PassageBIResult(passage=passage, evaluation_error=str(exc))
 
     if not result:
         _LOGGER.warning("BI evaluation returned empty result")
-        return PassageBIResult(passage=passage)
+        return PassageBIResult(passage=passage, evaluation_error="empty_result")
 
     return _parse_result(passage, result)
 
@@ -424,7 +427,7 @@ def evaluate_text(
                 results.append((idx, future.result()))
             except Exception as exc:
                 _LOGGER.warning("BI passage %d failed: %s", idx, exc)
-                results.append((idx, PassageBIResult(passage=passages[idx])))
+                results.append((idx, PassageBIResult(passage=passages[idx], evaluation_error=str(exc))))
 
     # Maintain original passage order
     results.sort(key=lambda x: x[0])

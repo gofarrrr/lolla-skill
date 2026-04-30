@@ -341,15 +341,25 @@ def _validate_conversation_capture(conversation_text: str) -> dict:
     """
     import re
 
-    actual_user = len(re.findall(r"\[Turn \d+\] USER:", conversation_text))
-    actual_assistant = len(re.findall(r"\[Turn \d+\] ASSISTANT:", conversation_text))
+    turn_markers = re.findall(r"\[Turn \d+\] (USER|ASSISTANT):", conversation_text)
+    actual_user = sum(1 for role in turn_markers if role == "USER")
+    actual_assistant = sum(1 for role in turn_markers if role == "ASSISTANT")
+    last_turn_role = turn_markers[-1] if turn_markers else None
 
     manifest: dict = {
         "actual_user_turns": actual_user,
         "actual_assistant_turns": actual_assistant,
         "char_length": len(conversation_text),
+        "last_turn_role": last_turn_role,
     }
     warnings: list[str] = []
+
+    if last_turn_role == "USER":
+        warnings.append(
+            "CRITICAL: Conversation capture ends on a user turn — the final "
+            "assistant response is missing, so the audit would evaluate an "
+            "incomplete answer"
+        )
 
     # Parse header: "CONVERSATION: {N} turns, {X} user messages, {Y} assistant responses"
     header_match = re.match(
@@ -394,7 +404,9 @@ def _validate_conversation_capture(conversation_text: str) -> dict:
         )
 
     # Grade
-    if actual_assistant == 0 and declared_assistant > 0:
+    if last_turn_role == "USER":
+        grade = "critical"
+    elif actual_assistant == 0 and declared_assistant > 0:
         grade = "critical"
     elif actual_assistant < declared_assistant * 0.5:
         grade = "critical"
@@ -577,9 +589,10 @@ def main() -> int:
                 "Conversation capture is critically degraded — more than half "
                 "of the assistant turns declared in the transcript header are "
                 "missing from the body, or the transcript has no assistant "
-                "responses at all. An audit on this capture would be unreliable. "
-                "Re-capture the conversation and retry. See capture_manifest "
-                "below for the exact mismatch."
+                "responses at all, or the capture ends on a user turn without "
+                "the assistant's final response. An audit on this capture would "
+                "be unreliable. Re-capture the conversation and retry. See "
+                "capture_manifest below for the exact mismatch."
             ),
         }
         decline.update(capture_result)

@@ -9,6 +9,7 @@ import argparse
 import json
 import re
 import sys
+import textwrap
 from pathlib import Path
 
 
@@ -34,6 +35,7 @@ def _truncate_to_sentences(text: str, max_sentences: int = 2, max_chars: int = 1
 
 
 _SEVERITY_ORDER = {"high": 0, "medium": 1, "low": 2}
+_DECISION_NOTE_QUESTION_LIMIT = 3
 
 
 def render_memo(result: dict) -> str:
@@ -194,6 +196,20 @@ def _strip_duplicate_leading_heading(text: str, heading: str) -> str:
 
 
 def _render_unanswered_questions(result: dict, sections: list[str]) -> None:
+    questions = _collect_unanswered_questions(result)
+    if not questions:
+        return
+    priority_questions = questions[:_DECISION_NOTE_QUESTION_LIMIT]
+    lines = [f"- {q}" for q in priority_questions]
+    if len(questions) > len(priority_questions):
+        lines.append(
+            f"\n{len(questions) - len(priority_questions)} more unresolved question(s) "
+            "are preserved in the appendix."
+        )
+    sections.append("## Questions still unanswered\n\n" + "\n".join(lines))
+
+
+def _collect_unanswered_questions(result: dict) -> list[str]:
     sc = result.get("structural_coverage_card") or {}
     gaps = sc.get("gap_questions") or []
     questions: list[str] = []
@@ -205,9 +221,7 @@ def _render_unanswered_questions(result: dict, sections: list[str]) -> None:
         single = _clean_text(gap.get("question"))
         if single and single not in questions:
             questions.append(single)
-    if questions:
-        lines = [f"- {q}" for q in questions]
-        sections.append("## Questions still unanswered\n\n" + "\n".join(lines))
+    return questions
 
 
 def _render_audit_appendix(result: dict, sections: list[str]) -> None:
@@ -215,6 +229,7 @@ def _render_audit_appendix(result: dict, sections: list[str]) -> None:
     _render_findings_appendix(result, appendix_sections)
     _render_companion_appendix(result, appendix_sections)
     _render_frame_appendix(result, appendix_sections)
+    _render_remaining_questions_appendix(result, appendix_sections)
     _render_delivery_profile_appendix(result, appendix_sections)
     if appendix_sections:
         sections.append("## Appendix: Audit trace\n\n" + "\n\n".join(appendix_sections))
@@ -233,16 +248,35 @@ def _render_findings_appendix(result: dict, sections: list[str]) -> None:
     for f in sorted_findings:
         name = f.get("tendency_name", "Unknown")
         severity = f.get("severity", "unknown")
-        challenge = _clean_text(f.get("challenge_statement"))
+        challenge = _clean_challenge_statement(f.get("challenge_statement"))
         passage = _clean_text(f.get("specific_passage"))
         if challenge:
             lines.append(f"- **{name}** ({severity}): {challenge}")
         else:
             lines.append(f"- **{name}** ({severity})")
         if passage and passage not in seen_passages:
-            lines.append(f"  > {passage[:200]}")
+            lines.append(f"  > {_short_excerpt(passage)}")
             seen_passages.add(passage)
     sections.append("\n".join(lines))
+
+
+def _clean_challenge_statement(value: object) -> str:
+    text = _clean_text(value)
+    if not text:
+        return ""
+    # Some upstream challenge statements include the full quoted passage inside
+    # the challenge sentence. Keep the reason, not the machine-shaped wrapper.
+    if re.match(r"^[A-Za-z -]+:\s*challenge\b", text) and " because " in text:
+        text = text.split(" because ", 1)[1].strip()
+    text = re.sub(r"\s+", " ", text).strip()
+    if text:
+        text = text[0].upper() + text[1:]
+    return text
+
+
+def _short_excerpt(text: str, width: int = 220) -> str:
+    compact = re.sub(r"\s+", " ", _clean_text(text))
+    return textwrap.shorten(compact, width=width, placeholder=" ...")
 
 
 def _render_companion_appendix(result: dict, sections: list[str]) -> None:
@@ -280,6 +314,16 @@ def _render_frame_appendix(result: dict, sections: list[str]) -> None:
             lines.append(f"- **{question}** {opens}")
         elif question:
             lines.append(f"- **{question}**")
+    sections.append("\n".join(lines))
+
+
+def _render_remaining_questions_appendix(result: dict, sections: list[str]) -> None:
+    questions = _collect_unanswered_questions(result)
+    remaining = questions[_DECISION_NOTE_QUESTION_LIMIT:]
+    if not remaining:
+        return
+    lines = ["### Additional unresolved questions"]
+    lines.extend(f"- {q}" for q in remaining)
     sections.append("\n".join(lines))
 
 

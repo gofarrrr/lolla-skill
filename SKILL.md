@@ -179,7 +179,7 @@ Read the output file to check the `status` field:
 Present the `decline_reason` to the user and stop. Example: "This conversation is about debugging a Python error, not a strategic decision. Lolla audits strategic reasoning — try it on a conversation where you're making a recommendation or weighing tradeoffs."
 
 **If `status` is `capture_critical`:**
-The conversation capture is fundamentally broken — more than half the assistant turns are missing, or no assistant responses were captured. An audit on this capture would be unreliable, so the extraction declined before calling OpenRouter. Read the `decline_reason` and `capture_manifest` from the output file, surface a short explanation to the user, and ask them to re-run the skill so Step 1 can capture the conversation again. Do NOT proceed to Step 3. Example message: *"Lolla couldn't audit this run — the conversation capture lost more than half the assistant turns (declared N, captured M). This usually means Step 1 hit an edge case in how it read the conversation. Please rerun `/lolla` and I'll try to capture it cleanly this time."*
+The conversation capture is fundamentally broken — more than half the assistant turns are missing, no assistant responses were captured, or the captured transcript ends on a user turn without the assistant's final response. An audit on this capture would be unreliable, so the extraction declined before calling OpenRouter. Read the `decline_reason`, `capture_manifest`, and `capture_warnings` from the output file, surface a short explanation to the user, and ask them to re-run the skill so Step 1 can capture the conversation again. Do NOT proceed to Step 3. Example message: *"Lolla couldn't audit this run — the captured transcript ends on your last question, so the final assistant answer is missing. An audit would judge an incomplete conversation. Please rerun `/lolla` and I'll try to capture it cleanly this time."*
 
 **If `status` is `ok`:** Proceed to Step 2.5.
 
@@ -532,6 +532,13 @@ Produce these fields:
 - `memo_take_back_or_set_aside` — compressed Step 6 self-corrections and set-asides
 - `memo_pressure_check` — Step 8 material divergence only; empty string if no material divergence survives
 
+Decision-note quality checks before persisting:
+
+- **No hidden sequencing contradiction.** If the changed advice alters order, distinguish the exact boundary. Example: *"formal proposal after advisor buy-in; low-cost availability probe before the meeting"* is clear. *"advisor first, Silva second"* plus *"probe Silva before advisor"* is not.
+- **Do not preserve unverified numbers as doctrine.** If the audit flagged a numerical/base-rate claim as ungrounded, either remove it from `memo_what_still_holds` or label it as an illustrative placeholder whose direction may survive but whose precision does not.
+- **Pressure check must preserve competing paths.** Scan every Step 8 divergence. If a reviewer surfaced a materially different decision path, instrument, channel, fallback, or commitment shape, include it or explicitly explain why it is set aside. Do not surface only implementation caveats while suppressing a genuine alternative.
+- **Keep "Questions still unanswered" priority-shaped.** Python renders the first three structural gap questions in the decision note and preserves the rest in the appendix. Do not answer or invent questions inside memo fields.
+
 Do not add a recommendation, risk, or claim that is not present in Step 6, Step 8, or the audit cards. Do not mention internal machinery (`Beat`, `Step`, `Lane`, `sub-agent`, card names, JSON fields, pipeline). Do not write sales language (`compelling`, `unlock`, `deep dive`, `transform`, `powerful`, etc.).
 
 Persist the memo fields:
@@ -620,9 +627,17 @@ The archive script:
 
 After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → Beat 4 → memo → Observatory + archive), close with the **final functional receipt**. Not a narrative summary.
 
-**If all lanes completed successfully:**
+**If all lanes completed successfully and `run_health.overall` is `healthy`:**
 
 > *Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
+
+**If the run completed but `run_health.overall` is `degraded`:**
+
+Keep the functional receipt, but add one plain warning sentence before it. Name the issue in user language, not status codes. Example:
+
+> *Run completed with degraded health: the captured conversation was truncated, so middle turns were omitted. Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
+
+Do not call a degraded run clean. If the issue is capture-related, say the user should rerun if they need a decision-grade audit.
 
 **Report the actual Observatory URL** — if the server fell back to a non-default port (e.g., 8081 because 8080 was held by an older run), use the actual URL. **Do NOT explain the port fallback in the receipt.** *"Observatory is live at http://localhost:8081 (port 8080 was held by an older run's server)"* leaks operational detail. The receipt stays artifact-focused; if the user asks why it's not 8080, explain then.
 
