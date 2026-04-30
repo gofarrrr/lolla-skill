@@ -169,17 +169,19 @@ The conversation capture is fundamentally broken — more than half the assistan
 
 **If `status` is `ok`:** Proceed to Step 2.5.
 
-### Step 2.5: Beat 1 — Readback + Audit Promise
+### Step 2.5: Readback + Audit Promise (Beat 1 — internal name)
 
-**Before launching the pipeline (Step 3), present Beat 1.** This fills the pipeline wait with a concrete product receipt: what Lolla captured, what it is about to test, and how long it will take. Without Beat 1 the user sees a bash command and 5–8 minutes of silence.
+**Before launching the pipeline (Step 3), render the readback + audit-promise content directly.** This fills the pipeline wait with a concrete product receipt: what Lolla captured, what it is about to test, and how long it will take. Without it the user sees a bash command and 5–8 minutes of silence.
 
-**Read `references/chat-output-format.md`** for the full Beat 1 specification (rule, what goes in, length targets, examples). The voice rules at the top of that file apply across every beat — load them once and reuse for Beats 2/3/4.
+**Render the content directly. Do NOT introduce it with "Beat 1," "Step 2.5," "Readback section," or any internal section label.** The user does not see the scaffolding; they read the prose. The label "Beat 1" exists in this file and in `references/chat-output-format.md` for instruction architecture only — never for rendering.
 
-Beat 1 is **120–170 words** in normal mode; **70–110 words** in thin mode (when `captured_message_count <= 4` OR `extraction.reasoning_passages < 3 AND extraction.live_constraints < 3 AND extraction.dropped_threads is empty`). Hard cap: 200 words.
+**Read `references/chat-output-format.md`** for the full specification (rule, what goes in, length targets, examples, voice contract). The voice rules apply across every section — load once and reuse for the counterargument lead, updated position, and pressure check that follow.
 
-The closing line of Beat 1 is the operational status receipt: *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This usually takes 5–8 minutes."*
+Length: **120–170 words** in normal mode; **70–110 words** in thin mode (when `captured_message_count <= 4` OR `extraction.reasoning_passages < 3 AND extraction.live_constraints < 3 AND extraction.dropped_threads is empty`). Hard cap: 200 words.
 
-Do not link to Observatory; the server is not running until Step 9. See `plans/voice-examples-2026-04-30.md` § Beat 1 for examples (Marcus / Mother / Short fixture) and § Bad — therapy recap for the failure mode.
+The closing operational receipt is: *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This usually takes 5–8 minutes."*
+
+Do not link to Observatory; the server is not running until Step 9. See `plans/voice-examples-2026-04-30.md` § Beat 1 for examples (Marcus / Mother / Short fixture), § Bad — therapy recap for the soft-recap failure mode, and § Bad — visible internal labels for the scaffolding-leak failure mode this section exists to prevent.
 
 ### Step 3: Run Pipeline
 
@@ -197,15 +199,17 @@ This runs the full Lolla pipeline — all four lanes — via OpenRouter. With bo
 
 **If the output `status` is `error`:** Present the error to the user. Common causes: API timeout (try again), missing API key, data file issues.
 
-### Step 4: Beat 2 — Counterargument Lead
+### Step 4: Counterargument Lead (Beat 2 — internal name)
 
 **Read `references/chat-output-format.md` § Beat 2** (the file should already be loaded from Step 2.5; reload if context elapsed). Also read `references/output-field-guide.md` for field definitions of the four cards.
 
-Then read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and present Beat 2 — the counterargument lead — per `chat-output-format.md`. **220–300 words** in normal mode; **140–220 words** in thin mode. Hard cap: 350 words.
+Then read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and **render the counterargument-lead content directly. Do NOT preface it with "Now Beat 2," "Beat 2," "Now the counterargument," "the strongest counterargument from the audit," or any implementation/section label.** The content opens at *"Here's the strongest case against what I told you"* (or equivalent) — that IS the user-facing surface.
 
-Beat 2 leads with one verbatim quote anchored to a turn (*"In Turn N, you wrote: '...'"*), one paragraph case-against in plain language, one alternative the audit pushed onto the table, a queued-breakdown line **without an Observatory URL**, and a transition sentence to Step 6.
+Length: **220–300 words** in normal mode; **140–220 words** in thin mode. Hard cap: 350 words.
 
-Do **not** link to Observatory in Beat 2; the server is not running until Step 9. Do not include anchor-list, structural-gaps line, or delivery-check line — those are Observatory-only. See `plans/voice-examples-2026-04-30.md` § Beat 2 for examples and § Bad — dashboard report for the failure mode.
+The content leads with one verbatim quote anchored to a turn (*"In Turn N, you wrote: '...'"*), one paragraph case-against in plain language, one alternative the audit pushed onto the table, a queued-breakdown line **without an Observatory URL**, and a transition sentence to the reconsideration that follows.
+
+Do **not** link to Observatory; the server is not running until Step 9. Do not include anchor-list, structural-gaps line, or delivery-check line — those are Observatory-only. See `plans/voice-examples-2026-04-30.md` § Beat 2 for examples and § Bad — dashboard report and § Bad — visible internal labels for the failure modes.
 
 ### Step 5: Open Observatory
 
@@ -221,7 +225,9 @@ Do **not** link to Observatory in Beat 2; the server is not running until Step 9
 - `references/anti-bullshit-doctrine.md` — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid (paltering +57.8pp, empty rhetoric +20.9pp), the negation test.
 - `references/anchor-treatment.md` — how to handle `companion_cheat_sheet.anchors[]`: the naming invariant, three rhetorical modes (primary pressure / secondary lens / set aside), the "one primary anchor per move" rule, what good vs. bad anchor integration looks like.
 
-After presenting the four cards, **reconsider your earlier advice in this conversation and produce your updated position.** This is the most important step — your updated position IS the product. The four cards are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
+After the counterargument lead (Step 4), **reconsider your earlier advice and render the updated position directly.** This is the most important step — the updated position IS the product. The audit's findings are structural pressure from a curated knowledge substrate; your job is to absorb that pressure and produce a revised position that is better than what you said before.
+
+**Render the content directly. Do NOT introduce it with "Beat 3," "Step 6," "Now writing the updated position," or any internal section label.** The user-facing transcript opens at the `## Updated position` heading and the `### What survived` / `### What I'd take back` / `### What actually shifted` subheadings — those ARE the section labels the user sees. No additional preamble.
 
 **Timing note:** Before you begin writing your reconsideration, launch the pressure-check sub-agents from Step 7 below. They run in the background while you write. By the time you finish Step 6 and Step 6b, the sub-agent results will be ready for Step 8.
 
@@ -239,6 +245,10 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 
 1. **What survived.** Start with what you'd say again unchanged. This forces you to affirm your position before modifying it, which is harder than it sounds — the temptation is to hedge everything after seeing the cards.
 2. **What you'd take back.** Name which findings you considered and deliberately chose to set aside, with a specific reason for each. "The contrast-misreaction finding flagged my comparison, but the comparison itself is the right frame for this decision because [reason]." This is the hardest part — it requires genuine judgment, not performance.
+
+   **§2 anti-overcorrection rule:** §2 should include at least one **audit-raised pressure you considered and did not adopt** when such a pressure exists in the audit output. Without it, Beat 3 reads as "the audit was right about everything" — pure absorption, no judgment. Self-corrections of your own reasoning ("I had soft mechanism here, recommendation is the same") are valid §2 content but do not substitute for an audit-grounded rejection when one is available.
+
+   **Constraint:** do NOT manufacture a rejection for symmetry. If the audit produces no credible pressure to reject (empty `delta_card`, weak anchors that don't bear on a load-bearing reasoning move, no frame elements that would have changed the recommendation), say less in §2 rather than performing judgment. Fake resistance is a worse failure mode than a thin §2.
 3. **What actually shifted.** Name what changed in your position and why. Name the mental models that drove the shift. Be specific.
 
 **§3 cap: 3–4 distinct shifts. Hard cap.** Total Beat 3 length 550–800 words; hard cap 900.
@@ -315,6 +325,8 @@ Spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-ag
 
 **If a sub-agent fails or times out:** log that lane as `skipped_error` and continue. Do not block Step 8 on any single lane's failure.
 
+**Sub-agent setup is not user-facing. Do NOT announce spawning, skipped lanes, completed lanes, partial results, or comparison summaries in chat.** Phrases like *"Now launching pressure-check sub-agents in parallel"*, *"lanes 2, 3, 4 — lane 1 skipped, no findings"*, *"Two of three pressure-check responses are in"*, *"All three sub-agents completed"* are operator narration. The user does not hear about Step 7 at all. Claude Code's tool-call surface shows the Agent calls; the orchestrator's chat prose stays silent on them.
+
 ### Step 8: Pressure-Check Comparison
 
 After Step 6, Step 6b, and all sub-agent results are in, compare your Step 6 reconsideration against each sub-agent's output.
@@ -325,7 +337,7 @@ For each sub-agent that returned a result, ask yourself three specific questions
 2. **Did the sub-agent treat a finding as material that I treated as noise?**
 3. **Did the sub-agent connect a finding to the position in a way I didn't?**
 
-Only "yes" answers get reported. Present divergences under a `### Pressure Check` heading AFTER your Step 6 updated position:
+Only "yes" answers get reported. Render the pressure-check directly under a `### Pressure Check` heading AFTER the updated position. **Render the content directly. Do NOT preface it with internal narration about which lanes/reviewers/sub-agents aligned or completed.** Phrases like *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."*, *"All three pressure-check responses are in"*, *"Now Beat 4"* are operator narration and never appear in chat. The user-facing surface starts at the counter-frame opening sentence below.
 
 **Open with a counter-frame phrase.** Use one of: *"One more angle worth surfacing"*, *"A fresh read pushed on something I underweighted"*, *"Two things the position above softened or skipped"*. **Never** *"mostly aligned"*, *"all incorporated above"*, *"the rest is in the position above"*, or any variant that suppresses divergences with confident closure.
 

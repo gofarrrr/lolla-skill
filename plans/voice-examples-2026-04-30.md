@@ -8,9 +8,9 @@
 
 Beat 1, Beat 2, and Beat 4 each have three good examples (Marcus / Mother / Short fixture) followed by an annotation naming what the example does well. Beat 3 is treated differently: three good **§3-only excerpts** plus one bad cap-evasion example. The Beat 3 scope is narrowed because the new risk in Beat 3 is cap evasion (re-labeling shifts as "smaller adjustments" or "final caveats"), not full-form rendering — §1 and §2 are already governed by `presentation-voice.md` and `anchor-treatment.md`. Showing whole 800-word reconsideration examples would risk cargo-cult templating without teaching the cap.
 
-After all the beat-specific examples, four general anti-pattern bad examples show the cross-cutting failure modes we're trying to defeat: therapy recap, dashboard report, "mostly aligned" closure, and Munger cosplay.
+After all the beat-specific examples, five general anti-pattern bad examples show the cross-cutting failure modes we're trying to defeat: therapy recap, dashboard report, "mostly aligned" closure, Munger cosplay, and visible internal labels (the scaffolding-leak failure mode added 2026-04-30 after the first Phase 1 validation run surfaced it as the load-bearing defect).
 
-Total: 9 good Beat 1/2/4 + 3 good Beat 3 §3 excerpts + 1 bad Beat 3 cap-evasion + 4 general bad = **17 examples**.
+Total: 9 good Beat 1/2/4 + 3 good Beat 3 §3 excerpts + 1 bad Beat 3 cap-evasion + 5 general bad = **18 examples**.
 
 The Marcus and Mother examples pull verbatim quotes from real archived runs at `~/.local/share/lolla/runs/<case>/<run_id>/conversation.txt`. The Short fixture examples assume the engineered weaknesses from `plans/short-strategic-fixture-2026-04-30.md` are the ones the audit returns; an actual run may surface a different mix and the rendered chat would adjust accordingly.
 
@@ -351,6 +351,73 @@ These exist so the orchestrator can pattern-match against what NOT to do. Each s
 - Sam Walton parallel inflates the decision.
 - Mechanism (*"deciding whether to fund his exit"*) is buried under aphorism delivery instead of leading.
 - The Munger-adjacent rule wants mechanism + concrete antidote + proportionate bluntness. This delivers tone + aphorism + drama.
+
+---
+
+### Bad — visible internal labels (the scaffolding-leak failure mode)
+
+This is what the chat looked like on the 2026-04-30 Mother run before the surface-hygiene pass. Each labeled section had clean prose internally, but the labels themselves announced the implementation structure to the user:
+
+> **Beat 1 — Readback + audit promise**
+>
+> [clean Beat 1 prose]
+>
+> ---
+>
+> **Now Beat 2 — the strongest counterargument from the audit.**
+>
+> [clean Beat 2 prose]
+>
+> ---
+>
+> **Now launching pressure-check sub-agents in parallel (lanes 2, 3, 4 — lane 1 skipped, no findings) before writing my Step 6 reconsideration.**
+>
+> [Agent tool calls fire]
+>
+> **Two of three pressure-check responses are in. I'll start drafting Step 6 while the third runs.**
+>
+> [more activity]
+>
+> **All three pressure-check responses are in. Now writing Beat 3 — the updated position.**
+>
+> [clean Beat 3 prose]
+>
+> ---
+>
+> **Reading them honestly: the Lane 2 concerns (Inversion's missing tripwire, Mia's mom prediction softness, Opportunity Cost sequencing) all landed in §3 or §2. Lane 3's two concerns (ex as evidence-backed persuasion, deferred-until police) both made §3. Lane 4's three gaps (incentives, stakeholder map, behavioral triggers) all made §3 — except for one specific connection.**
+>
+> [clean Beat 4 prose]
+
+**What's wrong:**
+
+- *"Beat 1 — Readback + audit promise"*, *"Now Beat 2"*, *"Now writing Beat 3"* — internal section names announced as headings or transitions. The labels are instruction architecture for the orchestrator; they are not user-facing.
+- *"Now launching pressure-check sub-agents in parallel (lanes 2, 3, 4 — lane 1 skipped, no findings)"* — discloses the sub-agent mechanism, the lane numbering, and the skip rule. Step 7 runs behind the scenes; the user does not hear about it.
+- *"Two of three pressure-check responses are in"*, *"All three pressure-check responses are in"* — operator narration of internal progress.
+- *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."* — the orchestrator narrating its own comparison process before delivering the user-facing Pressure Check. The user-facing surface starts at the counter-frame opening sentence; everything before it is debug trace.
+
+**The right shape:**
+
+> [clean Beat 1 prose, no label heading]
+>
+> Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. Usually 5–8 minutes.
+>
+> [pipeline runs silently]
+>
+> [clean Beat 2 prose, no label heading]
+>
+> [reconsideration writes silently; sub-agents fire silently]
+>
+> ## Updated position
+>
+> [clean Beat 3 prose with §1/§2/§3 subheadings]
+>
+> ### Pressure Check
+>
+> [clean Beat 4 prose, opening at counter-frame sentence]
+>
+> Observatory is live at http://localhost:8080. Memo at /tmp/lolla_*_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/<case>/<run_id>/.
+
+The product surface uses two kinds of section markers: paragraph spacing for rhythm, and a small number of allowed product headings (`## Updated position`, `### Pressure Check`). It does not use internal phase names.
 
 ---
 

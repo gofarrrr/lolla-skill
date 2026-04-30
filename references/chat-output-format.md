@@ -35,6 +35,20 @@ Do not send *"still working"*, *"thinking carefully"*, or *"I'll be back shortly
 
 Banned in user-facing chat: card names (*DeltaCard*, *CompanionCheatSheet*, *FramePressureCard*, *StructuralCoverageCard*), lane numbers (*Lane 1*, *Lane 2*, etc.), JSON field names, *sub-agents*, *the audit said*, *the pipeline*, *isolated review*, routing language, prompt/process talk. The user receives findings and counterarguments in human language; the mechanism is for the orchestrator, not the reader. See § Cross-cutting rules below for the grep checks.
 
+### No internal scaffolding leak (load-bearing rule)
+
+Internal section names are **instruction architecture for the orchestrator** and **must not appear in rendered chat output**. The orchestrator's job is to render the beat content directly — not to introduce it by name.
+
+**Banned in rendered chat output (word-boundary grep):** `Beat 1`, `Beat 2`, `Beat 3`, `Beat 4`, `Step 1` through `Step 10`, `Step 2.5`, `Step 6b`, `Step 6c`, `Step 8b`, `Lane 1`, `Lane 2`, `Lane 3`, `Lane 4`, `sub-agent`, `sub-agents`, `pressure-check sub-agents`, `lanes 2, 3, 4`, `pipeline`, `audit card`, `the cards`, `isolated review`. Plus card-name CamelCase: `DeltaCard`, `CompanionCheatSheet`, `FramePressureCard`, `StructuralCoverageCard`.
+
+**This grep applies to rendered chat output only, not to documentation or internal instruction files.** The reference docs (this file, `SKILL.md`, `voice-examples-2026-04-30.md`) use these names internally because they are instruction architecture. The user-facing transcript must not.
+
+**Allowed product language:** *audit*, *pressure check*, *reconsideration*, *updated position*, *memo*, *Observatory*, *full breakdown*. These are product surfaces the user can see and interact with; they are not internal pipeline machinery.
+
+**Failure pattern to avoid (also banned):** **operator narration of internal transitions.** *"Now writing Beat 3"*, *"Now launching pressure-check sub-agents in parallel"*, *"Now Beat 2 — the strongest counterargument"*, *"lanes 2, 3, 4 — lane 1 skipped, no findings"*, *"Reading them honestly: the Lane 2 concerns…"* — these are the orchestrator narrating its own internal structure to the user. Render the content directly. Section breaks are felt through paragraph spacing and the small number of allowed product headings (`## Updated position`, `### Pressure Check`); they are not announced in prose.
+
+See `voice-examples-2026-04-30.md` § Bad — visible internal labels for the failure pattern this rule defeats.
+
 ### No early Observatory link
 
 Before Step 9, do not say `http://localhost:8080` or any other Observatory URL. The server is not running until Step 9 launches it; pointing the user at a dead link quietly damages trust on every run. Beat 2 and Beat 4 use *"queued for the full breakdown once the reconsideration is complete"* / *"I'm opening the full breakdown now"* instead. Only the final functional receipt after Step 9/10 includes a live URL.
@@ -146,7 +160,7 @@ After Step 3 pipeline returns, present the strongest counterargument as a story 
 
 1. **Run-health line, conditional.** Only when `run_health.overall ≠ healthy` AND a material issue is present (`capture_degraded`, `capture_critical`, `substrate_empty`, `no_fingerprint`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`). Silent on healthy runs.
 2. **One exact quote** anchored to a specific turn, format *"In Turn N, you wrote: '...'"* or *"In Turn N, I closed with: '...'"*. Drop turn numbers when the quote spans turns or is paraphrased. Use turn numbers as **light source attribution only — never as heading style** (no *"Finding 1 — Turn 4 Evidence Quote"*). The user can inspect referenced turns via the captured transcript at `/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt` and the Observatory's conversation view (both use `[Turn N]` markers); memo navigation is not part of this contract.
-3. **One paragraph (3–5 sentences) making the case against that move.** Specific. Names the structural error in plain language. Avoids machinery vocabulary (no *"deprival-superreaction"*, *"loss aversion pattern"*, etc. — those models go in Beat 3 §3 where they earn context).
+3. **One paragraph (3–5 sentences) making the case against that move.** Specific. Names the structural error in plain language. Avoids machinery vocabulary (no *"deprival-superreaction"*, *"loss aversion pattern"*, etc. — those models go in Beat 3 §3 where they earn context). **Scope general claims to this person / this conversation, not to a class of people.** *"He may be minimizing because he hasn't been shown what specifically makes this different from ordinary teenage drama"* is acceptable; *"People who minimize age-gap online contact rarely do so because they've reviewed the grooming literature"* is not. Where a general claim carries the case-against, it must be scoped. Where a general claim is observational backdrop for a situation-specific argument, it can stay. Lolla audits unverified-claim patterns in others' reasoning; its own output should pass its own audit.
 4. **One alternative-question or alternative-instrument** the audit pushed onto the table. Verbatim from `frame_pressure_card.reframings[0].reframed_question` if it serves; otherwise a sharp paraphrase of the strongest cross-lane alternative. **Fallback rule:** when no single user passage anchors the critique, lead with paraphrased user-position framing (*"The answer treated X as settled before testing Y"*). Exact quote preferred; paraphrase acceptable when the verbatim would be awkward or misleading.
 5. **One queued-breakdown line WITHOUT URL:** *"There are X more challenge points and Y unanswered dimensions queued for the full breakdown once the reconsideration is complete."*
 6. **One transition sentence:** *"Now I'm using this to revise my own answer, not just report the audit. ~3 minutes."*
@@ -179,6 +193,12 @@ After Step 6 reconsideration is written, present the orchestrator's revised posi
 - **§2 What I'd take back** — 1–2 paragraphs, names what to set aside with reason.
 - **§3 What actually shifted** — **capped at 3–4 distinct shifts**. Each ~3–4 sentences. Anchors woven in by name where they ground the shift.
 - Optional: one closing line landing the road choice or actionable summary.
+
+### §2 anti-overcorrection rule
+
+§2 should include at least one **audit-raised pressure the orchestrator considered and did not adopt** when such a pressure exists in the audit output. This is what makes Beat 3 read as judgment rather than absorption — without it, the user sees only "what survived" + "what shifted" and reads the audit as right about everything.
+
+**Constraint:** do NOT manufacture a rejection for symmetry. If the audit produces no credible pressure to reject — empty `delta_card`, weak anchors that don't bear on a load-bearing reasoning move, no frame elements that would have changed the recommendation — say less in §2 rather than performing judgment. Self-corrections of the orchestrator's own reasoning (*"I had soft mechanism here, recommendation is the same"*) are valid §2 content but not a substitute for an audit-grounded rejection when one is available.
 
 ### Operational shift definition (enforces the cap)
 
@@ -220,6 +240,7 @@ If the draft pressure check contains *"mostly aligned"*, *"all incorporated abov
 - "Mostly aligned" closure or any variant.
 - *"Sub-agents"*, *"lanes"*, *"isolated review"*, *"the pipeline flagged"* — attribute the *argument*, not its source. Step 7 runs behind the scenes; the user never hears about it.
 - Narrative summary close (*"Audited your equity decision for Marcus. Found 3 patterns…"*) — the functional close above replaces it.
+- **Pre-pressure-check internal narration.** Do not summarize which internal reviewers, lanes, or sources aligned before the Pressure Check. Do not write *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."*, *"All three sub-agents are in"*, *"Two of three pressure-check responses are in"*, or any variant. **Start the user-facing output at the counter-frame opening sentence.** Everything before that is operator narration and must be silent in the rendered transcript.
 
 ### Examples
 
@@ -230,15 +251,34 @@ If the draft pressure check contains *"mostly aligned"*, *"all incorporated abov
 
 ## Cross-cutting rules and forbidden failure modes
 
-### Machinery-leak grep
+### Rendered-transcript grep (validation target)
 
-Before delivering any beat, mentally grep for these patterns. If any appear, the beat has machinery leak:
+**This grep applies to rendered chat output only, not to documentation or internal instruction files.** The reference docs use these names internally because they are instruction architecture; the user-facing transcript must not.
 
-- *"sub-agent"*, *"the pipeline"*, *"the audit said"* (vs. *"the audit"* in §2 set-aside framing, which is borderline-acceptable when explaining a dismissal — context-dependent)
-- *"DeltaCard"*, *"CompanionCheatSheet"*, *"FramePressureCard"*, *"StructuralCoverageCard"*
-- *"Lane 1"*, *"Lane 2"*, *"Lane 3"*, *"Lane 4"*
-- *"isolated review"*, *"the verifier"*, *"the boundary call"*, *"prompt versions"*
+Use **word-boundary** matching, not loose substring matching, to avoid false positives (e.g., *card* in *discard* is fine; only `card` as a word matters).
+
+Before delivering any beat, mentally grep the rendered chat for these patterns. If any appear, the chat has scaffolding leak:
+
+**Internal section names (the load-bearing addition):**
+- `\bBeat\s*[0-9]\b` — `Beat 1`, `Beat 2`, `Beat 3`, `Beat 4`
+- `\bStep\s*[0-9]+(\.5|b|c)?\b` — `Step 1` through `Step 10`, including `Step 2.5`, `Step 6b`, `Step 6c`, `Step 8b`
+- `\bLane\s*[0-9]\b` — `Lane 1` through `Lane 4`
+- `\bsub-agent(s)?\b` — both singular and plural
+- `\bpipeline\b`, `\baudit card\b`, `\bisolated review\b`
+- Card CamelCase: `\bDeltaCard\b`, `\bCompanionCheatSheet\b`, `\bFramePressureCard\b`, `\bStructuralCoverageCard\b`
+
+**Other machinery vocabulary:**
+- *"the pipeline"*, *"the audit said"* (vs. *"the audit"* in §2 set-aside framing, which is borderline-acceptable when explaining a dismissal — context-dependent)
+- *"the verifier"*, *"the boundary call"*, *"prompt versions"*
 - JSON field names (*"specific_passage"*, *"display_name"*, *"frame_pattern"*, etc.)
+
+**Operator-narration patterns (also banned):**
+- *"Now Beat N"*, *"Now writing Beat N"*, *"Now launching..."*, *"Now spawning..."*
+- *"X of Y sub-agents are in"*, *"All three pressure-check responses are in"*
+- *"lanes 2, 3, 4 — lane 1 skipped"*
+- *"Reading them honestly: the Lane N concerns..."*
+
+**Allowed product language (NOT banned):** *audit*, *pressure check*, *reconsideration*, *updated position*, *memo*, *Observatory*, *full breakdown*. These name product surfaces the user can see and interact with, not internal pipeline machinery.
 
 ### Munger cosplay warning
 
