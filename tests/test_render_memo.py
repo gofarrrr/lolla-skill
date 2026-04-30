@@ -123,6 +123,37 @@ FULL_RESULT = {
 }
 
 
+NEW_MEMO_RESULT = {
+    **FULL_RESULT,
+    "memo_substantive_title": "The equity decision turned on an untested future contribution",
+    "memo_orientation_note": (
+        "You were not deciding whether Marcus mattered. You had already crossed that line. "
+        "The live question was whether a 15% grant priced the future partnership or simply rewarded the past build.\n\n"
+        "My original answer leaned toward a phased equity approach, but the weak point was the threshold: "
+        "I treated past platform contribution as if it settled future dependence. The revised advice is narrower. "
+        "Test what Marcus will own, what changes if he leaves, and what other engineers will read into the grant before turning the number into a commitment."
+    ),
+    "memo_what_changed": (
+        "### Test future dependence before pricing equity\n\n"
+        "The advice now asks whether Marcus remains the bottleneck after the current platform build, not whether he earned gratitude for past work."
+    ),
+    "memo_what_still_holds": (
+        "- Marcus's contribution is real.\n"
+        "- A phased structure still beats a clean yes/no grant."
+    ),
+    "memo_take_back_or_set_aside": (
+        "I would take back the confidence of the first number. The direction can survive; the precision cannot."
+    ),
+    "memo_pressure_check": (
+        "One more point: the other engineers are not background noise. Their reaction changes the cost of any special grant."
+    ),
+}
+
+
+def _decision_note_layer(output: str) -> str:
+    return output.split("## Appendix: Audit trace", 1)[0]
+
+
 def test_memo_starts_with_heading_and_contains_query():
     """Memo starts with a markdown heading and contains the decision situation."""
     output = render_memo(MINIMAL_RESULT)
@@ -258,6 +289,142 @@ def test_minimal_result_no_errors():
     """Minimal result with only extraction + detected_tendencies produces valid memo."""
     output = render_memo(MINIMAL_RESULT)
     assert output.startswith("# ")
+
+
+def test_new_memo_shape_starts_with_substantive_title():
+    """New memo fields switch renderer to decision-note shape."""
+    output = render_memo(NEW_MEMO_RESULT)
+    assert output.startswith("# The equity decision turned on an untested future contribution")
+    assert "# Reasoning Audit:" not in output
+    assert "You were not deciding whether Marcus mattered" in output
+
+
+def test_new_memo_shape_puts_changed_advice_before_appendix():
+    """Decision-note layer appears before the deterministic audit trace."""
+    output = render_memo(NEW_MEMO_RESULT)
+    assert "## What changed in the advice" in output
+    assert "## Appendix: Audit trace" in output
+    assert output.index("## What changed in the advice") < output.index("## Appendix: Audit trace")
+    assert "### Challenge points" in output
+    assert output.index("### Challenge points") > output.index("## Appendix: Audit trace")
+
+
+def test_new_memo_questions_replace_structural_gaps_section():
+    """Structural gaps become user-answerable questions in the main body."""
+    output = render_memo(NEW_MEMO_RESULT)
+    assert "## Questions still unanswered" in output
+    assert "How would other engineers react" in output
+    assert "## Structural Gaps" not in output
+
+
+def test_new_memo_questions_are_capped_in_decision_note_with_remainder_in_appendix():
+    """The decision note should not become a structural-gaps backlog."""
+    result = {
+        **NEW_MEMO_RESULT,
+        "structural_coverage_card": {
+            "gap_questions": [
+                {"questions": ["Question one?", "Question two?"]},
+                {"questions": ["Question three?", "Question four?", "Question five?"]},
+            ],
+        },
+    }
+
+    output = render_memo(result)
+    decision_questions = output.split("## Appendix: Audit trace", 1)[0].split(
+        "## Questions still unanswered", 1
+    )[1]
+    appendix = output.split("## Appendix: Audit trace", 1)[1]
+
+    assert "Question one?" in decision_questions
+    assert "Question two?" in decision_questions
+    assert "Question three?" in decision_questions
+    assert "Question four?" not in decision_questions
+    assert "2 more unresolved question(s)" in decision_questions
+    assert "### Additional unresolved questions" in appendix
+    assert "Question four?" in appendix
+    assert "Question five?" in appendix
+
+
+def test_new_memo_omits_empty_pressure_check_section():
+    """No empty pressure-check heading when no memo divergence survives."""
+    result = {**NEW_MEMO_RESULT, "memo_pressure_check": ""}
+    output = render_memo(result)
+    assert "## One more pressure check" not in output
+
+
+def test_new_memo_decision_note_layer_has_no_machinery_terms():
+    """Decision-note layer avoids internal product machinery terms."""
+    output = render_memo(NEW_MEMO_RESULT)
+    layer = _decision_note_layer(output)
+    banned = [
+        "Beat",
+        "Step",
+        "Lane",
+        "sub-agent",
+        "DeltaCard",
+        "CompanionCheatSheet",
+        "FramePressureCard",
+        "StructuralCoverageCard",
+        "pipeline",
+    ]
+    for term in banned:
+        assert term not in layer
+
+
+def test_new_memo_appendix_cleans_machine_shaped_challenge_wrappers():
+    """Raw challenge wrappers should not make the appendix read like JSON plumbing."""
+    result = {
+        **NEW_MEMO_RESULT,
+        "delta_card": {
+            "findings": [
+                {
+                    "tendency_name": "Social-Proof Tendency",
+                    "severity": "medium",
+                    "specific_passage": "USER [Turn 5]: 'Everyone does this.' ASSISTANT [Turn 5]: 'Then it is not differentiating.'",
+                    "challenge_statement": (
+                        "Social-Proof: challenge 'USER [Turn 5]: "
+                        "'Everyone does this.' ASSISTANT [Turn 5]: "
+                        "'Then it is not differentiating.'' because the answer "
+                        "used visible consensus as evidence without checking whether the pool was self-selecting"
+                    ),
+                },
+            ],
+        },
+    }
+
+    output = render_memo(result)
+
+    assert "Social-Proof: challenge" not in output
+    assert "used visible consensus as evidence" in output
+    assert " ...\n" not in output
+
+
+def test_new_memo_can_parse_revised_answer_sections_when_fields_missing():
+    """Renderer falls back to revised_answer sections for partial memo fields."""
+    result = {
+        **FULL_RESULT,
+        "memo_substantive_title": "The equity answer needs a narrower test",
+        "memo_orientation_note": "The memo opens with the decision tension and the changed advice.",
+        "memo_what_changed": "",
+        "memo_what_still_holds": "",
+        "memo_take_back_or_set_aside": "",
+        "revised_answer": (
+            "## Updated position\n\n"
+            "§1 What survived\n\n"
+            "The phased structure still holds.\n\n"
+            "§2 What I'd take back\n\n"
+            "The first number was too confident.\n\n"
+            "§3 What actually shifted\n\n"
+            "Ask what Marcus owns after the next platform milestone."
+        ),
+    }
+    output = render_memo(result)
+    assert "## What changed in the advice" in output
+    assert "Ask what Marcus owns" in output
+    assert "## What still holds" in output
+    assert "The phased structure still holds" in output
+    assert "## What I'd take back or set aside" in output
+    assert "The first number was too confident" in output
     # Should not contain any optional sections
     assert "## Key Findings" not in output
     assert "## Mental Model Connections" not in output

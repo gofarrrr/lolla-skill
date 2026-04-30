@@ -7,7 +7,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
+import textwrap
 from pathlib import Path
 
 
@@ -33,26 +35,20 @@ def _truncate_to_sentences(text: str, max_sentences: int = 2, max_chars: int = 1
 
 
 _SEVERITY_ORDER = {"high": 0, "medium": 1, "low": 2}
+_DECISION_NOTE_QUESTION_LIMIT = 3
 
 
 def render_memo(result: dict) -> str:
     """Render a pipeline result dict into a standalone markdown memo."""
-    sections: list[str] = []
+    if _has_decision_note(result):
+        return _render_decision_note_memo(result)
+    return _render_legacy_memo(result)
 
-    # Heading with decision context — prefer the extraction's
-    # decision_situation (concise one-liner). Fall back to the first user
-    # turn's leading clause.
-    extraction = result.get("extraction", {})
-    decision_situation = extraction.get("decision_situation", "").strip()
-    if decision_situation:
-        heading_context = _truncate_to_sentences(decision_situation)
-    else:
-        first_user_turn = next(
-            (t.get("text", "") for t in extraction.get("turns", []) if t.get("speaker") == "user"),
-            "",
-        )
-        heading_context = _truncate_to_sentences(first_user_turn) if first_user_turn else "Reasoning Audit"
-    sections.append(f"# Reasoning Audit: {heading_context}")
+
+def _render_legacy_memo(result: dict) -> str:
+    """Render the original deterministic memo shape for older result JSONs."""
+    sections: list[str] = []
+    sections.append(_legacy_heading(result))
 
     # Key Findings — sorted by severity
     _render_findings(result, sections)
@@ -76,6 +72,340 @@ def render_memo(result: dict) -> str:
     _render_pressure_check(result, sections)
 
     return "\n\n".join(sections) + "\n"
+
+
+def _legacy_heading(result: dict) -> str:
+    # Heading with decision context — prefer the extraction's
+    # decision_situation (concise one-liner). Fall back to the first user
+    # turn's leading clause.
+    extraction = result.get("extraction", {})
+    decision_situation = extraction.get("decision_situation", "").strip()
+    if decision_situation:
+        heading_context = _truncate_to_sentences(decision_situation)
+    else:
+        first_user_turn = next(
+            (t.get("text", "") for t in extraction.get("turns", []) if t.get("speaker") == "user"),
+            "",
+        )
+        heading_context = _truncate_to_sentences(first_user_turn) if first_user_turn else "Reasoning Audit"
+    return f"# Reasoning Audit: {heading_context}"
+
+
+def _has_decision_note(result: dict) -> bool:
+    return any(
+        _clean_text(result.get(key))
+        for key in (
+            "memo_substantive_title",
+            "memo_orientation_note",
+            "memo_orientation_narrative",
+            "memo_what_changed",
+            "memo_what_still_holds",
+            "memo_take_back_or_set_aside",
+            "memo_pressure_check",
+        )
+    )
+
+
+def _render_decision_note_memo(result: dict) -> str:
+    """Render the upgraded memo: decision note first, audit trace second."""
+    sections: list[str] = [_memo_heading(result)]
+
+    orientation = _first_text(result, ["memo_orientation_note", "memo_orientation_narrative"])
+    if orientation:
+        sections.append(orientation)
+
+    _append_markdown_section(
+        sections,
+        "What changed in the advice",
+        _memo_field_or_revised_section(
+            result,
+            "memo_what_changed",
+            ["What actually shifted"],
+        ),
+    )
+    _append_markdown_section(
+        sections,
+        "What still holds",
+        _memo_field_or_revised_section(
+            result,
+            "memo_what_still_holds",
+            ["What survived"],
+        ),
+    )
+    _append_markdown_section(
+        sections,
+        "What I'd take back or set aside",
+        _memo_field_or_revised_section(
+            result,
+            "memo_take_back_or_set_aside",
+            ["What I'd take back or set aside", "What I'd take back"],
+        ),
+    )
+
+    pressure = _clean_text(result.get("memo_pressure_check"))
+    if pressure:
+        _append_markdown_section(sections, "One more pressure check", pressure)
+
+    _render_unanswered_questions(result, sections)
+    _render_audit_appendix(result, sections)
+
+    return "\n\n".join(sections) + "\n"
+
+
+def _memo_heading(result: dict) -> str:
+    title = _clean_text(result.get("memo_substantive_title")).lstrip("#").strip()
+    if title:
+        return f"# {title}"
+    return _legacy_heading(result)
+
+
+def _clean_text(value: object) -> str:
+    return str(value or "").strip()
+
+
+def _first_text(result: dict, keys: list[str]) -> str:
+    for key in keys:
+        value = _clean_text(result.get(key))
+        if value:
+            return value
+    return ""
+
+
+def _memo_field_or_revised_section(result: dict, field: str, headings: list[str]) -> str:
+    direct = _clean_text(result.get(field))
+    if direct:
+        return direct
+    return extract_section(_clean_text(result.get("revised_answer")), headings)
+
+
+def _append_markdown_section(sections: list[str], heading: str, body: str) -> None:
+    body = _strip_duplicate_leading_heading(_clean_text(body), heading)
+    if body:
+        sections.append(f"## {heading}\n\n{body}")
+
+
+def _strip_duplicate_leading_heading(text: str, heading: str) -> str:
+    if not text:
+        return ""
+    lines = text.splitlines()
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    if lines and _normalize_heading(lines[0]) == _normalize_heading(heading):
+        return "\n".join(lines[1:]).strip()
+    return text.strip()
+
+
+def _render_unanswered_questions(result: dict, sections: list[str]) -> None:
+    questions = _collect_unanswered_questions(result)
+    if not questions:
+        return
+    priority_questions = questions[:_DECISION_NOTE_QUESTION_LIMIT]
+    lines = [f"- {q}" for q in priority_questions]
+    if len(questions) > len(priority_questions):
+        lines.append(
+            f"\n{len(questions) - len(priority_questions)} more unresolved question(s) "
+            "are preserved in the appendix."
+        )
+    sections.append("## Questions still unanswered\n\n" + "\n".join(lines))
+
+
+def _collect_unanswered_questions(result: dict) -> list[str]:
+    sc = result.get("structural_coverage_card") or {}
+    gaps = sc.get("gap_questions") or []
+    questions: list[str] = []
+    for gap in gaps:
+        for question in gap.get("questions") or []:
+            question = _clean_text(question)
+            if question and question not in questions:
+                questions.append(question)
+        single = _clean_text(gap.get("question"))
+        if single and single not in questions:
+            questions.append(single)
+    return questions
+
+
+def _render_audit_appendix(result: dict, sections: list[str]) -> None:
+    appendix_sections: list[str] = []
+    _render_findings_appendix(result, appendix_sections)
+    _render_companion_appendix(result, appendix_sections)
+    _render_frame_appendix(result, appendix_sections)
+    _render_remaining_questions_appendix(result, appendix_sections)
+    _render_delivery_profile_appendix(result, appendix_sections)
+    if appendix_sections:
+        sections.append("## Appendix: Audit trace\n\n" + "\n\n".join(appendix_sections))
+
+
+def _render_findings_appendix(result: dict, sections: list[str]) -> None:
+    delta = result.get("delta_card")
+    if not delta:
+        return
+    findings = delta.get("findings", [])
+    if not findings:
+        return
+    sorted_findings = sorted(findings, key=lambda f: _SEVERITY_ORDER.get(f.get("severity", "low"), 2))
+    lines = ["### Challenge points"]
+    seen_passages: set[str] = set()
+    for f in sorted_findings:
+        name = f.get("tendency_name", "Unknown")
+        severity = f.get("severity", "unknown")
+        challenge = _clean_challenge_statement(f.get("challenge_statement"))
+        passage = _clean_text(f.get("specific_passage"))
+        if challenge:
+            lines.append(f"- **{name}** ({severity}): {challenge}")
+        else:
+            lines.append(f"- **{name}** ({severity})")
+        if passage and passage not in seen_passages:
+            lines.append(f"  > {_short_excerpt(passage)}")
+            seen_passages.add(passage)
+    sections.append("\n".join(lines))
+
+
+def _clean_challenge_statement(value: object) -> str:
+    text = _clean_text(value)
+    if not text:
+        return ""
+    # Some upstream challenge statements include the full quoted passage inside
+    # the challenge sentence. Keep the reason, not the machine-shaped wrapper.
+    if re.match(r"^[A-Za-z -]+:\s*challenge\b", text) and " because " in text:
+        text = text.split(" because ", 1)[1].strip()
+    text = re.sub(r"\s+", " ", text).strip()
+    if text:
+        text = text[0].upper() + text[1:]
+    return text
+
+
+def _short_excerpt(text: str, width: int = 220) -> str:
+    compact = re.sub(r"\s+", " ", _clean_text(text))
+    return textwrap.shorten(compact, width=width, placeholder=" ...")
+
+
+def _render_companion_appendix(result: dict, sections: list[str]) -> None:
+    cs = result.get("companion_cheat_sheet")
+    if not cs:
+        return
+    anchors = cs.get("anchors", [])
+    if not anchors:
+        return
+    lines = ["### Model connections"]
+    for a in anchors:
+        name = a.get("display_name", "Unknown")
+        explanation = _clean_text(a.get("presence_explanation"))
+        mode = _clean_text(a.get("presence_mode"))
+        suffix = f" ({mode})" if mode else ""
+        if explanation:
+            lines.append(f"- **{name}**{suffix}: {explanation}")
+        else:
+            lines.append(f"- **{name}**{suffix}")
+    sections.append("\n".join(lines))
+
+
+def _render_frame_appendix(result: dict, sections: list[str]) -> None:
+    fp = result.get("frame_pressure_card")
+    if not fp:
+        return
+    reframings = fp.get("reframings", [])
+    if not reframings:
+        return
+    lines = ["### Alternative frames"]
+    for r in reframings:
+        question = _clean_text(r.get("reframed_question"))
+        opens = _clean_text(r.get("what_opens"))
+        if question and opens:
+            lines.append(f"- **{question}** {opens}")
+        elif question:
+            lines.append(f"- **{question}**")
+    sections.append("\n".join(lines))
+
+
+def _render_remaining_questions_appendix(result: dict, sections: list[str]) -> None:
+    questions = _collect_unanswered_questions(result)
+    remaining = questions[_DECISION_NOTE_QUESTION_LIMIT:]
+    if not remaining:
+        return
+    lines = ["### Additional unresolved questions"]
+    lines.extend(f"- {q}" for q in remaining)
+    sections.append("\n".join(lines))
+
+
+def _render_delivery_profile_appendix(result: dict, sections: list[str]) -> None:
+    text = _delivery_check_text(result)
+    if text:
+        sections.append(f"### Delivery profile\n\n{text}")
+
+
+def _delivery_check_text(result: dict) -> str:
+    bp = result.get("bullshit_profile")
+    if not bp:
+        return ""
+    summary = bp.get("summary", {})
+    total_clear = summary.get("total_clear", 0)
+    if not total_clear:
+        return ""
+    passages = bp.get("passages", [])
+    subtype_counts: dict[str, int] = {}
+    for p in passages:
+        for st in _BI_SUBTYPES:
+            det = p.get(st)
+            if isinstance(det, dict) and det.get("detected") and det.get("severity") == "clear":
+                subtype_counts[st] = subtype_counts.get(st, 0) + 1
+        for d in p.get("detections", []):
+            if d.get("severity") == "clear":
+                st = d.get("subtype", "unknown")
+                subtype_counts[st] = subtype_counts.get(st, 0) + 1
+    dominant = max(subtype_counts, key=subtype_counts.get) if subtype_counts else "unknown"
+    dominant_display = dominant.replace("_", " ")
+    return (
+        f"{total_clear} clear detections across {summary.get('passages_with_detections', 0)} passages. "
+        f"Dominant pattern: **{dominant_display}**."
+    )
+
+
+def extract_section(markdown: str, possible_headings: list[str]) -> str:
+    """Extract a markdown or §N section by heading text.
+
+    Accepts headings like ``### What actually shifted`` and
+    ``§3 What actually shifted``. Returns an empty string when absent.
+    """
+    if not markdown:
+        return ""
+    wanted = {_normalize_heading(h) for h in possible_headings}
+    lines = markdown.splitlines()
+    for i, line in enumerate(lines):
+        info = _heading_info(line)
+        if not info:
+            continue
+        _, level, title = info
+        if _normalize_heading(title) not in wanted:
+            continue
+        end = len(lines)
+        for j in range(i + 1, len(lines)):
+            next_info = _heading_info(lines[j])
+            if not next_info:
+                continue
+            next_kind, next_level, _ = next_info
+            if next_kind == "section" or next_level <= level:
+                end = j
+                break
+        return "\n".join(lines[i + 1:end]).strip()
+    return ""
+
+
+def _heading_info(line: str) -> tuple[str, int, str] | None:
+    md = re.match(r"^\s{0,3}(#{1,6})\s+(.+?)\s*$", line)
+    if md:
+        return ("markdown", len(md.group(1)), md.group(2).strip())
+    section = re.match(r"^\s*§\s*\d+\s+(.+?)\s*$", line)
+    if section:
+        return ("section", 3, section.group(1).strip())
+    return None
+
+
+def _normalize_heading(text: str) -> str:
+    text = _clean_text(text).replace("’", "'")
+    text = re.sub(r"^\s*#+\s*", "", text)
+    text = re.sub(r"^\s*§\s*\d+\s*", "", text)
+    text = re.sub(r"[^a-zA-Z0-9']+", " ", text.lower())
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def _render_findings(result: dict, sections: list[str]) -> None:

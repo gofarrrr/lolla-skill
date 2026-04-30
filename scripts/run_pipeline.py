@@ -684,7 +684,7 @@ def main() -> int:
             user_prompt=revision_prompt,
             stage="revision",
         )
-        return revision_result.get("revised_answer"), list(client.call_log)
+        return revision_result.get("revised_answer"), list(getattr(client, "call_log", ()))
 
     def _run_bullshit_index():
         from system_b.boundary_provider import load_boundary_client_from_env
@@ -705,7 +705,7 @@ def main() -> int:
             client,
             context_summary=bi_context,
         )
-        return profile.to_payload(), list(client.call_log)
+        return profile.to_payload(), list(getattr(client, "call_log", ()))
 
     with ThreadPoolExecutor(max_workers=2) as post_pool:
         revision_future = post_pool.submit(_run_revision)
@@ -765,7 +765,7 @@ def main() -> int:
 
     serialized["usage_summary"] = build_usage_summary(
         run_id=_run_id,
-        pipeline_boundary_calls=result.audit.boundary_calls,
+        pipeline_boundary_calls=getattr(result.audit, "boundary_calls", ()),
         bi_boundary_calls=bi_call_log,
         revision_boundary_calls=revision_call_log,
         extraction_boundary_calls=load_extraction_sidecar(_run_id),
@@ -781,6 +781,9 @@ def main() -> int:
     _warnings = list(result.audit.warnings)
     _lane3_drops_count = len(getattr(result.frame_pressure_card, "dropped_frame_elements", ()) or ())
     _lane3_kept_count = len(getattr(result.frame_pressure_card, "frame_elements", ()) or ())
+    _bi_evaluation_failures = int(
+        ((bullshit_profile_payload or {}).get("summary", {}) or {}).get("evaluation_failures", 0) or 0
+    )
     # All frame elements dropped = Lane 3 effectively disabled by validation.
     # Partial drops are tolerated (some elements kept).
     _lane3_all_dropped = _lane3_drops_count > 0 and _lane3_kept_count == 0
@@ -812,6 +815,10 @@ def main() -> int:
         # detected" (which is a legitimate zero); this is "all detected but all
         # dropped by the evidence_quote/pattern validator."
         _health_issues.append("lane3_all_dropped")
+    if _bi_evaluation_failures:
+        # Passage-level BI calls can fail and still produce a profile for the
+        # remaining passages. Surface partial evaluator loss in run health.
+        _health_issues.append("bullshit_index_partial")
 
     # Overall health: critical if capture is critical, degraded if any issues
     if "capture_critical" in _health_issues:
@@ -834,6 +841,7 @@ def main() -> int:
         "omitted_turns": _omitted_turns,
         "lane3_frame_drops_count": _lane3_drops_count,
         "lane3_frame_kept_count": _lane3_kept_count,
+        "bullshit_index_evaluation_failures": _bi_evaluation_failures,
         "issues": _health_issues,
         "warnings": _warnings + _capture_warnings,
         "activation_tiebreaker": "on" if activation_tiebreaker_enabled else "off",
