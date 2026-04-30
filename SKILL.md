@@ -167,9 +167,27 @@ Present the `decline_reason` to the user and stop. Example: "This conversation i
 **If `status` is `capture_critical`:**
 The conversation capture is fundamentally broken — more than half the assistant turns are missing, or no assistant responses were captured. An audit on this capture would be unreliable, so the extraction declined before calling OpenRouter. Read the `decline_reason` and `capture_manifest` from the output file, surface a short explanation to the user, and ask them to re-run the skill so Step 1 can capture the conversation again. Do NOT proceed to Step 3. Example message: *"Lolla couldn't audit this run — the conversation capture lost more than half the assistant turns (declared N, captured M). This usually means Step 1 hit an edge case in how it read the conversation. Please rerun `/lolla` and I'll try to capture it cleanly this time."*
 
-**If `status` is `ok`:** Proceed to Step 3.
+**If `status` is `ok`:** Proceed to Step 2.5.
+
+### Step 2.5: Beat 1 — Readback + Audit Promise
+
+**Before launching the pipeline (Step 3), present Beat 1.** This fills the pipeline wait with a concrete product receipt: what Lolla captured, what it is about to test, and how long it will take. Without Beat 1 the user sees a bash command and 5–8 minutes of silence.
+
+**Read `references/chat-output-format.md`** for the full Beat 1 specification (rule, what goes in, length targets, examples). The voice rules at the top of that file apply across every beat — load them once and reuse for Beats 2/3/4.
+
+Beat 1 is **120–170 words** in normal mode; **70–110 words** in thin mode (when `captured_message_count <= 4` OR `extraction.reasoning_passages < 3 AND extraction.live_constraints < 3 AND extraction.dropped_threads is empty`). Hard cap: 200 words.
+
+The closing line of Beat 1 is the operational status receipt: *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This usually takes 5–8 minutes."*
+
+Do not link to Observatory; the server is not running until Step 9. See `plans/voice-examples-2026-04-30.md` § Beat 1 for examples (Marcus / Mother / Short fixture) and § Bad — therapy recap for the failure mode.
 
 ### Step 3: Run Pipeline
+
+**Before launching the pipeline call, present the Step 3 status receipt** — a short functional receipt (~25–35 words) that names the work in human terms:
+
+> *"Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. Usually 5–8 minutes."*
+
+This is a functional receipt, not a content beat. Do not extend it with prose. Then launch:
 
 ```bash
 python3 $SKILL_DIR/scripts/run_pipeline.py --extraction-file /tmp/lolla_${LOLLA_RUN_ID}_extraction.json --conversation-file /tmp/lolla_${LOLLA_RUN_ID}_conversation.txt --output-file /tmp/lolla_${LOLLA_RUN_ID}_result.json --skip-revision
@@ -179,14 +197,15 @@ This runs the full Lolla pipeline — all four lanes — via OpenRouter. With bo
 
 **If the output `status` is `error`:** Present the error to the user. Common causes: API timeout (try again), missing API key, data file issues.
 
-### Step 4: Present Results
+### Step 4: Beat 2 — Counterargument Lead
 
-**Before rendering the chat output, read these two references:**
+**Read `references/chat-output-format.md` § Beat 2** (the file should already be loaded from Step 2.5; reload if context elapsed). Also read `references/output-field-guide.md` for field definitions of the four cards.
 
-- `references/output-field-guide.md` — full field definitions (DeltaCard, CompanionCheatSheet, FramePressureCard, StructuralCoverageCard, BullshitProfile, chunk types, element types, reframe moves).
-- `references/chat-output-format.md` — the render specification: run-health surface mapping, BLUF rules, finding block format, anchor-naming line, alternative-question line, structural-gaps line, delivery-check line, run-cost line, closing line, "what NOT to put in chat".
+Then read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and present Beat 2 — the counterargument lead — per `chat-output-format.md`. **220–300 words** in normal mode; **140–220 words** in thin mode. Hard cap: 350 words.
 
-Then read `/tmp/lolla_${LOLLA_RUN_ID}_result.json` and present the chat summary per `chat-output-format.md`. The chat output is a focused summary, not a card dump — detailed card rendering lives in the Observatory (Step 9). Use human language exclusively: process artifacts (card names, lane numbers, JSON field names) never appear; product artifacts (findings, challenge questions, reframings, gap questions, mental model connections) are translated into prose.
+Beat 2 leads with one verbatim quote anchored to a turn (*"In Turn N, you wrote: '...'"*), one paragraph case-against in plain language, one alternative the audit pushed onto the table, a queued-breakdown line **without an Observatory URL**, and a transition sentence to Step 6.
+
+Do **not** link to Observatory in Beat 2; the server is not running until Step 9. Do not include anchor-list, structural-gaps line, or delivery-check line — those are Observatory-only. See `plans/voice-examples-2026-04-30.md` § Beat 2 for examples and § Bad — dashboard report for the failure mode.
 
 ### Step 5: Open Observatory
 
@@ -219,10 +238,18 @@ The audit findings are **hints, not commands.** They come from a curated knowled
 **Structure your updated position in this order:**
 
 1. **What survived.** Start with what you'd say again unchanged. This forces you to affirm your position before modifying it, which is harder than it sounds — the temptation is to hedge everything after seeing the cards.
-2. **What you'd set aside.** Name which findings you considered and deliberately chose not to act on, with a specific reason for each. "The contrast-misreaction finding flagged my comparison, but the comparison itself is the right frame for this decision because [reason]." This is the hardest part — it requires genuine judgment, not performance.
-3. **What actually shifted.** Name what changed in your position and why, and name the mental models that drove the shift. Be specific. This should be the smallest section if your original advice was sound.
+2. **What you'd take back.** Name which findings you considered and deliberately chose to set aside, with a specific reason for each. "The contrast-misreaction finding flagged my comparison, but the comparison itself is the right frame for this decision because [reason]." This is the hardest part — it requires genuine judgment, not performance.
+3. **What actually shifted.** Name what changed in your position and why. Name the mental models that drove the shift. Be specific.
 
-`anchor-treatment.md` governs HOW each anchor lands inside §1 / §2 / §3 (rhetorical strength matched to evidence) and what's forbidden (probability percentages, silent omission, "the answer is using X" framing on weak anchors, hedging-as-style). Read it before writing.
+**§3 cap: 3–4 distinct shifts. Hard cap.** Total Beat 3 length 550–800 words; hard cap 900.
+
+**Operational shift definition.** A shift is a change to the substantive advice the user would experience as different guidance: a different action, threshold, sequence, condition, risk treatment, or decision question. If it does not change what the user would do, delay, verify, reject, ask, or watch for, **it is not a shift.**
+
+**Tail-addition rule.** *"One more thing,"* *"two smaller adjustments,"* *"related notes,"* *"minor caveats,"* *"final caveat"* count against the §3 cap if they change advice. If they do not change advice, they belong in §1 (with survival framing) or §2 (with set-aside framing) — not in a §3 tail-section. The cap is enforced on shifts as defined above; it cannot be evaded by re-labeling shifts as adjustments.
+
+When the audit returns 5+ candidate shifts, your job is selection — fold related material into existing shifts (e.g., absorb a kill-criterion observation into the structural-protection rewrite rather than naming it as a separate shift) or send it to §2 if it's a precondition / set-aside. See `plans/voice-examples-2026-04-30.md` § Beat 3 for §3 excerpts demonstrating selection on Marcus (4 shifts from 7 candidates), Mother (3 shifts), and Short fixture (2 shifts on thin material). § Bad — cap evasion shows the failure mode this rule defeats.
+
+`anchor-treatment.md` governs HOW each anchor lands inside §1 / §2 / §3 (rhetorical strength matched to evidence) and what's forbidden (probability percentages, silent omission, "the answer is using X" framing on weak anchors, hedging-as-style). Under the §3 cap, weak anchors go to §2 with a one-line set-aside reason — not promoted into §3 to satisfy the naming invariant. Read it before writing.
 
 ### Step 6b: Persist Revised Answer
 
@@ -300,20 +327,23 @@ For each sub-agent that returned a result, ask yourself three specific questions
 
 Only "yes" answers get reported. Present divergences under a `### Pressure Check` heading AFTER your Step 6 updated position:
 
+**Open with a counter-frame phrase.** Use one of: *"One more angle worth surfacing"*, *"A fresh read pushed on something I underweighted"*, *"Two things the position above softened or skipped"*. **Never** *"mostly aligned"*, *"all incorporated above"*, *"the rest is in the position above"*, or any variant that suppresses divergences with confident closure.
+
 **If divergences exist:**
 
 > ### Pressure Check
 >
-> A fresh look at the position (no conversation history) surfaces these divergences:
+> One more angle worth surfacing — a fresh read pushed on [specific concern] in the position above.
 >
-> - **Structural Pressure:** I set aside the doubt-avoidance finding, but there's a case that the missing reversal trigger is material here — specifically [specific reasoning]. This may warrant [specific action].
-> - **Frame Pressure:** I treated the growth assumption as given, but relaxing it changes the recommendation in [specific way].
+> [Each divergence as a substantive paragraph: name the concrete alternative mechanism the sub-agent surfaced (alternative reporting channel, contractual instrument, stakeholder forum, tripwire pattern, legal-instrumental framing), explain why it was underweighted in §3, name what changes if it lands.]
 
-**If no divergences (all sub-agents aligned with Step 6):**
+**If no divergences (truly clean Step 6):**
 
 > ### Pressure Check
 >
-> Pressure check: a fresh look aligned with the assessment above.
+> No additional angles surfaced beyond what the position above already addresses.
+
+The "no divergences" close is rare and should be a deliberate judgment, not a default. If you find yourself reaching for it, run the Question-3 suppression check below first.
 
 **Rules:**
 - No lane-by-lane summaries. No machinery language. Specifically: never "my sub-agents found", "isolated review argues / notes / found", "the Lane N reading", "the pipeline flagged", "the audit card". Attribute the *argument* ("there's a case that…", "one point I may be underweighting…"), not its source. Step 7 runs behind the scenes; the user never hears about it.
@@ -442,17 +472,17 @@ Use the model name your orchestrator is running on (`claude-opus-4-7`, `claude-s
 
 ### Step 9: Open Observatory
 
-After the full cycle is complete (cards, updated position, and pressure check all persisted), **launch the Observatory**. The Observatory is the primary detail surface — it renders full card breakdowns, chunk lists, gap questions, delivery audit passages, the revised answer with markdown, and the pressure check with per-lane divergences. The chat summary from Step 4 is designed to be incomplete — it points users here for the full picture.
+After the full cycle is complete (cards, updated position, and pressure check all persisted), **launch the Observatory** — the primary detail surface for full card breakdowns, chunk lists, gap questions, delivery audit passages, revised answer, and per-lane divergences.
 
-**Always launch the Observatory** after Step 8b completes. Do not wait for the user to ask:
+**Always launch after Step 8b completes.** Do not wait for the user to ask:
 
 ```bash
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
 ```
 
-This starts a local server at http://localhost:8080. Tell the user the URL and that they can press Ctrl+C in the terminal to stop the server.
+This starts a local server at http://localhost:8080. Press Ctrl+C in the terminal to stop the server.
 
-Say something like: *"The Observatory is live at http://localhost:8080 — it has the full audit: all [N] findings with challenge questions and reversal triggers, [N] mental model connections with failure modes and premortems, [N] frame elements with alternative questions, and [N] structural dimensions. Cost & call breakdown for this run: http://localhost:8080/usage. Full memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md."*
+**Do not produce user-facing narrative output at Step 9.** Beat 4 already closed with *"Audit complete. I'm opening the full breakdown now."* — that's the bridge to the Observatory. The artifact paths, cost, and Observatory URL are consolidated in the final functional receipt at Completion (after Step 10). A long *"The Observatory is live at … it has the full audit: all [N] findings…"* narrative at Step 9 is the close-summary anti-pattern banned in `chat-output-format.md`.
 
 ### Step 10: Archive Run
 
@@ -476,19 +506,17 @@ The archive script:
 - `$LOLLA_CASE_ID` — force a specific case folder (skips fingerprint match). Useful when a run should be grouped with an existing case despite a mismatched `decision_situation`, or when the user wants a specific folder name from the first run.
 - `$LOLLA_ARCHIVE_DIR` — override the archive root (default: `~/.local/share/lolla/runs/`).
 
-Surface the archive destination to the user in one short line so they know where the run went:
-
-> *Archived to `~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/`.*
+**Do not surface the archive path at Step 10 as a separate line.** It's consolidated in the final functional receipt at Completion. Step 10 runs silently from the user's perspective.
 
 ## Completion
 
-After the full cycle (present findings → update position → persist → pressure check → Observatory + memo), close with a brief narrative summary — 2-3 sentences in human terms, not a structured block.
+After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → Beat 4 → Observatory + archive), close with the **final functional receipt**. Not a narrative summary.
 
 **If all lanes completed successfully:**
 
-Summarize what the audit found in conversational language. Example:
+> *Observatory is live at http://localhost:8080. Memo at /tmp/lolla_${LOLLA_RUN_ID}_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/{case_id}/${LOLLA_RUN_ID}/.*
 
-> *Audited your equity decision for Marcus. Found 3 structural patterns in the reasoning, 5 mental model connections, and 4 structural gaps to explore. The Observatory is live for the full picture; the memo captures the key findings at /tmp/lolla_${LOLLA_RUN_ID}_memo.md.*
+This is a functional receipt: artifact paths, cost, archive location. It is **not** a narrative summary like *"Audited your equity decision for Marcus. Found 3 structural patterns…"* — that pattern is banned because it (a) restates what the user just read in Beats 2/3/4, (b) re-introduces machinery vocabulary at the close, and (c) drifts toward sales register. The functional receipt closes the run cleanly without narrative restatement.
 
 **If any lane had issues:**
 

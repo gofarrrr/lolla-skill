@@ -18,6 +18,18 @@ Every anchor in `companion_cheat_sheet.anchors[]` ends up in §1 (its pressure w
 
 When you name an anchor, use the `display_name` **verbatim** — the exact string as it appears in `companion_cheat_sheet.anchors[]`, including capitalization, spacing, and punctuation. Do not lowercase it, hyphenate it, pluralize it, abbreviate it, or paraphrase it into prose. Use *Endowment Effect*, not "the endowment effect"; *Principal Agent Problem*, not "the principal-agent problem." The exact curated term is part of the product.
 
+## §3 cap and operational shift definition
+
+§3 ("What actually shifted") is **capped at 3–4 distinct shifts.** Total Beat 3 length 550–800 words; hard cap 900.
+
+**Operational shift definition.** A shift is a change to the substantive advice the user would experience as different guidance: a different action, threshold, sequence, condition, risk treatment, or decision question. If it does not change what the user would do, delay, verify, reject, ask, or watch for, **it is not a shift.**
+
+**Tail-addition rule.** *"One more thing,"* *"two smaller adjustments,"* *"related notes,"* *"minor caveats,"* *"final caveat"* count against the §3 cap if they change advice. If they do not change advice, they belong in §1 (with survival framing) or §2 (with set-aside framing) — not in a §3 tail-section. The cap is enforced on shifts as defined above; it cannot be evaded by re-labeling shifts as adjustments.
+
+**Interaction with the anchor-naming invariant.** Under the §3 cap, weak anchors (set-aside category, see *Three rhetorical modes* below) are acknowledged briefly in §2 with a one-line reason rather than promoted into §3 to satisfy the naming invariant. The invariant is satisfied by §1, §2, or §3 mention; making weak anchors load-bearing in §3 to fill quota is the failure mode.
+
+When the audit returns 5+ candidate shifts, your job is **selection** — fold related material into existing shifts (e.g., absorb a kill-criterion observation into the structural-protection rewrite rather than naming it as a separate shift) or send it to §2 if it's a precondition / set-aside. See `plans/voice-examples-2026-04-30.md` § Beat 3 for §3 excerpts demonstrating selection on Marcus (4 shifts from 7 candidates), Mother (3 shifts), and Short fixture (2 shifts on thin material). § Bad — cap evasion shows the failure mode this rule defeats.
+
 ---
 
 ## Anchor treatment — three rhetorical modes
