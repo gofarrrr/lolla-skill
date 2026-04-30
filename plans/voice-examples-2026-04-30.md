@@ -6,9 +6,13 @@
 
 ## How to read this doc
 
-Each beat has three good examples (Marcus / Mother / Short fixture) followed by an annotation block naming what each example does well. After all the good examples, four bad examples show the anti-patterns we're trying to defeat: therapy recap, dashboard report, "mostly aligned" closure, and Munger cosplay.
+Beat 1, Beat 2, and Beat 4 each have three good examples (Marcus / Mother / Short fixture) followed by an annotation naming what the example does well. Beat 3 is treated differently: three good **§3-only excerpts** plus one bad cap-evasion example. The Beat 3 scope is narrowed because the new risk in Beat 3 is cap evasion (re-labeling shifts as "smaller adjustments" or "final caveats"), not full-form rendering — §1 and §2 are already governed by `presentation-voice.md` and `anchor-treatment.md`. Showing whole 800-word reconsideration examples would risk cargo-cult templating without teaching the cap.
 
-The Marcus and Mother examples assume real archived audit results and pull verbatim quotes from `~/.local/share/lolla/runs/<case>/<run_id>/conversation.txt`. The Short fixture examples assume the engineered weaknesses from `plans/short-strategic-fixture-2026-04-30.md` are the ones the audit returns; an actual run may surface a different mix, and the rendered chat would adjust accordingly.
+After all the beat-specific examples, four general anti-pattern bad examples show the cross-cutting failure modes we're trying to defeat: therapy recap, dashboard report, "mostly aligned" closure, and Munger cosplay.
+
+Total: 9 good Beat 1/2/4 + 3 good Beat 3 §3 excerpts + 1 bad Beat 3 cap-evasion + 4 general bad = **17 examples**.
+
+The Marcus and Mother examples pull verbatim quotes from real archived runs at `~/.local/share/lolla/runs/<case>/<run_id>/conversation.txt`. The Short fixture examples assume the engineered weaknesses from `plans/short-strategic-fixture-2026-04-30.md` are the ones the audit returns; an actual run may surface a different mix and the rendered chat would adjust accordingly.
 
 ---
 
@@ -113,6 +117,93 @@ The Marcus and Mother examples assume real archived audit results and pull verba
 **Word count:** ~190. Thin mode (140–220).
 
 **What this does well:** thin Beat 2 still has a verbatim quote and one alternative — compression doesn't drop the load-bearing pieces; the case-against is one paragraph (vs. Marcus's longer one) because the material is thinner and stretching would invent stakes; the alternative is the reframing of the binary question into a competitive-negotiation framing; queued-breakdown counts are smaller because the audit on thin material returns less.
+
+---
+
+## Beat 3 Shift Examples
+
+These examples show only §3 ("What actually shifted") because Beat 3's main new risk is cap evasion. §1 and §2 are already governed by `presentation-voice.md` and `anchor-treatment.md`; these examples teach what counts as a shift and what cap evasion looks like.
+
+**Operational definition of shift (from spec §3 and SKILL.md Step 6):** A shift is a change to the substantive advice the user would experience as different guidance — a different action, threshold, sequence, condition, risk treatment, or decision question. If it does not change what the user would do, delay, verify, reject, ask, or watch for, it is not a shift. Tail-additions ("one more thing," "two smaller adjustments," "related notes," "minor caveats") count against the cap if they change advice; if they do not, they belong in §1 (with survival framing) or §2 (with set-aside framing).
+
+---
+
+### Good 1 / Marcus §3 excerpt (rich business case)
+
+> ### What actually shifted
+>
+> **The $11M-vs-$5M math was loss-frame contagion.** I closed Turn 4 with *"$11M exit and a $5M exit is $6M"* and hung your equity decision on a worst-case branch. Both numbers are tails. Walk into Friday with both roads sized at their median outcomes — road one around $7-9M with manageable turbulence, road two upside conditional on Marcus actually staying through vesting and the platform delivering. The recommendation likely doesn't change much at the medians, but the reasoning becomes defensible rather than felt.
+>
+> **The 15% number was Marcus's opening, not the price of admission to road two.** By Turn 6 I was treating any equity below 15% as "still seeing him as an employee." That's not right. The substance of partnership is governance and voice — title, board seat, meaningful upside on the platform he's been building. A 6-8% structured offer with four-year vesting, a board observer seat, and a performance ramp to 10% conditional on platform LOIs *is* road two. The percentage is a variable inside that, not the price of admission.
+>
+> **One question to put to Marcus before any equity offer:** if we do this, does the platform stay here as a company asset? The speed and substance of his answer is the diagnostic. If he hesitates or starts negotiating around IP ownership, the partnership is being built on a parachute, not a bet, and no vesting schedule fixes that. If he answers cleanly, you're building partnership on alignment. This goes before the offer, not after.
+>
+> **Mitigation isn't adaptation.** I gave you vesting, buyback, drag-along, and IP-belongs-to-the-company as the structural protections — those are mitigation: things that prevent bad outcomes from materializing. What's missing is the adaptation layer: tie a meaningful slice of the equity to platform milestones (so unvested equity falls away if the bet fails) rather than pure time-based vesting, and put a real retention package on Jake and Lina specifically — independent of the Marcus partnership. The retention bonus my Turn 6 dismissed as a half-measure for Marcus is actually the right tool one rung down.
+
+**Word count for §3 excerpt:** ~340.
+
+**What this does well:** four shifts, each is a change to substantive advice the user would experience as different guidance — different decision frame (median pricing vs. tails), different action (5–8% vs. 15% offer), different sequence (diagnostic question before offer), different risk treatment (milestone-tied vesting + Jake/Lina retention). Other audit material that could have appeared as additional "shifts" was either folded — *"Endowment Effect cuts both ways"* lives in §2 because it describes a precondition for the road-one preference rather than a change to the advice — or absorbed into existing shifts (the kill criterion belongs to the structural-protection rewrite, not as a separate item). The cap is enforced by selection, not by evasion.
+
+---
+
+### Good 2 / Mother §3 excerpt (emotionally loaded case)
+
+> ### What actually shifted
+>
+> **Surveillance disclosure moves earlier, not later.** The reversibility logic was backwards. Every day of continued secret surveillance compounds the magnitude of the betrayal if discovered, and over 3-4 weeks with a technically capable 14-year-old who's already secretive, discovery probability is real. If she finds out you've been checking her phone for months while you're asking her to trust you again, the rebuild doesn't stall — it inverts. You become the proven liar mid-repair. Disclose closer to week 2 than week 4, after she's started speaking to you again even minimally — but well before her own discovery becomes likely.
+>
+> **The plan needs reversal triggers, not just a sequence.** I gave you nine steps and said *"the pace matters as much as the actions"*, but I never said what would make you change pace. That was a real gap. Concrete triggers: if surveillance during weeks 1-2 shows contact has migrated to another platform (Snapchat, Discord, gaming voice chat), the *"don't block him yet"* reasoning collapses and the police-and-block calculus comes back. If you see escalation signals — explicit content, an in-person meeting plan, financial pressure — the timeline collapses immediately regardless of where the trust-rebuild is. If she refuses therapy after two or three sessions, the low-stakes-rebuilding approach has hit its useful limit.
+>
+> **The receptivity question is the deepest gap — and the plan doesn't enter it.** Every step removes inputs (the guy, the surveillance, the punitive reactions) but nothing addresses what made *"you understand me in ways no one else does"* feel like a real need being met. Two consequences. The therapist criterion should widen from "specializes in grooming" to "adolescent therapist with grooming and exploitation competence" — vulnerability-first, not perpetrator-first. And the post-divorce family system (your ex's minimization, the custody dynamic, what changed at home around the divorce) belongs on the medium-term horizon as territory that needs work, not just as a constraint to route around.
+
+**Word count for §3 excerpt:** ~290.
+
+**What this does well:** three shifts, each substantive — different sequence (week 2 not week 4), different conditions (named tripwires for plan abandonment), different decision question (vulnerability-first therapist criterion + family-system as territory not constraint). Emotionally loaded cases push the orchestrator toward over-softening or adding "one more protective note"; this stays at three. Material that *could* have been a fourth or fifth shift — the 19-year-old's predictable counter-moves; the daughter as partially misaligned agent — got folded into the reversal-triggers shift (the "contact migrated to another platform" trigger is the counter-moves observation made operational; the surveillance-stopping criterion implicitly addresses the misaligned-agent point).
+
+---
+
+### Good 3 / Short fixture §3 excerpt (thin material)
+
+> ### What actually shifted
+>
+> **My "I'd take it" closed before testing the equity assumption.** Early-stage equity at a 28-person company is rarely worth what its expected-value framing suggests. Before signing, ask the company to walk through cap-table assumptions: how many shares outstanding now, what fraction is in option pool, what dilution they've modeled through Series B-D. If the answer is hand-wavy or the numbers compress your equity stake meaningfully under any reasonable scenario, the offer is closer to *"Director title + $185K base"* than *"equivalent expected value."* Decide on what's actually on the table.
+>
+> **The binary frame was missing the third option.** *"Should I take it?"* assumes the alternatives are stay-as-is or new role. The third option: take the new offer to your current manager, name the title and scope you'd need at this company to compete, and see what they come back with. Counter-offers in this range are common and your current employer has more cash flexibility than the smaller one does. If your current company won't move on title/scope/base, you've learned something — and the new offer is still on the table.
+
+**Word count for §3 excerpt:** ~190.
+
+**What this does well:** two shifts, not three or four. Thin material does not produce padded shift counts to hit the cap's upper bound. Both are real changes to substantive advice — different sequence (verify equity math before signing) and different decision question (reframe binary as triangular). The pressure-check angle the audit might surface (wife-as-precondition) belongs in Beat 4, not Beat 3 — Beat 3 is the orchestrator's own reconsideration, Beat 4 is the sub-agent divergence. Keeping that boundary is what prevents thin-material §3 from over-writing.
+
+---
+
+### Bad / Cap evasion (would replace good Marcus §3)
+
+> ### What actually shifted
+>
+> Three things shifted on the equity decision.
+>
+> **The $11M-vs-$5M math was loss-frame contagion.** [shift body — same as good Marcus example]
+>
+> **The 15% number was Marcus's opening, not the price of admission.** [shift body]
+>
+> **The Principal Agent Problem isn't auto-solved by equity.** [shift body]
+>
+> **Two smaller adjustments worth naming:**
+>
+> The bounded platform investment needs an actual kill criterion. By day 90, the platform sprint either has 5+ signed LOIs at a defined price or the engineers return to client work. No drift, no extensions.
+>
+> The stakeholder framework before Friday. Monday morning the head of design will see the change and ask their own version of the question. Pre-articulate the structural-distinctness argument so the boundary is defensible, not improvised.
+>
+> **One related note on protections:** mitigation isn't adaptation. Vesting, buyback, drag-along, IP — those are mitigation. The adaptation layer is missing: tie equity to platform milestones, retain Jake and Lina independently.
+>
+> **Final caveat:** Endowment Effect cuts both ways. The user's preference for "running my own company my way" needs the same test as Marcus's contribution claim. Otherwise road one is endowment effect dressed up as preference.
+
+**What's wrong:**
+
+- Headline says *"three things shifted"* but the body has six items that change advice: three explicit shifts + a "kill criterion" (changes when the experiment ends — a different condition) + a "stakeholder framework" (changes pre-Friday work — a different action) + a "mitigation/adaptation" note (changes equity structure — a different risk treatment) + a "final caveat" (changes whether road one is acceptable without articulation — a different precondition).
+- *"Two smaller adjustments worth naming,"* *"one related note,"* *"final caveat"* are tail-frames designed to hide shifts as commentary. Per the operational definition, each of these *changes what the user would do, watch for, or commit to*. They are shifts.
+- The cap of 3-4 is violated. The §3 actually has 6+ shifts wearing tail framing — exactly the failure mode the rule was written to defeat.
+- Compare with the good Marcus §3 above: same case, same audit material, but the 6 candidate shifts are reduced to 4 by absorbing related material into existing shifts (the kill criterion folds into the mitigation/adaptation rewrite; the stakeholder framework folds into §1's "what to articulate before Friday"; the *"Endowment cuts both ways"* observation folds into §2 as a set-aside with reason).
 
 ---
 
