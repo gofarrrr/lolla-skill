@@ -1,157 +1,258 @@
-# Chat Output Format (Step 4)
+# Chat Output Format
 
 ## What this file is
 
-The render specification for the Step 4 chat summary. SKILL.md tells you to load this file at the start of Step 4. Apply it after reading `output-field-guide.md`.
+The render specification for chat output across the four beats of a `/lolla` run. SKILL.md uses this file at two load points:
 
-Step 4 produces a focused chat summary, not a full card dump. Detailed card rendering lives in the Observatory. The chat output uses a "finish/start/finish" structure: open with the single most important finding, walk through 2–3 highest-signal findings across all lanes, then hand off to Step 6 for the turn.
+- **After Step 2 extract** — for Beat 1 (situation echo + audit promise).
+- **At Step 4 onward** — for Beat 2 (counterargument lead), Beat 3 (updated position), Beat 4 (pressure check).
 
-## Design principles
+Load alongside `references/output-field-guide.md` (field definitions) and, at Step 6, `references/anchor-treatment.md` (anchor handling) and `references/presentation-voice.md` + `references/anti-bullshit-doctrine.md` (voice and content discipline).
 
-From presentation research (`references/presentation-research.md`):
-
-- **BLUF**: the most important structural weakness in the first sentence.
-- **Maximum 3–5 findings across ALL lanes combined** — pick by signal, not by lane completeness.
-- **One bridge sentence per finding** — connects the abstract pattern to THIS conversation.
-- **No template scaffolding**, no severity labels, no JSON field names in chat output.
-- **No formatting overload** — bold for finding names only, not for every field label.
-- **The user is the hero, not the system** — frame findings around their decision, not around pipeline mechanics.
-- **Translate, don't display** — human language, not detection metadata.
-
-## Bridge anti-bullshit constraints
-
-These apply to every bridge sentence:
-
-- No bridge that could stand alone without the finding (anti-empty-rhetoric).
-- No bridge that softens a finding's force (anti-paltering).
-- No "may," "could," "potentially," "largely," "arguably" (anti-weasel).
-- No claims not traceable to a specific passage in the extraction (anti-unverified).
+The authoritative pattern body for this file is `plans/voice-examples-2026-04-30.md`. This file states the rules; the examples doc shows what good and bad output looks like across three test cases (Marcus, Mother, Short fixture). When in doubt, read the examples — they teach the voice better than any rule statement.
 
 ---
 
-## Run-health surface (conditional)
+## Product voice rules
 
-Before the BLUF, read `run_health.overall` and `run_health.issues` from the result JSON. If `overall` is `degraded` or `critical` AND at least one *material* issue is present, insert ONE short line naming the degradation so the reader knows the audit was partial. Silent otherwise — clean delivery is the default, not an achievement.
+These apply across every beat and every receipt.
 
-**Material issues (surface these):**
+### Pronoun policy
 
-- `capture_degraded` or `capture_critical` — *"⚠ Audit partially degraded: conversation capture missed assistant turns. Some reasoning wasn't audited."*
-- `substrate_empty` — *"⚠ Curated knowledge base did not load for this run. This is a generic critique, not a Lolla audit."*
-- `no_fingerprint` — *"⚠ No mental-model activations found in the reasoning — may indicate a very short conversation or a genuine gap."*
-- `quote_fabrication` — *"⚠ Extraction partially degraded: [N] reasoning passages couldn't be verified as literal substrings of the transcript. Lane 2 companion analysis may be weaker than usual."* — substitute `N` from `run_health.quote_fabrication_count`. If `run_health.quote_retry_attempted` is true, append "(retry attempted)" to the line.
-- `capture_truncated` — *"⚠ Long conversation truncated: [N] middle turns were omitted to fit the size cap. The audit ran on early + late slices; context from the middle may be missing."* — substitute `N` from `run_health.omitted_turns`.
-- `lane3_all_dropped` — *"⚠ Frame pressure analysis produced no reframings — all [N] detected frame elements were dropped by the evidence-quote validator. This is different from 'no frame issues found'; the lane attempted but every candidate failed validation."* — substitute `N` from `run_health.lane3_frame_drops_count`.
-- Multiple material issues — combine with a semicolon: *"⚠ Audit degraded: capture missed turns; no fingerprint."*
+- **"Lolla"** when describing the product doing work in functional receipts. *"Lolla captured the conversation"*, *"Lolla is auditing the answer."*
+- **"I"** in substantive content beats because the orchestrator is reading and revising its own advice. *"I argued..."*, *"I closed Turn 4 with..."*, *"What I'd take back..."*
+- **Avoid** "the assistant" and "the model" in user-facing chat. Both create a third-person distance the user does not need.
 
-**Non-material (do NOT surface — these are soft signals, not audit-quality breaks):**
+### No empathy theater
 
-- `embeddings_off` — audit still works via deterministic routing.
-- `pipeline_warnings` (alone) — flag only if combined with a material issue above.
+Do not write *"I understand this is complex"*, *"I can tell this is weighing on you"*, *"this is an important decision"*, *"that feeling is valid"*. The user proves we read the conversation by quoting them back and naming the actual constraint, not by mirroring affect.
 
-Skip the block entirely when no material issue is present, even if `overall` is technically `degraded`.
+### No status theater
 
----
+Do not send *"still working"*, *"thinking carefully"*, or *"I'll be back shortly"* with no substance. A status receipt should say what phase just completed, what is happening next, and what the user will get from it.
 
-## Opening line (the BLUF)
+### No machinery leak
 
-One sentence naming the single most important structural weakness found across all four lanes. This is your Sinatra Test — if this one finding lands, credibility for the whole audit follows. Pick the finding with the highest severity, the most specific passage match, and the most direct connection to the decision.
+Banned in user-facing chat: card names (*DeltaCard*, *CompanionCheatSheet*, *FramePressureCard*, *StructuralCoverageCard*), lane numbers (*Lane 1*, *Lane 2*, etc.), JSON field names, *sub-agents*, *the audit said*, *the pipeline*, *isolated review*, routing language, prompt/process talk. The user receives findings and counterarguments in human language; the mechanism is for the orchestrator, not the reader. See § Cross-cutting rules below for the grep checks.
 
-Example: *"Your recommendation commits to a 3-year vendor lock-in without naming a single condition that would make you walk away."*
+### No early Observatory link
 
----
+Before Step 9, do not say `http://localhost:8080` or any other Observatory URL. The server is not running until Step 9 launches it; pointing the user at a dead link quietly damages trust on every run. Beat 2 and Beat 4 use *"queued for the full breakdown once the reconsideration is complete"* / *"I'm opening the full breakdown now"* instead. Only the final functional receipt after Step 9/10 includes a live URL.
 
-## Finding blocks (2–4 additional)
+### Munger-adjacent voice
 
-Each as a short block. Select across finding types — don't dump all tendency findings before touching frame alternatives. Pick by signal strength, not by type. For each finding:
+The voice should be plainspoken, mechanism-first, concrete in its antidotes, and proportionately blunt. *"The 15% number was Marcus's opening, not the price of admission to road two"* names the mechanism (an offer-anchor that smuggled itself into the recommendation) and offers a structural correction. Munger-adjacent does NOT mean Munger imitation: no aphorism delivery (*"Charlie would say…"*), no folksiness (*"the ancient pull of ownership"*), no performative bluntness (*"be brutally honest with yourself"*), no moralizing. See § Bad — Munger cosplay in `voice-examples-2026-04-30.md`.
 
-> **[Finding name]** — [bridge sentence connecting to this conversation]
->
-> [One concrete detail: the challenge question, the reversal trigger, the reframed question, or the gap question. Pick whichever is most actionable for this finding. Quote verbatim from the JSON.]
+### Forbidden phrases
 
-That's it per finding. Do NOT include severity in parentheses like "(High severity)" or "(high)" after the finding name — severity informs your selection of which findings to show and in what order, not how you label them. No "Pattern found:" field markers, no chunk lists.
+The following phrases are sales/AI-marketing register and signal that the voice has drifted off-spec. They should never appear in chat output:
 
----
+- *"compelling"*, *"powerful"*, *"unlock"*, *"deep dive"*, *"transform"*, *"leverage"* (as a verb)
+- *"complex and nuanced"*, *"valuable insights"*, *"it is important to consider"*
+- *"this highlights the need"*, *"a number of factors"*, *"a thoughtful approach"*
 
-## Mental models active (conditional)
-
-If the companion cheat sheet surfaced anchors, name them explicitly in one line before any reframing or gap lines:
-
-> **Mental models active:** [display_name_1], [display_name_2], [display_name_3] — see Observatory for failure modes, premortem questions, and curated antagonists.
-
-Use each anchor's `display_name` **verbatim** (not paraphrased). This primes the reader to recognize the models you'll reference in Step 6. Skip this line if `companion_cheat_sheet.anchors` is empty or absent. Do not add commentary on each model — this is a naming line, not a findings block.
+If grep against the rendered chat output returns any of these, the voice has slipped.
 
 ---
 
-## Alternative question (conditional)
+## Status receipts and beat map
 
-If the audit found a strong reframing (from frame pressure analysis), include one:
+The chat surface across a `/lolla` run has **four substantive content beats** and **two functional receipts**. They are different categories of output.
 
-> **Alternative question:** "[reframed_question from frame_pressure_card.reframings]"
-> [what_opens — one line on what this reframing changes]
+| Stage | Type | When | Word target (normal / thin) |
+|-------|------|------|------|
+| **Beat 1** — Readback + audit promise | Substantive content | After Step 2 extract | 120–170 / 70–110 |
+| **Step 3 receipt** — Pre-pipeline status | Functional receipt | Before Step 3 launches | ~25–35 |
+| **Beat 2** — Counterargument lead | Substantive content | After Step 3 returns | 220–300 / 140–220 |
+| **Beat 3** — Updated position | Substantive content | After Step 6 | 550–800 (cap 900) |
+| **Beat 4** — Pressure check | Substantive content | After Step 8 | ~200 |
+| **Final receipt** — Operational close | Functional receipt | After Step 9/10 | ~25–40 |
 
----
+**Substantive content beats** present audit findings, counterarguments, position changes, and divergences. They follow the rules in their respective sections below.
 
-## Structural gaps (conditional)
+**Functional receipts** state what just happened and what's next — nothing more. They are not opportunities for decorative prose, narrative summary, or sales register. Step 3 receipt names the work in human terms (e.g., *"Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. Usually 5–8 minutes."*). The final receipt names the artifacts and the cost (e.g., *"Observatory is live at http://localhost:8080. Memo at /tmp/lolla_*_memo.md. Total run cost: $X.XX. Archived to ~/.local/share/lolla/runs/<case>/<run_id>/."*).
 
-If structural coverage found gaps, name them in a single line:
-
-> **Structural gaps:** [dimension_name_1], [dimension_name_2] — [N] questions to answer before deciding (see Observatory for full list)
-
----
-
-## Delivery audit (Bullshit Index, conditional)
-
-Read `bullshit_profile` from the result JSON. If `summary.total_clear > 0`, add one line after the findings:
-
-> **Delivery check:** [total_clear] patterns of weak delivery detected in the original advice — [name the most significant subtype and a short quote]. Full profile in Observatory.
-
-If `summary.total_clear` is 0: **skip — don't mention it.** Clean delivery is the default, not an achievement.
+Do not blur the categories. A Step 3 receipt that drifts into prose is status theater; a final receipt that drifts into narrative is the *"Audited your equity decision for Marcus..."* failure mode.
 
 ---
 
-## Run cost line (always shown)
+## Thin-material mode
 
-Read `usage_summary` from the result JSON and render one line. Pull `estimated_total_cost_usd` from the top, and from `vendors.openrouter` pull `calls` and `cache_hit_rate`. The Anthropic sub-agent portion is appended later by Step 8b — at this point in the run it is zero, so phrase the line as a pre-subagent figure:
+Thin-material mode is **mechanical, not discretionary.** It activates per beat based only on data available at that point. The mode is *permission to compress*, not obligation to under-write — if one strong finding exists, spend the words there; if not, be brief and say what the audit did and did not find without inventing stakes.
 
-> **Run cost so far:** $X.XX • Y OpenRouter calls (Z.Z% prompt cache hit) • Sub-agent cost added after Step 8b.
+### Pre-pipeline thin mode (Beat 1)
 
-If `usage_summary` is absent (e.g., older pipeline run): skip the line silently.
+Activates when ANY is true:
 
----
+- `captured_message_count <= 4` — total count of user messages + assistant responses (not `[Turn N]` exchange count; a 14-turn conversation is 28 messages).
+- `extraction.reasoning_passages` < 3 items AND `extraction.live_constraints` < 3 items AND `extraction.dropped_threads` is empty.
 
-## Closing line
+### Post-pipeline thin mode (Beat 2)
 
-One sentence pointing to Observatory for the full picture:
+Activates when EITHER pre-pipeline thin mode was active OR the audit itself is low-signal (conjunction across all four):
 
-> *Open the Observatory to explore all [N] findings, [N] mental model connections, and [N] structural dimensions in detail. Cost & call breakdown at <code>http://localhost:8080/usage</code>.*
+- `delta_card.top_findings` is empty
+- AND `companion_cheat_sheet.anchors` < 3 entries
+- AND `frame_pressure_card.reframings` is empty
+- AND `structural_coverage_card` has no uncovered dimensions, or at most one weakly-covered uncovered dimension
 
----
+The audit-low-signal trigger is conjunctive — one strong frame reframe or one good gap dimension keeps Beat 2 in normal mode.
 
-## Zero detections across all lanes
+### What thin mode permits
 
-> "No material structural weaknesses detected. The reasoning appears structurally sound across tendency detection, model companion, frame pressure, and structural coverage."
+When thin mode is active for a beat, use the **lower target range** (Beat 1: 70–110 words; Beat 2: 140–220 words). Do not pad to the normal target. The §3 cap (3–4 shifts in Beat 3) **applies regardless of thin mode** — thin doesn't mean "more shifts allowed because less material elsewhere."
 
----
+Beat 4 has no thin-mode-specific length but should be proportional to the divergences the audit produced — typically shorter on thin material.
 
-## What NOT to put in chat
-
-These belong in Observatory only. Read them from the JSON to inform Step 6 reasoning, but do NOT render them in the chat:
-
-**Process artifacts (never in chat):** card names (DeltaCard, CompanionCheatSheet, FramePressureCard, StructuralCoverageCard), pipeline stages, lane numbers (Lane 1, Lane 2, etc.), triage scores, boundary call counts, fingerprint diagnostics, audit trace internals, JSON field names, embedding scores, prompt versions.
-
-**Detail artifacts (Observatory only):** full finding blocks with all fields, companion anchor chunk lists (failure_mode, premortem, antagonist, ally, heuristic, identity, prerequisite_gap), frame element blocks with evidence_quote and fragility_signal, dimension-by-dimension structural gap listings, compound pattern groups, secondary/low-severity findings, bullshit profile passage-by-passage breakdown.
-
-**The rule:** process artifacts never appear in chat. Product artifacts (findings, challenge questions, reframings, gap questions, mental model connections) are presented in human language — no field names, no card names, no lane numbers.
+See `voice-examples-2026-04-30.md` § Beat 1 / Short fixture (85 words) and § Beat 2 / Short fixture (190 words) for what thin-mode rendering looks like on a 4-message conversation.
 
 ---
 
-## Card structure (for your Step 6 reasoning)
+## Beat 1 — Readback + audit promise
 
-You still need to understand the full card structures to write a good Step 6 reconsideration and to know what the Observatory will show. Read the JSON fields below to inform your reasoning, but do not render them in chat. Field-by-field documentation lives in `references/output-field-guide.md` — load it at the start of Step 4 alongside this file.
+### Rule
 
-**Understanding what the cards contain and where they come from:**
+After Step 2 extract returns `status: ok`, present a short readback that demonstrates the conversation was read and sets up the audit. **Length: 120–170 words normal mode; 70–110 thin mode; hard cap 200.**
 
-1. **Source layer.** 222 canonical articles, each a deep treatment of one mental model. These are the only semantic root.
-2. **Curation.** Each article's operational knowledge extracted and validated: activation semantics, failure modes, relationship edges, reframing patterns, prerequisite orderings.
-3. **Compilation.** Compiled into a knowledge graph: models as nodes, typed relationships as edges, chunks attached to each node.
-4. **This run.** The pipeline extracted which reasoning patterns are active from the conversation, then walked the knowledge graph to retrieve failure modes, tensions, antagonists, and premortems that travel with those patterns.
+### What goes in
+
+1. **One line naming the decision** (from `extraction.decision_situation`).
+2. **2–3 sentence readback of the user's framing**, with at least one **exact quote** from a user turn.
+3. **1–2 sentence readback of what the orchestrator argued back**, with an exact assistant quote only if it earns its place. (Often the assistant's argument is best summarized rather than quoted; a verbatim quote is for moments where one sentence captures the position.)
+4. **One-sentence dropped-thread note** only when `extraction.dropped_threads` contains something material. No filler line when the field is empty or the threads are weak.
+5. **Closing operational status receipt:** *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This usually takes 5–8 minutes."*
+
+### What does NOT go in
+
+- Card names, lane numbers, audit machinery, predictions about what the audit will find.
+- Generic reassurance, empathy theater, or pre-finding teases.
+- Observatory URL.
+
+### Examples
+
+- **Good (normal):** `voice-examples-2026-04-30.md` § Beat 1 / Marcus (155 words) and § Beat 1 / Mother (170 words).
+- **Good (thin):** § Beat 1 / Short fixture (85 words).
+- **Failure mode:** § Bad — therapy recap.
+
+---
+
+## Beat 2 — Counterargument lead
+
+### Rule
+
+After Step 3 pipeline returns, present the strongest counterargument as a story tied to the user's own words, plus one alternative the conversation didn't price. **Length: 220–300 words normal; 140–220 thin; hard cap 350.**
+
+### What goes in
+
+1. **Run-health line, conditional.** Only when `run_health.overall ≠ healthy` AND a material issue is present (`capture_degraded`, `capture_critical`, `substrate_empty`, `no_fingerprint`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`). Silent on healthy runs.
+2. **One exact quote** anchored to a specific turn, format *"In Turn N, you wrote: '...'"* or *"In Turn N, I closed with: '...'"*. Drop turn numbers when the quote spans turns or is paraphrased. Use turn numbers as **light source attribution only — never as heading style** (no *"Finding 1 — Turn 4 Evidence Quote"*). The user can inspect referenced turns via the captured transcript at `/tmp/lolla_${LOLLA_RUN_ID}_conversation.txt` and the Observatory's conversation view (both use `[Turn N]` markers); memo navigation is not part of this contract.
+3. **One paragraph (3–5 sentences) making the case against that move.** Specific. Names the structural error in plain language. Avoids machinery vocabulary (no *"deprival-superreaction"*, *"loss aversion pattern"*, etc. — those models go in Beat 3 §3 where they earn context).
+4. **One alternative-question or alternative-instrument** the audit pushed onto the table. Verbatim from `frame_pressure_card.reframings[0].reframed_question` if it serves; otherwise a sharp paraphrase of the strongest cross-lane alternative. **Fallback rule:** when no single user passage anchors the critique, lead with paraphrased user-position framing (*"The answer treated X as settled before testing Y"*). Exact quote preferred; paraphrase acceptable when the verbatim would be awkward or misleading.
+5. **One queued-breakdown line WITHOUT URL:** *"There are X more challenge points and Y unanswered dimensions queued for the full breakdown once the reconsideration is complete."*
+6. **One transition sentence:** *"Now I'm using this to revise my own answer, not just report the audit. ~3 minutes."*
+
+### What does NOT go in
+
+- Mental-models-active list (removed entirely from chat — the anchors get woven into Beat 3 §3 where they ground the shift).
+- Structural-gaps list (count mention only in the queued-breakdown line).
+- Delivery-check line (Observatory only — not user-facing in chat).
+- Three-finding-block dashboard (replaced with one strong push + one alternative).
+- Live Observatory URL before Step 9.
+
+### Examples
+
+- **Good (normal):** § Beat 2 / Marcus (250 words) and § Beat 2 / Mother (265 words).
+- **Good (thin):** § Beat 2 / Short fixture (190 words).
+- **Failure mode:** § Bad — dashboard report.
+
+---
+
+## Beat 3 — Updated position
+
+### Rule
+
+After Step 6 reconsideration is written, present the orchestrator's revised position. Three-section structure: §1 What survived / §2 What I'd take back / §3 What actually shifted. **Length: 550–800 words total; hard cap 900.**
+
+### Structure
+
+- **§1 What survived** — 1–2 paragraphs, names what holds.
+- **§2 What I'd take back** — 1–2 paragraphs, names what to set aside with reason.
+- **§3 What actually shifted** — **capped at 3–4 distinct shifts**. Each ~3–4 sentences. Anchors woven in by name where they ground the shift.
+- Optional: one closing line landing the road choice or actionable summary.
+
+### Operational shift definition (enforces the cap)
+
+A **shift** is a change to the substantive advice the user would experience as different guidance: a different action, threshold, sequence, condition, risk treatment, or decision question. If it does not change what the user would do, delay, verify, reject, ask, or watch for, it is not a shift.
+
+**Tail-addition rule:** *"one more thing,"* *"two smaller adjustments,"* *"related notes,"* *"minor caveats"*, *"final caveat"* count against the §3 cap if they change advice. If they do not change advice, they belong in §1 (with survival framing) or §2 (with set-aside framing) — not in a §3 tail-section. The cap is enforced on shifts as defined above; it cannot be evaded by re-labeling shifts as adjustments.
+
+### Anchor-naming invariant
+
+Every anchor in `companion_cheat_sheet.anchors[]` must land in §1, §2, or §3 — verbatim by `display_name`. Under the §3 cap, weak anchors (set-aside category) are acknowledged briefly in §2 with a one-line reason rather than promoted into §3 to satisfy the invariant. Making weak anchors load-bearing in §3 to fill quota is the failure mode. See `references/anchor-treatment.md` for the three rhetorical modes (primary pressure / secondary lens / set aside).
+
+### Examples (§3-only excerpts)
+
+- **Good (normal):** § Beat 3 / Marcus §3 (4 shifts, 340 words) and § Beat 3 / Mother §3 (3 shifts, 290 words).
+- **Good (thin):** § Beat 3 / Short fixture §3 (2 shifts, 190 words). Thin material does not pad to hit the cap's upper bound.
+- **Failure mode:** § Bad — cap evasion. Shows the *"three things shifted"* + *"two smaller adjustments"* + *"one related note"* + *"final caveat"* pattern that hides 6+ actual shifts under tail framing.
+
+---
+
+## Beat 4 — Pressure check
+
+### Rule
+
+After Step 8 sub-agent comparison, surface what the independent pressure-check caught that Step 6 missed. Frame as a counter-frame, never as alignment. **Length: ~200 words.**
+
+### What goes in
+
+1. **Counter-frame opening sentence.** Use one of: *"One more angle worth surfacing"*, *"A fresh read pushed on something I underweighted"*, *"Two things the position above softened or skipped"*. **Never** *"mostly aligned"*, *"all incorporated above"*, or *"the rest is in the position above."* See § Watch for Question-3 suppression below.
+2. **1–4 divergences**, each one sentence + 2–3 sentences of substance. Each divergence should name a concrete alternative mechanism (alternative reporting channel, contractual instrument, stakeholder forum, tripwire pattern, legal-instrumental framing) — not a vague "consider also" gesture.
+3. **Closing before Step 9:** *"Audit complete. I'm opening the full breakdown now."*
+4. **Final functional receipt after Step 9/10:** *"Observatory is live at [link]. Memo at [path]. Total run cost: $X.XX. Archived to [path]."* This appears only after the Observatory server is actually launched.
+
+### Watch for Question-3 suppression
+
+If the draft pressure check contains *"mostly aligned"*, *"all incorporated above"*, *"already covered"*, or similar — re-read the sub-agent outputs for any **named alternative mechanism** that Step 6 §3 didn't enumerate. A named alternative the sub-agent surfaced that §3 didn't list IS a Question-3 divergence (*"a connection I didn't make"*) — surface it even when the underlying *concern* was addressed structurally. Confident closure that suppresses named alternatives is the failure mode this beat exists to defeat.
+
+### What does NOT go in
+
+- "Mostly aligned" closure or any variant.
+- *"Sub-agents"*, *"lanes"*, *"isolated review"*, *"the pipeline flagged"* — attribute the *argument*, not its source. Step 7 runs behind the scenes; the user never hears about it.
+- Narrative summary close (*"Audited your equity decision for Marcus. Found 3 patterns…"*) — the functional close above replaces it.
+
+### Examples
+
+- **Good:** § Beat 4 / Marcus (200 words), § Beat 4 / Mother (210 words), § Beat 4 / Short fixture (145 words).
+- **Failure mode:** § Bad — "mostly aligned" closure.
+
+---
+
+## Cross-cutting rules and forbidden failure modes
+
+### Machinery-leak grep
+
+Before delivering any beat, mentally grep for these patterns. If any appear, the beat has machinery leak:
+
+- *"sub-agent"*, *"the pipeline"*, *"the audit said"* (vs. *"the audit"* in §2 set-aside framing, which is borderline-acceptable when explaining a dismissal — context-dependent)
+- *"DeltaCard"*, *"CompanionCheatSheet"*, *"FramePressureCard"*, *"StructuralCoverageCard"*
+- *"Lane 1"*, *"Lane 2"*, *"Lane 3"*, *"Lane 4"*
+- *"isolated review"*, *"the verifier"*, *"the boundary call"*, *"prompt versions"*
+- JSON field names (*"specific_passage"*, *"display_name"*, *"frame_pattern"*, etc.)
+
+### Munger cosplay warning
+
+The voice contract is Munger-*adjacent* — mechanism, concrete antidote, proportionate bluntness. It is NOT Munger imitation. If the draft contains Munger quotations, *"invert, always invert"* delivery, *"the ancient pull of"* phrasing, *"be brutally honest"* address, or extended business-luminary parallels (*"Sam Walton"*, *"Buffett would..."*), the voice has slipped into cosplay. See § Bad — Munger cosplay in `voice-examples-2026-04-30.md`.
+
+### Forbidden phrases (full grep list)
+
+These phrases never appear in chat:
+
+- Sales/marketing: *"compelling"*, *"powerful"*, *"unlock"*, *"deep dive"*, *"transform"*, *"leverage"* (verb form)
+- Generic AI register: *"complex and nuanced"*, *"valuable insights"*, *"it is important to consider"*, *"this highlights the need"*, *"a number of factors"*, *"a thoughtful approach"*, *"a multifaceted issue"*
+- Empathy theater: *"I hear you"*, *"I understand this is"*, *"that feeling is valid"*, *"I want to honor"*
+- Status theater: *"still working"*, *"thinking carefully"*, *"I'll be back shortly"* (without substantive context)
+
+### Anchor-naming invariant cross-reference
+
+Every anchor in `companion_cheat_sheet.anchors[]` must appear verbatim in Beat 3 (§1, §2, or §3). The full doctrine and three-treatment vocabulary lives in `references/anchor-treatment.md` and applies inside Beat 3, not in Beat 1 / Beat 2 / Beat 4 (anchors do not appear as a list in those beats).
