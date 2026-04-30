@@ -31,9 +31,9 @@ The system audits conversations for structural reasoning weaknesses using four i
 
 Calibrated on Claude Opus 4.7. Cross-model validation (2026-04-22) yielded three tiers:
 
-- **Opus 4.7** — recommended. Full doctrine compliance (anchor naming, machinery-leak avoidance, all 9 pipeline steps executed).
-- **Sonnet 4.6** — acceptable. Completes the full 9-step pipeline with sub-agents and artifact persistence; modest phrasing regressions (anchor-naming rate ~66% vs 100% on Opus; occasional machinery-term leaks like "sub-agents" or "the audit changes").
-- **Haiku 4.5** — below floor. Skips Steps 6b / 6c / 7 / 8b (no revised_answer persistence, no memo render, no pressure-check sub-agents, no gap_check persistence) while generating plausible-looking output for the steps that didn't run. Do not use.
+- **Opus 4.7** — recommended. Full doctrine compliance (anchor naming, machinery-leak avoidance, full pipeline cycle executed).
+- **Sonnet 4.6** — acceptable. Completes the full pipeline cycle with sub-agents and artifact persistence; modest phrasing regressions (anchor-naming rate ~66% vs 100% on Opus; occasional machinery-term leaks like "sub-agents" or "the audit changes").
+- **Haiku 4.5** — below floor. Skips Steps 6b / 7 / 8b / 8c (no revised_answer persistence, no pressure-check sub-agents, no gap_check persistence, no final memo render) while generating plausible-looking output for the steps that didn't run. Do not use.
 
 The skill cannot detect the orchestrator model mechanically (`$CLAUDE_MODEL` is not exposed). Self-identify before Step 1:
 
@@ -114,7 +114,7 @@ If any line says `FATAL`, stop and tell the user what's missing. Do not proceed.
 
 ## Pipeline
 
-Nine steps. You are a conductor for the audit pipeline (Steps 1-4), then the primary reasoning voice for reconsideration (Steps 6-6b), followed by an independent pressure check from isolated sub-agents (Steps 7-8b), and finally the Observatory (Step 9). Step 5 is a placeholder — Observatory is deferred to Step 9 so all artifacts are complete.
+Ten steps. You are a conductor for the audit pipeline (Steps 1-4), then the primary reasoning voice for reconsideration (Steps 6-6b), followed by an independent pressure check from isolated sub-agents (Steps 7-8b), then the memo decision-note layer (Step 8c), and finally the Observatory and archive (Steps 9-10). Step 5 is a placeholder — Observatory is deferred to Step 9 so all artifacts are complete.
 
 ### Step 1: Capture Conversation
 
@@ -229,7 +229,7 @@ Do **not** link to Observatory; the server is not running until Step 9. Do not i
 
 ### Step 5: Open Observatory
 
-**Do NOT offer the Observatory here.** Continue to Step 6. The Observatory should only be offered after the full cycle completes (after Step 8b), when all artifacts — cards, updated position, and pressure check — are persisted to the result JSON and the user can see the complete picture.
+**Do NOT offer the Observatory here.** Continue to Step 6. The Observatory should only be offered after the full cycle completes (after Step 8c), when all artifacts — cards, updated position, pressure check, and memo fields — are persisted to the result JSON and the user can see the complete picture.
 
 ---
 
@@ -305,15 +305,9 @@ print(f'Revised answer persisted to {result_path}')
 
 **This step is not optional.** Without it, the Observatory shows an incomplete run — four cards with no revised answer.
 
-### Step 6c: Generate Memo
+### Memo Timing: Do Not Render Yet
 
-After persisting the revised answer, generate the standalone markdown memo:
-
-```bash
-python3 $SKILL_DIR/scripts/render_memo.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json --output /tmp/lolla_${LOLLA_RUN_ID}_memo.md
-```
-
-This produces a persistent markdown artifact the user can reference or share without the Observatory. The memo includes key findings, mental model connections, frame alternatives, structural gaps, and the updated position — all in one portable document.
+Do not generate the final memo immediately after Step 6b. The memo depends on the pressure check from Step 8, because the final useful correction often appears there. Final memo preparation and rendering happen in **Step 8c**, after Step 8b persists the pressure check.
 
 Memo generation is not user-facing until the final functional receipt. Do not write *"Generating the memo now"*, *"All four pressure checks are in. Generating the memo now"*, or any other progress narration about memo rendering in chat. The memo path appears only in the final receipt.
 
@@ -513,11 +507,82 @@ print(f'Sub-agent usage merged: ${us[\"vendors\"][\"anthropic_subagents\"][\"cal
 
 Use the model name your orchestrator is running on (`claude-opus-4-7`, `claude-sonnet-4-6`, etc.) for `model`. Sub-agents inherit the parent model. If you don't know the exact model ID with confidence, use `"unknown"` — calls and tokens still record, only the cost estimate falls back to zero (see `cost_estimate_coverage.calls_with_unknown_price` in the result).
 
+### Step 8c: Prepare and Render Memo
+
+After Step 8b persists the pressure check, write the memo decision-note layer per `references/memo-output-format.md`, persist those fields to `result.json`, then render the standalone markdown memo.
+
+**Read `references/memo-output-format.md`** before writing the memo fields. The memo is a decision note first and audit trace second. Its first screen should answer what changed in the advice; it should not begin with counts, card-derived categories, severity labels, or process recap.
+
+Use only already-persisted material:
+
+- captured conversation quotes
+- `revised_answer`
+- `gap_check_summary`
+- `delta_card`
+- `companion_cheat_sheet`
+- `frame_pressure_card`
+- `structural_coverage_card`
+
+Produce these fields:
+
+- `memo_substantive_title` — structural observation, not recommendation
+- `memo_orientation_note` — 180-260 words; concrete, quote-grounded, no table-of-contents throat clearing
+- `memo_what_changed` — compressed Step 6 "What actually shifted"
+- `memo_what_still_holds` — compressed Step 6 "What survived"
+- `memo_take_back_or_set_aside` — compressed Step 6 self-corrections and set-asides
+- `memo_pressure_check` — Step 8 material divergence only; empty string if no material divergence survives
+
+Do not add a recommendation, risk, or claim that is not present in Step 6, Step 8, or the audit cards. Do not mention internal machinery (`Beat`, `Step`, `Lane`, `sub-agent`, card names, JSON fields, pipeline). Do not write sales language (`compelling`, `unlock`, `deep dive`, `transform`, `powerful`, etc.).
+
+Persist the memo fields:
+
+```bash
+cat > /tmp/lolla_${LOLLA_RUN_ID}_memo_note.json << 'LOLLA_MEMO_NOTE_EOF'
+{
+  "memo_substantive_title": "...",
+  "memo_orientation_note": "...",
+  "memo_what_changed": "...",
+  "memo_what_still_holds": "...",
+  "memo_take_back_or_set_aside": "...",
+  "memo_pressure_check": ""
+}
+LOLLA_MEMO_NOTE_EOF
+
+python3 -c "
+import json, datetime, pathlib
+run_id = '${LOLLA_RUN_ID}'
+result_path = pathlib.Path(f'/tmp/lolla_{run_id}_result.json')
+note_path = pathlib.Path(f'/tmp/lolla_{run_id}_memo_note.json')
+d = json.loads(result_path.read_text())
+note = json.loads(note_path.read_text())
+for key in [
+    'memo_substantive_title',
+    'memo_orientation_note',
+    'memo_what_changed',
+    'memo_what_still_holds',
+    'memo_take_back_or_set_aside',
+    'memo_pressure_check',
+]:
+    d[key] = str(note.get(key, '')).strip()
+d['memo_note_written_at'] = datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%dT%H:%M:%SZ')
+result_path.write_text(json.dumps(d, indent=2, ensure_ascii=False))
+print(f'Memo note fields persisted to {result_path}')
+"
+```
+
+Then render the memo:
+
+```bash
+python3 $SKILL_DIR/scripts/render_memo.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json --output /tmp/lolla_${LOLLA_RUN_ID}_memo.md
+```
+
+This produces a persistent markdown artifact the user can reference or share without the Observatory. In new runs, the memo opens with the decision-note layer and then renders a deterministic audit appendix. Older result JSONs without memo fields still render in the legacy format.
+
 ### Step 9: Open Observatory
 
-After the full cycle is complete (cards, updated position, and pressure check all persisted), **launch the Observatory** — the primary detail surface for full card breakdowns, chunk lists, gap questions, delivery audit passages, revised answer, and per-lane divergences.
+After the full cycle is complete (cards, updated position, pressure check, and memo fields all persisted), **launch the Observatory** — the primary detail surface for full card breakdowns, chunk lists, gap questions, delivery audit passages, revised answer, and per-lane divergences.
 
-**Always launch after Step 8b completes.** Do not wait for the user to ask:
+**Always launch after Step 8c completes.** Do not wait for the user to ask:
 
 ```bash
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_${LOLLA_RUN_ID}_result.json
@@ -537,7 +602,7 @@ python3 $SKILL_DIR/scripts/archive_run.py --run-id "${LOLLA_RUN_ID}"
 
 The archive script:
 
-- Reads the 7 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `gapcheck.txt`, `gapcheck_lanes.json`). Missing artifacts (e.g., if Step 6b did not run on a weaker orchestrator) are skipped gracefully.
+- Reads the 8 core artifacts from `/tmp/lolla_${LOLLA_RUN_ID}_*` (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`). Missing artifacts (e.g., if Step 6b or Step 8c did not run on a weaker orchestrator) are skipped gracefully.
 - Computes a case fingerprint from `extraction.decision_situation` (first 120 chars, normalized).
 - Finds-or-creates a case folder. Matching uses **exact fingerprint first, then token-set Jaccard ≥ 0.80** against stored fingerprints — so small extractor paraphrase drift across runs of the same conversation does not split into multiple case folders. Matching is done against the manifest inside each case folder, not against folder names, so user renames of case folders do not break future matching.
 - Auto-names new cases with a slug derived from the first 3-4 significant words of `decision_situation` (e.g., `grant-equity-partnership-status`). Users can rename via `mv` — matching will still find the folder via manifest.
@@ -553,7 +618,7 @@ The archive script:
 
 ## Completion
 
-After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → Beat 4 → Observatory + archive), close with the **final functional receipt**. Not a narrative summary.
+After the full cycle (Beat 1 → Step 3 receipt → Beat 2 → Beat 3 → Beat 4 → memo → Observatory + archive), close with the **final functional receipt**. Not a narrative summary.
 
 **If all lanes completed successfully:**
 
@@ -583,6 +648,7 @@ Do NOT read these proactively. Load only when a specific situation calls for it:
 | `references/anti-bullshit-doctrine.md` | **Read at the start of Step 6** — anti-bullshit thinking framework: five rules for honest strategic speech, RLHF patterns to avoid, negation test as mental model. Also cross-check before Step 8. |
 | `references/anchor-treatment.md` | **Read at the start of Step 6** — how to handle `companion_cheat_sheet.anchors[]`: naming invariant, three rhetorical modes (primary pressure / secondary lens / set aside), one-primary-per-move rule, what good vs. bad anchor integration looks like |
 | `references/sub-agent-prompts.md` | **Read at Step 7** — shared preamble + four lane-specific suffixes for pressure-check sub-agents |
+| `references/memo-output-format.md` | **Read at Step 8c** — decision-note memo contract: title, orientation note, compressed sections, pressure-check inclusion, banned memo language |
 | `references/tendency-catalog.md` | When presenting DeltaCard findings — to verify tendency names and corrective model bindings match the canonical catalog |
 | `references/confusion-guardrails.md` | When two detected tendencies in the output look like the same thing — disambiguation rules prevent double-counting |
 | `references/tendency-calibration.md` | When a detection feels marginal or the user questions a finding — contains detection boundaries and threshold guidance per tendency |

@@ -257,9 +257,9 @@ Why the audit stays external:
 
 The skill is calibrated against Claude Opus 4.7 as the orchestrator. Cross-model validation on 2026-04-22 produced three tiers:
 
-- **Opus 4.7** — recommended. Full doctrine compliance: anchor naming, machinery-leak avoidance, all nine pipeline steps execute reliably.
-- **Sonnet 4.6** — acceptable. Completes the full nine-step pipeline including sub-agent spawning and artifact persistence. Modest phrasing regressions: anchor-naming rate ~66% (vs 100% on Opus); occasional machinery-term leaks in the revised answer (e.g., "sub-agents", "the audit changes"). Fit for regular use; expect marginally noisier output.
-- **Haiku 4.5** — below the floor. Observed to skip Steps 6b / 6c / 7 / 8b — no `revised_answer` persistence, no memo render, no Step 7 sub-agents, no `gap_check` persistence — while generating plausible-looking output (including a fake Pressure Check) for the steps that didn't run.
+- **Opus 4.7** — recommended. Full doctrine compliance: anchor naming, machinery-leak avoidance, and full artifact cycle execution.
+- **Sonnet 4.6** — acceptable. Completes the full pipeline cycle including sub-agent spawning and artifact persistence. Modest phrasing regressions: anchor-naming rate ~66% (vs 100% on Opus); occasional machinery-term leaks in the revised answer (e.g., "sub-agents", "the audit changes"). Fit for regular use; expect marginally noisier output.
+- **Haiku 4.5** — below the floor. Observed to skip Steps 6b / 7 / 8b / 8c — no `revised_answer` persistence, no Step 7 sub-agents, no `gap_check` persistence, no final memo render — while generating plausible-looking output (including a fake Pressure Check) for the steps that didn't run.
 
 The preamble asks the orchestrator to self-identify and refuse if it is Haiku. There is no machine-enforced floor — `$CLAUDE_MODEL` is not exposed by Claude Code — so the check relies on self-identification. Users on Sonnet or below should treat the `run_health` envelope (Step 4 chat) and the Observatory's completeness signals as the primary integrity check.
 
@@ -691,7 +691,7 @@ Claude reads the pipeline output JSON and presents a focused chat summary — no
 
 **Bridge anti-bullshit constraints** apply to every bridge sentence: no bridge that could stand alone without the finding (anti-empty-rhetoric), no bridge that softens a finding's force (anti-paltering), no hedging language (anti-weasel), no claims not traceable to a specific passage (anti-unverified).
 
-After Step 4 chat, Claude continues into the reasoning + persistence + pressure-check arc (Steps 6–8b) before opening the Observatory in Step 9 and archiving in Step 10. The full lifecycle is documented in `SKILL.md`; the steps below summarize each stage's product role.
+After Step 4 chat, Claude continues into the reasoning + persistence + pressure-check arc (Steps 6–8b), prepares the memo decision-note layer (Step 8c), then opens the Observatory in Step 9 and archives in Step 10. The full lifecycle is documented in `SKILL.md`; the steps below summarize each stage's product role.
 
 ### Step 5: Observatory Placeholder (deferred)
 
@@ -720,26 +720,9 @@ Claude integrates anchors into the §1/§2/§3 reasoning where each one earns it
 
 The Step 6 reconsideration text is written into the result JSON via a small inline Python merge that sets `revised_answer`, `revised_answer_source: "claude_step6"`, `revised_answer_present: true`, and `revised_answer_written_at`. Without this step the Observatory would render an incomplete run (four cards but no revised answer). The persisted revised answer is the first-class artifact downstream tooling reads.
 
-### Step 6c: Generate Memo
+### Memo timing: deferred until Step 8c
 
-```bash
-python3 $SKILL_DIR/scripts/render_memo.py \
-  --result /tmp/lolla_{run_id}_result.json \
-  --output /tmp/lolla_{run_id}_memo.md
-```
-
-Deterministic template rendering — no API calls, no LLM. Produces a portable markdown document with up to 8 sections, each with guard clauses so the memo degrades gracefully when optional data is absent:
-
-1. **Heading** — decision context truncated to first 2 sentences
-2. **Key Findings** — from `delta_card.findings`, sorted by severity (high → medium → low), with passage deduplication (same passage blockquote rendered only once even if multiple findings reference it)
-3. **Mental Model Connections** — from `companion_cheat_sheet.anchors` with presence mode
-4. **Frame Alternatives** — from `frame_pressure_card.reframings`
-5. **Structural Gaps** — from `structural_coverage_card.gap_questions` with dimension names
-6. **Delivery Check** — from `bullshit_profile.summary` when detections exist, naming count and dominant subtype
-7. **Updated Position** — `revised_answer` rendered as-is
-8. **Pressure Check** — from `gap_check.lanes`, only lanes with divergences, with card names translated to human labels
-
-The memo is the shareable artifact — it can be emailed, pasted into a doc, or read without the Observatory. The Pressure Check section depends on Step 8b having persisted `gap_check`; on weaker orchestrators that skip Step 7/8/8b it simply degrades to absent.
+The final memo is **not** rendered immediately after Step 6b. Step 8 often catches the final useful correction, so the memo waits until the pressure check has been persisted. This prevents the portable artifact from missing the last decision-relevant change.
 
 ### Step 7: Pressure-Check Sub-Agents
 
@@ -763,15 +746,37 @@ After Step 6, Step 6b, and all sub-agent results are in, Claude compares its Ste
 2. Did the sub-agent treat a finding as material that I treated as noise?
 3. Did the sub-agent connect a finding to the position in a way I didn't?
 
-Only "yes" answers get reported, under a `### Pressure Check` heading after the Step 6 updated position. If all sub-agents aligned, a single line is rendered ("Pressure check: a fresh look aligned with the assessment above."). The user never hears about the sub-agent machinery — divergences are attributed to the *argument*, not its source. Claude is also expected to cross-check Step 6 against the `bullshit_profile` to confirm it didn't reproduce the patterns the BI flagged in the original.
+Only "yes" answers get reported, under a `### Pressure Check` heading after the Step 6 updated position. If no divergence survives, the section says so quietly. The user never hears about the sub-agent machinery — divergences are attributed to the *argument*, not its source. Claude is also expected to cross-check Step 6 against the `bullshit_profile` to confirm it didn't reproduce the patterns the BI flagged in the original.
 
 ### Step 8b: Persist Pressure Check
 
-Two artifacts are persisted into `result.json`: a human-readable summary string (`gap_check_summary`), and a structured per-lane object (`gap_check`) with one entry per lane recording `lane_number`, `lane_name`, `status` (`completed` / `skipped_empty` / `skipped_error`), and a `divergences[]` array (each tagged with the question that surfaced it). The Observatory's Pressure Check view and the memo's Pressure Check section both consume the structured object. Without this step the run is observable only as far as Step 6b — the pressure-check loop disappears.
+Two artifacts are persisted into `result.json`: a human-readable summary string (`gap_check_summary`), and a structured per-lane object (`gap_check`) with one entry per lane recording `lane_number`, `lane_name`, `status` (`completed` / `skipped_empty` / `skipped_error`), and a `divergences[]` array (each tagged with the question that surfaced it). The Observatory's Pressure Check view consumes the structured object; Step 8c uses the persisted pressure check to write the memo decision-note layer. Without this step the run is observable only as far as Step 6b — the pressure-check loop disappears.
+
+### Step 8c: Prepare and Render Memo
+
+Claude writes a small decision-note layer into `result.json`, then `scripts/render_memo.py` renders the standalone markdown memo.
+
+New persisted fields:
+
+- `memo_substantive_title`
+- `memo_orientation_note`
+- `memo_what_changed`
+- `memo_what_still_holds`
+- `memo_take_back_or_set_aside`
+- `memo_pressure_check`
+- `memo_note_written_at`
+
+The Python renderer remains deterministic and does not call an LLM. For new runs, it renders:
+
+1. **Decision note** — substantive title, orientation note, what changed, what still holds, what was taken back or set aside, and any material pressure-check divergence.
+2. **Questions still unanswered** — structural gap questions rewritten as user-answerable bullets.
+3. **Appendix: Audit trace** — deterministic challenge points, model connections, alternative frames, and delivery profile.
+
+Old archived `result.json` files without the memo fields still render in the legacy section-dump format, so existing archives remain readable.
 
 ### Step 9: Open Observatory
 
-After the full cycle is complete (cards, updated position, pressure check, and memo all persisted), the Observatory is launched.
+After the full cycle is complete (cards, updated position, pressure check, memo fields, and memo all persisted), the Observatory is launched.
 
 ```bash
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_{run_id}_result.json
@@ -814,7 +819,7 @@ Every audit panel is server-rendered HTML and works whether or not `observatory/
 
 ### Step 10: Archive Run
 
-After launching the Observatory, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or `scripts/stability_check.py` analysis. `scripts/archive_run.py` copies 7 files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `gapcheck.txt`, `gapcheck_lanes.json`) into `{archive_root}/{case_id}/{run_id}/`. Missing artifacts (e.g. on a weaker orchestrator that skipped Step 6b/8b) are skipped gracefully. `/tmp` originals are not touched.
+After launching the Observatory, the skill archives the run's core artifacts into a persistent case folder under `~/.local/share/lolla/runs/` (or `$LOLLA_ARCHIVE_DIR`) so the run survives `/tmp` cleanup and stays accessible for later review, memo re-rendering, or `scripts/stability_check.py` analysis. `scripts/archive_run.py` copies 8 files (`conversation.txt`, `extraction.json`, `result.json`, `revised.txt`, `memo.md`, `memo_note.json`, `gapcheck.txt`, `gapcheck_lanes.json`) into `{archive_root}/{case_id}/{run_id}/`. Missing artifacts (e.g. on a weaker orchestrator that skipped Step 6b/8b/8c) are skipped gracefully. `/tmp` originals are not touched.
 
 The "which case is this?" question is solved without asking the user: the archive computes a **case fingerprint** from `extraction.decision_situation` (first 120 chars, normalized — lowercased, punctuation stripped, whitespace collapsed) and matches it against fingerprints stored in `{case_folder}/.case-manifest.json`:
 
