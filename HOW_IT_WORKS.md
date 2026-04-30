@@ -146,7 +146,7 @@ These measurements follow a core constraint: **evals measure the process, not de
 
 ## Architecture
 
-### Current State (2026-04-25)
+### Current State (2026-04-30)
 
 The pipeline runtime is fully conversation-native. `SystemBPipeline.run()` accepts `ConversationContext` and nothing else — passing anything else raises `TypeError`. The legacy `CritiqueRequest(query, vanilla_answer)` runtime contract and lane shims have been removed from the engine. The extraction/CLI artifact layer still preserves compatibility fields for older captured runs, but normal file-based runs now derive post-processing text (`case_focus`, `audit_target_assistant_text`) from `ConversationContext` first. Every lane reads from a typed, provenance-bearing `ConversationIR` projected through the IR packet layer.
 
@@ -207,6 +207,7 @@ Each phase had a four-step discipline: an annotation gate (humans reviewed candi
 | **Phase 6** — `CritiqueRequest` runtime shim removed | -2179 net lines across 26 files. `CritiqueRequest`, `_context_to_critique`, every legacy lane entry point (`run_fingerprint_call`, `run_verification_call`, `run_frame_extraction`, `run_structural_coverage`, `format_pass2_prompt`, `format_pass1_cluster_prompts`), every legacy helper, the `--legacy-contract` CLI flag, the shim-equivalence test suite (927 lines), and `scripts/phase1_equivalence_check.py` all deleted. `SystemBPipeline.run()` now requires `ConversationContext`; raises `TypeError` on anything else. | Until Phase 6, the conversation-first migration had a parallel-paths shape: new code beside old code, dispatch checking which to run. That's transitional architecture, not target architecture. Deleting the legacy lane path is what makes the new runtime contract real. Artifact compatibility fields may still exist outside the engine; they are not lane inputs. |
 | **Post-Phase-7 audit cleanup (PR #36 + follow-up, 2026-04-25/26)** | Six findings plus compatibility-boundary cleanup: (1) `audit_summary.boundary_summary` aggregate (call_count + token totals + cache hit rate + reasoning-leak flag) replaces having to walk individual boundary calls for cost review; (2) silent `synthesized_position or ""` fallbacks replaced with explicit empty + warning when extraction is degenerate; (3) `vanilla_answer` parameter renamed to `assistant_text` in helpers that receive joined assistant turns; (4) top-level `query` / `vanilla_answer` keys in `result.json` replaced with an `extraction` block carrying the full serialized `ConversationContext` (turns + extraction summaries) — Observatory + render_memo derive displayed case focus / assistant audit target from joined turns and use `decision_situation` for case naming; (5) ~20 orphan `*_from_context` lane functions deleted (~1100 lines net); (6) Pass 1 prompt: added a "hedging is not absence" rule symmetric to the existing "don't score on confidence alone" rule + SKILL.md `CompanionCheatSheet` schema correctly documents `presence_mode` instead of stale `status` (which had caused inline debug prints to render `[None]` because Claude was reading a non-existent field); (7) `scripts/run_pipeline.py` stopped requiring legacy `query` / `vanilla_answer` fields for normal file-based runs, derives `case_focus` and `audit_target_assistant_text` from `ConversationContext`, and treats `audit_seed` / `critique_request` only as compatibility fallback. | Post-Phase-7 cleanup of leftovers from the migration. Found a silent drift bug: `prompt_versioning.py` was hashing a legacy `PASS_2_DEEP_CHECK_SYSTEM` constant the runtime no longer used — version stamps no longer reflected reality. Fixed. The later compatibility-boundary cleanup keeps old artifacts runnable without letting old names define the live contract. |
 | **Lane 1 conversation-scope expansion (PR #37, 2026-04-25)** | Pass 1 + Pass 2 system prompts in `engine/system_b/prompts.py` and `engine/system_b/deep_checks.py`: SOURCE is now the actual conversation transaction (both speakers), CONTEXT is extraction summaries only (paraphrased layer). Added `MISSED CHALLENGE` as a fourth tendency shape; broadened `UNCRITICAL ACCEPTANCE` from "recycles vivid material" to "inherits user-introduced framing — vivid OR structural — without testing it." Materiality bar preserved. | Pre-PR-#37, Lane 1 audited the assistant in isolation. Whistleblower (0 findings, P2c baseline 1) and oncologist (0 findings, P2c baseline 2) were silent because the bias lived at the user/assistant junction — the user introduced a tendency-shaped frame and the assistant absorbed it silently. Lane 1 had no shape for "the assistant carries the tendency by silent inheritance." Validation across the 10-case corpus + Marcus: whistleblower 0 → 2, real_estate 0 → 1 (bonus correct detection), Marcus 3 → 4, others stable; net findings basically flat against P2c baseline; one Phase 2c detection (parenting_teen authority-misinfluence on RAINN references) corrected as an over-fire on legitimate evidence-application. The discipline that emerged: never tune a prompt to "recover" a single case without re-reading the conversation first — Phase 2c got parenting_teen wrong reliably, and reliability isn't accuracy. |
+| **Chat delivery + memo decision-note hardening (PR #72/#73, 2026-04-30)** | Reworked the skill surface from a card summary into a progressive four-beat chat flow: readback + audit promise, short run receipt, strongest counterargument, updated position, pressure check, then functional receipt. Added `references/chat-output-format.md`, `references/memo-output-format.md`, and voice examples as the product-output contracts. Step 8c now writes `memo_*` decision-note fields before `scripts/render_memo.py` renders the standalone memo. `archive_run.py` archives `memo_note.json` as an 8th core artifact. Capture health now treats transcripts ending on a user turn as `capture_critical`, and `run_health` surfaces partial Bullshit Index evaluator loss via `bullshit_index_partial` + `bullshit_index_evaluation_failures`. | The engine could already produce useful cards, but the user-facing surface was too system-centric: labels, counts, card names, and early Observatory links leaked machinery. The current contract separates surfaces: chat gives the live reconsideration, the memo gives a portable decision note, Observatory gives the full instrument panel, and `run_health` tells the truth when any layer is partial. |
 
 #### Today: ConversationContext → ConversationIR → Lane Packets
 
@@ -241,11 +242,11 @@ Every step preserves more structure than the one before. Nothing collapses to fl
 
 **Claude is a conductor, not a player — for the audit.** It captures the conversation, calls scripts, and presents results. It performs zero reasoning judgment inside extraction, triage, routing, fingerprinting, deep checks, or card generation. Every semantic decision in the audit pipeline goes through OpenRouter where prompts are calibrated and measurable.
 
-**Claude does author the final revised position (Step 6).** After the four cards are presented, Claude reconsiders its earlier advice under structural pressure from the curated substrate. This revised answer is persisted as a first-class run artifact with provenance (`revised_answer_source: "claude_step6"`). The Observatory renders it alongside the pipeline output.
+**Claude does author the post-audit product layer.** After the pipeline returns the four cards, Claude writes the user-facing reconsideration (Step 6), compares it against isolated pressure-check outputs (Step 8), and writes the memo decision-note fields (Step 8c). These are not new detections. They are the presentation and reconsideration layer built from persisted audit artifacts. The revised answer is persisted as a first-class run artifact with provenance (`revised_answer_source: "claude_step6"`), and the memo fields are persisted before rendering.
 
 This is a deliberate trust-boundary split:
 - **Audit (detection + routing + card assembly)** — OpenRouter via calibrated prompts. Claude produced the original reasoning; asking the same LLM to find its own flaws invites sycophantic self-defense. A different model audits.
-- **Reconsideration (Step 6)** — Claude. It has the full conversation context, the user's nuances, the back-and-forth. The audit cards are structural pressure, not commands. Claude absorbs that pressure and produces a revised position that is better than what it said before.
+- **Reconsideration + memo (Steps 6/8/8c)** — Claude. It has the full conversation context, the user's nuances, and the back-and-forth. The audit cards are structural pressure, not commands. Claude absorbs that pressure, pressure-checks the revised position, and writes the portable decision note. The detector still stays outside the model that produced the original advice.
 
 Why the audit stays external:
 
@@ -261,7 +262,7 @@ The skill is calibrated against Claude Opus 4.7 as the orchestrator. Cross-model
 - **Sonnet 4.6** — acceptable. Completes the full pipeline cycle including sub-agent spawning and artifact persistence. Modest phrasing regressions: anchor-naming rate ~66% (vs 100% on Opus); occasional machinery-term leaks in the revised answer (e.g., "sub-agents", "the audit changes"). Fit for regular use; expect marginally noisier output.
 - **Haiku 4.5** — below the floor. Observed to skip Steps 6b / 7 / 8b / 8c — no `revised_answer` persistence, no Step 7 sub-agents, no `gap_check` persistence, no final memo render — while generating plausible-looking output (including a fake Pressure Check) for the steps that didn't run.
 
-The preamble asks the orchestrator to self-identify and refuse if it is Haiku. There is no machine-enforced floor — `$CLAUDE_MODEL` is not exposed by Claude Code — so the check relies on self-identification. Users on Sonnet or below should treat the `run_health` envelope (Step 4 chat) and the Observatory's completeness signals as the primary integrity check.
+The preamble asks the orchestrator to self-identify and refuse if it is Haiku. There is no machine-enforced floor — `$CLAUDE_MODEL` is not exposed by Claude Code — so the check relies on self-identification. Users on Sonnet or below should treat the `run_health` envelope surfaced in chat and the Observatory's completeness signals as the primary integrity check.
 
 ### Probabilistic Edges, Deterministic Middle
 
@@ -372,18 +373,18 @@ The principle: if a probabilistic component can override or modify a determinist
 
 Traces are read two ways. The Observatory renders the richer surfaces (findings, anchors, frame elements, gap questions, delivery audit) in context. `scripts/inspect_run.py` prints a compact terminal summary of the same result JSON — detection funnel, per-route tiebreaker status with abort reasons, delivery audit counts, card-level totals. Both read from the same artifact: the trace is the data, the viewer is interchangeable. Any future gate added to the pipeline (frame-pressure calibration, coverage thresholds, Phase 4/5 activation tuning, decomposed LLM specialists) should emit its own trace into the same `audit_summary` envelope so both surfaces pick it up automatically.
 
-The `run_health` envelope decomposes run quality into named signals the Step 4 chat can surface selectively:
+The `run_health` envelope decomposes run quality into named signals the chat flow can surface selectively:
 
 - `overall`: `healthy` / `degraded` / `critical`.
 - `capture`, `substrate`, `embeddings`, `fingerprint`: per-subsystem status.
 - `findings_produced`: whether Lane 1 produced any findings.
-- `issues[]`: specific codes — `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`.
+- `issues[]`: specific codes — `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`.
 - `warnings[]`: verbose text (pipeline warnings + capture warnings).
 - `capture_manifest`: declared vs actual turn counts, char length, and truncation fields when applicable.
-- Counts: `quote_fabrication_count`, `quote_retry_attempted`, `capture_truncated`, `omitted_turns`, `lane3_frame_drops_count`, `lane3_frame_kept_count`.
+- Counts: `quote_fabrication_count`, `quote_retry_attempted`, `capture_truncated`, `omitted_turns`, `lane3_frame_drops_count`, `lane3_frame_kept_count`, `bullshit_index_evaluation_failures`.
 - `activation_tiebreaker`: `on` / `off` (the per-route tiebreaker kill-switch).
 
-Step 4 maps the material issues to user-visible one-liners; the full envelope is available in the result JSON, Observatory, and `scripts/inspect_run.py`.
+The chat flow maps material issues to user-visible one-liners only when they affect trust in the run; the full envelope is available in the result JSON, Observatory, and `scripts/inspect_run.py`.
 
 A companion diagnostic tool — `scripts/stability_check.py` — computes per-stage Jaccard / text-similarity across N runs. Three modes:
 
@@ -480,14 +481,14 @@ If strategic → extracts 6 current compatibility fields:
 | `original_framing` | How the human posed the problem — what was assumed fixed, what perspectives were excluded | Bootstrap input for Lane 3 frame pressure. In the v1 IR this intent becomes `FrameAnchor` with source-span provenance. |
 | `dropped_threads` | Concerns raised but never resolved — by either party | Transitional omission/open-loop signal. In the v1 IR this intent becomes `UserIssueEvent(kind="concern" \| "open_loop")` with lifecycle (`active`, `resolved`, `superseded`). |
 
-These fields are the current extraction contract, not the target ontology. The raw transcript inside `ConversationContext` remains canonical; extracted fields are derived context and compatibility surfaces until the provenance-bearing IR replaces summary-first extraction.
+These fields are the current extraction contract, not the source of truth. The raw transcript inside `ConversationContext` remains canonical; extracted fields are derived context and compatibility surfaces that seed the provenance-bearing IR.
 
 **Capture validation, quote verification, and failure gates:**
 
 Before sending the conversation to OpenRouter, the extraction script validates capture integrity against the raw (pre-truncation) text. Three signals feed downstream observability:
 
-- `capture_manifest` — actual vs. declared turn counts (user, assistant) and character length. When the 80K-char cap or the "first 3 + last 15 turns on >100-turn conversations" rule fires, `capture_manifest.truncation_applied: true` is set and additional fields (`truncation_reason`, `original_char_length`, `truncated_char_length`, `total_turns`, `kept_turns`, `omitted_turns`) are populated so downstream layers and the Step 4 chat know the audit ran on dropped context.
-- `capture_health` — graded `good` / `degraded` / `critical` / `unknown` (no parseable header). **`capture_health: "critical"` short-circuits the run**: the extractor returns `status: "capture_critical"` with a structured `decline_reason` and the full `capture_manifest` *before* initializing the OpenRouter client, so broken captures cost nothing. A critically degraded capture (>50% assistant turns missing, or zero assistant responses) would produce a ghost audit on partial data; the gate prevents that silent failure from entering the pipeline.
+- `capture_manifest` — actual vs. declared turn counts (user, assistant) and character length. When the 80K-char cap or the "first 3 + last 15 turns on >100-turn conversations" rule fires, `capture_manifest.truncation_applied: true` is set and additional fields (`truncation_reason`, `original_char_length`, `truncated_char_length`, `total_turns`, `kept_turns`, `omitted_turns`) are populated so downstream layers and the chat flow know the audit ran on dropped context.
+- `capture_health` — graded `good` / `degraded` / `critical` / `unknown` (no parseable header). **`capture_health: "critical"` short-circuits the run**: the extractor returns `status: "capture_critical"` with a structured `decline_reason` and the full `capture_manifest` *before* initializing the OpenRouter client, so broken captures cost nothing. A critically degraded capture (>50% assistant turns missing, zero assistant responses, or a captured transcript ending on a user turn without the assistant's final response) would produce a ghost audit on partial data; the gate prevents that silent failure from entering the pipeline.
 - `_quote_validation` — after extraction, each `reasoning_passages` entry is checked as a literal substring of the transcript. **If any fail, extraction retries once** with a correction prompt that lists the failed passages as examples of what NOT to do and demands character-for-character verbatim copies. If the retry produces fewer fabrications, its payload is adopted wholesale. Any fabrications that still remain after the retry are dropped from the final `reasoning_passages` list (the field contract is "literal substrings only"), a `capture_warning` is emitted, and `run_pipeline.py` surfaces `quote_fabrication` in `run_health`. `_quote_validation` also records `retry_attempted` and `retry_succeeded` for provenance.
 
 These diagnostics surface in every output path — `ok`, `error`, `not_strategic`, and `capture_critical`.
@@ -497,6 +498,21 @@ These diagnostics surface in every output path — `ok`, `error`, `not_strategic
 The extraction JSON is wrapped together with the raw conversation text and capture metadata into a `ConversationContext`. From there `construct_conversation_ir(context)` builds a `ConversationIR`: each `live_constraint` becomes a `UserIssueEvent(kind="constraint")`, each `dropped_thread` becomes a `UserIssueEvent(kind="open_loop"|"concern")`, each of `original_framing` and `decision_situation` becomes a `FrameAnchor` with `DerivationProvenance` over all user turns, and `synthesized_position` is held as transitional text the runtime can read but never claims as a verbatim quote.
 
 The default production pipeline (`SystemBPipeline.run()`) calls `construct_conversation_ir(context)` with no specialist extractors — the IR is built deterministically from the extraction fields above. `construct_conversation_ir` *also* accepts optional `stance_extractor`, `live_constraints_extractor`, and `dropped_threads_extractor` keyword arguments; when an injected specialist is provided, it replaces the corresponding paraphrased mapping with substring-validated events whose `text` is a literal substring of the named turn. This injection path is exercised today by tests, eval harnesses, and ad-hoc callers; default wiring is gated on the promotion criteria documented in the *Evolution* section. Either way, lanes read the IR through `Lane4Packet` (no lane sees the raw `extraction.X` paraphrases at the prompt boundary).
+
+### Step 2.5: Readback + Audit Promise
+
+Before launching the pipeline, Claude renders a short readback directly in chat. This is not a card summary. It tells the user what was captured, names the specific recommendation that will be stress-tested, and sets the 5-8 minute expectation for the audit run.
+
+Required shape:
+
+- 120-170 words in normal mode; 70-110 words in thin-material mode.
+- At least one exact quote from a user turn, anchored lightly with the turn number when available.
+- No internal labels (`Beat 1`, `Step 2.5`, etc.).
+- No Observatory URL. The server is not running yet.
+
+Thin-material mode is mechanical, not discretionary: the lower range applies only when the captured conversation is very short, the extraction has little constraint/reasoning material, or later audit outputs are low-signal as defined in `references/chat-output-format.md`.
+
+This beat exists because trust is built before the long wait: the user should see that Lolla captured *their* conversation, not a generic description of the problem.
 
 ### Step 3: Run Pipeline
 
@@ -509,6 +525,10 @@ python3 $SKILL_DIR/scripts/run_pipeline.py \
 ```
 
 The `--skip-revision` flag skips the OpenRouter revision step because Claude produces the final revised position itself in Step 6. With both `--extraction-file` and `--conversation-file`, `run_pipeline.py` wraps the raw conversation, extraction JSON, and capture metadata as `ConversationContext` by default. This script initializes the full Lolla pipeline via OpenRouter and runs all four lanes:
+
+Immediately before launching the command, Claude sends one functional receipt, not a content section:
+
+> Running the audit now: pressure points, frame assumptions, mental-model tensions, and uncovered dimensions. Usually 5-8 minutes.
 
 ```
                          ┌──────────────────────────────┐
@@ -660,38 +680,39 @@ The design philosophy: Lane 4 is **informative only**. It doesn't influence Lane
 - `embeddings` — `active` or `off`
 - `fingerprint` — `ok` if companion verified at least one model, `empty` otherwise
 - `findings_produced` — whether Lane 1 produced any findings
-- `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`
+- `issues` — array naming what's wrong: `substrate_empty`, `embeddings_off`, `no_fingerprint`, `pipeline_warnings`, `capture_degraded`, `capture_critical`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, `bullshit_index_partial`
 - `warnings` — merged pipeline warnings + capture warnings
 - `capture_manifest` (optional) — actual vs. declared turn counts and character length from the conversation capture
+- `bullshit_index_evaluation_failures` — passage-level delivery-audit calls that failed while the remaining passages still produced a partial profile
 - `activation_tiebreaker` — `"on"` or `"off"` (reflects the `LOLLA_ACTIVATION_TIEBREAKER` kill switch; default on)
 
-`overall` is `critical` if capture is critical (>50% assistant turns missing), `degraded` if any issues exist, `healthy` only when all components are clean. These diagnostics make it possible to distinguish a clean "no findings" result from a broken run that produced no findings because the substrate didn't load or the conversation was badly captured.
+`overall` is `critical` if capture is critical (>50% assistant turns missing, zero assistant responses, or the transcript ends on a user turn), `degraded` if any issues exist, `healthy` only when all components are clean. These diagnostics make it possible to distinguish a clean "no findings" result from a broken run that produced no findings because the substrate didn't load or the conversation was badly captured.
 
 **Per-route tiebreaker observability.** Beyond `run_health`, every detected tendency's routing decision carries a `TiebreakerTrace` under `audit_summary.routing_decisions[].tiebreaker_supporting` / `.tiebreaker_risk`. Each trace records whether the near-tie activation-match gate attempted, fired, or aborted — and if aborted, which clause stopped it. Fields include top-1/top-2 model ids and fan-adjusted affinities, top-1/top-2 cosine similarities, the delta, and the calibration constants (`epsilon`, `noise_floor`) in effect. This means a run can answer "did the activation tiebreaker intervene for this route, and if not why" from the result JSON alone. See `research/deep-graph-enrichment-handover.md §14k` for a field-by-field reading guide.
 
-### Step 4: Present Results
+### Step 4: Counterargument Lead
 
-Claude reads the pipeline output JSON and presents a focused chat summary — not a card dump. The detailed card rendering lives in the Observatory.
+Claude reads the pipeline output JSON and renders one focused counterargument lead in chat. This is not the full audit report and not a card dump. The detailed card rendering stays in the Observatory; Step 4 exists to put the strongest pressure on the table before Claude revises its answer.
 
-**Product vs. process separation:** The chat output uses human language exclusively. Card names (`DeltaCard`, `CompanionCheatSheet`), lane numbers, pipeline stages, severity labels, and JSON field names never appear. Findings are presented by signal strength across all finding types — not grouped by lane.
+**Product vs. process separation:** The chat output uses human language exclusively. Card names (`DeltaCard`, `CompanionCheatSheet`), lane numbers, pipeline stages, severity labels, JSON field names, and internal section names never appear. Product words such as "audit", "pressure check", "updated position", "memo", and "Observatory" are allowed when they name a surface the user can actually see.
 
-**Chat output structure:**
+**Counterargument lead structure:**
 
-1. **Run-health surface (conditional):** If `run_health.overall` is not `"healthy"` AND at least one material issue is present, a short ⚠ line opens the chat before the BLUF. Material issues map to specific warnings: `capture_degraded` / `capture_critical` (capture missed turns), `substrate_empty` (curated knowledge base did not load), `no_fingerprint` (no mental-model activations), `quote_fabrication` (N reasoning passages failed literal-substring validation after retry), `capture_truncated` (N middle turns omitted), `lane3_all_dropped` (all frame elements dropped by the evidence-quote validator). Silent on `healthy` — clean runs never mention the absence of degradation.
+1. **Run-health line, conditional.** If `run_health.overall` is not `"healthy"` and the issue affects trust in the run, open with one plain note. Material issues include `capture_degraded`, `capture_critical`, `substrate_empty`, `no_fingerprint`, `quote_fabrication`, `capture_truncated`, `lane3_all_dropped`, and `bullshit_index_partial`. Clean runs say nothing about health.
 
-2. **Opening line (BLUF):** One sentence naming the single most important structural weakness. This is the Sinatra Test — if this one finding lands, credibility for the whole audit follows.
+2. **One exact quote anchored to a turn.** The quote can come from the user or assistant, depending on where the case-against lives. Turn numbers are light source attribution, not headings.
 
-3. **2-4 additional findings**, each as a short block: finding name, one bridge sentence connecting to this conversation, one concrete detail (challenge question, reframed question, or gap question — whichever is most actionable). No severity labels — severity informs which findings are selected and in what order, not how they're labeled.
+3. **The strongest case against the original advice.** One plain-language argument that names the structural weakness. It should be scoped to the conversation, not padded with broad empirical claims the audit cannot support.
 
-4. **Mental models active (conditional):** If the companion cheat sheet surfaced anchors, one line names them by `display_name` verbatim — *"Mental models active: Opportunity Cost, Inversion — see Observatory for failure modes, premortem questions, and curated antagonists."* This primes the reader to recognize the models Step 6 will reference. Skipped when `companion_cheat_sheet.anchors` is empty.
+4. **One alternative path or question.** The alternative should be decision-useful: a different question, sequence, threshold, test, fallback, or channel. It should not be a dashboard list of every card.
 
-5. **Delivery check** (conditional): If the Bullshit Index found clear detections, one line naming the count and dominant subtype. Clean delivery is the default, not an achievement — zero detections means no mention.
+5. **Queued-breakdown line without a URL.** The Observatory is still deferred. Say the remaining challenge points or uncovered dimensions are queued for the full breakdown once the reconsideration is complete; do not link to `localhost`.
 
-6. **Closing line:** One sentence pointing to Observatory.
+6. **Transition to reconsideration.** Close with a short line that the next move is revising the answer, not merely reporting the audit.
 
-**Bridge anti-bullshit constraints** apply to every bridge sentence: no bridge that could stand alone without the finding (anti-empty-rhetoric), no bridge that softens a finding's force (anti-paltering), no hedging language (anti-weasel), no claims not traceable to a specific passage (anti-unverified).
+Length target: 220-300 words in normal mode; 140-220 words in thin-material mode. The hard cap is 350 words.
 
-After Step 4 chat, Claude continues into the reasoning + persistence + pressure-check arc (Steps 6–8b), prepares the memo decision-note layer (Step 8c), then opens the Observatory in Step 9 and archives in Step 10. The full lifecycle is documented in `SKILL.md`; the steps below summarize each stage's product role.
+After the counterargument lead, Claude continues into the reasoning + persistence + pressure-check arc (Steps 6-8b), prepares the memo decision-note layer (Step 8c), then opens the Observatory in Step 9 and archives in Step 10. The full lifecycle is documented in `SKILL.md`; the steps below summarize each stage's product role.
 
 ### Step 5: Observatory Placeholder (deferred)
 
@@ -699,7 +720,7 @@ Step 5 in the SKILL flow is intentionally a no-op. The Observatory is *not* offe
 
 ### Step 6: Update Your Position (Claude reconsiders)
 
-After presenting findings, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to set aside (findings Claude considered and chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging.
+After the counterargument lead, Claude reconsiders its earlier advice. The structure is deliberate: first, what survived (what Claude would say again unchanged); then, what to take back or set aside (self-corrections and audit-raised pressures Claude considered but chose not to act on, with specific reasons); finally, what actually shifted. This three-part structure forces genuine reconsideration rather than performative hedging.
 
 **Anchors are evidence-bearing hypotheses, not canonical diagnoses.** Lane 2 surfaces curated mental models that may explain the assistant's reasoning structure, but per-candidate verifier judgment is probabilistic — multi-run stability investigations (research/lane2-architecture-research-frozen-2026-04-26 + research/stability-runs/lane2-pathD-proxy-validation-2026-04-26) confirmed there is no single deterministic substrate fact that predicts cross-run anchor stability above usable thresholds. The product contract therefore treats each anchor as an evidence-bearing hypothesis Step 6 should weigh, not as a canonical fact Step 6 must repeat.
 
@@ -712,7 +733,9 @@ The invariant is now paired with a **three-treatment vocabulary** (`SKILL.md` St
 
 A structural rule pairs with the vocabulary: **one primary-pressure anchor per reasoning move**. When two anchors describe the same move or evidence quote, the most specific / load-bearing anchor gets primary treatment; the others — even if their evidence is direct — become secondary lenses or are set aside with a reason. Treating two anchors as equally primary on the same move is overclaim by structure.
 
-Claude integrates anchors into the §1/§2/§3 reasoning where each one earns its mention — never as a mechanical anchor-by-anchor parade — with rhetorical strength matching the evidence the anchor carries. Some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
+Claude integrates anchors into the "What survived" / "What I'd take back or set aside" / "What actually shifted" reasoning where each one earns its mention — never as a mechanical anchor-by-anchor parade — with rhetorical strength matching the evidence the anchor carries. Some will connect sharply, some won't, and both outcomes are honest. The updated position IS the product.
+
+The "What actually shifted" section is capped at 3-4 substantive shifts. A shift means a different action, threshold, sequence, condition, risk treatment, or decision question. Tail additions that merely add one more caveat are not allowed to bypass the cap; they must be folded into an existing shift or dropped.
 
 **Timing detail:** Before writing Step 6, Claude *also* fires off Step 7's pressure-check sub-agents in the background (parallel Agent calls per non-empty lane). They run while Step 6 / 6b are written, so their outputs are ready by Step 8.
 
@@ -754,7 +777,7 @@ Two artifacts are persisted into `result.json`: a human-readable summary string 
 
 ### Step 8c: Prepare and Render Memo
 
-Claude writes a small decision-note layer into `result.json`, then `scripts/render_memo.py` renders the standalone markdown memo.
+Claude writes a small decision-note layer into `result.json`, then `scripts/render_memo.py` renders the standalone markdown memo. The memo is the portable decision artifact: what changed in the advice first, audit trace second.
 
 New persisted fields:
 
@@ -769,8 +792,10 @@ New persisted fields:
 The Python renderer remains deterministic and does not call an LLM. For new runs, it renders:
 
 1. **Decision note** — substantive title, orientation note, what changed, what still holds, what was taken back or set aside, and any material pressure-check divergence.
-2. **Questions still unanswered** — structural gap questions rewritten as user-answerable bullets.
+2. **Questions still unanswered** — the first three unique structural gap questions as user-answerable bullets; any remaining questions are preserved in the appendix.
 3. **Appendix: Audit trace** — deterministic challenge points, model connections, alternative frames, and delivery profile.
+
+Before persisting the memo fields, Claude checks for hidden sequencing contradictions, removes or labels unverified numbers, preserves any materially different pressure-check path, and keeps the unanswered-questions section priority-shaped. The renderer can fall back to sections in `revised_answer` when individual memo fields are missing, but a complete Step 8c writes all fields explicitly.
 
 Old archived `result.json` files without the memo fields still render in the legacy section-dump format, so existing archives remain readable.
 
@@ -781,6 +806,8 @@ After the full cycle is complete (cards, updated position, pressure check, memo 
 ```bash
 python3 $SKILL_DIR/observatory/serve_result.py --result /tmp/lolla_{run_id}_result.json
 ```
+
+The default port is `8080`; the server also accepts `--port` when an older run is already holding the default. The final receipt should report the actual URL and should not explain port fallback unless the user asks.
 
 Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backend API serves:
 
@@ -815,7 +842,7 @@ Zero dependencies (stdlib Python server + pre-built Svelte frontend). The backen
 - `/audit/expansions` — Companion expansions grouped by source anchor: relation type, activation condition, why relevant
 - `/usage` — per-run cost & call breakdown (existing, with cross-link to `/audit` added)
 
-Every audit panel is server-rendered HTML and works whether or not `observatory/build/` (the React SPA bundle) exists — design intent is skill portability: anyone downloading the skill can use the panels without a Node toolchain.
+Every audit panel is server-rendered HTML and works whether or not `observatory/build/` (the Svelte SPA bundle) exists — design intent is skill portability: anyone downloading the skill can use the panels without a Node toolchain.
 
 ### Step 10: Archive Run
 
@@ -837,11 +864,11 @@ Orchestrator scratch files (`preamble.json`, `lane*.json`) are intentionally NOT
 
 ### Bullshit Index — Fact Registry (cross-cutting feature)
 
-The Bullshit Index (adapted from Hannigan et al., 2025) is not a separate step; it runs inside the pipeline (Step 3) and is consumed by Steps 4 / 6 / 8 / 6c. It evaluates the assistant audit target for four subtypes of bullshit: empty rhetoric, paltering, weasel words, and unverified claims. In normal file-based runs, that target is derived from joined assistant turns in `ConversationContext`; legacy `vanilla_answer` fields are fallback-only. To reduce false positives on unverified claims, the BI judge receives a **fact registry** — a structured summary of what the user established in conversation.
+The Bullshit Index (adapted from Hannigan et al., 2025) is not a separate step; it runs inside the pipeline (Step 3) and is consumed by Steps 4 / 6 / 8 / 8c. It evaluates the assistant audit target for four subtypes of bullshit: empty rhetoric, paltering, weasel words, and unverified claims. In normal file-based runs, that target is derived from joined assistant turns in `ConversationContext`; legacy `vanilla_answer` fields are fallback-only. To reduce false positives on unverified claims, the BI judge receives a **fact registry** — a structured summary of what the user established in conversation.
 
 The fact registry extracts `decision_situation`, `live_constraints`, and `dropped_threads` from the extraction JSON into a compact context block (~1500 chars vs. the previous 4000-char raw conversation truncation). The `_CONTEXT_BLOCK` instructs the judge that claims referencing, restating, paraphrasing, or drawing reasonable inferences from user-stated facts are grounded — only claims introducing information the user never provided should be flagged.
 
-This structured approach gives the judge a cleaner signal about what counts as established context, reducing over-flagging of claims that are grounded in conversational facts.
+This structured approach gives the judge a cleaner signal about what counts as established context, reducing over-flagging of claims that are grounded in conversational facts. Passage-level evaluator failures no longer disappear silently: successful passages still render, while the failed-call count is recorded as `bullshit_index_evaluation_failures` and surfaces through `run_health.issues[]` as `bullshit_index_partial`.
 
 ---
 
@@ -849,7 +876,7 @@ This structured approach gives the judge a cleaner signal about what counts as e
 
 - **Specificity over generality** — "Consider the risks" is not a finding. "The reasoning closes on a recommendation without naming what evidence would reverse it — Inconsistency-Avoidance operating on this passage" is a finding. Specificity means naming the reasoning pattern and where it appears, not domain facts.
 - **Reversal triggers must be observable** — "If things go wrong" is not a trigger. "If Q2 pipeline coverage drops below 3x while integration is consuming >20% of engineering hours" is a trigger.
-- **Curated knowledge IS the product** — Claude presents curated material from the pipeline output as-is. It does not generate replacement analysis, findings, or challenge statements. The curated material has been validated against source articles. Claude's generated alternatives have not.
+- **Curated knowledge IS the audit product** — Claude presents curated material from the pipeline output as-is when describing detections, anchors, reframings, and gaps. It does not invent new audit findings or challenge statements. Claude's later revised position and memo are reasoning products built under that pressure, not new detector outputs.
 - **Intellectual honesty** — Flag genuine uncertainty. If a detection is borderline, say so. Better to surface 3 strong findings than 8 padded ones.
 - **False confidence is worse than honest uncertainty** — The whole system exists to fight borrowed certainty. It must not create more of it.
 - **The process is part of the product** — Every finding is traceable: which tendency was detected, why, which models competed, which won. The system is a reasoning observability layer, not a magic answer box.
@@ -882,10 +909,10 @@ The skill carries its own copy of the compiled knowledge substrate:
 
 | File | Size | Contents |
 |------|------|----------|
-| `data/knowledge_graph.json` | 3.0M | 222 models, 25 tendencies, 241 antidote bindings, 1,742 edges, 15 prerequisite edges, 15-dimension structural coverage routing, 15 reframing patterns |
+| `data/knowledge_graph.json` | 2.0M | 222 models, 25 tendencies, 241 antidote bindings, 1,742 edges, 15 prerequisite edges, 15-dimension structural coverage routing, 15 reframing patterns |
 | `data/relationship_graph.json` | 1.2M | 1,358 relationship edges (allies, antagonists, tensions) |
-| `data/embeddings.db` | 42M | Pre-computed vectors (text-embedding-3-large, 3072d): 2,032 chunk_embeddings + 444 model_signals + 25 tendency_guidance + 867 edge_activation_conditions (~3,368 total) |
-| `data/curation/` | 222 model files (+ subdirs) | Wave 1 activation semantics per model |
+| `data/embeddings.db` | 41M | Pre-computed vectors (text-embedding-3-large, 3072d): 2,032 chunk_embeddings + 444 model_signals + 25 tendency_guidance + 867 edge_activation_conditions (~3,368 total) |
+| `data/curation/` | 222 canonical model files (+ support files/subdirs) | Wave 1 activation semantics per model |
 | `data/curation/intervention_semantics/` | 222 files | Wave 2 failure modes, heuristics, premortems |
 | `data/curation/relation_semantics/` | 222 files | Wave 3 relationship edge data |
 | `data/curated/subpattern_catalog.json` | 276K | Sub-pattern definitions for deep checks |
@@ -917,7 +944,7 @@ When running inside the repo, the pipeline uses the repo's `build/` directly. Wh
 |-----------|-------------|
 | Conversation is about code debugging | Extraction returns `not_strategic`, Claude presents polite decline |
 | Conversation is 1-2 turns | Extraction still works. Less material for Lane 2 fingerprinting. Lane 3 (frame pressure) is most useful on short conversations. |
-| Conversation is 100+ turns | Claude truncates: first 3 + last 15 turns. Early turns preserve constraints. |
+| Conversation is very long | Claude/`run_extract.py` truncate to first 3 + last 15 turns when the long-conversation or 80K-character cap fires. `capture_manifest.truncation_applied` records what was omitted, and `run_health.issues[]` includes `capture_truncated`. |
 | Pipeline finds zero tendencies | Valid outcome. "No structural pressures detected." |
 | OpenRouter times out | Boundary client returns empty payload + a degraded `BoundaryCallMetadata` (status `timeout` / `http_error_*` / `url_error` / `response_json_error`). No internal retry loop. The pipeline degrades — affected lanes return empty/partial results, the run continues, and the failure is visible in `audit_summary.boundary_calls[]`. The only application-level retry is extraction's single quote-fabrication retry (see *Capture validation* in Step 2). |
 | `OPENAI_API_KEY` not set | Embeddings disabled. Pipeline runs purely on LLM triage + deterministic routing. Works fine, just without the swiss cheese redundancy layer. |
