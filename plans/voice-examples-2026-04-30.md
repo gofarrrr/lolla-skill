@@ -380,6 +380,8 @@ This is what the chat looked like on the 2026-04-30 Mother run before the surfac
 >
 > **All three pressure-check responses are in. Now writing Beat 3 — the updated position.**
 >
+> **All four pressure checks are in. Generating the memo now.**
+>
 > [clean Beat 3 prose]
 >
 > ---
@@ -392,7 +394,7 @@ This is what the chat looked like on the 2026-04-30 Mother run before the surfac
 
 - *"Beat 1 — Readback + audit promise"*, *"Now Beat 2"*, *"Now writing Beat 3"* — internal section names announced as headings or transitions. The labels are instruction architecture for the orchestrator; they are not user-facing.
 - *"Now launching pressure-check sub-agents in parallel (lanes 2, 3, 4 — lane 1 skipped, no findings)"* — discloses the sub-agent mechanism, the lane numbering, and the skip rule. Step 7 runs behind the scenes; the user does not hear about it.
-- *"Two of three pressure-check responses are in"*, *"All three pressure-check responses are in"* — operator narration of internal progress.
+- *"Two of three pressure-check responses are in"*, *"All three pressure-check responses are in"*, *"All four pressure checks are in. Generating the memo now"* — operator narration of internal progress and artifact rendering. Memo generation is silent until the final functional receipt.
 - *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."* — the orchestrator narrating its own comparison process before delivering the user-facing Pressure Check. The user-facing surface starts at the counter-frame opening sentence; everything before it is debug trace.
 
 **The right shape:**

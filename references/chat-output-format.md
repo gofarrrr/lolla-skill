@@ -132,6 +132,7 @@ After Step 2 extract returns `status: ok`, present a short readback that demonst
 
 1. **One line naming the decision** (from `extraction.decision_situation`).
 2. **2–3 sentence readback of the user's framing**, with at least one **exact quote** from a user turn.
+   - **Long-conversation clarification:** On conversations over 15 turns, the exact-quote rule still applies. Pick one load-bearing user quote that anchors the case structure. Paraphrasing the user's framing is not a substitute for quoting them; the user wants to be seen, not summarized.
 3. **1–2 sentence readback of what the orchestrator argued back**, with an exact assistant quote only if it earns its place. (Often the assistant's argument is best summarized rather than quoted; a verbatim quote is for moments where one sentence captures the position.)
 4. **One-sentence dropped-thread note** only when `extraction.dropped_threads` contains something material. No filler line when the field is empty or the threads are weak.
 5. **Closing operational status receipt:** *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This usually takes 5–8 minutes."*
@@ -165,6 +166,8 @@ After Step 3 pipeline returns, present the strongest counterargument as a story 
 5. **One queued-breakdown line WITHOUT URL:** *"There are X more challenge points and Y unanswered dimensions queued for the full breakdown once the reconsideration is complete."*
 6. **One transition sentence:** *"Now I'm using this to revise my own answer, not just report the audit. ~3 minutes."*
 
+After that transition sentence, the next user-facing prose should be `## Updated position` unless a real error or blocker requires explanation. Reconsideration drafting, pressure-check launch/waiting, memo rendering, and persistence steps run silently.
+
 ### What does NOT go in
 
 - Mental-models-active list (removed entirely from chat — the anchors get woven into Beat 3 §3 where they ground the shift).
@@ -172,6 +175,7 @@ After Step 3 pipeline returns, present the strongest counterargument as a story 
 - Delivery-check line (Observatory only — not user-facing in chat).
 - Three-finding-block dashboard (replaced with one strong push + one alternative).
 - Live Observatory URL before Step 9.
+- Internal progress after the transition sentence (*"Spawning the pressure checks"*, *"Three of four are in"*, *"Generating the memo now"*). Those are operator narration, not product receipts.
 
 ### Examples
 
@@ -240,7 +244,7 @@ If the draft pressure check contains *"mostly aligned"*, *"all incorporated abov
 - "Mostly aligned" closure or any variant.
 - *"Sub-agents"*, *"lanes"*, *"isolated review"*, *"the pipeline flagged"* — attribute the *argument*, not its source. Step 7 runs behind the scenes; the user never hears about it.
 - Narrative summary close (*"Audited your equity decision for Marcus. Found 3 patterns…"*) — the functional close above replaces it.
-- **Pre-pressure-check internal narration.** Do not summarize which internal reviewers, lanes, or sources aligned before the Pressure Check. Do not write *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."*, *"All three sub-agents are in"*, *"Two of three pressure-check responses are in"*, or any variant. **Start the user-facing output at the counter-frame opening sentence.** Everything before that is operator narration and must be silent in the rendered transcript.
+- **Pre-pressure-check internal narration.** Do not summarize which internal reviewers, lanes, or sources aligned before the Pressure Check. Do not write *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."*, *"All three sub-agents are in"*, *"Two of three pressure-check responses are in"*, *"All four pressure checks are in"*, *"Generating the memo now"*, or any variant. **Start the user-facing output at the counter-frame opening sentence.** Everything before that is operator narration and must be silent in the rendered transcript.
 
 ### Examples
 
@@ -274,7 +278,7 @@ Before delivering any beat, mentally grep the rendered chat for these patterns. 
 
 **Operator-narration patterns (also banned):**
 - *"Now Beat N"*, *"Now writing Beat N"*, *"Now launching..."*, *"Now spawning..."*
-- *"X of Y sub-agents are in"*, *"All three pressure-check responses are in"*
+- *"X of Y sub-agents are in"*, *"All three pressure-check responses are in"*, *"All four pressure checks are in"*, *"Generating the memo now"*
 - *"lanes 2, 3, 4 — lane 1 skipped"*
 - *"Reading them honestly: the Lane N concerns..."*
 

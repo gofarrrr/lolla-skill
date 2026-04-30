@@ -193,6 +193,8 @@ The conversation capture is fundamentally broken — more than half the assistan
 
 Length: **120–170 words** in normal mode; **70–110 words** in thin mode (when `captured_message_count <= 4` OR `extraction.reasoning_passages < 3 AND extraction.live_constraints < 3 AND extraction.dropped_threads is empty`). Hard cap: 200 words.
 
+Always include at least one exact quote from a user turn in this readback. **On long conversations (>15 turns), the exact-quote rule still applies.** Pick one load-bearing user quote that anchors the case structure; do not replace the quote with a paraphrase of the user's framing.
+
 The closing operational receipt is: *"Now I'm testing the part of my answer that sounded most settled: what would make it fail, what frame it accepted, and what it left uncovered. This usually takes 5–8 minutes."*
 
 Do not link to Observatory; the server is not running until Step 9. See `plans/voice-examples-2026-04-30.md` § Beat 1 for examples (Marcus / Mother / Short fixture), § Bad — therapy recap for the soft-recap failure mode, and § Bad — visible internal labels for the scaffolding-leak failure mode this section exists to prevent.
@@ -243,7 +245,7 @@ After the counterargument lead (Step 4), **reconsider your earlier advice and re
 
 **Render the content directly. Do NOT introduce it with "Beat 3," "Step 6," "Now writing the updated position," or any internal section label.** The user-facing transcript opens at the `## Updated position` heading and the `### What survived` / `### What I'd take back or set aside` / `### What actually shifted` subheadings — those ARE the section labels the user sees. No additional preamble.
 
-**Timing note:** Before you begin writing your reconsideration, launch the pressure-check sub-agents from Step 7 below. They run in the background while you write. By the time you finish Step 6 and Step 6b, the sub-agent results will be ready for Step 8.
+**Timing note:** Before you begin writing your reconsideration, launch the pressure-check sub-agents from Step 7 below. They run in the background while you write. By the time you finish Step 6 and Step 6b, the sub-agent results will be ready for Step 8. Do this silently; do not narrate the launch, waiting, partial completion, or completion to the user.
 
 The audit findings are **hints, not commands.** They come from a curated knowledge substrate that sees patterns you might miss — but you are still the primary reasoning engine in this conversation. You have the full context, the user's nuances, the back-and-forth. The audit has structural pattern detection. Use both.
 
@@ -313,6 +315,8 @@ python3 $SKILL_DIR/scripts/render_memo.py --result /tmp/lolla_${LOLLA_RUN_ID}_re
 
 This produces a persistent markdown artifact the user can reference or share without the Observatory. The memo includes key findings, mental model connections, frame alternatives, structural gaps, and the updated position — all in one portable document.
 
+Memo generation is not user-facing until the final functional receipt. Do not write *"Generating the memo now"*, *"All four pressure checks are in. Generating the memo now"*, or any other progress narration about memo rendering in chat. The memo path appears only in the final receipt.
+
 ### Step 7: Pressure-Check Sub-Agents
 
 **Launch these BEFORE writing Step 6** — they run in the background while you write your reconsideration. By the time you finish Step 6 and Step 6b, results are ready.
@@ -350,7 +354,9 @@ Spawn up to 4 sub-agents via the Agent tool, one per non-empty lane. Each sub-ag
 
 **If a sub-agent fails or times out:** log that lane as `skipped_error` and continue. Do not block Step 8 on any single lane's failure.
 
-**Sub-agent setup is not user-facing. Do NOT announce spawning, skipped lanes, completed lanes, partial results, or comparison summaries in chat.** Phrases like *"Now launching pressure-check sub-agents in parallel"*, *"lanes 2, 3, 4 — lane 1 skipped, no findings"*, *"Two of three pressure-check responses are in"*, *"All three sub-agents completed"* are operator narration. The user does not hear about Step 7 at all. Claude Code's tool-call surface shows the Agent calls; the orchestrator's chat prose stays silent on them.
+**Sub-agent setup is not user-facing. Do NOT announce spawning, skipped lanes, completed lanes, partial results, or comparison summaries in chat.** Phrases like *"Spawning the four pressure-check sub-agents in parallel now"*, *"Now launching pressure-check sub-agents in parallel"*, *"lanes 2, 3, 4 — lane 1 skipped, no findings"*, *"Three of the four pressure-checks are in with strong signal"*, *"Two of three pressure-check responses are in"*, *"All four pressure checks are in"*, *"All three sub-agents completed"*, and *"Generating the memo now"* are operator narration. The user does not hear about Step 7 at all. Claude Code's tool-call surface shows the Agent calls; the orchestrator's chat prose stays silent on them.
+
+After the counterargument lead, the next user-facing prose should be `## Updated position` unless a real error or blocker requires explanation. The reconsideration drafting, sub-agent launch, wait state, memo rendering, and internal persistence steps all run silently.
 
 ### Step 8: Pressure-Check Comparison
 
@@ -362,7 +368,7 @@ For each sub-agent that returned a result, ask yourself three specific questions
 2. **Did the sub-agent treat a finding as material that I treated as noise?**
 3. **Did the sub-agent connect a finding to the position in a way I didn't?**
 
-Only "yes" answers get reported. Render the pressure-check directly under a `### Pressure Check` heading AFTER the updated position. **Render the content directly. Do NOT preface it with internal narration about which lanes/reviewers/sub-agents aligned or completed.** Phrases like *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."*, *"All three pressure-check responses are in"*, *"Now Beat 4"* are operator narration and never appear in chat. The user-facing surface starts at the counter-frame opening sentence below.
+Only "yes" answers get reported. Render the pressure-check directly under a `### Pressure Check` heading AFTER the updated position. **Render the content directly. Do NOT preface it with internal narration about which lanes/reviewers/sub-agents aligned or completed.** Phrases like *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."*, *"All three pressure-check responses are in"*, *"All four pressure checks are in"*, *"Now Beat 4"*, and *"Generating the memo now"* are operator narration and never appear in chat. The user-facing surface starts at the counter-frame opening sentence below.
 
 **Open with a counter-frame phrase.** Use one of: *"One more angle worth surfacing"*, *"A fresh read pushed on something I underweighted"*, *"Two things the position above softened or skipped"*. **Never** *"mostly aligned"*, *"all incorporated above"*, *"the rest is in the position above"*, or any variant that suppresses divergences with confident closure.
 
