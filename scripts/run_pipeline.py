@@ -759,6 +759,7 @@ def main() -> int:
                 "triggered": True,
                 "surface": False,
                 "critical_actors": [],
+                "chat_actors": [],
                 "error": str(exc),
             }
             stakeholder_check_call_log = []

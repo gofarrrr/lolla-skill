@@ -1619,6 +1619,11 @@ def _render_stakeholder_html() -> str:
     for actor in actors:
         deps = actor.get("power_or_dependency") or []
         deps_html = " ".join(f'<span class="tag">{_esc(dep)}</span>' for dep in deps)
+        surface_in_chat = bool(actor.get("surface_in_chat"))
+        surface_label = "yes" if surface_in_chat else "no"
+        surface_reason = actor.get("surface_block_reason") or (
+            "available to chat" if surface_in_chat else "not selected for chat"
+        )
         known = actor.get("known_to_actor") or []
         unknown = actor.get("unknown_to_actor") or []
         bridges = actor.get("bridging_facts") or []
@@ -1632,12 +1637,14 @@ def _render_stakeholder_html() -> str:
             f"<div class=\"tagrow\">{deps_html}</div></td>"
             f"<td>{_esc(actor.get('advice_assumption', ''))}</td>"
             f"<td><span class=\"tag\">{_esc(actor.get('grounding', 'unknown'))}</span></td>"
+            f"<td><span class=\"tag\">{surface_label}</span><br>"
+            f"<span class=\"hint\">{_esc(surface_reason)}</span></td>"
             f"<td>{_esc(actor.get('risk_if_wrong', ''))}</td>"
             f"<td>{_esc(actor.get('plan_change', ''))}</td>"
             "</tr>"
             "<tr>"
             "<td></td>"
-            f"<td colspan=\"4\"><details><summary>Known / unknown / bridges</summary>"
+            f"<td colspan=\"5\"><details><summary>Known / unknown / bridges</summary>"
             f"<p><strong>Known:</strong><br>{known_html}</p>"
             f"<p><strong>Unknown:</strong><br>{unknown_html}</p>"
             f"<p><strong>Bridging facts:</strong><br>{bridges_html}</p>"
@@ -1650,7 +1657,7 @@ def _render_stakeholder_html() -> str:
         table = (
             "<table><thead><tr>"
             "<th>Actor</th><th>Advice assumption</th><th>Grounding</th>"
-            "<th>Risk if wrong</th><th>Plan change</th>"
+            "<th>Chat surface</th><th>Risk if wrong</th><th>Plan change</th>"
             "</tr></thead><tbody>"
             + "".join(actor_rows)
             + "</tbody></table>"

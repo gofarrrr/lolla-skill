@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from copy import deepcopy
 from pathlib import Path
 from typing import Any, Protocol
@@ -36,11 +37,130 @@ COMMUNICATION_TERMS = {
     "disclose",
     "report",
     "approve",
+    "approval",
+    "align",
+    "back",
+    "buy-in",
+    "buy in",
+    "co-advise",
+    "co-advising",
+    "commit",
+    "consent",
+    "endorse",
+    "fund",
+    "green-light",
+    "green light",
+    "greenlit",
+    "handoff",
+    "negotiate",
     "sponsor",
     "cooperate",
+    "outreach",
+    "sign-off",
+    "sign off",
+    "support",
     "block",
     "retaliate",
     "exit",
+}
+
+ROLE_CLOSENESS_TERMS = {
+    "closeness",
+    "close to",
+    "family relationship",
+    "likely access",
+    "likely-access",
+    "role closeness",
+    "role/closeness",
+}
+
+SPOUSE_ACTOR_TERMS = {"wife", "spouse", "husband", "partner"}
+DISCUSSION_ACTION_TERMS = {
+    "ask",
+    "asked",
+    "conversation",
+    "discuss",
+    "discussed",
+    "share",
+    "shared",
+    "talk",
+    "tell",
+    "told",
+}
+
+GROUNDING_DOWNGRADE_NOTE = "role/closeness inference downgraded from grounded"
+PREDICTIVE_DOWNGRADE_NOTE = "behavior prediction downgraded from grounded"
+
+PREDICTIVE_ASSUMPTION_TERMS = {
+    " likely ",
+    " will ",
+    " without pushback",
+    " would ",
+    " accept ",
+    " cooperate",
+    " re-open",
+    " support ",
+    " thaw",
+}
+
+PLAN_CHANGE_FIELDS = {
+    "plan_change",
+    "next_move",
+    "recommended_change",
+    "suggested_revision",
+    "intervention_hint",
+    "reframed_question",
+    "alternative_question",
+    "question",
+}
+
+PLAN_STOPWORDS = {
+    "a",
+    "about",
+    "after",
+    "all",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "before",
+    "by",
+    "can",
+    "could",
+    "do",
+    "does",
+    "for",
+    "from",
+    "have",
+    "her",
+    "him",
+    "how",
+    "if",
+    "in",
+    "is",
+    "it",
+    "not",
+    "of",
+    "on",
+    "or",
+    "she",
+    "should",
+    "that",
+    "the",
+    "their",
+    "them",
+    "then",
+    "this",
+    "to",
+    "what",
+    "when",
+    "whether",
+    "will",
+    "with",
+    "you",
+    "your",
 }
 
 ACTOR_ALIASES = {
@@ -82,6 +202,7 @@ Return ONLY strict JSON:
       "power_or_dependency": ["concrete dependency"],
       "advice_assumption": "what the advice assumes about this actor",
       "grounding": "grounded | plausible | speculative",
+      "grounding_source": "transcript_fact | role_closeness | inference",
       "known_to_actor": ["only transcript-grounded or clearly plausible facts"],
       "unknown_to_actor": ["facts the advice/user/model has but actor may not"],
       "bridging_facts": ["why actor knows/can affect this, if established"],
@@ -129,9 +250,12 @@ def _extract_uncovered_dimensions(result: dict[str, Any]) -> list[dict[str, Any]
 
 def _candidate_actors(text: str) -> list[str]:
     found: list[str] = []
-    padded = f" {text.lower()} "
+    lowered = text.lower()
     for canonical, aliases in ACTOR_ALIASES.items():
-        if any(f" {alias} " in padded or alias in padded for alias in aliases):
+        if any(
+            re.search(rf"(?<![a-z0-9]){re.escape(alias)}(?![a-z0-9])", lowered)
+            for alias in aliases
+        ):
             found.append(canonical)
     return found
 
@@ -187,42 +311,238 @@ def evaluate_trigger(
     }
 
 
+def _has_behavior_prediction(text: Any) -> bool:
+    assumption_blob = f" {_lower_blob(text)} "
+    return any(term in assumption_blob for term in PREDICTIVE_ASSUMPTION_TERMS)
+
+
+def _has_role_closeness_inference(actor: dict[str, Any]) -> bool:
+    grounding_blob = _lower_blob(
+        actor.get("grounding_source"),
+        actor.get("bridging_facts"),
+        actor.get("unsafe_inferences"),
+    )
+    return any(term in grounding_blob for term in ROLE_CLOSENESS_TERMS)
+
+
+def _is_role_closeness_open_question(actor: dict[str, Any]) -> bool:
+    if not _has_role_closeness_inference(actor):
+        return False
+    actor_blob = _lower_blob(
+        actor.get("actor_id"),
+        actor.get("display_name"),
+        actor.get("role"),
+    )
+    if not any(term in actor_blob for term in SPOUSE_ACTOR_TERMS):
+        return False
+    return bool(actor.get("unsafe_inferences")) or _has_behavior_prediction(
+        actor.get("advice_assumption")
+    )
+
+
+def _is_spouse_actor(actor: dict[str, Any]) -> bool:
+    actor_blob = _lower_blob(
+        actor.get("actor_id"),
+        actor.get("display_name"),
+        actor.get("role"),
+    )
+    return any(term in actor_blob for term in SPOUSE_ACTOR_TERMS)
+
+
+def _has_discussion_action(text: str) -> bool:
+    tokens = set(_plan_tokens(text))
+    return bool(tokens & DISCUSSION_ACTION_TERMS)
+
+
+def _mentions_spouse(text: str) -> bool:
+    normalized = f" {_normalized_plan_text(text)} "
+    return any(f" {term} " in normalized for term in SPOUSE_ACTOR_TERMS)
+
+
+def _is_spouse_discussion_duplicate(
+    actor: dict[str, Any],
+    plan_change: str,
+    existing_plan_texts: list[str],
+) -> bool:
+    if not _is_spouse_actor(actor) or not _has_discussion_action(plan_change):
+        return False
+    return any(
+        _mentions_spouse(existing) and _has_discussion_action(existing)
+        for existing in existing_plan_texts
+    )
+
+
 def _normalize_actor(actor: dict[str, Any]) -> dict[str, Any]:
     normalized = deepcopy(actor)
-    if (
-        normalized.get("grounding") == "grounded"
-        and normalized.get("grounding_source") == "role_closeness"
+    role_closeness_inference = _has_role_closeness_inference(normalized)
+    lacks_known_evidence = not normalized.get("known_to_actor")
+    behavior_prediction = _has_behavior_prediction(normalized.get("advice_assumption"))
+    if normalized.get("grounding") == "grounded" and (
+        role_closeness_inference or lacks_known_evidence or behavior_prediction
     ):
         normalized["grounding"] = "plausible"
-        normalized["grounding_note"] = "role/closeness inference downgraded from grounded"
+        normalized["grounding_note"] = (
+            GROUNDING_DOWNGRADE_NOTE
+            if role_closeness_inference or lacks_known_evidence
+            else PREDICTIVE_DOWNGRADE_NOTE
+        )
     return normalized
 
 
-def gate_surface(check: dict[str, Any]) -> dict[str, Any]:
+def _normalized_plan_text(text: str) -> str:
+    return " ".join(re.findall(r"[a-z0-9]+", str(text or "").lower()))
+
+
+def _root_token(token: str) -> str:
+    if len(token) > 6 and token.endswith("ing"):
+        return token[:-3]
+    if len(token) > 5 and token.endswith("ed"):
+        return token[:-2]
+    if len(token) > 4 and token.endswith("s"):
+        return token[:-1]
+    return token
+
+
+def _plan_tokens(text: str) -> list[str]:
+    return [
+        _root_token(token)
+        for token in re.findall(r"[a-z0-9]+", str(text or "").lower())
+        if token not in PLAN_STOPWORDS and len(token) > 2
+    ]
+
+
+def _tokens_match(left: str, right: str) -> bool:
+    return left == right or left.startswith(right[:6]) or right.startswith(left[:6])
+
+
+def _has_high_token_overlap(candidate: str, existing: str) -> bool:
+    candidate_tokens = _plan_tokens(candidate)
+    existing_tokens = _plan_tokens(existing)
+    if min(len(candidate_tokens), len(existing_tokens)) < 4:
+        return False
+    shared = {
+        token
+        for token in candidate_tokens
+        if any(_tokens_match(token, other) for other in existing_tokens)
+    }
+    overlap = len(shared) / min(len(candidate_tokens), len(existing_tokens))
+    return len(shared) >= 3 and overlap >= 0.6
+
+
+def _is_duplicate_plan_change(plan_change: str, existing_plan_texts: list[str]) -> bool:
+    candidate = _normalized_plan_text(plan_change)
+    if not candidate:
+        return False
+    for existing in existing_plan_texts:
+        normalized = _normalized_plan_text(existing)
+        if not normalized:
+            continue
+        if candidate in normalized or normalized in candidate:
+            return True
+        if _has_high_token_overlap(plan_change, existing):
+            return True
+    return False
+
+
+def _collect_existing_plan_texts(
+    result: dict[str, Any],
+    extraction: dict[str, Any] | None = None,
+) -> list[str]:
+    texts: list[str] = []
+
+    def collect_text(value: Any) -> None:
+        if isinstance(value, str) and value.strip():
+            texts.append(value)
+
+    def collect_from_items(items: Any) -> None:
+        if not isinstance(items, list):
+            return
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            for field in PLAN_CHANGE_FIELDS:
+                value = item.get(field)
+                if isinstance(value, str) and value.strip():
+                    texts.append(value)
+
+    frame_card = result.get("frame_pressure_card") or {}
+    collect_from_items(frame_card.get("reframings"))
+    delta_card = result.get("delta_card") or {}
+    collect_from_items(delta_card.get("findings"))
+    collect_text((extraction or {}).get("synthesized_position"))
+    return texts
+
+
+def gate_surface(
+    check: dict[str, Any],
+    *,
+    existing_plan_texts: list[str] | None = None,
+) -> dict[str, Any]:
     """Apply product surface gates to a checker output."""
 
     gated = deepcopy(check)
+    existing_texts = existing_plan_texts or []
     actors = [_normalize_actor(a) for a in gated.get("critical_actors") or []]
-    gated["critical_actors"] = actors
+    chat_actors: list[dict[str, Any]] = []
+    with_plan_change: list[dict[str, Any]] = []
+    duplicate_plan_change: list[dict[str, Any]] = []
 
-    with_plan_change = [
-        a for a in actors if str(a.get("plan_change") or "").strip()
-    ]
+    for actor in actors:
+        plan_change = str(actor.get("plan_change") or "").strip()
+        if not plan_change:
+            actor["surface_in_chat"] = False
+            actor["surface_block_reason"] = "no_concrete_plan_change"
+            continue
+
+        with_plan_change.append(actor)
+        if actor.get("grounding") == "speculative":
+            actor["surface_in_chat"] = False
+            actor["surface_block_reason"] = "speculative"
+            continue
+
+        if _is_role_closeness_open_question(actor):
+            actor["surface_in_chat"] = False
+            actor["surface_block_reason"] = "role_closeness_open_question"
+            continue
+
+        if _is_spouse_discussion_duplicate(
+            actor,
+            plan_change,
+            existing_texts,
+        ) or _is_duplicate_plan_change(plan_change, existing_texts):
+            actor["surface_in_chat"] = False
+            actor["surface_block_reason"] = "duplicate_existing_advice"
+            duplicate_plan_change.append(actor)
+            continue
+
+        actor["surface_in_chat"] = True
+        actor["surface_block_reason"] = ""
+        chat_actors.append(actor)
+
+    gated["critical_actors"] = actors
+    gated["chat_actors"] = chat_actors
+
     if not with_plan_change:
         gated["surface"] = False
         gated["surface_reason"] = "no surfaced actor has a concrete plan_change"
         return gated
 
-    non_speculative = [
-        a for a in with_plan_change if a.get("grounding") != "speculative"
-    ]
-    if not non_speculative:
+    if not chat_actors:
         gated["surface"] = False
-        gated["surface_reason"] = "all surfaced assumptions are speculative"
+        if all(a.get("grounding") == "speculative" for a in with_plan_change):
+            gated["surface_reason"] = "all surfaced assumptions are speculative"
+        elif duplicate_plan_change and len(duplicate_plan_change) == len(with_plan_change):
+            gated["surface_reason"] = "all plan-changing actors duplicate existing advice"
+        else:
+            gated["surface_reason"] = "no actor passed chat surface gates"
         return gated
 
     gated["surface"] = bool(gated.get("surface", True))
-    gated["surface_reason"] = "plan-changing grounded-or-plausible assumption"
+    gated["surface_reason"] = (
+        "plan-changing grounded-or-plausible assumption"
+        if gated["surface"]
+        else "checker returned surface=false after actor-level gating"
+    )
     return gated
 
 
@@ -269,6 +589,8 @@ def normalize_checker_payload(
     payload: dict[str, Any],
     *,
     trigger: dict[str, Any],
+    result: dict[str, Any] | None = None,
+    extraction: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     normalized = dict(payload or {})
     normalized["status"] = "completed"
@@ -280,7 +602,10 @@ def normalize_checker_payload(
     ][:2]
     normalized.setdefault("summary", "")
     normalized.setdefault("surface", bool(normalized["critical_actors"]))
-    return gate_surface(normalized)
+    return gate_surface(
+        normalized,
+        existing_plan_texts=_collect_existing_plan_texts(result or {}, extraction),
+    )
 
 
 def run_stakeholder_assumption_check(
@@ -310,6 +635,7 @@ def run_stakeholder_assumption_check(
             "candidate_actors": [],
             "surface": False,
             "critical_actors": [],
+            "chat_actors": [],
         }, []
 
     if boundary is None:
@@ -321,6 +647,7 @@ def run_stakeholder_assumption_check(
             "candidate_actors": list(trigger.get("candidate_actors") or ()),
             "surface": False,
             "critical_actors": [],
+            "chat_actors": [],
             "error": "boundary client required for triggered stakeholder check",
         }, []
 
@@ -344,6 +671,7 @@ def run_stakeholder_assumption_check(
             "candidate_actors": list(trigger.get("candidate_actors") or ()),
             "surface": False,
             "critical_actors": [],
+            "chat_actors": [],
             "error": str(exc),
         }, list(getattr(boundary, "call_log", ()) or ())
 
@@ -356,10 +684,16 @@ def run_stakeholder_assumption_check(
             "candidate_actors": list(trigger.get("candidate_actors") or ()),
             "surface": False,
             "critical_actors": [],
+            "chat_actors": [],
             "error": "boundary returned empty stakeholder check payload",
         }, call_log
 
-    return normalize_checker_payload(raw_payload, trigger=trigger), call_log
+    return normalize_checker_payload(
+        raw_payload,
+        trigger=trigger,
+        result=result,
+        extraction=extraction,
+    ), call_log
 
 
 def _norm(text: str) -> str:
@@ -379,7 +713,11 @@ def score_check(
     check: dict[str, Any],
 ) -> dict[str, Any]:
     expected = annotation.get("expected") or {}
-    actors = check.get("critical_actors") or []
+    actors = (
+        check.get("chat_actors")
+        if "chat_actors" in check
+        else check.get("critical_actors")
+    ) or []
     surfaced = bool(check.get("surface"))
     actor_names = " ".join(
         _as_text(a.get("display_name") or a.get("actor") or a.get("actor_id"))
