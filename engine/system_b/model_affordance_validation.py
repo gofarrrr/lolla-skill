@@ -195,6 +195,8 @@ def iter_model_affordance_errors(
             yield f"{item_path}: affordance must be an object"
             continue
         affordance_id = _string(affordance.get("affordance_id"))
+        if affordance_id and not affordance_id.startswith(f"{model_id}."):
+            yield f"{item_path}: affordance_id must start with model_id '{model_id}.'"
         if affordance_id in seen_affordance_ids:
             yield f"{item_path}: duplicate affordance_id '{affordance_id}'"
         seen_affordance_ids.add(affordance_id)

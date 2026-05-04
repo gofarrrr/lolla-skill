@@ -322,6 +322,7 @@ PR 1 validation should catch:
 - missing `source_quote`
 - affordances without `source_evidence`
 - duplicate affordance IDs
+- affordance IDs that do not start with the record's `model_id`
 - the finite genericity gate above
 - supported records with zero affordances and no explicit absence reason
 - invalid absence records

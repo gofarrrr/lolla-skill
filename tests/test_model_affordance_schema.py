@@ -119,6 +119,17 @@ def test_affordance_with_unknown_status_fails() -> None:
         )
 
 
+def test_affordance_id_must_start_with_record_model_id() -> None:
+    payload = _load_fixture("theory_of_constraints_valid.json")
+    payload["affordances"][0]["affordance_id"] = "second-order-thinking.constraint-proof"
+
+    with pytest.raises(ModelAffordanceValidationError, match="must start with model_id"):
+        validate_model_affordance_payload(
+            payload,
+            path=Path("wrong_affordance_namespace.json"),
+        )
+
+
 @pytest.mark.parametrize(
     "fixture_name",
     [
