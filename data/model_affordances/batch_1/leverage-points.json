@@ -1,0 +1,437 @@
+{
+  "model_id": "leverage-points",
+  "source_file": "Leverage_Points_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "leverage-points.structural-point-proof",
+      "status": "supported",
+      "name": "Prove the structural leverage point before action",
+      "mechanism": "Good use isolates the few influenceable system variables that can change behavior materially, then requires proof that the proposed action sits near an actual feedback loop, bottleneck, governing rule, incentive, flow, or constraint before it earns priority.",
+      "activation_shape": {
+        "use_when": [
+          "A system has many moving parts but only a few intervention points are likely to change behavior materially.",
+          "Resources are limited and one action must alter incentives, flow, feedback, or constraints disproportionately.",
+          "Repeated effort at the surface has failed and the likely opportunity sits deeper in the system structure."
+        ],
+        "do_not_use_when": [
+          "A preferred initiative is being called a leverage point before its feedback loop, bottleneck, or governing rule has been proved.",
+          "The team is jumping into data or complex analysis before defining the underlying problem structure.",
+          "The candidate issue may be high impact, but the actor cannot actually influence it."
+        ],
+        "case_evidence_needed": [
+          "The defined problem and a logical disaggregation of the relevant system pieces.",
+          "The candidate intervention point and the feedback loop, bottleneck, governing rule, incentive, flow, or constraint it touches.",
+          "The reason this point has more impact and influence than the alternatives being set aside."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "structure-before-selection",
+          "description": "Define the problem, disaggregate the system, and identify the few high-impact influenceable points before recommending an intervention.",
+          "evidence_required": [
+            "A precise problem statement.",
+            "A logical breakdown of the system components or variables.",
+            "A shortlist of candidate points ranked by impact and practical influence."
+          ],
+          "good_output_shape": [
+            "Shows the problem structure before naming the intervention.",
+            "Separates high-impact influenceable issues from attractive but low-leverage work.",
+            "States what should not be done because it is outside the vital few variables."
+          ]
+        },
+        {
+          "requirement_id": "proof-of-system-mechanism",
+          "description": "Tie the recommended action to the system mechanism that makes it a leverage point rather than a preferred initiative.",
+          "evidence_required": [
+            "The feedback loop, bottleneck, governing rule, incentive, flow, or constraint affected by the action.",
+            "The expected behavior change if that mechanism moves.",
+            "Evidence that the mechanism is real in the case, not merely plausible in theory."
+          ],
+          "good_output_shape": [
+            "Names the structural mechanism the action touches.",
+            "Explains why moving that mechanism should change system behavior materially.",
+            "Rejects candidate actions that cannot prove proximity to a real system mechanism."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which few intervention points are likely to change behavior materially?",
+        "What proves this action sits near a real feedback loop, bottleneck, governing rule, incentive, flow, or constraint?",
+        "Which high-effort alternatives should be set aside because they do not strike the vital system variable?"
+      ],
+      "misuse_guards": [
+        "Do not label a preferred initiative as leverage before proving its structural mechanism.",
+        "Do not jump to analysis before the problem structure and candidate intervention point are clear.",
+        "Do not prioritize an issue that is important but not actually influenceable by the actor."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "The essence of the model is that not all interventions are created equal; some points within a system offer disproportionately high impact for the effort applied.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "Effective use requires breaking the problem apart into logical pieces and structuring the components, often using a **logic tree**. Problem solvers should focus on issues that have the biggest impact and that they can actually **influence**.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "The seven-step problem-solving process begins with precisely defining the problem, disaggregating issues, and **prioritizing what to do and what not to do**.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "• **Most useful when** the system has many moving parts but only a few intervention points are likely to change behavior materially.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "• **Works best when** resources are limited and the team must decide where one action can alter incentives, flow, feedback, or constraints disproportionately.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "• **Best used when** repeated effort at the surface has failed and the real opportunity lies deeper in the system structure.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "• **Danger when** leaders label every preferred initiative a leverage point without proving that it sits near a real feedback loop, bottleneck, or governing rule.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "• **Jumping to Analysis:** Wading prematurely into data and complex analysis (even with AI techniques) without first clearly defining the structure of the underlying problem is a common error.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "leverage-points.hypothesis-bounded-analysis",
+      "status": "supported",
+      "name": "Limit analysis to leverage-testing facts",
+      "mechanism": "Once a candidate leverage hypothesis exists, the model constrains analysis to the facts needed to prove or disprove that hypothesis and suppresses marginal chart-building, so scarce attention goes to variables that can change the decision.",
+      "activation_shape": {
+        "use_when": [
+          "The team is collecting more data or producing more charts without a clear link to the leverage hypothesis.",
+          "A central hypothesis can be tested with a smaller set of facts than the current analysis plan demands.",
+          "The work needs periodic checks that current effort still solves the problem and advances thinking."
+        ],
+        "do_not_use_when": [
+          "The problem structure and central leverage hypothesis have not yet been named.",
+          "The next step truly requires defining the system before deciding which evidence is low leverage.",
+          "The needed fact would prove or disprove the central hypothesis rather than merely add decorative completeness."
+        ],
+        "case_evidence_needed": [
+          "The central hypothesis or analysis being tested.",
+          "The minimum facts needed to prove, disprove, support, or refute it.",
+          "The current data collection, chart production, or analysis work that should stop if it does not change the decision."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "minimal-fact-threshold",
+          "description": "State the central hypothesis and the smallest evidence threshold that would prove, disprove, support, or refute it.",
+          "evidence_required": [
+            "A named central hypothesis or analysis.",
+            "The specific facts needed to test the hypothesis.",
+            "The decision that will change if the hypothesis is proved or disproved."
+          ],
+          "good_output_shape": [
+            "Defines the hypothesis before requesting more evidence.",
+            "Limits evidence gathering to facts that change belief about the hypothesis.",
+            "Marks additional analysis as low leverage when it cannot change the recommendation."
+          ]
+        },
+        {
+          "requirement_id": "periodic-focus-check",
+          "description": "Use the source's check-in questions to interrupt low-leverage work before analysis expands beyond the decision need.",
+          "evidence_required": [
+            "The current work product or activity being evaluated.",
+            "How that activity solves the problem or advances thinking.",
+            "Whether it is the most important thing to do now compared with other candidate actions."
+          ],
+          "good_output_shape": [
+            "Names the current activity and its expected contribution to the problem.",
+            "Keeps only the activities that solve the problem or advance the central analysis.",
+            "Stops or defers activity that is not the most important thing to do now."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What central hypothesis is this analysis trying to prove or disprove?",
+        "How does what you are doing solve the problem?",
+        "How does it advance your thinking?",
+        "Is it the most important thing you could be doing right now?"
+      ],
+      "misuse_guards": [
+        "Do not boil the ocean by gathering facts that cannot support or refute the central analysis.",
+        "Do not keep producing charts in pursuit of tiny marginal gains when the effort is disproportionate to the gain.",
+        "Do not let comprehensive-looking analysis displace the few facts needed to test the leverage hypothesis."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "To avoid wasting time on low-leverage activities (\"Don't boil the ocean\"), one must gather only enough facts required to prove or disprove a central hypothesis or support/refute an analysis.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "This ensures data collection is highly focused and efficient.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "The process of identifying and acting on leverage points must be constantly monitored to ensure focus remains on high-impact areas.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "◦ \"How does what you’re doing solve the problem?\".",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "◦ \"How does it advance your thinking?\".",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "◦ \"Is it the most important thing you could be doing right now?\".",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "• **Boiling the Ocean:** This anti-pattern involves gathering a mountain of data or continually producing more charts in pursuit of tiny, marginal gains, ignoring the fact that the audience cannot absorb more and that the effort is disproportionate to the gain.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "leverage-points.resistance-bias-execution-hardening",
+      "status": "supported",
+      "name": "Harden leverage choices against resistance and bias",
+      "mechanism": "High-leverage interventions face system resistance and can be captured by familiar tools or desired conclusions, so a good answer must test assumptions, seek disconfirming evidence, model adverse scenarios, and specify the execution how before treating the point as usable.",
+      "activation_shape": {
+        "use_when": [
+          "A proposed intervention targets deep structure, governing paradigms, or another high-resistance part of the system.",
+          "The candidate leverage point may reflect a familiar frame, expert tool, preferred initiative, or desired conclusion.",
+          "The strategy names the leverage point but has not yet explained the execution path required to make it work."
+        ],
+        "do_not_use_when": [
+          "There is no candidate leverage point or system intervention to harden yet.",
+          "The case already exposes assumptions, disconfirming evidence, resistance, worst-case scenarios, and execution steps.",
+          "The action is a simple low-resistance task where system pushback and leverage-point capture are not material."
+        ],
+        "case_evidence_needed": [
+          "The assumptions and underlying logic implicit in the proposed leverage point.",
+          "Disconfirming evidence, an antithesis, outside-view evidence, or an opposing perspective that could challenge the proposal.",
+          "The expected resistance, worst-case scenario, and execution path that converts the chosen leverage point from what to how."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "assumption-antithesis-test",
+          "description": "Expose the assumptions carrying the proposed leverage point and test them against antithesis, disconfirming evidence, or an outside view.",
+          "evidence_required": [
+            "The proposed leverage point and the assumptions it depends on.",
+            "The antithesis or opposing view that would challenge the proposal.",
+            "Disconfirming evidence or outside-view evidence that could reveal a wrong leverage diagnosis."
+          ],
+          "good_output_shape": [
+            "States what must be true for the leverage point to work.",
+            "Presents the strongest antithesis or opposing view before synthesis.",
+            "Names the disconfirming evidence that would cause the answer to revise or reject the leverage point."
+          ]
+        },
+        {
+          "requirement_id": "execution-resistance-plan",
+          "description": "Convert the selected leverage point into an implementation path that accounts for system resistance and adverse scenarios.",
+          "evidence_required": [
+            "The execution steps or constraints needed to implement the point.",
+            "Where the system is likely to resist changing the leverage point.",
+            "The worst-case or far-from-mean outcome that should change the plan."
+          ],
+          "good_output_shape": [
+            "Separates the strategic what from the execution how.",
+            "Names the resistance or constraint that could stop implementation.",
+            "Includes a worst-case check before aggressive leverage is pursued."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What would have to be true for this proposed leverage point to work?",
+        "What disconfirming evidence or opposing view would show that the candidate point is just a familiar or preferred frame?",
+        "Where will the system resist changing this point, and what execution path handles that resistance?",
+        "Is the worst case bad enough to change the plan?"
+      ],
+      "misuse_guards": [
+        "Do not let a familiar framework turn a novel context into an assumed X problem.",
+        "Do not focus analysis only on data that supports the initial assumed leverage point.",
+        "Do not treat identifying the leverage point as sufficient when the execution how remains undefined.",
+        "Do not let one expert tool hide a higher-leverage intervention outside that specialty."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "A key principle associated with Leverage Points is that **the higher the leverage point, the more the system will resist changing it**.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "It is often straightforward to identify the necessary strategy (the \"what,\" or the leverage point), but extremely difficult to figure out the **execution** (the \"how\"). A great plan that cannot be implemented is useless.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "While simplification is necessary to manage complexity, there is a risk that using pre-existing theoretical frameworks leads to the assumption, \"I have seen this one before, it is an X problem,\" which may be misleading in a novel context.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "• **Maslow's Hammer (Law of the Instrument):** This cognitive bias is a direct antagonist. It occurs when an individual, possessing expertise in one area, attempts to treat every problem as if it were solvable only with their single available tool. This prevents the user from recognizing that the highest-leverage intervention might exist outside their specialized domain.",
+          "section_hint": "The Latticework: Systemic Interactions:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "| **Confirmation Bias** | Focusing analysis only on data that supports the initial assumed leverage point, rather than seeking **disconfirming evidence** or flaws in the underlying logic. |  |",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "| **Motivated Reasoning** | Allowing personal beliefs or emotional investments (e.g., career implications of disproving a boss's vision) to steer the diagnosis away from uncovering the true, uncomfortable problem. |  |",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "| **Dialectic Standard & Constructive Confrontation** | Establish a norm where every hypothesis or idea is met with its **antithesis** before synthesis. Ask **“What would you have to believe?”** to explicitly spell out and stress-test all assumptions implicit in the proposed leverage point. |  |",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "| **Anchoring to the Outside View** | Counter the inside view (your own perspective and biases) by anchoring decision-making to the **outside view**—what is true of the world in general or how others would see the situation. |  |",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "| **Pre-mortem and Risk Quantification** | Use pre-mortems (or game theory thinking) to model competitive scenarios, assess likely payoffs, and simulate outcomes. Explicitly ask: **\"Is the worst case bad enough?\"** to ensure sufficient weight is given to outcomes far from the expected mean. |  |",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-communication-core-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source contains pitch and core-message examples, but they are applications of prioritizing the vital few and avoiding overload rather than a separate broad-overlay treatment contract for this record.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "Rather than presenting numerous facts, a communicator must relentlessly **prioritize** to distill the message down to one or two crucial, simple, and profound points—like a proverb.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "Instead of overwhelming the audience, effective pitching involves using a **single, clear, direct, and non-threatening** idea that targets the primal, rapid-processing part of the brain (\"croc brain\") to generate **hot cognitions** (wanting).",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Leverage_Points_rag.md",
+      "source_quote": "Leverage Points are fundamentally defined as the **places to intervene in a system**.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Leverage_Points_rag.md",
+      "source_quote": "The model provides a structured way to think about how different elements within a complex system can be modified to produce desired outcomes, aiming for **system change**.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Leverage_Points_rag.md",
+      "source_quote": "The Leverage Points model is applied by imposing structure and prioritizing efforts on the vital variables that influence the problem.",
+      "section_hint": "The Playbook in Action:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted three structural affordances from the full packet: proving a real leverage point before action, bounding analysis to hypothesis-testing facts, and hardening the selected point against resistance, bias, and execution failure. Curation files were read for orientation, but exact evidence is drawn from Leverage_Points_rag.md. This is an offline review artifact and does not imply runtime promotion.",
+    "dropped_material": [
+      "Did not create a generic definition affordance because the model definition explains leverage points but does not add a distinct operational contract beyond the extracted records.",
+      "Did not create standalone relation affordances for systems-thinking, prioritization, first-principles-thinking, optionality, margin-of-safety, or confirmation-bias because those are already represented in relation curation unless later review needs cross-model contracts.",
+      "Did not extract a separate communication or startup-pitching affordance because those passages are narrower applications of vital-few prioritization and overload avoidance.",
+      "Did not treat source headings or risk-table labels as automatic misuse guards; only lines that changed evidence, questions, sequencing, treatment, or audit behavior were normalized."
+    ],
+    "open_questions": [
+      "A later reviewer could decide whether the communication-focused examples deserve a separate domain-specific affordance, but they were intentionally left out of this broad-overlay record.",
+      "The resistance and execution-hardening affordance combines resistance, bias, and implementation evidence because the source supports them as safeguards around the same candidate leverage point, not as three independent runtime contracts."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "model_id": "multi-criteria-decision-analysis",
+  "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "multi-criteria-decision-analysis.auditable-weighted-tradeoff-matrix",
+      "status": "supported",
+      "name": "Auditable weighted trade-off matrix before ranking",
+      "mechanism": "Before ranking options, define success criteria, criteria weights, benchmarks, assumptions, and sensitivity checks so multidimensional trade-offs can be challenged without letting the matrix rationalize a preferred answer.",
+      "activation_shape": {
+        "use_when": [
+          "Several criteria matter at once and intuitive or political trade-offs would likely be inconsistent.",
+          "A high-stakes choice needs explicit weighting logic that can be challenged, revised, and audited.",
+          "The team must compare options across competing goals instead of collapsing the decision into one metric or preference."
+        ],
+        "do_not_use_when": [
+          "The team does not understand or believe the precise weights well enough for the scoring model to be honest.",
+          "Criteria or weights are being chosen after the favored option is visible, turning the matrix into rationalization.",
+          "The group is endlessly refining criteria, weights, or what-if scenarios instead of making a bounded decision."
+        ],
+        "case_evidence_needed": [
+          "The options or concepts being compared and any benchmark option used as a reference.",
+          "The evaluation criteria, success criteria, and assigned weights, including when they were set.",
+          "The assumptions behind the favored option plus the weight, probability, or criterion changes that would reverse the ranking.",
+          "Evidence sources for criteria and scores, including independent or anonymized input where status effects could skew the matrix."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "build-precommitted-matrix",
+          "description": "Build the comparison around criteria, weights, options, and a benchmark before letting option scores drive the conversation.",
+          "evidence_required": [
+            "The options or concepts being compared.",
+            "The evaluation criteria and success criteria written before option scoring.",
+            "The percentage weights or relative importance assigned to each criterion.",
+            "The benchmark or reference option used to make scores comparable."
+          ],
+          "good_output_shape": [
+            "Shows criteria as the comparison surface rather than a simple pro-con list or single favored metric.",
+            "Displays options, criteria, weights, and benchmark logic before presenting the ranking.",
+            "States whether criteria were set before reviewing options or whether preference steering is a live concern."
+          ]
+        },
+        {
+          "requirement_id": "run-sensitivity-and-premortem",
+          "description": "Stress-test the favored ranking by varying key weights and probabilities, surfacing hidden assumptions, and checking worst-case tolerance before recommending commitment.",
+          "evidence_required": [
+            "The criterion, weight, probability, or score assumption that most drives the current ranking.",
+            "The beliefs that must be true for the favored option to succeed.",
+            "The worst-case outcome and whether it is acceptable even if improbable.",
+            "Any reference-class or research evidence that supports or weakens the dominant criteria."
+          ],
+          "good_output_shape": [
+            "Names the sensitivity threshold that would reverse the ranking or force debate on the dominant criterion.",
+            "Lists the assumptions the favored option depends on instead of hiding them inside the score.",
+            "Separates the quality of the decision process from whether one outcome happened to be lucky.",
+            "Bounds further analysis so matrix refinement does not postpone action after the decisive uncertainties are visible."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What criteria and weights would we have written down before seeing the option scores?",
+        "What do we have to believe for this option to succeed?",
+        "Which plausible change in weights, probabilities, or reference-class assumptions would reverse the ranking?",
+        "Is the worst case bad enough that a low-probability downside should dominate the matrix?"
+      ],
+      "misuse_guards": [
+        "Do not present precise weights as objective when the team does not understand or believe them.",
+        "Do not choose or revise criteria after seeing scores to steer toward a desired conclusion.",
+        "Do not keep refining the matrix once sensitivity checks and decision boundaries are sufficient for action.",
+        "Do not force a familiar scoring framework onto a novel problem when that framework would distort the case."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "providing an explicit structure for evaluating options based on multiple, often weighted, factors.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "Enter evaluation criteria in the rows and concepts (options) in the columns.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "Assign percentages to reflect differences in importance.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "Evaluate the ideas against a reference concept, which could be a conventional solution or a best-in-class option.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "criteria must be established *before* reviewing the options to prevent criteria design from steering toward subconscious preferences.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "several decision criteria matter at once and intuitive trade-offs are likely to be inconsistent or politically distorted.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "a high-stakes choice needs an explicit weighting logic that can be challenged, revised, and audited.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "the scoring model creates false objectivity by assigning precise weights to criteria the team does not actually understand or believe.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "criteria are subconsciously chosen or weighted to **steer toward a desired conclusion**, rather than discovering what is objectively true.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "systematically vary the inputs (weights and probabilities) to identify key drivers and expose hidden assumptions.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "What do we have to believe for this option to succeed?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "Getting stuck endlessly iterating the analysis, refining criteria, and running \"what-if\" scenarios to achieve perfection",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed matrix construction, precommitted criteria, assumption challenge, and sensitivity analysis into one operational affordance because the source treats them as one MCDA discipline for explicit, auditable trade-offs.",
+        "dropped_material": [
+          "Did not split decision-tree visualization, cost-benefit analogy, work planning, and creative-vetting examples into separate affordances; they illustrate the same weighted trade-off mechanism.",
+          "Did not promote digital twin or system-prompt examples into runtime behavior.",
+          "Did not convert every risks-table row into a separate guard; motivated criteria manipulation, false objectivity, sensitivity analysis, and analysis paralysis were the source-backed operational core."
+        ],
+        "open_questions": [
+          "Review may later decide whether process-quality versus outcome-quality deserves its own affordance, but this pass keeps it as part of the sensitivity and premortem treatment."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-automation-runtime-decision-rules-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source uses AI, digital twins, and approval workflows as examples of explicit decision logic, but that material does not add a separate MCDA affordance beyond the source-backed requirement to make criteria, weights, and decision rules explicit; it must not be promoted into runtime behavior.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "In technology and business process management, MCDA principles are used to encode logic into AI systems.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "Embedding these frameworks, often via system prompts, dictates the choice between option A and B.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-latticework-relation-affordance",
+      "status": "source_too_thin",
+      "reason": "The source names useful allies and antagonists, but the relation table does not provide a distinct MCDA treatment requirement beyond strengthening or guarding the weighted matrix already extracted.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "MCDA forms a critical node in the multidisciplinary latticework of mental models.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+          "source_quote": "MCDA is the mechanism for operating a complex organizational machine.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+      "source_quote": "providing an explicit structure for evaluating options based on multiple, often weighted, factors.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+      "source_quote": "criteria must be established *before* reviewing the options to prevent criteria design from steering toward subconscious preferences.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+      "source_quote": "a high-stakes choice needs an explicit weighting logic that can be challenged, revised, and audited.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Multi_Criteria_Decision_Analysis_rag.md",
+      "source_quote": "systematically vary the inputs (weights and probabilities) to identify key drivers and expose hidden assumptions.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full extraction packet, raw Markdown source, activation curation, intervention curation, relation curation, schema, and extraction contract. Extracted one high-confidence operational affordance centered on explicit weighted trade-offs plus sensitivity and assumption audit; curation was used only as context and exact quotes come from the canonical Markdown source.",
+    "dropped_material": [
+      "Did not extract standalone affordances for cost-benefit analysis, decision trees, conductor-score analogy, work planning, investment strategy, creative ideation, business strategy, systems thinking, Bloom's taxonomy, design thinking, believability weighting, hot cognition, or curse of knowledge.",
+      "Did not treat relation curation as runtime relation promotion.",
+      "Did not convert the automation/system-prompt examples into runtime behavior."
+    ],
+    "open_questions": [
+      "Reviewers may want to decide later whether the good-decision versus good-outcome material should become a separate affordance or remain a treatment note inside MCDA.",
+      "The source contains strong relation material, but this pass keeps it out of model affordances unless a future relation-aware layer needs it."
+    ],
+    "review_status": "draft"
+  }
+}

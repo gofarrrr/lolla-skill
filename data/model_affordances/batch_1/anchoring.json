@@ -1,0 +1,265 @@
+{
+  "model_id": "anchoring",
+  "source_file": "Anchoring_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "anchoring.provisional-anchor-with-correction",
+      "status": "supported",
+      "name": "Provisional anchor with correction discipline",
+      "mechanism": "Set an initial reference point to focus attention, scope, comparison, or comprehension, then keep that anchor explicitly revisable by testing the assumptions and disconfirming evidence that would break it.",
+      "activation_shape": {
+        "use_when": [
+          "A starting point, example, hypothesis, analogy, or frame can make a complex space navigable before deeper evidence arrives.",
+          "A team needs a clear objective, scope, expectation, comparison point, or learning scaffold to focus work.",
+          "New material or an unfamiliar concept needs to connect to an existing schema so people can hold the problem long enough to reason about it."
+        ],
+        "do_not_use_when": [
+          "The first number, frame, analogy, hypothesis, or familiar model is becoming non-negotiable.",
+          "Later evidence is being sought or interpreted only when it supports the initial anchor.",
+          "A familiar model is being substituted automatically for a genuinely novel problem."
+        ],
+        "case_evidence_needed": [
+          "The proposed anchor: starting point, hypothesis, analogy, frame, objective, or reference point.",
+          "The decision, scope, expectation, comparison, learning object, or data-gathering path the anchor is meant to focus.",
+          "The assumptions under the anchor and the evidence, outside view, or alternative frames that could disconfirm or replace it."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-provisional-job",
+          "description": "State the initial anchor and the job it is allowed to do: focus attention, reduce complexity, bound scope, guide comparison, or concentrate data gathering while better evidence arrives.",
+          "evidence_required": [
+            "The initial anchor or frame being proposed.",
+            "The concrete focus job the anchor is meant to perform.",
+            "The deeper evidence or later correction point that keeps the anchor provisional."
+          ],
+          "good_output_shape": [
+            "Labels the anchor as provisional rather than final truth.",
+            "Names the scope, comparison, learning scaffold, or data-gathering path the anchor organizes.",
+            "States what later evidence would justify revising or discarding the anchor."
+          ]
+        },
+        {
+          "requirement_id": "test-anchor-against-alternatives",
+          "description": "Before preserving the anchor, list the beliefs it requires and test it against disconfirming evidence, alternative disciplines or frameworks, the outside view, or a dialectic challenge.",
+          "evidence_required": [
+            "The assumptions that must be true for the anchor to hold.",
+            "Disconfirming evidence or missing evidence that would change the anchor.",
+            "At least one alternative frame, outside-view comparison, or opposed thesis for high-stakes uses."
+          ],
+          "good_output_shape": [
+            "Separates evidence that supports the anchor from evidence that could defeat it.",
+            "Compares the anchor with alternative frames or outside-view facts before accepting it.",
+            "Updates, narrows, or rejects the anchor when the correction test fails."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What other disciplines or frameworks might apply here?",
+        "What would you have to believe to accept this perspective?",
+        "What is generally true of the world, independent of my perspective, concerning this situation?",
+        "Is the worst case bad enough?"
+      ],
+      "misuse_guards": [
+        "Do not let the initial anchor become blinders that hide the rest of the picture.",
+        "Do not preserve the anchor by seeking only evidence that supports it.",
+        "Do not use a familiar past model as a substitute for the real variables of a novel problem.",
+        "Do not estimate complex systems from a base case when disjunctive failure or conjunctive success structures need stress testing."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "The purpose of the anchor, when used as a conscious strategy (rather than a recognized bias), is to **establish a clear initial reference point** to organize complex thought or influence perception.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "**Most useful when** a starting point, example, or framing device can deliberately focus attention and make a complex space more navigable.",
+          "section_hint": "Strengths (When the Model is Applied Strategically)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "**Works best when** leaders need to set an initial reference point for scope, expectation, or comparison while staying alert to later correction.",
+          "section_hint": "Strengths (When the Model is Applied Strategically)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "This initial hypothesis is a powerful anchor, ensuring the subsequent data collection is concentrated only on facts needed to prove or disprove the anchor.",
+          "section_hint": "Concrete Examples in Business, Strategy, and Decision-Making",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "By deliberately anchoring new information to existing knowledge structures (mental models or schemas), teachers enhance comprehension and retention, facilitating the transfer of information into long-term memory.",
+          "section_hint": "Strengths (When the Model is Applied Strategically)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "**Danger when** the first number, frame, or analogy quietly becomes non-negotiable and later evidence is only interpreted around it.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "This fixation can activate **confirmation bias**, where people only seek information that supports the initial anchor, inhibiting their learning and ability to see the full scope of possibilities.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "This anti-pattern, sometimes called the **availability heuristic or substitution bias**, leads to misapplying familiar frames to genuinely novel problems, risking disastrously wrong solutions.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "What other disciplines or frameworks might apply here?",
+          "section_hint": "Mitigation Strategies and Counter-Measures",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "What would you have to believe to accept this perspective?",
+          "section_hint": "Mitigation Strategies and Counter-Measures",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "What is generally true of the world, independent of my perspective, concerning this situation?",
+          "section_hint": "Mitigation Strategies and Counter-Measures",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "Is the worst case bad enough?",
+          "section_hint": "Mitigation Strategies and Counter-Measures",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "Establish the **dialectic standard** where every initial idea (thesis) is met with its opposite (antithesis) and challenged constructively before synthesis.",
+          "section_hint": "Mitigation Strategies and Counter-Measures",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "If the initial intuitive idea (anchor) proves insufficient, one must consciously switch to **slower and more deliberate analytical thinking**.",
+          "section_hint": "Mitigation Strategies and Counter-Measures",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "Anchoring leads to unwarranted optimism regarding plans with conjunctive structures (where all steps must succeed) and, conversely, underestimation of failure in complex disjunctive systems (where failure of any component causes total system failure).",
+          "section_hint": "Common Risks and Failure Modes",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Merged the source's beneficial reference-point use with its anti-entrenchment mitigations because good operational use of anchoring requires the anchor and the correction discipline together.",
+        "dropped_material": [
+          "Did not split communication analogies, learning scaffolds, hypothesis-driven consulting, and outside-view correction into separate affordances because they share the same provisional-anchor mechanism.",
+          "Did not promote relation-only ally and antagonist material as separate affordances; it is used here only where the source makes a correction requirement operational."
+        ],
+        "open_questions": [
+          "A future reviewed relation layer may decide whether outside-view correction should be represented as a link to base-rates rather than remaining inside this affordance."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "pricing-or-valuation-anchor-affordance",
+      "status": "source_too_thin",
+      "reason": "The source names pricing and valuation as an obvious application but explicitly says it does not provide quantitative examples, so there is no reusable treatment requirement beyond the general provisional-anchor discipline.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "The most obvious application, though not detailed in sources with quantitative examples, is setting an initial, high price point.",
+          "section_hint": "Concrete Examples in Business, Strategy, and Decision-Making",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "runtime-agent-prompting-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The AI-agent-design example shows contextual anchoring as a domain example, but it does not support promoting this dormant record into runtime routing, prompt behavior, or user-facing agent personality controls.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Anchoring_rag.md",
+          "source_quote": "In designing sophisticated AI agents (digital twins), prompt engineering is used to **anchor** the model's behavior and personality.",
+          "section_hint": "Concrete Examples in Business, Strategy, and Decision-Making",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Anchoring_rag.md",
+      "source_quote": "The purpose of the anchor, when used as a conscious strategy (rather than a recognized bias), is to **establish a clear initial reference point** to organize complex thought or influence perception.",
+      "section_hint": "Core Definition and Purpose",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Anchoring_rag.md",
+      "source_quote": "**Works best when** leaders need to set an initial reference point for scope, expectation, or comparison while staying alert to later correction.",
+      "section_hint": "Strengths (When the Model is Applied Strategically)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Anchoring_rag.md",
+      "source_quote": "**Danger when** the first number, frame, or analogy quietly becomes non-negotiable and later evidence is only interpreted around it.",
+      "section_hint": "Weaknesses and Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Anchoring_rag.md",
+      "source_quote": "What would you have to believe to accept this perspective?",
+      "section_hint": "Mitigation Strategies and Counter-Measures",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full packet, source markdown, Wave 1 activation curation, Wave 2 intervention curation, and Wave 3 relation curation. Extracted one sharp affordance that requires anchoring to remain provisional and testable rather than treating every source example as a separate model affordance.",
+    "dropped_material": [
+      "Did not create a separate persuasion or strategic-framing affordance because the source does not add a distinct evidence or treatment requirement beyond setting a provisional reference point.",
+      "Did not create separate cognitive-load, narrative, pyramid-principle, or multidisciplinary relation affordances because those belong primarily to relation semantics unless a future review asks for cross-model activation records.",
+      "Did not promote AI-agent-design material into runtime behavior because this substrate is review-only and the source example does not authorize runtime changes."
+    ],
+    "open_questions": [
+      "Review may decide whether the systems-risk stress-test material deserves a later second affordance; for this pass it is retained as a misuse guard inside the correction discipline."
+    ],
+    "review_status": "draft"
+  }
+}

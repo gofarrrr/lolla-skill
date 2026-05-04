@@ -1,0 +1,353 @@
+{
+  "model_id": "emergence",
+  "source_file": "Emergence_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "emergence.map-interaction-produced-behavior",
+      "status": "supported",
+      "name": "Map interaction-produced behavior before component fixes",
+      "mechanism": "Emergence earns weight when the answer explains which relationships, timing, combinations, or feedback among simpler parts produce behavior that cannot be predicted by evaluating each component alone.",
+      "activation_shape": {
+        "use_when": [
+          "The whole-system result cannot be inferred from the parts alone, and interaction effects or timing may explain the outcome.",
+          "People are improving or blaming individual components while the behavior is being produced by relationships between parts.",
+          "A novel or complex system is generating patterns that only become visible after multiple forces interact."
+        ],
+        "do_not_use_when": [
+          "The task is a predictable mechanistic process where independent component quality explains the result sufficiently.",
+          "The case lacks evidence about the parts, relationships, timing, or combinations that could produce a system-level pattern.",
+          "A reductive decomposition is required first and no recombination or interaction effect is under review."
+        ],
+        "case_evidence_needed": [
+          "The distinct parts or agents in the system and the outcome that seems larger than the sum of those parts.",
+          "The interaction map: relationships, timing, combinations, causal links, or feedback loops among parts.",
+          "The emergent behavior or weak signal that appears at system level and would be missed by part-by-part scoring."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-parts-and-interactions",
+          "description": "Before recommending a component fix, identify the parts, map how they interact, and state the system-level behavior that emerges from those interactions.",
+          "evidence_required": [
+            "The components or agents being evaluated.",
+            "The relationships, timing, combinations, causal links, or feedback loops among those parts.",
+            "The system-level behavior that appears only after the parts interact."
+          ],
+          "good_output_shape": [
+            "Names the parts and the interaction pattern before naming a fix.",
+            "Explains what emerges from the interaction and why component-by-component scoring would miss it.",
+            "Keeps uncertainty visible when the interaction map is incomplete."
+          ]
+        },
+        {
+          "requirement_id": "shift-from-part-score-to-system-pattern",
+          "description": "If interaction effects dominate component quality, evaluate changes by whether they alter the relationships or combinations producing the whole rather than whether one part improves in isolation.",
+          "evidence_required": [
+            "Evidence that component quality alone does not explain or predict the result.",
+            "The relationship or combination expected to produce the whole-system pattern.",
+            "The system-level signal that should move if the relationship or combination changes."
+          ],
+          "good_output_shape": [
+            "Separates component-level observations from system-level behavior.",
+            "Recommends the relationship, timing, combination, or feedback loop to inspect or change.",
+            "Names the weak signal or emergent pattern that should be monitored instead of only local component metrics."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What emerges from the interaction between these parts that is invisible when each part is assessed in isolation?",
+        "Which relationships, timing effects, or combinations are producing the whole-system behavior?",
+        "Would improving one component at a time change the outcome, or is the result produced by relationships between parts?"
+      ],
+      "misuse_guards": [
+        "Do not score components independently when the source problem turns on relationships, combinations, or timing.",
+        "Do not treat a tidy decomposition as sufficient if the behavior only appears after parts interact.",
+        "Do not let local objective optimization suppress weak system-level signals that reveal new behavior."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "**complex, unpredictable, and often profound outcomes arise from the interaction of simpler, distinct parts within a system**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "This involves analyzing the components of a system, how they interact, and determining **\"what emerges from that interaction\"**.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "Emergence is strongest when system-level behavior depends on interactions, timing, or combinations that are invisible if each component is assessed in isolation.",
+          "section_hint": "Strengths and Contexts of Power",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "The model has high leverage when improving one part at a time will not explain or predict the result because the behavior is being produced by relationships between parts.",
+          "section_hint": "Strengths and Contexts of Power",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "emergence conflicts with optimization-theory (optimization theory) when fixed objective functions suppress weak signals that reveal new system behavior.",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "emergence conflicts with first-principles-thinking (first principles thinking) when reductive decomposition misses interaction effects that appear only at system level.",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Normalized the source's whole-system, interaction-effect, and anti-reduction material into one evidence requirement: map the producing relationships before recommending component fixes.",
+        "dropped_material": [
+          "Did not split systems-thinking, first-principles-thinking, and optimization-theory into separate affordances because they are relation context unless a future review asks for cross-model treatment records."
+        ],
+        "open_questions": [
+          "A later relation review may decide whether the optimization-theory and first-principles tensions should stay only in relation semantics rather than appearing as misuse evidence here."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "emergence.design-conditions-feedback-not-script",
+      "status": "supported",
+      "name": "Design conditions and feedback instead of scripts",
+      "mechanism": "When the path cannot be fully charted in advance, good use sets the environment, constraints, connections, and feedback loops that let desirable patterns emerge while preventing open-ended drift.",
+      "activation_shape": {
+        "use_when": [
+          "Implementation or strategy is unfolding in a novel setting where the path and resulting dynamics cannot be fully specified in advance.",
+          "Leaders can shape the environment, constraints, connections, and feedback more reliably than they can script the outcome.",
+          "The organization needs adaptive strategy, learning loops, or continuous modification rather than strict adherence to a fixed plan."
+        ],
+        "do_not_use_when": [
+          "The work requires a fixed sequential process where diagnosis, design, and implementation must stay separate and ordered.",
+          "The team is using openness, spontaneity, or let-it-emerge language to avoid minimal structure and feedback.",
+          "A blueprint is actually available and the remaining task is straightforward execution rather than adaptive pattern formation."
+        ],
+        "case_evidence_needed": [
+          "The intended outcome and why the path cannot be fully charted in advance.",
+          "The initial conditions, environment, constraints, connections, and feedback loops the team can design.",
+          "The learning signal or iteration cadence that will show whether healthier patterns are emerging."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "set-minimal-enabling-conditions",
+          "description": "The answer must name the designed environment, constraints, connections, and feedback loops that make healthy emergence more likely instead of pretending the outcome can be fully scripted.",
+          "evidence_required": [
+            "The desired outcome or pattern that cannot be reliably scripted.",
+            "The environment, constraints, connections, or starting conditions available to shape the system.",
+            "The feedback loop or learning signal that will show whether better patterns are emerging."
+          ],
+          "good_output_shape": [
+            "States the outcome as a pattern to cultivate rather than a path to micromanage.",
+            "Names the minimal design conditions and feedback loops that should be put in place.",
+            "Explains how the team will learn and adjust as the path unfolds."
+          ]
+        },
+        {
+          "requirement_id": "separate-adaptation-from-improvisation",
+          "description": "The answer must distinguish flexible implementation from making it up as the team goes along, preserving enough structure, constraints, and feedback to prevent drift.",
+          "evidence_required": [
+            "Evidence that the situation needs adaptation rather than a rigid blueprint.",
+            "The minimal structure or sequencing that must still be preserved.",
+            "The specific feedback, owner, or review point that will keep flexibility from becoming drift."
+          ],
+          "good_output_shape": [
+            "Names what should remain flexible and what must stay structured.",
+            "Flags any fixed sequential process that should not be blurred under an emergence label.",
+            "Adds a feedback or review mechanism that turns adaptation into learning rather than improvisation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which conditions, constraints, connections, or feedback loops must be designed so better patterns can emerge?",
+        "Are we treating this implementation as a mechanical, linear process, or are we allowing for emergence and adaptation?",
+        "Where are we mistaking implementation flexibility for making it up as we go along?"
+      ],
+      "misuse_guards": [
+        "Do not use emergence as permission to hide behind spontaneity or openness without design discipline.",
+        "Do not blur fixed sequential processes when true problems must be diagnosed before solutions are designed or implemented.",
+        "Do not pretend the full path can be scripted when implementation is more emergent than a blueprint."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "implementation phase of a plan is often described as **more emergent than amenable to a blueprint**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "the specific path and resulting dynamics unfold in a way that cannot be fully charted in advance.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "the focus shifts to creating an environment where valuable outcomes can emerge",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "constantly modifying its processes and people to improve outcomes.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "Emergence is particularly useful when success depends on creating the environment, constraints, and connections from which better patterns can arise.",
+          "section_hint": "Strengths and Contexts of Power",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "treating it as entirely emergent without underlying structure is dangerous.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "setting the minimal structure, constraints, and feedback needed for healthy emergence.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "Blurring these distinct steps interferes with uncovering true problems, which must be diagnosed *before* solutions can be designed or implemented.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "Are we treating this implementation as a mechanical, linear process, or are we allowing for emergence and adaptation?",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Merged adaptive strategy, learning organization, implementation-as-engagement, and anti-busking material into one condition-design affordance.",
+        "dropped_material": [
+          "Did not convert every implementation warning into a separate guard; the shared operational requirement is minimal structure plus feedback."
+        ],
+        "open_questions": [
+          "A reviewer may want tighter boundaries between this affordance and complex-adaptive-systems records because both use emergence and adaptation language."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "fixed-sequential-process-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source treats fixed sequential work as a place where emergence struggles; a positive emergence affordance for blurring diagnosis, design, and implementation would invert the source.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "Emergence struggles when a fixed, sequential process is required",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "Blurring these distinct steps interferes with uncovering true problems, which must be diagnosed *before* solutions can be designed or implemented.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "creative-ideation-volume-affordance",
+      "status": "source_too_thin",
+      "reason": "The source gives creative ideation as an example of emergent process, but it does not supply a distinct emergence-specific activation and treatment contract beyond the stronger interaction-mapping and condition-design affordances.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "The creative process itself is often emergent.",
+          "section_hint": "Concrete Examples in Business and Decision-Making",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Emergence_rag.md",
+          "source_quote": "generate an expansive catalog of ideas to compare, evaluate, and rank them.",
+          "section_hint": "Concrete Examples in Business and Decision-Making",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Emergence_rag.md",
+      "source_quote": "**complex, unpredictable, and often profound outcomes arise from the interaction of simpler, distinct parts within a system**",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Emergence_rag.md",
+      "source_quote": "Emergence is strongest when system-level behavior depends on interactions, timing, or combinations that are invisible if each component is assessed in isolation.",
+      "section_hint": "Strengths and Contexts of Power",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Emergence_rag.md",
+      "source_quote": "Emergence is particularly useful when success depends on creating the environment, constraints, and connections from which better patterns can arise.",
+      "section_hint": "Strengths and Contexts of Power",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Emergence_rag.md",
+      "source_quote": "setting the minimal structure, constraints, and feedback needed for healthy emergence.",
+      "section_hint": "Weaknesses and Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full extraction packet from /tmp/emergence.json, including the canonical source markdown and Wave 1, Wave 2, and Wave 3 curation. Extracted two affordances: interaction-produced behavior mapping and condition/feedback design. Exact evidence is drawn from Emergence_rag.md; curation was used only as reviewed context.",
+    "dropped_material": [
+      "Did not create standalone affordances for design thinking, analogies, synthesis, systems-thinking, optimization-theory, or first-principles-thinking relation material because those are primarily relation semantics unless later review requests cross-model treatment contracts.",
+      "Did not promote creative ideation or Airbnb reframing examples into separate runtime behavior because the source support is illustrative rather than a separate reusable emergence contract.",
+      "Did not create a broad novelty or ambiguity affordance because the sharper records specify the required evidence and treatment move."
+    ],
+    "open_questions": [
+      "The condition-design affordance partially overlaps with complex-adaptive-systems; review may want a clean boundary between broad emergence and CAS-specific adaptive-loop records.",
+      "A later synthesis review may decide whether bottom-up clustering deserves a separate synthesis affordance rather than living inside emergence."
+    ],
+    "review_status": "draft"
+  }
+}

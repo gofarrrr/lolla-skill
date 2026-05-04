@@ -1,0 +1,318 @@
+{
+  "model_id": "incentives",
+  "source_file": "Incentives_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "incentives.reward-structure-before-behavior-judgment",
+      "status": "supported",
+      "name": "Reward-structure map before behavior judgment",
+      "mechanism": "Treat apparently irrational behavior as evidence of an unseen payoff field: identify motives, consequences, rewards, status signals, penalties, career consequences, and feedback loops before judging intent or recommending exhortation.",
+      "activation_shape": {
+        "use_when": [
+          "Behavior looks irrational until the reward structure, status signals, penalties, or career consequences are mapped explicitly.",
+          "Desired behavior must be reinforced through clear feedback loops instead of vague exhortation, goodwill, or assumed alignment.",
+          "A system, compensation plan, workflow, governance process, or communication problem depends on aligning actions toward a desired outcome."
+        ],
+        "do_not_use_when": [
+          "The case lacks evidence of rewards, penalties, status signals, career consequences, motives, or feedback loops.",
+          "The live issue is a formal principal-agent or moral-hazard problem, but the case has not supplied the broader reward/status/feedback evidence this source requires.",
+          "The answer would only moralize behavior or ask for goodwill without naming the mechanism that currently guides action."
+        ],
+        "case_evidence_needed": [
+          "The desired outcome or overarching goal the behavior is supposed to serve.",
+          "The observed behavior or output that looks irrational, misaligned, or locally rewarded.",
+          "The motives, consequences, rewards, status signals, penalties, or career consequences that could make the behavior locally sensible.",
+          "The current feedback loops that reinforce or punish the behavior."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-payoff-field",
+          "description": "Before interpreting behavior, map the practical and emotional payoff field that could be driving it.",
+          "evidence_required": [
+            "The behavior or output being explained.",
+            "The relevant motives, consequences, rewards, penalties, status signals, or career consequences.",
+            "The desired outcome the current incentives are supposed to align with.",
+            "Any emotional motivation or self-serving desire that changes what people want or avoid."
+          ],
+          "good_output_shape": [
+            "Explains how the behavior could be locally rational inside the actual reward structure.",
+            "Separates incentive diagnosis from moral judgment about the actor.",
+            "Shows which reward, penalty, status, or feedback signal would have to change before behavior changes."
+          ]
+        },
+        {
+          "requirement_id": "replace-exhortation-with-feedback",
+          "description": "Translate the diagnosis into feedback loops that can reinforce the desired behavior instead of relying on exhortation or assumed alignment.",
+          "evidence_required": [
+            "The desired behavior to reinforce.",
+            "The clear feedback loop currently missing, distorted, or rewarding the wrong action.",
+            "The system, compensation plan, workflow, governance process, or communication channel where the reinforcement would operate."
+          ],
+          "good_output_shape": [
+            "Names the feedback loop that should reinforce the desired behavior.",
+            "Avoids recommending goodwill, vague alignment, or motivational language as the main intervention.",
+            "Connects the proposed incentive change back to the desired outcome or overarching goal."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What reward structure, status signal, penalty, or career consequence makes this behavior locally sensible?",
+        "What behavior are we trying to guide toward the desired outcome, and which feedback loop currently reinforces or punishes it?",
+        "Are we diagnosing incentives from observed consequences, or merely moralizing a behavior we dislike?",
+        "Which part of the behavior remains unexplained after the payoff field is mapped?"
+      ],
+      "misuse_guards": [
+        "Do not infer incentives from an outcome alone; require actual rewards, penalties, status signals, motives, or feedback loops.",
+        "Do not collapse this model into principal-agent or moral-hazard analysis unless the case supplies agency or risk-shifting facts in addition to the broader reward structure.",
+        "Do not replace the mechanism with exhortation, goodwill, or assumed alignment."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "behavior is driven by underlying motives, consequences, and rewards",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "mechanism used to **guide and align individual or system actions toward a desired outcome or overarching goal**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "**Most useful when** behavior looks irrational on the surface until the reward structure, status signals, penalties, or career consequences are mapped explicitly.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "**Works best when** desired behavior can be reinforced through clear feedback loops instead of vague exhortation, goodwill, or assumed alignment.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "Understanding the emotional motivations of others is key to setting effective external incentives.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed the source's broad behavior-and-reward diagnosis into a payoff-field mapping requirement: do not judge behavior until the actual motives, consequences, rewards, status, penalties, career consequences, and feedback loops are visible.",
+        "dropped_material": [
+          "Did not split sales-copy desire mapping, employee mission examples, commitment-consistency, or emotional intelligence into separate affordances because they illustrate the same reward/motivation diagnosis.",
+          "Did not promote principal-agent or moral-hazard machinery; those require narrower agency, hidden-action, or risk-transfer facts not present in the source."
+        ],
+        "open_questions": [
+          "Review may later decide whether emotional-motivation evidence should remain inside incentives or move to an emotional-intelligence relation."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "incentives.task-fit-and-second-order-reward-design",
+      "status": "supported",
+      "name": "Task-fit reward design with second-order check",
+      "mechanism": "When redesigning incentives, match the reward form to the task type, then test whether the measure becomes the target, creative work is crowded out, or local efficiency creates avoidance, escalation, or trust erosion.",
+      "activation_shape": {
+        "use_when": [
+          "A system, compensation plan, workflow, or governance process is being redesigned because current outputs are shaped by wrong local rewards.",
+          "The task may be algorithmic, heuristic, creative, or conceptual enough that reward type changes performance.",
+          "A metric, local incentive, or contingent reward could be gamed or create downstream avoidance, escalation, trust erosion, or loss of commitment."
+        ],
+        "do_not_use_when": [
+          "The task type, desired behavior, reward mechanism, or measured target cannot be named.",
+          "The proposed intervention cannot observe or change the reward, measure, feedback loop, or engagement process.",
+          "The answer would use one generic incentive design without checking task fit, metric gaming, and second-order system effects."
+        ],
+        "case_evidence_needed": [
+          "The task type: algorithmic, heuristic, creative, conceptual, or routine.",
+          "The current or proposed reward form, including if-then rewards, now-that rewards, autonomy, mastery, purpose, praise, feedback, or useful information.",
+          "The measured target and the real objective it is supposed to serve.",
+          "Likely second-order effects such as gaming, avoidance, escalation, trust erosion, stifled inventiveness, or compliance without commitment."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "match-reward-to-task",
+          "description": "Classify the task before choosing the incentive form, because contingent rewards fit algorithmic work differently from creative or heuristic work.",
+          "evidence_required": [
+            "Whether the task follows an existing formula or requires flexible problem-solving, inventiveness, creativity, or conceptual judgment.",
+            "The proposed or current reward structure, including whether it is contingent if-then reward or non-contingent now-that feedback.",
+            "Any intrinsic motivation levers such as autonomy, mastery, and purpose that are relevant to the task."
+          ],
+          "good_output_shape": [
+            "Names the task type before recommending the incentive design.",
+            "Uses contingent if-then rewards only where the work is algorithmic enough to support them.",
+            "Uses autonomy, mastery, purpose, or now-that feedback when creative, heuristic, or conceptual work would be harmed by carrot-and-stick rewards."
+          ]
+        },
+        {
+          "requirement_id": "audit-gaming-and-system-effects",
+          "description": "Stress-test the proposed incentive for metric gaming, local optimization, second-order system effects, and compliance without genuine commitment.",
+          "evidence_required": [
+            "The measured incentive and the real objective it might displace.",
+            "Local rewards that could look efficient while creating avoidance, escalation, or trust erosion elsewhere.",
+            "Evidence that the design builds engagement, self-assessment, commitment, or accountability rather than mere bureaucratic compliance."
+          ],
+          "good_output_shape": [
+            "States how the measure could become the target and degrade the real objective.",
+            "Traces downstream behavior beyond the first visible intervention.",
+            "Rejects incentive designs that create local efficiency at the cost of system-level trust, cooperation, creativity, or commitment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is this task algorithmic enough for an if-then reward, or does it require flexible problem-solving, inventiveness, or creativity?",
+        "What will happen if the measured incentive becomes the target?",
+        "Which local reward looks efficient but could create avoidance, escalation, or trust erosion elsewhere?",
+        "Does the incentive build genuine commitment, or only compliance with definitions, inducements, measures, and standards?"
+      ],
+      "misuse_guards": [
+        "Do not use contingent if-then rewards for creative, right-brain, or heuristic tasks without checking for stifled inventiveness.",
+        "Do not treat local efficiency as system success until second-order avoidance, escalation, and trust erosion have been checked.",
+        "Do not rely solely on definitions, inducements, measures, and standards when the problem is commitment and accountability."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "**Best used when** redesigning a system, compensation plan, workflow, or governance process where the current outputs are being shaped by the wrong local rewards.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "For sophisticated, conceptual, or **heuristic tasks** (typical of 21st-century work), traditional \"carrot-and-stick\" extrinsic motivators often fail or do harm.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "Extrinsic **\"if-then\" rewards** (contingent on performance) are effective for **algorithmic tasks** that follow an existing formula to a logical conclusion.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "for tasks demanding **flexible problem-solving, inventiveness, or creativity**, it is better to use **\"now that\" rewards**, which provide non-contingent praise, feedback, and useful information *after* the job is done.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "**Danger when** the measured incentive becomes the target and people learn to game the metric while degrading the real objective.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "**Danger when** local incentives look efficient in isolation but create second-order avoidance, escalation, or trust erosion elsewhere in the system.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "Relying solely on definitions, inducements, measures, and standards reinforces a **bureaucratic mindset** and fails to build genuine commitment and accountability.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Merged task-fit reward selection, AMP/now-that guidance, metric-gaming checks, second-order local-reward effects, and commitment cautions into one redesign affordance because the source treats them as the operational repair side of incentive analysis.",
+        "dropped_material": [
+          "Did not create separate affordances for high-leverage activities, AI persona encoding, curse-of-knowledge communication, adversary simulation, or System 1/System 2 review because they are either examples, adjacent models, or narrower mitigations.",
+          "Did not promote authenticity, confirmation-bias, or second-order-thinking relations into runtime behavior; they remain review context for future relation work."
+        ],
+        "open_questions": [
+          "Review may later split metric-gaming into a relation with a Goodhart-style model if that canonical surface exists.",
+          "Review may later decide whether intrinsic-motivation crowding belongs in incentives or in a dedicated authenticity/intrinsic-motivation record."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "principal-agent-or-moral-hazard-specific-diagnostic",
+      "status": "not_supported_by_source",
+      "reason": "The source supports broad reward-structure mapping, metric gaming, and local-reward redesign, but it does not name principal-agent, agency costs, hidden action, moral hazard, insurance, or risk shifting. Future runtime use should not treat every incentives case as those narrower mechanisms without separate case evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "**Most useful when** behavior looks irrational on the surface until the reward structure, status signals, penalties, or career consequences are mapped explicitly.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Incentives_rag.md",
+          "source_quote": "**Danger when** the measured incentive becomes the target and people learn to game the metric while degrading the real objective.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Incentives_rag.md",
+      "source_quote": "behavior is driven by underlying motives, consequences, and rewards",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Incentives_rag.md",
+      "source_quote": "**Most useful when** behavior looks irrational on the surface until the reward structure, status signals, penalties, or career consequences are mapped explicitly.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Incentives_rag.md",
+      "source_quote": "**Best used when** redesigning a system, compensation plan, workflow, or governance process where the current outputs are being shaped by the wrong local rewards.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Incentives_rag.md",
+      "source_quote": "**Danger when** local incentives look efficient in isolation but create second-order avoidance, escalation, or trust erosion elsewhere in the system.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full extraction packet, canonical source markdown, Wave 1 activation curation, Wave 2 intervention curation, and Wave 3 relation curation. Extracted two affordances: payoff-field diagnosis before judging behavior, and task-fit reward redesign with metric-gaming and second-order checks. Kept the record distinct from principal-agent and moral-hazard machinery because the source supports broader incentive mapping rather than those narrower doctrines.",
+    "dropped_material": [
+      "Did not create separate affordances for AI persona encoding, customer desire/sales copy, commitment-consistency, motivating employees by mission, high-leverage activities, presentation clarity, game theory, System 1/System 2 review, or intellectual journaling because they are examples, adjacent models, or narrower mitigations rather than distinct incentives affordances.",
+      "Did not force completeness across every mitigation question in the source; only the reward-structure and reward-design mechanisms were strong enough to change evidence, sequencing, and treatment.",
+      "Did not create a runtime promotion path; this remains an Observatory/review artifact."
+    ],
+    "open_questions": [
+      "Review may later decide whether metric-gaming should connect to a Goodhart-style model if that canonical model exists.",
+      "Review may later decide whether intrinsic-motivation crowding belongs inside incentives or should be split into an authenticity/intrinsic-motivation relation."
+    ],
+    "review_status": "draft"
+  }
+}

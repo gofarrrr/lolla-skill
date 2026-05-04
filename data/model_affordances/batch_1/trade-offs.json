@@ -1,0 +1,243 @@
+{
+  "model_id": "trade-offs",
+  "source_file": "Trade_Offs_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "trade-offs.allocation-backed-sacrifice",
+      "status": "supported",
+      "name": "Allocation-backed sacrifice before recommendation",
+      "mechanism": "When scarce resources make desirable options conflict, force the recommendation to name what is sacrificed, delayed, downweighted, or killed, expose the hidden cost of saying yes, and stress-test the assumptions that make the chosen trade-off acceptable.",
+      "activation_shape": {
+        "use_when": [
+          "Pursuing one objective would weaken another and the real decision is what to sacrifice, delay, or downweight.",
+          "Time, attention, money, or political capital make doing everything impossible and priorities must be ranked.",
+          "The recommendation hides opportunity cost, displaced benefit, or the actual resource reallocation behind balance language."
+        ],
+        "do_not_use_when": [
+          "The situation has no material scarcity, conflicting goals, displaced benefit, or allocation decision.",
+          "The team only wants to acknowledge tension rhetorically while keeping every option and priority intact.",
+          "The problem is a simple preference list and lacks enough evidence to weigh material costs and benefits."
+        ],
+        "case_evidence_needed": [
+          "The scarce resource and competing objectives that cannot all be pursued.",
+          "The option, task, customer preference, benefit, or project that would receive less time, money, attention, or priority.",
+          "The hidden opportunity cost or displaced benefit attached to saying yes.",
+          "The assumptions that must be true for the chosen sacrifice to be acceptable."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "make-sacrifice-explicit",
+          "description": "Translate the trade-off into a concrete allocation decision by ranking priorities and naming what gets sacrificed, delayed, downweighted, killed, or not done.",
+          "evidence_required": [
+            "The objectives, benefits, or paths competing for the same scarce resource.",
+            "The time, money, attention, mental capacity, or political capital constraint.",
+            "The priority ranking or don't-do choice implied by the recommendation.",
+            "The concrete reallocation, option kill, or priority change that proves the trade-off is not rhetorical."
+          ],
+          "good_output_shape": [
+            "Names the chosen priority and the desirable alternative that receives less support.",
+            "States what gets sacrificed, delayed, downweighted, killed, or not done.",
+            "Shows the opportunity cost or displaced benefit of saying yes.",
+            "Rejects balance language when no resource, option, or ranking actually changes."
+          ]
+        },
+        {
+          "requirement_id": "stress-test-hidden-cost",
+          "description": "Test whether the chosen sacrifice depends on unexamined assumptions, optimistic estimates, or a simple pro-con frame that understates costs and benefits.",
+          "evidence_required": [
+            "The assumptions that must hold for the chosen trade-off to generate the expected result.",
+            "The material costs and benefits across the serious options.",
+            "The inputs or probabilities whose variation would change the recommendation.",
+            "Any legacy priority, default, or emotional attachment that could block reallocation."
+          ],
+          "good_output_shape": [
+            "Asks what must be true before treating the trade-off as acceptable.",
+            "Uses systematic cost-benefit weighing when a pro-con list would be too subjective.",
+            "Identifies the assumption or input where greater accuracy is needed.",
+            "Separates real allocation discipline from motivated protection of a favored option."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which good thing are we choosing to sacrifice, delay, or downweight?",
+        "What hidden cost of saying yes, opportunity cost, or displaced benefit is being ignored?",
+        "What would you have to believe for this trade-off to be acceptable?",
+        "If no resources, options, or priorities change, is this only trade-off talk?"
+      ],
+      "misuse_guards": [
+        "Do not let trade-off language substitute for actual reallocation, option killing, or priority ranking.",
+        "Do not use a simple pro-con list when material costs and benefits need systematic weighing.",
+        "Do not let comprehensiveness theater turn the work into gathering everything after a bounded hypothesis test is enough.",
+        "Do not let hidden assumptions, defaults, or legacy priorities preserve the current allocation after new evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "Because resources—whether time, money, mental capacity, or political capital—are scarce and expensive, an individual or organization cannot pursue all desirable paths simultaneously.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "Tradeoffs force prioritization.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "Strategic thinkers use heuristics to prioritize resources based on anticipated return. This includes identifying what problems to work on and, crucially, **what not to do**.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "one should gather just enough facts to prove or disprove a hypothesis, recognizing that additional effort past this point is a waste of precious time and effort.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "Trade-offs are strongest when the core decision is about choosing which good thing to sacrifice, delay, or downweight.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "The model adds value when time, attention, money, or political capital force explicit prioritization.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "It is a strong fit when the main failure mode is pretending there is no downside, no opportunity cost, or no displaced benefit.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "The model fails when teams acknowledge trade-offs rhetorically but refuse to actually reallocate resources, kill options, or rank priorities.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "CBA is designed to analyze the benefits (pros) and costs (cons) across an array of options, allowing decision-makers to weigh options beyond mere subjective preference.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "What would you have to believe?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "For quantitative assessments, run analysis across inputs to uncover key drivers and appreciate where greater accuracy is needed in assumptions regarding probability.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed sacrifice selection, explicit resource reallocation, hidden-cost naming, and assumption stress testing into one operational affordance because the source repeatedly ties trade-offs to scarce resources, prioritization, and anti-performative allocation discipline.",
+        "dropped_material": [
+          "Did not extract a generic balance affordance; the source-backed operational surface is narrower than the model name.",
+          "Did not split communication compression, Southwest positioning, management focus, and learning accuracy into separate affordances; they illustrate the same sacrifice-and-allocation mechanism.",
+          "Did not promote relation curation or structured tensions into runtime behavior."
+        ],
+        "open_questions": [
+          "Review may later decide whether the bounded-evidence discipline around not boiling the ocean belongs here or in a prioritization-specific affordance."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "universal-tradeoff-for-any-decision",
+      "status": "not_supported_by_source",
+      "reason": "The source is broad, but its strongest activation is restricted to scarce resources, conflicting objectives, hidden costs, and allocation changes; it does not support promoting a generic runtime habit that every decision should be framed as a trade-off.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "The Trade Off model is most powerful in contexts defined by constraints, conflicting goals, or complexity:",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Trade_Offs_rag.md",
+          "source_quote": "Trade-offs are strongest when the core decision is about choosing which good thing to sacrifice, delay, or downweight.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Trade_Offs_rag.md",
+      "source_quote": "Trade-offs are strongest when the core decision is about choosing which good thing to sacrifice, delay, or downweight.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Trade_Offs_rag.md",
+      "source_quote": "The model adds value when time, attention, money, or political capital force explicit prioritization.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Trade_Offs_rag.md",
+      "source_quote": "It is a strong fit when the main failure mode is pretending there is no downside, no opportunity cost, or no displaced benefit.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Trade_Offs_rag.md",
+      "source_quote": "The model fails when teams acknowledge trade-offs rhetorically but refuse to actually reallocate resources, kill options, or rank priorities.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Trade_Offs_rag.md",
+      "source_quote": "What would you have to believe?",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full extraction packet from /tmp, raw Markdown source, activation curation, intervention curation, relation curation, schema, and extraction contract. Extracted one high-confidence operational affordance centered on explicit sacrifice, resource reallocation, hidden-cost naming, and assumption stress testing; curation was used only as context and exact quotes come from the canonical Markdown source.",
+    "dropped_material": [
+      "Did not extract generic 'all decisions have trade-offs' material despite Lane 4 frequency; the source supports narrower activation conditions.",
+      "Did not extract standalone affordances for game-theory minmax, compression versus comprehensiveness, Southwest Airlines, management focus, teaching analogies, MECE, systems thinking, Pareto, commander's intent, anchoring, availability, status-quo bias, or commitment bias.",
+      "Did not promote any runtime routing, gap-question, memo, chat, Step 6, Step 8, Lane 4, or Observatory behavior."
+    ],
+    "open_questions": [
+      "A future relation-aware pass may want to preserve the status-quo-bias and commitment-bias tensions, but this record keeps them out of model affordance runtime policy.",
+      "Review may want to decide whether cost-benefit analysis should remain a treatment requirement here or be delegated entirely to a separate model record when one exists."
+    ],
+    "review_status": "draft"
+  }
+}
