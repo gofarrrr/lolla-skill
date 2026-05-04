@@ -205,10 +205,30 @@ def _fixture_result() -> dict:
             ],
         },
         "frame_pressure_card": {
+            "frame_elements": [
+                {
+                    "element_text": "Only one pilot path is being considered.",
+                    "element_type": "assumption",
+                    "evidence_quote": "Should we test it on one team first?",
+                    "frame_pattern": "binary_collapse",
+                    "fragility_signal": "A reversible multi-team probe may exist.",
+                    "inquiry_stage": "what_if",
+                    "likely_default": "inertia",
+                },
+            ],
+            "routes": [
+                {
+                    "element_index": 0,
+                    "frame_pattern": "binary_collapse",
+                    "candidate_model_ids": ["premortem", "inversion"],
+                    "excluded_model_ids": ["base-rates"],
+                },
+            ],
             "reframings": [
                 {
                     "reframed_question": "Should we test it on one team first?",
                     "grounding_model": "premortem",
+                    "source_element_index": 0,
                 },
             ],
         },
@@ -443,6 +463,55 @@ def test_routing_panel_renders_primary_and_antidote_models_per_tendency():
 def test_routing_panel_renders_tiebreaker_trace_with_abort_reason():
     html = serve_result._render_routing_html()
     assert "outside_epsilon_window" in html or "Outside near-tie window" in html
+
+
+def test_routing_panel_renders_route_trace_sections():
+    html = serve_result._render_routing_html()
+    assert "Lane 1 Route" in html
+    assert "Lane 2 Route" in html
+    assert "Lane 3 Route" in html
+    assert "Lane 4 Route" in html
+    assert "Anti-Echo / Why-Not" in html
+    assert "not_in_verifier_response" in html
+    assert "anti_echo_lane1_overlap" in html
+    assert "anti_echo_upstream_lane_overlap" in html
+
+
+def test_routing_panel_preserves_lane2_rejection_vs_lane4_gap_candidate_from_marcus_2d(monkeypatch):
+    """Regression guard for the route trace's concrete operator-value case.
+
+    In the Marcus phase 2d archive, Lane 2 verifier rejects opportunity-cost
+    while Lane 4 still routes it as a Resource Allocation gap candidate. The
+    Observatory must keep that decision separation visible.
+    """
+    fixture_path = (
+        Path(__file__).resolve().parents[1]
+        / "research/test-cases/phase2d-marcus-controlled-comparison-2026-04-24"
+        / "marcus_new_path_result.json"
+    )
+    payload = json.loads(fixture_path.read_text(encoding="utf-8"))
+    monkeypatch.setattr(serve_result, "_RESULT", payload)
+
+    trace = serve_result._route_trace()
+    lane2_rejections = trace["lanes"]["lane2"]["rejected_candidates"]
+    assert any(
+        item.get("model_id") == "opportunity-cost"
+        and item.get("rejection_reason") == "mechanism absent"
+        and item.get("stage") == "verification"
+        for item in lane2_rejections
+    )
+
+    lane4_routes = trace["lanes"]["lane4"]["routes"]
+    assert any(
+        item.get("dimension_name") == "Resource Allocation"
+        and "opportunity-cost" in (item.get("candidate_model_ids") or [])
+        for item in lane4_routes
+    )
+
+    html = serve_result._render_routing_html()
+    assert "opportunity-cost: mechanism absent (verification)" in html
+    assert "Resource Allocation" in html
+    assert "<code>opportunity-cost</code>" in html
 
 
 def test_routing_panel_handles_empty_routing_decisions(monkeypatch):

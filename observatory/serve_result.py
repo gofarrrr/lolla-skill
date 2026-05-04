@@ -27,7 +27,10 @@ from urllib.parse import urlparse
 SCRIPT_DIR = Path(__file__).resolve().parent
 STATIC_DIR = SCRIPT_DIR / "build"
 SKILL_DATA_DIR = SCRIPT_DIR.parent / "data"
+ENGINE_DIR = SCRIPT_DIR.parent / "engine"
 FAMILY_DIR = SKILL_DATA_DIR / "family_semantics"
+if (ENGINE_DIR / "system_b" / "__init__.py").exists() and str(ENGINE_DIR) not in sys.path:
+    sys.path.insert(0, str(ENGINE_DIR))
 
 # Loaded at startup, re-read on each request to pick up late writes (e.g. Step 6b)
 _RESULT: dict = {}
@@ -94,7 +97,7 @@ _AUDIT_NAV = (
     ("/audit/lane2", "Lane 2"),
     ("/audit/lane4", "Lane 4"),
     ("/audit/anti-echo", "Anti-echo"),
-    ("/audit/routing", "Routing"),
+    ("/audit/routing", "Route Trace"),
     ("/audit/expansions", "Expansions"),
     ("/audit/stakeholders", "Stakeholders"),
     ("/usage", "Usage"),
@@ -947,6 +950,18 @@ def _audit_summary() -> dict:
     return _RESULT.get("audit_summary") or {}
 
 
+def _route_trace() -> dict:
+    audit = _audit_summary()
+    trace = audit.get("route_trace")
+    if isinstance(trace, dict):
+        return trace
+    try:
+        from system_b.route_trace import build_route_trace_payload
+        return build_route_trace_payload(_RESULT)
+    except Exception:
+        return {}
+
+
 # ---------------- Panel 1: /audit/lane1 ----------------
 
 
@@ -1474,59 +1489,212 @@ def _render_tiebreaker_cell(trace: dict | None) -> str:
     return f"<span class='tag'>aborted</span> <small>{_esc(human)}</small>"
 
 
+def _format_model_list(values) -> str:
+    items = [str(value) for value in (values or []) if str(value or "").strip()]
+    if not items:
+        return "—"
+    return ", ".join(f"<code>{_esc(item)}</code>" for item in items)
+
+
+def _format_rejected_models(values, *, limit: int = 5) -> str:
+    rows = []
+    for item in list(values or [])[:limit]:
+        if not isinstance(item, dict):
+            continue
+        model_id = item.get("model_id", "")
+        reason = item.get("rejection_reason", "")
+        stage = item.get("stage", "")
+        label = f"{model_id}: {reason}" if reason else str(model_id)
+        if stage:
+            label = f"{label} ({stage})"
+        rows.append(f"<div>{_esc(label)}</div>")
+    remaining = max(len(values or []) - limit, 0)
+    if remaining:
+        rows.append(f"<div class='hint'>+{_esc(remaining)} more</div>")
+    return "".join(rows) if rows else "—"
+
+
+def _format_close_alternatives(values) -> str:
+    rows = []
+    for item in values or []:
+        if not isinstance(item, dict):
+            continue
+        top1 = item.get("top1_model_id", "")
+        top2 = item.get("top2_model_id", "")
+        margin = item.get("margin", "")
+        state = "fired" if item.get("tiebreaker_fired") else item.get("abort_reason", "")
+        rows.append(
+            f"<div>{_esc(item.get('candidate_type', ''))}: "
+            f"{_esc(top1)} vs {_esc(top2)} "
+            f"(margin {_esc(margin)}, {_esc(state)})</div>"
+        )
+    return "".join(rows) if rows else "—"
+
+
+def _lane2_candidate_status(candidate: dict, lane2: dict) -> str:
+    model_id = candidate.get("model_id", "")
+    selected = set(lane2.get("selected_model_ids") or [])
+    accepted = {
+        item.get("model_id")
+        for item in (lane2.get("accepted_before_cap") or [])
+        if isinstance(item, dict)
+    }
+    rejected = [
+        item
+        for item in (lane2.get("rejected_candidates") or [])
+        if isinstance(item, dict) and item.get("model_id") == model_id
+    ]
+    if model_id in selected:
+        return "<span class='tag ok'>selected anchor</span>"
+    if model_id in accepted:
+        return "<span class='tag ok'>accepted before cap</span>"
+    if rejected:
+        return _format_rejected_models(rejected, limit=2)
+    return "<span class='tag'>candidate only</span>"
+
+
 def _render_routing_html() -> str:
     _reload_result_if_changed()
     audit = _audit_summary()
-    decisions = audit.get("routing_decisions") or []
+    trace = _route_trace()
+    lanes = trace.get("lanes") or {}
+    summary = trace.get("summary") or {}
 
     header = _render_run_header()
 
-    if not decisions:
+    if not audit and not any(int(v or 0) for v in summary.values()):
         body = (
-            "<h1>Routing decisions</h1>"
+            "<h1>Route trace — why this, why not that</h1>"
             f"{header}"
             + _empty_inline(
-                "No routing decisions on this run — the system detected no "
-                "tendencies. See the <a href=\"/audit/lane1\">Lane 1 funnel</a> "
-                "for the triage picture."
+                "No route trace or audit summary exists in this result. Re-run "
+                "the pipeline to persist routing diagnostics."
             )
         )
-        return _render_scaffold(title="Lolla — Routing", body=body, current_path="/audit/routing")
+        return _render_scaffold(title="Lolla — Route Trace", body=body, current_path="/audit/routing")
 
+    lane1 = lanes.get("lane1") or {}
+    lane2 = lanes.get("lane2") or {}
+    lane3 = lanes.get("lane3") or {}
+    lane4 = lanes.get("lane4") or {}
+    anti_echo = trace.get("anti_echo") or {}
+
+    lane1_rows = []
     tiebreakers_fired = 0
-    rows = []
-    for rd in decisions:
-        antidotes = ", ".join(_esc(m) for m in (rd.get("antidote_model_ids") or []))
-        sup = rd.get("tiebreaker_supporting")
-        risk = rd.get("tiebreaker_risk")
-        if (sup and sup.get("fired")) or (risk and risk.get("fired")):
-            tiebreakers_fired += 1
-        rows.append(
-            f"<tr><td>{_esc(rd.get('tendency_id', ''))}</td>"
-            f"<td>{_esc(rd.get('primary_model_id', ''))}</td>"
-            f"<td>{antidotes or '—'}</td>"
-            f"<td>{_render_tiebreaker_cell(sup)}</td>"
-            f"<td>{_render_tiebreaker_cell(risk)}</td></tr>"
+    for route in lane1.get("routes") or []:
+        close = route.get("close_alternatives") or []
+        for alt in close:
+            if alt.get("tiebreaker_fired"):
+                tiebreakers_fired += 1
+        selected = ", ".join(_esc(m) for m in (route.get("selected_model_ids") or []))
+        antidotes = _format_model_list(route.get("antidote_model_ids") or [])
+        rejected = _format_rejected_models(route.get("rejected_candidates") or [], limit=5)
+        close_text = _format_close_alternatives(close)
+        lane1_rows.append(
+            f"<tr><td>{_esc(route.get('tendency_id', ''))}</td>"
+            f"<td>{_esc(route.get('route_source', ''))}</td>"
+            f"<td>{_esc(route.get('primary_model_id', ''))}</td>"
+            f"<td>{selected or '—'}</td>"
+            f"<td>{antidotes}</td>"
+            f"<td>{close_text}</td>"
+            f"<td>{rejected}</td></tr>"
+        )
+
+    lane2_rows = []
+    for candidate in lane2.get("candidates") or []:
+        lane2_rows.append(
+            f"<tr><td>{_esc(candidate.get('model_id', ''))}</td>"
+            f"<td>{_esc(candidate.get('recall_source', ''))}</td>"
+            f"<td class='num'>{_esc(candidate.get('final_rank', ''))}</td>"
+            f"<td>{_lane2_candidate_status(candidate, lane2)}</td></tr>"
+        )
+    if not lane2_rows:
+        for rejected in lane2.get("rejected_candidates") or []:
+            lane2_rows.append(
+                f"<tr><td>{_esc(rejected.get('model_id', ''))}</td>"
+                f"<td>—</td><td class='num'>—</td>"
+                f"<td>{_format_rejected_models([rejected], limit=1)}</td></tr>"
+            )
+
+    lane3_rows = []
+    for route in lane3.get("routes") or []:
+        lane3_rows.append(
+            f"<tr><td>{_esc(route.get('frame_pattern', ''))}</td>"
+            f"<td>{_esc(route.get('element_text', ''))}</td>"
+            f"<td>{_format_model_list(route.get('selected_model_ids') or [])}</td>"
+            f"<td>{_format_model_list(route.get('candidate_model_ids') or [])}</td>"
+            f"<td>{_format_rejected_models(route.get('rejected_candidates') or [], limit=5)}</td></tr>"
+        )
+
+    lane4_rows = []
+    for route in lane4.get("routes") or []:
+        lane4_rows.append(
+            f"<tr><td>{_esc(route.get('dimension_id', ''))}</td>"
+            f"<td>{_esc(route.get('dimension_name', ''))}</td>"
+            f"<td>{_format_model_list(route.get('candidate_model_ids') or [])}</td>"
+            f"<td>{_format_rejected_models(route.get('rejected_candidates') or [], limit=5)}</td></tr>"
+        )
+
+    anti_rows = []
+    for exclusion in anti_echo.get("exclusions") or []:
+        anti_rows.append(
+            f"<tr><td>{_esc(exclusion.get('model_id', ''))}</td>"
+            f"<td>{_esc(exclusion.get('excluded_from', ''))}</td>"
+            f"<td>{_esc(exclusion.get('reason', ''))}</td>"
+            f"<td>{_format_model_list(exclusion.get('source_lanes') or [])}</td></tr>"
         )
 
     lede = (
-        f"For each of <strong>{len(decisions)}</strong> detected tendencies, the "
-        "system picked a primary lens and antidotes. Tiebreakers fired on "
-        f"<strong>{tiebreakers_fired}</strong>."
+        f"Route trace version <code>{_esc(trace.get('schema_version', 'fallback'))}</code>: "
+        f"<strong>{_esc(summary.get('lane1_route_count', 0))}</strong> Lane 1 routes, "
+        f"<strong>{_esc(lane2.get('candidate_count', 0))}</strong> Lane 2 candidates, "
+        f"<strong>{_esc(summary.get('lane3_route_count', 0))}</strong> Lane 3 frame routes, "
+        f"<strong>{_esc(summary.get('lane4_route_count', 0))}</strong> Lane 4 gap routes, "
+        f"and <strong>{_esc(summary.get('anti_echo_exclusion_count', 0))}</strong> anti-echo exclusions."
     )
 
     body = f"""
-<h1>Routing decisions</h1>
+<h1>Route trace — why this, why not that</h1>
 {header}
 <p class="lede">{lede}</p>
-<p class="hint">For each detected tendency: the curated primary model, the antidote set, and the activation-tiebreaker trace. The trace shows whether the near-tie gate fired (and swapped top-1 with top-2) or which clause kept the original choice.</p>
+<p class="hint">This page renders recorded route decisions. It does not infer missing reasons; when a lane did not record a reason, the table says so by omission.</p>
 
+<h2>Lane 1 Route — tendency to corrective models</h2>
+<p class="hint">Tendency bindings, selected corrective models, close alternatives from the activation tiebreaker, and relation-neighbor candidates dropped by budget, fan-adjusted ordering, or explicit route gates.</p>
 <table>
-<tr><th>Tendency</th><th>Primary model</th><th>Antidotes</th><th>Supporting tiebreaker</th><th>Risk tiebreaker</th></tr>
-{"".join(rows)}
+<tr><th>Tendency</th><th>Route source</th><th>Primary model</th><th>Selected models</th><th>Antidotes</th><th>Close alternatives</th><th>Why-not candidates</th></tr>
+{"".join(lane1_rows) if lane1_rows else "<tr><td colspan='7' class='empty'>No Lane 1 route trace on this run.</td></tr>"}
+</table>
+
+<h2>Lane 2 Route — companion detection and verification</h2>
+<p class="hint">Candidates sent to verifier, accepted/rejected/capped outcomes, and silent omissions. Selected anchors: {_format_model_list(lane2.get('selected_model_ids') or [])}.</p>
+<table>
+<tr><th>Candidate model</th><th>Recall source</th><th class="num">Final rank</th><th>Verification path</th></tr>
+{"".join(lane2_rows) if lane2_rows else "<tr><td colspan='4' class='empty'>No Lane 2 candidate trace on this run.</td></tr>"}
+</table>
+
+<h2>Lane 3 Route — frame patterns to models</h2>
+<p class="hint">Frame elements route through the reframing table. Excluded rows are anti-echo against Lane 1 model overlap; unused candidates are candidates the returned reframing did not ground in.</p>
+<table>
+<tr><th>Frame pattern</th><th>Element</th><th>Grounding models</th><th>Candidates</th><th>Why-not candidates</th></tr>
+{"".join(lane3_rows) if lane3_rows else "<tr><td colspan='5' class='empty'>No Lane 3 frame route trace on this run.</td></tr>"}
+</table>
+
+<h2>Lane 4 Route — dimensions to models</h2>
+<p class="hint">Structural gaps route to corrective models after anti-echo exclusions from earlier lanes.</p>
+<table>
+<tr><th>Dimension</th><th>Name</th><th>Candidate models</th><th>Why-not candidates</th></tr>
+{"".join(lane4_rows) if lane4_rows else "<tr><td colspan='4' class='empty'>No Lane 4 gap route trace on this run.</td></tr>"}
+</table>
+
+<h2>Anti-Echo / Why-Not</h2>
+<p class="hint">Cross-lane exclusions. A model listed here was withheld from a later lane because an earlier lane already carried it.</p>
+<table>
+<tr><th>Model</th><th>Excluded from</th><th>Reason</th><th>Earlier source lanes</th></tr>
+{"".join(anti_rows) if anti_rows else "<tr><td colspan='4' class='empty'>No cross-lane anti-echo exclusions recorded for this run.</td></tr>"}
 </table>
 """
-    return _render_scaffold(title="Lolla — Routing", body=body, current_path="/audit/routing")
+    return _render_scaffold(title="Lolla — Route Trace", body=body, current_path="/audit/routing")
 
 
 # ---------------- Panel: /audit/expansions ----------------
