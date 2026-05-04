@@ -30,7 +30,7 @@ BASELINE_COVERAGE = frozenset(
 )
 CONFIDENCE = frozenset({"high", "medium", "weak"})
 MERGE_GATE_GAP_STATUSES = frozenset(
-    {"partially_treated", "set_aside_with_reason", "not_treated"}
+    {"partially_treated", "not_treated"}
 )
 MERGE_GATE_BASELINE_CLASSES = frozenset({"new_finding", "additional_specificity"})
 MIN_TREATMENT_NOTE_LENGTH = 40
@@ -374,7 +374,7 @@ def build_summary_payload(audits: Sequence[Mapping[str, Any]]) -> dict[str, Any]
             model_counts[model_id] += 1
             for lane in _list(item.get("selected_lanes")):
                 lane_counts[str(lane)] += 1
-            if item.get("merge_gate_evidence_candidate"):
+            if item_is_merge_gate_candidate(item):
                 new_findings.append(
                     {
                         "run_id": run_id,

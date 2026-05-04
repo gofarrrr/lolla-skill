@@ -24,7 +24,7 @@ AUDIT_DIR = REPO_ROOT / "data" / "treatment_audits"
 
 
 def _audit_paths() -> list[Path]:
-    return sorted(path for path in AUDIT_DIR.glob("*.json") if path.name != "summary.json")
+    return sorted(AUDIT_DIR.glob("*__*.json"))
 
 
 def _load(path: Path) -> dict[str, object]:

@@ -33,17 +33,17 @@
       "treatment_status": "duplicate_of_existing_pressure"
     },
     {
-      "affordance_id": "base-rates.outside-view-reference-class-anchor",
-      "model_id": "base-rates",
-      "run_id": "mother-deciding-address-year__20260430T113301Z",
-      "treatment_note": "Mentions 'share base rates' in Pressure Check context for ex persuasion, but no defined reference class, historical frequency, fit test, or updating.",
-      "treatment_status": "duplicate_of_existing_pressure"
-    },
-    {
       "affordance_id": "confidence-calibration.method-first-self-interrogation",
       "model_id": "confidence-calibration",
       "run_id": "mid-level-consultant-report-2__20260429T144611Z",
       "treatment_note": "Affordance already executed in Lane 2 companion anchor via explicit quantitative thresholds and test question for GC confidence.",
+      "treatment_status": "duplicate_of_existing_pressure"
+    },
+    {
+      "affordance_id": "base-rates.outside-view-reference-class-anchor",
+      "model_id": "base-rates",
+      "run_id": "mother-deciding-address-year__20260430T113301Z",
+      "treatment_note": "Mentions 'share base rates' in Pressure Check context for ex persuasion, but no defined reference class, historical frequency, fit test, or updating.",
       "treatment_status": "duplicate_of_existing_pressure"
     },
     {
@@ -69,7 +69,7 @@
     ],
     "schema_version": "model_treatment_audit.v1"
   },
-  "new_finding_count": 27,
+  "new_finding_count": 26,
   "new_findings": [
     {
       "affordance_id": "optionality.preserve-reversible-learning",
@@ -126,6 +126,51 @@
       "treatment_status": "not_treated"
     },
     {
+      "affordance_id": "optionality.expand-before-evaluating",
+      "baseline_coverage": "new_finding",
+      "model_id": "optionality",
+      "one_line_description": "Failed to expand binary report/no-report frame into 3+ options with economic comparison before recommending counsel engagement.",
+      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
+      "treatment_note": "No explicit generation of at least three viable options before recommendation; no comparative evaluation of benefits, costs, payoffs, or probabilities across an option set.",
+      "treatment_status": "not_treated"
+    },
+    {
+      "affordance_id": "optionality.preserve-reversible-learning",
+      "baseline_coverage": "additional_specificity",
+      "model_id": "optionality",
+      "one_line_description": "Partially treats optionality by distinguishing reversible counsel engagement from irreversible filing decision.",
+      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
+      "treatment_note": "Names reversible step (engage counsel) vs irreversible (internal-vs-external), but lacks specifics on learning expected, downside cap, or commitment boundary like info threshold.",
+      "treatment_status": "partially_treated"
+    },
+    {
+      "affordance_id": "second-order-thinking.downstream-reversal-stress-test",
+      "baseline_coverage": "new_finding",
+      "model_id": "second-order-thinking",
+      "one_line_description": "Missing second-order thinking stress test on reporting intervention's downstream risks and adaptations.",
+      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
+      "treatment_note": "No mapping of dependency chain, reversal thresholds, or behavioral adaptations; only a brief Lane 3 reframing question at end.",
+      "treatment_status": "not_treated"
+    },
+    {
+      "affordance_id": "systems-thinking.feedback-loop-mapping",
+      "baseline_coverage": "new_finding",
+      "model_id": "systems-thinking",
+      "one_line_description": "Missing required systems-thinking feedback loop mapping before intervention recommendation.",
+      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
+      "treatment_note": "No dynamic representation of feedback loops, delays, or mutual influences before recommending counsel engagement; linear steps only.",
+      "treatment_status": "not_treated"
+    },
+    {
+      "affordance_id": "systems-thinking.metric-leverage-design",
+      "baseline_coverage": "new_finding",
+      "model_id": "systems-thinking",
+      "one_line_description": "Missing conversion of any system map into goal-process-lever chain with progress signal.",
+      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
+      "treatment_note": "No goal-process-measure-lever chain or progress signal identified; output reflects on prior advice but lacks systems-thinking conversion to measured leverage points.",
+      "treatment_status": "not_treated"
+    },
+    {
       "affordance_id": "confidence-calibration.commitment-sizing-to-earned-range",
       "baseline_coverage": "new_finding",
       "model_id": "confidence-calibration",
@@ -159,60 +204,6 @@
       "one_line_description": "Missing power-dynamics leverage map and outside-option credibility before proposing ex persuasion or therapy terms.",
       "run_id": "mother-deciding-address-year__20260430T113301Z",
       "treatment_note": "No mapping of fallback options, walk-away credibility, or leverage for parties like mother, ex, or daughter before recommendations.",
-      "treatment_status": "not_treated"
-    },
-    {
-      "affordance_id": "optionality.expand-before-evaluating",
-      "baseline_coverage": "new_finding",
-      "model_id": "optionality",
-      "one_line_description": "Failed to expand binary report/no-report frame into 3+ options with economic comparison before recommending counsel engagement.",
-      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
-      "treatment_note": "No explicit generation of at least three viable options before recommendation; no comparative evaluation of benefits, costs, payoffs, or probabilities across an option set.",
-      "treatment_status": "not_treated"
-    },
-    {
-      "affordance_id": "optionality.preserve-reversible-learning",
-      "baseline_coverage": "additional_specificity",
-      "model_id": "optionality",
-      "one_line_description": "Partially treats optionality by distinguishing reversible counsel engagement from irreversible filing decision.",
-      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
-      "treatment_note": "Names reversible step (engage counsel) vs irreversible (internal-vs-external), but lacks specifics on learning expected, downside cap, or commitment boundary like info threshold.",
-      "treatment_status": "partially_treated"
-    },
-    {
-      "affordance_id": "power-dynamics.commitment-gradient-inversion",
-      "baseline_coverage": "new_finding",
-      "model_id": "power-dynamics",
-      "one_line_description": "Power-dynamics affordance on commitment-gradient inversion explicitly set aside as mismatched to context.",
-      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
-      "treatment_note": "Explicitly sets aside power-dynamics leverage lens as unfit; gestures at reversibility but defers without tracing milestones or protections.",
-      "treatment_status": "set_aside_with_reason"
-    },
-    {
-      "affordance_id": "second-order-thinking.downstream-reversal-stress-test",
-      "baseline_coverage": "new_finding",
-      "model_id": "second-order-thinking",
-      "one_line_description": "Missing second-order thinking stress test on reporting intervention's downstream risks and adaptations.",
-      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
-      "treatment_note": "No mapping of dependency chain, reversal thresholds, or behavioral adaptations; only a brief Lane 3 reframing question at end.",
-      "treatment_status": "not_treated"
-    },
-    {
-      "affordance_id": "systems-thinking.feedback-loop-mapping",
-      "baseline_coverage": "new_finding",
-      "model_id": "systems-thinking",
-      "one_line_description": "Missing required systems-thinking feedback loop mapping before intervention recommendation.",
-      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
-      "treatment_note": "No dynamic representation of feedback loops, delays, or mutual influences before recommending counsel engagement; linear steps only.",
-      "treatment_status": "not_treated"
-    },
-    {
-      "affordance_id": "systems-thinking.metric-leverage-design",
-      "baseline_coverage": "new_finding",
-      "model_id": "systems-thinking",
-      "one_line_description": "Missing conversion of any system map into goal-process-lever chain with progress signal.",
-      "run_id": "mid-level-consultant-report-2__20260429T144611Z",
-      "treatment_note": "No goal-process-measure-lever chain or progress signal identified; output reflects on prior advice but lacks systems-thinking conversion to measured leverage points.",
       "treatment_status": "not_treated"
     },
     {
