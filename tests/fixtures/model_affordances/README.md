@@ -9,6 +9,8 @@ artifacts.
 - `source_too_thin_valid.json` and `not_supported_by_source_valid.json` are
   synthetic absence fixtures. They prove the schema does not require every
   model to have affordances.
+- `unknown_section_valid.json` proves `section_hint` may be `unknown_section`
+  when source prose has no reliable heading.
 - `*_invalid.json` files intentionally fail validation and exist only to keep
   future bulk generation honest.
 

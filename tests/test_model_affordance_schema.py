@@ -68,6 +68,17 @@ def test_strong_source_backed_record_validates(tmp_path: Path) -> None:
     )
 
 
+def test_unknown_section_hint_validates(tmp_path: Path) -> None:
+    payload = _load_fixture("unknown_section_valid.json")
+    source_root = _write_source_for_fixture(payload, tmp_path)
+
+    validate_model_affordance_payload(
+        payload,
+        path=FIXTURE_DIR / "unknown_section_valid.json",
+        source_roots=(source_root,),
+    )
+
+
 def test_generic_record_fails() -> None:
     payload = _load_fixture("generic_invalid.json")
 
