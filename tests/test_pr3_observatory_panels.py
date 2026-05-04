@@ -252,6 +252,28 @@ def _fixture_result() -> dict:
                 "unknown-model",      # not attributable to any upstream lane
             ],
         },
+        "stakeholder_assumption_check": {
+            "status": "completed",
+            "triggered": True,
+            "trigger_reason": "material stakeholder dependency via stakeholder-alignment",
+            "surface": True,
+            "summary": "Share general evidence, not screenshots.",
+            "critical_actors": [
+                {
+                    "display_name": "ex-husband",
+                    "role": "co-parent with 50% custody",
+                    "power_or_dependency": ["custody", "counter-messaging"],
+                    "advice_assumption": "He can be moved by evidence without weaponizing it.",
+                    "grounding": "plausible",
+                    "known_to_actor": ["Mother thinks the Instagram contact is serious."],
+                    "unknown_to_actor": ["Exact surveillance details unless disclosed."],
+                    "bridging_facts": ["He has 50% custody."],
+                    "risk_if_wrong": "He reframes evidence as overreaction.",
+                    "plan_change": "Share general legal and grooming-pattern facts; do not forward screenshots.",
+                    "open_question": "What evidence moves him without giving him ammunition?",
+                }
+            ],
+        },
     }
 
 
@@ -463,11 +485,34 @@ def test_expansions_panel_handles_empty_expansions(monkeypatch):
 # ---------------------------------------------------------------------------
 
 
-def test_audit_index_links_to_all_six_panels():
+def test_audit_index_links_to_all_panels():
     html = serve_result._render_audit_index_html()
     for href in ("/audit/lane1", "/audit/lane2", "/audit/lane4",
-                 "/audit/anti-echo", "/audit/routing", "/audit/expansions"):
+                 "/audit/anti-echo", "/audit/routing", "/audit/expansions",
+                 "/audit/stakeholders"):
         assert href in html, f"index missing link to {href}"
+
+
+def test_stakeholder_panel_renders_assumptions_and_plan_change():
+    html = serve_result._render_stakeholder_html()
+    assert "Stakeholder Assumption Check" in html
+    assert "ex-husband" in html
+    assert "plausible" in html
+    assert "weaponizing" in html
+    assert "do not forward screenshots" in html
+
+
+def test_stakeholder_panel_absent_for_skipped_check(monkeypatch):
+    r = _fixture_result()
+    r["stakeholder_assumption_check"] = {"status": "skipped", "triggered": False}
+    monkeypatch.setattr(serve_result, "_RESULT", r)
+    html = serve_result._render_stakeholder_html()
+    assert "No stakeholder assumption check" in html
+
+
+def test_case_api_includes_stakeholder_assumption_check():
+    response = serve_result._build_case_response()
+    assert response["stakeholder_assumption_check"]["status"] == "completed"
 
 
 def test_audit_index_handles_no_audit_summary(monkeypatch):
@@ -562,6 +607,7 @@ def test_smoke_all_panels_serve_200_without_spa_bundle(running_server):
         "/audit/anti-echo",
         "/audit/routing",
         "/audit/expansions",
+        "/audit/stakeholders",
         "/usage",
     ]
     for p in paths:

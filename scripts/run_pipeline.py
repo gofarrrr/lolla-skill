@@ -216,6 +216,11 @@ def _derive_postprocessing_seed(extraction: dict, ctx) -> dict[str, str]:
     }
 
 
+def _env_flag_enabled(name: str) -> bool:
+    raw = os.environ.get(name, "").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
+
+
 # ---------------------------------------------------------------------------
 # Data root resolution
 # ---------------------------------------------------------------------------
@@ -730,6 +735,36 @@ def main() -> int:
     serialized["revised_answer"] = revised_answer
     serialized["bullshit_profile"] = bullshit_profile_payload
 
+    stakeholder_check_call_log: list = []
+    stakeholder_check_payload = None
+    if _env_flag_enabled("LOLLA_STAKEHOLDER_CHECK"):
+        try:
+            from system_b.boundary_provider import load_boundary_client_from_env
+            from system_b.stakeholder_assumption_check import (
+                run_stakeholder_assumption_check,
+            )
+
+            stakeholder_boundary = load_boundary_client_from_env("openrouter")
+            stakeholder_check_payload, stakeholder_check_call_log = (
+                run_stakeholder_assumption_check(
+                    extraction=serialized.get("extraction") or {},
+                    result=serialized,
+                    conversation_text=Path(args.conversation_file).read_text(encoding="utf-8"),
+                    boundary=stakeholder_boundary,
+                )
+            )
+        except Exception as exc:
+            stakeholder_check_payload = {
+                "status": "skipped_error",
+                "triggered": True,
+                "surface": False,
+                "critical_actors": [],
+                "chat_actors": [],
+                "error": str(exc),
+            }
+            stakeholder_check_call_log = []
+        serialized["stakeholder_assumption_check"] = stakeholder_check_payload
+
     # Close the embedding-usage scope. All embedding/expansion calls made
     # during pipeline + post-processing are now in ``embedding_usage_records``.
     _embedding_capture_cm.__exit__(None, None, None)
@@ -768,6 +803,7 @@ def main() -> int:
         pipeline_boundary_calls=getattr(result.audit, "boundary_calls", ()),
         bi_boundary_calls=bi_call_log,
         revision_boundary_calls=revision_call_log,
+        stakeholder_check_boundary_calls=stakeholder_check_call_log,
         extraction_boundary_calls=load_extraction_sidecar(_run_id),
         embedding_records=embedding_usage_records,
         # subagent_calls are added by SKILL.md Step 8b after sub-agents return.
@@ -819,6 +855,12 @@ def main() -> int:
         # Passage-level BI calls can fail and still produce a profile for the
         # remaining passages. Surface partial evaluator loss in run health.
         _health_issues.append("bullshit_index_partial")
+    if (
+        stakeholder_check_payload
+        and stakeholder_check_payload.get("status") == "skipped_error"
+        and stakeholder_check_payload.get("triggered")
+    ):
+        _health_issues.append("stakeholder_check_failed")
 
     # Overall health: critical if capture is critical, degraded if any issues
     if "capture_critical" in _health_issues:
@@ -846,6 +888,8 @@ def main() -> int:
         "warnings": _warnings + _capture_warnings,
         "activation_tiebreaker": "on" if activation_tiebreaker_enabled else "off",
     }
+    if stakeholder_check_payload:
+        serialized["run_health"]["stakeholder_assumption_check"] = stakeholder_check_payload.get("status")
     if _capture_manifest:
         serialized["run_health"]["capture_manifest"] = _capture_manifest
 

@@ -137,6 +137,7 @@ Rules:
 - Do not mention sub-agents or isolated review.
 - Scan all pressure-check divergences before writing. A materially different decision path, fallback, channel, commitment shape, or instrument is not optional just because another concern is easier to summarize. Include it or explicitly set it aside.
 - If no divergence survives, leave `memo_pressure_check` empty.
+- Optional stakeholder-assumption material is currently Observatory-only validation data. Do not include `stakeholder_assumption_check.chat_actors` or `critical_actors` in the memo, even when `surface` is true. Memo surfacing remains disabled until production evidence shows the checker adds non-duplicative value beyond the existing Pressure Check.
 
 ## Questions Still Unanswered
 

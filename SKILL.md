@@ -392,6 +392,8 @@ The "no divergences" close is rare and should be a deliberate judgment, not a de
 
 **Bullshit Index in Step 8:** Cross-check your Step 6 against the `bullshit_profile`. Did you reproduce patterns the BI flagged in the original? See `references/anti-bullshit-doctrine.md` for the specific RLHF patterns to watch for in your own output.
 
+**Stakeholder Assumption Check in Step 8:** If `result.json` contains `stakeholder_assumption_check`, treat it as Observatory-only validation data. Do not surface `stakeholder_assumption_check.chat_actors` or `critical_actors` in the Pressure Check, do not create a stakeholder section, and do not mention "Theory of Mind", "stakeholder assumption check", "checker", or the runtime flag in chat. The field is being evaluated against the existing Pressure Check baseline; user-facing surfacing remains disabled until production evidence shows it adds non-duplicative value.
+
 ### Step 8b: Persist Pressure Check
 
 Two things get persisted: the human-readable summary text AND a structured `gap_check` object with per-lane status and divergences.

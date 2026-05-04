@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StakeholderAssumptionAnnotation",
+  "type": "object",
+  "required": ["case_id", "control", "expected"],
+  "properties": {
+    "case_id": { "type": "string" },
+    "archived_run": { "type": "string" },
+    "control": { "enum": ["positive", "negative", "edge"] },
+    "expected": {
+      "type": "object",
+      "required": ["triggered"],
+      "properties": {
+        "triggered": { "type": "boolean" },
+        "actor": { "type": "string" },
+        "advice_assumption": { "type": "string" },
+        "grounding": { "enum": ["grounded", "plausible", "speculative"] },
+        "risk_if_wrong": { "type": "string" },
+        "plan_change": { "type": "string" },
+        "already_caught_by_lolla": { "type": "boolean" },
+        "non_duplicative": { "type": "boolean" }
+      }
+    }
+  }
+}
