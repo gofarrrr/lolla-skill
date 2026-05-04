@@ -98,6 +98,7 @@ _AUDIT_NAV = (
     ("/audit/lane4", "Lane 4"),
     ("/audit/anti-echo", "Anti-echo"),
     ("/audit/routing", "Route Trace"),
+    ("/audit/treatment-audit", "Treatment Audit"),
     ("/audit/expansions", "Expansions"),
     ("/audit/stakeholders", "Stakeholders"),
     ("/usage", "Usage"),
@@ -122,6 +123,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .tag { display: inline-block; padding: 0.05rem 0.5rem; border-radius: 3px; background: #eef; font-size: 0.85rem; color: #336; border: 1px solid #ccd; }
 .tag.warn { background: #fdecec; color: #832; border-color: #e5b8b8; }
 .tag.ok { background: #eafde9; color: #246; border-color: #b8e5b8; }
+blockquote.quote { margin: 0; padding: 0.35rem 0.6rem; background: #fafafa; border-left: 3px solid #ddd; color: #333; }
 nav.audit-nav { font-size: 0.9rem; padding: 0.5rem 0 1rem; border-bottom: 1px solid #eee; margin-bottom: 1.5rem; }
 nav.audit-nav a { color: #336; text-decoration: none; padding: 0.25rem 0.5rem; }
 nav.audit-nav a.active { font-weight: 600; color: #222; background: #eef; border-radius: 3px; }
@@ -1697,6 +1699,156 @@ def _render_routing_html() -> str:
     return _render_scaffold(title="Lolla — Route Trace", body=body, current_path="/audit/routing")
 
 
+# ---------------- Panel: /audit/treatment-audit ----------------
+
+
+def _treatment_audit_dir() -> Path:
+    return SKILL_DATA_DIR / "treatment_audits"
+
+
+def _load_treatment_audit_summary() -> dict:
+    path = _treatment_audit_dir() / "summary.json"
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _load_treatment_audit(run_id: str) -> dict:
+    safe_run_id = "".join(ch for ch in run_id if ch.isalnum() or ch in {"-", "_"})
+    if safe_run_id != run_id:
+        return {}
+    path = _treatment_audit_dir() / f"{run_id}.json"
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _render_treatment_audit_index_html() -> str:
+    summary = _load_treatment_audit_summary()
+    if not summary:
+        body = (
+            "<h1>Model Treatment Audit</h1>"
+            + _empty_inline(
+                "No treatment-audit summary exists in data/treatment_audits yet. "
+                "Run scripts/run_model_treatment_audit.py to generate the Observatory-only prototype."
+            )
+        )
+        return _render_scaffold(
+            title="Lolla — Treatment Audit",
+            body=body,
+            current_path="/audit/treatment-audit",
+        )
+
+    rows = []
+    for item in summary.get("new_findings") or []:
+        rows.append(
+            f"<tr><td><a href='/audit/treatment-audit/{_esc(item.get('run_id', ''))}'>{_esc(item.get('run_id', ''))}</a></td>"
+            f"<td>{_esc(item.get('model_id', ''))}</td>"
+            f"<td>{_esc(item.get('affordance_id', ''))}</td>"
+            f"<td>{_esc(item.get('treatment_status', ''))}</td>"
+            f"<td>{_esc(item.get('baseline_coverage', ''))}</td>"
+            f"<td>{_esc(item.get('one_line_description', ''))}</td></tr>"
+        )
+
+    metadata = summary.get("metadata") or {}
+    lede = (
+        f"<strong>{_esc(summary.get('audited_run_count', 0))}</strong> runs, "
+        f"<strong>{_esc(summary.get('audited_item_count', 0))}</strong> affordance audits, "
+        f"<strong>{_esc(summary.get('new_finding_count', 0))}</strong> merge-gate candidate findings, "
+        f"<strong>{_esc(summary.get('duplicate_of_existing_pressure_count', 0))}</strong> duplicates, "
+        f"<strong>{_esc(summary.get('judge_rejection_count', 0))}</strong> judge-response rejections."
+    )
+    body = f"""
+<h1>Model Treatment Audit</h1>
+<p class="lede">{lede}</p>
+<p class="hint">Judge: {_esc(metadata.get('judge_provider', ''))} / <code>{_esc(metadata.get('judge_model', ''))}</code>. This is Observatory-only; no chat, memo, lane, or runtime promotion is implied.</p>
+
+<h2>Merge-Gate Candidate Findings</h2>
+<table>
+<tr><th>Run</th><th>Model</th><th>Affordance</th><th>Status</th><th>Baseline</th><th>One-line finding</th></tr>
+{"".join(rows) if rows else "<tr><td colspan='6' class='empty'>No non-duplicative treatment-gap candidates in this run set.</td></tr>"}
+</table>
+
+<h2>Distributions</h2>
+<table>
+<tr><th>Bucket</th><th>Counts</th></tr>
+<tr><td>Treatment status</td><td>{_esc(summary.get('treatment_status_distribution', {}))}</td></tr>
+<tr><td>Baseline coverage</td><td>{_esc(summary.get('baseline_coverage_distribution', {}))}</td></tr>
+<tr><td>Per model</td><td>{_esc(summary.get('per_model_audit_counts', {}))}</td></tr>
+</table>
+"""
+    return _render_scaffold(
+        title="Lolla — Treatment Audit",
+        body=body,
+        current_path="/audit/treatment-audit",
+    )
+
+
+def _render_treatment_audit_run_html(run_id: str) -> str:
+    audit = _load_treatment_audit(run_id)
+    if not audit:
+        body = (
+            "<h1>Model Treatment Audit</h1>"
+            + _empty_inline(f"No treatment audit found for <code>{_esc(run_id)}</code>.")
+        )
+        return _render_scaffold(
+            title="Lolla — Treatment Audit",
+            body=body,
+            current_path="/audit/treatment-audit",
+        )
+
+    metadata = audit.get("metadata") or {}
+    rows = []
+    for item in audit.get("items") or []:
+        flag = (
+            "<span class='tag warn'>do-not-promote</span>"
+            if item.get("do_not_promote_without_rewrite_review")
+            else ""
+        )
+        merge_candidate = (
+            "<span class='tag ok'>merge-gate candidate</span>"
+            if item.get("merge_gate_evidence_candidate")
+            else ""
+        )
+        quote = item.get("output_quote") or ""
+        rows.append(
+            f"<tr><td>{_esc(item.get('model_id', ''))}<br><code>{_esc(item.get('affordance_id', ''))}</code><br>{flag} {merge_candidate}</td>"
+            f"<td>{_esc(', '.join(item.get('selected_lanes') or []))}</td>"
+            f"<td>{_esc(item.get('treatment_status', ''))}</td>"
+            f"<td>{_esc(item.get('baseline_coverage', ''))}</td>"
+            f"<td><blockquote class='quote'>{_esc(quote) if quote else '<span class=\"empty\">No quote required for this status.</span>'}</blockquote></td>"
+            f"<td>{_esc(item.get('treatment_note', ''))}</td></tr>"
+        )
+
+    body = f"""
+<h1>Model Treatment Audit — {_esc(audit.get('run_id', ''))}</h1>
+<p class="meta">Source run: <code>{_esc(audit.get('source_run_ref', ''))}</code> · Judge: {_esc(metadata.get('judge_provider', ''))} / <code>{_esc(metadata.get('judge_model', ''))}</code> · Tokens: {_esc((metadata.get('token_usage') or {}).get('total_tokens', 0))}</p>
+<p><a href="/audit/treatment-audit">Treatment audit summary</a> · <a href="/audit/routing">Route trace for the currently loaded Observatory result</a></p>
+
+<h2>Per-Affordance Treatment</h2>
+<table>
+<tr><th>Affordance</th><th>Lanes</th><th>Status</th><th>Baseline</th><th>Quote</th><th>Note</th></tr>
+{"".join(rows) if rows else "<tr><td colspan='6' class='empty'>No pilot affordances selected in this run.</td></tr>"}
+</table>
+
+<h2>Pressure Check Baseline</h2>
+<pre>{_esc(audit.get('pressure_check_baseline', ''))}</pre>
+"""
+    return _render_scaffold(
+        title="Lolla — Treatment Audit",
+        body=body,
+        current_path="/audit/treatment-audit",
+    )
+
+
 # ---------------- Panel: /audit/expansions ----------------
 
 
@@ -1920,6 +2072,8 @@ def _render_audit_index_html() -> str:
          "Models held back from Lane 4 because an upstream lane already surfaced them. Lane-of-origin attribution computed at render time."),
         ("/audit/routing", "Routing decisions",
          "For each detected tendency: primary lens, antidotes, and the activation-tiebreaker trace (fired, or which clause kept top-1)."),
+        ("/audit/treatment-audit", "Model treatment audit",
+         "Observatory-only affordance treatment checks: did selected models change the output, or merely get named?"),
         ("/audit/expansions", "Companion expansions",
          "Relation-graph traversal per Lane 2 anchor — allies, antagonists, and tensions, with activation conditions and why-relevant rationale."),
         ("/audit/stakeholders", "Stakeholder assumption check",
@@ -2010,11 +2164,17 @@ class ResultHandler(SimpleHTTPRequestHandler):
             "/audit/lane4": _render_lane4_html,
             "/audit/anti-echo": _render_anti_echo_html,
             "/audit/routing": _render_routing_html,
+            "/audit/treatment-audit": _render_treatment_audit_index_html,
             "/audit/expansions": _render_expansions_html,
             "/audit/stakeholders": _render_stakeholder_html,
         }
         if path in _audit_routes:
             self._html_response(_audit_routes[path]())
+            return
+
+        if path.startswith("/audit/treatment-audit/"):
+            run_id = path.rsplit("/", 1)[-1]
+            self._html_response(_render_treatment_audit_run_html(run_id))
             return
 
         if path.startswith("/api/model/"):
