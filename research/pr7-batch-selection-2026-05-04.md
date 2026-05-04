@@ -1,6 +1,6 @@
 # PR 7 Batch Selection - 2026-05-04
 
-**Status:** Step 1 selection proposal. Extraction has not started.
+**Status:** Step 1 selection approved by Marcin. Extraction has not started.
 **Branch:** `feature/knowledge-substrate-pr7-batch-extraction-trial`
 **Target:** `feature/knowledge-substrate-pr6-activation-gating`
 **Canonical corpus:** `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216`
@@ -94,6 +94,16 @@ Lane-4-frequent alternates: `black-swan-events`, `antifragility`, `resilience`, 
 2. Keep `circle-of-control` as the deliberate thin-source stress test, or replace it with a less extreme abstract model?
 3. Keep `sunk-cost-fallacy` in high-confidence practical even though it is also Lane-4-frequent, or move it out to make the practical stratum less archive-shaped?
 
+## Signoff Decisions
+
+Marcin approved the diversified Lane-4-frequent stratum, approved keeping `circle-of-control` as the deliberate thin-source stress test, and approved keeping `sunk-cost-fallacy` in the high-confidence practical stratum.
+
+Follow-up notes for the eventual quality report:
+
+- Report affordance-count and absence-count distributions per stratum, not only for the batch overall.
+- Flag any thin/abstract model that produces 3+ affordances, especially `circle-of-control`, because that is the likely LLM-invention signal.
+- Treat `trade-offs` as the broadest Lane-4-frequent stress case going in; poor extraction there should be surfaced as evidence, not hidden.
+
 ## Stop Condition
 
-Extraction must not begin until this selection is approved. The next PR 7 step after signoff is the minimal packet assembly helper, followed by one fresh extraction session per approved model.
+Extraction must not begin until the minimal packet assembly helper and source residency checks are in place. The next PR 7 step after that is one fresh extraction session per approved model.
