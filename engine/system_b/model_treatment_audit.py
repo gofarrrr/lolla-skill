@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 
-TREATMENT_AUDIT_SCHEMA_VERSION = "model_treatment_audit.v1"
+TREATMENT_AUDIT_SCHEMA_VERSION = "model_treatment_audit.v2"
 
 TREATMENT_STATUS = frozenset(
     {
@@ -33,7 +33,25 @@ MERGE_GATE_GAP_STATUSES = frozenset(
     {"partially_treated", "not_treated"}
 )
 MERGE_GATE_BASELINE_CLASSES = frozenset({"new_finding", "additional_specificity"})
+ACTIVATION_STATUS = frozenset(
+    {
+        "activated",
+        "not_activated",
+        "unclear_activation",
+        "set_aside_as_misfit",
+        "activation_shape_missing",
+    }
+)
+EVIDENCE_TIER = frozenset(
+    {
+        "tier_1_net_new_decision_gap",
+        "tier_2_additional_operational_specificity",
+        "tier_3_duplicate_or_quality_note",
+        "excluded",
+    }
+)
 MIN_TREATMENT_NOTE_LENGTH = 40
+MIN_ACTIVATION_NOTE_LENGTH = 40
 MIN_TREATED_QUOTE_LENGTH = 30
 
 
@@ -347,8 +365,10 @@ def build_model_surface_text(result: Mapping[str, Any], *, model_id: str) -> str
 
 def build_summary_payload(audits: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     status_counts: Counter[str] = Counter()
+    activation_counts: Counter[str] = Counter()
     baseline_counts: Counter[str] = Counter()
     confidence_counts: Counter[str] = Counter()
+    tier_counts: Counter[str] = Counter()
     model_counts: Counter[str] = Counter()
     lane_counts: Counter[str] = Counter()
     new_findings: list[dict[str, Any]] = []
@@ -366,11 +386,15 @@ def build_summary_payload(audits: Sequence[Mapping[str, Any]]) -> dict[str, Any]
         for item in (_mapping(row) for row in _list(audit.get("items"))):
             model_id = str(item.get("model_id") or "")
             status = str(item.get("treatment_status") or "")
+            activation = str(item.get("activation_status") or "")
             baseline = str(item.get("baseline_coverage") or "")
             confidence = str(item.get("confidence") or "")
+            tier = compute_evidence_tier(item)
             status_counts[status] += 1
+            activation_counts[activation] += 1
             baseline_counts[baseline] += 1
             confidence_counts[confidence] += 1
+            tier_counts[tier] += 1
             model_counts[model_id] += 1
             for lane in _list(item.get("selected_lanes")):
                 lane_counts[str(lane)] += 1
@@ -381,7 +405,9 @@ def build_summary_payload(audits: Sequence[Mapping[str, Any]]) -> dict[str, Any]
                         "model_id": model_id,
                         "affordance_id": item.get("affordance_id", ""),
                         "treatment_status": status,
+                        "activation_status": activation,
                         "baseline_coverage": baseline,
+                        "evidence_tier": tier,
                         "one_line_description": item.get("one_line_description", ""),
                         "treatment_note": item.get("treatment_note", ""),
                     }
@@ -402,7 +428,9 @@ def build_summary_payload(audits: Sequence[Mapping[str, Any]]) -> dict[str, Any]
         "audited_run_count": len(audits),
         "audited_item_count": sum(len(_list(audit.get("items"))) for audit in audits),
         "treatment_status_distribution": dict(sorted(status_counts.items())),
+        "activation_status_distribution": dict(sorted(activation_counts.items())),
         "baseline_coverage_distribution": dict(sorted(baseline_counts.items())),
+        "evidence_tier_distribution": dict(sorted(tier_counts.items())),
         "confidence_distribution": dict(sorted(confidence_counts.items())),
         "per_model_audit_counts": dict(sorted(model_counts.items())),
         "per_lane_audit_counts": dict(sorted(lane_counts.items())),
@@ -416,6 +444,7 @@ def build_summary_payload(audits: Sequence[Mapping[str, Any]]) -> dict[str, Any]
 
 
 def normalize_judge_payload(payload: Mapping[str, Any]) -> dict[str, Any]:
+    activation = str(payload.get("activation_status") or "").strip()
     status = str(payload.get("treatment_status") or "").strip()
     if status == "duplicate_existing_pressure":
         status = "duplicate_of_existing_pressure"
@@ -429,6 +458,9 @@ def normalize_judge_payload(payload: Mapping[str, Any]) -> dict[str, Any]:
     if baseline == "duplicate_existing_pressure":
         baseline = "duplicate_of_existing_pressure"
     return {
+        "activation_status": activation,
+        "activation_note": str(payload.get("activation_note") or "").strip(),
+        "activation_quote": str(payload.get("activation_quote") or ""),
         "treatment_status": status,
         "output_quote": str(payload.get("output_quote") or ""),
         "treatment_note": str(payload.get("treatment_note") or "").strip(),
@@ -448,11 +480,23 @@ def normalize_judge_payload(payload: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def validate_judge_payload(payload: Mapping[str, Any], *, audited_output: str) -> list[str]:
+def validate_judge_payload(
+    payload: Mapping[str, Any],
+    *,
+    audited_output: str,
+    activation_context: str = "",
+) -> list[str]:
     item = normalize_judge_payload(payload)
     item["model_id"] = "judge-response"
     item["affordance_id"] = "judge-response.affordance"
-    return _item_errors(item, audited_output=audited_output, path="<judge_response>")
+    item["do_not_promote_without_rewrite_review"] = False
+    item["evidence_tier"] = compute_evidence_tier(item)
+    return _item_errors(
+        item,
+        audited_output=audited_output,
+        activation_context=activation_context,
+        path="<judge_response>",
+    )
 
 
 def validate_treatment_audit_payload(payload: Mapping[str, Any]) -> None:
@@ -484,6 +528,7 @@ def iter_treatment_audit_errors(payload: Mapping[str, Any]) -> Iterable[str]:
     audited_output = str(payload.get("audited_output") or "")
     if len(audited_output) < 80:
         yield "<audit>: audited_output is too short for quote validation"
+    activation_context = str(payload.get("case_context") or "")
     items = payload.get("items")
     if not isinstance(items, list):
         yield "<audit>: items must be a list"
@@ -491,15 +536,33 @@ def iter_treatment_audit_errors(payload: Mapping[str, Any]) -> Iterable[str]:
     for index, item in enumerate(items):
         item_payload = _mapping(item)
         quote_scope = str(item_payload.get("audited_output_slice") or audited_output)
-        yield from _item_errors(item_payload, audited_output=quote_scope, path=f"items[{index}]")
+        yield from _item_errors(
+            item_payload,
+            audited_output=quote_scope,
+            activation_context=activation_context,
+            path=f"items[{index}]",
+        )
 
 
 def item_is_merge_gate_candidate(item: Mapping[str, Any]) -> bool:
-    return (
-        str(item.get("treatment_status") or "") in MERGE_GATE_GAP_STATUSES
-        and str(item.get("baseline_coverage") or "") in MERGE_GATE_BASELINE_CLASSES
-        and not bool(item.get("do_not_promote_without_rewrite_review"))
-    )
+    return compute_evidence_tier(item) == "tier_1_net_new_decision_gap"
+
+
+def compute_evidence_tier(item: Mapping[str, Any]) -> str:
+    if bool(item.get("do_not_promote_without_rewrite_review")):
+        return "excluded"
+    if str(item.get("activation_status") or "") != "activated":
+        return "excluded"
+
+    status = str(item.get("treatment_status") or "")
+    baseline = str(item.get("baseline_coverage") or "")
+    if status in MERGE_GATE_GAP_STATUSES and baseline == "new_finding":
+        return "tier_1_net_new_decision_gap"
+    if status in MERGE_GATE_GAP_STATUSES and baseline == "additional_specificity":
+        return "tier_2_additional_operational_specificity"
+    if status == "duplicate_of_existing_pressure" or baseline == "duplicate_of_existing_pressure":
+        return "tier_3_duplicate_or_quality_note"
+    return "excluded"
 
 
 def write_json(path: Path, payload: Mapping[str, Any]) -> None:
@@ -514,11 +577,20 @@ def sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def _item_errors(item: Mapping[str, Any], *, audited_output: str, path: str) -> list[str]:
+def _item_errors(
+    item: Mapping[str, Any],
+    *,
+    audited_output: str,
+    activation_context: str = "",
+    path: str,
+) -> list[str]:
     errors: list[str] = []
     required = (
         "model_id",
         "affordance_id",
+        "activation_status",
+        "activation_note",
+        "activation_quote",
         "treatment_status",
         "output_quote",
         "treatment_note",
@@ -526,12 +598,17 @@ def _item_errors(item: Mapping[str, Any], *, audited_output: str, path: str) -> 
         "duplicate_of_existing_pressure",
         "baseline_coverage",
         "confidence",
+        "evidence_tier",
     )
     for key in required:
         if key not in item:
             errors.append(f"{path}: missing {key}")
     if errors:
         return errors
+
+    activation = str(item.get("activation_status") or "")
+    if activation not in ACTIVATION_STATUS:
+        errors.append(f"{path}: unknown activation_status '{activation}'")
 
     status = str(item.get("treatment_status") or "")
     if status not in TREATMENT_STATUS:
@@ -544,6 +621,33 @@ def _item_errors(item: Mapping[str, Any], *, audited_output: str, path: str) -> 
     confidence = str(item.get("confidence") or "")
     if confidence not in CONFIDENCE:
         errors.append(f"{path}: unknown confidence '{confidence}'")
+
+    tier = str(item.get("evidence_tier") or "")
+    if tier not in EVIDENCE_TIER:
+        errors.append(f"{path}: unknown evidence_tier '{tier}'")
+    expected_tier = compute_evidence_tier(item)
+    if tier != expected_tier:
+        errors.append(f"{path}: evidence_tier '{tier}' should be '{expected_tier}'")
+
+    activation_quote = str(item.get("activation_quote") or "")
+    activation_scope = activation_context or audited_output
+    if activation_quote and activation_quote not in activation_scope:
+        errors.append(f"{path}: activation_quote is not an exact substring of case_context")
+    if activation == "activated" and not activation_quote:
+        errors.append(f"{path}: activation_status 'activated' requires activation_quote")
+
+    activation_note = str(item.get("activation_note") or "").strip()
+    if len(activation_note) < MIN_ACTIVATION_NOTE_LENGTH:
+        errors.append(f"{path}: activation_note shorter than {MIN_ACTIVATION_NOTE_LENGTH} chars")
+
+    if activation == "set_aside_as_misfit" and status != "set_aside_with_reason":
+        errors.append(f"{path}: set_aside_as_misfit requires treatment_status set_aside_with_reason")
+    if status == "set_aside_with_reason" and activation != "set_aside_as_misfit":
+        errors.append(f"{path}: treatment_status set_aside_with_reason requires activation_status set_aside_as_misfit")
+    if activation in {"not_activated", "unclear_activation", "activation_shape_missing"} and status != "not_applicable":
+        errors.append(f"{path}: activation_status '{activation}' requires treatment_status not_applicable")
+    if status in MERGE_GATE_GAP_STATUSES and activation != "activated":
+        errors.append(f"{path}: treatment_status '{status}' requires activation_status activated")
 
     quote = str(item.get("output_quote") or "")
     if quote and quote not in audited_output:

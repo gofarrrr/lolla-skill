@@ -30,6 +30,7 @@ from system_b.model_treatment_audit import (  # noqa: E402
     build_model_output_slice,
     build_pressure_baseline_text,
     build_summary_payload,
+    compute_evidence_tier,
     item_is_merge_gate_candidate,
     load_compiled_affordances,
     load_do_not_promote_flags,
@@ -44,13 +45,7 @@ from system_b.model_treatment_audit import (  # noqa: E402
 from system_b.route_trace import build_route_trace_payload  # noqa: E402
 
 
-DEFAULT_RUN_REFS = (
-    "founder-grant-marcus-equity/20260428T064421Z",
-    "mother-deciding-address-year/20260430T113301Z",
-    "mid-level-consultant-report-2/20260429T144611Z",
-    "third-year-phd-student/20260430T140800Z",
-    "user-launch-independent-fintech/20260424T123050Z",
-)
+DEFAULT_RUN_REFS_SOURCE = REPO_ROOT / "data/treatment_audits/summary.v1.json"
 
 SYSTEM_PROMPT = """You are a conservative model-treatment audit judge.
 
@@ -60,17 +55,26 @@ actually treated in the audited output, or merely named / gestured at.
 Return JSON only. Do not include prose outside JSON.
 
 Rules:
+- First decide activation_status from the affordance's structural activation_shape and CASE_CONTEXT.
+- Do not decide activation by case category labels. Decide whether the structural conditions are present.
+- activation_note must name only structural signals or their absence. Avoid domain labels, relationship labels, industry labels, profession labels, organization names, and settings.
+- If activation_status is not activated, do not score an untreated gap.
 - Be conservative. Prefer not_treated over inferring treatment from vague language.
+- activation_quote must be an exact substring of CASE_CONTEXT when activation_status is activated. No paraphrase.
 - output_quote must be an exact substring of AUDITED_OUTPUT_SLICE. No paraphrase.
 - If treatment_status is treated, partially_treated, set_aside_with_reason, or duplicate_of_existing_pressure, output_quote must be non-empty.
 - For not_treated or not_applicable, output_quote may be empty only when there is no relevant passage to quote.
 - If you cannot copy a quote exactly, use not_treated or not_applicable with an empty output_quote. Never paraphrase a quote.
+- Use activation_status set_aside_as_misfit with treatment_status set_aside_with_reason when the audited output explicitly sets aside the affordance because the structural mechanism does not fit.
 - Mark duplicate_of_existing_pressure true when the affordance's required move is already covered in the Pressure Check baseline.
 - Do not reward do_not_runtime_promote flags. Audit them normally, but do not treat the flag as evidence.
 - Keep treatment_note brief. The status and exact quote are the signal.
 """
 
 OUTPUT_SCHEMA = {
+    "activation_status": "activated | not_activated | unclear_activation | set_aside_as_misfit | activation_shape_missing",
+    "activation_note": "40+ chars, concrete structural fit rationale; do not classify by case category",
+    "activation_quote": "exact substring of CASE_CONTEXT when activated; otherwise may be empty",
     "treatment_status": "treated | partially_treated | set_aside_with_reason | duplicate_of_existing_pressure | not_treated | not_applicable",
     "output_quote": "exact substring of AUDITED_OUTPUT_SLICE, or empty only for not_treated/not_applicable",
     "treatment_note": "40+ chars, concrete note about what was or was not treated",
@@ -88,7 +92,7 @@ def main() -> int:
 
     compiled = load_compiled_affordances(args.compiled_affordances)
     flags = load_do_not_promote_flags(args.quality_report)
-    run_refs = args.run_ref or list(DEFAULT_RUN_REFS)
+    run_refs = args.run_ref or _default_run_refs(args.output_dir)
 
     boundary = _make_boundary(args)
     audits: list[dict[str, Any]] = []
@@ -188,6 +192,9 @@ def run_single_archive(
             "model_id": model_id,
             "affordance_id": affordance["affordance_id"],
             "selected_lanes": lanes,
+            "activation_status": normalized["activation_status"],
+            "activation_note": normalized["activation_note"],
+            "activation_quote": normalized["activation_quote"],
             "treatment_status": normalized["treatment_status"],
             "output_quote": normalized["output_quote"],
             "treatment_note": normalized["treatment_note"],
@@ -199,11 +206,13 @@ def run_single_archive(
             "audited_output_slice": output_slice,
             "do_not_promote_without_rewrite_review": bool(flag),
             "do_not_promote_reason": flag.get("reason", "") if flag else "",
+            "evidence_tier": "excluded",
             "merge_gate_evidence_candidate": False,
             "judge_attempt_count": len(attempts),
             "judge_model": attempts[-1]["metadata"].get("model", boundary.model),
             "judge_provider": attempts[-1]["metadata"].get("provider_name", boundary.provider_name),
         }
+        item["evidence_tier"] = compute_evidence_tier(item)
         item["merge_gate_evidence_candidate"] = item_is_merge_gate_candidate(item)
         items.append(item)
 
@@ -268,13 +277,19 @@ def _call_judge_with_validation(
             tendency_id=str(affordance.get("affordance_id") or ""),
         )
         attempts.append({"payload": payload, "metadata": asdict(metadata)})
-        errors = validate_judge_payload(payload, audited_output=audited_output_slice)
+        errors = validate_judge_payload(
+            payload,
+            audited_output=audited_output_slice,
+            activation_context=case_context,
+        )
         if not errors:
             return payload, attempts, rejections
         rejections += 1
         validation_feedback = (
             "Your previous response failed validation. Fix only these mechanical issues: "
             + "; ".join(errors)
+            + " For any non-empty output_quote, copy exactly one complete string from quote_candidates. "
+            + "For activation_quote, copy exactly one complete string from case_quote_candidates."
         )
     raise RuntimeError(
         f"judge response failed validation for {run_id} {affordance.get('affordance_id')}: "
@@ -303,6 +318,7 @@ def _judge_user_prompt(
             "affordance_id": affordance.get("affordance_id", ""),
             "name": affordance.get("name", ""),
             "mechanism": affordance.get("mechanism", ""),
+            "activation_shape": affordance.get("activation_shape", {}),
             "treatment_requirements": affordance.get("treatment_requirements", []),
             "diagnostic_questions": affordance.get("diagnostic_questions", []),
             "misuse_guards": affordance.get("misuse_guards", []),
@@ -310,14 +326,26 @@ def _judge_user_prompt(
         "do_not_runtime_promote_without_rewrite_review": do_not_promote_flag or {},
         "pressure_check_baseline": _clip(pressure_baseline, 5000),
         "audited_output_slice": _clip(audited_output_slice, 12000),
+        "case_quote_candidates": _quote_candidates(case_context),
         "quote_candidates": _quote_candidates(audited_output_slice),
         "required_output_schema": OUTPUT_SCHEMA,
         "validation_feedback": validation_feedback,
     }
     return (
-        "Audit this single affordance against the audited output slice.\n"
+        "Audit this single affordance against the case and audited output slice.\n"
         "Use only the supplied packet. Return exactly one JSON object matching required_output_schema.\n\n"
-        "Quote discipline: copy output_quote exactly from audited_output_slice. Prefer one of quote_candidates when possible. "
+        "Evaluation order:\n"
+        "1. Determine activation_status first from activation_shape and case_context.\n"
+        "2. Activation is structural fit, not category matching by domain, relationship type, industry, or setting.\n"
+        "3. Write activation_note using structural features only: commitments, reversibility, confidence claims, feedback, leverage, bottlenecks, reference classes, actors, incentives, constraints, delays, and evidence. "
+        "Do not name the domain, relationship type, industry, profession, organization, or setting.\n"
+        "4. If activation_shape is missing or empty, use activation_shape_missing and treatment_status not_applicable.\n"
+        "5. If activation_status is not_activated, unclear_activation, or activation_shape_missing, set treatment_status not_applicable.\n"
+        "6. If the audited output explicitly sets aside this affordance as structurally misfit, use activation_status set_aside_as_misfit and treatment_status set_aside_with_reason.\n"
+        "7. Only when activation_status is activated may you mark not_treated or partially_treated.\n\n"
+        "Activation quote discipline: when activation_status is activated, activation_quote must be copied exactly from case_quote_candidates. "
+        "Use an empty activation_quote for not_activated, unclear_activation, set_aside_as_misfit, or activation_shape_missing.\n\n"
+        "Quote discipline: copy every non-empty output_quote exactly from quote_candidates. "
         "Do not use ellipses, summaries, or normalized wording unless those exact characters appear in the audited output.\n\n"
         "Important baseline classification rule:\n"
         "- If Pressure Check already covers the same required move, classify duplicate_of_existing_pressure.\n"
@@ -352,6 +380,24 @@ def _load_env_file(path: Path) -> None:
         if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
             value = value[1:-1]
         os.environ.setdefault(key, value)
+
+
+def _default_run_refs(output_dir: Path) -> list[str]:
+    candidates = [Path(output_dir) / "summary.v1.json", DEFAULT_RUN_REFS_SOURCE]
+    for path in candidates:
+        if not path.exists():
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        refs = payload.get("metadata", {}).get("run_refs")
+        if isinstance(refs, list) and all(isinstance(ref, str) and ref for ref in refs):
+            return list(refs)
+    raise SystemExit(
+        "No default archived run refs found. Pass --run-ref or provide "
+        "data/treatment_audits/summary.v1.json with metadata.run_refs."
+    )
 
 
 def _clip(text: str, limit: int) -> str:

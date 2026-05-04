@@ -24,7 +24,9 @@ AUDIT_DIR = REPO_ROOT / "data" / "treatment_audits"
 
 
 def _audit_paths() -> list[Path]:
-    return sorted(AUDIT_DIR.glob("*__*.json"))
+    return sorted(
+        path for path in AUDIT_DIR.glob("*__*.json") if not path.name.endswith(".v1.json")
+    )
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -55,6 +57,8 @@ def test_treatment_audit_summary_matches_committed_runs() -> None:
     assert summary["judge_rejection_count"] == recomputed["judge_rejection_count"]
     assert summary["treatment_status_distribution"] == recomputed["treatment_status_distribution"]
     assert summary["baseline_coverage_distribution"] == recomputed["baseline_coverage_distribution"]
+    assert summary["activation_status_distribution"] == recomputed["activation_status_distribution"]
+    assert summary["evidence_tier_distribution"] == recomputed["evidence_tier_distribution"]
     assert summary["metadata"]["judge_provider"] == "openrouter"
     assert summary["metadata"]["judge_model"]
     assert summary["token_usage"]["total_tokens"] > 0
