@@ -105,6 +105,8 @@ def _lane2_trace(result_payload: Mapping[str, Any], audit: Mapping[str, Any]) ->
         _mapping(item) for item in _list(audit.get("companion_verification_silently_omitted"))
     ]
 
+    # These fallback reasons label the source list only. Do not extend this
+    # block into semantic explanation of why the verifier made a decision.
     rejected_candidates: list[dict[str, Any]] = []
     for item in rejected:
         rejected_candidates.append(
