@@ -24,6 +24,8 @@ ALLOWED_EXTRACTION_TYPE = frozenset(
 ALLOWED_RUNTIME_POLICY = frozenset(
     {"do_not_promote", "observatory_only", "defer_for_review", "available_for_review"}
 )
+MIN_AFFORDANCE_NAME_LENGTH = 24
+MIN_AFFORDANCE_MECHANISM_LENGTH = 40
 TOP_LEVEL_FIELDS = frozenset(
     {
         "model_id",
@@ -66,6 +68,7 @@ REVIEW_NOTE_FIELDS = frozenset(
     {"normalization_note", "dropped_material", "open_questions", "review_status"}
 )
 GENERIC_FRAGMENTS = (
+    "careful thinking",
     "think more carefully",
     "think carefully",
     "consider the problem",
@@ -253,7 +256,17 @@ def _validate_affordance(
         text = _string(affordance.get(field))
         if not text:
             yield f"{path}: {field} must be a non-empty string"
-        yield from _genericity_errors(text, path=path / field)
+        if field == "name" and len(text) < MIN_AFFORDANCE_NAME_LENGTH:
+            yield (
+                f"{path}: name must be at least "
+                f"{MIN_AFFORDANCE_NAME_LENGTH} characters"
+            )
+        if field == "mechanism" and len(text) < MIN_AFFORDANCE_MECHANISM_LENGTH:
+            yield (
+                f"{path}: mechanism must be at least "
+                f"{MIN_AFFORDANCE_MECHANISM_LENGTH} characters"
+            )
+        yield from _boilerplate_phrase_errors(text, path=path / field)
 
     activation = affordance.get("activation_shape")
     if not isinstance(activation, dict):
@@ -288,7 +301,6 @@ def _validate_affordance(
             seen_requirement_ids.add(requirement_id)
             if not SLUG_RE.match(requirement_id):
                 yield f"{item_path}: requirement_id must be a lowercase slug"
-            yield from _genericity_errors(_string(treatment.get("description")), path=item_path)
             yield from _validate_string_list(
                 treatment.get("evidence_required"),
                 path=item_path / "evidence_required",
@@ -340,7 +352,6 @@ def _validate_absence_record(
         yield f"{path}: unknown runtime_policy '{_string(absence.get('runtime_policy'))}'"
     if len(_string(absence.get("reason"))) < 20:
         yield f"{path}: reason must explain the absence"
-    yield from _genericity_errors(_string(absence.get("reason")), path=path / "reason")
     if "source_evidence" in absence:
         yield from _validate_evidence_list(
             absence.get("source_evidence"),
@@ -377,7 +388,6 @@ def _validate_evidence_list(
             yield f"{item_path}: source_file must be a markdown filename"
         if len(source_quote) < 8:
             yield f"{item_path}: source_quote must be a meaningful exact quote"
-        yield from _genericity_errors(source_quote, path=item_path / "source_quote")
         if _string(evidence.get("extraction_type")) not in ALLOWED_EXTRACTION_TYPE:
             yield f"{item_path}: unknown extraction_type '{_string(evidence.get('extraction_type'))}'"
         if _string(evidence.get("confidence")) not in ALLOWED_CONFIDENCE:
@@ -432,10 +442,9 @@ def _validate_string_list(value: object, *, path: Path) -> Iterable[str]:
         text = _string(item)
         if len(text) < 8:
             yield f"{path}[{index}]: must be a meaningful string"
-        yield from _genericity_errors(text, path=path / f"[{index}]")
 
 
-def _genericity_errors(text: str, *, path: Path) -> Iterable[str]:
+def _boilerplate_phrase_errors(text: str, *, path: Path) -> Iterable[str]:
     normalized = re.sub(r"\s+", " ", text.strip().lower())
     if not normalized:
         return

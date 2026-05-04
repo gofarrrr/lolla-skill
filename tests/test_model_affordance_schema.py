@@ -17,7 +17,7 @@ from system_b.model_affordance_validation import (  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-FIXTURE_DIR = REPO_ROOT / "data" / "model_affordances" / "fixtures"
+FIXTURE_DIR = REPO_ROOT / "tests" / "fixtures" / "model_affordances"
 SCHEMA_PATH = REPO_ROOT / "data" / "schemas" / "model_affordance.schema.json"
 
 

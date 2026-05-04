@@ -13,4 +13,5 @@ artifacts.
   future bulk generation honest.
 
 Future pilot extraction PRs should add reviewed model records outside this
-fixtures directory.
+fixtures directory. Reviewed records must not share a directory with
+intentionally-invalid JSON.

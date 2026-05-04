@@ -116,7 +116,7 @@ Python may:
 - check exact `source_quote` substrings against source files
 - detect missing evidence spans
 - detect duplicate IDs
-- detect obvious generic boilerplate
+- apply the finite genericity gate defined below
 - hash source files
 - serialize reviewed records
 - count coverage and absence states
@@ -262,6 +262,33 @@ Forbidden outcomes:
 The system should adapt to the knowledge base. The knowledge base should not be
 stretched to make the system look complete.
 
+## Finite Genericity Gate
+
+The Python validator may reject only obvious generic boilerplate using this
+finite, dumb rule set:
+
+- `name` must be at least 24 characters.
+- `mechanism` must be at least 40 characters.
+- `name` and `mechanism` must not contain any of these lowercase substring
+  fragments after whitespace normalization:
+  - `careful thinking`
+  - `think more carefully`
+  - `think carefully`
+  - `consider the problem`
+  - `consider the risks`
+  - `use this model`
+  - `apply this model`
+  - `analyze the situation`
+  - `make a better decision`
+  - `improve the reasoning`
+  - `look at the bigger picture`
+  - `be more thoughtful`
+
+That is the entire genericity gate. No TF-IDF, embeddings, cosine similarity,
+semantic scoring, "sounds mechanistic" checks, operationality scoring, or
+question-quality judgment belongs in Python. If a check requires understanding
+the meaning of the field, it belongs in LLM extraction or human review.
+
 ## Observatory-Only By Default
 
 Model affordances are not user-facing product copy.
@@ -295,7 +322,7 @@ PR 1 validation should catch:
 - missing `source_quote`
 - affordances without `source_evidence`
 - duplicate affordance IDs
-- obvious generic boilerplate
+- the finite genericity gate above
 - supported records with zero affordances and no explicit absence reason
 - invalid absence records
 
