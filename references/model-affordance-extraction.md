@@ -152,6 +152,10 @@ Every semantic field needs source evidence. A source evidence span contains:
 `source_quote` must be an exact substring copied from the canonical source file.
 No paraphrase can masquerade as a quote.
 
+`section_hint` names the closest source heading. If the quote sits in prose with
+no reliable heading, use `unknown_section`. Do not invent a section label to
+make the record look more complete.
+
 Allowed `extraction_type` values:
 
 - `explicit`: the source directly states the extracted material
