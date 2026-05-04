@@ -19,26 +19,28 @@ When enabled, `scripts/run_pipeline.py` may persist:
 - `stakeholder_assumption_check.surface`: boolean
 - `stakeholder_assumption_check.summary`: one-sentence plan-change summary
 - `stakeholder_assumption_check.critical_actors`: full actor-level inspection payload for Observatory
-- `stakeholder_assumption_check.chat_actors`: actor-level corrections allowed into user-facing chat
+- `stakeholder_assumption_check.chat_actors`: actor-level corrections that passed deterministic gates for validation
 
 The field is absent when `LOLLA_STAKEHOLDER_CHECK` is disabled.
 
-`critical_actors` is not a chat contract. It may include speculative actors,
-duplicates, or open-question material for inspection. Step 8 and any downstream
-agent must consume `chat_actors` only. Each actor also carries
-`surface_in_chat` and, when false, `surface_block_reason`.
+`critical_actors` is the full inspection payload. It may include speculative
+actors, duplicates, or open-question material for Observatory. `chat_actors`
+records which actors passed deterministic surface gates, but it is not currently
+a user-facing chat contract. Each actor also carries `surface_in_chat` and, when
+false, `surface_block_reason`.
 
-## Surface Rule
+## Current Surface Rule
 
-Chat receives no new heading and no new section.
+User-facing surfacing is disabled during validation.
 
-If `surface` is true, fold only `chat_actors` material into the existing
-`### Pressure Check` section as one concrete correction. Name the plan change,
-not the machinery.
+Do not fold `chat_actors` or `critical_actors` into chat or memo output, even
+when `surface` is true. The current use is Observatory/debugging only: compare
+the checker payload against the existing Pressure Check baseline and look for
+cases where the checker catches non-duplicative material the baseline misses.
 
-Good:
+Good current behavior:
 
-> One stakeholder assumption changes the plan. I treated the ex conversation as evidence-backed persuasion, but evidence can also become ammunition if forwarded. Share the legal threshold and grooming-pattern summary; do not send screenshots or exact phrases.
+> The user-facing Pressure Check is written from the existing Step 7/8 synthesis. The stakeholder check appears only in Observatory and result JSON for validation.
 
 Bad:
 
@@ -69,13 +71,15 @@ independently grounds the same plan change.
 
 ## Pressure-Check Use
 
-At Step 8, ask:
+During validation, do not use this field as another Step 8 input. Instead, audit
+it after the run:
 
-1. Is there at least one `chat_actors` entry?
-2. Did the entry identify an assumption Step 6 relied on?
-3. Does the risk-if-wrong require a different action, sequence, threshold, decision question, risk treatment, or communication boundary?
+1. Did the existing Pressure Check already cover the same actor dependency?
+2. If not, did `chat_actors` identify a concrete non-duplicative plan change?
+3. Would adding it improve the user-facing output without machinery leak, speculative psychology, or word-budget bloat?
 
-Only surface when all three are yes.
+Only future work may re-enable chat/memo surfacing, and only after production
+evidence shows the checker adds value beyond the existing Pressure Check.
 
 If `surface` is false but `critical_actors` is non-empty, the check may still be
 useful for debugging in Observatory. It is not user-facing material.
