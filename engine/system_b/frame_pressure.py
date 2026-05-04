@@ -66,6 +66,7 @@ class FramePressureCard:
     """The output artifact of the Frame Pressure lane."""
 
     frame_elements: tuple[ExtractedFrameElement, ...] = ()
+    routes: tuple[FrameRoute, ...] = ()
     reframings: tuple[Reframing, ...] = ()  # max 2
     anti_echo_model_ids: tuple[str, ...] = ()  # models excluded (Lane 1 overlap)
     overlap_flags: tuple[str, ...] = ()  # frame patterns that overlap Lane 1 at pressure-concept level
@@ -85,6 +86,15 @@ class FramePressureCard:
                     "likely_default": el.likely_default,
                 }
                 for el in self.frame_elements
+            ],
+            "routes": [
+                {
+                    "element_index": route.element_index,
+                    "frame_pattern": route.frame_pattern,
+                    "candidate_model_ids": list(route.candidate_model_ids),
+                    "excluded_model_ids": list(route.excluded_model_ids),
+                }
+                for route in self.routes
             ],
             "reframings": [
                 {
@@ -126,8 +136,18 @@ class FramePressureCard:
             )
             for r in data.get("reframings", [])
         )
+        routes = tuple(
+            FrameRoute(
+                element_index=int(route.get("element_index", 0)),
+                frame_pattern=route.get("frame_pattern", ""),
+                candidate_model_ids=tuple(route.get("candidate_model_ids", [])),
+                excluded_model_ids=tuple(route.get("excluded_model_ids", [])),
+            )
+            for route in data.get("routes", [])
+        )
         return cls(
             frame_elements=elements,
+            routes=routes,
             reframings=reframings,
             anti_echo_model_ids=tuple(data.get("anti_echo_model_ids", [])),
             overlap_flags=tuple(data.get("overlap_flags", [])),
@@ -664,6 +684,7 @@ def assemble_frame_card(
     selected = _select_diverse_reframings(candidate_reframings, _MAX_REFRAMINGS)
     return FramePressureCard(
         frame_elements=elements,
+        routes=routes,
         reframings=tuple(selected),
         anti_echo_model_ids=tuple(sorted(anti_echo_model_ids)),
         overlap_flags=overlap_flags,

@@ -397,8 +397,17 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
             {
                 "tendency_id": rd.tendency.tendency_id,
                 "primary_model_id": rd.primary_model_id,
+                "primary_activation_context": rd.primary_activation_context,
                 "sub_pattern": rd.sub_pattern,
                 "antidote_model_ids": list(rd.antidote_model_ids),
+                "supporting_model_ids": list(rd.supporting_model_ids),
+                "risk_model_ids": list(rd.risk_model_ids),
+                "supporting_candidate_trace": [
+                    asdict(item) for item in rd.supporting_candidate_trace
+                ],
+                "risk_candidate_trace": [
+                    asdict(item) for item in rd.risk_candidate_trace
+                ],
                 "tiebreaker_supporting": (
                     asdict(rd.tiebreaker_supporting) if rd.tiebreaker_supporting else None
                 ),
@@ -409,6 +418,8 @@ def _serialize_result(result, *, embedding_active: bool = False, compiled_chunk_
             for rd in result.audit.routing_decisions
         ],
     }
+    from system_b.route_trace import build_route_trace_payload
+    output["audit_summary"]["route_trace"] = build_route_trace_payload(output)
 
     # Prompt versions (from hardening sprint)
     if result.prompt_versions:

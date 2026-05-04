@@ -35,6 +35,18 @@ class RelationNeighbor:
 
 
 @dataclass(frozen=True)
+class RelationCandidateTrace:
+    model_id: str
+    source_model_id: str
+    edge_type: str
+    raw_affinity: float
+    fan_adjusted_affinity: float
+    relevance_score: float = 0.0
+    selected: bool = False
+    rejection_reason: str = ""
+
+
+@dataclass(frozen=True)
 class TiebreakerTrace:
     """Per-neighborhood trace of the Phase 3 activation-match tiebreaker.
 
@@ -72,6 +84,8 @@ class RouteNeighborhood:
     risk_model_ids: tuple[str, ...] = ()
     tiebreaker_supporting: TiebreakerTrace | None = None
     tiebreaker_risk: TiebreakerTrace | None = None
+    supporting_candidate_trace: tuple[RelationCandidateTrace, ...] = ()
+    risk_candidate_trace: tuple[RelationCandidateTrace, ...] = ()
 
 
 class RelationGraph:
@@ -152,29 +166,89 @@ class RelationGraph:
         seed_set = set(seeds)
         # Candidate tuples carry source + edge_type so the activation matcher
         # has the edge-identity triple it needs. `_bounded_unique_model_ids`
-        # only consumes (adj_aff, model_id).
-        supporting_candidates: list[tuple[float, str, str, str]] = []
-        risk_candidates: list[tuple[float, str, str, str]] = []
+        # only consumes (adj_aff, model_id). The raw affinity is retained only
+        # for route observability, so fan correction can be inspected later.
+        supporting_candidates: list[tuple[float, str, str, str, float]] = []
+        risk_candidates: list[tuple[float, str, str, str, float]] = []
+        supporting_rejections: list[RelationCandidateTrace] = []
+        risk_rejections: list[RelationCandidateTrace] = []
 
         for seed_model_id in seeds:
             for neighbor in self._graph.get(seed_model_id, ()):
+                adjusted = self._fan_adjusted_affinity(
+                    neighbor.model_id, neighbor.composition_affinity,
+                )
                 if neighbor.model_id in seed_set:
+                    target = (
+                        supporting_rejections
+                        if neighbor.edge_type in {"ally", "compound"}
+                        else risk_rejections
+                    )
+                    target.append(
+                        RelationCandidateTrace(
+                            model_id=neighbor.model_id,
+                            source_model_id=seed_model_id,
+                            edge_type=neighbor.edge_type,
+                            raw_affinity=neighbor.composition_affinity,
+                            fan_adjusted_affinity=adjusted,
+                            relevance_score=_relevance_score(
+                                neighbor.model_id, relevance_scores,
+                            ),
+                            selected=False,
+                            rejection_reason="seed_model_excluded",
+                        )
+                    )
                     continue
                 if neighbor.edge_type in {"ally", "compound"}:
                     if neighbor.composition_affinity < min_supporting_affinity:
+                        supporting_rejections.append(
+                            RelationCandidateTrace(
+                                model_id=neighbor.model_id,
+                                source_model_id=seed_model_id,
+                                edge_type=neighbor.edge_type,
+                                raw_affinity=neighbor.composition_affinity,
+                                fan_adjusted_affinity=adjusted,
+                                relevance_score=_relevance_score(
+                                    neighbor.model_id, relevance_scores,
+                                ),
+                                selected=False,
+                                rejection_reason="below_min_supporting_affinity",
+                            )
+                        )
                         continue
-                    adjusted = self._fan_adjusted_affinity(
-                        neighbor.model_id, neighbor.composition_affinity,
-                    )
                     supporting_candidates.append(
-                        (adjusted, neighbor.model_id, seed_model_id, neighbor.edge_type)
+                        (
+                            adjusted,
+                            neighbor.model_id,
+                            seed_model_id,
+                            neighbor.edge_type,
+                            neighbor.composition_affinity,
+                        )
                     )
                 elif neighbor.edge_type in {"antagonist", "tension"}:
-                    adjusted = self._fan_adjusted_affinity(
-                        neighbor.model_id, neighbor.composition_affinity,
-                    )
                     risk_candidates.append(
-                        (adjusted, neighbor.model_id, seed_model_id, neighbor.edge_type)
+                        (
+                            adjusted,
+                            neighbor.model_id,
+                            seed_model_id,
+                            neighbor.edge_type,
+                            neighbor.composition_affinity,
+                        )
+                    )
+                else:
+                    risk_rejections.append(
+                        RelationCandidateTrace(
+                            model_id=neighbor.model_id,
+                            source_model_id=seed_model_id,
+                            edge_type=neighbor.edge_type,
+                            raw_affinity=neighbor.composition_affinity,
+                            fan_adjusted_affinity=adjusted,
+                            relevance_score=_relevance_score(
+                                neighbor.model_id, relevance_scores,
+                            ),
+                            selected=False,
+                            rejection_reason="unsupported_edge_type",
+                        )
                     )
 
         # Phase 3 activation-match tiebreaker. Fires only when reasoning context
@@ -203,30 +277,45 @@ class RelationGraph:
                 matcher=_activation_matcher,
             )
 
+        supporting_model_ids = _bounded_unique_model_ids(
+            [(c[0], c[1]) for c in supporting_candidates],
+            limit=max_supporting_models,
+            relevance_scores=relevance_scores,
+        )
+        risk_model_ids = _bounded_unique_model_ids(
+            [(c[0], c[1]) for c in risk_candidates],
+            limit=max_risk_models,
+            relevance_scores=relevance_scores,
+        )
+
         return RouteNeighborhood(
-            supporting_model_ids=_bounded_unique_model_ids(
-                [(c[0], c[1]) for c in supporting_candidates],
-                limit=max_supporting_models,
-                relevance_scores=relevance_scores,
-            ),
-            risk_model_ids=_bounded_unique_model_ids(
-                [(c[0], c[1]) for c in risk_candidates],
-                limit=max_risk_models,
-                relevance_scores=relevance_scores,
-            ),
+            supporting_model_ids=supporting_model_ids,
+            risk_model_ids=risk_model_ids,
             tiebreaker_supporting=tb_support,
             tiebreaker_risk=tb_risk,
+            supporting_candidate_trace=_candidate_trace_rows(
+                supporting_candidates,
+                selected_model_ids=supporting_model_ids,
+                rejected=supporting_rejections,
+                relevance_scores=relevance_scores,
+            ),
+            risk_candidate_trace=_candidate_trace_rows(
+                risk_candidates,
+                selected_model_ids=risk_model_ids,
+                rejected=risk_rejections,
+                relevance_scores=relevance_scores,
+            ),
         )
 
 
 def _activation_retie_if_near_tie(
-    candidates: list[tuple[float, str, str, str]],
+    candidates: list[tuple[float, str, str, str, float]],
     *,
     reasoning_context: Any,
     db_path: Path | str,
     api_key: str | None,
     matcher: Callable[..., Any] | None,
-) -> tuple[list[tuple[float, str, str, str]], TiebreakerTrace]:
+) -> tuple[list[tuple[float, str, str, str, float]], TiebreakerTrace]:
     """Phase 3 near-tie tiebreaker. Returns `(candidates, trace)`.
 
     The candidates list is the top-2 (by adjusted affinity, deduped by
@@ -260,7 +349,7 @@ def _activation_retie_if_near_tie(
 
     # Dedup by model_id, keeping highest-affinity occurrence. Mirrors the
     # later _bounded_unique_model_ids dedup so we compare the right two.
-    deduped: dict[str, tuple[float, str, str, str]] = {}
+    deduped: dict[str, tuple[float, str, str, str, float]] = {}
     for c in candidates:
         existing = deduped.get(c[1])
         if existing is None or c[0] > existing[0]:
@@ -338,7 +427,7 @@ def _activation_retie_if_near_tie(
     # _bounded_unique_model_ids sort surfaces it first. The bump is invisible
     # to callers (only model_ids are returned) and cannot cascade past the
     # immediate top-2 because top-3's affinity is at least ε below top-1.
-    bumped = (top1[0] + 1e-6, top2[1], top2[2], top2[3])
+    bumped = (top1[0] + 1e-6, top2[1], top2[2], top2[3], top2[4])
     # Drop every occurrence of top2's model_id and prepend the bumped row.
     # Keep all other items (including duplicates of top1's model_id from
     # other seeds) so dedup-by-model_id downstream still produces a stable
@@ -375,3 +464,72 @@ def _bounded_unique_model_ids(
         if len(results) >= limit:
             break
     return tuple(results)
+
+
+def _candidate_trace_rows(
+    candidates: list[tuple[float, str, str, str, float]],
+    *,
+    selected_model_ids: tuple[str, ...],
+    rejected: list[RelationCandidateTrace],
+    relevance_scores: dict[str, float] | None,
+) -> tuple[RelationCandidateTrace, ...]:
+    selected = set(selected_model_ids)
+    selected_seen: set[str] = set()
+    rows: list[RelationCandidateTrace] = []
+    ordered_candidates = sorted(candidates, key=lambda c: (-c[0], c[1], c[2], c[3]))
+    for adjusted, model_id, source_model_id, edge_type, raw_affinity in ordered_candidates:
+        if model_id in selected and model_id not in selected_seen:
+            selected_seen.add(model_id)
+            rows.append(
+                RelationCandidateTrace(
+                    model_id=model_id,
+                    source_model_id=source_model_id,
+                    edge_type=edge_type,
+                    raw_affinity=raw_affinity,
+                    fan_adjusted_affinity=adjusted,
+                    relevance_score=_relevance_score(model_id, relevance_scores),
+                    selected=True,
+                    rejection_reason="",
+                )
+            )
+            continue
+        reason = (
+            "duplicate_model_via_other_edge"
+            if model_id in selected_seen
+            else "budget_drop"
+        )
+        rows.append(
+            RelationCandidateTrace(
+                model_id=model_id,
+                source_model_id=source_model_id,
+                edge_type=edge_type,
+                raw_affinity=raw_affinity,
+                fan_adjusted_affinity=adjusted,
+                relevance_score=_relevance_score(model_id, relevance_scores),
+                selected=False,
+                rejection_reason=reason,
+            )
+        )
+    rows.extend(rejected)
+    return tuple(
+        sorted(
+            rows,
+            key=lambda r: (
+                not r.selected,
+                r.rejection_reason or "",
+                -r.fan_adjusted_affinity,
+                r.model_id,
+                r.source_model_id,
+                r.edge_type,
+            ),
+        )
+    )
+
+
+def _relevance_score(
+    model_id: str,
+    relevance_scores: dict[str, float] | None,
+) -> float:
+    if not relevance_scores:
+        return 0.0
+    return float(relevance_scores.get(model_id, 0.0) or 0.0)

@@ -205,10 +205,30 @@ def _fixture_result() -> dict:
             ],
         },
         "frame_pressure_card": {
+            "frame_elements": [
+                {
+                    "element_text": "Only one pilot path is being considered.",
+                    "element_type": "assumption",
+                    "evidence_quote": "Should we test it on one team first?",
+                    "frame_pattern": "binary_collapse",
+                    "fragility_signal": "A reversible multi-team probe may exist.",
+                    "inquiry_stage": "what_if",
+                    "likely_default": "inertia",
+                },
+            ],
+            "routes": [
+                {
+                    "element_index": 0,
+                    "frame_pattern": "binary_collapse",
+                    "candidate_model_ids": ["premortem", "inversion"],
+                    "excluded_model_ids": ["base-rates"],
+                },
+            ],
             "reframings": [
                 {
                     "reframed_question": "Should we test it on one team first?",
                     "grounding_model": "premortem",
+                    "source_element_index": 0,
                 },
             ],
         },
@@ -443,6 +463,18 @@ def test_routing_panel_renders_primary_and_antidote_models_per_tendency():
 def test_routing_panel_renders_tiebreaker_trace_with_abort_reason():
     html = serve_result._render_routing_html()
     assert "outside_epsilon_window" in html or "Outside near-tie window" in html
+
+
+def test_routing_panel_renders_route_trace_sections():
+    html = serve_result._render_routing_html()
+    assert "Lane 1 Route" in html
+    assert "Lane 2 Route" in html
+    assert "Lane 3 Route" in html
+    assert "Lane 4 Route" in html
+    assert "Anti-Echo / Why-Not" in html
+    assert "not_in_verifier_response" in html
+    assert "anti_echo_lane1_overlap" in html
+    assert "anti_echo_upstream_lane_overlap" in html
 
 
 def test_routing_panel_handles_empty_routing_decisions(monkeypatch):
