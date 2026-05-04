@@ -1,0 +1,183 @@
+{
+  "model_id": "second-order-thinking",
+  "source_file": "Second_Order_Thinking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "second-order-thinking.downstream-reversal-stress-test",
+      "status": "supported",
+      "name": "Downstream reversal stress test",
+      "mechanism": "Before endorsing an attractive local gain, map the dependency chain, first reversal threshold, and incentive or behavioral adaptation that could turn the immediate win into later system damage.",
+      "activation_shape": {
+        "use_when": [
+          "A move improves an obvious local metric but may degrade incentives, trust, coordination, resilience, or future option value downstream.",
+          "The order of decisions, dependencies, or stakeholder reactions determines whether the same action helps or hurts.",
+          "Customers, competitors, partners, regulators, or teammates are likely to change behavior in response to the initial move."
+        ],
+        "do_not_use_when": [
+          "The consequence chain is not anchored in the real mechanism, actor reactions, or constraints of the case.",
+          "Complexity and downstream effects are being used to postpone commitment indefinitely instead of naming a threshold for acting under uncertainty."
+        ],
+        "case_evidence_needed": [
+          "The dependency chain this intervention assumes will hold.",
+          "The first threshold where delay, overload, or information-hiding would cascade into a worse second-order outcome.",
+          "The incentive that would cause a local team to protect its metric while making the system worse.",
+          "The behavior the intervention will teach surrounding teams to repeat if it works locally."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "dependency-threshold-stress-test",
+          "description": "Require the answer to identify the downstream dependency chain, first reversal threshold, and local incentive before endorsing the intervention.",
+          "evidence_required": [
+            "The visible first-order gain being considered.",
+            "The downstream dependency that must hold for the gain to stay beneficial.",
+            "The first delay, overload, or information-hiding threshold that would flip the outcome.",
+            "The local metric or incentive that could make a team protect itself while worsening the system."
+          ],
+          "good_output_shape": [
+            "States the immediate gain and the dependency chain it assumes.",
+            "Names the first cascade threshold where the result could become worse.",
+            "Identifies the incentive that could protect a local metric while damaging the broader system."
+          ]
+        },
+        {
+          "requirement_id": "behavioral-adaptation-check",
+          "description": "Require the answer to check what surrounding teams will learn to repeat if the local intervention succeeds.",
+          "evidence_required": [
+            "The team, partner, supplier, customer, or other actor that will adapt around the intervention.",
+            "The repeated behavior the local relief teaches or rewards.",
+            "How that adaptation could make the next cycle slower, noisier, or harder to govern."
+          ],
+          "good_output_shape": [
+            "Describes the local relief the intervention creates.",
+            "Names the behavior surrounding actors are likely to repeat.",
+            "Explains whether that adaptation makes the next cycle slower, noisier, or harder to govern."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What dependency chain must hold, where can delay, overload, or information-hiding flip the result, and what incentive would make a team protect its metric while worsening the system?",
+        "If the intervention works locally, what behavior will surrounding teams learn to repeat, and how could that adaptation affect the next cycle?"
+      ],
+      "misuse_guards": [
+        "Do not invent long speculative consequence chains that are not anchored in the real mechanism, actor reactions, or constraints of the case.",
+        "Do not use second-order language to postpone commitment indefinitely; name the threshold for acting under uncertainty."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "Most useful when a move improves the obvious local metric but may degrade incentives, trust, coordination, resilience, or future option value downstream.",
+          "section_hint": "Strengths",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "Works when the order of decisions, dependencies, or stakeholder reactions determines whether the same action helps or hurts.",
+          "section_hint": "Strengths",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "Best when customers, competitors, partners, regulators, or teammates are likely to change behavior in response to the initial move.",
+          "section_hint": "Strengths",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "The plan is approved because the immediate gain is visible, while the real outcome is created later by overloaded dependencies, delayed reactions, or local teams protecting their own metrics.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "Map the dependency chain this intervention assumes will hold, identify the first threshold where delay, overload, or information-hiding would cascade into a worse second-order outcome, and name the incentive that would cause a local team to protect its metric while making the system worse.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "If this intervention works locally, what behavior will it teach the surrounding teams to repeat, and how could that adaptation make the next cycle slower, noisier, or harder to govern?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "Danger when the model is used to invent long speculative chains that feel sophisticated but are not anchored in the real mechanism, actor reactions, or constraints of the case.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "A major anti-pattern is invoking complexity and downstream effects as a reason to postpone commitment indefinitely instead of naming the threshold for acting under uncertainty.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Second_Order_Thinking_rag.md",
+      "source_quote": "Most useful when a move improves the obvious local metric but may degrade incentives, trust, coordination, resilience, or future option value downstream.",
+      "section_hint": "Strengths",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Second_Order_Thinking_rag.md",
+      "source_quote": "The plan is approved because the immediate gain is visible, while the real outcome is created later by overloaded dependencies, delayed reactions, or local teams protecting their own metrics.",
+      "section_hint": "Risks and Mitigations:",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Second_Order_Thinking_rag.md",
+      "source_quote": "Map the dependency chain this intervention assumes will hold, identify the first threshold where delay, overload, or information-hiding would cascade into a worse second-order outcome, and name the incentive that would cause a local team to protect its metric while making the system worse.",
+      "section_hint": "Risks and Mitigations:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Second_Order_Thinking_rag.md",
+      "source_quote": "If this intervention works locally, what behavior will it teach the surrounding teams to repeat, and how could that adaptation make the next cycle slower, noisier, or harder to govern?",
+      "section_hint": "Risks and Mitigations:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Second_Order_Thinking_rag.md",
+      "source_quote": "Danger when the model is used to invent long speculative chains that feel sophisticated but are not anchored in the real mechanism, actor reactions, or constraints of the case.",
+      "section_hint": "Weaknesses and Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Second_Order_Thinking_rag.md",
+      "source_quote": "A major anti-pattern is invoking complexity and downstream effects as a reason to postpone commitment indefinitely instead of naming the threshold for acting under uncertainty.",
+      "section_hint": "Weaknesses and Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Compressed the source's downstream dependency, threshold, incentive, and behavioral-adaptation material into one operational affordance for stress-testing attractive local interventions.",
+    "dropped_material": [
+      "Did not extract broad introductory definitions, domino analogies, or mental-model framing because they explain the concept but add little operational contract beyond the stress-test affordance.",
+      "Did not extract organization adaptation, pitching, allies, antagonists, or relation semantics as separate affordances; they remain useful context but are less direct than the source-backed risk-table prompts.",
+      "Did not create absence records for fields that were not attempted."
+    ],
+    "open_questions": [],
+    "review_status": "draft"
+  }
+}
