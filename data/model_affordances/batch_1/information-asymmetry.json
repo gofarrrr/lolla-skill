@@ -1,0 +1,534 @@
+{
+  "model_id": "information-asymmetry",
+  "source_file": "Information_Asymmetry_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "information-asymmetry.redesign-party-controlled-evidence",
+      "status": "supported",
+      "name": "Party-controlled evidence requires observability redesign",
+      "mechanism": "When the party being evaluated controls dashboards, references, pilots, or reported outcomes, treat the visible evidence as part of the asymmetry: name what the party can choose or game, identify the hidden payoff it may optimize, and require an independent signal or direct observability before commitment.",
+      "activation_shape": {
+        "use_when": [
+          "Pricing, trust, or strategic choice hinges on hidden information, concealed incentives, or unshared operating realities between parties.",
+          "A vendor, outsourcer, agent, or delegated partner supplies the metrics, references, pilot outputs, or scorecards being treated as go/no-go proof.",
+          "Visible outcomes look strong, but the principal cannot observe the behaviors or tradeoffs that produced them."
+        ],
+        "do_not_use_when": [
+          "Critical evidence is externally audited, directly observable in production, or contractually hard for the other side to manipulate.",
+          "The blocker is already known to be incentives, governance, or authority rather than missing party-specific information.",
+          "The team is asking for generic more information without naming a hidden variable that would change the decision."
+        ],
+        "case_evidence_needed": [
+          "Which party is being evaluated and which metrics, references, pilots, dashboards, or scorecards that party controls.",
+          "The commitment decision that would change with disclosure, diligence, observability, signaling, or incentive redesign.",
+          "The hidden behaviors or payoff the other side could optimize for, such as margin, speed, commission extraction, risk transfer, discounting, exception handling, or overpromising."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-controlled-evidence",
+          "description": "Before accepting visible performance, identify every dashboard, metric, reference, pilot, benchmark, or scorecard controlled by the party trying to win the decision and mark it as self-selected until independently observed.",
+          "evidence_required": [
+            "The party being judged and the proof that party supplies.",
+            "Which measures, conditions, references, or reporting channels that party chose or can shape.",
+            "The current decision being made from those visible signals."
+          ],
+          "good_output_shape": [
+            "Separates independent evidence from party-controlled evidence.",
+            "Names the specific proof that could be selected, staged, gamed, or reported under favorable conditions.",
+            "Refuses to treat supplier-designed proof as neutral go/no-go evidence."
+          ]
+        },
+        {
+          "requirement_id": "require-independent-signal",
+          "description": "Require at least one demand, quality, risk, or performance signal that the evaluated party has little incentive or ability to influence, then state how the scale, trust, pricing, or oversight decision changes if only that signal counts.",
+          "evidence_required": [
+            "The independent signal that would validate demand, quality, risk, or performance.",
+            "How the evaluated party could influence the current visible signal.",
+            "The decision threshold or commitment change if only the independent signal counted."
+          ],
+          "good_output_shape": [
+            "Identifies a signal outside the other party's control.",
+            "States the decision that would follow from the independent signal alone.",
+            "Delays scaling or commitment until direct observability exists on the behaviors producing the visible outcome."
+          ]
+        },
+        {
+          "requirement_id": "name-hidden-optimization",
+          "description": "Ask what payoff the vendor, agent, partner, or service provider could privately optimize for, where that behavior would show up first, and what observability or oversight would catch it before commitment.",
+          "evidence_required": [
+            "The role of the other party: vendor, agent, partner, service provider, outsourcer, or delegated operator.",
+            "The private payoff that could differ from the principal's assumed payoff.",
+            "The first observable traces of that hidden behavior."
+          ],
+          "good_output_shape": [
+            "Names the hidden optimization that would change trust, pricing, or oversight.",
+            "Connects the hidden optimization to observable behaviors such as discounting, exception handling, overpromising, claim denials, commission extraction, or risk transfer.",
+            "Proposes observability or oversight changes before relying on the reported result."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What specific metric, reference, or proof in this plan is controlled by the party trying to win the decision?",
+        "What demand signal exists that the partner has no incentive to influence -- and what would your scale decision look like if only that signal counted?",
+        "If the vendor or agent were optimizing for a different payoff than we assume, where would we see it first?",
+        "Which people know the most, which people bear the risk, and which people approve the decision?"
+      ],
+      "misuse_guards": [
+        "Do not accept dashboards, references, or pilot outputs as independent proof when the party being evaluated chose what to reveal, how to measure it, and under which conditions.",
+        "Do not ask for generic more information without naming the missing fact that would change price, trust, sequencing, or go/no-go choice.",
+        "Do not reach for information asymmetry when the critical evidence is externally audited, directly observable in production, or contractually hard to manipulate.",
+        "Do not collapse the model into generic uncertainty or calibration; preserve who controls which evidence and who bears the decision risk."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Information Asymmetry (IA) is fundamentally defined by the **unequal distribution of relevant knowledge** between two or more parties in a transaction, relationship, or decision.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Most useful when pricing, trust, or strategic choice hinges on hidden information, concealed incentives, or unshared operating realities.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Works when the practical decision is whether to add diligence, require disclosure, redesign incentives, use signaling, or map the real decision-makers before committing.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Best when the people who know the most, the people who bear the risk, and the people who approve the decision are not the same actors.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Most useful when a vendor, outsourcer, or delegated operator supplies the core performance metrics and the plan is treating those numbers as if they were independent validation.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Works when the evidence base comes from hand-picked references, staged proofs of concept, or sandbox conditions controlled by the party trying to win the deal.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Best when a partner, agent, or service provider can privately optimize for speed, margin, commission extraction, or risk transfer in ways the principal cannot directly see.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Works when booked revenue, turnaround time, or quality dashboards look good but the plan has not tested whether the measurement system itself can be gamed.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Most useful when supplier scorecards, implementation dashboards, customer references, or pilot benchmarks are being used as go/no-go proof even though the vendor chose the measures and the conditions.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Works when revenue, turnaround, or SLA numbers look strong but the principal cannot observe discounting, exception handling, overpromising, claim denials, or other behaviors generating those results.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "A major anti-pattern is asking for “more information” without naming what missing fact would actually change price, trust, sequencing, or go/no-go choice.",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "A common mistake is accepting dashboards, references, or PoC outputs as independent proof even though the party being evaluated chose what to reveal, how to measure it, and under which conditions.",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Avoid reaching for information asymmetry when the critical evidence is externally audited, directly observable in production, or contractually hard to manipulate.",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "The principal then scales the channel on signals the partner controls instead of signals the market independently confirms.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "What demand signal exists that the partner has no incentive to influence -- and what would your scale decision look like if only that signal counted?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Require direct observability on discounting, customer quality, and downstream performance before expanding.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "What specific metric, reference, or proof in this plan is controlled by the party trying to win the decision?",
+          "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use of IA",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "If the vendor or agent were optimizing for a different payoff than we assume, where would we see it first?",
+          "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use of IA",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance preserves the Lane-4-frequent party-level pattern: who controls the evidence, who benefits from that control, and what independent observability would change the decision.",
+        "dropped_material": [
+          "Did not split vendor dashboards, partner bookings, references, pilots, and hidden payoff into separate affordances because they share one evidence-control mechanism.",
+          "Did not turn principal-agent language into a separate model relation; the source supports it here only as the party-level shape of the information asymmetry."
+        ],
+        "open_questions": [
+          "A future relation review may decide whether some hidden-agent material should be delegated to principal-agent-problem rather than remaining inside this affordance."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "information-asymmetry.extract-tacit-knowledge-for-recipient",
+      "status": "supported",
+      "name": "Expert-recipient gaps require tacit process extraction",
+      "mechanism": "When an informed party's expertise leaves a novice, frontline worker, or decision recipient with abstractions instead of usable understanding, convert the asymmetry into inspectable process: ask how the expert thinks, collect stories, timelines, and step-by-step choices, then compress the result to the actionable core the recipient can use.",
+      "activation_shape": {
+        "use_when": [
+          "An expert is communicating in abstract, high-level terms while the audience needs concrete details or an actionable core.",
+          "The task depends on tacit knowledge that the expert has difficulty articulating because they rely on recognition and intuition.",
+          "A recipient needs to understand the model, decision path, or message well enough to act, not merely receive a conclusion."
+        ],
+        "do_not_use_when": [
+          "The evidence problem is supplier-controlled proof or hidden optimization; use the party-controlled evidence affordance instead of treating it as communication.",
+          "The recipient already has the concrete steps, timeline, and decision path, and the blocker is authority or incentives to act on known facts.",
+          "A full accurate explanation would overwhelm the recipient; keep the output centered on the actionable core."
+        ],
+        "case_evidence_needed": [
+          "The informed party and the recipient or novice whose understanding is incomplete.",
+          "Where the current communication is too abstract, too detailed, or not actionable for the decision recipient.",
+          "Stories, timelines, decisions, precursors, actions, results, interpretations, and the simple core message that would let the recipient act."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "ask-how-not-what",
+          "description": "When advice arrives as abstraction, ask how the expert thinks about the problem so the underlying model becomes visible instead of taking only the recommendation.",
+          "evidence_required": [
+            "The recommendation or conclusion the expert has offered.",
+            "The hidden reasoning model or decision path the recipient needs to understand.",
+            "The recipient's concrete decision or action that depends on the expert's reasoning."
+          ],
+          "good_output_shape": [
+            "Elicits the expert's thinking process rather than only the answer.",
+            "Names the underlying model or decision path behind the advice.",
+            "Converts the expert's abstraction into concrete information the recipient can use."
+          ]
+        },
+        {
+          "requirement_id": "extract-stories-and-flow",
+          "description": "Use cognitive task analysis by collecting stories, timelines, and step-by-step decisions, then ask for precursors, actions, results, and interpretations so tacit knowledge becomes inspectable.",
+          "evidence_required": [
+            "A real story, incident, or typical problem from the expert.",
+            "The timeline and step-by-step decisions taken.",
+            "The precursor, action, result, and interpretation that shaped the expert's judgment."
+          ],
+          "good_output_shape": [
+            "Grounds the exchange in stories and facts rather than abstract advice.",
+            "Shows the flow of the expert's problem-solving process.",
+            "Makes recognition-based tacit judgment explicit enough for review or transfer."
+          ]
+        },
+        {
+          "requirement_id": "make-core-accessible",
+          "description": "Translate the expert's full accurate knowledge into a simple actionable core, using concrete comparisons or analogies where they help the recipient make a decision.",
+          "evidence_required": [
+            "The accurate but too-complex explanation currently being offered.",
+            "The recipient's context, capacity, and decision need.",
+            "The core message or comparison that would make action possible."
+          ],
+          "good_output_shape": [
+            "Keeps the useful core while dropping exhaustive distracting facts.",
+            "Uses concrete language or analogy to create a usable mental bucket for the recipient.",
+            "Separates detailed backup material from the simple message needed for action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "How does the expert think about the problem?",
+        "What do you think the other side doesn’t 'get' about your perspective?",
+        "How will the audience absorb the content?",
+        "Which story, timeline, precursor, action, result, or interpretation would reveal the decision process?"
+      ],
+      "misuse_guards": [
+        "Do not accept expert abstraction when the audience needs concrete details.",
+        "Do not ask only what to do when that hides the underlying model the recipient needs.",
+        "Do not let full accuracy become useless by making the communication too complex for decision or action.",
+        "Do not confuse exhaustive fact gathering with the raw material needed to expose the expert's decision process."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "**To diagnose communication failures** that arise when experts fail to account for the novice's incomplete understanding (the \"Curse of Knowledge\").",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "This curse leads experts to communicate in abstract, high-level terms when the audience needs concrete details.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "An accurate but useless idea is still useless.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "The IA exists because the expert has all the precise, useless information, while the frontline worker needs the simple, actionable core.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "When seeking advice, rather than asking *what* to do (which yields an abstraction), ask *how* the expert thinks about the problem.",
+          "section_hint": "Actionable Frameworks and Heuristics (Mitigating IA)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "This \"deepens your understanding\" by revealing the underlying model.",
+          "section_hint": "Actionable Frameworks and Heuristics (Mitigating IA)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Experts often possess **tacit knowledge**—knowledge that is difficult to articulate because they rely on recognition and intuition.",
+          "section_hint": "Actionable Frameworks and Heuristics (Mitigating IA)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Focusing on facts, timelines, and walking through decisions step-by-step, like a journalist, provides raw material for investigation.",
+          "section_hint": "Actionable Frameworks and Heuristics (Mitigating IA)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Having experts generate typical problems, and then having them think aloud while solving peer problems (Precursor, Action, Result, Interpretation) helps illuminate the basic flow of the problem-solving process.",
+          "section_hint": "Actionable Frameworks and Heuristics (Mitigating IA)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "An expert’s instinct is to communicate the full, highly detailed, and accurate answer, but if this information is too complex, it fails to help the recipient make decisions or take action, making the idea useless.",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Experts unintentionally communicate abstractly and opaquely because they cannot recall what it is like to lack their specialized knowledge.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Focus on the **core message** and avoid exhaustive, distracting facts.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "The receiving party (or novice) is overwhelmed by excessive, intricate data presented by the informed party and loses focus on the actionable core.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "What do you think the other side doesn’t 'get' about your perspective?",
+          "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use of IA",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "How will the audience absorb the content?",
+          "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use of IA",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This keeps the expert-recipient side of the source as an operational extraction problem: reveal the informed party's process and translate the core for the recipient.",
+        "dropped_material": [
+          "Did not turn all presentation and teaching examples into separate affordances because the source's treatment requirement is the same: make the hidden expert model concrete and accessible.",
+          "Did not promote relation-only Feynman Technique or cognitive-load material here; those are already represented in relation curation."
+        ],
+        "open_questions": [
+          "Review may later decide that expert-recipient communication belongs in a narrower communication model rather than in information-asymmetry affordances."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-uncertainty-or-confidence-calibration-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source does not support replacing information asymmetry with generic uncertainty or calibration. Its operational trigger is unequal relevant knowledge between parties, especially cases where one side controls information, proof, or observability.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Information Asymmetry (IA) is fundamentally defined by the **unequal distribution of relevant knowledge** between two or more parties in a transaction, relationship, or decision.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Most useful when pricing, trust, or strategic choice hinges on hidden information, concealed incentives, or unshared operating realities.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Most useful when a vendor, outsourcer, or delegated operator supplies the core performance metrics and the plan is treating those numbers as if they were independent validation.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "exploitative-fud-or-persuasion-runtime-affordance",
+      "status": "deferred_for_review",
+      "reason": "The source includes examples of exploiting asymmetry in private equity, persuasion, and FUD, but this reviewed pass does not have a policy-safe operational treatment standard for promoting those tactics. Keep exploitation material as review context rather than a runtime or Lane-4 behavior.",
+      "runtime_policy": "defer_for_review",
+      "source_evidence": [
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Information Asymmetry is applied in the real world both as a strategic tool to exploit and as a vulnerability to mitigate through deliberate processes.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "The PE investor’s worldview specifically assumes that **information asymmetries make it possible to capture opportunities others don’t see**.",
+          "section_hint": "Strategic Applications (Exploiting IA)",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "This tactic exploits the asymmetry of knowledge regarding risk—telling the uninformed party (procurement) the potential areas of risk and consequences associated with prioritizing a low price.",
+          "section_hint": "Strategic Applications (Exploiting IA)",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Information_Asymmetry_rag.md",
+      "source_quote": "Information Asymmetry (IA) is fundamentally defined by the **unequal distribution of relevant knowledge** between two or more parties in a transaction, relationship, or decision.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Information_Asymmetry_rag.md",
+      "source_quote": "Works when the practical decision is whether to add diligence, require disclosure, redesign incentives, use signaling, or map the real decision-makers before committing.",
+      "section_hint": "Strengths (Contexts of Power)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Information_Asymmetry_rag.md",
+      "source_quote": "Most useful when a vendor, outsourcer, or delegated operator supplies the core performance metrics and the plan is treating those numbers as if they were independent validation.",
+      "section_hint": "Strengths (Contexts of Power)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Information_Asymmetry_rag.md",
+      "source_quote": "When seeking advice, rather than asking *what* to do (which yields an abstraction), ask *how* the expert thinks about the problem.",
+      "section_hint": "Actionable Frameworks and Heuristics (Mitigating IA)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Information_Asymmetry_rag.md",
+      "source_quote": "What specific metric, reference, or proof in this plan is controlled by the party trying to win the decision?",
+      "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use of IA",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full packet assembled at /tmp/model-affordance-packets/information-asymmetry.json, the full canonical source markdown, and the activation, intervention, and relation curation layers. Extracted two party-level affordances and kept the main one focused on supplier/agent-controlled evidence rather than generic uncertainty or confidence calibration.",
+    "dropped_material": [
+      "Did not create separate affordances for PE investing, pitching, procurement FUD, WYSIATI, Feynman Technique, cognitive load theory, or Systems Thinking because those either need policy review, belong to relation curation, or duplicate another model's mechanism.",
+      "Did not create a generic unknown-unknowns or calibration affordance; the source's usable IA shape is one party possessing, withholding, selecting, or failing to articulate information another party needs.",
+      "Did not promote any record into runtime routing, Lane 4 behavior, chat, memo, Step 6, Step 8, or Observatory output behavior."
+    ],
+    "open_questions": [
+      "Review may want to split supplier/principal-agent observability from expert-recipient tacit knowledge in a later pass.",
+      "Exploitative strategic applications are source-present but intentionally deferred until review decides whether they belong in a safety-bounded affordance at all."
+    ],
+    "review_status": "draft"
+  }
+}

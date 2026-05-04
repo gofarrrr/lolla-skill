@@ -1,0 +1,244 @@
+{
+  "model_id": "occams-razor",
+  "source_file": "Occams_Razor_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "occams-razor.lowest-assumption-evidence-pruning",
+      "status": "supported",
+      "name": "Lowest-assumption evidence pruning",
+      "mechanism": "Choose the leanest explanation only after comparing live alternatives on shared evidence, then surface the assumptions, disconfirming evidence, and necessary complexity that would make the simpler story too simple.",
+      "activation_shape": {
+        "use_when": [
+          "Several explanations can fit the same situation and the immediate job is to prune gratuitous assumptions before committing to one.",
+          "Detail, variables, features, or analyses are increasing delay without materially changing the decision.",
+          "A lean explanation could improve diagnosis, communication, or prioritization while preserving the essential causal structure."
+        ],
+        "do_not_use_when": [
+          "The simpler story ignores hard evidence, data, interacting causes, or necessary complexity.",
+          "The problem is novel, wicked, systemic, or structurally complex enough to require slower investigation or advanced analysis.",
+          "Simplicity is being chosen because it feels easier, calmer, or more elegant rather than because it fits the strongest facts."
+        ],
+        "case_evidence_needed": [
+          "The competing hypotheses or stories that currently fit the case.",
+          "The assumptions, variables, and causal mechanisms each explanation requires.",
+          "The hard evidence, disconfirming evidence, and essential causal structure that would make the simplest account insufficient."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compare-assumption-load",
+          "description": "Before preferring the simplest explanation, compare the competing explanations by the assumptions and variables each one adds while holding them accountable to the same observed facts.",
+          "evidence_required": [
+            "The candidate explanations or hypotheses being compared.",
+            "The assumptions, variables, or unproven premises each explanation requires.",
+            "The observed facts or predictions that each explanation must account for."
+          ],
+          "good_output_shape": [
+            "Names the explanation with the fewest unsupported assumptions.",
+            "Shows which assumptions or variables were shaved off and why they did not change the decision.",
+            "Keeps the chosen explanation provisional until further evidence changes the comparison."
+          ]
+        },
+        {
+          "requirement_id": "test-for-too-simple-failure",
+          "description": "Stress-test the lean explanation against hard evidence, disconfirming observations, and countermodels before letting parsimony override necessary causal structure.",
+          "evidence_required": [
+            "The hard evidence or data that would challenge the simpler explanation.",
+            "The disconfirming factor or observation that would require a more elaborate explanation.",
+            "The other models, system interactions, or analytic tools that may reveal necessary complexity."
+          ],
+          "good_output_shape": [
+            "Separates evidence-based simplicity from a merely neat or comfortable story.",
+            "States the factor that would disprove the simple explanation or force a more complex account.",
+            "Preserves necessary complexity when simpler framing would hide the mechanism."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the single most important thing?",
+        "Is S merely neat and plausible, or is it supported by hard evidence?",
+        "What specific evidence or single factor would disprove S, and have we actively looked for it?",
+        "What assumptions are embedded in S, and what other models, if applied, might expose a necessary layer of complexity that S is concealing?"
+      ],
+      "misuse_guards": [
+        "Do not treat the simplest answer as truth when complex factors are necessary or hard evidence points elsewhere.",
+        "Do not let cognitive ease, familiarity, or a clean story substitute for evidence-based parsimony.",
+        "Do not use the model to avoid systems thinking, multidisciplinary scope, or analytic tools when complexity is warranted.",
+        "Do not accept simplicity as final proof; keep the explanation answerable to testing and disconfirmation."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "when faced with competing hypotheses, **the explanation requiring the fewest assumptions is generally the correct one**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "If two theories make the same predictions, OR dictates preferring the one with the least number of unproven assumptions until further evidence is available.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "Occam's Razor is strongest when several stories could explain the situation and the immediate job is to prune gratuitous assumptions before committing to a more elaborate theory.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "The model has high leverage when teams are drowning in variables, features, or analyses that do not materially change the decision but are increasing confusion and delay.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "OR is particularly effective when a lean explanation improves diagnosis, communication, or prioritization while still preserving the essential causal structure.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "Not every complicated scenario should be discounted, especially if the simpler explanation ignores hard evidence or data.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "The razor is misused when people prefer the cleanest story mainly because it feels easier, calmer, or more elegant rather than because it actually fits the strongest facts.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "Apply the **scientific method** and maintain analytic rigor, ensuring simple explanations are backed by provable means, not just convenience.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "What specific evidence or single factor would disprove S, and have we actively looked for it?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "What assumptions are embedded in S, and what other models, if applied, might expose a necessary layer of complexity that S is concealing?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed the source's parsimony rule, early-framing use, assumption pruning, and evidence-fit cautions into one operational affordance because good use requires the pruning move and the too-simple guard together.",
+        "dropped_material": [
+          "Did not split business strategy, pitching, teaching, and prompt-engineering examples into separate affordances because they repeat the same simplicity-with-evidence discipline without adding distinct treatment requirements.",
+          "Did not promote relation curation into separate runtime behavior; relation material is represented only where it constrains misuse of the razor."
+        ],
+        "open_questions": [
+          "Review may later decide whether the communication examples belong in a separate simplification or cognitive-load affordance instead of this Occam-specific record."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-communication-or-prompt-concision-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source gives communication and prompt-engineering examples of simplicity, but it does not support a distinct runtime prompt or communication affordance beyond the general evidence-backed pruning discipline.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "The target brain needs **simple, clear, direct, and non-threatening ideas**.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "**Concise and crisp prompts are generally more effective** because they use less computational power, are processed more quickly, and are less likely to confuse the model.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-latticework-or-advanced-analytics-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source's latticework and advanced-analytics material supplies boundary conditions for the main affordance: do not prune necessary complexity. It does not add a separate Occam-specific treatment contract.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "OR must be carefully balanced to prevent substituting a familiar, simple model for a more complicated, yet accurate, one.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Occams_Razor_rag.md",
+          "source_quote": "OR must not discourage the use of these tools when complexity is warranted for resolving issues unambiguously.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Occams_Razor_rag.md",
+      "source_quote": "If two theories make the same predictions, OR dictates preferring the one with the least number of unproven assumptions until further evidence is available.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Occams_Razor_rag.md",
+      "source_quote": "Occam's Razor is strongest when several stories could explain the situation and the immediate job is to prune gratuitous assumptions before committing to a more elaborate theory.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Occams_Razor_rag.md",
+      "source_quote": "OR is particularly effective when a lean explanation improves diagnosis, communication, or prioritization while still preserving the essential causal structure.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Occams_Razor_rag.md",
+      "source_quote": "The razor is misused when people prefer the cleanest story mainly because it feels easier, calmer, or more elegant rather than because it actually fits the strongest facts.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full /tmp extraction packet, canonical source markdown, Wave 1 activation curation, Wave 2 intervention curation, and Wave 3 relation curation. Extracted one source-backed affordance and kept the artifact dormant for review rather than runtime promotion.",
+    "dropped_material": [
+      "Did not create separate business-strategy, pitching, teaching, prompt-engineering, or ally-model affordances because the source does not add distinct operational contracts for those examples.",
+      "Did not use curation quotes that were not exact substrings of the canonical source.",
+      "Did not promote this record into chat, memo, routing, Step 6, Step 8, Lane 4, or Observatory behavior."
+    ],
+    "open_questions": [
+      "The source is broad enough to support the main evidence-pruning affordance but still abstract around concrete implementation thresholds; reviewer judgment may decide whether to mark some treatment wording as medium confidence."
+    ],
+    "review_status": "draft"
+  }
+}

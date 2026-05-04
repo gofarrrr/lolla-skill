@@ -1,0 +1,357 @@
+{
+  "model_id": "network-effects",
+  "source_file": "Network_Effects_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "network-effects.critical-mass-feedback-proof",
+      "status": "supported",
+      "name": "Prove critical mass before naming network effects",
+      "mechanism": "A case earns network-effect weight only when the answer shows the threshold or minimum density at which additional participants make the system viable, self-sustaining, and more valuable for other participants rather than merely larger.",
+      "activation_shape": {
+        "use_when": [
+          "The value of a product, service, marketplace, community, or organizational system may rise materially as more participants join the same network.",
+          "The strategy depends on reaching a threshold after which adoption changes user behavior, economics, defensibility, or self-sustaining viability.",
+          "The team must decide whether observed growth is genuinely self-reinforcing or only linear volume expansion with network language attached."
+        ],
+        "do_not_use_when": [
+          "Leaders are calling ordinary scale benefits network effects without showing that each added participant improves value for the next one.",
+          "A local pocket of traction is being treated as critical mass without a defined density, reach, or disconfirmation test.",
+          "The case has no participant-to-participant value mechanism, threshold, minimum density, or self-sustaining adoption question."
+        ],
+        "case_evidence_needed": [
+          "The participant types, nodes, counterparties, or sides of the network and how they create value for one another.",
+          "The density, reach, or threshold required before the system becomes viable, self-sustaining, or defensible.",
+          "Evidence that each additional participant improves value for existing or future participants rather than merely increasing volume."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-critical-mass-threshold",
+          "description": "The answer must define the critical-mass threshold, minimum density, or reach condition before treating growth as a network effect.",
+          "evidence_required": [
+            "The relevant users, contributors, counterparties, tools, locations, or nodes.",
+            "The density or reach boundary that determines whether those nodes count toward the same critical-mass point.",
+            "Current evidence about whether the threshold is likely to be reached, and why or why not."
+          ],
+          "good_output_shape": [
+            "Names the network participants and the value exchange between them.",
+            "States the threshold, density, or reach condition that would make the system viable or self-sustaining.",
+            "Compares current adoption evidence to that threshold instead of declaring network effects from growth alone."
+          ]
+        },
+        {
+          "requirement_id": "separate-feedback-from-volume",
+          "description": "The answer must distinguish self-reinforcing feedback from ordinary scale and test the threshold claim against disconfirming evidence.",
+          "evidence_required": [
+            "The mechanism by which added participants improve value for other participants.",
+            "The feedback loop that would make growth self-reinforcing after the threshold.",
+            "Disconfirming evidence, outside-view reference classes, or an antithesis that could show critical mass is not reachable."
+          ],
+          "good_output_shape": [
+            "Explains how additional participation changes value, behavior, economics, or defensibility.",
+            "Separates linear volume expansion from a feedback loop that makes future adoption easier.",
+            "States what evidence would falsify the claim that critical mass has been or can be reached."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What density of users, tools, contributors, or counterparties is needed to reach the critical-mass point in this area?",
+        "How far apart can two nodes be and still count toward the same critical-mass point?",
+        "Is the critical mass likely to be reached in this area, and why or why not?",
+        "What would we have to believe to accept that critical mass is not reachable here?"
+      ],
+      "misuse_guards": [
+        "Do not label ordinary scale benefits as network effects unless added participants improve value for other participants.",
+        "Do not mistake local success for critical mass without challenging the hypothesis against disconfirming evidence.",
+        "Do not let belief in eventual network effects replace outside-view base rates, reference classes, or fallback planning."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "The fundamental essence of Network Effects is the dynamic where the value of a product or service increases non-linearly with the number of users or nodes connected to the network.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "The **core definition and purpose** of **Critical Mass** is the idea that a system, concept, or product must reach a certain threshold or minimum density before it can become viable or self-sustaining.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "The network only becomes valuable and usable when the nodes (tools and renters/drivers and riders) achieve sufficient density.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "**Best used when** the team must decide whether growth mechanics are self-reinforcing or merely linear volume expansion.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "leaders label ordinary scale benefits as \u201cnetwork effects\u201d without proving that each additional participant actually improves value for the next one.",
+          "section_hint": "Weaknesses and Common Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "What density of [users/tools] is needed to reach the critical mass point in a given area?",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "What would we have to believe to accept that critical mass is *not* reachable?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Merged the source's critical-mass definition, density questions, self-reinforcement test, and anti-fake-network-effects warning into one operational proof affordance.",
+        "dropped_material": [
+          "Did not split local-success disconfirmation into a separate affordance because it is the falsification side of the same critical-mass proof.",
+          "Did not promote base-rates or margin-of-safety structured tensions as separate affordances; they appear only as guards against overconfidence."
+        ],
+        "open_questions": [
+          "A later reviewed relation layer may decide whether the outside-view guard should link explicitly to base-rates rather than remaining inside this model record."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "network-effects.pre-threshold-adoption-path",
+      "status": "supported",
+      "name": "Engineer the pre-threshold adoption path",
+      "mechanism": "Before organic growth can be trusted, the answer must identify the smallest seeding move, business-model tweak, core user or feature focus, and adoption explanation that can move the network toward viable density without maximizing every connection or data point.",
+      "activation_shape": {
+        "use_when": [
+          "The network remains fragile because it has not yet reached the participant density needed for organic adoption.",
+          "A business model, market, community, or platform may need seeding before supply, demand, or engagement can become self-sustaining.",
+          "The team is tempted to add many connections, integrations, features, or data layers before the core network loop is validated."
+        ],
+        "do_not_use_when": [
+          "The critical-mass threshold has not been defined enough to know what seeding or focus would move.",
+          "The core network loop already has self-sustaining density and the active problem is post-threshold optimization rather than reaching viability.",
+          "The proposed intervention adds complexity without showing how it improves the path to viable density."
+        ],
+        "case_evidence_needed": [
+          "The current gap between available participants, supply, demand, or engagement and the density required for viability.",
+          "The smallest seeding move or business-model tweak that could make the critical-mass point reachable or easier to reach.",
+          "The core users, features, connections, or simple adoption message most likely to move the system past the threshold."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "seed-minimum-viable-density",
+          "description": "The answer must specify how to seed or tweak the system before organic growth is expected to carry adoption.",
+          "evidence_required": [
+            "The participant side, area, supply pool, or demand pool that is below viable density.",
+            "The seeding action, subsidy, tool placement, market focus, or business-model tweak available to close the early-density gap.",
+            "The viability signal that would show the seeding move accelerated the path to critical mass."
+          ],
+          "good_output_shape": [
+            "Shows why the network is still fragile before critical mass.",
+            "Names the smallest seeding or model-tweak intervention to test next.",
+            "Defines the density, usage, supply, demand, or engagement signal that would show progress toward self-sustaining adoption."
+          ]
+        },
+        {
+          "requirement_id": "focus-before-complexity",
+          "description": "The answer must focus effort on the few users, features, facts, or message elements most likely to push the network past threshold before adding more complexity.",
+          "evidence_required": [
+            "The core users, features, or connections with the highest leverage on threshold crossing.",
+            "The facts needed to support or refute the current network-effect hypothesis.",
+            "Any audience-comprehension or cognitive-load risk that could prevent adoption from spreading."
+          ],
+          "good_output_shape": [
+            "Prioritizes the core users, features, or connections most likely to move critical mass.",
+            "Names which facts are enough to test the hypothesis and which data gathering should wait.",
+            "Simplifies the adoption explanation when understanding the network is necessary for people to join or act."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Can the business model be tweaked so this critical-mass point is reachable or easier to reach?",
+        "Which seed supply, demand, user group, or feature would most directly move the network toward viable density?",
+        "Which facts are enough to support or refute the network-effect hypothesis before the team adds more complexity?",
+        "Is the explanation simple enough for new participants to understand and act on?"
+      ],
+      "misuse_guards": [
+        "Do not treat seeding as proof that adoption has become self-sustaining.",
+        "Do not boil the ocean by maximizing every network connection or data point before critical mass is reached.",
+        "Do not overload potential adopters with too many features or abstract details when the network needs rapid, widespread understanding."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "Applying the Network Effects model in business involves systematically engineering the conditions required to reach, and surpass, critical mass, often by influencing the structure of adoption.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "Determine how to expedite growth before it becomes organic:",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "Can you tweak the business model so that this critical mass point is reachable or easier to reach?",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "To apply the model to the power tool rental business, the company could **\"seed each area with its own tools\"** to artificially boost supply and ensure initial customer demand is met, thereby accelerating the path to critical mass.",
+          "section_hint": "Concrete Examples of Application in Strategy:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "identifying and focusing resources on the 20% of core users or features that will most effectively drive the system past the critical mass threshold, thereby maximizing the input-to-output ratio.",
+          "section_hint": "The Latticework: Systemic Interactions:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "Strategy dictates gathering *enough* facts to support or refute a hypothesis\u2014and only enough.",
+          "section_hint": "Weaknesses and Common Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "Overcomplicating the system before critical mass is reached is a waste of time and effort.",
+          "section_hint": "Weaknesses and Common Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "When explaining a complex network or product, overloading the audience's **working memory** with too many features or abstract details hinders the assimilation of new information.",
+          "section_hint": "Conflicting Relationships (Antagonists):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Extracted seeding, business-model tweaking, Pareto focus, enough-facts discipline, and complexity guard as one pre-threshold intervention affordance rather than separate growth tactics.",
+        "dropped_material": [
+          "Did not turn Southwest-style messaging into a standalone affordance because the source supports simplicity as adoption support, not as an independent network-effects mechanism.",
+          "Did not extract social influence, liking, unity, or theory-of-mind as separate affordances because those are relation/context material unless future review asks for cross-model activation records."
+        ],
+        "open_questions": [
+          "Review may decide whether adoption-message simplification should remain in this affordance or move to a relation with cognitive-load-theory."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "multi-agent-simulation-runtime-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source gives digital twins and multi-agent simulation as one strategic example, but it does not authorize this dormant affordance record to add runtime simulation behavior or require a simulation treatment for ordinary network-effects use.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "In high-impact strategic decision-making, digital twins can be used to model complex social networks or buying committees (multi-agent simulations).",
+          "section_hint": "Concrete Examples of Application in Strategy:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "automatic-network-effect-moat-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source mentions defensibility after a threshold, but it also warns against perceived inevitability and moat overconfidence, so the record should not treat claimed network effects as automatic competitive protection.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "Over-reliance on the perceived inevitability of Network Effects carries several cognitive and strategic risks.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Network_Effects_rag.md",
+          "source_quote": "network-effects conflicts with margin-of-safety (margin of safety) when confidence in network-effect moats reduces investment in redundancy and fallback strategies.",
+          "section_hint": "Structured Tension Curation (2026-04-03):",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Network_Effects_rag.md",
+      "source_quote": "The fundamental essence of Network Effects is the dynamic where the value of a product or service increases non-linearly with the number of users or nodes connected to the network.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Network_Effects_rag.md",
+      "source_quote": "The **core definition and purpose** of **Critical Mass** is the idea that a system, concept, or product must reach a certain threshold or minimum density before it can become viable or self-sustaining.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Network_Effects_rag.md",
+      "source_quote": "**Best used when** the team must decide whether growth mechanics are self-reinforcing or merely linear volume expansion.",
+      "section_hint": "Application Context: Strengths and Weaknesses:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Network_Effects_rag.md",
+      "source_quote": "Applying the Network Effects model in business involves systematically engineering the conditions required to reach, and surpass, critical mass, often by influencing the structure of adoption.",
+      "section_hint": "The Playbook in Action:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Network_Effects_rag.md",
+      "source_quote": "Overcomplicating the system before critical mass is reached is a waste of time and effort.",
+      "section_hint": "Weaknesses and Common Anti-Patterns:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full /tmp extraction packet, canonical source markdown, activation curation, intervention curation, and relation curation. Extracted two sharp affordances: critical-mass feedback proof and pre-threshold adoption-path engineering. The record remains dormant and review-only.",
+    "dropped_material": [
+      "Did not create a broad platform-growth affordance because the source explicitly warns against relabeling ordinary scale benefits as network effects.",
+      "Did not turn latticework, social influence, liking, unity, theory of mind, curse of knowledge, or cold-cognition material into standalone affordances because the source uses them mainly as relations or adoption-risk context.",
+      "Did not promote digital-twin simulation or runtime agent behavior; the source example is too narrow and this layer has no runtime authority."
+    ],
+    "open_questions": [
+      "Review may decide whether the adoption-message/cognitive-load material should stay as a guard within the pre-threshold path or move to relation semantics.",
+      "Review may decide whether outside-view/base-rates discipline should become an explicit cross-model relation rather than an internal misuse guard."
+    ],
+    "review_status": "draft"
+  }
+}

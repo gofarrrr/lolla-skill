@@ -1,0 +1,251 @@
+{
+  "model_id": "sunk-cost-fallacy",
+  "source_file": "Sunk_Cost_Fallacy_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "sunk-cost-fallacy.future-value-recommitment",
+      "status": "supported",
+      "name": "Future-value recommitment before continuation",
+      "mechanism": "When prior investment, identity, or loss discomfort makes continuation feel obligatory, remove irretrievable costs from the choice, compare only marginal future value against alternatives, and recommit only if current evidence would justify starting again today.",
+      "activation_shape": {
+        "use_when": [
+          "Prior time, money, identity, or effort is making an exit, kill, or reallocation decision feel harder than the future economics justify.",
+          "A team keeps defending continuation because of what has already been sacrificed instead of because the next step has attractive expected value.",
+          "A project, investment, partnership, or personal commitment needs a start-again-today reset from current facts."
+        ],
+        "do_not_use_when": [
+          "The exit argument ignores real remaining upside, learning value, switching costs, or residual option value.",
+          "Continuation is justified by attractive expected value after current facts and future costs and benefits are separated from past expenditure.",
+          "There is no prior-investment pressure and the live problem is ordinary option comparison or forecasting."
+        ],
+        "case_evidence_needed": [
+          "The time, money, emotional effort, identity, or other investment that is already irretrievable.",
+          "The next unit of cost, effort, exposure, or commitment being requested.",
+          "Expected future returns, marginal benefit, cash-flow reality, or comparable alternative use of resources.",
+          "Disconfirming evidence, exit criteria, or performance thresholds that would stop or change the next phase."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "strip-past-investment",
+          "description": "Exclude already-incurred costs from the decision case and restate the choice as whether to continue from current facts, marginal future value, and alternative uses of the same resources.",
+          "evidence_required": [
+            "The specific sunk investment that is being treated as a reason to continue.",
+            "The forward costs and benefits of the next action or phase.",
+            "The alternative investment, supplier, project, or resource use being compared against continuation."
+          ],
+          "good_output_shape": [
+            "Names the sunk cost and explicitly sets it aside as irretrievable.",
+            "Answers whether the decision-maker would start or fund the commitment again today.",
+            "Recommends continue, exit, change, or reallocate based on future value rather than past expenditure."
+          ]
+        },
+        {
+          "requirement_id": "bind-next-phase-to-evidence",
+          "description": "Before recommending another phase, require performance criteria or falsifying evidence and distinguish real remaining upside from the psychological relief of not admitting a loss.",
+          "evidence_required": [
+            "The criteria that must be met to justify the next phase of investment.",
+            "Evidence that would prove the original hypothesis wrong or show that future upside still remains.",
+            "Any real learning value, switching cost, cash-flow advantage, or residual option value that could justify continuation."
+          ],
+          "good_output_shape": [
+            "States the threshold or evidence that would stop, change, or justify the next phase.",
+            "Uses outside or objective perspectives when attachment to the prior investment may be distorting judgment.",
+            "Checks remaining upside, learning value, and switching costs before treating exit as the obvious answer."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "If we hadn't spent any money/time on this yet, would we invest in this project today based solely on the expected future returns?",
+        "What specific performance criteria must be met to justify the next phase of investment?",
+        "How would someone entirely new to this situation advise us to proceed?",
+        "What evidence exists that would fundamentally prove our original hypothesis wrong?",
+        "Is the rationale for continuing based on past effort or on rational future financial projections?",
+        "If we quit now, is the cost truly a loss, or is it freeing up resources for a greater gain?"
+      ],
+      "misuse_guards": [
+        "Do not use anti-sunk-cost logic as cover for quitting without evaluating learning value, switching costs, or real future upside.",
+        "Do not let ego, blind spots, or admission-of-failure framing substitute for future viability analysis.",
+        "Do not rely on book values or historical outlays when cash-flow reality is the relevant economic evidence.",
+        "Do not continue merely because prior investment is being used to justify continued exposure."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "Rational economic theory dictates that only future costs and benefits (marginal analysis) should influence a decision, yet people often \"pay attention to sunk costs\".",
+          "section_hint": "Fundamental Essence and Definition",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "This technique focuses exclusively on the costs and benefits of the next unit of action, making the actual amount already spent irrelevant to the current decision.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "Using NPV and discounted cash flow analysis focuses on the expected future value generation of the project, providing an objective financial metric that strips away emotional attachment to past outlays.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "one should focus on the economic reality of **cash flows** rather than relying on accounting book values, which often include irrelevant historical costs.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "The model is strongest when time, money, identity, or effort already spent is making an exit, kill, or reallocation decision feel harder than the future economics justify.",
+          "section_hint": "Most Powerful Contexts (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "SCF has high leverage when teams keep defending continuation because of what has already been sacrificed rather than because the next step has attractive expected value.",
+          "section_hint": "Most Powerful Contexts (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "The model becomes especially useful when decision-makers need to reset from current facts and ask whether they would willingly recommit from zero.",
+          "section_hint": "Most Powerful Contexts (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "The model is also misapplied when people use \u201cdon\u2019t honor sunk costs\u201d as cover for quitting without evaluating learning value, switching costs, or the real future upside that still remains.",
+          "section_hint": "Limitations (Weaknesses) and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "Proactively define specific conditions (time, budget, performance metrics) under which the commitment will be stopped or changed *before* starting the project.",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "Consult individuals (friends, colleagues, consultants) who lack emotional attachment or prior history with the investment.",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "Rely on rigorous analytical tools like **marginal analysis** and focusing on **cash flows** to divorce the decision from emotional accounting.",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "\"If we hadn't spent any money/time on this yet, would we invest in this project today based solely on the expected future returns?\"",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "\"What specific performance criteria must be met to justify the next phase of investment?\"",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "\"How would someone entirely new to this situation advise us to proceed?\"",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "\"What evidence exists that would fundamentally prove our original hypothesis wrong?\"",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "\"Is the rationale for continuing based on past effort or on rational future financial projections?\"",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "\"If we quit now, is the cost truly a loss, or is it freeing up resources for a greater gain?\"",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "prior investment is used to justify continued exposure",
+          "section_hint": "Structured Tension Curation (2026-02-27):",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Condensed the raw source and reviewed curation into one operational contract: isolate irretrievable investment, judge the next phase by future value, and guard both against escalation and careless exit.",
+        "dropped_material": [
+          "Did not split NPV, book values, stock-sale examples, supplier switching, or venture funding into separate domain affordances because they support the same future-value recommitment operation.",
+          "Did not promote relation curation for first-principles-thinking, optionality, systems-thinking, commitment-bias, or confirmation-bias into separate affordances; those relationships clarify this record but belong in relation semantics until reviewed otherwise."
+        ],
+        "open_questions": [
+          "Future review could decide whether exit criteria should become its own affordance if runtime traces show it changes behavior independently of the recommitment test."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Sunk_Cost_Fallacy_rag.md",
+      "source_quote": "Rational economic theory dictates that only future costs and benefits (marginal analysis) should influence a decision, yet people often \"pay attention to sunk costs\".",
+      "section_hint": "Fundamental Essence and Definition",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Sunk_Cost_Fallacy_rag.md",
+      "source_quote": "The model is strongest when time, money, identity, or effort already spent is making an exit, kill, or reallocation decision feel harder than the future economics justify.",
+      "section_hint": "Most Powerful Contexts (Strengths)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Sunk_Cost_Fallacy_rag.md",
+      "source_quote": "The model becomes especially useful when decision-makers need to reset from current facts and ask whether they would willingly recommit from zero.",
+      "section_hint": "Most Powerful Contexts (Strengths)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Retained one high-confidence affordance because the source repeatedly points to the same operational move: remove already-incurred costs from the live decision and judge continuation by prospective value and evidence.",
+    "dropped_material": [
+      "Business, partnership, stock, relationship, and megaproject examples were treated as application contexts rather than separate affordances.",
+      "The source's broad behavioral-economics explanation, including loss aversion, cognitive dissonance, framing, confirmation bias, and systems drift, was not expanded into additional affordances because it mainly explains why the same recommitment discipline is needed.",
+      "Wave 3 relation material was read as context but not promoted into runtime-oriented affordances."
+    ],
+    "open_questions": [
+      "The source supports both financial analysis language and general personal/organizational language; this record normalizes them into one cross-domain treatment rather than splitting by domain."
+    ],
+    "review_status": "draft"
+  }
+}

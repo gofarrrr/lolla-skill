@@ -1,0 +1,396 @@
+{
+  "model_id": "decomposition",
+  "source_file": "Decomposition_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "decomposition.mece-key-driver-action-map",
+      "status": "supported",
+      "name": "MECE key-driver map before action handoff",
+      "mechanism": "Break a consequential problem into mutually exclusive, collectively exhaustive parts, then label which branches are causal, actionable, controllable, and worth handing off into priorities, owners, sequencing, or pruning.",
+      "activation_shape": {
+        "use_when": [
+          "The problem is too tangled to reason about as a whole and symptoms, causes, owners, and options are being mixed together.",
+          "High-volume information needs to be organized so the key drivers and manageable action branches become visible.",
+          "The breakdown must lead to priorities, owners, sequencing, and a few branches worth pursuing rather than a decorative tree."
+        ],
+        "do_not_use_when": [
+          "The team is using more branching to postpone synthesis, decision-making, or action.",
+          "The structure looks tidy but the causal landscape may only have been forced into a convenient filing system.",
+          "The branch map focuses on analytic completeness while ignoring implementation context, relationship data, or acceptance risk."
+        ],
+        "case_evidence_needed": [
+          "The whole problem or leading hypothesis being decomposed, plus the purpose of the decomposition.",
+          "The proposed branch structure and evidence that the parts are distinct while covering the whole.",
+          "Which branches are causal, descriptive, actionable, controllable, high-impact, assigned, sequenced, or pruned."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-whole-into-mece-branches",
+          "description": "State the whole problem, then decompose it into branches that are distinct enough to prevent overlap and exhaustive enough to avoid losing part of the problem.",
+          "evidence_required": [
+            "A named whole problem or leading hypothesis before the branch structure is introduced.",
+            "A branch map or issue tree with checks for overlap, missing parts, and manageable/resolvable subproblems."
+          ],
+          "good_output_shape": [
+            "A concise MECE issue tree or branch map tied back to the original whole.",
+            "A note on any branch overlap, missing branch, or uncertainty that prevents the tree from earning weight."
+          ]
+        },
+        {
+          "requirement_id": "prioritize-controllable-key-drivers",
+          "description": "Use the decomposition to identify key drivers, prune low-value branches, and hand the remaining branches into controllable next actions.",
+          "evidence_required": [
+            "Evidence for which branches are causal, descriptive, actionable, controllable, or high-impact.",
+            "The next decision, owner, sequence, or action that each retained branch is supposed to inform."
+          ],
+          "good_output_shape": [
+            "A short list of retained branches with causal/actionability labels and the reason each branch matters.",
+            "A pruned list of branches that are explicitly set aside because they do not change the answer or are outside control.",
+            "A handoff from the tree into priorities, owners, sequencing, or bounded next-step evidence gathering."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the single, core purpose we are trying to achieve with this decomposition?",
+        "Are we breaking down symptoms, or are we identifying the key drivers that are truly under our control?",
+        "Which branches are causal, merely descriptive, actually actionable, and worth handing off into execution?"
+      ],
+      "misuse_guards": [
+        "Do not gather every possible fact for every branch when only key drivers and actionability are needed.",
+        "Do not trust a tidy tree as proof that the real causal landscape has been captured.",
+        "Do not treat analytic branch completeness as implementation sufficiency when client acceptance, resistance, trust, or organizational context matter."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "too complicated to solve without breaking it down into logical parts",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "To break down a big, complex problem (or a leading hypothesis) into smaller components, and then smaller ones again, until the resulting pieces are manageable and resolvable.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "To reveal the underlying drivers or causes of a situation, making the potential pathways to a solution visible.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Each part must be separate and distinct, preventing overlap and confusion.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "The sum of the parts must account for the whole problem, ensuring all aspects are covered.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Works when the decision improves only if the group can isolate which branches are causal, which are merely descriptive, and which are actually actionable.",
+          "section_hint": "Strengths (Contexts where Decomposition is Most Powerful)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Best when the breakdown should not end as a neat tree on paper, but should reveal priorities, owners, sequencing, and the few branches worth pursuing.",
+          "section_hint": "Strengths (Contexts where Decomposition is Most Powerful)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Ruthlessly prioritize by cleaving off branches that don't contribute significantly to the answer.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Focus the inquiry strictly on the next steps the client can take that are under their control.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "What is the single, core purpose we are trying to achieve with this decomposition?",
+          "section_hint": "Pre-mortem Questions for Wise Use",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Are we breaking down symptoms, or are we identifying the key drivers that are truly under our control?",
+          "section_hint": "Pre-mortem Questions for Wise Use",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Danger when teams assume that because the structure is tidy, they have captured the real causal landscape rather than just imposed a convenient filing system on it.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Focusing only on the analytic/cognitive content of the problem breakdown while neglecting the emotional or relationship data necessary for successful implementation.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "decomposition.test-cuts-and-assumptions",
+      "status": "supported",
+      "name": "Test cuts and assumptions before trusting branches",
+      "mechanism": "Before a decomposition earns weight, test several plausible cuts, expose the assumptions embedded in the chosen framework, and challenge whether the tree is discovering drivers or merely justifying a familiar or preferred answer.",
+      "activation_shape": {
+        "use_when": [
+          "A familiar framework is being applied to a novel situation because it is the easiest available cut.",
+          "A branch structure may be serving a pre-selected solution, mandate, or preferred hypothesis.",
+          "Breaking the system into parts may destroy feedback loops, emergent properties, or interaction effects that dominate the outcome."
+        ],
+        "do_not_use_when": [
+          "Only one plausible cut exists and the next useful move is execution with explicit uncertainty.",
+          "The team is unwilling to test the chosen framework against antitheses or alternative cuts.",
+          "The dominant outcome depends on interactions that cannot be preserved by isolating components."
+        ],
+        "case_evidence_needed": [
+          "The chosen framework, issue tree, or decomposition cut and why it was selected.",
+          "At least one alternative cut or conceptual framework that could reveal different drivers.",
+          "The assumptions, antithesis, and evidence that would disconfirm the chosen tree."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compare-multiple-cuts",
+          "description": "Generate more than one plausible decomposition cut and compare what each reveals, hides, assumes, and changes about the likely key drivers.",
+          "evidence_required": [
+            "The current decomposition cut and at least one alternative cut or framework.",
+            "A short account of which insight, driver, or blind spot each cut exposes."
+          ],
+          "good_output_shape": [
+            "A side-by-side comparison of candidate cuts rather than a single inherited framework.",
+            "A selected cut, rejected cut, or hybrid structure with a reason grounded in problem structure."
+          ]
+        },
+        {
+          "requirement_id": "challenge-tree-assumptions",
+          "description": "Surface the assumptions inside the chosen tree and challenge the hypothesis with an antithesis before synthesizing a final branch structure.",
+          "evidence_required": [
+            "The assumptions embedded in the chosen framework, logic tree, or preferred hypothesis.",
+            "The antithesis or disconfirming evidence that would make the chosen tree misleading."
+          ],
+          "good_output_shape": [
+            "An explicit assumptions list tied to the chosen tree or framework.",
+            "A note on whether the tree survives an antithesis, needs revision, or should be replaced."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What assumptions are embedded in this chosen framework/logic tree?",
+        "What would you have to believe for this branch structure to be true?",
+        "If this structure were implemented, could the necessary actions actually lead to the desired effect?"
+      ],
+      "misuse_guards": [
+        "Do not blindly apply a familiar framework to a novel situation just because the pattern feels recognizable.",
+        "Do not decompose a problem to justify a pre-selected solution instead of discovering the true drivers.",
+        "Do not isolate components when emergent properties, feedback loops, or combinatorial effects are the thing that produces the outcome."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Trying several \"cuts\" or frameworks often yields different insights.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "A dangerous anti-pattern is assuming \"I have seen this one before, it is an X problem\" and blindly applying a familiar framework (\"hammer\") to a novel problem (\"nail\").",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Incorrectly recognizing a familiar problem pattern and forcing an unsuitable framework (mental model) onto a novel situation (availability heuristic or substitution bias).",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "**Test Multiple Cuts:** \"Test several\" conceptual frameworks or \"cuts at the tree\" to see which ones yield the most insight, even applying a social frame to a business problem.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Decomposing a problem not to find the truth, but to justify a pre-selected solution",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "**Dialectic Standard and \"What Would You Have to Believe?\":** Establish a norm where every hypothesis is met with its antithesis and challenged before synthesis.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Use the tool, \"**What would you have to believe?**\" to spell out all the assumptions implicit in a perspective, testing the rigidity of the argument.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "What assumptions are embedded in this chosen framework/logic tree?",
+          "section_hint": "Pre-mortem Questions for Wise Use",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "If this structure were implemented, could the necessary actions (the parts) actually lead to the desired effect (the synthesized whole)?",
+          "section_hint": "Pre-mortem Questions for Wise Use",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "decomposition conflicts with systems-thinking (systems thinking) when breaking a problem into parts destroys the emergent properties and feedback loops that only exist in the whole system.",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "decomposition conflicts with combinatorial-effects (combinatorial effects) when isolating components hides interaction effects that produce the dominant outcome only in combination.",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-learning-scaffolding-affordance",
+      "status": "source_too_thin",
+      "reason": "The source names learning, scaffolding, and Feynman-style simplification, but it does not provide a decomposition-specific operational treatment beyond the central break-into-manageable-parts mechanism already extracted.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Learning and Expertise Acquisition",
+          "section_hint": "Strengths (Contexts where Decomposition is Most Powerful)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "A powerful framework for self-learning that mandates decomposition to reveal knowledge gaps.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-human-factors-implementation-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports human factors as an implementation risk and misuse guard, but not as a standalone decomposition mechanism; the supported material is carried inside the action-handoff affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "Ignoring Human Factors in Implementation",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Decomposition_rag.md",
+          "source_quote": "In the discovery phase, attend to both the content (the technical problem) and the relationship (client acceptance, resistance, trust).",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Decomposition_rag.md",
+      "source_quote": "too complicated to solve without breaking it down into logical parts",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Decomposition_rag.md",
+      "source_quote": "Works when the decision improves only if the group can isolate which branches are causal, which are merely descriptive, and which are actually actionable.",
+      "section_hint": "Strengths (Contexts where Decomposition is Most Powerful)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Decomposition_rag.md",
+      "source_quote": "Best when the breakdown should not end as a neat tree on paper, but should reveal priorities, owners, sequencing, and the few branches worth pursuing.",
+      "section_hint": "Strengths (Contexts where Decomposition is Most Powerful)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Decomposition_rag.md",
+      "source_quote": "**Test Multiple Cuts:** \"Test several\" conceptual frameworks or \"cuts at the tree\" to see which ones yield the most insight, even applying a social frame to a business problem.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Decomposition_rag.md",
+      "source_quote": "**Dialectic Standard and \"What Would You Have to Believe?\":** Establish a norm where every hypothesis is met with its antithesis and challenged before synthesis.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted two operational affordances from the raw source: MECE/key-driver decomposition that must hand off into action, and a second guardrail for testing multiple cuts and embedded assumptions before trusting the branch structure. Curation was read as context, but source quotes from Decomposition_rag.md drive the record.",
+    "dropped_material": [
+      "Did not promote business strategy, goal setting, AI persona design, or consulting examples as standalone affordances because they are applications of the same decomposition mechanism.",
+      "Did not create separate relation affordances for systems-thinking, prioritization, first-principles-thinking, synthesis, hot cognition, or combinatorial effects; relation material is used only where it directly guards misuse of decomposition.",
+      "Did not treat every risk-table row as its own affordance; boiling the ocean, false pattern recognition, motivated decomposition, and implementation risk were folded into the two supported records where source support was operationally sharpest."
+    ],
+    "open_questions": [
+      "The source has useful relationship/context guidance for consulting implementation, but review should decide whether future relation or delivery layers need a separate artifact for that material.",
+      "The structured tension quotes are explicit and useful as guards, but runtime promotion should wait for later evaluation because this record remains Observatory-only extraction substrate."
+    ],
+    "review_status": "draft"
+  }
+}

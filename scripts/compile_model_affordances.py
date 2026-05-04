@@ -324,8 +324,13 @@ def _build_compiled_artifact(
             item["model_id"] = model_id
             absence_records.append(item)
 
+    record_model_ids = {str(record["model_id"]) for record in records}
     source_files = sorted(
-        copy.deepcopy(_list(source_manifest["files"])),
+        [
+            copy.deepcopy(_dict(item))
+            for item in _list(source_manifest["files"])
+            if str(_dict(item)["model_id"]) in record_model_ids
+        ],
         key=lambda item: str(_dict(item)["model_id"]),
     )
     compile_date = str(pilot_manifest.get("created_date") or "unknown")

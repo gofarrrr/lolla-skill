@@ -151,8 +151,8 @@ def test_source_manifest_hashes_match_actual_files() -> None:
 
     files = source_manifest["files"]
     assert isinstance(files, list)
-    assert len(files) == 10
-    assert {str(entry["model_id"]) for entry in files} == EXPECTED_MODEL_IDS
+    model_ids = {str(entry["model_id"]) for entry in files}
+    assert EXPECTED_MODEL_IDS.issubset(model_ids)
 
     for entry in files:
         assert isinstance(entry, dict)

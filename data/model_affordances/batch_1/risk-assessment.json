@@ -1,0 +1,287 @@
+{
+  "model_id": "risk-assessment",
+  "source_file": "Risk_Assessment_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "risk-assessment.thresholded-downside-governance",
+      "status": "supported",
+      "name": "Thresholded downside governance before commitment",
+      "mechanism": "Surface hidden failure paths and worst-case drivers, then convert the few material exposures into explicit mitigations, thresholds, monitoring, and safeguards before the plan earns confidence.",
+      "activation_shape": {
+        "use_when": [
+          "Downside exposure could dominate the decision and surviving failure matters as much as chasing upside.",
+          "Hidden failure paths, low-probability high-impact consequences, or disjunctive system failures could break the plan before visible trade-offs matter.",
+          "Uncertainty needs governance through mitigations, thresholds, and monitoring rather than general caution language."
+        ],
+        "do_not_use_when": [
+          "The decision is reversible or low-stakes enough that extended risk work would waste attention.",
+          "The team is producing checklists, matrices, or warnings for governance optics without changing decisions or safeguards.",
+          "The analysis cannot narrow from all imaginable risks to the biggest-impact drivers the team can influence."
+        ],
+        "case_evidence_needed": [
+          "The decision, action, or system whose threats, challenges, and pitfalls need to be anticipated.",
+          "The worst-case scenario factors, hidden failure paths, or disjunctive component failures that could dominate the outcome.",
+          "Known unknowns, unknown unknowns, and system interdependencies that could make the current risk picture incomplete.",
+          "Concrete mitigations, thresholds, monitoring signals, and safeguards that would change the decision or execution plan."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "surface-failure-paths",
+          "description": "Identify the hidden, worst-case, and disjunctive failure paths that could dominate the outcome before treating the plan as safe.",
+          "evidence_required": [
+            "The strategic goal, decision, action, or system being assessed.",
+            "The worst-case scenario factors that would make failure matter.",
+            "Low-probability high-impact consequences or disjunctive component failures that could collapse the plan.",
+            "Unknown unknowns or interdependencies that the current analysis has not yet made visible."
+          ],
+          "good_output_shape": [
+            "Names the few failure paths that could dominate the decision.",
+            "Separates hidden failure paths from ordinary visible trade-offs.",
+            "Shows which system interdependencies or unknowns still need de-risking.",
+            "Keeps the treatment focused on downside governance rather than risk-reward bet selection."
+          ]
+        },
+        {
+          "requirement_id": "convert-to-thresholds",
+          "description": "Turn each material exposure into a mitigation, threshold, monitoring signal, or safeguard that can change the decision before commitment.",
+          "evidence_required": [
+            "The mitigation attached to each material exposure.",
+            "The threshold for success, failure, escalation, or reversal.",
+            "The monitoring signal that shows whether the risk is becoming real.",
+            "The decision, safeguard, or execution change triggered by the threshold."
+          ],
+          "good_output_shape": [
+            "States the mitigation and threshold next to the risk it governs.",
+            "Defines what will be monitored before and after commitment.",
+            "Explains how the safeguard changes the plan if the risk materializes.",
+            "Avoids caution language that does not alter a decision or operating guardrail."
+          ]
+        },
+        {
+          "requirement_id": "filter-to-material-drivers",
+          "description": "Prioritize the biggest-impact and influenceable fragility drivers instead of spreading analysis evenly across every imaginable risk.",
+          "evidence_required": [
+            "The candidate risks or fragility drivers under review.",
+            "Impact evidence showing which risks could actually dominate the outcome.",
+            "Influence evidence showing which risks the team can prevent, mitigate, monitor, or escalate.",
+            "Risks deliberately set aside because they are low-impact, uninfluenceable, reversible, or already covered."
+          ],
+          "good_output_shape": [
+            "Explains why the selected risk drivers deserve depth.",
+            "Drops secondary variables that do not change action.",
+            "Protects action speed for reversible or low-stakes choices.",
+            "Documents set-asides without turning them into a generic risk inventory."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is the worst case bad enough?",
+        "Which hidden failure path or disjunctive component failure could dominate before the visible trade-off matters?",
+        "What threshold or monitoring signal would tell us this risk is becoming real enough to change course?",
+        "Which risks are we analyzing because they are easy to list, and which few have the biggest impact and are actually influenceable?"
+      ],
+      "misuse_guards": [
+        "Do not turn risk assessment into a broad inventory; the output must change mitigations, thresholds, monitoring, decisions, or safeguards.",
+        "Do not spend heavy analysis on reversible or low-stakes choices where risk work would thwart action.",
+        "Do not let visible trade-offs crowd out hidden low-probability high-impact failure paths.",
+        "Do not treat the plan as safe merely because each conjunctive success step looks likely; a disjunctive failure path can still dominate."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "Risk Assessment is a fundamental mental model defined not just by calculating likelihood and impact, but by the **systematic effort to anticipate potential threats, challenges, and pitfalls** associated with a decision, action, or system.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "By articulating the factors involved in a worst-case scenario, one can dedicate time to preventing those specific failures, which can be quicker and more efficient than aiming for a direct goal.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "Conversely, risk evaluation in a complex system (like a nuclear reactor or the human body) involves a **disjunctive structure** (failure occurs if *any* essential component fails).",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "The least obvious and most dangerous risks, requiring concerted effort (like **scenario analysis** or systems thinking) to uncover.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "This process inherently requires assessing risks by setting clear thresholds for success or failure",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "Risk assessment is strongest when surviving failure matters as much as chasing upside.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "The model adds value when the team needs to surface low-probability, high-impact consequences before commitment.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "It is a strong fit when plans need explicit mitigations, thresholds, and monitoring rather than generic caution language.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "If decisions are reversible or low-stakes, too much time spent analyzing risk is inefficient.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "The model is weakened if practitioners fall into the trap of analyzing everything equally (\"Don't boil the ocean\") instead of narrowing the focus to issues with the **biggest impact** and those they can actually influence.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "The model fails when checklists, matrices, or warnings are produced to satisfy governance optics without changing the actual decision or safeguards.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "It helps uncover **unknown unknowns** by getting a full picture of the interdependencies within the system.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "**Ask: \"Is the worst case bad enough?\"**.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed the source's worst-case, hidden-failure-path, knowns-and-unknowns, disjunctive-system, and threshold/monitoring material into one operational affordance because they serve the same downside-governance move.",
+        "dropped_material": [
+          "Did not extract a separate risk-reward bet-selection affordance; that belongs more cleanly to calculated-risk-taking.",
+          "Did not extract relation semantics as affordances; systems-thinking, inversion, and bias conflicts are supporting context here.",
+          "Did not promote AI persona risk-aversion or finance examples because they illustrate application settings rather than a distinct treatment requirement."
+        ],
+        "open_questions": [
+          "Review may later decide whether the human-element warning deserves its own affordance; it is intentionally left out to avoid broadening this record past downside governance."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-generic-risk-inventory",
+      "status": "not_supported_by_source",
+      "reason": "The source supports risk scanning only when it changes mitigations, thresholds, monitoring, decisions, or safeguards; a broad list of risks detached from governance would repeat the ritual-compliance failure mode.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "The model fails when checklists, matrices, or warnings are produced to satisfy governance optics without changing the actual decision or safeguards.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "The model is weakened if practitioners fall into the trap of analyzing everything equally (\"Don't boil the ocean\") instead of narrowing the focus to issues with the **biggest impact** and those they can actually influence.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "risk-reward-bet-selection",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source briefly says decisions are bets and mentions cost-benefit and decision-tree tools, but a standalone risk-reward choice affordance would duplicate calculated-risk-taking; this record keeps risk-assessment on downside governance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "The model recognizes that all decisions are essentially **\"bets\" based on our current beliefs**, demanding that we acknowledge and get comfortable with uncertainty to improve our thinking.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Risk_Assessment_rag.md",
+          "source_quote": "It provides disciplined tools to surpass the limitations of simple pro-con lists and anecdotal experience, moving instead to cost-benefit analysis or decision trees when consequences are high.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Risk_Assessment_rag.md",
+      "source_quote": "Risk Assessment is a fundamental mental model defined not just by calculating likelihood and impact, but by the **systematic effort to anticipate potential threats, challenges, and pitfalls** associated with a decision, action, or system.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Risk_Assessment_rag.md",
+      "source_quote": "The model adds value when the team needs to surface low-probability, high-impact consequences before commitment.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Risk_Assessment_rag.md",
+      "source_quote": "It is a strong fit when plans need explicit mitigations, thresholds, and monitoring rather than generic caution language.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Risk_Assessment_rag.md",
+      "source_quote": "The model fails when checklists, matrices, or warnings are produced to satisfy governance optics without changing the actual decision or safeguards.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the assembled packet source, schema, contract, and activation/intervention/relation curation. Extracted one high-confidence affordance aimed at thresholded downside governance and kept the artifact dormant for review.",
+    "dropped_material": [
+      "Did not make a generic risk register affordance because the source rejects risk work that does not change decisions or safeguards.",
+      "Did not make calculated-risk-taking's risk-reward option comparison part of this model.",
+      "Did not extract every risk table row into separate fields; most are supporting anti-patterns for the single governance affordance."
+    ],
+    "open_questions": [
+      "The source overlaps calculated-risk-taking on bets, cost-benefit analysis, decision trees, and worst-case questions; this draft keeps those as context rather than runtime-promotable behavior."
+    ],
+    "review_status": "draft"
+  }
+}

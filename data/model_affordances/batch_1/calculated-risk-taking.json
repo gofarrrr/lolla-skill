@@ -1,0 +1,270 @@
+{
+  "model_id": "calculated-risk-taking",
+  "source_file": "Calculated_Risk_Taking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "calculated-risk-taking.pressure-tested-bounded-wager",
+      "status": "supported",
+      "name": "Pressure-tested bounded wager before commitment",
+      "mechanism": "Before committing under uncertainty, frame the move as a bet, estimate the uncertainty that can be estimated, pressure-test assumptions, scenarios, sensitivity, and worst-case survivability, then size or change the action so downside is bounded while commitment can proceed.",
+      "activation_shape": {
+        "use_when": [
+          "A high-stakes decision must proceed before certainty is available, and delay itself creates material risk or lost opportunity.",
+          "Downside, upside, and assumptions can be pressure-tested well enough to improve the bet rather than merely describe the risk landscape.",
+          "The decision needs a disciplined wager that balances courage with survivability instead of reckless action or timid avoidance.",
+          "Uncertainty parameters are estimable enough that cost-benefit logic, decision trees, scenario analysis, sensitivity checks, or reference classes can improve the choice."
+        ],
+        "do_not_use_when": [
+          "The problem is genuinely novel or too unstructured, so a familiar risk model would substitute for understanding the actual case.",
+          "Quantification would create false precision around fat-tailed, unknown, or unstable outcomes whose uncertainty cannot be responsibly estimated.",
+          "The team is using the word calculated to rationalize a preferred move while assumptions are weak, downside is unbounded, or dissenting evidence is ignored.",
+          "Further analysis has stopped changing the action, hedge, or exposure limit and is becoming analysis paralysis."
+        ],
+        "case_evidence_needed": [
+          "The candidate move, alternatives, and the concrete commitment of capital, time, reputation, policy, or operational capacity at stake.",
+          "The current beliefs, probability evidence, payoff estimates, and uncertainty parameters behind the proposed wager.",
+          "The assumptions that must be true for the preferred path to work, including reference-class fit where a comparison is being used.",
+          "Scenario, simulation, or branch evidence showing plausible upside, downside, counterparty response, and base-case alternatives.",
+          "The sensitivity driver and worst-case condition that would shrink, hedge, delay, or reject the commitment."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "frame-as-bet",
+          "description": "Convert the decision into an explicit wager by naming the current beliefs, uncertain parameters, options, payoff range, and process-quality standard before judging the eventual outcome.",
+          "evidence_required": [
+            "The decision or commitment being considered.",
+            "The current beliefs and uncertainty estimates that make the move look attractive.",
+            "The relevant upside, downside, and probability or likelihood basis for each serious option.",
+            "The distinction between a good decision process and a lucky or unlucky outcome."
+          ],
+          "good_output_shape": [
+            "States the recommended move as a disciplined wager, not as a certainty claim.",
+            "Shows what is known, what is estimated, and what remains uncertain before commitment.",
+            "Separates decision-process quality from outcome hindsight.",
+            "Names the action consequence that follows from the calculated risk rather than stopping at risk description."
+          ]
+        },
+        {
+          "requirement_id": "pressure-test-assumptions",
+          "description": "Expose the beliefs that must hold by running assumption, scenario, simulation, reference-class, or branch checks before the wager is treated as decision-ready.",
+          "evidence_required": [
+            "The implicit assumptions behind the preferred path or projected result.",
+            "Scenario or branch alternatives that could produce materially different payoffs.",
+            "Reference-class evidence or the reason a historical comparison fits the current case.",
+            "Counterparty, competitor, or system responses that could change the expected payoff."
+          ],
+          "good_output_shape": [
+            "Lists the beliefs that must be true for the wager to work.",
+            "Compares at least the base case, downside case, and serious alternative path.",
+            "Explains whether the reference class or analogy fits the current structure.",
+            "Changes the recommendation when the assumption test weakens the bet."
+          ]
+        },
+        {
+          "requirement_id": "bound-downside-and-flip-threshold",
+          "description": "Run sensitivity and worst-case checks to decide whether the commitment should proceed, shrink, hedge, wait, or stop when a key variable or downside scenario changes.",
+          "evidence_required": [
+            "The input variable, probability, payoff, or assumption that most controls the recommendation.",
+            "The worst-case outcome and whether it is survivable enough for the proposed commitment.",
+            "The exposure limit, hedge, scope reduction, or rejection threshold tied to that downside.",
+            "Evidence that further analysis would or would not change the decision boundary."
+          ],
+          "good_output_shape": [
+            "Identifies the sensitivity driver that would flip or resize the recommendation.",
+            "States whether the worst case is bad enough to change the move.",
+            "Gives an action boundary, hedge, or exposure limit rather than a generic risk list.",
+            "Stops analysis once the decisive uncertainty and commitment rule are visible enough for action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What would we have to believe for this wager's upside, downside, timing, and reference-class fit to be realistic?",
+        "Is the worst case bad enough to shrink, hedge, delay, or reject the commitment?",
+        "Which input variable, probability, payoff, or assumption would flip the recommendation if it moved?",
+        "Are we making a disciplined wager with bounded downside, or using the word calculated to rationalize a desired move?"
+      ],
+      "misuse_guards": [
+        "Do not turn calculated risk taking into a generic inventory of possible risks; it must change the action, hedge, exposure limit, or commitment threshold.",
+        "Do not use clean numbers, decision trees, or scenario language to create false precision when the uncertainty is too novel, fat-tailed, or unstable.",
+        "Do not focus on the mean or base case while underweighting severe outcomes one or two standard deviations away.",
+        "Do not keep adding what-if analysis after the decisive uncertainty, downside boundary, and action rule are already visible.",
+        "Do not call a move calculated when assumptions are weak, downside is not bounded, or dissenting evidence was ignored."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "The fundamental essence of Calculated Risk Taking is the process of making high-stakes decisions by **estimating the parameters of uncertainty** and systematically evaluating potential outcomes rather than relying on mere intuition or default behavior.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "Acknowledging that all decisions are fundamentally \"bets\" based on our current beliefs, it requires getting comfortable with uncertainty and redefining \"right\" and \"wrong\" based on the quality of the decision process, not just the outcome.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "Calculated risk taking is strongest when downside, upside, and assumptions can be pressure-tested well enough to improve the bet.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "The model adds value when the right move is neither reckless action nor timid avoidance, but a disciplined wager with bounded downside.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "It is a strong fit when waiting for certainty would itself create material risk or lost opportunity.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "This technique involves spelling out all the implicit assumptions underlying a specific perspective or proposed growth strategy.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "performing a sensitivity analysis helps to test the stability of the conclusion by running it across different input variables.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "\"Is the worst case bad enough?\"",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "The model fails when teams call a move calculated even though assumptions were weak, downside was not bounded, or dissenting evidence was ignored.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "This occurs when decision-makers fail to recognize the point of sufficient analysis and get stuck in endless \"what-ifs\".",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed decisions-as-bets, assumption testing, scenario analysis, sensitivity analysis, and worst-case survivability into one operational affordance because the source treats them as a single discipline for calibrated action under uncertainty.",
+        "dropped_material": [
+          "Did not split cost-benefit analysis, decision trees, scenario analysis, sensitivity analysis, reference-class forecasting, or game theory into separate affordances; they are supporting tools for the bounded-wager mechanism here.",
+          "Did not convert every risk-table row into a standalone guard; only the rows that change commitment quality, downside bounds, or action timing were carried into the affordance.",
+          "Did not promote AI persona, advisory-board, digital-twin, or system-prompt examples into runtime behavior."
+        ],
+        "open_questions": [
+          "Review may later decide whether this model should stay as the broad action contract while expected-value and decision-trees carry narrower calculation mechanics."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-risk-inventory-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports identifying risks only as part of deciding, sizing, hedging, or rejecting a wager. It does not support a standalone affordance that merely catalogs possible risks without changing the commitment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "Its core definition involves applying logic, reason, and common sense to synthesize reality and determine the appropriate course of action.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "thereby increasing the likelihood of successful outcomes and minimizing downside exposure.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-runtime-agent-simulation-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The digital advisory board and digital twin passages are examples of structured deliberation, not permission to promote this dormant affordance layer into runtime persona simulation or automated decision behavior.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "A Fortune 500 firm avoided costly blind spots by creating a \"digital advisory board\" of AI personas (modeled on an economist, regulator, tech visionary, etc.) who simulated a roundtable discussion.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "A digital twin of a financial advisor might have an embedded decision-making framework explicitly designed to \"prioritize risk management; diversify investments per modern portfolio theory\".",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Calculated_Risk_Taking_rag.md",
+      "source_quote": "The fundamental essence of Calculated Risk Taking is the process of making high-stakes decisions by **estimating the parameters of uncertainty** and systematically evaluating potential outcomes rather than relying on mere intuition or default behavior.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Calculated_Risk_Taking_rag.md",
+      "source_quote": "Calculated risk taking is strongest when downside, upside, and assumptions can be pressure-tested well enough to improve the bet.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Calculated_Risk_Taking_rag.md",
+      "source_quote": "The model adds value when the right move is neither reckless action nor timid avoidance, but a disciplined wager with bounded downside.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Calculated_Risk_Taking_rag.md",
+      "source_quote": "The model fails when teams call a move calculated even though assumptions were weak, downside was not bounded, or dissenting evidence was ignored.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the assembled /tmp packet, full canonical Markdown source, activation curation, intervention semantics, relation semantics, schema, and extraction contract. Extracted one sharp affordance for Lane-4-frequent use: calibrated action through a pressure-tested bounded wager, not a broad risk inventory.",
+    "dropped_material": [
+      "Cost-benefit analysis, decision trees, scenario analysis, sensitivity analysis, reference-class forecasting, game theory, and business-case writing were treated as supporting methods rather than separate calculated-risk-taking affordances.",
+      "Relation curation for decision-trees, game-theory-payoffs, confirmation-bias, black-swan-events, and optimism bias was not promoted into separate runtime affordance records.",
+      "Digital advisory board, AI persona, and digital twin examples were not promoted into runtime behavior."
+    ],
+    "open_questions": [
+      "Review should confirm whether the enriched strengths bullets have the same canonical status as the older explanatory sections, since they carry the cleanest bounded-wager phrasing."
+    ],
+    "review_status": "draft"
+  }
+}

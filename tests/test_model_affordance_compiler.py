@@ -23,6 +23,18 @@ PILOT_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "pilot"
 PILOT_MANIFEST_PATH = REPO_ROOT / "data" / "model_affordances" / "pilot_manifest.json"
 SOURCE_DIR = REPO_ROOT / "data" / "model_sources"
 SOURCE_MANIFEST_PATH = REPO_ROOT / "data" / "model_sources" / "manifest.json"
+PILOT_MODEL_IDS = {
+    "base-rates",
+    "confidence-calibration",
+    "inversion",
+    "optionality",
+    "power-dynamics",
+    "premortem",
+    "problem-framing-and-reframing",
+    "second-order-thinking",
+    "systems-thinking",
+    "theory-of-constraints",
+}
 
 
 def _copy_compiler_inputs(tmp_path: Path) -> tuple[Path, Path, Path, Path]:
@@ -119,6 +131,17 @@ def test_quality_report_contains_required_sections(tmp_path: Path) -> None:
         "## What This Report Deliberately Omits",
     ):
         assert heading in result.quality_report
+
+
+def test_compiled_artifact_includes_only_contributing_source_files(
+    tmp_path: Path,
+) -> None:
+    result = compile_model_affordances(
+        root=REPO_ROOT,
+        output_dir=tmp_path / "compiled",
+    )
+    source_files = result.compiled["compile_metadata"]["source_files"]
+    assert {entry["model_id"] for entry in source_files} == PILOT_MODEL_IDS
 
 
 def test_quality_report_avoids_scorecard_language(tmp_path: Path) -> None:
