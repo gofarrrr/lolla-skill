@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lolla.local/knowledge/model-affordance.schema.json",
+  "title": "Lolla Model Affordance Record",
+  "description": "Dormant schema for source-backed model affordance extraction. This contract defines reviewed knowledge-use records; it does not imply runtime promotion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "model_id",
+    "source_file",
+    "status",
+    "affordances",
+    "absence_records",
+    "source_evidence",
+    "review_notes"
+  ],
+  "properties": {
+    "model_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "source_file": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_\\- ]+\\.md$"
+    },
+    "status": {
+      "$ref": "#/$defs/status"
+    },
+    "affordances": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/affordance"
+      }
+    },
+    "absence_records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/absenceRecord"
+      }
+    },
+    "source_evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceEvidenceSpan"
+      }
+    },
+    "review_notes": {
+      "$ref": "#/$defs/reviewNotes"
+    }
+  },
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "supported",
+        "weak_support",
+        "not_supported_by_source",
+        "source_too_thin",
+        "duplicate_of_existing_field",
+        "deferred_for_review"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "weak",
+        "not_applicable"
+      ]
+    },
+    "extractionType": {
+      "type": "string",
+      "enum": [
+        "explicit",
+        "normalized",
+        "not_supported_by_source",
+        "review_note"
+      ]
+    },
+    "sourceEvidenceSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_file",
+        "source_quote",
+        "section_hint",
+        "extraction_type",
+        "confidence"
+      ],
+      "properties": {
+        "source_file": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_\\- ]+\\.md$"
+        },
+        "source_quote": {
+          "type": "string",
+          "minLength": 8
+        },
+        "section_hint": {
+          "type": "string",
+          "minLength": 3
+        },
+        "extraction_type": {
+          "$ref": "#/$defs/extractionType"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        }
+      }
+    },
+    "activationShape": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "use_when",
+        "do_not_use_when",
+        "case_evidence_needed"
+      ],
+      "properties": {
+        "use_when": {
+          "$ref": "#/$defs/meaningfulStringList"
+        },
+        "do_not_use_when": {
+          "$ref": "#/$defs/meaningfulStringList"
+        },
+        "case_evidence_needed": {
+          "$ref": "#/$defs/meaningfulStringList"
+        }
+      }
+    },
+    "treatmentRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requirement_id",
+        "description",
+        "evidence_required",
+        "good_output_shape"
+      ],
+      "properties": {
+        "requirement_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 20
+        },
+        "evidence_required": {
+          "$ref": "#/$defs/meaningfulStringList"
+        },
+        "good_output_shape": {
+          "$ref": "#/$defs/meaningfulStringList"
+        }
+      }
+    },
+    "affordance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "affordance_id",
+        "status",
+        "name",
+        "mechanism",
+        "activation_shape",
+        "treatment_requirements",
+        "diagnostic_questions",
+        "misuse_guards",
+        "source_evidence",
+        "confidence"
+      ],
+      "properties": {
+        "affordance_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*(?:\\.[a-z0-9]+(?:-[a-z0-9]+)*)+$"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 8
+        },
+        "mechanism": {
+          "type": "string",
+          "minLength": 24
+        },
+        "activation_shape": {
+          "$ref": "#/$defs/activationShape"
+        },
+        "treatment_requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/treatmentRequirement"
+          }
+        },
+        "diagnostic_questions": {
+          "$ref": "#/$defs/meaningfulStringList"
+        },
+        "misuse_guards": {
+          "$ref": "#/$defs/meaningfulStringList"
+        },
+        "source_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/sourceEvidenceSpan"
+          }
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "review_notes": {
+          "$ref": "#/$defs/reviewNotes"
+        }
+      }
+    },
+    "absenceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempted_field",
+        "status",
+        "reason",
+        "runtime_policy"
+      ],
+      "properties": {
+        "attempted_field": {
+          "type": "string",
+          "minLength": 3
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 20
+        },
+        "runtime_policy": {
+          "type": "string",
+          "enum": [
+            "do_not_promote",
+            "observatory_only",
+            "defer_for_review",
+            "available_for_review"
+          ]
+        },
+        "source_evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceEvidenceSpan"
+          }
+        }
+      }
+    },
+    "reviewNotes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "normalization_note": {
+          "type": "string"
+        },
+        "dropped_material": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "fixture",
+            "draft",
+            "reviewed",
+            "needs_review"
+          ]
+        }
+      }
+    },
+    "meaningfulStringList": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 8
+      }
+    }
+  }
+}
