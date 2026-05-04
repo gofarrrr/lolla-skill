@@ -228,6 +228,60 @@ Kill or demote the feature if:
 - It triggers on most interpersonal cases.
 - It creates more visible prose than useful correction.
 
+## Testing Doctrine
+
+Use red-green development for every Python slice, but do not test this by running the full `/lolla` skill loop. Full runs are too slow, too expensive, too noisy, and too hard to isolate. The development loop should reuse archived artifacts from prior runs and test the new element directly.
+
+### What Gets Tested
+
+Tests should exercise public behavior through small offline interfaces:
+
+- trigger decision from archived artifacts
+- checker schema validation
+- surface gating
+- annotation scoring
+- runtime flag behavior
+- run-health behavior on triggered checker failure
+- Observatory rendering once runtime data exists
+- memo/chat guidance through narrow renderer or contract tests, not full live conversations
+
+### What Does Not Get Tested In The Development Loop
+
+- no full `/lolla` slash-command runs
+- no live LLM call in normal unit tests
+- no snapshot of entire chat transcripts
+- no snapshot of entire memo files when a smaller contract assertion is enough
+- no tests coupled to internal helper names that can change during refactor
+
+### Fixture Strategy
+
+Use previous runs as the source of truth. Each test fixture should be a minimized copy of the relevant archived artifacts:
+
+- `conversation.txt` excerpt only when needed for actor evidence
+- `extraction.json` fields needed for decision situation, live constraints, synthesized position, dropped threads
+- `result.json` sections needed for delta card, companion anchors, frame pressure, structural coverage, run health
+- annotation JSON with expected trigger/skip, critical actors, assumption, grounding tier, and plan change
+
+Keep full archived runs as manual inspection material. Keep automated fixtures small enough that a future engineer can read the test and understand the behavior.
+
+### Red-Green Order
+
+Build in vertical slices. One behavior, one failing test, minimal implementation, then next behavior.
+
+1. **Negative control skip**: a case with named third parties but no plan dependency returns `triggered: false`.
+2. **Positive trigger**: a case where advice depends on another actor's cooperation returns `triggered: true` with a concrete trigger reason.
+3. **No plan-change gating**: a checker output without `plan_change` cannot set `surface: true`.
+4. **Speculation gate**: a `speculative` assumption cannot surface in chat/memo even if it sounds useful.
+5. **Grounding discipline**: role/closeness inferences are `plausible`, never `grounded`, unless the transcript explicitly establishes knowledge.
+6. **Scoring**: checker output can be compared to annotation fixtures and reports duplicate/new/speculative violations.
+7. **Runtime flag**: default pipeline behavior is unchanged; flagged behavior persists `stakeholder_assumption_check`.
+8. **Failure visibility**: if the checker triggers and fails, `run_health.issues` records the failure.
+9. **Observatory panel**: completed and failed checks are inspectable; skipped checks stay absent.
+
+### Live Validation Role
+
+Live `/lolla` runs happen only after the offline harness passes. They are product validation, not the core test loop. Use them to judge final chat quality, memo quality, Observatory usability, cost, and whether the lens feels helpful rather than theatrical.
+
 ## Phase 0: Close The Research Spike
 
 **Goal**: make the current spike inspectable before anyone treats it as doctrine.
@@ -576,6 +630,14 @@ Build only:
 3. 4 annotated cases
 4. offline trigger harness
 5. scoring skeleton
+
+Develop this slice red-green:
+
+- first failing test: negative control with named third parties must skip
+- second failing test: positive control with stakeholder dependency must trigger
+- third failing test: surfaced output requires a concrete `plan_change`
+- fourth failing test: speculative assumptions cannot surface
+- fifth failing test: scoring distinguishes new correction from duplicate coverage
 
 That slice answers the only question that matters before code integration:
 
