@@ -1,0 +1,257 @@
+{
+  "model_id": "theory-of-constraints",
+  "source_file": "Theory_Of_Constraints_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "theory-of-constraints.constraint-first-cap",
+      "status": "supported",
+      "name": "Measured constraint first intervention",
+      "mechanism": "Before ranking fixes, the model makes the binding limit and its governing metric the unit of action, so non-bottleneck improvements are subordinated to the cap that controls throughput.",
+      "activation_shape": {
+        "use_when": [
+          "A sequential flow has one queue, approval gate, specialist lane, production boundary, or other stage that clearly limits output.",
+          "Competing interventions can be ranked by how fast they increase a named bottleneck's quantified constrained capacity.",
+          "Local gain metrics or visible execution wins are masking a shared bottleneck that governs the global outcome."
+        ],
+        "do_not_use_when": [
+          "The limiting factor is moving every cycle, so one fixed bottleneck frame would be brittle without uncertainty framing.",
+          "The team cannot name the governing metric, current cap, and evidence that an intervention moved the cap."
+        ],
+        "case_evidence_needed": [
+          "The named binding constraint, the dependency it controls, and the governing throughput, cycle-time, capacity, budget, or approval-latency metric.",
+          "The current quantified cap plus a forecast of which proposed action should move that cap first.",
+          "Evidence that visible local improvements would still leave system throughput capped if the named constraint is not relieved."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-cap-before-fixes",
+          "description": "Require each intervention to forecast movement on the measured binding limit before visible non-bottleneck improvements are accepted.",
+          "evidence_required": [
+            "Named bottleneck with quantified limit and current baseline metric.",
+            "Explanation of why proposed non-bottleneck work would or would not raise system throughput."
+          ],
+          "good_output_shape": [
+            "A constraint-first sequence that names the cap, ranks options by expected cap movement, and defers local improvements that leave the cap unchanged.",
+            "A measurable first-movement signal tied to the dependency controlled by the binding constraint."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week?",
+        "If the visible pain point were improved, what dependency, queue, handoff, or approval step would still cap the system?"
+      ],
+      "misuse_guards": [
+        "Do not optimize the step with the most noise or local reporting detail until it is proven to be the binding constraint.",
+        "Do not accept bottleneck language without the governing metric, current cap, and movement evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "The fundamental essence of this mental model is the recognition that in any complex system, performance is ultimately limited by **one key restricting element**, or constraint.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "performance is constrained by a measurable, repeatable cap and the route to improvement requires identifying and relieving that binding limit first.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Use when success requires passing several sequential steps, but one stage clearly limits output (for example, one queue, one approval gate, one specialist bottleneck, or one production boundary), so improving non-binding stages does not raise throughput.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Use when there are competing action options, and you can name the constraint as a named bottleneck with a quantified limit (cycle-time threshold, capacity, budget floor, legal deadline, or cognitive handoff load), then rank options by how fast they increase this constrained capacity.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Use when departments, teams, or models propose fixes that optimize their own KPIs while ignoring the shared bottleneck",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Danger when the limiting factor is moving every cycle because the market, counterparty, or objective is changing too quickly for single-constraint optimization to remain stable.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week? If you cannot name the binding constraint, the dependency it controls, and the metric that would move first, you are not improving the system -- you are improving a visible step.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Teams optimize the step with the most noise, pain, or local reporting detail while the real throughput ceiling sits in a different dependency, handoff, or approval step.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "without naming the governing metric, the current cap, and the evidence that the cap actually moved after intervention.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "theory-of-constraints.constraint-shift-cadence",
+      "status": "supported",
+      "name": "Retest shifted constraints before continuing",
+      "mechanism": "After a bottleneck is relieved, the model requires a fresh constraint check because the next limiting step may control throughput and old interventions can become misdirected.",
+      "activation_shape": {
+        "use_when": [
+          "A first bottleneck has been partially relieved and the plan is still funding the same intervention package.",
+          "Order of operations matters because upstream prerequisites or handoffs determine whether downstream work can have incremental impact.",
+          "Parallel work may be consuming scarce team, approval, or specialist capacity needed to relieve the binding limit."
+        ],
+        "do_not_use_when": [
+          "There is no measurable bottleneck movement or intervention cycle to retest.",
+          "The issue is only constraint identification and the situation-specific execution path has not been designed yet."
+        ],
+        "case_evidence_needed": [
+          "Post-change evidence showing whether the original bottleneck moved and which queue, dependency, or approval step now caps throughput.",
+          "A checkpoint after each major change for re-scoring bottleneck hypotheses.",
+          "Evidence about scarce team, approval, budget, or specialist time that may be diverted away from the current constraint."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "retest-after-change",
+          "description": "Re-score bottleneck hypotheses after each major change and update action sequencing when the binding constraint moves.",
+          "evidence_required": [
+            "Baseline and current measurement for the original bottleneck.",
+            "Candidate next cap and the evidence that would show the constraint has shifted there."
+          ],
+          "good_output_shape": [
+            "A revised sequence that stops funding stale bottleneck fixes and points the next action at the newly measured cap.",
+            "A short retest cadence that names the next cap, the movement signal, and the work to stop if it competes for scarce constraint-relief capacity."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "If this first bottleneck actually moves, what step becomes the next cap within two weeks, and what evidence in this plan would tell us the constraint has already shifted there?",
+        "Which task in this plan is consuming the same scarce team, approval slot, or specialist time needed at the bottleneck?"
+      ],
+      "misuse_guards": [
+        "Do not keep investing in the initially identified bottleneck without reassessing whether it is still binding.",
+        "Do not sequence downstream symptom work while upstream prerequisites remain unresolved."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Constraint shift without retest",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "The initial bottleneck is removed, but teams continue the same interventions because they do not measure whether a new bottleneck has moved into a different step.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "**Constraint cadence:** Re-score hypotheses against the measured bottleneck after each major change and repoint action sequencing when the constraint moves.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "If this first bottleneck actually moves, what step becomes the next cap within two weeks, and what evidence in this plan would tell us the constraint has already shifted there?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Use when order of operations matters and a prerequisite constraint has to be relieved before parallel work can have incremental impact.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Work is sequenced on a downstream symptom while upstream prerequisites are unresolved, creating rework, coordination drag, and temporary gains that disappear after the next handoff.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "**theory-of-constraints vs commitment-bias:** theory-of-constraints conflicts with commitment-bias (commitment bias) when the team over-invests in improving the initially identified bottleneck rather than reassessing whether that constraint is still the binding one.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Identifying the constraint (the *what*) does not automatically solve the problem of *how* to execute the solution.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Theory_Of_Constraints_rag.md",
+      "source_quote": "performance is constrained by a measurable, repeatable cap and the route to improvement requires identifying and relieving that binding limit first.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Theory_Of_Constraints_rag.md",
+      "source_quote": "Use when there are competing action options, and you can name the constraint as a named bottleneck with a quantified limit (cycle-time threshold, capacity, budget floor, legal deadline, or cognitive handoff load), then rank options by how fast they increase this constrained capacity.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Theory_Of_Constraints_rag.md",
+      "source_quote": "**Constraint cadence:** Re-score hypotheses against the measured bottleneck after each major change and repoint action sequencing when the constraint moves.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted two operational affordances from the canonical source: constraint-first intervention selection and post-change constraint retesting. Wave 1-3 curation agreed with the source on measured caps, anti-local-optimization, retest cadence, and commitment-bias tension, but the Markdown source remained the authority for evidence spans.",
+    "dropped_material": [
+      "The source's Pareto, central bottleneck, stress fracture, latticework, and Rule of Three material was useful background but did not add a sharper runtime affordance than measured constraint selection.",
+      "Relation semantics for systems-thinking, bottlenecks, cognitive-load-theory, confirmation-bias, and optimization-theory were not expanded into separate affordances because the pilot record should stay centered on source-backed operational treatment moves.",
+      "Stakeholder and decision-right bottlenecks are source-backed, but I treated them as evidence types inside the two main affordances rather than creating a third affordance."
+    ],
+    "open_questions": [
+      "A later reviewed layer could decide whether stakeholder ownership design deserves its own affordance when more models in the pilot establish comparable granularity.",
+      "The source is unusually enriched with curation-like risk tables, so reviewers should confirm whether the mitigation table should be treated as canonical source or as reviewed augmentation."
+    ],
+    "review_status": "draft"
+  }
+}

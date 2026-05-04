@@ -1,0 +1,280 @@
+{
+  "model_id": "power-dynamics",
+  "source_file": "Power_Dynamics_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "power-dynamics.outside-option-credibility",
+      "status": "supported",
+      "name": "Outside-option credibility before terms",
+      "mechanism": "Terms should be treated as downstream of each party's fallback, walk-away credibility, and ability to redirect, delay, or absorb damage.",
+      "activation_shape": {
+        "use_when": [
+          "A negotiation or partnership depends on private capacity, hidden fallback options, or who can truly walk away.",
+          "One side is using scarcity language, reserved capacity, timing pressure, or channel access without revealing its alternatives."
+        ],
+        "do_not_use_when": [
+          "Do not treat symbolic status, loud positioning, or verbal toughness as leverage unless the fallback is credible.",
+          "Hold back when a hard regulatory or physical bottleneck explains the constraint better than bargaining power."
+        ],
+        "case_evidence_needed": [
+          "Each party's lowest-cost fallback, including alternate counterparties, channels, delayed purchase, redirected supply, or demand.",
+          "Evidence that a threatened walk-away or delay can actually be enforced at tolerable operational, reputation, and approval cost.",
+          "Information being withheld about capacity, backlog, demand quality, timing, or reserved alternatives."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-fallbacks-before-terms",
+          "description": "Before recommending terms, build the leverage map: who can wait, walk away, redirect demand or supply, and absorb enforcement costs with less damage.",
+          "evidence_required": [
+            "Credible alternatives for each party, including redirecting supply, shifting channels, delaying purchase, or accepting a different counterparty.",
+            "Proof that the proposed walk-away or delay threat can be carried out at a tolerable cost.",
+            "Signals that scarcity, capacity, channel access, or timing claims are real rather than manufactured leverage."
+          ],
+          "good_output_shape": [
+            "Names the party with the stronger outside option and the specific evidence supporting that judgment.",
+            "Separates stated willingness from credible walk-away and explains what would make a threat binding rather than rhetorical.",
+            "Treats price floor, timing, or service level as downstream of the mapped bargaining position."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which party can absorb a walk-away with less damage this quarter, and what evidence proves it?",
+        "What would make our walk-away or delay threat actually binding rather than rhetorical?",
+        "What critical information about capacity, fallback demand, or timing is being strategically withheld, and by whom?"
+      ],
+      "misuse_guards": [
+        "Do not count verbal toughness as leverage when the fallback is worse than the current deal.",
+        "Do not treat titles, confidence, or loud positioning as real bargaining power without a better outside option."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "Power Dynamics is applied by asking who can walk away, who can wait, which commitment is binding, and where the hidden outside option actually sits.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "Map outside options before discussing terms",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "If one side can redirect supply, shift channels, delay purchase, or accept a different counterparty at lower cost, that outside option is part of the real price floor.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "Separate stated willingness from credible walk-away",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "A threat only changes bargaining power when the other side believes it will actually be carried out and that the cost of enforcing it is tolerable.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "a negotiation depends on private capacity, hidden fallback options, or information asymmetry about who can truly walk away without major damage.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "a buyer, supplier, or partner is using scarcity language, reserved capacity, or channel access to shape the negotiation without fully revealing the underlying fallback alternatives.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "a team treats verbal toughness as leverage even though the walk-away is not credible and the fallback option is worse than the current deal.",
+          "section_hint": "Common Anti-Patterns and Dangers:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "Titles, confidence, or loud positioning do not create leverage if the other side has the better outside option.",
+          "section_hint": "Weaknesses and Limitations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "Which party can absorb a walk-away with less damage this quarter, and what evidence proves it?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "What would make our walk-away or delay threat actually binding rather than rhetorical?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "What critical information about capacity, fallback demand, or timing is being strategically withheld, and by whom?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "power-dynamics.commitment-gradient-inversion",
+      "status": "supported",
+      "name": "Commitment-gradient leverage inversion",
+      "mechanism": "Leverage can flip after signature when implementation, training, financing, migration, data access, or switching costs make the original walk-away no longer credible.",
+      "activation_shape": {
+        "use_when": [
+          "A contract, integration, migration, financing, or operating commitment could make exit materially harder after the deal is signed.",
+          "The current party looks strong before signature but may become dependent once operational lock-in, training, or customer migration begins."
+        ],
+        "do_not_use_when": [
+          "Hold back when execution quality, incentives, product reality, regulation, or a physical bottleneck explains the constraint better than leverage.",
+          "Do not count a signed contract as durable control without checking the next operational commitment."
+        ],
+        "case_evidence_needed": [
+          "The milestone where reverse cost rises above the counterparty's cost to lose the relationship.",
+          "Specific lock-in sources such as integration, retraining, data ownership, escalation terms, renewal structure, migration, or service dependencies.",
+          "Any reversible exit path or live fallback lane that can preserve leverage before the commitment becomes binding."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "trace-inversion-milestones",
+          "description": "Before endorsing a commitment, mark the milestone where leverage may invert and specify protections that preserve fallback lanes or reversal rights.",
+          "evidence_required": [
+            "Implementation, integration, retraining, financing, migration, data, renewal, or dependency steps that raise exit costs.",
+            "Counterparty leverage gained through timing, data access, escalation terms, service dependencies, or switching costs.",
+            "A comparable view of the team's reverse cost and the counterparty's cost to lose the deal at each milestone."
+          ],
+          "good_output_shape": [
+            "Shows before-signature and after-commitment leverage separately rather than treating the signed deal as final control.",
+            "Names the first lock-in milestone and the mitigation, such as delaying commitment, preserving a fallback lane, or negotiating exit rights.",
+            "Warns when headline concessions give away structural control later."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "At what milestone does our cost to reverse become higher than the counterparty's cost to lose us?",
+        "Where does integration, training, financing, or customer migration raise the cost to reverse?",
+        "What commitment should stay reversible until leverage-protection terms are secured?"
+      ],
+      "misuse_guards": [
+        "Do not treat a signed contract as durable control when the next operational commitment shifts timing, data, or switching-cost leverage.",
+        "Do not celebrate headline price concessions if escalation terms, renewal structure, data ownership, or service dependencies invert bargaining power."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "Track leverage inversion over time",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "The side with leverage before signature can lose it after lock-in, integration, training, financing, or customer migration raises the cost to reverse.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "a contract, integration, or operating commitment could invert leverage over time so the side that looks strong at signature becomes weak after lock-in.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "A buyer wins aggressive terms up front, then loses leverage after implementation starts because exit cost, retraining burden, and contract commitment make the walk-away no longer credible.",
+          "section_hint": "Concrete Examples of Application:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "At what milestone does our cost to reverse become higher than the counterparty's cost to lose us?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "leaders mistake a signed contract for durable control even though the next operational commitment hands timing, data, or switching cost leverage to the counterparty.",
+          "section_hint": "Common Anti-Patterns and Dangers:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "negotiating headline price while ignoring the commitment gradient",
+          "section_hint": "Common Anti-Patterns and Dangers:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "A team \"wins\" concessions upfront but gives away escalation terms, renewal structure, data ownership, or service dependencies that later invert bargaining power.",
+          "section_hint": "Common Anti-Patterns and Dangers:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "preserve leverage by keeping a live fallback lane and a reversible exit path.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Power_Dynamics_rag.md",
+      "source_quote": "Power Dynamics is the model for understanding which party truly controls the decision when the formal discussion says one thing but the real leverage structure says another.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Power_Dynamics_rag.md",
+      "source_quote": "Power Dynamics is strongest when the formal decision surface hides the real leverage structure.",
+      "section_hint": "Application Context: Strengths and Weaknesses:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted two operational affordances from the raw source: outside-option credibility before terms and commitment-gradient leverage inversion. Reviewed waves agree with this focus, but the canonical Markdown is the evidence authority.",
+    "dropped_material": [
+      "Multi-party weakest-link dependency is source-backed but not extracted separately because it is thinner as a standalone affordance and can be handled inside outside-option mapping.",
+      "Relation semantics for incentives, lock-in, optionality, confirmation bias, and opportunity cost were used only as orientation and not promoted into affordances."
+    ],
+    "open_questions": [
+      "A later pass could decide whether the weakest-link dependency deserves a separate affordance after more examples or runtime evidence."
+    ],
+    "review_status": "draft"
+  }
+}

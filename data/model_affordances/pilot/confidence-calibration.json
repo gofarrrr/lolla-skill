@@ -1,0 +1,365 @@
+{
+  "model_id": "confidence-calibration",
+  "source_file": "Confidence_Calibration_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "confidence-calibration.commitment-sizing-to-earned-range",
+      "status": "supported",
+      "name": "Commitment sizing to the earned confidence range",
+      "mechanism": "Before a forecast, recommendation, or estimate controls resources, convert confidence into an explicit range and size the action to the uncertainty the evidence has earned, not to the center forecast or upside story.",
+      "activation_shape": {
+        "use_when": [
+          "A forecast, recommendation, or estimate is about to determine resources, reputation, irreversible action, headcount, spend, rollout scope, or lock-in.",
+          "A decision tree, capital-allocation spreadsheet, or branch model is carrying more certainty than its evidence base has earned."
+        ],
+        "do_not_use_when": [
+          "The conversation is only adding caveats and ranges without naming the action threshold that would still trigger a decision.",
+          "The numbers are being used to look rigorous while the evidence remains anecdotal, sparse, or regime-unstable."
+        ],
+        "case_evidence_needed": [
+          "The commitment-driving number or forecast and the resource, scope, reputation, or irreversible action it controls.",
+          "The upper and lower bound, lower-confidence bound, or largest earned forecast error that should change the move.",
+          "Evidence that would narrow or widen the range enough to change the commitment."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "surface-commitment-driver",
+          "description": "Name the confidence claim or number that controls the commitment and explain what would need to be true for it to deserve the planned level of trust.",
+          "evidence_required": [
+            "The forecast, confidence claim, or recommendation number being used to size the decision.",
+            "The decision consequence controlled by that number."
+          ],
+          "good_output_shape": [
+            "The output explicitly identifies the commitment driver and states the trust conditions under which it is valid.",
+            "The output names the threshold or evidence change that would shrink, pause, or expand the move."
+          ]
+        },
+        {
+          "requirement_id": "size-to-earned-range",
+          "description": "Compare the planned action against the lower-confidence bound or largest forecast error the evidence base has earned, then resize the move if the center estimate is doing too much work.",
+          "evidence_required": [
+            "The current center estimate and its upper or lower bound, or the source of the missing bound.",
+            "Historical, comparable, or sample-depth evidence that supports the range."
+          ],
+          "good_output_shape": [
+            "The recommendation scopes the commitment to the earned confidence range rather than the best-case or center story.",
+            "The output says how far the move would shrink under the lower-confidence bound."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which number in this recommendation is driving the commitment, and what would have to be true for that number to deserve this much trust?",
+        "What action in this plan is being sized to the center estimate rather than to the lower-confidence bound, and how far would the move shrink if we used the largest forecast error the evidence base has actually earned?",
+        "Would you be really shocked if the outcome fell outside this upper or lower bound?"
+      ],
+      "misuse_guards": [
+        "Do not let calibration talk replace commitment; caveats and ranges must still end in an action threshold.",
+        "Do not treat precise percentages, confidence intervals, or branch weights as calibrated judgment when the underlying evidence is anecdotal or regime-unstable.",
+        "Do not size commitment to the upside story when the evidence has only earned a wider range."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "Most useful when a forecast, recommendation, or estimate is about to determine how aggressively to commit resources, reputation, or irreversible action.",
+          "section_hint": "Strengths (When the Model is Most Powerful)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "Most useful when a decision tree, integration model, or capital-allocation spreadsheet is carrying more certainty than the evidence base has earned.",
+          "section_hint": "Strengths (When the Model is Most Powerful)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "Best when the key discipline is sizing the move to the confidence level actually earned rather than to the upside story being told.",
+          "section_hint": "Strengths (When the Model is Most Powerful)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "**Danger when calibration talk replaces commitment:** Danger when the model is used to add caveats, ranges, and epistemic humility without ever defining the action threshold that will still trigger a decision.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "Which number in this recommendation is driving the commitment, and what would have to be true for that number to deserve this much trust?",
+          "section_hint": "Effective Mitigation Strategies and Pre-Mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "What action in this plan is being sized to the center estimate rather than to the lower-confidence bound, and how far would the move shrink if we used the largest forecast error the evidence base has actually earned?",
+          "section_hint": "Common Failure Modes and Cognitive Biases",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This record compresses the source's commitment-size bullets, center-estimate warning, and pre-mortem questions into one operational affordance.",
+        "dropped_material": [
+          "Did not create a full forecasting algorithm; the source supports ranges, trust checks, and action thresholds, not a probability-computation method."
+        ],
+        "open_questions": [],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "confidence-calibration.instrument-trust-before-precision",
+      "status": "supported",
+      "name": "Instrument trust before precise-looking confidence",
+      "mechanism": "Treat dashboards, model outputs, pilot metrics, and other numerical displays as decision-grade only after the data-generating process has earned trust; apparent precision is not calibration unless sampling, attribution, denominators, and input control can survive scrutiny.",
+      "activation_shape": {
+        "use_when": [
+          "A dashboard, pilot metric, model output, benchmark, or spreadsheet is being treated as decision-grade because its number is clean, frequent, or model-produced.",
+          "A confidence claim rests on thin, filtered, counterpart-controlled, or regime-shifted samples."
+        ],
+        "do_not_use_when": [
+          "The measurement process is already validated and the live issue is not confidence in the instrument but some other constraint.",
+          "The user only needs qualitative self-assessment rather than a decision based on a precise-looking metric or output."
+        ],
+        "case_evidence_needed": [
+          "The metric or model output being trusted and the data-generating process behind it.",
+          "Known weaknesses in sampling, attribution, denominator quality, missing data, counterparty control, comparables, or regime stability.",
+          "The recommendation that would reverse if the apparent precision proved false."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "audit-data-generating-process",
+          "description": "Separate numerical precision from measurement trust by naming which part of the data-generating process could make the clean number misleading enough to reverse the recommendation.",
+          "evidence_required": [
+            "The precise-looking metric, dashboard value, pilot result, or model output being treated as decision-grade.",
+            "Information about sampling, attribution, missing denominators, counterparty control, or input quality."
+          ],
+          "good_output_shape": [
+            "The output states whether the number is an earned instrument or only apparent precision.",
+            "The output names the measurement weakness that would change or reverse the recommendation."
+          ]
+        },
+        {
+          "requirement_id": "widen-range-for-sample-validity",
+          "description": "When a confidence claim comes from a thin, filtered, or regime-shifted sample, widen the range or downgrade the commitment until the evidence base earns narrower confidence.",
+          "evidence_required": [
+            "The sample, benchmark, pilot, or forecast basis behind the confidence claim.",
+            "Evidence about filtered examples, unstable regimes, thin comparables, or counterpart-controlled data."
+          ],
+          "good_output_shape": [
+            "The recommendation distinguishes the stated number from the confidence the sample can actually support.",
+            "The output identifies what evidence would narrow or widen the range enough to change the commitment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which metric is being trusted because it looks precise, and what part of the data-generating process -- sampling, attribution, missing denominator, or counterparty control -- would make that precision false enough to reverse the recommendation?",
+        "Which confidence claim in this plan is acting like measurement even though it comes from a thin, filtered, or regime-shifted sample, and what evidence would widen the range enough to change the commitment?"
+      ],
+      "misuse_guards": [
+        "Do not let dashboards or model outputs inherit decision-grade status from clean presentation before the data-generating process is trusted.",
+        "Do not mistake precise quantified language for calibrated judgment when samples are thin, filtered, unstable, or controlled by a counterparty.",
+        "Do not override subjective perception with an instrument unless the instrument itself is validated."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "This highlights that subjective feelings of certainty must be overridden by external, validated data.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "**Works when dashboards or model outputs are being treated as decision-grade before the data-generating process is trusted:** Works when the team needs to separate apparent precision from validated measurement quality.",
+          "section_hint": "Strengths (When the Model is Most Powerful)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "The number sounds calibrated only because it is expressed precisely.",
+          "section_hint": "Common Failure Modes and Cognitive Biases",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "Which metric is being trusted because it looks precise, and what part of the data-generating process -- sampling, attribution, missing denominator, or counterparty control -- would make that precision false enough to reverse the recommendation?",
+          "section_hint": "Common Failure Modes and Cognitive Biases",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "Which confidence claim in this plan is acting like measurement even though it comes from a thin, filtered, or regime-shifted sample, and what evidence would widen the range enough to change the commitment?",
+          "section_hint": "Common Failure Modes and Cognitive Biases",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "**Danger when teams confuse quantified language with calibrated judgment:** Danger when a plan adds percentages, confidence intervals, or branch weights that look rigorous even though the underlying evidence is still anecdotal or regime-unstable.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This record separates the source's pilot-instrument analogy from weak metric precision: instruments help only when the instrument itself has earned trust.",
+        "dropped_material": [
+          "Did not generalize every dashboard problem into calibration; activation is limited to apparent precision outrunning data-process trust."
+        ],
+        "open_questions": [],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "confidence-calibration.method-first-self-interrogation",
+      "status": "supported",
+      "name": "Method-first interrogation of confidence",
+      "mechanism": "For any claim, elicit a numerical confidence level, the reasons for that level, and the method used to judge those reasons, then move the conversation from assertion to the quality of the confidence-producing method.",
+      "activation_shape": {
+        "use_when": [
+          "A person or team asserts confidence in a claim, belief, pitch, or answer but has not exposed how that confidence was generated.",
+          "A learner, expert, or strategist may be confusing fluency, familiarity, or conviction with genuine mastery."
+        ],
+        "do_not_use_when": [
+          "Repeated self-interrogation is delaying timely action after enough evidence has been gathered to choose.",
+          "The case needs commitment sizing or instrument-trust auditing more than a method check on the speaker's confidence."
+        ],
+        "case_evidence_needed": [
+          "The claim or answer, the stated numerical confidence level, and reasons for that specific level.",
+          "The method used to judge the quality of those reasons.",
+          "Any self-test, practice answer, outside view, or probing from others that checks the confidence against reality."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "elicit-confidence-reasons-method",
+          "description": "Ask for the confidence number, the reasons behind it, and the method used to judge those reasons before weighing the claim.",
+          "evidence_required": [
+            "The claim or belief being assessed.",
+            "The stated confidence number, supporting reasons, and confidence-judging method."
+          ],
+          "good_output_shape": [
+            "The output reports confidence as a number and distinguishes reasons from the method used to evaluate those reasons.",
+            "The output shifts critique toward method quality instead of only arguing for or against the claim."
+          ]
+        },
+        {
+          "requirement_id": "test-fluency-against-complete-answer",
+          "description": "When confidence may reflect surface fluency, require an actual answer, self-test, practice test, or comparable reality check before treating the confidence as mastery.",
+          "evidence_required": [
+            "The learning or skill claim being made.",
+            "Evidence from a complete answer, practice test, quiz, or comparable performance check."
+          ],
+          "good_output_shape": [
+            "The response distinguishes familiarity from demonstrated mastery.",
+            "The response asks for or evaluates a concrete performance attempt rather than accepting recognition fluency."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "On a scale of 0 to 100%, how confident are you?",
+        "What reasons do you have to hold that specific level of confidence?",
+        "What method did you use to judge the quality of those reasons?"
+      ],
+      "misuse_guards": [
+        "Do not accept recognition fluency as mastery; make the person supply the complete and accurate answer or use a practice test.",
+        "Do not let slow-thinking calibration become analysis paralysis that prevents timely action.",
+        "Do not treat intelligence or narrative skill as a guarantee that confidence is calibrated."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "**Ask for a numerical measure of confidence** in the claim (e.g., \"On a scale of 0 to 100%, how confident are you?\").",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "**Ask what reasons** they have to hold that specific level of confidence.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "**Ask what method** they used to judge the quality of their reasons, then focus the conversation on assessing that methodology.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "An anti-pattern is looking at a quiz question and thinking, \"I know that,\" without actually taking the time to write out the full answer, thereby failing to calibrate genuine competence.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "an over-emphasis on perfect calibration can lead to **analysis paralysis**, where reflection thwarts timely action.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "Smart people, having greater confidence in their beliefs, are better at generating narratives to sway themselves and others, making them more prone to **motivated reasoning**",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This record keeps guided metacognition operational by requiring a confidence number, reasons, and a method check, plus a concrete fluency-versus-mastery test.",
+        "dropped_material": [
+          "Did not turn the jazz analogy or broad humility language into affordances because they do not add sharper runtime evidence or treatment requirements."
+        ],
+        "open_questions": [],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Confidence_Calibration_rag.md",
+      "source_quote": "**Confidence Calibration** is fundamentally the process of aligning one's subjective assessment of knowledge, skill, or prediction accuracy with objective reality.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Confidence_Calibration_rag.md",
+      "source_quote": "By demanding a realistic evaluation of uncertainty, calibration motivates individuals to seek new information and improve their beliefs faster.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted three source-backed operational affordances: size commitments to earned ranges, audit apparent precision against instrument trust, and interrogate confidence by method before weighing claims.",
+    "dropped_material": [
+      "Did not promote the pilot, target-range, or jazz analogies as standalone affordances; only the instrument analogy materially supports a distinct audit requirement.",
+      "Did not extract relation records for metacognition, probabilistic thinking, outside view, confirmation bias, authority bias, or bias blind spot because this artifact is focused on model-use affordances.",
+      "Did not add a complete calibration scoring algorithm; the source gives questions, ranges, and checks rather than a formula."
+    ],
+    "open_questions": [
+      "A reviewer may choose to split learning/mastery calibration from business-claim confidence later, but the source supports the same method-first interrogation pattern for both."
+    ],
+    "review_status": "draft"
+  }
+}
