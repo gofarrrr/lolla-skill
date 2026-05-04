@@ -96,6 +96,7 @@ _AUDIT_NAV = (
     ("/audit/anti-echo", "Anti-echo"),
     ("/audit/routing", "Routing"),
     ("/audit/expansions", "Expansions"),
+    ("/audit/stakeholders", "Stakeholders"),
     ("/usage", "Usage"),
 )
 
@@ -710,6 +711,7 @@ def _build_case_response() -> dict:
         "gap_check": r.get("gap_check"),
         "gap_check_summary": r.get("gap_check_summary"),
         "has_gap_check": r.get("has_gap_check", False),
+        "stakeholder_assumption_check": r.get("stakeholder_assumption_check"),
         "bullshit_profile": r.get("bullshit_profile"),
     }
 
@@ -1589,6 +1591,100 @@ def _render_expansions_html() -> str:
     return _render_scaffold(title="Lolla — Expansions", body=body, current_path="/audit/expansions")
 
 
+def _render_stakeholder_html() -> str:
+    """Render the optional Stakeholder Assumption Check panel."""
+    _reload_result_if_changed()
+    check = _RESULT.get("stakeholder_assumption_check") or {}
+    header = _render_run_header()
+
+    if not check or check.get("status") == "skipped":
+        body = f"""
+<h1>Stakeholder Assumption Check</h1>
+{header}
+{_empty_inline("No stakeholder assumption check was material for this run.")}
+"""
+        return _render_scaffold(
+            title="Lolla — Stakeholder Assumptions",
+            body=body,
+            current_path="/audit/stakeholders",
+        )
+
+    status = check.get("status", "unknown")
+    trigger_reason = check.get("trigger_reason", "")
+    summary = check.get("summary", "")
+    error = check.get("error", "")
+    actors = [a for a in (check.get("critical_actors") or []) if isinstance(a, dict)]
+
+    actor_rows = []
+    for actor in actors:
+        deps = actor.get("power_or_dependency") or []
+        deps_html = " ".join(f'<span class="tag">{_esc(dep)}</span>' for dep in deps)
+        known = actor.get("known_to_actor") or []
+        unknown = actor.get("unknown_to_actor") or []
+        bridges = actor.get("bridging_facts") or []
+        known_html = "<br>".join(_esc(item) for item in known) or "—"
+        unknown_html = "<br>".join(_esc(item) for item in unknown) or "—"
+        bridges_html = "<br>".join(_esc(item) for item in bridges) or "—"
+        actor_rows.append(
+            "<tr>"
+            f"<td><strong>{_esc(actor.get('display_name') or actor.get('actor_id') or 'actor')}</strong>"
+            f"<br><span class=\"hint\">{_esc(actor.get('role', ''))}</span>"
+            f"<div class=\"tagrow\">{deps_html}</div></td>"
+            f"<td>{_esc(actor.get('advice_assumption', ''))}</td>"
+            f"<td><span class=\"tag\">{_esc(actor.get('grounding', 'unknown'))}</span></td>"
+            f"<td>{_esc(actor.get('risk_if_wrong', ''))}</td>"
+            f"<td>{_esc(actor.get('plan_change', ''))}</td>"
+            "</tr>"
+            "<tr>"
+            "<td></td>"
+            f"<td colspan=\"4\"><details><summary>Known / unknown / bridges</summary>"
+            f"<p><strong>Known:</strong><br>{known_html}</p>"
+            f"<p><strong>Unknown:</strong><br>{unknown_html}</p>"
+            f"<p><strong>Bridging facts:</strong><br>{bridges_html}</p>"
+            f"<p><strong>Open question:</strong> {_esc(actor.get('open_question', '—'))}</p>"
+            "</details></td>"
+            "</tr>"
+        )
+
+    if actor_rows:
+        table = (
+            "<table><thead><tr>"
+            "<th>Actor</th><th>Advice assumption</th><th>Grounding</th>"
+            "<th>Risk if wrong</th><th>Plan change</th>"
+            "</tr></thead><tbody>"
+            + "".join(actor_rows)
+            + "</tbody></table>"
+        )
+    else:
+        table = _empty_inline("The check ran but surfaced no actor-level plan change.")
+
+    error_html = (
+        f'<div class="empty">Checker error: <code>{_esc(error)}</code></div>'
+        if status == "skipped_error" and error
+        else ""
+    )
+
+    body = f"""
+<h1>Stakeholder Assumption Check</h1>
+{header}
+<p class="lede">This panel shows where the advice depended on another actor's knowledge, cooperation, interpretation, or power. It is inspectable here; user-facing chat only gets a correction when it changes the plan.</p>
+<div class="vitals">
+  <span class="tag">status: {_esc(status)}</span>
+  <span class="tag">surface: {_esc(check.get("surface", False))}</span>
+  <span class="tag">triggered: {_esc(check.get("triggered", False))}</span>
+</div>
+{f'<p><strong>Trigger:</strong> {_esc(trigger_reason)}</p>' if trigger_reason else ''}
+{f'<p><strong>Summary:</strong> {_esc(summary)}</p>' if summary else ''}
+{error_html}
+{table}
+"""
+    return _render_scaffold(
+        title="Lolla — Stakeholder Assumptions",
+        body=body,
+        current_path="/audit/stakeholders",
+    )
+
+
 # ---------------- Index: /audit ----------------
 
 
@@ -1651,6 +1747,8 @@ def _render_audit_index_html() -> str:
          "For each detected tendency: primary lens, antidotes, and the activation-tiebreaker trace (fired, or which clause kept top-1)."),
         ("/audit/expansions", "Companion expansions",
          "Relation-graph traversal per Lane 2 anchor — allies, antagonists, and tensions, with activation conditions and why-relevant rationale."),
+        ("/audit/stakeholders", "Stakeholder assumption check",
+         "When enabled: actor dependencies, grounding tiers, known/unknown splits, and any plan-changing correction."),
     ]
     cards = []
     for href, title, desc in items:
@@ -1738,6 +1836,7 @@ class ResultHandler(SimpleHTTPRequestHandler):
             "/audit/anti-echo": _render_anti_echo_html,
             "/audit/routing": _render_routing_html,
             "/audit/expansions": _render_expansions_html,
+            "/audit/stakeholders": _render_stakeholder_html,
         }
         if path in _audit_routes:
             self._html_response(_audit_routes[path]())

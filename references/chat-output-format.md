@@ -246,6 +246,8 @@ If the draft pressure check contains *"mostly aligned"*, *"all incorporated abov
 - Narrative summary close (*"Audited your equity decision for Marcus. Found 3 patterns…"*) — the functional close above replaces it.
 - **Pre-pressure-check internal narration.** Do not summarize which internal reviewers, lanes, or sources aligned before the Pressure Check. Do not write *"Reading them honestly: the Lane 2 concerns... Lane 3's two concerns... Lane 4's three gaps..."*, *"All three sub-agents are in"*, *"Two of three pressure-check responses are in"*, *"All four pressure checks are in"*, *"Generating the memo now"*, or any variant. **Start the user-facing output at the counter-frame opening sentence.** Everything before that is operator narration and must be silent in the rendered transcript.
 
+- **Stakeholder assumption material.** If the optional stakeholder check surfaces a material correction, include it only as a concrete divergence inside `### Pressure Check`. Name the actor dependency and the plan change; do not name the checker. Do not add a separate stakeholder section. Do not write speculative psychology (*"he likely feels..."*, *"she probably wants..."*) unless the transcript grounds it and the plan changes because of it.
+
 ### Examples
 
 - **Good:** § Beat 4 / Marcus (200 words), § Beat 4 / Mother (210 words), § Beat 4 / Short fixture (145 words).

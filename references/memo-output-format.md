@@ -137,6 +137,7 @@ Rules:
 - Do not mention sub-agents or isolated review.
 - Scan all pressure-check divergences before writing. A materially different decision path, fallback, channel, commitment shape, or instrument is not optional just because another concern is easier to summarize. Include it or explicitly set it aside.
 - If no divergence survives, leave `memo_pressure_check` empty.
+- Optional stakeholder-assumption material may appear here only if it was surfaced in Step 8 or materially changes the decision note. Compress it to the plan change. Do not add a separate stakeholder section.
 
 ## Questions Still Unanswered
 

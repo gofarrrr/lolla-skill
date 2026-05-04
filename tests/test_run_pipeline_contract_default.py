@@ -255,6 +255,151 @@ def test_new_contract_flag_with_file_inputs_still_uses_conversation_context(
     assert isinstance(captured_inputs[0], context_mod.ConversationContext)
 
 
+def test_stakeholder_check_disabled_by_default(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import system_b.stakeholder_assumption_check as stakeholder_check
+
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    _install_live_pipeline_fakes(monkeypatch, tmp_path)
+
+    def _fail_if_called(**kwargs):  # noqa: ANN003
+        raise AssertionError("stakeholder check should be disabled by default")
+
+    monkeypatch.delenv("LOLLA_STAKEHOLDER_CHECK", raising=False)
+    monkeypatch.setattr(stakeholder_check, "run_stakeholder_assumption_check", _fail_if_called)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+    assert "stakeholder_assumption_check" not in payload
+
+
+def test_stakeholder_check_flag_persists_payload_and_usage(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import system_b.stakeholder_assumption_check as stakeholder_check
+
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    _install_live_pipeline_fakes(monkeypatch, tmp_path)
+
+    class _FakeBoundary:
+        call_log = []
+
+    def _fake_load_boundary(provider_name: str):  # noqa: ARG001
+        return _FakeBoundary()
+
+    call_record = {
+        "stage": "stakeholder_assumption_check",
+        "provider_name": "openrouter",
+        "model": "fake-model",
+        "status": "ok",
+        "prompt_tokens": 10,
+        "completion_tokens": 5,
+        "total_tokens": 15,
+    }
+
+    def _fake_check(**kwargs):  # noqa: ANN003
+        assert isinstance(kwargs["boundary"], _FakeBoundary)
+        return (
+            {
+                "status": "completed",
+                "triggered": True,
+                "surface": True,
+                "critical_actors": [{"display_name": "advisor", "plan_change": "Ask first."}],
+            },
+            [call_record],
+        )
+
+    monkeypatch.setenv("LOLLA_STAKEHOLDER_CHECK", "1")
+    monkeypatch.setattr(stakeholder_check, "run_stakeholder_assumption_check", _fake_check)
+    monkeypatch.setattr("system_b.boundary_provider.load_boundary_client_from_env", _fake_load_boundary)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+    assert payload["stakeholder_assumption_check"]["status"] == "completed"
+    stages = payload["usage_summary"]["vendors"]["openrouter"]["stages"]
+    assert "stakeholder_assumption_check" in stages
+    assert stages["stakeholder_assumption_check"]["calls"] == 1
+
+
+def test_triggered_stakeholder_check_failure_degrades_run_health(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import system_b.stakeholder_assumption_check as stakeholder_check
+
+    extraction_path, conversation_path = _write_extraction_and_conversation(tmp_path)
+    output_path = tmp_path / "result.json"
+    _install_live_pipeline_fakes(monkeypatch, tmp_path)
+
+    def _fake_check(**kwargs):  # noqa: ANN003
+        return (
+            {
+                "status": "skipped_error",
+                "triggered": True,
+                "surface": False,
+                "error": "test failure",
+                "critical_actors": [],
+            },
+            [],
+        )
+
+    monkeypatch.setenv("LOLLA_STAKEHOLDER_CHECK", "1")
+    monkeypatch.setattr(stakeholder_check, "run_stakeholder_assumption_check", _fake_check)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_pipeline.py",
+            "--extraction-file",
+            str(extraction_path),
+            "--conversation-file",
+            str(conversation_path),
+            "--output-file",
+            str(output_path),
+            "--skip-revision",
+        ],
+    )
+
+    assert run_pipeline.main() == 0
+    payload = json.loads(output_path.read_text(encoding="utf-8"))
+    assert payload["stakeholder_assumption_check"]["status"] == "skipped_error"
+    assert "stakeholder_check_failed" in payload["run_health"]["issues"]
+    assert payload["run_health"]["overall"] == "degraded"
+
+
 def test_extraction_file_without_conversation_file_requires_conversation_file(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

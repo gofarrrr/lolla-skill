@@ -419,6 +419,7 @@ def build_usage_summary(
     pipeline_boundary_calls: Sequence[object],
     bi_boundary_calls: Sequence[object] = (),
     revision_boundary_calls: Sequence[object] = (),
+    stakeholder_check_boundary_calls: Sequence[object] = (),
     extraction_boundary_calls: Sequence[object] = (),
     embedding_records: Sequence[Mapping] = (),
     subagent_calls: Sequence[Mapping] = (),
@@ -434,6 +435,7 @@ def build_usage_summary(
     all_openrouter = list(pipeline_boundary_calls) \
         + list(bi_boundary_calls) \
         + list(revision_boundary_calls) \
+        + list(stakeholder_check_boundary_calls) \
         + list(extraction_boundary_calls)
 
     openrouter_block = _build_chat_vendor_block(

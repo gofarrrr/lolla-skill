@@ -17,6 +17,7 @@ from scripts.spikes.stakeholder_assumption_check import (
     evaluate_trigger,
     gate_surface,
     load_annotation,
+    run_stakeholder_assumption_check,
     score_check,
 )
 
@@ -86,6 +87,24 @@ def test_stakeholder_alignment_gap_triggers_with_concrete_reason() -> None:
     assert decision["triggered"] is True
     assert "stakeholder-alignment" in decision["trigger_reason"]
     assert "ex" in decision["candidate_actors"]
+
+
+def test_material_gap_with_dependency_triggers_even_when_actor_name_is_unusual() -> None:
+    extraction = {
+        "decision_situation": "Team deciding whether to ask the archive custodian for access.",
+        "live_constraints": ["access depends on an unnamed archive custodian"],
+        "synthesized_position": "Ask for access before committing the research plan.",
+        "dropped_threads": [],
+    }
+    result = _result_with_gap(
+        "stakeholder-alignment",
+        "Who can approve or block access?",
+    )
+
+    decision = evaluate_trigger(extraction=extraction, result=result)
+
+    assert decision["triggered"] is True
+    assert decision["candidate_actors"] == ["actor_from_structural_gap"]
 
 
 def test_surface_requires_concrete_plan_change() -> None:
@@ -200,3 +219,91 @@ def test_annotation_pack_has_positive_and_negative_controls() -> None:
         assert expected["actor"]
         assert expected["advice_assumption"]
         assert expected["plan_change"]
+
+
+def test_triggered_runtime_check_calls_boundary_and_gates_payload() -> None:
+    class _FakeBoundary:
+        def __init__(self) -> None:
+            self.call_log = [
+                {
+                    "stage": "stakeholder_assumption_check",
+                    "provider_name": "openrouter",
+                    "model": "fake-model",
+                    "status": "ok",
+                    "prompt_tokens": 10,
+                    "completion_tokens": 5,
+                    "total_tokens": 15,
+                }
+            ]
+            self.user_prompt = ""
+
+        def run_json(self, system_prompt: str, user_prompt: str, **kwargs) -> dict:
+            assert "psychology profile" in system_prompt
+            assert kwargs["stage"] == "stakeholder_assumption_check"
+            self.user_prompt = user_prompt
+            return {
+                "status": "completed",
+                "surface": True,
+                "summary": "Do not forward screenshots.",
+                "critical_actors": [
+                    {
+                        "display_name": "ex-husband",
+                        "advice_assumption": "He will use evidence constructively.",
+                        "grounding": "plausible",
+                        "risk_if_wrong": "He weaponizes it.",
+                        "plan_change": "Share general facts, not screenshots.",
+                    }
+                ],
+            }
+
+    extraction = {
+        "decision_situation": "Mother deciding how to handle ex-husband.",
+        "live_constraints": ["ex has 50% custody"],
+        "synthesized_position": "Tell the ex the facts.",
+        "dropped_threads": [],
+    }
+    result = _result_with_gap(
+        "stakeholder-alignment",
+        "What can the ex do with the evidence after receiving it?",
+    )
+    boundary = _FakeBoundary()
+
+    payload, call_log = run_stakeholder_assumption_check(
+        extraction=extraction,
+        result=result,
+        conversation_text="[Turn 1] USER: ex has 50% custody",
+        boundary=boundary,
+    )
+
+    assert payload["status"] == "completed"
+    assert payload["surface"] is True
+    assert payload["surface_reason"] == "plan-changing grounded-or-plausible assumption"
+    assert payload["triggered"] is True
+    assert "stakeholder-alignment" in payload["trigger_reason"]
+    assert call_log == boundary.call_log
+    assert "conversation_excerpt" in boundary.user_prompt
+
+
+def test_triggered_runtime_check_without_boundary_is_visible_error() -> None:
+    extraction = {
+        "decision_situation": "Mother deciding how to handle ex-husband.",
+        "live_constraints": ["ex has 50% custody"],
+        "synthesized_position": "Tell the ex the facts.",
+        "dropped_threads": [],
+    }
+    result = _result_with_gap(
+        "stakeholder-alignment",
+        "What can the ex do with the evidence after receiving it?",
+    )
+
+    payload, call_log = run_stakeholder_assumption_check(
+        extraction=extraction,
+        result=result,
+        boundary=None,
+    )
+
+    assert payload["status"] == "skipped_error"
+    assert payload["triggered"] is True
+    assert payload["surface"] is False
+    assert "boundary client required" in payload["error"]
+    assert call_log == []
