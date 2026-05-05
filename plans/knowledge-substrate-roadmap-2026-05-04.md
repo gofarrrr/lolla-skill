@@ -141,32 +141,34 @@ What is already done:
   substrate/runtime design; use *Clear Thinking* lessons for the decision-note,
   tripwire, safeguard, and process-record product surface.
 
-Current next move after PR 23:
+Current posture after PR 23:
 
-1. Do not run more paid Gate 4 calibration by default.
-2. Treat the PR13 dry surface and PR14 stability review as product-shaping
+1. Default to `stop_and_review_after_pr23`. Do not commission PR24 or any new
+   implementation by default.
+2. Do not run more paid Gate 4 calibration by default.
+3. Treat the PR13 dry surface and PR14 stability review as product-shaping
    evidence, not formal Gate 4 proof.
-3. Treat Batch 3a and v4 as an extraction patch plus dry product-delta review;
+4. Treat Batch 3a and v4 as an extraction patch plus dry product-delta review;
    they do not promote Decision Pressure or v4 affordances into runtime.
-4. Treat the PR18 Observatory prototype as evidence that the operator trace is
+5. Treat the PR18 Observatory prototype as evidence that the operator trace is
    clearer, not as implementation permission.
-5. Treat the PR19 `decision_pressure_trace` contract, PR20 producer/adapter
+6. Treat the PR19 `decision_pressure_trace` contract, PR20 producer/adapter
    plan, PR21 adapter smoke test, and PR22 usefulness review as dormant review
    infrastructure, not as live Observatory, memo, Step 8, Step 6, Lane 4, or
    `/lolla` behavior.
-6. Treat PR23 as directional evidence that Decision Pressure generalizes beyond
+7. Treat PR23 as directional evidence that Decision Pressure generalizes beyond
    the original 3-case packet, but not as live product evidence. If moving
    forward, review whether the existing `decision_pressure_trace.v1` contract
    can represent a multi-case generalization fixture without bloat or example
    imitation.
-7. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
+8. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
    Step 8 Pressure Check, memo, or Observatory surfaces. It is not a new lane.
-8. Treat C-only OOD as one strong value mode, not the only value mode. The
+9. Treat C-only OOD as one strong value mode, not the only value mode. The
    accepted product modes are `new_edge`, `grounded_double_down`,
    `confirmation`, and `coverage_transparency`.
-9. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
+10. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
    promotion from PR23.
-10. Do not turn PR23 case examples into deterministic rules. Python may enforce
+11. Do not turn PR23 case examples into deterministic rules. Python may enforce
     shape, caps, provenance, source-reference validity, runtime dormancy,
     coverage gaps, blocked surfaces, and drift counts. Python must not choose
     pressure quality, infer pressure from case type or route label, merge
@@ -632,16 +634,18 @@ original proposal language.
 | Decision Pressure trace contract / PR 19 | done | Define and validate a runtime-dormant `decision_pressure_trace` object for the PR18 prototype. |
 | Trace producer/adapter plan / PR 20 | done | Define the boundary for validating, normalizing, packaging, or reporting on reviewed trace fixtures without live behavior. |
 | Fixture-only trace adapter smoke test / PR 21 | done | Exercise the PR19 trace contract mechanically and write only review-only reports when explicitly requested. |
-| Adapter report usefulness review / PR 22 | current review frontier | Record that the adapter report is useful as a smoke alarm, not as the main product-quality review surface. |
-| Runtime Lane 4 affordance integration | not started | Must wait for Gate 4 evidence. |
+| Adapter report usefulness review / PR 22 | done | Record that the adapter report is useful as a smoke alarm, not as the main product-quality review surface. |
+| Decision Pressure generalization readout / PR 23 | stop-and-review frontier | Record no-paid directional generalization evidence and lock the anti-casuistry boundary. Default posture is `stop_and_review_after_pr23`. |
+| Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current freeze rule:
 
-> Do not commission Batch 3, Batch 3b, live runtime integration, or another
-> paid Gate 4 run by default after PR22. The next product question is a human
-> review decision: stop here, ask for another real Decision Pressure readout,
-> or explicitly request a later dormant package function.
+> The stack is in `stop_and_review_after_pr23`. Do not commission PR24, Batch
+> 3, Batch 3b, live runtime integration, package functions, trace-fixture
+> stress tests, or another paid Gate 4 run by default. The next product
+> question is a human review decision: stop and consolidate, or explicitly name
+> the concrete uncertainty a later dormant review slice would answer.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 

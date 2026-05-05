@@ -542,26 +542,34 @@ Interpretation:
 
 ## Recommendation
 
-Move one step forward, but not into live product.
+Default posture:
 
-The next useful work should be one of:
+> `stop_and_review_after_pr23`
+
+Do not start PR24 by default. PR23 is enough to move the stack from "fragile
+3-case surface" to "directional generalization evidence," but it is not enough
+to license more infrastructure automatically.
+
+Future dormant work should happen only if reviewers identify a concrete need.
+The only acceptable future options are:
 
 1. **Generalization trace fixture, dormant.**
    Represent these five case-level readouts as a reviewed fixture or fixture
    family under the existing `decision_pressure_trace.v1` contract, if the
-   contract can handle multi-run readouts without bloat.
+   contract can handle multi-run readouts without bloat or example imitation.
 
 2. **Trace contract review.**
    Check whether `decision_pressure_trace.v1` should represent one run only or
-   a review packet with multiple case-level traces. Do not change the contract
-   yet.
+   a review packet with multiple case-level traces. Do not change the contract.
 
-3. **Stop if reviewers think this is enough evidence.**
-   The evidence now supports the surface directionally. More infrastructure is
-   not automatically better.
+3. **Stop and consolidate.**
+   Treat PR13-PR23 as a complete dormant research/infrastructure arc. More
+   infrastructure is not automatically better.
 
-Do not build live Observatory yet. Do not build package functions yet. Do not
-extract broad Batch 3. Do not rerun paid Gate 4 by default.
+Do not build live Observatory. Do not build package functions. Do not extract
+broad Batch 3 or Batch 3b. Do not rerun paid Gate 4 by default. Do not build a
+trace-fixture stress test unless product review names the specific uncertainty
+it would answer.
 
 ## What Remains Blocked
 
