@@ -57,6 +57,15 @@ real. Future sessions should treat the following as current baseline:
   rationale. This is stable enough for Batch 3a planning, with a blindness
   caveat; it is not runtime, memo, Step 8, Step 6, or Lane 4 promotion
   evidence.
+- PR 15 defined the Batch 3a extraction contract in
+  `research/affordance-batch3a-extraction-brief-2026-05-05.md`: extraction
+  should target Decision Pressure-ready operational constraints for exactly
+  five models, not general model explanations.
+- PR 16 executed that targeted patch and records the result in
+  `research/pr16-batch3a-extraction-report-2026-05-05.md`: `5` narrow
+  affordances and `12` absence records were compiled into
+  `data/compiled/model_affordances/affordances_v4.json`, still
+  `draft_review_only` and runtime-dormant.
 - External architecture reference: `gbrain` was reviewed as a mature
   memory/knowledge architecture. The handover in
   `research/gbrain-architecture-learning-handover-2026-05-05.md` captures the
@@ -75,17 +84,16 @@ real. Future sessions should treat the following as current baseline:
   decision-note, tripwire, safeguard, and process-record surface.
 
 The schema is still dormant for live `/lolla` behavior. No chat, memo, Pressure
-Check, or Lane 4 runtime promotion is justified after PR13. Decision Pressure
+Check, or Lane 4 runtime promotion is justified after PR16. Decision Pressure
 is not a new lane; it is a compact synthesis object that can feed Step 6, Step
 8 Pressure Check, memo, or Observatory. C-only OOD remains the strongest
 evidence mode, but not the only value mode; grounded double-down, confirmation,
 and coverage transparency can be product-worthy when concise, actionable, and
-dismissible. If extraction resumes, Batch 3a should extract Decision
-Pressure-ready operational constraints for only the five recommended coverage
-patch models, not general model explanations. That extraction should follow a
-Batch 3a extraction brief that defines per-model targets, absence-record
-conditions, and validation rails. The next step is planning extraction, not
-executing it.
+dismissible. Batch 3a has now extracted the five targeted coverage patch
+records under the PR15 contract. The next step is a post-Batch-3a dry surface
+review, not runtime integration: test whether v4 improves selected pressures,
+suppressed candidates, zero-output decisions, dismissal quality, tripwire
+quality, or coverage honesty without adding bloat.
 
 ---
 

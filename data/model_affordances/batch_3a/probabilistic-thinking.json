@@ -1,0 +1,258 @@
+{
+  "model_id": "probabilistic-thinking",
+  "source_file": "Probabilistic_Thinking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "probabilistic-thinking.range-and-sensitivity-decision-gate",
+      "status": "supported",
+      "name": "Range and sensitivity decision gate",
+      "mechanism": "When binary certainty would hide meaningful uncertainty, express the decision as a probability-weighted judgment with honest ranges, base-rate or reference-class discipline, sensitivity checks, and an update condition that changes the commitment.",
+      "activation_shape": {
+        "use_when": [
+          "The decision is more-likely-or-less-likely rather than yes-or-no, and binary framing would hide a meaningful uncertainty range.",
+          "The user needs expected value, downside, upside, confidence ranges, or tail-risk awareness before choosing.",
+          "The current argument sounds precise but lacks enough evidence, base-rate discipline, or sensitivity testing to justify its certainty.",
+          "A probability update, independent judgment, reference class, or new evidence could materially change the decision."
+        ],
+        "do_not_use_when": [
+          "Probability language is postponing a commitment after the key economics, downside, and action threshold are already clear.",
+          "The estimate would present exact-looking numbers with more precision or confidence than the evidence supports.",
+          "The situation is genuinely ambiguous enough that scenario-bound robust action is more honest than numeric estimates.",
+          "The record would duplicate confidence calibration without adding a decision-relevant range, sensitivity check, or update rule."
+        ],
+        "case_evidence_needed": [
+          "The decision, bet, forecast, or recommendation currently being framed as certain or binary.",
+          "The estimated probability range, lower and upper bound, confidence basis, and source of the estimate.",
+          "Relevant base rates, reference classes, independent judgments, or disconfirming evidence that calibrate the estimate.",
+          "The downside, upside, expected value, tail risk, and assumptions most likely to change the decision.",
+          "The probability update, threshold, or sensitivity result that would trigger commit, stop, revise, or gather one more bounded fact."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "express-decision-relevant-range",
+          "description": "Require the answer to state an honest probability or confidence range only when the range will change the commitment, not as decorative precision.",
+          "evidence_required": [
+            "The uncertain claim, forecast, or bet under consideration.",
+            "The lower and upper bound around the estimate.",
+            "The evidence quality, quantity, and reference class used to justify the range.",
+            "The decision threshold that makes the range actionable."
+          ],
+          "good_output_shape": [
+            "Uses a range rather than a single exact-looking estimate when uncertainty is material.",
+            "Explains what the width of the range says about evidence quality.",
+            "Names the action threshold attached to the range.",
+            "Refuses to add percentages when they would create costume certainty."
+          ]
+        },
+        {
+          "requirement_id": "stress-tail-and-base-case",
+          "description": "Force the answer to look beyond the mean or base case by checking downside, upside, tails, and whether the worst case is bad enough to change the move.",
+          "evidence_required": [
+            "The base case, mean outcome, or favored forecast.",
+            "The relevant downside, upside, and tail cases.",
+            "The user's ability to absorb the downside if the tail case occurs.",
+            "The expected-value or risk-management consequence of the range."
+          ],
+          "good_output_shape": [
+            "States the base case without letting it dominate the decision.",
+            "Asks whether the worst case is bad enough to change commitment size or sequence.",
+            "Compares downside, upside, and confidence in one decision frame.",
+            "Avoids treating a lucky outcome as proof of a good decision."
+          ]
+        },
+        {
+          "requirement_id": "run-sensitivity-before-precision",
+          "description": "Use sensitivity analysis, independent judgments, and missing-data checks to identify which estimate changes would actually alter the decision.",
+          "evidence_required": [
+            "The assumptions driving the probability or expected-value judgment.",
+            "The assumption changes that would flip the decision.",
+            "Independent estimates or reference classes gathered before group anchoring.",
+            "The missing data most likely to spoil the current story."
+          ],
+          "good_output_shape": [
+            "Names the few assumptions that matter most.",
+            "Shows which estimate movement would change the decision.",
+            "Uses independent judgments or reference classes before group discussion where feasible.",
+            "Stops probability work when additional precision would not alter the action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What probability range matters for this decision, and what would narrow that range?",
+        "Is the worst case bad enough to change the commitment size, timing, or sequence?",
+        "Which base rate or reference class should discipline this estimate before the story takes over?",
+        "What data is missing that might spoil our story?",
+        "Which probability update would trigger commit, stop, revise, or gather one more bounded fact?"
+      ],
+      "misuse_guards": [
+        "Do not present exact-looking numbers with more precision than the evidence supports.",
+        "Do not use probability language to avoid choosing once the decision threshold is already clear.",
+        "Do not rely only on the base case or mean outcome when tail downside could dominate the decision.",
+        "Do not substitute vivid stories, availability, or representativeness for a reference class.",
+        "Do not duplicate confidence calibration unless the output includes a range, sensitivity check, or decision update rule."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "Probabilistic Thinking (PT) is a mental model centered on **estimating the parameters of uncertainty**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "Instead of hiding behind vague likelihood statements, practitioners should express probabilities as precise percentages and include an upper and lower bound around the estimate.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "Probabilistic thinking is strongest when binary framing would hide meaningful uncertainty.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "The model fails when numerical estimates are presented with more precision or confidence than the evidence actually supports.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "What percentage confidence do I have in this estimate, and what information would narrow that range?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Read the PR15 brief, schema, full Probabilistic_Thinking_rag.md source, Wave 1 activation curation, and intervention semantics. Extracted one range-and-sensitivity gate because the source's strongest product value is honest uncertainty communication tied to a decision update.",
+        "dropped_material": [
+          "Did not preserve broad Bayes, brain-as-Bayesian, game-theory, AI digital-twin, or decision-tree examples as separate affordances.",
+          "Did not create a generic expected-value record because expected-value already exists in v3; this record adds range, sensitivity, and false-precision guards.",
+          "Did not turn the source into exact numeric thresholds; the record requires ranges and evidence-quality honesty."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with true-uncertainty-navigation: use probability ranges only when estimates are honest enough to guide the decision."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "exact-point-estimate-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports ranges, sensitivity, and humility about uncertainty. A point-estimate affordance would create the false precision the model warns against.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "The Problem of Novelty",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "The Flaw of False Precision",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "The model fails when numerical estimates are presented with more precision or confidence than the evidence actually supports.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "probability-as-commitment-delay",
+      "status": "not_supported_by_source",
+      "reason": "The source supports probability discipline to improve decision quality, not postponement by endless quantification. Probability work should stop when added precision will not change the action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "This means recognizing that the best choices are those with **more pros than cons**, rather than seeking choices that have no cons at all.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "Run rigorous analysis across input assumptions to understand key drivers and identify areas where greater accuracy in probabilistic estimates is most crucial.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "generic-confidence-calibration-duplicate",
+      "status": "duplicate_of_existing_field",
+      "reason": "A generic confidence-calibration record already exists in v3. This Batch 3a record should promote only probability ranges, expected-value sensitivity, tail awareness, and update rules that improve compact Decision Pressure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "For intellectual discipline** by anchoring thought to measurable reality.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Probabilistic_Thinking_rag.md",
+          "source_quote": "Works when confidence should move in degrees as evidence arrives",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Probabilistic_Thinking_rag.md",
+      "source_quote": "The size of this range visually signals the degree of uncertainty and the quality/quantity of information available.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Probabilistic_Thinking_rag.md",
+      "source_quote": "They are required to place sufficient weight on outcomes that are one or two standard deviations away from the mean, asking the critical question, **\"Is the worst case bad enough?\"** to prevent disaster.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Probabilistic_Thinking_rag.md",
+      "source_quote": "Obtain multiple, independent judgments or probabilistic assessments on the issue *before* any group discussion.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 3a outcome: strong_affordance_record. The source supports a Decision Pressure-ready range and sensitivity gate while explicitly warning against false precision and story-shaped probability.",
+    "dropped_material": [
+      "Did not extract separate Bayes, decision-tree, game-theory, digital-twin, or reference-class records.",
+      "Did not add exact thresholds or fake numeric tripwires; the record keeps uncertainty ranges tied to evidence quality and decision movement.",
+      "No runtime, prompt, validator, or existing affordance record changes are implied by this record."
+    ],
+    "open_questions": [
+      "Later dry-surface review should test whether this record improves uncertainty-pressure tripwires without encouraging probability language that delays commitment."
+    ],
+    "review_status": "draft"
+  }
+}

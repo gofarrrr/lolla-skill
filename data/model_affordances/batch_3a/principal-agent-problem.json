@@ -1,0 +1,253 @@
+{
+  "model_id": "principal-agent-problem",
+  "source_file": "Principal_Agent_Problem_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "principal-agent-problem.delegated-alignment-drift-audit",
+      "status": "supported",
+      "name": "Delegated alignment drift audit",
+      "mechanism": "When delegated work may diverge from the outcome owner's goals, inspect incentives, information asymmetry, role clarity, hidden effort, and metric compliance before blaming the agent or adding oversight, then redesign the machine-level accountability surface.",
+      "activation_shape": {
+        "use_when": [
+          "Execution depends on another person, team, contractor, institution, or agent whose incentives, information, or risk exposure differ from the person bearing the outcome.",
+          "Performance is hard to observe directly because expertise, distance, complexity, or reporting layers hide the true work.",
+          "Dashboards, formal compliance, or reported activity may be standing in for real goal alignment.",
+          "The useful next move is designing incentives, role clarity, checkpoints, reporting, or accountability rather than assuming alignment."
+        ],
+        "do_not_use_when": [
+          "The issue is primarily capability, capacity, resourcing, or a muddled objective rather than a true alignment split.",
+          "The answer would collapse into micromanagement of the current case instead of diagnosing the machine-level design that created drift.",
+          "Principal-agent framing would turn uncertainty about someone else's effort into bad-faith theater without evidence of objective divergence.",
+          "Existing v3 records on incentives, information asymmetry, or moral hazard already capture the operational move without needing a distinct delegated-alignment audit."
+        ],
+        "case_evidence_needed": [
+          "The principal, agent, delegated task, and outcome owner whose goals may differ.",
+          "The agent's incentives, information advantage, decision rights, downside exposure, and observable reporting surface.",
+          "The hidden effort, hidden intention, role ambiguity, or metric-compliance gap that could allow divergence.",
+          "The evidence that poor performance reflects misalignment rather than capability, capacity, bad system design, or a muddled objective.",
+          "The accountability redesign: role boundary, checkpoint, incentive, information flow, or review rule that keeps delegated work tied to the real goal."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-principal-agent-objective-gap",
+          "description": "Require the answer to identify the principal, agent, delegated objective, and specific way incentives or information could diverge from the outcome owner's goal.",
+          "evidence_required": [
+            "The person or group bearing the outcome.",
+            "The person, group, system, or contractor executing the delegated work.",
+            "The agent's incentives, information, decision rights, and risk exposure.",
+            "The principal goal and the agent behavior that could satisfy reporting while missing that goal."
+          ],
+          "good_output_shape": [
+            "Names the principal and agent explicitly.",
+            "Describes the objective gap without assuming bad faith.",
+            "Identifies what the agent can observe or control that the principal cannot.",
+            "States why this is a delegation-alignment problem rather than generic management advice."
+          ]
+        },
+        {
+          "requirement_id": "separate-agent-blame-from-system-design",
+          "description": "Diagnose whether poor results come from misaligned incentives, hidden information, insufficient capability, inadequate capacity, or bad system design before prescribing oversight.",
+          "evidence_required": [
+            "The poor outcome or drift signal.",
+            "Evidence about capability, capacity, role clarity, resources, incentives, and information flow.",
+            "The current checkpoint, metric, dashboard, or reporting rule.",
+            "The machine-level design that would produce better alignment."
+          ],
+          "good_output_shape": [
+            "Separates case-at-hand remediation from machine-level redesign.",
+            "Avoids jumping straight to micromanagement or blame.",
+            "Names the missing incentive, role, information, or accountability structure.",
+            "Defines what evidence would dismiss agency conflict because the issue is capacity, capability, or objective clarity."
+          ]
+        },
+        {
+          "requirement_id": "audit-compliance-against-real-alignment",
+          "description": "Check whether dashboards, formal compliance, or reported activity actually track the principal's real goal, then revise checkpoints that have become performative.",
+          "evidence_required": [
+            "The dashboard, compliance artifact, reported activity, or metric currently used as evidence of alignment.",
+            "The real outcome the principal cares about.",
+            "The way the agent could benefit while satisfying the metric but missing the outcome.",
+            "The stronger checkpoint or evidence that would show actual alignment."
+          ],
+          "good_output_shape": [
+            "Distinguishes reported activity from goal-serving behavior.",
+            "Identifies where the metric can be gamed or made performative.",
+            "Proposes a checkpoint that observes the right behavior or outcome.",
+            "Keeps the redesign focused on alignment rather than suspicion."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who bears the outcome, who controls the effort, and how can their incentives diverge?",
+        "What performance is hard to observe directly because of expertise, distance, or complexity?",
+        "Which dashboard, compliance artifact, or reported activity could look aligned while divergence continues underneath?",
+        "Is the bad outcome caused by misalignment, capability, capacity, unclear objectives, or bad system design?",
+        "Who should do what differently, and what machine-level checkpoint would make alignment visible?"
+      ],
+      "misuse_guards": [
+        "Do not assume bad faith when the evidence points to capacity, capability, vague goals, or bad design.",
+        "Do not answer with micromanagement that treats the case-at-hand while leaving the machine-level drift unchanged.",
+        "Do not duplicate moral-hazard, incentives, or information-asymmetry unless the delegated principal-agent structure is explicit.",
+        "Do not treat dashboards, formal compliance, or activity reports as alignment without checking the underlying behavior.",
+        "Do not use principal-agent framing to make ordinary disagreement sound like hidden betrayal."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "The **Principal-Agent Problem** fundamentally describes a conflict of interest that arises when one party (the Principal) delegates work to another party (the Agent), and the Agent acts in their own self-interest rather than the Principal's best interest.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "The model is strongest when execution depends on someone else whose incentives, information, or risk exposure differ from the person bearing the outcome.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "The Principal-Agent Problem has high leverage when misalignment can hide behind complexity, expertise, or distance from the actual work.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "The model is misused when principals mistake dashboards, formal compliance, or reported activity for true goal alignment while the agent still benefits from divergence underneath.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "When diagnosing a failure, the Principal confuses a poor outcome due to bad system design or lack of resources (capacity issue) with the Agent's personal flaws or incompetence (capability issue).",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "medium",
+      "review_notes": {
+        "normalization_note": "Read the PR15 brief, schema, full Principal_Agent_Problem_rag.md source, Wave 1 activation curation, and intervention semantics. Extracted one medium-confidence delegated-alignment record because the source states the named model is synthesized from available materials, while the operational alignment, hidden-performance, metric, and diagnosis constraints are explicit.",
+        "dropped_material": [
+          "Did not preserve digital twin, AI-agent, orchestra, internal-cognition, or consulting-client examples as separate affordances.",
+          "Did not split role definition, 5-step process, and dashboard-compliance audit into peer records because they all serve the same delegated-alignment drift audit.",
+          "Did not create a suspicion-oriented affordance; the source requires diagnosing system design and capability before blame."
+        ],
+        "open_questions": [
+          "Reviewer should confirm whether this medium-confidence record adds enough Decision Pressure value beyond existing incentives, information-asymmetry, and moral-hazard records.",
+          "PR14's suppressed PhD incentive-alignment pressure should be rechecked after this record because the compression loss may change with better coverage."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "bad-faith-agent-suspicion-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports alignment diagnosis, not suspicion theater. It explicitly warns that poor outcomes can come from system design, resources, capacity, capability, or muddled objectives rather than agent bad faith.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "The model fails in situations characterized by \"wicked\" problems, such as political or societal issues, which **lack a clear owner or have multiple owners with conflicting, irreconcilable objectives**.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "When diagnosing a failure, the Principal confuses a poor outcome due to bad system design or lack of resources (capacity issue) with the Agent's personal flaws or incompetence (capability issue).",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "micromanagement-as-control-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source treats micromanagement as an anti-pattern because it handles the immediate case while leaving the system design unchanged. Batch 3a should not promote oversight that bypasses machine-level redesign.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "When a manager (Principal) only focuses on the immediate problem (\"case-at-hand\") without addressing the underlying system design (\"machine level\"), they are **\"doing your managee’s thinking\"**.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "This results in micromanagement, fails to build the Agent's long-term capacity, and prevents continuous system improvement.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-ai-agent-orchestration-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The AI-agent and digital-twin passages illustrate role clarity and delegation, but extracting them as their own affordance would widen Batch 3a beyond the Decision Pressure surface and risk runtime-adjacent interpretation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "The Agent's role explicitly defines what they are supposed to do and how they fit into the larger architecture.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "In AI, the model’s focus on clear roles, goals, and constraints is directly implemented via system prompts, leading to predictable and consistent agent behavior.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Principal_Agent_Problem_rag.md",
+      "source_quote": "PAP matters most when leaders need to shape incentives, reporting, role clarity, and accountability so that agent behavior naturally serves the intended outcome.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Principal_Agent_Problem_rag.md",
+      "source_quote": "Who should do what differently?",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Principal_Agent_Problem_rag.md",
+      "source_quote": "If this outcome is bad, is the Responsible Party incapable and/or is the design bad?",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 3a outcome: thin_narrow_affordance_record with medium affordance confidence. The named model note requires humility, but the operational material supports one useful delegated-alignment audit for future Decision Pressure selection and dismissal.",
+    "dropped_material": [
+      "Did not extract separate AI, internal cognition, client-consultant, conductor, or CWD affordances.",
+      "Did not rewrite existing incentives, moral-hazard, or information-asymmetry records.",
+      "No runtime, prompt, validator, or existing affordance record changes are implied by this record."
+    ],
+    "open_questions": [
+      "Later dry-surface review should test whether the suppressed PhD incentive-alignment pressure becomes selected or remains suppressed after this record.",
+      "Reviewer should preserve the do-not-use boundary when evidence points to capacity, capability, or objective clarity rather than incentive divergence."
+    ],
+    "review_status": "draft"
+  }
+}

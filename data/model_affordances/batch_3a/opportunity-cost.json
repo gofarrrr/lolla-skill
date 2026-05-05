@@ -1,0 +1,222 @@
+{
+  "model_id": "opportunity-cost",
+  "source_file": "Opportunity_Cost_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "opportunity-cost.displaced-alternative-commitment-gate",
+      "status": "supported",
+      "name": "Displaced alternative commitment gate",
+      "mechanism": "Before treating a commitment as cheap, force the decision to name the best real alternative that loses the same scarce resource, test whether that alternative is executable, and define the stop condition for the current yes when the displaced work becomes more valuable.",
+      "activation_shape": {
+        "use_when": [
+          "A roadmap addition, renewal, sprint, vendor, project, or channel looks cheap because the explicit spend is small while the same people, budget, launch window, or attention are needed elsewhere.",
+          "The current path is being treated as free because the next-best use of the same scarce resource has not been named.",
+          "The decision spans scarce time, headcount, capital, optionality, morale, learning, or stakeholder trust rather than only direct cash cost.",
+          "A commitment would make another valuable path impossible, materially harder, or delayed for a meaningful period."
+        ],
+        "do_not_use_when": [
+          "The real alternatives, constraints, or objective function are not framed well enough for comparison without false precision.",
+          "The alleged alternative is not genuinely available, fundable, executable, or owned by the team.",
+          "Opportunity-cost language is being used to keep comparing endless options after a bounded reversible test would create the needed learning.",
+          "The output would duplicate generic trade-off or prioritization advice without naming the specific next-best use being displaced."
+        ],
+        "case_evidence_needed": [
+          "The decision under approval and the scarce resource it consumes: people, budget, calendar time, launch window, leadership attention, trust, or optionality.",
+          "The single best alternative use of the same resource and evidence that it is available, fundable, executable, and strategically live.",
+          "The work, learning, relationship, capability, or fallback that becomes impossible, harder, or delayed if the current yes proceeds.",
+          "The explicit owner, review date, and stop or reallocation condition that would move resources away from the current path.",
+          "The reason the current yes still wins after pricing the displaced alternative in the same operational currency."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-real-next-best-alternative",
+          "description": "Require the answer to name the best real alternative displaced by the current yes, not a vague list of possibilities or a decorative comparison set.",
+          "evidence_required": [
+            "The current commitment, continuation, renewal, feature, market, or project under consideration.",
+            "The scarce resource that both the current path and alternative would use.",
+            "Evidence that the alternative is available, fundable, executable, and plausibly higher leverage.",
+            "The objective function used to decide which path is actually better."
+          ],
+          "good_output_shape": [
+            "States the current yes and the next-best alternative in the same operational currency.",
+            "Rejects unrealistic alternatives that are not executable by the team.",
+            "Explains what the current path prevents rather than only listing its explicit cost.",
+            "Names the evidence that would dismiss the opportunity-cost pressure because no viable alternative exists."
+          ]
+        },
+        {
+          "requirement_id": "price-foreclosed-work-before-approval",
+          "description": "Translate opportunity cost into the concrete work, learning, fallback, or capability that becomes impossible, materially harder, or delayed after commitment.",
+          "evidence_required": [
+            "The resource lock-in, irreversibility, or planning window created by the commitment.",
+            "The delayed, foreclosed, or harder alternative work and the time horizon affected.",
+            "The person or team whose capacity is being reallocated.",
+            "The point at which continuing the current path should be reconsidered."
+          ],
+          "good_output_shape": [
+            "Names the most valuable thing the commitment forecloses over the relevant time horizon.",
+            "Shows the exact budget, calendar, headcount, attention, or optionality transfer.",
+            "Defines a stop condition if the displaced alternative becomes the better use.",
+            "Avoids treating default continuation as costless."
+          ]
+        },
+        {
+          "requirement_id": "bound-comparison-to-action",
+          "description": "Keep opportunity-cost analysis from becoming endless option comparison by using a reversible-test cutoff or a decision date once the decisive trade-off is clear.",
+          "evidence_required": [
+            "Whether the commitment is reversible, staged, or can be tested before full allocation.",
+            "The information that additional comparison would still change.",
+            "The bounded test or decision deadline that prevents analysis paralysis.",
+            "The cost of waiting for more certainty."
+          ],
+          "good_output_shape": [
+            "Uses a reversible probe when the comparison is pretending to be irreversible.",
+            "States what learning is lost by waiting for certainty.",
+            "Stops comparison once the viable alternative and sacrifice are clear enough to act.",
+            "Separates real opportunity cost from perfectionist what-if exploration."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the single best executable alternative use of the same people, budget, launch window, or attention?",
+        "What becomes impossible or materially harder for the next 12 months if this yes proceeds?",
+        "Which initiative looks inexpensive only because its cost is being charged to resources needed by a more valuable move?",
+        "What evidence would show there is no viable displaced alternative and therefore dismiss this pressure?",
+        "When should the current yes stop because the alternative has become the better use?"
+      ],
+      "misuse_guards": [
+        "Do not count unrealistic alternatives that the team cannot actually fund, execute, or own.",
+        "Do not use opportunity-cost language before the option set, constraints, and objective function are framed clearly enough to compare.",
+        "Do not duplicate generic trade-off or prioritization language unless the answer names the displaced next-best use.",
+        "Do not keep comparing alternatives after a reversible test or decision deadline would produce better learning.",
+        "Do not treat default continuation, renewals, or inherited work as costless."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Opportunity_Cost_rag.md",
+          "source_quote": "The fundamental essence of this model is the value of the best alternative opportunity you didn't choose",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Opportunity_Cost_rag.md",
+          "source_quote": "Most useful when capital, attention, headcount, or calendar time can only fund a few moves, so every yes has a meaningful displaced alternative.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Opportunity_Cost_rag.md",
+          "source_quote": "Works when teams are evaluating a default continuation, existing project, or inherited roadmap as if staying the course has no cost.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Opportunity_Cost_rag.md",
+          "source_quote": "Before approving: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months. If you cannot name it, the opportunity cost analysis is incomplete -- you have compared options, not accounted for what you are giving up permanently.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Opportunity_Cost_rag.md",
+          "source_quote": "Which initiative in this plan looks inexpensive only because its cost is being charged to the same people, budget, or launch window needed by a more valuable move, and what exactly are we delaying by saying yes?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Read the PR15 brief, schema, full Opportunity_Cost_rag.md source, Wave 1 activation curation, and intervention semantics. Collapsed next-best alternative, default continuation, foreclosure, cheap add-on, and reversible-test cutoff material into one Decision Pressure-ready commitment gate.",
+        "dropped_material": [
+          "Did not extract lifestyle, family, and personal fulfillment examples as separate affordances; they illustrate broader implicit costs but do not improve compact Decision Pressure.",
+          "Did not promote generic cost-benefit analysis, Pareto, or deep-work examples into peer affordances because the operational move is displaced-alternative pricing.",
+          "Did not preserve relation curation as fields because the record's useful product surface is the sacrifice, dismissal, and stop condition around a current yes."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with trade-offs and prioritization: this record should activate only when the answer must name the specific next-best use displaced by a commitment."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-alternative-comparison-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "A broad compare-the-options affordance would duplicate trade-offs, prioritization, expected-value, or decision-trees. Opportunity cost earns a separate Batch 3a record only when it identifies the real next-best use displaced by the current commitment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Opportunity_Cost_rag.md",
+          "source_quote": "Compared to what?",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Opportunity_Cost_rag.md",
+          "source_quote": "The ability to prioritize what **not** to work on is key to problem-solving.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "unbounded-foregone-option-inventory",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against inflating opportunity cost with unrealistic alternatives. A record that inventories every foregone path would create false pressure rather than improving dismissal, tripwire, or coverage honesty.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Opportunity_Cost_rag.md",
+          "source_quote": "Danger when the model is used before the real alternatives, constraints, or objective function are clear, because the comparison then creates false precision around the wrong choice set.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Opportunity_Cost_rag.md",
+          "source_quote": "A major anti-pattern is loading the comparison with unrealistic “alternatives” that are not genuinely available, fundable, or executable, which inflates apparent opportunity cost without improving the decision.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Opportunity_Cost_rag.md",
+      "source_quote": "Since it is impossible to pursue every desire, picking one path necessarily means forgoing others.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Opportunity_Cost_rag.md",
+      "source_quote": "Finally, the wise application of OC involves avoiding the instinct to be comprehensive and choosing instead to **focus on the picture** and act decisively.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 3a outcome: strong_affordance_record. The source is unusually explicit about real sacrifice, default continuation, unrealistic alternatives, foreclosure, and cheap add-ons. Extracted one narrow record because the Decision Pressure value is in the gate, not in multiplying economics examples.",
+    "dropped_material": [
+      "Explicit-versus-implicit-cost tutorial language was used only as background.",
+      "Business, career, airline, Eisenhower, Pareto, first-principles, scenario-analysis, sunk-cost, confirmation-bias, and availability sections were treated as examples or relations rather than separate opportunity-cost affordances.",
+      "No runtime, prompt, validator, or existing affordance record changes are implied by this record."
+    ],
+    "open_questions": [
+      "Later dry-surface review should test whether this record improves Dismiss if and Tripwire fields without creating generic allocation bloat."
+    ],
+    "review_status": "draft"
+  }
+}
