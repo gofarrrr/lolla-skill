@@ -20,6 +20,7 @@ from scripts.compile_model_affordances import (  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PILOT_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "pilot"
+BATCH_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "batch_1"
 PILOT_MANIFEST_PATH = REPO_ROOT / "data" / "model_affordances" / "pilot_manifest.json"
 SOURCE_DIR = REPO_ROOT / "data" / "model_sources"
 SOURCE_MANIFEST_PATH = REPO_ROOT / "data" / "model_sources" / "manifest.json"
@@ -34,6 +35,28 @@ PILOT_MODEL_IDS = {
     "second-order-thinking",
     "systems-thinking",
     "theory-of-constraints",
+}
+BATCH_MODEL_IDS = {
+    "anchoring",
+    "calculated-risk-taking",
+    "circle-of-control",
+    "complex-adaptive-systems",
+    "decision-trees",
+    "decomposition",
+    "emergence",
+    "expected-value",
+    "flow",
+    "incentives",
+    "information-asymmetry",
+    "johari-window",
+    "leverage-points",
+    "lindy-effect",
+    "multi-criteria-decision-analysis",
+    "network-effects",
+    "occams-razor",
+    "risk-assessment",
+    "sunk-cost-fallacy",
+    "trade-offs",
 }
 
 
@@ -142,6 +165,35 @@ def test_compiled_artifact_includes_only_contributing_source_files(
     )
     source_files = result.compiled["compile_metadata"]["source_files"]
     assert {entry["model_id"] for entry in source_files} == PILOT_MODEL_IDS
+
+
+def test_compiler_can_compile_pilot_and_batch_records_to_v2(
+    tmp_path: Path,
+) -> None:
+    result = compile_model_affordances(
+        root=REPO_ROOT,
+        record_dirs=(PILOT_RECORD_DIR, BATCH_RECORD_DIR),
+        output_dir=tmp_path / "compiled",
+        compiled_filename="affordances_v2.json",
+        quality_report_filename="quality_report_v2.md",
+        artifact_id="model_affordances_v2",
+        report_title="Model Affordance Quality Report v2",
+    )
+
+    metadata = result.compiled["compile_metadata"]
+    source_files = metadata["source_files"]
+    expected_model_ids = PILOT_MODEL_IDS | BATCH_MODEL_IDS
+
+    assert result.compiled_path.name == "affordances_v2.json"
+    assert result.quality_report_path.name == "quality_report_v2.md"
+    assert result.compiled["artifact"] == "model_affordances_v2"
+    assert result.quality_report.startswith("# Model Affordance Quality Report v2\n")
+    assert metadata["contributing_record_count"] == 30
+    assert metadata["affordance_count"] == 52
+    assert metadata["absence_record_count"] == 32
+    assert {entry["model_id"] for entry in source_files} == expected_model_ids
+    assert "### Repeated Diagnostic Question Openings" in result.quality_report
+    assert "`what would you have to`" in result.quality_report
 
 
 def test_quality_report_avoids_scorecard_language(tmp_path: Path) -> None:

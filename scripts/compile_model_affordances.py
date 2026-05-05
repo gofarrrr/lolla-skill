@@ -89,15 +89,25 @@ def compile_model_affordances(
     *,
     root: Path = REPO_ROOT,
     record_dir: Path = DEFAULT_RECORD_DIR,
+    record_dirs: Iterable[Path] | None = None,
     pilot_manifest_path: Path = DEFAULT_PILOT_MANIFEST_PATH,
     source_dir: Path = DEFAULT_SOURCE_DIR,
     source_manifest_path: Path = DEFAULT_SOURCE_MANIFEST_PATH,
     schema_path: Path = DEFAULT_SCHEMA_PATH,
     output_dir: Path = DEFAULT_OUTPUT_DIR,
+    compiled_filename: str = COMPILED_FILENAME,
+    quality_report_filename: str = QUALITY_REPORT_FILENAME,
+    artifact_id: str = "model_affordances_v1",
+    report_title: str = "Model Affordance Quality Report v1",
     write: bool = True,
 ) -> CompilationResult:
     root = Path(root)
     record_dir = _resolve(root, record_dir)
+    resolved_record_dirs = (
+        [_resolve(root, path) for path in record_dirs]
+        if record_dirs is not None
+        else None
+    )
     pilot_manifest_path = _resolve(root, pilot_manifest_path)
     source_dir = _resolve(root, source_dir)
     source_manifest_path = _resolve(root, source_manifest_path)
@@ -117,11 +127,14 @@ def compile_model_affordances(
             "source hash verification failed: " + "; ".join(hash_failures)
         )
 
-    records, record_paths = _load_records_from_manifest(
-        root=root,
-        record_dir=record_dir,
-        pilot_manifest=pilot_manifest,
-    )
+    if resolved_record_dirs is None:
+        records, record_paths = _load_records_from_manifest(
+            root=root,
+            record_dir=record_dir,
+            pilot_manifest=pilot_manifest,
+        )
+    else:
+        records, record_paths = _load_records_from_dirs(record_dirs=resolved_record_dirs)
     validation_summary = _validate_records(
         records=records,
         record_paths=record_paths,
@@ -144,11 +157,12 @@ def compile_model_affordances(
         source_manifest=source_manifest,
         schema=schema,
         validation_summary=validation_summary,
+        artifact_id=artifact_id,
     )
-    quality_report = render_quality_report(compiled)
+    quality_report = render_quality_report(compiled, title=report_title)
 
-    compiled_path = output_dir / COMPILED_FILENAME
-    quality_report_path = output_dir / QUALITY_REPORT_FILENAME
+    compiled_path = output_dir / compiled_filename
+    quality_report_path = output_dir / quality_report_filename
     if write:
         output_dir.mkdir(parents=True, exist_ok=True)
         compiled_path.write_text(
@@ -165,12 +179,16 @@ def compile_model_affordances(
     )
 
 
-def render_quality_report(compiled: dict[str, object]) -> str:
+def render_quality_report(
+    compiled: dict[str, object],
+    *,
+    title: str = "Model Affordance Quality Report v1",
+) -> str:
     quality = _quality_signals(compiled)
     records = _records(compiled)
     metadata = _dict(compiled["compile_metadata"])
     lines: list[str] = [
-        "# Model Affordance Quality Report v1",
+        f"# {title}",
         "",
         "This report surfaces honesty signals for human reviewers. It does not grade quality, infer missing knowledge, or promote any affordance into runtime use.",
         "",
@@ -257,6 +275,23 @@ def render_quality_report(compiled: dict[str, object]) -> str:
     lines.extend(
         [
             "",
+            "### Repeated Diagnostic Question Openings",
+            "",
+        ]
+    )
+    if quality["repeated_diagnostic_question_openings"]:
+        for item in quality["repeated_diagnostic_question_openings"]:
+            lines.append(
+                "- "
+                f"`{item['opening']}` appears in `{item['affordance_count']}` affordance(s): "
+                f"{', '.join(f'`{affordance_id}`' for affordance_id in item['affordance_ids'])}"
+            )
+    else:
+        lines.append("- None.")
+
+    lines.extend(
+        [
+            "",
             "### Affordances With Short Source Quotes",
             "",
             f"Median affordance-level source quote length: `{quality['source_quote_length_median']}` characters.",
@@ -309,6 +344,7 @@ def _build_compiled_artifact(
     source_manifest: dict[str, object],
     schema: dict[str, object],
     validation_summary: dict[str, object],
+    artifact_id: str,
 ) -> dict[str, object]:
     records = sorted(records, key=lambda record: str(record["model_id"]))
     affordances = []
@@ -336,7 +372,7 @@ def _build_compiled_artifact(
     compile_date = str(pilot_manifest.get("created_date") or "unknown")
     compiled_at = f"{compile_date}T00:00:00Z" if compile_date != "unknown" else "unknown"
     compiled = {
-        "artifact": "model_affordances_v1",
+        "artifact": artifact_id,
         "status": "draft_review_only",
         "compile_metadata": {
             "compiled_at": compiled_at,
@@ -389,6 +425,7 @@ def _quality_signals(compiled: dict[str, object]) -> dict[str, object]:
     affordance_status_counts: Counter[str] = Counter()
     per_model_summary = []
     extraction_groups: dict[tuple[tuple[str, int], ...], list[str]] = defaultdict(list)
+    diagnostic_openings: dict[str, set[str]] = defaultdict(set)
     empty_dropped_material_notes: list[str] = []
     affordance_quote_lengths: list[int] = []
     affordance_shortest_quotes: list[dict[str, object]] = []
@@ -403,6 +440,11 @@ def _quality_signals(compiled: dict[str, object]) -> dict[str, object]:
         for affordance in affordances:
             affordance_confidence_counts[str(affordance["confidence"])] += 1
             affordance_status_counts[str(affordance["status"])] += 1
+            affordance_id = str(affordance["affordance_id"])
+            for question in _list(affordance.get("diagnostic_questions", [])):
+                opening = _diagnostic_question_opening(str(question))
+                if opening:
+                    diagnostic_openings[opening].add(affordance_id)
 
         confidence_counts = Counter(str(item["confidence"]) for item in affordances)
         dominant_confidence = _dominant_counter_key(confidence_counts)
@@ -475,6 +517,18 @@ def _quality_signals(compiled: dict[str, object]) -> dict[str, object]:
                 "model_ids": sorted(model_ids),
             }
         )
+    repeated_diagnostic_question_openings = [
+        {
+            "opening": opening,
+            "affordance_count": len(affordance_ids),
+            "affordance_ids": sorted(affordance_ids),
+        }
+        for opening, affordance_ids in diagnostic_openings.items()
+        if len(affordance_ids) >= 2
+    ]
+    repeated_diagnostic_question_openings.sort(
+        key=lambda item: (-int(item["affordance_count"]), str(item["opening"]))
+    )
 
     validation = _dict(_dict(compiled["compile_metadata"])["validation"])
     return {
@@ -500,6 +554,7 @@ def _quality_signals(compiled: dict[str, object]) -> dict[str, object]:
         "do_not_promote_flags": list(DO_NOT_PROMOTE_FLAGS),
         "per_model_summary": sorted(per_model_summary, key=lambda item: item["model_id"]),
         "identical_extraction_type_distributions": identical_extraction_type_distributions,
+        "repeated_diagnostic_question_openings": repeated_diagnostic_question_openings,
         "source_quote_length_median": median_quote_length,
         "affordances_with_short_source_quotes": affordances_with_short_source_quotes,
         "empty_dropped_material_notes": sorted(empty_dropped_material_notes),
@@ -590,6 +645,33 @@ def _load_records_from_manifest(
     return records, record_paths
 
 
+def _load_records_from_dirs(
+    *,
+    record_dirs: list[Path],
+) -> tuple[list[dict[str, object]], dict[str, Path]]:
+    records = []
+    record_paths: dict[str, Path] = {}
+    seen_paths = set()
+    seen_model_ids = set()
+    for record_dir in record_dirs:
+        if not record_dir.exists():
+            raise ModelAffordanceCompilationError(f"{record_dir}: missing record_dir")
+        for path in sorted(record_dir.glob("*.json")):
+            if path in seen_paths:
+                raise ModelAffordanceCompilationError(f"duplicate record path: {path}")
+            seen_paths.add(path)
+            record = _load_object(path)
+            model_id = str(record["model_id"])
+            if model_id in seen_model_ids:
+                raise ModelAffordanceCompilationError(
+                    f"duplicate model_id across record dirs: {model_id}"
+                )
+            seen_model_ids.add(model_id)
+            record_paths[model_id] = path
+            records.append(record)
+    return records, record_paths
+
+
 def _iter_all_evidence(record: dict[str, object]) -> Iterable[dict[str, object]]:
     for evidence in _list(record.get("source_evidence", [])):
         yield _dict(evidence)
@@ -621,6 +703,17 @@ def _dominant_counter_key(counter: Counter[str]) -> str:
     if not counter:
         return "not_applicable"
     return sorted(counter.items(), key=lambda item: (-item[1], item[0]))[0][0]
+
+
+def _diagnostic_question_opening(question: str, *, word_count: int = 5) -> str:
+    words = [
+        "".join(char for char in word.lower() if char.isalnum() or char == "'")
+        for word in question.split()
+    ]
+    words = [word for word in words if word]
+    if len(words) < word_count:
+        return ""
+    return " ".join(words[:word_count])
 
 
 def _records(compiled: dict[str, object]) -> list[dict[str, object]]:
@@ -655,22 +748,39 @@ def main(argv: list[str] | None = None) -> int:
         description="Compile draft model affordance records and quality report."
     )
     parser.add_argument("--root", type=Path, default=REPO_ROOT)
-    parser.add_argument("--record-dir", type=Path, default=DEFAULT_RECORD_DIR)
+    parser.add_argument(
+        "--record-dir",
+        type=Path,
+        action="append",
+        default=None,
+        help=(
+            "Record directory to compile. May be provided more than once. "
+            "When omitted, the pilot manifest controls the v1 pilot compile."
+        ),
+    )
     parser.add_argument("--pilot-manifest", type=Path, default=DEFAULT_PILOT_MANIFEST_PATH)
     parser.add_argument("--source-dir", type=Path, default=DEFAULT_SOURCE_DIR)
     parser.add_argument("--source-manifest", type=Path, default=DEFAULT_SOURCE_MANIFEST_PATH)
     parser.add_argument("--schema", type=Path, default=DEFAULT_SCHEMA_PATH)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument("--compiled-filename", default=COMPILED_FILENAME)
+    parser.add_argument("--quality-report-filename", default=QUALITY_REPORT_FILENAME)
+    parser.add_argument("--artifact-id", default="model_affordances_v1")
+    parser.add_argument("--report-title", default="Model Affordance Quality Report v1")
     args = parser.parse_args(argv)
     try:
         result = compile_model_affordances(
             root=args.root,
-            record_dir=args.record_dir,
+            record_dirs=args.record_dir,
             pilot_manifest_path=args.pilot_manifest,
             source_dir=args.source_dir,
             source_manifest_path=args.source_manifest,
             schema_path=args.schema,
             output_dir=args.output_dir,
+            compiled_filename=args.compiled_filename,
+            quality_report_filename=args.quality_report_filename,
+            artifact_id=args.artifact_id,
+            report_title=args.report_title,
         )
     except ModelAffordanceCompilationError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
