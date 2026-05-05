@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-05
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR 1 through v4 compilation are done, PR 11 Gate 4 calibration produced product signal, and the current frontier is the runtime-dormant Decision Pressure trace contract
+**Status:** living roadmap; PR 1 through v4 compilation are done, PR 11 Gate 4 calibration produced product signal, and the current frontier is the fixture-only Decision Pressure trace producer/adapter plan
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -97,6 +97,11 @@ What is already done:
   represented as a validated `decision_pressure_trace` object with runtime
   dormancy, source-affordance lookup against v4, provenance completeness,
   suppression references, and coverage-transparency rails.
+- PR 20 producer/adapter boundary plan is captured in
+  `research/decision-pressure-trace-producer-adapter-plan-2026-05-05.md`:
+  decision label `producer_adapter_plan_ready`. The next step remains
+  fixture-only: validate, normalize, package, or report on reviewed trace
+  fixtures without selecting pressures semantically or wiring live behavior.
 - External architecture reference: we studied `gbrain` as a mature agent memory
   system and captured Lolla-specific takeaways in
   `research/gbrain-architecture-learning-handover-2026-05-05.md`. The key
@@ -114,7 +119,7 @@ What is already done:
   substrate/runtime design; use *Clear Thinking* lessons for the decision-note,
   tripwire, safeguard, and process-record product surface.
 
-Current next move after PR 19:
+Current next move after PR 20:
 
 1. Do not run more paid Gate 4 calibration by default.
 2. Treat the PR13 dry surface and PR14 stability review as product-shaping
@@ -123,17 +128,18 @@ Current next move after PR 19:
    they do not promote Decision Pressure or v4 affordances into runtime.
 4. Treat the PR18 Observatory prototype as evidence that the operator trace is
    clearer, not as implementation permission.
-5. Treat the PR19 `decision_pressure_trace` contract as a dormant interface,
-   not as live Observatory, memo, Step 8, Step 6, Lane 4, or `/lolla` behavior.
-   The next safe step, if any, is a fixture-only producer or adapter plan that
-   preserves this contract without wiring it into runtime.
+5. Treat the PR19 `decision_pressure_trace` contract and PR20 producer/adapter
+   plan as dormant review infrastructure, not as live Observatory, memo, Step
+   8, Step 6, Lane 4, or `/lolla` behavior. The next safe step, if any, is a
+   fixture-only adapter smoke test that validates reviewed trace fixtures
+   without producing runtime output.
 6. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
    Step 8 Pressure Check, memo, or Observatory surfaces. It is not a new lane.
 7. Treat C-only OOD as one strong value mode, not the only value mode. The
    accepted product modes are `new_edge`, `grounded_double_down`,
    `confirmation`, and `coverage_transparency`.
 8. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
-   promotion from PR19.
+   promotion from PR20.
 
 ---
 
@@ -591,16 +597,17 @@ original proposal language.
 | Gate 4 edge-probe experiment / PR 11 | built, 3-case paid calibration stopped before judging | Showed that v3 affordances shift outputs toward operational fields, but raw Arm B/C probe comparison is not the right product surface. |
 | Decision Pressure surface / PR 12-17 | done through v4 dry review | Defined compact safeguards, selection stability, targeted Batch 3a extraction, and v4 product-delta review. |
 | Static Observatory prototype / PR 18 | done | Prototype an operator-facing trace for the same three pressures with provenance, suppression, and coverage transparency. |
-| Decision Pressure trace contract / PR 19 | current dormant-contract frontier | Define and validate a runtime-dormant `decision_pressure_trace` object for the PR18 prototype. |
+| Decision Pressure trace contract / PR 19 | done | Define and validate a runtime-dormant `decision_pressure_trace` object for the PR18 prototype. |
+| Trace producer/adapter plan / PR 20 | current fixture-only frontier | Define the boundary for validating, normalizing, packaging, or reporting on reviewed trace fixtures without live behavior. |
 | Runtime Lane 4 affordance integration | not started | Must wait for Gate 4 evidence. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current freeze rule:
 
 > Do not commission Batch 3, Batch 3b, live runtime integration, or another
-> paid Gate 4 run by default after PR19. The next product question is whether a
-> fixture-only trace producer or Observatory adapter plan can preserve the
-> validated `decision_pressure_trace` contract without becoming live behavior.
+> paid Gate 4 run by default after PR20. The next product question is whether a
+> fixture-only adapter smoke test can exercise the validated
+> `decision_pressure_trace` contract without producing live behavior.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 

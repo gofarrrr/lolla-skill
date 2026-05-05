@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-05
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is the runtime-dormant Decision Pressure trace contract
+**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is the fixture-only Decision Pressure trace producer/adapter plan
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -89,6 +89,12 @@ real. Future sessions should treat the following as current baseline:
   provenance completeness, v4 source-affordance lookup, coverage-transparency
   blanks, suppression references, and principal-agent medium-confidence
   caution.
+- PR 20 defines the fixture-only producer/adapter boundary in
+  `research/decision-pressure-trace-producer-adapter-plan-2026-05-05.md`:
+  decision label `producer_adapter_plan_ready`. Deterministic code may validate,
+  normalize, package, or report on reviewed trace fixtures, but must not choose
+  semantic pressure quality, invent pressure fields, smooth coverage gaps, or
+  render live product surfaces.
 - External architecture reference: `gbrain` was reviewed as a mature
   memory/knowledge architecture. The handover in
   `research/gbrain-architecture-learning-handover-2026-05-05.md` captures the
@@ -107,7 +113,7 @@ real. Future sessions should treat the following as current baseline:
   decision-note, tripwire, safeguard, and process-record surface.
 
 The schema is still dormant for live `/lolla` behavior. No chat, memo, Pressure
-Check, or Lane 4 runtime promotion is justified after PR19. Decision Pressure
+Check, or Lane 4 runtime promotion is justified after PR20. Decision Pressure
 is not a new lane; it is a compact synthesis object that can feed Step 6, Step
 8 Pressure Check, memo, or Observatory. C-only OOD remains the strongest
 evidence mode, but not the only value mode; grounded double-down, confirmation,
@@ -117,8 +123,9 @@ records under the PR15 contract, and PR17 found that v4 sharpens the same
 Decision Pressure surface without changing selection. PR18 then found that a
 manual Observatory trace is clearer when it shows provenance, suppression, and
 coverage transparency. PR19 turns that hand-authored trace into a validated,
-runtime-dormant `decision_pressure_trace` contract. The next step, if any, is a
-fixture-only producer or adapter plan, not live Observatory integration.
+runtime-dormant `decision_pressure_trace` contract. PR20 defines the boundary
+for fixture-only producer/adapter work. The next step, if any, is a
+fixture-only adapter smoke test, not live Observatory integration.
 
 ---
 
@@ -1297,8 +1304,8 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation or more paid Gate 4 calibration.
-It is the runtime-dormant Decision Pressure trace contract after the manual
-Observatory prototype.
+It is the fixture-only producer/adapter boundary after the runtime-dormant
+Decision Pressure trace contract.
 
 Current task:
 
@@ -1309,10 +1316,11 @@ Current task:
    zero-output.
 5. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-6. Keep field-level provenance, global compression, zero-output success, and
+6. Treat PR20's producer/adapter plan as a boundary, not as a producer.
+7. Keep field-level provenance, global compression, zero-output success, and
    action-delta requirements explicit.
-7. Preserve coverage honesty and no-casuistry rails.
-8. Do not run more paid model calls until the surface is reviewed.
+8. Preserve coverage honesty and no-casuistry rails.
+9. Do not run more paid model calls until the surface is reviewed.
 
 Do not expand the corpus or wire live runtime behavior until this surface is
 specified, reviewed, and then tested against product-value evidence.
