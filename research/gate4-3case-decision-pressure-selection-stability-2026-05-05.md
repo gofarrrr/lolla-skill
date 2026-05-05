@@ -1,8 +1,8 @@
 # Gate 4 3-Case Decision Pressure Selection Stability
 
 **Date:** 2026-05-05
-**Status:** PR14 planning artifact. Docs/research-only. Not runtime evidence.
-Selection review is defined here but not yet run.
+**Status:** PR14 planning artifact plus recorded second-review result.
+Docs/research-only. Not runtime evidence.
 
 **Purpose:** Test whether a second narrow reviewer, using the same 12-route raw
 packet and the same Decision Pressure gates, selects substantially the same
@@ -29,17 +29,33 @@ selection doctrine.
 
 ## Execution Status
 
-This artifact defines the PR14 selection-stability review. It does not execute
-the second-review pass.
+This artifact defines the PR14 selection-stability review. The second-review
+pass has now been run and recorded in:
 
-No reviewer response was generated in this PR because the next step would
-require either:
+- `research/gate4-3case-decision-pressure-selection-stability-review-2026-05-05.md`
 
-- product-owner approval to run a reviewer prompt; or
-- explicit authorization to use a local/subagent reviewer.
+Reviewer result:
+
+- Recommendation: `stable_enough_for_batch3a`
+- Convergence: `3/3` pressure clusters matched PR13
+- Selected clusters:
+  - `grant-equity-partnership-status / risk-response`: governance deadlock
+    before vesting
+  - `mother-deciding-address-year / uncertainty-type`: safety plan relying on
+    a gameable signal
+  - `third-year-phd-student / resource-allocation`: shaping phase without a
+    stop condition
+
+Blindness caveat:
+
+The reviewer reported that the PR13 dry-surface file was not read before first
+selection. This should still be treated as a partially blinded / non-fully-
+blinded review because the PR14 planning artifact itself includes the PR13
+reference selection later in this file. The result is useful product evidence,
+not formal measurement proof.
 
 No paid external model, judge, live `/lolla`, runtime code, prompt, validator,
-or affordance-record changes are needed for this planning checkpoint.
+or affordance-record changes were used for this planning checkpoint.
 
 ## Product Question
 
@@ -55,6 +71,12 @@ The next product uncertainty is selection stability:
 
 If selection depends mostly on reviewer taste, the surface is not ready to pull
 Batch 3a extraction or runtime work.
+
+Execution result:
+
+> A second narrow reviewer converged 3/3 with PR13 at the pressure-cluster
+> level. This is stable enough for Batch 3a planning, but not runtime or
+> user-facing promotion.
 
 ## Reviewer Instructions
 

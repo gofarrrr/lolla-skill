@@ -52,6 +52,11 @@ real. Future sessions should treat the following as current baseline:
   docs/research checkpoint, but selection stability is still untested. A second
   reviewer should select 1-3 pressures from the same packet and gates before
   Batch 3a extraction or user-facing promotion proceeds.
+- PR 14 selection-stability review now records a second-review convergence:
+  `3/3` PR13 pressure clusters were selected again, with the same gate
+  rationale. This is stable enough for Batch 3a planning, with a blindness
+  caveat; it is not runtime, memo, Step 8, Step 6, or Lane 4 promotion
+  evidence.
 - External architecture reference: `gbrain` was reviewed as a mature
   memory/knowledge architecture. The handover in
   `research/gbrain-architecture-learning-handover-2026-05-05.md` captures the
@@ -78,8 +83,9 @@ and coverage transparency can be product-worthy when concise, actionable, and
 dismissible. If extraction resumes, Batch 3a should extract Decision
 Pressure-ready operational constraints for only the five recommended coverage
 patch models, not general model explanations. That extraction should follow a
-selection-stability review unless Marcin explicitly accepts the product risk of
-extracting first.
+Batch 3a extraction brief that defines per-model targets, absence-record
+conditions, and validation rails. The next step is planning extraction, not
+executing it.
 
 ---
 
