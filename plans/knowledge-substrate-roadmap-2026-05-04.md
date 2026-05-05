@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-05
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR 1 through v3 compilation are done, PR 11 Gate 4 calibration produced product signal, and the current frontier is the Decision Pressure surface spec
+**Status:** living roadmap; PR 1 through v4 compilation are done, PR 11 Gate 4 calibration produced product signal, and the current frontier is the manual Decision Pressure Observatory prototype
 **Primary source substrate:** `data/model_sources/` copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -83,6 +83,12 @@ What is already done:
   dismissal, tripwire, suppression, and coverage-honesty fields for the same
   three pressure clusters; it does not justify a fourth pressure, Batch 3b,
   paid Gate 4 rerun, or runtime promotion.
+- PR 18 static Observatory prototype is captured in
+  `research/gate4-3case-decision-pressure-observatory-prototype-2026-05-05.md`:
+  prototype verdict `observatory_trace_clearer`. The operator trace is clearer
+  when it shows the same three pressures, provenance, v4 contribution,
+  suppressed candidates, and the PhD competitive-dynamics coverage blank. This
+  is still a static research artifact, not UI or runtime integration.
 - External architecture reference: we studied `gbrain` as a mature agent memory
   system and captured Lolla-specific takeaways in
   `research/gbrain-architecture-learning-handover-2026-05-05.md`. The key
@@ -100,23 +106,25 @@ What is already done:
   substrate/runtime design; use *Clear Thinking* lessons for the decision-note,
   tripwire, safeguard, and process-record product surface.
 
-Current next move after PR 17:
+Current next move after PR 18:
 
 1. Do not run more paid Gate 4 calibration by default.
 2. Treat the PR13 dry surface and PR14 stability review as product-shaping
    evidence, not formal Gate 4 proof.
 3. Treat Batch 3a and v4 as an extraction patch plus dry product-delta review;
    they do not promote Decision Pressure or v4 affordances into runtime.
-4. Consider a tiny no-paid, manual Observatory-only prototype of the same three
-   pressures with v4-sharpened fields and explicit coverage transparency. This
-   should be a static research artifact, not runtime integration.
-5. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
+4. Treat the PR18 Observatory prototype as evidence that the operator trace is
+   clearer, not as implementation permission.
+5. The next safe step, if any, is a runtime-dormant `decision_pressure_trace`
+   data-shape spec or implementation plan. It should not wire anything into
+   live Observatory, memo, Step 8, Step 6, Lane 4, or `/lolla`.
+6. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
    Step 8 Pressure Check, memo, or Observatory surfaces. It is not a new lane.
-6. Treat C-only OOD as one strong value mode, not the only value mode. The
+7. Treat C-only OOD as one strong value mode, not the only value mode. The
    accepted product modes are `new_edge`, `grounded_double_down`,
    `confirmation`, and `coverage_transparency`.
-7. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
-   promotion from PR17.
+8. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
+   promotion from PR18.
 
 ---
 
@@ -567,21 +575,22 @@ original proposal language.
 | --- | --- | --- |
 | PR 1 - Affordance schema and extraction contract | done | Schema, contract, fixtures, and validation tests exist. |
 | PR 2 - Ten-model LLM-curated pilot | done | 10 pilot records extracted and validated. |
-| PR 3 - Compiler and quality report | done through v3 | Compiler produces v1/v2/v3 artifacts and quality reports. |
+| PR 3 - Compiler and quality report | done through v4 | Compiler produces v1/v2/v3/v4 artifacts and quality reports. |
 | Batch 1 / PR 7 style expansion | done | 20 additional model records. |
 | Batch 2 / PR 9 style expansion | done | 20 Lane-4-frequency model records. |
 | Treatment audit prototype | calibration evidence exists | Directionally good activation-gated v2 evidence, not promotion-grade. |
 | Gate 4 edge-probe experiment / PR 11 | built, 3-case paid calibration stopped before judging | Showed that v3 affordances shift outputs toward operational fields, but raw Arm B/C probe comparison is not the right product surface. |
-| Decision Pressure surface / PR 12 | current docs-only frontier | Define compact user-facing safeguards: pressure, what to verify, why it matters, dismissal, tripwire/action, and coverage status. |
+| Decision Pressure surface / PR 12-17 | done through v4 dry review | Defined compact safeguards, selection stability, targeted Batch 3a extraction, and v4 product-delta review. |
+| Static Observatory prototype / PR 18 | current docs-only frontier | Prototype an operator-facing trace for the same three pressures with provenance, suppression, and coverage transparency. |
 | Runtime Lane 4 affordance integration | not started | Must wait for Gate 4 evidence. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current freeze rule:
 
-> Do not commission Batch 3, live runtime integration, or another paid Gate 4
-> run by default until the Decision Pressure surface is specified. The next
-> product question is whether the substrate can produce compact, source-backed
-> decision safeguards without bloat or fake coverage.
+> Do not commission Batch 3, Batch 3b, live runtime integration, or another
+> paid Gate 4 run by default after PR18. The next product question is whether a
+> runtime-dormant `decision_pressure_trace` data shape can preserve the static
+> Observatory prototype's clarity without becoming live behavior.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
