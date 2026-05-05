@@ -16,6 +16,7 @@ DEFAULT_SOURCE_DIR = Path("data/model_sources")
 DEFAULT_SOURCE_MANIFEST_PATH = Path("data/model_sources/manifest.json")
 DEFAULT_SCHEMA_PATH = Path("data/schemas/model_affordance.schema.json")
 DEFAULT_CONTRACT_PATH = Path("references/model-affordance-extraction.md")
+DEFAULT_RECORD_DIR = Path("data/model_affordances/batch_1")
 DEFAULT_OUTPUT_DIR = Path("data/model_affordances/batch_1/packets")
 PACKET_SCHEMA_VERSION = "model_affordance_extraction_packet.v1"
 
@@ -43,6 +44,7 @@ def assemble_extraction_packet(
     source_manifest_path: Path = DEFAULT_SOURCE_MANIFEST_PATH,
     schema_path: Path = DEFAULT_SCHEMA_PATH,
     contract_path: Path = DEFAULT_CONTRACT_PATH,
+    record_dir: Path = DEFAULT_RECORD_DIR,
     output_dir: Path = DEFAULT_OUTPUT_DIR,
     copy_source: bool = True,
     write: bool = True,
@@ -53,6 +55,7 @@ def assemble_extraction_packet(
     source_manifest_path = _resolve(root, source_manifest_path)
     schema_path = _resolve(root, schema_path)
     contract_path = _resolve(root, contract_path)
+    record_dir = _resolve(root, record_dir)
     output_dir = _resolve(root, output_dir)
 
     activation_curation = _load_json(curation_root / f"{model_id}.json")
@@ -102,7 +105,7 @@ def assemble_extraction_packet(
             "Do not call external services from packet assembly.",
         ],
         "expected_output": {
-            "record_path": f"data/model_affordances/batch_1/{model_id}.json",
+            "record_path": f"{_display_path(record_dir, root)}/{model_id}.json",
             "validator": (
                 "engine.system_b.model_affordance_validation."
                 "validate_model_affordance_file"
@@ -262,6 +265,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--schema", type=Path, default=DEFAULT_SCHEMA_PATH)
     parser.add_argument("--contract", type=Path, default=DEFAULT_CONTRACT_PATH)
+    parser.add_argument("--record-dir", type=Path, default=DEFAULT_RECORD_DIR)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument(
         "--no-copy-source",
@@ -283,6 +287,7 @@ def main(argv: list[str] | None = None) -> int:
             source_manifest_path=args.source_manifest,
             schema_path=args.schema,
             contract_path=args.contract,
+            record_dir=args.record_dir,
             output_dir=args.output_dir,
             copy_source=not args.no_copy_source,
             write=not args.no_write,

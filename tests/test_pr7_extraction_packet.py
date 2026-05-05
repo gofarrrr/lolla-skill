@@ -92,6 +92,20 @@ def test_packet_helper_assembles_source_backed_packet(tmp_path: Path) -> None:
     }
 
 
+def test_packet_helper_can_target_batch2_record_dir(tmp_path: Path) -> None:
+    packet = assemble_extraction_packet(
+        "black-swan-events",
+        output_dir=tmp_path,
+        record_dir=Path("data/model_affordances/batch_2"),
+        copy_source=False,
+    )
+
+    assert packet["model_id"] == "black-swan-events"
+    assert packet["expected_output"]["record_path"] == (
+        "data/model_affordances/batch_2/black-swan-events.json"
+    )
+
+
 def test_packet_helper_is_deterministic(tmp_path: Path) -> None:
     first_dir = tmp_path / "first"
     second_dir = tmp_path / "second"

@@ -1,6 +1,6 @@
 # PR 9 Batch 2 Selection - 2026-05-05
 
-**Status:** Step 1 selection proposal. Marcin signoff required before extraction.
+**Status:** Step 1 selection approved by Marcin. Extraction may proceed under the rails below.
 **Branch:** `feature/knowledge-substrate-pr9-batch2-lane4-coverage`
 **Target:** `feature/knowledge-substrate-pr8-compile-affordances-v2`
 **Canonical corpus:** `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216`
@@ -167,6 +167,29 @@ Carry forward the Batch 1 rails and add one sharper check:
 2. Replace `aleatory-epistemic-uncertainty-recognition` with `true-uncertainty-navigation` if you prefer a narrower uncertainty model, accepting no material coverage loss?
 3. Swap one 10-count information-quality model for `opportunity-cost` if you want a practical allocation model in Batch 2, accepting the move away from strict run-count ranking?
 
+## Signoff Decisions
+
+Marcin approved the strict top-20 non-extracted Lane 4 frequency list with no substitutions.
+
+- Keep `aleatory-epistemic-uncertainty-recognition`. Its reducible-vs-irreducible uncertainty distinction is mechanistically distinct enough to justify the richer source material.
+- Keep strict run-count ranking. `opportunity-cost` waits for a later batch; the 10/10 information-quality models are overloaded in the archive and each has a distinct mechanism to separate from `base-rates`.
+- Treat candidate-appearance coverage as the sharper Gate 3 signal. The projected jump from 22.3% to 75.2% is the reason this batch is worth doing.
+
+## Extraction Approval Brief
+
+The affordance records in Batch 2 are written for Claude Code and OpenRouter as structured knowledge. Claude Code remains the skill orchestrator: it reads records alongside the conversation and decides which affordances apply, what treatment they require, and what gap questions they support. OpenRouter receives records in narrow judgment packets for calibrated semantic calls.
+
+The deterministic pipeline retrieves and delivers records only. Python must not evaluate `use_when`, pre-filter by `do_not_use_when`, infer activation from `case_evidence_needed`, or validate treatment requirements by pattern matching. Activation and treatment judgment are semantic work for Claude Code and OpenRouter.
+
+Extraction therefore writes knowledge documents, not matching rules. If a source supports a crisp mechanism, extract it precisely and trust the LLM consumer to apply it. If the source does not support a distinct operational affordance, record absence instead of filling the slot with plausible language. Absence is honest substrate; generic fill is false substrate confidence.
+
+Cluster guidance:
+
+- Stakeholder alignment models (`empathy`, `psychological-safety`, `six-thinking-hats`, `social-proof`) risk generic warmth or facilitation language. A sparse record is correct if the source's operational content is narrow.
+- Information-quality models (`correlation-vs-causation`, `law-of-large-numbers`, `statistical-discipline`, `survivorship-bias`) must explicitly distinguish their contracts from `base-rates`: reference-class anchoring is not the same as excluded cases, aggregation requirements, causal-claim validity, or statistical discipline.
+- Risk-response models (`antifragility`, `black-swan-events`, `resilience`, `margin-of-safety`) must name their boundary with `calculated-risk-taking` and `risk-assessment`. Antifragility improves under stress, resilience recovers, black-swan-events handles low-probability high-impact structure, and margin-of-safety creates buffer.
+- Third affordance rule: a broad or procedural model may produce a third affordance only if review notes name the structural differentiation test and what would be lost by merging it.
+
 ## Stop Condition
 
-Extraction must not begin until Marcin signs off on the proposed 20. After signoff, the next step is source copying plus one fresh extraction session per approved model.
+Selection signoff is complete. The next step is source copying plus one fresh extraction session per approved model. No `affordances_v3.json` compilation begins until extraction and reviewer-eye complete.
