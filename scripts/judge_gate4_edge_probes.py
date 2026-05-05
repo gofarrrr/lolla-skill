@@ -102,6 +102,10 @@ def _arm_path(input_dir: Path, arm: str, stem: str) -> Path:
     return input_dir / f"arm_{arm.lower()}" / f"{stem}.json"
 
 
+def _packet_path(input_dir: Path, arm: str, stem: str) -> Path:
+    return input_dir / "packets" / f"arm_{arm.lower()}" / f"{stem}.json"
+
+
 def available_route_stems(input_dir: Path) -> list[str]:
     arm_a_dir = input_dir / "arm_a"
     if not arm_a_dir.exists():
@@ -109,12 +113,24 @@ def available_route_stems(input_dir: Path) -> list[str]:
     return sorted(path.stem for path in arm_a_dir.glob("*.json"))
 
 
-def load_arm_outputs(input_dir: Path, stem: str) -> dict[str, dict[str, Any]]:
+def load_arm_outputs(input_dir: Path, stem: str, *, dry_run: bool = False) -> dict[str, dict[str, Any]]:
     outputs: dict[str, dict[str, Any]] = {}
     missing: list[str] = []
     for arm in ("A", "B", "C"):
         path = _arm_path(input_dir, arm, stem)
         if not path.exists():
+            packet_path = _packet_path(input_dir, arm, stem)
+            if dry_run and arm in {"B", "C"} and packet_path.exists():
+                packet = _load_json(packet_path)
+                outputs[arm] = {
+                    "case_id": _str(packet.get("case_id")),
+                    "route_id": _str(packet.get("route_id")),
+                    "arm": arm,
+                    "dry_run_placeholder": True,
+                    "packet_path": str(packet_path),
+                    "packet_estimated_tokens": 0,
+                }
+                continue
             missing.append(str(path))
             continue
         outputs[arm] = _load_json(path)
@@ -126,7 +142,7 @@ def load_arm_outputs(input_dir: Path, stem: str) -> dict[str, dict[str, Any]]:
 
 
 def _load_packet(input_dir: Path, arm: str, stem: str) -> dict[str, Any]:
-    path = input_dir / "packets" / f"arm_{arm.lower()}" / f"{stem}.json"
+    path = _packet_path(input_dir, arm, stem)
     if not path.exists():
         return {}
     return _load_json(path)
@@ -145,29 +161,52 @@ def validate_arm_inputs(
     packet_b = _load_packet(input_dir, "B", stem)
     packet_c = _load_packet(input_dir, "C", stem)
 
-    errors.extend(
-        f"arm B: {error}"
-        for error in validate_edge_probe_output(
-            outputs["B"],
-            expected_arm="B",
-            affordance_index=affordance_index,
-            require_verified_traces=False,
-            case_context=_dict(packet_b.get("case_context")),
+    if outputs["B"].get("dry_run_placeholder"):
+        errors.extend(f"arm B packet: {error}" for error in validate_packet_placeholder(packet_b, expected_arm="B"))
+    else:
+        errors.extend(
+            f"arm B: {error}"
+            for error in validate_edge_probe_output(
+                outputs["B"],
+                expected_arm="B",
+                affordance_index=affordance_index,
+                require_verified_traces=False,
+                case_context=_dict(packet_b.get("case_context")),
+            )
         )
-    )
-    errors.extend(
-        f"arm C: {error}"
-        for error in validate_edge_probe_output(
-            outputs["C"],
-            expected_arm="C",
-            affordance_index=affordance_index,
-            require_verified_traces=True,
-            expected_activation_ids=expected_activation_affordances(packet_c)
-            if packet_c
-            else None,
-            case_context=_dict(packet_c.get("case_context")),
+    if outputs["C"].get("dry_run_placeholder"):
+        errors.extend(f"arm C packet: {error}" for error in validate_packet_placeholder(packet_c, expected_arm="C"))
+    else:
+        errors.extend(
+            f"arm C: {error}"
+            for error in validate_edge_probe_output(
+                outputs["C"],
+                expected_arm="C",
+                affordance_index=affordance_index,
+                require_verified_traces=True,
+                expected_activation_ids=expected_activation_affordances(packet_c)
+                if packet_c
+                else None,
+                case_context=_dict(packet_c.get("case_context")),
+            )
         )
-    )
+    return errors
+
+
+def validate_packet_placeholder(packet: dict[str, Any], *, expected_arm: str) -> list[str]:
+    errors: list[str] = []
+    if not packet:
+        errors.append("packet is missing")
+        return errors
+    if packet.get("arm") != expected_arm:
+        errors.append(f"packet arm must be {expected_arm}")
+    for key in ("case_id", "route_id", "case_context", "gap_route"):
+        if key not in packet:
+            errors.append(f"packet.{key} is missing")
+    if expected_arm == "B" and "affordance_records" in packet:
+        errors.append("Arm B packet must not include affordance_records")
+    if expected_arm == "C" and not isinstance(packet.get("affordance_records"), list):
+        errors.append("Arm C packet must include affordance_records list")
     return errors
 
 
@@ -535,10 +574,17 @@ def write_judge_outputs(
     judge_records: list[dict[str, Any]] = []
     arm_c_outputs: list[dict[str, Any]] = []
     validation_errors: list[str] = []
+    placeholder_count = 0
 
     for stem in stems:
-        outputs = load_arm_outputs(input_dir, stem)
-        arm_c_outputs.append(outputs["C"])
+        outputs = load_arm_outputs(input_dir, stem, dry_run=dry_run)
+        placeholder_count += sum(
+            1
+            for arm in ("B", "C")
+            if outputs.get(arm, {}).get("dry_run_placeholder")
+        )
+        if not outputs["C"].get("dry_run_placeholder"):
+            arm_c_outputs.append(outputs["C"])
         validation_errors.extend(
             f"{stem}: {error}"
             for error in validate_arm_inputs(
@@ -583,6 +629,10 @@ def write_judge_outputs(
         judge_model=judge_model,
         route_count=len(stems),
     )
+    summary["validation_mode"] = (
+        "packet_preflight" if placeholder_count else "output_validation"
+    )
+    summary["dry_run_placeholder_output_count"] = placeholder_count
     previous_summary_path = input_dir / "summary.json"
     previous = _load_json(previous_summary_path) if previous_summary_path.exists() else {}
     merged = dict(previous)

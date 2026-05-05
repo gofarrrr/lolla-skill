@@ -62,6 +62,52 @@ HIGH_VALUE_FIELD_SOURCES = {
 }
 ACTIVATION_STATUSES = {"activated", "set_aside", "unclear", "duplicate"}
 CLARITY_COSTS = {"low", "medium", "high"}
+EDGE_PROBE_OUTPUT_SCHEMA = {
+    "case_id": "string",
+    "route_id": "string",
+    "arm": "B | C",
+    "call_metadata": {
+        "provider": "string",
+        "model": "string",
+        "input_tokens": "integer",
+        "output_tokens": "integer",
+        "cost_usd": "number",
+    },
+    "activation_calls": [
+        {
+            "model_id": "string",
+            "affordance_id": "string",
+            "activation_status": "activated | set_aside | unclear | duplicate",
+            "case_quote": "exact case-context substring or empty string",
+            "rationale": "string",
+        }
+    ],
+    "edge_probes": [
+        {
+            "edge_probe": "string",
+            "trace": {
+                "model_id": "string",
+                "affordance_id": "string",
+                "field_source": (
+                    "do_not_use_when | case_evidence_needed | treatment_requirement | "
+                    "misuse_guard | diagnostic_question | mechanism | general_knowledge"
+                ),
+                "treatment_requirement_id": "string or null",
+            },
+            "why_this_is_edge": "string",
+            "if_true_changes": "string",
+            "dismissal_condition": "string",
+            "clarity_cost": "low | medium | high",
+        }
+    ],
+    "set_asides": [
+        {
+            "model_id": "string",
+            "affordance_id": "string",
+            "reason": "string",
+        }
+    ],
+}
 
 
 class Gate4ExperimentError(RuntimeError):
@@ -340,7 +386,16 @@ def base_packet(route: RouteMaterial) -> dict[str, Any]:
             "if_true_changes": "what should change if the pressure is live",
             "dismissal_condition": "what evidence would safely dismiss the pressure",
         },
-        "output_schema": "Return the Edge Probe JSON schema from the PR11 brief.",
+        "output_schema": EDGE_PROBE_OUTPUT_SCHEMA,
+        "strict_output_rules": [
+            "Return exactly one JSON object, not markdown.",
+            "Use top-level key edge_probes, not probes.",
+            "Every edge_probes item must contain a nested trace object.",
+            "trace.field_source must be one of the listed enum values exactly.",
+            "clarity_cost must be exactly low, medium, or high.",
+            "Do not place model_id or affordance_id at the edge_probes item top level.",
+            "Leave call_metadata as zeros if unavailable; the harness will overwrite it.",
+        ],
     }
 
 
@@ -386,7 +441,7 @@ def build_arm_c_packet(
         "peripheral-but-load-bearing operational constraints over central model "
         "definitions. High-value sources are do_not_use_when, "
         "case_evidence_needed, treatment_requirements, and misuse_guards. "
-        "Make an activation call for every included affordance."
+        "Make an activation call for every expected_activation_calls item."
     )
     records: list[dict[str, Any]] = []
     included: list[str] = []
@@ -408,6 +463,13 @@ def build_arm_c_packet(
     packet["affordance_records"] = records
     packet["missing_model_ids"] = missing
     packet["budget_omitted_model_ids"] = budget_omitted
+    packet["expected_activation_calls"] = [
+        {
+            "model_id": model_id,
+            "affordance_id": affordance_id,
+        }
+        for model_id, affordance_id in sorted(expected_activation_affordances(packet))
+    ]
     return PacketBuild(
         route=route,
         arm="C",
@@ -621,6 +683,10 @@ means. It must include:
 5. how to dismiss it if false.
 
 Return only JSON matching the requested schema. Do not include markdown.
+
+Strictness matters more than eloquence. Use the exact enum values in the packet.
+If a field is uncertain, still include the field with an allowed enum value and
+explain the uncertainty in the rationale.
 """
 
 

@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.judge_gate4_edge_probes import (  # noqa: E402
     blind_arm_mapping,
+    main as judge_gate4_main,
     normalize_judge_payload,
     summarize_judge_outputs,
     validate_judge_output,
@@ -119,6 +120,8 @@ def test_packet_assembly_keeps_python_as_lookup_layer() -> None:
 
     arm_b = build_arm_b_packet(route, affordance_index)
     assert "affordance_records" not in arm_b.packet
+    assert isinstance(arm_b.packet["output_schema"], dict)
+    assert "Use top-level key edge_probes, not probes." in arm_b.packet["strict_output_rules"]
     assert arm_b.packet["available_model_records"] == [
         {"model_id": "base-rates", "has_v3_record": True},
         {"model_id": "missing-model", "has_v3_record": False},
@@ -129,6 +132,11 @@ def test_packet_assembly_keeps_python_as_lookup_layer() -> None:
     included_ids = [record["model_id"] for record in arm_c.packet["affordance_records"]]
     assert included_ids == ["base-rates", "comparative-advantage"]
     assert arm_c.omitted_model_ids == ("missing-model",)
+    expected_activation_calls = arm_c.packet["expected_activation_calls"]
+    assert {
+        (item["model_id"], item["affordance_id"])
+        for item in expected_activation_calls
+    } == expected_activation_affordances(arm_c.packet)
 
 
 def test_trace_validation_accepts_real_v3_requirement_id() -> None:
@@ -251,6 +259,29 @@ def test_dry_run_writes_packets_and_case_selection_without_llm_calls(tmp_path: P
     assert (output_dir / "packets" / "arm_c" / "case-one_resource-allocation.json").exists()
     assert not (output_dir / "arm_b").exists()
     assert "`case-one`" in report_path.read_text(encoding="utf-8")
+
+    judge_exit_code = judge_gate4_main(
+        [
+            "--input-dir",
+            str(output_dir),
+            "--output-dir",
+            str(output_dir),
+            "--affordances-path",
+            str(affordances_path),
+            "--judge-provider",
+            "openrouter",
+            "--judge-model",
+            "test-judge",
+            "--dry-run",
+        ]
+    )
+    assert judge_exit_code == 0
+    judge_summary = json.loads((output_dir / "summary.json").read_text(encoding="utf-8"))[
+        "judge_summary"
+    ]
+    assert judge_summary["validation_mode"] == "packet_preflight"
+    assert judge_summary["dry_run_placeholder_output_count"] == 2
+    assert (output_dir / "judge_packets" / "case-one_resource-allocation.json").exists()
 
 
 def test_blinded_judge_shuffle_and_schema_validation_are_deterministic() -> None:
