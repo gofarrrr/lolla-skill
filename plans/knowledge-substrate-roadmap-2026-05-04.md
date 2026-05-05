@@ -77,6 +77,12 @@ What is already done:
   models produced `5` narrow affordances and `12` absence records, compiled as
   `data/compiled/model_affordances/affordances_v4.json`. The v4 artifact is
   still `draft_review_only` and runtime-dormant.
+- PR 17 v4 dry review is captured in
+  `research/gate4-3case-decision-pressure-v4-dry-review-2026-05-05.md`:
+  decision label `v4_improves_fields_without_changing_selection`. v4 sharpens
+  dismissal, tripwire, suppression, and coverage-honesty fields for the same
+  three pressure clusters; it does not justify a fourth pressure, Batch 3b,
+  paid Gate 4 rerun, or runtime promotion.
 - External architecture reference: we studied `gbrain` as a mature agent memory
   system and captured Lolla-specific takeaways in
   `research/gbrain-architecture-learning-handover-2026-05-05.md`. The key
@@ -94,29 +100,23 @@ What is already done:
   substrate/runtime design; use *Clear Thinking* lessons for the decision-note,
   tripwire, safeguard, and process-record product surface.
 
-Current next move after PR 16:
+Current next move after PR 17:
 
 1. Do not run more paid Gate 4 calibration by default.
 2. Treat the PR13 dry surface and PR14 stability review as product-shaping
    evidence, not formal Gate 4 proof.
-3. Treat Batch 3a as an extraction patch only; it does not promote Decision
-   Pressure or v4 affordances into runtime.
-4. Run a post-Batch-3a dry surface review before any receiving-surface work.
-   The review should test whether v4 improves selected pressures, suppressed
-   candidates, zero-output decisions, dismissal quality, tripwire quality, or
-   coverage honesty.
+3. Treat Batch 3a and v4 as an extraction patch plus dry product-delta review;
+   they do not promote Decision Pressure or v4 affordances into runtime.
+4. Consider a tiny no-paid, manual Observatory-only prototype of the same three
+   pressures with v4-sharpened fields and explicit coverage transparency. This
+   should be a static research artifact, not runtime integration.
 5. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
    Step 8 Pressure Check, memo, or Observatory surfaces. It is not a new lane.
-5. Treat C-only OOD as one strong value mode, not the only value mode. The
+6. Treat C-only OOD as one strong value mode, not the only value mode. The
    accepted product modes are `new_edge`, `grounded_double_down`,
    `confirmation`, and `coverage_transparency`.
-6. Keep Batch 3a planning targeted to: `opportunity-cost`,
-   `true-uncertainty-navigation`, `falsifiability`,
-   `principal-agent-problem`, and `probabilistic-thinking`, extracting only
-   Decision Pressure-ready operational constraints.
-7. Do not start broad Batch 3, live Lane 4 integration, or chat/memo promotion.
-8. Do not execute Batch 3a until an extraction brief defines per-model targets,
-   absence-record conditions, and validation rails.
+7. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
+   promotion from PR17.
 
 ---
 
