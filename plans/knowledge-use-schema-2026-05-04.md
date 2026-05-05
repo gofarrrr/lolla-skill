@@ -111,7 +111,9 @@ real. Future sessions should treat the following as current baseline:
   label `generalization_signal_positive_but_not_runtime_ready`. Five archived
   cases outside the original PR13 packet can be compressed into useful
   case-level Decision Pressures, but the result remains reviewed product
-  evidence, not runtime or user-facing promotion.
+  evidence, not runtime or user-facing promotion. PR23 also clarifies that the
+  five cases are not deterministic templates. They test whether the reviewed
+  surface travels; they do not create case-type routing rules.
 - External architecture reference: `gbrain` was reviewed as a mature
   memory/knowledge architecture. The handover in
   `research/gbrain-architecture-learning-handover-2026-05-05.md` captures the
@@ -147,8 +149,21 @@ as a mechanical smoke guard, not as product-quality review. PR23 then adds
 no-paid directional generalization evidence from five fresh archived cases. The
 next step, if any, is to review whether the existing
 `decision_pressure_trace.v1` contract can represent a multi-case
-generalization fixture without bloat. This is still not live Observatory
-integration.
+generalization fixture without bloat or example imitation. This is still not
+live Observatory integration.
+
+The post-PR23 deterministic boundary is explicit:
+
+- deterministic code may validate shape, caps, provenance classes,
+  source-affordance references, runtime dormancy, coverage gaps, blocked
+  surfaces, and review-only drift counts;
+- deterministic code must not infer pressures from case type, gap label, route
+  label, keywords, or example similarity;
+- deterministic code must not rank novelty, tone, actionability, or usefulness;
+- deterministic code must not merge semantically similar pressures or smooth
+  missing coverage into generic model-name reasoning;
+- LLM/reviewer judgment owns semantic selection and wording, while Python owns
+  custody, validation, packaging, and drift detection.
 
 ---
 

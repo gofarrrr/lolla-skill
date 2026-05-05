@@ -18,6 +18,67 @@ user-facing promotion, not a prompt change, and not extraction.
 
 > Coverage transparency is a feature, not an apology.
 
+> Decision Pressure is strongest when it compresses a messy situation into one
+> source-backed safeguard before action. It is weakest when treated as a full
+> extra analysis layer.
+
+## Anti-Casuistry Boundary
+
+This artifact must not become a case catalog.
+
+PR23 reviews five archived cases to test whether the Decision Pressure surface
+travels. It does not authorize deterministic rules like:
+
+- whistleblower cases get `risk-response`;
+- money/friend cases get `principal-agent-problem`;
+- real-estate cases get `margin-of-safety`;
+- messy personal cases get a decomposition template;
+- archived gap labels map directly to pressure templates.
+
+Those would be casuistic shortcuts: they look scalable because they are
+repeatable, but they would make Python imitate semantic judgment badly.
+
+The deterministic system may enforce:
+
+- schema shape and required fields;
+- maximum selected-pressure count;
+- runtime-dormant policy;
+- provenance-class validity;
+- source-affordance references existing in the compiled corpus;
+- explicit coverage gaps when referenced records are missing;
+- blocked-surface declarations;
+- review-only counts, IDs, and drift reports.
+
+The deterministic system must not:
+
+- choose which pressure is good;
+- infer a pressure from case type, route label, keyword, or gap label;
+- rank novelty, tone, actionability, or user usefulness;
+- merge pressures based on semantic similarity;
+- smooth missing coverage into generic model-name reasoning;
+- generate user-facing pressure prose;
+- treat repeated PR23 examples as templates for future cases.
+
+Stable gates are allowed as reviewer instructions and schema constraints:
+Coverage, Action-Delta, Dismissal, Compression, Bloat, and Tone. They are not
+allowed to become deterministic semantic scoring unless a future proposal
+defines a separate, falsifiable boundary and proves it improves review without
+creating hidden routing rules.
+
+The scaling thesis is:
+
+> Reviewed source-backed records plus LLM/reviewer judgment should generalize;
+> case-type heuristics should not.
+
+Falsifiers for the current direction:
+
+- new cases require special case-type rules to produce useful pressure;
+- two reviewers cannot converge without seeing PR13/PR23 examples;
+- the compact surface only works when a human silently repairs coverage gaps;
+- pressure selection starts depending on keyword matching or route labels;
+- the trace fixture becomes a library of examples to imitate rather than a
+  contract to validate.
+
 ## Question
 
 Does the Decision Pressure surface generalize beyond the original PR13 3-case

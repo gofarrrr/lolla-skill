@@ -121,7 +121,9 @@ What is already done:
   cases outside the original PR13 packet produced useful case-level Decision
   Pressures, especially when the surface turned messy advice into gates,
   thresholds, sequencing, and dismissal paths. The result is directional
-  product evidence, not runtime promotion.
+  product evidence, not runtime promotion. PR23 also locks the anti-casuistry
+  boundary: these five cases are evidence that the reviewer surface travels,
+  not templates for deterministic case-type rules.
 - External architecture reference: we studied `gbrain` as a mature agent memory
   system and captured Lolla-specific takeaways in
   `research/gbrain-architecture-learning-handover-2026-05-05.md`. The key
@@ -155,7 +157,8 @@ Current next move after PR 23:
 6. Treat PR23 as directional evidence that Decision Pressure generalizes beyond
    the original 3-case packet, but not as live product evidence. If moving
    forward, review whether the existing `decision_pressure_trace.v1` contract
-   can represent a multi-case generalization fixture without bloat.
+   can represent a multi-case generalization fixture without bloat or example
+   imitation.
 7. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
    Step 8 Pressure Check, memo, or Observatory surfaces. It is not a new lane.
 8. Treat C-only OOD as one strong value mode, not the only value mode. The
@@ -163,6 +166,12 @@ Current next move after PR 23:
    `confirmation`, and `coverage_transparency`.
 9. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
    promotion from PR23.
+10. Do not turn PR23 case examples into deterministic rules. Python may enforce
+    shape, caps, provenance, source-reference validity, runtime dormancy,
+    coverage gaps, blocked surfaces, and drift counts. Python must not choose
+    pressure quality, infer pressure from case type or route label, merge
+    semantic equivalents, rank tone/actionability, smooth missing coverage, or
+    generate user-facing pressure prose.
 
 ---
 
