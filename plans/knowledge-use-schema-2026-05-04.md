@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-05
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is the Decision Pressure adapter report usefulness review
+**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is no-paid Decision Pressure generalization review
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -106,6 +106,14 @@ real. Future sessions should treat the following as current baseline:
   decision label `adapter_report_useful_as_smoke_guard`. The adapter report is
   useful as review infrastructure and structural drift detection; the main
   product review surface remains the trace fixture and prototype/review docs.
+- PR 23 records a no-paid generalization readout in
+  `research/decision-pressure-generalization-readout-2026-05-05.md`: decision
+  label `generalization_signal_positive_but_not_runtime_ready`. Five archived
+  cases outside the original PR13 packet can be compressed into useful
+  case-level Decision Pressures, but the result remains reviewed product
+  evidence, not runtime or user-facing promotion. PR23 also clarifies that the
+  five cases are not deterministic templates. They test whether the reviewed
+  surface travels; they do not create case-type routing rules.
 - External architecture reference: `gbrain` was reviewed as a mature
   memory/knowledge architecture. The handover in
   `research/gbrain-architecture-learning-handover-2026-05-05.md` captures the
@@ -124,7 +132,7 @@ real. Future sessions should treat the following as current baseline:
   decision-note, tripwire, safeguard, and process-record surface.
 
 The schema is still dormant for live `/lolla` behavior. No chat, memo, Pressure
-Check, or Lane 4 runtime promotion is justified after PR22. Decision Pressure
+Check, or Lane 4 runtime promotion is justified after PR23. Decision Pressure
 is not a new lane; it is a compact synthesis object that can feed Step 6, Step
 8 Pressure Check, memo, or Observatory. C-only OOD remains the strongest
 evidence mode, but not the only value mode; grounded double-down, confirmation,
@@ -137,9 +145,25 @@ coverage transparency. PR19 turns that hand-authored trace into a validated,
 runtime-dormant `decision_pressure_trace` contract. PR20 defines the boundary
 for fixture-only producer/adapter work. PR21 exercises that boundary with a
 fixture-only adapter smoke test. PR22 records that the adapter report is useful
-as a mechanical smoke guard, not as product-quality review. The next step is
-`stop_and_review` unless reviewers explicitly ask for more dormant adapter
-work.
+as a mechanical smoke guard, not as product-quality review. PR23 then adds
+no-paid directional generalization evidence from five fresh archived cases. The
+next step, if any, is to review whether the existing
+`decision_pressure_trace.v1` contract can represent a multi-case
+generalization fixture without bloat or example imitation. This is still not
+live Observatory integration.
+
+The post-PR23 deterministic boundary is explicit:
+
+- deterministic code may validate shape, caps, provenance classes,
+  source-affordance references, runtime dormancy, coverage gaps, blocked
+  surfaces, and review-only drift counts;
+- deterministic code must not infer pressures from case type, gap label, route
+  label, keywords, or example similarity;
+- deterministic code must not rank novelty, tone, actionability, or usefulness;
+- deterministic code must not merge semantically similar pressures or smooth
+  missing coverage into generic model-name reasoning;
+- LLM/reviewer judgment owns semantic selection and wording, while Python owns
+  custody, validation, packaging, and drift detection.
 
 ---
 
@@ -1318,26 +1342,31 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation or more paid Gate 4 calibration.
-It is the adapter report usefulness review after the fixture-only adapter
-smoke test.
+It is complete through the PR23 no-paid generalization readout and
+anti-casuistry lock.
 
 Current task:
 
-1. Preserve the three selected Decision Pressure clusters from PR13/PR14.
-2. Keep PR17's decision label: `v4_improves_fields_without_changing_selection`.
-3. Treat PR18's Observatory trace as the manual prototype baseline.
-4. Keep coverage transparency visible, especially the PhD competitive-dynamics
+1. Default to `stop_and_review_after_pr23`.
+2. Preserve the three selected Decision Pressure clusters from PR13/PR14.
+3. Keep PR17's decision label: `v4_improves_fields_without_changing_selection`.
+4. Treat PR18's Observatory trace as the manual prototype baseline.
+5. Keep coverage transparency visible, especially the PhD competitive-dynamics
    zero-output.
-5. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
+6. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-6. Treat PR20's producer/adapter plan as a boundary, not as a producer.
-7. Treat PR21's adapter smoke test as review infrastructure, not live product.
-8. Treat PR22's usefulness review as a pause point, not as permission for a
-   package function.
-9. Keep field-level provenance, global compression, zero-output success, and
+7. Treat PR20's producer/adapter plan as a boundary, not as a producer.
+8. Treat PR21's adapter smoke test as review infrastructure, not live product.
+9. Treat PR22's usefulness review as a smoke-guard conclusion, not as
+   permission for a package function.
+10. Treat PR23's generalization readout as directional product evidence, not
+   as runtime evidence, deterministic case logic, or permission for PR24.
+11. Keep field-level provenance, global compression, zero-output success, and
    action-delta requirements explicit.
-10. Preserve coverage honesty and no-casuistry rails.
-11. Do not run more paid model calls until the surface is reviewed.
+12. Preserve coverage honesty and no-casuistry rails.
+13. Do not run more paid model calls until the surface is reviewed.
+14. Do not start package functions, UI, trace-fixture stress tests, new adapter
+   work, Batch 3b, prompt changes, or runtime work by default.
 
 Do not expand the corpus or wire live runtime behavior until this surface is
 specified, reviewed, and then tested against product-value evidence.
