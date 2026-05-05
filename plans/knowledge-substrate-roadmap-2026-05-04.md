@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-05
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR 1 through v4 compilation are done, PR 11 Gate 4 calibration produced product signal, and the current frontier is the Decision Pressure adapter report usefulness review
+**Status:** living roadmap; PR 1 through v4 compilation are done, PR 11 Gate 4 calibration produced product signal, and the current frontier is no-paid Decision Pressure generalization review
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -115,6 +115,13 @@ What is already done:
   as a mechanical drift guard, not as the main product-quality review surface.
   The main product review artifact remains the trace fixture plus PR18, PR19,
   and PR21 research docs.
+- PR 23 no-paid generalization readout is captured in
+  `research/decision-pressure-generalization-readout-2026-05-05.md`: decision
+  label `generalization_signal_positive_but_not_runtime_ready`. Five archived
+  cases outside the original PR13 packet produced useful case-level Decision
+  Pressures, especially when the surface turned messy advice into gates,
+  thresholds, sequencing, and dismissal paths. The result is directional
+  product evidence, not runtime promotion.
 - External architecture reference: we studied `gbrain` as a mature agent memory
   system and captured Lolla-specific takeaways in
   `research/gbrain-architecture-learning-handover-2026-05-05.md`. The key
@@ -132,7 +139,7 @@ What is already done:
   substrate/runtime design; use *Clear Thinking* lessons for the decision-note,
   tripwire, safeguard, and process-record product surface.
 
-Current next move after PR 22:
+Current next move after PR 23:
 
 1. Do not run more paid Gate 4 calibration by default.
 2. Treat the PR13 dry surface and PR14 stability review as product-shaping
@@ -144,15 +151,18 @@ Current next move after PR 22:
 5. Treat the PR19 `decision_pressure_trace` contract, PR20 producer/adapter
    plan, PR21 adapter smoke test, and PR22 usefulness review as dormant review
    infrastructure, not as live Observatory, memo, Step 8, Step 6, Lane 4, or
-   `/lolla` behavior. The next safe step is `stop_and_review` unless reviewers
-   explicitly ask for a later dormant package function.
-6. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
+   `/lolla` behavior.
+6. Treat PR23 as directional evidence that Decision Pressure generalizes beyond
+   the original 3-case packet, but not as live product evidence. If moving
+   forward, review whether the existing `decision_pressure_trace.v1` contract
+   can represent a multi-case generalization fixture without bloat.
+7. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
    Step 8 Pressure Check, memo, or Observatory surfaces. It is not a new lane.
-7. Treat C-only OOD as one strong value mode, not the only value mode. The
+8. Treat C-only OOD as one strong value mode, not the only value mode. The
    accepted product modes are `new_edge`, `grounded_double_down`,
    `confirmation`, and `coverage_transparency`.
-8. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
-   promotion from PR22.
+9. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
+   promotion from PR23.
 
 ---
 

@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-05
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is the Decision Pressure adapter report usefulness review
+**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is no-paid Decision Pressure generalization review
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -106,6 +106,12 @@ real. Future sessions should treat the following as current baseline:
   decision label `adapter_report_useful_as_smoke_guard`. The adapter report is
   useful as review infrastructure and structural drift detection; the main
   product review surface remains the trace fixture and prototype/review docs.
+- PR 23 records a no-paid generalization readout in
+  `research/decision-pressure-generalization-readout-2026-05-05.md`: decision
+  label `generalization_signal_positive_but_not_runtime_ready`. Five archived
+  cases outside the original PR13 packet can be compressed into useful
+  case-level Decision Pressures, but the result remains reviewed product
+  evidence, not runtime or user-facing promotion.
 - External architecture reference: `gbrain` was reviewed as a mature
   memory/knowledge architecture. The handover in
   `research/gbrain-architecture-learning-handover-2026-05-05.md` captures the
@@ -124,7 +130,7 @@ real. Future sessions should treat the following as current baseline:
   decision-note, tripwire, safeguard, and process-record surface.
 
 The schema is still dormant for live `/lolla` behavior. No chat, memo, Pressure
-Check, or Lane 4 runtime promotion is justified after PR22. Decision Pressure
+Check, or Lane 4 runtime promotion is justified after PR23. Decision Pressure
 is not a new lane; it is a compact synthesis object that can feed Step 6, Step
 8 Pressure Check, memo, or Observatory. C-only OOD remains the strongest
 evidence mode, but not the only value mode; grounded double-down, confirmation,
@@ -137,9 +143,12 @@ coverage transparency. PR19 turns that hand-authored trace into a validated,
 runtime-dormant `decision_pressure_trace` contract. PR20 defines the boundary
 for fixture-only producer/adapter work. PR21 exercises that boundary with a
 fixture-only adapter smoke test. PR22 records that the adapter report is useful
-as a mechanical smoke guard, not as product-quality review. The next step is
-`stop_and_review` unless reviewers explicitly ask for more dormant adapter
-work.
+as a mechanical smoke guard, not as product-quality review. PR23 then adds
+no-paid directional generalization evidence from five fresh archived cases. The
+next step, if any, is to review whether the existing
+`decision_pressure_trace.v1` contract can represent a multi-case
+generalization fixture without bloat. This is still not live Observatory
+integration.
 
 ---
 
