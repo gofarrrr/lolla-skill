@@ -68,6 +68,15 @@ What is already done:
   a second reviewer converged `3/3` with PR13 at the pressure-cluster level.
   This is stable enough for Batch 3a planning, with a blindness caveat; it is
   not runtime, memo, Step 8, Step 6, or Lane 4 promotion evidence.
+- PR 15 extraction brief is captured in
+  `research/affordance-batch3a-extraction-brief-2026-05-05.md`: Batch 3a must
+  extract Decision Pressure-ready operational constraints for exactly five
+  models, with absence records and do-not-promote recommendations allowed.
+- PR 16 Batch 3a extraction is captured in
+  `research/pr16-batch3a-extraction-report-2026-05-05.md`: the five target
+  models produced `5` narrow affordances and `12` absence records, compiled as
+  `data/compiled/model_affordances/affordances_v4.json`. The v4 artifact is
+  still `draft_review_only` and runtime-dormant.
 - External architecture reference: we studied `gbrain` as a mature agent memory
   system and captured Lolla-specific takeaways in
   `research/gbrain-architecture-learning-handover-2026-05-05.md`. The key
@@ -85,13 +94,18 @@ What is already done:
   substrate/runtime design; use *Clear Thinking* lessons for the decision-note,
   tripwire, safeguard, and process-record product surface.
 
-Current next move after PR 14:
+Current next move after PR 16:
 
 1. Do not run more paid Gate 4 calibration by default.
 2. Treat the PR13 dry surface and PR14 stability review as product-shaping
    evidence, not formal Gate 4 proof.
-3. Proceed to Batch 3a extraction planning, not extraction execution.
-4. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
+3. Treat Batch 3a as an extraction patch only; it does not promote Decision
+   Pressure or v4 affordances into runtime.
+4. Run a post-Batch-3a dry surface review before any receiving-surface work.
+   The review should test whether v4 improves selected pressures, suppressed
+   candidates, zero-output decisions, dismissal quality, tripwire quality, or
+   coverage honesty.
+5. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
    Step 8 Pressure Check, memo, or Observatory surfaces. It is not a new lane.
 5. Treat C-only OOD as one strong value mode, not the only value mode. The
    accepted product modes are `new_edge`, `grounded_double_down`,
