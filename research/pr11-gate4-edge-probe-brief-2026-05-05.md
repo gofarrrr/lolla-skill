@@ -346,7 +346,7 @@ Demote or pause the affordance-to-runtime path if:
 - The LLM overuses affordance jargon without grounding in the case
 - The trace is formally valid but `why_this_is_edge` is generic
 - The judge prefers enriched because it is longer
-- Best enriched questions come from `general_knowledge`, not extracted operational fields
+- Best enriched questions come from `model_general_knowledge`, not extracted operational fields
 - Operators would not want the extra questions in the product
 
 Demotion does not kill the corpus. If Gate 4 fails on this surface, the corpus may still be valuable for Observatory, audit, or a different runtime surface. Name the surface failure specifically.
