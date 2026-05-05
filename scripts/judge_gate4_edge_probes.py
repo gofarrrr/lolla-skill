@@ -56,6 +56,7 @@ JUDGE_EDGE_SOURCES = {
 }
 WINNERS = {"A", "B", "C", "tie", "all_bad"}
 CONSTRUCTIVE_EDGE = {"A", "B", "C", "none"}
+OUT_OF_DISTRIBUTION = {"A", "B", "C", "neither", "both"}
 LIKELY_ENUM = {"yes", "no", "unclear"}
 DECISION_RELEVANCE = {"high", "medium", "low"}
 DISMISSAL_PATH = {"clear", "fuzzy", "none"}
@@ -68,6 +69,13 @@ are shuffled. Do not infer which label is baseline, generic prompt, or
 affordance-enriched. Judge which output contributes the strongest constructive
 edge: a bounded, potentially useful pressure that the ordinary reasoning path
 would likely miss, with a clear dismissal path.
+
+Separately identify out_of_distribution: which output contains an operational
+edge that a strong case-prompted LLM using only the routed model names would
+probably not reach. This is stricter than "better" or "more specific". If the
+strong generic prompt would likely reach the same pressure, do not credit OOD
+to that output. Use "both" only when more than one output contains a genuinely
+non-obvious edge; use "neither" when all outputs stay on the generic track.
 
 Reward source-traced operational constraints over sophisticated restatement.
 Penalize mud: probes that add ambiguity without a dismissal condition.
@@ -186,6 +194,8 @@ def build_judge_packet(
             "route_id": "string",
             "winner": "A | B | C | tie | all_bad",
             "constructive_edge": "A | B | C | none",
+            "out_of_distribution": "A | B | C | neither | both",
+            "out_of_distribution_arms": ["A | B | C"],
             "edge_source": "model_general_knowledge | diagnostic_question | treatment_requirement | do_not_use_when | case_evidence_needed | misuse_guard | none",
             "baseline_likely_would_reach": "yes | no | unclear",
             "generic_prompt_likely_would_reach": "yes | no | unclear",
@@ -216,6 +226,24 @@ def validate_judge_output(payload: dict[str, Any]) -> list[str]:
         errors.append("winner is invalid")
     if _str(payload.get("constructive_edge")) not in CONSTRUCTIVE_EDGE:
         errors.append("constructive_edge is invalid")
+    if _str(payload.get("out_of_distribution")) not in OUT_OF_DISTRIBUTION:
+        errors.append("out_of_distribution is invalid")
+    ood_arms = payload.get("out_of_distribution_arms")
+    if not isinstance(ood_arms, list) or not all(
+        isinstance(label, str) and label in {"A", "B", "C"} for label in ood_arms
+    ):
+        errors.append("out_of_distribution_arms must be a list of A/B/C labels")
+    else:
+        deduped_arms = sorted(set(ood_arms))
+        if len(deduped_arms) != len(ood_arms):
+            errors.append("out_of_distribution_arms must not contain duplicates")
+        ood = _str(payload.get("out_of_distribution"))
+        if ood == "neither" and ood_arms:
+            errors.append("out_of_distribution_arms must be empty when OOD is neither")
+        elif ood in {"A", "B", "C"} and ood_arms != [ood]:
+            errors.append("out_of_distribution_arms must match single-arm OOD")
+        elif ood == "both" and len(ood_arms) < 2:
+            errors.append("out_of_distribution_arms must name at least two arms when OOD is both")
     if _str(payload.get("edge_source")) not in JUDGE_EDGE_SOURCES:
         errors.append("edge_source is invalid")
     for key in ("baseline_likely_would_reach", "generic_prompt_likely_would_reach"):
@@ -240,6 +268,11 @@ def normalize_judge_payload(
     metadata: dict[str, Any],
 ) -> dict[str, Any]:
     normalized = dict(payload)
+    ood_arms = [
+        unblind_label(label, blind_map)
+        for label in _list(normalized.get("out_of_distribution_arms"))
+        if isinstance(label, str)
+    ]
     normalized["case_id"] = _str(packet.get("case_id"))
     normalized["route_id"] = _str(packet.get("route_id"))
     normalized["judge_call_metadata"] = metadata
@@ -249,6 +282,10 @@ def normalize_judge_payload(
         "constructive_edge": unblind_label(
             _str(normalized.get("constructive_edge")), blind_map
         ),
+        "out_of_distribution": unblind_label(
+            _str(normalized.get("out_of_distribution")), blind_map
+        ),
+        "out_of_distribution_arms": sorted(dict.fromkeys(ood_arms)),
     }
     return normalized
 
@@ -322,6 +359,31 @@ def _c_trace_stats(
     }
 
 
+def _ood_arms_from_record(record: dict[str, Any]) -> tuple[str, ...]:
+    unblinded = _dict(record.get("unblinded"))
+    raw_arms = _list(unblinded.get("out_of_distribution_arms"))
+    arms = sorted(
+        {
+            label
+            for label in raw_arms
+            if isinstance(label, str) and label in {"A", "B", "C"}
+        }
+    )
+    if arms:
+        return tuple(arms)
+    scalar = _str(unblinded.get("out_of_distribution"))
+    if scalar in {"A", "B", "C"}:
+        return (scalar,)
+    return ()
+
+
+def _nested_counter_to_dict(counter: dict[str, Counter[str]]) -> dict[str, dict[str, int]]:
+    return {
+        key: dict(sorted(value.items()))
+        for key, value in sorted(counter.items())
+    }
+
+
 def summarize_judge_outputs(
     *,
     judge_records: list[dict[str, Any]],
@@ -335,24 +397,43 @@ def summarize_judge_outputs(
 ) -> dict[str, Any]:
     winner_counts = Counter()
     constructive_edge_counts = Counter()
+    ood_counts = Counter()
+    ood_arm_counts = Counter()
+    ood_by_arm_source_counts: dict[str, Counter[str]] = {}
+    c_only_ood_source_counts = Counter()
+    c_included_ood_source_counts = Counter()
     edge_source_counts = Counter()
     case_constructive_votes: dict[str, Counter[str]] = {}
+    case_ood_votes: dict[str, Counter[str]] = {}
     case_high_value_c: set[str] = set()
+    case_high_value_c_ood: set[str] = set()
     theater_count = 0
     high_clarity_count = 0
     high_value_c_wins = 0
+    high_value_c_ood = 0
     regressions_vs_a = 0
     for record in judge_records:
         unblinded = _dict(record.get("unblinded"))
         winner = _str(unblinded.get("winner"))
         constructive_edge = _str(unblinded.get("constructive_edge"))
+        out_of_distribution = _str(unblinded.get("out_of_distribution"))
+        ood_arms = _ood_arms_from_record(record)
         edge_source = _str(record.get("edge_source"))
         winner_counts[winner] += 1
         constructive_edge_counts[constructive_edge] += 1
+        ood_counts[out_of_distribution] += 1
+        for arm in ood_arms:
+            ood_arm_counts[arm] += 1
+            ood_by_arm_source_counts.setdefault(arm, Counter())[edge_source] += 1
+        if ood_arms == ("C",):
+            c_only_ood_source_counts[edge_source] += 1
+        if "C" in ood_arms:
+            c_included_ood_source_counts[edge_source] += 1
         edge_source_counts[edge_source] += 1
         case_id = _str(record.get("case_id"))
         if case_id:
             case_constructive_votes.setdefault(case_id, Counter())[constructive_edge] += 1
+            case_ood_votes.setdefault(case_id, Counter())[out_of_distribution] += 1
         if record.get("theater_flag") == "yes":
             theater_count += 1
         if record.get("clarity_cost") == "high":
@@ -361,6 +442,10 @@ def summarize_judge_outputs(
             high_value_c_wins += 1
             if case_id:
                 case_high_value_c.add(case_id)
+        if ood_arms == ("C",) and edge_source in HIGH_VALUE_FIELD_SOURCES:
+            high_value_c_ood += 1
+            if case_id:
+                case_high_value_c_ood.add(case_id)
         if winner == "A" and constructive_edge == "A":
             regressions_vs_a += 1
     case_level_constructive: dict[str, str] = {}
@@ -372,6 +457,15 @@ def summarize_judge_outputs(
         top = sorted(label for label, count in votes.items() if count == max_count)
         case_level_constructive[case_id] = top[0] if len(top) == 1 else "tie"
     case_level_counts = Counter(case_level_constructive.values())
+    case_level_ood: dict[str, str] = {}
+    for case_id, votes in sorted(case_ood_votes.items()):
+        if not votes:
+            case_level_ood[case_id] = "neither"
+            continue
+        max_count = max(votes.values())
+        top = sorted(label for label, count in votes.items() if count == max_count)
+        case_level_ood[case_id] = top[0] if len(top) == 1 else "tie"
+    case_level_ood_counts = Counter(case_level_ood.values())
     return {
         "status": "judge_dry_run" if dry_run else "judged",
         "dry_run": dry_run,
@@ -383,15 +477,38 @@ def summarize_judge_outputs(
         "judge_model": judge_model,
         "winner_counts_unblinded": dict(sorted(winner_counts.items())),
         "constructive_edge_counts_unblinded": dict(sorted(constructive_edge_counts.items())),
+        "out_of_distribution_counts_unblinded": dict(sorted(ood_counts.items())),
+        "out_of_distribution_arm_counts_unblinded": dict(sorted(ood_arm_counts.items())),
+        "out_of_distribution_by_arm_source_counts": _nested_counter_to_dict(
+            ood_by_arm_source_counts
+        ),
+        "c_only_ood_source_counts": dict(sorted(c_only_ood_source_counts.items())),
+        "c_included_ood_source_counts": dict(sorted(c_included_ood_source_counts.items())),
         "case_level_constructive_edge": case_level_constructive,
         "case_level_constructive_edge_counts": dict(sorted(case_level_counts.items())),
+        "case_level_out_of_distribution": case_level_ood,
+        "case_level_out_of_distribution_counts": dict(sorted(case_level_ood_counts.items())),
+        "case_level_c_ood_count": sum(1 for arm in case_level_ood.values() if arm == "C"),
+        "case_level_c_only_ood_count": sum(1 for arm in case_level_ood.values() if arm == "C"),
         "case_level_high_value_c_constructive_edge_count": sum(
             1
             for case_id, arm in case_level_constructive.items()
             if arm == "C" and case_id in case_high_value_c
         ),
+        "case_level_high_value_c_ood_count": sum(
+            1
+            for case_id, arm in case_level_ood.items()
+            if arm == "C" and case_id in case_high_value_c_ood
+        ),
         "edge_source_counts": dict(sorted(edge_source_counts.items())),
         "high_value_c_constructive_edge_count": high_value_c_wins,
+        "high_value_c_ood_count": high_value_c_ood,
+        "high_value_c_only_ood_count": high_value_c_ood,
+        "high_value_c_included_ood_count": sum(
+            count
+            for source, count in c_included_ood_source_counts.items()
+            if source in HIGH_VALUE_FIELD_SOURCES
+        ),
         "regression_vs_a_count": regressions_vs_a,
         "theater_flag_count": theater_count,
         "high_clarity_cost_count": high_clarity_count,

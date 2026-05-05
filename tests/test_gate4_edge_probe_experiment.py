@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.judge_gate4_edge_probes import (  # noqa: E402
     blind_arm_mapping,
     normalize_judge_payload,
+    summarize_judge_outputs,
     validate_judge_output,
 )
 from scripts.run_gate4_edge_probe_experiment import (  # noqa: E402
@@ -267,6 +268,8 @@ def test_blinded_judge_shuffle_and_schema_validation_are_deterministic() -> None
         {
             "winner": "A",
             "constructive_edge": "B",
+            "out_of_distribution": "A",
+            "out_of_distribution_arms": ["A"],
             "edge_source": "treatment_requirement",
             "baseline_likely_would_reach": "no",
             "generic_prompt_likely_would_reach": "unclear",
@@ -289,6 +292,95 @@ def test_blinded_judge_shuffle_and_schema_validation_are_deterministic() -> None
     assert validate_judge_output(normalized) == []
     assert normalized["unblinded"]["winner"] == first["A"]
     assert normalized["unblinded"]["constructive_edge"] == first["B"]
+    assert normalized["unblinded"]["out_of_distribution"] == first["A"]
+    assert normalized["unblinded"]["out_of_distribution_arms"] == [first["A"]]
+
+    both = normalize_judge_payload(
+        {
+            "winner": "tie",
+            "constructive_edge": "none",
+            "out_of_distribution": "both",
+            "out_of_distribution_arms": ["A", "C"],
+            "edge_source": "diagnostic_question",
+            "baseline_likely_would_reach": "unclear",
+            "generic_prompt_likely_would_reach": "unclear",
+            "decision_relevance_if_true": "medium",
+            "dismissal_path": "clear",
+            "clarity_cost": "medium",
+            "theater_flag": "no",
+            "rationale": "Two labeled outputs add different non-obvious pressures.",
+        },
+        packet=packet,
+        blind_map=first,
+        metadata={
+            "provider": "openrouter",
+            "model": "test-judge",
+            "input_tokens": 1,
+            "output_tokens": 1,
+            "cost_usd": 0.0,
+        },
+    )
+    assert validate_judge_output(both) == []
+    assert both["unblinded"]["out_of_distribution"] == "both"
+    assert both["unblinded"]["out_of_distribution_arms"] == sorted([first["A"], first["C"]])
+
+    invalid = dict(normalized)
+    invalid["out_of_distribution"] = "C"
+    invalid["out_of_distribution_arms"] = ["B"]
+    assert any("out_of_distribution_arms" in error for error in validate_judge_output(invalid))
+
+
+def test_judge_summary_tracks_ood_separately_from_constructive_edge() -> None:
+    affordance_index = load_affordance_index(AFFORDANCES_V3)
+    records = [
+        {
+            "case_id": "case-one",
+            "route_id": "resource-allocation",
+            "winner": "C",
+            "constructive_edge": "B",
+            "out_of_distribution": "C",
+            "out_of_distribution_arms": ["C"],
+            "edge_source": "treatment_requirement",
+            "theater_flag": "no",
+            "clarity_cost": "low",
+            "unblinded": {
+                "winner": "C",
+                "constructive_edge": "B",
+                "out_of_distribution": "C",
+                "out_of_distribution_arms": ["C"],
+            },
+            "judge_call_metadata": {
+                "provider": "openrouter",
+                "model": "test-judge",
+                "input_tokens": 1,
+                "output_tokens": 1,
+                "cost_usd": 0.0,
+            },
+        }
+    ]
+    summary = summarize_judge_outputs(
+        judge_records=records,
+        arm_c_outputs=[],
+        affordance_index=affordance_index,
+        dry_run=False,
+        seed=42,
+        judge_provider="openrouter",
+        judge_model="test-judge",
+        route_count=1,
+    )
+    assert summary["constructive_edge_counts_unblinded"] == {"B": 1}
+    assert summary["out_of_distribution_counts_unblinded"] == {"C": 1}
+    assert summary["out_of_distribution_arm_counts_unblinded"] == {"C": 1}
+    assert summary["out_of_distribution_by_arm_source_counts"] == {
+        "C": {"treatment_requirement": 1}
+    }
+    assert summary["c_only_ood_source_counts"] == {"treatment_requirement": 1}
+    assert summary["c_included_ood_source_counts"] == {"treatment_requirement": 1}
+    assert summary["case_level_c_ood_count"] == 1
+    assert summary["case_level_c_only_ood_count"] == 1
+    assert summary["case_level_high_value_c_ood_count"] == 1
+    assert summary["high_value_c_only_ood_count"] == 1
+    assert summary["high_value_c_included_ood_count"] == 1
 
 
 def test_gate4_scripts_do_not_import_runtime_engine_or_add_semantic_helpers() -> None:

@@ -226,6 +226,8 @@ For Arm B, `trace.model_id` and `trace.affordance_id` may be inferred by the LLM
   },
   "winner": "A | B | C | tie | all_bad",
   "constructive_edge": "A | B | C | none",
+  "out_of_distribution": "A | B | C | neither | both",
+  "out_of_distribution_arms": ["A | B | C"],
   "edge_source": "model_general_knowledge | diagnostic_question | treatment_requirement | do_not_use_when | case_evidence_needed | misuse_guard | none",
   "baseline_likely_would_reach": "yes | no | unclear",
   "generic_prompt_likely_would_reach": "yes | no | unclear",
@@ -238,6 +240,10 @@ For Arm B, `trace.model_id` and `trace.affordance_id` may be inferred by the LLM
 ```
 
 The judge must be blinded: labels A/B/C but not which is baseline, generic, or enriched. Randomize arm label assignment per judge call by seeded shuffle on `{case_id}_{route_id}` — deterministic by seed so the blind can be unblinded deterministically after judging.
+
+`constructive_edge` is diagnostic. `out_of_distribution` is the pass/fail spine. The judge must answer the stricter question: which output contains an operational edge that a strong case-prompted LLM using only routed model names would probably not reach? If the enriched output is sharper but the generic prompt would likely reach the same pressure, credit `constructive_edge` if warranted but do not credit `out_of_distribution: C`.
+
+When `out_of_distribution` is `both`, the judge must fill `out_of_distribution_arms` with the exact blinded arms that contain OOD material, e.g. `["B", "C"]`. When it is `neither`, `out_of_distribution_arms` must be empty. Gate 4 pass bars count C-only OOD separately from C-included-with-B OOD; `both` is interpretive evidence, not clean proof that enrichment beat the generic prompt.
 
 **The judge must not be `x-ai/grok-4.1-fast`.** Grok returns `confidence: high` for every judgment (observed pattern). Use a stronger judge via OpenRouter. Record the exact model.
 
@@ -265,7 +271,7 @@ The judge must be blinded: labels A/B/C but not which is baseline, generic, or e
    - `--judge-provider` and `--judge-model`
    - `--seed` for arm label shuffle
    - `--dry-run`: validates input shape and prints judge call count without running
-   - Writes one judge output JSON per route per case; writes a summary JSON with win/loss counts and trace-validity stats
+   - Writes one judge output JSON per route per case; writes a summary JSON with win/loss counts, out-of-distribution counts, and trace-validity stats
 
 4. **`data/evaluations/gate4_edge_probes/`**
    - `arm_a/{case_id}_{route_id}.json`
@@ -278,6 +284,7 @@ The judge must be blinded: labels A/B/C but not which is baseline, generic, or e
    Written after judging. Contents:
    - Win/loss/tie table (per case and per route)
    - Constructive-edge attribution by arm and field_source
+   - Out-of-distribution attribution by arm and field_source, including C-only and C-included breakdowns
    - Regression table (C worse than A)
    - Theater flag count
    - Trace-validity stats (what % of C probes have validated IDs)
@@ -300,23 +307,26 @@ The judge must be blinded: labels A/B/C but not which is baseline, generic, or e
 ## Precommitted Success Bars (do not move these after running)
 
 ### Gate 4 passes if:
-- Arm C has the strongest `constructive_edge` in at least **6/10 cases**
-- In at least **5/10** winning C cases, `edge_source` is `do_not_use_when`, `case_evidence_needed`, `treatment_requirement`, or `misuse_guard`
+- Arm C has C-only `out_of_distribution: C` in at least **6/10 cases**
+- In at least **5/10** C-only OOD cases, `edge_source` is `do_not_use_when`, `case_evidence_needed`, `treatment_requirement`, or `misuse_guard`
 - Arm C has no more than **1 clear regression** versus Arm A (`winner: A` and `constructive_edge: A`)
+- Arm C has the strongest `constructive_edge` in at least **6/10 cases** as a diagnostic, not as the pass/fail spine
 - **Theater flag** appears in no more than **2/10** C outputs
 - No more than **2/10** C outputs have `clarity_cost: high`
 - At least **80%** of C edge probes have valid trace IDs into `affordances_v3.json`
 - Marcin spot-checks 3–5 wins and agrees they are real edge contributions, not better phrasing
 
 ### Gate 4 is inconclusive if:
-- C beats A but ties or loses to B (`constructive_edge` B >= C in 6/10 cases)
-- C wins mostly from `diagnostic_question` or `general_knowledge` field sources
+- C wins on `constructive_edge` but does not win on `out_of_distribution`
+- C OOD wins mostly from `diagnostic_question` or `model_general_knowledge` field sources
 - C produces sharper wording but not new operational pressure
+- `out_of_distribution: both` dominates, meaning enrichment may be useful but not separable from a strong generic prompt
 - Judge confidence is mostly low
 - Marcin sees wins as "nice but not edge"
 
 ### Gate 4 fails if:
-- C loses to B (`constructive_edge: B` in 6+/10 cases)
+- C loses to B on OOD (`out_of_distribution: B` in 6+/10 cases)
+- C has `out_of_distribution: C` in fewer than 4/10 cases
 - C adds noise with `dismissal_path: none` in 3+ cases
 - C produces jargon, verbosity, or clever detours (theater flag ≥ 4/10)
 - C mostly repeats known templates (`what would you have to believe` / `what assumptions are embedded`)
