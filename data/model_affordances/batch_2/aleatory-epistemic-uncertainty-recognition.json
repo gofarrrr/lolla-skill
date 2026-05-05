@@ -1,0 +1,390 @@
+{
+  "model_id": "aleatory-epistemic-uncertainty-recognition",
+  "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "aleatory-epistemic-uncertainty-recognition.type-specific-tool-routing",
+      "status": "supported",
+      "name": "Uncertainty-type tool routing before analysis",
+      "mechanism": "Separate irreducible aleatory variability from reducible epistemic ignorance before choosing the method: route variability to probabilistic sizing, buffers, reference classes, simulations, or scenario analysis, and route ignorance to focused investigation, hypothesis testing, diligence, experimentation, or model revision.",
+      "activation_shape": {
+        "use_when": [
+          "The problem contains both measurable variability and unresolved ignorance, and the next analytic move depends on which type is present.",
+          "One branch needs probabilistic sizing, buffers, simulation, or scenario analysis while another branch needs discovery, diligence, experimentation, hypothesis testing, or model revision.",
+          "A team is about to treat all uncertainty as one thing even though different tools are required for reducible and irreducible unknowns."
+        ],
+        "do_not_use_when": [
+          "Classifying uncertainty would not change the tool choice, commitment size, or monitoring rule.",
+          "The future is reasonably predictable, the cost of error is low, and exhaustive uncertainty classification would add cognitive cost without changing action.",
+          "The live task is only calibrating an already identified forecast, not separating irreducible variability from reducible ignorance."
+        ],
+        "case_evidence_needed": [
+          "The claim, forecast, decision, or plan element whose uncertainty must be classified.",
+          "Which uncertainty is irreducible variability despite better data and which uncertainty is reducible ignorance from missing facts or assumptions.",
+          "The analysis tool proposed for each uncertainty type and why that tool matches aleatory risk or epistemic gaps.",
+          "The decision, commitment size, or monitoring rule that will change after the split."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "classify-reducibility",
+          "description": "Before analysis, map the specific unknowns by reducibility so irreducible variability is not treated like missing knowledge and reducible ignorance is not treated like unavoidable chance.",
+          "evidence_required": [
+            "The specific uncertain factors, assumptions, events, or outcomes in the case.",
+            "Evidence that an item is inherent probabilistic variability, such as chance, complexity, or a distribution of possible outcomes.",
+            "Evidence that an item is missing knowledge that could be reduced through investigation, data gathering, or assumption testing.",
+            "A statement of why the distinction matters to the decision at hand."
+          ],
+          "good_output_shape": [
+            "Lists the case's uncertain items under aleatory variability or epistemic ignorance instead of using one generic uncertainty bucket.",
+            "States which items are irreducible enough to size probabilistically and which are reducible enough to investigate.",
+            "Keeps unknown unknowns and missing assumptions visible as epistemic gaps rather than burying them in a forecast range.",
+            "Explains how the classification changes the next analytic move."
+          ]
+        },
+        {
+          "requirement_id": "route-method-by-type",
+          "description": "Assign a fitting method to each uncertainty type: probabilistic sizing, buffers, simulations, scenarios, or reference classes for aleatory risk, and discovery work, diligence, experimentation, hypothesis testing, or model revision for epistemic ignorance.",
+          "evidence_required": [
+            "The aleatory items that need probability, range, reference-class, simulation, buffer, or scenario treatment.",
+            "The epistemic items that need focused investigation, valid data, hypothesis testing, five-whys diagnosis, first-principles review, diligence, experimentation, or model revision.",
+            "The tool choice that would be wrong if the uncertainty type were misclassified."
+          ],
+          "good_output_shape": [
+            "Pairs each uncertainty type with a concrete analysis method.",
+            "Rejects more research as the answer to irreducible variability when probabilistic sizing is needed.",
+            "Rejects pure probability language for gaps that could be reduced by investigation or assumption testing.",
+            "Shows the decision-maker what work should happen next for each uncertainty branch."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which parts of this uncertainty remain variable even with better data, and which parts could be reduced by focused investigation?",
+        "Which branch needs probabilistic sizing, buffers, or simulation, and which branch needs discovery, diligence, experimentation, or model revision?",
+        "What tool choice would change if this item were classified as aleatory rather than epistemic?"
+      ],
+      "misuse_guards": [
+        "Do not compress all uncertainty into one confidence level; preserve irreducible variability versus reducible ignorance.",
+        "Do not spend time labeling uncertainty types unless the labels change tool choice, commitment size, or monitoring.",
+        "Do not attack aleatory variation with more research alone, or treat epistemic ignorance as unavoidable chance before testing assumptions.",
+        "Do not widen this into generic uncertainty navigation; the model earns weight only when the reducible-versus-irreducible split changes the work."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Aleatory Epistemic Uncertainty Recognition (AEUR) is the crucial mental model centered on **consciously distinguishing between inherent, irreducible randomness (Aleatory Uncertainty or Risk) and reducible gaps in knowledge (Epistemic Uncertainty or Ignorance)**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "different forms of decision-making and analysis are required for each type",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Aleatory uncertainty relates to factors of chance, complexity, and inherent probabilistic variability that are not entirely predictable, even with comprehensive data. This level of uncertainty typically requires thinking probabilistically.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "which can potentially be uncovered and resolved through focused investigation and gathering of valid data.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Works when one branch of the problem needs probabilistic sizing, buffers, or simulation while another branch needs discovery work, diligence, experimentation, or model revision.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Danger when the team spends time labeling uncertainty types without changing the actual choice of tool, commitment size, or monitoring rule.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Kept the core AEUR operation as a routing contract: classify uncertainty by reducibility before selecting analysis tools. This preserves the source's aleatory risk versus epistemic ignorance distinction instead of turning the model into broad uncertainty language.",
+        "dropped_material": [
+          "Did not split hypothesis testing, five whys, first principles, diligence, experimentation, simulations, buffers, and scenario analysis into separate affordances; in this record they are methods selected after the uncertainty-type split.",
+          "Did not promote outside-view calibration as a standalone AEUR affordance because it supports probabilistic sizing of aleatory risk rather than creating an independent reducibility distinction."
+        ],
+        "open_questions": [
+          "Reviewer should confirm that simulation and scenario analysis remain method choices inside the type-routing affordance unless a later source gives them an AEUR-specific independent contract."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "aleatory-epistemic-uncertainty-recognition.commitment-gating-by-reducibility",
+      "status": "supported",
+      "name": "Commitment gating by uncertainty reducibility",
+      "mechanism": "Link scale, probe, hedge, wait, and monitoring choices to the uncertainty split: reduce testable epistemic ignorance before irreversible scale, size irreducible aleatory exposure with ranges or worst-case checks, and keep commitment proportional to what can and cannot be learned first.",
+      "activation_shape": {
+        "use_when": [
+          "The organization must choose whether to scale, probe, hedge, or wait based on how much uncertainty is reducible versus irreducible.",
+          "The decision is high-stakes, irreversible, or exposed to catastrophic failure, so commitment size must stay linked to the uncertainty type.",
+          "A single-path plan is continuing despite unresolved unknowns that should trigger uncertainty-aware contingencies."
+        ],
+        "do_not_use_when": [
+          "The output would only add caveats or ranges without changing commitment size, reversibility, contingency design, or monitoring.",
+          "The commitment is low-cost and reversible enough that a full reducibility gate would be unnecessary overkill.",
+          "The problem is an explicit safety-factor design task where the output must be a buffer, reserve, or operating margin rather than an uncertainty-type commitment gate."
+        ],
+        "case_evidence_needed": [
+          "The contemplated commitment, its scale, and whether it is reversible or exposed to catastrophic downside.",
+          "Which uncertainties can be reduced before scaling and which irreducible risks must be sized, hedged, buffered, or monitored.",
+          "The assumptions that must be true for the commitment to deserve scale.",
+          "The worst-case range, early failure signal, or monitoring rule that changes scale, hedge, wait, or probe decisions."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "gate-scale-to-reducibility",
+          "description": "Choose scale, probe, hedge, or wait by separating uncertainty that can be reduced before commitment from variability that must be accepted, sized, hedged, or monitored.",
+          "evidence_required": [
+            "The commitment options, including scale, probe, hedge, wait, or a flexible no-regrets move.",
+            "The reducible epistemic gaps that should be investigated before irreversible scale.",
+            "The irreducible aleatory variability that remains after reasonable investigation.",
+            "The reversibility, downside, and timing constraints that determine how much commitment is acceptable."
+          ],
+          "good_output_shape": [
+            "States whether to scale, probe, hedge, or wait and ties that choice to reducible versus irreducible uncertainty.",
+            "Requires learning before scale when unresolved epistemic gaps would materially change the decision.",
+            "Allows commitment under aleatory variability only after exposure is sized through ranges, scenarios, buffers, or hedges.",
+            "Names what would change the commitment size or timing."
+          ]
+        },
+        {
+          "requirement_id": "test-assumptions-before-irrevocable-commitment",
+          "description": "For irreversible or catastrophic commitments, expose the assumptions behind the thesis and test the epistemic gaps before treating the plan as ready to scale.",
+          "evidence_required": [
+            "The thesis, forecast, or recommendation that would justify the commitment.",
+            "The implicit assumptions and implications that must be true for the thesis to hold.",
+            "The data, investigation, sensitivity analysis, or disconfirming evidence check that can make hidden assumptions visible and testable.",
+            "The decision reversal, scope reduction, or probe design triggered if those assumptions fail."
+          ],
+          "good_output_shape": [
+            "Asks what would have to be believed before commitment and lists those beliefs explicitly.",
+            "Turns hidden assumptions into testable epistemic gaps.",
+            "Requires sensitivity or disconfirmation checks before irreversible scale.",
+            "Reduces, delays, or redesigns the commitment when the core assumptions remain untested."
+          ]
+        },
+        {
+          "requirement_id": "size-risk-and-monitor-failure",
+          "description": "For irreducible aleatory exposure, quantify ranges or likelihoods, test the downside boundary, and define an early monitoring signal rather than relying on a single forecast or post-hoc outcome judgment.",
+          "evidence_required": [
+            "The aleatory risk or distribution of outcomes that remains after reducible ignorance is addressed.",
+            "The upper and lower range, likelihood, reference class, or scenario evidence used to size exposure.",
+            "The worst-case consequence and whether it is severe enough to change the commitment.",
+            "The key output or early signal that will detect failure before losses compound."
+          ],
+          "good_output_shape": [
+            "Uses ranges, likelihoods, reference classes, simulations, or scenarios to size irreducible variability.",
+            "Checks whether the worst case is bad enough to shrink, hedge, or avoid the commitment.",
+            "Defines a monitoring rule that changes action while the decision is still reversible enough to matter.",
+            "Separates decision quality from aleatory luck when later outcomes are reviewed."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Given what is reducible versus irreducible here, should we scale, probe, hedge, or wait?",
+        "What would we have to believe before turning this into an irreversible commitment?",
+        "Is the worst case bad enough to require a smaller, reversible, hedged, or monitored move?",
+        "What key output can we measure now to detect failure early?"
+      ],
+      "misuse_guards": [
+        "Do not let uncertainty labels become theater; the split must change commitment size, reversibility, contingency design, or monitoring.",
+        "Do not persist with a single-path plan when unresolved unknowns require uncertainty-aware contingencies.",
+        "Do not seek certainty before every action; use probe, hedge, wait, or scaled commitment according to what can and cannot be reduced first.",
+        "Do not judge the original decision only by the eventual result when aleatory luck can produce bad outcomes from well-structured decisions."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Best when confidence, commitment, and reversibility need to stay linked",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Best when the organization must decide whether to scale, probe, hedge, or wait based on how much uncertainty is reducible versus irreducible.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "High-Stakes Decision Making:** It is essential when decisions are irreversible or catastrophic failure is possible, forcing a move beyond simple pro/con lists to more rigorous tools like cost-benefit analysis or decision trees.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Ask the core question of **\"What would you have to believe?\"** to accept a particular thesis, spelling out all implicit assumptions and implications. This practice makes \"hidden assumptions\" visible and testable.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Is the worst case bad enough?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "What key output can I measure now to detect failure early?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "aleatory-epistemic-uncertainty-recognition conflicts with commitment-bias (commitment bias) when teams persist with single-path plans despite unresolved unknowns.",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Outcome bias judges a decision solely by its eventual result. This conflicts with the AEUR philosophy that a \"good decision\" (one consistent with preferences and complete information) may still lead to a \"bad outcome\" through bad luck (aleatory failure).",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Separated commitment gating from tool routing because the source gives an explicit action surface: scale, probe, hedge, or wait based on reducible versus irreducible uncertainty. This is not generic confidence calibration; it requires the uncertainty-type split to change commitment, reversibility, and monitoring.",
+        "dropped_material": [
+          "Did not create a standalone premortem affordance; worst-case and early-output questions serve this commitment gate.",
+          "Did not create a standalone margin-of-safety or risk-assessment affordance; buffers and downside checks matter here only when they follow the reducible-versus-irreducible split."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with confidence-calibration: this affordance should activate when commitment depends on uncertainty reducibility, not when a forecast merely needs an earned confidence range."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-uncertainty-navigation-affordance",
+      "status": "not_supported_by_source",
+      "reason": "A broad uncertainty-navigation affordance would erase the source's central distinction. AEUR only earns runtime weight when the record preserves different treatment for irreducible aleatory variability and reducible epistemic ignorance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "not all uncertainty is the same",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "different forms of decision-making and analysis are required for each type",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Danger when the team spends time labeling uncertainty types without changing the actual choice of tool, commitment size, or monitoring rule.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-confidence-calibration-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports ranges, overprecision checks, the shock test, outside view, and sensitivity analysis, but in AEUR those methods serve uncertainty-type routing or commitment gating. A separate confidence-calibration affordance would duplicate the existing confidence-calibration model and blur the aleatory/epistemic boundary.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "The Illusion of Knowing (Overprecision)",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Use the **Shock Test**: \"Would you be really shocked if the outcome landed at the extreme high or extreme low boundary of my estimate?\".",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+          "source_quote": "Run **sensitivity analysis** to expose the impact of Epistemic uncertainty that hides in forecasts or estimates. This means moving beyond overconfidence in the precision of estimates.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+      "source_quote": "Aleatory Epistemic Uncertainty Recognition (AEUR) is the crucial mental model centered on **consciously distinguishing between inherent, irreducible randomness (Aleatory Uncertainty or Risk) and reducible gaps in knowledge (Epistemic Uncertainty or Ignorance)**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+      "source_quote": "Works when one branch of the problem needs probabilistic sizing, buffers, or simulation while another branch needs discovery work, diligence, experimentation, or model revision.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+      "source_quote": "Best when the organization must decide whether to scale, probe, hedge, or wait based on how much uncertainty is reducible versus irreducible.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Aleatory_Epistemic_Uncertainty_Recognition_rag.md",
+      "source_quote": "Danger when the team spends time labeling uncertainty types without changing the actual choice of tool, commitment size, or monitoring rule.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection note, full AEUR source, Wave 1 activation curation, Wave 2 intervention semantics, and Wave 3 relation semantics. Extracted two affordances: uncertainty-type tool routing and commitment gating by reducibility. The record preserves reducible epistemic ignorance versus irreducible aleatory variability and avoids generic uncertainty-navigation or confidence-calibration language.",
+    "dropped_material": [
+      "Did not create a third affordance for outside view, scenario planning, shock testing, sensitivity analysis, knowns-and-unknowns matrix, or premortem questions because each functions as a method inside tool routing or commitment gating.",
+      "Did not promote relation material for probabilistic thinking, systems thinking, falsifiability, first principles, confirmation bias, WYSIATI, or outcome bias into separate AEUR affordances.",
+      "Did not duplicate confidence-calibration, margin-of-safety, risk-assessment, experimentation, or base-rates records; AEUR contributes the uncertainty-type split that chooses among those adjacent treatments."
+    ],
+    "open_questions": [
+      "Reviewer should confirm whether two affordances are still sufficiently sparse for this long source; my judgment is that adding a third would merge method examples into a generic duplicate.",
+      "Reviewer should check runtime retrieval boundaries so AEUR fires only when reducibility classification changes the method, commitment, or monitoring choice."
+    ],
+    "review_status": "draft"
+  }
+}

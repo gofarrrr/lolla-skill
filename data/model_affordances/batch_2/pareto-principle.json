@@ -1,0 +1,318 @@
+{
+  "model_id": "pareto-principle",
+  "source_file": "Pareto_Principle_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "pareto-principle.measured-vital-few-allocation",
+      "status": "supported",
+      "name": "Measured vital-few effort allocation",
+      "mechanism": "When outcomes are driven by a skewed contribution pattern, prove the uneven distribution, name the vital few and trivial many, redirect scarce time, resources, and analytical effort to the high-impact contributors, and set retest guards so 80/20 does not become unmeasured rhetoric or premature culling of future drivers.",
+      "activation_shape": {
+        "use_when": [
+          "A small subset of causes, customers, tasks, products, branches, or constraints appears to drive a disproportionate share of the outcome.",
+          "Time, attention, or resources are scarce enough that the answer must decide what not to work on, not merely what matters.",
+          "A complex problem tree has many branches and analysis will improve by cutting low-impact branches after likely impact is assessed.",
+          "The current distribution can be measured and revisited as the vital few shift over time."
+        ],
+        "do_not_use_when": [
+          "The case has no measured or plausibly measurable skewed-return pattern and 80/20 language is only a convenience slogan.",
+          "The proposed pruning is based on ease, emotional comfort, or already-favored priorities instead of likely impact.",
+          "Emerging products, markets, ideas, or drivers are too early to measure fairly and current-state culling would likely discard future value.",
+          "The work requires root-cause diagnosis or human-context detail that would be hidden by treating a correlation as the cause."
+        ],
+        "case_evidence_needed": [
+          "The outcome metric and candidate inputs, causes, customers, products, tasks, or branches being compared.",
+          "Evidence that contribution is highly uneven, including which subset appears to produce disproportionate output.",
+          "The scarce time, attention, budget, or analytical effort that must be redirected or withheld.",
+          "The low-impact branches, tasks, activities, or contributors proposed for minimization, streamlining, elimination, or deferral.",
+          "The emerging opportunities, future drivers, assumptions, or root-cause uncertainties that could invalidate the current vital-few map."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "prove-skew-before-focus",
+          "description": "Before allowing Pareto to carry weight, show that the case has a skewed contribution pattern and that the selected vital few are derived from measured or explicitly reasoned likely impact rather than a fixed 80/20 slogan.",
+          "evidence_required": [
+            "The relevant outcome or output being optimized.",
+            "The candidate causes, inputs, customers, products, tasks, constraints, or branches under comparison.",
+            "The data, estimate, or case reasoning showing a minority of contributors creates disproportionate output.",
+            "The reason the selected contributors are likely causal or diagnostically important, not merely correlated with the outcome."
+          ],
+          "good_output_shape": [
+            "States the actual skew observed or hypothesized instead of treating 80/20 as a literal ratio.",
+            "Names the specific vital few and the evidence that they drive disproportionate impact.",
+            "Separates measured leverage from convenience, salience, or confirmation of already-favored priorities.",
+            "Says not to use Pareto when the case lacks a credible uneven-contribution pattern."
+          ]
+        },
+        {
+          "requirement_id": "redirect-and-prune-effort",
+          "description": "Translate the vital-few finding into an allocation decision by moving scarce resources and analytical effort toward the high-impact contributors while naming what low-impact work is minimized, streamlined, eliminated, or not analyzed further.",
+          "evidence_required": [
+            "The scarce resources, attention, time, or analysis budget available.",
+            "The high-impact contributors that should receive more effort.",
+            "The low-impact activities, problem-tree branches, or data-gathering paths that do not contribute enough to justify more work.",
+            "The concrete reallocation, pruning, or don't-do choice that proves the recommendation changed effort allocation."
+          ],
+          "good_output_shape": [
+            "Redirects resources and effort to the named key contributors.",
+            "Names the trivial many that will be minimized, streamlined, eliminated, deferred, or left unanalyzed.",
+            "Shows how pruning improves clarity or impact rather than merely shortening the work.",
+            "Keeps the output distinct from generic prioritization by tying every focus move to disproportionate contribution."
+          ]
+        },
+        {
+          "requirement_id": "retest-and-protect-future-drivers",
+          "description": "Treat the current vital few as temporary leverage points to monitor, then add review triggers or protected tests so emerging drivers, breakthrough ideas, and root-cause uncertainty are not discarded too early.",
+          "evidence_required": [
+            "The emerging products, markets, ideas, or drivers that could become important despite current low contribution.",
+            "The assumptions embedded in the current vital-few map.",
+            "The indicators or threshold that would show the distribution has shifted.",
+            "The review cadence, scenario check, or small protected trial that keeps premature culling from becoming neglect."
+          ],
+          "good_output_shape": [
+            "Defines when the vital-few allocation should be revisited.",
+            "Names what evidence would invalidate the current pruning decision.",
+            "Protects plausible future drivers from being eliminated solely because current metrics are small.",
+            "Keeps Pareto use paired with diagnosis when the apparent 20 percent may be a symptom rather than a cause."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which minority of inputs, causes, customers, tasks, products, branches, or constraints actually drives the disproportionate outcome?",
+        "What measured leverage shows that these are the vital few rather than the most familiar or politically convenient few?",
+        "What low-impact work, branch, customer segment, product, or activity will be minimized, streamlined, eliminated, or not analyzed further?",
+        "Are we trimming based on likely impact, or because some areas are easier or less emotionally taxing to ignore?",
+        "What assumptions are embedded in the current vital-few map, and what future evidence would invalidate them?"
+      ],
+      "misuse_guards": [
+        "Do not use Pareto as generic prioritization; require evidence of skewed contribution and a concrete effort-allocation change.",
+        "Do not treat 80/20 as a strict numerical law when the source frames it as a guideline whose percentage can vary.",
+        "Do not invoke vital-few language without measuring leverage or naming the contributors being deprioritized.",
+        "Do not prune emerging products, markets, or breakthrough ideas solely because current metrics make them look low-impact.",
+        "Do not confuse correlation with root cause; pair the vital-few map with diagnosis before acting on it.",
+        "Do not let simplification hide human context, implementation authority, or second-order system effects when those details control the outcome."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "a minority of inputs or causes generates a disproportionate majority of the outputs or outcomes.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "it is **more of a guideline than a strict rule**, and the precise percentage can vary significantly.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "It directs analytical effort toward the **most important factors** to maximize impact.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "It is about recognizing that not all resources or efforts contribute equally to the final outcome.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "cutting off the low-impact branches",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "identify the crucial **20%** of activities, customers, or products that deliver the maximum results, and then **redirect resources and efforts to maximize the impact of those key contributors**.",
+          "section_hint": "Actionable Heuristics and Guiding Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "What is the low-impact **80%** that can be minimized, streamlined, or eliminated to gain greater clarity and freedom?",
+          "section_hint": "Actionable Heuristics and Guiding Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "**Most useful when contribution is highly uneven:** The Pareto Principle is strongest when a small subset of causes, customers, tasks, or constraints clearly drives a disproportionate share of the result.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "**Works when time or attention is scarce:** The model has high leverage when decision quality depends more on cutting low-yield effort than on squeezing completeness out of every branch.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "**Best when prioritization can be revisited as the distribution shifts:** Pareto works best when the vital few are treated as current leverage points to monitor, not as eternal truths to defend.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "A common anti-pattern is focusing **solely on the 20% of products that generate 80% of the revenue**, which can lead to **neglecting emerging products or markets that could be crucial for future growth**.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "Prematurely trimming ideas based on early, low-impact metrics can lead to abandoning breakthrough concepts before they have a chance to prove their value.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "The rule identifies correlations (20% input, 80% output), but it must be used alongside rigorous **diagnosis** to identify the root causes.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "The model is distorted when teams invoke 80/20 rhetoric without actually measuring leverage, using it to justify ignoring inconvenient work or underinvesting in future drivers.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed skewed-return detection, vital-few selection, pruning, effort reallocation, revisitable focus, and misuse guards into one affordance because the source presents them as one Pareto mechanism: measured uneven contribution should change where scarce effort goes.",
+        "dropped_material": [
+          "Did not create a separate generic prioritization affordance; the source-backed contract requires skewed contribution and leverage evidence.",
+          "Did not create a standalone problem-tree pruning affordance; pruning is the analytical form of the same measured vital-few allocation mechanism.",
+          "Did not create a standalone root-cause or scenario-analysis affordance; the source uses these as guards against misusing Pareto, not as distinct Pareto runtime contracts.",
+          "Did not produce a third affordance, so the PR 9 structural differentiation test is not triggered."
+        ],
+        "open_questions": [
+          "Reviewer should check the boundary with Batch 1 trade-offs and leverage-points plus the deferred prioritization model: Pareto should require skewed-return evidence, not merely scarce-resource sacrifice or generic ranking.",
+          "Reviewer should confirm whether the protected-trial language in the retest requirement is acceptable as normalization from the source's warnings about emerging markets and premature pruning."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-generic-prioritization-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports prioritization only when contribution is highly uneven, leverage is measured, and effort actually shifts toward the vital few. A generic task-ranking affordance would erase the skewed-return and measurement guard that distinguish Pareto from the separate prioritization model.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "**Most useful when contribution is highly uneven:** The Pareto Principle is strongest when a small subset of causes, customers, tasks, or constraints clearly drives a disproportionate share of the result.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "The model is distorted when teams invoke 80/20 rhetoric without actually measuring leverage, using it to justify ignoring inconvenient work or underinvesting in future drivers.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "fixed-80-20-ratio-rule",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says the ratio is a guideline rather than a strict rule, so runtime use should not require or assert an exact 80 percent to 20 percent distribution before the model can apply.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "While the ratio is often cited as 80/20, it is **more of a guideline than a strict rule**, and the precise percentage can vary significantly.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-root-cause-diagnosis-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source warns that Pareto correlations need rigorous diagnosis, but it does not make root-cause analysis a distinct Pareto affordance. Diagnosis belongs here as a misuse guard and treatment check, while a fuller root-cause contract belongs to the root-cause-analysis model.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Pareto_Principle_rag.md",
+          "source_quote": "The rule identifies correlations (20% input, 80% output), but it must be used alongside rigorous **diagnosis** to identify the root causes.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Pareto_Principle_rag.md",
+      "source_quote": "a minority of inputs or causes generates a disproportionate majority of the outputs or outcomes.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Pareto_Principle_rag.md",
+      "source_quote": "identify the crucial **20%** of activities, customers, or products that deliver the maximum results, and then **redirect resources and efforts to maximize the impact of those key contributors**.",
+      "section_hint": "Actionable Heuristics and Guiding Questions",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Pareto_Principle_rag.md",
+      "source_quote": "**Works when time or attention is scarce:** The model has high leverage when decision quality depends more on cutting low-yield effort than on squeezing completeness out of every branch.",
+      "section_hint": "Contexts of Maximum Power (Strengths)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Pareto_Principle_rag.md",
+      "source_quote": "**Best when prioritization can be revisited as the distribution shifts:** Pareto works best when the vital few are treated as current leverage points to monitor, not as eternal truths to defend.",
+      "section_hint": "Contexts of Maximum Power (Strengths)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Pareto_Principle_rag.md",
+      "source_quote": "The model is distorted when teams invoke 80/20 rhetoric without actually measuring leverage, using it to justify ignoring inconvenient work or underinvesting in future drivers.",
+      "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection note, full Pareto_Principle_rag.md source, Wave 1 activation curation, Wave 2 intervention semantics, and Wave 3 relation semantics. Extracted one high-confidence affordance that preserves Pareto as measured skewed-return effort allocation and vital-few pruning, not generic prioritization.",
+    "dropped_material": [
+      "Did not split customer strategy, policy trade-off, healthcare cost, deep work, Bloom's Taxonomy, bounded rationality, or communication examples into separate affordances because they illustrate the same uneven-contribution mechanism in different domains.",
+      "Did not promote relation-layer allies or tensions into separate runtime contracts; systems-thinking, circle-of-control, and confirmation-bias material is reflected only as boundary and misuse-guard context.",
+      "Did not produce a third affordance; the source does not support three structurally distinct Pareto runtime contracts without drifting into prioritization, leverage-points, root-cause-analysis, experimentation, or systems-thinking."
+    ],
+    "open_questions": [
+      "Reviewer should confirm that one affordance is intentionally sparse enough for the resource-allocation risk: the affordance activates only when skewed-return evidence changes effort allocation.",
+      "Reviewer should verify whether the root-cause diagnosis guard is sufficient or should be reduced further to avoid overlap with root-cause-analysis."
+    ],
+    "review_status": "draft"
+  }
+}

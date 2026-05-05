@@ -1,0 +1,471 @@
+{
+  "model_id": "prioritization",
+  "source_file": "Prioritization_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "prioritization.capacity-constrained-exclusion-and-sequencing",
+      "status": "supported",
+      "name": "Capacity-constrained exclusion and sequencing",
+      "mechanism": "When plausible tasks, issues, or opportunities exceed true execution capacity, require the answer to identify the essential core, compare options by leverage, impact, influence, and changeability, then produce an ordered first/deferred/eliminated plan with explicit non-goals or kill criteria that protect high-leverage work from interruption.",
+      "activation_shape": {
+        "use_when": [
+          "The number of plausible tasks, issues, or opportunities exceeds the team's real time, attention, energy, budget, or execution capacity.",
+          "The decision must choose what gets done first, what is deferred, and what is eliminated entirely.",
+          "Sequencing matters and explicit non-goals or kill criteria are needed to protect high-leverage work from interruption.",
+          "A complex problem has been disaggregated enough that issues can be compared by impact, leverage, influence, and changeability."
+        ],
+        "do_not_use_when": [
+          "The work already fits inside available capacity and no meaningful exclusion, deferral, or sequence decision is needed.",
+          "Prioritization has become endless reshuffling and the team is avoiding commitment long enough to realize value.",
+          "Urgent visible work is winning by default while slower, higher-value work is being starved.",
+          "The options are incommensurable or highly uncertain enough that aggressive ranking would prematurely foreclose valuable optionality."
+        ],
+        "case_evidence_needed": [
+          "The overloaded portfolio of tasks, issues, opportunities, or demands competing for limited resources.",
+          "The core objective, essential core, or top-level purpose that should guide what counts as important.",
+          "Evidence for each option's leverage, impact on the problem, influenceability, and whether it is too difficult to change.",
+          "The sequencing constraints, interruptions, non-goals, kill criteria, and explicit first/deferred/eliminated decisions.",
+          "The urgent visible work that may be crowding out slower but higher-value work."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-core-from-discardable-work",
+          "description": "Before ranking anything, identify the essential core and discard branches that either do not contribute enough to the answer, do not materially impact the problem, or are too difficult to change.",
+          "evidence_required": [
+            "The core objective or essential core of the problem.",
+            "The disaggregated set of tasks, issues, branches, or opportunities under consideration.",
+            "Impact, leverage, influenceability, and changeability evidence for the competing items.",
+            "The branches or activities proposed for elimination and the reason they do not earn attention."
+          ],
+          "good_output_shape": [
+            "Names the essential core before listing priorities.",
+            "Separates high-leverage work from low-impact, low-influence, or too-difficult work.",
+            "States which items are discarded rather than merely lower-ranked.",
+            "Explains how each retained item advances the overall goal or purpose."
+          ]
+        },
+        {
+          "requirement_id": "commit-sequence-non-goals-kill-criteria",
+          "description": "Turn the priority judgment into an execution sequence with explicit first, deferred, and eliminated categories plus non-goals or kill criteria that prevent interruption and endless reprioritization.",
+          "evidence_required": [
+            "The available execution capacity and the work that exceeds it.",
+            "The dependencies or time order that determine what must happen first.",
+            "The interruptions or urgent visible demands likely to displace important work.",
+            "The kill criteria, non-goals, or stopping conditions that protect the chosen sequence."
+          ],
+          "good_output_shape": [
+            "States what gets done first, what is deferred, and what is eliminated.",
+            "Includes explicit non-goals or kill criteria rather than an open-ended ranked list.",
+            "Protects high-leverage work from constant urgent interruption.",
+            "Commits long enough for the selected work to realize value."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the essential core of the problem, and what should be stripped away?",
+        "Which branches do not contribute enough to the answer to spend time on?",
+        "Which items are too difficult to change or do not materially impact the problem?",
+        "What gets done first, what gets deferred, and what gets eliminated entirely?",
+        "What non-goals or kill criteria will protect high-leverage work from urgent interruptions?"
+      ],
+      "misuse_guards": [
+        "Do not output a generic ranked task list without naming exclusions, deferrals, non-goals, or kill criteria.",
+        "Do not let urgent visible work win by default unless it is also important to the long-term objective.",
+        "Do not keep reshuffling priorities instead of committing long enough to realize the selected value.",
+        "Do not rank incommensurable objectives as if a simple ordinal list can preserve the real tradeoffs.",
+        "Do not foreclose valuable options under high uncertainty without a reason to eliminate rather than defer or test them."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "It is the critical skill of deliberately choosing where to allocate limited resources\u2014time, attention, energy, and capital\u2014to achieve maximum clarity, efficiency, and desired outcomes. This discipline is defined by **exclusion** and the relentless pursuit of the core objective.",
+          "section_hint": "unknown_section",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "The fundamental essence of Prioritization is discerning **what truly matters** and intentionally sidelining everything else. Its core purpose is to focus effort where it will generate the highest leverage or impact, thereby preventing resources from being wasted on low-value activities.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "Prioritization requires identifying the **\"essential core\"** of an idea or problem and stripping everything else away. It ensures that all effort aligns with the overall goal or purpose, functioning as a constant guide for decision-making.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "prioritization is the critical step of determining \"what to do and what not to do\" after disaggregating the issues.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "which bits are either too difficult to change or don\u2019t impact the problem much",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "where you intentionally \"prune off branches of the tree that don\u2019t contribute enough to the answer to spend time on\"",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "data must be reduced to a manageable number of actionable items",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "the number of plausible tasks, issues, or opportunities already exceeds the true execution capacity of the team.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "sequencing matters and explicit non-goals or kill criteria can protect high-leverage work from constant interruption.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "the organization must choose what gets to be first, what gets deferred, and what gets eliminated entirely.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "issues that have the biggest impact on the problem and that they can actually influence.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "prioritization becomes endless reshuffling, so the team talks constantly about leverage but rarely commits long enough to realize it.",
+          "section_hint": "Weaknesses and Common Anti-patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "urgent, visible work keeps winning by default and the system quietly starves the slower, higher-value work it claims to care about.",
+          "section_hint": "Weaknesses and Common Anti-patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "prioritization conflicts with optionality (optionality) when aggressive prioritization forecloses options that would have been valuable under high uncertainty.",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "prioritization conflicts with simplification (simplification) when priority ranking oversimplifies trade-offs between incommensurable objectives that resist ordinal ordering.",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance keeps prioritization anchored on constrained resource allocation: essential core, exclusion, leverage and impact, influenceability, sequencing, non-goals, kill criteria, and commitment. It intentionally avoids a generic task-ranking contract.",
+        "dropped_material": [
+          "Did not split Pareto, Eisenhower, MECE, or pruning into separate affordances because they serve the same source-backed exclusion and sequencing mechanism here.",
+          "Did not promote optionality and simplification tensions as standalone affordances; they are misuse guards for over-aggressive ranking."
+        ],
+        "open_questions": [
+          "Reviewer should check the boundary with trade-offs, optimization-theory, and pareto-principle: this affordance should require actual exclusion and sequencing, not just a ranked list."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "prioritization.hypothesis-driven-end-product-execution",
+      "status": "supported",
+      "name": "Hypothesis-driven end-product execution focus",
+      "mechanism": "When the team is planning analysis or uncertain execution, require the answer to define the needed end product, articulate the hypotheses, select make-or-break assumptions that can change the answer and are relatively easy to test, and prefer focused analyses or experiments over prediction, internal preference, or broad research.",
+      "activation_shape": {
+        "use_when": [
+          "A team is planning analysis and risks diving into data before naming the output needed to resolve the issue.",
+          "The work can be guided by hypotheses and focused on proving or disproving the assumptions that would change the answer.",
+          "Several branches or possibilities remain uncertain and real-world experiments can steer the next level of prioritization.",
+          "Internal preference, faulty foresight, or premature filtering may steer the shortlist unless tests and criteria come first."
+        ],
+        "do_not_use_when": [
+          "The required output and decision are already clear enough, and more analysis would mainly delay action.",
+          "The question is primarily capacity allocation and sequencing rather than analysis design or hypothesis testing.",
+          "No proposed analysis, experiment, or assumption test could materially change the answer.",
+          "The team is trying to predict the winning idea when it can cheaply test the main branches instead."
+        ],
+        "case_evidence_needed": [
+          "The decision or problem-solving output needed to resolve the issue.",
+          "The initial hypotheses and the assumptions each one depends on.",
+          "The make-or-break hypotheses that would change the overall answer or solution if proven wrong.",
+          "The candidate analyses or experiments, including which are relatively easy to test and what they would resolve.",
+          "The criteria being used before option review, plus any internal preference or prediction pressure that could distort prioritization."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-output-and-hypotheses-before-analysis",
+          "description": "Clarify the end product and hypotheses before gathering more data, so analysis is narrowly focused on proving or disproving assumptions instead of expanding into undirected research.",
+          "evidence_required": [
+            "The specific output needed to solve the problem or make the decision.",
+            "The initial hypotheses under consideration.",
+            "The assumptions those hypotheses require to be true.",
+            "The data or analysis that would prove or disprove those assumptions."
+          ],
+          "good_output_shape": [
+            "Names the required end product before recommending analysis.",
+            "States the hypotheses being tested.",
+            "Limits data gathering to evidence that can prove or disprove the relevant assumptions.",
+            "Rejects premature deep dives into irrelevant data."
+          ]
+        },
+        {
+          "requirement_id": "test-make-or-break-branches",
+          "description": "Prioritize analyses or experiments that can change the overall answer, especially make-or-break hypotheses that are relatively easy to test, and use real-world data to refine prioritization over time.",
+          "evidence_required": [
+            "The analyses or experiments available for each major branch or possibility.",
+            "Which assumption tests would change the answer or collapse the hypothesis pyramid.",
+            "The relative ease, cost, and speed of running those tests.",
+            "The real-world data that would replace prediction, preference, or faulty foresight."
+          ],
+          "good_output_shape": [
+            "Selects tests or analyses because they can change the answer, not because they are convenient or comprehensive.",
+            "Prioritizes make-or-break hypotheses that are relatively easy to test.",
+            "Uses a portfolio of experiments when several main branches remain possible.",
+            "States how each test result will steer the next prioritization step."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What output is needed to solve the problem before any more analysis is performed?",
+        "Which hypotheses are we trying to prove or disprove?",
+        "Which make-or-break assumption would change the overall answer if it were wrong?",
+        "What relatively easy test or analysis can resolve the highest-leverage uncertainty?",
+        "Can we test the main branches with real-world data instead of predicting the winner from internal preference?"
+      ],
+      "misuse_guards": [
+        "Do not boil the ocean with excessive facts or redundant analyses beyond what is necessary to resolve the core issue.",
+        "Do not define prioritization criteria after reviewing options if that lets subconscious preferences steer the shortlist.",
+        "Do not seek only confirming evidence for the favored hypothesis.",
+        "Do not jump into analysis without a clear end product and hypothesis-driven work plan.",
+        "Do not confuse prediction with prioritization when experiments can generate real-world evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "Instead of diving into analysis blindly (\"boiling the ocean\"), HDPS uses strong, clear hypotheses to **guide work planning and analysis**, ensuring that data gathering is narrowly focused on proving or disproving the initial assumptions.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "priority must be given to analyses that can change the overall answer or solution\u2014the **critical, \"make or break\" hypotheses** that are relatively easy to test.",
+          "section_hint": "Concrete Examples in Application",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "HDPS requires the problem solver to articulate initial hypotheses and clarify the required analytical *outputs* before performing the analysis. This ensures that work is focused and purpose-driven, avoiding premature deep dives into irrelevant data.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "Instead of trying to predict winning ideas, establish a **portfolio of experiments** and test every main branch or possibility. This relies on real-world data to steer increasingly specific prioritization, mitigating reliance on internal preference or faulty foresight.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "Filtering ideas based on subconscious preferences rather than objective criteria. If criteria are established *after* reviewing options, they inevitably steer toward existing biases.",
+          "section_hint": "Common Failure Modes and Cognitive Biases",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "Avoid the tendency to jump prematurely into analysis without being crystal clear about what output is needed to solve the problem. Work planning should be **hypothesis driven and end-product oriented**, focusing time on delivering analyses that will unambiguously resolve an issue.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "This directly conflicts with objective prioritization, as it prevents the rational assessment of alternative options or critical, disconfirming evidence.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance is separate from capacity-constrained sequencing because it changes the treatment from ordering work to designing the next evidence-producing analysis or experiment. It preserves the source's execution focus: hypotheses, required analytical outputs, make-or-break tests, and end products.",
+        "dropped_material": [
+          "Did not split outside-view anchoring into its own affordance because the source uses it as a bias discipline inside objective evidence selection.",
+          "Did not split planning fallacy into a standalone affordance because the treatment here is not schedule-risk governance; it is test selection and end-product-oriented work planning."
+        ],
+        "open_questions": [
+          "Reviewer should check overlap with experimentation and hypothesis-driven-problem-solving if those become canonical affordance records later."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-task-ranking-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source does not support a prioritization affordance that merely ranks tasks. Runtime promotion must require the source-backed criteria of essential core, leverage or impact, influenceability or changeability, sequencing, exclusion, non-goals, and kill criteria.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "The fundamental essence of Prioritization is discerning **what truly matters** and intentionally sidelining everything else.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "sequencing matters and explicit non-goals or kill criteria can protect high-leverage work from constant interruption.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "prioritization becomes endless reshuffling, so the team talks constantly about leverage but rarely commits long enough to realize it.",
+          "section_hint": "Weaknesses and Common Anti-patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-pareto-eisenhower-or-mece-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "Pareto, Eisenhower, and MECE are useful heuristics in the source, but here they support the same exclusion, importance, and non-overlap criteria already carried by the capacity-constrained sequencing affordance. Promoting them separately would produce named-framework fill rather than a distinct runtime contract.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "roughly **20% of actions produce 80% of the results**",
+          "section_hint": "Key Heuristics and Frameworks",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "distinguishing between tasks that are truly **Important** (mattering long-term) and those that are merely **Urgent** (demanding immediate response).",
+          "section_hint": "Key Heuristics and Frameworks",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "comparing and prioritizing genuine, non-overlapping issues, preventing wasted effort on redundancies.",
+          "section_hint": "Key Heuristics and Frameworks",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-communication-compression-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports BLUF, Rule of Three, and decision-useful communication, but those passages operationalize the same core compression-and-exclusion discipline or belong more naturally to communication and cognitive-load records. Extracting them here would weaken the resource-allocation and procedural execution contract.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "By focusing on what is most important, and using the structure of **Bottom Line Up Front (BLUF)**, the audience focuses quickly on the main message.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "If a message can\u2019t be used to make predictions or decisions, it is without value, no matter how accurate or comprehensive it is",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Prioritization_rag.md",
+      "source_quote": "It is the critical skill of deliberately choosing where to allocate limited resources\u2014time, attention, energy, and capital\u2014to achieve maximum clarity, efficiency, and desired outcomes. This discipline is defined by **exclusion** and the relentless pursuit of the core objective.",
+      "section_hint": "unknown_section",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Prioritization_rag.md",
+      "source_quote": "the number of plausible tasks, issues, or opportunities already exceeds the true execution capacity of the team.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Prioritization_rag.md",
+      "source_quote": "sequencing matters and explicit non-goals or kill criteria can protect high-leverage work from constant interruption.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Prioritization_rag.md",
+      "source_quote": "priority must be given to analyses that can change the overall answer or solution\u2014the **critical, \"make or break\" hypotheses** that are relatively easy to test.",
+      "section_hint": "Concrete Examples in Application",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Prioritization_rag.md",
+      "source_quote": "Avoid the tendency to jump prematurely into analysis without being crystal clear about what output is needed to solve the problem. Work planning should be **hypothesis driven and end-product oriented**, focusing time on delivering analyses that will unambiguously resolve an issue.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection notes, full Prioritization source, and prioritization activation/intervention/relation curation. The record preserves two source-backed mechanisms: constrained-capacity exclusion and sequencing, and hypothesis-driven end-product execution focus.",
+    "dropped_material": [
+      "Did not create a third affordance; communication compression, named heuristic frameworks, outside-view anchoring, and relation tensions failed the structural differentiation test of requiring a different evidence standard, required output, or sequencing rule from the two retained mechanisms.",
+      "Generic task-ranking was recorded as an absence because it would drop the source-backed criteria, tradeoff, and execution-focus mechanisms that make prioritization operational.",
+      "A third communication affordance would lose too little if merged: the operational content is still core-message compression for decision usefulness, which is already preserved as dropped material and better handled by cognitive-load or communication-specific records."
+    ],
+    "open_questions": [
+      "Reviewer flag: keep this record out of generic ranking behavior; runtime use should require explicit exclusion, deferral, kill criteria, or hypothesis-driven analysis selection.",
+      "Reviewer flag: confirm the boundary with pareto-principle, optimization-theory, trade-offs, experimentation, and cognitive-load-theory records as Batch 2 fills in."
+    ],
+    "review_status": "draft"
+  }
+}

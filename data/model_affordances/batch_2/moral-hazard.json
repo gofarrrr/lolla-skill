@@ -1,0 +1,353 @@
+{
+  "model_id": "moral-hazard",
+  "source_file": "Moral_Hazard_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "moral-hazard.align-decision-rights-with-downside",
+      "status": "supported",
+      "name": "Transferred downside requires exposure alignment",
+      "mechanism": "When a party can choose an action after protection, insurance, delegation, or governance is in place while another party absorbs the downside, the answer must map the action-consequence gap and redesign accountability, exposure, and decision rights so the protected actor cannot gain by taking hidden extra risk.",
+      "activation_shape": {
+        "use_when": [
+          "One party can take the relevant action after commitment while another party absorbs a meaningful share of the downside.",
+          "Insurance, guarantees, delegation, employment, or governance structures may be rewarding hidden risk-taking.",
+          "The central decision is whether accountability, exposure, and decision rights are aligned tightly enough to discourage reckless behavior."
+        ],
+        "do_not_use_when": [
+          "The issue is pre-contract hidden type, adverse selection, or partner screening rather than post-decision changed behavior.",
+          "The actor who takes the risk already experiences the material upside and downside of the action.",
+          "The bad outcome is better explained by uncertainty, bad luck, or weak capability than by distorted incentives."
+        ],
+        "case_evidence_needed": [
+          "The decision-maker or protected actor, the party absorbing downside, and the specific consequence being transferred.",
+          "The post-decision action, effort, or risk-taking behavior that becomes hidden, weakly observed, or less costly to the actor.",
+          "The existing insurance, guarantee, incentive, governance, or accountability structure that separates action from consequence."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-action-consequence-gap",
+          "description": "Before diagnosing moral hazard, name the protected actor, the party absorbing downside, the action that can change after protection exists, and the consequence that no longer lands fully on the actor.",
+          "evidence_required": [
+            "The actor with decision rights or control over the relevant action.",
+            "The party, budget, customer, insurer, lender, employer, or system that absorbs the downside.",
+            "The riskier behavior that becomes more attractive because the actor is shielded from consequences."
+          ],
+          "good_output_shape": [
+            "Separates the party making the decision from the party bearing the downside.",
+            "Names the post-decision behavior that could become riskier, lower-effort, or less accountable.",
+            "Explains how protection, delegation, insurance, or governance creates the action-consequence gap."
+          ]
+        },
+        {
+          "requirement_id": "realign-accountability-exposure-rights",
+          "description": "Propose an accountability redesign that reconnects decision rights with consequence exposure through incentives, penalties, transparency, ownership, or governance constraints.",
+          "evidence_required": [
+            "The current rewards, penalties, guarantees, reporting lines, or governance rules.",
+            "The decision rights held by the actor and whether those rights match their downside exposure.",
+            "The observable accountability mechanism that would make reckless hidden risk less rewarding."
+          ],
+          "good_output_shape": [
+            "States which decision right, reward, penalty, exposure, or oversight mechanism should change.",
+            "Connects the redesign to full ownership rather than only blame after failure.",
+            "Keeps the fix at the system level instead of treating moral hazard as a character flaw."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who takes the action, and who absorbs the downside if that action goes wrong?",
+        "What risk would this actor take only because the consequence is partly transferred elsewhere?",
+        "Are accountability, exposure, and decision rights aligned tightly enough to discourage reckless behavior?",
+        "Which incentive, guarantee, or governance rule is rewarding hidden risk-taking after the commitment is already in place?"
+      ],
+      "misuse_guards": [
+        "Do not collapse moral hazard into generic information asymmetry; preserve the post-decision changed-behavior and consequence-transfer mechanism.",
+        "Do not use moral hazard for adverse-selection cases where the central problem is pre-contract hidden type rather than post-contract behavior.",
+        "Do not blame every poor outcome on moral hazard when uncertainty, bad luck, or weak capability better explains the result.",
+        "Do not solve only the visible incident; check the system that disconnected action, ownership, and consequence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "Moral Hazard is a mental model fundamentally concerned with the distortion of incentives and risk-taking behavior when the consequences of an action are borne by a party other than the one making the decision.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "The underlying principle is that **if you don't experience the consequences of your actions, you'll take less ownership of them**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "This gap between action and consequence is where the hazard lies, as the insured or protected party may take risks they otherwise would not.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "Most useful when** one party can take action while another party absorbs a meaningful share of the downside.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "Best used when** the question is whether accountability, exposure, and decision rights are aligned tightly enough to discourage reckless behavior.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "Managers should structure incentives and penalties to encourage people to take **full ownership** of what they do and prevent them from merely \"coasting by\".",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance carries the core moral-hazard mechanism: post-decision behavior changes because downside has been transferred away from the actor with control.",
+        "dropped_material": [
+          "Did not split insurance, banking, employment, governance, and AI-agent examples into separate affordances because each uses the same action-consequence gap.",
+          "Kept generic principal-agent language subordinate to the risk-transfer mechanism so this record does not duplicate information-asymmetry or a future principal-agent-problem record."
+        ],
+        "open_questions": [
+          "A future relation review may decide how much of the principal-agent vocabulary should live in moral-hazard versus the deferred principal-agent-problem model."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "moral-hazard.proxy-hidden-effort-with-noisy-outcomes",
+      "status": "supported",
+      "name": "Hidden effort needs chance-aware observable proxies",
+      "mechanism": "When effort or care cannot be observed after delegation, the answer must identify the hidden action, choose observable proxies such as outcomes or profit only with an explicit noise check, and avoid treating luck-shaped results as perfect evidence of agent behavior.",
+      "activation_shape": {
+        "use_when": [
+          "A principal cannot directly observe the agent's post-decision action, effort, care, or risk discipline.",
+          "Payment, reward, penalty, or oversight has to rely on observable outcomes, profit, results, or another proxy metric.",
+          "Observed outcomes may reflect chance factors as well as the actor's actual effort or behavior."
+        ],
+        "do_not_use_when": [
+          "The relevant action or effort is directly observable enough to contract, coach, or audit without relying on outcome proxies.",
+          "The case has no meaningful delegation, hidden effort, or post-decision behavioral discretion.",
+          "The proposed metric would punish or reward luck more than the behavior the system wants to shape."
+        ],
+        "case_evidence_needed": [
+          "The unobservable action, effort, care, or risk discipline that the principal needs to influence.",
+          "The observable metric currently being used or proposed as the proxy for that hidden behavior.",
+          "The chance factors, external conditions, or noise that could make the proxy misleading."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-hidden-action-and-proxy",
+          "description": "Identify the effort or behavior that cannot be directly observed, then state the observable result, profit measure, or process signal being used as its proxy.",
+          "evidence_required": [
+            "The hidden action or effort that matters after delegation or commitment.",
+            "The principal or manager who cannot directly observe that behavior.",
+            "The observable metric or signal being used to stand in for effort."
+          ],
+          "good_output_shape": [
+            "Separates hidden effort from the observable outcome used to infer it.",
+            "States why payment, reward, penalty, or oversight cannot be based directly on effort.",
+            "Names the proxy metric before recommending incentive changes."
+          ]
+        },
+        {
+          "requirement_id": "discount-proxy-for-chance",
+          "description": "Check how much the observable outcome depends on chance factors before turning it into reward or punishment, and adjust the treatment so luck is not mistaken for ownership or negligence.",
+          "evidence_required": [
+            "The chance factors or external conditions that affect the observed outcome.",
+            "How strongly the proxy tracks the hidden behavior compared with luck or context.",
+            "The failure mode if the system treats the proxy as a perfect one-to-one signal."
+          ],
+          "good_output_shape": [
+            "Qualifies outcome-based incentives when results are noisy.",
+            "Avoids unfair penalization or reward based on luck rather than behavior.",
+            "Recommends a proxy, review cadence, or accountability rule that better tracks the hidden behavior."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which post-decision action, effort, or care cannot be directly observed?",
+        "What observable metric is being used as the proxy for that hidden behavior?",
+        "Which chance factors could make this outcome look good or bad regardless of the agent's effort?",
+        "Would this incentive punish luck, reward luck, or actually change the behavior we need?"
+      ],
+      "misuse_guards": [
+        "Do not assume a perfect one-to-one relationship between observable outcomes and unobservable effort.",
+        "Do not design reward or punishment from outcomes without naming the chance factors that also drive those outcomes.",
+        "Do not mistake outcome-based payment for solved moral hazard when the metric creates short-termism or externalizes long-term risk.",
+        "Do not use this affordance when the real issue is missing information before selection rather than hidden behavior after delegation."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "Specifically, the main problem of moral hazard is the **unobservability of a worker's action or effort**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "Because the effort exerted by a worker (the agent) cannot be directly observed by the employer (the principal), payment cannot be based on effort.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "Instead, payments must be based on some observable metric, such as the outcome achieved or the profit generated.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "However, in reality, the outcome often depends on chance factors, not solely on the agent's effort.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "Assuming a perfect, certain link between observable outcome and unobservable effort can lead to unfair penalization or rewarding based on luck, rather than behavior.",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance keeps the contract-design material distinct from generic information asymmetry by requiring post-decision hidden effort plus an observable proxy whose link to behavior is noisy.",
+        "dropped_material": [
+          "Did not turn every concrete employee or CEO example into its own affordance because the operational work is always hidden effort, observable proxy, and chance adjustment.",
+          "Short-termism is retained as a misuse guard here because immediate observable outcome pay is a proxy-design failure, not a separate source-backed mechanism in this pass."
+        ],
+        "open_questions": [
+          "Review may later decide whether delayed-risk externalization deserves a separate affordance if runtime cases show it cannot be handled by proxy design and exposure alignment."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-information-asymmetry-or-principal-agent-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source does mention unobservability and principal-agent roles, but a generic hidden-information or agency record would erase the moral-hazard boundary: the supported mechanism is post-contract or post-decision behavior changing because action and consequence are separated.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "adverse Selection and Moral Hazard both deal with information asymmetry, but Adverse Selection focuses on pre-contractual issues, while Moral Hazard deals with post-contractual behavior.",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "This gap between action and consequence is where the hazard lies, as the insured or protected party may take risks they otherwise would not.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-short-termism-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports immediate outcome incentives as a moral-hazard failure mode, but in this extraction it is already represented by the hidden-effort proxy affordance and the downside-transfer affordance. Splitting it out would mostly duplicate metric-noise and delayed-downside treatment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "If payments are based solely on immediate observable outcomes (e.g., quarterly profit), this can inadvertently incentivize short-term gains at the expense of long-term stability or ethical behavior, leading to a focus on maximizing current profit while externalizing long-term risk (a classic moral hazard outcome not explicitly solved by outcome-based pay alone).",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-system-1-or-peer-review-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source discusses rationality limits, System 1, probing, and peer review as mitigation context, but it does not support a distinct moral-hazard affordance unless the action-consequence gap or hidden-effort proxy mechanism is present.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "The greatest risk associated with an over-reliance on purely rational models of Moral Hazard is ignoring the non-rational, emotional, and social dimensions of decision-making.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "Observers (critics and gossipers) are often more effective at detecting errors than actors, suggesting the use of peer review or a brain trust to catch blind spots.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Moral_Hazard_rag.md",
+      "source_quote": "Moral Hazard is a mental model fundamentally concerned with the distortion of incentives and risk-taking behavior when the consequences of an action are borne by a party other than the one making the decision.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Moral_Hazard_rag.md",
+      "source_quote": "The **fundamental essence** of this model is the problem created by **unobservability**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Moral_Hazard_rag.md",
+      "source_quote": "This gap between action and consequence is where the hazard lies, as the insured or protected party may take risks they otherwise would not.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Moral_Hazard_rag.md",
+      "source_quote": "However, in reality, the outcome often depends on chance factors, not solely on the agent's effort.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Moral_Hazard_rag.md",
+      "source_quote": "Danger when** every poor outcome gets attributed to moral hazard even when the dominant driver is uncertainty, bad luck, or weak capability rather than distorted incentives.",
+      "section_hint": "Weaknesses and Common Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full Moral_Hazard_rag.md source, the activation, intervention, and relation curation layers, the Batch 2 selection brief, and the Batch 1 information-asymmetry boundary record. Extracted two affordances focused on post-decision risk transfer and post-delegation hidden effort, preserving moral hazard as changed behavior after action and consequence are separated.",
+    "dropped_material": [
+      "Did not create a generic information-asymmetry, principal-agent, or hidden-evidence affordance because the boundary test is post-contract or post-decision behavior change under transferred downside.",
+      "Did not promote short-termism into a third affordance; it is source-backed as a failure mode of immediate observable outcome metrics and delayed downside externalization, but the treatment is already carried by proxy design and exposure alignment.",
+      "Did not promote broad System 1, emotional-brain, radical-transparency, or peer-review material as standalone affordances because the source frames them as mitigation context rather than distinct moral-hazard mechanisms."
+    ],
+    "open_questions": [
+      "Review should watch for runtime cases where delayed-risk externalization is not adequately covered by the two retained affordances.",
+      "A future principal-agent-problem record should decide whether remaining principal-agent vocabulary belongs there rather than in moral-hazard."
+    ],
+    "review_status": "draft"
+  }
+}
