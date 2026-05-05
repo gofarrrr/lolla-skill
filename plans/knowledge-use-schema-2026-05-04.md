@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-05
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is the fixture-only Decision Pressure trace adapter smoke test
+**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is the Decision Pressure adapter report usefulness review
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -101,6 +101,11 @@ real. Future sessions should treat the following as current baseline:
   reviewed trace fixture, validates it against compiled v4, and can write a
   review-only report under `.tmp/` when requested. It does not generate
   pressure text, select pressures, render UI, or touch runtime behavior.
+- PR 22 records the adapter-report usefulness review in
+  `research/decision-pressure-trace-adapter-report-usefulness-review-2026-05-05.md`:
+  decision label `adapter_report_useful_as_smoke_guard`. The adapter report is
+  useful as review infrastructure and structural drift detection; the main
+  product review surface remains the trace fixture and prototype/review docs.
 - External architecture reference: `gbrain` was reviewed as a mature
   memory/knowledge architecture. The handover in
   `research/gbrain-architecture-learning-handover-2026-05-05.md` captures the
@@ -119,7 +124,7 @@ real. Future sessions should treat the following as current baseline:
   decision-note, tripwire, safeguard, and process-record surface.
 
 The schema is still dormant for live `/lolla` behavior. No chat, memo, Pressure
-Check, or Lane 4 runtime promotion is justified after PR21. Decision Pressure
+Check, or Lane 4 runtime promotion is justified after PR22. Decision Pressure
 is not a new lane; it is a compact synthesis object that can feed Step 6, Step
 8 Pressure Check, memo, or Observatory. C-only OOD remains the strongest
 evidence mode, but not the only value mode; grounded double-down, confirmation,
@@ -131,8 +136,10 @@ manual Observatory trace is clearer when it shows provenance, suppression, and
 coverage transparency. PR19 turns that hand-authored trace into a validated,
 runtime-dormant `decision_pressure_trace` contract. PR20 defines the boundary
 for fixture-only producer/adapter work. PR21 exercises that boundary with a
-fixture-only adapter smoke test. The next step, if any, is a review of whether
-the adapter report is useful, not live Observatory integration.
+fixture-only adapter smoke test. PR22 records that the adapter report is useful
+as a mechanical smoke guard, not as product-quality review. The next step is
+`stop_and_review` unless reviewers explicitly ask for more dormant adapter
+work.
 
 ---
 
@@ -1311,8 +1318,8 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation or more paid Gate 4 calibration.
-It is the fixture-only adapter smoke test after the runtime-dormant Decision
-Pressure trace contract and producer/adapter boundary plan.
+It is the adapter report usefulness review after the fixture-only adapter
+smoke test.
 
 Current task:
 
@@ -1325,10 +1332,12 @@ Current task:
    any UI or runtime work.
 6. Treat PR20's producer/adapter plan as a boundary, not as a producer.
 7. Treat PR21's adapter smoke test as review infrastructure, not live product.
-8. Keep field-level provenance, global compression, zero-output success, and
+8. Treat PR22's usefulness review as a pause point, not as permission for a
+   package function.
+9. Keep field-level provenance, global compression, zero-output success, and
    action-delta requirements explicit.
-9. Preserve coverage honesty and no-casuistry rails.
-10. Do not run more paid model calls until the surface is reviewed.
+10. Preserve coverage honesty and no-casuistry rails.
+11. Do not run more paid model calls until the surface is reviewed.
 
 Do not expand the corpus or wire live runtime behavior until this surface is
 specified, reviewed, and then tested against product-value evidence.
