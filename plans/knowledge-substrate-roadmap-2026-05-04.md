@@ -63,6 +63,11 @@ What is already done:
   checkpoint, not runtime evidence. The next uncertainty is selection
   stability: whether another reviewer, using the same packet and gates, selects
   substantially the same 1-3 pressures.
+- PR 14 selection-stability review is captured in
+  `research/gate4-3case-decision-pressure-selection-stability-review-2026-05-05.md`:
+  a second reviewer converged `3/3` with PR13 at the pressure-cluster level.
+  This is stable enough for Batch 3a planning, with a blindness caveat; it is
+  not runtime, memo, Step 8, Step 6, or Lane 4 promotion evidence.
 - External architecture reference: we studied `gbrain` as a mature agent memory
   system and captured Lolla-specific takeaways in
   `research/gbrain-architecture-learning-handover-2026-05-05.md`. The key
@@ -80,25 +85,24 @@ What is already done:
   substrate/runtime design; use *Clear Thinking* lessons for the decision-note,
   tripwire, safeguard, and process-record product surface.
 
-Current next move after PR 13:
+Current next move after PR 14:
 
 1. Do not run more paid Gate 4 calibration by default.
-2. Treat the PR13 dry surface as product-shaping evidence, not formal Gate 4
-   proof.
-3. Run a narrow selection-stability review before extraction or user-facing
-   promotion: the same 12-route packet, same gates, another reviewer, and a
-   1-3 total pressure selection.
+2. Treat the PR13 dry surface and PR14 stability review as product-shaping
+   evidence, not formal Gate 4 proof.
+3. Proceed to Batch 3a extraction planning, not extraction execution.
 4. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
    Step 8 Pressure Check, memo, or Observatory surfaces. It is not a new lane.
 5. Treat C-only OOD as one strong value mode, not the only value mode. The
    accepted product modes are `new_edge`, `grounded_double_down`,
    `confirmation`, and `coverage_transparency`.
-6. If extraction resumes after selection stability, keep it to targeted Batch
-   3a: `opportunity-cost`,
+6. Keep Batch 3a planning targeted to: `opportunity-cost`,
    `true-uncertainty-navigation`, `falsifiability`,
    `principal-agent-problem`, and `probabilistic-thinking`, extracting only
    Decision Pressure-ready operational constraints.
 7. Do not start broad Batch 3, live Lane 4 integration, or chat/memo promotion.
+8. Do not execute Batch 3a until an extraction brief defines per-model targets,
+   absence-record conditions, and validation rails.
 
 ---
 
