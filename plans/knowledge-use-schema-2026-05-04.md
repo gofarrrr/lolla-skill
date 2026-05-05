@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-05
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v3 compilation, and PR 11 Gate 4 harness are implemented; current frontier is the Decision Pressure surface spec
+**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is the manual Decision Pressure Observatory prototype
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -72,6 +72,12 @@ real. Future sessions should treat the following as current baseline:
   field quality and coverage honesty for the same compact surface, but does
   not justify a fourth pressure, Batch 3b, paid rerun, or runtime/user-facing
   promotion.
+- PR 18 prototyped the operator-facing Observatory trace in
+  `research/gate4-3case-decision-pressure-observatory-prototype-2026-05-05.md`:
+  prototype verdict `observatory_trace_clearer`. The trace shows the same three
+  pressures with provenance, source affordances, v4 contribution, suppressed
+  candidates, and the PhD competitive-dynamics coverage blank. It is a static
+  research artifact, not UI, runtime integration, or user-facing promotion.
 - External architecture reference: `gbrain` was reviewed as a mature
   memory/knowledge architecture. The handover in
   `research/gbrain-architecture-learning-handover-2026-05-05.md` captures the
@@ -90,17 +96,18 @@ real. Future sessions should treat the following as current baseline:
   decision-note, tripwire, safeguard, and process-record surface.
 
 The schema is still dormant for live `/lolla` behavior. No chat, memo, Pressure
-Check, or Lane 4 runtime promotion is justified after PR17. Decision Pressure
+Check, or Lane 4 runtime promotion is justified after PR18. Decision Pressure
 is not a new lane; it is a compact synthesis object that can feed Step 6, Step
 8 Pressure Check, memo, or Observatory. C-only OOD remains the strongest
 evidence mode, but not the only value mode; grounded double-down, confirmation,
 and coverage transparency can be product-worthy when concise, actionable, and
 dismissible. Batch 3a has now extracted the five targeted coverage patch
 records under the PR15 contract, and PR17 found that v4 sharpens the same
-Decision Pressure surface without changing selection. The next step, if any, is
-a tiny no-paid, manual Observatory-only prototype of the same three pressures
-with v4-sharpened fields and explicit coverage transparency. It should remain a
-static research artifact, not runtime integration.
+Decision Pressure surface without changing selection. PR18 then found that a
+manual Observatory trace is clearer when it shows provenance, suppression, and
+coverage transparency. The next step, if any, is a runtime-dormant
+`decision_pressure_trace` data-shape spec or implementation plan, not live
+Observatory integration.
 
 ---
 
@@ -1279,15 +1286,18 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation or more paid Gate 4 calibration.
-It is the Decision Pressure surface spec.
+It is the manual Decision Pressure Observatory prototype and the possible
+runtime-dormant trace data shape after that prototype.
 
 Current task:
 
-1. Use the existing 3-case artifacts and product readout.
-2. Define the compact Decision Pressure object.
-3. Define accepted value modes and rejection modes.
-4. Clarify that Decision Pressure is not a new lane or second public Pressure
-   Check.
+1. Preserve the three selected Decision Pressure clusters from PR13/PR14.
+2. Keep PR17's decision label: `v4_improves_fields_without_changing_selection`.
+3. Prototype the Observatory trace statically before any live implementation.
+4. Keep coverage transparency visible, especially the PhD competitive-dynamics
+   zero-output.
+5. If the prototype holds, define a runtime-dormant `decision_pressure_trace`
+   data shape before any UI or runtime work.
 5. Define field-level provenance, global compression, zero-output success, and
    action-delta requirements.
 6. Preserve coverage honesty and no-casuistry rails.
