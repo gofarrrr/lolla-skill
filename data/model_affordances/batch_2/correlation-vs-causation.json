@@ -1,0 +1,386 @@
+{
+  "model_id": "correlation-vs-causation",
+  "source_file": "Correlation_Vs_Causation_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "correlation-vs-causation.test-causal-claim-before-intervention",
+      "status": "supported",
+      "name": "Causal claims need mechanism and confounder proof",
+      "mechanism": "A visible association earns causal weight only when the answer names the hypothesized mechanism, tests the causal-chain links, identifies confounders, and qualifies or withholds intervention claims when the evidence is merely observational or incomplete.",
+      "activation_shape": {
+        "use_when": [
+          "A pattern, dashboard movement, or apparent association is being treated as proof of what drives an outcome.",
+          "The team is about to spend budget, trust, or operational focus on an intervention whose driver is still uncertain.",
+          "The evidence is observational, confounded, or incomplete but someone is framing the causal pathway as demonstrated."
+        ],
+        "do_not_use_when": [
+          "The job is only exploratory pattern spotting and no one is recommending an intervention or causal claim from the association.",
+          "The causal pathway has already been tested by a credible experiment or controlled analysis and the remaining work is execution.",
+          "Timely action must proceed from the best available correlation while uncertainty is plainly disclosed and no false causal certainty is claimed."
+        ],
+        "case_evidence_needed": [
+          "The observed variables or events being linked and the outcome the team wants to change.",
+          "The hypothesized mechanism by which one factor would produce or influence the other.",
+          "Potential confounding variables or alternative explanations that could make the association spurious.",
+          "The proposed intervention and what evidence would show it targets a true driver rather than a related signal."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "formulate-mechanism-hypothesis",
+          "description": "Before treating an association as causal, state the hypothesized mechanism, direction of effect, and causal-chain links that would have to be true.",
+          "evidence_required": [
+            "The observed association or metric movement being interpreted causally.",
+            "The proposed direction of causation between factor and outcome.",
+            "The mechanism by which the factor would produce or influence the outcome.",
+            "The causal-chain links that still need evidence."
+          ],
+          "good_output_shape": [
+            "Says explicitly that correlation alone is not causal proof.",
+            "Names the mechanism that would connect the factor to the outcome.",
+            "Separates tested causal links from hypothesized or missing links.",
+            "States what evidence would strengthen, weaken, or disprove the causal thesis."
+          ]
+        },
+        {
+          "requirement_id": "control-confounders-before-acting",
+          "description": "Identify plausible confounders and alternative explanations before recommending an intervention, then qualify the recommendation if the evidence cannot discriminate between them.",
+          "evidence_required": [
+            "Potential confounding variables in addition to the favored causal hypothesis.",
+            "Evidence showing whether the confounders were measured, controlled, or left open.",
+            "The proposed action and the causal claim it depends on."
+          ],
+          "good_output_shape": [
+            "Names the confounders that could make the association spurious.",
+            "Explains whether the evidence controls for those confounders.",
+            "Downgrades certainty, requests a test, or changes the intervention when confounding remains unresolved."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What mechanism would have to connect Factor A to Outcome B for this to be causal rather than merely associated?",
+        "What confounding variables must be identified or measured before we claim this driver caused the result?",
+        "Is this causal link necessary and sufficient, or are we treating correlation as proof?",
+        "If this hypothesis were disproved, what alternative explanation or next test would replace it?"
+      ],
+      "misuse_guards": [
+        "Do not treat a correlation, recent event, or dashboard movement as proof of a cause by itself.",
+        "Do not frame an observational, confounded, or incomplete evidence base as if the causal pathway were fully demonstrated.",
+        "Do not force a relationship where none has been shown; that sends the intervention toward the wrong issue.",
+        "Do not demand perfect causal modeling when strong correlation is the best available decision input and uncertainty is made explicit."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "a **statistical association is a necessary condition for causation, but it is not a sufficient condition**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "correlation alone does not prove that one causes the other.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "Before one can logically conclude that causation is present, one must explicitly **formulate hypotheses** about the **mechanisms** by which one factor causes the other.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "analysts must actively identify and measure all potential **confounding variables** in addition to those specified in the hypotheses to control for spurious correlations.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "Most useful when a pattern, dashboard movement, or apparent association is being treated as proof of what is driving the outcome.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "Works when acting on the wrong driver would waste time, budget, trust, or operational focus.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "Danger when the evidence base is observational, confounded, or incomplete, yet the recommendation is framed as if the causal pathway has been fully demonstrated.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "Is this causal link necessary and sufficient?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "correlation-vs-causation conflicts with simplification (simplification) when insistence on establishing causation blocks timely action in situations where strong correlation is the best available decision input.",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance owns causal-claim validity before intervention: mechanism proof, confound control, and uncertainty qualification when an association is being promoted into a driver.",
+        "dropped_material": [
+          "Kept the prediction-versus-causation tool choice as a boundary and treatment concern here rather than splitting it into a third affordance.",
+          "Kept outside-view/base-rate language out of this affordance except as causal-inference mitigation context."
+        ],
+        "open_questions": [
+          "Future runtime review should watch whether analytics-mode routing needs a separate record after experiments or forecasting records are compiled."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "correlation-vs-causation.trace-root-cause-machine",
+      "status": "supported",
+      "name": "Root-cause diagnosis traces the machine behind symptoms",
+      "mechanism": "When the presenting problem is loud or measurable, the answer should work backward from the effect through multiple possible causes and causes-of-causes, separate proximate events from root drivers, and design the intervention against the machine that produced the result rather than the visible symptom.",
+      "activation_shape": {
+        "use_when": [
+          "A symptom, latest event, or measurable outcome is being mistaken for the underlying driver.",
+          "The desired outcome failed and the team needs to understand the process or people system that produced it.",
+          "Several plausible causes could explain the effect and choosing one too early would make the treatment superficial."
+        ],
+        "do_not_use_when": [
+          "The causal driver has already been established and the remaining need is implementation sequencing.",
+          "The case only asks for prediction accuracy and does not require explaining why the outcome was produced.",
+          "The source evidence contains no specific effect, symptom, process, or candidate cause to trace."
+        ],
+        "case_evidence_needed": [
+          "The effect or problem the team is trying to explain.",
+          "The proximate event that happened immediately before the outcome and might be mistaken for the root cause.",
+          "Candidate causes, causes of causes, process design, or people factors that could have generated the outcome.",
+          "The proposed solution and how it changes the underlying machine rather than only the symptom."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-causes-before-choosing-driver",
+          "description": "Work backward from the effect through multiple plausible causes and causes-of-causes before committing to a single causal story.",
+          "evidence_required": [
+            "The problem, effect, or outcome to explain.",
+            "Multiple candidate causes for the effect.",
+            "Evidence that distinguishes immediate triggers from deeper causes.",
+            "Any causes-of-causes that would explain why the candidate driver appeared."
+          ],
+          "good_output_shape": [
+            "Lists multiple candidate causes rather than selecting the first visible one.",
+            "Works backward from the effect to causes and causes-of-causes.",
+            "Names what evidence would make one candidate cause more credible than the others."
+          ]
+        },
+        {
+          "requirement_id": "target-machine-not-case-at-hand",
+          "description": "Separate the immediate case response from the underlying machine diagnosis, then make the intervention target the process design or people factors that generated the result.",
+          "evidence_required": [
+            "The case-at-hand action the team is tempted to take now.",
+            "The process design, people factors, or machine-level structure that produced the outcome.",
+            "The proposed intervention and how it changes that underlying structure."
+          ],
+          "good_output_shape": [
+            "Separates what to do now from why the outcome was produced.",
+            "Explains the machine-level cause rather than only the visible symptom.",
+            "Shows how the treatment changes the underlying driver so the problem is less likely to recur."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the proximate cause, and what underlying root cause would make it happen again?",
+        "What multiple causes and causes of causes could be responsible for this effect?",
+        "Which process design or people factors produced the outcome?",
+        "Is the proposed solution targeting the true cause or merely a symptom?"
+      ],
+      "misuse_guards": [
+        "Do not stop at the event that happened immediately before the outcome if it is only proximate.",
+        "Do not focus solely on the case-at-hand when the machine that produced the result remains undiagnosed.",
+        "Do not chase a visible symptom or related variable as the solution for future outcomes.",
+        "Do not let causal diagrams become so complicated that they obscure the actionable question."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "The model's primary purpose is to ensure that when solving a problem, one correctly identifies the underlying factor that truly needs to be addressed, rather than merely addressing a symptom or related variable.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "This involves striving to separate the **proximate cause** (what happened immediately before) from the **root cause** (the true underlying driver).",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "This \"machine\" represents the underlying causal structure",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "Focusing solely on the *case-at-hand* (the correlation or outcome) without diagnosing the *machine* (the causal structure) leads to micromanagement and prevents true learning.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "ensure that diagnoses and subsequent interventions target generative mechanisms, not superficial connections.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "It provides a visual structure to identify **multiple potential causes** for a given problem or effect.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "work backward to flesh out a blueprint of specific factors (causes and causes of causes) that might be responsible.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "move past surface-level symptoms and determine the **root cause**.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "Is the proposed solution targeting the true cause or merely a symptom?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance is structurally distinct from causal-claim proof: it is about tracing the machine/root cause behind a symptom so treatment targets the generative mechanism, not merely proving that an association is causal.",
+        "dropped_material": [
+          "Did not split fishbone diagrams and Five Whys into separate affordances because both serve the same backward-tracing root-cause contract.",
+          "Did not promote general systems-thinking relation material into this affordance beyond the source-backed machine diagnosis."
+        ],
+        "open_questions": [
+          "Future relation review may decide whether root-cause-analysis deserves a dedicated neighboring record; this extraction only preserves the correlation-vs-causation version."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-base-rates-reference-class-anchor",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source briefly invokes the outside view/base rate as mitigation for causal-inference bias, but this record must not duplicate pilot/base-rates. Base-rates owns reference-class and denominator anchoring; correlation-vs-causation owns causal claim validity, intervention logic, confounding, and mechanism proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "anchor first to the **outside view**",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "what is generally true in the world (the base rate)",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-prediction-versus-causation-tool-routing",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports asking whether the job is causal explanation or prediction, but extracting this as a third affordance would mostly restate the causal-claim affordance's activation boundary. In this pass it remains a treatment and misuse-guard concern inside causal proof rather than a separate analytics-routing contract.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "the most important defining question at the outset is whether you are primarily trying to understand the **drivers of causation** (how much each element contributes and in what direction) or if you are primarily trying to predict a future state.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Correlation_Vs_Causation_rag.md",
+          "source_quote": "Understanding causation drivers leads toward statistical analysis and experiments, while prediction leads toward forecasting models and machine learning.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Correlation_Vs_Causation_rag.md",
+      "source_quote": "a **statistical association is a necessary condition for causation, but it is not a sufficient condition**",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Correlation_Vs_Causation_rag.md",
+      "source_quote": "Logical reasoning in problem-solving requires rigorously testing the links in the **causal chain** of reasoning and insisting on evidence to back up each link.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Correlation_Vs_Causation_rag.md",
+      "source_quote": "ensure that diagnoses and subsequent interventions target generative mechanisms, not superficial connections.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Correlation_Vs_Causation_rag.md",
+      "source_quote": "Most useful when a pattern, dashboard movement, or apparent association is being treated as proof of what is driving the outcome.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full Correlation_Vs_Causation_rag.md source, the main activation curation, intervention semantics, relation semantics, PR 9 Batch 2 selection notes, the schema, and pilot/base-rates. Extracted two affordances: causal claim proof before intervention, and machine/root-cause tracing behind symptoms. Explicit boundary with base-rates: base-rates is reference-class and denominator anchoring before case-specific updating; correlation-vs-causation is causal claim validity, intervention logic, confounding, and mechanism proof.",
+    "dropped_material": [
+      "Did not create a standalone base-rates or outside-view affordance because that would duplicate pilot/base-rates rather than preserve this model's causal-validity contract.",
+      "Did not create a third affordance for prediction-versus-causation tool routing; the source supports it as a boundary for causal proof, but not enough separate treatment beyond experiment/statistical-analysis versus forecasting choice.",
+      "Did not split fishbone diagrams, Five Whys, and machine-level diagnosis into separate affordances because they all serve one root-cause tracing contract.",
+      "Did not promote relation-only material for systems-thinking, experimentation, confirmation-bias, or simplification into standalone affordances."
+    ],
+    "open_questions": [
+      "Reviewer should confirm whether the prediction-versus-causation tool-choice material remains best as an absence record until experimentation and forecasting-adjacent records are extracted.",
+      "Future relation review may connect this record to experimentation, systems-thinking, confirmation-bias, and root-cause-analysis without making those relations runtime affordances."
+    ],
+    "review_status": "draft"
+  }
+}

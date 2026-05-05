@@ -1,0 +1,368 @@
+{
+  "model_id": "law-of-large-numbers",
+  "source_file": "Law_of_Large_Numbers_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "law-of-large-numbers.repeated-sample-stability-before-inference",
+      "status": "supported",
+      "name": "Repeated-sample stability before inference",
+      "mechanism": "Treat observations as samples from a population: before inferring a stable pattern, require enough repeated, comparable observations for noise to cancel and the sample estimate to approach the population signal; downgrade anecdotes, scraps, and single outcomes to evidence gaps.",
+      "activation_shape": {
+        "use_when": [
+          "A conclusion is being drawn from anecdotes, vivid stories, tiny samples, scraps, or a single event.",
+          "Individual cases are volatile enough that repeated observations could reveal the signal beneath noise.",
+          "The decision needs probabilistic estimates, fair-bet judgment, or conditional probabilities derived from experiments and sampling.",
+          "A team needs enough facts to prove or disprove a hypothesis without pretending one observation is the population pattern."
+        ],
+        "do_not_use_when": [
+          "The issue is choosing an outside-view reference class or prior probability rather than auditing sample size and repeated observations.",
+          "No meaningful repeated observations, comparable cases, or population sampling frame can be named.",
+          "The sample is already known to be biased, non-comparable, or drawn from the wrong population, so sample-size confidence would mislead.",
+          "The decision is dominated by tail outcomes that an average or sample mean would hide."
+        ],
+        "case_evidence_needed": [
+          "The population or process being inferred about and the unit of observation being sampled.",
+          "The number of observations, repeated trials, experiments, or cases behind the claim.",
+          "The statistic or pattern being inferred, such as a mean, rate, frequency, conditional probability, or stable signal.",
+          "The anecdote, vivid story, scrap, or single outcome currently carrying too much inferential weight.",
+          "The additional observations or decision threshold that would make the inference stable enough to act."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-sample-population-and-n",
+          "description": "Before treating a pattern as stable, name the target population, the sampled observations, the sample size or repetition count, and the statistic being inferred.",
+          "evidence_required": [
+            "The population or process the answer is making a claim about.",
+            "The sample, repeated observations, experiments, or cases being used as evidence.",
+            "The sample size or repetition count, stated plainly rather than implied by confidence.",
+            "The mean, rate, frequency, conditional probability, or pattern being estimated from the sample."
+          ],
+          "good_output_shape": [
+            "States what population the observations are supposed to represent.",
+            "Names the actual sample size or repeated-observation count behind the claim.",
+            "Separates a stable sample estimate from an anecdote, scrap, or single memorable case.",
+            "Refuses stable-inference language when the evidence base is too small for the decision."
+          ]
+        },
+        {
+          "requirement_id": "downgrade-tiny-samples-to-gaps",
+          "description": "When the evidence is a tiny sample, single outcome, or few scraps, lower confidence, ask for repeated observations, and frame the current claim as a hypothesis rather than a population-level conclusion.",
+          "evidence_required": [
+            "The current conclusion being drawn from limited observations.",
+            "The exact observations, anecdotes, or scraps that are carrying the conclusion.",
+            "The uncertainty created by the limited sample size or lack of repetition.",
+            "The next observation, sampling step, or evidence threshold that would test the hypothesis."
+          ],
+          "good_output_shape": [
+            "Labels limited observations as a noisy sample rather than a true score.",
+            "Turns overconfident conclusions into hypotheses or evidence gaps.",
+            "Asks for repeated observations where the source supports sample-size correction.",
+            "Avoids inventing a universal numeric threshold that the source does not provide."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "How many comparable observations are actually behind this claim, and what population are they supposed to represent?",
+        "Are we treating one memorable event as the true score, or only as one noisy sample?",
+        "What repeated observations would make the inference stable enough to act?",
+        "Which conclusion should be downgraded because the evidence is only scraps, anecdotes, or a tiny sample?"
+      ],
+      "misuse_guards": [
+        "Do not treat small samples as if they closely resemble the population from which they are drawn.",
+        "Do not turn vivid stories, single outcomes, or scraps of evidence into population-level certainty.",
+        "Do not use this affordance as a duplicate of base-rates; base-rates anchors to reference-class priors, while this asks whether repeated observations are enough for inference stability.",
+        "Do not use sample-size language when the sample is biased, mismatched, or structurally unlike the decision population."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "The LLN stipulates that the **larger the sample size (N), the more likely it is that the sample mean will converge to the true mean of the underlying population**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "These single observations must be regarded as mere samples from a population, subject to error. As the sample size grows, the assessment becomes clearer and more reliable, revealing the \"true score\".",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "The LLN informs strategic thinking by ensuring decisions are grounded in representative data rather than anecdotal evidence or single-event outcomes.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "This mathematical discipline is required to calculate fair bets and estimate the value of different options by using conditional probabilities derived from experiments and sampling.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "collect enough facts to prove or disprove a hypothesis, avoiding the tendency to \"boil the ocean\" with unnecessary data.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "The model is strongest when scale itself is the missing correction.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "It adds value when individual cases are too volatile to support confident judgment.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "This cognitive bias manifests as a \"strong bias toward believing that small samples closely resemble the population from which they are drawn\".",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "This bias leads to \"exaggerated faith\" in conclusions drawn from limited observations.",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance keeps LLN on aggregation requirements: repeated observations, sample size, and inference stability before the answer earns confidence.",
+        "dropped_material": [
+          "Did not promote reference-class forecasting here; that is handled as a duplicate absence because base-rates owns prior/reference-class anchoring.",
+          "Did not turn the source's broad statistical-reasoning language into generic advice; every treatment requirement changes sample evidence or confidence."
+        ],
+        "open_questions": [
+          "Reviewer should confirm whether future runtime packets need a numeric sample-size threshold from a stronger statistical source; this source supports the direction of correction but not a universal cutoff."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "law-of-large-numbers.population-and-distribution-fit-before-large-n-confidence",
+      "status": "supported",
+      "name": "Population and distribution fit before large-N confidence",
+      "mechanism": "Large samples earn confidence only when the observations come from the population and distribution the decision will face. Before relying on an average or large-N result, test for biased, non-comparable, or wrong-population sampling and inspect ranges or tail outcomes so mean convergence does not hide decision-dominating risk.",
+      "activation_shape": {
+        "use_when": [
+          "A team is invoking large-sample evidence, historical data, averages, or sample-size confidence to justify a decision.",
+          "The sample may be biased, non-comparable, or structurally mismatched to the real decision population.",
+          "A mean, base case, or average outcome could hide outcomes far outside the mean.",
+          "Simulations, ranges, or distributional evidence are available and could change the decision."
+        ],
+        "do_not_use_when": [
+          "The case has not yet met the basic repeated-observation requirement, so the first question is sample-size sufficiency.",
+          "The only requested move is to anchor a forecast to a historical reference-class prior, which belongs to base-rates.",
+          "Fat-tailed rare extremes dominate the outcome so strongly that large-sample averages should be handed to black-swan or tail-risk treatment.",
+          "The source population, bias conditions, and distribution shape cannot be inspected even provisionally."
+        ],
+        "case_evidence_needed": [
+          "The sample source and the target population or decision context it is supposed to represent.",
+          "Evidence about bias, comparability, structural match, or non-comparability between the sample and the decision.",
+          "The mean, base case, average, or central estimate being used to justify confidence.",
+          "The distributional range, simulation output, tail outcomes, or worst-case evidence that could change the recommendation.",
+          "The decision consequence if the sample is wrong-population evidence or if the average hides tail risk."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "verify-population-match-before-confidence",
+          "description": "Before accepting large-N confidence, compare the sample population with the real decision population and name the bias, non-comparability, or structural mismatch that would block promotion.",
+          "evidence_required": [
+            "The population, dataset, historical sample, or repeated observations being used.",
+            "The real decision population, context, or process the evidence must represent.",
+            "The comparability assumptions that make the sample relevant.",
+            "The bias, non-comparability, or structural mismatch that would make the sample misleading."
+          ],
+          "good_output_shape": [
+            "States why the sample is population-matched or why match is uncertain.",
+            "Names the specific bias or mismatch instead of treating large N as automatic validity.",
+            "Blocks or downgrades the recommendation when the sample is structurally unlike the real decision.",
+            "Keeps aggregation validity separate from reference-class prior selection."
+          ]
+        },
+        {
+          "requirement_id": "stress-average-with-distribution",
+          "description": "Before using the mean or base case as the decision anchor, inspect the range, tail outcomes, and simulation evidence that show whether outcomes far from the mean should control the recommendation.",
+          "evidence_required": [
+            "The mean, average, base case, or central estimate being relied on.",
+            "The relevant distribution, range, standard-deviation, simulation, or historical spread evidence.",
+            "The worst-case or far-from-mean outcome that could make the central estimate unsafe.",
+            "The decision change required if tails or distribution shape matter more than the mean."
+          ],
+          "good_output_shape": [
+            "States the mean or base case without treating it as the whole distribution.",
+            "Shows the range or tail outcomes that matter to the decision.",
+            "Uses simulations or distributional evidence where available to test the central estimate.",
+            "Hands off to tail-risk treatment when rare extremes dominate and LLN averages would mask the risk."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What population generated this large sample, and is it the same population the decision will face?",
+        "Which bias, non-comparability, or structural mismatch would make large-N confidence fake reassurance?",
+        "What is hidden by the mean or base case: tail outcomes, far-from-mean results, or a worst case that could become expected?",
+        "Would simulations, ranges, or the full distribution change the recommendation?"
+      ],
+      "misuse_guards": [
+        "Do not invoke sample-size confidence when the sample is biased, non-comparable, or structurally mismatched to the real decision.",
+        "Do not let the mean outcome or base case stand in for the full distribution.",
+        "Do not use large-sample averages to mask fat-tailed distributions where rare extremes dominate the outcome.",
+        "Do not collapse this into base-rates; this guard audits whether aggregation evidence is valid before any prior or frequency receives weight."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "The model fails when teams invoke sample size confidence even though the sample is biased, non-comparable, or structurally mismatched to the real decision.",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "When analyzing data distributions, particularly for large or complex projects, a common error is placing too much emphasis on the mean outcome (the \"base case\").",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "Actionable strategy demands placing **sufficient weight on outcomes that are far outside the mean** (one or two standard deviations away).",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "Employ simulations to systematically explore and highlight the full range of possible outcomes and their distributions.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "law-of-large-numbers conflicts with black-swan-events (black swan events) when reliance on large-sample averages masks fat-tailed distributions where rare extremes dominate the outcome.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance preserves source-backed limits on large-N confidence: correct population matching and distribution awareness are validity checks on aggregation, not standalone forecasting doctrine.",
+        "dropped_material": [
+          "Did not create a separate black-swan affordance; the tail language is retained only as a misuse guard and handoff condition for LLN averages.",
+          "Did not promote general simulation advice outside the specific mean-trap and distribution-check context supported by the source."
+        ],
+        "open_questions": [
+          "Reviewer should check the boundary with statistical-discipline and black-swan-events; this record should remain an aggregation-validity guard."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "reference-class-prior-anchor-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source mentions reference-class forecasting and base rates, but data/model_affordances/pilot/base-rates.json already owns the outside-view prior and reference-class anchoring contract. LLN should preserve the large-sample prerequisite and aggregation-validity checks rather than duplicating denominator anchoring.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "A powerful heuristic derived from observing large samples (history) is reasoning by analogy using \"reference classes\".",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "Bayesian statistics requires a prior probability (base rate) to be established before new evidence is incorporated.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "These reliable base rates must be derived from large samples",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-expertise-through-quantity-affordance",
+      "status": "source_too_thin",
+      "reason": "The source offers quality-through-quantity and expertise accumulation as relation context, but it does not supply a reusable runtime diagnostic or treatment requirement distinct from the repeated-observation stability affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "The LLN implicitly supports the idea of \"Quality Comes from Quantity\" in creative endeavors, where those who produce the best work are almost invariably those who produce the most work.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Law_of_Large_Numbers_rag.md",
+      "source_quote": "The LLN stipulates that the **larger the sample size (N), the more likely it is that the sample mean will converge to the true mean of the underlying population**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Law_of_Large_Numbers_rag.md",
+      "source_quote": "It adds value when individual cases are too volatile to support confident judgment.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Law_of_Large_Numbers_rag.md",
+      "source_quote": "The model fails when teams invoke sample size confidence even though the sample is biased, non-comparable, or structurally mismatched to the real decision.",
+      "section_hint": "Weaknesses and Common Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Law_of_Large_Numbers_rag.md",
+      "source_quote": "Actionable strategy demands placing **sufficient weight on outcomes that are far outside the mean** (one or two standard deviations away).",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted two affordances because the source has one positive aggregation requirement and one validity guard for large-N confidence. Explicit differentiation from data/model_affordances/pilot/base-rates.json: base-rates anchors forecasts, diagnoses, budgets, or estimates to historical reference-class priors and denominators; law-of-large-numbers asks whether repeated observations are numerous and comparable enough for inference stability, and whether large-N confidence is blocked by wrong-population sampling or mean/tail misuse.",
+    "dropped_material": [
+      "Did not extract reference-class forecasting as its own affordance because the pilot base-rates record already covers outside-view reference-class anchoring; LLN keeps only the large-sample reliability prerequisite.",
+      "Did not extract quality-through-quantity or expertise accumulation as a runtime affordance because the source does not provide a distinct operational contract.",
+      "Did not create a third affordance, so the PR 9 structural differentiation test is not triggered."
+    ],
+    "open_questions": [
+      "Reviewer should check whether the second affordance belongs partly in statistical-discipline or black-swan-events; it is intentionally scoped as a guard on large-N inference, not generic distribution analysis.",
+      "Runtime handoff should prefer base-rates when the needed move is reference-class denominator anchoring, and prefer law-of-large-numbers when the needed move is sample-size, repeated-observation, or aggregation-validity audit."
+    ],
+    "review_status": "draft"
+  }
+}

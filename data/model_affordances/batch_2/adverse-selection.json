@@ -1,0 +1,215 @@
+{
+  "model_id": "adverse-selection",
+  "source_file": "Adverse Selection_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "adverse-selection.verify-hidden-type-selection",
+      "status": "supported",
+      "name": "Hidden-type sorting requires pre-commitment filters",
+      "mechanism": "When private information about quality, risk, or intent can make worse counterparts self-select into a transaction, treat the decision as a sorting problem: identify the hidden type, show how pricing, access, or policy attracts it, and require screening, signaling, or filtering before commitment.",
+      "activation_shape": {
+        "use_when": [
+          "One side may know more about quality, risk, or intent than the other.",
+          "Hidden information can cause the worse option to self-select into the transaction.",
+          "Pricing, access, or policy design could attract the cases the system is least able to handle well."
+        ],
+        "do_not_use_when": [
+          "The problem is better explained by incentives, execution quality, or poor process design rather than adverse selection.",
+          "The case only says information is missing; it does not show a selection mechanism that sorts good and bad counterparts.",
+          "The commitment is not affected by screening, signaling, filtering, pricing, access, or policy design before counterpart selection."
+        ],
+        "case_evidence_needed": [
+          "Which side has private information about quality, risk, or intent and what hidden type would change the decision.",
+          "How the worse option would self-select into the transaction or pool under current pricing, access, or policy design.",
+          "What screening, signaling, or filtering separates good counterparts from bad ones before commitment."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-hidden-type",
+          "description": "Identify the hidden quality, risk, or intent that one side can observe better than the other, and state why that hidden type would change the transaction, access, pricing, or policy decision.",
+          "evidence_required": [
+            "The side that may know more about quality, risk, or intent.",
+            "The hidden type or private information that would change the decision.",
+            "The transaction, policy, access, or pricing choice exposed to that private information."
+          ],
+          "good_output_shape": [
+            "Names the hidden type instead of saying only that information is asymmetric.",
+            "Connects the hidden type to the decision at stake.",
+            "Separates adverse selection from generic uncertainty or missing data."
+          ]
+        },
+        {
+          "requirement_id": "trace-selection-path",
+          "description": "Show the causal path by which current pricing, access, policy, or commitment rules would draw in lower-quality or higher-risk counterparts rather than a representative mix.",
+          "evidence_required": [
+            "The current pricing, access, policy, or commitment design.",
+            "Which worse option or high-risk case would be more likely to enter under that design.",
+            "Why better counterparts would be less likely to enter or would be harder to distinguish."
+          ],
+          "good_output_shape": [
+            "Explains how private information distorts the selected pool.",
+            "States the expected direction of selection, such as worse quality, higher risk, or poorer intent.",
+            "Makes the attraction mechanism visible before recommending a fix."
+          ]
+        },
+        {
+          "requirement_id": "specify-filter-before-commitment",
+          "description": "Require a concrete screening, signaling, or filtering move before commitment, and say how it separates good counterparts from bad ones without merely requesting more information.",
+          "evidence_required": [
+            "The commitment that should wait for sorting evidence.",
+            "The proposed screening, signaling, or filtering mechanism.",
+            "How that mechanism distinguishes good counterparts from bad ones."
+          ],
+          "good_output_shape": [
+            "Names the filter or signal that changes the decision before commitment.",
+            "Explains what evidence would pass or fail the filter.",
+            "Avoids treating a broad call for diligence as an adverse-selection treatment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which side may know more about quality, risk, or intent than the other?",
+        "What worse option could self-select into the transaction under the current design?",
+        "What screening, signaling, or filtering separates good counterparts from bad ones before commitment?"
+      ],
+      "misuse_guards": [
+        "Do not call a problem adverse selection until the hidden-information selection mechanism is verified.",
+        "Do not blame hidden information when incentives, execution quality, or poor process design better explain the failure.",
+        "Do not collapse this into generic information asymmetry; the record needs hidden type plus self-selection into the pool before commitment."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "Adverse-selection-style reasoning is strongest when hidden information can cause the worse option to self-select into the transaction.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "The model matters when the real decision is how to separate good counterparts from bad ones before commitment.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "It adds value when pricing, access, or policy design could unintentionally attract the very cases the system is least able to handle well.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "The model misfires when analysts blame hidden information even though the real issue is incentives, execution quality, or poor process design rather than adverse selection itself.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "medium",
+      "review_notes": {
+        "normalization_note": "Kept one operational affordance because the source supports hidden-type self-selection, pre-commitment sorting, and pricing/access/policy attraction, but not multiple independent adverse-selection behaviors.",
+        "dropped_material": [
+          "Did not split screening, signaling, filtering, pricing, access, and policy into separate affordances because they all serve the same hidden-type sorting mechanism.",
+          "Did not preserve broad mental-model, logic-tree, outside-view, or decision-hygiene material as adverse-selection affordances unless it tightened the hidden-information selection test."
+        ],
+        "open_questions": [
+          "The source opening says adverse selection is not explicitly defined in the provided sources, so reviewer attention should focus on whether supported/medium is preferable to weak_support for this proxy-derived but operationally specific record."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-information-asymmetry-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "A broad unequal-knowledge or party-controlled-evidence affordance is already represented in the Batch 1 information-asymmetry record. This adverse-selection record should promote only the narrower hidden-type self-selection mechanism.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "Assuming Asymmetry Without Verifying the Selection Mechanism",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "Adverse-selection-style reasoning is strongest when hidden information can cause the worse option to self-select into the transaction.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-decision-hygiene-affordances",
+      "status": "not_supported_by_source",
+      "reason": "Most of the file discusses mental models and decision hygiene in general. That material may support other records, but it does not support additional adverse-selection affordances unless tied to hidden type, selection, and pre-commitment sorting.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "The term \"Adverse Selection\" is not explicitly defined or discussed in the provided sources.",
+          "section_hint": "unknown_section",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "This briefing, therefore, focuses on synthesizing the mechanisms, applications, and risk mitigation strategies associated with **mental models** and **decision hygiene** within complex systems, which address the root causes (uncertainty, information asymmetry, and bias) that Adverse Selection models seek to resolve [i].",
+          "section_hint": "unknown_section",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Adverse Selection_rag.md",
+      "source_quote": "Adverse-selection-style reasoning is strongest when hidden information can cause the worse option to self-select into the transaction.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Adverse Selection_rag.md",
+      "source_quote": "The model matters when the real decision is how to separate good counterparts from bad ones before commitment.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Adverse Selection_rag.md",
+      "source_quote": "The model misfires when analysts blame hidden information even though the real issue is incentives, execution quality, or poor process design rather than adverse selection itself.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Adverse Selection_rag.md",
+      "source_quote": "The term \"Adverse Selection\" is not explicitly defined or discussed in the provided sources.",
+      "section_hint": "unknown_section",
+      "extraction_type": "review_note",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full adverse-selection source, main curation record, intervention and relation semantic curation, PR 9 Batch 2 selection notes, the schema, and the Batch 1 information-asymmetry contrast. The record preserves adverse selection as hidden-type self-selection before commitment rather than a generic information-asymmetry or decision-hygiene model.",
+    "dropped_material": [
+      "Did not create a second affordance for general problem structuring, outside-view anchoring, multiple models, logic trees, or hypothesis-driven analysis because those are proxy decision-hygiene content in this source.",
+      "Did not duplicate Batch 1 information-asymmetry material about party-controlled dashboards, pilots, references, tacit expert knowledge, or generic unequal knowledge.",
+      "Did not create a third affordance; the source does not support a third structurally distinct operational contract for adverse selection."
+    ],
+    "open_questions": [
+      "Reviewer should confirm whether the proxy-derived source note warrants downgrading the top-level status from supported to weak_support despite the explicit adverse-selection use bullets.",
+      "Future relation review may connect this record to moral-hazard or principal-agent-problem, but this extraction keeps post-commitment incentive drift out of scope."
+    ],
+    "review_status": "draft"
+  }
+}

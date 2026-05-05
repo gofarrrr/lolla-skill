@@ -1,0 +1,508 @@
+{
+  "model_id": "empathy",
+  "source_file": "Empathy_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "empathy.ground-reframing-in-stakeholder-evidence",
+      "status": "supported",
+      "name": "Stakeholder reframing requires lived-context evidence",
+      "mechanism": "Before a human-centered problem is reframed or a solution is tuned for adoption, the answer must require evidence from the stakeholder's actual context, language, behavior, and say-do tensions rather than relying on assumed motives or a decision already made.",
+      "activation_shape": {
+        "use_when": [
+          "Hidden user, stakeholder, or teammate constraints may determine whether the solution is trusted, adopted, or resisted.",
+          "The problem is complex, ill-understood, and human-centered enough that the stakeholder's perspective could change the problem definition.",
+          "Observation, interviews, immersion, or reflection can challenge assumptions before the team locks in the decision."
+        ],
+        "do_not_use_when": [
+          "The decision is already set and empathy language would merely decorate the chosen answer.",
+          "The case has no identifiable user, stakeholder, teammate, audience, or adoption pathway whose perspective could change the work.",
+          "The available evidence is only demographic stereotype or average-user assumption, with no behavior, context, language, or validation evidence."
+        ],
+        "case_evidence_needed": [
+          "Observed stakeholder behavior in actual context, not only reported preferences or internal assumptions.",
+          "Interview, immersion, or reflection evidence about how the stakeholder thinks, feels, speaks, acts, fears, hopes, and defines success.",
+          "Specific tensions, contradictions, or disconnects between what stakeholders say, do, need, or resist."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "collect-context-before-reframing",
+          "description": "Before reframing the problem, require observation, interview, or immersion evidence that shows how the stakeholder behaves, thinks, feels, and uses language in context.",
+          "evidence_required": [
+            "Who the relevant user, stakeholder, teammate, or audience is.",
+            "What was observed, asked, or experienced in the stakeholder's actual context.",
+            "The stakeholder's language, motivations, constraints, fears, hopes, or behavior patterns."
+          ],
+          "good_output_shape": [
+            "States what lived-context evidence is missing before treating the solution as stakeholder-centered.",
+            "Uses the stakeholder's perspective to revise the problem statement or adoption hypothesis.",
+            "Avoids substituting internal assumptions or demographics for perspective-taking evidence."
+          ]
+        },
+        {
+          "requirement_id": "synthesize-say-do-tensions",
+          "description": "Turn empathy evidence into an operational reframing by separating what stakeholders think, feel, say, do, hear, see, fear, and want, then naming the tensions that reveal unmet needs.",
+          "evidence_required": [
+            "Separate evidence for what stakeholders say and what they actually do.",
+            "Pains, gains, fears, hopes, or language that reveal motivation beyond surface explanation.",
+            "A contradiction, disconnect, or unexpected insight that would change the problem definition."
+          ],
+          "good_output_shape": [
+            "Identifies the tension or disconnect rather than summarizing stakeholder sentiment.",
+            "Explains how the tension changes the problem frame, success criterion, or adoption risk.",
+            "Names the unmet need or unexpected insight the treatment should address."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What did observation, interview, or immersion reveal about this stakeholder's actual context and language?",
+        "What tensions, contradictions, or disconnects exist between what the user says and what they do?",
+        "Which hidden user, stakeholder, or teammate constraint will determine trust, adoption, or resistance?",
+        "Is empathy challenging the team's assumptions before the decision is set, or merely decorating a predetermined answer?"
+      ],
+      "misuse_guards": [
+        "Do not treat warmth, affinity, or concern as evidence that the stakeholder's perspective has been understood.",
+        "Do not base personas or reframing only on demographics such as age or occupation when the source warns that this can become stereotyping.",
+        "Do not center only the average user when the goal is to challenge assumptions; seek atypical needs when they may reveal unexpected insights.",
+        "Do not let assumed motivations get selectively read to fit prior narratives."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "The primary purpose of empathy as a mental model is to **understand the problem from the perspective of the user** or stakeholder.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Directly observing and recording how users behave in their actual context.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Engaging users to explore how they think and feel about the problem.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Physically embedding oneself in the user's context to develop a deep, personal understanding of their experience.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "The analytical step involves identifying **tensions, contradictions, or disconnects** (e.g., between what they say and what they do) to extract needs and unexpected insights.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "hidden user, stakeholder, or teammate constraints will determine whether a solution is trusted, adopted, or resisted.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "interviews, observation, and reflection are being used to challenge assumptions rather than merely decorate a decision that is already set.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Focusing empathy exclusively on the \"average user\" (the \"bulge at the center of the bell curve\") is an anti-pattern that tends to confirm existing assumptions rather than generating truly innovative ideas.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance keeps empathy operational by requiring stakeholder evidence before reframing, with empathy-map tensions as the conversion point from perspective-taking data to treatment.",
+        "dropped_material": [
+          "Did not split participant observation, interviews, immersion, empathy maps, and extreme users into separate affordances because they serve the same source-backed evidence-to-reframing mechanism.",
+          "Did not promote trust, caring, or warmth unless they are tied to perspective evidence that can change the problem frame or adoption risk."
+        ],
+        "open_questions": [
+          "Reviewer should confirm whether extreme-user sampling should stay a misuse guard or become a later sub-affordance if runtime cases repeatedly need it."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "empathy.confirm-reflection-before-treatment",
+      "status": "supported",
+      "name": "Empathic reflection requires confirmation, not diagnosis",
+      "mechanism": "When a stakeholder expresses frustration, emotion, pain, or desire, the answer must validate the experience, reflect the inferred feeling as a guess, and ask for correction before moving into advice, persuasion, or feature-centered treatment.",
+      "activation_shape": {
+        "use_when": [
+          "The case involves a stakeholder, client, teammate, or audience whose emotions, intentions, or experience affect whether the response will land.",
+          "The next move is communication, support, persuasion, consulting, sales, leadership, or conflict response rather than purely technical optimization.",
+          "The answer needs to fit the person's actual mental model, language, fear, motivation, pain, or desired end result."
+        ],
+        "do_not_use_when": [
+          "The response would label another person's emotion as fact without giving them a chance to confirm or correct it.",
+          "The communication problem is actually a standards, trade-off, boundary, or incentive problem that needs direct treatment before emotional resonance.",
+          "The proposed message uses apparent understanding to steer the narrative through omitted or distorted information."
+        ],
+        "case_evidence_needed": [
+          "The speaker's expressed concern, emotion, intention, frustration, hope, fear, pain, or desired outcome.",
+          "The exact language or framing the stakeholder uses for the problem they are motivated to solve.",
+          "A point in the interaction where confirmation or correction can happen before advice or persuasion proceeds."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "reflect-as-confirmable-guess",
+          "description": "Frame the emotional read as a tentative reflection, use emotion words or paraphrase, and include a confirmation question so the stakeholder can correct the interpretation.",
+          "evidence_required": [
+            "The stakeholder's statement, concern, or behavior that suggests an emotional or experiential read.",
+            "The inferred emotion, intention, or experience being reflected.",
+            "The confirmation question or correction path that prevents authoritative diagnosis."
+          ],
+          "good_output_shape": [
+            "Acknowledges the stakeholder's experience before advice or persuasion.",
+            "Labels the emotion or paraphrases the concern as a guess rather than a verdict.",
+            "Invites correction explicitly before building the next recommendation on that read."
+          ]
+        },
+        {
+          "requirement_id": "fit-message-to-pain-desire-language",
+          "description": "Shape the communication around the stakeholder's pain, fear, hope, dream, desire, language, and end result instead of leading with product features or expert abstractions.",
+          "evidence_required": [
+            "The stakeholder's own language for the frustration, motivation, or desired outcome.",
+            "The pain, fear, hope, dream, desire, or end result the response must connect to.",
+            "The feature, advice, or expert framing that may need translation into the stakeholder's terms."
+          ],
+          "good_output_shape": [
+            "Uses the stakeholder's language and desired end result as the organizing frame.",
+            "Connects the advice, offering, or intervention to the problem they are motivated to solve.",
+            "Avoids leading with features, abstract expertise, or information the audience cannot act on."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What emotion, intention, or experience should be reflected as a guess rather than diagnosed as fact?",
+        "What confirmation question lets the speaker correct the interpretation before treatment proceeds?",
+        "Which pains, fears, hopes, dreams, desires, and exact language should shape the next message?",
+        "What do I want the audience to Think, Feel, and Do?"
+      ],
+      "misuse_guards": [
+        "Do not offer premature advice or judgment before acknowledging the emotional concern the source says is crucial.",
+        "Do not confuse empathetic reflection with authoritative mind-reading; the reflection must be confirmable.",
+        "Do not use emotional resonance to manipulate by adding or withholding information to force a desired narrative.",
+        "Do not solve for product-feature clarity when the stakeholder is motivated by an end result, pain, fear, hope, or desire."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "empathy requires \"validating\" the speaker by showing respect and acknowledgment of their experience, intentions, and emotions, even if those emotions are not rational.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "This involves predicting and sharing the speaker’s feelings by using emotion words (e.g., \"you seem really annoyed/disappointed\") and framing it as a guess (\"Is that right?\") rather than an authoritative diagnosis.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Rather than focusing on product features, the focus must be on the **end result** and how the offering helps them solve the problem *they* are motivated to solve.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "a message, service, or intervention must fit another person's actual mental model, language, fear, and motivation.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Use **Empathetic Reflection** by paraphrasing what you’ve heard and labeling the speaker's emotion, always ending with a confirmation question (e.g., \"Sounds like you are saying… Did I get that right?\").",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "This proves you have listened, understood, and allows them to correct any misinterpretation.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "**manipulation** is the intentional addition or withholding of information to change the narrative toward a specific desired outcome.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "What do I want the audience to *Think*, *Feel*, and *Do*?",
+          "section_hint": "\"Pre-Mortem\" Questions for Wise Use",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance is narrower than generic active listening: it requires validation plus emotion reflection as a guess, a correction path, and translation into the stakeholder's own language and desired end result.",
+        "dropped_material": [
+          "Did not create a separate sales, copywriting, consulting, or leadership affordance because each uses the same confirmable-reflection and audience-fit mechanism.",
+          "Did not preserve broad emotional-impact language unless it requires confirmation, correction, or translation into the stakeholder's language."
+        ],
+        "open_questions": [
+          "A future active-listening relation review should decide whether this affordance is duplicate, allied, or a narrower empathy-specific treatment."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "empathy.substitute-perspective-taking-under-strategic-risk",
+      "status": "supported",
+      "name": "Strategic risk requires perspective-taking over emotional identification",
+      "mechanism": "When empathy appears in negotiation, conflict, or tough decisions, the answer must model the other side's motives and feelings while preserving one's own objectives, standards, competing stakeholders, and permission to say no, instead of letting emotional resonance become capitulation.",
+      "activation_shape": {
+        "use_when": [
+          "The situation involves negotiation, conflict, tough decisions, or high stakes where emotional identification may compromise self-interest.",
+          "The team must understand another party's motives and feelings while retaining clarity about its own objectives.",
+          "Empathy for one party could blind the decision-maker to competing stakeholders, incentives, standards, or trade-offs."
+        ],
+        "do_not_use_when": [
+          "The case needs emotional support or audience-fit communication, and there is no strategic self-interest, boundary, or competing-stakeholder risk.",
+          "The answer would use empathy to avoid evidence, standards, trade-offs, or a clear no.",
+          "The other side's viewpoint is being imagined from affinity or prior narrative rather than modeled and tested."
+        ],
+        "case_evidence_needed": [
+          "The decision-maker's own objectives, standards, interests, or non-negotiables.",
+          "The other party's motives, feelings, viewpoint, and likely interpretation of the situation.",
+          "The competing stakeholders, incentives, trade-offs, or clarity-to-say-no risk that emotional empathy could obscure."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-understanding-from-capitulation",
+          "description": "Name the other party's motives and feelings while separately stating the decision-maker's own objectives, standards, and boundaries before recommending concession, support, refusal, or negotiation strategy.",
+          "evidence_required": [
+            "The other party's likely motives, feelings, or viewpoint.",
+            "The decision-maker's objectives, self-interests, standards, or boundaries.",
+            "The point where emotional identification could compromise strategic clarity."
+          ],
+          "good_output_shape": [
+            "Models the other side without treating their emotions as controlling evidence.",
+            "Keeps self-interest, standards, and trade-offs explicit in the recommendation.",
+            "Allows a clear no or boundary when empathy would otherwise become capitulation."
+          ]
+        },
+        {
+          "requirement_id": "articulate-conflicting-viewpoint-compellingly",
+          "description": "When the conflict involves multiple parties or team disagreement, force the conflicting viewpoint to be modeled and articulated compellingly before deciding whether to accommodate, negotiate, or reject it.",
+          "evidence_required": [
+            "The conflicting viewpoint or opponent perspective that must be modeled.",
+            "The motives and feelings that make that viewpoint coherent to the other side.",
+            "The decision, boundary, or trade-off that remains after the viewpoint is understood."
+          ],
+          "good_output_shape": [
+            "Describes the conflicting viewpoint in a way its holder would recognize.",
+            "Separates accurate perspective-taking from agreement or approval.",
+            "Uses the modeled viewpoint to sharpen the decision, not to evade it."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is this a tough decision or negotiation where emotional identification could compromise self-interest?",
+        "Whose motives and feelings need to be modeled without abandoning our own objectives?",
+        "Which competing stakeholders, conflicting incentives, standards, or trade-offs must remain visible before we say yes?",
+        "Can the opposing or conflicting viewpoint be articulated compellingly before we decide?"
+      ],
+      "misuse_guards": [
+        "Do not let emotional resonance substitute for evidence, standards, or hard trade-off discussion.",
+        "Do not let empathy for one party erase competing stakeholders, conflicting incentives, or the need to say no with clarity.",
+        "Do not confuse accurate perspective-taking with agreement, liking, approval, concession, or strategic surrender.",
+        "Do not read assumed motivations selectively to fit prior narratives."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Empathy can be **problematic when it causes you to sabotage your self-interests**.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "In competitive or negotiation settings, **Perspective Taking** (the cognitive sibling) is often more effective because it considers the opponent's motives and feelings while still retaining clarity on one's own objectives.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "emotional resonance becomes a substitute for evidence, standards, or hard trade-off discussion.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "empathy for one party blinds the team to competing stakeholders, conflicting incentives, or the need to say no with clarity.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "In situations requiring tough decisions or negotiations, **substitute perspective-taking for emotional empathy**.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Perspective-taking provides the cognitive understanding of others' motives without requiring the emotional identification that might compromise your self-interest.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Apply **Perspective Taking** by forcing team members to model and articulate a conflicting viewpoint until they can describe it compellingly.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "empathy conflicts with confirmation-bias (confirmation bias) when assumed motivations are read selectively to fit prior narratives.",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This third affordance passes the structural differentiation test: its activation is strategic self-interest and competing-stakeholder risk, its mechanism is substituting cognitive perspective-taking for emotional identification, and its treatment preserves objectives and standards while modeling the other side.",
+        "dropped_material": [
+          "Did not merge this into stakeholder-evidence reframing because that would lose the negotiation and tough-decision boundary where empathy must be set aside or converted into perspective-taking.",
+          "Did not merge this into confirmable reflection because that would lose the source-backed requirement to preserve one's own objectives, trade-offs, and permission to say no with clarity."
+        ],
+        "open_questions": [
+          "Reviewer should check whether this affordance belongs under empathy or a future perspective-taking record, but the Empathy source itself makes the substitution rule explicit."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-warmth-or-caring-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source mentions empathic concern, care, and trust, but without observation, validation, perspective-taking, or strategic-boundary work those passages do not support a runtime-useful affordance. Generic warmth would violate the stakeholder-alignment rail for this batch.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "This goes beyond feeling what another person feels; it means caring about that person, which is critical for enhancing trust in relationships.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "Showing **Empathic Concern** enhances trust, which is fundamental for creating inclusive environments.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-demographic-persona-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports personas only as synthesized needs and insights after empathy evidence, and directly warns that demographic-only personas can become stereotyping. A standalone persona or demographic targeting affordance would be weaker than the retained evidence-to-reframing contract.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "These are abstract archetypes reflecting the synthesized needs and insights of a group of users.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Empathy_rag.md",
+          "source_quote": "A flawed application of empathy occurs when problem solvers rely too heavily on basic demographic components (e.g., age, occupation) as the sole basis for the persona, which can easily lead to stereotyping.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Empathy_rag.md",
+      "source_quote": "The primary purpose of empathy as a mental model is to **understand the problem from the perspective of the user** or stakeholder.",
+      "section_hint": "Core Definition and Purpose",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Empathy_rag.md",
+      "source_quote": "The analytical step involves identifying **tensions, contradictions, or disconnects** (e.g., between what they say and what they do) to extract needs and unexpected insights.",
+      "section_hint": "Key Heuristics and Actionable Frameworks",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Empathy_rag.md",
+      "source_quote": "This involves predicting and sharing the speaker’s feelings by using emotion words (e.g., \"you seem really annoyed/disappointed\") and framing it as a guess (\"Is that right?\") rather than an authoritative diagnosis.",
+      "section_hint": "Key Heuristics and Actionable Frameworks",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Empathy_rag.md",
+      "source_quote": "In situations requiring tough decisions or negotiations, **substitute perspective-taking for emotional empathy**.",
+      "section_hint": "Effective Mitigation Strategies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Empathy_rag.md",
+      "source_quote": "Misapplying empathy can be **dangerous** when it leads to a loss of strategic clarity or enables manipulation.",
+      "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full Empathy_rag.md source, activation curation, intervention semantics curation, relation semantics curation, PR 9 Batch 2 selection brief, extraction contract, and target schema. Extracted only source-backed operational mechanisms: evidence-backed stakeholder reframing, confirmable empathic reflection, and strategic substitution of perspective-taking for emotional identification. Structural differentiation test for the third affordance: it activates only when emotional empathy threatens self-interest, standards, trade-off clarity, or competing stakeholders; if merged into either of the first two affordances, the record would lose the explicit negotiation/tough-decision boundary and the source-backed permission to say no with clarity.",
+    "dropped_material": [
+      "Did not create a generic kindness, warmth, or trust-building affordance because the source-backed operational work is perspective evidence, confirmation, or strategic boundary preservation.",
+      "Did not create separate design-thinking, persona, copywriting, consulting, leadership, storytelling, or inclusive-culture affordances because the retained records capture the distinct mechanisms without domain sprawl.",
+      "Did not create a fourth affordance for extreme-user sampling; it remains folded into the evidence-backed reframing affordance as an anti-average-user guard."
+    ],
+    "open_questions": [
+      "Reviewer should verify whether the confirmable-reflection affordance duplicates an active-listening record closely enough to downgrade or relation-link it later.",
+      "Reviewer should verify whether the strategic-substitution affordance should remain in empathy or be migrated if a future perspective-taking model record is extracted."
+    ],
+    "review_status": "draft"
+  }
+}

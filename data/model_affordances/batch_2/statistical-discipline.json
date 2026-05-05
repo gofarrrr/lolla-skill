@@ -1,0 +1,398 @@
+{
+  "model_id": "statistical-discipline",
+  "source_file": "Statistical_Discipline_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "statistical-discipline.hypothesis-first-tool-fit",
+      "status": "supported",
+      "name": "Hypothesis-first analytical tool fit",
+      "mechanism": "Before complex data gathering, modeling, forecasting, or statistical inference earns weight, frame the decision as a clear question or testable hypothesis, choose the analytical tool that fits the problem structure, and start with simple statistics that reveal the size, shape, assumptions, and stopping point of the analysis.",
+      "activation_shape": {
+        "use_when": [
+          "The team is about to gather large datasets, use AI or machine learning, or build a complex model before naming the decision question.",
+          "The central information-quality issue is whether the case calls for causal analysis, prediction, summary statistics, simulation, or reference-class reasoning.",
+          "The case feels obvious to experienced operators, but noisy evidence, intuition, or high error cost could distort the conclusion.",
+          "The recommendation needs traceable logic, data, assumptions, and evidence quality rather than authority, intuition, or quantitative presentation."
+        ],
+        "do_not_use_when": [
+          "The needed move is only to anchor a forecast to a denominator or reference-class prior; that is the distinct base-rates contract, not this record.",
+          "The decision question, hypothesis, or required output cannot yet be stated clearly enough to choose an analytical path.",
+          "A familiar framework is being forced onto a novel problem merely because the tool is available or already comfortable.",
+          "Charts, statistical language, or model outputs are being treated as proof without assumption, data-quality, and structural-fit checks."
+        ],
+        "case_evidence_needed": [
+          "The decision question, problem statement, or testable hypothesis the analysis is supposed to answer.",
+          "Whether the problem is causal, predictive, summary-statistical, simulation-oriented, or reference-class-oriented.",
+          "The simple summary statistics or heuristics that show the size and shape of the problem levers.",
+          "The assumptions, data-quality conditions, and structural-fit checks required before the chosen tool can be trusted.",
+          "The amount of evidence needed to prove or disprove the hypothesis enough to stop gathering more data."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-hypothesis-before-analysis",
+          "description": "Require a clear decision question, problem frame, or testable hypothesis before complex analysis begins, and keep the answer tied to what would prove or disprove that hypothesis.",
+          "evidence_required": [
+            "The question or hypothesis being tested.",
+            "The decision or end product the analysis must support.",
+            "The current best one-day answer or solution path, if available.",
+            "The evidence that would prove, disprove, or force revision of the hypothesis."
+          ],
+          "good_output_shape": [
+            "States the hypothesis or question before discussing data volume, model choice, or statistical technique.",
+            "Names the decision output the analysis must support.",
+            "Separates evidence that tests the hypothesis from extra facts that only add complexity.",
+            "Stops or narrows analysis when enough evidence exists to prove, disprove, or revise the hypothesis."
+          ]
+        },
+        {
+          "requirement_id": "choose-tool-and-start-simple",
+          "description": "Classify the analytical job before selecting a tool, begin with simple statistics and heuristics, and justify any move to complex modeling by showing the simple pass cannot answer the decision question.",
+          "evidence_required": [
+            "The analytical fork: causal drivers, prediction, summary statistics, simulation, or reference-class reasoning.",
+            "The simple statistics, heuristics, or lever sizes already checked.",
+            "The data-quality and structural-fit assumptions behind the selected tool.",
+            "The reason a more complex analysis is necessary after the simple reconnaissance."
+          ],
+          "good_output_shape": [
+            "Names the analytical tool type and why it fits the problem structure.",
+            "Reports the simple-statistics reconnaissance before recommending complex modeling.",
+            "Surfaces assumptions and data-quality checks as part of statistical validity, not as optional caveats.",
+            "Rejects or defers tools whose familiar pattern does not match the current problem."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What decision question or testable hypothesis must be answered before collecting more data or building a model?",
+        "Are we trying to understand causation, predict a future state, summarize levers, simulate risk, or reason from a reference class?",
+        "What simple summary statistics show the size and shape of the problem levers before complex modeling starts?",
+        "What assumptions, data-quality checks, and structural-fit tests must hold for the chosen analytical tool to be valid?",
+        "What evidence would prove or disprove the core hypothesis enough to stop expanding the analysis?"
+      ],
+      "misuse_guards": [
+        "Do not wade prematurely into data, AI, machine learning, or complex modeling before defining the question, hypothesis, and needed output.",
+        "Do not treat the most available or familiar framework as the right tool when the problem structure calls for a different analysis.",
+        "Do not let quantitative language, charts, or model outputs project rigor without checking assumptions, data quality, and structural fit.",
+        "Do not duplicate base-rates by treating reference-class anchoring as the whole affordance; here reference classes appear only as one possible analytical tool branch.",
+        "Do not keep gathering facts after the evidence is sufficient to prove, disprove, or revise the core hypothesis."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Before embarking on complex analysis (like machine learning), one must rigorously frame a clear question or testable hypothesis.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "This hypothesis-driven approach, used extensively in problem-solving methodologies, ensures focus and prevents wading prematurely into data without thinking through the underlying problem structure.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "A core principle is the structured choice of the correct analytical tool.",
+          "section_hint": "Powerful Analogies and Metaphors:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Are you seeking to understand causation (drivers) or primarily seeking to predict a future state?.",
+          "section_hint": "Powerful Analogies and Metaphors:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Analysts should always begin by calculating simple summary statistics and heuristics to quickly see the \"size and shape of your problem levers\".",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "This reconnaissance prevents gathering huge datasets or building complicated models prematurely.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "anything beyond enough facts to prove or disprove the core hypothesis is a waste of effort.",
+          "section_hint": "Weaknesses and Common Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Danger when teams use quantitative language, charts, or model outputs to project certainty without checking assumptions, data quality, or structural fit.",
+          "section_hint": "Weaknesses and Common Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Merged hypothesis-first problem framing, tool-choice discipline, simple-statistics reconnaissance, and fake-rigor guards into one affordance because they form the source's evidence-hygiene contract before statistical work earns weight.",
+        "dropped_material": [
+          "Did not split decision-tree tool choice into a separate affordance because the source uses it to enforce the same pre-analysis discipline as hypothesis-driven problem solving.",
+          "Did not turn reference-class reasoning into this affordance's center; base-rates owns reference-class and denominator anchoring, while this record only asks whether that is the right analytical branch.",
+          "Did not produce a standalone Maslow's Hammer affordance because it functions here as a misuse guard against tool misfit."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with correlation-vs-causation: this affordance selects the analytical path and evidence hygiene, while correlation-vs-causation should own causal-claim validity.",
+          "Reviewer should confirm whether simple-statistics reconnaissance should remain merged with hypothesis-first tool fit rather than becoming a separate statistical-discipline affordance."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "statistical-discipline.distributional-inference-stress-test",
+      "status": "supported",
+      "name": "Distributional inference and downside-tail stress test",
+      "mechanism": "When a recommendation depends on quantifiable uncertainty or noisy evidence, replace mean-outcome certainty with ranges, simulations, downside tails, and explicit assumption testing so the answer reflects variance, evidence quality, and failure structure rather than a heroic point estimate.",
+      "activation_shape": {
+        "use_when": [
+          "A recommendation depends on quantifiable uncertainty, noisy evidence, or high cost of being wrong.",
+          "The current answer leans on a mean, base case, or single estimate that may hide ranges, tails, or severe outcomes.",
+          "A complex plan requires many individually likely events to all occur, or failure can happen if any component breaks.",
+          "The assumptions generating the result need to be surfaced and debated for realism before the recommendation earns confidence."
+        ],
+        "do_not_use_when": [
+          "The only missing step is choosing and applying a historical denominator or outside-view prior; that remains base-rates work.",
+          "The parameters of uncertainty are not quantifiable enough for ranges, simulation, or scenario comparison to be honest.",
+          "The answer would compress distributional uncertainty into a summary metric that loses the inference needed for the decision.",
+          "The team is judging only whether the outcome was good or bad instead of assessing whether the thinking process was reliable."
+        ],
+        "case_evidence_needed": [
+          "The mean, base case, single estimate, or preferred scenario currently carrying the recommendation.",
+          "The quantifiable drivers, assumptions, and evidence-quality limits behind the estimate.",
+          "The plausible range of outcomes, downside tails, outliers, or one- and two-standard-deviation cases.",
+          "The success chain or failure structure that could make probability estimates too optimistic.",
+          "The assumptions that must be true for the plan to succeed and the worst-case consequence if they fail."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "replace-point-estimate-with-distribution",
+          "description": "When the case depends on uncertainty, require ranges, simulations, downside tails, and evidence-quality limits alongside any mean or base-case estimate.",
+          "evidence_required": [
+            "The current mean outcome, base case, or point estimate.",
+            "The distribution, range, simulation, or scenario evidence available.",
+            "The low-probability, high-impact cases and one- or two-standard-deviation outcomes that could matter.",
+            "The evidence-quality limits that affect confidence in the range."
+          ],
+          "good_output_shape": [
+            "Shows the range of outcomes rather than only the mean or base case.",
+            "Names the downside tail and whether the worst case could dominate the decision.",
+            "Explains how much confidence the evidence quality deserves.",
+            "Keeps the point estimate visibly subordinate to variance and tail-risk treatment."
+          ]
+        },
+        {
+          "requirement_id": "stress-test-assumptions-and-failure-structure",
+          "description": "Surface the assumptions required for success, test their realism, and account for conjunctive success chains or disjunctive failure structures that make intuitive probabilities unreliable.",
+          "evidence_required": [
+            "The assumptions that generate the forecast, scenario, or recommendation.",
+            "The chain of events that must all succeed for the plan to work.",
+            "Any component or dependency whose failure can break the overall system.",
+            "The realism debate or test that would weaken, revise, or reject the recommendation."
+          ],
+          "good_output_shape": [
+            "States what must be believed for the plan to succeed.",
+            "Identifies where conjunctive success or disjunctive failure makes probabilities easy to underestimate.",
+            "Tests assumptions for realism instead of burying them inside the model output.",
+            "Separates a good decision process from a lucky or unlucky outcome."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What full range of outcomes is possible, and which tails or one- to two-standard-deviation cases would materially change the recommendation?",
+        "Is the worst case bad enough to change the decision even if the mean outcome looks acceptable?",
+        "What would we have to believe for this plan, forecast, or model output to be realistic?",
+        "Does success require a long chain of events to all go right, or can overall failure happen if any one component fails?",
+        "Are we evaluating the quality of the thinking process or merely judging the decision by the outcome that happened?"
+      ],
+      "misuse_guards": [
+        "Do not let a mean outcome, base case, or single heroic estimate stand in for distributional inference when tails matter.",
+        "Do not place insufficient weight on low-probability, high-impact outcomes or one- to two-standard-deviation cases.",
+        "Do not hide assumptions inside simulations, charts, or model outputs instead of spelling out what must be believed.",
+        "Do not compress statistical nuance into summary metrics that remove the distributional information needed for sound inference.",
+        "Do not judge statistical discipline by whether the outcome was good or bad; audit the decision process and evidence quality."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Instead of relying solely on a mean outcome (the base case), Statistical Discipline encourages the use of **simulations** to highlight the full range of outcomes possible.",
+          "section_hint": "Concrete Examples of Application:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "This guards against errors like placing insufficient weight on results lying one or two standard deviations from the mean in a normal distribution.",
+          "section_hint": "Concrete Examples of Application:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "For large projects, understanding the distribution of outcomes and the true expected case (which may be the worst case) is crucial.",
+          "section_hint": "Strengths (Optimal Contexts):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Best when the recommendation should reflect ranges, downside tails, and evidence quality rather than a single heroic estimate.",
+          "section_hint": "Strengths (Optimal Contexts):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "The tendency to overestimate the probability that a complex plan will succeed because success requires a long series of individually likely events to all occur.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Use simulations to explore the full range of outcomes possible. Ask: **“What would you have to believe?”** for the plan to succeed, rigorously spelling out all implicit assumptions and testing them.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Ask the critical question for large projects: **“Is the worst case bad enough?”**.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "where overall failure can happen if *any* component fails (a disjunctive structure), remember that probabilities of failure are often underestimated due to anchoring bias.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "statistical-discipline conflicts with simplification (simplification) when statistical nuance is compressed into summary metrics that lose the distributional information needed for sound inference.",
+          "section_hint": "Structured Tension Curation (2026-04-03):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Evaluating a decision purely based on whether the result was good or bad, rather than assessing the quality of the thinking process itself.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Merged simulation, range reporting, downside-tail attention, assumption testing, conjunctive/disjunctive probability guards, and outcome-bias protection into one distributional-inference affordance because all of them prevent mean-outcome or point-estimate overconfidence.",
+        "dropped_material": [
+          "Did not split prediction over-optimism into a standalone affordance because the source treats it as part of range, simulation, and assumption stress testing.",
+          "Did not create a separate simplification-tension affordance; it functions as a misuse guard against losing distributional information.",
+          "Did not make base rates central here even though the source mentions them; base-rates owns denominator anchoring, while this affordance owns variance, tails, noisy evidence, and inference reliability."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with aleatory-epistemic-uncertainty-recognition: this record assumes uncertainty can be disciplined with ranges or simulations, while aleatory/epistemic should own reducible-versus-irreducible uncertainty typing.",
+          "Reviewer should confirm whether outcome-bias protection belongs in this affordance or should remain only as an absence-level guard."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-reference-class-base-rate-anchor",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source mentions outside-view and reference-class forecasting, but the distinct operational contract of anchoring a forecast to a denominator or reference class is already carried by the pilot base-rates record. Statistical discipline should only decide whether reference-class reasoning is the right analytical branch and should not duplicate the base-rates affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Statistical discipline mandates anchoring decision-making to the **outside view**—what is true of the world in general, independent of one's specific perspective—to discipline the biases of the inside view.",
+          "section_hint": "The Latticework: Systemic Interactions:",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "This aligns perfectly with using **reference classes** (historical data from similar situations) to predict outcomes, as done in predicting movie revenues.",
+          "section_hint": "The Latticework: Systemic Interactions:",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-human-context-or-politics-intervention",
+      "status": "source_too_thin",
+      "reason": "The source warns that over-focusing on technical analysis can neglect feelings, politics, and management context, but it does not provide a statistical-discipline treatment requirement beyond respecting this as a boundary condition. Promoting it as a separate affordance would drift into stakeholder or organizational models.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Discipline_rag.md",
+          "source_quote": "Over-focus on the technical content (the cognitive part) without sufficiently addressing the relationship dimension, such as personal feelings, organizational politics, or how the problem is being managed.",
+          "section_hint": "Weaknesses and Common Anti-Patterns:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Statistical_Discipline_rag.md",
+      "source_quote": "Statistical Discipline is a critical mental model defined as the commitment to **evidence-based, logical, and probabilistic thinking**, often supported by formal systems, to counteract inherent human biases in judgment and decision-making.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Statistical_Discipline_rag.md",
+      "source_quote": "Its fundamental purpose is to impose **mathematical and analytical rigor** on complex problems, especially those involving uncertainty and risk.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Statistical_Discipline_rag.md",
+      "source_quote": "Works when the real fork in the road is whether the problem calls for causal analysis, forecasting, summary statistics, simulation, or reference-class reasoning.",
+      "section_hint": "Strengths (Optimal Contexts):",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Statistical_Discipline_rag.md",
+      "source_quote": "Best when the recommendation should reflect ranges, downside tails, and evidence quality rather than a single heroic estimate.",
+      "section_hint": "Strengths (Optimal Contexts):",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection note, full Statistical_Discipline_rag.md source, Wave 1 activation curation, Wave 2 intervention semantics, Wave 3 relation semantics, and the pilot base-rates record. Extracted two high-confidence affordances: hypothesis-first analytical tool fit for evidence hygiene and statistical validity, and distributional inference stress testing for variance/noise handling and inference reliability. Explicit boundary: base-rates is reference-class and denominator anchoring; statistical-discipline is the broader discipline of choosing valid analytical work, checking assumptions and evidence quality, and resisting point-estimate or fake-rigor errors.",
+    "dropped_material": [
+      "Did not create a standalone reference-class/base-rate affordance because that would duplicate the pilot base-rates record's outside-view prior and denominator anchor.",
+      "Did not create a third affordance for red-team, dialectic, or bias-fighting team processes because the source presents them as mitigations for objectivity risk and they likely belong to dialectical-reasoning, premortem, or other challenge-process models.",
+      "Did not promote the human-context warning into a statistical-discipline affordance because the source names the risk but does not supply a distinct operational statistical treatment.",
+      "Did not extract domain-specific affordances for competitive scenario analysis, movie revenue prediction, or game theory because they instantiate tool fit, assumption testing, or simulation rather than separate statistical-discipline contracts."
+    ],
+    "open_questions": [
+      "Reviewer should check overlap with law-of-large-numbers, correlation-vs-causation, and survivorship-bias once those Batch 2 records are complete: this record should own evidence hygiene and inference reliability, not sample-size aggregation, causal identification, or missing-case correction.",
+      "Reviewer should decide whether the outcome-bias guard should remain inside distributional inference or be represented only as a review note in a later compiled layer."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,453 @@
+{
+  "model_id": "black-swan-events",
+  "source_file": "Black_Swan_Events_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "black-swan-events.tail-exposure-preparation-under-deep-uncertainty",
+      "status": "supported",
+      "name": "Tail exposure preparation under deep uncertainty",
+      "mechanism": "When forecasts understate rare catastrophic exposure, stop treating point prediction as the job; inspect unknown-unknown, regime-breaking, and complex-system vulnerabilities, then convert the result into resilience preparation, scenario analysis, simulation, and stress testing.",
+      "activation_shape": {
+        "use_when": [
+          "Downside exposure is large, uncertainty is deep, and ordinary forecasts may understate tail risk.",
+          "Average-case planning looks rational but rare events could badly damage the system or strategy.",
+          "The decision sits in a long-horizon, high-complexity domain where error consequences are substantial.",
+          "The team needs humility about prediction and stronger preparation for regime-breaking surprises."
+        ],
+        "do_not_use_when": [
+          "The problem is an ordinary estimable risk where risk-assessment thresholds or calculated-risk sizing can govern the choice.",
+          "The team is using Black Swan language to avoid prioritization despite concrete resilience moves being available.",
+          "The request is to predict the exact Black Swan or assign precise probability to a truly unpredictable event."
+        ],
+        "case_evidence_needed": [
+          "The system, plan, market, or strategy whose average-case forecast could hide tail exposure.",
+          "Why the exposure is low-probability, high-impact, deep-uncertainty, or regime-breaking rather than a routine risk.",
+          "The vulnerable components, interrelationships, and assumptions that could fail under surprise.",
+          "Scenario, simulation, stress-test, or worst-case evidence showing the range of possible outcomes and resilience gaps."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-tail-uncertainty-from-forecasting",
+          "description": "Establish why prediction is not the primary job by naming the deep uncertainty, ordinary forecast limit, and high-impact downside before proposing treatment.",
+          "evidence_required": [
+            "The ordinary forecast, average-case plan, or familiar model currently carrying too much confidence.",
+            "Evidence that uncertainty is deep or regime-breaking rather than just an estimable risk parameter.",
+            "The low-probability, high-impact downside that would matter even if its likelihood remains unsure.",
+            "The unknown-unknown or known-unknown boundary the analysis is trying to move."
+          ],
+          "good_output_shape": [
+            "States that precise prediction is not the warrant for using the model.",
+            "Names the forecast limitation and the rare-event exposure it hides.",
+            "Separates deep uncertainty from routine risk assessment or calculated wager sizing.",
+            "Turns the issue toward preparation, vulnerability reduction, and outcome simulation."
+          ]
+        },
+        {
+          "requirement_id": "simulate-and-stress-vulnerabilities",
+          "description": "Use scenarios, simulations, stress tests, and worst-case questions to expose vulnerable dependencies and several-standard-deviation outcomes.",
+          "evidence_required": [
+            "The scenarios or possible futures being considered beyond the base case.",
+            "The system dependencies, essential components, or interrelationships that could propagate damage.",
+            "The stress-test or simulation result showing a wider range of possible outcomes.",
+            "The worst-case condition that would make the exposure severe enough to matter."
+          ],
+          "good_output_shape": [
+            "Shows how the system behaves outside the average case.",
+            "Names the first vulnerable dependency or component likely to fail under surprise.",
+            "Uses scenario or stress-test evidence to reveal the range of outcomes.",
+            "Asks whether the worst case is bad enough before treating the plan as prepared."
+          ]
+        },
+        {
+          "requirement_id": "convert-readiness-to-resilience-moves",
+          "description": "Translate explored tail exposure into vulnerability reduction or resilience preparation rather than a generic risk list or catastrophe prediction.",
+          "evidence_required": [
+            "The vulnerability reduction or resilience move available to the team.",
+            "The preparation that remains useful across multiple rare-event scenarios.",
+            "The concrete resilience move that prevents Black Swan language from becoming vague fear.",
+            "The prioritization boundary that keeps preparation from becoming permanent defensiveness."
+          ],
+          "good_output_shape": [
+            "Identifies resilience moves that are useful without pretending to forecast the exact shock.",
+            "Connects each move to a named vulnerability or tail-exposure structure.",
+            "Preserves prioritization by distinguishing concrete preparation from generalized fear.",
+            "Avoids a generic risk register that could be handled by risk-assessment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Where are ordinary forecasts or average-case plans most likely to understate tail damage?",
+        "Which unknown unknown are we trying to move into known-unknown territory, and what remains hard to determine?",
+        "If the worst case sits several standard deviations from the mean, what breaks first and what preparation still holds?",
+        "What scenario, simulation, or stress test would change our view of vulnerability rather than merely name the fear?"
+      ],
+      "misuse_guards": [
+        "Do not pretend true Black Swans can be precisely predicted; the source shifts application toward identification, vulnerability reduction, and simulation.",
+        "Do not duplicate calculated-risk-taking by framing this as a bounded wager when uncertainty is too deep for responsible parameter estimation.",
+        "Do not duplicate general risk assessment by producing a broad risk register; this affordance needs tail exposure, prediction limits, and resilience preparation.",
+        "Do not let Black Swan language justify vague fear, permanent defensiveness, or refusal to prioritize."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "highly improbable and largely unpredictable occurrences",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "A Black Swan event is an **entirely unpredictable event that comes out of nowhere**.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Unknown Unknowns are the risks that require a concerted effort to uncover, and even when identified, their likelihood or consequences remain unsure.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "The practical application of the Black Swan model shifts focus from prediction (which is impossible for true Black Swans) to **systematic identification, vulnerability reduction, and outcome simulation**.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "downside exposure is large, uncertainty is deep, and ordinary forecasts meaningfully understate tail risk.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "system can be badly damaged by rare events even if average-case planning looks rational.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "decision-makers need humility about prediction and stronger preparation for regime-breaking surprises.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Simulations can highlight the full range of possible outcomes, giving decision-makers better insight into risk distribution.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "This ensures sufficient weight is placed on outcomes that are several standard deviations from the mean.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Teams can invoke Black Swan language to justify vague fear, permanent defensiveness, or refusal to prioritize, even when concrete resilience moves are available.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance keeps Black Swan Events on low-probability high-impact structure: deep uncertainty, understated tail exposure, prediction limits, and preparation. It intentionally avoids the Batch 1 risk-assessment contract of thresholded downside governance and the calculated-risk-taking contract of sizing a bounded wager.",
+        "dropped_material": [
+          "Complex-system disjunction material was included as evidence inside tail exposure preparation rather than split into a separate affordance, because Batch 1 risk-assessment already owns general disjunctive failure-path governance.",
+          "AI persona stress-testing was treated as an example of simulation, not as a runtime persona affordance."
+        ],
+        "open_questions": [
+          "Reviewer should confirm whether future resilience and margin-of-safety records should consume the concrete buffer and recovery details, leaving this record focused on surprise structure and prediction limits."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "black-swan-events.post-shock-aberration-learning-discipline",
+      "status": "supported",
+      "name": "Post-shock aberration learning discipline",
+      "mechanism": "After a rare shock, keep the event from being rewritten as obvious or treated as the new normal; separate decision quality from outcome luck, preserve necessary core strategy, and learn from the uncertainty that was genuinely present before the event.",
+      "activation_shape": {
+        "use_when": [
+          "A severe, surprising event has occurred and the team is explaining it as if it was predictable all along.",
+          "A sensational outlier is tempting the organization to rebuild core strategy around the aberration as the new normal.",
+          "A sound decision produced a bad outcome because chance or surprise dominated, and process quality needs separate evaluation."
+        ],
+        "do_not_use_when": [
+          "The event is not an aberration but a demonstrated structural shift with repeated evidence that should change base strategy.",
+          "The discussion is still pre-commitment and needs exposure preparation rather than post-event learning discipline.",
+          "The event was ordinary and foreseeable enough for standard root-cause or risk-assessment work."
+        ],
+        "case_evidence_needed": [
+          "The decision, strategy, or belief system being revised after the rare event.",
+          "What participants believed before the event, including uncertainties they genuinely recognized or missed.",
+          "Evidence about whether the event is an outlier, a repeated structural change, or a normal-range outcome.",
+          "The core strategy that must continue regardless of whether the specific catastrophic event recurs."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "resist-hindsight-rewrite",
+          "description": "During postmortem, preserve what was actually knowable before the event and identify uncertainties without claiming the event was predictable merely because retrospective signs can be assembled.",
+          "evidence_required": [
+            "The post-event explanation being offered.",
+            "The information, uncertainty, and beliefs available before the event.",
+            "The retrospective signs now being used to claim the event was predictable.",
+            "The uncertainty that should be preserved for learning rather than rewritten into certainty."
+          ],
+          "good_output_shape": [
+            "Separates pre-event evidence from retrospective coherence.",
+            "Names what was genuinely unpredictable or uncertain at the time.",
+            "Uses postmortem discipline to calibrate beliefs rather than assign false foresight.",
+            "Avoids the claim that all signs were there unless the source evidence was actually available before the shock."
+          ]
+        },
+        {
+          "requirement_id": "contextualize-the-aberration",
+          "description": "Test whether the event should change core strategy or be treated as a low-informativeness outlier, then state what continues regardless of recurrence.",
+          "evidence_required": [
+            "The proposed strategic change after the shock.",
+            "Evidence that the event is an outlier, a new normal, or a structural shift.",
+            "The opportunity cost of organizing the whole strategy around recurrence.",
+            "The core strategy or operating principle that should continue either way."
+          ],
+          "good_output_shape": [
+            "States whether the outlier is informative enough to change long-term strategy.",
+            "Names the core strategy that should continue regardless of the catastrophic event recurring.",
+            "Keeps sensational events from substituting for a reality model.",
+            "Documents what would count as repeated evidence of structural change."
+          ]
+        },
+        {
+          "requirement_id": "separate-process-from-outcome",
+          "description": "Evaluate decision process separately from outcome luck so a good decision that met a rare bad outcome does not cause helplessness or distorted beliefs.",
+          "evidence_required": [
+            "The decision process used before the event.",
+            "The outcome and the role of chance or surprise in producing it.",
+            "The preferences, information, and uncertainty available when the decision was made.",
+            "The belief or process update that follows without treating the outcome alone as proof."
+          ],
+          "good_output_shape": [
+            "Distinguishes decision quality from outcome quality.",
+            "Explains whether the process was rational under information available at the time.",
+            "Identifies belief updates that follow from uncertainty rather than hindsight.",
+            "Prevents bad luck from automatically becoming evidence that the original process was poor."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which part of our story was knowable before the event, and which part is retrospective coherence?",
+        "Are we treating an outlier as a new normal because it was sensational or overwhelming?",
+        "What core strategy must we execute regardless of whether this specific catastrophic event occurs again?",
+        "Was the decision process poor, or did a rational process meet a rare bad outcome?"
+      ],
+      "misuse_guards": [
+        "Do not let hindsight bias make an unpredictable event seem predictable in retrospect.",
+        "Do not rebuild long-term core strategy around a Black Swan merely because it was catastrophic or memorable.",
+        "Do not use a Black Swan after the fact to reinforce an illusion of certainty.",
+        "Do not automatically discredit a high-quality decision process just because the outcome was bad."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Decision analysis distinguishes between a **good decision** (one consistent with complete information and preferences) and a **good outcome** (one that is desirable).",
+          "section_hint": "Synergistic Relationships (Allies)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "even a rational, high-quality decision can, through bad luck (a Black Swan), lead to a bad outcome.",
+          "section_hint": "Synergistic Relationships (Allies)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "After a Black Swan occurs, hindsight bias makes the event seem predictable in retrospect (\"all the signs were there\").",
+          "section_hint": "Conflicting Relationships (Antagonists)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "This illusory certainty prevents learning from the inherent unpredictability of the event.",
+          "section_hint": "Conflicting Relationships (Antagonists)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Black Swans are **outliers that should be ignored** in terms of informing long-term core strategies, as they are not indicative of anything at all and are not \"the norm\".",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Do not adopt the Black Swan as the new normal.",
+          "section_hint": "Effective Mitigation Strategies and Pre-Mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Resist the inclination to rewrite history and claim the event was predictable.",
+          "section_hint": "Effective Mitigation Strategies and Pre-Mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "focus on learning how to calibrate beliefs by inviting others to act like scientists and share information about uncertainties.",
+          "section_hint": "Effective Mitigation Strategies and Pre-Mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "When decision-makers face confusing, high-stakes situations, the realization that a good decision may sometimes lead to a bad outcome (due to chance/Black Swans) helps them **overcome feelings of helplessness that often paralyze their actions**.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Merged anti-hindsight learning, outlier contextualization, and good-decision-versus-good-outcome material because they govern the same post-shock discipline: learn from surprise without rewriting the past or rebuilding strategy around a single aberration.",
+        "dropped_material": [
+          "Did not split availability heuristic into a third affordance; treating the Black Swan as the new normal is handled as part of contextualizing the aberration.",
+          "Did not promote generic postmortem practice beyond the source-backed Black Swan pattern of hindsight resistance, uncertainty calibration, and outlier context."
+        ],
+        "open_questions": [
+          "Reviewer should verify whether the good decision versus good outcome material should remain inside this model or later live under a decision-theory relation."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "exact-black-swan-prediction-or-probability-estimate",
+      "status": "not_supported_by_source",
+      "reason": "The source defines Black Swans as unpredictable and says practical use shifts away from prediction; promoting exact event forecasts or precise probability estimates would contradict the model.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "A Black Swan event is an **entirely unpredictable event that comes out of nowhere**.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "The practical application of the Black Swan model shifts focus from prediction (which is impossible for true Black Swans) to **systematic identification, vulnerability reduction, and outcome simulation**.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-general-risk-assessment-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports tail exposure and resilience preparation when ordinary forecasts understate rare-event damage; a generic risk register or thresholded downside governance would duplicate Batch 1 risk-assessment and calculated-risk-taking boundaries rather than add Black Swan structure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "downside exposure is large, uncertainty is deep, and ordinary forecasts meaningfully understate tail risk.",
+          "section_hint": "Contexts of Maximum Power (Strengths)",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Teams can invoke Black Swan language to justify vague fear, permanent defensiveness, or refusal to prioritize, even when concrete resilience moves are available.",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "core-strategy-redesign-around-one-outlier",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that Black Swans are outliers and that teams should not adopt the Black Swan as the new normal, so a standalone strategy-redesign affordance based on one catastrophic aberration is not supported.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Black Swans are **outliers that should be ignored** in terms of informing long-term core strategies, as they are not indicative of anything at all and are not \"the norm\".",
+          "section_hint": "Limitations and Anti-Patterns (Weaknesses)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Black_Swan_Events_rag.md",
+          "source_quote": "Do not adopt the Black Swan as the new normal.",
+          "section_hint": "Effective Mitigation Strategies and Pre-Mortem Questions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Black_Swan_Events_rag.md",
+      "source_quote": "The practical application of the Black Swan model shifts focus from prediction (which is impossible for true Black Swans) to **systematic identification, vulnerability reduction, and outcome simulation**.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Black_Swan_Events_rag.md",
+      "source_quote": "downside exposure is large, uncertainty is deep, and ordinary forecasts meaningfully understate tail risk.",
+      "section_hint": "Contexts of Maximum Power (Strengths)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Black_Swan_Events_rag.md",
+      "source_quote": "After a Black Swan occurs, hindsight bias makes the event seem predictable in retrospect (\"all the signs were there\").",
+      "section_hint": "Conflicting Relationships (Antagonists)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Black_Swan_Events_rag.md",
+      "source_quote": "Do not adopt the Black Swan as the new normal.",
+      "section_hint": "Effective Mitigation Strategies and Pre-Mortem Questions",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection note, full Black Swan Events source, activation/intervention/relation curation, and the Batch 1 risk-assessment and calculated-risk-taking boundary records. Extracted two affordances: pre-event tail exposure preparation under deep uncertainty and post-event anti-hindsight/outlier contextualization.",
+    "dropped_material": [
+      "Did not extract a third affordance for complex-system disjunction because it would duplicate Batch 1 risk-assessment unless rare-event tail exposure and prediction limits are central.",
+      "Did not extract a generic risk inventory, risk-reward wager, or thresholded downside governance affordance; those belong to risk-assessment and calculated-risk-taking.",
+      "Did not promote exact Black Swan forecasting because the source says true Black Swans are unpredictable and shifts practice toward identification, vulnerability reduction, and simulation.",
+      "Did not promote AI persona or digital execution examples into runtime behavior."
+    ],
+    "open_questions": [
+      "Reviewer should check whether post-shock learning belongs here or should later be split into relation semantics for hindsight bias and availability heuristic.",
+      "Boundary with resilience should remain explicit: this record requires low-probability high-impact surprise and prediction limits; resilience should own recovery capacity apart from Black Swan structure."
+    ],
+    "review_status": "draft"
+  }
+}

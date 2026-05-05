@@ -1,0 +1,490 @@
+{
+  "model_id": "experimentation",
+  "source_file": "Experimentation_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "experimentation.hypothesis-bound-decision-test",
+      "status": "supported",
+      "name": "Hypothesis-bound tests that must move a decision",
+      "mechanism": "Convert reducible uncertainty into a bounded test by naming the hypothesis, the success threshold, the minimum facts needed to prove or disprove it, and the downstream decision that must change when results arrive.",
+      "activation_shape": {
+        "use_when": [
+          "Uncertainty can be reduced faster and cheaper through a targeted test than through longer debate, forecasting, or opinion escalation.",
+          "A reversible probe can inform a larger irreversible commitment, reallocation, or product choice.",
+          "The team can tie the experiment to a clear hypothesis, success threshold, and downstream decision.",
+          "The team is arguing from assumptions, opinions, or stories but can gather facts that would prove, disprove, support, or refute the live claim."
+        ],
+        "do_not_use_when": [
+          "No real downstream decision would change, so the experiment would only create activity, dashboards, or post-hoc learning language.",
+          "The team is gathering all available data without a hypothesis-linked stop condition.",
+          "The output needed to solve the problem is not clear enough to decide which facts matter.",
+          "The hypothesis is politically protected or ego-owned strongly enough that disconfirming results would be explained away."
+        ],
+        "case_evidence_needed": [
+          "The hypothesis or assumption the experiment is meant to prove, disprove, support, or refute.",
+          "The success threshold, failure threshold, and downstream decision attached to each outcome.",
+          "The minimum facts needed to resolve the hypothesis and the stop condition for additional data gathering.",
+          "The reversible probe, its cost or time bound, and the larger irreversible commitment, reallocation, or product choice it informs.",
+          "The observed result, how it compares with the threshold, and the decision update that follows."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-hypothesis-threshold-decision",
+          "description": "Require the answer to state the testable hypothesis, explicit success threshold, and downstream decision before recommending evidence collection.",
+          "evidence_required": [
+            "The live hypothesis or assumption under dispute.",
+            "The threshold that would count as success, failure, or meaningful support.",
+            "The decision, commitment, reallocation, or product choice that will change when the threshold is met or missed.",
+            "The owner or review moment where the result will be interpreted."
+          ],
+          "good_output_shape": [
+            "Frames the experiment as a hypothesis test rather than a generic learning activity.",
+            "Names the success threshold before data is gathered.",
+            "Connects pass, fail, and inconclusive results to concrete decision moves.",
+            "Refuses to treat the experiment as useful when no downstream decision is at stake."
+          ]
+        },
+        {
+          "requirement_id": "gather-only-decision-changing-facts",
+          "description": "Bound fact gathering to the evidence needed to prove, disprove, support, or refute the hypothesis so the work does not become exhaustive analysis.",
+          "evidence_required": [
+            "The facts that would most directly challenge or support the hypothesis.",
+            "The analysis paths that would be interesting but would not change the decision.",
+            "The stopping rule for additional evidence once the hypothesis is resolved enough to act.",
+            "The premature analysis or data sweep the team is tempted to start."
+          ],
+          "good_output_shape": [
+            "Lists only evidence that changes the hypothesis or decision.",
+            "States what data or analysis will not be gathered because it does not test the hypothesis.",
+            "Uses a stop condition tied to proof, disproof, support, or refutation.",
+            "Avoids boiling the ocean by preserving the decision output as the filter."
+          ]
+        },
+        {
+          "requirement_id": "close-feedback-into-decision-update",
+          "description": "After results arrive, require evaluation against the pre-stated threshold and update the decision instead of producing only retrospective learning language.",
+          "evidence_required": [
+            "The result observed by the experiment or probe.",
+            "The original threshold and the degree to which the result met, missed, or complicated it.",
+            "The decision update that follows from the result.",
+            "Any revised hypothesis that should be tested next because the result changed what is now known."
+          ],
+          "good_output_shape": [
+            "Compares the result to the pre-stated threshold.",
+            "States the resulting decision: commit, stop, revise, reallocate, or run a narrower next test.",
+            "Separates real decision movement from dashboards, activity, or post-hoc learning language.",
+            "Carries the feedback loop forward only when a revised hypothesis or decision branch is explicit."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What hypothesis or assumption is this experiment trying to prove, disprove, support, or refute?",
+        "What success threshold would change the downstream decision?",
+        "What minimum facts are enough to resolve the hypothesis, and where should fact gathering stop?",
+        "Which reversible probe can inform the larger irreversible commitment, reallocation, or product choice?",
+        "After the result arrives, what specifically changes: commit, stop, revise, reallocate, or run a narrower next test?"
+      ],
+      "misuse_guards": [
+        "Do not call activity, dashboards, or post-hoc learning language experimentation unless a real decision changes.",
+        "Do not gather all available data when only a narrower set of facts is needed to test the hypothesis.",
+        "Do not start analysis before the needed decision output is clear enough to select relevant facts.",
+        "Do not treat the hypothesis as an identity claim; treat it as one more datum to challenge.",
+        "Do not interpret results only to confirm the favored hypothesis or narrative."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "The fundamental essence of Experimentation is the **systematic effort to explore a problem or test a hypothesis to find insight**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "It involves collecting enough facts *only* to prove or disprove a hypothesis, or to support or refute an analysis, thereby prioritizing efficiency and avoiding the waste of time and effort associated with \"boiling the ocean\".",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "Experimentation is translated into real-world action through disciplined frameworks focused on hypothesis generation, data collection, and continuous feedback.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "This approach encourages focused data gathering from the very first meeting by imagining a set of hypotheses early on, which then guides the questions asked.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "The hypothesis is treated as merely one more datum to throw into the brainstorming mix, minimizing ego attachment.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "uncertainty can be reduced faster and cheaper through targeted tests than through longer debate, forecasting, or opinion escalation.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "each experiment is tied to a clear hypothesis, success threshold, and downstream decision rather than being run for its own sake.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "reversible probes can inform larger irreversible commitments, reallocations, or product choices.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "This process includes constantly trying new ideas and then rigorously evaluating the results.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "experimentation becomes theater, generating activity, dashboards, or post-hoc learning language without changing any real decision.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "Experimentation is dangerous when it loses focus and attempts to gather and analyze all available data, wasting time and effort that could be conserved by focusing only on facts that test the hypotheses.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "There is a human inclination to \"just jump in to analysis without being crystal clear about what output is needed to solve the problem\".",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance preserves the source's strongest operational shape: hypothesis, threshold, bounded facts, reversible probe, feedback evaluation, and a decision update. Anti-theater and anti-boiling-ocean warnings are treated as required guards, not as generic learning language.",
+        "dropped_material": [
+          "Did not promote generic iteration, mastery, or metacognition phrasing unless it was attached to a thresholded test and decision update.",
+          "Did not split disconfirming evidence into a standalone affordance because it changes how the same hypothesis-bound experiment is interpreted."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with lean-startup and scientific-method records: this record should activate only when the experiment's hypothesis, threshold, and decision consequence can be stated."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "experimentation.variable-separated-causal-probe",
+      "status": "supported",
+      "name": "Variable-separated causal probe design",
+      "mechanism": "Before trusting a test result, structure the problem into testable hypothesis branches, separate diagnosis from solution design, identify variables and interactions, and preserve the boundary between a local result and the broader system decision.",
+      "activation_shape": {
+        "use_when": [
+          "The case contains competing explanations, causal claims, or multiple branches that must be separated before a test can say anything useful.",
+          "Variables and system interactions may determine whether the result explains the mechanism or only describes a local outcome.",
+          "Diagnosis, design, and execution are being blurred in a way that could hide the true problem.",
+          "A local test win might be overgeneralized beyond its system interactions, long-term effects, or user behavior inside the test window."
+        ],
+        "do_not_use_when": [
+          "The live decision only needs a simple thresholded probe with no causal, variable, or boundary ambiguity.",
+          "The team cannot identify the variable, causal link, branch, or process step the test is supposed to isolate.",
+          "A familiar model is being forced onto a novel problem before the problem structure has been discovered.",
+          "The test result would be treated as broadly valid without checking system interactions or boundary conditions."
+        ],
+        "case_evidence_needed": [
+          "The issue tree, branch, or competing hypothesis the experiment is testing.",
+          "The variables, causal links, interactions, and process steps that must be separated or observed.",
+          "The current process stage: diagnosis, design, execution, synthesis, or communication.",
+          "The test window, user behavior, long-term effects, and system interactions that define where the result applies.",
+          "The evidence that a local result does or does not generalize to the broader decision."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "disaggregate-into-testable-branches",
+          "description": "Break the problem into issue branches or competing hypotheses before designing a probe, so the experiment tests a mechanism rather than an undifferentiated situation.",
+          "evidence_required": [
+            "The problem definition and the candidate issue branches.",
+            "The competing hypotheses or explanations attached to those branches.",
+            "The branch whose result would most change the decision.",
+            "The facts, workplan, or analysis needed to test that branch."
+          ],
+          "good_output_shape": [
+            "Names the branch or hypothesis being tested.",
+            "Separates the tested branch from adjacent issues that should not be mixed into the result.",
+            "Links the test to the branch that most changes the decision.",
+            "Avoids treating a broad investigation as a single experiment."
+          ]
+        },
+        {
+          "requirement_id": "separate-variables-and-process-steps",
+          "description": "Identify the variables, causal links, and process stage before interpreting results, and keep diagnosis separate from solution design when blurring would hide the real problem.",
+          "evidence_required": [
+            "The variables or causal links the experiment is expected to move or reveal.",
+            "The interactions among system parts that could change the interpretation.",
+            "The process stage the team is currently in.",
+            "The solution ideas or implementation moves that must wait until diagnosis is complete."
+          ],
+          "good_output_shape": [
+            "States which variable or causal link is being tested.",
+            "Names the system interaction that could change what the result means.",
+            "Keeps diagnosis, design, and execution from collapsing into one blended step.",
+            "Rejects interpretations that cannot say which variable or step produced the result."
+          ]
+        },
+        {
+          "requirement_id": "bound-local-result-before-generalizing",
+          "description": "Before using a local test win to justify a larger move, inspect the system interactions, time horizon, and user behavior that may limit where the result applies.",
+          "evidence_required": [
+            "The local context, population, or test window where the result was observed.",
+            "The system interactions or dependencies outside the test window.",
+            "The long-term effect or behavior change that could reverse the apparent win.",
+            "The larger commitment or decision the team wants to justify from the local result."
+          ],
+          "good_output_shape": [
+            "States the boundary where the result was actually observed.",
+            "Names which system interaction or long-term effect still needs checking.",
+            "Uses the local result to update the decision only within the supported boundary.",
+            "Requires another test or systems check before treating a local win as global proof."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which branch, issue, or competing hypothesis is this experiment actually testing?",
+        "Which variable or causal link must move if our explanation is true?",
+        "What are we diagnosing now, and what solution design must wait until diagnosis is complete?",
+        "Which system interaction, long-term effect, or user behavior could make the local result misleading?",
+        "Where does this result stop applying, and what would need to be tested before a larger commitment?"
+      ],
+      "misuse_guards": [
+        "Do not infer causality from an experiment that has not separated the branch, variable, or process step being tested.",
+        "Do not blur diagnosis and solution design when the source-backed sequence requires the steps to be done one at a time.",
+        "Do not generalize a local win beyond the system interactions, time horizon, or user behavior observed.",
+        "Do not use a familiar model as a hammer for a novel problem before the test structure has been discovered.",
+        "Do not treat simulation or workshop play as proof unless it is tied to explicit hypotheses, moves, countermoves, and likely payoffs."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "mandates defining the problem, disaggregating issues and developing hypotheses, prioritizing effort, developing a workplan, conducting fact-gathering and analysis (while avoiding biases), synthesizing findings, and communicating insights.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "By focusing on gathering facts, establishing a timeline, and walking through decisions step-by-step, researchers can investigate the flow of the problem-solving process and illuminate details that might otherwise be obscured.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "He stresses that these steps must be done one at a time and in order (e.g., when diagnosing problems, *do not* think about solving them yet) to prevent blurring and ensure true problems are uncovered.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "Logic trees and the principle of **Mutually Exclusive, Collectively Exhaustive (MECE)** decomposition are powerful allies, allowing problems to be elegantly cleaved into insightful parts, setting up clear, testable branches of hypotheses.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "Experimentation relies on understanding causality. Using systems tools like **Diagrams of Causal Chain** helps organize the variables in a system and reveal how parts interact, thereby providing the basis for smarter testing and prediction.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "local test wins are overgeneralized and the team misses system interactions, long-term effects, or changes in user behavior outside the test window.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "The tendency to rely excessively on familiar mental models, sometimes called Maslow's hammer or law of the instrument (\"if the only tool you have is a hammer, to treat everything as if it were a nail\"), directly conflicts with the need for novelty in experimentation.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "This involves breaking a team into an attack team and a defense team to make a series of moves and countermoves, covering months of activity in a workshop to reflect on the likely payoffs.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "normalized",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance keeps test design separate from the hypothesis-threshold-decision contract: it only activates when causal branches, variables, process-step separation, or generalization boundaries determine whether the experiment can be trusted.",
+        "dropped_material": [
+          "Did not create separate affordances for MECE, systems thinking, game theory, or digital twins; those are treated as tools for designing or stress-testing a variable-separated probe.",
+          "Did not promote all scenario or workshop examples because the operational substrate is the branch, variable, interaction, and boundary discipline."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with decomposition and systems-thinking records: experimentation should own the tested probe, while those models own broader problem structuring and causal mapping when no experiment is being designed."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-generic-learning-loop",
+      "status": "not_supported_by_source",
+      "reason": "The source uses iteration, mastery, metacognition, and communication examples, but its operational experimentation contract requires hypotheses, thresholds, rigorous evaluation, and decision movement. A generic learning-loop affordance would recreate the anti-pattern the source calls theater.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "The **build and test** steps mirror the heart of practical experimentation, where the process is repeated as insights grow.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "This process includes constantly trying new ideas and then rigorously evaluating the results.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "experimentation becomes theater, generating activity, dashboards, or post-hoc learning language without changing any real decision.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-digital-twin-or-game-simulation",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports digital twins, in-silico pre-validation, and game-theory workshops as test implementations, but they do not create a separate affordance unless tied to hypothesis, variable, interaction, boundary, and payoff discipline already captured by the two extracted records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "This allows organizations to practice **pre-validation** of decisions *in silico* (in a computer model).",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "This involves breaking a team into an attack team and a defense team to make a series of moves and countermoves, covering months of activity in a workshop to reflect on the likely payoffs.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-falsification-and-antithesis-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source-backed disconfirmation and antithesis material is real, but it changes how hypothesis-bound tests are designed and interpreted rather than producing a different output artifact. Extracting it as a third affordance would duplicate the first affordance and the existing confirmation-bias/narratives relation semantics.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "Experimentation requires intellectual humility and a willingness to seek out and reconcile **disconfirming evidence**.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "experimentation conflicts with confirmation-bias (confirmation bias) when tests are designed or interpreted to confirm the hypothesis rather than genuinely challenge it.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Experimentation_rag.md",
+          "source_quote": "Establish a norm where every idea or hypothesis must be met with its **antithesis** and challenged before joining the learning in synthesis.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Experimentation_rag.md",
+      "source_quote": "The fundamental essence of Experimentation is the **systematic effort to explore a problem or test a hypothesis to find insight**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Experimentation_rag.md",
+      "source_quote": "It involves collecting enough facts *only* to prove or disprove a hypothesis, or to support or refute an analysis, thereby prioritizing efficiency and avoiding the waste of time and effort associated with \"boiling the ocean\".",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Experimentation_rag.md",
+      "source_quote": "each experiment is tied to a clear hypothesis, success threshold, and downstream decision rather than being run for its own sake.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Experimentation_rag.md",
+      "source_quote": "Experimentation relies on understanding causality. Using systems tools like **Diagrams of Causal Chain** helps organize the variables in a system and reveal how parts interact, thereby providing the basis for smarter testing and prediction.",
+      "section_hint": "The Latticework: Systemic Interactions",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Experimentation_rag.md",
+      "source_quote": "experimentation becomes theater, generating activity, dashboards, or post-hoc learning language without changing any real decision.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection note, full Experimentation_rag.md source, Wave 1 activation curation, Wave 2 intervention semantics, and Wave 3 relation semantics. Extracted two affordances only: hypothesis-bound decision tests and variable-separated causal probe design. No third affordance was extracted because the strongest third candidate, falsification/antithesis, does not produce a distinct output artifact beyond the hypothesis-bound test and existing confirmation-bias relation.",
+    "dropped_material": [
+      "Generic learning, mastery scaffolding, metacognition, and iterative communication language was kept out unless it was attached to hypothesis, threshold, rigorous evaluation, and decision update.",
+      "Digital twins, in-silico validation, simulations, and game-theory workshops were treated as implementation methods for tests, not independent affordances.",
+      "Southwest, Bridgewater, prompt-engineering, and other examples were used only where they supported operational sequencing or feedback, not as domain-specific affordances.",
+      "Relation curation for systems-thinking, confirmation-bias, and narratives was preserved as context rather than converted into separate runtime records."
+    ],
+    "open_questions": [
+      "Reviewer should check the boundary with scientific-method-evidence-testing, lean-startup, decomposition, and systems-thinking records.",
+      "Reviewer should confirm that the falsification/antithesis material is better preserved inside the first affordance and absence record than as a third affordance."
+    ],
+    "review_status": "draft"
+  }
+}

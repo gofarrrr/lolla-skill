@@ -1,0 +1,293 @@
+{
+  "model_id": "comparative-advantage",
+  "source_file": "Comparative_Advantage_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "comparative-advantage.relative-productivity-role-map",
+      "status": "supported",
+      "name": "Relative-productivity role allocation map",
+      "mechanism": "When the live allocation question is who should do what, compare people, teams, or functions by relative productivity across the relevant work, then redesign ownership, delegation, partnerships, or workflows so each task sits with the actor whose strengths create the highest input-to-output ratio while preserving coordination and minimum adjacent competence.",
+      "activation_shape": {
+        "use_when": [
+          "The decision is who should own, delegate, partner on, or stop doing work rather than how hard the current owner should work.",
+          "People, teams, or functions differ enough in skill, speed, judgment, passion, or opportunity cost that the allocation changes likely output.",
+          "Responsibilities, partnerships, or workflows can be rearranged around strengths without destroying coordination.",
+          "A legacy owner, sunk ownership pattern, or default role map may be blocking higher-leverage specialization."
+        ],
+        "do_not_use_when": [
+          "The task is a generic priority ranking or opportunity-cost comparison that does not change who should do what.",
+          "The proposed answer keeps the current role map intact and only says to focus on strengths or work harder.",
+          "Specialization language is being used to excuse missing minimum competence in adjacent skills the system still needs.",
+          "The work cannot be reassigned, delegated, partnered, or redesigned in a way that preserves coordination."
+        ],
+        "case_evidence_needed": [
+          "The people, teams, functions, or partners being compared for ownership or delegation.",
+          "The tasks, responsibilities, workflows, or decisions that could move between actors.",
+          "Evidence of relative productivity: skill, speed, judgment, passion, opportunity cost, or output quality for each actor.",
+          "The current owner or legacy role allocation and whether inertia, sunk ownership, or status quo is keeping work in place.",
+          "The coordination dependencies and minimum adjacent competencies that must be preserved after specialization."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compare-relative-advantage",
+          "description": "Before recommending ownership, compare the available actors by relative productivity on the concrete work instead of treating people or teams as interchangeable capacity.",
+          "evidence_required": [
+            "The candidate actors who could own, delegate, or partner on the work.",
+            "The concrete work packages, responsibilities, or decisions being allocated.",
+            "Relative evidence for each actor's skill, speed, judgment, passion, opportunity cost, or output quality.",
+            "The current allocation and the reason it may no longer fit the actual work."
+          ],
+          "good_output_shape": [
+            "Names who should do what and why that actor has the relative edge for that work.",
+            "Compares strengths across actors rather than listing generic competencies.",
+            "Shows how the allocation improves input-to-output ratio or output quality.",
+            "Flags legacy ownership when it is preserving a lower-leverage allocation."
+          ]
+        },
+        {
+          "requirement_id": "redesign-complementary-workflow",
+          "description": "Turn the relative-productivity comparison into a concrete role, delegation, partnership, or workflow map that combines complementary strengths without losing coordination.",
+          "evidence_required": [
+            "The responsibilities, partnerships, handoffs, or workflow surfaces that can realistically be redesigned.",
+            "The complementary attributes or strengths each actor brings to the mix.",
+            "The coordination dependencies that could break if specialization is over-applied.",
+            "The output, service, decision quality, or organizational result that the new mix is meant to improve."
+          ],
+          "good_output_shape": [
+            "Reassigns ownership, delegation, partnership, or handoffs in operational terms.",
+            "Explains how complementary strengths reinforce each other.",
+            "Preserves the coordination requirements needed for the whole system to work.",
+            "Avoids treating comparative advantage as an individual self-optimization slogan."
+          ]
+        },
+        {
+          "requirement_id": "check-specialization-boundaries",
+          "description": "Before freezing the new allocation, check whether specialization is hiding permanent weakness, cognitive entrenchment, or an outdated role map that no longer matches changed work.",
+          "evidence_required": [
+            "The adjacent skills where minimum competence is still required even if they are not the actor's comparative edge.",
+            "Any novelty, environmental change, or contradictory evidence that the current specialization might miss.",
+            "The legacy assignment, sunk ownership, or status quo bias that could keep work with the wrong owner.",
+            "The review trigger that would cause the role map to be revisited."
+          ],
+          "good_output_shape": [
+            "States which adjacent competencies must be maintained despite specialization.",
+            "Names where over-specialization or old expertise could blind the team to novelty.",
+            "Defines when the allocation should be revisited because marginal efficiency has shifted.",
+            "Keeps comparative advantage distinct from an excuse for permanent weakness."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who should do what if we allocate by relative productivity instead of tradition or current ownership?",
+        "Which actor has the highest input-to-output ratio for this specific work, and what evidence shows it?",
+        "Which responsibilities, partnerships, or workflows can be rearranged so complementary strengths reinforce each other?",
+        "What minimum adjacent competence must still be maintained even if this is not the actor's comparative edge?",
+        "What evidence would show that the old role map has become stale and should be changed?"
+      ],
+      "misuse_guards": [
+        "Do not collapse comparative advantage into generic opportunity cost or priority ranking; the output must change who should do what.",
+        "Do not treat people or teams as interchangeable capacity when the source-backed mechanism depends on unique strengths and relative productivity.",
+        "Do not use specialization to defend legacy ownership after marginal efficiency has moved.",
+        "Do not let zone-of-genius language excuse missing baseline competence in adjacent skills.",
+        "Do not over-specialize so narrowly that novelty, contradictory information, or coordination dependencies disappear from view."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "The fundamental essence of this mental model, drawn from the sources, is the strategic identification and maximal **leveraging of unique strengths** or **natural advantages** to achieve disproportionately successful outcomes, while either minimizing or delegating effort in areas where one holds less competence or passion.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "Its core purpose is to guide effective decision-making by anchoring effort in the areas that yield the **highest input-to-output ratio**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "This principle operates on the recognition that people and organizations are **not interchangeable**; rather, success hinges on appreciating each individual's unique set of skills and abilities.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "In organizational design, the goal is to **match each person with complementary individuals** to create the best mix of attributes for their tasks.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "This involves leveraging each person's unique strengths, goals, and personality traits to craft roles that best utilize their characteristics.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "\u2022 **Most useful when the real question is allocation:** Comparative advantage is strongest when the decision is who should do what, not merely how hard everyone should work inside the current role map.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "\u2022 **Works when marginal efficiency differences matter:** The model has high leverage when even modest differences in skill, speed, judgment, or opportunity cost compound into materially different outcomes across people or teams.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "\u2022 **Best when work can be redesigned around strengths:** Comparative advantage is at its best when responsibilities, partnerships, or workflows can be rearranged so that strengths reinforce each other without losing overall coordination.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "\u2022 **Danger When Comparative Advantage Becomes an Excuse for Permanent Weakness:** The model is distorted when people use specialization logic to avoid building minimum competence in adjacent skills or to freeze outdated role allocations that no longer fit the real work.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "\u2022 **comparative-advantage vs status-quo-bias:** comparative-advantage conflicts with status-quo-bias (status quo bias) when legacy role allocation blocks higher-leverage specialization.",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "\u2022 **comparative-advantage vs commitment-bias:** comparative-advantage conflicts with commitment-bias (commitment bias) when sunk ownership prevents reallocating tasks by marginal efficiency.",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed unique strengths, highest input-to-output ratio, non-interchangeability, complementary role design, marginal efficiency, and stale-role warnings into one affordance because they all serve the same comparative-advantage mechanism: who should do what based on relative productivity.",
+        "dropped_material": [
+          "Did not split Zone of Genius into a personal-development affordance because the source uses it to orient role allocation rather than define a separate runtime contract.",
+          "Did not split status-quo-bias and commitment-bias tensions into separate affordances; they guard against stale role maps inside the same allocation mechanism.",
+          "Did not create a standalone expert-communication affordance from curse-of-knowledge material because it does not preserve the resource-allocation mechanism requested for this record."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with trade-offs and opportunity-cost: comparative advantage should activate only when the treatment must name who should do what based on relative productivity."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-opportunity-cost-or-prioritization-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source mentions Pareto focus, influence, and opportunity cost, but those passages support comparative advantage only when they change the owner, partner, delegate, or role map. Promoting a generic opportunity-cost or prioritization affordance would lose the required relative-productivity and who-should-do-what mechanism.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "By focusing resources on this critical 20%, you maximize the input-to-output ratio and achieve results-driven success.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "\u2022 **Consulting Problem Prioritization:** Expert problem solvers prioritize efforts on those issues that have the **biggest impact** on the problem and, critically, **that they can actually influence**.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "\u2022 **Most useful when the real question is allocation:** Comparative advantage is strongest when the decision is who should do what, not merely how hard everyone should work inside the current role map.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-specialist-frame-or-communication-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports specialist-frame, cognitive-entrenchment, and curse-of-knowledge risks, but they are better carried as misuse guards and boundary checks for the role-allocation affordance. Extracting them as a peer affordance would drift into problem-framing, expertise, or communication models rather than comparative advantage's allocation contract.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "\u2022 **Cognitive Entrenchment:** Excessive specialization, a byproduct of maximizing comparative advantage, can lead to **inflexibility**.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "This occurs when a problem solver assumes, **\"I have seen this one before, it is an X problem,\"** leading to the use of unhelpful or misleading frameworks in genuinely novel contexts.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Advantage_rag.md",
+          "source_quote": "Specialists who rely on their comparative advantage often speak on a higher level of insight, making their communication abstract, thus leading to a **lack of a common language** with their audience or team.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Comparative_Advantage_rag.md",
+      "source_quote": "The fundamental essence of this mental model, drawn from the sources, is the strategic identification and maximal **leveraging of unique strengths** or **natural advantages** to achieve disproportionately successful outcomes, while either minimizing or delegating effort in areas where one holds less competence or passion.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Comparative_Advantage_rag.md",
+      "source_quote": "\u2022 **Most useful when the real question is allocation:** Comparative advantage is strongest when the decision is who should do what, not merely how hard everyone should work inside the current role map.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Comparative_Advantage_rag.md",
+      "source_quote": "\u2022 **Works when marginal efficiency differences matter:** The model has high leverage when even modest differences in skill, speed, judgment, or opportunity cost compound into materially different outcomes across people or teams.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Comparative_Advantage_rag.md",
+      "source_quote": "\u2022 **Best when work can be redesigned around strengths:** Comparative advantage is at its best when responsibilities, partnerships, or workflows can be rearranged so that strengths reinforce each other without losing overall coordination.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the model-affordance extraction contract, schema, PR 9 Batch 2 selection note, full Comparative_Advantage_rag.md source, Wave 1 activation curation, Wave 2 intervention semantics, and Wave 3 relation semantics. Extracted one source-backed affordance that preserves comparative advantage as a relative-productivity role-allocation mechanism, not generic opportunity cost, prioritization, or expert communication.",
+    "dropped_material": [
+      "Pareto, consulting prioritization, Southwest strategic clarity, and risk reversal were not promoted as standalone affordances because they do not force a who-should-do-what allocation map.",
+      "Cognitive entrenchment, Maslow's Hammer, expert trap, curse of knowledge, confirmation bias, framing effects, status-quo bias, and commitment bias were treated as guards around the role-allocation mechanism rather than peer affordances.",
+      "Did not create a third affordance; the source does not support three structurally distinct comparative-advantage runtime contracts without drifting into adjacent models."
+    ],
+    "open_questions": [
+      "Reviewer should confirm whether the third treatment requirement for specialization boundaries belongs inside the main affordance or should be reduced to misuse guards only.",
+      "Reviewer should check the boundary with Batch 1 trade-offs and the deferred opportunity-cost model: this record should require relative productivity and actor-role reassignment, not merely sacrifice, focus, or lost alternatives."
+    ],
+    "review_status": "draft"
+  }
+}

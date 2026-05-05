@@ -1,0 +1,263 @@
+{
+  "model_id": "margin-of-safety",
+  "source_file": "Margin_Of_Safety_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "margin-of-safety.evidence-sized-operating-buffer",
+      "status": "supported",
+      "name": "Evidence-sized operating buffer before exposure",
+      "mechanism": "When a commitment could be harmed by forecast error or volatility, convert uncertainty into explicit slack sized from comparable misses and stress cases, then embed that buffer in budgets, staffing, inventory, thresholds, or decision rules before stress arrives.",
+      "activation_shape": {
+        "use_when": [
+          "Small forecast errors in time, capital, or quality could cascade into major loss and the downside would be hard to reverse.",
+          "Estimates are uncertain but the team can define an explicit buffer instead of optimizing only the happy path.",
+          "Safety can be built directly into budgets, staffing, inventory, thresholds, or decision rules before stress reaches the system.",
+          "The live question is whether the plan can survive volatility and error, not whether the base case is attractive."
+        ],
+        "do_not_use_when": [
+          "The buffer would be treated as a static number while burn rate, exposure, or environmental volatility is changing.",
+          "Margin language is being used to demand certainty, avoid shipping, or postpone commitment after the needed buffer rule is usable.",
+          "The output would stop at risk description without adding explicit slack, reserve, threshold, or decision rule.",
+          "The task is choosing whether a wager has acceptable risk-reward rather than designing the safety factor that lets the plan absorb error."
+        ],
+        "case_evidence_needed": [
+          "The commitment, system, budget, timeline, staffing, inventory, quality target, or threshold where slack can actually be inserted.",
+          "The base estimate and the uncertainty or historical error range that could make the base case unsafe.",
+          "Comparable past misses, reference-class outcomes, full-distribution modeling, or worst-case cases used to size the margin.",
+          "The current burn rate, exposure, volatility, and change triggers that could make the margin stale.",
+          "The explicit buffer amount, placement, owner, and decision rule that will absorb error if stress hits."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "size-margin-from-error-evidence",
+          "description": "Size the margin from comparable historical error, distribution evidence, and worst-case stress rather than confidence, optimism, or the cleanest forecast path.",
+          "evidence_required": [
+            "The base estimate or happy-path forecast the current plan depends on.",
+            "Recent comparable estimation errors or reference-class outcomes from similar work.",
+            "Full-distribution, scenario, or worst-case evidence showing how far the result could miss.",
+            "Disconfirming facts, ignored inputs, or systemic weaknesses that would widen the needed buffer."
+          ],
+          "good_output_shape": [
+            "States the relevant historical error range or comparable miss evidence.",
+            "Checks whether the proposed buffer would have absorbed those errors.",
+            "Resizes, rejects, or delays the commitment when the buffer is narrower than the evidence demands.",
+            "Separates an evidence-sized margin from a comfort margin set by confidence."
+          ]
+        },
+        {
+          "requirement_id": "embed-buffer-in-operating-rules",
+          "description": "Translate the safety margin into concrete operating slack, thresholds, reserves, or decision rules that absorb stress before the system fails.",
+          "evidence_required": [
+            "The operating surface where slack can be inserted, such as budget, staffing, inventory, time, quality, or a threshold.",
+            "The size of the buffer and the exposure, error, or stress it is meant to absorb.",
+            "The owner, rule, or trigger that preserves or resizes the buffer as conditions change.",
+            "The consequence that follows if the margin is too thin or the buffer is consumed."
+          ],
+          "good_output_shape": [
+            "Expresses the margin in operational units rather than vague caution.",
+            "Places the buffer inside a budget, staffing plan, inventory level, threshold, or decision rule.",
+            "Names the stressor the buffer is designed to absorb.",
+            "Defines when burn rate, exposure, or volatility requires the margin to be recalculated."
+          ]
+        },
+        {
+          "requirement_id": "keep-margin-usable",
+          "description": "Keep the buffer discipline actionable by avoiding perfect-safety demands, excessive analysis, and accuracy that is too complex to guide a decision.",
+          "evidence_required": [
+            "The commitment or shipping decision that could be delayed by over-protection.",
+            "The minimum buffer condition that would make action survivable enough.",
+            "The analysis burden or precision level that is no longer changing the buffer decision.",
+            "The downside reason the plan still needs a margin rather than pure speed."
+          ],
+          "good_output_shape": [
+            "Allows action once the evidence-sized margin is explicit and survivable enough.",
+            "Names what analysis was deliberately stopped because it no longer changes the buffer.",
+            "Keeps the safety factor simple enough for the team to use.",
+            "Avoids turning margin of safety into a demand for certainty."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What was the actual error range on the last three comparable estimates, and would the current buffer have absorbed it?",
+        "Where is the margin built into the plan: budget, staffing, inventory, threshold, reserve, or decision rule?",
+        "Which burn rate, exposure, or volatility change would make today's buffer stale enough to resize?",
+        "Are we adding evidence-sized slack, or using margin of safety language to demand certainty before acting?"
+      ],
+      "misuse_guards": [
+        "Do not treat a static reserve as a real margin when exposure or volatility is moving underneath it.",
+        "Do not let margin of safety become generic downside analysis; it must alter the explicit buffer or operating rule.",
+        "Do not size the margin from the best-case internal model or current confidence; use comparable error evidence.",
+        "Do not pursue perfect safety or useless accuracy after the buffer is usable enough to support commitment."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "The **Margin of Safety** is a foundational mental model, particularly in finance and engineering, whose fundamental essence is acknowledging and preparing for the gap between expectation and reality. It is the deliberate incorporation of a buffer or cushion to absorb unexpected negative events, errors, or inaccuracies.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "Works best when** estimates are uncertain, buffers can be made explicit, and the team must survive volatility rather than merely optimize the happy path.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "Best used when** resilience can be built directly into budgets, staffing, inventory, thresholds, or decision rules before stress hits the system.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "Before proceeding with major decisions, decisions should be routinely **\"pre-validated in silico\"** (via modeling). When modeling large projects, it is crucial to focus on the full distribution of outcomes and ask: **\"Is the worst case bad enough?\"**.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "Reference-class calibration:** Size the safety margin from comparable historical error, not from the best-case internal model or the cleanest forecast path.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "A margin of safety is only real if it is wider than your recent track record of estimation errors -- not wider than your best-case model. Before committing: what was the actual error range on the last three comparable estimates this team made? If the current buffer would not have absorbed those errors, you do not have a margin of safety. You have a floor set by confidence, not by evidence.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "Danger when** the assumed buffer is static while the burn rate, exposure, or environmental volatility is changing underneath it.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "Danger when** Margin of Safety becomes an excuse for never shipping, never committing, or demanding certainty that the situation cannot provide.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "If the buffer (or the underlying analysis used to derive it) becomes too complex or exhaustive, it risks achieving **\"useless accuracy\"**.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed buffer definition, reference-class sizing, full-distribution stress checks, operational placement, dynamic-buffer warnings, and anti-paralysis cautions into one affordance because they all serve the same safety-factor design contract.",
+        "dropped_material": [
+          "Did not split pre-mortem, simulation, knowns-and-unknowns, or inverse-goals material into peer affordances; they support margin sizing rather than creating a distinct MOS operation.",
+          "Did not extract procurement, project-management, entrepreneurial-pitching, cognitive-load, or engineering examples as domain affordances because they illustrate the same buffer discipline.",
+          "Did not promote relation curation for optionality, feedback-loops, confirmation-bias, probabilistic-thinking, optimism, or availability into separate affordance records."
+        ],
+        "open_questions": [
+          "Review should confirm whether the source's enriched strengths bullets should carry the same canonical weight as older prose sections; they provide the crispest budget, staffing, inventory, threshold, and decision-rule language."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-generic-downside-analysis",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports surfacing weaknesses and minimizing catastrophic loss only insofar as those moves size or place a buffer. A standalone downside-analysis affordance would blur into risk-assessment instead of preserving MOS as safety-factor design.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "In practice, the Margin of Safety model shifts the decision-making focus from maximizing profit to minimizing catastrophic loss. This model is often applied through structured, iterative processes designed to surface potential weaknesses before they cause failure.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "Effective implementation of MOS involves focusing resources strategically. Efforts should be concentrated on those issues that both yield the biggest impact on the problem and, critically, are issues that the decision-makers \"can actually influence\".",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-risk-reward-bet-selection",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source contrasts MOS with maximizing gain and centers avoiding mistakes, limiting harm, and adding buffers. It does not support a separate bet-selection affordance beyond calculated-risk-taking unless the treatment produces an explicit safety margin.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "Its core purpose is risk minimization and downside protection, focusing on avoiding mistakes and limiting the potential harms of a situation rather than solely optimizing for the maximum possible gain.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "challenging the assumption that lower price can be achieved without higher risk",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Margin_Of_Safety_rag.md",
+      "source_quote": "The **Margin of Safety** is a foundational mental model, particularly in finance and engineering, whose fundamental essence is acknowledging and preparing for the gap between expectation and reality. It is the deliberate incorporation of a buffer or cushion to absorb unexpected negative events, errors, or inaccuracies.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Margin_Of_Safety_rag.md",
+      "source_quote": "Works best when** estimates are uncertain, buffers can be made explicit, and the team must survive volatility rather than merely optimize the happy path.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Margin_Of_Safety_rag.md",
+      "source_quote": "Reference-class calibration:** Size the safety margin from comparable historical error, not from the best-case internal model or the cleanest forecast path.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Margin_Of_Safety_rag.md",
+      "source_quote": "Danger when** the assumed buffer is static while the burn rate, exposure, or environmental volatility is changing underneath it.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection note, full Margin_Of_Safety_rag.md source, Wave 1 activation curation, Wave 2 intervention semantics, Wave 3 relation semantics, and the batch_1 risk-assessment/calculated-risk-taking contrast records. Extracted one sharp affordance for evidence-sized buffer design and kept generic downside analysis plus bet-selection out of this model.",
+    "dropped_material": [
+      "Pre-mortem, simulation, inverse-goal, and knowns-and-unknowns passages were treated as tools for sizing a margin, not as separate MOS affordances.",
+      "Multidisciplinary toolkit, cognitive-load, procurement, project-management, and pitching passages were treated as supporting examples or adjacent relations.",
+      "The relation curation and structured tensions were preserved only as review context because they do not create a distinct buffer-design operation in this record."
+    ],
+    "open_questions": [
+      "Reviewer should confirm the boundary with risk-assessment: MOS should activate only when the output needs an explicit buffer, reserve, slack, safety factor, threshold, or decision rule.",
+      "Reviewer should confirm the boundary with calculated-risk-taking: MOS is not the wager-choice contract; it is the safety-factor design that absorbs estimation error after a plan is otherwise under consideration."
+    ],
+    "review_status": "draft"
+  }
+}
