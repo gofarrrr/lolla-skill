@@ -21,6 +21,7 @@ from scripts.compile_model_affordances import (  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PILOT_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "pilot"
 BATCH_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "batch_1"
+BATCH_2_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "batch_2"
 PILOT_MANIFEST_PATH = REPO_ROOT / "data" / "model_affordances" / "pilot_manifest.json"
 SOURCE_DIR = REPO_ROOT / "data" / "model_sources"
 SOURCE_MANIFEST_PATH = REPO_ROOT / "data" / "model_sources" / "manifest.json"
@@ -57,6 +58,28 @@ BATCH_MODEL_IDS = {
     "risk-assessment",
     "sunk-cost-fallacy",
     "trade-offs",
+}
+BATCH_2_MODEL_IDS = {
+    "adverse-selection",
+    "aleatory-epistemic-uncertainty-recognition",
+    "antifragility",
+    "black-swan-events",
+    "comparative-advantage",
+    "correlation-vs-causation",
+    "empathy",
+    "experimentation",
+    "law-of-large-numbers",
+    "margin-of-safety",
+    "moral-hazard",
+    "optimization-theory",
+    "pareto-principle",
+    "prioritization",
+    "psychological-safety",
+    "resilience",
+    "six-thinking-hats",
+    "social-proof",
+    "statistical-discipline",
+    "survivorship-bias",
 }
 
 
@@ -194,6 +217,39 @@ def test_compiler_can_compile_pilot_and_batch_records_to_v2(
     assert {entry["model_id"] for entry in source_files} == expected_model_ids
     assert "### Repeated Diagnostic Question Openings" in result.quality_report
     assert "`what would you have to`" in result.quality_report
+
+
+def test_compiler_can_compile_pilot_batch1_batch2_records_to_v3(
+    tmp_path: Path,
+) -> None:
+    extra_sections = "## Gate 3 Status\n\nGate 3: cleared.\n"
+    result = compile_model_affordances(
+        root=REPO_ROOT,
+        record_dirs=(PILOT_RECORD_DIR, BATCH_RECORD_DIR, BATCH_2_RECORD_DIR),
+        output_dir=tmp_path / "compiled",
+        compiled_filename="affordances_v3.json",
+        quality_report_filename="quality_report_v3.md",
+        artifact_id="model_affordances_v3",
+        report_title="Model Affordance Quality Report v3",
+        extra_sections=extra_sections,
+    )
+
+    metadata = result.compiled["compile_metadata"]
+    source_files = metadata["source_files"]
+    expected_model_ids = PILOT_MODEL_IDS | BATCH_MODEL_IDS | BATCH_2_MODEL_IDS
+
+    assert result.compiled_path.name == "affordances_v3.json"
+    assert result.quality_report_path.name == "quality_report_v3.md"
+    assert result.compiled["artifact"] == "model_affordances_v3"
+    assert result.quality_report.startswith("# Model Affordance Quality Report v3\n")
+    assert metadata["contributing_record_count"] == 50
+    assert metadata["affordance_count"] == 86
+    assert metadata["absence_record_count"] == 83
+    assert metadata["validation"]["schema_validation_failure_count"] == 0
+    assert metadata["validation"]["source_quote_rejection_count"] == 0
+    assert {entry["model_id"] for entry in source_files} == expected_model_ids
+    assert "## Gate 3 Status" in result.quality_report
+    assert "Gate 3: cleared." in result.quality_report
 
 
 def test_quality_report_avoids_scorecard_language(tmp_path: Path) -> None:

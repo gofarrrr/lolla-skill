@@ -99,6 +99,7 @@ def compile_model_affordances(
     quality_report_filename: str = QUALITY_REPORT_FILENAME,
     artifact_id: str = "model_affordances_v1",
     report_title: str = "Model Affordance Quality Report v1",
+    extra_sections: str = "",
     write: bool = True,
 ) -> CompilationResult:
     root = Path(root)
@@ -159,7 +160,7 @@ def compile_model_affordances(
         validation_summary=validation_summary,
         artifact_id=artifact_id,
     )
-    quality_report = render_quality_report(compiled, title=report_title)
+    quality_report = render_quality_report(compiled, title=report_title, extra_sections=extra_sections)
 
     compiled_path = output_dir / compiled_filename
     quality_report_path = output_dir / quality_report_filename
@@ -183,6 +184,7 @@ def render_quality_report(
     compiled: dict[str, object],
     *,
     title: str = "Model Affordance Quality Report v1",
+    extra_sections: str = "",
 ) -> str:
     quality = _quality_signals(compiled)
     records = _records(compiled)
@@ -333,7 +335,10 @@ def render_quality_report(
             "- No semantic genericity scoring beyond PR 1 validation.",
         ]
     )
-    return "\n".join(lines) + "\n"
+    body = "\n".join(lines) + "\n"
+    if extra_sections:
+        body = body.rstrip("\n") + "\n\n" + extra_sections.strip("\n") + "\n"
+    return body
 
 
 def _build_compiled_artifact(
@@ -767,7 +772,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--quality-report-filename", default=QUALITY_REPORT_FILENAME)
     parser.add_argument("--artifact-id", default="model_affordances_v1")
     parser.add_argument("--report-title", default="Model Affordance Quality Report v1")
+    parser.add_argument(
+        "--extra-sections-file",
+        type=Path,
+        default=None,
+        help="Optional markdown file whose content is appended after the auto-generated report body.",
+    )
     args = parser.parse_args(argv)
+    extra_sections = ""
+    if args.extra_sections_file is not None:
+        extra_sections_path = _resolve(args.root, args.extra_sections_file)
+        extra_sections = extra_sections_path.read_text(encoding="utf-8")
     try:
         result = compile_model_affordances(
             root=args.root,
@@ -781,6 +796,7 @@ def main(argv: list[str] | None = None) -> int:
             quality_report_filename=args.quality_report_filename,
             artifact_id=args.artifact_id,
             report_title=args.report_title,
+            extra_sections=extra_sections,
         )
     except ModelAffordanceCompilationError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
