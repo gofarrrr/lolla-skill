@@ -66,6 +66,12 @@ real. Future sessions should treat the following as current baseline:
   affordances and `12` absence records were compiled into
   `data/compiled/model_affordances/affordances_v4.json`, still
   `draft_review_only` and runtime-dormant.
+- PR 17 dry-reviewed v4 against the same Decision Pressure gates in
+  `research/gate4-3case-decision-pressure-v4-dry-review-2026-05-05.md`:
+  decision label `v4_improves_fields_without_changing_selection`. v4 improves
+  field quality and coverage honesty for the same compact surface, but does
+  not justify a fourth pressure, Batch 3b, paid rerun, or runtime/user-facing
+  promotion.
 - External architecture reference: `gbrain` was reviewed as a mature
   memory/knowledge architecture. The handover in
   `research/gbrain-architecture-learning-handover-2026-05-05.md` captures the
@@ -84,16 +90,17 @@ real. Future sessions should treat the following as current baseline:
   decision-note, tripwire, safeguard, and process-record surface.
 
 The schema is still dormant for live `/lolla` behavior. No chat, memo, Pressure
-Check, or Lane 4 runtime promotion is justified after PR16. Decision Pressure
+Check, or Lane 4 runtime promotion is justified after PR17. Decision Pressure
 is not a new lane; it is a compact synthesis object that can feed Step 6, Step
 8 Pressure Check, memo, or Observatory. C-only OOD remains the strongest
 evidence mode, but not the only value mode; grounded double-down, confirmation,
 and coverage transparency can be product-worthy when concise, actionable, and
 dismissible. Batch 3a has now extracted the five targeted coverage patch
-records under the PR15 contract. The next step is a post-Batch-3a dry surface
-review, not runtime integration: test whether v4 improves selected pressures,
-suppressed candidates, zero-output decisions, dismissal quality, tripwire
-quality, or coverage honesty without adding bloat.
+records under the PR15 contract, and PR17 found that v4 sharpens the same
+Decision Pressure surface without changing selection. The next step, if any, is
+a tiny no-paid, manual Observatory-only prototype of the same three pressures
+with v4-sharpened fields and explicit coverage transparency. It should remain a
+static research artifact, not runtime integration.
 
 ---
 
