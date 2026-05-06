@@ -3,9 +3,15 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR23 are merged as dormant research/infrastructure, and the current posture is `stop_and_review_after_pr23`
+**Status:** living schema doctrine; PR13-PR23 are merged as dormant research/infrastructure, PR24's docs/research slice is reviewed and approved, and the current posture is `stop_and_consolidate_after_pr24_review`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
+**Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
+**Current packet strategy:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
+**Source/packet audit brief:** `research/source-understanding-and-reasoning-packet-audit-brief-2026-05-06.md`
+**Current source/packet audit:** `research/source-understanding-and-reasoning-packet-audit-2026-05-06.md`
+**Current packet spec:** `research/reasoning-substrate-packet-v1-spec-2026-05-06.md`
+**Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
@@ -138,12 +144,40 @@ real. Future sessions should treat the following as current baseline:
   pressure intake is allowed, but surfaced pressure must be relevant,
   action-changing, compact, dismissible, tripwired, source-backed or
   coverage-honest, non-duplicative, non-fake-precise, and not a deterministic
-  case template.
+  template.
+- Current matching audit after the doctrine note is captured in
+  `research/knowledge-matching-current-state-audit-2026-05-06.md`. The audit
+  makes the runtime/affordance split explicit: the active runtime graph,
+  compiled chunks, relationships, and embeddings power the current lanes; the
+  55-record v4 affordance corpus is reviewed source-backed substrate for
+  dormant Decision Pressure validation/review, not live pressure matching. The
+  recommended next non-runtime step is not a new lane or PR24 implementation.
+- Current packet strategy is captured in
+  `research/enriched-mental-model-packet-strategy-2026-05-06.md`: existing
+  lanes nominate candidate mental-model shelves, deterministic code enriches
+  those shelves into source-backed cards, and the next LLM/reviewer does the
+  semantic synthesis. Any future coverage audit should support that packet
+  strategy instead of teaching Python to choose pressures.
+- Source Understanding And Reasoning Packet Audit is captured in
+  `research/source-understanding-and-reasoning-packet-audit-2026-05-06.md` and
+  `research/reasoning-substrate-packet-v1-spec-2026-05-06.md`: the runtime
+  graph gives broad shelf recall across 222 models, v4 gives reviewed depth
+  for 55 records, and `reasoning_substrate_packet.v1` is the dormant handoff
+  object for enriched cards. It does not select final pressure or create
+  user-facing output.
+- Next-session handover is captured in
+  `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
+  sessions should start there. PR24 review approved the dormant packet audit and
+  selected `stop_and_consolidate`; do not build any sample, producer, runtime
+  path, prompt change, extraction, or user-facing surface by default.
 
-The schema is still dormant for live `/lolla` behavior. No chat, memo, Pressure
-Check, or Lane 4 runtime promotion is justified after PR23. Decision Pressure
-is not a new lane; it is a compact synthesis object that can feed Step 6, Step
-8 Pressure Check, memo, or Observatory. C-only OOD remains the strongest
+The schema is still dormant for live `/lolla` behavior. The May 6 continuation
+decision produced only the Source Understanding And Reasoning Packet Audit and
+packet spec as docs/research artifacts, and PR24 review selected
+`stop_and_consolidate`. No chat, memo, Pressure Check, or Lane 4 runtime
+promotion is justified. Decision Pressure is not a new lane; it is a compact
+synthesis object that can feed Step 6, Step 8 Pressure Check, memo, or
+Observatory. C-only OOD remains the strongest
 evidence mode, but not the only value mode; grounded double-down, confirmation,
 and coverage transparency can be product-worthy when concise, actionable, and
 dismissible. Batch 3a has now extracted the five targeted coverage patch
@@ -157,10 +191,10 @@ fixture-only adapter smoke test. PR22 records that the adapter report is useful
 as a mechanical smoke guard, not as product-quality review. PR23 then adds
 no-paid directional generalization evidence from five fresh archived cases. The
 May 6 product doctrine names the product center: broad intake, disciplined
-output. The next default is not another trace slice; it is product review under
-`stop_and_review_after_pr23`. A multi-case trace review is allowed only if
-product review names the concrete uncertainty it would answer. This is still
-not live Observatory integration.
+output. The reasoning-substrate packet audit now defines the dormant handoff
+shape. A multi-case trace review or packet fixture is allowed only if product
+review names the concrete uncertainty it would answer. This is still not live
+Observatory integration.
 
 The post-PR23 deterministic boundary is explicit:
 
@@ -174,6 +208,10 @@ The post-PR23 deterministic boundary is explicit:
   missing coverage into generic model-name reasoning;
 - LLM/reviewer judgment owns semantic selection and wording, while Python owns
   custody, validation, packaging, and drift detection.
+- For candidate recall, prefer transaction-aware context where appropriate:
+  user situation, user framing, assistant advice, and assistant omissions.
+  Keep source-specific attribution gates narrow: assistant-only for Lane 2
+  fingerprints, user-only for Lane 3 frame evidence.
 
 ---
 
@@ -1351,37 +1389,40 @@ This creates the rails before the extraction work begins.
 
 ### 10.3 Current Implementation Slice
 
-The current slice is no longer schema creation or more paid Gate 4 calibration.
-It is complete through the PR23 no-paid generalization readout and
-anti-casuistry lock.
+The current slice is no longer schema creation, more paid Gate 4 calibration,
+or Decision Pressure trace machinery. PR13-PR23 are complete, and the May 6
+continuation decision produced the Source Understanding And Reasoning Packet
+Audit and dormant packet spec as docs/research artifacts. PR24 review approved
+that slice and selected `stop_and_consolidate`.
 
 Current task:
 
-1. Default to `stop_and_review_after_pr23`.
-2. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
+1. Start with `research/reasoning-substrate-next-session-handover-2026-05-06.md`
+   when opening a new coding session.
+2. Use `research/source-understanding-and-reasoning-packet-audit-2026-05-06.md`
+   as the current source-understanding audit.
+3. Use `research/reasoning-substrate-packet-v1-spec-2026-05-06.md` as the
+   current dormant packet shape.
+4. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
    product north star: broad intake, disciplined output.
-3. Preserve the three selected Decision Pressure clusters from PR13/PR14.
-4. Keep PR17's decision label: `v4_improves_fields_without_changing_selection`.
-5. Treat PR18's Observatory trace as the manual prototype baseline.
-6. Keep coverage transparency visible, especially the PhD competitive-dynamics
-   zero-output.
-7. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
+5. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
+   architecture line: pull shelves, enrich cards, let the LLM reason.
+6. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-8. Treat PR20's producer/adapter plan as a boundary, not as a producer.
-9. Treat PR21's adapter smoke test as review infrastructure, not live product.
-10. Treat PR22's usefulness review as a smoke-guard conclusion, not as
-   permission for a package function.
-11. Treat PR23's generalization readout as directional product evidence, not
-   as runtime evidence, deterministic case logic, or permission for PR24.
-12. Keep field-level provenance, global compression, zero-output success, and
-   action-delta requirements explicit.
-13. Preserve coverage honesty and no-casuistry rails.
-14. Do not run more paid model calls until the surface is reviewed.
-15. Do not start package functions, UI, trace-fixture stress tests, new adapter
-   work, Batch 3b, prompt changes, or runtime work by default.
+7. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
+8. Treat PR23's generalization readout as directional product evidence, not
+   deterministic case logic.
+9. Treat PR24 as reviewed and approved as dormant research/infrastructure; do
+   not select a next slice by default.
+10. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+    Batch 3b, or user-facing promotion from this slice.
+11. Preserve coverage honesty and no-casuistry rails.
+12. Do not run more paid model calls for this slice.
+13. Do not start package functions, UI, trace-fixture stress tests, new adapter
+    work, Batch 3b, prompt changes, or runtime work by default.
 
-Do not expand the corpus or wire live runtime behavior until this surface is
-specified, reviewed, and then tested against product-value evidence.
+Do not expand the corpus or wire live runtime behavior until the packet shape
+is specified, reviewed, and then tested against product-value evidence.
 
 ---
 
