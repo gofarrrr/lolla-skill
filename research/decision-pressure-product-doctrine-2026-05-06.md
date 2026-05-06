@@ -7,7 +7,17 @@ change, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `stop_and_review_after_pr23`
+**Current posture:** `stop_and_consolidate_after_pr24_review`
+
+**Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
+
+**Source/packet audit brief:** `research/source-understanding-and-reasoning-packet-audit-brief-2026-05-06.md`
+
+**Current source/packet audit:** `research/source-understanding-and-reasoning-packet-audit-2026-05-06.md`
+
+**Current packet spec:** `research/reasoning-substrate-packet-v1-spec-2026-05-06.md`
+
+**Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
 ## Core Doctrine
 
@@ -235,6 +245,22 @@ The stack does not support:
 
 ## Architecture Boundary
 
+The current runtime/affordance split is mapped in
+`research/knowledge-matching-current-state-audit-2026-05-06.md`. Future
+sessions should keep that distinction explicit: the active runtime graph has
+222 models, while the v4 affordance corpus has 55 reviewed source-backed
+records and remains dormant review substrate.
+
+The simplification note in
+`research/enriched-mental-model-packet-strategy-2026-05-06.md` is the current
+anti-drift correction:
+
+> Pull shelves, enrich cards, let the LLM reason.
+
+Existing lanes should nominate candidate mental-model shelves. Deterministic
+code may enrich those shelves with source-backed v4 card snippets, provenance,
+caps, and coverage status. It must not become a deterministic pressure solver.
+
 The deterministic layer may enforce:
 
 - schema shape;
@@ -322,13 +348,32 @@ Runtime or user-facing promotion should stay blocked until evidence shows:
 7. The deterministic layer remains custody/validation/reporting only.
 8. The output can be compact enough for the eventual receiving surface.
 
-Until then, the posture remains:
+After the May 6 continuation decision, the posture is:
 
-> `stop_and_review_after_pr23`
+> `source_understanding_packet_audit_complete`
+
+This lifted the post-PR23 pause only for the docs/research Source Understanding
+And Reasoning Packet Audit and dormant packet spec. It does not authorize
+runtime promotion, prompt changes, lane rewrites, broad extraction, Batch 3b,
+paid runs, or user-facing Decision Pressure output.
+
+After PR24 review, the active next-session posture is:
+
+> `stop_and_consolidate_after_pr24_review`
+
+Future sessions should read
+`research/reasoning-substrate-next-session-handover-2026-05-06.md` first and
+treat PR24 as approved dormant research/infrastructure. Do not start any
+producer, sample fixture, extraction, runtime, or prompt work by default.
 
 ## Next Product Work, Not Engineering Work
 
-The next useful work is not PR24 by default.
+The next useful work is not Decision Pressure machinery.
+
+The completed source/packet audit answered the immediate slice question:
+
+> Can the existing lane system produce candidate shelves that can be enriched
+> into a compact, source-aware packet for the next LLM?
 
 The next useful product questions are:
 
