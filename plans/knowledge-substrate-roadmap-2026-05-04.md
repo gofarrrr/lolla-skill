@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR24 are merged, PR25 has reopened forward work only along the corrected enrichment architecture, and the current posture is `fixture_packet_producer_ready`
+**Status:** living roadmap; PR13-PR25 are merged, PR26 completed deterministic source custody backfill, and the current posture is `source_custody_backfill_complete`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -15,6 +15,7 @@
 **Current packet spec:** `research/reasoning-substrate-packet-v1-spec-2026-05-06.md`
 **Current lane placement audit:** `research/reasoning-substrate-lane-placement-audit-2026-05-06.md`
 **Current full-corpus coverage audit:** `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
+**Current source custody report:** `research/reasoning-substrate-source-custody-backfill-2026-05-06.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -29,10 +30,10 @@ several steps. Future sessions should not restart from "define the schema."
 What is already done:
 
 - Active runtime graph count is `222` models in `data/knowledge_graph.json`.
-- The `55` reviewed canonical source files used by affordance records have
-  been copied into `data/model_sources/` with
-  `data/model_sources/manifest.json` as the source-hash manifest. This is not
-  yet all `222` runtime models.
+- PR26 copied all `222` runtime model canonical source files into
+  `data/model_sources/` with `data/model_sources/manifest.json` as the
+  source-hash manifest. This is source custody, not v4 reviewed affordance
+  coverage.
 - The affordance extraction contract exists at
   `references/model-affordance-extraction.md`.
 - The schema exists at `data/schemas/model_affordance.schema.json`.
@@ -188,13 +189,19 @@ What is already done:
   Existing lanes stay intact, v4 is additive enrichment to lane-selected
   candidates, graph-only models remain eligible with honest labels, and Python
   packages reasoning material for the LLM/reviewer to judge.
+- PR26 source custody backfill is captured in
+  `research/reasoning-substrate-source-custody-backfill-2026-05-06.md`:
+  decision label `source_custody_backfill_complete`. All `222` runtime model
+  source files are now resident under `data/model_sources/` with SHA-256
+  manifest entries. v4 remains `55` reviewed records; `167` runtime models
+  remain graph-only after v4.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `fixture_packet_producer_ready`: PR25 produced a dormant explicit-nomination
-  packet producer and coverage audit without live runtime behavior.
+  `source_custody_backfill_complete`: PR26 completed deterministic source
+  custody without extraction or live runtime behavior.
 
-Current posture after PR 23, PR24 review, and the PR25 continuation decision:
+Current posture after PR 23, PR24 review, PR25, and PR26:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -243,11 +250,14 @@ Current posture after PR 23, PR24 review, and the PR25 continuation decision:
     current non-runtime packet handoff baseline: audit what the 222-model graph
     already knows, what v4 adds for 55 reviewed records, and what a dormant
     `reasoning_substrate_packet.v1` should contain.
-16. Treat `research/reasoning-substrate-next-session-handover-2026-05-06.md`
+16. Treat PR26 source custody as prerequisite infrastructure, not extraction
+    quality. All 222 source files are now hash-custodied, but only 55 have v4
+    reviewed affordance depth.
+17. Treat `research/reasoning-substrate-next-session-handover-2026-05-06.md`
     as the first file for future sessions. Do not infer permission for runtime
     packet production, prompt changes, lane rewrites, extraction, or
-    user-facing surfaces from PR25; the current state is dormant enrichment
-    placement, not product promotion.
+    user-facing surfaces from PR26; the current state is source-custodied
+    dormant enrichment placement, not product promotion.
 
 ---
 
@@ -712,16 +722,16 @@ original proposal language.
 | Decision Pressure generalization readout / PR 23 | done | Record no-paid directional generalization evidence and lock the anti-casuistry boundary. |
 | Source Understanding And Reasoning Packet Audit | done as docs/research audit/spec | Audits all-222 runtime graph breadth, v4's 55-record depth, and defines a dormant `reasoning_substrate_packet.v1` shape that enriches lane-selected candidates without selecting final pressure. |
 | Reasoning substrate enrichment placement / PR25 | done as dormant audit/module slice | Maps existing lane outputs to packet placement, audits full-corpus enrichment coverage, and adds a review-only explicit-nomination packet producer. |
+| Source custody backfill / PR26 | done as deterministic custody slice | Copies all 222 runtime source files into `data/model_sources/` and updates SHA-256 manifest. No extraction. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR25 produced dormant enrichment placement, deterministic coverage audit, and
-> an explicit-nomination packet producer. It does not authorize runtime
-> behavior, prompt changes, lane rewrites, extraction, Batch 3b, live
-> route-trace packet production, trace-fixture stress tests, user-facing
-> Decision Pressure output, or another paid Gate 4 run.
+> PR26 completed deterministic source custody for all 222 runtime model source
+> files. It does not authorize runtime behavior, prompt changes, lane rewrites,
+> extraction, Batch 3b, live route-trace packet production, trace-fixture stress
+> tests, user-facing Decision Pressure output, or another paid Gate 4 run.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1333,8 +1343,8 @@ Schema And Extraction Contract**. That work is done. The later PR12/Decision
 Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
-The current reviewed posture is `fixture_packet_producer_ready` after PR25. Do
-not treat any historical item below as active next work.
+The current reviewed posture is `source_custody_backfill_complete` after PR26.
+Do not treat any historical item below as active next work.
 
 Historical PR 12 scope was:
 

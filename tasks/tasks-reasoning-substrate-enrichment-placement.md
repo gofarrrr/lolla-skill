@@ -49,7 +49,7 @@ Change `- [ ]` to `- [x]` as each sub-task is completed.
   - [x] 2.3 Document the correct dormant insertion point and live paths to leave untouched.
   - [x] 2.4 Document missing provenance/model-ID cleanup needed later.
 
-- [ ] 3.0 TDD deterministic full-corpus enrichment coverage audit
+- [x] 3.0 TDD deterministic full-corpus enrichment coverage audit
   - [x] 3.1 RED: add focused test for runtime/v4/source-custody counts.
   - [x] 3.2 GREEN: implement minimal coverage-audit module to pass counts test.
   - [x] 3.3 RED: add focused test for reasoning-type coverage gaps and graph-only eligibility.

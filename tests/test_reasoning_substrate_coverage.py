@@ -17,9 +17,12 @@ def test_full_corpus_audit_reports_runtime_v4_and_source_custody_counts() -> Non
     assert audit["v4_reviewed_model_count"] == 55
     assert audit["graph_only_runtime_model_count"] == 167
     assert audit["v4_model_ids_outside_runtime_graph"] == []
-    assert audit["reviewed_source_custody_model_count"] == 55
-    assert audit["runtime_model_ids_missing_reviewed_source_custody_count"] == 167
+    assert audit["source_custody_model_count"] == 222
+    assert audit["runtime_model_ids_missing_source_custody_count"] == 0
+    assert audit["runtime_model_ids_missing_source_custody"] == []
     assert "chain-of-verification" in audit["runtime_model_ids_missing_v4"]
+    assert "reviewed_source_custody_model_count" not in audit
+    assert "runtime_model_ids_missing_reviewed_source_custody" not in audit
 
 
 def test_full_corpus_audit_reports_runtime_graph_field_and_reasoning_type_gaps() -> None:

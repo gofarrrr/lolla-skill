@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR24 are merged, PR25 has reopened forward work only along the corrected enrichment architecture, and the current posture is `fixture_packet_producer_ready`
+**Status:** living schema doctrine; PR13-PR25 are merged, PR26 completed deterministic source custody backfill, and the current posture is `source_custody_backfill_complete`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -13,6 +13,7 @@
 **Current packet spec:** `research/reasoning-substrate-packet-v1-spec-2026-05-06.md`
 **Current lane placement audit:** `research/reasoning-substrate-lane-placement-audit-2026-05-06.md`
 **Current full-corpus coverage audit:** `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
+**Current source custody report:** `research/reasoning-substrate-source-custody-backfill-2026-05-06.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -27,10 +28,10 @@ This document began as a target schema. The first implementation slices are now
 real. Future sessions should treat the following as current baseline:
 
 - Active runtime graph: `222` models in `data/knowledge_graph.json`.
-- Source residency: `55` reviewed canonical markdown files copied into
-  `data/model_sources/` with hash manifest at
-  `data/model_sources/manifest.json`. This source-custody set matches the v4
-  affordance records; it is not yet all `222` runtime models.
+- Source residency: all `222` runtime model canonical markdown files copied
+  into `data/model_sources/` with hash manifest at
+  `data/model_sources/manifest.json`. This is source custody only; v4 reviewed
+  affordance coverage is still `55` model records.
 - Schema: `data/schemas/model_affordance.schema.json`.
 - Extraction contract: `references/model-affordance-extraction.md`.
 - Validation code: `engine/system_b/model_affordance_validation.py`.
@@ -175,10 +176,14 @@ real. Future sessions should treat the following as current baseline:
   lanes stay intact, v4 is additive enrichment to lane-selected candidates,
   graph-only models remain eligible with honest labels, and Python packages
   reasoning material for the LLM/reviewer to judge.
+- PR26 completed source custody backfill after PR25. All `222` runtime model
+  source files are now resident under `data/model_sources/` with SHA-256
+  manifest entries. This does not expand v4; `167` runtime models remain
+  graph-only after v4.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `fixture_packet_producer_ready`; do not build runtime packet production,
+  `source_custody_backfill_complete`; do not build runtime packet production,
   prompt changes, extraction, lane rewrites, or user-facing surfaces by default.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
@@ -1401,10 +1406,10 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation, more paid Gate 4 calibration,
-or Decision Pressure trace machinery. PR13-PR24 are complete. PR25 reopened
-forward work only for enrichment placement: existing lanes nominate candidate
-shelves, deterministic code enriches those shelves into compact source-aware
-cards, and the LLM/reviewer does semantic judgment.
+or Decision Pressure trace machinery. PR13-PR25 are complete. PR26 completed
+deterministic source custody backfill: all 222 runtime source files are now
+under repo-local custody, while v4 reviewed affordance depth remains 55 model
+records.
 
 Current task:
 
@@ -1418,26 +1423,29 @@ Current task:
    current map from lanes to packet nominations.
 5. Use `research/full-corpus-enrichment-coverage-audit-2026-05-06.md` as the
    current expansion-readiness audit.
-6. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
+6. Use `research/reasoning-substrate-source-custody-backfill-2026-05-06.md` as
+   the current source custody report.
+7. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
    product north star: broad intake, disciplined output.
-7. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
+8. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
    architecture line: pull shelves, enrich cards, let the LLM reason.
-8. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
+9. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-9. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
-10. Treat PR23's generalization readout as directional product evidence, not
+10. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
+11. Treat PR23's generalization readout as directional product evidence, not
    deterministic case logic.
-11. Treat PR25 as dormant enrichment placement, not runtime packet production.
-12. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+12. Treat PR25 as dormant enrichment placement, not runtime packet production.
+13. Treat PR26 as source custody, not v4 extraction.
+14. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-13. Preserve coverage honesty and no-casuistry rails.
-14. Do not run more paid model calls for this slice.
-15. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+15. Preserve coverage honesty and no-casuistry rails.
+16. Do not run more paid model calls for this slice.
+17. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
-Do not expand the corpus or wire live runtime behavior until the dormant packet
-producer is tested against reviewed fixtures and a product review names the
-specific uncertainty the next slice should answer.
+Do not extract new affordance records or wire live runtime behavior until the
+dormant packet producer is tested against reviewed fixtures and a product
+review names the specific uncertainty the next slice should answer.
 
 ---
 
