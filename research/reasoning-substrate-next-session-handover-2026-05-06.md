@@ -1,19 +1,22 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-06
-**Status:** Start-here handover after PR26 completed deterministic source
-custody backfill. This is still not runtime promotion, prompt promotion, lane
-rewrite, extraction, or user-facing Decision Pressure work.
+**Status:** Start-here handover after PR27 completed a tiny mixed
+reasoning-substrate packet fixture review. This is still not runtime
+promotion, prompt promotion, lane rewrite, extraction, or user-facing Decision
+Pressure work.
 
-**Current posture:** `source_custody_backfill_complete`
+**Current posture:** `mixed_packet_fixture_useful`
 
-**Current PR:** PR26 - Source custody backfill
+**Current PR:** PR27 - Mixed packet fixture review
 
 **PR24 review verdict:** `approve_pr24`
 
 **PR25 decision label:** `fixture_packet_producer_ready`
 
 **PR26 decision label:** `source_custody_backfill_complete`
+
+**PR27 decision label:** `mixed_packet_fixture_useful`
 
 ## Start Here
 
@@ -30,6 +33,7 @@ Read these files in order:
 9. `research/reasoning-substrate-lane-placement-audit-2026-05-06.md`
 10. `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
 11. `research/reasoning-substrate-source-custody-backfill-2026-05-06.md`
+12. `research/reasoning-substrate-packet-fixture-review-2026-05-06.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -65,6 +69,7 @@ Keep these layers distinct:
 | Repo-local source custody | 222 files in `data/model_sources/` with SHA-256 manifest after PR26. |
 | v4 affordance corpus | 55 reviewed records, 91 affordances, 95 absence records. Deep reviewed subset, still dormant. |
 | Graph-only after v4 | 167 runtime models remain eligible but not v4-reviewed. |
+| PR27 mixed packet fixture | 7 candidate cards plus 1 suppressed duplicate. Review-only proof that mixed v4 + graph-only packets are useful handoff material. |
 
 The governing sentence:
 
@@ -192,6 +197,39 @@ reviewed models, and `167` runtime models remain graph-only after v4. Source
 custody means future extraction can quote and validate repo-local source truth;
 it does not mean graph-only models have reviewed v4 affordances.
 
+## What PR27 Added
+
+PR27 completes a tiny mixed reasoning-substrate packet fixture review:
+
+- added `tests/fixtures/reasoning_substrate_packet/pr27_mixed_packet_review.json`;
+- added `tests/test_reasoning_substrate_packet_fixture.py` to prove the
+  fixture matches the dormant producer output;
+- updated `engine/system_b/reasoning_substrate_packet.py` so cards expose
+  source custody separately from v4 reviewed record/affordance availability;
+- added `research/reasoning-substrate-packet-fixture-review-2026-05-06.md`;
+- kept the packet review-only, runtime-dormant, and generated from explicit
+  nominations.
+
+PR27's fixture contains:
+
+- `3` v4-reviewed cards:
+  `opportunity-cost`, `falsifiability`, `probabilistic-thinking`;
+- `4` source-custodied graph-only cards:
+  `step-back`, `constraints`, `chain-of-verification`, `confirmation-bias`;
+- `1` suppressed duplicate candidate.
+
+PR27's decision label is `mixed_packet_fixture_useful`.
+
+The product lesson:
+
+> Mixed packets are useful handoff material. v4 cards are meaningfully richer,
+> graph-only cards are useful but thinner, and source custody improves trust
+> without pretending to be reviewed v4 depth.
+
+PR27 does not extract new records, modify `affordances_v4.json`, run live
+lanes, wire `/lolla`, change prompts, run model calls or judges, or create
+user-facing Decision Pressure output.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -229,8 +267,8 @@ alternatives remain historical labels:
    selected outcome after PR24 review.
 
 Do not revive these labels as implementation permission by momentum. Current
-forward work is source-custodied packet readiness and fixture review, not
-Decision Pressure machinery.
+forward work is controlled enrichment based on packet usefulness, not Decision
+Pressure machinery.
 
 ## Still Blocked For Live Product
 
@@ -243,7 +281,7 @@ These remain blocked unless explicitly approved after product review:
 - live Observatory rendering;
 - memo / Step 8 / Step 6 integration;
 - Lane 4 runtime affordance integration;
-- new extraction;
+- new extraction unless explicitly opened as a controlled reviewed batch;
 - broad Batch 3 or Batch 3b;
 - paid Gate 4 reruns;
 - deterministic pressure selection;
@@ -276,7 +314,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR26 and do not infer permission for runtime work.
+Start from PR27 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -285,9 +323,10 @@ Read first:
 - research/reasoning-substrate-lane-placement-audit-2026-05-06.md
 - research/full-corpus-enrichment-coverage-audit-2026-05-06.md
 - research/reasoning-substrate-source-custody-backfill-2026-05-06.md
+- research/reasoning-substrate-packet-fixture-review-2026-05-06.md
 
 Current posture:
-source_custody_backfill_complete
+mixed_packet_fixture_useful
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -310,10 +349,20 @@ PR26 result:
 - 167 models remain graph-only after v4
 - no extraction or runtime behavior was added
 
+PR27 result:
+- decision label: mixed_packet_fixture_useful
+- one mixed review-only packet fixture exists
+- v4 cards are meaningfully richer than graph-only cards
+- source-custodied graph-only cards remain useful but thin
+- source custody is visible separately from v4 reviewed depth
+- no extraction or runtime behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
-extraction, Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime,
-judges, paid model calls, deterministic pressure selection, or user-facing
-output unless the user explicitly opens a new product-reviewed slice.
+Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
+paid model calls, deterministic pressure selection, or user-facing output
+unless the user explicitly opens a new product-reviewed slice. A later
+controlled extraction batch is reasonable only if explicitly opened and kept
+reviewed, quote-validated, dormant, and absence-friendly.
 ```
 
 ## Core Memory

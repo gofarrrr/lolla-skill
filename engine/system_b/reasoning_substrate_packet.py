@@ -178,7 +178,7 @@ def build_reasoning_substrate_packet(
                 card_index=len(cards),
                 coverage_status=coverage_status,
                 v4_record=v4_record,
-                has_source_custody=model_id in source_custody,
+                source_custody_entry=source_custody.get(model_id),
                 snippet_cap=snippet_target_max_per_card,
             )
         )
@@ -221,10 +221,11 @@ def _candidate_card(
     card_index: int,
     coverage_status: str,
     v4_record: Mapping[str, Any] | None,
-    has_source_custody: bool,
+    source_custody_entry: Mapping[str, Any] | None,
     snippet_cap: int,
 ) -> dict[str, Any]:
     graph_fields = _runtime_graph_fields(model, snippet_cap=snippet_cap)
+    has_source_custody = source_custody_entry is not None
     card = {
         "card_id": f"card-{card_index + 1:03d}-{model_id}",
         "model_id": model_id,
@@ -232,6 +233,12 @@ def _candidate_card(
         "pulled_by": _dedupe_strings(nomination.pulled_by),
         "why_pulled": [dict(item) for item in nomination.why_pulled],
         "coverage_status": coverage_status,
+        "source_custody": _source_custody_payload(
+            model=model,
+            entry=source_custody_entry,
+            v4_record_available=v4_record is not None,
+            coverage_status=coverage_status,
+        ),
         "runtime_graph_fields": graph_fields,
         "reviewed_affordance_fields": {},
         "absence_records": [],
@@ -479,12 +486,43 @@ def _v4_index(affordances: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
     }
 
 
-def _source_custody_index(source_manifest: Mapping[str, Any]) -> set[str]:
+def _source_custody_index(
+    source_manifest: Mapping[str, Any],
+) -> dict[str, Mapping[str, Any]]:
     return {
-        str(item.get("model_id"))
+        str(item.get("model_id")): _mapping(item)
         for item in _list(source_manifest.get("files"))
         if str(_mapping(item).get("model_id", "")).strip()
     }
+
+
+def _source_custody_payload(
+    *,
+    model: Mapping[str, Any],
+    entry: Mapping[str, Any] | None,
+    v4_record_available: bool,
+    coverage_status: str,
+) -> dict[str, Any]:
+    source_file = str(model.get("source_file", ""))
+    payload: dict[str, Any] = {
+        "custody_status": (
+            "repo_source_custodied" if entry is not None else "missing_source_custody"
+        ),
+        "source_file": source_file,
+        "v4_reviewed_record_available": v4_record_available,
+        "v4_reviewed_affordance_available": (
+            coverage_status == "v4_reviewed_affordance_available"
+        ),
+    }
+    if entry is not None:
+        payload.update(
+            {
+                "manifest_path": str(entry.get("path", "")),
+                "sha256": str(entry.get("sha256", "")),
+                "bytes": int(entry.get("bytes", 0)),
+            }
+        )
+    return payload
 
 
 def _compact_graph_item(value: Any) -> Any:

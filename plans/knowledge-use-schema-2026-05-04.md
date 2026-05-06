@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR25 are merged, PR26 completed deterministic source custody backfill, and the current posture is `source_custody_backfill_complete`
+**Status:** living schema doctrine; PR13-PR27 are merged or in review, PR27 completed a review-only mixed packet fixture, and the current posture is `mixed_packet_fixture_useful`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -14,6 +14,7 @@
 **Current lane placement audit:** `research/reasoning-substrate-lane-placement-audit-2026-05-06.md`
 **Current full-corpus coverage audit:** `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
 **Current source custody report:** `research/reasoning-substrate-source-custody-backfill-2026-05-06.md`
+**Current packet fixture review:** `research/reasoning-substrate-packet-fixture-review-2026-05-06.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -180,11 +181,17 @@ real. Future sessions should treat the following as current baseline:
   source files are now resident under `data/model_sources/` with SHA-256
   manifest entries. This does not expand v4; `167` runtime models remain
   graph-only after v4.
+- PR27 completed a review-only mixed packet fixture after PR26. The fixture
+  contains `3` v4-reviewed cards, `4` source-custodied graph-only cards, and
+  `1` suppressed duplicate. Decision label: `mixed_packet_fixture_useful`.
+  The packet is useful handoff material, but graph-only cards remain thinner
+  than v4 reviewed cards.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `source_custody_backfill_complete`; do not build runtime packet production,
-  prompt changes, extraction, lane rewrites, or user-facing surfaces by default.
+  `mixed_packet_fixture_useful`; do not build runtime packet production,
+  prompt changes, extraction, lane rewrites, or user-facing surfaces by default
+  unless a controlled reviewed extraction slice is explicitly opened.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1406,10 +1413,12 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation, more paid Gate 4 calibration,
-or Decision Pressure trace machinery. PR13-PR25 are complete. PR26 completed
-deterministic source custody backfill: all 222 runtime source files are now
-under repo-local custody, while v4 reviewed affordance depth remains 55 model
-records.
+or Decision Pressure trace machinery. PR13-PR27 are complete or in review.
+PR26 completed deterministic source custody backfill: all 222 runtime source
+files are now under repo-local custody, while v4 reviewed affordance depth
+remains 55 model records. PR27 then completed one review-only mixed packet
+fixture and found the packet useful enough to justify controlled enrichment,
+not runtime promotion.
 
 Current task:
 
@@ -1425,27 +1434,33 @@ Current task:
    current expansion-readiness audit.
 6. Use `research/reasoning-substrate-source-custody-backfill-2026-05-06.md` as
    the current source custody report.
-7. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
+7. Use `research/reasoning-substrate-packet-fixture-review-2026-05-06.md` as
+   the current mixed packet fixture review.
+8. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
    product north star: broad intake, disciplined output.
-8. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
+9. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
    architecture line: pull shelves, enrich cards, let the LLM reason.
-9. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
+10. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-10. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
-11. Treat PR23's generalization readout as directional product evidence, not
+11. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
+12. Treat PR23's generalization readout as directional product evidence, not
    deterministic case logic.
-12. Treat PR25 as dormant enrichment placement, not runtime packet production.
-13. Treat PR26 as source custody, not v4 extraction.
-14. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+13. Treat PR25 as dormant enrichment placement, not runtime packet production.
+14. Treat PR26 as source custody, not v4 extraction.
+15. Treat PR27 as fixture usefulness evidence, not runtime packet production.
+16. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-15. Preserve coverage honesty and no-casuistry rails.
-16. Do not run more paid model calls for this slice.
-17. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+17. Preserve coverage honesty and no-casuistry rails.
+18. Do not run more paid model calls for this slice.
+19. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Do not extract new affordance records or wire live runtime behavior until the
 dormant packet producer is tested against reviewed fixtures and a product
-review names the specific uncertainty the next slice should answer.
+review names the specific uncertainty the next slice should answer. PR27 names
+one such uncertainty: graph-only cards are useful but too thin for operational
+treatment, so the next reasonable work is a controlled reviewed extraction
+batch if explicitly approved.
 
 ---
 

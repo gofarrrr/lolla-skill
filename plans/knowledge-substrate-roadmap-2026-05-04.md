@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR25 are merged, PR26 completed deterministic source custody backfill, and the current posture is `source_custody_backfill_complete`
+**Status:** living roadmap; PR13-PR27 are merged or in review, PR27 completed a review-only mixed packet fixture, and the current posture is `mixed_packet_fixture_useful`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -16,6 +16,7 @@
 **Current lane placement audit:** `research/reasoning-substrate-lane-placement-audit-2026-05-06.md`
 **Current full-corpus coverage audit:** `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
 **Current source custody report:** `research/reasoning-substrate-source-custody-backfill-2026-05-06.md`
+**Current packet fixture review:** `research/reasoning-substrate-packet-fixture-review-2026-05-06.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -195,13 +196,20 @@ What is already done:
   source files are now resident under `data/model_sources/` with SHA-256
   manifest entries. v4 remains `55` reviewed records; `167` runtime models
   remain graph-only after v4.
+- PR27 mixed packet fixture review is captured in
+  `research/reasoning-substrate-packet-fixture-review-2026-05-06.md`:
+  decision label `mixed_packet_fixture_useful`. One review-only fixture proves
+  that a mixed packet with `3` v4-reviewed cards, `4` source-custodied
+  graph-only cards, and `1` suppressed duplicate is useful handoff material.
+  The review also shows graph-only cards are thinner than v4 cards and gives a
+  concrete reason for a later controlled extraction batch.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `source_custody_backfill_complete`: PR26 completed deterministic source
-  custody without extraction or live runtime behavior.
+  `mixed_packet_fixture_useful`: PR27 reviewed a dormant packet fixture without
+  extraction or live runtime behavior.
 
-Current posture after PR 23, PR24 review, PR25, and PR26:
+Current posture after PR 23, PR24 review, PR25, PR26, and PR27:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -256,8 +264,11 @@ Current posture after PR 23, PR24 review, PR25, and PR26:
 17. Treat `research/reasoning-substrate-next-session-handover-2026-05-06.md`
     as the first file for future sessions. Do not infer permission for runtime
     packet production, prompt changes, lane rewrites, extraction, or
-    user-facing surfaces from PR26; the current state is source-custodied
-    dormant enrichment placement, not product promotion.
+    user-facing surfaces from PR27; the current state is a useful
+    review-only mixed packet fixture, not product promotion.
+18. Treat PR27 as evidence that controlled extraction has a reason, not as
+    permission for broad Batch 3b, live route-trace packet production, or
+    user-facing Decision Pressure output.
 
 ---
 
@@ -723,15 +734,16 @@ original proposal language.
 | Source Understanding And Reasoning Packet Audit | done as docs/research audit/spec | Audits all-222 runtime graph breadth, v4's 55-record depth, and defines a dormant `reasoning_substrate_packet.v1` shape that enriches lane-selected candidates without selecting final pressure. |
 | Reasoning substrate enrichment placement / PR25 | done as dormant audit/module slice | Maps existing lane outputs to packet placement, audits full-corpus enrichment coverage, and adds a review-only explicit-nomination packet producer. |
 | Source custody backfill / PR26 | done as deterministic custody slice | Copies all 222 runtime source files into `data/model_sources/` and updates SHA-256 manifest. No extraction. |
+| Mixed packet fixture review / PR27 | done as review-only fixture slice | Generates and reviews one mixed `reasoning_substrate_packet.v1` fixture. Shows v4 cards are richer, source-custodied graph-only cards are useful but thin, and extraction now has a concrete target. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR26 completed deterministic source custody for all 222 runtime model source
-> files. It does not authorize runtime behavior, prompt changes, lane rewrites,
-> extraction, Batch 3b, live route-trace packet production, trace-fixture stress
-> tests, user-facing Decision Pressure output, or another paid Gate 4 run.
+> PR27 completed a review-only mixed packet fixture. It does not authorize
+> runtime behavior, prompt changes, lane rewrites, broad extraction, Batch 3b,
+> live route-trace packet production, trace-fixture stress tests, user-facing
+> Decision Pressure output, or another paid Gate 4 run.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1343,8 +1355,8 @@ Schema And Extraction Contract**. That work is done. The later PR12/Decision
 Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
-The current reviewed posture is `source_custody_backfill_complete` after PR26.
-Do not treat any historical item below as active next work.
+The current reviewed posture is `mixed_packet_fixture_useful` after PR27. Do
+not treat any historical item below as active next work.
 
 Historical PR 12 scope was:
 
