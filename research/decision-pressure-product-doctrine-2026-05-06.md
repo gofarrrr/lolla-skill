@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-06
-**Status:** Product doctrine after PR27 mixed packet fixture review. This is
-not a runtime proposal, extraction brief, prompt change, or user-facing launch
-plan.
+**Status:** Product doctrine after PR28 controlled graph-only extraction. This
+is not a runtime proposal, prompt change, broad extraction brief, or
+user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `mixed_packet_fixture_useful`
+**Current posture:** `controlled_graph_only_extraction_batch_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -16,6 +16,8 @@ plan.
 **Current source/packet audit:** `research/source-understanding-and-reasoning-packet-audit-2026-05-06.md`
 
 **Current packet spec:** `research/reasoning-substrate-packet-v1-spec-2026-05-06.md`
+
+**Current controlled extraction report:** `research/pr28-controlled-graph-only-extraction-report-2026-05-06.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -374,14 +376,20 @@ PR27 then completed one review-only mixed packet fixture:
 
 > `mixed_packet_fixture_useful`
 
+PR28 then completed one controlled graph-only extraction batch:
+
+> `controlled_graph_only_extraction_batch_ready`
+
 Future sessions should read
 `research/reasoning-substrate-next-session-handover-2026-05-06.md` first and
 treat PR26 as source custody, not extraction, and PR27 as fixture-usefulness
-evidence, not runtime production. Existing lanes stay intact, v4 is additive
-to lane-selected candidates, graph-only models remain eligible, and Python
-packages reasoning material for LLM/reviewer judgment. Do not start runtime
-packet production, prompt changes, lane rewrites, broad extraction, Batch 3b,
-paid runs, or user-facing Decision Pressure output by default.
+evidence, not runtime production. Treat PR28 as a controlled extraction quality
+loop, not v5 runtime promotion or Batch 3b. Existing lanes stay intact,
+reviewed affordances are additive to lane-selected candidates, graph-only
+models remain eligible, and Python packages reasoning material for LLM/reviewer
+judgment. Do not start runtime packet production, prompt changes, lane
+rewrites, broad extraction, Batch 3b, paid runs, or user-facing Decision
+Pressure output by default.
 
 ## Next Product Work, Not Engineering Work
 
@@ -397,17 +405,26 @@ PR27 added the first fixture answer:
 > Yes, mixed v4 + source-custodied graph-only packets are useful handoff
 > material, but graph-only cards are still thinner than reviewed v4 cards.
 
+PR28 added the first controlled extraction answer:
+
+> Yes, the first ten graph-only sources can produce compact reviewed affordance
+> cards when exact source custody and absence records are enforced.
+
 The next useful product questions are:
 
-1. Which decision moments most clearly need pressure before action?
-2. What would make a user trust a pressure pass?
-3. What would make the output feel like noise?
-4. What is the smallest public promise that is true?
-5. What evidence would justify promotion into a real surface?
-6. What evidence would tell us the product is only interesting to us?
+1. Does the PR27 mixed packet become meaningfully more useful when regenerated
+   against v5?
+2. Which PR28 cards improve LLM judgment, and which merely add internal bulk?
+3. Which decision moments most clearly need pressure before action?
+4. What would make a user trust a pressure pass?
+5. What would make the output feel like noise?
+6. What is the smallest public promise that is true?
+7. What evidence would justify promotion into a real surface?
+8. What evidence would tell us the product is only interesting to us?
 
 Do not answer these by adding machinery. Answer them with product review,
-manual examples, user conversations, and decision-moment analysis.
+manual examples, packet comparison, user conversations, and decision-moment
+analysis.
 
 ## One-Line Guardrail
 

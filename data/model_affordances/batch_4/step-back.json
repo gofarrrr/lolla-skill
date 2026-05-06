@@ -1,0 +1,203 @@
+{
+  "model_id": "step-back",
+  "source_file": "Step_Back_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "step-back.reorientation-before-execution-gate",
+      "status": "supported",
+      "name": "Reorientation before execution gate",
+      "mechanism": "When immersion in details is degrading judgment, pause to identify the governing structure, core point, problem owner, and next concrete move, then return to action with a bounded frame instead of gathering another marginal fact.",
+      "activation_shape": {
+        "use_when": [
+          "The team is too close to the details to see what actually matters.",
+          "Perspective, framing, sequencing, or alignment is the bottleneck more than another marginal fact.",
+          "Acting quickly would likely lock in a shallow, biased, or poorly framed response.",
+          "A memo, decision, or workplan needs a core point, one-day answer, or alignment check before execution."
+        ],
+        "do_not_use_when": [
+          "Reflection is being used to postpone commitment, avoid trade-offs, or keep options abstract.",
+          "The next concrete move is already clear and delay would only reduce momentum.",
+          "The proposed pause would become boiling-the-ocean research instead of bounded synthesis.",
+          "The answer would produce high-level abstraction without translating back into usable action."
+        ],
+        "case_evidence_needed": [
+          "The immediate action, analysis, or detail work the team is immersed in.",
+          "The larger structure, goal, problem owner, or core point that may be obscured.",
+          "The decision quality that would improve by pausing instead of gathering more facts.",
+          "The bounded synthesis question, one-day answer, or alignment check to perform.",
+          "The next concrete move or commitment that follows after reorientation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "find-governing-structure-before-action",
+          "description": "Require the answer to step back from detail immersion and name the governing structure, core point, or problem-owner frame before recommending execution.",
+          "evidence_required": [
+            "The detail work, analysis, or action currently absorbing attention.",
+            "The goal, user point of view, or core question that should govern the work.",
+            "The structural frame, issue tree, or one-day answer that reorients the case.",
+            "The evidence that the current path is solving the actual problem."
+          ],
+          "good_output_shape": [
+            "Names what matters more than the current detail stream.",
+            "States the core point or one-day answer in plain language.",
+            "Connects the reframe back to the problem owner's point of view.",
+            "Shows how the next move changes after the pause."
+          ]
+        },
+        {
+          "requirement_id": "turn-pause-back-into-commitment",
+          "description": "Keep the reflective pause bounded by requiring a next concrete move, decision, or cut-off so step-back does not become a hiding place.",
+          "evidence_required": [
+            "The trade-off, commitment, or action being delayed.",
+            "The specific question the pause must answer.",
+            "The deadline, one-day answer, or minimum synthesis needed to resume action.",
+            "The risk of more research, abstraction, or perfectionism."
+          ],
+          "good_output_shape": [
+            "Defines the pause as a bounded reorientation, not open-ended reflection.",
+            "Names what decision or action follows from the reframe.",
+            "Drops data gathering that does not prove, disprove, or support the core analysis.",
+            "Refuses to keep options abstract when a concrete move is now available."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What governing structure or core point is being obscured by the current details?",
+        "Whose point of view owns the problem, and does the current work solve that problem?",
+        "What is the one-day answer if we had to synthesize now?",
+        "Would pausing improve the decision more than gathering another marginal fact?",
+        "What concrete move follows from the reorientation, and when does the pause end?"
+      ],
+      "misuse_guards": [
+        "Do not use step-back as a socially acceptable way to avoid commitment.",
+        "Do not turn reorientation into open-ended research or perfectionist analysis.",
+        "Do not stop at abstract big-picture language without a concrete next move.",
+        "Do not gather data that does not directly prove, disprove, or support the core analysis."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Step_Back_rag.md",
+          "source_quote": "necessary pause",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Step_Back_rag.md",
+          "source_quote": "Focusing on Structure over Detail",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Step_Back_rag.md",
+          "source_quote": "What’s the one-day answer?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Step_Back_rag.md",
+          "source_quote": "Most useful when immediate immersion is obscuring the governing structure",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Step_Back_rag.md",
+          "source_quote": "Works when pausing changes the quality of the decision more than gathering another marginal fact",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Step_Back_rag.md",
+          "source_quote": "Danger When the Pause Becomes a Hiding Place",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source supports a bounded reorientation gate: pause, find governing structure, synthesize the one-day answer, and return to concrete action.",
+        "dropped_material": [
+          "Did not extract learning, ghostwriting, pitching, or outside-view examples as separate cards.",
+          "Did not turn every listed framework into a field because they all serve the same reorientation-before-execution pattern."
+        ],
+        "open_questions": [
+          "PR29 should test whether this card makes graph-only step-back useful without encouraging generic pause-and-reflect advice."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "indefinite-reflection-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports a pause that improves the next move, not open-ended reflection. It explicitly warns that the pause can become a hiding place for avoiding commitment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Step_Back_rag.md",
+          "source_quote": "reflection is used to postpone commitment, avoid trade-offs, or keep options abstract rather than to improve the next concrete move.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "comprehensive-research-before-action-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against boiling the ocean. Step-back should focus synthesis and action, not justify overwhelming data collection for its own sake.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Step_Back_rag.md",
+          "source_quote": "gathers an overwhelming amount of data just for the sake of comprehensiveness, rather than limiting the effort to enough facts to prove or disprove a focused hypothesis.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Step_Back_rag.md",
+          "source_quote": "Data should be reduced to actionable items under the client's control; choose *focus over comprehensiveness*.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Step_Back_rag.md",
+      "source_quote": "How does what you’re doing solve the problem?",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Step_Back_rag.md",
+      "source_quote": "Best when a situation demands reorientation before execution",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 4 source reading found strong operational support. Extracted one reorientation-before-execution record and treated indefinite reflection and comprehensive research as absences.",
+    "dropped_material": [
+      "Presentation, consulting, learning, and content examples were used only to understand the pattern.",
+      "No runtime, prompt, lane, or packet-producer changes are implied."
+    ],
+    "open_questions": [
+      "Future packet review should test whether step-back remains distinct from problem framing and root-cause-analysis."
+    ],
+    "review_status": "draft"
+  }
+}

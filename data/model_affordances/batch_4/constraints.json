@@ -1,0 +1,203 @@
+{
+  "model_id": "constraints",
+  "source_file": "Constraints_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "constraints.scope-boundary-decision-filter",
+      "status": "supported",
+      "name": "Scope boundary decision filter",
+      "mechanism": "When a problem is becoming vague or overfull, turn constraints into explicit boundaries around scope, success, trade-offs, and exclusions, then stress-test whether those boundaries still fit the current environment and whether each item earns its place.",
+      "activation_shape": {
+        "use_when": [
+          "Too many goals, variables, stakeholders, or possible moves are competing for attention and the team is losing clarity.",
+          "A decision or analysis needs explicit boundaries around scope, acceptable trade-offs, and deliberate exclusions.",
+          "Creative or analytical work needs a forcing function that narrows the space enough for quality movement.",
+          "A plan, memo, prompt, or engagement needs a clear filter for what belongs inside and outside the current effort."
+        ],
+        "do_not_use_when": [
+          "The constraint is inherited, outdated, or untested after the economics, technology, or stakeholder environment has changed.",
+          "The boundary is so loose that it creates false control, or so tight that it blocks signal, adaptation, or learning.",
+          "A familiar framework is being imposed because it is available rather than because its assumptions fit the problem.",
+          "The answer would over-engineer rules that make the work accurate but less useful."
+        ],
+        "case_evidence_needed": [
+          "The goal, scope, decision, or problem surface being constrained.",
+          "The boundaries, rules, limitations, exclusions, and acceptable trade-offs being proposed.",
+          "The current economics, technology, stakeholder environment, and signals that could make old constraints obsolete.",
+          "The specific material, work, or stakeholder demand being excluded and why that exclusion preserves usefulness.",
+          "The test for whether a constraint is too loose, too tight, outdated, or still decision-improving."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-boundaries-and-exclusions",
+          "description": "Require the answer to state the scope boundary, success constraint, acceptable trade-off, and deliberate exclusion before recommending action.",
+          "evidence_required": [
+            "The decision or workstream being bounded.",
+            "The goals, variables, stakeholders, or information that are creating overload.",
+            "The boundary that defines what is inside the current effort.",
+            "The exclusion that prevents the work from becoming vague or bloated."
+          ],
+          "good_output_shape": [
+            "Names the constraint in operational terms.",
+            "States what the team will deliberately not cover now.",
+            "Explains why the exclusion improves clarity or quality.",
+            "Keeps the boundary tied to success criteria rather than habit."
+          ]
+        },
+        {
+          "requirement_id": "stress-test-constraint-fit",
+          "description": "Check whether the proposed or inherited constraint still fits the current environment and whether it is calibrated tightly enough for focus without choking off learning.",
+          "evidence_required": [
+            "The age, source, or rationale of the current constraint.",
+            "Changes in economics, technology, stakeholders, or evidence since the constraint was adopted.",
+            "Signals that the constraint is too loose, too tight, or obsolete.",
+            "The learning or adaptation that would be lost if the constraint stayed unchanged."
+          ],
+          "good_output_shape": [
+            "Separates binding constraints from stale assumptions.",
+            "Names what would have to be true for the constraint to remain valid.",
+            "Loosens or tightens the boundary based on current evidence.",
+            "Drops accurate-but-useless detail that does not help the decision."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What boundary, rule, or limitation defines the scope of this decision?",
+        "Which goals, variables, or stakeholders are creating clarity loss?",
+        "What will this effort deliberately exclude, and what would be lost if that exclusion were wrong?",
+        "Which inherited constraint might no longer fit the current economics, technology, or stakeholder environment?",
+        "Is this constraint focusing useful signal or choking off adaptation and learning?"
+      ],
+      "misuse_guards": [
+        "Do not treat old constraints as permanent without checking whether the environment changed.",
+        "Do not write constraints so loosely that they create false confidence in control.",
+        "Do not write constraints so tightly that they suppress signal, adaptation, or learning.",
+        "Do not use a familiar framework as a constraint unless its assumptions match the current problem."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "boundary, rule, or limitation that defines the functional scope, responsibilities, or acceptable parameters of a system, problem, or endeavor",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "introduce clarity and consistency",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "Most useful when** a team is losing clarity because too many goals, variables, or stakeholders are competing for attention at once.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "success depends on explicit boundaries around scope, acceptable trade-offs, and what the current effort will deliberately exclude.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "Danger when** old constraints remain unquestioned after the economics, technology, or stakeholder environment has changed.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "Danger when** constraints are written so loosely that they create false confidence in control, or so tightly that they choke off signal, adaptation, or learning.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source supports a compact boundary-and-exclusion filter with explicit old-constraint, loose-constraint, and over-tightening guards.",
+        "dropped_material": [
+          "Did not extract AI prompt constraints, teaching chunking, or presentation curation as separate records because they are examples of the same boundary discipline.",
+          "Did not convert every named framework into a field; the operational value is the fit-tested scope boundary."
+        ],
+        "open_questions": [
+          "PR29 should check whether this card remains useful without duplicating trade-offs, prioritization, or theory-of-constraints."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "permanent-rule-compliance-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source does not support treating constraints as permanent rules. It warns that old constraints can become misleading when the environment changes.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "Danger when** old constraints remain unquestioned after the economics, technology, or stakeholder environment has changed.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "elaborate-control-system-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports clarity-producing boundaries, not elaborate control systems. It names over-engineered constraints and useless accuracy as failure modes.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "Designing constraints, especially for systems or presentation slides, that become \"increasingly elaborate\" or overly complex, which paradoxically *hampers* communication and reduces the model's effectiveness.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "Focusing on detailed, complex constraints or information that, while accurate, does not help the audience or decision-maker decide or act.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Constraints_rag.md",
+      "source_quote": "Without constraints, the task or problem risks becoming vague, suffering from complexity, and having multiple competing purposes that lead to poor outcomes.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Constraints_rag.md",
+      "source_quote": "If this was cut, would anything be lost?",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 4 source reading found enough reviewed operational depth for Constraints. The record is intentionally narrow: scope boundaries, exclusions, and fit-testing, with absences for permanent rules and elaborate control systems.",
+    "dropped_material": [
+      "CWD agent examples, scaffolding, and LLM prompt examples were treated as illustrations only.",
+      "No runtime, prompt, lane, or packet-producer changes are implied."
+    ],
+    "open_questions": [
+      "Future review should ensure this does not collapse into generic prioritization or trade-off language."
+    ],
+    "review_status": "draft"
+  }
+}

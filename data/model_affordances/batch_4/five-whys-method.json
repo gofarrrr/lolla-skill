@@ -1,0 +1,203 @@
+{
+  "model_id": "five-whys-method",
+  "source_file": "Five_Whys_Method_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "five-whys-method.evidence-bound-causal-chain-drilldown",
+      "status": "supported",
+      "name": "Evidence-bound causal chain drilldown",
+      "mechanism": "For recurring operational problems with observable causal chains, keep asking why until the answer reaches a falsifiable fact or actionable process mechanism, while checking that the first suspect is not anchoring the chain and that complex systems are not being forced into one thread.",
+      "activation_shape": {
+        "use_when": [
+          "A recurring operational problem has an observable sequence of causes and the team is treating symptoms.",
+          "The first explanation is likely proximate rather than root and the team needs to get past symptom-fixing quickly.",
+          "Logs, process evidence, physical facts, or observable handoffs can support or challenge each why.",
+          "The investigation can end in an actionable mechanism, design flaw, missing control, or falsifiable fact."
+        ],
+        "do_not_use_when": [
+          "The case is nonlinear, multi-cause, interpersonal, or adaptive enough that one linear thread would erase important interactions.",
+          "The first answer or suspect is steering every later why toward a preferred story.",
+          "The question is emotional introspection or rumination rather than a factual what/how investigation.",
+          "The chain ends in a vague assertion, cultural myth, blame label, or non-actionable cause."
+        ],
+        "case_evidence_needed": [
+          "The recurring problem, defect, incident, complaint, or performance miss.",
+          "The observable facts, logs, process steps, or physical evidence for each why.",
+          "The proximate cause and the deeper process mechanism or missing control being tested.",
+          "The alternative branches, feedback loops, or parallel causes that may make one linear chain unsafe.",
+          "The actionable what/how that someone can change to prevent recurrence."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "continue-until-falsifiable-actionable-cause",
+          "description": "Require the answer to continue beyond the first explanation until it reaches a falsifiable fact, process mechanism, design flaw, or missing control.",
+          "evidence_required": [
+            "The initial problem statement and first explanation.",
+            "The evidence supporting each why in the chain.",
+            "The point where the chain reaches a falsifiable fact or actionable what/how.",
+            "The recurrence risk if the answer stops at the proximate cause."
+          ],
+          "good_output_shape": [
+            "Shows each why as a supported causal step.",
+            "Marks where the chain moves from symptom to underlying mechanism.",
+            "Stops only when the cause is actionable and falsifiable.",
+            "Defines the change that would prevent recurrence."
+          ]
+        },
+        {
+          "requirement_id": "check-anchoring-and-linearity-before-acting",
+          "description": "Before acting on the chain, require checks for first-suspect anchoring and for missing parallel causes, feedback loops, or interaction effects.",
+          "evidence_required": [
+            "The first suspected cause or favored story.",
+            "Evidence that contradicts or complicates that story.",
+            "Potential parallel causes, handoffs, feedback loops, or interaction effects.",
+            "The reason a linear Five Whys chain is sufficient or insufficient here."
+          ],
+          "good_output_shape": [
+            "Names the anchor risk created by the first answer.",
+            "Adds or rejects parallel branches based on evidence.",
+            "Escalates to broader root-cause or fishbone analysis when one chain is too thin.",
+            "Avoids blame labels and emotional rumination."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What observable problem is recurring, and what is the first proximate explanation?",
+        "What evidence supports each why in the chain?",
+        "Has the chain reached a falsifiable fact or actionable process mechanism?",
+        "Is the first suspect anchoring every later answer?",
+        "Are interaction effects, feedback loops, or parallel causes being erased by one linear thread?"
+      ],
+      "misuse_guards": [
+        "Do not stop at the first or second why if the answer is still a symptom.",
+        "Do not steer every why toward the initial suspect or preferred solution.",
+        "Do not apply Five Whys to emotional rumination or self-blame questions.",
+        "Do not force complex adaptive failures into a single linear chain when broader causal mapping is needed."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Five_Whys_Method_rag.md",
+          "source_quote": "repeatedly asking \"why\" to traverse different levels of causality until the root cause of the problem is identified",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Five_Whys_Method_rag.md",
+          "source_quote": "one why isn’t enough",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Five_Whys_Method_rag.md",
+          "source_quote": "Most useful when** a recurring operational problem has an observable chain of causes and the team needs to get past symptom-fixing quickly.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Five_Whys_Method_rag.md",
+          "source_quote": "logs, process evidence, or physical facts rather than opinion, status, or blame",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Five_Whys_Method_rag.md",
+          "source_quote": "Danger when** the first answer or first suspect anchors the whole chain and every later \"why\" is steered to support that initial story.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source supports one compact causal drilldown record with strong evidence, anchoring, linearity, and introspection guards.",
+        "dropped_material": [
+          "Did not extract Toyota, Six Sigma, Dalio, or theory-of-mind examples as separate affordances.",
+          "Did not split first-principles relation into a second record because it serves the same falsifiable-cause endpoint."
+        ],
+        "open_questions": [
+          "PR29 should test whether this remains distinct from root-cause-analysis, which should cover multi-branch machine-level diagnosis."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "emotional-introspection-why-loop-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says Five Whys is not intended for emotional introspection or rumination. That use creates clutter and anxiety rather than a factual cause chain.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Five_Whys_Method_rag.md",
+          "source_quote": "The model is explicitly **not** intended for introspection or emotional rumination",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Five_Whys_Method_rag.md",
+          "source_quote": "If it involves emotions, shift to managing those emotions, which requires different principles.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "single-linear-cause-for-complex-systems-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against forcing nonlinear, multi-cause systems into one thread. A broader causal map is required when feedback loops or parallel causes matter.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Five_Whys_Method_rag.md",
+          "source_quote": "Danger when** a nonlinear, multi-cause system is forced into a single linear thread and the team leaves out interaction effects, feedback loops, or parallel causes.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Five_Whys_Method_rag.md",
+          "source_quote": "Use the Five Whys in conjunction with broader visualization tools like **Fishbone Diagrams** or **Causal Chain Diagrams**.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Five_Whys_Method_rag.md",
+      "source_quote": "The goal of the Five Whys is not just to find a quick answer but to separate reliable knowledge from assumption.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Five_Whys_Method_rag.md",
+      "source_quote": "The prescribed \"five\" is a guiding number, but the actual number of iterations should continue until a fundamental systemic issue or actionable process element is revealed.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 4 source reading found strong operational support. Extracted one evidence-bound drilldown record and made emotional rumination plus one-thread complex-causality absences first-class.",
+    "dropped_material": [
+      "Manufacturing, Six Sigma, Dalio, and fishbone examples were treated as supporting context.",
+      "No runtime, prompt, lane, or packet-producer changes are implied."
+    ],
+    "open_questions": [
+      "Future review should preserve the boundary: Five Whys is a narrow drilldown, not a substitute for root-cause-analysis in multi-cause systems."
+    ],
+    "review_status": "draft"
+  }
+}
