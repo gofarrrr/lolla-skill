@@ -1,17 +1,17 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-06
-**Status:** Start-here handover for the next coding session after PR24 review.
-This is not a new implementation slice, not a producer plan, not runtime
-promotion, and not permission to build a sample fixture.
+**Status:** Start-here handover after PR25 reopened forward work along the
+corrected PR24 architecture. This is still not runtime promotion, prompt
+promotion, lane rewrite, or user-facing Decision Pressure work.
 
-**Current posture:** `stop_and_consolidate_after_pr24_review`
+**Current posture:** `fixture_packet_producer_ready`
 
-**Current PR:** PR24 - Source understanding and reasoning packet audit
+**Current PR:** PR25 - Reasoning substrate enrichment placement
 
 **PR24 review verdict:** `approve_pr24`
 
-**Selected outcome:** `stop_and_consolidate`
+**PR25 decision label:** `fixture_packet_producer_ready`
 
 ## Start Here
 
@@ -21,9 +21,12 @@ Read these files in order:
 2. `research/reasoning-substrate-packet-v1-spec-2026-05-06.md`
 3. `research/source-understanding-and-reasoning-packet-audit-2026-05-06.md`
 4. `research/enriched-mental-model-packet-strategy-2026-05-06.md`
-5. `research/decision-pressure-product-doctrine-2026-05-06.md`
-6. `plans/knowledge-substrate-roadmap-2026-05-04.md`
-7. `plans/knowledge-use-schema-2026-05-04.md`
+5. `research/knowledge-matching-current-state-audit-2026-05-06.md`
+6. `research/decision-pressure-product-doctrine-2026-05-06.md`
+7. `plans/knowledge-substrate-roadmap-2026-05-04.md`
+8. `plans/knowledge-use-schema-2026-05-04.md`
+9. `research/reasoning-substrate-lane-placement-audit-2026-05-06.md`
+10. `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -116,6 +119,52 @@ PR24 did not:
 - create user-facing Decision Pressure output;
 - let Python choose final pressure.
 
+## What PR25 Reopened
+
+PR24's `stop_and_consolidate` outcome meant "do not continue the wrong
+Decision Pressure machinery by momentum." It did not mean the reasoning
+substrate must remain frozen forever.
+
+PR25 reopened forward work only along the corrected architecture:
+
+- existing lanes stay intact and keep nominating candidate mental-model
+  shelves;
+- v4 becomes additive enrichment to lane-selected candidates, not a replacement
+  for the 222-model graph;
+- graph-only models remain eligible with honest labels;
+- deterministic code packages graph fields, reviewed v4 snippets, absence
+  records, source custody, caps, and provenance;
+- Python does not choose final pressure, final memo copy, semantic novelty,
+  actionability, or wisdom;
+- the LLM/reviewer decides what matters, what to merge, what to ignore, and
+  whether any Decision Pressure or other output should emerge.
+
+## What PR25 Added
+
+PR25 adds a dormant enrichment-placement slice:
+
+- `research/reasoning-substrate-lane-placement-audit-2026-05-06.md` maps Lane
+  1, Lane 2, Lane 3, and Lane 4 outputs to future packet nominations and
+  identifies the route-trace-adjacent boundary for a later adapter.
+- `engine/system_b/reasoning_substrate_coverage.py` and
+  `tests/test_reasoning_substrate_coverage.py` deterministically audit full
+  corpus breadth/depth coverage across runtime graph, v4, source custody,
+  canonical markdown availability, runtime graph fields, reasoning-type gaps,
+  and static lane-signal priorities.
+- `research/full-corpus-enrichment-coverage-audit-2026-05-06.md` records the
+  controlled expansion plan: source-custody first, then reviewed batches of
+  20-30, selected by lane signal, reasoning-type gap, source quality, and
+  later route-trace frequency.
+- `engine/system_b/reasoning_substrate_packet.py` and
+  `tests/test_reasoning_substrate_packet.py` add a fixture/review-only packet
+  producer for explicit candidate nominations. It enriches v4-reviewed and
+  graph-only candidates without running live lanes or emitting user-facing
+  prose.
+
+PR25 does not wire live `/lolla`, prompts, Observatory, memo, Step 8, Step 6,
+Lane 4 runtime, judges, model calls, extraction, Batch 3b, or deterministic
+pressure selection.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -130,11 +179,11 @@ PR24 review answered yes to all three questions:
 The selected outcome is `stop_and_consolidate`: merge PR24 as dormant
 research/infrastructure and pause.
 
-## Later Outcomes, Not Active Next Work
+## Historical PR24 Outcomes
 
-PR24 review selected `stop_and_consolidate`. These alternatives are not active
-next work, but remain useful labels if a future product review explicitly
-reopens the question:
+PR24 review selected `stop_and_consolidate`. PR25 later reopened forward work
+explicitly and only along the corrected enrichment architecture. These PR24
+alternatives remain historical labels:
 
 1. `revise_packet_spec`
    Tighten coverage statuses, caps, or forbidden behaviors. No runtime.
@@ -152,10 +201,11 @@ reopens the question:
    Merge PR24 as dormant research/infrastructure and pause. This is the
    selected outcome after PR24 review.
 
-Do not choose a new outcome or multiple outcomes in one PR unless the user
-explicitly asks for that larger scope after product review.
+Do not revive these labels as implementation permission by momentum. Current
+forward work is enrichment placement and full-corpus packet readiness, not
+Decision Pressure machinery.
 
-## Still Blocked
+## Still Blocked For Live Product
 
 These remain blocked unless explicitly approved after product review:
 
@@ -163,7 +213,7 @@ These remain blocked unless explicitly approved after product review:
 - live `/lolla`;
 - prompt changes;
 - lane rewrites;
-- package functions;
+- runtime packet production from live lanes;
 - live Observatory rendering;
 - memo / Step 8 / Step 6 integration;
 - Lane 4 runtime affordance integration;
@@ -200,25 +250,36 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR24 and do not infer permission for runtime work.
+Start from PR25 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
 - research/reasoning-substrate-packet-v1-spec-2026-05-06.md
 - research/source-understanding-and-reasoning-packet-audit-2026-05-06.md
+- research/reasoning-substrate-lane-placement-audit-2026-05-06.md
+- research/full-corpus-enrichment-coverage-audit-2026-05-06.md
 
 Current posture:
-stop_and_consolidate_after_pr24_review
+fixture_packet_producer_ready
 
-Your first job is to preserve the stop posture, not build PR25.
+Your first job is to preserve the corrected enrichment boundary, not build live
+Decision Pressure machinery.
 
 PR24 review result:
 - verdict: approve_pr24
 - selected outcome: stop_and_consolidate
 
-Do not build a producer, runtime path, prompt change, lane rewrite, sample
-fixture, extraction, Batch 3b, or user-facing output unless the user explicitly
-opens a new product-reviewed slice.
+PR25 result:
+- decision label: fixture_packet_producer_ready
+- existing lanes stay intact
+- v4 is additive enrichment
+- graph-only models remain eligible
+- Python packages reasoning material; LLM/reviewer reasons
+
+Do not build runtime packet production, prompt changes, lane rewrites,
+extraction, Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime,
+judges, paid model calls, deterministic pressure selection, or user-facing
+output unless the user explicitly opens a new product-reviewed slice.
 ```
 
 ## Core Memory

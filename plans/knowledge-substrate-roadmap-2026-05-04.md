@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR23 are merged as dormant research/infrastructure, PR24's docs/research slice is reviewed and approved, and the current posture is `stop_and_consolidate_after_pr24_review`
+**Status:** living roadmap; PR13-PR24 are merged, PR25 has reopened forward work only along the corrected enrichment architecture, and the current posture is `fixture_packet_producer_ready`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -13,6 +13,8 @@
 **Source/packet audit brief:** `research/source-understanding-and-reasoning-packet-audit-brief-2026-05-06.md`
 **Current source/packet audit:** `research/source-understanding-and-reasoning-packet-audit-2026-05-06.md`
 **Current packet spec:** `research/reasoning-substrate-packet-v1-spec-2026-05-06.md`
+**Current lane placement audit:** `research/reasoning-substrate-lane-placement-audit-2026-05-06.md`
+**Current full-corpus coverage audit:** `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -176,20 +178,28 @@ What is already done:
   depth for 55 records, and the missing bridge is a dormant
   `reasoning_substrate_packet.v1` handoff object, not a deterministic Decision
   Pressure solver.
+- PR25 reopened forward work after PR24, but only along the corrected
+  architecture. It adds
+  `research/reasoning-substrate-lane-placement-audit-2026-05-06.md`,
+  `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`,
+  `engine/system_b/reasoning_substrate_coverage.py`, and
+  `engine/system_b/reasoning_substrate_packet.py`. The target is full-corpus
+  enrichment plus proper packet placement, not Decision Pressure machinery.
+  Existing lanes stay intact, v4 is additive enrichment to lane-selected
+  candidates, graph-only models remain eligible with honest labels, and Python
+  packages reasoning material for the LLM/reviewer to judge.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `stop_and_consolidate_after_pr24_review`: PR24 review approved the dormant
-  source/packet audit and selected consolidation, not a sample fixture,
-  producer, runtime path, extraction, or new implementation slice.
+  `fixture_packet_producer_ready`: PR25 produced a dormant explicit-nomination
+  packet producer and coverage audit without live runtime behavior.
 
-Current posture after PR 23, the May 6 continuation decision, and PR24 review:
+Current posture after PR 23, PR24 review, and the PR25 continuation decision:
 
-1. The post-PR23 stop was lifted only for the docs/research Source
-   Understanding And Reasoning Packet Audit. That slice produced an audit and
-   dormant packet spec. PR24 review approved it and selected
-   `stop_and_consolidate`. Do not commission runtime work, prompt changes,
-   extraction, lane rewrites, or user-facing promotion from it.
+1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
+   machinery. PR25 explicitly reopened forward work only for enrichment
+   placement: lane-selected shelves become compact source-aware cards for the
+   next LLM/reviewer.
 2. Use the product doctrine
    `research/decision-pressure-product-doctrine-2026-05-06.md` as the north
    star: broad intake, disciplined output.
@@ -214,7 +224,7 @@ Current posture after PR 23, the May 6 continuation decision, and PR24 review:
    accepted product modes are `new_edge`, `grounded_double_down`,
    `confirmation`, and `coverage_transparency`.
 11. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
-   promotion from PR23.
+   promotion from PR23 or PR25.
 12. Do not turn PR23 case examples into deterministic rules. Python may enforce
     shape, caps, provenance, source-reference validity, runtime dormancy,
     coverage gaps, blocked surfaces, and drift counts. Python must not choose
@@ -234,9 +244,10 @@ Current posture after PR 23, the May 6 continuation decision, and PR24 review:
     already knows, what v4 adds for 55 reviewed records, and what a dormant
     `reasoning_substrate_packet.v1` should contain.
 16. Treat `research/reasoning-substrate-next-session-handover-2026-05-06.md`
-    as the first file for future sessions. Do not infer permission for PR25 or
-    implementation work from PR24; the next state is consolidation, not
-    building.
+    as the first file for future sessions. Do not infer permission for runtime
+    packet production, prompt changes, lane rewrites, extraction, or
+    user-facing surfaces from PR25; the current state is dormant enrichment
+    placement, not product promotion.
 
 ---
 
@@ -700,15 +711,17 @@ original proposal language.
 | Adapter report usefulness review / PR 22 | done | Record that the adapter report is useful as a smoke alarm, not as the main product-quality review surface. |
 | Decision Pressure generalization readout / PR 23 | done | Record no-paid directional generalization evidence and lock the anti-casuistry boundary. |
 | Source Understanding And Reasoning Packet Audit | done as docs/research audit/spec | Audits all-222 runtime graph breadth, v4's 55-record depth, and defines a dormant `reasoning_substrate_packet.v1` shape that enriches lane-selected candidates without selecting final pressure. |
+| Reasoning substrate enrichment placement / PR25 | done as dormant audit/module slice | Maps existing lane outputs to packet placement, audits full-corpus enrichment coverage, and adds a review-only explicit-nomination packet producer. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> The Source Understanding And Reasoning Packet Audit produced docs,
-> deterministic inventory, and a dormant packet spec. It does not authorize
-> runtime behavior, prompt changes, extraction, Batch 3b, package functions,
-> trace-fixture stress tests, or another paid Gate 4 run.
+> PR25 produced dormant enrichment placement, deterministic coverage audit, and
+> an explicit-nomination packet producer. It does not authorize runtime
+> behavior, prompt changes, lane rewrites, extraction, Batch 3b, live
+> route-trace packet production, trace-fixture stress tests, user-facing
+> Decision Pressure output, or another paid Gate 4 run.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1320,8 +1333,8 @@ Schema And Extraction Contract**. That work is done. The later PR12/Decision
 Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
-The current reviewed posture is `stop_and_consolidate_after_pr24_review`. Do
-not treat any item below as active next work.
+The current reviewed posture is `fixture_packet_producer_ready` after PR25. Do
+not treat any historical item below as active next work.
 
 Historical PR 12 scope was:
 
