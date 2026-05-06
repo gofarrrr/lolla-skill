@@ -1,17 +1,19 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-06
-**Status:** Start-here handover after PR25 reopened forward work along the
-corrected PR24 architecture. This is still not runtime promotion, prompt
-promotion, lane rewrite, or user-facing Decision Pressure work.
+**Status:** Start-here handover after PR26 completed deterministic source
+custody backfill. This is still not runtime promotion, prompt promotion, lane
+rewrite, extraction, or user-facing Decision Pressure work.
 
-**Current posture:** `fixture_packet_producer_ready`
+**Current posture:** `source_custody_backfill_complete`
 
-**Current PR:** PR25 - Reasoning substrate enrichment placement
+**Current PR:** PR26 - Source custody backfill
 
 **PR24 review verdict:** `approve_pr24`
 
 **PR25 decision label:** `fixture_packet_producer_ready`
+
+**PR26 decision label:** `source_custody_backfill_complete`
 
 ## Start Here
 
@@ -27,6 +29,7 @@ Read these files in order:
 8. `plans/knowledge-use-schema-2026-05-04.md`
 9. `research/reasoning-substrate-lane-placement-audit-2026-05-06.md`
 10. `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
+11. `research/reasoning-substrate-source-custody-backfill-2026-05-06.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -59,6 +62,7 @@ Keep these layers distinct:
 | Tendencies | 25 tendency routes for Lane 1. |
 | Runtime graph fields | `select_when`, `danger_when`, `failure_modes`, `premortem_questions`, `heuristics`, `reasoning_types`. |
 | Canonical markdown | 222 files, about 491k words. Source truth for broader expansion. |
+| Repo-local source custody | 222 files in `data/model_sources/` with SHA-256 manifest after PR26. |
 | v4 affordance corpus | 55 reviewed records, 91 affordances, 95 absence records. Deep reviewed subset, still dormant. |
 | Graph-only after v4 | 167 runtime models remain eligible but not v4-reviewed. |
 
@@ -165,6 +169,29 @@ PR25 does not wire live `/lolla`, prompts, Observatory, memo, Step 8, Step 6,
 Lane 4 runtime, judges, model calls, extraction, Batch 3b, or deterministic
 pressure selection.
 
+## What PR26 Added
+
+PR26 completes the deterministic source-custody backfill:
+
+- copied the remaining `167` runtime model source files from
+  `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216` into
+  `data/model_sources/`;
+- regenerated `data/model_sources/manifest.json` from runtime graph
+  `source_file` references;
+- left the existing `55` source files unchanged when bytes already matched
+  canonical source;
+- added `engine/system_b/source_custody.py` as a deterministic custody report
+  helper;
+- added `tests/test_reasoning_substrate_source_custody.py` to prove `222`
+  manifest model IDs, local hash/byte matches, and canonical byte matches;
+- updated `engine/system_b/reasoning_substrate_coverage.py` so coverage audits
+  report source custody separately from v4 reviewed depth.
+
+PR26 does not extract new affordance records. The v4 corpus still covers `55`
+reviewed models, and `167` runtime models remain graph-only after v4. Source
+custody means future extraction can quote and validate repo-local source truth;
+it does not mean graph-only models have reviewed v4 affordances.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -202,14 +229,13 @@ alternatives remain historical labels:
    selected outcome after PR24 review.
 
 Do not revive these labels as implementation permission by momentum. Current
-forward work is enrichment placement and full-corpus packet readiness, not
+forward work is source-custodied packet readiness and fixture review, not
 Decision Pressure machinery.
 
 ## Still Blocked For Live Product
 
 These remain blocked unless explicitly approved after product review:
 
-- runtime packet production;
 - live `/lolla`;
 - prompt changes;
 - lane rewrites;
@@ -250,7 +276,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR25 and do not infer permission for runtime work.
+Start from PR26 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -258,12 +284,13 @@ Read first:
 - research/source-understanding-and-reasoning-packet-audit-2026-05-06.md
 - research/reasoning-substrate-lane-placement-audit-2026-05-06.md
 - research/full-corpus-enrichment-coverage-audit-2026-05-06.md
+- research/reasoning-substrate-source-custody-backfill-2026-05-06.md
 
 Current posture:
-fixture_packet_producer_ready
+source_custody_backfill_complete
 
-Your first job is to preserve the corrected enrichment boundary, not build live
-Decision Pressure machinery.
+Your first job is to preserve the corrected enrichment boundary and source
+custody distinction, not build live Decision Pressure machinery.
 
 PR24 review result:
 - verdict: approve_pr24
@@ -275,6 +302,13 @@ PR25 result:
 - v4 is additive enrichment
 - graph-only models remain eligible
 - Python packages reasoning material; LLM/reviewer reasons
+
+PR26 result:
+- decision label: source_custody_backfill_complete
+- data/model_sources now has source custody for all 222 runtime models
+- v4 remains 55 reviewed records
+- 167 models remain graph-only after v4
+- no extraction or runtime behavior was added
 
 Do not build runtime packet production, prompt changes, lane rewrites,
 extraction, Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime,

@@ -1,13 +1,12 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-06
-**Status:** Product doctrine after the merged PR13-PR23 stack. This is not a
-runtime proposal, implementation plan, PR24 brief, extraction brief, prompt
-change, or user-facing launch plan.
+**Status:** Product doctrine after PR26 source custody backfill. This is not a
+runtime proposal, extraction brief, prompt change, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `stop_and_consolidate_after_pr24_review`
+**Current posture:** `source_custody_backfill_complete`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -366,9 +365,13 @@ enrichment architecture:
 
 > `fixture_packet_producer_ready`
 
+PR26 then completed deterministic source custody backfill:
+
+> `source_custody_backfill_complete`
+
 Future sessions should read
 `research/reasoning-substrate-next-session-handover-2026-05-06.md` first and
-treat PR25 as dormant enrichment placement. Existing lanes stay intact, v4 is
+treat PR26 as source custody, not extraction. Existing lanes stay intact, v4 is
 additive to lane-selected candidates, graph-only models remain eligible, and
 Python packages reasoning material for LLM/reviewer judgment. Do not start
 runtime packet production, prompt changes, lane rewrites, broad extraction,

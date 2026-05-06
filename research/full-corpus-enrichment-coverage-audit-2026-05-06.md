@@ -1,8 +1,8 @@
 # Full-Corpus Enrichment Coverage Audit
 
 **Date:** 2026-05-06
-**PR slice:** PR25 - enrichment placement
-**Status:** deterministic review-only audit
+**PR slice:** PR25 - enrichment placement; updated by PR26 source custody backfill
+**Status:** deterministic review-only audit, source custody backfilled
 **Audit module:** `engine/system_b/reasoning_substrate_coverage.py`
 **Decision label:** `coverage_expansion_ready`
 
@@ -17,18 +17,18 @@ The deterministic audit confirms the PR24 substrate story:
 - v4 reviewed affordance records: `55` model records.
 - Graph-only runtime models after v4: `167`.
 - v4 IDs outside the runtime graph: `0`.
-- Reviewed source custody in `data/model_sources/manifest.json`: `55`
-  runtime model IDs.
-- Runtime model IDs missing reviewed source custody: `167`.
+- Repo-local source custody in `data/model_sources/manifest.json`: `222`
+  runtime model IDs after PR26.
+- Runtime model IDs missing source custody: `0` after PR26.
 - Canonical markdown availability in
   `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216`: directory
   exists, `222` runtime source files available, `0` missing by runtime
   `source_file`.
 
 That means the next expansion bottleneck is not whether the source corpus
-exists. It is whether copied source custody, extraction, validation, absence
-records, and review discipline can scale without flattening graph-only models
-into fake reviewed evidence.
+exists or whether it is under repo-local custody. It is whether packet
+fixtures, extraction, validation, absence records, and review discipline can
+scale without flattening graph-only models into fake reviewed evidence.
 
 ## Inputs Compared
 
@@ -123,19 +123,19 @@ such as `game-theory-payoffs`, `jobs-to-be-done`, `lock-in`,
 
 ### Step 1 - Source-Custody Backfill Before More Extraction
 
-Yes: the next expansion slice should first copy/source-custody canonical
-markdown for graph-only models before extracting broad v4 records.
+Done by PR26: the remaining graph-only canonical markdown files were copied
+into repo-local source custody before broad v4 extraction.
 
 Reason:
 
 - The external canonical directory currently has `222` available source files.
-- Repo-local reviewed source custody covers only the `55` v4 models.
+- Repo-local source custody now covers all `222` runtime models.
 - v4 affordances should continue to reference source material under explicit
   custody, with manifest hashes, not external-path assumptions.
 
-The first backfill can be scoped to the next 20-30 extraction targets, or to all
-remaining 167 source files if the operation is purely deterministic copy plus
-manifest verification. Extraction should still happen in batches.
+PR26 took the deterministic all-remaining-files route: it copied the `167`
+missing source files and regenerated the manifest. Extraction should still
+happen in batches.
 
 ### Step 2 - Extract In Batches Of 20-30
 
@@ -195,7 +195,7 @@ The deterministic audit recommends this first 25-model batch:
 25. `cross-cultural-communication-frameworks`
 
 This batch is high-priority because the existing lane substrate already points
-at these graph-only shelves. It is still not a request to extract them in PR25.
+at these graph-only shelves. It is still not a request to extract them in PR26.
 
 ## Lower-Priority Models For Now
 
@@ -245,7 +245,7 @@ Existing checks to keep running:
 
 Suggested next checks:
 
-- a source-custody backfill validator for canonical markdown copy plus SHA-256
+- the PR26 source-custody validator for canonical markdown copy plus SHA-256
   manifest update;
 - a batch-level quote validator that reports exact source path and quote
   failures before compilation;
@@ -259,12 +259,12 @@ Suggested next checks:
 PR25 adds deterministic audit and dormant packet packaging only. It does not:
 
 - extract new v4 records;
-- copy the remaining 167 source files;
+- copy the remaining 167 source files; PR26 has already done this;
 - run paid model calls or judges;
 - run live lanes to build packets;
 - wire `/lolla`, Observatory, memo, Step 8, Step 6, or Lane 4 runtime;
 - rank wisdom or choose final pressure.
 
-The next slice should choose between source-custody expansion, packet-producer
-hardening, or a tiny reviewed packet fixture. It should not start broad Batch
-3b by momentum.
+The next slice should choose between packet-producer hardening or a tiny
+reviewed packet fixture. It should not start broad Batch 3b or broad extraction
+by momentum.
