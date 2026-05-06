@@ -357,14 +357,22 @@ And Reasoning Packet Audit and dormant packet spec. It does not authorize
 runtime promotion, prompt changes, lane rewrites, broad extraction, Batch 3b,
 paid runs, or user-facing Decision Pressure output.
 
-After PR24 review, the active next-session posture is:
+After PR24 review, the temporary active next-session posture was:
 
 > `stop_and_consolidate_after_pr24_review`
 
+PR25 later reopened forward work explicitly and only along the corrected
+enrichment architecture:
+
+> `fixture_packet_producer_ready`
+
 Future sessions should read
 `research/reasoning-substrate-next-session-handover-2026-05-06.md` first and
-treat PR24 as approved dormant research/infrastructure. Do not start any
-producer, sample fixture, extraction, runtime, or prompt work by default.
+treat PR25 as dormant enrichment placement. Existing lanes stay intact, v4 is
+additive to lane-selected candidates, graph-only models remain eligible, and
+Python packages reasoning material for LLM/reviewer judgment. Do not start
+runtime packet production, prompt changes, lane rewrites, broad extraction,
+Batch 3b, paid runs, or user-facing Decision Pressure output by default.
 
 ## Next Product Work, Not Engineering Work
 
