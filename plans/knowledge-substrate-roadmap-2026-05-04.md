@@ -1,18 +1,19 @@
 # Knowledge Substrate Roadmap - Make The Models Do More Work
 
 **Date:** 2026-05-04
-**Last updated:** 2026-05-05
+**Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR 1 through v4 compilation are done, PR 11 Gate 4 calibration produced product signal, and the current frontier is no-paid Decision Pressure generalization review
+**Status:** living roadmap; PR13-PR23 are merged as dormant research/infrastructure, and the current posture is `stop_and_review_after_pr23`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
+**Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
 
 ---
 
-## 0. Current State Snapshot - 2026-05-05
+## 0. Current State Snapshot - 2026-05-06
 
 This document began as a May 4 roadmap. The repo has now moved past the first
 several steps. Future sessions should not restart from "define the schema."
@@ -140,35 +141,45 @@ What is already done:
 - Combined external-study doctrine: use `gbrain` lessons for trustworthy
   substrate/runtime design; use *Clear Thinking* lessons for the decision-note,
   tripwire, safeguard, and process-record product surface.
+- Product doctrine after the merged PR13-PR23 stack is captured in
+  `research/decision-pressure-product-doctrine-2026-05-06.md`: doctrine label
+  `broad_intake_disciplined_output`. Lolla is moment-first, not persona-first:
+  the moment is a human or agent about to rely on AI advice. The possible
+  pressure space stays broad, but surfaced pressure must clear a strict
+  contract: relevant, action-changing, compact, dismissible, tripwired,
+  source-backed or coverage-honest, non-duplicative, no fake precision, and no
+  deterministic template.
 
 Current posture after PR 23:
 
 1. Default to `stop_and_review_after_pr23`. Do not commission PR24 or any new
    implementation by default.
-2. Do not run more paid Gate 4 calibration by default.
-3. Treat the PR13 dry surface and PR14 stability review as product-shaping
+2. Use the product doctrine
+   `research/decision-pressure-product-doctrine-2026-05-06.md` as the north
+   star: broad intake, disciplined output.
+3. Do not run more paid Gate 4 calibration by default.
+4. Treat the PR13 dry surface and PR14 stability review as product-shaping
    evidence, not formal Gate 4 proof.
-4. Treat Batch 3a and v4 as an extraction patch plus dry product-delta review;
+5. Treat Batch 3a and v4 as an extraction patch plus dry product-delta review;
    they do not promote Decision Pressure or v4 affordances into runtime.
-5. Treat the PR18 Observatory prototype as evidence that the operator trace is
+6. Treat the PR18 Observatory prototype as evidence that the operator trace is
    clearer, not as implementation permission.
-6. Treat the PR19 `decision_pressure_trace` contract, PR20 producer/adapter
+7. Treat the PR19 `decision_pressure_trace` contract, PR20 producer/adapter
    plan, PR21 adapter smoke test, and PR22 usefulness review as dormant review
    infrastructure, not as live Observatory, memo, Step 8, Step 6, Lane 4, or
    `/lolla` behavior.
-7. Treat PR23 as directional evidence that Decision Pressure generalizes beyond
-   the original 3-case packet, but not as live product evidence. If moving
-   forward, review whether the existing `decision_pressure_trace.v1` contract
-   can represent a multi-case generalization fixture without bloat or example
-   imitation.
-8. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
+8. Treat PR23 as directional evidence that Decision Pressure generalizes beyond
+   the original 3-case packet, but not as live product evidence. A multi-case
+   trace review is allowed only if product review names the concrete
+   uncertainty it would answer.
+9. Treat Decision Pressure as a synthesis object that feeds existing Step 6,
    Step 8 Pressure Check, memo, or Observatory surfaces. It is not a new lane.
-9. Treat C-only OOD as one strong value mode, not the only value mode. The
+10. Treat C-only OOD as one strong value mode, not the only value mode. The
    accepted product modes are `new_edge`, `grounded_double_down`,
    `confirmation`, and `coverage_transparency`.
-10. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
+11. Do not start broad Batch 3, Batch 3b, live Lane 4 integration, or chat/memo
    promotion from PR23.
-11. Do not turn PR23 case examples into deterministic rules. Python may enforce
+12. Do not turn PR23 case examples into deterministic rules. Python may enforce
     shape, caps, provenance, source-reference validity, runtime dormancy,
     coverage gaps, blocked surfaces, and drift counts. Python must not choose
     pressure quality, infer pressure from case type or route label, merge

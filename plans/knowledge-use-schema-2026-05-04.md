@@ -1,10 +1,11 @@
 # Knowledge Use Schema - From Buried Markdown To Runtime Judgment
 
 **Date:** 2026-05-04
-**Last updated:** 2026-05-05
+**Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR 1 schema/fixtures, pilot, Batch 1, Batch 2, v4 compilation, and PR 11 Gate 4 harness are implemented; current frontier is no-paid Decision Pressure generalization review
+**Status:** living schema doctrine; PR13-PR23 are merged as dormant research/infrastructure, and the current posture is `stop_and_review_after_pr23`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
+**Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
@@ -12,7 +13,7 @@
 
 ---
 
-## 0. Current Implementation State - 2026-05-05
+## 0. Current Implementation State - 2026-05-06
 
 This document began as a target schema. The first implementation slices are now
 real. Future sessions should treat the following as current baseline:
@@ -130,6 +131,14 @@ real. Future sessions should treat the following as current baseline:
 - Combined external-study doctrine: use `gbrain` lessons for the trustworthy
   substrate/runtime discipline; use *Clear Thinking* lessons for the
   decision-note, tripwire, safeguard, and process-record surface.
+- Product doctrine after the merged PR13-PR23 stack is captured in
+  `research/decision-pressure-product-doctrine-2026-05-06.md`: doctrine label
+  `broad_intake_disciplined_output`. Lolla is moment-first, not persona-first:
+  the user moment is relying on plausible AI advice before action. Broad
+  pressure intake is allowed, but surfaced pressure must be relevant,
+  action-changing, compact, dismissible, tripwired, source-backed or
+  coverage-honest, non-duplicative, non-fake-precise, and not a deterministic
+  case template.
 
 The schema is still dormant for live `/lolla` behavior. No chat, memo, Pressure
 Check, or Lane 4 runtime promotion is justified after PR23. Decision Pressure
@@ -147,10 +156,11 @@ for fixture-only producer/adapter work. PR21 exercises that boundary with a
 fixture-only adapter smoke test. PR22 records that the adapter report is useful
 as a mechanical smoke guard, not as product-quality review. PR23 then adds
 no-paid directional generalization evidence from five fresh archived cases. The
-next step, if any, is to review whether the existing
-`decision_pressure_trace.v1` contract can represent a multi-case
-generalization fixture without bloat or example imitation. This is still not
-live Observatory integration.
+May 6 product doctrine names the product center: broad intake, disciplined
+output. The next default is not another trace slice; it is product review under
+`stop_and_review_after_pr23`. A multi-case trace review is allowed only if
+product review names the concrete uncertainty it would answer. This is still
+not live Observatory integration.
 
 The post-PR23 deterministic boundary is explicit:
 
@@ -1348,24 +1358,26 @@ anti-casuistry lock.
 Current task:
 
 1. Default to `stop_and_review_after_pr23`.
-2. Preserve the three selected Decision Pressure clusters from PR13/PR14.
-3. Keep PR17's decision label: `v4_improves_fields_without_changing_selection`.
-4. Treat PR18's Observatory trace as the manual prototype baseline.
-5. Keep coverage transparency visible, especially the PhD competitive-dynamics
+2. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
+   product north star: broad intake, disciplined output.
+3. Preserve the three selected Decision Pressure clusters from PR13/PR14.
+4. Keep PR17's decision label: `v4_improves_fields_without_changing_selection`.
+5. Treat PR18's Observatory trace as the manual prototype baseline.
+6. Keep coverage transparency visible, especially the PhD competitive-dynamics
    zero-output.
-6. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
+7. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-7. Treat PR20's producer/adapter plan as a boundary, not as a producer.
-8. Treat PR21's adapter smoke test as review infrastructure, not live product.
-9. Treat PR22's usefulness review as a smoke-guard conclusion, not as
+8. Treat PR20's producer/adapter plan as a boundary, not as a producer.
+9. Treat PR21's adapter smoke test as review infrastructure, not live product.
+10. Treat PR22's usefulness review as a smoke-guard conclusion, not as
    permission for a package function.
-10. Treat PR23's generalization readout as directional product evidence, not
+11. Treat PR23's generalization readout as directional product evidence, not
    as runtime evidence, deterministic case logic, or permission for PR24.
-11. Keep field-level provenance, global compression, zero-output success, and
+12. Keep field-level provenance, global compression, zero-output success, and
    action-delta requirements explicit.
-12. Preserve coverage honesty and no-casuistry rails.
-13. Do not run more paid model calls until the surface is reviewed.
-14. Do not start package functions, UI, trace-fixture stress tests, new adapter
+13. Preserve coverage honesty and no-casuistry rails.
+14. Do not run more paid model calls until the surface is reviewed.
+15. Do not start package functions, UI, trace-fixture stress tests, new adapter
    work, Batch 3b, prompt changes, or runtime work by default.
 
 Do not expand the corpus or wire live runtime behavior until this surface is
