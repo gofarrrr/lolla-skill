@@ -1,0 +1,773 @@
+{
+  "blocked_surfaces": [
+    "live_observatory_rendering",
+    "memo_integration",
+    "step8_integration",
+    "step6_integration",
+    "lane4_integration",
+    "lolla_runtime_use",
+    "user_facing_decision_pressure_block",
+    "prompt_changes",
+    "generation_changes",
+    "new_extraction",
+    "batch_3b",
+    "paid_gate4_reruns_by_default"
+  ],
+  "candidate_cards": [
+    {
+      "absence_records": [
+        {
+          "attempted_field": "generic-alternative-comparison-affordance",
+          "model_id": "opportunity-cost",
+          "reason": "A broad compare-the-options affordance would duplicate trade-offs, prioritization, expected-value, or decision-trees. Opportunity cost earns a separate Batch 3a record only when it identifies the real next-best use displaced by the current commitment.",
+          "runtime_policy": "do_not_promote",
+          "status": "duplicate_of_existing_field"
+        }
+      ],
+      "card_id": "card-001-opportunity-cost",
+      "coverage_status": "v4_reviewed_affordance_available",
+      "display_name": "Opportunity Cost",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "opportunity-cost",
+      "nomination_metadata": {
+        "lane_order": 1,
+        "lane_score": 0.91
+      },
+      "pulled_by": [
+        "lane4_gap_route",
+        "reviewer_note"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "opportunity-cost.displaced-alternative-commitment-gate"
+        ],
+        "case_evidence_needed": [
+          "The decision under approval and the scarce resource it consumes: people, budget, calendar time, launch window, leadership attention, trust, or optionality."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What is the single best executable alternative use of the same people, budget, launch window, or attention?"
+        ],
+        "do_not_use_when": [
+          "The real alternatives, constraints, or objective function are not framed well enough for comparison without false precision."
+        ],
+        "misuse_guards": [
+          "Do not count unrealistic alternatives that the team cannot actually fund, execute, or own."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "opportunity-cost.displaced-alternative-commitment-gate",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Opportunity_Cost_rag.md",
+            "source_quote": "The fundamental essence of this model is the value of the best alternative opportunity you didn't choose"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the best real alternative displaced by the current yes, not a vague list of possibilities or a decorative comparison set.",
+            "evidence_required": [
+              "The current commitment, continuation, renewal, feature, market, or project under consideration."
+            ],
+            "good_output_shape": [
+              "States the current yes and the next-best alternative in the same operational currency."
+            ],
+            "requirement_id": "name-real-next-best-alternative"
+          }
+        ],
+        "use_when": [
+          "A roadmap addition, renewal, sprint, vendor, project, or channel looks cheap because the explicit spend is small while the same people, budget, launch window, or attention are needed elsewhere."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The option set is still poorly framed, so comparison would create false precision around the wrong alternatives or objective function."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Commitment can hide what becomes impossible once resources, time, or attention are locked into one path.",
+            "extraction_type": "normalized",
+            "mitigation": "Before committing, explicitly list what becomes impossible: name the specific projects, options, or capabilities that this commitment forecloses.",
+            "mode": "Foreclosure hidden by commitment",
+            "source_quote": "Foreclosure hidden by commitment"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Upgrade simple pro-con thinking into a comparison that includes the implicit costs of the best foregone option.",
+            "extraction_type": "normalized",
+            "source_quote": "Cost-Benefit Analysis (CBA) Upgrade"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.",
+            "extraction_type": "explicit",
+            "source_quote": "Before approving: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months."
+          }
+        ],
+        "reasoning_types": [
+          "counterfactual",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A team wants to add one more initiative even though the same people, budget, or launch window are needed by a higher-leverage move."
+        ],
+        "source_file": "Opportunity_Cost_rag.md"
+      },
+      "source_custody": {
+        "bytes": 18336,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Opportunity_Cost_rag.md",
+        "sha256": "7b02dc4846ff24bc246939cfd19c944f36a52db05a02c3fbb485812a162f5bb9",
+        "source_file": "Opportunity_Cost_rag.md",
+        "v4_reviewed_affordance_available": true,
+        "v4_reviewed_record_available": true
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "lane_gap",
+          "reason": "The advice commits the same budget and launch window without naming the displaced alternative.",
+          "route_or_artifact_id": "synthetic-lane4-resource-commitment",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "generic-skepticism-affordance",
+          "model_id": "falsifiability",
+          "reason": "The source supports specific testability, disconfirming evidence, and reversal thresholds. Generic skepticism would not improve Decision Pressure dismissal or tripwire quality.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-002-falsifiability",
+      "coverage_status": "v4_reviewed_affordance_available",
+      "display_name": "Falsifiability",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "falsifiability",
+      "nomination_metadata": {
+        "lane_order": 2,
+        "lane_score": 0.84
+      },
+      "pulled_by": [
+        "lane2_detected_model"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "falsifiability.disconfirming-reversal-gate"
+        ],
+        "case_evidence_needed": [
+          "The live hypothesis, recommendation, assumption, or theory that could be wrong."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What single fact, if true, would cause us to abandon this hypothesis immediately?"
+        ],
+        "do_not_use_when": [
+          "The work is still so vague that a hypothesis would be decorative rather than testable."
+        ],
+        "misuse_guards": [
+          "Do not use falsifiability language without naming an actual disconfirming test, threshold, or observation."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "falsifiability.disconfirming-reversal-gate",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Falsifiability_rag.md",
+            "source_quote": "The fundamental essence of Falsifiability is the principle that **a theory or hypothesis must be capable of being proven false**."
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to state the concrete observation, threshold, or fact that would cause the thesis or recommendation to be abandoned before commitment proceeds.",
+            "evidence_required": [
+              "The thesis, claim, plan, or recommendation under review."
+            ],
+            "good_output_shape": [
+              "Names the claim and the reversal condition in the same paragraph."
+            ],
+            "requirement_id": "state-reversal-condition-before-commitment"
+          }
+        ],
+        "use_when": [
+          "A recommendation, hypothesis, plan, or strategic thesis is strong enough to shape commitment but has not named what would prove it wrong."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The work is still so vague or underscoped that any initial hypothesis would be decorative rather than testable."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "The need to be right can overpower the search for truth and block disconfirming evidence.",
+            "extraction_type": "normalized",
+            "mitigation": "Define what evidence would disprove the hypothesis before seeking confirmation; the need to be right is the enemy of the search for truth.",
+            "mode": "The Ego Barrier",
+            "source_quote": "The Ego Barrier"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use strong, testable hypotheses because they are easier to challenge and pressure test than vague claims.",
+            "extraction_type": "normalized",
+            "source_quote": "Formulating Strong, Testable Hypotheses"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What single fact, if true, would cause us to abandon this hypothesis immediately?",
+            "extraction_type": "explicit",
+            "source_quote": "What single fact, if true, would cause us to abandon this hypothesis immediately?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "The team has a strong thesis and needs a disciplined way to prove it wrong before committing."
+        ],
+        "source_file": "Falsifiability_rag.md"
+      },
+      "source_custody": {
+        "bytes": 15651,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Falsifiability_rag.md",
+        "sha256": "0cc7176eed4c000075f9f3bde852601e1543ff9a8d6157a7b6316a0e44ca16e8",
+        "source_file": "Falsifiability_rag.md",
+        "v4_reviewed_affordance_available": true,
+        "v4_reviewed_record_available": true
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "move quickly",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The assistant treats the rollout thesis as plausible without naming what evidence would reverse it.",
+          "route_or_artifact_id": "synthetic-lane2-thesis-test",
+          "source": "lane2_detected_model"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "exact-point-estimate-affordance",
+          "model_id": "probabilistic-thinking",
+          "reason": "The source supports ranges, sensitivity, and humility about uncertainty. A point-estimate affordance would create the false precision the model warns against.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-003-probabilistic-thinking",
+      "coverage_status": "v4_reviewed_affordance_available",
+      "display_name": "Probabilistic Thinking",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "probabilistic-thinking",
+      "nomination_metadata": {
+        "lane_order": 3,
+        "lane_score": 0.8
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "probabilistic-thinking.range-and-sensitivity-decision-gate"
+        ],
+        "case_evidence_needed": [
+          "The decision, bet, forecast, or recommendation currently being framed as certain or binary."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What probability range matters for this decision, and what would narrow that range?"
+        ],
+        "do_not_use_when": [
+          "Probability language is postponing a commitment after the key economics, downside, and action threshold are already clear."
+        ],
+        "misuse_guards": [
+          "Do not present exact-looking numbers with more precision than the evidence supports."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "probabilistic-thinking.range-and-sensitivity-decision-gate",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Probabilistic_Thinking_rag.md",
+            "source_quote": "Probabilistic Thinking (PT) is a mental model centered on **estimating the parameters of uncertainty**."
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to state an honest probability or confidence range only when the range will change the commitment, not as decorative precision.",
+            "evidence_required": [
+              "The uncertain claim, forecast, or bet under consideration."
+            ],
+            "good_output_shape": [
+              "Uses a range rather than a single exact-looking estimate when uncertainty is material."
+            ],
+            "requirement_id": "express-decision-relevant-range"
+          }
+        ],
+        "use_when": [
+          "The decision is more-likely-or-less-likely rather than yes-or-no, and binary framing would hide a meaningful uncertainty range."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The work requires a concrete commitment now, but the team is using probability language to postpone choosing after the key economics are already clear."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Over-reliance on the mean can hide low-probability, high-impact outcomes that matter more than the base case.",
+            "extraction_type": "normalized",
+            "mitigation": "Report the full distribution, not just the expected value: require decision-makers to acknowledge tail scenarios and state what level of downside they can absorb.",
+            "mode": "Over-reliance on the Mean Outcome",
+            "source_quote": "Over-reliance on the Mean Outcome"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Frame decisions as expected-value calculations instead of looking for options with no downside at all.",
+            "extraction_type": "normalized",
+            "source_quote": "Expected Value Calculations"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "Is the worst case bad enough?",
+            "extraction_type": "explicit",
+            "source_quote": "\"Is the worst case bad enough?\""
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "probabilistic"
+        ],
+        "select_when": [
+          "The decision is not yes-or-no but more-likely-or-less-likely, so binary framing would hide meaningful uncertainty."
+        ],
+        "source_file": "Probabilistic_Thinking_rag.md"
+      },
+      "source_custody": {
+        "bytes": 14722,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Probabilistic_Thinking_rag.md",
+        "sha256": "3d1442ce60a63f9a01e49bd0aad808c82ba8b55e1b4d18a0469ac62396ebd897",
+        "source_file": "Probabilistic_Thinking_rag.md",
+        "v4_reviewed_affordance_available": true,
+        "v4_reviewed_record_available": true
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "we probably just need to decide now",
+          "evidence_source_type": "user_turn",
+          "reason": "The user frame collapses uncertain renewal and launch outcomes into a go/no-go decision.",
+          "route_or_artifact_id": "synthetic-lane3-binary-frame",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-004-step-back",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Step Back",
+      "do_not_overclaim": [
+        "No reviewed v4 affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "step-back",
+      "nomination_metadata": {
+        "lane_order": 4,
+        "lane_score": 0.72
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The pause is becoming a hiding place for avoiding commitment, trade-offs, or concrete next steps."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Reflection can become a hiding place that postpones commitment, trade-offs, or the next concrete move.",
+            "extraction_type": "explicit",
+            "mitigation": "Set a reflection deadline: agree in advance on when the pause must produce a concrete next action, trade-off, or commitment.",
+            "mode": "Reflection can become a hiding place that postpones commitment, trade-offs, or the next concrete mov...",
+            "source_quote": "Danger When the Pause Becomes a Hiding Place: The model fails when reflection is used to postpone commitment, avoid trade-offs, or keep options abstract rather than to improve the next concrete move."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use the pause to recover the big picture and governing purpose before spending more effort on local detail.",
+            "extraction_type": "normalized",
+            "source_quote": "The step back forces the articulation of the main goal or core message, ensuring every subsequent action is aligned with a single purpose."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What's the one-day answer?",
+            "extraction_type": "explicit",
+            "source_quote": "What\u2019s the one-day answer?"
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "systems"
+        ],
+        "select_when": [
+          "Immediate immersion is obscuring the structure of the problem and a deliberate pause would likely improve the next move."
+        ],
+        "source_file": "Step_Back_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16648,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Step_Back_rag.md",
+        "sha256": "eae47b3180c29b9ac04836f0890e53bab666451460492a023c387233febd78c3",
+        "source_file": "Step_Back_rag.md",
+        "v4_reviewed_affordance_available": false,
+        "v4_reviewed_record_available": false
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "we are running out of time",
+          "evidence_source_type": "user_turn",
+          "reason": "The case is moving from urgency into commitment before restating the governing purpose.",
+          "route_or_artifact_id": "synthetic-lane3-urgency-frame",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-005-constraints",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Constraints",
+      "do_not_overclaim": [
+        "No reviewed v4 affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "constraints",
+      "nomination_metadata": {
+        "lane_order": 5,
+        "lane_score": 0.69
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Old constraints are remaining unquestioned after the economics, technology, or stakeholder environment has changed."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Stale constraints can quietly mislead action when the environment changed but the boundary never did.",
+            "extraction_type": "normalized",
+            "mitigation": "Revisit constraints on a schedule: ask whether each boundary still reflects the current environment or has fossilized from a prior context.",
+            "mode": "Danger when old constraints remain unquestioned after the economics, technology, or stakeholder environment has changed.",
+            "source_quote": "Danger when old constraints remain unquestioned after the economics, technology, or stakeholder environment has changed."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Define constraints explicitly in the problem statement so the scope is realistic before analysis starts.",
+            "extraction_type": "normalized",
+            "source_quote": "Problem Statement Definition"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "How does what you\u2019re doing solve the problem?",
+            "extraction_type": "explicit",
+            "source_quote": "How does what you\u2019re doing solve the problem?"
+          }
+        ],
+        "reasoning_types": [
+          "deductive",
+          "systems"
+        ],
+        "select_when": [
+          "A team is losing clarity because too many goals, variables, or stakeholders are competing for attention at once."
+        ],
+        "source_file": "Constraints_rag.md"
+      },
+      "source_custody": {
+        "bytes": 15599,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Constraints_rag.md",
+        "sha256": "3c9663e9f0f6fa2a4ed795d03939e1fbe7df8d14a2ed7418142b55d32388b4cd",
+        "source_file": "Constraints_rag.md",
+        "v4_reviewed_affordance_available": false,
+        "v4_reviewed_record_available": false
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "lane_gap",
+          "reason": "The plan does not state which scope, budget, or launch constraints govern the trade-off.",
+          "route_or_artifact_id": "synthetic-lane4-constraint-gap",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-006-chain-of-verification",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Chain Of Verification",
+      "do_not_overclaim": [
+        "No reviewed v4 affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "chain-of-verification",
+      "nomination_metadata": {
+        "lane_order": 6,
+        "lane_score": 0.66
+      },
+      "pulled_by": [
+        "lane2_companion_chunk"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Verification is becoming theater through extra checks and sign-offs that do not materially improve the truth of the chain."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A flawed foundation can survive upward because teams fail to challenge weak assumptions at the earliest link.",
+            "extraction_type": "explicit",
+            "mitigation": "Challenge assumptions at the earliest link: a flawed foundation will survive all later checks if the first step is treated as given.",
+            "mode": "Flawed Foundation",
+            "source_quote": "Flawed Foundation"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Break the main claim into smaller conditions that can be validated bottom-up before recommitting to the top-line answer.",
+            "extraction_type": "normalized",
+            "source_quote": "The verification happens bottom-up: analyses, facts, and data are gathered to prove or disprove the elementary hypotheses, and only once these are validated can the problem solver \"climb back up the pyramid\" to confirm the leading hypothesis."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "Which links are make-or-break enough that the whole conclusion collapses if they fail?",
+            "extraction_type": "normalized",
+            "source_quote": "Priority is given to critical, \"make or break\" hypotheses that, if proven wrong, would collapse the entire hypothesis pyramid."
+          }
+        ],
+        "reasoning_types": [
+          "causal",
+          "deductive"
+        ],
+        "select_when": [
+          "A case depends on several premises in sequence and one weak link could collapse the whole conclusion."
+        ],
+        "source_file": "Chain_Of_Verification_rag.md"
+      },
+      "source_custody": {
+        "bytes": 13980,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Chain_Of_Verification_rag.md",
+        "sha256": "0affb9a5abee4b78fc3620d481bff0918be4f8a9087d6aaf7893b4b337390067",
+        "source_file": "Chain_Of_Verification_rag.md",
+        "v4_reviewed_affordance_available": false,
+        "v4_reviewed_record_available": false
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "track risks after launch",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The assistant defers verification until after action even though several premises must hold in sequence.",
+          "route_or_artifact_id": "synthetic-lane2-verification-chain",
+          "source": "lane2_companion_chunk"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-007-confirmation-bias",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Confirmation Bias",
+      "do_not_overclaim": [
+        "No reviewed v4 affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "confirmation-bias",
+      "nomination_metadata": {
+        "lane_order": 7,
+        "lane_score": 0.61
+      },
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The review is already structured around explicit falsification, equal treatment of confirming and disconfirming evidence, and adversarial challenge."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Bias blind spot amplification lets the team audit everyone else's evidence standards while sparing its own.",
+            "extraction_type": "normalized",
+            "mitigation": "Turn the diagnostic lens inward first: audit your own evidence standards with the same rigor you apply to others.",
+            "mode": "Bias Blind Spot Amplification",
+            "source_quote": "Bias Blind Spot Amplification"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use the Darwinian approach by trying to kill weak ideas before defending favored ones.",
+            "extraction_type": "normalized",
+            "source_quote": "Darwinian Approach"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What would we have to believe for this conclusion to be true, and which of those assumptions is weakest?",
+            "extraction_type": "normalized",
+            "source_quote": "What would you have to believe?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "A team is converging on a favored answer before the evidence has been fully tested."
+        ],
+        "source_file": "Confirmation_Bias_rag.md"
+      },
+      "source_custody": {
+        "bytes": 18666,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Confirmation_Bias_rag.md",
+        "sha256": "b59487b075a480942e25f9ddb15113beb5c32b3ba4e5246b67947eebe7c87a21",
+        "source_file": "Confirmation_Bias_rag.md",
+        "v4_reviewed_affordance_available": false,
+        "v4_reviewed_record_available": false
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "assistant_turn",
+          "reason": "The transaction suggests convergence on the preferred renewal answer before disconfirming evidence is named.",
+          "route_or_artifact_id": "synthetic-lane1-confirming-evidence",
+          "source": "lane1_tendency_route"
+        }
+      ]
+    }
+  ],
+  "coverage_summary": {
+    "absence_only_card_count": 0,
+    "candidate_card_count": 7,
+    "conflicting_or_weak_support_count": 0,
+    "graph_only_card_count": 4,
+    "high_value_graph_only_model_ids": [
+      "chain-of-verification",
+      "confirmation-bias",
+      "constraints",
+      "step-back"
+    ],
+    "missing_reviewed_model_ids": [
+      "chain-of-verification",
+      "confirmation-bias",
+      "constraints",
+      "step-back"
+    ],
+    "missing_reviewed_record_count": 4,
+    "source_too_thin_count": 0,
+    "v4_reviewed_card_count": 3
+  },
+  "packet_id": "pr27-mixed-packet-review",
+  "packet_policy": {
+    "candidate_card_target_max": 8,
+    "candidate_card_target_min": 0,
+    "deterministic_role": "validate_package_cap_reference_and_label",
+    "forbid_case_type_templates": true,
+    "forbid_final_pressure_selection": true,
+    "forbid_public_copy": true,
+    "semantic_selection_role": "llm_or_reviewer",
+    "snippet_target_max_per_card": 1,
+    "snippet_target_min_per_card": 0
+  },
+  "packet_version": "reasoning_substrate_packet.v1",
+  "review_notes": [
+    "Review-only packet built from explicit nominations; no live lanes were run.",
+    "Graph-only cards are eligible recall material but not reviewed v4 source custody.",
+    "LLM or reviewer owns semantic selection, merging, ignoring, and final wording."
+  ],
+  "runtime_policy": "runtime_dormant",
+  "source_artifacts": [
+    "data/knowledge_graph.json",
+    "data/compiled/model_affordances/affordances_v4.json",
+    "data/model_sources/manifest.json"
+  ],
+  "status": "draft_review_only",
+  "suppressed_candidates": [
+    {
+      "candidate_id": "candidate-008-opportunity-cost",
+      "coverage_status": "v4_reviewed_affordance_available",
+      "do_not_recover_as_pressure_without_review": true,
+      "model_id": "opportunity-cost",
+      "pulled_by": [
+        "reviewer_note"
+      ],
+      "suppression_reason": "duplicate_model_id",
+      "why_pulled": [
+        {
+          "evidence_source_type": "reviewer_note",
+          "reason": "Duplicate nomination included to prove suppression is visible instead of silently erased.",
+          "route_or_artifact_id": "synthetic-duplicate-check",
+          "source": "reviewer_note"
+        }
+      ]
+    }
+  ],
+  "transaction_context": {
+    "assistant_advice_summary": "The assistant recommends moving quickly, negotiating lightly, and tracking risks after launch, but it does not name the displaced alternative, kill criteria, or verification chain.",
+    "capture_health": "synthetic_review",
+    "case_id": "pr27-synthetic-renewal-rollout-review",
+    "known_action_or_commitment": "Renew the vendor and launch within two weeks unless a review changes the commitment.",
+    "transaction_sources": [
+      "user_turn",
+      "assistant_turn",
+      "reviewer_note"
+    ],
+    "user_situation_summary": "A team is about to renew a vendor contract and rush a product rollout after receiving plausible AI advice that frames speed as the main win."
+  }
+}

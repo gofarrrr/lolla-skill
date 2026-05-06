@@ -1,12 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-06
-**Status:** Product doctrine after PR26 source custody backfill. This is not a
-runtime proposal, extraction brief, prompt change, or user-facing launch plan.
+**Status:** Product doctrine after PR27 mixed packet fixture review. This is
+not a runtime proposal, extraction brief, prompt change, or user-facing launch
+plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `source_custody_backfill_complete`
+**Current posture:** `mixed_packet_fixture_useful`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -369,13 +370,18 @@ PR26 then completed deterministic source custody backfill:
 
 > `source_custody_backfill_complete`
 
+PR27 then completed one review-only mixed packet fixture:
+
+> `mixed_packet_fixture_useful`
+
 Future sessions should read
 `research/reasoning-substrate-next-session-handover-2026-05-06.md` first and
-treat PR26 as source custody, not extraction. Existing lanes stay intact, v4 is
-additive to lane-selected candidates, graph-only models remain eligible, and
-Python packages reasoning material for LLM/reviewer judgment. Do not start
-runtime packet production, prompt changes, lane rewrites, broad extraction,
-Batch 3b, paid runs, or user-facing Decision Pressure output by default.
+treat PR26 as source custody, not extraction, and PR27 as fixture-usefulness
+evidence, not runtime production. Existing lanes stay intact, v4 is additive
+to lane-selected candidates, graph-only models remain eligible, and Python
+packages reasoning material for LLM/reviewer judgment. Do not start runtime
+packet production, prompt changes, lane rewrites, broad extraction, Batch 3b,
+paid runs, or user-facing Decision Pressure output by default.
 
 ## Next Product Work, Not Engineering Work
 
@@ -385,6 +391,11 @@ The completed source/packet audit answered the immediate slice question:
 
 > Can the existing lane system produce candidate shelves that can be enriched
 > into a compact, source-aware packet for the next LLM?
+
+PR27 added the first fixture answer:
+
+> Yes, mixed v4 + source-custodied graph-only packets are useful handoff
+> material, but graph-only cards are still thinner than reviewed v4 cards.
 
 The next useful product questions are:
 
