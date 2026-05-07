@@ -1,0 +1,145 @@
+{
+  "model_id": "non-linear-dynamics",
+  "source_file": "Non_Linear_Dynamics_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "non-linear-dynamics.feedback-threshold-local-optimization-check",
+      "status": "supported",
+      "name": "Feedback threshold local optimization check",
+      "mechanism": "When small moves may trigger delayed blowback, threshold crossings, or whole-system degradation, require the answer to identify feedback loops, timing effects, and the concrete lever/checkpoint that keeps complexity from becoming an excuse.",
+      "activation_shape": {
+        "use_when": [
+          "Modest interventions may trigger disproportionate upside, delayed blowback, or threshold crossings.",
+          "Reinforcing or balancing loops, compounding interactions, or timing effects matter more than one-step cause-and-effect logic.",
+          "Fixing one metric, team, or process in isolation may degrade long-run system behavior elsewhere."
+        ],
+        "do_not_use_when": [
+          "Complexity language is being used to avoid concrete levers, checkpoints, or experiments.",
+          "The problem is linear enough that local optimization has no meaningful system spillover.",
+          "The answer would explain complexity but leave no monitorable action or stop/change threshold."
+        ],
+        "case_evidence_needed": [
+          "The local intervention or optimization being proposed.",
+          "The feedback loop, delay, or threshold that could change system behavior.",
+          "The metric or area that could degrade elsewhere.",
+          "The lever, checkpoint, or experiment that remains actionable under uncertainty."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-loop-delay-and-lever",
+          "description": "Require the answer to name the feedback loop, delay, or threshold that makes the system non-linear, then state the concrete lever, checkpoint, or experiment that can still improve the system.",
+          "evidence_required": [
+            "The proposed local move.",
+            "The feedback loop or timing effect.",
+            "The possible whole-system degradation.",
+            "The monitorable lever or checkpoint."
+          ],
+          "good_output_shape": [
+            "Identifies the nonlinear mechanism.",
+            "Names the delayed or disproportionate effect.",
+            "Protects against local optimization harming the whole.",
+            "Ends with a concrete lever, checkpoint, or bounded experiment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What feedback loop or delay could make this local move behave non-linearly?",
+        "Which whole-system metric could worsen while the local metric improves?",
+        "What concrete checkpoint prevents complexity talk from replacing operational choice?"
+      ],
+      "misuse_guards": [
+        "Do not invoke complexity to avoid choosing a lever.",
+        "Do not optimize a local metric without checking whole-system behavior.",
+        "Do not leave nonlinear analysis without a bounded experiment or monitoring threshold."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Non_Linear_Dynamics_rag.md",
+          "source_quote": "Most useful when small moves can create outsized effects",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Non_Linear_Dynamics_rag.md",
+          "source_quote": "Works when feedback loops dominate the outcome",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Non_Linear_Dynamics_rag.md",
+          "source_quote": "Best when local optimization can hurt the whole system",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one nonlinear feedback affordance focused on loops, delays, thresholds, and local optimization side effects.",
+        "dropped_material": [
+          "Did not extract organizational design or AI persona simulation as separate affordances.",
+          "Kept systems maps and simulations as tools under the same operational card."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card makes nonlinear risk more actionable rather than more abstract."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "complexity-as-choice-avoidance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects invoking complexity to avoid concrete levers, checkpoints, or experiments that could improve the system under uncertainty.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Non_Linear_Dynamics_rag.md",
+          "source_quote": "Danger When Complexity Talk Excuses Lack of Operational Choice",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "straight-line-local-fix",
+      "status": "not_supported_by_source",
+      "reason": "The source says outcomes in complex systems rarely follow a straight-line progression, so PR42 must not turn this into a simple local fix card.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Non_Linear_Dynamics_rag.md",
+          "source_quote": "outcomes in complex systems rarely follow a straight-line progression",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Non_Linear_Dynamics_rag.md",
+      "source_quote": "see systems as dynamic wholes",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for non-linear-dynamics as feedback-loop and threshold discipline with an explicit operational-choice guard.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card helps the next LLM catch local optimization harm."
+    ],
+    "review_status": "draft"
+  }
+}

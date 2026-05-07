@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR41 after-v9 graph-only priority audit.
+**Status:** Product doctrine after PR42 controlled risk/reversibility enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v9_graph_only_priority_audit_complete`
+**Current posture:** `controlled_risk_reversibility_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -46,6 +46,8 @@ memo, or user-facing launch plan.
 **Current v9 packet usefulness review:** `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
 
 **Current v9 graph-only priority audit:** `research/v9-graph-only-priority-audit-2026-05-07.md`
+
+**Current controlled risk/reversibility enrichment report:** `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -584,6 +586,26 @@ controlled family because future packets are likely to be thin where plausible
 and executable advice must become contained, reversible, monitorable,
 escalatable, and stoppable.
 
+PR42 then completed one controlled risk/reversibility enrichment batch:
+
+> `controlled_risk_reversibility_enrichment_ready`
+
+Treat PR42 as reviewed depth for a named capability family, not runtime
+permission or proof that another extraction batch should begin. Twelve
+formerly graph-only risk/reversibility/failure-containment models now have
+reviewed Batch 9 records, adding `12` affordances and `24` absence records.
+v10 has `122` reviewed records, `158` affordances, and `229` absence records,
+and remains `draft_review_only`.
+
+The useful lesson is not "risk caution." The useful lesson is that these cards
+can help a future packet ask whether advice sizes commitments to unknowns,
+tests backup independence, turns weak external signals into owners and
+triggers, maps adversarial failure chains, checks nonlinear loops, distinguishes
+real thresholds from breakthrough romance, traces plausible cascades, preserves
+resilience when precision is false, identifies make-or-break interactions,
+tests critical mass, exposes reversal costs, and detects loss-framed
+distortion.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -693,16 +715,22 @@ PR41 added the after-v9 graph-only priority answer:
 > The next controlled family should be risk controls / reversibility / failure
 > containment, not because it completes the corpus, but because it tests the
 > next weak edge of "before you act": whether plausible and executable advice is
-> reversible, contained, monitorable, escalatable, and stoppable. PR42 may
-> extract only the 12 named targets, and PR43 must prove packet usefulness
-> before any further extraction.
+> reversible, contained, monitorable, escalatable, and stoppable.
+
+PR42 added the controlled risk/reversibility enrichment answer:
+
+> Yes, the named risk controls / reversibility / failure-containment gaps can
+> produce compact reviewed depth under exact source custody: v10 adds 12
+> records, 12 affordances, and 24 absence records while remaining dormant. The
+> next proof is whether v10 improves a risk/reversibility packet handoff, not
+> whether another extraction batch can raise the count.
 
 The next useful product questions are:
 
-1. Which PR28, PR32, PR34, and PR36 cards remain useful when tested in additional
+1. Which PR28, PR32, PR34, PR36, PR39, and PR42 cards remain useful when tested in additional
    candidate mixes, and which merely add internal bulk?
-2. Would risk controls / reversibility / failure containment cards make a
-   future packet materially better, or merely add caution vocabulary?
+2. Would the v10 risk controls / reversibility / failure containment cards make
+   a future packet materially better, or merely add caution vocabulary?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?
