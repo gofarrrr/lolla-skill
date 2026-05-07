@@ -1,14 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR34 controlled communication/competition
-enrichment.
+**Status:** Product doctrine after PR35 v7 packet usefulness review.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_communication_competition_enrichment_ready`
+**Current posture:** `v7_packet_handoff_useful`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -33,6 +32,8 @@ memo, or user-facing launch plan.
 **Current v6 packet usefulness review:** `research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md`
 
 **Current controlled communication/competition enrichment report:** `research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md`
+
+**Current v7 packet usefulness review:** `research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -467,6 +468,19 @@ dynamics, defection incentives, listening before rebuttal, feedback specificity,
 SBI feedback structure, analogy boundary testing, and variation-selection
 reasoning.
 
+PR35 then completed one v7 packet usefulness review:
+
+> `v7_packet_handoff_useful`
+
+Treat PR35 as handoff-quality evidence, not runtime permission. The same
+explicit 9-card communication/competition nomination set moved from `2`
+reviewed / `7` graph-only cards under v6 to `9` reviewed / `0` graph-only cards
+under v7, without increasing candidate count or selecting final pressure. That
+means PR34's reviewed depth improved packet material for stable-response,
+mutual-defection, listening, constructive-feedback, SBI, analogy-fit, and
+adaptive-selection reasoning while preserving the rule that Python prepares the
+material and the LLM/reviewer reasons.
+
 Do not start runtime packet production, prompt changes, lane rewrites, broad
 extraction, Batch 3b, paid runs, or user-facing Decision Pressure output by
 default.
@@ -524,21 +538,28 @@ PR34 added the next controlled enrichment answer:
 > Yes, the named communication, feedback, strategic interdependence, and
 > analogy/adaptive gaps can produce compact reviewed depth under exact source
 > custody: v7 adds 7 records, 7 affordances, and 14 absence records while
-> remaining dormant. The next proof is whether v7 improves a relevant packet
-> handoff, not whether another extraction batch can raise the count.
+> remaining dormant. PR35 later checked whether that v7 depth improves a
+> relevant packet handoff before another extraction batch could be justified.
+
+PR35 added the first v7 packet-usefulness answer:
+
+> Yes, when the same communication/competition shelves are nominated, v7
+> reviewed cards improve the handoff for stable-response, mutual-defection,
+> listening, constructive feedback, SBI, analogy-fit, and adaptive-selection
+> reasoning without changing candidate count or creating user-facing output.
 
 The next useful product questions are:
 
-1. Does a v7-enriched packet improve a communication/competition handoff
-   compared with v6 for the same nominated shelves?
+1. Which additional capability family is worth controlled enrichment next,
+   based on likely packet usefulness rather than count completion?
 2. Which PR28, PR32, and PR34 cards remain useful when tested in additional
    candidate mixes, and which merely add internal bulk?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?
-7. What is the smallest public promise that is true?
-8. What evidence would justify promotion into a real surface?
-9. What evidence would tell us the product is only interesting to us?
+6. What is the smallest public promise that is true?
+7. What evidence would justify promotion into a real surface?
+8. What evidence would tell us the product is only interesting to us?
 
 Do not answer these by adding machinery. Answer them with product review,
 manual examples, packet comparison, user conversations, and decision-moment

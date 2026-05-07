@@ -1,16 +1,15 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR34 added a controlled communication,
-feedback, competition, and analogy enrichment batch. PR32 compiled
-draft/review-only v6, PR33 tested that v6 depth in one explicit packet handoff,
-and PR34 compiled draft/review-only v7 from seven additional graph-only
-sources. This is still not runtime behavior, prompt promotion, lane rewrite,
-broad Batch 3b, or user-facing Decision Pressure work.
+**Status:** Start-here handover after PR35 completed a v7 packet usefulness
+review. PR34 compiled draft/review-only v7 from seven additional graph-only
+sources; PR35 tested that v7 depth in one explicit communication/competition
+packet handoff. This is still not runtime behavior, prompt promotion, lane
+rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_communication_competition_enrichment_ready`
+**Current posture:** `v7_packet_handoff_useful`
 
-**Current PR:** PR34 - controlled communication and competition enrichment
+**Current PR:** PR35 - v7 packet usefulness review
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -33,6 +32,8 @@ broad Batch 3b, or user-facing Decision Pressure work.
 **PR33 decision label:** `v6_packet_handoff_useful`
 
 **PR34 decision label:** `controlled_communication_competition_enrichment_ready`
+
+**PR35 decision label:** `v7_packet_handoff_useful`
 
 ## Start Here
 
@@ -61,6 +62,8 @@ Read these files in order:
 21. `research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md`
 22. `research/reasoning-substrate-packet-pr33-v5-v6-comparison-render-2026-05-07.md`
 23. `research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md`
+24. `research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md`
+25. `research/reasoning-substrate-packet-pr35-v6-v7-comparison-render-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -108,6 +111,7 @@ Keep these layers distinct:
 | PR32 controlled capability-gap enrichment | 16 graph-only models from the PR31 gap list gained reviewed records with 16 affordances and 32 absence records; compiled as draft/review-only v6. |
 | PR33 v6 packet usefulness review | Same 10-card nomination set compared against v5 and v6. Reviewed cards increased from 1 to 10, graph-only cards fell from 9 to 0, and candidate count stayed fixed. |
 | PR34 controlled communication/competition enrichment | 7 graph-only models from communication, feedback, strategic interdependence, and analogy/adaptive gaps gained reviewed records with 7 affordances and 14 absence records; compiled as draft/review-only v7. |
+| PR35 v7 packet usefulness review | Same 9-card communication/competition nomination set compared against v6 and v7. Reviewed cards increased from 2 to 9, graph-only cards fell from 7 to 0, and candidate count stayed fixed. |
 
 The governing sentence:
 
@@ -555,11 +559,48 @@ PR34 targeted:
 
 Each target produced one compact reviewed affordance and two absence records.
 The batch is useful corpus depth, not runtime promotion or proof that
-extraction should continue by count momentum. The next proof should compare a
+extraction should continue by count momentum. PR35 later compared a
 v7-enriched packet against v6 for a communication/competition case before
-another extraction batch is opened by default.
+another extraction batch was opened.
 
 PR34 does not promote v7 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, or create user-facing
+Decision Pressure output.
+
+## What PR35 Added
+
+PR35 answers the question: "Did PR34's v7 depth actually improve a
+communication/competition packet handoff, or merely increase corpus size?"
+
+It adds:
+
+- `tests/fixtures/reasoning_substrate_packet/pr35_v6_communication_competition_packet_review.json`;
+- `tests/fixtures/reasoning_substrate_packet/pr35_v7_communication_competition_packet_review.json`;
+- `tests/test_reasoning_substrate_packet_v7_fixture.py`;
+- `research/reasoning-substrate-packet-pr35-v6-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr35-v7-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr35-v6-v7-comparison-render-2026-05-07.md`;
+- `research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md`.
+
+Measured PR35 packet comparison:
+
+- candidate cards stay fixed at `9`;
+- suppressed duplicate count stays fixed at `1`;
+- reviewed cards move from `2` under v6 to `9` under v7;
+- graph-only cards move from `7` under v6 to `0` under v7;
+- missing reviewed records move from `7` to `0`;
+- no final pressure or user-facing output is generated.
+
+PR35's decision label is `v7_packet_handoff_useful`.
+
+The product lesson:
+
+> v7 reviewed cards improve concrete packet handoff material when the same
+> communication/competition shelves are nominated. The improvement is
+> operational depth under stable packet shape, not deterministic answer
+> selection.
+
+PR35 does not promote v7 into runtime, run live lanes, wire `/lolla`, change
 prompts, run model calls or judges, create Batch 3b, or create user-facing
 Decision Pressure output.
 
@@ -666,9 +707,11 @@ Read first:
 - research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr33-v5-v6-comparison-render-2026-05-07.md
 - research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md
+- research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md
+- research/reasoning-substrate-packet-pr35-v6-v7-comparison-render-2026-05-07.md
 
 Current posture:
-controlled_communication_competition_enrichment_ready
+v7_packet_handoff_useful
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -779,13 +822,24 @@ PR34 result:
 - no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
   3b, or user-facing behavior was added
 
+PR35 result:
+- decision label: v7_packet_handoff_useful
+- the same explicit 9-card communication/competition packet was generated
+  against v6 and v7
+- v6 packet: 2 reviewed cards, 7 graph-only cards, 1 suppressed duplicate
+- v7 packet: 9 reviewed cards, 0 graph-only cards, 1 suppressed duplicate
+- v7 improves stable-response, mutual-defection, listening, constructive
+  feedback, SBI, analogy-fit, and adaptive-selection handoff material
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next production slice is likely a v7 packet-usefulness review using a
-communication/competition candidate mix, not another enrichment batch by
-momentum. Broad extraction is still not justified by count momentum.
+next production slice may be another controlled enrichment batch selected by
+capability gaps and likely packet usefulness. Broad extraction is still not
+justified by count momentum.
 ```
 
 ## Core Memory
