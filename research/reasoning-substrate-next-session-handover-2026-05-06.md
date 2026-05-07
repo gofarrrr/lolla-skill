@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR40 completed the v8/v9 execution
-packet usefulness review. PR39 created the execution/follow-through depth; PR40
-checked whether that depth improves the same packet handoff without changing
-candidate count.
+**Status:** Start-here handover after PR41 completed the after-v9 graph-only
+priority audit. PR40 showed v9 execution/follow-through depth improves one
+stable-nomination packet; PR41 decides which remaining graph-only family should
+be considered next instead of continuing extraction by count.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v9_execution_packet_handoff_useful`
+**Current posture:** `v9_graph_only_priority_audit_complete`
 
-**Current PR:** PR40 - v9 execution packet usefulness review
+**Current PR:** PR41 - after-v9 graph-only priority audit
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -45,6 +45,8 @@ Batch 3b, or user-facing Decision Pressure work.
 **PR39 decision label:** `controlled_execution_followthrough_enrichment_ready`
 
 **PR40 decision label:** `v9_execution_packet_handoff_useful`
+
+**PR41 decision label:** `v9_graph_only_priority_audit_complete`
 
 ## Start Here
 
@@ -82,6 +84,7 @@ Read these files in order:
 30. `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`
 31. `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
 32. `research/reasoning-substrate-packet-pr40-v8-v9-comparison-render-2026-05-07.md`
+33. `research/v9-graph-only-priority-audit-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -138,6 +141,7 @@ Keep these layers distinct:
 | v9 affordance corpus | 110 reviewed records, 146 affordances, 205 absence records. Draft/review-only v8 plus PR39 controlled execution/follow-through batch, not runtime-promoted. |
 | Graph-only after v9 | 112 runtime models remain eligible but not reviewed affordance records. |
 | PR40 v9 execution packet usefulness review | Same 12-card execution/follow-through nomination set compared against v8 and v9. v8 packet had 12 graph-only cards; v9 packet has 11 reviewed cards and 1 weak/conflicting support card, with candidate count fixed. |
+| PR41 v9 graph-only priority audit | Reviews the remaining 112 graph-only models after v9 and recommends risk controls / reversibility / failure containment as the next controlled enrichment family. No extraction, runtime, prompt, lane, model-call, judge, or user-facing work. |
 
 The governing sentence:
 
@@ -884,8 +888,64 @@ prompts, run model calls or judges, create Batch 3b, extract new records,
 create user-facing Decision Pressure output, or allow deterministic final
 pressure selection.
 
-Recommended next slice, if opened, is PR41: an after-v9 graph-only priority
-audit, not another extraction batch by default.
+PR41 later completed the recommended after-v9 graph-only priority audit. Do
+not treat PR40 alone as permission for another extraction batch.
+
+## What PR41 Added
+
+PR41 answers the question: "After v9, which remaining graph-only capability
+family is most likely to weaken future reasoning packets, and why should it be
+enriched next instead of left graph-only for now?"
+
+It adds:
+
+- `research/v9-graph-only-priority-audit-2026-05-07.md`;
+- `tasks/tasks-v9-graph-only-priority-audit.md`;
+- living-doc posture updates.
+
+Measured PR41 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v9 reviewed records: `110`;
+- v9 reviewed affordances: `146`;
+- v9 absence records: `205`;
+- graph-only runtime models after v9: `112`;
+- v9 status: `draft_review_only`.
+
+PR41's decision label is `v9_graph_only_priority_audit_complete`.
+
+The product lesson:
+
+> After execution/follow-through depth, the next likely weak packet family is
+> risk controls / reversibility / failure containment: the part of "before you
+> act" that tests whether plausible and executable advice is contained,
+> reversible, monitorable, escalatable, and stoppable.
+
+PR41 recommends a capped PR42 target set:
+
+- `risk-vs-uncertainty`;
+- `redundancy`;
+- `regulatory-horizon-scanning`;
+- `cybersecurity-thinking-models`;
+- `non-linear-dynamics`;
+- `tipping-points`;
+- `butterfly-effect`;
+- `chaos-theory`;
+- `combinatorial-effects`;
+- `critical-mass`;
+- `switching-costs`;
+- `prospect-theory`.
+
+PR41 does not extract records, promote v9 into runtime, run live lanes, wire
+`/lolla`, change prompts, run model calls or judges, create Batch 3b, create
+user-facing Decision Pressure output, or allow deterministic final pressure
+selection.
+
+Recommended next slice, if opened, is PR42: one controlled source-backed
+extraction batch for the 12 risk controls / reversibility / failure-containment
+models named by PR41. PR43 must then prove packet usefulness with stable
+nominations before any further extraction begins.
 
 ## PR24 Review Questions Answered
 
@@ -959,7 +1019,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "v9_execution_packet_handoff_useful|controlled_execution_followthrough_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR40|PR41" plans research tasks -g '*.md'
+rg -n "v9_graph_only_priority_audit_complete|v9_execution_packet_handoff_useful|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR41|PR42|PR43" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -971,8 +1031,8 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR40 and do not infer permission for runtime work, broad
-extraction, or another extraction batch.
+Start from PR41 and do not infer permission for runtime work, broad
+extraction, or automatic extraction momentum.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -1000,9 +1060,10 @@ Read first:
 - research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md
 - research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr40-v8-v9-comparison-render-2026-05-07.md
+- research/v9-graph-only-priority-audit-2026-05-07.md
 
 Current posture:
-v9_execution_packet_handoff_useful
+v9_graph_only_priority_audit_complete
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1194,12 +1255,30 @@ PR40 result:
 - no extraction, runtime promotion, prompt, lane, live adapter, model call,
   judge, Batch 3b, or user-facing behavior was added
 
+PR41 result:
+- decision label: v9_graph_only_priority_audit_complete
+- remaining graph-only runtime models after v9: 112
+- PR41 does not extract records; it audits and selects the next controlled
+  family
+- recommended PR42 family: risk controls / reversibility / failure containment
+- recommended PR42 target set: risk-vs-uncertainty, redundancy,
+  regulatory-horizon-scanning, cybersecurity-thinking-models,
+  non-linear-dynamics, tipping-points, butterfly-effect, chaos-theory,
+  combinatorial-effects, critical-mass, switching-costs, and prospect-theory
+- reason: future packets are likely to be thin where plausible and executable
+  AI advice must become reversible, contained, monitorable, escalatable, and
+  stoppable
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, broad extraction, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
-unless the user explicitly opens a new product-reviewed slice. The recommended
-next proof slice is a PR41 after-v9 graph-only priority audit. Broad extraction
-is still not justified by count momentum.
+unless the user explicitly opens a new product-reviewed slice. If PR42 opens,
+it must be one controlled source-backed extraction batch for the 12 named
+risk/reversibility/failure-containment models, and PR43 must prove packet
+usefulness with stable nominations before any further extraction begins. Broad
+extraction is still not justified by count momentum.
 ```
 
 ## Core Memory

@@ -4,13 +4,13 @@
 **Status:** Historical product/architecture audit after the merged PR13-PR23
 stack and Decision Pressure product doctrine. The architecture conclusions
 still stand, but the reviewed affordance counts have been superseded by later
-controlled enrichment and packet-review slices through PR40. This is not a
+controlled enrichment and packet-review slices through PR41. This is not a
 runtime proposal, not an extraction brief, not a prompt change, and not
 user-facing promotion.
 
 **Doctrine anchor:** `broad_intake_disciplined_output`
 
-**Current posture:** `v9_execution_packet_handoff_useful`
+**Current posture:** `v9_graph_only_priority_audit_complete`
 
 **Current handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -34,20 +34,23 @@ collapsed into one story.
 
 2. **Reviewed affordance substrate**
    At the time of this audit, the v4 affordance corpus had `55` reviewed
-   source-backed model records. After later controlled enrichment through PR39,
-   the current draft/review-only v9 corpus has `110` reviewed records, `146`
-   affordances, and `205` absence records. PR40 then showed the v9 execution
-   cards improve one stable-nomination packet handoff. The corpus is richer and
-   more operational, but it is still `draft_review_only` and runtime-dormant.
-   It supports review artifacts; it does not yet select or generate live
-   pressures.
+  source-backed model records. After later controlled enrichment through PR39,
+  the current draft/review-only v9 corpus has `110` reviewed records, `146`
+  affordances, and `205` absence records. PR40 then showed the v9 execution
+  cards improve one stable-nomination packet handoff. PR41 then audited the
+  remaining `112` graph-only models and selected risk controls / reversibility
+  / failure containment as the next controlled family to consider. The corpus
+  is richer and more operational, but it is still `draft_review_only` and
+  runtime-dormant. It supports review artifacts; it does not yet select or
+  generate live pressures.
 
 So the accurate current claim is:
 
 > Lolla has a 222-model runtime graph and a growing reviewed affordance corpus.
 > After PR39, the reviewed corpus has 110 records. After PR40, v9 has also
-> improved one execution/follow-through packet handoff. It is still not the
-> live matching system.
+> improved one execution/follow-through packet handoff. After PR41, the next
+> controlled family to consider is risk controls / reversibility / failure
+> containment. It is still not the live matching system.
 
 This matters because expanding from 55 records should not mean "add records
 until the number feels complete." Expansion should be pulled by product use:
@@ -57,8 +60,8 @@ next LLM can think better without Python pretending to choose the pressure.
 ## Corpus Shape
 
 Measured from the repo artifacts when this audit was first written. For the
-current v9 counts and packet-review posture, use the handover, PR39 report, and
-PR40 review.
+current v9 counts and packet-review posture, use the handover, PR39 report,
+PR40 review, and PR41 audit.
 
 | Artifact | Count / state | Current role |
 | --- | ---: | --- |

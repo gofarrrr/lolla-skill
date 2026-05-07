@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR40 are merged or in review, PR40 completed the v8/v9 execution packet usefulness review, and the current posture is `v9_execution_packet_handoff_useful`
+**Status:** living roadmap; PR13-PR41 are merged or in review, PR41 completed the after-v9 graph-only priority audit, and the current posture is `v9_graph_only_priority_audit_complete`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -31,6 +31,7 @@
 **Current v8 graph-only priority audit:** `research/v8-graph-only-priority-audit-2026-05-07.md`
 **Current controlled execution/follow-through enrichment report:** `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`
 **Current v9 packet usefulness review:** `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
+**Current v9 graph-only priority audit:** `research/v9-graph-only-priority-audit-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -108,6 +109,12 @@ What is already done:
   reviewed / 12 graph-only cards under v8 to 11 reviewed / 0 graph-only / 1
   weak-support card under v9, without changing candidate count or producing
   final pressure/user-facing output.
+- PR41 after-v9 graph-only priority audit is done. It reviews the remaining
+  112 graph-only runtime models after v9 and recommends risk controls /
+  reversibility / failure containment as the next controlled enrichment family
+  because future packets are likely to be thin where plausible and executable
+  advice must become reversible, contained, monitorable, escalatable, and
+  stoppable.
 - Compiled v3 artifact exists at
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records,
@@ -378,15 +385,23 @@ What is already done:
   input/output goals, bounded iteration, validated learning, handoff
   procedures, delivery loops, goal-setting, and habit design without changing
   candidate count.
+- PR41 after-v9 graph-only priority audit is captured in
+  `research/v9-graph-only-priority-audit-2026-05-07.md`: decision label
+  `v9_graph_only_priority_audit_complete`. It does not extract records. It
+  selects risk controls / reversibility / failure containment as the best next
+  controlled enrichment family, with a 12-model PR42 target set, because that
+  family best tests whether plausible and executable advice is contained,
+  reversible, monitorable, escalatable, and stoppable.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `v9_execution_packet_handoff_useful`: PR40 completed the v8/v9 execution
-  packet usefulness review. The next proof, if opened, should be an after-v9
-  graph-only priority audit, not another extraction batch by default.
+  `v9_graph_only_priority_audit_complete`: PR41 completed the after-v9
+  graph-only priority audit. If opened, PR42 should be one controlled
+  risk/reversibility/failure-containment extraction batch for the 12 named
+  targets, and PR43 must prove packet usefulness before any further extraction.
 
 Current posture after PR 23, PR24 review, PR25, PR26, PR27, PR28, PR29, PR30,
-PR31, PR32, PR33, PR34, PR35, PR36, PR37, PR38, PR39, and PR40:
+PR31, PR32, PR33, PR34, PR35, PR36, PR37, PR38, PR39, PR40, and PR41:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -969,14 +984,17 @@ original proposal language.
 | V8 graph-only priority audit / PR38 | done as docs/research audit | Reviews the remaining 124 graph-only models after v8 and recommends execution / implementation / follow-through discipline as the next controlled enrichment family. No extraction or runtime promotion. |
 | Controlled execution/follow-through enrichment / PR39 | done as controlled reviewed extraction slice | Adds twelve Batch 8 records for execution, auditability, baselines, bottlenecks, debugging, feedback, goals, habits, iteration, and validated learning, compiles draft/review-only v9, and preserves absences. No runtime promotion. |
 | V9 execution packet usefulness review / PR40 | done as review-only fixture/render comparison | Uses the same execution/follow-through nominations against v8 and v9. Finds v9 reviewed/weak-support cards improve handoff material without increasing candidate count or selecting final pressure. |
+| V9 graph-only priority audit / PR41 | done as docs/research audit | Reviews the remaining 112 graph-only models after v9 and recommends risk controls / reversibility / failure containment as the next controlled enrichment family. No extraction or runtime promotion. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR40 completed the v8/v9 execution packet-usefulness review. v9 is still
-> draft/review-only. The next proof, if opened, should be an after-v9
-> graph-only priority audit, not another extraction batch by default.
+> PR41 completed the after-v9 graph-only priority audit. v9 is still
+> draft/review-only. If opened, PR42 should be one controlled
+> risk/reversibility/failure-containment enrichment batch for the 12 named
+> targets, followed by PR43 packet usefulness review before any further
+> extraction.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1589,7 +1607,7 @@ Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
 The current reviewed posture is
-`v9_execution_packet_handoff_useful` after PR40. Do not
+`v9_graph_only_priority_audit_complete` after PR41. Do not
 treat any historical item below as active next work.
 
 Historical PR 12 scope was:

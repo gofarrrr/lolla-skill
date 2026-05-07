@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR40 v9 execution packet usefulness review.
+**Status:** Product doctrine after PR41 after-v9 graph-only priority audit.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v9_execution_packet_handoff_useful`
+**Current posture:** `v9_graph_only_priority_audit_complete`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -44,6 +44,8 @@ memo, or user-facing launch plan.
 **Current controlled execution/follow-through enrichment report:** `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`
 
 **Current v9 packet usefulness review:** `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
+
+**Current v9 graph-only priority audit:** `research/v9-graph-only-priority-audit-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -571,6 +573,17 @@ repeatable handoff procedures, delivery-loop reliability caveats, goal-setting,
 and habit design while preserving the rule that Python prepares the material
 and the LLM/reviewer reasons.
 
+PR41 then completed one after-v9 graph-only priority audit:
+
+> `v9_graph_only_priority_audit_complete`
+
+Treat PR41 as family-selection evidence, not extraction permission by itself.
+The audit reviews the remaining `112` graph-only runtime models after v9 and
+recommends risk controls / reversibility / failure containment as the next
+controlled family because future packets are likely to be thin where plausible
+and executable advice must become contained, reversible, monitorable,
+escalatable, and stoppable.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -675,12 +688,21 @@ PR40 added the v9 execution packet-usefulness answer:
 > learning, handoff procedures, delivery-loop caveats, goal-setting, and habit
 > design without changing candidate count or creating user-facing output.
 
+PR41 added the after-v9 graph-only priority answer:
+
+> The next controlled family should be risk controls / reversibility / failure
+> containment, not because it completes the corpus, but because it tests the
+> next weak edge of "before you act": whether plausible and executable advice is
+> reversible, contained, monitorable, escalatable, and stoppable. PR42 may
+> extract only the 12 named targets, and PR43 must prove packet usefulness
+> before any further extraction.
+
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, and PR36 cards remain useful when tested in additional
    candidate mixes, and which merely add internal bulk?
-2. Which remaining graph-only family after v9 would make future packets thin
-   enough to justify another controlled batch?
+2. Would risk controls / reversibility / failure containment cards make a
+   future packet materially better, or merely add caution vocabulary?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?
