@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR36 added a controlled trust and
-negotiation enrichment batch. PR34 compiled draft/review-only v7, PR35 tested
-that v7 depth in one explicit communication/competition packet handoff, and
-PR36 compiled draft/review-only v8 from ten additional graph-only sources.
+**Status:** Start-here handover after PR37 tested v8 packet usefulness. PR36
+compiled draft/review-only v8 from ten additional graph-only trust/negotiation
+sources, and PR37 tested that v8 depth in one explicit trust/negotiation packet
+handoff.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_trust_negotiation_enrichment_ready`
+**Current posture:** `v8_packet_handoff_useful`
 
-**Current PR:** PR36 - controlled trust and negotiation enrichment
+**Current PR:** PR37 - v8 packet usefulness review
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -37,6 +37,8 @@ Batch 3b, or user-facing Decision Pressure work.
 **PR35 decision label:** `v7_packet_handoff_useful`
 
 **PR36 decision label:** `controlled_trust_negotiation_enrichment_ready`
+
+**PR37 decision label:** `v8_packet_handoff_useful`
 
 ## Start Here
 
@@ -118,6 +120,7 @@ Keep these layers distinct:
 | PR34 controlled communication/competition enrichment | 7 graph-only models from communication, feedback, strategic interdependence, and analogy/adaptive gaps gained reviewed records with 7 affordances and 14 absence records; compiled as draft/review-only v7. |
 | PR35 v7 packet usefulness review | Same 9-card communication/competition nomination set compared against v6 and v7. Reviewed cards increased from 2 to 9, graph-only cards fell from 7 to 0, and candidate count stayed fixed. |
 | PR36 controlled trust/negotiation enrichment | 10 graph-only models from trust repair, motivation, boundaries, influence, negotiation, and signaling gaps gained reviewed records with 10 affordances and 20 absence records; compiled as draft/review-only v8. |
+| PR37 v8 packet usefulness review | Same 10-card trust/negotiation nomination set compared against v7 and v8. Reviewed cards increased from 0 to 10, graph-only cards fell from 10 to 0, and candidate count stayed fixed. |
 
 The governing sentence:
 
@@ -654,11 +657,46 @@ PR36 targeted:
 
 Each target produced one compact reviewed affordance and two absence records.
 The batch is useful corpus depth, not runtime promotion or proof that
-extraction should continue by count momentum. The next proof should compare a
-v8-enriched trust/negotiation packet against v7 before another extraction batch
-is opened by default.
+extraction should continue by count momentum. PR37 later compared a v8-enriched
+trust/negotiation packet against v7 before another extraction batch was opened.
 
 PR36 does not promote v8 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, or create user-facing
+Decision Pressure output.
+
+## What PR37 Added
+
+PR37 answers the question: "Did PR36's v8 depth actually improve a
+trust/negotiation packet handoff, or merely increase corpus size?"
+
+It adds:
+
+- `tests/fixtures/reasoning_substrate_packet/pr37_v7_trust_negotiation_packet_review.json`;
+- `tests/fixtures/reasoning_substrate_packet/pr37_v8_trust_negotiation_packet_review.json`;
+- `tests/test_reasoning_substrate_packet_v8_fixture.py`;
+- `research/reasoning-substrate-packet-pr37-v7-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr37-v8-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr37-v7-v8-comparison-render-2026-05-07.md`;
+- `research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md`.
+
+Measured PR37 packet comparison:
+
+- candidate cards stay fixed at `10`;
+- suppressed duplicate count stays fixed at `1`;
+- reviewed cards move from `0` under v7 to `10` under v8;
+- graph-only cards move from `10` under v7 to `0` under v8;
+- missing reviewed records move from `10` to `0`;
+- no final pressure or user-facing output is generated.
+
+PR37's decision label is `v8_packet_handoff_useful`.
+
+The product lesson:
+
+> v8 reviewed cards improve concrete packet handoff material when the same
+> trust/negotiation shelves are nominated. The improvement is operational depth
+> under stable packet shape, not deterministic answer selection.
+
+PR37 does not promote v8 into runtime, run live lanes, wire `/lolla`, change
 prompts, run model calls or judges, create Batch 3b, or create user-facing
 Decision Pressure output.
 
@@ -746,7 +784,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR36 and do not infer permission for runtime work.
+Start from PR37 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -768,9 +806,11 @@ Read first:
 - research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr35-v6-v7-comparison-render-2026-05-07.md
 - research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md
+- research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md
+- research/reasoning-substrate-packet-pr37-v7-v8-comparison-render-2026-05-07.md
 
 Current posture:
-controlled_trust_negotiation_enrichment_ready
+v8_packet_handoff_useful
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -904,12 +944,24 @@ PR36 result:
 - no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
   3b, or user-facing behavior was added
 
+PR37 result:
+- decision label: v8_packet_handoff_useful
+- the same explicit 10-card trust/negotiation packet was generated against v7
+  and v8
+- v7 packet: 0 reviewed cards, 10 graph-only cards, 1 suppressed duplicate
+- v8 packet: 10 reviewed cards, 0 graph-only cards, 1 suppressed duplicate
+- v8 improves repair conversation, emotional landing, hidden motivation,
+  boundary, candor, non-malice, reciprocity, persuasion, diplomacy, and
+  signaling handoff material
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next production slice is likely a v8 packet-usefulness review using a trust
-repair / negotiation / influence candidate mix, not another enrichment batch by
+next production slice can be another controlled enrichment batch only if chosen
+by capability gaps and likely packet usefulness, not another enrichment batch by
 momentum. Broad extraction is still not justified by count momentum.
 ```
 
