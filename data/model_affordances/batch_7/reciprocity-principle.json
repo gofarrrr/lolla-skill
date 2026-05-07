@@ -1,0 +1,145 @@
+{
+  "model_id": "reciprocity-principle",
+  "source_file": "Reciprocity_Principle_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "reciprocity-principle.costly-value-trust-test",
+      "status": "supported",
+      "name": "Costly reciprocal value trust test",
+      "mechanism": "When trust must be built before a difficult ask, negotiation, or sale can be evaluated, require the answer to test whether the value offered first is real, relevant, and costly rather than obligation theater.",
+      "activation_shape": {
+        "use_when": [
+          "Trust or relationship depth must be built before a difficult ask, negotiation, or sale can be evaluated seriously.",
+          "The value offered first is real, relevant, and costly enough to signal sincere investment.",
+          "The goal is durable goodwill and mutual commitment, not one-off extraction of compliance."
+        ],
+        "do_not_use_when": [
+          "Reciprocity pressure creates obligation without informed evaluation.",
+          "Gifts, favors, or access distract from the substance, economics, or ethics of the decision.",
+          "The exchange is being used to bypass deliberate judgment or create manipulative indebtedness."
+        ],
+        "case_evidence_needed": [
+          "The ask, negotiation, or sale that needs trust before evaluation.",
+          "The value being offered first and why it is relevant.",
+          "The cost or commitment that makes the offer credible.",
+          "Evidence that the recipient can still evaluate the merits independently."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "distinguish-real-value-from-obligation-pressure",
+          "description": "Require the answer to name the value offered, test whether it is costly and relevant, and protect the recipient's ability to evaluate the actual decision.",
+          "evidence_required": [
+            "The proposed gift, favor, work, or concession.",
+            "The recipient's actual problem or need.",
+            "The cost or sincerity signal behind the value.",
+            "The substantive decision criteria that must remain independent."
+          ],
+          "good_output_shape": [
+            "Names the reciprocal value exchange.",
+            "Checks relevance and costliness.",
+            "Separates goodwill from decision merit.",
+            "Blocks obligation pressure from substituting for evaluation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What real value has been given before the ask?",
+        "Is the value relevant and costly enough to signal sincere investment?",
+        "Would the recipient still say yes if no obligation pressure existed?"
+      ],
+      "misuse_guards": [
+        "Do not use reciprocity to manufacture mindless compliance.",
+        "Do not let gifts or favors distract from substance, economics, or ethics.",
+        "Do not confuse goodwill with proof that the underlying offer is good."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Reciprocity_Principle_rag.md",
+          "source_quote": "trust or relationship depth must be built before a difficult ask, negotiation, or sale can even be evaluated seriously",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reciprocity_Principle_rag.md",
+          "source_quote": "real, relevant, and costly enough to signal sincere investment rather than manipulation theater",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reciprocity_Principle_rag.md",
+          "source_quote": "durable goodwill and mutual commitment, not a one-off extraction of compliance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports a costly-value trust test and warns against obligation pressure and distraction from substance.",
+        "dropped_material": [
+          "Did not extract all influence-principle allies as separate affordances.",
+          "Kept professional pledge and skin-in-the-game examples as supporting evidence for one card."
+        ],
+        "open_questions": [
+          "Future packet review should test this card against persuasion and signaling when value-first behavior could be either trust-building or manipulative."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "obligation-without-evaluation",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that reciprocity can create obligation before the recipient has evaluated the merits.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Reciprocity_Principle_rag.md",
+          "source_quote": "obligation without informed evaluation",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "favor-distraction-from-substance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects letting gifts, favors, or access distract from the substantive economics or ethics of the decision.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Reciprocity_Principle_rag.md",
+          "source_quote": "gifts, favors, or access become a distraction from the substance, economics, or ethics of the underlying decision",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Reciprocity_Principle_rag.md",
+      "source_quote": "The more value you give, the more value you get",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Reciprocity Principle. Extracted one costly-value trust test and rejected obligation pressure plus favor distraction.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps receivers distinguish durable goodwill from compliance tactics."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "model_id": "emotional-intelligence",
+  "source_file": "Emotional_Intelligence_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "emotional-intelligence.emotion-evidence-landing-check",
+      "status": "supported",
+      "name": "Emotion evidence landing check",
+      "mechanism": "When the technically correct answer may fail because emotions, trust, morale, or perceived fairness shape adoption, require the answer to identify the emotional signal, validate it, and preserve standards, evidence, and accountability.",
+      "activation_shape": {
+        "use_when": [
+          "The technical answer is not enough because trust, morale, conflict, or perceived fairness will shape whether a decision lands.",
+          "Stakeholder emotions may contain real information about risk, resistance, motivation, or hidden constraints.",
+          "Leadership needs to influence people through difficult change without losing candor, dignity, or accountability."
+        ],
+        "do_not_use_when": [
+          "Empathy is being used as a substitute for standards, evidence, or hard conversations.",
+          "The emotional landscape is being assumed without validating what others actually feel or need.",
+          "The answer would rely on unmonitored gut feeling in a novel or complex situation."
+        ],
+        "case_evidence_needed": [
+          "The decision, change, conflict, or message that must land socially.",
+          "The emotional signal, morale issue, fairness concern, or trust risk.",
+          "What has been validated versus inferred about stakeholder emotions.",
+          "The standard, evidence, or accountability requirement that must remain intact."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "validate-emotion-without-dropping-standards",
+          "description": "Require the answer to name the emotional signal and likely cause, test that interpretation, and keep evidence and accountability requirements visible.",
+          "evidence_required": [
+            "The emotional or trust signal.",
+            "The likely cause of that signal.",
+            "A validation step that checks the interpretation.",
+            "The hard standard or decision requirement that still applies."
+          ],
+          "good_output_shape": [
+            "Names the emotion or trust concern as case evidence.",
+            "States what should be validated before acting on that reading.",
+            "Keeps the technical or accountability standard explicit.",
+            "Avoids treating empathy as permission to evade the hard issue."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What emotion or fairness concern might change whether this technically sound answer lands?",
+        "How do we know this is what stakeholders actually feel or need?",
+        "What standard, evidence, or hard conversation must not be softened away?"
+      ],
+      "misuse_guards": [
+        "Do not equate emotional intelligence with niceness.",
+        "Do not read minds without validation.",
+        "Do not let emotional attunement replace evidence, standards, or accountability."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Emotional_Intelligence_rag.md",
+          "source_quote": "manage feelings so they are expressed **appropriately and effectively**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emotional_Intelligence_rag.md",
+          "source_quote": "the technical answer is not enough because trust, morale, conflict, or perceived fairness will shape whether the decision actually lands",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emotional_Intelligence_rag.md",
+          "source_quote": "Two-Step Validation in Communication",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports a landing/adoption check where emotional evidence matters but cannot replace standards.",
+        "dropped_material": [
+          "Did not extract the full Goleman competency model or empathy map as separate affordances.",
+          "Did not turn broad leadership influence material into generic communication advice."
+        ],
+        "open_questions": [
+          "Future packet review should test this card with authenticity and non-violent communication when emotional reading and candor both matter."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "empathy-substitutes-for-standards",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly rejects treating empathy as a substitute for standards, evidence, or hard conversations.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Emotional_Intelligence_rag.md",
+          "source_quote": "empathy is treated as a substitute for standards, evidence, or hard conversations",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "unvalidated-emotional-reading",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against assuming the emotional landscape has been read correctly without validation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Emotional_Intelligence_rag.md",
+          "source_quote": "people assume they have read the emotional landscape correctly without validating what others actually feel or need",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Emotional_Intelligence_rag.md",
+      "source_quote": "Identifying the emotion",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Emotional_Intelligence_rag.md",
+      "source_quote": "naming the cause",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Emotional Intelligence. Extracted one emotion/evidence landing check and rejected empathy-as-softness plus unvalidated mind-reading.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should test whether this card prevents technically correct but socially brittle answers."
+    ],
+    "review_status": "draft"
+  }
+}

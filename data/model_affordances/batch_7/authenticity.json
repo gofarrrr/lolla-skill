@@ -1,0 +1,145 @@
+{
+  "model_id": "authenticity",
+  "source_file": "Authenticity_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "authenticity.congruence-candor-substance-check",
+      "status": "supported",
+      "name": "Congruence candor substance check",
+      "mechanism": "When trust depends on whether words, incentives, and behavior line up under pressure, require the answer to surface genuine experience or constraints while checking that candor is grounded in evidence, preparation, and accountability.",
+      "activation_shape": {
+        "use_when": [
+          "Trust depends on congruence rather than polish.",
+          "A leadership, coaching, negotiation, or advisory relationship will change execution quality.",
+          "The system needs grounded candor instead of image management, defensive signaling, or withholding."
+        ],
+        "do_not_use_when": [
+          "Authentic style is being used without factual or procedural substance.",
+          "Personal truth is being used to avoid evidence, preparation, or accountability.",
+          "Strong emotion is driving the decision process rather than being named and disciplined."
+        ],
+        "case_evidence_needed": [
+          "The trust or credibility gap.",
+          "The mismatch between words, incentives, behavior, or internal state.",
+          "The genuine experience or constraint that should be named.",
+          "The evidence, preparation, or accountability standard that must ground the candor."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-real-experience-and-ground-it",
+          "description": "Require the answer to name the real experience or constraint that should be surfaced, then tie it to evidence and accountable action rather than mere self-expression.",
+          "evidence_required": [
+            "The internal state, uncertainty, constraint, or credibility issue.",
+            "The external behavior or commitment that must align with it.",
+            "The factual or procedural support for the claim.",
+            "The accountability step that keeps candor from becoming self-justification."
+          ],
+          "good_output_shape": [
+            "States the real experience or constraint plainly.",
+            "Checks congruence between words and behavior.",
+            "Names what evidence or preparation supports the claim.",
+            "Converts candor into an accountable next move."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Where do words, incentives, and behavior fail to line up?",
+        "What genuine uncertainty, confusion, or constraint should be put into words?",
+        "What evidence or accountability prevents authenticity from becoming self-justification?"
+      ],
+      "misuse_guards": [
+        "Do not confuse authentic style with reliable substance.",
+        "Do not use personal truth as an excuse to evade evidence or consequences.",
+        "Do not let emotion overdrive replace disciplined action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "putting into words what one is genuinely experiencing during the work",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "trust depends on congruence rather than polish",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "Best when the system needs grounded candor instead of image management",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports a congruence/candor/substance check and warns against authenticity as style or self-justification.",
+        "dropped_material": [
+          "Did not extract AI persona authenticity or broad storytelling material as separate affordances.",
+          "Kept radical transparency as context rather than a duplicate card."
+        ],
+        "open_questions": [
+          "Future packet review should test this card against persuasion and signaling when credibility and impression management both appear."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "authentic-style-without-substance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that authentic style without domain knowledge or factual substance can be wrong despite sounding real.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "the right authentic *style* but the wrong, incorrect *substance*",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "my-truth-accountability-escape",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects using authenticity as a shield against evidence, preparation, or accountability.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Authenticity_rag.md",
+          "source_quote": "\"this is just my truth\" becomes an excuse to avoid evidence, preparation, or accountability for consequences",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Authenticity_rag.md",
+      "source_quote": "maximizing leverage on the client so that one's expertise is actually implemented",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Authenticity. Extracted one congruence/candor/substance check and rejected style-without-substance plus my-truth avoidance.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card improves trust-repair packets without making self-expression the point."
+    ],
+    "review_status": "draft"
+  }
+}

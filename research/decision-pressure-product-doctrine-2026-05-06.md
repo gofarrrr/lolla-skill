@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR35 v7 packet usefulness review.
+**Status:** Product doctrine after PR36 controlled trust/negotiation enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v7_packet_handoff_useful`
+**Current posture:** `controlled_trust_negotiation_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -34,6 +34,8 @@ memo, or user-facing launch plan.
 **Current controlled communication/competition enrichment report:** `research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md`
 
 **Current v7 packet usefulness review:** `research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md`
+
+**Current controlled trust/negotiation enrichment report:** `research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -481,6 +483,19 @@ mutual-defection, listening, constructive-feedback, SBI, analogy-fit, and
 adaptive-selection reasoning while preserving the rule that Python prepares the
 material and the LLM/reviewer reasons.
 
+PR36 then completed one controlled trust/negotiation enrichment batch:
+
+> `controlled_trust_negotiation_enrichment_ready`
+
+Treat PR36 as gap-driven source understanding, not corpus completion. Ten
+graph-only models from trust repair, motivation, boundaries, persuasion,
+diplomacy, and signaling gaps now have reviewed Batch 7 records, v8 has `98`
+reviewed records, `134` affordances, and `181` absence records, and the
+artifact remains `draft_review_only`. This added compact reviewed depth for
+needs/observation/request clarity, emotion-evidence checks, hidden driver
+hypotheses, boundary ownership, authenticity/candor, non-malice diagnostics,
+reciprocity, persuasion, diplomatic settlement mapping, and costly signaling.
+
 Do not start runtime packet production, prompt changes, lane rewrites, broad
 extraction, Batch 3b, paid runs, or user-facing Decision Pressure output by
 default.
@@ -548,18 +563,29 @@ PR35 added the first v7 packet-usefulness answer:
 > listening, constructive feedback, SBI, analogy-fit, and adaptive-selection
 > reasoning without changing candidate count or creating user-facing output.
 
+PR36 added the next controlled enrichment answer:
+
+> Yes, the named trust repair, motivation, boundaries, persuasion, diplomacy,
+> and signaling gaps can produce compact reviewed depth under exact source
+> custody: v8 adds 10 records, 10 affordances, and 20 absence records while
+> remaining dormant. The next proof is whether v8 improves a relevant packet
+> handoff before another extraction batch is justified.
+
 The next useful product questions are:
 
-1. Which additional capability family is worth controlled enrichment next,
-   based on likely packet usefulness rather than count completion?
-2. Which PR28, PR32, and PR34 cards remain useful when tested in additional
+1. Does v8 reviewed trust/negotiation depth improve a concrete packet handoff
+   against the v7 baseline without increasing candidate count or making Python
+   choose final pressure?
+2. Which PR28, PR32, PR34, and PR36 cards remain useful when tested in additional
    candidate mixes, and which merely add internal bulk?
-3. Which decision moments most clearly need pressure before action?
-4. What would make a user trust a pressure pass?
-5. What would make the output feel like noise?
-6. What is the smallest public promise that is true?
-7. What evidence would justify promotion into a real surface?
-8. What evidence would tell us the product is only interesting to us?
+3. Which additional capability family is worth controlled enrichment next,
+   based on likely packet usefulness rather than count completion?
+4. Which decision moments most clearly need pressure before action?
+5. What would make a user trust a pressure pass?
+6. What would make the output feel like noise?
+7. What is the smallest public promise that is true?
+8. What evidence would justify promotion into a real surface?
+9. What evidence would tell us the product is only interesting to us?
 
 Do not answer these by adding machinery. Answer them with product review,
 manual examples, packet comparison, user conversations, and decision-moment
