@@ -1,13 +1,14 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR33 v6 packet usefulness review.
+**Status:** Product doctrine after PR34 controlled communication/competition
+enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v6_packet_handoff_useful`
+**Current posture:** `controlled_communication_competition_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -30,6 +31,8 @@ memo, or user-facing launch plan.
 **Current controlled capability-gap enrichment report:** `research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md`
 
 **Current v6 packet usefulness review:** `research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md`
+
+**Current controlled communication/competition enrichment report:** `research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -262,8 +265,8 @@ The stack does not support:
 The current runtime/affordance split is mapped in
 `research/knowledge-matching-current-state-audit-2026-05-06.md`. Future
 sessions should keep that distinction explicit: the active runtime graph has
-222 models, while the v4 affordance corpus has 55 reviewed source-backed
-records and remains dormant review substrate.
+222 models, while reviewed affordance artifacts remain dormant review
+substrate unless explicitly promoted by a later product decision.
 
 The simplification note in
 `research/enriched-mental-model-packet-strategy-2026-05-06.md` is the current
@@ -272,8 +275,9 @@ anti-drift correction:
 > Pull shelves, enrich cards, let the LLM reason.
 
 Existing lanes should nominate candidate mental-model shelves. Deterministic
-code may enrich those shelves with source-backed v4 card snippets, provenance,
-caps, and coverage status. It must not become a deterministic pressure solver.
+code may enrich those shelves with source-backed reviewed card snippets,
+provenance, caps, and coverage status. It must not become a deterministic
+pressure solver.
 
 The deterministic layer may enforce:
 
@@ -404,9 +408,7 @@ loop, not v5 runtime promotion or Batch 3b. Treat PR29 as handoff-depth
 evidence, not final-answer evidence or deterministic pressure-selection
 permission. Existing lanes stay intact, reviewed affordances are additive to
 lane-selected candidates, graph-only models remain eligible, and Python
-packages reasoning material for LLM/reviewer judgment. Do not start runtime
-packet production, prompt changes, lane rewrites, broad extraction, Batch 3b,
-paid runs, or user-facing Decision Pressure output by default.
+packages reasoning material for LLM/reviewer judgment.
 
 PR30 then completed one no-model packet receiver-review rendering slice:
 
@@ -451,6 +453,23 @@ under v5 to `10` reviewed / `0` graph-only cards under v6, without increasing
 candidate count or selecting final pressure. That means PR32's reviewed depth
 improved packet material for a later LLM/reviewer, but it still does not make
 Python wise.
+
+PR34 then completed one controlled communication/competition enrichment batch:
+
+> `controlled_communication_competition_enrichment_ready`
+
+Treat PR34 as gap-driven source understanding, not corpus completion. Seven
+graph-only models from communication, feedback, strategic interdependence, and
+analogy/adaptive gaps now have reviewed Batch 6 records, v7 has `88` reviewed
+records, `124` affordances, and `161` absence records, and the artifact remains
+`draft_review_only`. This added compact reviewed depth for Nash/stalemate
+dynamics, defection incentives, listening before rebuttal, feedback specificity,
+SBI feedback structure, analogy boundary testing, and variation-selection
+reasoning.
+
+Do not start runtime packet production, prompt changes, lane rewrites, broad
+extraction, Batch 3b, paid runs, or user-facing Decision Pressure output by
+default.
 
 ## Next Product Work, Not Engineering Work
 
@@ -500,12 +519,20 @@ PR33 added the first v6 packet-usefulness answer:
 > customer-job, lock-in, path-dependence, and cross-cultural reasoning without
 > changing candidate count or creating user-facing output.
 
+PR34 added the next controlled enrichment answer:
+
+> Yes, the named communication, feedback, strategic interdependence, and
+> analogy/adaptive gaps can produce compact reviewed depth under exact source
+> custody: v7 adds 7 records, 7 affordances, and 14 absence records while
+> remaining dormant. The next proof is whether v7 improves a relevant packet
+> handoff, not whether another extraction batch can raise the count.
+
 The next useful product questions are:
 
-1. Does a receiver-side LLM/reviewer actually use the added v6 depth to choose,
-   merge, ignore, or set aside candidate shelves more cleanly?
-2. Which PR28 and PR32 cards remain useful when tested in additional candidate mixes,
-   and which merely add internal bulk?
+1. Does a v7-enriched packet improve a communication/competition handoff
+   compared with v6 for the same nominated shelves?
+2. Which PR28, PR32, and PR34 cards remain useful when tested in additional
+   candidate mixes, and which merely add internal bulk?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?

@@ -1,0 +1,160 @@
+{
+  "model_id": "natural-selection-analogy",
+  "source_file": "Natural_Selection_Analogy_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "natural-selection-analogy.variation-selection-retention-loop",
+      "status": "supported",
+      "name": "Variation selection retention loop",
+      "mechanism": "When uncertainty makes one perfect design unlikely, require the answer to generate credible variants, define the selection environment and fitness criteria, test against real feedback, and retain what works without using emergence language to excuse weak goals or absent decision rights.",
+      "activation_shape": {
+        "use_when": [
+          "The team can generate multiple credible variants and let real feedback, market response, or operational evidence eliminate weak options.",
+          "Success depends on adaptation to changing conditions rather than predicting one perfect design up front.",
+          "The environment is competitive, noisy, or hard to model directly, so iterative experimentation beats static planning."
+        ],
+        "do_not_use_when": [
+          "Leaders use emergence language to excuse weak goals, absent decision rights, or undefined fitness criteria.",
+          "Survivors are studied without analyzing the failures selected out.",
+          "Evolutionary metaphor reduces human systems to simplistic competition and omits cooperation, regulation, or second-order consequences."
+        ],
+        "case_evidence_needed": [
+          "The variants or options to test.",
+          "The environment or feedback channel that selects among variants.",
+          "The fitness criteria and decision rights for retaining or discarding variants.",
+          "The failures and non-survivors that prevent survivorship bias."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-fitness-before-letting-feedback-select",
+          "description": "Require the answer to define variants, fitness criteria, feedback channels, and retention rules before invoking adaptation or emergence.",
+          "evidence_required": [
+            "The candidate variants.",
+            "The feedback, market, or operational evidence that will select among them.",
+            "The fitness criteria and goals.",
+            "The failures or rejected variants that must be inspected."
+          ],
+          "good_output_shape": [
+            "Names variants.",
+            "Defines fitness criteria.",
+            "Identifies selection feedback.",
+            "States retention or discard rules while inspecting failures."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What variants can we generate and test cheaply enough to learn?",
+        "What does fitness mean in this human system, and who has decision rights?",
+        "Which failed variants must be inspected before trusting the survivor?"
+      ],
+      "misuse_guards": [
+        "Do not use emergence as an excuse for weak goals or absent decision rights.",
+        "Do not treat survival as proof of optimal design.",
+        "Do not import biological competition logic while ignoring cooperation, regulation, or second-order consequences."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Natural_Selection_Analogy_rag.md",
+          "source_quote": "variation, selection, and retention",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Natural_Selection_Analogy_rag.md",
+          "source_quote": "creating variants, testing them against environmental pressures, and retaining the most functionally fit components",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Natural_Selection_Analogy_rag.md",
+          "source_quote": "generate multiple credible variants and let real feedback, market response, or operational evidence eliminate weak options",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Natural_Selection_Analogy_rag.md",
+          "source_quote": "leaders use the language of emergence to excuse weak goals, absent decision rights, or failure to define what fitness actually means in the human system",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a variation-selection-retention loop with explicit guards against emergence theater and survivorship bias.",
+        "dropped_material": [
+          "Did not extract genetic algorithms, viral content strategy, or organizational evolution examples as separate affordances.",
+          "Did not infer broad innovation-process advice beyond source-supported variant/selection/retention mechanics."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card helps adaptive strategy packets without overusing biological metaphor."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "survival-proves-optimal-design",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that focusing only on survivors without analyzing selected-out failures creates an incomplete and biased understanding.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Natural_Selection_Analogy_rag.md",
+          "source_quote": "survival itself is sufficient proof of optimal design",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "simplistic-competition-metaphor",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that evolutionary metaphors can reduce complex organizational dynamics to simplistic competition and omit cooperation or regulation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Natural_Selection_Analogy_rag.md",
+          "source_quote": "simplistic competition framing that omits cooperation and regulation",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Natural_Selection_Analogy_rag.md",
+      "source_quote": "complexity, uncertainty, and non-linearity",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Natural_Selection_Analogy_rag.md",
+      "source_quote": "test the current case for fit before proceeding",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Natural Selection Analogy. Extracted one variant/selection/retention loop and rejected survival-as-proof plus simplistic competition framing.",
+    "dropped_material": [
+      "Evolutionary examples and genetic algorithm material were kept as source context rather than separate cards.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card adds adaptive experimentation depth without making strategy sound passively emergent."
+    ],
+    "review_status": "draft"
+  }
+}

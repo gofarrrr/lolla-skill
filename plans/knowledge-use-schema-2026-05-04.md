@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR33 are merged or in review, PR33 completed v6 packet usefulness review, and the current posture is `v6_packet_handoff_useful`
+**Status:** living schema doctrine; PR13-PR33 are merged, PR34 is a controlled communication/competition enrichment slice, and the current posture is `controlled_communication_competition_enrichment_ready`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -22,6 +22,7 @@
 **Current v5 capability audit:** `research/v5-reviewed-model-capability-audit-2026-05-07.md`
 **Current controlled capability-gap enrichment report:** `research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md`
 **Current v6 packet usefulness review:** `research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md`
+**Current controlled communication/competition enrichment report:** `research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -51,6 +52,9 @@ real. Future sessions should treat the following as current baseline:
   graph-only extractions opened after PR27 packet review.
 - Batch 5 records: `data/model_affordances/batch_5/` for 16 controlled
   capability-gap extractions opened after PR31 capability audit.
+- Batch 6 records: `data/model_affordances/batch_6/` for 7 controlled
+  communication, feedback, strategic interdependence, and analogy/adaptive
+  extractions opened after PR33 packet usefulness review.
 - Compiled v3 artifact:
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records.
@@ -63,6 +67,10 @@ real. Future sessions should treat the following as current baseline:
   `data/compiled/model_affordances/affordances_v6.json`.
 - v6 corpus shape: `81` reviewed records, `117` affordances, `147` absence
   records. v6 remains `draft_review_only` and is not runtime-promoted.
+- Compiled v7 artifact:
+  `data/compiled/model_affordances/affordances_v7.json`.
+- v7 corpus shape: `88` reviewed records, `124` affordances, `161` absence
+  records. v7 remains `draft_review_only` and is not runtime-promoted.
 - Current experiment: PR 11 Gate 4 edge-probe harness, branch
   `feature/knowledge-substrate-pr11-gate4-edge-probes`.
 - Gate 4 dry-run: `10` usable cases, `39` Lane 4 routes, `165/205` v3-covered
@@ -234,11 +242,17 @@ real. Future sessions should treat the following as current baseline:
   `1` reviewed / `9` graph-only cards to `10` reviewed / `0` graph-only cards
   without changing candidate count or selecting a final pressure. Decision
   label: `v6_packet_handoff_useful`.
+- PR34 completed one controlled communication/competition enrichment batch
+  after PR33. It adds `7` Batch 6 records for named communication, feedback,
+  strategic interdependence, and analogy/adaptive gaps, compiles
+  draft/review-only v7, and preserves `14` absence records. Decision label:
+  `controlled_communication_competition_enrichment_ready`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `v6_packet_handoff_useful`; do not build runtime packet production, prompt
-  changes, broad extraction, lane rewrites, or user-facing surfaces by default.
+  `controlled_communication_competition_enrichment_ready`; do not build
+  runtime packet production, prompt changes, broad extraction, lane rewrites,
+  or user-facing surfaces by default.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1460,7 +1474,8 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation, more paid Gate 4 calibration,
-or Decision Pressure trace machinery. PR13-PR33 are complete or in review.
+or Decision Pressure trace machinery. PR13-PR33 are complete and PR34 is a
+controlled reviewed enrichment slice.
 PR26 completed deterministic source custody backfill: all 222 runtime source
 files are now under repo-local custody, while v4 reviewed affordance depth
 remains 55 model records. PR27 then completed one review-only mixed packet
@@ -1480,6 +1495,9 @@ absence records as first-class corpus evidence.
 PR33 then compared one explicit 10-card packet against v5 and v6 and found the
 v6 reviewed cards improve handoff material without increasing candidate count
 or selecting final pressure.
+PR34 then executed a controlled communication/competition enrichment batch for
+7 named graph-only models, compiled v7 as draft/review-only material, and
+preserved absence records as first-class corpus evidence.
 
 Current task:
 
@@ -1511,40 +1529,45 @@ Current task:
     as the current controlled v6 enrichment report.
 14. Use `research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md`
     as the current v6 packet usefulness review.
-15. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
+15. Use `research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md`
+    as the current controlled v7 enrichment report.
+16. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
    product north star: broad intake, disciplined output.
-16. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
+17. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
    architecture line: pull shelves, enrich cards, let the LLM reason.
-17. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
+18. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-18. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
-19. Treat PR23's generalization readout as directional product evidence, not
+19. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
+20. Treat PR23's generalization readout as directional product evidence, not
    deterministic case logic.
-20. Treat PR25 as dormant enrichment placement, not runtime packet production.
-21. Treat PR26 as source custody, not v4 extraction.
-22. Treat PR27 as fixture usefulness evidence, not runtime packet production.
-23. Treat PR28 as controlled extraction quality evidence, not v5 runtime
+21. Treat PR25 as dormant enrichment placement, not runtime packet production.
+22. Treat PR26 as source custody, not v4 extraction.
+23. Treat PR27 as fixture usefulness evidence, not runtime packet production.
+24. Treat PR28 as controlled extraction quality evidence, not v5 runtime
     promotion or broad extraction permission.
-24. Treat PR29 as handoff-depth evidence, not final-answer evidence or
+25. Treat PR29 as handoff-depth evidence, not final-answer evidence or
     permission for deterministic pressure selection.
-25. Treat PR30 as receiver-review ergonomics, not a product renderer, UI, memo,
+26. Treat PR30 as receiver-review ergonomics, not a product renderer, UI, memo,
     package function, or semantic selector.
-26. Treat PR31 as a capability audit, not extraction or runtime promotion.
-27. Treat PR32 as controlled capability-gap enrichment, not v6 runtime
+27. Treat PR31 as a capability audit, not extraction or runtime promotion.
+28. Treat PR32 as controlled capability-gap enrichment, not v6 runtime
     promotion, corpus completion, or proof that another batch should begin.
-28. Treat PR33 as packet handoff usefulness evidence, not final-answer evidence,
+29. Treat PR33 as packet handoff usefulness evidence, not final-answer evidence,
     live packet production, or runtime permission.
-29. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+30. Treat PR34 as controlled communication/competition enrichment, not v7
+    runtime promotion, corpus completion, or proof that another batch should
+    begin.
+31. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-30. Preserve coverage honesty and no-casuistry rails.
-31. Do not run more paid model calls for this slice.
-32. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+32. Preserve coverage honesty and no-casuistry rails.
+33. Do not run more paid model calls for this slice.
+34. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Do not extract more affordance records or wire live runtime behavior by
-momentum. PR33 shows v6 reviewed depth can improve one concrete packet handoff,
-but the next production move should still be selected by capability gaps and
-likely packet usefulness, not by count completion.
+momentum. PR34 shows communication, feedback, strategic interdependence, and
+analogy/adaptive sources can produce reviewed depth, but the next proof should
+test v7 packet usefulness before another extraction batch is opened by default.
 
 ---
 

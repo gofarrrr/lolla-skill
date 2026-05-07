@@ -1,0 +1,160 @@
+{
+  "model_id": "prisoners-dilemma",
+  "source_file": "Prisoners_Dilemma_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "prisoners-dilemma.defection-incentive-reframe-test",
+      "status": "supported",
+      "name": "Defection incentive reframe test",
+      "mechanism": "When individually sensible behavior creates a collectively bad outcome, require the answer to map the defection incentive and identify whether trust, enforcement, repeated interaction, or game redesign could keep cooperation from collapsing.",
+      "activation_shape": {
+        "use_when": [
+          "Each actor has a credible incentive to defect even though everyone would benefit from stable cooperation.",
+          "The real design variables are trust, enforcement, or repeat interaction rather than preferences alone.",
+          "The team needs to diagnose whether the problem is strategy, incentives, or game design."
+        ],
+        "do_not_use_when": [
+          "The situation is a coordination or process repair problem rather than a betrayal dynamic.",
+          "The answer would impose a hostile payoff frame where norms, shared identity, or simple repair explain behavior better.",
+          "The model would ignore future consequences, reputation, negotiation, or external context that changes the payoff structure."
+        ],
+        "case_evidence_needed": [
+          "The actors and choices available to each.",
+          "The payoff structure that makes defection individually attractive.",
+          "The shared outcome that would be better if cooperation held.",
+          "The trust, enforcement, repeated-game, or redesign mechanism that could change the incentives."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "redesign-game-before-blaming-actors",
+          "description": "Require the answer to test whether bad collective behavior is produced by flawed rules before assigning bad intent to individual actors.",
+          "evidence_required": [
+            "The individually rational defection move.",
+            "The collectively better cooperative outcome.",
+            "The enforcement, trust, or repeated-interaction mechanism currently missing.",
+            "The game-design change that would make cooperation stable."
+          ],
+          "good_output_shape": [
+            "Maps the defection incentive.",
+            "Names the collectively better outcome.",
+            "Separates bad rules from bad actors.",
+            "Proposes a trust, enforcement, or game-redesign lever."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is each actor rewarded for doing alone, and why does that hurt the group?",
+        "What mechanism would make cooperation stable rather than naive?",
+        "Are we looking at betrayal, or at a process/coordination problem wearing a competitive frame?"
+      ],
+      "misuse_guards": [
+        "Do not treat every coordination problem as betrayal.",
+        "Do not ignore social context, future consequences, negotiation, or reputation.",
+        "Do not blame actors before testing whether the payoff structure creates the bad behavior."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "conflict between individual rationality and collective optimality",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "individually sensible behavior creates a collectively bad result",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "trust, enforcement, or repeat interaction are the real design variables",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "what mechanism could keep the cooperative outcome from collapsing",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a defection-incentive reframe test that asks whether to redesign the game rather than blame actors.",
+        "dropped_material": [
+          "Did not extract cartel pricing, FUD pricing strategy, or attack/defense war gaming as separate affordances.",
+          "Did not infer general trust-building doctrine beyond the source-supported game-design mechanism."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card and active-listening create useful tension in adversarial communication cases."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "every-coordination-problem-is-betrayal",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that imposing a hostile payoff frame can misdiagnose coordination, norms, shared identity, or process repair problems.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "Treating Every Coordination Problem as Betrayal",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "hostile-frame-default",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against imposing defection logic when norms, shared identity, or process repair explain the behavior better.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "norms, shared identity, or simple process repair would explain behavior better than defection logic",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Prisoners_Dilemma_rag.md",
+      "source_quote": "irredeemably lousy rules",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Prisoners_Dilemma_rag.md",
+      "source_quote": "change the game itself",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Prisoner's Dilemma. Extracted one game-redesign card and rejected betrayal overreach.",
+    "dropped_material": [
+      "Classic payoff matrix detail was used as evidence but not preserved as packet bulk.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps diagnose incentive structure without making all conflict look adversarial."
+    ],
+    "review_status": "draft"
+  }
+}
