@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-06
-**Status:** Product doctrine after PR31 v5 reviewed-model capability audit.
+**Status:** Product doctrine after PR32 controlled capability-gap enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v5_capability_audit_complete`
+**Current posture:** `controlled_capability_gap_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -26,6 +26,8 @@ memo, or user-facing launch plan.
 **Current packet comparison render:** `research/reasoning-substrate-packet-comparison-render-2026-05-07.md`
 
 **Current v5 capability audit:** `research/v5-reviewed-model-capability-audit-2026-05-07.md`
+
+**Current controlled capability-gap enrichment report:** `research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -424,6 +426,19 @@ risk, resource discipline, causal diagnosis, incentives, bias, learning, and
 human-context pressure families; not enough for product launch, deterministic
 pressure selection, or broad 222-model coverage confidence.
 
+PR32 then completed one controlled capability-gap enrichment batch:
+
+> `controlled_capability_gap_enrichment_ready`
+
+Treat PR32 as gap-driven source understanding, not corpus completion. Sixteen
+graph-only models from the PR31 gap list now have reviewed Batch 5 records, v6
+has `81` reviewed records, `117` affordances, and `147` absence records, and
+the artifact remains `draft_review_only`. This added useful depth for
+procedure, planning, competition, product/customer, dependency, and
+communication gaps while preserving source absences, including a deliberately
+thin/narrow `batna` record because the source does not support full BATNA
+doctrine.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -458,16 +473,22 @@ PR31 added the first capability answer:
 > enrichment should be controlled by named capability gaps, not by count
 > completion.
 
+PR32 added the first gap-enrichment answer:
+
+> Yes, the PR31 gap list can produce useful reviewed depth under exact source
+> custody: v6 adds 16 records, 16 affordances, and 32 absence records while
+> remaining dormant. The next proof is whether v6 improves packet handoff
+> usefulness, not whether another extraction batch can raise the count.
+
 The next useful product questions are:
 
-1. Which named capability gaps deserve the next controlled extraction batch?
-2. Does a receiver-side LLM/reviewer actually use the added v5 depth to choose,
+1. Does a receiver-side LLM/reviewer actually use the added v6 depth to choose,
    merge, ignore, or set aside candidate shelves more cleanly?
-3. Which PR28 cards remain useful when tested in additional candidate mixes,
+2. Which PR28 and PR32 cards remain useful when tested in additional candidate mixes,
    and which merely add internal bulk?
-4. Which decision moments most clearly need pressure before action?
-5. What would make a user trust a pressure pass?
-6. What would make the output feel like noise?
+3. Which decision moments most clearly need pressure before action?
+4. What would make a user trust a pressure pass?
+5. What would make the output feel like noise?
 7. What is the smallest public promise that is true?
 8. What evidence would justify promotion into a real surface?
 9. What evidence would tell us the product is only interesting to us?

@@ -1,0 +1,160 @@
+{
+  "model_id": "path-dependence",
+  "source_file": "Path_Dependence_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "path-dependence.installed-dependency-unwind-map",
+      "status": "supported",
+      "name": "Installed dependency unwind map",
+      "mechanism": "When a redesign, migration, or exit plan treats options as if they start today, require the answer to map the customers, contracts, interfaces, incentives, approvals, training, and data flows created by the existing path before recommending a target state.",
+      "activation_shape": {
+        "use_when": [
+          "Early choices are constraining current options more than people realize.",
+          "A redesign or migration plan treats the inherited estate like a clean scheduling problem.",
+          "Options are being compared as if they start today even though the existing path has already narrowed the feasible set."
+        ],
+        "do_not_use_when": [
+          "The reset is genuinely cheap and reversible because the installed base is shallow and switching costs are paid down.",
+          "Historical explanation is being used as an excuse to avoid redesign, reset, or responsibility.",
+          "The answer would treat inherited constraints as destiny instead of pricing how to unwind them."
+        ],
+        "case_evidence_needed": [
+          "The historical path, early choice, or inherited architecture shaping the current option set.",
+          "The customers, contracts, interfaces, incentives, approvals, and training created by the path.",
+          "The target state being recommended.",
+          "The unwind, coexistence, or sequencing costs that make the target state harder than it looks."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "price-inherited-dependencies-before-target-state",
+          "description": "Require the answer to map dependencies created by the existing path and price the unwind before comparing target options.",
+          "evidence_required": [
+            "The prior choices or installed path.",
+            "The dependencies created by that path.",
+            "The proposed target state or exit.",
+            "The unwind, sequencing, coexistence, and stakeholder constraints."
+          ],
+          "good_output_shape": [
+            "Names the inherited path.",
+            "Lists the dependencies it created.",
+            "Explains how those dependencies constrain the next move.",
+            "States the realistic unwind or sequencing implication."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which current constraints exist because of the route we already took?",
+        "Which customers, contracts, interfaces, incentives, and approvals does the plan underprice?",
+        "Are we comparing options as if they start today?"
+      ],
+      "misuse_guards": [
+        "Do not use path history as an excuse to avoid redesign or responsibility.",
+        "Do not force path dependence onto a case where reset is genuinely cheap and reversible.",
+        "Do not treat target-state elegance as proof that the inherited path can be unwound cheaply."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Path_Dependence_rag.md",
+          "source_quote": "initial conditions and historical sequential choices significantly shape outcomes",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Path_Dependence_rag.md",
+          "source_quote": "early choices are constraining current options more than people realize",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Path_Dependence_rag.md",
+          "source_quote": "which customers, contracts, interfaces, incentives, and approvals were created by the existing path",
+          "section_hint": "Antagonists and Tensions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Path_Dependence_rag.md",
+          "source_quote": "options are being compared as if they start today",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports an installed-dependency unwind map for migration, redesign, and exit cases.",
+        "dropped_material": [
+          "Did not extract expertise formation or false pattern recognition as separate cards because PR32 targets planning and dependency gaps.",
+          "Did not infer broad historical analysis beyond source-supported operational dependency mapping."
+        ],
+        "open_questions": [
+          "Future packet comparison should test whether path-dependence adds distinct sequencing value beside lock-in."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "clean-slate-comparison-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against comparing options as if they start today when prior promises, data flows, and process design already constrain the feasible set.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Path_Dependence_rag.md",
+          "source_quote": "options are being compared as if they start today",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "history-as-excuse-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects using correct diagnosis of inherited constraints as an excuse to avoid redesign, reset, or responsibility.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Path_Dependence_rag.md",
+          "source_quote": "use that history to avoid redesign, reset, or responsibility",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Path_Dependence_rag.md",
+      "source_quote": "Path dependence is strongest when the real driver is inherited architecture, history, or commitment rather than present-day preference alone.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Path_Dependence_rag.md",
+      "source_quote": "the real obstacle is not choosing the target state but pricing the constraints the current path already created through contracts, interfaces, installed base, approvals, and training",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Path Dependence. Extracted one installed-dependency unwind map and rejected clean-slate comparison plus history-as-excuse.",
+    "dropped_material": [
+      "General expertise/cognitive-schema material was left out as less useful for the current capability gap.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should verify whether this card makes dependency unwind clearer without duplicating lock-in."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "model_id": "delays",
+  "source_file": "Delays_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "delays.lagged-feedback-timing-gate",
+      "status": "supported",
+      "name": "Lagged feedback timing gate",
+      "mechanism": "When action and consequence are separated in time, force the answer to distinguish useful waiting from avoidant delay, name the feedback lag, and avoid interpreting early silence as either failure or success before the system has had time to respond.",
+      "activation_shape": {
+        "use_when": [
+          "A plan, intervention, workflow, or project has consequences that will arrive after a meaningful lag.",
+          "The team may overreact to early missing feedback or underreact to slow-moving accumulated debt.",
+          "A decision requires separating a judgment-improving pause from execution drift or avoidance."
+        ],
+        "do_not_use_when": [
+          "The next useful move is already clear and waiting would mainly defer ownership.",
+          "The case is about immediate reversible action rather than a lagged feedback system.",
+          "The proposed delay would become analysis paralysis or perfectionism rather than learning."
+        ],
+        "case_evidence_needed": [
+          "The action, intervention, or commitment under review.",
+          "The expected feedback signal and when it should realistically appear.",
+          "The cost of acting too soon, waiting too long, or overcorrecting before lagged effects show up.",
+          "The decision point at which waiting turns into avoidant delay."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-lag-before-reacting",
+          "description": "Require the answer to name the relevant delay, specify the feedback signal and review window, and separate patience from drift before recommending action or non-action.",
+          "evidence_required": [
+            "The intervention or decision whose effect is delayed.",
+            "The feedback signal the user is reading too early or too late.",
+            "The time window in which the system could plausibly respond.",
+            "The execution cost of waiting versus overcorrecting."
+          ],
+          "good_output_shape": [
+            "Names the lagged signal explicitly.",
+            "States what not to infer yet.",
+            "Defines when to review again.",
+            "Separates strategic delay from avoidance."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What feedback are we reading too early, and what delay must pass before that signal means anything?",
+        "Is this pause improving judgment, or is it mainly avoiding commitment?",
+        "What would overcorrection look like if the system has simply not had time to respond?"
+      ],
+      "misuse_guards": [
+        "Do not romanticize waiting when the next useful move is already clear.",
+        "Do not treat delayed feedback as proof that an intervention failed before the system has had time to respond.",
+        "Do not use delay analysis to excuse missing milestones, vague ownership, or unbounded deliberation."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Delays_rag.md",
+          "source_quote": "time is a dynamic factor within any system",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Delays_rag.md",
+          "source_quote": "When information or consequences are delayed, the system may overcorrect or fail to adapt effectively.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Delays_rag.md",
+          "source_quote": "actions and consequences are separated in time, so naive short-term reading would mistake \"no result yet\" for \"no effect\"",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Delays_rag.md",
+          "source_quote": "the team must distinguish between a pause that improves judgment and a delay that merely avoids commitment or ownership",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a lagged-feedback timing gate that prevents premature overreaction and avoidant waiting.",
+        "dropped_material": [
+          "Did not extract digital-twin approval workflow latency as a separate affordance because it is an implementation example, not the most reusable packet signal.",
+          "Did not extract procrastination tactics as a separate affordance because the stronger handoff value is distinguishing strategic delay from drift."
+        ],
+        "open_questions": [
+          "Future packet review should check overlap with optimism-bias-and-planning-fallacy and base-rates when delay estimates involve project forecasts."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "romanticized-waiting-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports strategic waiting only when it improves judgment or respects system lag. It explicitly warns against reflection that avoids commitment or ownership.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Delays_rag.md",
+          "source_quote": "people romanticize waiting and reflection even though the next useful move is already clear and the real cost is execution drift",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "instant-failure-read-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects treating slow feedback as immediate evidence of failure. That would erase the model's central timing discipline.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Delays_rag.md",
+          "source_quote": "teams treat delayed feedback as proof that an intervention failed, then overcorrect before the system has had time to respond",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Delays_rag.md",
+      "source_quote": "The fundamental essence of the mental model of Delays is recognizing that **time is a dynamic factor within any system**, not just a passive measure.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Delays_rag.md",
+      "source_quote": "Best used when** the team must distinguish between a pause that improves judgment and a delay that merely avoids commitment or ownership.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Delays. Extracted one timing-gate affordance and treated romanticized waiting plus instant failure reads as absences.",
+    "dropped_material": [
+      "Eisenhower Matrix, digital twins, pitching reliability, and procrastination examples were treated as supporting illustrations rather than separate operational records.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should test whether this card reduces premature overcorrection without making the handoff slower."
+    ],
+    "review_status": "draft"
+  }
+}

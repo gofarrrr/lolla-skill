@@ -1,0 +1,153 @@
+{
+  "model_id": "red-queen-effect",
+  "source_file": "Red_Queen_Effect_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "red-queen-effect.relative-position-adaptation-test",
+      "status": "supported",
+      "name": "Relative-position adaptation test",
+      "mechanism": "When a team is working hard in a competitive environment, require the answer to distinguish maintenance effort from true advantage and decide where adaptation is non-optional versus where an arms race should be refused.",
+      "activation_shape": {
+        "use_when": [
+          "Standing still effectively means losing ground because rivals, substitutes, or environmental pressures are improving.",
+          "The team must distinguish maintenance effort from true advantage.",
+          "The decision needs to name where continuous adaptation is required and where competing is wasteful."
+        ],
+        "do_not_use_when": [
+          "The situation is not relative-performance driven and effort can be judged on absolute outcomes.",
+          "Every challenge is being framed as an arms race.",
+          "The answer would chase feature parity or reactive speed instead of choosing where not to compete."
+        ],
+        "case_evidence_needed": [
+          "The rival, substitute, benchmark, or environmental pressure that changes the relative standard.",
+          "The evidence that current effort merely maintains position.",
+          "The areas where adaptation is non-optional.",
+          "The areas where refusing the race would protect focus or advantage."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-maintenance-from-advantage",
+          "description": "Require the answer to identify whether the proposed effort maintains relative position, creates advantage, or merely reacts to competitor motion.",
+          "evidence_required": [
+            "The competitive or environmental reference point.",
+            "The improvement rate of rivals, substitutes, or pressures.",
+            "The effort needed just to maintain position.",
+            "The strategic reason to adapt, ignore, or exit the race."
+          ],
+          "good_output_shape": [
+            "Names the relative standard.",
+            "Separates maintenance work from advantage-building work.",
+            "Identifies non-optional adaptation.",
+            "Names where not to compete."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are we improving absolutely but falling behind relatively?",
+        "Which effort only keeps us in place, and which effort creates advantage?",
+        "Where are we chasing parity instead of choosing a better field of competition?"
+      ],
+      "misuse_guards": [
+        "Do not frame every challenge as an arms race.",
+        "Do not treat feature parity or reactive speed as strategy.",
+        "Do not ignore the cognitive exhaustion and analysis paralysis created by endless adaptation pressure."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Red_Queen_Effect_rag.md",
+          "source_quote": "continuous adaptation and evolution are necessary just to maintain one’s current state",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Red_Queen_Effect_rag.md",
+          "source_quote": "standing still effectively means losing ground",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Red_Queen_Effect_rag.md",
+          "source_quote": "distinguish maintenance effort from true advantage",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a relative-position adaptation test and an explicit guard against arms-race overuse.",
+        "dropped_material": [
+          "Did not extract biological evolution examples or longevity arguments as separate affordances.",
+          "Did not infer competitor-strategy advice beyond source-supported relative-position discipline."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card helps competitive strategy without encouraging reactive motion."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "arms-race-everything-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that treating every challenge as an arms race can cause reactive motion instead of focused strategy.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Red_Queen_Effect_rag.md",
+          "source_quote": "every challenge gets framed as an arms race",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "feature-parity-motion-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects feature parity and reactive speed as substitutes for choosing where adaptation actually matters.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Red_Queen_Effect_rag.md",
+          "source_quote": "feature parity, or reactive speed instead of choosing where not to compete",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Red_Queen_Effect_rag.md",
+      "source_quote": "Its fundamental essence is the concept that **longevity does not protect entities from extinction**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Red_Queen_Effect_rag.md",
+      "source_quote": "It functions primarily as an argument **against complacency**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Red Queen Effect. Extracted one relative-position test and rejected arms-race/feature-parity overuse.",
+    "dropped_material": [
+      "Evolutionary examples and longevity warnings were kept as evidence, not separate operational cards.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card improves competitive dynamics coverage without increasing reactive strategy bias."
+    ],
+    "review_status": "draft"
+  }
+}
