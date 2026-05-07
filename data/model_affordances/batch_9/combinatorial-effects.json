@@ -1,0 +1,145 @@
+{
+  "model_id": "combinatorial-effects",
+  "source_file": "Combinatorial_Effects_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "combinatorial-effects.make-or-break-interaction-map",
+      "status": "supported",
+      "name": "Make or break interaction map",
+      "mechanism": "When no single cause explains the outcome, require the answer to identify the few interacting forces whose sequencing, fit, or mutual reinforcement could create disproportionate upside or cascading downside.",
+      "activation_shape": {
+        "use_when": [
+          "The visible result comes from several reinforcing forces rather than one dominant driver.",
+          "Interventions will interact instead of landing independently.",
+          "The decision requires designing for emergent lift or emergent fragility."
+        ],
+        "do_not_use_when": [
+          "Combination thinking becomes complexity worship.",
+          "Adding more variables mainly makes the analysis sound sophisticated.",
+          "A simpler model predicts equally well with fewer interacting terms."
+        ],
+        "case_evidence_needed": [
+          "The candidate interacting forces.",
+          "The sequencing or fit that makes the bundle different from independent actions.",
+          "The lollapalooza upside or cascading downside mechanism.",
+          "The make-or-break interaction that deserves attention first."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "identify-few-critical-interactions",
+          "description": "Require the answer to isolate the few interactions that could create emergent lift or fragility, rather than expanding the variable list for sophistication.",
+          "evidence_required": [
+            "The interacting forces.",
+            "The mechanism by which they reinforce or interfere.",
+            "The sequence or fit requirement.",
+            "The downside or upside if the interaction compounds."
+          ],
+          "good_output_shape": [
+            "Names the few make-or-break interactions.",
+            "Explains why the forces do not act independently.",
+            "Distinguishes emergent effects from variable clutter.",
+            "States which interaction should be monitored or tested first."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which few forces interact in a way one-cause reasoning would miss?",
+        "Does sequencing or mutual reinforcement change the result materially?",
+        "Are we finding make-or-break interactions or just adding complexity?"
+      ],
+      "misuse_guards": [
+        "Do not make the analysis more complex mainly to sound sophisticated.",
+        "Do not ignore simpler explanations that predict equally well.",
+        "Do not treat every variable as equally important."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Combinatorial_Effects_rag.md",
+          "source_quote": "Most useful when no single cause explains the outcome",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Combinatorial_Effects_rag.md",
+          "source_quote": "Works when interventions will interact instead of landing independently",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Combinatorial_Effects_rag.md",
+          "source_quote": "Best when the decision requires designing for emergent lift or emergent fragility",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one combinatorial-effects affordance focused on make-or-break interactions, sequencing, and emergent upside/downside.",
+        "dropped_material": [
+          "Did not extract general multidisciplinary latticework or symphony material as a separate card.",
+          "Kept lollapalooza and orchestration language as support for interaction mapping."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card catches interacting downside without becoming complexity theater."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "complexity-worship",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that combination thinking misfires when teams add interacting variables mainly to sound sophisticated.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Combinatorial_Effects_rag.md",
+          "source_quote": "Danger When Combination Thinking Becomes Complexity Worship",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "all-variables-equal-analysis",
+      "status": "not_supported_by_source",
+      "reason": "The source says over-investigation delays action and that the answer should focus on critical make-or-break hypotheses first.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Combinatorial_Effects_rag.md",
+          "source_quote": "Focus on the critical, \"make or break\" hypotheses first.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Combinatorial_Effects_rag.md",
+      "source_quote": "multiple factors or forces, when aligned and interacting, produce an outcome that is disproportionately larger or more complex than the sum of their individual contributions",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for combinatorial-effects as a make-or-break interaction map.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card helps the next LLM find emergent fragility without bloating packets."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR41 are merged or in review, PR41 completed the after-v9 graph-only priority audit, and the current posture is `v9_graph_only_priority_audit_complete`
+**Status:** living schema doctrine; PR13-PR42 are merged or in review, PR42 completed the controlled risk/reversibility enrichment batch, and the current posture is `controlled_risk_reversibility_enrichment_ready`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -30,6 +30,7 @@
 **Current controlled execution/follow-through enrichment report:** `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`
 **Current v9 packet usefulness review:** `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
 **Current v9 graph-only priority audit:** `research/v9-graph-only-priority-audit-2026-05-07.md`
+**Current controlled risk/reversibility enrichment report:** `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -69,6 +70,9 @@ real. Future sessions should treat the following as current baseline:
   execution, auditability, baselines, bottlenecks, debugging, feedback, goals,
   habits, iteration, and validated-learning extractions opened after PR38
   graph-only priority audit.
+- Batch 9 records: `data/model_affordances/batch_9/` for 12 controlled risk,
+  reversibility, failure-containment, nonlinear dynamics, switching-cost, and
+  loss-framing extractions opened after PR41 graph-only priority audit.
 - Compiled v3 artifact:
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records.
@@ -93,6 +97,10 @@ real. Future sessions should treat the following as current baseline:
   `data/compiled/model_affordances/affordances_v9.json`.
 - v9 corpus shape: `110` reviewed records, `146` affordances, `205` absence
   records. v9 remains `draft_review_only` and is not runtime-promoted.
+- Compiled v10 artifact:
+  `data/compiled/model_affordances/affordances_v10.json`.
+- v10 corpus shape: `122` reviewed records, `158` affordances, `229` absence
+  records. v10 remains `draft_review_only` and is not runtime-promoted.
 - Current experiment: PR 11 Gate 4 edge-probe harness, branch
   `feature/knowledge-substrate-pr11-gate4-edge-probes`.
 - Gate 4 dry-run: `10` usable cases, `39` Lane 4 routes, `165/205` v3-covered
@@ -310,10 +318,16 @@ real. Future sessions should treat the following as current baseline:
   thin where plausible and executable advice must become contained,
   reversible, monitorable, escalatable, and stoppable. Decision label:
   `v9_graph_only_priority_audit_complete`.
+- PR42 completed one controlled risk/reversibility enrichment batch after
+  PR41. It adds `12` Batch 9 records for named risk controls,
+  reversibility, failure-containment, nonlinear dynamics, switching-cost, and
+  loss-framing gaps, compiles draft/review-only v10, and preserves `24`
+  absence records. Decision label:
+  `controlled_risk_reversibility_enrichment_ready`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `v9_graph_only_priority_audit_complete`; do not build runtime packet
+  `controlled_risk_reversibility_enrichment_ready`; do not build runtime packet
   production, prompt changes, broad extraction, lane rewrites, user-facing
   surfaces, or automatic extraction by default.
 
@@ -1537,7 +1551,7 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation, more paid Gate 4 calibration,
-or Decision Pressure trace machinery. PR13-PR41 are complete or in review.
+or Decision Pressure trace machinery. PR13-PR42 are complete or in review.
 PR26 completed deterministic source custody backfill: all 222 runtime source
 files are now under repo-local custody, while v4 reviewed affordance depth
 remains 55 model records. PR27 then completed one review-only mixed packet
@@ -1665,18 +1679,19 @@ Current task:
 42. Treat PR40 as packet handoff usefulness evidence, not final-answer
     evidence, live packet production, or runtime permission.
 43. Treat PR41 as a graph-only priority audit, not extraction.
-44. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+44. Treat PR42 as controlled risk/reversibility enrichment, not v10 runtime
+    promotion, corpus completion, or proof that another batch should begin.
+45. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-45. Preserve coverage honesty and no-casuistry rails.
-46. Do not run more paid model calls for this slice.
-47. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+46. Preserve coverage honesty and no-casuistry rails.
+47. Do not run more paid model calls for this slice.
+48. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Do not extract more affordance records or wire live runtime behavior by
-momentum. PR41 selected risk controls / reversibility / failure containment as
-the next controlled family after auditing the remaining graph-only set. If PR42
-opens, it must be a capped source-backed batch for the named targets, followed
-by PR43 packet usefulness review before any further extraction.
+momentum. PR42 completed a capped source-backed batch for the named
+risk/reversibility/failure-containment targets. If PR43 opens, it must be a
+same-nomination v9/v10 packet usefulness review before any further extraction.
 
 ---
 

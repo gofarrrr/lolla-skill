@@ -1,0 +1,145 @@
+{
+  "model_id": "tipping-points",
+  "source_file": "Tipping_Points_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "tipping-points.threshold-prerequisite-test",
+      "status": "supported",
+      "name": "Threshold prerequisite test",
+      "mechanism": "When progress is nonlinear and a constrained variable or social dynamic could unlock disproportionate change, require the answer to name the threshold variable, the prerequisite buildup, and the evidence that the system is near a real tipping point.",
+      "activation_shape": {
+        "use_when": [
+          "Progress is not linear and one constrained variable, threshold, or social dynamic could unlock disproportionate change.",
+          "The system has resisted many incremental fixes and the real question is where leverage lives.",
+          "A team needs to identify the condition that turns marginal effort into a self-reinforcing shift."
+        ],
+        "do_not_use_when": [
+          "Leaders are romanticizing breakthrough moments while underinvesting in the prerequisite buildup.",
+          "A recent change is being called a tipping point without naming the controlling variable.",
+          "The model is being forced onto a problem that does not actually follow threshold dynamics."
+        ],
+        "case_evidence_needed": [
+          "The proposed threshold variable or social dynamic.",
+          "The prerequisite buildup needed before the threshold can matter.",
+          "Evidence that the system is near the threshold.",
+          "The intervention that could make the shift self-reinforcing."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-threshold-and-prerequisite-buildup",
+          "description": "Require the answer to identify the controlling threshold, the prerequisite buildup, and the evidence that a marginal move could become self-reinforcing instead of merely incremental.",
+          "evidence_required": [
+            "The threshold variable.",
+            "The buildup or density required.",
+            "The evidence of proximity to threshold.",
+            "The self-reinforcing mechanism after crossing."
+          ],
+          "good_output_shape": [
+            "Names the threshold variable.",
+            "Separates buildup from breakthrough.",
+            "Explains why incremental fixes have failed.",
+            "States what evidence would disconfirm the tipping-point story."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What exact threshold variable would make this change nonlinear?",
+        "What prerequisite buildup has to exist before a breakthrough is plausible?",
+        "What evidence would show this is not a real tipping-point situation?"
+      ],
+      "misuse_guards": [
+        "Do not romanticize breakthrough while ignoring slow prerequisite buildup.",
+        "Do not claim a tipping point without naming a controlling threshold variable.",
+        "Do not force threshold language onto ordinary incremental progress."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Tipping_Points_rag.md",
+          "source_quote": "a threshold where a small quantitative change leads to a massive, non-linear qualitative shift",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Tipping_Points_rag.md",
+          "source_quote": "progress is not linear and one constrained variable, threshold, or social dynamic could unlock disproportionate change",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Tipping_Points_rag.md",
+          "source_quote": "the condition that turns a marginal effort into a self-reinforcing shift",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one tipping-point affordance centered on a named threshold variable, prerequisite buildup, and self-reinforcing shift evidence.",
+        "dropped_material": [
+          "Did not extract separate persuasion or emotional-intelligence tipping-point affordances.",
+          "Kept leverage-points and critical-mass analogies as support rather than separate cards."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card improves threshold reasoning without encouraging breakthrough romance."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "romantic-breakthrough-without-buildup",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that leaders can romanticize breakthrough moments and underinvest in the slow prerequisite buildup needed for a real threshold crossing.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Tipping_Points_rag.md",
+          "source_quote": "leaders romanticize breakthrough moments and underinvest in the slow prerequisite buildup needed for a real threshold crossing",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "threshold-story-filtered-through-confirmation",
+      "status": "not_supported_by_source",
+      "reason": "The source says prediction errors and misread signals can be filtered to fit an expected threshold narrative, so PR42 must not overstate threshold certainty.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Tipping_Points_rag.md",
+          "source_quote": "prediction errors and misread signals are filtered to fit the expected threshold narrative rather than honestly assessed",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Tipping_Points_rag.md",
+      "source_quote": "critical inputs or points of intervention that generate exponentially greater or breakthrough results",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for tipping-points as threshold prerequisite testing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card distinguishes real threshold dynamics from ordinary optimism."
+    ],
+    "review_status": "draft"
+  }
+}

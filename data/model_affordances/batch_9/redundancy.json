@@ -1,0 +1,145 @@
+{
+  "model_id": "redundancy",
+  "source_file": "Redundancy_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "redundancy.single-point-failure-backup-test",
+      "status": "supported",
+      "name": "Single point failure backup test",
+      "mechanism": "When failure of one path, component, memory, viewpoint, or process would cripple the system, require the answer to name the specific failure mode, the backup path, and the cost/drag trade-off that makes redundancy worth it.",
+      "activation_shape": {
+        "use_when": [
+          "Single-point failure is unacceptable because continuity, resilience, recall, or survival matters more than lean elegance.",
+          "A backup path materially changes survival or recovery quality.",
+          "Extra capacity, checks, or representations create real protection rather than decorative duplication."
+        ],
+        "do_not_use_when": [
+          "Duplication is added by habit without a named failure mode.",
+          "More analyses or repeated perspectives would delay action without changing survival or recovery quality.",
+          "Redundant information creates cognitive overload or makes the core message less clear."
+        ],
+        "case_evidence_needed": [
+          "The component, decision path, memory, resource, or viewpoint that could fail.",
+          "The consequence if that one path fails.",
+          "The proposed backup, spare capacity, repeated check, or second perspective.",
+          "The drag, complexity, cost, or cognitive load created by the redundancy."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "tie-backup-to-failure-mode",
+          "description": "Require the answer to justify redundancy by naming the specific failure mode it protects against, the backup path it creates, and the point where added duplication becomes drag.",
+          "evidence_required": [
+            "The single point of failure.",
+            "The consequence of failure.",
+            "The backup or duplicate path.",
+            "The cost or complexity of the redundancy."
+          ],
+          "good_output_shape": [
+            "Names what can fail.",
+            "Explains how the redundant path changes recovery.",
+            "Separates resilience from wasteful duplication.",
+            "States when to stop adding backup layers."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What exactly fails if this one path, person, component, or assumption breaks?",
+        "Does the backup materially change survival or recovery quality?",
+        "At what point does the redundancy add more complexity than resilience?"
+      ],
+      "misuse_guards": [
+        "Do not treat duplication as free insurance.",
+        "Do not add backup layers without a clear failure mode.",
+        "Do not let redundant analysis become analysis paralysis."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Redundancy_rag.md",
+          "source_quote": "Most useful when single-point failure is unacceptable",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Redundancy_rag.md",
+          "source_quote": "Works when a backup path materially changes survival or recovery quality",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Redundancy_rag.md",
+          "source_quote": "Best when repetition or duplication increases robustness more than it increases drag",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one redundancy affordance centered on named failure modes, backup paths, and the resilience-vs-drag trade-off.",
+        "dropped_material": [
+          "Did not split learning repetition, communication repetition, and systems backup into separate affordances.",
+          "Kept cognitive redundancy as supporting context because the PR42 family is risk/failure containment."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card improves packet handoff without encouraging backup theater."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "duplication-as-free-insurance",
+      "status": "not_supported_by_source",
+      "reason": "The source says redundancy fails when backup layers are added by habit rather than because a specific risk justifies the cost.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Redundancy_rag.md",
+          "source_quote": "Danger When Duplication Is Added Without a Clear Failure Mode",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "endless-redundant-analysis",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that redundant analyses or perspectives can create analysis paralysis and should stop once enough is available to prove or disprove the hypothesis.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Redundancy_rag.md",
+          "source_quote": "Stop gathering redundant data once enough is available to prove/disprove the hypothesis.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Redundancy_rag.md",
+      "source_quote": "strategic duplication or repetition of resources, data, or processes to ensure robustness, resilience, retention, or consistency within a system",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for redundancy as single-point-failure protection with explicit drag checks.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card helps distinguish real resilience from duplicated clutter."
+    ],
+    "review_status": "draft"
+  }
+}

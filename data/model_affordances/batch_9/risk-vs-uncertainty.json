@@ -1,0 +1,145 @@
+{
+  "model_id": "risk-vs-uncertainty",
+  "source_file": "Risk_Vs_Uncertainty_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "risk-vs-uncertainty.commitment-sizing-under-unknowns",
+      "status": "supported",
+      "name": "Commitment sizing under unknowns",
+      "mechanism": "When confidence is outrunning evidence, require the answer to separate measurable risk from unresolved uncertainty before sizing commitment, preserving reversible probes, buffers, or no-regrets moves where the distribution has not earned point estimates.",
+      "activation_shape": {
+        "use_when": [
+          "A plan assigns forecast-like confidence while core drivers remain ambiguous, unstable, or only partly observable.",
+          "The real choice is commitment size: big bet, reversible probe, no-regrets move, buffer, or delay.",
+          "Downside is asymmetric and reversibility matters more than looking decisive."
+        ],
+        "do_not_use_when": [
+          "The decision already has stable reference classes, credible probabilities, and operator-level thresholds.",
+          "Uncertainty language is being used to avoid disciplined execution or postpone a necessary commitment rule.",
+          "The answer would add scenario vocabulary without specifying scale-up, slow-down, or abandon evidence."
+        ],
+        "case_evidence_needed": [
+          "The proposed commitment and its reversibility.",
+          "Which parts have credible probabilities or reference classes.",
+          "Which drivers remain ambiguous or only partly observable.",
+          "The evidence that would justify scaling up, slowing down, or abandoning the plan."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "classify-risk-before-commitment",
+          "description": "Require the answer to classify what is measurable risk versus unresolved uncertainty, then size the commitment around reversibility, buffers, no-regrets moves, and explicit stop/change evidence.",
+          "evidence_required": [
+            "The commitment under consideration.",
+            "Credible probabilities, reference classes, or their absence.",
+            "The downside envelope and rollback or buffer options.",
+            "The threshold evidence that changes commitment size."
+          ],
+          "good_output_shape": [
+            "Separates measurable risk from uncertainty.",
+            "Names whether the next move should be a big bet, probe, no-regrets move, or buffer-preserving step.",
+            "States what evidence would justify scaling, slowing, or stopping.",
+            "Avoids false precision where distributions are not stable."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which part of this decision has earned probabilities, and which part is still uncertainty?",
+        "What commitment becomes hard to reverse if the unknown drivers move against us?",
+        "What evidence would justify scaling up, slowing down, or abandoning this plan?"
+      ],
+      "misuse_guards": [
+        "Do not use uncertainty language to avoid execution when measurable risk is already available.",
+        "Do not turn scenario richness into a substitute for commitment rules.",
+        "Do not present point estimates where the source supports ranges, failure envelopes, or decision thresholds instead."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Risk_Vs_Uncertainty_rag.md",
+          "source_quote": "Most useful when confidence is outrunning evidence",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Vs_Uncertainty_rag.md",
+          "source_quote": "whether to make a big bet, a reversible probe, or a no-regrets move",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Risk_Vs_Uncertainty_rag.md",
+          "source_quote": "Best when downside is asymmetric and reversibility matters",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one commitment-sizing affordance that separates measurable risk from unresolved uncertainty and ties that split to reversibility, buffers, probes, and commitment rules.",
+        "dropped_material": [
+          "Did not extract a generic risk-assessment card because v9 already includes separate reviewed risk-assessment support.",
+          "Kept betting and five-level uncertainty material as supporting context rather than separate affordances."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card improves packet handoff without making uncertainty analysis feel like delay."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "uncertainty-as-execution-avoidance",
+      "status": "not_supported_by_source",
+      "reason": "The source says uncertainty framing is dangerous when stable reference classes, credible probabilities, and thresholds already exist, so PR42 must not let this model postpone disciplined execution.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Risk_Vs_Uncertainty_rag.md",
+          "source_quote": "Danger when measurable risk is already available",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "scenario-language-without-commitment-rules",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects scenario richness that does not specify what evidence would justify scaling up, slowing down, or abandoning the plan.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Risk_Vs_Uncertainty_rag.md",
+          "source_quote": "Endless uncertainty mapping without commitment rules",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Risk_Vs_Uncertainty_rag.md",
+      "source_quote": "provide a systematic framework for understanding and structuring situations characterized by a lack of absolute certainty",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for risk-vs-uncertainty. Extracted one commitment-sizing card and rejected uncertainty-as-delay plus scenario-language-without-rules.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this helps the next LLM size exposure rather than merely sound cautious."
+    ],
+    "review_status": "draft"
+  }
+}

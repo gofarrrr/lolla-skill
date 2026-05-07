@@ -1,0 +1,145 @@
+{
+  "model_id": "cybersecurity-thinking-models",
+  "source_file": "Cybersecurity_Thinking_Models_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "cybersecurity-thinking-models.adversarial-failure-chain-map",
+      "status": "supported",
+      "name": "Adversarial failure chain map",
+      "mechanism": "When a plan depends on security, adversarial response, or control reliability, require the answer to name attacker or misaligned-stakeholder incentives, asset specificity, attack-surface reality, operational ownership, and cascading failure chains.",
+      "activation_shape": {
+        "use_when": [
+          "The problem is adversarial, fast-changing, and can cascade across technical, human, and governance layers.",
+          "Defenders must model attacker incentives, failure chains, and cross-domain consequences rather than just enumerate controls.",
+          "Security decisions need pressure-testing against realistic scenarios instead of static compliance or architecture diagrams alone."
+        ],
+        "do_not_use_when": [
+          "The team is fetishizing threat models, simulations, or mental frameworks while skipping asset specificity, attack surface reality, or operational ownership.",
+          "Scenario work creates false certainty about rare threats while everyday control failures, shortcuts, or handoff gaps remain unexamined.",
+          "The plan assumes all actors touching execution are aligned with the measured outcome."
+        ],
+        "case_evidence_needed": [
+          "The asset, dependency, or surface being protected.",
+          "The adversary or misaligned stakeholder and their incentive.",
+          "The control owner and operational handoff.",
+          "The plausible failure chain and fallback gap."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-adversary-asset-owner-chain",
+          "description": "Require the answer to identify the asset, adversary or misaligned actor, attack or failure chain, control owner, and fallback dependency before treating the security plan as robust.",
+          "evidence_required": [
+            "The protected asset or dependency.",
+            "The adversary or stakeholder incentives.",
+            "The control owner and handoff path.",
+            "The cascading failure path or fallback gap."
+          ],
+          "good_output_shape": [
+            "Names the adversarial or misaligned actor.",
+            "Links asset specificity to attack surface and ownership.",
+            "Describes the failure chain rather than listing controls.",
+            "Shows where the plan needs a fallback or escalation path."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who benefits if this plan underperforms quietly rather than fails visibly?",
+        "Which asset, attack surface, or dependency is being protected by whom?",
+        "What failure chain crosses technical, human, or governance layers?"
+      ],
+      "misuse_guards": [
+        "Do not treat control enumeration as security.",
+        "Do not create false certainty with simulations that skip everyday handoff gaps.",
+        "Do not assume every actor touching execution is aligned with the outcome being measured."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cybersecurity_Thinking_Models_rag.md",
+          "source_quote": "the problem is adversarial, fast-changing, and capable of cascading across technical, human, and governance layers at once",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cybersecurity_Thinking_Models_rag.md",
+          "source_quote": "model attacker incentives, failure chains, and cross-domain consequences rather than just enumerate controls",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cybersecurity_Thinking_Models_rag.md",
+          "source_quote": "security decisions must be pressure-tested against realistic scenarios instead of static compliance or architecture diagrams alone",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one adversarial failure-chain affordance for assets, incentives, control ownership, and cascading failures.",
+        "dropped_material": [
+          "Did not extract generic mental-model-lattice or AI digital twin material as separate security affordances.",
+          "Kept FUD and game-theory material only as supporting evidence for adversarial pressure testing."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card improves packet handoff without making security advice a checklist of controls."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "control-enumeration-as-security",
+      "status": "not_supported_by_source",
+      "reason": "The source says defenders must model incentives, failure chains, and cross-domain consequences rather than just enumerate controls.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cybersecurity_Thinking_Models_rag.md",
+          "source_quote": "rather than just enumerate controls",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "aligned-actor-assumption",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that threat models stay superficial when the plan assumes every stakeholder touching execution is trying to produce the same measured outcome.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cybersecurity_Thinking_Models_rag.md",
+          "source_quote": "Threat models stay superficial when the plan assumes every stakeholder who touches execution is trying to produce the same outcome the decision-maker wants.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Cybersecurity_Thinking_Models_rag.md",
+      "source_quote": "complex problem-solving in security requires anticipation, adversarial analysis, and systemic understanding",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for cybersecurity-thinking-models as adversarial failure-chain mapping, not generic security control listing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card catches misaligned actors and ownership gaps without overclaiming full cybersecurity doctrine."
+    ],
+    "review_status": "draft"
+  }
+}
