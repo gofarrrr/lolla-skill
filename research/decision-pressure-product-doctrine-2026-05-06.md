@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR39 controlled execution/follow-through enrichment.
+**Status:** Product doctrine after PR40 v9 execution packet usefulness review.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_execution_followthrough_enrichment_ready`
+**Current posture:** `v9_execution_packet_handoff_useful`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -42,6 +42,8 @@ memo, or user-facing launch plan.
 **Current v8 graph-only priority audit:** `research/v8-graph-only-priority-audit-2026-05-07.md`
 
 **Current controlled execution/follow-through enrichment report:** `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`
+
+**Current v9 packet usefulness review:** `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -554,6 +556,21 @@ productivity advice.
 the source does not support full DevOps/CI doctrine. That is the correct
 absence-honest outcome, not a record to rescue with outside knowledge.
 
+PR40 then completed one v9 execution packet usefulness review:
+
+> `v9_execution_packet_handoff_useful`
+
+Treat PR40 as handoff-quality evidence, not runtime permission. The same
+explicit 12-card execution/follow-through nomination set moved from `0`
+reviewed / `12` graph-only cards under v8 to `11` reviewed / `0` graph-only /
+`1` weak-support card under v9, without increasing candidate count or selecting
+final pressure. That means PR39's reviewed depth improved packet material for
+baselines, bottlenecks, audit trails, debugging, feedback loops,
+input/output-goal separation, bounded iteration, validated learning,
+repeatable handoff procedures, delivery-loop reliability caveats, goal-setting,
+and habit design while preserving the rule that Python prepares the material
+and the LLM/reviewer reasons.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -650,13 +667,20 @@ PR39 added the controlled execution/follow-through enrichment answer:
 > is whether v9 improves an execution packet handoff, not whether another
 > extraction batch can raise the count.
 
+PR40 added the v9 execution packet-usefulness answer:
+
+> Yes, when the same execution/follow-through shelves are nominated, v9
+> reviewed cards improve the handoff for baselines, bottlenecks, audit trails,
+> debugging, feedback loops, input/output goals, bounded iteration, validated
+> learning, handoff procedures, delivery-loop caveats, goal-setting, and habit
+> design without changing candidate count or creating user-facing output.
+
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, and PR36 cards remain useful when tested in additional
    candidate mixes, and which merely add internal bulk?
-2. Would a later PR40 execution packet show reviewed depth improving handoff
-   usefulness without increasing candidate count or making Python choose the
-   answer?
+2. Which remaining graph-only family after v9 would make future packets thin
+   enough to justify another controlled batch?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?

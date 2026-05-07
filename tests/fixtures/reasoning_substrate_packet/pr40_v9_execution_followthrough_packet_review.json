@@ -1,0 +1,1585 @@
+{
+  "packet_version": "reasoning_substrate_packet.v1",
+  "packet_id": "pr40-v9-execution-followthrough-packet-review",
+  "status": "draft_review_only",
+  "runtime_policy": "runtime_dormant",
+  "source_artifacts": [
+    "data/knowledge_graph.json",
+    "data/compiled/model_affordances/affordances_v9.json",
+    "data/model_sources/manifest.json"
+  ],
+  "transaction_context": {
+    "case_id": "pr40-execution-followthrough-review",
+    "user_situation_summary": "A small product team received AI advice for a six-week rescue plan after repeated launch slips, bug churn, weak adoption signals, and unclear ownership.",
+    "assistant_advice_summary": "The assistant recommends setting goals, iterating weekly, getting feedback, improving CI, tracking progress, forming better habits, and focusing on the bottleneck, but it does not require baselines, audit trails, failure conditions, input/output separation, or stop-change thresholds.",
+    "known_action_or_commitment": "Start the rescue plan Monday, assign owners, ship the next build in two weeks, and decide whether to continue after the first customer feedback cycle.",
+    "capture_health": "synthetic_review",
+    "transaction_sources": [
+      "user_turn",
+      "assistant_turn",
+      "reviewer_note"
+    ]
+  },
+  "candidate_cards": [
+    {
+      "card_id": "card-001-baseline-establishment",
+      "model_id": "baseline-establishment",
+      "display_name": "Baseline Establishment",
+      "pulled_by": [
+        "lane4_gap_route",
+        "reviewer_note"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane4_gap_route",
+          "reason": "The plan claims improvement without naming the starting condition, metric, time window, or comparison baseline.",
+          "evidence_source_type": "assistant_turn",
+          "evidence_quote": "track progress",
+          "route_or_artifact_id": "synthetic-pr40-baseline-gap"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Baseline_Establishment_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Baseline_Establishment_rag.md",
+        "sha256": "07efd8e03111ef22c038a4dba5257014f46281f94cdf361311260e99617907d7",
+        "bytes": 15150
+      },
+      "runtime_graph_fields": {
+        "source_file": "Baseline_Establishment_rag.md",
+        "reasoning_types": [
+          "diagnostic",
+          "systems"
+        ],
+        "select_when": [
+          "A team lacks a shared starting picture of the problem, success criteria, or the facts that later comparisons should be judged against."
+        ],
+        "danger_when": [
+          "The initial baseline has fossilized into doctrine even though the environment or goal has materially shifted."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Successful outcomes are predicated on defining a clear, accurate starting point.",
+            "description": "Teams waste effort when they launch analysis or execution without agreeing on the starting condition, target outcome, or frame for comparison.",
+            "mitigation": "Separate goal-setting from solution design: define the starting condition, target, and comparison frame as distinct steps before any analysis begins.",
+            "source_quote": "Successful outcomes are predicated on defining a clear, accurate starting point.",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "What exactly is our starting condition, and what evidence says that starting picture is accurate enough to compare against later?",
+            "source_quote": "Baseline Establishment is clarity of the starting condition.",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Define the starting picture and success criterion before expanding the work.",
+            "source_quote": "All the successful execution in the world is worthless if it’s not in service of the right outcome.",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "baseline-establishment.starting-condition-comparison-gate"
+        ],
+        "use_when": [
+          "A team lacks a shared starting picture of the problem, the success criteria, or the facts that later comparisons should be judged against."
+        ],
+        "do_not_use_when": [
+          "The initial baseline has fossilized into doctrine and the team keeps optimizing around an outdated starting frame after the environment has shifted."
+        ],
+        "case_evidence_needed": [
+          "The current starting condition."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "define-baseline-before-improvement-claim",
+            "description": "Require the answer to define what starting condition and comparison standard must exist before claims of improvement, diagnosis, or execution progress can be trusted.",
+            "evidence_required": [
+              "The claimed improvement or decision target."
+            ],
+            "good_output_shape": [
+              "States the starting condition plainly."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "What is the shared starting condition before this advice is judged?"
+        ],
+        "misuse_guards": [
+          "Do not let an obsolete baseline become doctrine after context shifts."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Baseline_Establishment_rag.md",
+            "source_quote": "a team lacks a shared starting picture of the problem, the success criteria, or the facts that later comparisons should be judged against",
+            "affordance_id": "baseline-establishment.starting-condition-comparison-gate",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "baseline-establishment",
+          "attempted_field": "obsolete-baseline-as-doctrine",
+          "status": "not_supported_by_source",
+          "reason": "The source warns that baselines become dangerous when they fossilize into doctrine after the environment has shifted.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 1,
+        "lane_score": 0.92
+      }
+    },
+    {
+      "card_id": "card-002-bottlenecks",
+      "model_id": "bottlenecks",
+      "display_name": "Bottlenecks",
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane4_gap_route",
+          "reason": "The rescue plan says to focus on the bottleneck but does not prove which constraint actually limits throughput.",
+          "evidence_source_type": "assistant_turn",
+          "evidence_quote": "focus on the bottleneck",
+          "route_or_artifact_id": "synthetic-pr40-binding-constraint"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Bottlenecks_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Bottlenecks_rag.md",
+        "sha256": "4a0ddb13e031b6ab7d4e5f37f7ce552a00509bc76497ebf7e03a18059f43b05e",
+        "bytes": 16007
+      },
+      "runtime_graph_fields": {
+        "source_file": "Bottlenecks_rag.md",
+        "reasoning_types": [
+          "systems",
+          "causal"
+        ],
+        "select_when": [
+          "Local optimization is masking the true throughput limiter."
+        ],
+        "danger_when": [
+          "The team is labeling the noisiest queue, most visible complaint, or highest-status pain point as the bottleneck without verifying actual throughput."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Mistaking Symptoms for the Constraint",
+            "description": "Teams can mistake the noisiest queue or highest-status pain point for the real constraint.",
+            "mitigation": "Trace the flow end to end and measure where work-in-progress actually accumulates; the real constraint is where throughput is physically limited, not where complaints are loudest.",
+            "source_quote": "Mistaking Symptoms for the Constraint",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "Which step would still throttle the whole system if I funded every other improvement on the list?",
+            "source_quote": "Which step would still throttle the whole system if I funded every other improvement on the list?",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Find the key driver instead of optimizing every visible pain point.",
+            "source_quote": "Prioritization via Key Drivers",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "bottlenecks.binding-constraint-throughput-check"
+        ],
+        "use_when": [
+          "Local optimization is masking the true throughput limiter."
+        ],
+        "do_not_use_when": [
+          "The team labels the noisiest queue, most visible complaint, or highest-status pain point as the bottleneck without verifying actual system throughput."
+        ],
+        "case_evidence_needed": [
+          "The system, process, launch, migration, or handoff under review."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "verify-binding-throughput-limiter",
+            "description": "Require the answer to distinguish the visible pain point from the verified binding constraint and name what evidence would prove the choke point is pacing the whole system.",
+            "evidence_required": [
+              "The candidate bottleneck."
+            ],
+            "good_output_shape": [
+              "Names the current throughput limiter."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "Which step would still throttle the whole system if every other improvement were funded?"
+        ],
+        "misuse_guards": [
+          "Do not treat the noisiest queue or highest-status pain point as the bottleneck without throughput evidence."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Bottlenecks_rag.md",
+            "source_quote": "local optimization is masking the true throughput limiter",
+            "affordance_id": "bottlenecks.binding-constraint-throughput-check",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "bottlenecks",
+          "attempted_field": "noisiest-pain-point-as-bottleneck",
+          "status": "not_supported_by_source",
+          "reason": "The source warns that the noisiest queue, most visible complaint, or highest-status pain point is not necessarily the bottleneck unless actual throughput verifies it.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 2,
+        "lane_score": 0.88
+      }
+    },
+    {
+      "card_id": "card-003-auditability-traceability",
+      "model_id": "auditability-traceability",
+      "display_name": "Auditability Traceability",
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane3_frame_route",
+          "reason": "The team is about to assign owners and commit to actions, but the advice does not leave a trail of decision, evidence, owner, and change trigger.",
+          "evidence_source_type": "user_turn",
+          "evidence_quote": "assign owners",
+          "route_or_artifact_id": "synthetic-pr40-audit-trail"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Auditability_Traceability_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Auditability_Traceability_rag.md",
+        "sha256": "f01bc1452be6617076970a01e442e01bad73563b86ae44088c4d248437c48f44",
+        "bytes": 15346
+      },
+      "runtime_graph_fields": {
+        "source_file": "Auditability_Traceability_rag.md",
+        "reasoning_types": [
+          "deductive",
+          "systems"
+        ],
+        "select_when": [
+          "Decisions, outputs, or model behavior must be explained clearly enough that others can inspect how the conclusion was reached."
+        ],
+        "danger_when": [
+          "Traceability is becoming performative documentation that consumes attention without improving judgment, accountability, or learning."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Traceability can become performative documentation that consumes attention without improving judgmen...",
+            "description": "Traceability can become performative documentation that consumes attention without improving judgment, accountability, or learning.",
+            "mitigation": "Tie each traced artifact to a decision it should inform or a correction it should enable; if no decision changes from the trail, the documentation is theater.",
+            "source_quote": "Danger when traceability becomes performative documentation that consumes attention without improving judgment, accountability, or learning.",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "Is the worst case bad enough?",
+            "source_quote": "Is the worst case bad enough?",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Use hypothesis-driven workplans so each analysis step leaves a visible trail from question to evidence to conclusion.",
+            "source_quote": "Hypothesis-Driven Problem Solving: This foundational technique requires strong, testable hypotheses to guide work planning and analyses.",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "auditability-traceability.reconstructable-decision-trail"
+        ],
+        "use_when": [
+          "Decisions, outputs, or model behavior must be explained clearly enough that others can inspect how conclusions were reached."
+        ],
+        "do_not_use_when": [
+          "Traceability would become performative documentation that consumes attention without improving judgment, accountability, or learning."
+        ],
+        "case_evidence_needed": [
+          "The recommendation, decision, or output that must later be inspected."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "preserve-causal-decision-chain",
+            "description": "Require the answer to state what would make the recommendation reconstructable later: inputs, assumptions, reasoning steps, owner changes, and the review question the trace must answer.",
+            "evidence_required": [
+              "The final recommendation or output."
+            ],
+            "good_output_shape": [
+              "Links evidence to judgment to action."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "Could a later reviewer reconstruct how this advice moved from evidence to judgment to action?"
+        ],
+        "misuse_guards": [
+          "Do not treat documentation volume as proof of judgment quality."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_file": "Auditability_Traceability_rag.md",
+            "source_quote": "clear, reconstructable causal chain",
+            "affordance_id": "auditability-traceability.reconstructable-decision-trail",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "auditability-traceability",
+          "attempted_field": "performative-documentation-as-auditability",
+          "status": "not_supported_by_source",
+          "reason": "The source warns that traceability can become performative documentation that consumes attention without improving judgment, accountability, or learning.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 3,
+        "lane_score": 0.84
+      }
+    },
+    {
+      "card_id": "card-004-debugging-strategies",
+      "model_id": "debugging-strategies",
+      "display_name": "Debugging Strategies",
+      "pulled_by": [
+        "lane2_detected_model"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane2_detected_model",
+          "reason": "The plan responds to bug churn but does not define the failure condition, isolate observed behavior, or verify the root cause before fixing.",
+          "evidence_source_type": "user_turn",
+          "evidence_quote": "bug churn",
+          "route_or_artifact_id": "synthetic-pr40-debugging-gap"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Debugging_Strategies_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Debugging_Strategies_rag.md",
+        "sha256": "73a9d3f36726ca19c343d988942ff2a70cd7524982fe31124a4dc57bda22bb78",
+        "bytes": 15370
+      },
+      "runtime_graph_fields": {
+        "source_file": "Debugging_Strategies_rag.md",
+        "reasoning_types": [
+          "causal",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A failure is real but the cause is ambiguous, distributed, or hidden behind several interacting components."
+        ],
+        "danger_when": [
+          "People have not agreed on the actual failure condition, so debugging would optimize noise, symptoms, or tools instead of broken behavior."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Debugging can optimize noise when the team has not agreed on the actual failure condition.",
+            "description": "Debugging can optimize noise when the team has not agreed on the actual failure condition.",
+            "mitigation": "Define the actual failure condition first; debugging without an agreed-on target optimizes noise.",
+            "source_quote": "Danger when people start debugging before agreeing on the actual failure condition, so they optimize noise, symptoms, or tools instead of the broken behavior.",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "What's the one-day answer?",
+            "source_quote": "What's the one-day answer?",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Disaggregate the problem into logical parts so the diagnostic cut exposes insight rather than just creating more categories.",
+            "source_quote": "Good disaggregation aims to find a cut through the problem that exposes insight.",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "debugging-strategies.failure-condition-root-cause-trace"
+        ],
+        "use_when": [
+          "Failures are real but the cause is ambiguous, distributed, or hidden behind several interacting components."
+        ],
+        "do_not_use_when": [
+          "People start debugging before agreeing on the actual failure condition, so they optimize noise, symptoms, or tools instead of the broken behavior."
+        ],
+        "case_evidence_needed": [
+          "The observed failure or suboptimal outcome."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "define-failure-before-fixing",
+            "description": "Require the answer to state the failure condition first, then test root-cause hypotheses against evidence before recommending a fix.",
+            "evidence_required": [
+              "The failure signal."
+            ],
+            "good_output_shape": [
+              "Defines failure before solution."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "What is the actual failure condition, not just the visible symptom?"
+        ],
+        "misuse_guards": [
+          "Do not debug noise before agreeing on broken behavior."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Debugging_Strategies_rag.md",
+            "source_quote": "failures are real but the cause is ambiguous, distributed, or hidden behind several interacting components",
+            "affordance_id": "debugging-strategies.failure-condition-root-cause-trace",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "debugging-strategies",
+          "attempted_field": "debugging-before-failure-condition",
+          "status": "not_supported_by_source",
+          "reason": "The source explicitly warns against debugging before agreeing on the actual failure condition because that optimizes noise, symptoms, or tools rather than the broken behavior.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 4,
+        "lane_score": 0.8
+      }
+    },
+    {
+      "card_id": "card-005-feedback-loops",
+      "model_id": "feedback-loops",
+      "display_name": "Feedback Loops",
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane1_tendency_route",
+          "reason": "The assistant says to get feedback but does not say which signal arrives soon enough to change the next action.",
+          "evidence_source_type": "assistant_turn",
+          "evidence_quote": "getting feedback",
+          "route_or_artifact_id": "synthetic-pr40-feedback-loop"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Feedback_Loops_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Feedback_Loops_rag.md",
+        "sha256": "c1d949078512195ae819c504a59bc129db11dd843b3d65d507128660320add3e",
+        "bytes": 16855
+      },
+      "runtime_graph_fields": {
+        "source_file": "Feedback_Loops_rag.md",
+        "reasoning_types": [
+          "causal",
+          "systems"
+        ],
+        "select_when": [
+          "Outcomes should shape the next action and the system can observe consequences quickly enough to learn instead of repeating the same move blindly."
+        ],
+        "danger_when": [
+          "The organization is collecting signal but never translating it into changed behavior, priorities, or design."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Drift to Low Performance",
+            "description": "A system can drift to low performance when bad results quietly reset the standard instead of triggering correction.",
+            "mitigation": "Set explicit performance standards and alarm thresholds so that bad results trigger correction instead of quietly resetting the baseline.",
+            "source_quote": "Drift to Low Performance",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "What core standards have we failed to meet in the past, and how are we ensuring those same metrics remain absolute this quarter?",
+            "source_quote": "What core standards have we failed to meet in the past, and how are we ensuring those same metrics remain absolute this quarter?",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Refine the next move iteratively based on what the last output revealed instead of restarting from scratch.",
+            "source_quote": "Iterative Refinement (Cognitive Science/AI)",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "feedback-loops.closed-loop-action-signal"
+        ],
+        "use_when": [
+          "Outcomes should shape the next action."
+        ],
+        "do_not_use_when": [
+          "Feedback is collected but not used to change behavior, priorities, or design."
+        ],
+        "case_evidence_needed": [
+          "The action or intervention that will produce feedback."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "connect-signal-to-next-adjustment",
+            "description": "Require the answer to define the feedback signal, arrival window, decision lever, and next behavior change so measurement becomes a loop rather than passive reporting.",
+            "evidence_required": [
+              "The action being tested."
+            ],
+            "good_output_shape": [
+              "Names the feedback signal."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "What feedback signal will arrive soon enough to change the next action?"
+        ],
+        "misuse_guards": [
+          "Do not instrument the system heavily without changing behavior."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Feedback_Loops_rag.md",
+            "source_quote": "outcomes should shape the next action",
+            "affordance_id": "feedback-loops.closed-loop-action-signal",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "feedback-loops",
+          "attempted_field": "collected-feedback-without-behavior-change",
+          "status": "not_supported_by_source",
+          "reason": "The source rejects feedback collection that never translates into changed behavior, priorities, or design.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 5,
+        "lane_score": 0.76
+      }
+    },
+    {
+      "card_id": "card-006-input-vs-output-goals",
+      "model_id": "input-vs-output-goals",
+      "display_name": "Input Vs Output Goals",
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane3_frame_route",
+          "reason": "The plan mixes lagging output goals with controllable inputs, so the team may count activity as value.",
+          "evidence_source_type": "assistant_turn",
+          "evidence_quote": "setting goals",
+          "route_or_artifact_id": "synthetic-pr40-input-output-goals"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Input_Vs_Output_Goals_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Input_Vs_Output_Goals_rag.md",
+        "sha256": "91df1c919a8c9156dfc02fc81dd9fd320251a0bb4b20680c42cdf1e7246b7a41",
+        "bytes": 15582
+      },
+      "runtime_graph_fields": {
+        "source_file": "Input_Vs_Output_Goals_rag.md",
+        "reasoning_types": [
+          "causal",
+          "diagnostic"
+        ],
+        "select_when": [
+          "The desired result is clear, but the team still cannot translate it into repeatable behaviors, habits, and checkpoints."
+        ],
+        "danger_when": [
+          "Visible effort is being rewarded regardless of whether the activity produces value."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Teams can keep hitting activity targets long after it is obvious that the outcome is not moving.",
+            "description": "Teams can keep hitting activity targets long after it is obvious that the outcome is not moving.",
+            "mitigation": "Check whether activity targets are still connected to the outcome; hitting input goals after the output stops moving is waste.",
+            "source_quote": "input-vs-output-goals conflicts with commitment-bias (commitment bias) when teams keep activity targets despite weak outcome movement.",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "Which of our current input metrics would still look good even if the real outcome kept deteriorating?",
+            "source_quote": "activity metrics are abundant but the link between action and outcome is weak or obscured",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Translate the desired result into behaviors and checkpoints the team can actually control.",
+            "source_quote": "repeatable behaviors, habits, and checkpoints",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "input-vs-output-goals.controllable-input-output-alignment"
+        ],
+        "use_when": [
+          "Teams know the destination but not the operating discipline."
+        ],
+        "do_not_use_when": [
+          "Input metrics become a substitute for outcomes."
+        ],
+        "case_evidence_needed": [
+          "The desired output or strategic destination."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "separate-result-from-controllable-behavior",
+            "description": "Require the answer to distinguish the outcome from the controllable inputs and state how those inputs will be checked against the result they are supposed to produce.",
+            "evidence_required": [
+              "The desired outcome."
+            ],
+            "good_output_shape": [
+              "Names the output goal."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "What output do we actually want, and what inputs are under our control?"
+        ],
+        "misuse_guards": [
+          "Do not treat activity counts as value delivery."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Input_Vs_Output_Goals_rag.md",
+            "source_quote": "teams know the destination but not the operating discipline",
+            "affordance_id": "input-vs-output-goals.controllable-input-output-alignment",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "input-vs-output-goals",
+          "attempted_field": "activity-counts-as-value",
+          "status": "not_supported_by_source",
+          "reason": "The source warns that input metrics can become substitutes for outcomes when activity counts, routines, or compliance markers persist after they stop producing value.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 6,
+        "lane_score": 0.72
+      }
+    },
+    {
+      "card_id": "card-007-iteration",
+      "model_id": "iteration",
+      "display_name": "Iteration",
+      "pulled_by": [
+        "lane2_companion_chunk"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane2_companion_chunk",
+          "reason": "Weekly iteration needs a hypothesis, feedback signal, adjustment rule, and stop/change threshold, not an endless loop of local polishing.",
+          "evidence_source_type": "assistant_turn",
+          "evidence_quote": "iterating weekly",
+          "route_or_artifact_id": "synthetic-pr40-iteration-boundary"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Iteration_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Iteration_rag.md",
+        "sha256": "b121d357604beb45eed4ed573dfddbc3ef95266bb5645b81bb2121468c75d989",
+        "bytes": 13284
+      },
+      "runtime_graph_fields": {
+        "source_file": "Iteration_rag.md",
+        "reasoning_types": [
+          "causal",
+          "metacognitive"
+        ],
+        "select_when": [
+          "The first version is unlikely to be correct, so the cheapest path to quality is repeated prototype-test-learn cycles."
+        ],
+        "danger_when": [
+          "The team is iterating without stop rules, success thresholds, or a decision about what evidence is strong enough to commit."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Iteration can become endless refinement when there are no stop rules or commitment thresholds.",
+            "description": "Iteration can become endless refinement when there are no stop rules or commitment thresholds.",
+            "mitigation": "Define stop rules and commitment thresholds before starting: iteration without an exit condition becomes endless refinement.",
+            "source_quote": "Danger when iteration continues without stop rules, success thresholds, or a decision about what evidence is strong enough to commit.",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "What's the one-day answer?",
+            "source_quote": "What's the one-day answer?",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Use hypothesis-driven cycles that explicitly revise the leading explanation as evidence accumulates.",
+            "source_quote": "This is a core consulting method where teams establish an initial hypothesis and then continuously gather facts and perform analyses to prove or disprove it.",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "iteration.bounded-learning-cycle-gate"
+        ],
+        "use_when": [
+          "The first version is unlikely to be correct and the cheapest path to quality is repeated prototype-test-learn cycles."
+        ],
+        "do_not_use_when": [
+          "Iteration continues without stop rules, success thresholds, or a decision about what evidence is strong enough to commit."
+        ],
+        "case_evidence_needed": [
+          "The hypothesis, prototype, or plan being iterated."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "bound-each-learning-loop",
+            "description": "Require the answer to define the next iteration as a bounded learning loop with objective, scope, comparison, threshold, and commitment/reset condition.",
+            "evidence_required": [
+              "The current version or hypothesis."
+            ],
+            "good_output_shape": [
+              "Names the learning objective."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "What is this iteration supposed to learn?"
+        ],
+        "misuse_guards": [
+          "Do not let iteration become endless polishing."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Iteration_rag.md",
+            "source_quote": "repeated prototype-test-learn cycles",
+            "affordance_id": "iteration.bounded-learning-cycle-gate",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "iteration",
+          "attempted_field": "iteration-without-stop-rules",
+          "status": "not_supported_by_source",
+          "reason": "The source warns that iteration is dangerous when it continues without stop rules, success thresholds, or a decision about what evidence justifies commitment.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 7,
+        "lane_score": 0.68
+      }
+    },
+    {
+      "card_id": "card-008-lean-startup-methodology",
+      "model_id": "lean-startup-methodology",
+      "display_name": "Lean Startup Methodology",
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane4_gap_route",
+          "reason": "The first customer feedback cycle should reduce uncertainty with a real learning metric and a pivot/persevere threshold, not vanity validation.",
+          "evidence_source_type": "user_turn",
+          "evidence_quote": "first customer feedback cycle",
+          "route_or_artifact_id": "synthetic-pr40-validated-learning"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Lean_Startup_Methodology_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Lean_Startup_Methodology_rag.md",
+        "sha256": "b811a9c803ed4cf1565a81465ea2032cfe127ac8825d4a2beb1213fbadf398cc",
+        "bytes": 15033
+      },
+      "runtime_graph_fields": {
+        "source_file": "Lean_Startup_Methodology_rag.md",
+        "reasoning_types": [
+          "causal",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A product or market hypothesis is still fragile enough that learning speed matters more than polished completeness."
+        ],
+        "danger_when": [
+          "Weak usage blips or vanity metrics are being mislabeled as validated learning."
+        ],
+        "failure_modes": [
+          {
+            "mode": "The Othello Fault (Jumping to Conclusion)",
+            "description": "Jumping to conclusions can turn speed into the Othello fault where the team moves fast on the wrong framing.",
+            "mitigation": "Slow down enough to define the framing before moving fast; speed on the wrong hypothesis is the Othello fault.",
+            "source_quote": "The Othello Fault (Jumping to Conclusion)",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "What is the one-day answer?",
+            "source_quote": "the one-day answer",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Gather only enough facts to prove or disprove the current product hypothesis instead of boiling the ocean.",
+            "source_quote": "only enough facts to prove or disprove the hypothesis",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "lean-startup-methodology.validated-learning-kill-pivot-gate"
+        ],
+        "use_when": [
+          "A product, market, or behavior hypothesis is still fragile enough that learning speed matters more than polished completeness."
+        ],
+        "do_not_use_when": [
+          "Teams call any customer contact or usage blip validated learning even though the metric is weak, vanity-driven, or disconnected from real adoption."
+        ],
+        "case_evidence_needed": [
+          "The fragile product, market, or behavior hypothesis."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "define-validated-learning-threshold",
+            "description": "Require the answer to turn the product or market bet into a narrow hypothesis test with honest evidence and a precommitted continuation, pivot, or kill threshold.",
+            "evidence_required": [
+              "The hypothesis being tested."
+            ],
+            "good_output_shape": [
+              "Names the fragile hypothesis."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "What hypothesis is fragile enough that a narrow test should precede polish?"
+        ],
+        "misuse_guards": [
+          "Do not call weak usage blips validated learning."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_file": "Lean_Startup_Methodology_rag.md",
+            "source_quote": "validated learning** through rapid, focused experimentation aimed at reducing uncertainty and waste",
+            "affordance_id": "lean-startup-methodology.validated-learning-kill-pivot-gate",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "lean-startup-methodology",
+          "attempted_field": "vanity-metric-as-validated-learning",
+          "status": "not_supported_by_source",
+          "reason": "The source warns that customer contact or usage blips are not validated learning when the metric is weak, vanity-driven, or disconnected from real adoption.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 8,
+        "lane_score": 0.64
+      }
+    },
+    {
+      "card_id": "card-009-algorithmic-thinking",
+      "model_id": "algorithmic-thinking",
+      "display_name": "Algorithmic Thinking",
+      "pulled_by": [
+        "lane2_detected_model"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane2_detected_model",
+          "reason": "The rescue plan needs an explicit repeatable procedure with inputs, ordered steps, outputs, and failure handling before it can be handed off.",
+          "evidence_source_type": "reviewer_note",
+          "route_or_artifact_id": "synthetic-pr40-repeatable-procedure"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Algorithmic_Thinking_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Algorithmic_Thinking_rag.md",
+        "sha256": "e453fcb3711178aea194f7716b94c26a6ae1a5df622bcce2b208f82b6e9689ca",
+        "bytes": 17495
+      },
+      "runtime_graph_fields": {
+        "source_file": "Algorithmic_Thinking_rag.md",
+        "reasoning_types": [
+          "deductive",
+          "systems"
+        ],
+        "select_when": [
+          "The task can be decomposed into repeatable steps with clear handoffs, inputs, and output quality checks."
+        ],
+        "danger_when": [
+          "Novelty, ambiguity, or human emotion is doing most of the causal work and a rigid procedure is being mistaken for actual understanding."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Rigid procedure can fail when novelty or ambiguity is doing most of the causal work and the team mis...",
+            "description": "Rigid procedure can fail when novelty or ambiguity is doing most of the causal work and the team mistakes repeatability for understanding.",
+            "mitigation": "Test the procedure against a genuinely novel scenario; if the algorithm cannot handle the new case without human judgment, the structure is masking understanding gaps.",
+            "source_quote": "Danger when novelty, ambiguity, or human emotion is doing most of the causal work and a rigid procedure is mistaken for actual understanding.",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "Which edge case or exception would break this procedure even if the happy path looks clean?",
+            "source_quote": "Best used when a process benefits from explicit branching rules, bounded edge cases, and coordination across specialized components or agents.",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Break the task into repeatable steps with explicit handoffs so the logic can be checked instead of assumed.",
+            "source_quote": "The task can be decomposed into repeatable steps with clear handoffs, inputs, and output quality checks.",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "algorithmic-thinking.repeatable-handoff-procedure-gate"
+        ],
+        "use_when": [
+          "The task can be decomposed into repeatable steps with clear handoffs, inputs, and output quality checks."
+        ],
+        "do_not_use_when": [
+          "Novelty, ambiguity, or human emotion is doing most of the causal work and a rigid procedure is being mistaken for actual understanding."
+        ],
+        "case_evidence_needed": [
+          "The work item or advice that must be executed."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "write-executable-procedure-boundary",
+            "description": "Require the answer to turn the proposed action into a bounded procedure with inputs, ordered steps, handoffs, and quality checks, while naming where procedure should stop because context needs judgment.",
+            "evidence_required": [
+              "The desired outcome."
+            ],
+            "good_output_shape": [
+              "Names the procedure boundary."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "What must be true before this advice can be converted into repeatable steps?"
+        ],
+        "misuse_guards": [
+          "Do not treat a checklist or algorithm as proof of understanding."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Algorithmic_Thinking_rag.md",
+            "source_quote": "the task can be decomposed into repeatable steps with clear handoffs, inputs, and output quality checks",
+            "affordance_id": "algorithmic-thinking.repeatable-handoff-procedure-gate",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "algorithmic-thinking",
+          "attempted_field": "procedure-as-understanding",
+          "status": "not_supported_by_source",
+          "reason": "The source warns that rigid procedure is dangerous when novelty, ambiguity, or human emotion is doing causal work; PR39 should not promote procedure as a substitute for judgment.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 9,
+        "lane_score": 0.6
+      }
+    },
+    {
+      "card_id": "card-010-devops-and-continuous-integration",
+      "model_id": "devops-and-continuous-integration",
+      "display_name": "Devops And Continuous Integration",
+      "pulled_by": [
+        "lane2_companion_chunk"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane2_companion_chunk",
+          "reason": "The advice mentions improving CI, but the packet must protect reliability and rollback instead of optimizing local delivery speed alone.",
+          "evidence_source_type": "assistant_turn",
+          "evidence_quote": "improving CI",
+          "route_or_artifact_id": "synthetic-pr40-delivery-loop"
+        }
+      ],
+      "coverage_status": "conflicting_or_weak_support",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Devops_and_Continuous_Integration_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": false,
+        "manifest_path": "data/model_sources/Devops_and_Continuous_Integration_rag.md",
+        "sha256": "c080cce0431c8961a88fd5dacfcc025f15ee93efebde42957fd79c83cd69d85f",
+        "bytes": 17761
+      },
+      "runtime_graph_fields": {
+        "source_file": "Devops_and_Continuous_Integration_rag.md",
+        "reasoning_types": [
+          "systems",
+          "causal"
+        ],
+        "select_when": [
+          "Delivery speed and reliability have to coexist, and the bottleneck is integration friction rather than lack of ideas."
+        ],
+        "danger_when": [
+          "Pipeline optimization is being treated as an abstract slogan without specific failure paths, rollback realities, or operator constraints."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Maslow's Hammer (Law of the Instrument)",
+            "description": "Maslow's-hammer style framework use can optimize the wrong delivery problem because the team mistakes a familiar pipeline story for the real system.",
+            "mitigation": "Challenge whether the familiar pipeline story fits the current delivery problem; Maslow's hammer can optimize the wrong bottleneck.",
+            "source_quote": "Maslow's Hammer (Law of the Instrument)",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "What would you have to believe?",
+            "source_quote": "What would you have to believe?",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Use a build-observe-diagnose-adjust loop so learning happens continuously instead of after a large release batch.",
+            "source_quote": "shortening the distance between build, observe, diagnose, and adjust",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "devops-and-continuous-integration.build-observe-adjust-loop"
+        ],
+        "use_when": [
+          "Delivery speed and reliability have to coexist."
+        ],
+        "do_not_use_when": [
+          "Local pipeline optimization hides system fragility."
+        ],
+        "case_evidence_needed": [
+          "The delivery system or operational process under review."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "map-build-observe-diagnose-adjust-loop",
+            "description": "Require the answer to identify the operating loop that connects delivery changes to observation, diagnosis, adjustment, and rollback/reliability protection.",
+            "evidence_required": [
+              "The delivery change or recommendation."
+            ],
+            "good_output_shape": [
+              "Names the build-observe-diagnose-adjust loop."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "Where does delivery speed currently trade against reliability?"
+        ],
+        "misuse_guards": [
+          "Do not treat merge speed, ticket throughput, or release cadence as the whole system outcome."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "medium",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Devops_and_Continuous_Integration_rag.md",
+            "source_quote": "Most useful when delivery speed and reliability have to coexist",
+            "affordance_id": "devops-and-continuous-integration.build-observe-adjust-loop",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "medium"
+      },
+      "absence_records": [
+        {
+          "model_id": "devops-and-continuous-integration",
+          "attempted_field": "full-devops-ci-doctrine",
+          "status": "not_supported_by_source",
+          "reason": "The source explicitly says DevOps and Continuous Integration is not defined in the provided material, so PR39 must not infer full technical DevOps or CI/CD doctrine.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 10,
+        "lane_score": 0.56
+      }
+    },
+    {
+      "card_id": "card-011-goal-setting",
+      "model_id": "goal-setting",
+      "display_name": "Goal Setting",
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane1_tendency_route",
+          "reason": "The plan asks for goals, but goals need purpose, metric, time boundary, progress check, and conflict with other objectives.",
+          "evidence_source_type": "assistant_turn",
+          "evidence_quote": "setting goals",
+          "route_or_artifact_id": "synthetic-pr40-goal-alignment"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Goal_Setting_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Goal_Setting_rag.md",
+        "sha256": "9cab1fb4b43313966fbda6b7ed5f98a978fd22b8a233b29717dbd2bcf9541203",
+        "bytes": 16360
+      },
+      "runtime_graph_fields": {
+        "source_file": "Goal_Setting_rag.md",
+        "reasoning_types": [
+          "deductive",
+          "systems"
+        ],
+        "select_when": [
+          "Effort is scattered and the team needs one explicit outcome to align trade-offs, sequencing, and measurement."
+        ],
+        "danger_when": [
+          "The chosen goal is organizing action but is not being revisited often enough to reflect changed evidence, constraints, or strategic reality."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Useless Accuracy/Lack of Concreteness (The Curse of Knowledge)",
+            "description": "Abstract mission language can sound accurate while remaining useless for frontline decisions and execution.",
+            "mitigation": "Test goals against frontline decisions: if the mission language cannot guide a specific day-to-day choice, it is abstract decoration.",
+            "source_quote": "Useless Accuracy/Lack of Concreteness (The Curse of Knowledge)",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "Is the worst case bad enough?",
+            "source_quote": "\"Is the worst case bad enough?\"",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Set goals first, then diagnose problems, design plans, and execute in sequence instead of collapsing the steps together.",
+            "source_quote": "It is crucial to perform these steps one at a time and in order; for instance, when setting goals, one should only set goals and avoid thinking about how they will be achieved or what might go wrong.",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "goal-setting.outcome-checkpoint-alignment-gate"
+        ],
+        "use_when": [
+          "Effort is scattered and the team needs one explicit outcome to align trade-offs, sequencing, and measurement."
+        ],
+        "do_not_use_when": [
+          "Goals are sticky enough to organize action but not revisited often enough to reflect changed evidence, constraints, or strategic reality."
+        ],
+        "case_evidence_needed": [
+          "The desired outcome and the larger purpose it serves."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "turn-aspiration-into-owned-checkpoints",
+            "description": "Require the answer to convert the goal from aspiration into a concrete operating target with owner, checkpoint, threshold, cadence, and revision condition.",
+            "evidence_required": [
+              "The stated goal."
+            ],
+            "good_output_shape": [
+              "Names one explicit outcome."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "What one outcome should align trade-offs, sequencing, and measurement?"
+        ],
+        "misuse_guards": [
+          "Do not confuse verbal commitment with owned execution checkpoints."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Goal_Setting_rag.md",
+            "source_quote": "effort is scattered and the team needs one explicit outcome to align trade-offs, sequencing, and measurement",
+            "affordance_id": "goal-setting.outcome-checkpoint-alignment-gate",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "goal-setting",
+          "attempted_field": "stale-goal-as-commitment",
+          "status": "not_supported_by_source",
+          "reason": "The source warns that goals can organize action while failing to update after changed evidence, constraints, or strategic reality.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 11,
+        "lane_score": 0.52
+      }
+    },
+    {
+      "card_id": "card-012-habit-formation",
+      "model_id": "habit-formation",
+      "display_name": "Habit Formation",
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "why_pulled": [
+        {
+          "source": "lane3_frame_route",
+          "reason": "The team wants better execution habits, but the packet should ask for cue, routine, reward, environment, friction, and repeatability.",
+          "evidence_source_type": "reviewer_note",
+          "route_or_artifact_id": "synthetic-pr40-execution-habit"
+        }
+      ],
+      "coverage_status": "reviewed_affordance_available",
+      "source_custody": {
+        "custody_status": "repo_source_custodied",
+        "source_file": "Habit_Formation_rag.md",
+        "reviewed_record_available": true,
+        "reviewed_affordance_available": true,
+        "manifest_path": "data/model_sources/Habit_Formation_rag.md",
+        "sha256": "158701b3983d56f44232c97b42796c35af957761ce8487a13ec18703a806676a",
+        "bytes": 15715
+      },
+      "runtime_graph_fields": {
+        "source_file": "Habit_Formation_rag.md",
+        "reasoning_types": [
+          "causal",
+          "metacognitive"
+        ],
+        "select_when": [
+          "Execution quality depends on repeating the right small behaviors rather than on one heroic effort."
+        ],
+        "danger_when": [
+          "The environment has changed enough that yesterday's automatic behavior is now solving the wrong problem."
+        ],
+        "failure_modes": [
+          {
+            "mode": "Automation Replaces Judgment",
+            "description": "Automatic behavior can keep solving yesterday's problem when the environment has changed.",
+            "mitigation": "Build in environment-change triggers that interrupt automatic behavior when the conditions the habit was built for have shifted.",
+            "source_quote": "Automation Replaces Judgment",
+            "extraction_type": "normalized",
+            "confidence": "high"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "description": "What cue, feeling, or belief is firing right before the unwanted behavior starts?",
+            "source_quote": "What are you feeling in the moment right before you begin the behavior?",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ],
+        "heuristics": [
+          {
+            "description": "Use cue, craving, response, and reward to redesign the loop rather than relying on vague intention.",
+            "source_quote": "Cue, Craving, Response, and Reward",
+            "extraction_type": "explicit",
+            "confidence": "high"
+          }
+        ]
+      },
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "habit-formation.automatic-action-design-check"
+        ],
+        "use_when": [
+          "Execution quality depends on repeating the right small behaviors."
+        ],
+        "do_not_use_when": [
+          "Automation replaces judgment because the environment has changed enough that automatic behavior is now solving yesterday's problem."
+        ],
+        "case_evidence_needed": [
+          "The repeated behavior the plan depends on."
+        ],
+        "treatment_requirements": [
+          {
+            "requirement_id": "design-repeatable-behavior-loop",
+            "description": "Require the answer to turn the execution need into a cue-response-reward behavior loop that reduces friction while preserving judgment when context changes.",
+            "evidence_required": [
+              "The behavior that must repeat."
+            ],
+            "good_output_shape": [
+              "Names the cue and response."
+            ]
+          }
+        ],
+        "diagnostic_questions": [
+          "What small behavior has to repeat for this advice to work?"
+        ],
+        "misuse_guards": [
+          "Do not treat habit as moral virtue or willpower."
+        ],
+        "source_evidence": [
+          {
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_file": "Habit_Formation_rag.md",
+            "source_quote": "execution quality depends on repeating the right small behaviors",
+            "affordance_id": "habit-formation.automatic-action-design-check",
+            "source_custody": "reviewed_manifest"
+          }
+        ],
+        "confidence": "high"
+      },
+      "absence_records": [
+        {
+          "model_id": "habit-formation",
+          "attempted_field": "automaticity-as-permanent-good",
+          "status": "not_supported_by_source",
+          "reason": "The source warns that automatic behavior becomes a liability when the environment has changed enough that the habit solves yesterday's problem.",
+          "runtime_policy": "do_not_promote"
+        }
+      ],
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "nomination_metadata": {
+        "lane_order": 12,
+        "lane_score": 0.48
+      }
+    }
+  ],
+  "suppressed_candidates": [
+    {
+      "candidate_id": "candidate-013-iteration",
+      "model_id": "iteration",
+      "suppression_reason": "duplicate_model_id",
+      "coverage_status": "reviewed_affordance_available",
+      "pulled_by": [
+        "reviewer_note"
+      ],
+      "why_pulled": [
+        {
+          "source": "reviewer_note",
+          "reason": "Duplicate nomination included to prove suppression is visible instead of silently erased.",
+          "evidence_source_type": "reviewer_note",
+          "route_or_artifact_id": "synthetic-pr40-duplicate-check"
+        }
+      ],
+      "do_not_recover_as_pressure_without_review": true
+    }
+  ],
+  "coverage_summary": {
+    "candidate_card_count": 12,
+    "reviewed_card_count": 11,
+    "graph_only_card_count": 0,
+    "absence_only_card_count": 0,
+    "missing_reviewed_record_count": 0,
+    "source_too_thin_count": 0,
+    "conflicting_or_weak_support_count": 1,
+    "missing_reviewed_model_ids": [],
+    "high_value_graph_only_model_ids": []
+  },
+  "packet_policy": {
+    "candidate_card_target_min": 0,
+    "candidate_card_target_max": 12,
+    "snippet_target_min_per_card": 0,
+    "snippet_target_max_per_card": 1,
+    "deterministic_role": "validate_package_cap_reference_and_label",
+    "semantic_selection_role": "llm_or_reviewer",
+    "forbid_public_copy": true,
+    "forbid_final_pressure_selection": true,
+    "forbid_case_type_templates": true
+  },
+  "blocked_surfaces": [
+    "live_observatory_rendering",
+    "memo_integration",
+    "step8_integration",
+    "step6_integration",
+    "lane4_integration",
+    "lolla_runtime_use",
+    "user_facing_decision_pressure_block",
+    "prompt_changes",
+    "generation_changes",
+    "new_extraction",
+    "batch_3b",
+    "paid_gate4_reruns_by_default"
+  ],
+  "review_notes": [
+    "Review-only packet built from explicit nominations; no live lanes were run.",
+    "Graph-only cards are eligible recall material but not reviewed affordance depth.",
+    "LLM or reviewer owns semantic selection, merging, ignoring, and final wording."
+  ]
+}
