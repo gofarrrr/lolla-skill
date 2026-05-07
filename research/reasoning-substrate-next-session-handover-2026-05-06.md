@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR46 completed the v10/v11
-frame-correction packet usefulness review. PR45 added source-backed v11 depth
-for the family PR44 selected; PR46 checked whether that depth improves the same
-packet handoff without changing candidate count.
+**Status:** Start-here handover after PR47 completed the after-v11 graph-only
+priority audit. PR46 showed v11 frame-correction depth improves one
+stable-nomination packet; PR47 decides which remaining graph-only family should
+be considered next instead of continuing extraction by count.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v11_frame_correction_packet_handoff_useful`
+**Current posture:** `v11_graph_only_priority_audit_complete`
 
-**Current PR:** PR46 - v11 frame-correction packet usefulness review
+**Current PR:** PR47 - after-v11 graph-only priority audit
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -58,6 +58,8 @@ Batch 3b, or user-facing Decision Pressure work.
 
 **PR46 decision label:** `v11_frame_correction_packet_handoff_useful`
 
+**PR47 decision label:** `v11_graph_only_priority_audit_complete`
+
 ## Start Here
 
 Read these files in order:
@@ -102,6 +104,7 @@ Read these files in order:
 38. `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
 39. `research/reasoning-substrate-v11-packet-usefulness-review-2026-05-07.md`
 40. `research/reasoning-substrate-packet-pr46-v10-v11-comparison-render-2026-05-07.md`
+41. `research/v11-graph-only-priority-audit-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -168,6 +171,7 @@ Keep these layers distinct:
 | v11 affordance corpus | 134 reviewed records, 170 affordances, 253 absence records. Draft/review-only v10 plus PR45 controlled frame-correction batch, not runtime-promoted. |
 | Graph-only after v11 | 88 runtime models remain eligible but not reviewed affordance records. |
 | PR46 v11 frame-correction packet usefulness review | Same 12-card frame-correction nomination set compared against v10 and v11. v10 packet had 12 graph-only cards; v11 packet has 12 reviewed cards, with candidate count fixed. |
+| PR47 v11 graph-only priority audit | Reviews the remaining 88 graph-only models after v11 and recommends adaptive exploration / option generation / synthesis discipline as the next controlled enrichment family. No extraction, runtime, prompt, lane, model-call, judge, or user-facing work. |
 
 The governing sentence:
 
@@ -1229,6 +1233,66 @@ Recommended next slice, if opened, is an after-v11 graph-only priority audit.
 The next family should earn its place from the remaining 88 graph-only models
 before any further extraction begins.
 
+PR47 later completed the recommended after-v11 graph-only priority audit. Do
+not treat PR46 alone as permission for another extraction batch.
+
+## What PR47 Added
+
+PR47 answers the question: "After v11, which remaining graph-only capability
+family is most likely to weaken future reasoning packets, and why should it be
+enriched next instead of left graph-only for now?"
+
+It adds:
+
+- `research/v11-graph-only-priority-audit-2026-05-07.md`;
+- `tasks/tasks-v11-graph-only-priority-audit.md`;
+- living-doc posture updates.
+
+Measured PR47 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v11 reviewed records: `134`;
+- v11 reviewed affordances: `170`;
+- v11 absence records: `253`;
+- graph-only runtime models after v11: `88`;
+- v11 status: `draft_review_only`.
+
+PR47's decision label is `v11_graph_only_priority_audit_complete`.
+
+The product lesson:
+
+> After evidence, execution, trust, risk, reversibility, and frame correction
+> are stronger, the next likely weak packet family is adaptive exploration /
+> option generation / synthesis discipline: the part of "before you act" that
+> checks whether a plausible answer is trapped inside too narrow an option
+> space.
+
+PR47 recommends a capped PR48 target set:
+
+- `creative-destruction`;
+- `brainstorming`;
+- `curiosity`;
+- `lateral-thinking`;
+- `divergent-vs-convergent-thinking`;
+- `variation-and-selection`;
+- `adaptation`;
+- `association`;
+- `abstraction`;
+- `synthesis-and-integration`;
+- `mental-simulation`;
+- `branch-solve-merge`.
+
+PR47 does not extract records, promote v11 into runtime, run live lanes, wire
+`/lolla`, change prompts, run model calls or judges, create Batch 3b, create
+user-facing Decision Pressure output, create deterministic option selection,
+or allow deterministic final pressure selection.
+
+Recommended next slice, if opened, is PR48: one controlled source-backed
+extraction batch for the 12 adaptive exploration / option generation /
+synthesis models named by PR47. PR49 must then prove packet usefulness with
+stable nominations before any further extraction begins.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -1301,7 +1365,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "v11_frame_correction_packet_handoff_useful|controlled_frame_correction_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR45|PR46|PR47" plans research tasks -g '*.md'
+rg -n "v11_graph_only_priority_audit_complete|v11_frame_correction_packet_handoff_useful|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR46|PR47|PR48|PR49" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1313,9 +1377,9 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR46 and do not infer permission for runtime work, broad
-extraction, packet promotion, deterministic reasoning-mode routing, or
-automatic extraction momentum.
+Start from PR47 and do not infer permission for runtime work, broad
+extraction, packet promotion, deterministic reasoning-mode routing,
+deterministic option selection, or automatic extraction momentum.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -1351,9 +1415,10 @@ Read first:
 - research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md
 - research/reasoning-substrate-v11-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr46-v10-v11-comparison-render-2026-05-07.md
+- research/v11-graph-only-priority-audit-2026-05-07.md
 
 Current posture:
-v11_frame_correction_packet_handoff_useful
+v11_graph_only_priority_audit_complete
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1642,12 +1707,34 @@ PR46 result:
   judge, Batch 3b, deterministic reasoning-mode routing, or user-facing
   behavior was added
 
+PR47 result:
+- decision label: v11_graph_only_priority_audit_complete
+- after v11, 88 runtime models remain graph-only
+- PR47 recommends adaptive exploration / option generation / synthesis
+  discipline as the next controlled enrichment family
+- recommended PR48 target set is capped at 12 models:
+  creative-destruction, brainstorming, curiosity, lateral-thinking,
+  divergent-vs-convergent-thinking, variation-and-selection, adaptation,
+  association, abstraction, synthesis-and-integration, mental-simulation, and
+  branch-solve-merge
+- PR47 explicitly defers chain-of-thought and latticework-of-mental-models
+  despite static signal because they risk prompt mechanics or encyclopedia
+  texture without a concrete packet need
+- PR48, if opened, must use direct source reading, source-backed nuance, and
+  absence records; PR49 must then prove same-nomination packet usefulness
+  before further extraction
+- no extraction, affordance record edits, compiled artifact changes, runtime
+  promotion, prompt, lane, live adapter, model call, judge, Batch 3b,
+  deterministic option selection, deterministic pressure selection, or
+  user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next slice is an after-v11 graph-only priority audit, not another extraction
-batch by default. Broad extraction is still not justified by count momentum.
+next slice is PR48: one controlled adaptive-exploration extraction batch,
+followed by PR49 packet usefulness proof. Broad extraction is still not
+justified by count momentum.
 ```
 
 ## Core Memory
