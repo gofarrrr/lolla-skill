@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR43 v10 risk/reversibility packet usefulness review.
+**Status:** Product doctrine after PR44 after-v10 graph-only priority audit.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v10_risk_packet_handoff_useful`
+**Current posture:** `v10_graph_only_priority_audit_complete`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -50,6 +50,8 @@ memo, or user-facing launch plan.
 **Current controlled risk/reversibility enrichment report:** `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
 
 **Current v10 packet usefulness review:** `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
+
+**Current v10 graph-only priority audit:** `research/v10-graph-only-priority-audit-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -623,6 +625,17 @@ cascade paths, resilience-over-precision, make-or-break interactions,
 critical-mass density, and loss-frame distortion while preserving the rule that
 Python prepares the material and the LLM/reviewer reasons.
 
+PR44 then completed one after-v10 graph-only priority audit:
+
+> `v10_graph_only_priority_audit_complete`
+
+Treat PR44 as family-selection evidence, not extraction permission by itself.
+The audit reviews the remaining `100` graph-only runtime models after v10 and
+recommends frame correction / metacognitive blind-spot discipline as the next
+controlled family because future packets are likely to be thin where plausible,
+executable, and risk-checked advice may still be evaluated through the wrong
+frame, reasoning mode, evidence boundary, or counterfactual.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -751,12 +764,22 @@ PR43 added the v10 risk/reversibility packet-usefulness answer:
 > variables, critical-mass density, and loss-frame checks without changing
 > candidate count or creating user-facing output.
 
+PR44 added the after-v10 graph-only priority answer:
+
+> The next controlled family should be frame correction / metacognitive
+> blind-spot discipline, not because it completes the corpus, but because it
+> tests the next weak edge of "before you act": whether plausible,
+> executable, risk-checked advice is still being evaluated through the wrong
+> frame, reasoning mode, evidence boundary, or counterfactual. PR45 may extract
+> only the 12 named targets, and PR46 must prove packet usefulness before any
+> further extraction.
+
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, PR36, PR39, and PR42 cards remain useful when tested in additional
    candidate mixes, and which merely add internal bulk?
-2. Which remaining graph-only family after v10 would make future packets thin
-   enough to justify another controlled batch?
+2. Would frame correction / metacognitive blind-spot cards make a future packet
+   materially better, or merely add internal reasoning vocabulary?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?

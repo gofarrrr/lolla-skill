@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR43 completed the v9/v10
-risk/reversibility packet usefulness review. PR42 added source-backed v10 depth
-for the family PR41 selected; PR43 checked whether that depth improves the same
-packet handoff without changing candidate count.
+**Status:** Start-here handover after PR44 completed the after-v10 graph-only
+priority audit. PR43 showed v10 risk/reversibility depth improves one
+stable-nomination packet; PR44 decides which remaining graph-only family should
+be considered next instead of continuing extraction by count.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v10_risk_packet_handoff_useful`
+**Current posture:** `v10_graph_only_priority_audit_complete`
 
-**Current PR:** PR43 - v10 risk/reversibility packet usefulness review
+**Current PR:** PR44 - after-v10 graph-only priority audit
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -52,6 +52,8 @@ Batch 3b, or user-facing Decision Pressure work.
 
 **PR43 decision label:** `v10_risk_packet_handoff_useful`
 
+**PR44 decision label:** `v10_graph_only_priority_audit_complete`
+
 ## Start Here
 
 Read these files in order:
@@ -92,6 +94,7 @@ Read these files in order:
 34. `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
 35. `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
 36. `research/reasoning-substrate-packet-pr43-v9-v10-comparison-render-2026-05-07.md`
+37. `research/v10-graph-only-priority-audit-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -153,6 +156,7 @@ Keep these layers distinct:
 | v10 affordance corpus | 122 reviewed records, 158 affordances, 229 absence records. Draft/review-only v9 plus PR42 controlled risk/reversibility batch, not runtime-promoted. |
 | Graph-only after v10 | 100 runtime models remain eligible but not reviewed affordance records. |
 | PR43 v10 risk/reversibility packet usefulness review | Same 12-card risk/reversibility nomination set compared against v9 and v10. v9 packet had 12 graph-only cards; v10 packet has 12 reviewed cards, with candidate count fixed. |
+| PR44 v10 graph-only priority audit | Reviews the remaining 100 graph-only models after v10 and recommends frame correction / metacognitive blind-spot discipline as the next controlled enrichment family. No extraction, runtime, prompt, lane, model-call, judge, or user-facing work. |
 
 The governing sentence:
 
@@ -1054,8 +1058,65 @@ prompts, run model calls or judges, create Batch 3b, extract new records,
 create user-facing Decision Pressure output, or allow deterministic final
 pressure selection.
 
-Recommended next slice, if opened, is PR44: an after-v10 graph-only priority
-audit, not another extraction batch by default.
+PR44 later completed the recommended after-v10 graph-only priority audit. Do
+not treat PR43 alone as permission for another extraction batch.
+
+## What PR44 Added
+
+PR44 answers the question: "After v10, which remaining graph-only capability
+family is most likely to weaken future reasoning packets, and why should it be
+enriched next instead of left graph-only for now?"
+
+It adds:
+
+- `research/v10-graph-only-priority-audit-2026-05-07.md`;
+- `tasks/tasks-v10-graph-only-priority-audit.md`;
+- living-doc posture updates.
+
+Measured PR44 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v10 reviewed records: `122`;
+- v10 reviewed affordances: `158`;
+- v10 absence records: `229`;
+- graph-only runtime models after v10: `100`;
+- v10 status: `draft_review_only`.
+
+PR44's decision label is `v10_graph_only_priority_audit_complete`.
+
+The product lesson:
+
+> After execution, risk, reversibility, trust, communication, and evidence
+> depth, the next likely weak packet family is frame correction /
+> metacognitive blind-spot discipline: the part of "before you act" that tests
+> whether plausible advice is being evaluated through the right frame,
+> reasoning mode, evidence boundary, and counterfactual.
+
+PR44 recommends a capped PR45 target set:
+
+- `cognitive-gaps-assessment`;
+- `critical-thinking`;
+- `counterfactual-reasoning`;
+- `metacognitive-questioning`;
+- `reasoning-mode-router`;
+- `reframing-perspective`;
+- `theory-induced-blindness`;
+- `einstellung-effect`;
+- `dialectical-reasoning`;
+- `bias-blind-spot`;
+- `false-precision-avoidance`;
+- `wysiati`.
+
+PR44 does not extract records, promote v10 into runtime, run live lanes, wire
+`/lolla`, change prompts, run model calls or judges, create Batch 3b, create
+user-facing Decision Pressure output, create deterministic reasoning-mode
+routing, or allow deterministic final pressure selection.
+
+Recommended next slice, if opened, is PR45: one controlled source-backed
+extraction batch for the 12 frame correction / metacognitive blind-spot models
+named by PR44. PR46 must then prove packet usefulness with stable nominations
+before any further extraction begins.
 
 ## PR24 Review Questions Answered
 
@@ -1129,7 +1190,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "v10_risk_packet_handoff_useful|controlled_risk_reversibility_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR42|PR43|PR44" plans research tasks -g '*.md'
+rg -n "v10_graph_only_priority_audit_complete|v10_risk_packet_handoff_useful|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR43|PR44|PR45|PR46" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1141,8 +1202,9 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR43 and do not infer permission for runtime work, broad
-extraction, packet promotion, or automatic extraction momentum.
+Start from PR44 and do not infer permission for runtime work, broad
+extraction, packet promotion, deterministic reasoning-mode routing, or
+automatic extraction momentum.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -1174,9 +1236,10 @@ Read first:
 - research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md
 - research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr43-v9-v10-comparison-render-2026-05-07.md
+- research/v10-graph-only-priority-audit-2026-05-07.md
 
 Current posture:
-v10_risk_packet_handoff_useful
+v10_graph_only_priority_audit_complete
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1413,13 +1476,33 @@ PR43 result:
 - no extraction, runtime promotion, prompt, lane, live adapter, model call,
   judge, Batch 3b, or user-facing behavior was added
 
+PR44 result:
+- decision label: v10_graph_only_priority_audit_complete
+- remaining graph-only runtime models after v10: 100
+- PR44 does not extract records; it audits and selects the next controlled
+  family
+- recommended PR45 family: frame correction / metacognitive blind-spot
+  discipline
+- recommended PR45 target set: cognitive-gaps-assessment, critical-thinking,
+  counterfactual-reasoning, metacognitive-questioning, reasoning-mode-router,
+  reframing-perspective, theory-induced-blindness, einstellung-effect,
+  dialectical-reasoning, bias-blind-spot, false-precision-avoidance, and
+  wysiati
+- reason: future packets are likely to be thin where plausible, executable,
+  and risk-checked AI advice is still being evaluated through the wrong frame,
+  reasoning mode, evidence boundary, or counterfactual
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, broad extraction, deterministic reasoning-mode routing, or user-facing
+  behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
-unless the user explicitly opens a new product-reviewed slice. The recommended
-next proof slice is PR44: an after-v10 graph-only priority audit, not another
-extraction batch by default. Broad extraction is still not justified by count
-momentum.
+unless the user explicitly opens a new product-reviewed slice. If PR45 opens,
+it must be one controlled source-backed extraction batch for the 12 named
+frame-correction/metacognitive models, and PR46 must prove packet usefulness
+with stable nominations before any further extraction begins. Broad extraction
+is still not justified by count momentum.
 ```
 
 ## Core Memory

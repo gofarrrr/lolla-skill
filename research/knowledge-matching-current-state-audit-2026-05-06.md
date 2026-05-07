@@ -4,13 +4,13 @@
 **Status:** Historical product/architecture audit after the merged PR13-PR23
 stack and Decision Pressure product doctrine. The architecture conclusions
 still stand, but the reviewed affordance counts have been superseded by later
-controlled enrichment and packet-review slices through PR43. This is not a
+controlled enrichment and packet-review slices through PR44. This is not a
 runtime proposal, not an extraction brief, not a prompt change, and not
 user-facing promotion.
 
 **Doctrine anchor:** `broad_intake_disciplined_output`
 
-**Current posture:** `v10_risk_packet_handoff_useful`
+**Current posture:** `v10_graph_only_priority_audit_complete`
 
 **Current handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -42,9 +42,11 @@ collapsed into one story.
    failure containment as the next controlled family. PR42 added source-backed
    depth for those 12 models while keeping v10 runtime-dormant. PR43 then
    showed that v10 improves the same 12-card risk/reversibility packet handoff
-   without changing candidate count. The corpus is richer and more operational,
-   but it is still `draft_review_only`. It supports review artifacts; it does
-   not yet select or generate live pressures.
+   without changing candidate count. PR44 then audited the remaining 100
+   graph-only models and selected frame correction / metacognitive blind-spot
+   discipline as the next controlled family to consider. The corpus is richer
+   and more operational, but it is still `draft_review_only`. It supports
+   review artifacts; it does not yet select or generate live pressures.
 
 So the accurate current claim is:
 
@@ -52,7 +54,9 @@ So the accurate current claim is:
 > After PR42, the reviewed corpus has 122 records. PR40 showed v9 improved one
 > execution/follow-through packet handoff; PR42 added v10 risk/reversibility
 > depth for the family PR41 selected; PR43 showed that v10 improves one
-> risk/reversibility packet handoff. It is still not the live matching system.
+> risk/reversibility packet handoff; PR44 selected frame correction /
+> metacognitive blind-spot discipline as the next controlled family. It is
+> still not the live matching system.
 
 This matters because expanding from 55 records should not mean "add records
 until the number feels complete." Expansion should be pulled by product use:
@@ -63,7 +67,7 @@ next LLM can think better without Python pretending to choose the pressure.
 
 Measured from the repo artifacts when this audit was first written. For the
 current v10 counts and packet-review posture, use the handover, PR39 report,
-PR40 review, PR41 audit, PR42 report, and PR43 review.
+PR40 review, PR41 audit, PR42 report, PR43 review, and PR44 audit.
 
 | Artifact | Count / state | Current role |
 | --- | ---: | --- |
