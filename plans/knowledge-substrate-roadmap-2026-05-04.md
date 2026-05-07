@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR49 are merged or in review, PR49 completed the controlled learning / skill-acquisition enrichment batch, and the current posture is `controlled_learning_skill_enrichment_ready`
+**Status:** living roadmap; PR13-PR50 are merged or in review, PR50 completed the controlled quantitative inference / distributional reasoning enrichment batch, and the current posture is `controlled_quantitative_inference_enrichment_ready`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -40,6 +40,7 @@
 **Current v11 graph-only priority audit:** `research/v11-graph-only-priority-audit-2026-05-07.md`
 **Current controlled adaptive exploration enrichment report:** `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
 **Current controlled learning / skill-acquisition enrichment report:** `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
+**Current controlled quantitative inference enrichment report:** `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -165,6 +166,11 @@ What is already done:
   Batch 12 records and compiles draft/review-only v13. The records are
   source-backed operational cards, not study advice, motivational language,
   runtime promotion, or deterministic mastery classification.
+- PR50 controlled quantitative inference / distributional reasoning enrichment
+  is done for 12 graph-only models selected from the remaining v13 graph-only
+  set. It adds Batch 13 records and compiles draft/review-only v14. The records
+  are source-backed operational cards, not statistical vocabulary, model-output
+  authority, runtime promotion, or deterministic statistical routing.
 - Compiled v3 artifact exists at
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records,
@@ -205,6 +211,11 @@ What is already done:
   `data/compiled/model_affordances/affordances_v13.json`.
 - v13 corpus shape: `158` reviewed records, `194` affordances, `301` absence
   records, `0` schema validation failures, `0` source-quote rejections. v13 is
+  still `draft_review_only` and not runtime-promoted.
+- Compiled v14 artifact exists at
+  `data/compiled/model_affordances/affordances_v14.json`.
+- v14 corpus shape: `170` reviewed records, `206` affordances, `325` absence
+  records, `0` schema validation failures, `0` source-quote rejections. v14 is
   still `draft_review_only` and not runtime-promoted.
 - Treatment-audit v2 activation-gated calibration exists as research evidence,
   but it is not promotion-grade proof.
@@ -524,18 +535,28 @@ What is already done:
   records, compiled as draft/review-only v13. The cards bind learning advice to
   current capability, cognitive load, feedback, retrieval, support fade plans,
   schema reality checks, frame contrast, and calibrated challenge.
+- PR50 controlled quantitative inference / distributional reasoning enrichment
+  is captured in
+  `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`:
+  decision label `controlled_quantitative_inference_enrichment_ready`. Twelve
+  graph-only models gained reviewed Batch 13 records with 12 affordances and 24
+  absence records, compiled as draft/review-only v14. The cards bind numerical
+  and model-shaped claims to priors, baselines, sample structure, distribution
+  shape, state-transition caveats, model generalization, signal compression,
+  tail behavior, durable compounding bases, and false-precision absences.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `controlled_learning_skill_enrichment_ready`: PR49 completed the controlled
-  learning / skill-acquisition extraction batch. The user explicitly approved
-  continuing controlled extraction toward full coverage; the next slice should
-  be PR50 as another capped, source-backed family selected from the remaining
-  64 graph-only runtime models.
+  `controlled_quantitative_inference_enrichment_ready`: PR50 completed the
+  controlled quantitative inference / distributional reasoning extraction
+  batch. The user explicitly approved continuing controlled extraction toward
+  full coverage; the next slice should be PR51 as another capped,
+  source-backed family selected from the remaining 52 graph-only runtime
+  models.
 
 Current posture after PR 23, PR24 review, PR25, PR26, PR27, PR28, PR29, PR30,
 PR31, PR32, PR33, PR34, PR35, PR36, PR37, PR38, PR39, PR40, PR41, PR42, and
-PR43, PR44, PR45, PR46, PR47, PR48, and PR49:
+PR43, PR44, PR45, PR46, PR47, PR48, PR49, and PR50:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -1127,14 +1148,16 @@ original proposal language.
 | V11 graph-only priority audit / PR47 | done as docs/research audit | Reviews the remaining 88 graph-only models after v11 and recommends adaptive exploration / option generation / synthesis discipline as the next controlled enrichment family. No extraction or runtime promotion. |
 | Controlled adaptive exploration enrichment / PR48 | done as controlled reviewed extraction slice | Adds twelve Batch 11 records for adaptive exploration, option generation, simulation, abstraction, synthesis, and merge discipline, compiles draft/review-only v12, and preserves absences. No runtime promotion or deterministic option selection. |
 | Controlled learning / skill-acquisition enrichment / PR49 | done as controlled reviewed extraction slice | Adds twelve Batch 12 records for mastery sequencing, cognitive load, deliberate practice, productive difficulty, expertise matching, plain-language gap testing, generation, learning curves, scaffolding, schema acquisition, varied practice, and reachable stretch, compiles draft/review-only v13, and preserves absences. No runtime promotion or deterministic mastery classification. |
+| Controlled quantitative inference enrichment / PR50 | done as controlled reviewed extraction slice | Adds twelve Batch 13 records for Bayesian updating, regression-to-mean baselines, conjunction risk, representativeness, Monte Carlo range checks, Markov transition caveats, statistics, statistical learning, data-science framing, information compression, power laws, and compounding, compiles draft/review-only v14, and preserves absences. No runtime promotion or deterministic statistical routing. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR49 completed the controlled learning / skill-acquisition enrichment batch.
-> v13 is still draft/review-only. The next slice should be PR50: another capped,
-> source-backed extraction family from the remaining 64 graph-only runtime
+> PR50 completed the controlled quantitative inference / distributional
+> reasoning enrichment batch. v14 is still draft/review-only. The next slice
+> should be PR51: another capped, source-backed extraction family from the
+> remaining 52 graph-only runtime
 > models. Continue quality-first extraction toward full coverage; do not turn
 > that into broad Batch 3b or runtime promotion.
 
@@ -1749,7 +1772,7 @@ Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
 The current reviewed posture is
-`controlled_learning_skill_enrichment_ready` after PR49. Do not
+`controlled_quantitative_inference_enrichment_ready` after PR50. Do not
 treat any historical item below as active next work.
 
 Historical PR 12 scope was:

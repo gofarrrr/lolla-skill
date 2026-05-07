@@ -1,0 +1,145 @@
+{
+  "model_id": "representativeness-heuristic",
+  "source_file": "Representativeness_Heuristic_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "representativeness-heuristic.similarity-vs-base-rate-check",
+      "status": "supported",
+      "name": "Similarity versus base-rate check",
+      "mechanism": "When a case feels obvious because it resembles a familiar category, require the answer to separate resemblance from probability, test base rates, and name which structural features actually transfer.",
+      "activation_shape": {
+        "use_when": [
+          "A vivid story, analogy, stereotype, or category label is driving confidence.",
+          "The case looks like a familiar success or failure pattern.",
+          "A decision may be skipping base rates because the representative story feels complete."
+        ],
+        "do_not_use_when": [
+          "The task is communication only and the analogy is explicitly framed as a teaching aid.",
+          "There is already strong base-rate or causal evidence supporting the category assignment.",
+          "The problem is not probability judgment but values, ownership, or execution."
+        ],
+        "case_evidence_needed": [
+          "The prototype or analogy being used.",
+          "The relevant base rate or reference class.",
+          "The structural similarities and differences.",
+          "The action that would change if resemblance is misleading."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "force-outside-view-before-category-confidence",
+          "description": "Require the answer to make the representative story provisional until base rates and structural fit are checked.",
+          "evidence_required": [
+            "Representative pattern.",
+            "Reference class frequency.",
+            "Transferable mechanism.",
+            "Non-matching feature or disconfirming evidence."
+          ],
+          "good_output_shape": [
+            "Names the resemblance-based shortcut.",
+            "Checks the base rate.",
+            "Tests structural fit.",
+            "Keeps or discards the analogy based on evidence."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What prototype is this case being matched to?",
+        "What is the base rate for the category we are implying?",
+        "Which visible similarity is not actually causal?"
+      ],
+      "misuse_guards": [
+        "Do not treat similarity as probability.",
+        "Do not let a vivid case override population frequency.",
+        "Do not let a persuasive analogy skip mechanism checks."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Representativeness_Heuristic_rag.md",
+          "source_quote": "similarity is not probability",
+          "section_hint": "Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Representativeness_Heuristic_rag.md",
+          "source_quote": "diagnosing why a fast judgment feels obvious because a case resembles a familiar type",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Representativeness_Heuristic_rag.md",
+          "source_quote": "surface similarity is treated as causal similarity",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports representativeness as resemblance-to-probability correction.",
+        "dropped_material": [
+          "Did not extract analogies as inherently bad; the record preserves their communication value when bounded.",
+          "Did not turn this into a stereotype detector."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves category and analogy checks."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "prototype-as-population",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that a prototype can override how common a category actually is in the larger population.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Representativeness_Heuristic_rag.md",
+          "source_quote": "overlooks how common B actually is in the larger population",
+          "section_hint": "Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "similarity-as-base-rate-substitute",
+      "status": "not_supported_by_source",
+      "reason": "The source says similarity must not replace reference-class frequency or outside-view distribution evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Representativeness_Heuristic_rag.md",
+          "source_quote": "vivid similarity overrides reference-class frequency",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Representativeness_Heuristic_rag.md",
+      "source_quote": "the brain's preference for **salient narratives over statistical realities**",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for representativeness as a base-rate and mechanism check.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps the LLM keep useful analogy without over-believing it."
+    ],
+    "review_status": "draft"
+  }
+}

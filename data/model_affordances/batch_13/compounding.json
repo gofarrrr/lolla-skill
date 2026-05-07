@@ -1,0 +1,145 @@
+{
+  "model_id": "compounding",
+  "source_file": "Compounding_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "compounding.durable-base-before-growth-curve",
+      "status": "supported",
+      "name": "Durable base before growth curve",
+      "mechanism": "When a path is justified by cumulative gains, require the answer to test whether the base persists, downside is protected, and repeated cycles can actually stack rather than reset or compound hidden errors.",
+      "activation_shape": {
+        "use_when": [
+          "Small gains can accumulate without being reset.",
+          "Cause and effect unfold across time rather than in one visible moment.",
+          "The decision depends on durable systems, trust, knowledge, distribution, or habits."
+        ],
+        "do_not_use_when": [
+          "The base is fragile and hidden leaks can erase accumulated progress.",
+          "The projected growth rate lacks a time horizon or supporting engine.",
+          "Commitment to one compounding path forecloses better optionality too early."
+        ],
+        "case_evidence_needed": [
+          "The repeated cycle that creates gains.",
+          "The base that must be preserved.",
+          "The downside or leak that could reset progress.",
+          "The time horizon for compounding to matter."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "protect-base-before-projecting-curve",
+          "description": "Require the answer to identify the compounding engine and the fragility that could erase accumulated gains before endorsing a long-term path.",
+          "evidence_required": [
+            "Repeated improvement loop.",
+            "Persistence of gains.",
+            "Downside protection.",
+            "Time horizon."
+          ],
+          "good_output_shape": [
+            "Names what compounds.",
+            "Checks whether gains persist.",
+            "Identifies base fragility or leak.",
+            "Limits growth claims to the supported horizon."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What exactly carries forward from one cycle to the next?",
+        "What could reset the accumulated base?",
+        "Is the time horizon long enough for compounding to matter?"
+      ],
+      "misuse_guards": [
+        "Do not extrapolate a growth rate without testing the engine.",
+        "Do not ignore downside protection while celebrating upside compounding.",
+        "Do not call repeated activity compounding if each cycle resets."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Compounding_rag.md",
+          "source_quote": "small gains can accumulate without being reset",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Compounding_rag.md",
+          "source_quote": "protecting downside is as important as amplifying upside",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Compounding_rag.md",
+          "source_quote": "Assuming Growth Will Compound Without Protecting the Engine",
+          "section_hint": "Weaknesses: Limitations and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports compounding as durable-base and downside-protected cumulative gain.",
+        "dropped_material": [
+          "Did not extract financial compounding as generic investment advice.",
+          "Did not promote compounding as always preferable to optionality."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves long-horizon system advice."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "growth-rate-as-guarantee",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that compounding fails when people celebrate the growth curve but ignore fragility in the base that sustains it.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Compounding_rag.md",
+          "source_quote": "celebrate the growth curve but ignore fragility in incentives, quality, retention, or operational resilience",
+          "section_hint": "Weaknesses: Limitations and Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "compounding-without-time-horizon",
+      "status": "not_supported_by_source",
+      "reason": "The source says the model applies where cause and effect unfold over time, so an immediate-moment claim is not supported.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Compounding_rag.md",
+          "source_quote": "cause and effect unfold across time rather than in one visible moment",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Compounding_rag.md",
+      "source_quote": "results generated in one cycle become the base for generating results in the next cycle",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for compounding as cumulative gains that require base durability.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps distinguish true compounding from wishful extrapolation."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR49 controlled learning / skill-acquisition enrichment.
+**Status:** Product doctrine after PR50 controlled quantitative inference / distributional reasoning enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_learning_skill_enrichment_ready`
+**Current posture:** `controlled_quantitative_inference_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -62,6 +62,8 @@ memo, or user-facing launch plan.
 **Current controlled adaptive exploration enrichment report:** `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
 
 **Current controlled learning / skill-acquisition enrichment report:** `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
+
+**Current controlled quantitative inference enrichment report:** `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -726,6 +728,23 @@ plain-language explanation gaps, generated articulation with calibration,
 measured learning curves, temporary support with fade plans, schema reality
 checks, contrasting frames before commitment, and reachable stretch.
 
+PR50 then completed the controlled quantitative inference / distributional
+reasoning enrichment batch:
+
+> `controlled_quantitative_inference_enrichment_ready`
+
+Treat PR50 as source-backed substrate enrichment, not packet usefulness proof,
+runtime permission, prompt mechanics, deterministic statistical routing, model
+output authority, or proof that Python can decide which numeric claim should
+govern the final answer. It adds 12 Batch 13 records and compiles
+draft/review-only v14 with 170 reviewed records, 206 affordances, and 325
+absence records. The useful depth is operational: prior/evidence updating,
+baseline discipline, conjunctive sequence-risk checks, resemblance versus
+base-rate correction, range/tail simulation caveats, state-transition caveats,
+sample-structure inference, prediction/generalization checks, question to
+measurement to model handoff, signal-preserving compression, power-law tail
+caution, and durable-base checks before compounding extrapolation.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -904,11 +923,21 @@ PR49 added the controlled learning / skill-acquisition enrichment answer:
 > frames, and calibrated challenge. v13 remains dormant and full coverage must
 > continue through bounded source-backed families, not broad Batch 3b.
 
+PR50 added the controlled quantitative inference / distributional reasoning
+answer:
+
+> Yes, the selected quantitative sources support compact reviewed depth when
+> extraction binds numerical claims to priors, baselines, sample structure,
+> distribution shape, model generalization, transition stability, signal
+> compression, tail behavior, compounding-base durability, and absence records
+> that block false precision. v14 remains dormant and full coverage must
+> continue through bounded source-backed families, not broad Batch 3b.
+
 The next useful product questions are:
 
-1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, PR48, and PR49 cards remain useful when
+1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, PR48, PR49, and PR50 cards remain useful when
    tested in additional candidate mixes, and which merely add internal bulk?
-2. Which remaining graph-only family should PR50 extract next without drifting
+2. Which remaining graph-only family should PR51 extract next without drifting
    into mechanical completion?
 3. When should the next periodic packet usefulness review happen so extraction
    quality stays connected to handoff usefulness?

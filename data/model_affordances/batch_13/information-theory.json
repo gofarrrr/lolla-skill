@@ -1,0 +1,145 @@
+{
+  "model_id": "information-theory",
+  "source_file": "Information_Theory_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "information-theory.signal-preserving-compression",
+      "status": "supported",
+      "name": "Signal preserving compression",
+      "mechanism": "When useful truth is not landing because of information shape, require the answer to prune, order, and package the message so the core signal survives without stripping out the decision-relevant complexity.",
+      "activation_shape": {
+        "use_when": [
+          "Complexity is real but attention is scarce.",
+          "The same decision is failing because of message shape, not message truth.",
+          "The communicator must choose what not to say while preserving action-critical signal."
+        ],
+        "do_not_use_when": [
+          "Compression would erase system interconnections or weak signals that matter.",
+          "The message needs more evidence, not cleaner packaging.",
+          "Emotional, stakeholder, or implementation context is being stripped away as noise."
+        ],
+        "case_evidence_needed": [
+          "The audience or reviewer constraint.",
+          "The core signal that must survive.",
+          "The material to prune or sequence.",
+          "The complexity that cannot be safely compressed."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compress-with-map-territory-caveat",
+          "description": "Require the answer to make the message easier to process while naming what the simplified map leaves out.",
+          "evidence_required": [
+            "Core message.",
+            "Audience constraint.",
+            "Pruned supporting material.",
+            "Decision-relevant caveat preserved."
+          ],
+          "good_output_shape": [
+            "States the core signal.",
+            "Orders or chunks the material.",
+            "Removes nonessential burden.",
+            "Warns where compression would distort the territory."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the smallest message that still preserves the decision signal?",
+        "What important interconnection would be lost if we compressed further?",
+        "Is the failure truth quality or message shape?"
+      ],
+      "misuse_guards": [
+        "Do not confuse information volume with signal.",
+        "Do not compress away meaningful weak signals.",
+        "Do not turn a map into the territory."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Information_Theory_rag.md",
+          "source_quote": "Best when the communicator must choose what not to say",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Theory_rag.md",
+          "source_quote": "message shape, not message truth",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Theory_rag.md",
+          "source_quote": "Map-Territory Confusion",
+          "section_hint": "Limitations and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports information theory as signal-preserving compression and sequencing.",
+        "dropped_material": [
+          "Did not extract prompt-engineering mechanics.",
+          "Did not treat compression as always good."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves compactness without flattening the case."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "information-as-volume",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against boiling the ocean and gathering data for its own sake rather than preserving actionable signal.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Information_Theory_rag.md",
+          "source_quote": "boiling the ocean",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "signal-without-decoding-context",
+      "status": "not_supported_by_source",
+      "reason": "The source says adoption can fail because sequencing, chunking, framing, or contrast prevents comprehension, so signal must be shaped for its receiver.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Information_Theory_rag.md",
+          "source_quote": "sequencing, chunking, framing, or contrast is preventing comprehension and adoption",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Information_Theory_rag.md",
+      "source_quote": "minimize the **cognitive expenditure** required for the audience",
+      "section_hint": "Core Definition and Purpose",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for information theory as signal-preserving packaging under cognitive constraints.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps reason about packet burden itself."
+    ],
+    "review_status": "draft"
+  }
+}
