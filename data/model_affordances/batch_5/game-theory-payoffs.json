@@ -1,0 +1,153 @@
+{
+  "model_id": "game-theory-payoffs",
+  "source_file": "Game_Theory_Payoffs_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+      "status": "supported",
+      "name": "Counterparty response payoff map",
+      "mechanism": "When the value of a move depends on another actor's response, require the answer to name the players, available moves, information asymmetries, payoff drivers, and the few decisive branches rather than judging the move in isolation.",
+      "activation_shape": {
+        "use_when": [
+          "A rival, partner, regulator, buyer, seller, or negotiating counterparty can change the value of the proposed action.",
+          "The choice set, likely moves, information asymmetries, and payoff drivers can be made explicit enough to inspect.",
+          "The decision needs to separate what each actor is trying to maximize, avoid, or preserve."
+        ],
+        "do_not_use_when": [
+          "The actors are not actually playing the same game because reputation, ideology, politics, or internal incentives dominate.",
+          "The answer would build an ornate payoff tree instead of isolating the few countermoves that matter.",
+          "The computational burden of recursive strategizing outweighs the decision value."
+        ],
+        "case_evidence_needed": [
+          "The players or counterparties involved.",
+          "The actions realistically available to each player.",
+          "The information each actor has or lacks.",
+          "The payoff drivers and decisive response branches."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-players-moves-and-decisive-payoffs",
+          "description": "Require the answer to map the relevant players, likely moves, and payoff drivers, while pruning branches that do not materially change the decision.",
+          "evidence_required": [
+            "The actor taking the proposed action.",
+            "The counterparties whose reactions matter.",
+            "The likely moves and constraints for each side.",
+            "The payoff or loss each side is trying to produce or avoid."
+          ],
+          "good_output_shape": [
+            "Names the players.",
+            "Lists only realistic moves.",
+            "States how the counterparty response changes the payoff.",
+            "Flags where assumed incentives may be wrong."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Whose response changes the value of this move?",
+        "What is each side trying to maximize, avoid, or preserve?",
+        "Which counterparty move is decisive, and which branches are just decorative complexity?"
+      ],
+      "misuse_guards": [
+        "Do not assume both sides are optimizing the same payoff model.",
+        "Do not model every countermove when only a few branches matter.",
+        "Do not hide human values, egos, politics, or emotions behind clean rational-player assumptions."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "identifying the players, the actions available to them, the information they possess, and the resultant payoff for each potential action",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "the counterparty response changes the value of your move",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "name the players, likely moves, information asymmetries, and what each side is trying to maximize, avoid, or preserve",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a counterparty-response payoff map with explicit pruning guards.",
+        "dropped_material": [
+          "Did not extract Vickrey auctions, simultaneous games, or diplomacy empathy as separate affordances because they are examples or adjacent mechanisms.",
+          "Did not infer equilibrium selection or formal payoff mathematics beyond source support."
+        ],
+        "open_questions": [
+          "Future packet comparison should test whether this card helps negotiation/competition cases without making packets feel like game trees."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "same-game-assumption-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that actors may not be playing the same game. A reviewed card should force incentive/frame testing rather than assume shared payoff logic.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "the actors are not actually playing the same game",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "ornate-payoff-tree-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects modeling every countermove when that creates rigorous-looking but low-value complexity.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "modeling every countermove instead of the few that matter",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Game_Theory_Payoffs_rag.md",
+      "source_quote": "In any conflict, a key actionable step is to list the choices available to all \"players,\" along with the consequences and anticipated payoffs.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Game_Theory_Payoffs_rag.md",
+      "source_quote": "Game theory applies broadly to situations like bargaining, auctions, voting, and the design of incentives.",
+      "section_hint": "Applications",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Game Theory Payoffs. Extracted one payoff-map affordance and preserved absences for false shared-game assumptions and ornate payoff trees.",
+    "dropped_material": [
+      "Formal equilibrium procedures and auction-specific tactics were not extracted because this batch targets compact packet handoff depth.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether payoff mapping remains legible in compact cards."
+    ],
+    "review_status": "draft"
+  }
+}

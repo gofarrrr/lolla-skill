@@ -1,0 +1,153 @@
+{
+  "model_id": "cross-cultural-communication-frameworks",
+  "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+      "status": "supported",
+      "name": "Frame translation action check",
+      "mechanism": "When the same message must survive cultures, functions, or status differences, require the answer to translate the message for the actual audience frame while preserving the intended action, disagreement, urgency, and hard trade-offs.",
+      "activation_shape": {
+        "use_when": [
+          "The same message must survive translation across cultures, functions, or status differences without losing the intended action.",
+          "Implementation depends not just on being right, but on being understood, trusted, and taken seriously.",
+          "Misunderstanding may come from unspoken norms, politeness expectations, or different assumptions about directness."
+        ],
+        "do_not_use_when": [
+          "Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience.",
+          "Translation optimizes for harmony or politeness so aggressively that disagreement, urgency, or trade-offs disappear.",
+          "The answer would communicate as if the audience were already the expert."
+        ],
+        "case_evidence_needed": [
+          "The message, decision, or action that must be understood.",
+          "The audience frame, status context, function, culture, or local norm that changes reception.",
+          "The likely misunderstanding, threat response, jargon barrier, or politeness norm.",
+          "The action, urgency, disagreement, or trade-off that must survive translation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "translate-frame-without-hiding-action",
+          "description": "Require the answer to adapt message framing for the actual audience while preserving the core action and hard trade-offs.",
+          "evidence_required": [
+            "The message or strategy to communicate.",
+            "The audience's frame, norms, and likely filters.",
+            "The intended action or implementation outcome.",
+            "The disagreement, urgency, or trade-off that cannot be softened away."
+          ],
+          "good_output_shape": [
+            "Names the sender/audience mismatch.",
+            "Adapts wording or sequencing for the audience frame.",
+            "Preserves the required action.",
+            "Keeps hard trade-offs visible."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What does this audience need to understand, trust, and do?",
+        "Which cultural, functional, or status frame could distort the message?",
+        "Are we making the message more receivable while still naming disagreement and hard trade-offs?"
+      ],
+      "misuse_guards": [
+        "Do not use cultural models as stereotype shortcuts.",
+        "Do not optimize for harmony so hard that urgency and trade-offs vanish.",
+        "Do not communicate abstract expert content without translating it into the receiver's frame."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+          "source_quote": "to bridge the inherent disconnect between the sender's intricate understanding and the receiver's often simplified, emotionally filtered processing of information",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+          "source_quote": "same message must survive translation across cultures, functions, or status differences",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+          "source_quote": "implementation depends not just on being right, but on being understood, trusted, and taken seriously",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a frame-translation action check that preserves action and trade-offs while adapting to audience frames.",
+        "dropped_material": [
+          "Did not extract every communication framework, Minto/logical-structure relation, or emotional-intelligence ally as separate affordances.",
+          "Did not infer culture-specific advice beyond the source's audience-frame and anti-stereotype guards."
+        ],
+        "open_questions": [
+          "Future packet comparison should test whether this card improves relational/communication packets without stereotyping or hiding conflict."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "stereotype-shortcut-communication",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects using cultural models as stereotype shortcuts. The model should prompt investigation of the actual audience, incentives, and local norms.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+          "source_quote": "cultural models are used as stereotype shortcuts",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "harmony-hides-tradeoffs",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that optimizing for harmony or politeness can hide disagreement, urgency, and trade-offs that still must be named.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+          "source_quote": "translation optimizes for harmony or politeness so aggressively that it hides disagreement, urgency, or hard trade-offs",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+      "source_quote": "ensure that a message, idea, or strategy achieves maximum impact by being received, understood, and acted upon",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+      "source_quote": "complex ideas must be intentionally \"retuned\" for the croc brain, requiring simple, clear, direct, and non-threatening ideas",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Cross-Cultural Communication Frameworks. Extracted one frame-translation/action check and rejected stereotype shortcuts plus harmony-hidden trade-offs.",
+    "dropped_material": [
+      "MECE, Minto, Feynman, and emotional-intelligence links were left as context rather than separate cards.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps communication cases while preserving hard truths."
+    ],
+    "review_status": "draft"
+  }
+}

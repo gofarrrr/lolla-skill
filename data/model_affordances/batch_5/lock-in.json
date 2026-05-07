@@ -1,0 +1,153 @@
+{
+  "model_id": "lock-in",
+  "source_file": "Lock_In_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "lock-in.reversal-cost-dependency-audit",
+      "status": "supported",
+      "name": "Reversal-cost dependency audit",
+      "mechanism": "When a platform, vendor, architecture, or migration decision is framed as reversible, require the answer to test whether integration debt, dual-run burden, retraining, contract sequencing, and local workarounds are quietly narrowing the future option set.",
+      "activation_shape": {
+        "use_when": [
+          "A vendor exit, platform shift, ERP migration, or infrastructure decision is being framed as normal implementation effort.",
+          "The team says it can switch later without testing whether the option survives time.",
+          "Dual-run coexistence, retraining, workarounds, or interface debt may be the hidden cost center."
+        ],
+        "do_not_use_when": [
+          "The current path is deliberately sticky because stability, standardization, or commitment is still compounding advantage.",
+          "Switching later is being priced as if it were the same option as switching now.",
+          "The old architecture or belief is being defended mainly because departure feels costly, disloyal, or identity-threatening."
+        ],
+        "case_evidence_needed": [
+          "The platform, vendor, architecture, or path being locked in.",
+          "The integration debt, contract dependencies, workflows, retraining, and workaround behavior created by the current path.",
+          "The cost of dual-run coexistence and rollback.",
+          "The evidence that the option to switch later remains alive or is already narrowing."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "price-reversal-cost-before-deferring-switch",
+          "description": "Require the answer to price the reversal and coexistence costs before accepting claims that the team can switch later.",
+          "evidence_required": [
+            "The claimed reversible decision.",
+            "The dependencies and workflows that will harden over time.",
+            "The dual-run, rollback, support, retraining, and partner costs.",
+            "The trigger at which waiting destroys the option to switch."
+          ],
+          "good_output_shape": [
+            "Names the lock-in mechanism.",
+            "Separates useful stability from accidental dependency hardening.",
+            "Prices coexistence and reversal costs.",
+            "States whether the later option is still alive."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What dependency becomes harder to unwind each month we stay on this path?",
+        "Are we pricing dual-run coexistence and local workarounds, or only target build and cutover?",
+        "Is switching later still the same option as switching now?"
+      ],
+      "misuse_guards": [
+        "Do not treat future switching as equally cheap after custom workflows and contracts harden.",
+        "Do not defend an old architecture mainly because departure feels disloyal or identity-threatening.",
+        "Do not ignore productive lock-in when stability and standardization are deliberately creating advantage."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Lock_In_rag.md",
+          "source_quote": "persistent adherence to a previous state",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lock_In_rag.md",
+          "source_quote": "reversal cost compounds faster than the migration plan acknowledges",
+          "section_hint": "Additional Application Domain: Operational and Platform Lock-In",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lock_In_rag.md",
+          "source_quote": "Dual-run periods, exception handling, retraining, and partner workarounds can become the mechanism that locks the organization into the old path",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports an operational lock-in audit centered on reversal cost, dual-run traps, and dependency hardening.",
+        "dropped_material": [
+          "Did not extract AI persona consistency, mastery, or System 1 schema speed as separate affordances because PR32 targets platform/decision lock-in gaps.",
+          "Did not infer procurement or migration tactics beyond source support."
+        ],
+        "open_questions": [
+          "Future packet comparison should test overlap between lock-in, path-dependence, commitment-bias, and status-quo-bias."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "switch-later-same-cost-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source says switching later should not be priced as if it were the same option after workflows, contracts, and operating habits harden.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lock_In_rag.md",
+          "source_quote": "switching later is priced as if it were the same option as switching now",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "identity-protective-architecture-defense",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects defending an old architecture, strategy, or belief mainly because departure feels costly, disloyal, or identity-threatening.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lock_In_rag.md",
+          "source_quote": "defend an old architecture, strategy, or belief mainly because departure feels costly, disloyal, or identity-threatening",
+          "section_hint": "Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Lock_In_rag.md",
+      "source_quote": "silently losing freedom while the team still talks as if freedom is intact",
+      "section_hint": "Additional Application Domain: Operational and Platform Lock-In",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Lock_In_rag.md",
+      "source_quote": "Most useful when a migration plan treats reversal as available even though dependency drag is already compounding",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Lock-In. Extracted one reversal-cost/dependency audit and rejected switch-later equivalence plus identity-protective defense.",
+    "dropped_material": [
+      "General consistency benefits were kept as do-not-overcorrect context rather than separate PR32 cards.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should verify whether this card and path-dependence can coexist without duplicate bulk."
+    ],
+    "review_status": "draft"
+  }
+}

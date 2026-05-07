@@ -1,0 +1,160 @@
+{
+  "model_id": "checklists",
+  "source_file": "checklists_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "checklists.omission-risk-execution-gate",
+      "status": "supported",
+      "name": "Omission-risk execution gate",
+      "mechanism": "When a recommendation needs reliable execution, convert the critical prerequisites, handoffs, safety checks, and scaling conditions into a compact checklist so failure comes less from skipped known steps and more cognitive capacity remains for judgment.",
+      "activation_shape": {
+        "use_when": [
+          "Failure is likely to come from skipped steps, forgotten prerequisites, weak handoffs, or inconsistent execution.",
+          "The process has known recurring mistakes, dependency checks, approvals, or safety conditions.",
+          "A recommendation needs minimum operating discipline before action, during execution, or before scaling."
+        ],
+        "do_not_use_when": [
+          "The problem is novel enough that applying a familiar checklist would force reality into the wrong frame.",
+          "Checklist completion would be mistaken for problem resolution.",
+          "The checklist would add procedural clutter beyond the few critical checks that carry the safety or quality signal."
+        ],
+        "case_evidence_needed": [
+          "The process, action, or recommendation being operationalized.",
+          "The known failure points, prerequisites, handoffs, approvals, or safety checks.",
+          "The few checks that are truly make-or-break.",
+          "The evidence that completing the checklist changes risk or execution quality."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-critical-checks-not-everything",
+          "description": "Require the answer to name the small set of critical checks that prevent omission risk and to drop checklist items that do not change safety, quality, or execution.",
+          "evidence_required": [
+            "The known process or execution step at risk.",
+            "The failure points or omissions that commonly matter.",
+            "The checks that must happen before action, during execution, or before scaling.",
+            "The rationale for why each check changes risk or quality."
+          ],
+          "good_output_shape": [
+            "Lists only critical checks.",
+            "Separates prerequisites, execution checks, and scale checks.",
+            "Names the omission each item prevents.",
+            "Flags when checklist use would become bureaucracy."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What known omission would make this recommendation fail even if the strategy is sound?",
+        "Which checks must happen before action, during execution, and before scaling?",
+        "Is this checklist reducing risk, or just creating tick-box confidence?"
+      ],
+      "misuse_guards": [
+        "Do not treat a completed checklist as proof that the problem is resolved.",
+        "Do not use a generic checklist for a genuinely novel problem without testing whether the frame fits.",
+        "Do not let checklist completeness add steps beyond the critical few that carry the safety or quality signal."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "checklists_rag.md",
+          "source_quote": "impose **order, completeness, and consistency** on complex or multi-step processes",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "checklists_rag.md",
+          "source_quote": "external cognitive scaffold",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "checklists_rag.md",
+          "source_quote": "omission risk is higher than invention risk",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "checklists_rag.md",
+          "source_quote": "specify what must be checked before action, during execution, and before scaling",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a compact omission-risk execution gate rather than a broad checklist-for-everything record.",
+        "dropped_material": [
+          "Did not extract SUCCESs, SMART, ethical AI, or contract-analysis checklists separately because they are examples of the same checklist mechanism.",
+          "Did not promote MECE here because formal-reasoning and obligations-controls-mapping cover adjacent structure needs."
+        ],
+        "open_questions": [
+          "Future packet review should test whether checklist cards remain compact enough not to crowd out more semantic cards."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "tick-box-resolution-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly rejects treating checklist completion as problem resolution when assumptions, environment, or causal story remain untested.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "checklists_rag.md",
+          "source_quote": "checklist completion is mistaken for problem resolution",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "generic-checklist-for-novel-problem",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that familiar checklists can force genuinely novel problems into the wrong frame. That generic use should not be promoted.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "checklists_rag.md",
+          "source_quote": "applying a generic checklist to a genuinely novel problem risks disastrously wrong solutions",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "checklists_rag.md",
+      "source_quote": "The **Checklist** is a fundamental mental model defined by its ability to impose **order, completeness, and consistency** on complex or multi-step processes,.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "checklists_rag.md",
+      "source_quote": "Best when a recommendation needs a minimum viable operating discipline",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Checklists. Extracted one omission-risk gate and rejected tick-box resolution plus generic checklist application.",
+    "dropped_material": [
+      "Domain-specific checklist examples were treated as illustrations rather than separate records.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should watch whether checklist cards improve operating discipline without adding bureaucratic bulk."
+    ],
+    "review_status": "draft"
+  }
+}

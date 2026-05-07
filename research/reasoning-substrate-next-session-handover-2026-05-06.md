@@ -1,14 +1,14 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-06
-**Status:** Start-here handover after PR31 audited what the 65 reviewed v5
-model records can actually tell us and which enrichment gaps remain. This is
+**Status:** Start-here handover after PR32 completed a controlled
+capability-gap enrichment batch and compiled draft/review-only v6. This is
 still not runtime behavior, prompt promotion, lane rewrite, broad Batch 3b, or
 user-facing Decision Pressure work.
 
-**Current posture:** `v5_capability_audit_complete`
+**Current posture:** `controlled_capability_gap_enrichment_ready`
 
-**Current PR:** PR31 - v5 reviewed-model capability audit
+**Current PR:** PR32 - controlled capability-gap enrichment batch
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -25,6 +25,8 @@ user-facing Decision Pressure work.
 **PR30 decision label:** `packet_review_rendering_ready`
 
 **PR31 decision label:** `v5_capability_audit_complete`
+
+**PR32 decision label:** `controlled_capability_gap_enrichment_ready`
 
 ## Start Here
 
@@ -49,6 +51,7 @@ Read these files in order:
 17. `research/reasoning-substrate-packet-pr27-review-render-2026-05-07.md`
 18. `research/reasoning-substrate-packet-pr29-review-render-2026-05-07.md`
 19. `research/v5-reviewed-model-capability-audit-2026-05-07.md`
+20. `research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -84,12 +87,14 @@ Keep these layers distinct:
 | Repo-local source custody | 222 files in `data/model_sources/` with SHA-256 manifest after PR26. |
 | v4 affordance corpus | 55 reviewed records, 91 affordances, 95 absence records. Deep reviewed subset, still dormant. |
 | v5 affordance corpus | 65 reviewed records, 101 affordances, 115 absence records. Draft/review-only v4 plus PR28 controlled batch, not runtime-promoted. |
-| Graph-only after v5 | 157 runtime models remain eligible but not reviewed affordance records. |
+| v6 affordance corpus | 81 reviewed records, 117 affordances, 147 absence records. Draft/review-only v5 plus PR32 controlled capability-gap batch, not runtime-promoted. |
+| Graph-only after v6 | 141 runtime models remain eligible but not reviewed affordance records. |
 | PR27 mixed packet fixture | 7 candidate cards plus 1 suppressed duplicate. Review-only proof that mixed v4 + graph-only packets are useful handoff material. |
 | PR28 controlled extraction batch | 10 graph-only models gained reviewed records with 10 affordances and 20 absence records. |
 | PR29 v5 packet depth review | Same 7-card PR27 fixture regenerated against v5. Reviewed cards increased from 3 to 7, graph-only cards fell from 4 to 0, and packet burden stayed acceptable. |
 | PR30 packet review rendering | Deterministic reviewer-only Markdown renders for PR27, PR29, and their comparison. Makes packet review easier; does not select output or create a product surface. |
 | PR31 v5 capability audit | Audits what the 65 reviewed records can already support and names the next controlled enrichment gaps. |
+| PR32 controlled capability-gap enrichment | 16 graph-only models from the PR31 gap list gained reviewed records with 16 affordances and 32 absence records; compiled as draft/review-only v6. |
 
 The governing sentence:
 
@@ -405,6 +410,64 @@ PR31 does not extract new records, promote v5 into runtime, run live lanes,
 wire `/lolla`, change prompts, run model calls or judges, create Batch 3b, or
 create user-facing Decision Pressure output.
 
+## What PR32 Added
+
+PR32 answers the question: "Can the named PR31 capability gaps produce useful
+reviewed depth without drifting into broad mechanical extraction?"
+
+It adds:
+
+- `data/model_affordances/batch_5/`;
+- `data/compiled/model_affordances/affordances_v6.json`;
+- `data/compiled/model_affordances/quality_report_v6.md`;
+- `tests/test_pr32_batch5_records.py`;
+- `research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md`.
+
+Measured v6 shape:
+
+- `81` reviewed model records;
+- `117` reviewed affordances;
+- `147` absence records;
+- `1487` source-evidence references across reviewed records;
+- `224` treatment requirements;
+- `445` diagnostic questions;
+- `420` misuse guards;
+- `141` runtime models still graph-only after v6.
+
+PR32's decision label is `controlled_capability_gap_enrichment_ready`.
+
+The product lesson:
+
+> Controlled gap-driven extraction can add real reviewed handoff depth without
+> pretending the corpus is complete. Fifteen of sixteen sources produced strong
+> operational records, and `batna` was intentionally kept thin/narrow because
+> the source itself does not support full BATNA doctrine.
+
+PR32 targeted these capability gaps:
+
+- delay and obligation discipline: `delays`,
+  `obligations-controls-mapping`;
+- external correction and formal procedure: `peer-review-your-perspectives`,
+  `formal-reasoning`, `checklists`;
+- planning and inertia risk: `status-quo-bias`, `commitment-bias`,
+  `optimism-bias-and-planning-fallacy`;
+- competitive and bargaining pressure: `batna`, `game-theory-payoffs`,
+  `red-queen-effect`;
+- product/customer and dependency reasoning: `jobs-to-be-done`,
+  `user-centered-design`, `lock-in`, `path-dependence`;
+- communication and relational translation:
+  `cross-cultural-communication-frameworks`.
+
+PR32 does not promote v6 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, or create user-facing
+Decision Pressure output.
+
+The next proof should be packet usefulness against v6: nominate PR32-upgraded
+models in one or two review-only packet fixtures, render them with the PR30
+reviewer-only renderer, and decide whether the new reviewed cards improve the
+handoff without adding clutter. Do not start another extraction batch by count
+momentum.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -489,7 +552,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR31 and do not infer permission for runtime work.
+Start from PR32 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -504,9 +567,10 @@ Read first:
 - research/reasoning-substrate-packet-review-rendering-2026-05-07.md
 - research/reasoning-substrate-packet-comparison-render-2026-05-07.md
 - research/v5-reviewed-model-capability-audit-2026-05-07.md
+- research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md
 
 Current posture:
-v5_capability_audit_complete
+controlled_capability_gap_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -580,13 +644,27 @@ PR31 result:
 - no extraction, runtime promotion, prompt, lane, model call, judge, Batch 3b,
   or user-facing behavior was added
 
+PR32 result:
+- decision label: controlled_capability_gap_enrichment_ready
+- 16 graph-only models from the PR31 capability-gap list received reviewed
+  batch_5 records
+- v6 draft/review-only compiled artifact exists with 81 reviewed records
+- PR32 added 16 affordances and 32 absence records
+- v6 contains 117 affordances, 147 absence records, 224 treatment
+  requirements, 445 diagnostic questions, and 420 misuse guards
+- 141 runtime models remain graph-only after v6
+- `batna` is intentionally thin/narrow because the source does not support full
+  BATNA doctrine
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next production slice is a controlled enrichment batch from the PR31 gap list,
-unless product review explicitly chooses receiver-side LLM review first. Broad
-extraction is still not justified by count momentum.
+next production slice is a v6 packet usefulness review using review-only
+fixtures/renders that nominate PR32-upgraded models. Broad extraction is still
+not justified by count momentum.
 ```
 
 ## Core Memory

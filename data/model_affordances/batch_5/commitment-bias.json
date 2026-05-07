@@ -1,0 +1,160 @@
+{
+  "model_id": "commitment-bias",
+  "source_file": "Commitment_Bias_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "commitment-bias.recommitment-stop-rule-review",
+      "status": "supported",
+      "name": "Recommitment stop-rule review",
+      "mechanism": "When a prior commitment creates momentum, require the answer to distinguish useful follow-through from escalation, name the stop rule, and test whether new evidence would still justify recommitting if sunk costs, public identity, or ego were removed.",
+      "activation_shape": {
+        "use_when": [
+          "A prior choice, investment, promise, public stance, or identity-linked goal is shaping current judgment.",
+          "Execution needs persistence but also explicit stop rules before additional resources are committed.",
+          "The main risk is either under-follow-through or over-escalation after evidence changes."
+        ],
+        "do_not_use_when": [
+          "The commitment is a reversible experiment with clear learning cadence and live stop rules already in place.",
+          "The answer would defend consistency as correctness after evidence has changed.",
+          "The model would be used to shame all commitment rather than separate disciplined persistence from escalation."
+        ],
+        "case_evidence_needed": [
+          "The original commitment, investment, or public stance.",
+          "The new evidence that should update the commitment.",
+          "The sunk cost, ego, identity, or social pressure preserving the path.",
+          "The stop rule, review cadence, or reversibility test that governs recommitment."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-recommitment-without-sunk-costs",
+          "description": "Require the answer to ask whether the team would make the same commitment today if the prior investment and public stance did not exist.",
+          "evidence_required": [
+            "The commitment currently being defended or extended.",
+            "The prior costs, promises, or identity stakes attached to it.",
+            "The new evidence for or against continuing.",
+            "The stop rule or review trigger that should govern the next cycle."
+          ],
+          "good_output_shape": [
+            "Names the original commitment.",
+            "Separates sunk cost from future value.",
+            "States the recommitment test.",
+            "Defines stop, continue, or revise criteria."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Would we choose this path today if we had not already paid for it or defended it publicly?",
+        "What evidence would cause us to stop, revise, or downgrade this commitment?",
+        "Are we protecting the future value of the commitment or the identity cost of changing course?"
+      ],
+      "misuse_guards": [
+        "Do not mistake consistency for correctness after evidence changes.",
+        "Do not use commitment language to defend sunk costs with new spending.",
+        "Do not attack all persistence; preserve disciplined commitments that have clear stop rules and reversibility tests."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "remain faithful to a prior choice, action, or belief",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "execution requires persistence across a long sequence of small decisions",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "the team has explicit stop rules to revisit the commitment",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "What part of this commitment are we protecting because we have already paid for it, and which dependency becomes irreversible if we keep going another cycle?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a recommitment stop-rule review that preserves useful follow-through while blocking escalation and sunk-cost defense.",
+        "dropped_material": [
+          "Did not extract sales foot-in-the-door or AI persona consistency as separate affordances because they illustrate commitment mechanics but are less useful for packet review.",
+          "Did not duplicate sunk-cost-fallacy; this record focuses on recommitment after identity or public stance hardens."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card adds distinct value beside status-quo-bias and sunk-cost-fallacy."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "sunk-cost-defense-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects continuing because of prior public commitment, sunk cost, or ego. That pattern is a misuse to block, not an affordance to promote.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "prior public commitment, sunk cost, or ego investment becomes more important than updating on new evidence",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "consistency-equals-correctness-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that teams can mistake consistency for correctness. The reviewed card must preserve update discipline, not loyalty to stale goals.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "teams mistake consistency for correctness and defend a stale goal or solution long after the evidence has changed",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Commitment_Bias_rag.md",
+      "source_quote": "The **Commitment Bias**, closely associated with the **Consistency Principle** and the phenomenon of **Escalation of Commitment**, describes the psychological imperative to remain faithful to a prior choice, action, or belief.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Commitment_Bias_rag.md",
+      "source_quote": "Best used when** the main risk is under-follow-through rather than over-escalation, and the team has explicit stop rules to revisit the commitment.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Commitment Bias. Extracted one recommitment stop-rule review and rejected sunk-cost defense plus consistency-as-correctness.",
+    "dropped_material": [
+      "Persuasion/compliance examples and fixed-schedule productivity were kept as context rather than separate PR32 records.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps distinguish disciplined persistence from escalation."
+    ],
+    "review_status": "draft"
+  }
+}
