@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR42 are merged or in review, PR42 completed the controlled risk/reversibility enrichment batch, and the current posture is `controlled_risk_reversibility_enrichment_ready`
+**Status:** living schema doctrine; PR13-PR43 are merged or in review, PR43 completed the v9/v10 risk/reversibility packet usefulness review, and the current posture is `v10_risk_packet_handoff_useful`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -31,6 +31,7 @@
 **Current v9 packet usefulness review:** `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
 **Current v9 graph-only priority audit:** `research/v9-graph-only-priority-audit-2026-05-07.md`
 **Current controlled risk/reversibility enrichment report:** `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
+**Current v10 packet usefulness review:** `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -324,10 +325,16 @@ real. Future sessions should treat the following as current baseline:
   loss-framing gaps, compiles draft/review-only v10, and preserves `24`
   absence records. Decision label:
   `controlled_risk_reversibility_enrichment_ready`.
+- PR43 completed one v10 risk/reversibility packet usefulness review after
+  PR42. It compares the same explicit 12-card risk/reversibility nomination set
+  against v9 and v10. The packet moves from `0` reviewed / `12` graph-only
+  cards to `12` reviewed / `0` graph-only cards without changing candidate
+  count or selecting a final pressure. Decision label:
+  `v10_risk_packet_handoff_useful`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `controlled_risk_reversibility_enrichment_ready`; do not build runtime packet
+  `v10_risk_packet_handoff_useful`; do not build runtime packet
   production, prompt changes, broad extraction, lane rewrites, user-facing
   surfaces, or automatic extraction by default.
 
@@ -1551,7 +1558,7 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation, more paid Gate 4 calibration,
-or Decision Pressure trace machinery. PR13-PR42 are complete or in review.
+or Decision Pressure trace machinery. PR13-PR43 are complete or in review.
 PR26 completed deterministic source custody backfill: all 222 runtime source
 files are now under repo-local custody, while v4 reviewed affordance depth
 remains 55 model records. PR27 then completed one review-only mixed packet
@@ -1681,17 +1688,19 @@ Current task:
 43. Treat PR41 as a graph-only priority audit, not extraction.
 44. Treat PR42 as controlled risk/reversibility enrichment, not v10 runtime
     promotion, corpus completion, or proof that another batch should begin.
-45. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+45. Treat PR43 as packet handoff usefulness evidence, not final-answer
+    evidence, live packet production, or runtime permission.
+46. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-46. Preserve coverage honesty and no-casuistry rails.
-47. Do not run more paid model calls for this slice.
-48. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+47. Preserve coverage honesty and no-casuistry rails.
+48. Do not run more paid model calls for this slice.
+49. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Do not extract more affordance records or wire live runtime behavior by
-momentum. PR42 completed a capped source-backed batch for the named
-risk/reversibility/failure-containment targets. If PR43 opens, it must be a
-same-nomination v9/v10 packet usefulness review before any further extraction.
+momentum. PR43 showed that v10 risk/reversibility reviewed cards improve one
+stable-nomination packet. The next proof should be an after-v10 graph-only
+priority audit, not count-completion extraction.
 
 ---
 

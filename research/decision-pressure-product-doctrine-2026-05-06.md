@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR42 controlled risk/reversibility enrichment.
+**Status:** Product doctrine after PR43 v10 risk/reversibility packet usefulness review.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_risk_reversibility_enrichment_ready`
+**Current posture:** `v10_risk_packet_handoff_useful`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -48,6 +48,8 @@ memo, or user-facing launch plan.
 **Current v9 graph-only priority audit:** `research/v9-graph-only-priority-audit-2026-05-07.md`
 
 **Current controlled risk/reversibility enrichment report:** `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
+
+**Current v10 packet usefulness review:** `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -606,6 +608,21 @@ resilience when precision is false, identifies make-or-break interactions,
 tests critical mass, exposes reversal costs, and detects loss-framed
 distortion.
 
+PR43 then completed one v10 risk/reversibility packet usefulness review:
+
+> `v10_risk_packet_handoff_useful`
+
+Treat PR43 as handoff-quality evidence, not runtime permission. The same
+explicit 12-card risk/reversibility nomination set moved from `0` reviewed /
+`12` graph-only cards under v9 to `12` reviewed / `0` graph-only cards under
+v10, without increasing candidate count or selecting final pressure. That means
+PR42's reviewed depth improved packet material for commitment sizing,
+reversibility decay, fallback independence, weak-signal triggers, adversarial
+failure chains, nonlinear-loop monitoring, threshold evidence, plausible
+cascade paths, resilience-over-precision, make-or-break interactions,
+critical-mass density, and loss-frame distortion while preserving the rule that
+Python prepares the material and the LLM/reviewer reasons.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -725,12 +742,21 @@ PR42 added the controlled risk/reversibility enrichment answer:
 > next proof is whether v10 improves a risk/reversibility packet handoff, not
 > whether another extraction batch can raise the count.
 
+PR43 added the v10 risk/reversibility packet-usefulness answer:
+
+> Yes, when the same risk/reversibility shelves are nominated, v10 reviewed
+> cards improve the handoff for commitment sizing, reversibility decay, fallback
+> independence, weak-signal triggers, adversarial failure chains, nonlinear
+> loops, threshold evidence, plausible cascade paths, resilience, interacting
+> variables, critical-mass density, and loss-frame checks without changing
+> candidate count or creating user-facing output.
+
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, PR36, PR39, and PR42 cards remain useful when tested in additional
    candidate mixes, and which merely add internal bulk?
-2. Would the v10 risk controls / reversibility / failure containment cards make
-   a future packet materially better, or merely add caution vocabulary?
+2. Which remaining graph-only family after v10 would make future packets thin
+   enough to justify another controlled batch?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?
