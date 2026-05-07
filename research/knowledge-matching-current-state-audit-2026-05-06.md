@@ -4,13 +4,13 @@
 **Status:** Historical product/architecture audit after the merged PR13-PR23
 stack and Decision Pressure product doctrine. The architecture conclusions
 still stand, but the reviewed affordance counts have been superseded by later
-controlled enrichment and packet-review slices through PR48. This is not a
+controlled enrichment and packet-review slices through PR49. This is not a
 runtime proposal, not an extraction brief, not a prompt change, and not
 user-facing promotion.
 
 **Doctrine anchor:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_adaptive_exploration_enrichment_ready`
+**Current posture:** `controlled_learning_skill_enrichment_ready`
 
 **Current handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -34,9 +34,9 @@ collapsed into one story.
 
 2. **Reviewed affordance substrate**
    At the time of this audit, the v4 affordance corpus had `55` reviewed
-   source-backed model records. After later controlled enrichment through PR48,
-   the current draft/review-only v12 corpus has `146` reviewed records, `182`
-   affordances, and `277` absence records. PR40 showed the v9 execution cards
+   source-backed model records. After later controlled enrichment through PR49,
+   the current draft/review-only v13 corpus has `158` reviewed records, `194`
+   affordances, and `301` absence records. PR40 showed the v9 execution cards
    improve one stable-nomination packet handoff. PR41 then audited the
    remaining graph-only set and selected risk controls / reversibility /
    failure containment as the next controlled family. PR42 added source-backed
@@ -51,15 +51,17 @@ collapsed into one story.
    count. PR47 then audited the remaining 88 graph-only models and selected
    adaptive exploration / option generation / synthesis discipline as the next
    controlled family. PR48 added source-backed v12 depth for those 12 models
-   while preserving the no deterministic option-selection boundary. The corpus
-   is richer and more operational, but it is still `draft_review_only`. It
-   supports review artifacts; it does not yet select or generate live
+   while preserving the no deterministic option-selection boundary. PR49 then
+   added source-backed v13 depth for 12 learning / skill-acquisition models
+   while preserving the no deterministic mastery-classification boundary. The
+   corpus is richer and more operational, but it is still `draft_review_only`.
+   It supports review artifacts; it does not yet select or generate live
    pressures.
 
 So the accurate current claim is:
 
 > Lolla has a 222-model runtime graph and a growing reviewed affordance corpus.
-> After PR48, the reviewed corpus has 146 records. PR40 showed v9 improved one
+> After PR49, the reviewed corpus has 158 records. PR40 showed v9 improved one
 > execution/follow-through packet handoff; PR42 added v10 risk/reversibility
 > depth for the family PR41 selected; PR43 showed that v10 improves one
 > risk/reversibility packet handoff; PR44 selected frame correction /
@@ -69,7 +71,8 @@ So the accurate current claim is:
 > PR47 selected adaptive exploration / option generation / synthesis discipline
 > as the next controlled family from the remaining 88 graph-only models; PR48
 > added v12 depth for that family while blocking deterministic option
-> selection.
+> selection; PR49 added v13 learning / skill-acquisition depth while blocking
+> deterministic mastery classification.
 > It is still not the live matching system.
 
 This matters because expanding from 55 records should not mean "add records
@@ -80,9 +83,9 @@ next LLM can think better without Python pretending to choose the pressure.
 ## Corpus Shape
 
 Measured from the repo artifacts when this audit was first written. For the
-current v12 counts and packet-review posture, use the handover, PR39 report,
+current v13 counts and packet-review posture, use the handover, PR39 report,
 PR40 review, PR41 audit, PR42 report, PR43 review, PR44 audit, PR45 report,
-PR46 review, PR47 audit, and PR48 report.
+PR46 review, PR47 audit, PR48 report, and PR49 report.
 
 | Artifact | Count / state | Current role |
 | --- | ---: | --- |

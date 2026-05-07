@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR48 completed the controlled adaptive
-exploration / option generation / synthesis enrichment batch. PR47 selected
-the family; PR48 added source-backed v12 depth. PR49 must now prove packet
-usefulness before any further extraction.
+**Status:** Start-here handover after PR49 completed the controlled learning /
+skill-acquisition enrichment batch. PR48 added source-backed v12 adaptive
+exploration depth; the user then explicitly approved continued controlled
+extraction toward the full 222-model set while keeping the same quality rails.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_adaptive_exploration_enrichment_ready`
+**Current posture:** `controlled_learning_skill_enrichment_ready`
 
-**Current PR:** PR48 - controlled adaptive exploration enrichment
+**Current PR:** PR49 - controlled learning / skill-acquisition enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -62,6 +62,8 @@ Batch 3b, or user-facing Decision Pressure work.
 
 **PR48 decision label:** `controlled_adaptive_exploration_enrichment_ready`
 
+**PR49 decision label:** `controlled_learning_skill_enrichment_ready`
+
 ## Start Here
 
 Read these files in order:
@@ -108,6 +110,7 @@ Read these files in order:
 40. `research/reasoning-substrate-packet-pr46-v10-v11-comparison-render-2026-05-07.md`
 41. `research/v11-graph-only-priority-audit-2026-05-07.md`
 42. `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
+43. `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -178,6 +181,9 @@ Keep these layers distinct:
 | PR48 controlled adaptive exploration enrichment | 12 graph-only models from the PR47 target set gained reviewed Batch 11 records with 12 affordances and 24 absence records; compiled as draft/review-only v12. |
 | v12 affordance corpus | 146 reviewed records, 182 affordances, 277 absence records. Draft/review-only v11 plus PR48 controlled adaptive-exploration batch, not runtime-promoted. |
 | Graph-only after v12 | 76 runtime models remain eligible but not reviewed affordance records. |
+| PR49 controlled learning / skill-acquisition enrichment | 12 graph-only models from learning, pedagogy, and skill-acquisition discipline gained reviewed Batch 12 records with 12 affordances and 24 absence records; compiled as draft/review-only v13. |
+| v13 affordance corpus | 158 reviewed records, 194 affordances, 301 absence records. Draft/review-only v12 plus PR49 controlled learning batch, not runtime-promoted. |
+| Graph-only after v13 | 64 runtime models remain eligible but not reviewed affordance records. |
 
 The governing sentence:
 
@@ -1368,9 +1374,81 @@ prompts, run model calls or judges, create Batch 3b, create user-facing
 Decision Pressure output, create deterministic option selection, or allow
 deterministic final pressure selection.
 
-Recommended next slice is PR49: a same-nomination v11/v12 packet usefulness
-review for adaptive exploration / option generation / synthesis. Do not extract
-another family until PR49 shows whether PR48 improved packet handoff quality.
+The original next-step recommendation after PR48 was a same-nomination v11/v12
+packet usefulness review. The user then explicitly approved continued
+controlled extraction toward full coverage, with the same source-reading,
+absence-friendly quality standard. PR49 therefore continued extraction rather
+than packet review.
+
+## What PR49 Added
+
+PR49 answers the question: "Can learning / pedagogy / skill-acquisition models
+add source-backed operational depth without turning into generic study advice,
+motivational language, or deterministic mastery classification?"
+
+It adds:
+
+- `data/model_affordances/batch_12/`;
+- `data/compiled/model_affordances/affordances_v13.json`;
+- `data/compiled/model_affordances/quality_report_v13.md`;
+- `tests/test_pr49_batch12_records.py`;
+- `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`;
+- `tasks/tasks-controlled-learning-skill-enrichment-batch.md`;
+- living-doc posture updates.
+
+Measured PR49 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v13 reviewed records: `158`;
+- v13 reviewed affordances: `194`;
+- v13 absence records: `301`;
+- graph-only runtime models after v13: `64`;
+- v13 status: `draft_review_only`;
+- schema validation failures: `0`;
+- source quote rejections: `0`.
+
+PR49's decision label is `controlled_learning_skill_enrichment_ready`.
+
+The product lesson:
+
+> The learning family adds real handoff depth when the records bind learning
+> advice to current capability, cognitive load, retrieval, feedback, transfer,
+> temporary support, and calibrated challenge. The useful move is not "learn
+> harder"; it is "know which support, difficulty, explanation, feedback, or
+> practice loop the case can honestly sustain."
+
+PR49 extracted exactly this target set:
+
+- `blooms-taxonomy`;
+- `cognitive-load-theory`;
+- `deliberate-practice`;
+- `desirable-difficulties`;
+- `expertise-reversal-effect`;
+- `feynman-technique`;
+- `generation-effect`;
+- `learning-curve`;
+- `scaffolding`;
+- `schema-acquisition`;
+- `varied-practice-interleaving`;
+- `zone-of-development`.
+
+Each target received one compact reviewed affordance and two absence records.
+The absence records block taxonomy labels as learning, simplification that
+erases causal distinctions, repetition without feedback, difficulty as virtue,
+status-labeled expertise, smooth explanation as mastery, generation without
+calibration, progress without measurement, permanent scaffolding, schema labels
+replacing reality, random variety, and unsupported challenge.
+
+PR49 does not promote v13 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, create user-facing
+Decision Pressure output, create deterministic mastery classification, or
+allow deterministic final pressure selection.
+
+Recommended next slice is PR50: continue controlled extraction from the
+remaining 64 graph-only runtime models, selecting one bounded family of 8-12
+models from source-custodied files. Keep periodic packet usefulness reviews as
+a quality gate after several families or when packet shape may change.
 
 ## PR24 Review Questions Answered
 
@@ -1444,7 +1522,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "controlled_adaptive_exploration_enrichment_ready|v11_graph_only_priority_audit_complete|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR47|PR48|PR49" plans research tasks -g '*.md'
+rg -n "controlled_learning_skill_enrichment_ready|controlled_adaptive_exploration_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR48|PR49|PR50" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1456,9 +1534,10 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR48 and do not infer permission for runtime work, broad
-extraction, packet promotion, deterministic reasoning-mode routing,
-deterministic option selection, or automatic extraction momentum.
+Start from PR49 and do not infer permission for runtime work, broad
+Batch 3b, packet promotion, deterministic reasoning-mode routing,
+deterministic option selection, deterministic mastery classification, or
+mechanical extraction momentum.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -1496,9 +1575,10 @@ Read first:
 - research/reasoning-substrate-packet-pr46-v10-v11-comparison-render-2026-05-07.md
 - research/v11-graph-only-priority-audit-2026-05-07.md
 - research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md
+- research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md
 
 Current posture:
-controlled_adaptive_exploration_enrichment_ready
+controlled_learning_skill_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1828,12 +1908,33 @@ PR48 result:
   option selection, deterministic pressure selection, or user-facing behavior
   was added
 
+PR49 result:
+- decision label: controlled_learning_skill_enrichment_ready
+- 12 graph-only models from learning / pedagogy / skill-acquisition discipline
+  received reviewed batch_12 records
+- v13 draft/review-only compiled artifact exists with 158 reviewed records
+- PR49 added 12 affordances and 24 absence records
+- v13 contains 194 affordances and 301 absence records
+- 64 runtime models remain graph-only after v13
+- each target received one compact source-backed affordance and two absence
+  records
+- the records add handoff depth around mastery-level diagnosis, cognitive-load
+  cue preservation, deliberate practice loops, calibrated desirable
+  difficulty, novice/expert support matching, plain-language gap tests,
+  generated articulation with calibration, measured learning curves,
+  temporary scaffolds, schema reality checks, contrasting frames, and reachable
+  stretch
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, deterministic mastery classification, deterministic option selection,
+  deterministic pressure selection, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next slice is PR49: same-nomination v11/v12 adaptive-exploration packet
-usefulness proof. Broad extraction is still not justified by count momentum.
+next slice is PR50: another controlled source-backed extraction batch from the
+remaining 64 graph-only models, capped and family-shaped. Full coverage is now
+the direction, but broad mechanical completion is still not acceptable.
 ```
 
 ## Core Memory

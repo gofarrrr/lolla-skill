@@ -1,0 +1,145 @@
+{
+  "model_id": "cognitive-load-theory",
+  "source_file": "Cognitive_Load_Theory_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "cognitive-load-theory.reduce-extraneous-load-without-erasing-discrimination",
+      "status": "supported",
+      "name": "Reduce extraneous load without erasing discrimination",
+      "mechanism": "When complexity, stress, or presentation design is overloading working memory, simplify sequence and format so attention goes to the next useful distinction while preserving the causal cues needed for correct action.",
+      "activation_shape": {
+        "use_when": [
+          "Novices or decision makers must handle several unfamiliar moving parts at once.",
+          "Stress, ambiguity, or time pressure is already consuming working-memory capacity.",
+          "The message, workflow, lesson, or prompt can be chunked without losing the key branching cues."
+        ],
+        "do_not_use_when": [
+          "Simplification would remove causal structure, thresholds, or incident distinctions needed for a real decision.",
+          "Expert users are being forced through novice scaffolding that adds redundant friction.",
+          "The problem is not overload but missing evidence, incentives, ownership, or feedback."
+        ],
+        "case_evidence_needed": [
+          "The specific load source: intrinsic task complexity, presentation/process clutter, stress, or time pressure.",
+          "The two or three distinctions that must remain visible.",
+          "The learner or audience expertise level.",
+          "The wrong action that would result if simplification hides a branch cue."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "chunk-while-preserving-critical-cues",
+          "description": "Require the answer to reduce avoidable load by chunking, sequencing, or worked examples while naming the decision cues that must not be compressed away.",
+          "evidence_required": [
+            "The overloaded task or message.",
+            "The audience's current expertise and stress level.",
+            "The critical branch, owner, escalation, or discrimination cue.",
+            "The simplified sequence or chunk boundary."
+          ],
+          "good_output_shape": [
+            "Names the avoidable cognitive load.",
+            "Simplifies the next chunk or sequence.",
+            "Preserves the distinction needed for correct action.",
+            "Warns where simplification would become false clarity."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which two or three pieces must the audience actually hold in mind right now?",
+        "What distinction would be lost if we simplified this further?",
+        "Is the support matched to novice learning or expert execution?"
+      ],
+      "misuse_guards": [
+        "Do not equate lower load with better reasoning if key causal branches disappear.",
+        "Do not impose novice scaffolding on experts unless the context is genuinely new to them.",
+        "Do not treat a clean checklist as sufficient when it hides escalation or ownership cues."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Load_Theory_rag.md",
+          "source_quote": "severe **limitations of the human working memory**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Load_Theory_rag.md",
+          "source_quote": "**Most useful when** novices must absorb several unfamiliar concepts at once and would otherwise confuse the task because too many moving parts arrive together.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Load_Theory_rag.md",
+          "source_quote": "**Danger when** simplification removes the causal structure, nuance, or thresholds needed to make a real decision rather than just creating a feeling of clarity.",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports CLT as load reduction plus a strong false-clarity guard.",
+        "dropped_material": [
+          "Did not extract prompt-engineering advice as runtime prompt guidance.",
+          "Kept Chain of Thought references as source context only, not prompt changes."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card simplifies execution packets without hiding branch cues."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "load-reduction-as-over-simplification",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that simplification can erase causal structure and create only a feeling of clarity.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Load_Theory_rag.md",
+          "source_quote": "simplification removes the causal structure, nuance, or thresholds needed to make a real decision",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "generic-load-label-without-diagnosis",
+      "status": "not_supported_by_source",
+      "reason": "The source distinguishes intrinsic and extrinsic load, so PR49 must not promote a generic 'too much load' label without diagnosing the load source.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Load_Theory_rag.md",
+          "source_quote": "CLT makes a central distinction between two types of cognitive load imposed during a task",
+          "section_hint": "Core Definitions and Components",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Cognitive_Load_Theory_rag.md",
+      "source_quote": "optimize learning and performance by reducing unnecessary mental effort",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for CLT as chunking and sequencing while preserving decision cues.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card reduces packet burden without reducing decision discrimination."
+    ],
+    "review_status": "draft"
+  }
+}

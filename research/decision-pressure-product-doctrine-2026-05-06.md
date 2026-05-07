@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR48 controlled adaptive exploration enrichment.
+**Status:** Product doctrine after PR49 controlled learning / skill-acquisition enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_adaptive_exploration_enrichment_ready`
+**Current posture:** `controlled_learning_skill_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -60,6 +60,8 @@ memo, or user-facing launch plan.
 **Current v11 graph-only priority audit:** `research/v11-graph-only-priority-audit-2026-05-07.md`
 
 **Current controlled adaptive exploration enrichment report:** `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
+
+**Current controlled learning / skill-acquisition enrichment report:** `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -689,8 +691,10 @@ models and selects adaptive exploration / option generation / synthesis
 discipline as the next controlled family because future packets may still be
 trapped inside too narrow an option space even after evidence, execution,
 risk, reversibility, and frame-correction depth have improved. The recommended
-PR48 family must stay source-backed and absence-friendly; PR49 must then prove
-same-nomination packet usefulness before further extraction.
+PR48 family must stay source-backed and absence-friendly. The original next
+recommendation was a same-nomination packet proof, but the user then
+explicitly approved continued controlled extraction toward full coverage under
+the same quality rails.
 
 PR48 then completed the controlled adaptive exploration enrichment batch:
 
@@ -705,6 +709,22 @@ inquiry, frame escape, widen/narrow timing, variation with selection,
 feedback-triggered adaptation, structural association, evidence-anchored
 abstraction, governing-thought synthesis, assumption-bound simulation, and
 branch evidence / merge rules.
+
+PR49 then completed the controlled learning / skill-acquisition enrichment
+batch:
+
+> `controlled_learning_skill_enrichment_ready`
+
+Treat PR49 as source-backed substrate enrichment, not packet usefulness proof,
+runtime permission, prompt mechanics, deterministic mastery classification, or
+proof that Python can decide what someone should learn next. It adds 12 Batch
+12 records and compiles draft/review-only v13 with 158 reviewed records, 194
+affordances, and 301 absence records. The useful depth is operational:
+mastery-level diagnosis, cognitive-load cue preservation, specific practice
+loops, calibrated productive difficulty, novice/expert support matching,
+plain-language explanation gaps, generated articulation with calibration,
+measured learning curves, temporary support with fade plans, schema reality
+checks, contrasting frames before commitment, and reachable stretch.
 
 ## Next Product Work, Not Engineering Work
 
@@ -874,25 +894,34 @@ PR48 added the controlled adaptive exploration enrichment answer:
 > Yes, the selected adaptive-exploration sources support compact reviewed depth
 > when extraction binds creativity to evidence, thresholds, selection rules,
 > structural tests, simulation assumptions, abstraction boundaries, synthesis
-> verification, and merge rules. v12 remains dormant and must be tested in
-> PR49 before another extraction batch begins.
+> verification, and merge rules. v12 remains dormant.
+
+PR49 added the controlled learning / skill-acquisition enrichment answer:
+
+> Yes, the selected learning sources support compact reviewed depth when
+> extraction binds learning advice to current capability, cognitive load,
+> retrieval, feedback, support fade plans, schema reality checks, contrasting
+> frames, and calibrated challenge. v13 remains dormant and full coverage must
+> continue through bounded source-backed families, not broad Batch 3b.
 
 The next useful product questions are:
 
-1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, and PR48 cards remain useful when
+1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, PR48, and PR49 cards remain useful when
    tested in additional candidate mixes, and which merely add internal bulk?
-2. Does a same-nomination v11/v12 adaptive-exploration packet show that PR48
-   made the handoff better, not just heavier?
-3. Which decision moments most clearly need pressure before action?
-4. What would make a user trust a pressure pass?
-5. What would make the output feel like noise?
-6. What is the smallest public promise that is true?
-7. What evidence would justify promotion into a real surface?
-8. What evidence would tell us the product is only interesting to us?
+2. Which remaining graph-only family should PR50 extract next without drifting
+   into mechanical completion?
+3. When should the next periodic packet usefulness review happen so extraction
+   quality stays connected to handoff usefulness?
+4. Which decision moments most clearly need pressure before action?
+5. What would make a user trust a pressure pass?
+6. What would make the output feel like noise?
+7. What is the smallest public promise that is true?
+8. What evidence would justify promotion into a real surface?
+9. What evidence would tell us the product is only interesting to us?
 
-Do not answer these by adding machinery. Answer them with product review,
-manual examples, packet comparison, user conversations, and decision-moment
-analysis.
+Do not answer these by adding runtime machinery. Answer them with controlled
+source-backed extraction, periodic packet comparison, product review, manual
+examples, user conversations, and decision-moment analysis.
 
 ## One-Line Guardrail
 

@@ -1,0 +1,145 @@
+{
+  "model_id": "deliberate-practice",
+  "source_file": "Deliberate_Practice_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "deliberate-practice.specific-reps-feedback-and-error-correction",
+      "status": "supported",
+      "name": "Specific reps, feedback, and error correction",
+      "mechanism": "When improvement requires reliable performance rather than vague effort, convert the capability into specific sub-skill reps, measurement, feedback, and correction tied to live failure modes.",
+      "activation_shape": {
+        "use_when": [
+          "A person or team knows the target capability but cannot execute it consistently.",
+          "The bottleneck is a weak component skill, slow recognition pattern, or poor diagnostic habit.",
+          "Progress can be compared against a replayable standard, coach review, or benchmark."
+        ],
+        "do_not_use_when": [
+          "The practice loop is intense but disconnected from real failure modes and feedback conditions.",
+          "The team is persisting with drills despite evidence they are entrenching the wrong model.",
+          "The situation is novel enough that practiced intuition may be the wrong tool."
+        ],
+        "case_evidence_needed": [
+          "The target capability and its component skills.",
+          "Current performance gap or repeated error pattern.",
+          "Feedback source and correction cadence.",
+          "The live context the practice must transfer into."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-reps-feedback-and-transfer-context",
+          "description": "Require the answer to specify the sub-skill to practice, the repeated rep, the feedback signal, and the live transfer condition that proves the practice is not ritual.",
+          "evidence_required": [
+            "Observable target performance.",
+            "Weak component skill.",
+            "Practice rep design.",
+            "Feedback and transfer evidence."
+          ],
+          "good_output_shape": [
+            "Breaks vague improvement into a concrete sub-skill.",
+            "Defines a repeated practice rep.",
+            "Names feedback and error correction.",
+            "Connects practice to live performance conditions."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What specific sub-skill is failing, not just what broad ability is desired?",
+        "What feedback will tell us this rep is correcting the error?",
+        "Where could repeated practice entrench the wrong frame?"
+      ],
+      "misuse_guards": [
+        "Do not treat intensity or hours as evidence of useful practice.",
+        "Do not continue a drill that no longer changes live performance.",
+        "Do not let practiced expertise substitute for checking whether the context is novel."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Deliberate_Practice_rag.md",
+          "source_quote": "Most useful when performance improvement requires specific reps, not vague effort",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Deliberate_Practice_rag.md",
+          "source_quote": "Works when the bottleneck is sub-skill quality",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Deliberate_Practice_rag.md",
+          "source_quote": "Danger when practice is intense but not reality-linked",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports deliberate practice as specific reps with feedback and live-transfer checks.",
+        "dropped_material": [
+          "Did not extract broad expertise or deep-work claims as separate affordances.",
+          "Kept AI-agent examples as source context only."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card turns vague upskilling advice into inspectable practice design."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "repetition-without-feedback",
+      "status": "not_supported_by_source",
+      "reason": "The source says practice must be tied to feedback, goals, and error correction; repetition alone is not reviewed operational depth.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Deliberate_Practice_rag.md",
+          "source_quote": "Best when progress must be measurable over time",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "talent-story-substitute",
+      "status": "not_supported_by_source",
+      "reason": "The source frames competence as accumulated specific skills and knowledge, not innate ability or heroic brilliance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Deliberate_Practice_rag.md",
+          "source_quote": "competence is not an innate, vaguely defined ability",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Deliberate_Practice_rag.md",
+      "source_quote": "**systematic, focused effort required to acquire expert performance**",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for deliberate practice as measurable, feedback-linked skill improvement.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps packets distinguish useful practice from performative effort."
+    ],
+    "review_status": "draft"
+  }
+}
