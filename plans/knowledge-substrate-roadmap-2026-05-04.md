@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR38 are merged or in review, PR38 completed the after-v8 graph-only priority audit, and the current posture is `v8_graph_only_priority_audit_complete`
+**Status:** living roadmap; PR13-PR39 are merged or in review, PR39 completed controlled execution/follow-through enrichment, and the current posture is `controlled_execution_followthrough_enrichment_ready`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -29,6 +29,7 @@
 **Current controlled trust/negotiation enrichment report:** `research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md`
 **Current v8 packet usefulness review:** `research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md`
 **Current v8 graph-only priority audit:** `research/v8-graph-only-priority-audit-2026-05-07.md`
+**Current controlled execution/follow-through enrichment report:** `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -96,6 +97,11 @@ What is already done:
   next controlled enrichment family because future packets are likely to be
   thin where advice must become executable, inspectable, adjustable, and
   stoppable.
+- PR39 controlled execution/follow-through enrichment is done for 12
+  graph-only models selected from the PR38 priority audit. It adds Batch 8
+  records and compiles draft/review-only v9. `devops-and-continuous-integration`
+  remains intentionally thin/narrow because the source does not support full
+  DevOps/CI doctrine.
 - Compiled v3 artifact exists at
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records,
@@ -112,6 +118,11 @@ What is already done:
   `data/compiled/model_affordances/affordances_v8.json`.
 - v8 corpus shape: `98` reviewed records, `134` affordances, `181` absence
   records, `0` schema validation failures, `0` source-quote rejections.
+- Compiled v9 artifact exists at
+  `data/compiled/model_affordances/affordances_v9.json`.
+- v9 corpus shape: `110` reviewed records, `146` affordances, `205` absence
+  records, `0` schema validation failures, `0` source-quote rejections. v9 is
+  still `draft_review_only` and not runtime-promoted.
 - Treatment-audit v2 activation-gated calibration exists as research evidence,
   but it is not promotion-grade proof.
 - PR 11 Gate 4 edge-probe harness exists on
@@ -346,15 +357,23 @@ What is already done:
   next controlled enrichment family, with a 12-model PR39 target set, because
   that family best tests the gap between plausible advice and inspectable
   execution.
+- PR39 controlled execution/follow-through enrichment is captured in
+  `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`:
+  decision label `controlled_execution_followthrough_enrichment_ready`. Twelve
+  graph-only execution/follow-through models now have reviewed Batch 8 records,
+  adding `12` affordances and `24` absence records. v9 has `110` reviewed
+  records, `146` affordances, and `205` absence records, and remains
+  `draft_review_only`.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `v8_graph_only_priority_audit_complete`: PR38 says the next production move,
-  if opened, should be a controlled execution/follow-through enrichment batch,
-  not broad extraction or runtime promotion.
+  `controlled_execution_followthrough_enrichment_ready`: PR39 completed the
+  controlled execution/follow-through enrichment batch. The next proof, if
+  opened, should be a v8/v9 execution packet usefulness review, not another
+  extraction batch by default.
 
 Current posture after PR 23, PR24 review, PR25, PR26, PR27, PR28, PR29, PR30,
-PR31, PR32, PR33, PR34, PR35, PR36, PR37, and PR38:
+PR31, PR32, PR33, PR34, PR35, PR36, PR37, PR38, and PR39:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -935,16 +954,16 @@ original proposal language.
 | Controlled trust/negotiation enrichment / PR36 | done as controlled reviewed extraction slice | Adds ten Batch 7 records for trust repair, motivation, boundaries, persuasion, diplomacy, and signaling gaps, compiles draft/review-only v8, and preserves absences. No runtime promotion. |
 | V8 packet usefulness review / PR37 | done as review-only fixture/render comparison | Uses the same trust/negotiation nominations against v7 and v8. Finds v8 reviewed cards improve handoff material without increasing candidate count or selecting final pressure. |
 | V8 graph-only priority audit / PR38 | done as docs/research audit | Reviews the remaining 124 graph-only models after v8 and recommends execution / implementation / follow-through discipline as the next controlled enrichment family. No extraction or runtime promotion. |
+| Controlled execution/follow-through enrichment / PR39 | done as controlled reviewed extraction slice | Adds twelve Batch 8 records for execution, auditability, baselines, bottlenecks, debugging, feedback, goals, habits, iteration, and validated learning, compiles draft/review-only v9, and preserves absences. No runtime promotion. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR38 selects the next likely controlled enrichment family after v8:
-> execution / implementation / follow-through discipline. The selection is an
-> audit recommendation, not extraction, runtime promotion, or count-completion
-> permission. If PR39 opens, it should enrich only the named 12-model target set
-> and then require a packet-usefulness review before any further batch.
+> PR39 completed the controlled execution / implementation / follow-through
+> enrichment batch selected by PR38. v9 is draft/review-only. The next proof,
+> if opened, should be a v8/v9 packet-usefulness review with stable
+> nominations, not another extraction batch by default.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1557,7 +1576,7 @@ Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
 The current reviewed posture is
-`v8_graph_only_priority_audit_complete` after PR38. Do not
+`controlled_execution_followthrough_enrichment_ready` after PR39. Do not
 treat any historical item below as active next work.
 
 Historical PR 12 scope was:

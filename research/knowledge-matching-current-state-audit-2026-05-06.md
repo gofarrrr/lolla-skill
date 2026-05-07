@@ -1,13 +1,17 @@
 # Knowledge Matching Current-State Audit
 
 **Date:** 2026-05-06
-**Status:** Product/architecture audit after the merged PR13-PR23 stack and
-Decision Pressure product doctrine. This is not a runtime proposal, not an
-extraction brief, not a prompt change, and not user-facing promotion.
+**Status:** Historical product/architecture audit after the merged PR13-PR23
+stack and Decision Pressure product doctrine. The architecture conclusions
+still stand, but the reviewed affordance counts have been superseded by later
+controlled enrichment slices through PR39. This is not a runtime proposal, not
+an extraction brief, not a prompt change, and not user-facing promotion.
 
 **Doctrine anchor:** `broad_intake_disciplined_output`
 
-**Current posture:** `source_understanding_packet_audit_complete`
+**Current posture:** `controlled_execution_followthrough_enrichment_ready`
+
+**Current handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
 **Source/packet audit brief:** `research/source-understanding-and-reasoning-packet-audit-brief-2026-05-06.md`
 
@@ -28,17 +32,19 @@ collapsed into one story.
    a temporary `build -> data` symlink so the packaged skill data is loaded.
 
 2. **Reviewed affordance substrate**
-   The v4 affordance corpus has `55` reviewed source-backed model records.
-   It is richer and more operational, but it is still
-   `draft_review_only` and runtime-dormant. It validates Decision Pressure
-   traces and supports review artifacts; it does not yet select or generate
-   live pressures.
+   At the time of this audit, the v4 affordance corpus had `55` reviewed
+   source-backed model records. After later controlled enrichment through PR39,
+   the current draft/review-only v9 corpus has `110` reviewed records, `146`
+   affordances, and `205` absence records. It is richer and more operational,
+   but it is still `draft_review_only` and runtime-dormant. It supports review
+   artifacts; it does not yet select or generate live pressures.
 
 So the accurate current claim is:
 
-> Lolla has a 222-model runtime graph and a 55-record reviewed affordance
-> corpus. The 55-record corpus has proven useful for dormant Decision Pressure
-> review, but it is not yet the runtime matching engine.
+> Lolla has a 222-model runtime graph and a growing reviewed affordance corpus.
+> After PR39, the reviewed corpus has 110 records. It has proven useful for
+> dormant reasoning-substrate and Decision Pressure review artifacts, but it is
+> not the live matching system.
 
 This matters because expanding from 55 records should not mean "add records
 until the number feels complete." Expansion should be pulled by product use:
@@ -47,7 +53,8 @@ next LLM can think better without Python pretending to choose the pressure.
 
 ## Corpus Shape
 
-Measured from the current repo artifacts:
+Measured from the repo artifacts when this audit was first written. For the
+current v9 counts, use the handover and PR39 report.
 
 | Artifact | Count / state | Current role |
 | --- | ---: | --- |

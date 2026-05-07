@@ -1,0 +1,145 @@
+{
+  "model_id": "algorithmic-thinking",
+  "source_file": "Algorithmic_Thinking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "algorithmic-thinking.repeatable-handoff-procedure-gate",
+      "status": "supported",
+      "name": "Repeatable handoff procedure gate",
+      "mechanism": "When advice needs to become coordinated execution, require the answer to convert the recommendation into explicit repeatable steps, inputs, handoffs, branching rules, and output quality checks before treating the plan as executable.",
+      "activation_shape": {
+        "use_when": [
+          "The task can be decomposed into repeatable steps with clear handoffs, inputs, and output quality checks.",
+          "Consistency, auditability, or scale matter more than improvisation because many people or systems must execute the same logic reliably.",
+          "A process benefits from explicit branching rules, bounded edge cases, and coordination across specialized components or agents."
+        ],
+        "do_not_use_when": [
+          "Novelty, ambiguity, or human emotion is doing most of the causal work and a rigid procedure is being mistaken for actual understanding.",
+          "Rules are optimized to visible proxies while exceptions, tacit knowledge, or changing context are treated as noise.",
+          "The plan would become analysis theater: more procedure, but no clearer execution handoff or quality check."
+        ],
+        "case_evidence_needed": [
+          "The work item or advice that must be executed.",
+          "The required inputs and the actor responsible for each step.",
+          "The handoff points where one person, system, or phase depends on another.",
+          "The output quality checks and edge cases that would reveal procedure failure."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "write-executable-procedure-boundary",
+          "description": "Require the answer to turn the proposed action into a bounded procedure with inputs, ordered steps, handoffs, and quality checks, while naming where procedure should stop because context needs judgment.",
+          "evidence_required": [
+            "The desired outcome.",
+            "The repeatable steps and required inputs.",
+            "The handoff or branching points.",
+            "The output quality check and the first exception that would require human judgment."
+          ],
+          "good_output_shape": [
+            "Names the procedure boundary.",
+            "Sequences the steps without hiding dependencies.",
+            "Defines what good output looks like.",
+            "Names a condition where rigid procedure should be suspended."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What must be true before this advice can be converted into repeatable steps?",
+        "Where are the handoffs, inputs, and output quality checks?",
+        "Which edge case would make this procedure misleading rather than helpful?"
+      ],
+      "misuse_guards": [
+        "Do not treat a checklist or algorithm as proof of understanding.",
+        "Do not optimize visible proxy rules while ignoring tacit knowledge or context drift.",
+        "Do not impose procedural rigidity on emotionally or socially causal situations."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Algorithmic_Thinking_rag.md",
+          "source_quote": "the task can be decomposed into repeatable steps with clear handoffs, inputs, and output quality checks",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Algorithmic_Thinking_rag.md",
+          "source_quote": "consistency, auditability, or scale matter more than improvisation because many people or systems must execute the same logic reliably",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Algorithmic_Thinking_rag.md",
+          "source_quote": "explicit branching rules, bounded edge cases, and coordination across specialized components or agents",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. Extracted one execution-focused procedure gate because the source supports repeatable steps, handoffs, inputs, output checks, and explicit branching rules.",
+        "dropped_material": [
+          "Did not extract chain-of-thought prompting, role prompts, or digital advisory board examples as separate affordances.",
+          "Kept algorithmic thinking bounded to execution handoff rather than general structured thinking."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card helps execution packets distinguish executable plans from smart-sounding procedural prose."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "procedure-as-understanding",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that rigid procedure is dangerous when novelty, ambiguity, or human emotion is doing causal work; PR39 should not promote procedure as a substitute for judgment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Algorithmic_Thinking_rag.md",
+          "source_quote": "novelty, ambiguity, or human emotion is doing most of the causal work and a rigid procedure is mistaken for actual understanding",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "visible-proxy-rule-optimization",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects rules that optimize visible proxies while treating exceptions, tacit knowledge, or changed context as noise.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Algorithmic_Thinking_rag.md",
+          "source_quote": "rules are optimized to visible proxies while exceptions, tacit knowledge, or changing context are treated as noise",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Algorithmic_Thinking_rag.md",
+      "source_quote": "maximize clarity and minimize confusion",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong execution-depth support for Algorithmic Thinking. Extracted one repeatable handoff procedure gate and rejected procedural rigidity plus proxy-rule optimization.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should verify whether this card reduces generic productivity advice or merely adds process language."
+    ],
+    "review_status": "draft"
+  }
+}
