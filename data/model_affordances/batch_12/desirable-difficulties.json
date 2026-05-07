@@ -1,0 +1,145 @@
+{
+  "model_id": "desirable-difficulties",
+  "source_file": "Desirable_Difficulties_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "desirable-difficulties.calibrated-struggle-for-transfer",
+      "status": "supported",
+      "name": "Calibrated struggle for transfer",
+      "mechanism": "When fluency would be mistaken for mastery, add retrieval, spacing, problem disaggregation, or explanation work that creates productive struggle without exceeding working memory or becoming friction for its own sake.",
+      "activation_shape": {
+        "use_when": [
+          "Passive review, easy fluency, or immediate performance is masking whether understanding will transfer.",
+          "The goal is durable retention or flexible use under new conditions.",
+          "Support can be calibrated so the challenge stretches capability without overwhelming it."
+        ],
+        "do_not_use_when": [
+          "Difficulty is being added as proof of seriousness rather than learning value.",
+          "The challenge exceeds cognitive capacity and prevents new structures from forming.",
+          "The team is already delaying action through unnecessary analysis or data gathering."
+        ],
+        "case_evidence_needed": [
+          "The current fluency or ease signal that may be misleading.",
+          "The transfer or retention outcome the difficulty should improve.",
+          "The planned difficulty and why it is productive.",
+          "The overload or delay boundary that would make the difficulty undesirable."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "design-productive-difficulty-with-overload-stop",
+          "description": "Require the answer to name the learning weakness, the desirable difficulty, the transfer signal, and the stop condition where struggle becomes overload or waste.",
+          "evidence_required": [
+            "Current fluency signal.",
+            "Desired transfer or retention behavior.",
+            "Difficulty design.",
+            "Overload, analysis-paralysis, or waste threshold."
+          ],
+          "good_output_shape": [
+            "Explains why ease is misleading.",
+            "Adds a specific productive difficulty.",
+            "Names the transfer or retention test.",
+            "Defines when the difficulty should be reduced or stopped."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What looks easy now but may fail under retrieval or transfer?",
+        "What difficulty would strengthen the skill rather than just consume time?",
+        "Where does productive struggle become overload or delay?"
+      ],
+      "misuse_guards": [
+        "Do not confuse harder with better.",
+        "Do not use desirable difficulty to justify boiling the ocean.",
+        "Do not remove support entirely when calibrated support is what makes the difficulty productive."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Desirable_Difficulties_rag.md",
+          "source_quote": "Most useful when fluency would otherwise be mistaken for mastery",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Desirable_Difficulties_rag.md",
+          "source_quote": "Works when the challenge is productive precisely because it strengthens transfer",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Desirable_Difficulties_rag.md",
+          "source_quote": "Confusing Harder with Better",
+          "section_hint": "Limitations and Dangers",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports desirable difficulty as calibrated effort for retention and transfer, with clear overload and friction guards.",
+        "dropped_material": [
+          "Did not extract deep work, Feynman, or problem disaggregation as separate affordances here.",
+          "Kept negotiation and AI examples as context only."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card adds useful productive-struggle checks without rewarding pain."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "difficulty-as-virtue",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against confusing harder with better; difficulty must create learning value.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Desirable_Difficulties_rag.md",
+          "source_quote": "Confusing Harder with Better",
+          "section_hint": "Limitations and Dangers",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "unwanted-difficulty-as-rigor",
+      "status": "not_supported_by_source",
+      "reason": "The source says excessive difficulty produces overload, analysis paralysis, or wasted work, so PR49 must not promote all friction as rigor.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Desirable_Difficulties_rag.md",
+          "source_quote": "excessive difficulty is detrimental",
+          "section_hint": "Limitations and Dangers",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Desirable_Difficulties_rag.md",
+      "source_quote": "introducing strategic, effortful challenges and struggle",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for calibrated productive difficulty.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps packets separate productive stretch from needless friction."
+    ],
+    "review_status": "draft"
+  }
+}

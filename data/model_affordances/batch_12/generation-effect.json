@@ -1,0 +1,145 @@
+{
+  "model_id": "generation-effect",
+  "source_file": "Generation_Effect_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "generation-effect.active-articulation-before-belief",
+      "status": "supported",
+      "name": "Active articulation before belief",
+      "mechanism": "When people may be mistaking recognition for mastery, require them to generate an explanation, hypothesis, plan, or analogy themselves, then check it against evidence and correction rather than accepting passive agreement.",
+      "activation_shape": {
+        "use_when": [
+          "Retention, understanding, or alignment depends on people producing the explanation or plan themselves.",
+          "A team is mistaking passive reading, review, or presentation for usable mastery.",
+          "The case needs active formulation of hypotheses, criteria, or governing thought."
+        ],
+        "do_not_use_when": [
+          "Generating one's own answer becomes an excuse to skip expert correction or evidence checks.",
+          "The generation demand exceeds working-memory capacity and causes confusion.",
+          "The generated model is being defended because effort was invested in it."
+        ],
+        "case_evidence_needed": [
+          "The passive recognition or agreement signal.",
+          "The generated explanation, hypothesis, or plan.",
+          "The evidence or external correction that will test it.",
+          "The complexity/load constraint that may require scaffolding."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "make-learner-generate-then-calibrate",
+          "description": "Require the answer to ask for generated structure from the learner or team, then attach a calibration step so self-generation deepens understanding without becoming self-confirmation.",
+          "evidence_required": [
+            "Current passive knowledge signal.",
+            "Generated output.",
+            "Correction source or evidence test.",
+            "Risk of overload or model defense."
+          ],
+          "good_output_shape": [
+            "Asks the person or team to generate the key explanation or hypothesis.",
+            "Uses the generated output to expose blind spots.",
+            "Adds external calibration or feedback.",
+            "Blocks self-generated ideas from becoming protected beliefs."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Can the person produce the explanation, plan, or hypothesis without being handed it?",
+        "What evidence would correct the generated answer?",
+        "Is generation strengthening understanding or just creating ownership bias?"
+      ],
+      "misuse_guards": [
+        "Do not treat self-generated answers as automatically better.",
+        "Do not ask for generation when direct instruction is needed first.",
+        "Do not skip calibration after the generated output appears coherent."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Generation_Effect_rag.md",
+          "source_quote": "active learning and self-creation forge deeper neural connections",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Generation_Effect_rag.md",
+          "source_quote": "**Most useful when** retention, understanding, or alignment depends on people producing the explanation, hypothesis, or plan themselves instead of merely hearing it.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Generation_Effect_rag.md",
+          "source_quote": "**Danger when** “generate your own answer” becomes an excuse to skip expert correction, evidence checks, or external calibration.",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports generation as active articulation plus calibration, not mere self-expression.",
+        "dropped_material": [
+          "Did not extract product communication examples as separate affordances.",
+          "Kept hypothesis-driven problem solving as evidence for generated structure."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card turns passive agreement into useful generated structure."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generation-as-guessing",
+      "status": "not_supported_by_source",
+      "reason": "The source supports active generation only when followed by blind-spot discovery, correction, or evidence checks; guessing alone is not the affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Generation_Effect_rag.md",
+          "source_quote": "**Find Blind Spots**—identify areas where the explanation fails or data is missing.",
+          "section_hint": "Key Heuristics and Frameworks",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "retrieval-without-feedback",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that self-generated answers can become defended models unless challenged by evidence, antithesis, or review.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Generation_Effect_rag.md",
+          "source_quote": "Ensure every generated idea or hypothesis is met with its **antithesis** and challenged before joining the learning through synthesis.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Generation_Effect_rag.md",
+      "source_quote": "*generates* the output—be it an idea, a synthesis of findings, a decision criterion, or an explanation",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for generation as active production plus calibration.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves handoff material without encouraging uncalibrated self-generated answers."
+    ],
+    "review_status": "draft"
+  }
+}
