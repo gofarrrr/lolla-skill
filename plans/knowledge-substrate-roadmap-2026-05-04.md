@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR42 are merged or in review, PR42 completed the controlled risk/reversibility enrichment batch, and the current posture is `controlled_risk_reversibility_enrichment_ready`
+**Status:** living roadmap; PR13-PR43 are merged or in review, PR43 completed the v9/v10 risk/reversibility packet usefulness review, and the current posture is `v10_risk_packet_handoff_useful`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -33,6 +33,7 @@
 **Current v9 packet usefulness review:** `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
 **Current v9 graph-only priority audit:** `research/v9-graph-only-priority-audit-2026-05-07.md`
 **Current controlled risk/reversibility enrichment report:** `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
+**Current v10 packet usefulness review:** `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -121,6 +122,11 @@ What is already done:
   compiles draft/review-only v10. The records are source-backed operational
   cards, not heading parsing, schema filling, runtime promotion, or final
   pressure selection.
+- PR43 v10 risk/reversibility packet usefulness review is done for one
+  explicit 12-card risk/reversibility nomination set. The same packet goes from
+  0 reviewed / 12 graph-only cards under v9 to 12 reviewed / 0 graph-only cards
+  under v10, without changing candidate count or producing final
+  pressure/user-facing output.
 - Compiled v3 artifact exists at
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records,
@@ -410,16 +416,26 @@ What is already done:
   Batch 9 records, adding `12` affordances and `24` absence records. v10 has
   `122` reviewed records, `158` affordances, and `229` absence records, and
   remains `draft_review_only`.
+- PR43 v10 risk/reversibility packet usefulness review is captured in
+  `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`:
+  decision label `v10_risk_packet_handoff_useful`. A v9/v10 packet comparison
+  using the same explicit nominations shows v10 adds useful handoff depth for
+  commitment sizing, reversibility decay, fallback independence, weak-signal
+  triggers, adversarial failure chains, nonlinear loops, threshold evidence,
+  plausible cascades, resilience-over-precision, make-or-break interactions,
+  critical-mass density, and loss-frame distortion without changing candidate
+  count.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `controlled_risk_reversibility_enrichment_ready`: PR42 completed the
-  controlled risk/reversibility/failure-containment enrichment batch. If
-  opened, PR43 should be one same-nomination v9/v10 packet usefulness review,
-  and it must prove handoff quality before any further extraction.
+  `v10_risk_packet_handoff_useful`: PR43 completed the v9/v10
+  risk/reversibility packet usefulness review. The next proof, if opened,
+  should be an after-v10 graph-only priority audit, not another extraction
+  batch by default.
 
 Current posture after PR 23, PR24 review, PR25, PR26, PR27, PR28, PR29, PR30,
-PR31, PR32, PR33, PR34, PR35, PR36, PR37, PR38, PR39, PR40, PR41, and PR42:
+PR31, PR32, PR33, PR34, PR35, PR36, PR37, PR38, PR39, PR40, PR41, PR42, and
+PR43:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -1004,15 +1020,15 @@ original proposal language.
 | V9 execution packet usefulness review / PR40 | done as review-only fixture/render comparison | Uses the same execution/follow-through nominations against v8 and v9. Finds v9 reviewed/weak-support cards improve handoff material without increasing candidate count or selecting final pressure. |
 | V9 graph-only priority audit / PR41 | done as docs/research audit | Reviews the remaining 112 graph-only models after v9 and recommends risk controls / reversibility / failure containment as the next controlled enrichment family. No extraction or runtime promotion. |
 | Controlled risk/reversibility enrichment / PR42 | done as controlled reviewed extraction slice | Adds twelve Batch 9 records for risk controls, reversibility, failure containment, nonlinear dynamics, switching costs, and loss framing, compiles draft/review-only v10, and preserves absences. No runtime promotion. |
+| V10 risk/reversibility packet usefulness review / PR43 | done as review-only fixture/render comparison | Uses the same risk/reversibility nominations against v9 and v10. Finds v10 reviewed cards improve handoff material without increasing candidate count or selecting final pressure. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR42 completed the controlled risk/reversibility enrichment batch. v10 is
-> still draft/review-only. If opened, PR43 should be one same-nomination v9/v10
-> packet usefulness review for the 12 named targets, followed by a pause before
-> any further extraction.
+> PR43 completed the v9/v10 risk/reversibility packet-usefulness review. v10 is
+> still draft/review-only. The next proof, if opened, should be an after-v10
+> graph-only priority audit, not another extraction batch by default.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1625,7 +1641,7 @@ Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
 The current reviewed posture is
-`controlled_risk_reversibility_enrichment_ready` after PR42. Do not
+`v10_risk_packet_handoff_useful` after PR43. Do not
 treat any historical item below as active next work.
 
 Historical PR 12 scope was:

@@ -1,17 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR42 completed one controlled
-risk/reversibility/failure-containment enrichment batch. PR40 showed v9
-execution/follow-through depth improves one stable-nomination packet; PR41
-selected the next family; PR42 added source-backed v10 depth for that family
-without runtime promotion.
+**Status:** Start-here handover after PR43 completed the v9/v10
+risk/reversibility packet usefulness review. PR42 added source-backed v10 depth
+for the family PR41 selected; PR43 checked whether that depth improves the same
+packet handoff without changing candidate count.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_risk_reversibility_enrichment_ready`
+**Current posture:** `v10_risk_packet_handoff_useful`
 
-**Current PR:** PR42 - controlled risk/reversibility enrichment batch
+**Current PR:** PR43 - v10 risk/reversibility packet usefulness review
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -51,6 +50,8 @@ Batch 3b, or user-facing Decision Pressure work.
 
 **PR42 decision label:** `controlled_risk_reversibility_enrichment_ready`
 
+**PR43 decision label:** `v10_risk_packet_handoff_useful`
+
 ## Start Here
 
 Read these files in order:
@@ -89,6 +90,8 @@ Read these files in order:
 32. `research/reasoning-substrate-packet-pr40-v8-v9-comparison-render-2026-05-07.md`
 33. `research/v9-graph-only-priority-audit-2026-05-07.md`
 34. `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
+35. `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
+36. `research/reasoning-substrate-packet-pr43-v9-v10-comparison-render-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -149,6 +152,7 @@ Keep these layers distinct:
 | PR42 controlled risk/reversibility enrichment | 12 graph-only models from risk controls, reversibility, failure containment, nonlinear dynamics, switching costs, and loss framing gained reviewed Batch 9 records with 12 affordances and 24 absence records; compiled as draft/review-only v10. |
 | v10 affordance corpus | 122 reviewed records, 158 affordances, 229 absence records. Draft/review-only v9 plus PR42 controlled risk/reversibility batch, not runtime-promoted. |
 | Graph-only after v10 | 100 runtime models remain eligible but not reviewed affordance records. |
+| PR43 v10 risk/reversibility packet usefulness review | Same 12-card risk/reversibility nomination set compared against v9 and v10. v9 packet had 12 graph-only cards; v10 packet has 12 reviewed cards, with candidate count fixed. |
 
 The governing sentence:
 
@@ -999,10 +1003,59 @@ PR42 does not promote v10 into runtime, run live lanes, wire `/lolla`, change
 prompts, run model calls or judges, create Batch 3b, create user-facing
 Decision Pressure output, or allow deterministic final pressure selection.
 
-Recommended next slice, if opened, is PR43: same-nomination v9/v10 packet
-usefulness review for risk controls / reversibility / failure containment.
-PR43 should test handoff quality, not final-answer quality, before any further
-extraction begins.
+PR43 later completed the recommended same-nomination v9/v10 packet usefulness
+review. Do not treat PR42 alone as permission for another extraction batch.
+
+## What PR43 Added
+
+PR43 answers the question: "Did PR42's risk controls / reversibility /
+failure-containment enrichment make the same reasoning packet better handoff
+material for a later LLM, or did it merely make the packet heavier?"
+
+It adds:
+
+- `tests/fixtures/reasoning_substrate_packet/pr43_v9_risk_reversibility_packet_review.json`;
+- `tests/fixtures/reasoning_substrate_packet/pr43_v10_risk_reversibility_packet_review.json`;
+- `research/reasoning-substrate-packet-pr43-v9-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr43-v10-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr43-v9-v10-comparison-render-2026-05-07.md`;
+- `tests/test_reasoning_substrate_packet_v10_fixture.py`;
+- `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`;
+- `tasks/tasks-v10-risk-reversibility-packet-usefulness-review.md`;
+- living-doc posture updates.
+
+Measured PR43 packet state:
+
+- v9 candidate cards: `12`;
+- v10 candidate cards: `12`;
+- v9 reviewed cards: `0`;
+- v10 reviewed cards: `12`;
+- v9 graph-only cards: `12`;
+- v10 graph-only cards: `0`;
+- suppressed duplicates stay fixed at `1`;
+- visible v10 absence records: `12`;
+- visible v10 source-evidence refs: `12`;
+- v9 fixture size: `1022` lines / `44837` bytes;
+- v10 fixture size: `1584` lines / `70179` bytes.
+
+PR43's decision label is `v10_risk_packet_handoff_useful`.
+
+The product lesson:
+
+> v10 risk/reversibility depth improves the same packet handoff by adding
+> operational checks for commitment sizing, reversibility decay, fallback
+> independence, weak-signal triggers, adversarial failure chains,
+> nonlinear-loop monitoring, threshold evidence, plausible cascade paths,
+> resilience-over-precision, make-or-break interactions, critical-mass
+> density, and loss-frame distortion.
+
+PR43 does not promote v10 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, extract new records,
+create user-facing Decision Pressure output, or allow deterministic final
+pressure selection.
+
+Recommended next slice, if opened, is PR44: an after-v10 graph-only priority
+audit, not another extraction batch by default.
 
 ## PR24 Review Questions Answered
 
@@ -1076,7 +1129,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "controlled_risk_reversibility_enrichment_ready|v9_graph_only_priority_audit_complete|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR41|PR42|PR43" plans research tasks -g '*.md'
+rg -n "v10_risk_packet_handoff_useful|controlled_risk_reversibility_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR42|PR43|PR44" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1088,7 +1141,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR42 and do not infer permission for runtime work, broad
+Start from PR43 and do not infer permission for runtime work, broad
 extraction, packet promotion, or automatic extraction momentum.
 
 Read first:
@@ -1119,9 +1172,11 @@ Read first:
 - research/reasoning-substrate-packet-pr40-v8-v9-comparison-render-2026-05-07.md
 - research/v9-graph-only-priority-audit-2026-05-07.md
 - research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md
+- research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md
+- research/reasoning-substrate-packet-pr43-v9-v10-comparison-render-2026-05-07.md
 
 Current posture:
-controlled_risk_reversibility_enrichment_ready
+v10_risk_packet_handoff_useful
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1344,13 +1399,27 @@ PR42 result:
 - no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
   3b, broad extraction, or user-facing behavior was added
 
+PR43 result:
+- decision label: v10_risk_packet_handoff_useful
+- the same explicit 12-card risk/reversibility packet was generated against v9
+  and v10
+- v9 packet: 0 reviewed cards, 12 graph-only cards, 1 suppressed duplicate
+- v10 packet: 12 reviewed cards, 0 graph-only cards, 1 suppressed duplicate
+- v10 improves commitment sizing, reversibility decay, fallback independence,
+  weak-signal triggers, adversarial failure chains, nonlinear-loop monitoring,
+  threshold evidence, plausible cascade paths, resilience-over-precision,
+  make-or-break interactions, critical-mass density, and loss-frame distortion
+  handoff material
+- no extraction, runtime promotion, prompt, lane, live adapter, model call,
+  judge, Batch 3b, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
-unless the user explicitly opens a new product-reviewed slice. If PR43 opens,
-it must compare a same-nomination v9/v10 risk/reversibility packet and prove
-handoff usefulness before any further extraction begins. Broad extraction is
-still not justified by count momentum.
+unless the user explicitly opens a new product-reviewed slice. The recommended
+next proof slice is PR44: an after-v10 graph-only priority audit, not another
+extraction batch by default. Broad extraction is still not justified by count
+momentum.
 ```
 
 ## Core Memory
