@@ -1,15 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR35 completed a v7 packet usefulness
-review. PR34 compiled draft/review-only v7 from seven additional graph-only
-sources; PR35 tested that v7 depth in one explicit communication/competition
-packet handoff. This is still not runtime behavior, prompt promotion, lane
-rewrite, broad Batch 3b, or user-facing Decision Pressure work.
+**Status:** Start-here handover after PR36 added a controlled trust and
+negotiation enrichment batch. PR34 compiled draft/review-only v7, PR35 tested
+that v7 depth in one explicit communication/competition packet handoff, and
+PR36 compiled draft/review-only v8 from ten additional graph-only sources.
+This is still not runtime behavior, prompt promotion, lane rewrite, broad
+Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v7_packet_handoff_useful`
+**Current posture:** `controlled_trust_negotiation_enrichment_ready`
 
-**Current PR:** PR35 - v7 packet usefulness review
+**Current PR:** PR36 - controlled trust and negotiation enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -34,6 +35,8 @@ rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 **PR34 decision label:** `controlled_communication_competition_enrichment_ready`
 
 **PR35 decision label:** `v7_packet_handoff_useful`
+
+**PR36 decision label:** `controlled_trust_negotiation_enrichment_ready`
 
 ## Start Here
 
@@ -64,6 +67,7 @@ Read these files in order:
 23. `research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md`
 24. `research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md`
 25. `research/reasoning-substrate-packet-pr35-v6-v7-comparison-render-2026-05-07.md`
+26. `research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -102,7 +106,8 @@ Keep these layers distinct:
 | v5 affordance corpus | 65 reviewed records, 101 affordances, 115 absence records. Draft/review-only v4 plus PR28 controlled batch, not runtime-promoted. |
 | v6 affordance corpus | 81 reviewed records, 117 affordances, 147 absence records. Draft/review-only v5 plus PR32 controlled capability-gap batch, not runtime-promoted. |
 | v7 affordance corpus | 88 reviewed records, 124 affordances, 161 absence records. Draft/review-only v6 plus PR34 controlled communication/competition batch, not runtime-promoted. |
-| Graph-only after v7 | 134 runtime models remain eligible but not reviewed affordance records. |
+| v8 affordance corpus | 98 reviewed records, 134 affordances, 181 absence records. Draft/review-only v7 plus PR36 controlled trust/negotiation batch, not runtime-promoted. |
+| Graph-only after v8 | 124 runtime models remain eligible but not reviewed affordance records. |
 | PR27 mixed packet fixture | 7 candidate cards plus 1 suppressed duplicate. Review-only proof that mixed v4 + graph-only packets are useful handoff material. |
 | PR28 controlled extraction batch | 10 graph-only models gained reviewed records with 10 affordances and 20 absence records. |
 | PR29 v5 packet depth review | Same 7-card PR27 fixture regenerated against v5. Reviewed cards increased from 3 to 7, graph-only cards fell from 4 to 0, and packet burden stayed acceptable. |
@@ -112,6 +117,7 @@ Keep these layers distinct:
 | PR33 v6 packet usefulness review | Same 10-card nomination set compared against v5 and v6. Reviewed cards increased from 1 to 10, graph-only cards fell from 9 to 0, and candidate count stayed fixed. |
 | PR34 controlled communication/competition enrichment | 7 graph-only models from communication, feedback, strategic interdependence, and analogy/adaptive gaps gained reviewed records with 7 affordances and 14 absence records; compiled as draft/review-only v7. |
 | PR35 v7 packet usefulness review | Same 9-card communication/competition nomination set compared against v6 and v7. Reviewed cards increased from 2 to 9, graph-only cards fell from 7 to 0, and candidate count stayed fixed. |
+| PR36 controlled trust/negotiation enrichment | 10 graph-only models from trust repair, motivation, boundaries, influence, negotiation, and signaling gaps gained reviewed records with 10 affordances and 20 absence records; compiled as draft/review-only v8. |
 
 The governing sentence:
 
@@ -604,6 +610,58 @@ PR35 does not promote v7 into runtime, run live lanes, wire `/lolla`, change
 prompts, run model calls or judges, create Batch 3b, or create user-facing
 Decision Pressure output.
 
+## What PR36 Added
+
+PR36 answers the question: "Can the next named trust, relationship repair,
+motivation, influence, negotiation, and signaling gaps produce source-backed
+reviewed depth without turning interpersonal work into generic advice?"
+
+It adds:
+
+- `data/model_affordances/batch_7/`;
+- `data/compiled/model_affordances/affordances_v8.json`;
+- `data/compiled/model_affordances/quality_report_v8.md`;
+- `tests/test_pr36_batch7_records.py`;
+- `research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md`.
+
+Measured v8 shape:
+
+- `98` reviewed model records;
+- `134` reviewed affordances;
+- `181` absence records;
+- `1604` source-evidence references across reviewed records;
+- `241` treatment requirements;
+- `496` diagnostic questions;
+- `471` misuse guards;
+- `124` runtime models still graph-only after v8.
+
+PR36's decision label is `controlled_trust_negotiation_enrichment_ready`.
+
+The product lesson:
+
+> Controlled enrichment can make trust repair, interpersonal diagnosis,
+> influence, negotiation, and signaling packets more source-aware without
+> promoting softness, manipulation, or impression management as wisdom.
+
+PR36 targeted:
+
+- trust repair and hard conversation: `non-violent-communication`,
+  `emotional-intelligence`, `authenticity`, `boundaries`, `hanlons-razor`;
+- motivation and interpersonal inference: `understanding-motivations`;
+- negotiation influence and proof: `reciprocity-principle`,
+  `persuasion-principles`,
+  `international-negotiation-and-diplomacy-models`, `signaling`.
+
+Each target produced one compact reviewed affordance and two absence records.
+The batch is useful corpus depth, not runtime promotion or proof that
+extraction should continue by count momentum. The next proof should compare a
+v8-enriched trust/negotiation packet against v7 before another extraction batch
+is opened by default.
+
+PR36 does not promote v8 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, or create user-facing
+Decision Pressure output.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -688,7 +746,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR34 and do not infer permission for runtime work.
+Start from PR36 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -709,9 +767,10 @@ Read first:
 - research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md
 - research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr35-v6-v7-comparison-render-2026-05-07.md
+- research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md
 
 Current posture:
-v7_packet_handoff_useful
+controlled_trust_negotiation_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -833,13 +892,25 @@ PR35 result:
 - no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
   3b, or user-facing behavior was added
 
+PR36 result:
+- decision label: controlled_trust_negotiation_enrichment_ready
+- 10 graph-only models from trust repair, motivation, boundaries, influence,
+  negotiation, and signaling gaps received reviewed batch_7 records
+- v8 draft/review-only compiled artifact exists with 98 reviewed records
+- PR36 added 10 affordances and 20 absence records
+- v8 contains 134 affordances, 181 absence records, 241 treatment
+  requirements, 496 diagnostic questions, and 471 misuse guards
+- 124 runtime models remain graph-only after v8
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next production slice may be another controlled enrichment batch selected by
-capability gaps and likely packet usefulness. Broad extraction is still not
-justified by count momentum.
+next production slice is likely a v8 packet-usefulness review using a trust
+repair / negotiation / influence candidate mix, not another enrichment batch by
+momentum. Broad extraction is still not justified by count momentum.
 ```
 
 ## Core Memory

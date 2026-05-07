@@ -1,0 +1,145 @@
+{
+  "model_id": "hanlons-razor",
+  "source_file": "Hanlons_Razor_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "hanlons-razor.non-malice-diagnostic-delay",
+      "status": "supported",
+      "name": "Non-malice diagnostic delay",
+      "mechanism": "When a failure or slight invites hostile intent attribution, require the answer to test coordination breakdown, poor incentives, missing training, overload, or system error before escalating blame.",
+      "activation_shape": {
+        "use_when": [
+          "A failure, delay, or conflict can plausibly be explained by coordination breakdown, poor incentives, missing training, or overloaded systems.",
+          "The emotional temptation is to assign hostile intent before checking for simpler operational explanations.",
+          "The goal is to keep diagnosis constructive long enough to improve the system rather than escalating blame prematurely."
+        ],
+        "do_not_use_when": [
+          "Repeat harm, obvious deception, or incentives practically reward bad-faith behavior.",
+          "The model is being used to excuse recurring damage without accountability.",
+          "Specific evidence already supports intentional malice or strategic misconduct."
+        ],
+        "case_evidence_needed": [
+          "The negative outcome or perceived slight.",
+          "Operational explanations such as clarity, training, resource, incentive, or overload issues.",
+          "Evidence for and against intentional malice.",
+          "The systemic change that would prevent recurrence if neglect is the right explanation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-neglect-before-malice",
+          "description": "Require the answer to state at least one non-malicious explanation, identify the evidence that would distinguish it from malice, and preserve an escalation path if bad faith remains plausible.",
+          "evidence_required": [
+            "The harmful event.",
+            "The simpler operational explanation.",
+            "Evidence that would support malice.",
+            "A corrective system step if neglect is confirmed."
+          ],
+          "good_output_shape": [
+            "Delays hostile attribution.",
+            "Names operational explanations.",
+            "States what evidence would change the diagnosis.",
+            "Keeps accountability available for repeat or intentional harm."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What non-malicious operational explanation would fit these facts?",
+        "What specific evidence distinguishes neglect from intentional malice?",
+        "If this is neglect, what system change would prevent recurrence?"
+      ],
+      "misuse_guards": [
+        "Do not use Hanlon's Razor to excuse repeated harm.",
+        "Do not ignore evidence of bad faith or incentive-rewarded deception.",
+        "Do not stop at benefit-of-the-doubt language without a corrective system action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Hanlons_Razor_rag.md",
+          "source_quote": "we should not attribute to malice that which is more easily explained by stupidity",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Hanlons_Razor_rag.md",
+          "source_quote": "failure, delay, or conflict can be explained by coordination breakdown, poor incentives, missing training, or overloaded systems",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Hanlons_Razor_rag.md",
+          "source_quote": "What specific, objective evidence supports the conclusion of incompetence/neglect, versus the conclusion of malice?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports a diagnostic delay before malice attribution, with explicit repeat-harm and bad-faith guards.",
+        "dropped_material": [
+          "Did not extract full root-cause analysis or Occam's Razor material as separate affordances.",
+          "Kept system redesign as a treatment requirement rather than a second card."
+        ],
+        "open_questions": [
+          "Future packet review should test this card against incentives and principal-agent records when intent and structure both matter."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "repeat-harm-excuse",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that Hanlon's Razor should not become an excuse for repeat harm or incentive-rewarded bad faith.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Hanlons_Razor_rag.md",
+          "source_quote": "repeat harm, obvious deception, or incentive structures that practically reward bad-faith behavior",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "automatic-good-intentions-presumption",
+      "status": "not_supported_by_source",
+      "reason": "The source says intent assumptions are likely wrong; it does not support automatically presuming good intentions without valid data.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Hanlons_Razor_rag.md",
+          "source_quote": "Don't proceed without **valid data**.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Hanlons_Razor_rag.md",
+      "source_quote": "avoid paranoia and ideology",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Hanlon's Razor. Extracted one non-malice diagnostic delay and rejected repeat-harm excuse plus automatic good-intentions presumption.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card keeps conflict diagnosis constructive without neutralizing accountability."
+    ],
+    "review_status": "draft"
+  }
+}
