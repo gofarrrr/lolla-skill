@@ -1,14 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR33 completed a v6 packet usefulness
-review. PR32 compiled draft/review-only v6; PR33 tested that v6 depth in one
-explicit packet handoff. This is still not runtime behavior, prompt promotion,
-lane rewrite, broad Batch 3b, or user-facing Decision Pressure work.
+**Status:** Start-here handover after PR34 added a controlled communication,
+feedback, competition, and analogy enrichment batch. PR32 compiled
+draft/review-only v6, PR33 tested that v6 depth in one explicit packet handoff,
+and PR34 compiled draft/review-only v7 from seven additional graph-only
+sources. This is still not runtime behavior, prompt promotion, lane rewrite,
+broad Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v6_packet_handoff_useful`
+**Current posture:** `controlled_communication_competition_enrichment_ready`
 
-**Current PR:** PR33 - v6 packet usefulness review
+**Current PR:** PR34 - controlled communication and competition enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -29,6 +31,8 @@ lane rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 **PR32 decision label:** `controlled_capability_gap_enrichment_ready`
 
 **PR33 decision label:** `v6_packet_handoff_useful`
+
+**PR34 decision label:** `controlled_communication_competition_enrichment_ready`
 
 ## Start Here
 
@@ -56,6 +60,7 @@ Read these files in order:
 20. `research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md`
 21. `research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md`
 22. `research/reasoning-substrate-packet-pr33-v5-v6-comparison-render-2026-05-07.md`
+23. `research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -73,8 +78,9 @@ The current architecture is:
 Meaning:
 
 - existing lanes pull candidate mental-model shelves;
-- deterministic code may dedupe, cap, label coverage, attach graph/v4 snippets,
-  preserve provenance, and expose absence records;
+- deterministic code may dedupe, cap, label coverage, attach graph fields and
+  reviewed-affordance snippets, preserve provenance, and expose absence
+  records;
 - the LLM/reviewer decides what matters, what to ignore, what to merge, and
   whether any Decision Pressure emerges.
 
@@ -92,7 +98,8 @@ Keep these layers distinct:
 | v4 affordance corpus | 55 reviewed records, 91 affordances, 95 absence records. Deep reviewed subset, still dormant. |
 | v5 affordance corpus | 65 reviewed records, 101 affordances, 115 absence records. Draft/review-only v4 plus PR28 controlled batch, not runtime-promoted. |
 | v6 affordance corpus | 81 reviewed records, 117 affordances, 147 absence records. Draft/review-only v5 plus PR32 controlled capability-gap batch, not runtime-promoted. |
-| Graph-only after v6 | 141 runtime models remain eligible but not reviewed affordance records. |
+| v7 affordance corpus | 88 reviewed records, 124 affordances, 161 absence records. Draft/review-only v6 plus PR34 controlled communication/competition batch, not runtime-promoted. |
+| Graph-only after v7 | 134 runtime models remain eligible but not reviewed affordance records. |
 | PR27 mixed packet fixture | 7 candidate cards plus 1 suppressed duplicate. Review-only proof that mixed v4 + graph-only packets are useful handoff material. |
 | PR28 controlled extraction batch | 10 graph-only models gained reviewed records with 10 affordances and 20 absence records. |
 | PR29 v5 packet depth review | Same 7-card PR27 fixture regenerated against v5. Reviewed cards increased from 3 to 7, graph-only cards fell from 4 to 0, and packet burden stayed acceptable. |
@@ -100,6 +107,7 @@ Keep these layers distinct:
 | PR31 v5 capability audit | Audits what the 65 reviewed records can already support and names the next controlled enrichment gaps. |
 | PR32 controlled capability-gap enrichment | 16 graph-only models from the PR31 gap list gained reviewed records with 16 affordances and 32 absence records; compiled as draft/review-only v6. |
 | PR33 v6 packet usefulness review | Same 10-card nomination set compared against v5 and v6. Reviewed cards increased from 1 to 10, graph-only cards fell from 9 to 0, and candidate count stayed fixed. |
+| PR34 controlled communication/competition enrichment | 7 graph-only models from communication, feedback, strategic interdependence, and analogy/adaptive gaps gained reviewed records with 7 affordances and 14 absence records; compiled as draft/review-only v7. |
 
 The governing sentence:
 
@@ -503,6 +511,58 @@ PR33 does not promote v6 into runtime, run live lanes, wire `/lolla`, change
 prompts, run model calls or judges, create Batch 3b, or create user-facing
 Decision Pressure output.
 
+## What PR34 Added
+
+PR34 answers the question: "Can the next named communication, feedback,
+competition, and analogy gaps produce source-backed reviewed depth without
+sliding into broad mechanical extraction?"
+
+It adds:
+
+- `data/model_affordances/batch_6/`;
+- `data/compiled/model_affordances/affordances_v7.json`;
+- `data/compiled/model_affordances/quality_report_v7.md`;
+- `tests/test_pr34_batch6_records.py`;
+- `research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md`.
+
+Measured v7 shape:
+
+- `88` reviewed model records;
+- `124` reviewed affordances;
+- `161` absence records;
+- `1542` source-evidence references across reviewed records;
+- `231` treatment requirements;
+- `466` diagnostic questions;
+- `441` misuse guards;
+- `134` runtime models still graph-only after v7.
+
+PR34's decision label is
+`controlled_communication_competition_enrichment_ready`.
+
+The product lesson:
+
+> Controlled enrichment can patch specific receiver-side packet gaps in
+> communication/feedback, strategic interdependence, and analogy/adaptive
+> reasoning while preserving absence records and draft/review-only custody.
+
+PR34 targeted:
+
+- strategic interdependence: `nash-equilibrium`, `prisoners-dilemma`;
+- communication and feedback: `active-listening`,
+  `constructive-feedback-models`, `feedback-models-sbi`;
+- analogy/adaptive reasoning: `analogies-and-metaphors`,
+  `natural-selection-analogy`.
+
+Each target produced one compact reviewed affordance and two absence records.
+The batch is useful corpus depth, not runtime promotion or proof that
+extraction should continue by count momentum. The next proof should compare a
+v7-enriched packet against v6 for a communication/competition case before
+another extraction batch is opened by default.
+
+PR34 does not promote v7 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, or create user-facing
+Decision Pressure output.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -587,7 +647,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR32 and do not infer permission for runtime work.
+Start from PR34 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -605,9 +665,10 @@ Read first:
 - research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md
 - research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr33-v5-v6-comparison-render-2026-05-07.md
+- research/pr34-controlled-communication-competition-enrichment-report-2026-05-07.md
 
 Current posture:
-v6_packet_handoff_useful
+controlled_communication_competition_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -705,13 +766,26 @@ PR33 result:
 - no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
   3b, or user-facing behavior was added
 
+PR34 result:
+- decision label: controlled_communication_competition_enrichment_ready
+- 7 graph-only models from communication, feedback, strategic
+  interdependence, and analogy/adaptive reasoning gaps received reviewed
+  batch_6 records
+- v7 draft/review-only compiled artifact exists with 88 reviewed records
+- PR34 added 7 affordances and 14 absence records
+- v7 contains 124 affordances, 161 absence records, 231 treatment
+  requirements, 466 diagnostic questions, and 441 misuse guards
+- 134 runtime models remain graph-only after v7
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next production slice may be another controlled enrichment batch selected by
-capability gaps and likely packet usefulness. Broad extraction is still not
-justified by count momentum.
+next production slice is likely a v7 packet-usefulness review using a
+communication/competition candidate mix, not another enrichment batch by
+momentum. Broad extraction is still not justified by count momentum.
 ```
 
 ## Core Memory
