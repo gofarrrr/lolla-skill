@@ -1,0 +1,145 @@
+{
+  "model_id": "debugging-strategies",
+  "source_file": "Debugging_Strategies_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "debugging-strategies.failure-condition-root-cause-trace",
+      "status": "supported",
+      "name": "Failure condition root-cause trace",
+      "mechanism": "When execution has failed but the cause is unclear, require the answer to define the actual failure condition, form testable hypotheses, isolate variables, and separate symptoms from the structural cause before prescribing a fix.",
+      "activation_shape": {
+        "use_when": [
+          "Failures are real but the cause is ambiguous, distributed, or hidden behind several interacting components.",
+          "The team can form explicit hypotheses, isolate variables, and test the system rather than arguing from intuition.",
+          "Reliability matters enough that vague explanations are more dangerous than the time spent tracing the true defect path."
+        ],
+        "do_not_use_when": [
+          "People start debugging before agreeing on the actual failure condition, so they optimize noise, symptoms, or tools instead of the broken behavior.",
+          "The debugger's initial hypothesis about the root cause biases the search toward confirming evidence while overlooking disconfirming signals.",
+          "The situation requires abductive creation of a new artifact rather than deductive diagnosis of a defect path."
+        ],
+        "case_evidence_needed": [
+          "The observed failure or suboptimal outcome.",
+          "The agreed failure condition that distinguishes broken behavior from noise.",
+          "Candidate root-cause hypotheses and the variables that can be isolated.",
+          "Evidence that separates symptom treatment from structural correction."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-failure-before-fixing",
+          "description": "Require the answer to state the failure condition first, then test root-cause hypotheses against evidence before recommending a fix.",
+          "evidence_required": [
+            "The failure signal.",
+            "The behavior that is actually broken.",
+            "The competing causal hypotheses.",
+            "The test or evidence that would rule each hypothesis in or out."
+          ],
+          "good_output_shape": [
+            "Defines failure before solution.",
+            "Names competing root-cause hypotheses.",
+            "Identifies variables to isolate.",
+            "Prescribes a fix only after the defect path is traced."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the actual failure condition, not just the visible symptom?",
+        "Which root-cause hypotheses can be tested or isolated?",
+        "What evidence would disconfirm the preferred diagnosis?"
+      ],
+      "misuse_guards": [
+        "Do not debug noise before agreeing on broken behavior.",
+        "Do not let the first root-cause story guide only confirming evidence.",
+        "Do not prescribe a fix before separating symptom from system design."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "failures are real but the cause is ambiguous, distributed, or hidden behind several interacting components",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "form explicit hypotheses, isolate variables, and test the system rather than arguing from intuition",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "people start debugging before agreeing on the actual failure condition",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one failure-condition/root-cause trace that separates ambiguous failure, hypotheses, variables, and disconfirming evidence.",
+        "dropped_material": [
+          "Did not split MECE, one-day answer, game-theory simulations, or red-team examples into separate affordances.",
+          "Kept risk premortem and disjunctive-structure material as supporting context."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card helps execution packets avoid premature fixes."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "debugging-before-failure-condition",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against debugging before agreeing on the actual failure condition because that optimizes noise, symptoms, or tools rather than the broken behavior.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "people start debugging before agreeing on the actual failure condition, so they optimize noise, symptoms, or tools instead of the broken behavior",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "confirming-initial-root-cause-story",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects diagnosis that is biased toward confirming the initial root-cause hypothesis while overlooking disconfirming signals.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "the debugger’s initial hypothesis about the root cause biases the search toward confirming evidence while overlooking disconfirming signals",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Debugging_Strategies_rag.md",
+      "source_quote": "accurately diagnosing the problems to get at their root causes",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Debugging Strategies. Extracted one failure-condition/root-cause trace and rejected premature debugging plus confirmation-driven diagnosis.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should test whether this card improves cause-search discipline without slowing action into analysis paralysis."
+    ],
+    "review_status": "draft"
+  }
+}

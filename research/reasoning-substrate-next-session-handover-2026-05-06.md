@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR38 audited the remaining graph-only
-corpus after v8. PR37 tested that v8 depth improves one trust/negotiation packet
-handoff, and PR38 selected the next likely controlled enrichment family without
-starting extraction.
+**Status:** Start-here handover after PR39 completed controlled
+execution/follow-through enrichment. PR38 selected the family; PR39 read the 12
+source-custodied files and compiled draft/review-only v9 without runtime
+promotion.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v8_graph_only_priority_audit_complete`
+**Current posture:** `controlled_execution_followthrough_enrichment_ready`
 
-**Current PR:** PR38 - after-v8 graph-only priority audit
+**Current PR:** PR39 - controlled execution/follow-through enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -41,6 +41,8 @@ Batch 3b, or user-facing Decision Pressure work.
 **PR37 decision label:** `v8_packet_handoff_useful`
 
 **PR38 decision label:** `v8_graph_only_priority_audit_complete`
+
+**PR39 decision label:** `controlled_execution_followthrough_enrichment_ready`
 
 ## Start Here
 
@@ -75,6 +77,7 @@ Read these files in order:
 27. `research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md`
 28. `research/reasoning-substrate-packet-pr37-v7-v8-comparison-render-2026-05-07.md`
 29. `research/v8-graph-only-priority-audit-2026-05-07.md`
+30. `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -127,6 +130,9 @@ Keep these layers distinct:
 | PR36 controlled trust/negotiation enrichment | 10 graph-only models from trust repair, motivation, boundaries, influence, negotiation, and signaling gaps gained reviewed records with 10 affordances and 20 absence records; compiled as draft/review-only v8. |
 | PR37 v8 packet usefulness review | Same 10-card trust/negotiation nomination set compared against v7 and v8. Reviewed cards increased from 0 to 10, graph-only cards fell from 10 to 0, and candidate count stayed fixed. |
 | PR38 v8 graph-only priority audit | Reviews the remaining 124 graph-only models after v8 and recommends execution / implementation / follow-through discipline as the next controlled enrichment family. No extraction, runtime, prompt, lane, model-call, judge, or user-facing work. |
+| PR39 controlled execution/follow-through enrichment | 12 graph-only models from execution, auditability, baselines, bottlenecks, debugging, feedback, goals, habits, iteration, and validated learning gained reviewed records with 12 affordances and 24 absence records; compiled as draft/review-only v9. |
+| v9 affordance corpus | 110 reviewed records, 146 affordances, 205 absence records. Draft/review-only v8 plus PR39 controlled execution/follow-through batch, not runtime-promoted. |
+| Graph-only after v9 | 112 runtime models remain eligible but not reviewed affordance records. |
 
 The governing sentence:
 
@@ -752,14 +758,77 @@ The recommended PR39 target set is capped at 12 models:
 - `iteration`;
 - `lean-startup-methodology`.
 
-PR38 does not extract those records. If PR39 opens, it must read each source
-directly and allow `thin_narrow_affordance_record`, `absence_record`, or
-`do_not_promote_recommendation` when the source does not support operational
-depth.
+PR38 did not extract those records. PR39 later opened exactly this controlled
+batch and read each source directly, allowing thin/narrow or absence-heavy
+outcomes where the source did not support operational depth.
 
 PR38 does not promote v8 into runtime, run live lanes, wire `/lolla`, change
 prompts, run model calls or judges, create Batch 3b, create user-facing
 Decision Pressure output, or allow deterministic final pressure selection.
+
+## What PR39 Added
+
+PR39 answers the question: "Can source-backed execution/follow-through records
+help a future packet distinguish advice that is merely plausible from advice
+that is executable, inspectable, adjustable, and stoppable?"
+
+It adds:
+
+- `data/model_affordances/batch_8/`;
+- `data/compiled/model_affordances/affordances_v9.json`;
+- `data/compiled/model_affordances/quality_report_v9.md`;
+- `tests/test_pr39_batch8_records.py`;
+- `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`;
+- `tasks/tasks-controlled-execution-followthrough-enrichment-batch.md`;
+- living-doc posture updates.
+
+Measured PR39 state:
+
+- runtime graph models stay fixed at `222`;
+- source-custodied files stay fixed at `222`;
+- v9 reviewed records: `110`;
+- v9 affordances: `146`;
+- v9 absence records: `205`;
+- graph-only runtime models after v9: `112`;
+- v9 status: `draft_review_only`.
+
+PR39's decision label is
+`controlled_execution_followthrough_enrichment_ready`.
+
+The 12 target models were:
+
+- `algorithmic-thinking`;
+- `auditability-traceability`;
+- `baseline-establishment`;
+- `bottlenecks`;
+- `debugging-strategies`;
+- `devops-and-continuous-integration`;
+- `feedback-loops`;
+- `goal-setting`;
+- `habit-formation`;
+- `input-vs-output-goals`;
+- `iteration`;
+- `lean-startup-methodology`.
+
+The product lesson:
+
+> Execution/follow-through cards are useful only when they stop generic
+> productivity advice and give the next LLM operational checks: baseline,
+> bottleneck, trace, feedback signal, failure condition, controllable input,
+> bounded iteration, and stop/change threshold.
+
+`devops-and-continuous-integration` remains intentionally thin/narrow because
+the source does not support full DevOps/CI doctrine. PR39 extracted only the
+supported build-observe-adjust operating-loop affordance and preserved absence
+records for overclaims.
+
+PR39 does not promote v9 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, create user-facing
+Decision Pressure output, or allow deterministic final pressure selection.
+
+Recommended next slice, if opened, is PR40: a v8/v9 execution packet
+usefulness review with stable nominations. Do not start another extraction
+batch by default.
 
 ## PR24 Review Questions Answered
 
@@ -833,7 +902,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "v8_graph_only_priority_audit_complete|v8_packet_handoff_useful|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR38|PR39" plans research tasks -g '*.md'
+rg -n "controlled_execution_followthrough_enrichment_ready|v8_graph_only_priority_audit_complete|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR39|PR40" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -845,8 +914,8 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR38 and do not infer permission for runtime work or broad
-extraction.
+Start from PR39 and do not infer permission for runtime work, broad
+extraction, or another extraction batch.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -871,9 +940,10 @@ Read first:
 - research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr37-v7-v8-comparison-render-2026-05-07.md
 - research/v8-graph-only-priority-audit-2026-05-07.md
+- research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md
 
 Current posture:
-v8_graph_only_priority_audit_complete
+controlled_execution_followthrough_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1036,13 +1106,26 @@ PR38 result:
 - no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
   3b, broad extraction, or user-facing behavior was added
 
+PR39 result:
+- decision label: controlled_execution_followthrough_enrichment_ready
+- 12 graph-only models from execution / implementation / follow-through
+  discipline received reviewed batch_8 records
+- v9 draft/review-only compiled artifact exists with 110 reviewed records
+- PR39 added 12 affordances and 24 absence records
+- v9 contains 146 affordances, 205 absence records, 253 treatment
+  requirements, 532 diagnostic questions, and 507 misuse guards
+- 112 runtime models remain graph-only after v9
+- `devops-and-continuous-integration` is intentionally thin/narrow because the
+  source does not support full DevOps/CI doctrine
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, broad extraction, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next production slice is a controlled PR39 extraction of the 12 named
-execution/follow-through targets only if explicitly opened. Broad extraction is
-still not justified by count momentum.
+next proof slice is a PR40 v8/v9 execution packet usefulness review with stable
+nominations. Broad extraction is still not justified by count momentum.
 ```
 
 ## Core Memory

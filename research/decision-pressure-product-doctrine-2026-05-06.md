@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR38 v8 graph-only priority audit.
+**Status:** Product doctrine after PR39 controlled execution/follow-through enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v8_graph_only_priority_audit_complete`
+**Current posture:** `controlled_execution_followthrough_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -40,6 +40,8 @@ memo, or user-facing launch plan.
 **Current v8 packet usefulness review:** `research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md`
 
 **Current v8 graph-only priority audit:** `research/v8-graph-only-priority-audit-2026-05-07.md`
+
+**Current controlled execution/follow-through enrichment report:** `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -530,6 +532,28 @@ Do not start runtime packet production, prompt changes, lane rewrites, broad
 extraction, Batch 3b, paid runs, or user-facing Decision Pressure output by
 default.
 
+PR39 then completed one controlled execution/follow-through enrichment batch:
+
+> `controlled_execution_followthrough_enrichment_ready`
+
+Treat PR39 as reviewed depth for a named capability family, not runtime
+permission or proof that another extraction batch should begin. Twelve
+formerly graph-only execution/follow-through models now have reviewed Batch 8
+records, adding `12` affordances and `24` absence records. v9 has `110`
+reviewed records, `146` affordances, and `205` absence records, and remains
+`draft_review_only`.
+
+The useful lesson is not "more records." The useful lesson is that execution
+cards can now help a future packet ask whether advice has a baseline,
+bottleneck evidence, audit trail, feedback signal, failure condition,
+controllable input, bounded iteration cycle, or stop/change threshold. The
+guardrail is equally important: do not turn these cards into generic
+productivity advice.
+
+`devops-and-continuous-integration` remains intentionally thin/narrow because
+the source does not support full DevOps/CI doctrine. That is the correct
+absence-honest outcome, not a record to rescue with outside knowledge.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -617,22 +641,28 @@ PR38 added the first after-v8 priority answer:
 > stoppable. This is an audit recommendation for a narrow PR39 batch, not
 > broad extraction or runtime promotion.
 
+PR39 added the controlled execution/follow-through enrichment answer:
+
+> Yes, the named execution/follow-through gaps can produce compact reviewed
+> depth under exact source custody: v9 adds 12 records, 12 affordances, and 24
+> absence records while remaining dormant. One record is intentionally
+> thin/narrow because the source does not support full doctrine. The next proof
+> is whether v9 improves an execution packet handoff, not whether another
+> extraction batch can raise the count.
+
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, and PR36 cards remain useful when tested in additional
    candidate mixes, and which merely add internal bulk?
-2. If PR39 opens, do the 12 execution/follow-through sources actually produce
-   compact operational depth, or do some sources correctly yield thin,
-   absence-only, or do-not-promote outcomes?
-3. Would a later PR40 execution packet show reviewed depth improving handoff
+2. Would a later PR40 execution packet show reviewed depth improving handoff
    usefulness without increasing candidate count or making Python choose the
    answer?
-4. Which decision moments most clearly need pressure before action?
-5. What would make a user trust a pressure pass?
-6. What would make the output feel like noise?
-7. What is the smallest public promise that is true?
-8. What evidence would justify promotion into a real surface?
-9. What evidence would tell us the product is only interesting to us?
+3. Which decision moments most clearly need pressure before action?
+4. What would make a user trust a pressure pass?
+5. What would make the output feel like noise?
+6. What is the smallest public promise that is true?
+7. What evidence would justify promotion into a real surface?
+8. What evidence would tell us the product is only interesting to us?
 
 Do not answer these by adding machinery. Answer them with product review,
 manual examples, packet comparison, user conversations, and decision-moment
