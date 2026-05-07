@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR37 are merged or in review, PR37 completed v8 packet usefulness review, and the current posture is `v8_packet_handoff_useful`
+**Status:** living schema doctrine; PR13-PR38 are merged or in review, PR38 completed the after-v8 graph-only priority audit, and the current posture is `v8_graph_only_priority_audit_complete`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -26,6 +26,7 @@
 **Current v7 packet usefulness review:** `research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md`
 **Current controlled trust/negotiation enrichment report:** `research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md`
 **Current v8 packet usefulness review:** `research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md`
+**Current v8 graph-only priority audit:** `research/v8-graph-only-priority-audit-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -272,11 +273,19 @@ real. Future sessions should treat the following as current baseline:
   packet moves from `0` reviewed / `10` graph-only cards to `10` reviewed / `0`
   graph-only cards without changing candidate count or selecting a final
   pressure. Decision label: `v8_packet_handoff_useful`.
+- PR38 completed one after-v8 graph-only priority audit after PR37. It reviews
+  the remaining `124` graph-only runtime models, compares candidate families,
+  and recommends execution / implementation / follow-through discipline as the
+  next controlled enrichment family because future packets are likely to be
+  thin where plausible advice must become executable, inspectable, adjustable,
+  and stoppable. Decision label:
+  `v8_graph_only_priority_audit_complete`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `v8_packet_handoff_useful`; do not build runtime packet production, prompt
-  changes, broad extraction, lane rewrites, or user-facing surfaces by default.
+  `v8_graph_only_priority_audit_complete`; do not build runtime packet
+  production, prompt changes, broad extraction, lane rewrites, or user-facing
+  surfaces by default.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1498,7 +1507,7 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation, more paid Gate 4 calibration,
-or Decision Pressure trace machinery. PR13-PR37 are complete or in review.
+or Decision Pressure trace machinery. PR13-PR38 are complete or in review.
 PR26 completed deterministic source custody backfill: all 222 runtime source
 files are now under repo-local custody, while v4 reviewed affordance depth
 remains 55 model records. PR27 then completed one review-only mixed packet
@@ -1530,6 +1539,10 @@ absence records as first-class corpus evidence.
 PR37 then compared one explicit 10-card packet against v7 and v8 and found the
 v8 reviewed cards improve handoff material without increasing candidate count
 or selecting final pressure.
+PR38 then audited the remaining 124 graph-only models after v8 and selected
+execution / implementation / follow-through discipline as the next controlled
+enrichment family, not because it completes the corpus, but because it is where
+future packets are likely to be thin when advice must turn into action.
 
 Current task:
 
@@ -1569,50 +1582,55 @@ Current task:
     as the current controlled v8 enrichment report.
 18. Use `research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md`
     as the current v8 packet usefulness review.
-19. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
+19. Use `research/v8-graph-only-priority-audit-2026-05-07.md` as the current
+    after-v8 graph-only priority audit and PR39 target-family recommendation.
+20. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
    product north star: broad intake, disciplined output.
-20. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
+21. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
    architecture line: pull shelves, enrich cards, let the LLM reason.
-21. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
+22. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-22. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
-23. Treat PR23's generalization readout as directional product evidence, not
+23. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
+24. Treat PR23's generalization readout as directional product evidence, not
    deterministic case logic.
-24. Treat PR25 as dormant enrichment placement, not runtime packet production.
-25. Treat PR26 as source custody, not v4 extraction.
-26. Treat PR27 as fixture usefulness evidence, not runtime packet production.
-27. Treat PR28 as controlled extraction quality evidence, not v5 runtime
+25. Treat PR25 as dormant enrichment placement, not runtime packet production.
+26. Treat PR26 as source custody, not v4 extraction.
+27. Treat PR27 as fixture usefulness evidence, not runtime packet production.
+28. Treat PR28 as controlled extraction quality evidence, not v5 runtime
     promotion or broad extraction permission.
-28. Treat PR29 as handoff-depth evidence, not final-answer evidence or
+29. Treat PR29 as handoff-depth evidence, not final-answer evidence or
     permission for deterministic pressure selection.
-29. Treat PR30 as receiver-review ergonomics, not a product renderer, UI, memo,
+30. Treat PR30 as receiver-review ergonomics, not a product renderer, UI, memo,
     package function, or semantic selector.
-30. Treat PR31 as a capability audit, not extraction or runtime promotion.
-31. Treat PR32 as controlled capability-gap enrichment, not v6 runtime
+31. Treat PR31 as a capability audit, not extraction or runtime promotion.
+32. Treat PR32 as controlled capability-gap enrichment, not v6 runtime
     promotion, corpus completion, or proof that another batch should begin.
-32. Treat PR33 as packet handoff usefulness evidence, not final-answer evidence,
+33. Treat PR33 as packet handoff usefulness evidence, not final-answer evidence,
     live packet production, or runtime permission.
-33. Treat PR34 as controlled communication/competition enrichment, not v7
+34. Treat PR34 as controlled communication/competition enrichment, not v7
     runtime promotion, corpus completion, or proof that another batch should
     begin.
-34. Treat PR35 as packet handoff usefulness evidence, not final-answer evidence,
+35. Treat PR35 as packet handoff usefulness evidence, not final-answer evidence,
     live packet production, or runtime permission.
-35. Treat PR36 as controlled trust/negotiation enrichment, not v8 runtime
+36. Treat PR36 as controlled trust/negotiation enrichment, not v8 runtime
     promotion, corpus completion, or proof that another batch should begin.
-36. Treat PR37 as packet handoff usefulness evidence, not final-answer evidence,
+37. Treat PR37 as packet handoff usefulness evidence, not final-answer evidence,
     live packet production, or runtime permission.
-37. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+38. Treat PR38 as a graph-only priority audit, not extraction. Its PR39
+    recommendation is a narrow execution/follow-through batch, not permission
+    to enrich all remaining graph-only records.
+39. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-38. Preserve coverage honesty and no-casuistry rails.
-39. Do not run more paid model calls for this slice.
-40. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+40. Preserve coverage honesty and no-casuistry rails.
+41. Do not run more paid model calls for this slice.
+42. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Do not extract more affordance records or wire live runtime behavior by
-momentum. PR37 shows v8 reviewed depth can improve one concrete
-trust/negotiation packet handoff, but the next production move should still be
-selected by capability gaps and likely packet usefulness, not by count
-completion.
+momentum. PR38 selects execution / implementation / follow-through discipline
+as the next controlled enrichment family only because that family is likely to
+make future packets more useful where plausible advice must become executable,
+inspectable, adjustable, and stoppable. It is not count-completion permission.
 
 ---
 

@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR37 tested v8 packet usefulness. PR36
-compiled draft/review-only v8 from ten additional graph-only trust/negotiation
-sources, and PR37 tested that v8 depth in one explicit trust/negotiation packet
-handoff.
+**Status:** Start-here handover after PR38 audited the remaining graph-only
+corpus after v8. PR37 tested that v8 depth improves one trust/negotiation packet
+handoff, and PR38 selected the next likely controlled enrichment family without
+starting extraction.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v8_packet_handoff_useful`
+**Current posture:** `v8_graph_only_priority_audit_complete`
 
-**Current PR:** PR37 - v8 packet usefulness review
+**Current PR:** PR38 - after-v8 graph-only priority audit
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -39,6 +39,8 @@ Batch 3b, or user-facing Decision Pressure work.
 **PR36 decision label:** `controlled_trust_negotiation_enrichment_ready`
 
 **PR37 decision label:** `v8_packet_handoff_useful`
+
+**PR38 decision label:** `v8_graph_only_priority_audit_complete`
 
 ## Start Here
 
@@ -70,6 +72,9 @@ Read these files in order:
 24. `research/reasoning-substrate-v7-packet-usefulness-review-2026-05-07.md`
 25. `research/reasoning-substrate-packet-pr35-v6-v7-comparison-render-2026-05-07.md`
 26. `research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md`
+27. `research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md`
+28. `research/reasoning-substrate-packet-pr37-v7-v8-comparison-render-2026-05-07.md`
+29. `research/v8-graph-only-priority-audit-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -121,6 +126,7 @@ Keep these layers distinct:
 | PR35 v7 packet usefulness review | Same 9-card communication/competition nomination set compared against v6 and v7. Reviewed cards increased from 2 to 9, graph-only cards fell from 7 to 0, and candidate count stayed fixed. |
 | PR36 controlled trust/negotiation enrichment | 10 graph-only models from trust repair, motivation, boundaries, influence, negotiation, and signaling gaps gained reviewed records with 10 affordances and 20 absence records; compiled as draft/review-only v8. |
 | PR37 v8 packet usefulness review | Same 10-card trust/negotiation nomination set compared against v7 and v8. Reviewed cards increased from 0 to 10, graph-only cards fell from 10 to 0, and candidate count stayed fixed. |
+| PR38 v8 graph-only priority audit | Reviews the remaining 124 graph-only models after v8 and recommends execution / implementation / follow-through discipline as the next controlled enrichment family. No extraction, runtime, prompt, lane, model-call, judge, or user-facing work. |
 
 The governing sentence:
 
@@ -700,6 +706,61 @@ PR37 does not promote v8 into runtime, run live lanes, wire `/lolla`, change
 prompts, run model calls or judges, create Batch 3b, or create user-facing
 Decision Pressure output.
 
+## What PR38 Added
+
+PR38 answers the question: "After v8, which remaining graph-only family is
+likely to make future packets thin enough that controlled enrichment is
+justified?"
+
+It adds:
+
+- `research/v8-graph-only-priority-audit-2026-05-07.md`;
+- `tasks/tasks-v8-graph-only-priority-audit.md`;
+- living-doc posture updates.
+
+Measured PR38 audit state:
+
+- runtime graph models stay fixed at `222`;
+- source-custodied files stay fixed at `222`;
+- v8 reviewed records stay fixed at `98`;
+- v8 affordances stay fixed at `134`;
+- v8 absence records stay fixed at `181`;
+- graph-only runtime models after v8 stay fixed at `124`;
+- no extraction or runtime artifact changes occur.
+
+PR38's decision label is `v8_graph_only_priority_audit_complete`.
+
+The product lesson:
+
+> The next controlled enrichment family should be execution / implementation /
+> follow-through discipline because that is where future packets are likely to
+> be thin when plausible AI advice must become executable, inspectable,
+> adjustable, and stoppable.
+
+The recommended PR39 target set is capped at 12 models:
+
+- `algorithmic-thinking`;
+- `auditability-traceability`;
+- `baseline-establishment`;
+- `bottlenecks`;
+- `debugging-strategies`;
+- `devops-and-continuous-integration`;
+- `feedback-loops`;
+- `goal-setting`;
+- `habit-formation`;
+- `input-vs-output-goals`;
+- `iteration`;
+- `lean-startup-methodology`.
+
+PR38 does not extract those records. If PR39 opens, it must read each source
+directly and allow `thin_narrow_affordance_record`, `absence_record`, or
+`do_not_promote_recommendation` when the source does not support operational
+depth.
+
+PR38 does not promote v8 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, create user-facing
+Decision Pressure output, or allow deterministic final pressure selection.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -772,7 +833,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "stop_and_review_after_pr23|PR24|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b" plans research tasks -g '*.md'
+rg -n "v8_graph_only_priority_audit_complete|v8_packet_handoff_useful|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR38|PR39" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -784,7 +845,8 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR37 and do not infer permission for runtime work.
+Start from PR38 and do not infer permission for runtime work or broad
+extraction.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -808,9 +870,10 @@ Read first:
 - research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md
 - research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr37-v7-v8-comparison-render-2026-05-07.md
+- research/v8-graph-only-priority-audit-2026-05-07.md
 
 Current posture:
-v8_packet_handoff_useful
+v8_graph_only_priority_audit_complete
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -956,13 +1019,30 @@ PR37 result:
 - no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
   3b, or user-facing behavior was added
 
+PR38 result:
+- decision label: v8_graph_only_priority_audit_complete
+- remaining graph-only runtime models after v8: 124
+- PR38 does not extract records; it audits and selects the next controlled
+  family
+- recommended PR39 family: execution / implementation / follow-through
+  discipline
+- recommended PR39 target set: algorithmic-thinking,
+  auditability-traceability, baseline-establishment, bottlenecks,
+  debugging-strategies, devops-and-continuous-integration, feedback-loops,
+  goal-setting, habit-formation, input-vs-output-goals, iteration, and
+  lean-startup-methodology
+- reason: future packets are likely to be thin where plausible AI advice must
+  become executable, inspectable, adjustable, and stoppable
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, broad extraction, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next production slice can be another controlled enrichment batch only if chosen
-by capability gaps and likely packet usefulness, not another enrichment batch by
-momentum. Broad extraction is still not justified by count momentum.
+next production slice is a controlled PR39 extraction of the 12 named
+execution/follow-through targets only if explicitly opened. Broad extraction is
+still not justified by count momentum.
 ```
 
 ## Core Memory
