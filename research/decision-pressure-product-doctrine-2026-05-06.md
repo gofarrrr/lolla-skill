@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-06
-**Status:** Product doctrine after PR29 v5 packet handoff-depth review. This
-is not a runtime proposal, prompt change, broad extraction brief, or
+**Status:** Product doctrine after PR30 packet receiver-review rendering. This
+is not a runtime proposal, prompt change, broad extraction brief, UI, memo, or
 user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v5_packet_depth_improved`
+**Current posture:** `packet_review_rendering_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -20,6 +20,10 @@ user-facing launch plan.
 **Current controlled extraction report:** `research/pr28-controlled-graph-only-extraction-report-2026-05-06.md`
 
 **Current v5 packet depth review:** `research/reasoning-substrate-v5-packet-depth-review-2026-05-07.md`
+
+**Current packet rendering report:** `research/reasoning-substrate-packet-review-rendering-2026-05-07.md`
+
+**Current packet comparison render:** `research/reasoning-substrate-packet-comparison-render-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -397,6 +401,16 @@ lane-selected candidates, graph-only models remain eligible, and Python
 packages reasoning material for LLM/reviewer judgment. Do not start runtime
 packet production, prompt changes, lane rewrites, broad extraction, Batch 3b,
 paid runs, or user-facing Decision Pressure output by default.
+
+PR30 then completed one no-model packet receiver-review rendering slice:
+
+> `packet_review_rendering_ready`
+
+Treat PR30 as reviewer ergonomics, not product surface. The compact Markdown
+renders help a human or later approved receiver-side LLM inspect the PR27/PR29
+packet handoff. They do not answer the case, choose user-visible output,
+produce memo copy, render HTML, import into live runtime paths, or authorize
+more extraction by momentum.
 
 ## Next Product Work, Not Engineering Work
 
