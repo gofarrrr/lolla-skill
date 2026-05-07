@@ -1,0 +1,145 @@
+{
+  "model_id": "abstraction",
+  "source_file": "abstraction_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "abstraction.evidence-anchored-compression-check",
+      "status": "supported",
+      "name": "Evidence anchored compression check",
+      "mechanism": "When reality is too noisy to reason about directly, require the answer to compress details into a usable pattern while naming the concrete evidence, operating constraint, or feedback that keeps the abstraction from floating free of reality.",
+      "activation_shape": {
+        "use_when": [
+          "Decision-makers need a usable pattern before they can evaluate trade-offs, priorities, or causal structure.",
+          "The case requires moving between concrete observations and a governing principle.",
+          "The recommendation must be portable, teachable, and fast to grasp without losing its core logic."
+        ],
+        "do_not_use_when": [
+          "The abstract map is being treated as reality rather than a simplified representation.",
+          "The abstraction is accurate but does not help action, prediction, or decision-making.",
+          "The model is elegant but no longer anchored to evidence, constraints, or feedback."
+        ],
+        "case_evidence_needed": [
+          "The concrete details being compressed.",
+          "The essential pattern or governing principle.",
+          "The evidence or operational constraint that keeps the abstraction valid.",
+          "The action or decision the abstraction should improve."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compress-and-reground",
+          "description": "Require the answer to state the abstraction, the concrete evidence it compresses, the boundary where it stops being true, and the action it makes clearer.",
+          "evidence_required": [
+            "The concrete observations.",
+            "The abstract pattern.",
+            "The boundary or constraint.",
+            "The action, trade-off, or decision the abstraction changes."
+          ],
+          "good_output_shape": [
+            "Compresses noisy detail into a usable model.",
+            "Names the evidence that supports the compression.",
+            "States where the map is not the territory.",
+            "Connects the abstraction back to action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What concrete details are being compressed into this abstract model?",
+        "Where would this map stop matching the territory?",
+        "How does the abstraction change the decision or next action?"
+      ],
+      "misuse_guards": [
+        "Do not treat an elegant map as reality.",
+        "Do not use accurate abstraction that cannot guide action.",
+        "Do not let high-level labels hide untested assumptions."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "Most useful when reality is too noisy to reason about directly",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "Works when teams must move between detail and governing principle",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "Best when communication needs compression without losing the core logic",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports abstraction as useful compression that must be re-grounded in evidence and action.",
+        "dropped_material": [
+          "Did not extract logic trees, Feynman Technique, or digital twins as separate affordances.",
+          "Kept map-vs-territory as the primary misuse boundary."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card helps packets compress complexity without producing floating labels."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "elegant-map-as-reality",
+      "status": "not_supported_by_source",
+      "reason": "The source says maps are not reality and abstraction becomes dangerous when it floats free of evidence, operational constraints, or feedback.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "They are not reality in any way",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "accuracy-without-action",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that an abstract idea can be accurate but useless if it does not help direct action or decision-making.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "An abstract idea can be accurate but useless if it does not help direct action or decision-making.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "abstraction_rag.md",
+      "source_quote": "process of synthesizing and refining information to capture the essential characteristics of a system or idea while purposefully ignoring nonessential detail.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for abstraction as evidence-anchored compression.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card helps the next LLM compress without overclaiming."
+    ],
+    "review_status": "draft"
+  }
+}

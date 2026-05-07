@@ -1,0 +1,145 @@
+{
+  "model_id": "adaptation",
+  "source_file": "adaptation_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "adaptation.feedback-triggered-course-correction",
+      "status": "supported",
+      "name": "Feedback triggered course correction",
+      "mechanism": "When conditions are changing faster than old logic can safely handle, require the answer to separate goals, diagnosis, plan, execution, and feedback so adjustment is triggered by reality signals rather than perpetual motion or motivated defense of the current path.",
+      "activation_shape": {
+        "use_when": [
+          "The environment is shifting fast enough that yesterday's operating logic is no longer a safe default.",
+          "Survival or advantage depends on iterative adjustment rather than faithful execution of an old plan.",
+          "Leaders must learn faster than conditions are changing, and rigidity is a larger threat than imperfection."
+        ],
+        "do_not_use_when": [
+          "Change has become perpetual motion replacing evaluation, discipline, and stable learning loops.",
+          "The team blurs diagnosis with solutioning and adapts before understanding the true problem.",
+          "Feedback is interpreted only to confirm the current adaptation path."
+        ],
+        "case_evidence_needed": [
+          "The environmental signal that old logic is failing.",
+          "The goal, problem, diagnosis, plan, and execution stage currently in play.",
+          "The feedback signal that would trigger adjustment.",
+          "The evidence that change is learning rather than motion."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-adaptation-loop-stages",
+          "description": "Require the answer to name the current adaptation-loop stage, the feedback signal being watched, and the course-correction rule that distinguishes learning from churn.",
+          "evidence_required": [
+            "The changed condition.",
+            "The current stage of the goal-problem-diagnosis-plan-execute loop.",
+            "The feedback signal.",
+            "The course-correction or stop rule."
+          ],
+          "good_output_shape": [
+            "Names the changing condition.",
+            "Separates diagnosis from solutioning.",
+            "Defines the signal that triggers adjustment.",
+            "Avoids treating constant change as adaptation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What changed in the environment that makes the old plan unsafe?",
+        "Are we diagnosing, designing, executing, or reviewing results right now?",
+        "What feedback signal would justify course correction rather than more motion?"
+      ],
+      "misuse_guards": [
+        "Do not call constant change adaptation without evaluation and feedback.",
+        "Do not blur problem diagnosis with solution design.",
+        "Do not interpret feedback only to protect the current path."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "adaptation_rag.md",
+          "source_quote": "Most useful when** the environment is shifting fast enough that yesterday’s operating logic is no longer a safe default.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "adaptation_rag.md",
+          "source_quote": "Works best when** survival or advantage depends on iterative adjustment rather than faithful execution of an old plan.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "adaptation_rag.md",
+          "source_quote": "Execute the design and look at the new results, starting the loop again.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports adaptation as a staged feedback loop, not vague flexibility.",
+        "dropped_material": [
+          "Did not extract digital twins or persona behavior as separate affordances.",
+          "Kept the 5-step process as support for stage separation and feedback-triggered adjustment."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card helps packets distinguish real adaptive learning from motion."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "perpetual-change-as-learning",
+      "status": "not_supported_by_source",
+      "reason": "The source says adaptation is dangerous when constant change replaces discipline, evaluation, and stable learning loops.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "adaptation_rag.md",
+          "source_quote": "adaptation becomes perpetual motion, with constant change replacing discipline, evaluation, and stable learning loops.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "diagnosis-solution-blur",
+      "status": "not_supported_by_source",
+      "reason": "The source's five-step process requires diagnosis before plan design, so adaptation should not blur the diagnostic stage with solutioning.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "adaptation_rag.md",
+          "source_quote": "forcing the strategist to uncover true problems without blurring the diagnostic stage with the solution stage.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "adaptation_rag.md",
+      "source_quote": "continuous, iterative process of adjusting behavior, systems, or thinking in response to new information or changing environments",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for adaptation as feedback-triggered course correction.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card clarifies when to revise a path rather than merely sounding flexible."
+    ],
+    "review_status": "draft"
+  }
+}

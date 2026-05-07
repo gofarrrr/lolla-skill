@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR47 are merged or in review, PR47 completed the after-v11 graph-only priority audit, and the current posture is `v11_graph_only_priority_audit_complete`
+**Status:** living roadmap; PR13-PR48 are merged or in review, PR48 completed the controlled adaptive exploration enrichment batch, and the current posture is `controlled_adaptive_exploration_enrichment_ready`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -38,6 +38,7 @@
 **Current controlled frame-correction enrichment report:** `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
 **Current v11 packet usefulness review:** `research/reasoning-substrate-v11-packet-usefulness-review-2026-05-07.md`
 **Current v11 graph-only priority audit:** `research/v11-graph-only-priority-audit-2026-05-07.md`
+**Current controlled adaptive exploration enrichment report:** `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -153,6 +154,11 @@ What is already done:
   family because future packets may stay trapped inside too narrow an option
   space even after evidence, execution, risk, and frame-correction cards have
   improved.
+- PR48 controlled adaptive exploration enrichment is done for 12 graph-only
+  models selected from the PR47 priority audit. It adds Batch 11 records and
+  compiles draft/review-only v12. The records are source-backed operational
+  cards, not creative vocabulary, prompt mechanics, runtime promotion, or
+  deterministic option selection.
 - Compiled v3 artifact exists at
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records,
@@ -183,6 +189,11 @@ What is already done:
   `data/compiled/model_affordances/affordances_v11.json`.
 - v11 corpus shape: `134` reviewed records, `170` affordances, `253` absence
   records, `0` schema validation failures, `0` source-quote rejections. v11 is
+  still `draft_review_only` and not runtime-promoted.
+- Compiled v12 artifact exists at
+  `data/compiled/model_affordances/affordances_v12.json`.
+- v12 corpus shape: `146` reviewed records, `182` affordances, `277` absence
+  records, `0` schema validation failures, `0` source-quote rejections. v12 is
   still `draft_review_only` and not runtime-promoted.
 - Treatment-audit v2 activation-gated calibration exists as research evidence,
   but it is not promotion-grade proof.
@@ -487,17 +498,25 @@ What is already done:
   because that family best tests whether otherwise plausible, evidence-aware,
   executable, risk-checked, and frame-corrected advice is still trapped inside
   too narrow an option space.
+- PR48 controlled adaptive exploration enrichment is captured in
+  `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`:
+  decision label `controlled_adaptive_exploration_enrichment_ready`. Twelve
+  graph-only models gained reviewed Batch 11 records with 12 affordances and
+  24 absence records, compiled as draft/review-only v12. The cards bind
+  option-space widening to evidence, thresholds, selection rules, structural
+  tests, simulation assumptions, abstraction boundaries, synthesis verification,
+  and merge rules.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `v11_graph_only_priority_audit_complete`: PR47 completed the after-v11
-  graph-only priority audit. The next slice, if opened, should be PR48 as a
-  controlled adaptive-exploration extraction batch, followed by a PR49
-  same-nomination packet usefulness proof before any further extraction.
+  `controlled_adaptive_exploration_enrichment_ready`: PR48 completed the
+  controlled adaptive-exploration extraction batch. The next slice should be
+  PR49 as a same-nomination v11/v12 packet usefulness proof before any further
+  extraction.
 
 Current posture after PR 23, PR24 review, PR25, PR26, PR27, PR28, PR29, PR30,
 PR31, PR32, PR33, PR34, PR35, PR36, PR37, PR38, PR39, PR40, PR41, PR42, and
-PR43, PR44, PR45, PR46, and PR47:
+PR43, PR44, PR45, PR46, PR47, and PR48:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -1087,16 +1106,16 @@ original proposal language.
 | Controlled frame-correction enrichment / PR45 | done as controlled reviewed extraction slice | Adds twelve Batch 10 records for frame correction, metacognition, counterfactuals, evidence boundaries, and false precision, compiles draft/review-only v11, and preserves absences. No runtime promotion or deterministic reasoning-mode routing. |
 | V11 frame-correction packet usefulness review / PR46 | done as review-only fixture/render comparison | Uses the same frame-correction nominations against v10 and v11. Finds v11 reviewed cards improve handoff material without increasing candidate count or selecting final pressure. |
 | V11 graph-only priority audit / PR47 | done as docs/research audit | Reviews the remaining 88 graph-only models after v11 and recommends adaptive exploration / option generation / synthesis discipline as the next controlled enrichment family. No extraction or runtime promotion. |
+| Controlled adaptive exploration enrichment / PR48 | done as controlled reviewed extraction slice | Adds twelve Batch 11 records for adaptive exploration, option generation, simulation, abstraction, synthesis, and merge discipline, compiles draft/review-only v12, and preserves absences. No runtime promotion or deterministic option selection. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR47 completed the after-v11 graph-only priority audit. v11 is still
-> draft/review-only. The next slice, if opened, should be PR48: one controlled
-> adaptive exploration / option generation / synthesis extraction batch, not
-> broad corpus completion. PR49 must prove same-nomination packet usefulness
-> before any further extraction.
+> PR48 completed the controlled adaptive exploration enrichment batch. v12 is
+> still draft/review-only. The next slice should be PR49: one same-nomination
+> v11/v12 adaptive-exploration packet usefulness proof, not another extraction
+> batch by default.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1709,7 +1728,7 @@ Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
 The current reviewed posture is
-`v11_graph_only_priority_audit_complete` after PR47. Do not
+`controlled_adaptive_exploration_enrichment_ready` after PR48. Do not
 treat any historical item below as active next work.
 
 Historical PR 12 scope was:

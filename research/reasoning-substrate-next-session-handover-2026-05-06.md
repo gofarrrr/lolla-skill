@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR47 completed the after-v11 graph-only
-priority audit. PR46 showed v11 frame-correction depth improves one
-stable-nomination packet; PR47 decides which remaining graph-only family should
-be considered next instead of continuing extraction by count.
+**Status:** Start-here handover after PR48 completed the controlled adaptive
+exploration / option generation / synthesis enrichment batch. PR47 selected
+the family; PR48 added source-backed v12 depth. PR49 must now prove packet
+usefulness before any further extraction.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v11_graph_only_priority_audit_complete`
+**Current posture:** `controlled_adaptive_exploration_enrichment_ready`
 
-**Current PR:** PR47 - after-v11 graph-only priority audit
+**Current PR:** PR48 - controlled adaptive exploration enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -60,6 +60,8 @@ Batch 3b, or user-facing Decision Pressure work.
 
 **PR47 decision label:** `v11_graph_only_priority_audit_complete`
 
+**PR48 decision label:** `controlled_adaptive_exploration_enrichment_ready`
+
 ## Start Here
 
 Read these files in order:
@@ -105,6 +107,7 @@ Read these files in order:
 39. `research/reasoning-substrate-v11-packet-usefulness-review-2026-05-07.md`
 40. `research/reasoning-substrate-packet-pr46-v10-v11-comparison-render-2026-05-07.md`
 41. `research/v11-graph-only-priority-audit-2026-05-07.md`
+42. `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -172,6 +175,9 @@ Keep these layers distinct:
 | Graph-only after v11 | 88 runtime models remain eligible but not reviewed affordance records. |
 | PR46 v11 frame-correction packet usefulness review | Same 12-card frame-correction nomination set compared against v10 and v11. v10 packet had 12 graph-only cards; v11 packet has 12 reviewed cards, with candidate count fixed. |
 | PR47 v11 graph-only priority audit | Reviews the remaining 88 graph-only models after v11 and recommends adaptive exploration / option generation / synthesis discipline as the next controlled enrichment family. No extraction, runtime, prompt, lane, model-call, judge, or user-facing work. |
+| PR48 controlled adaptive exploration enrichment | 12 graph-only models from the PR47 target set gained reviewed Batch 11 records with 12 affordances and 24 absence records; compiled as draft/review-only v12. |
+| v12 affordance corpus | 146 reviewed records, 182 affordances, 277 absence records. Draft/review-only v11 plus PR48 controlled adaptive-exploration batch, not runtime-promoted. |
+| Graph-only after v12 | 76 runtime models remain eligible but not reviewed affordance records. |
 
 The governing sentence:
 
@@ -1293,6 +1299,79 @@ extraction batch for the 12 adaptive exploration / option generation /
 synthesis models named by PR47. PR49 must then prove packet usefulness with
 stable nominations before any further extraction begins.
 
+PR48 later completed the recommended controlled extraction batch. Do not
+treat PR47 alone as the active posture.
+
+## What PR48 Added
+
+PR48 answers the question: "Can adaptive exploration / option generation /
+synthesis models add source-backed operational depth without becoming creative
+vocabulary, prompt mechanics, or deterministic option selection?"
+
+It adds:
+
+- `data/model_affordances/batch_11/`;
+- `data/compiled/model_affordances/affordances_v12.json`;
+- `data/compiled/model_affordances/quality_report_v12.md`;
+- `tests/test_pr48_batch11_records.py`;
+- `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`;
+- `tasks/tasks-controlled-adaptive-exploration-enrichment-batch.md`;
+- living-doc posture updates.
+
+Measured PR48 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v12 reviewed records: `146`;
+- v12 reviewed affordances: `182`;
+- v12 absence records: `277`;
+- graph-only runtime models after v12: `76`;
+- v12 status: `draft_review_only`;
+- schema validation failures: `0`;
+- source quote rejections: `0`.
+
+PR48's decision label is
+`controlled_adaptive_exploration_enrichment_ready`.
+
+The product lesson:
+
+> The adaptive-exploration family can add real handoff depth when the records
+> bind widening to evidence, thresholds, selection rules, structural tests,
+> merge rules, and explicit absence boundaries. The useful move is not "be
+> more creative"; it is "know when to widen, vary, simulate, abstract,
+> associate, synthesize, or merge before committing."
+
+PR48 extracted exactly the PR47 target set:
+
+- `creative-destruction`;
+- `brainstorming`;
+- `curiosity`;
+- `lateral-thinking`;
+- `divergent-vs-convergent-thinking`;
+- `variation-and-selection`;
+- `adaptation`;
+- `association`;
+- `abstraction`;
+- `synthesis-and-integration`;
+- `mental-simulation`;
+- `branch-solve-merge`.
+
+Each target received one compact reviewed affordance and two absence records.
+The absence records block novelty theater, ideation as decision avoidance,
+free-floating curiosity, cleverness as value, chaotic mode switching, variation
+without selection, perpetual change, analogy as proof, elegant abstraction as
+reality, synthesis before verification, simulation as evidence, and branching
+without a merge rule.
+
+PR48 does not promote v12 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, create user-facing
+Decision Pressure output, create deterministic option selection, or allow
+deterministic final pressure selection.
+
+Recommended next slice is PR49: a same-nomination v11/v12 packet usefulness
+review for adaptive exploration / option generation / synthesis. Do not extract
+another family until PR49 shows whether PR48 improved packet handoff quality.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -1365,7 +1444,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "v11_graph_only_priority_audit_complete|v11_frame_correction_packet_handoff_useful|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR46|PR47|PR48|PR49" plans research tasks -g '*.md'
+rg -n "controlled_adaptive_exploration_enrichment_ready|v11_graph_only_priority_audit_complete|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR47|PR48|PR49" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1377,7 +1456,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR47 and do not infer permission for runtime work, broad
+Start from PR48 and do not infer permission for runtime work, broad
 extraction, packet promotion, deterministic reasoning-mode routing,
 deterministic option selection, or automatic extraction momentum.
 
@@ -1416,9 +1495,10 @@ Read first:
 - research/reasoning-substrate-v11-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr46-v10-v11-comparison-render-2026-05-07.md
 - research/v11-graph-only-priority-audit-2026-05-07.md
+- research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md
 
 Current posture:
-v11_graph_only_priority_audit_complete
+controlled_adaptive_exploration_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1728,13 +1808,32 @@ PR47 result:
   deterministic option selection, deterministic pressure selection, or
   user-facing behavior was added
 
+PR48 result:
+- decision label: controlled_adaptive_exploration_enrichment_ready
+- 12 graph-only models from adaptive exploration / option generation /
+  synthesis discipline received reviewed batch_11 records
+- v12 draft/review-only compiled artifact exists with 146 reviewed records
+- PR48 added 12 affordances and 24 absence records
+- v12 contains 182 affordances and 277 absence records
+- 76 runtime models remain graph-only after v12
+- each target received one compact source-backed affordance and two absence
+  records
+- the records add handoff depth around disciplined replacement, bounded
+  divergence, decision-bound inquiry, frame escape, divergence/convergence
+  timing, variation with selection, adaptive feedback, structural association,
+  evidence-anchored abstraction, governing-thought synthesis, assumption-bound
+  simulation, and branch evidence / merge rules
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, broad extraction, deterministic reasoning-mode routing, deterministic
+  option selection, deterministic pressure selection, or user-facing behavior
+  was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next slice is PR48: one controlled adaptive-exploration extraction batch,
-followed by PR49 packet usefulness proof. Broad extraction is still not
-justified by count momentum.
+next slice is PR49: same-nomination v11/v12 adaptive-exploration packet
+usefulness proof. Broad extraction is still not justified by count momentum.
 ```
 
 ## Core Memory

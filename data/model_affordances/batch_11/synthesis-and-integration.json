@@ -1,0 +1,145 @@
+{
+  "model_id": "synthesis-and-integration",
+  "source_file": "Synthesis_And_Integration_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "synthesis-and-integration.governing-thought-integration-check",
+      "status": "supported",
+      "name": "Governing thought integration check",
+      "mechanism": "When facts and analyses exist but no governing thought exists, require the answer to connect the pieces into a small, actionable synthesis while preserving the evidence and contradictions that must be pressure-tested before the narrative becomes persuasive.",
+      "activation_shape": {
+        "use_when": [
+          "A team has many observations, analyses, or interviews but lacks a unifying insight that can guide choice and communication.",
+          "The problem is no longer finding more material, but deciding what matters, what connects, and what deserves to drive action.",
+          "The audience needs linked insight, not an evidence dump."
+        ],
+        "do_not_use_when": [
+          "A polished narrative creates coherence before claims, evidence quality, or causal links have been pressure-tested.",
+          "Synthesis is used to smooth over real contradictions rather than reconcile them.",
+          "The answer summarizes material without saying what action or decision should change."
+        ],
+        "case_evidence_needed": [
+          "The separate findings or analyses to integrate.",
+          "The relationship among those findings.",
+          "The governing thought or small set of mutually reinforcing conclusions.",
+          "The evidence quality, contradiction, or causal link that still needs pressure testing."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "build-and-pressure-test-governing-thought",
+          "description": "Require the answer to synthesize findings into a governing thought, explain how the pieces connect, and identify what must be pressure-tested before the synthesis drives action.",
+          "evidence_required": [
+            "The important findings.",
+            "The relationship among the findings.",
+            "The proposed governing thought.",
+            "The contradiction or evidence gap to pressure-test."
+          ],
+          "good_output_shape": [
+            "Names the governing thought.",
+            "Shows how the findings connect.",
+            "Distinguishes synthesis from mere summary.",
+            "Flags the unresolved evidence or contradiction before action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the governing thought that connects these findings?",
+        "Which pieces mutually reinforce the conclusion, and which piece resists it?",
+        "What evidence or causal link must be pressure-tested before this synthesis drives action?"
+      ],
+      "misuse_guards": [
+        "Do not let elegant synthesis get ahead of verification.",
+        "Do not use synthesis to hide contradictions.",
+        "Do not summarize without naming the decision or action the synthesis changes."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Synthesis_And_Integration_rag.md",
+          "source_quote": "Most useful when the facts exist but no governing thought exists",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Synthesis_And_Integration_rag.md",
+          "source_quote": "Works when analysis is finished but prioritization is not",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Synthesis_And_Integration_rag.md",
+          "source_quote": "Best when the audience needs linked insight, not evidence dump",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports synthesis as actionable integration plus verification boundary.",
+        "dropped_material": [
+          "Did not extract pyramid construction, dialectic, one-day answer, or persona synthesis as separate affordances.",
+          "Kept governing thought and evidence pressure-testing as the operational center."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card helps packets integrate options without smoothing over weak evidence."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "elegant-synthesis-before-verification",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that polished narrative becomes dangerous when it creates coherence before claims, evidence quality, or causal links are pressure-tested.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Synthesis_And_Integration_rag.md",
+          "source_quote": "A polished narrative becomes actively dangerous when it creates coherence before the underlying claims, evidence quality, or causal links have been pressure-tested.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "summary-without-action",
+      "status": "not_supported_by_source",
+      "reason": "The source defines synthesis as actionable connection, so PR48 must not treat a summary or evidence dump as reviewed operational depth.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Synthesis_And_Integration_rag.md",
+          "source_quote": "finding the ideas that matter most and connecting them in a way that is highly actionable",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Synthesis_And_Integration_rag.md",
+      "source_quote": "gather findings from various sources—data, analysis, interviews, and modeling—and reorganize them into a **coherent or functional whole**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for synthesis-and-integration as governing thought construction with a verification boundary.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card improves integration without making every candidate look equally important."
+    ],
+    "review_status": "draft"
+  }
+}

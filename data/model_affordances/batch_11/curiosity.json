@@ -1,0 +1,144 @@
+{
+  "model_id": "curiosity",
+  "source_file": "Curiosity_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "curiosity.decision-bound-inquiry-loop",
+      "status": "supported",
+      "name": "Decision bound inquiry loop",
+      "mechanism": "When the first answer is probably shallow, require inquiry to name the information gap, ask decision-relevant why questions, and stop widening once the uncertainty has been reduced enough to choose, design, or learn.",
+      "activation_shape": {
+        "use_when": [
+          "The obvious explanation is likely shallow or the problem remains underdefined.",
+          "Better questions could reveal causes, assumptions, motivations, or opportunities hidden by the current frame.",
+          "Inquiry is tied to a concrete choice, design move, or learning objective."
+        ],
+        "do_not_use_when": [
+          "The relevant uncertainty has already been reduced enough to act.",
+          "Exploration is becoming free-floating fascination rather than serving a decision.",
+          "More information would add complexity without changing the next move."
+        ],
+        "case_evidence_needed": [
+          "The shallow first answer or unresolved information gap.",
+          "The choice, design move, or learning objective the inquiry should serve.",
+          "The specific why questions or unexpected observations to follow up.",
+          "The evidence threshold for stopping inquiry and acting."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "bind-inquiry-to-next-decision",
+          "description": "Require the answer to translate curiosity into a bounded inquiry plan: the gap to close, the questions to ask, the decision the answers inform, and the threshold at which exploration should stop.",
+          "evidence_required": [
+            "The information gap.",
+            "The decision or learning objective.",
+            "The next inquiry question.",
+            "The stop or action threshold."
+          ],
+          "good_output_shape": [
+            "Names what is not yet understood.",
+            "Asks questions that can change the decision or design move.",
+            "States how the answers will be used.",
+            "Stops inquiry when enough evidence exists to act."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What information gap is this inquiry trying to close?",
+        "Which question could change the frame, cause diagnosis, or next move?",
+        "What would count as enough learning to stop exploring and act?"
+      ],
+      "misuse_guards": [
+        "Do not let curiosity become more data collection after the decision threshold is met.",
+        "Do not reward interesting questions that do not advance the thinking or solve the problem.",
+        "Do not add complexity when the answer needs distillation and action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Curiosity_rag.md",
+          "source_quote": "Most useful when the first answer is probably shallow",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curiosity_rag.md",
+          "source_quote": "Best when inquiry still serves a concrete decision",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curiosity_rag.md",
+          "source_quote": "exploration remains tied to a real choice, design move, or learning objective",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports curiosity as bounded, decision-serving inquiry rather than generic openness.",
+        "dropped_material": [
+          "Did not extract Five Whys, Socratic Method, or dream-buyer questions as separate affordances because they are examples of the inquiry mechanism."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card deepens a packet's next questions without creating endless inquiry."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "curiosity-after-decision-threshold",
+      "status": "not_supported_by_source",
+      "reason": "The source says curiosity is misused when exploration keeps widening after the relevant uncertainty has been reduced enough to act.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Curiosity_rag.md",
+          "source_quote": "exploration keeps widening the search space after the relevant uncertainty has already been reduced enough to act.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "free-floating-fascination",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects inquiry that follows interesting but irrelevant lines instead of advancing the thinking or solving the problem.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Curiosity_rag.md",
+          "source_quote": "interesting but irrelevant lines of inquiry that do not **\"advance your thinking\"** or solve the problem at hand.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Curiosity_rag.md",
+      "source_quote": "the difference between what is currently known and what the individual desires to know",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for curiosity as decision-bound inquiry.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether curiosity improves activation and evidence-needed signals without widening the packet into clutter."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "mental-simulation",
+  "source_file": "Mental_Simulation_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "mental-simulation.assumption-bound-scenario-rehearsal",
+      "status": "supported",
+      "name": "Assumption bound scenario rehearsal",
+      "mechanism": "When a decision is costly or risky to test directly, require the answer to rehearse plausible futures against explicit assumptions, hostile cases, tail risks, and contingency thresholds, while preventing vivid simulation from masquerading as evidence.",
+      "activation_shape": {
+        "use_when": [
+          "A decision is expensive, slow, or risky to test directly, but plausible scenarios can still be rehearsed.",
+          "Multiple futures should be compared, including hostile stakeholders, competitor moves, user confusion, or operational edge cases.",
+          "The simulation can be tied to concrete thresholds, pre-mortems, or contingency plans."
+        ],
+        "do_not_use_when": [
+          "Vivid rehearsal is being mistaken for evidence and confidence rises faster than the data quality.",
+          "The team simulates only its preferred storyline while skipping ugly cases, tail risks, and disconfirming scenarios.",
+          "Simulation detail becomes accurate but useless because it cannot change predictions or decisions."
+        ],
+        "case_evidence_needed": [
+          "The costly or risky decision being rehearsed.",
+          "The assumptions or model used in the simulation.",
+          "The hostile cases, tail risks, or disconfirming scenarios to include.",
+          "The threshold or contingency plan the simulation should inform."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "simulate-range-with-thresholds",
+          "description": "Require the answer to simulate a range of plausible futures, expose the assumptions behind them, and tie the rehearsal to contingency thresholds rather than confidence-by-imagination.",
+          "evidence_required": [
+            "The decision or scenario being rehearsed.",
+            "The assumptions behind the simulation.",
+            "The range of futures or edge cases.",
+            "The thresholds, pre-mortem findings, or contingency actions."
+          ],
+          "good_output_shape": [
+            "Names the simulated futures.",
+            "States the assumptions and model fidelity limits.",
+            "Includes hostile, ugly, or tail-risk cases.",
+            "Connects simulation results to contingency action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What assumptions make this simulation behave the way it does?",
+        "Which ugly case, tail risk, or disconfirming scenario would change the plan?",
+        "What threshold or contingency action should the rehearsal produce?"
+      ],
+      "misuse_guards": [
+        "Do not treat vivid simulation as evidence.",
+        "Do not simulate only the preferred storyline.",
+        "Do not use simulation detail that cannot change a prediction, threshold, or decision."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "Most useful when** a decision is expensive, slow, or risky to test directly",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "multiple futures can be compared explicitly, including hostile stakeholders, competitor moves, user confusion, and operational edge cases.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "simulation is tied to concrete thresholds, pre-mortems, or contingency plans rather than left as a purely imaginative exercise.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports mental simulation as bounded scenario rehearsal with explicit assumptions, ranges, and thresholds.",
+        "dropped_material": [
+          "Did not extract AI digital twins, persona definitions, or skill rehearsal as separate affordances.",
+          "Kept wargaming and digital advisory board material as examples of simulation contexts."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card helps packets rehearse options without making simulation feel like proof."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "simulation-as-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source says vivid rehearsal can make confidence rise faster than the quality of assumptions or data, so simulation must not be treated as evidence by itself.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "vivid rehearsal is mistaken for evidence and confidence rises faster than the quality of the underlying assumptions or data.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "preferred-storyline-simulation",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against simulating only the preferred storyline while skipping ugly cases, tail risks, and disconfirming scenarios.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "teams keep simulating their preferred storyline but skip the ugly cases, tail risks, and disconfirming scenarios that would actually change the plan.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Mental_Simulation_rag.md",
+      "source_quote": "**anticipate outcomes** and mentally rehearse future events or scenarios.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for mental-simulation as assumption-bound scenario rehearsal.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card improves scenario comparison without overclaiming simulation certainty."
+    ],
+    "review_status": "draft"
+  }
+}
