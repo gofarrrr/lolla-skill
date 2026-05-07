@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR37 v8 packet usefulness review.
+**Status:** Product doctrine after PR38 v8 graph-only priority audit.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v8_packet_handoff_useful`
+**Current posture:** `v8_graph_only_priority_audit_complete`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -38,6 +38,8 @@ memo, or user-facing launch plan.
 **Current controlled trust/negotiation enrichment report:** `research/pr36-controlled-trust-negotiation-enrichment-report-2026-05-07.md`
 
 **Current v8 packet usefulness review:** `research/reasoning-substrate-v8-packet-usefulness-review-2026-05-07.md`
+
+**Current v8 graph-only priority audit:** `research/v8-graph-only-priority-audit-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -512,6 +514,18 @@ attribution, reciprocity, persuasion, settlement mapping, and costly proof
 while preserving the rule that Python prepares the material and the
 LLM/reviewer reasons.
 
+PR38 then completed one after-v8 graph-only priority audit:
+
+> `v8_graph_only_priority_audit_complete`
+
+Treat PR38 as prioritization evidence, not extraction permission. It reviews
+the remaining `124` graph-only runtime models after v8 and selects execution /
+implementation / follow-through discipline as the next likely controlled
+enrichment family. The reason is product-shaped: future packets are likely to
+be thin where plausible advice must become executable, inspectable,
+adjustable, and stoppable. The reason is not spreadsheet completion, static
+lane count dominance, or deterministic semantic selection.
+
 Do not start runtime packet production, prompt changes, lane rewrites, broad
 extraction, Batch 3b, paid runs, or user-facing Decision Pressure output by
 default.
@@ -595,18 +609,30 @@ PR37 added the first v8 packet-usefulness answer:
 > diplomatic settlement mapping, and costly proof without changing candidate
 > count or creating user-facing output.
 
+PR38 added the first after-v8 priority answer:
+
+> The next controlled enrichment family should be execution / implementation /
+> follow-through discipline, because it tests whether the substrate can help a
+> later LLM reason about making advice executable, inspectable, adjustable, and
+> stoppable. This is an audit recommendation for a narrow PR39 batch, not
+> broad extraction or runtime promotion.
+
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, and PR36 cards remain useful when tested in additional
    candidate mixes, and which merely add internal bulk?
-2. Which additional capability family is worth controlled enrichment next,
-   based on likely packet usefulness rather than count completion?
-3. Which decision moments most clearly need pressure before action?
-4. What would make a user trust a pressure pass?
-5. What would make the output feel like noise?
-6. What is the smallest public promise that is true?
-7. What evidence would justify promotion into a real surface?
-8. What evidence would tell us the product is only interesting to us?
+2. If PR39 opens, do the 12 execution/follow-through sources actually produce
+   compact operational depth, or do some sources correctly yield thin,
+   absence-only, or do-not-promote outcomes?
+3. Would a later PR40 execution packet show reviewed depth improving handoff
+   usefulness without increasing candidate count or making Python choose the
+   answer?
+4. Which decision moments most clearly need pressure before action?
+5. What would make a user trust a pressure pass?
+6. What would make the output feel like noise?
+7. What is the smallest public promise that is true?
+8. What evidence would justify promotion into a real surface?
+9. What evidence would tell us the product is only interesting to us?
 
 Do not answer these by adding machinery. Answer them with product review,
 manual examples, packet comparison, user conversations, and decision-moment
