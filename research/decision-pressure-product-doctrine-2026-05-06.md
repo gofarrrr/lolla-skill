@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-06
-**Status:** Product doctrine after PR30 packet receiver-review rendering. This
-is not a runtime proposal, prompt change, broad extraction brief, UI, memo, or
-user-facing launch plan.
+**Status:** Product doctrine after PR31 v5 reviewed-model capability audit.
+This is not a runtime proposal, prompt change, broad extraction brief, UI,
+memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `packet_review_rendering_ready`
+**Current posture:** `v5_capability_audit_complete`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -24,6 +24,8 @@ user-facing launch plan.
 **Current packet rendering report:** `research/reasoning-substrate-packet-review-rendering-2026-05-07.md`
 
 **Current packet comparison render:** `research/reasoning-substrate-packet-comparison-render-2026-05-07.md`
+
+**Current v5 capability audit:** `research/v5-reviewed-model-capability-audit-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -412,6 +414,16 @@ packet handoff. They do not answer the case, choose user-visible output,
 produce memo copy, render HTML, import into live runtime paths, or authorize
 more extraction by momentum.
 
+PR31 then completed one v5 reviewed-model capability audit:
+
+> `v5_capability_audit_complete`
+
+Treat PR31 as the answer to "what can the 65 reviewed records tell us?" The
+answer is: enough to test enriched LLM handoff across evidence, uncertainty,
+risk, resource discipline, causal diagnosis, incentives, bias, learning, and
+human-context pressure families; not enough for product launch, deterministic
+pressure selection, or broad 222-model coverage confidence.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -438,18 +450,27 @@ PR29 added the first v5 handoff-depth answer:
 > activation, evidence, do-not-use, misuse, treatment, and absence signals
 > without changing candidate count or letting Python choose the conclusion.
 
+PR31 added the first capability answer:
+
+> Yes, the 65 reviewed records can already support meaningful internal testing:
+> they contain 101 affordances, 115 absence records, 208 treatment
+> requirements, 397 diagnostic questions, and 372 misuse guards. The next
+> enrichment should be controlled by named capability gaps, not by count
+> completion.
+
 The next useful product questions are:
 
-1. Does a receiver-side LLM/reviewer actually use the added v5 depth to choose,
+1. Which named capability gaps deserve the next controlled extraction batch?
+2. Does a receiver-side LLM/reviewer actually use the added v5 depth to choose,
    merge, ignore, or set aside candidate shelves more cleanly?
-2. Which PR28 cards remain useful when tested in additional candidate mixes,
+3. Which PR28 cards remain useful when tested in additional candidate mixes,
    and which merely add internal bulk?
-3. Which decision moments most clearly need pressure before action?
-4. What would make a user trust a pressure pass?
-5. What would make the output feel like noise?
-6. What is the smallest public promise that is true?
-7. What evidence would justify promotion into a real surface?
-8. What evidence would tell us the product is only interesting to us?
+4. Which decision moments most clearly need pressure before action?
+5. What would make a user trust a pressure pass?
+6. What would make the output feel like noise?
+7. What is the smallest public promise that is true?
+8. What evidence would justify promotion into a real surface?
+9. What evidence would tell us the product is only interesting to us?
 
 Do not answer these by adding machinery. Answer them with product review,
 manual examples, packet comparison, user conversations, and decision-moment

@@ -1,14 +1,14 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-06
-**Status:** Start-here handover after PR30 added compact reviewer-only Markdown
-renderings for the PR27/PR29 reasoning substrate packets. This makes receiver
-review easier without creating runtime behavior, prompt promotion, lane
-rewrites, broad Batch 3b, or user-facing Decision Pressure work.
+**Status:** Start-here handover after PR31 audited what the 65 reviewed v5
+model records can actually tell us and which enrichment gaps remain. This is
+still not runtime behavior, prompt promotion, lane rewrite, broad Batch 3b, or
+user-facing Decision Pressure work.
 
-**Current posture:** `packet_review_rendering_ready`
+**Current posture:** `v5_capability_audit_complete`
 
-**Current PR:** PR30 - packet receiver-review rendering
+**Current PR:** PR31 - v5 reviewed-model capability audit
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -23,6 +23,8 @@ rewrites, broad Batch 3b, or user-facing Decision Pressure work.
 **PR29 decision label:** `v5_packet_depth_improved`
 
 **PR30 decision label:** `packet_review_rendering_ready`
+
+**PR31 decision label:** `v5_capability_audit_complete`
 
 ## Start Here
 
@@ -46,6 +48,7 @@ Read these files in order:
 16. `research/reasoning-substrate-packet-comparison-render-2026-05-07.md`
 17. `research/reasoning-substrate-packet-pr27-review-render-2026-05-07.md`
 18. `research/reasoning-substrate-packet-pr29-review-render-2026-05-07.md`
+19. `research/v5-reviewed-model-capability-audit-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -86,6 +89,7 @@ Keep these layers distinct:
 | PR28 controlled extraction batch | 10 graph-only models gained reviewed records with 10 affordances and 20 absence records. |
 | PR29 v5 packet depth review | Same 7-card PR27 fixture regenerated against v5. Reviewed cards increased from 3 to 7, graph-only cards fell from 4 to 0, and packet burden stayed acceptable. |
 | PR30 packet review rendering | Deterministic reviewer-only Markdown renders for PR27, PR29, and their comparison. Makes packet review easier; does not select output or create a product surface. |
+| PR31 v5 capability audit | Audits what the 65 reviewed records can already support and names the next controlled enrichment gaps. |
 
 The governing sentence:
 
@@ -353,6 +357,54 @@ PR30 does not run model calls, answer the case, choose Decision Pressure,
 promote v5 into runtime, run live lanes, wire `/lolla`, change prompts, create
 Batch 3b, add extraction, or create user-facing output.
 
+## What PR31 Added
+
+PR31 answers the question: "What can the 65 reviewed models tell us?"
+
+It adds:
+
+- `research/v5-reviewed-model-capability-audit-2026-05-07.md`
+
+Measured v5 shape:
+
+- `65` reviewed model records;
+- `101` reviewed affordances;
+- `115` absence records;
+- `889` source-evidence references inside affordances;
+- `208` treatment requirements;
+- `397` diagnostic questions;
+- `372` misuse guards;
+- `157` runtime models still graph-only after v5.
+
+PR31's decision label is `v5_capability_audit_complete`.
+
+The product lesson:
+
+> The 65 reviewed records are enough to test whether enriched packets improve
+> downstream LLM judgment across several high-value pressure families. They are
+> not enough for product launch, deterministic pressure selection, or broad
+> 222-model parity.
+
+PR31 identifies the current strongest capability families:
+
+- evidence discipline and falsification;
+- commitment, trade-off, and resource discipline;
+- uncertainty, probability, and risk;
+- causal and systems diagnosis;
+- incentives, agency, information, and power;
+- bias, metacognition, and correction;
+- learning, experiment design, and adaptation;
+- human context, trust, and team process.
+
+PR31 also names the next controlled enrichment gaps: delays and obligations,
+peer review, formal/checklist discipline, planning/status quo/commitment bias,
+competitive and bargaining pressure, product/customer/market lock-in, and
+cross-cultural communication.
+
+PR31 does not extract new records, promote v5 into runtime, run live lanes,
+wire `/lolla`, change prompts, run model calls or judges, create Batch 3b, or
+create user-facing Decision Pressure output.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -437,7 +489,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR30 and do not infer permission for runtime work.
+Start from PR31 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -451,9 +503,10 @@ Read first:
 - research/reasoning-substrate-v5-packet-depth-review-2026-05-07.md
 - research/reasoning-substrate-packet-review-rendering-2026-05-07.md
 - research/reasoning-substrate-packet-comparison-render-2026-05-07.md
+- research/v5-reviewed-model-capability-audit-2026-05-07.md
 
 Current posture:
-packet_review_rendering_ready
+v5_capability_audit_complete
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -513,13 +566,27 @@ PR30 result:
 - no extraction, runtime promotion, prompt, lane, model call, judge, Batch 3b,
   or user-facing behavior was added
 
+PR31 result:
+- decision label: v5_capability_audit_complete
+- the 65 reviewed records can already support meaningful handoff testing
+  across evidence, uncertainty, risk, resource discipline, causal diagnosis,
+  incentives, bias, learning, and human-context pressure families
+- v5 contains 101 affordances, 115 absence records, 208 treatment
+  requirements, 397 diagnostic questions, and 372 misuse guards
+- 157 runtime models remain graph-only after v5
+- the next production-oriented slice should be a controlled extraction batch
+  against named capability gaps, unless product review explicitly chooses a
+  receiver-side LLM review first
+- no extraction, runtime promotion, prompt, lane, model call, judge, Batch 3b,
+  or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next step is a receiver-side packet review using the compact renders, ideally
-with an explicitly approved external LLM/reviewer, before another small
-extraction batch. Broad extraction is still not justified by count momentum.
+next production slice is a controlled enrichment batch from the PR31 gap list,
+unless product review explicitly chooses receiver-side LLM review first. Broad
+extraction is still not justified by count momentum.
 ```
 
 ## Core Memory

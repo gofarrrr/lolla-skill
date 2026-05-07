@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR30 are merged or in review, PR30 added reviewer-only packet renderings, and the current posture is `packet_review_rendering_ready`
+**Status:** living roadmap; PR13-PR31 are merged or in review, PR31 audited v5 reviewed-model capabilities, and the current posture is `v5_capability_audit_complete`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -21,6 +21,7 @@
 **Current v5 packet depth review:** `research/reasoning-substrate-v5-packet-depth-review-2026-05-07.md`
 **Current packet rendering report:** `research/reasoning-substrate-packet-review-rendering-2026-05-07.md`
 **Current packet comparison render:** `research/reasoning-substrate-packet-comparison-render-2026-05-07.md`
+**Current v5 capability audit:** `research/v5-reviewed-model-capability-audit-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -238,14 +239,20 @@ What is already done:
   dormant packet evidence easier for a receiver-side reviewer to inspect while
   refusing non-dormant packets and avoiding final pressure, memo copy, HTML,
   or user-facing prose.
+- PR31 v5 capability audit is captured in
+  `research/v5-reviewed-model-capability-audit-2026-05-07.md`: decision label
+  `v5_capability_audit_complete`. The 65 reviewed records are now mapped to
+  concrete capability families and the next controlled enrichment gaps are
+  named.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `packet_review_rendering_ready`: PR30 made the PR27/PR29 handoff evidence
-  easier to inspect without runtime behavior.
+  `v5_capability_audit_complete`: PR31 says the 65 reviewed records are enough
+  for meaningful handoff testing but not enough for product launch or broad
+  coverage confidence.
 
-Current posture after PR 23, PR24 review, PR25, PR26, PR27, PR28, PR29, and
-PR30:
+Current posture after PR 23, PR24 review, PR25, PR26, PR27, PR28, PR29, PR30,
+and PR31:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -323,6 +330,12 @@ PR30:
 23. Treat PR30 as reviewer ergonomics only. It does not create a product
     surface, runtime adapter, package function, live lane adapter, or semantic
     selector.
+24. Treat PR31 as a capability audit, not extraction. It answers what the 65
+    reviewed records can already support and which gaps should drive the next
+    controlled enrichment batch.
+25. The next production-oriented slice should be controlled extraction against
+    the PR31 gap list unless product review explicitly chooses receiver-side
+    LLM review first. Do not extract by count momentum.
 
 ---
 
@@ -792,16 +805,17 @@ original proposal language.
 | Controlled graph-only extraction / PR28 | done as controlled reviewed extraction slice | Adds ten Batch 4 records for graph-only models, compiles draft/review-only v5, and preserves absences. No runtime promotion. |
 | V5 packet handoff-depth review / PR29 | done as review-only fixture comparison | Regenerates the PR27 mixed packet against v5 and finds useful added depth for the four formerly graph-only cards. No extraction or runtime promotion. |
 | Packet receiver-review rendering / PR30 | done as reviewer-only render slice | Renders PR27, PR29, and their comparison as compact Markdown handoffs. No runtime imports, UI, memo, HTML, final pressure, or user-facing prose. |
+| V5 reviewed-model capability audit / PR31 | done as docs/research audit | Maps what the 65 reviewed records can tell us, what they cannot tell us, and which capability gaps should drive the next controlled enrichment batch. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR30 made the PR27/PR29 packet evidence easier to inspect. It does not
-> authorize runtime behavior, prompt changes, lane rewrites, broad extraction,
-> Batch 3b, live route-trace packet production, user-facing Decision Pressure
-> output, or another paid Gate 4 run. The next default should review receiver
-> usefulness before scaling extraction.
+> PR31 shows the 65 reviewed records can support meaningful handoff testing
+> across several pressure families, but they are not enough for product launch
+> or broad 222-model coverage confidence. The next default is a controlled
+> enrichment batch against named capability gaps, not broad extraction by count
+> momentum.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1413,7 +1427,7 @@ Schema And Extraction Contract**. That work is done. The later PR12/Decision
 Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
-The current reviewed posture is `packet_review_rendering_ready` after PR30. Do not
+The current reviewed posture is `v5_capability_audit_complete` after PR31. Do not
 treat any historical item below as active next work.
 
 Historical PR 12 scope was:
