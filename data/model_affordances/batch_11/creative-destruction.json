@@ -1,0 +1,145 @@
+{
+  "model_id": "creative-destruction",
+  "source_file": "Creative_Destruction_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "creative-destruction.disciplined-replacement-before-novelty",
+      "status": "supported",
+      "name": "Disciplined replacement before novelty",
+      "mechanism": "When an old model still works by inertia but no longer fits the environment, require the answer to name what must be retired, what better substitute will replace it, and what evidence shows replacement is more truthful, useful, and executable than novelty theater.",
+      "activation_shape": {
+        "use_when": [
+          "Legacy assumptions, products, narratives, or commitments still operate but are losing fit with changed conditions.",
+          "A team must stop defending sunk-cost logic before it can see a better option space.",
+          "The proposed innovation needs disciplined replacement of obsolete logic, not just a bold-sounding break from the past."
+        ],
+        "do_not_use_when": [
+          "The current model remains fit for the environment and the problem is execution, not replacement.",
+          "The new proposal tears down existing commitments without evidence that the substitute is better.",
+          "The change plan ignores the human commitment, accountability, and implementation work needed to make replacement real."
+        ],
+        "case_evidence_needed": [
+          "The legacy model, assumption, or commitment that is now misfit.",
+          "The environmental change that makes the old model unsafe or stale.",
+          "The proposed replacement and the evidence that it improves truth, usefulness, or execution.",
+          "The human or organizational commitment needed to abandon the old model."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-retirement-and-replacement",
+          "description": "Require the answer to pair any recommended destruction with a named replacement, evidence for why the replacement is better, and the implementation commitments needed to make the change more than symbolic novelty.",
+          "evidence_required": [
+            "The stale model or commitment.",
+            "The changed condition that makes it stale.",
+            "The replacement option and its supporting evidence.",
+            "The human adoption, accountability, or implementation constraint."
+          ],
+          "good_output_shape": [
+            "Names what should be retired.",
+            "Names what should replace it.",
+            "Explains what makes the replacement more truthful, useful, or executable.",
+            "Flags the social or implementation work required to make the replacement stick."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which old assumption or commitment still functions by inertia but no longer fits the environment?",
+        "What replacement is being proposed, and what evidence makes it better than the thing being destroyed?",
+        "What human commitment or implementation work would make the replacement real?"
+      ],
+      "misuse_guards": [
+        "Do not treat destruction as progress unless the replacement is more truthful, useful, or executable.",
+        "Do not confuse counterintuitive language with strategic improvement.",
+        "Do not treat radical change as purely rational or mechanical when commitment and accountability are required."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Creative_Destruction_rag.md",
+          "source_quote": "legacy assumptions, products, or narratives continue to operate by inertia even though the surrounding conditions have changed.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Creative_Destruction_rag.md",
+          "source_quote": "Best when innovation needs disciplined replacement rather than theatrical novelty",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Creative_Destruction_rag.md",
+          "source_quote": "clear evidence that the replacement is more truthful, more useful, or more executable.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports creative destruction as disciplined retirement and replacement, not generic disruption language.",
+        "dropped_material": [
+          "Did not extract broad disruption strategy or market-transformation doctrine as a separate affordance.",
+          "Kept hypothesis destruction and category language as support for replacement discipline."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card helps a packet widen the option space without rewarding novelty for its own sake."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "novelty-theater-without-replacement-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that creative destruction breaks down when teams celebrate tearing things down without evidence that the replacement is better.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Creative_Destruction_rag.md",
+          "source_quote": "The model breaks down when teams celebrate tearing things down without clear evidence that the replacement is more truthful, more useful, or more executable.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "human-implementation-as-rational-machine",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects radical change that treats implementation as purely rational and ignores commitment, accountability, and the living social system.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Creative_Destruction_rag.md",
+          "source_quote": "Logical, mechanical, or economic strategies fail to build commitment and accountability in a living social system.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Creative_Destruction_rag.md",
+      "source_quote": "**destroy** existing structures, assumptions, and solutions to make way for new, adaptive ones.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for creative-destruction as disciplined retirement plus replacement evidence.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves option-space widening without encouraging disruption theater."
+    ],
+    "review_status": "draft"
+  }
+}

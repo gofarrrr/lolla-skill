@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR47 are merged or in review, PR47 completed the after-v11 graph-only priority audit, and the current posture is `v11_graph_only_priority_audit_complete`
+**Status:** living schema doctrine; PR13-PR48 are merged or in review, PR48 completed the controlled adaptive exploration enrichment batch, and the current posture is `controlled_adaptive_exploration_enrichment_ready`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -36,6 +36,7 @@
 **Current controlled frame-correction enrichment report:** `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
 **Current v11 packet usefulness review:** `research/reasoning-substrate-v11-packet-usefulness-review-2026-05-07.md`
 **Current v11 graph-only priority audit:** `research/v11-graph-only-priority-audit-2026-05-07.md`
+**Current controlled adaptive exploration enrichment report:** `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -113,6 +114,10 @@ real. Future sessions should treat the following as current baseline:
   `data/compiled/model_affordances/affordances_v11.json`.
 - v11 corpus shape: `134` reviewed records, `170` affordances, `253` absence
   records. v11 remains `draft_review_only` and is not runtime-promoted.
+- Compiled v12 artifact:
+  `data/compiled/model_affordances/affordances_v12.json`.
+- v12 corpus shape: `146` reviewed records, `182` affordances, `277` absence
+  records. v12 remains `draft_review_only` and is not runtime-promoted.
 - Current experiment: PR 11 Gate 4 edge-probe harness, branch
   `feature/knowledge-substrate-pr11-gate4-edge-probes`.
 - Gate 4 dry-run: `10` usable cases, `39` Lane 4 routes, `165/205` v3-covered
@@ -367,15 +372,19 @@ real. Future sessions should treat the following as current baseline:
   inside too narrow an option space after evidence, execution, risk, and
   frame-correction depth have improved. Decision label:
   `v11_graph_only_priority_audit_complete`.
+- PR48 completed one controlled adaptive exploration / option generation /
+  synthesis enrichment batch after PR47. It adds `12` Batch 11 records for
+  named adaptive exploration models, compiles draft/review-only v12, and
+  preserves `24` absence records. Decision label:
+  `controlled_adaptive_exploration_enrichment_ready`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `v11_graph_only_priority_audit_complete`; do not build runtime packet
+  `controlled_adaptive_exploration_enrichment_ready`; do not build runtime packet
   production, prompt changes, broad extraction, lane rewrites, user-facing
   surfaces, deterministic reasoning-mode routing, deterministic option
-  selection, or automatic extraction by default. The next slice, if opened,
-  should be PR48 as one controlled adaptive-exploration extraction batch, with
-  PR49 required to prove same-nomination packet usefulness before further
+  selection, or automatic extraction by default. The next slice should be PR49
+  as one same-nomination v11/v12 packet usefulness review before any further
   extraction.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
@@ -1766,18 +1775,19 @@ Current task:
 54. Treat PR47 as a graph-only priority audit, not extraction. It selects the
     next controlled family; it does not authorize corpus completion,
     deterministic option selection, runtime work, or broad extraction.
-55. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+55. Treat PR48 as controlled adaptive exploration enrichment, not v12 runtime
+    promotion, prompt mechanics, deterministic option selection, corpus
+    completion, or proof that another batch should begin.
+56. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-56. Preserve coverage honesty and no-casuistry rails.
-57. Do not run more paid model calls for this slice.
-58. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+57. Preserve coverage honesty and no-casuistry rails.
+58. Do not run more paid model calls for this slice.
+59. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Do not extract more affordance records or wire live runtime behavior by
-momentum. PR47 selected adaptive exploration / option generation / synthesis
-discipline as the next narrow enrichment family. The next slice, if opened,
-should be one controlled PR48 extraction batch with source-backed nuance and
-absence records, followed by a PR49 packet usefulness proof before any further
+momentum. PR48 added source-backed adaptive exploration depth as draft/review
+v12. The next slice should be PR49 packet usefulness proof before any further
 extraction.
 
 ---
