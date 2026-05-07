@@ -1,0 +1,1588 @@
+{
+  "blocked_surfaces": [
+    "live_observatory_rendering",
+    "memo_integration",
+    "step8_integration",
+    "step6_integration",
+    "lane4_integration",
+    "lolla_runtime_use",
+    "user_facing_decision_pressure_block",
+    "prompt_changes",
+    "generation_changes",
+    "new_extraction",
+    "batch_3b",
+    "paid_gate4_reruns_by_default"
+  ],
+  "candidate_cards": [
+    {
+      "absence_records": [
+        {
+          "attempted_field": "gap-mapping-without-plan-change",
+          "model_id": "cognitive-gaps-assessment",
+          "reason": "The source warns against labeling gaps in a sophisticated way when no plan, evidence bar, or decision exposure changes.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-001-cognitive-gaps-assessment",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Cognitive Gaps Assessment",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "cognitive-gaps-assessment",
+      "nomination_metadata": {
+        "lane_order": 1,
+        "lane_score": 0.94
+      },
+      "pulled_by": [
+        "lane4_gap_route",
+        "reviewer_note"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "cognitive-gaps-assessment.missing-reality-gap-audit"
+        ],
+        "case_evidence_needed": [
+          "The current explanation or advice the user is considering."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What important part of reality is still not represented in the current explanation?"
+        ],
+        "do_not_use_when": [
+          "The missing facts, assumptions, and capability limits are already named with evidence and decision consequences."
+        ],
+        "misuse_guards": [
+          "Do not use gap language as a sophisticated way to postpone action without changing the decision condition."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "cognitive-gaps-assessment.missing-reality-gap-audit",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Cognitive_Gaps_Assessment_rag.md",
+            "source_quote": "Most useful when confidence is high, assumptions are implicit, and the gap between the current explanation and reality still feels under-specified."
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to convert a suspected cognitive gap into a named missing condition, the evidence needed to resolve it, and the plan change if the gap remains open.",
+            "evidence_required": [
+              "The claim, plan, or explanation whose map may not match reality."
+            ],
+            "good_output_shape": [
+              "Names the specific gap rather than saying the team may be missing something."
+            ],
+            "requirement_id": "convert-gap-to-decision-condition"
+          }
+        ],
+        "use_when": [
+          "The advice is plausible, but the gap between the current explanation and reality is still not explicit."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Gap mapping has become a performance ritual that labels uncertainty without changing the plan or evidence bar."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "The bias blind spot can make sophisticated people less willing to see their own missing knowledge.",
+            "extraction_type": "explicit",
+            "mitigation": "Use the Feynman technique: explain the system in plain language and mark every point where the explanation fails as a genuine gap, not just a label.",
+            "mode": "bias blind spot",
+            "source_quote": "bias blind spot"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use the Feynman technique to force plain-language explanation and expose where understanding collapses.",
+            "extraction_type": "explicit",
+            "source_quote": "The Feynman Technique"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What would need to be true for this idea to work, and which assumption in that chain is least grounded?",
+            "extraction_type": "explicit",
+            "source_quote": "What would need to be true for this idea to work?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "Confidence is high but the explanation still feels under-specified and the team may be missing something important."
+        ],
+        "source_file": "Cognitive_Gaps_Assessment_rag.md"
+      },
+      "source_custody": {
+        "bytes": 18625,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Cognitive_Gaps_Assessment_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "ab10fa1288cec22b2155cdba6fd7d7960b7a96dcc5d538e1eef67046e46db4e0",
+        "source_file": "Cognitive_Gaps_Assessment_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "we have enough context to move",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The plan assumes the team has enough context to act, but the missing evidence, capability, perspective, or transfer gap may be the real blocker.",
+          "route_or_artifact_id": "synthetic-pr46-reality-gap-audit",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "detachment-theater-as-critical-thinking",
+          "model_id": "critical-thinking",
+          "reason": "The source warns that skepticism and nuance can become a way to avoid taking a position or being accountable for judgment.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-002-critical-thinking",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Critical Thinking",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "critical-thinking",
+      "nomination_metadata": {
+        "lane_order": 2,
+        "lane_score": 0.9
+      },
+      "pulled_by": [
+        "lane2_detected_model"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "critical-thinking.claim-evidence-assumption-check"
+        ],
+        "case_evidence_needed": [
+          "The central claim or recommendation."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What is the central claim, and what evidence actually supports it?"
+        ],
+        "do_not_use_when": [
+          "The claim, evidence, assumptions, and causal links are already explicit and decision-relevant."
+        ],
+        "misuse_guards": [
+          "Do not use critical thinking as a license for endless qualification or refusal to decide."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "critical-thinking.claim-evidence-assumption-check",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Critical_Thinking_rag.md",
+            "source_quote": "Most useful when important judgments depend on separating evidence from story"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to expose the core claim, supporting evidence, necessary assumptions, and any authority or emotional influence before treating the conclusion as action-ready.",
+            "evidence_required": [
+              "The recommendation or conclusion under review."
+            ],
+            "good_output_shape": [
+              "Names the claim being judged."
+            ],
+            "requirement_id": "separate-claim-evidence-assumption"
+          }
+        ],
+        "use_when": [
+          "The advice sounds plausible but may be leaning on story, authority, emotion, or first impressions."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Critical thinking is becoming detachment theater, where nuance and skepticism are used to avoid taking a position or making a recommendation."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Analysis paralysis can turn careful inquiry into a delay machine that never cashes out in action.",
+            "extraction_type": "normalized",
+            "mitigation": "Set a decision deadline that forces analysis to cash out in a recommendation; careful inquiry without a forcing function becomes delay.",
+            "mode": "Analysis Paralysis (The Hamlet Trap)",
+            "source_quote": "Analysis Paralysis (The Hamlet Trap)"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Adopt a dialectic standard so every thesis meets an antithesis before synthesis.",
+            "extraction_type": "normalized",
+            "source_quote": "Adopt a Dialectic Standard"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "Is the worst case bad enough?",
+            "extraction_type": "explicit",
+            "source_quote": "Is the worst case bad enough?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "Important judgments depend on separating evidence from story, authority, or emotional plausibility."
+        ],
+        "source_file": "Critical_Thinking_rag.md"
+      },
+      "source_custody": {
+        "bytes": 17377,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Critical_Thinking_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "8fdb0f041cdd1554e259af8f15629c9b51238f5ff1aa66888f28a6c3aeedec2f",
+        "source_file": "Critical_Thinking_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "the right answer is clear",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The memo treats its explanation as clear, but claim, evidence, assumption, authority, emotion, and story may be doing different work.",
+          "route_or_artifact_id": "synthetic-pr46-claim-evidence-check",
+          "source": "lane2_detected_model"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "counterfactual-fiction-as-discipline",
+          "model_id": "counterfactual-reasoning",
+          "reason": "The source warns that counterfactuals fail when imagined alternatives are untethered from causal structure, base rates, or the actual decision context.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-003-counterfactual-reasoning",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Counterfactual Reasoning",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "counterfactual-reasoning",
+      "nomination_metadata": {
+        "lane_order": 3,
+        "lane_score": 0.86
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "counterfactual-reasoning.plausible-alternative-branch-test"
+        ],
+        "case_evidence_needed": [
+          "The actual or preferred path under review."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What plausible branch is missing because the current path already feels inevitable?"
+        ],
+        "do_not_use_when": [
+          "The alternative paths are fictional, implausible, or untethered from the real decision context."
+        ],
+        "misuse_guards": [
+          "Do not invent fictional alternatives without causal structure, base rates, or real decision context."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "counterfactual-reasoning.plausible-alternative-branch-test",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Counterfactual_Reasoning_rag.md",
+            "source_quote": "Most useful when one realized outcome is hiding the real decision quality"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to recover realistic branches that the current story is suppressing, then connect each branch to assumptions, evidence, or failure paths that would change the recommendation.",
+            "evidence_required": [
+              "The decision or outcome being treated as inevitable."
+            ],
+            "good_output_shape": [
+              "Separates realized outcome from decision quality."
+            ],
+            "requirement_id": "recover-plausible-branches"
+          }
+        ],
+        "use_when": [
+          "A realized or preferred outcome is being treated as proof that the decision process is good."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The team is spinning imagined alternatives that are untethered from plausible causal structure, base rates, or the real decision context."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Outcome overfitting can make the past feel inevitable and hide the actual quality of the original decision.",
+            "extraction_type": "normalized",
+            "mitigation": "Judge the decision by the quality of the process and evidence at the time, not by the outcome; overfitting to results hides the actual decision logic.",
+            "mode": "Overfitting the Outcome",
+            "source_quote": "Overfitting the Outcome"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Mandate a devil's advocate or dialectic standard so every dominant story meets an explicit antithesis.",
+            "extraction_type": "normalized",
+            "source_quote": "Mandate the Devil\u2019s Advocate/Dialectic Standard"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What would you have to believe to accept this conclusion?",
+            "extraction_type": "normalized",
+            "source_quote": "\"What would you have to believe (WTWHTB)?\""
+          }
+        ],
+        "reasoning_types": [
+          "counterfactual",
+          "causal"
+        ],
+        "select_when": [
+          "One realized outcome is hiding the actual quality of the decision process and the missing branches need to be recovered."
+        ],
+        "source_file": "Counterfactual_Reasoning_rag.md"
+      },
+      "source_custody": {
+        "bytes": 20809,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Counterfactual_Reasoning_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "17d03ce68a3dfc038ad804981a18f762581c35f79e6b33bedfd724928f96fe90",
+        "source_file": "Counterfactual_Reasoning_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "option B is unlikely",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The advice narrows quickly to one path without testing plausible alternatives, failure branches, or paths not taken before commitment.",
+          "route_or_artifact_id": "synthetic-pr46-counterfactual-branch",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "self-questioning-as-infinite-deferral",
+          "model_id": "metacognitive-questioning",
+          "reason": "The source warns that reflective questions become misuse when they postpone commitment, experimentation, or ownership instead of sharpening the next move.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-004-metacognitive-questioning",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Metacognitive Questioning",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "metacognitive-questioning",
+      "nomination_metadata": {
+        "lane_order": 4,
+        "lane_score": 0.82
+      },
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "metacognitive-questioning.process-inspection-next-question-gate"
+        ],
+        "case_evidence_needed": [
+          "The current answer or plan."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "How did this answer decide what mattered?"
+        ],
+        "do_not_use_when": [
+          "The next discriminating question is already explicit and tied to action."
+        ],
+        "misuse_guards": [
+          "Do not add recursive self-questioning that delays commitment without sharpening the next move."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "metacognitive-questioning.process-inspection-next-question-gate",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Metacognitive_Questioning_rag.md",
+            "source_quote": "Most useful when better questions will change the path"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the next question that would change the path, explain why that question matters, and tie it to a bounded action, evidence check, or owner.",
+            "evidence_required": [
+              "The current conclusion or plan."
+            ],
+            "good_output_shape": [
+              "Names how the current conclusion was reached."
+            ],
+            "requirement_id": "name-next-discriminating-question"
+          }
+        ],
+        "use_when": [
+          "The path could change if the team asked a better question about assumptions, strategy choice, or evidence quality."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Reflective questioning is turning into infinite deferral that postpones commitment, experimentation, or ownership."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Self-questioning can become infinite deferral that keeps postponing commitment, experimentation, or ownership.",
+            "extraction_type": "explicit",
+            "mitigation": "Impose a question deadline: after a fixed number of inquiry rounds, the team must commit to a reversible experiment that generates real data.",
+            "mode": "Self-questioning can become infinite deferral that keeps postponing commitment, experimentation, or ...",
+            "source_quote": "Danger When Self-Questioning Becomes Infinite Deferral: The model is misused when reflective questions keep postponing commitment, experimentation, or ownership instead of sharpening the next concrete move."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Review the relevant variables, define the next-step question, and then consolidate what the answer changes before widening the inquiry again.",
+            "extraction_type": "normalized",
+            "source_quote": "This cycle involves: Reviewing and storing relevant variables ... Defining the specific next-step question ... Consolidating gains by clearly reviewing the answer identified."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "How do you define a problem in a precise way to meet the decision maker's needs?",
+            "extraction_type": "explicit",
+            "source_quote": "How do you define a problem in a precise way to meet the decision maker\u2019s needs?"
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "diagnostic"
+        ],
+        "select_when": [
+          "Better questions would change the path because the main constraint is weak inspection of assumptions, strategy choice, or evidence quality."
+        ],
+        "source_file": "Metacognitive_Questioning_rag.md"
+      },
+      "source_custody": {
+        "bytes": 14124,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Metacognitive_Questioning_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "50694e213bca3a286cf2ed7e1d5ce2801ba18f758f4277d9f69d8198af4a6cbd",
+        "source_file": "Metacognitive_Questioning_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "we should just execute",
+          "evidence_source_type": "user_turn",
+          "reason": "The team is ready to execute, but the next discriminating question could still change the path if it is bounded and action-linked.",
+          "route_or_artifact_id": "synthetic-pr46-next-question-gate",
+          "source": "lane1_tendency_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "deterministic-case-type-mode-router",
+          "model_id": "reasoning-mode-router",
+          "reason": "The source says mode choice is contextually dependent, so PR45 must not let Python infer the right reasoning mode from case type, route label, or model ID.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-005-reasoning-mode-router",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Reasoning Mode Router",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "reasoning-mode-router",
+      "nomination_metadata": {
+        "lane_order": 5,
+        "lane_score": 0.78
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "reasoning-mode-router.context-driven-mode-selection-check"
+        ],
+        "case_evidence_needed": [
+          "The current problem stage: goal, problem, diagnosis, design, doing, critique, or exploration."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What reasoning mode is the advice using right now?"
+        ],
+        "do_not_use_when": [
+          "The right mode is already explicit and the next discriminating question is clear."
+        ],
+        "misuse_guards": [
+          "Do not turn this card into deterministic reasoning-mode routing."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "reasoning-mode-router.context-driven-mode-selection-check",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Reasoning_Mode_Router_rag.md",
+            "source_quote": "conscious selection of a processing strategy"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the current reasoning stage, the mode being used, why that mode fits the task, and what evidence would trigger a mode switch.",
+            "evidence_required": [
+              "The current stage of work."
+            ],
+            "good_output_shape": [
+              "Names the mode as a reviewed handoff suggestion, not a deterministic route."
+            ],
+            "requirement_id": "name-stage-and-mode-fit"
+          }
+        ],
+        "use_when": [
+          "The problem could be solved through very different reasoning modes with different failure modes."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Routing debate itself is becoming overhead and the team cannot name the next discriminating question or experiment."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Faulty pattern recognition can route a novel problem into a familiar frame and produce a disastrously wrong solution path.",
+            "extraction_type": "normalized",
+            "mitigation": "Before routing to a familiar method, check structural fit: list three features the problem shares with the template and one it does not, and judge whether the mismatch is load-bearing.",
+            "mode": "Faulty Pattern Recognition (Substitution Bias)",
+            "source_quote": "Faulty Pattern Recognition (Substitution Bias)"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Test multiple frames before locking the route so the first usable model does not become the only one considered.",
+            "extraction_type": "normalized",
+            "source_quote": "Testing Multiple Frames"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What are the assumptions embedded in the framework I am currently using?",
+            "extraction_type": "explicit",
+            "source_quote": "What are the assumptions embedded in the framework I am currently using?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "The problem could be approached through diagnosis, creative exploration, adversarial critique, or execution planning, and choosing the wrong path would materially distort the work."
+        ],
+        "source_file": "Reasoning_Mode_Router_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16652,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Reasoning_Mode_Router_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "500830f7d75214b270e251eb99ba2c207f600dcc8a9644d662b04c4e747497a1",
+        "source_file": "Reasoning_Mode_Router_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "diagnose, design, and execute all in one pass",
+          "evidence_source_type": "reviewer_note",
+          "reason": "The same response is trying to diagnose, design, critique, and execute; the packet should check which reasoning mode fits the current task stage.",
+          "route_or_artifact_id": "synthetic-pr46-mode-fit-check",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "reframing-as-euphemism",
+          "model_id": "reframing-perspective",
+          "reason": "The source rejects reframing that only renames a hard reality or softens a trade-off without improving truth surface or decision quality.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-006-reframing-perspective",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Reframing Perspective",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "reframing-perspective",
+      "nomination_metadata": {
+        "lane_order": 6,
+        "lane_score": 0.74
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "reframing-perspective.decision-variable-reframe-test"
+        ],
+        "case_evidence_needed": [
+          "The current problem frame and the option it makes natural."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What option does the current frame make feel inevitable?"
+        ],
+        "do_not_use_when": [
+          "The proposed reframe is only a vivid slogan or euphemism for the same hard reality."
+        ],
+        "misuse_guards": [
+          "Do not reframe for cleverness unless it changes evidence, action, or dismissal conditions."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "reframing-perspective.decision-variable-reframe-test",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Reframing_Perspective_rag.md",
+            "source_quote": "Most useful when the first story is trapping the decision"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to show what decision variable, success criterion, trade-off, or next action changes if the problem is reframed.",
+            "evidence_required": [
+              "The current frame and its hidden assumptions."
+            ],
+            "good_output_shape": [
+              "Names the old frame and new frame."
+            ],
+            "requirement_id": "show-variable-changed-by-frame"
+          }
+        ],
+        "use_when": [
+          "The current language makes one option look inevitable, impossible, or obviously correct."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Reframing is becoming euphemism that renames a hard reality without improving the option set or truth surface."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A plan can look inevitable only because the current story hides other valid lenses and success criteria.",
+            "extraction_type": "normalized",
+            "mitigation": "After reframing, check whether the new lens opened genuinely different options or merely relabeled the same plan: if the action set didn't change, the reframe was decorative.",
+            "mode": "Most useful when the first story is trapping the decision.",
+            "source_quote": "Most useful when the first story is trapping the decision."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Change the question before changing the answer when the original framing is making one path look falsely inevitable.",
+            "extraction_type": "normalized",
+            "source_quote": "Best when the first recommendation sounds inevitable because of how the problem was posed."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What different action becomes reasonable if we look at the same facts through a user, system, risk, or trade-off lens?",
+            "extraction_type": "normalized",
+            "source_quote": "Works when the same facts support different actions depending on viewpoint."
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "systems"
+        ],
+        "select_when": [
+          "The first story is trapping the decision by making one option feel inevitable or impossible."
+        ],
+        "source_file": "Reframing_Perspective_rag.md"
+      },
+      "source_custody": {
+        "bytes": 17539,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Reframing_Perspective_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "4e0c48cb27b0f9a0f4da4b8db625046f5307e85b83dc67d88709bd8541079599",
+        "source_file": "Reframing_Perspective_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "pricing problem",
+          "evidence_source_type": "user_turn",
+          "reason": "The case is framed as a pricing problem, but a different decision variable could expose a better action path.",
+          "route_or_artifact_id": "synthetic-pr46-decision-variable-reframe",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "endless-theory-shopping",
+          "model_id": "theory-induced-blindness",
+          "reason": "The source warns that changing frameworks can become misuse when it avoids commitment to evidence, testable claims, or operational decisions.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-007-theory-induced-blindness",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Theory Induced Blindness",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "theory-induced-blindness",
+      "nomination_metadata": {
+        "lane_order": 7,
+        "lane_score": 0.7
+      },
+      "pulled_by": [
+        "lane2_companion_chunk"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "theory-induced-blindness.favored-framework-blindness-check"
+        ],
+        "case_evidence_needed": [
+          "The framework, theory, or model currently shaping the advice."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What theory or framework is deciding what counts as relevant here?"
+        ],
+        "do_not_use_when": [
+          "The current framework's assumptions, omissions, and limits are already explicit."
+        ],
+        "misuse_guards": [
+          "Do not treat all frameworks as suspect; test fit, omissions, and assumptions."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "theory-induced-blindness.favored-framework-blindness-check",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Theory_Induced_Blindness_rag.md",
+            "source_quote": "Most useful when a favored framework might be hiding reality"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the favored framework, what it makes visible, what it filters out, and what alternative cut would test whether the current map is hiding reality.",
+            "evidence_required": [
+              "The current model or theory behind the advice."
+            ],
+            "good_output_shape": [
+              "Names the current framework rather than attacking expertise generally."
+            ],
+            "requirement_id": "name-what-framework-filters-out"
+          }
+        ],
+        "use_when": [
+          "A favored framework might be hiding reality or filtering inconvenient evidence."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Reframing has turned into endless theory shopping that avoids evidence, testable claims, or operational decisions."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Illusion of understanding can make experts stop investigating because they confuse familiarity with reality access.",
+            "extraction_type": "normalized",
+            "mitigation": "Schedule regular 'what are we not seeing?' audits: require the team to name what the current theory cannot explain, and investigate those gaps before doubling down.",
+            "mode": "Illusion of Understanding",
+            "source_quote": "Illusion of Understanding"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Try several cuts at the problem so different frames can expose different missing signals.",
+            "extraction_type": "normalized",
+            "source_quote": "Try Several Cuts at the Problem"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What framework is this analysis missing?",
+            "extraction_type": "explicit",
+            "source_quote": "What framework is this analysis missing?"
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A favored framework might be hiding reality by shaping attention too aggressively and filtering out inconvenient evidence."
+        ],
+        "source_file": "Theory_Induced_Blindness_rag.md"
+      },
+      "source_custody": {
+        "bytes": 13849,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Theory_Induced_Blindness_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "90f9ad583d096c6416bb9cdb1ebe484c401b0592d095ca02fb652ba8b29a99fc",
+        "source_file": "Theory_Induced_Blindness_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "the chosen framework explains it",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The favored framework may explain the visible facts while filtering out disconfirming signals or a better cut of the problem.",
+          "route_or_artifact_id": "synthetic-pr46-framework-blindness",
+          "source": "lane2_companion_chunk"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "reject-all-prior-knowledge",
+          "model_id": "einstellung-effect",
+          "reason": "The source warns that avoiding fixation should not become a reason to reject helpful pattern recognition and prior knowledge.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-008-einstellung-effect",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Einstellung Effect",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "einstellung-effect",
+      "nomination_metadata": {
+        "lane_order": 8,
+        "lane_score": 0.66
+      },
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "einstellung-effect.familiar-solution-lock-in-interrupt"
+        ],
+        "case_evidence_needed": [
+          "The familiar solution or frame currently being applied."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What familiar solution is being reused here?"
+        ],
+        "do_not_use_when": [
+          "The familiar pattern has been tested against the current case and the assumptions still hold."
+        ],
+        "misuse_guards": [
+          "Do not reject prior knowledge merely because novelty is possible."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "einstellung-effect.familiar-solution-lock-in-interrupt",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Einstellung_Effect_rag.md",
+            "source_quote": "existing or previously learned solution prevents an individual from perceiving, or being open to, alternative solutions"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the familiar template, identify what makes the case different, and specify the test or alternative frame that would reveal stale pattern lock-in.",
+            "evidence_required": [
+              "The solution or pattern that arrived quickly."
+            ],
+            "good_output_shape": [
+              "Names the familiar solution path."
+            ],
+            "requirement_id": "test-familiar-template-fit"
+          }
+        ],
+        "use_when": [
+          "An experienced team keeps reaching for the same proven frame even though the situation feels structurally different."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Avoid-fixation language is becoming a reason to reject all prior knowledge instead of distinguishing helpful pattern recognition from stale lock-in."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A familiar solution path can block better alternatives because the first successful frame becomes hard to unsee.",
+            "extraction_type": "explicit",
+            "mitigation": "Before committing to the first solution that works, explicitly search for at least one alternative; a familiar path can block better options.",
+            "mode": "An existing or previously learned solution prevents an individual from perceiving alternative solutions.",
+            "source_quote": "An existing or previously learned solution prevents an individual from perceiving alternative solutions."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Interrupt the dominant template before committing when the problem feels novel despite a suspiciously familiar answer.",
+            "extraction_type": "explicit",
+            "source_quote": "The model is most useful when an experienced team keeps reaching for the same proven frame even though the situation feels structurally different."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What if the reason this answer arrived so fast is that we are reusing a familiar template rather than seeing the actual structure?",
+            "extraction_type": "normalized",
+            "source_quote": "When a person begins thinking about a problem in one direction, that fixation can blind them to the full range of alternatives."
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "counterfactual"
+        ],
+        "select_when": [
+          "An experienced team keeps reaching for the same proven frame even though the situation feels structurally different."
+        ],
+        "source_file": "Einstellung_Effect_rag.md"
+      },
+      "source_custody": {
+        "bytes": 14203,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Einstellung_Effect_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "32c4ae4e535372d44cfbb731c2c74a3f1dfa478d96e180b63f681aa393aa6556",
+        "source_file": "Einstellung_Effect_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "reuse last quarter's playbook",
+          "evidence_source_type": "user_turn",
+          "reason": "The team is reusing a familiar playbook, so the packet should test whether fluency is being mistaken for real fit.",
+          "route_or_artifact_id": "synthetic-pr46-familiar-template-lock-in",
+          "source": "lane1_tendency_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "endless-contrarianism-as-dialectic",
+          "model_id": "dialectical-reasoning",
+          "reason": "The source warns against confusing productive dialectic with endless contrarianism that never translates tension into a bounded decision or next step.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-009-dialectical-reasoning",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Dialectical Reasoning",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "dialectical-reasoning",
+      "nomination_metadata": {
+        "lane_order": 9,
+        "lane_score": 0.62
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "dialectical-reasoning.bounded-antithesis-synthesis-test"
+        ],
+        "case_evidence_needed": [
+          "The thesis or current recommendation."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What is the strongest antithesis to the current recommendation?"
+        ],
+        "do_not_use_when": [
+          "The opposing position is already represented and the decision criterion is clear."
+        ],
+        "misuse_guards": [
+          "Do not turn dialectic into endless contrarianism."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "dialectical-reasoning.bounded-antithesis-synthesis-test",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Dialectical_Reasoning_rag.md",
+            "source_quote": "thesis, antithesis, synthesis"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to state the thesis, strongest antithesis, evidence each preserves, and the bounded synthesis or next step that prevents conflict from becoming endless debate.",
+            "evidence_required": [
+              "The current thesis or recommendation."
+            ],
+            "good_output_shape": [
+              "Represents the opposing view strongly."
+            ],
+            "requirement_id": "turn-tension-into-bounded-synthesis"
+          }
+        ],
+        "use_when": [
+          "The situation contains live disagreement, partial truths, or competing interpretations that need to be surfaced rather than flattened."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The team is confusing productive dialectic with endless contrarianism and never converting tension into a bounded decision."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Dialectical reasoning fails when teams mistake endless contrarianism for real synthesis work.",
+            "extraction_type": "explicit",
+            "mitigation": "Require synthesis: every dialectical round must produce a concrete integration, not just another contrary view; contrarianism without synthesis is waste.",
+            "mode": "Dialectical reasoning fails when teams mistake endless contrarianism for real synthesis work.",
+            "source_quote": "Danger when teams confuse productive dialectic with endless contrarianism and never translate tension into a bounded decision or next step."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use thesis, antithesis, and synthesis as a default reasoning norm for important claims.",
+            "extraction_type": "explicit",
+            "source_quote": "The Dialectic Standard"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What is the strongest antithesis to our current thesis?",
+            "extraction_type": "explicit",
+            "source_quote": "thesis, antithesis, synthesis"
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "deductive"
+        ],
+        "select_when": [
+          "A strong claim needs an explicit counterclaim before the team can trust the conclusion."
+        ],
+        "source_file": "Dialectical_Reasoning_rag.md"
+      },
+      "source_custody": {
+        "bytes": 17380,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Dialectical_Reasoning_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "aa9f89ba98e91e1e66607ac4bd9aed79492b68835ad305be2efa8faf382e1518",
+        "source_file": "Dialectical_Reasoning_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "one side must be right",
+          "evidence_source_type": "reviewer_note",
+          "reason": "The advice collapses tension into one side winning, but both positions may preserve partial truths that should shape the next move.",
+          "route_or_artifact_id": "synthetic-pr46-bounded-antithesis",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "performative-self-knowledge-as-mitigation",
+          "model_id": "bias-blind-spot",
+          "reason": "The source warns that awareness of bias can become performative humility when it does not change evidence weighting.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-010-bias-blind-spot",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Bias Blind Spot",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "bias-blind-spot",
+      "nomination_metadata": {
+        "lane_order": 10,
+        "lane_score": 0.58
+      },
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "bias-blind-spot.self-bias-accountability-check"
+        ],
+        "case_evidence_needed": [
+          "The judgment or critique being made."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "Where might our own judgment be distorted before we critique theirs?"
+        ],
+        "do_not_use_when": [
+          "The answer already names how the reviewer's own incentives, emotions, or perspective may distort judgment."
+        ],
+        "misuse_guards": [
+          "Do not use bias labels only against other people."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "bias-blind-spot.self-bias-accountability-check",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Bias_Blind_Spot_rag.md",
+            "source_quote": "the tendency to be much better at recognizing biased reasoning in others than in oneself"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to identify where the reviewer or advising party may be biased, what evidence would challenge that bias, and what external check prevents critique from pointing only outward.",
+            "evidence_required": [
+              "The party making the judgment."
+            ],
+            "good_output_shape": [
+              "Turns the bias check inward before diagnosing others."
+            ],
+            "requirement_id": "turn-bias-check-inward"
+          }
+        ],
+        "use_when": [
+          "Decision-makers are confident in their own objectivity before judging ambiguous evidence, trade-offs, or rival interpretations."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The model is being used mainly to brand other people as biased rather than to create a process that can expose the local blind spot."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Awareness of the bias blind spot can become performative self-knowledge that sounds humble without changing how evidence is weighed.",
+            "extraction_type": "explicit",
+            "mitigation": "Run a pre-mortem: imagine the project failed and ask what went wrong, forcing the team to surface the biases that performative awareness would have missed.",
+            "mode": "Awareness of the bias blind spot can become performative self-knowledge that sounds humble without c...",
+            "source_quote": "Danger when awareness of the bias blind spot becomes performative self-knowledge that sounds humble without changing how evidence is weighed."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use the outside view and external calibration when strong self-confidence would otherwise dominate local judgment.",
+            "extraction_type": "explicit",
+            "source_quote": "Cultivating the Outside View"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What if our awareness of this bias changes nothing about how we are currently weighing evidence?",
+            "extraction_type": "normalized",
+            "source_quote": "simply knowing about the Bias Blind Spot is often not enough"
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A review or debate risks turning into a diagnosis of everyone else's distortions while leaving the team's own reasoning unexamined."
+        ],
+        "source_file": "Bias_Blind_Spot_rag.md"
+      },
+      "source_custody": {
+        "bytes": 14725,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Bias_Blind_Spot_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "246106e5c84547e9e2ba283e723efcf9b6babb52f8e3697138859a0a22ef0f56",
+        "source_file": "Bias_Blind_Spot_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "they are being irrational",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The memo diagnoses the partner as biased while not testing the advising team's own incentives, status, or self-protective interpretation.",
+          "route_or_artifact_id": "synthetic-pr46-self-bias-check",
+          "source": "lane1_tendency_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "simplicity-that-hides-uncertainty",
+          "model_id": "false-precision-avoidance",
+          "reason": "The source warns that simplicity can be misused to hide uncertainty, skip analysis, or present rounded answers as if variance no longer matters.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-011-false-precision-avoidance",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "False Precision Avoidance",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "false-precision-avoidance",
+      "nomination_metadata": {
+        "lane_order": 11,
+        "lane_score": 0.54
+      },
+      "pulled_by": [
+        "lane2_detected_model"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "false-precision-avoidance.decision-relevant-precision-boundary"
+        ],
+        "case_evidence_needed": [
+          "The estimate, claim, or recommendation that appears precise."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "Does this precision change the decision, or only the feeling of confidence?"
+        ],
+        "do_not_use_when": [
+          "The domain genuinely requires precise calculation, engineering tolerance, surgery-level accuracy, or a quantitative update."
+        ],
+        "misuse_guards": [
+          "Do not use simplicity to skip underlying analysis."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "false-precision-avoidance.decision-relevant-precision-boundary",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "False_Precision_Avoidance_rag.md",
+            "source_quote": "a decision needs directional clarity, bounded ranges, or operating thresholds more than an illusion of exact certainty."
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to identify where precision is not decision-relevant, preserve necessary rigor, and express the result as a range, threshold, or approximation that changes action.",
+            "evidence_required": [
+              "The precise claim or estimate."
+            ],
+            "good_output_shape": [
+              "Names the false-precision risk."
+            ],
+            "requirement_id": "replace-fake-exactness-with-threshold"
+          }
+        ],
+        "use_when": [
+          "A decision needs directional clarity, bounded ranges, or operating thresholds more than exact certainty."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Simplicity is being used to hide uncertainty, skip the underlying analysis, or present a rounded answer as if the variance no longer matters."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams can use simplicity to hide uncertainty and present a rounded answer as if the underlying variance no longer matters.",
+            "extraction_type": "explicit",
+            "mitigation": "Label the range of uncertainty when presenting simplified numbers; rounded answers that hide underlying variance create false confidence.",
+            "mode": "Teams can use simplicity to hide uncertainty and present a rounded answer as if the underlying varia...",
+            "source_quote": "Danger when teams use simplicity to hide uncertainty, skip the underlying analysis, or present a rounded answer as if the underlying variance no longer matters."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Gather only enough facts to support or falsify the decision rather than boiling the ocean for decorative certainty.",
+            "extraction_type": "normalized",
+            "source_quote": "gather only enough facts to prove or disprove a hypothesis or support an analysis"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "If this was cut, would anything be lost?",
+            "extraction_type": "explicit",
+            "source_quote": "If this was cut, would anything be lost?"
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "causal"
+        ],
+        "select_when": [
+          "A decision needs directional clarity, bounded ranges, or operating thresholds more than an illusion of exact certainty."
+        ],
+        "source_file": "False_Precision_Avoidance_rag.md"
+      },
+      "source_custody": {
+        "bytes": 17020,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/False_Precision_Avoidance_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "af964a0af73f1d4913add4d54bc7d978285d372f150caa93fb1cf9a6d84ef9de",
+        "source_file": "False_Precision_Avoidance_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "ship by June 30 with 35% uplift",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The recommendation uses crisp dates and uplift claims, but the exactness may create confidence without changing the decision.",
+          "route_or_artifact_id": "synthetic-pr46-precision-boundary",
+          "source": "lane2_detected_model"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "coherent-story-as-proof",
+          "model_id": "wysiati",
+          "reason": "The source explicitly says a coherent argument is not more likely to be true, so the card must not treat fluency or tidy logic as proof.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-012-wysiati",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "WYSIATI",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "wysiati",
+      "nomination_metadata": {
+        "lane_order": 12,
+        "lane_score": 0.5
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "wysiati.missing-evidence-denominator-audit"
+        ],
+        "case_evidence_needed": [
+          "The coherent story or conclusion under review."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "Is this conclusion well-supported, or just well-constructed?"
+        ],
+        "do_not_use_when": [
+          "The answer already names the missing evidence and why its absence is random or structured."
+        ],
+        "misuse_guards": [
+          "Do not treat narrative coherence as evidence completeness."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "wysiati.missing-evidence-denominator-audit",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "WYSIATI_rag.md",
+            "source_quote": "Confidence tracks story quality, not evidence completeness."
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to separate story coherence from evidence completeness by naming the missing denominator, absent disconfirming case, and why the absence matters before commitment.",
+            "evidence_required": [
+              "The coherent story or recommendation."
+            ],
+            "good_output_shape": [
+              "Names what is missing from the picture."
+            ],
+            "requirement_id": "audit-missing-denominator"
+          }
+        ],
+        "use_when": [
+          "The available evidence forms a coherent story that feels complete."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Evidence has been explicitly audited for completeness and the gaps are known and acknowledged \u2014 the closure is warranted."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Confidence of ignorance makes less-informed decision-makers more confident than better-informed ones, because fewer contradictions and gaps allow a more coherent story to form.",
+            "extraction_type": "normalized",
+            "mitigation": "Ask what's missing before judging confidence: require the team to list information they do not have and would need to be more certain, before trusting the coherence of the current story.",
+            "mode": "Confidence of ignorance",
+            "source_quote": "Confidence of ignorance"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Before committing to any confident conclusion, explicitly audit what information is missing and whether the absence is random or structured by selection or incentive.",
+            "extraction_type": "normalized",
+            "source_quote": "Audit the Denominator: explicitly ask 'what is not in this picture?'"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What evidence would we need to see to be confident in this conclusion \u2014 and do we know why that evidence is not in front of us?",
+            "extraction_type": "normalized",
+            "source_quote": "Require an explicit 'what is missing?' audit before every significant conclusion"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive",
+          "probabilistic"
+        ],
+        "select_when": [
+          "A confident conclusion has been reached from evidence that may be incomplete, non-random, or selectively presented."
+        ],
+        "source_file": "WYSIATI_rag.md"
+      },
+      "source_custody": {
+        "bytes": 15275,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/WYSIATI_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "15bd0dd3736b7aae0f8771a6cb57378bf53efd871d990f173df9fcd6bfbc35ac",
+        "source_file": "WYSIATI_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "we only have the visible wins",
+          "evidence_source_type": "reviewer_note",
+          "reason": "The visible story is coherent, but the packet should force attention to missing evidence, denominators, disconfirming cases, and absent briefing sides.",
+          "route_or_artifact_id": "synthetic-pr46-missing-denominator",
+          "source": "lane4_gap_route"
+        }
+      ]
+    }
+  ],
+  "coverage_summary": {
+    "absence_only_card_count": 0,
+    "candidate_card_count": 12,
+    "conflicting_or_weak_support_count": 0,
+    "graph_only_card_count": 0,
+    "high_value_graph_only_model_ids": [],
+    "missing_reviewed_model_ids": [],
+    "missing_reviewed_record_count": 0,
+    "reviewed_card_count": 12,
+    "source_too_thin_count": 0
+  },
+  "packet_id": "pr46-v11-frame-correction-packet-review",
+  "packet_policy": {
+    "candidate_card_target_max": 12,
+    "candidate_card_target_min": 0,
+    "deterministic_role": "validate_package_cap_reference_and_label",
+    "forbid_case_type_templates": true,
+    "forbid_final_pressure_selection": true,
+    "forbid_public_copy": true,
+    "semantic_selection_role": "llm_or_reviewer",
+    "snippet_target_max_per_card": 1,
+    "snippet_target_min_per_card": 0
+  },
+  "packet_version": "reasoning_substrate_packet.v1",
+  "review_notes": [
+    "Review-only packet built from explicit nominations; no live lanes were run.",
+    "Graph-only cards are eligible recall material but not reviewed affordance depth.",
+    "LLM or reviewer owns semantic selection, merging, ignoring, and final wording."
+  ],
+  "runtime_policy": "runtime_dormant",
+  "source_artifacts": [
+    "data/knowledge_graph.json",
+    "data/compiled/model_affordances/affordances_v11.json",
+    "data/model_sources/manifest.json"
+  ],
+  "status": "draft_review_only",
+  "suppressed_candidates": [
+    {
+      "candidate_id": "candidate-013-reasoning-mode-router",
+      "coverage_status": "reviewed_affordance_available",
+      "do_not_recover_as_pressure_without_review": true,
+      "model_id": "reasoning-mode-router",
+      "pulled_by": [
+        "reviewer_note"
+      ],
+      "suppression_reason": "duplicate_model_id",
+      "why_pulled": [
+        {
+          "evidence_source_type": "reviewer_note",
+          "reason": "Duplicate nomination included to prove suppression is visible instead of silently erased.",
+          "route_or_artifact_id": "synthetic-pr46-duplicate-check",
+          "source": "reviewer_note"
+        }
+      ]
+    }
+  ],
+  "transaction_context": {
+    "assistant_advice_summary": "The assistant recommends a focused execution plan with crisp dates, a chosen root cause, a communication reset, and risk checks, but it does not test missing evidence, alternative frames, counterfactual paths, self-bias, false precision, or whether the current reasoning mode fits the case.",
+    "capture_health": "synthetic_review",
+    "case_id": "pr46-frame-correction-review",
+    "known_action_or_commitment": "Use the memo to reset the partner plan, assign owners, and decide within thirty days whether to double down, reframe, or unwind.",
+    "transaction_sources": [
+      "user_turn",
+      "assistant_turn",
+      "reviewer_note"
+    ],
+    "user_situation_summary": "A leadership team is ready to act on a plausible AI-generated rescue memo for a stalled partnership, but the diagnosis may be overfit to visible evidence, familiar playbooks, precise dates, and one favored frame."
+  }
+}
