@@ -1,14 +1,14 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR45 controlled frame-correction /
-metacognitive enrichment.
+**Status:** Product doctrine after PR46 v10/v11 frame-correction packet
+usefulness review.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_frame_correction_enrichment_ready`
+**Current posture:** `v11_frame_correction_packet_handoff_useful`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -55,6 +55,8 @@ memo, or user-facing launch plan.
 **Current v10 graph-only priority audit:** `research/v10-graph-only-priority-audit-2026-05-07.md`
 
 **Current controlled frame-correction enrichment report:** `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
+
+**Current v11 packet usefulness review:** `research/reasoning-substrate-v11-packet-usefulness-review-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -662,6 +664,18 @@ precision boundary, or missing-evidence denominator. PR45 explicitly blocks
 deterministic reasoning-mode routing: Python may package the source-backed card;
 the LLM/reviewer still decides whether the card matters.
 
+PR46 then completed one v10/v11 frame-correction packet usefulness review:
+
+> `v11_frame_correction_packet_handoff_useful`
+
+Treat PR46 as handoff-quality evidence, not final-answer evidence or runtime
+permission. The same 12-card frame-correction packet moves from `0` reviewed /
+`12` graph-only cards under v10 to `12` reviewed / `0` graph-only cards under
+v11, with candidate count fixed and duplicate suppression preserved. The
+review finds useful depth because the new cards add activation, evidence,
+dismissal, misuse, treatment, source, and absence signals without making Python
+choose the answer.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -804,15 +818,24 @@ PR45 added the controlled frame-correction / metacognitive enrichment answer:
 > reviewed depth under exact source custody: v11 adds 12 records, 12
 > affordances, and 24 absence records while remaining dormant. The records are
 > operational checks and absence boundaries, not a deterministic
-> reasoning-mode router. PR46 must prove whether v11 improves a
-> same-nomination packet handoff before any further extraction.
+> reasoning-mode router.
+
+PR46 added the v11 frame-correction packet usefulness answer:
+
+> Yes, v11 makes the same 12-card frame-correction packet better handoff
+> material without adding candidates or choosing final output. The useful
+> depth is operational: missing reality gaps, claim/evidence separation,
+> plausible counterfactual branches, bounded next questions, mode-fit handoff,
+> decision-variable reframing, framework blindness checks, familiar-solution
+> lock-in interrupts, bounded synthesis, inward bias accountability, false
+> precision boundaries, and missing-evidence denominators.
 
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, PR36, PR39, PR42, and PR45 cards remain useful when
    tested in additional candidate mixes, and which merely add internal bulk?
-2. Do the PR45 frame-correction / metacognitive cards improve a future packet
-   materially, or merely add internal reasoning vocabulary?
+2. Which remaining graph-only family after v11 would make future packets thin
+   enough to justify another controlled batch?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?

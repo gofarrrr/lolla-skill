@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR45 are merged or in review, PR45 completed controlled frame-correction / metacognitive enrichment, and the current posture is `controlled_frame_correction_enrichment_ready`
+**Status:** living schema doctrine; PR13-PR46 are merged or in review, PR46 completed the v10/v11 frame-correction packet usefulness review, and the current posture is `v11_frame_correction_packet_handoff_useful`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -34,6 +34,7 @@
 **Current v10 packet usefulness review:** `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
 **Current v10 graph-only priority audit:** `research/v10-graph-only-priority-audit-2026-05-07.md`
 **Current controlled frame-correction enrichment report:** `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
+**Current v11 packet usefulness review:** `research/reasoning-substrate-v11-packet-usefulness-review-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -353,14 +354,19 @@ real. Future sessions should treat the following as current baseline:
   false-precision gaps, compiles draft/review-only v11, and preserves `24`
   absence records. Decision label:
   `controlled_frame_correction_enrichment_ready`.
+- PR46 completed one same-nomination v10/v11 frame-correction packet
+  usefulness review after PR45. The same `12` cards move from `0` reviewed /
+  `12` graph-only under v10 to `12` reviewed / `0` graph-only under v11
+  without changing candidate count or selecting final output. Decision label:
+  `v11_frame_correction_packet_handoff_useful`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `controlled_frame_correction_enrichment_ready`; do not build runtime packet
+  `v11_frame_correction_packet_handoff_useful`; do not build runtime packet
   production, prompt changes, broad extraction, lane rewrites, user-facing
   surfaces, deterministic reasoning-mode routing, or automatic extraction by
-  default. PR46 must prove same-nomination v10/v11 packet usefulness before any
-  further extraction.
+  default. The next slice, if opened, should be an after-v11 graph-only
+  priority audit, not another extraction batch by default.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1582,7 +1588,7 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation, more paid Gate 4 calibration,
-or Decision Pressure trace machinery. PR13-PR45 are complete or in review.
+or Decision Pressure trace machinery. PR13-PR46 are complete or in review.
 PR26 completed deterministic source custody backfill: all 222 runtime source
 files are now under repo-local custody, while v4 reviewed affordance depth
 remains 55 model records. PR27 then completed one review-only mixed packet
@@ -1744,17 +1750,20 @@ Current task:
 52. Treat PR45 as controlled frame-correction / metacognitive enrichment, not
     v11 runtime promotion, deterministic reasoning-mode routing, corpus
     completion, or proof that another batch should begin.
-53. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+53. Treat PR46 as packet handoff usefulness evidence, not final-answer
+    evidence, live packet production, deterministic routing permission, or
+    proof that another extraction batch should begin.
+54. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-54. Preserve coverage honesty and no-casuistry rails.
-55. Do not run more paid model calls for this slice.
-56. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+55. Preserve coverage honesty and no-casuistry rails.
+56. Do not run more paid model calls for this slice.
+57. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Do not extract more affordance records or wire live runtime behavior by
-momentum. PR45 completed the capped source-backed frame correction /
-metacognitive batch selected by PR44. PR46 must prove same-nomination v10/v11
-packet usefulness before any further extraction.
+momentum. PR46 showed v11 frame-correction reviewed cards improve one
+same-nomination packet handoff. The next slice, if opened, should be an
+after-v11 graph-only priority audit, not another extraction batch by default.
 
 ---
 

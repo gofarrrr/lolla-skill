@@ -4,13 +4,13 @@
 **Status:** Historical product/architecture audit after the merged PR13-PR23
 stack and Decision Pressure product doctrine. The architecture conclusions
 still stand, but the reviewed affordance counts have been superseded by later
-controlled enrichment and packet-review slices through PR45. This is not a
+controlled enrichment and packet-review slices through PR46. This is not a
 runtime proposal, not an extraction brief, not a prompt change, and not
 user-facing promotion.
 
 **Doctrine anchor:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_frame_correction_enrichment_ready`
+**Current posture:** `v11_frame_correction_packet_handoff_useful`
 
 **Current handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -46,9 +46,11 @@ collapsed into one story.
    graph-only models and selected frame correction / metacognitive blind-spot
    discipline as the next controlled family. PR45 added source-backed v11 depth
    for those 12 models while explicitly preserving the no deterministic
-   reasoning-mode-routing boundary. The corpus is richer and more operational,
-   but it is still `draft_review_only`. It supports review artifacts; it does
-   not yet select or generate live pressures.
+   reasoning-mode-routing boundary. PR46 then showed that v11 improves the
+   same 12-card frame-correction packet handoff without changing candidate
+   count. The corpus is richer and more operational, but it is still
+   `draft_review_only`. It supports review artifacts; it does not yet select
+   or generate live pressures.
 
 So the accurate current claim is:
 
@@ -59,7 +61,8 @@ So the accurate current claim is:
 > risk/reversibility packet handoff; PR44 selected frame correction /
 > metacognitive blind-spot discipline as the next controlled family; PR45 added
 > v11 depth for that family while blocking deterministic reasoning-mode
-> routing. It is still not the live matching system.
+> routing; PR46 showed that v11 improves one frame-correction packet handoff.
+> It is still not the live matching system.
 
 This matters because expanding from 55 records should not mean "add records
 until the number feels complete." Expansion should be pulled by product use:
@@ -70,7 +73,8 @@ next LLM can think better without Python pretending to choose the pressure.
 
 Measured from the repo artifacts when this audit was first written. For the
 current v11 counts and packet-review posture, use the handover, PR39 report,
-PR40 review, PR41 audit, PR42 report, PR43 review, PR44 audit, and PR45 report.
+PR40 review, PR41 audit, PR42 report, PR43 review, PR44 audit, PR45 report,
+and PR46 review.
 
 | Artifact | Count / state | Current role |
 | --- | ---: | --- |
