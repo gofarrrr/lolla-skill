@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR39 completed controlled
-execution/follow-through enrichment. PR38 selected the family; PR39 read the 12
-source-custodied files and compiled draft/review-only v9 without runtime
-promotion.
+**Status:** Start-here handover after PR40 completed the v8/v9 execution
+packet usefulness review. PR39 created the execution/follow-through depth; PR40
+checked whether that depth improves the same packet handoff without changing
+candidate count.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_execution_followthrough_enrichment_ready`
+**Current posture:** `v9_execution_packet_handoff_useful`
 
-**Current PR:** PR39 - controlled execution/follow-through enrichment
+**Current PR:** PR40 - v9 execution packet usefulness review
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -43,6 +43,8 @@ Batch 3b, or user-facing Decision Pressure work.
 **PR38 decision label:** `v8_graph_only_priority_audit_complete`
 
 **PR39 decision label:** `controlled_execution_followthrough_enrichment_ready`
+
+**PR40 decision label:** `v9_execution_packet_handoff_useful`
 
 ## Start Here
 
@@ -78,6 +80,8 @@ Read these files in order:
 28. `research/reasoning-substrate-packet-pr37-v7-v8-comparison-render-2026-05-07.md`
 29. `research/v8-graph-only-priority-audit-2026-05-07.md`
 30. `research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md`
+31. `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
+32. `research/reasoning-substrate-packet-pr40-v8-v9-comparison-render-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -133,6 +137,7 @@ Keep these layers distinct:
 | PR39 controlled execution/follow-through enrichment | 12 graph-only models from execution, auditability, baselines, bottlenecks, debugging, feedback, goals, habits, iteration, and validated learning gained reviewed records with 12 affordances and 24 absence records; compiled as draft/review-only v9. |
 | v9 affordance corpus | 110 reviewed records, 146 affordances, 205 absence records. Draft/review-only v8 plus PR39 controlled execution/follow-through batch, not runtime-promoted. |
 | Graph-only after v9 | 112 runtime models remain eligible but not reviewed affordance records. |
+| PR40 v9 execution packet usefulness review | Same 12-card execution/follow-through nomination set compared against v8 and v9. v8 packet had 12 graph-only cards; v9 packet has 11 reviewed cards and 1 weak/conflicting support card, with candidate count fixed. |
 
 The governing sentence:
 
@@ -826,9 +831,61 @@ PR39 does not promote v9 into runtime, run live lanes, wire `/lolla`, change
 prompts, run model calls or judges, create Batch 3b, create user-facing
 Decision Pressure output, or allow deterministic final pressure selection.
 
-Recommended next slice, if opened, is PR40: a v8/v9 execution packet
-usefulness review with stable nominations. Do not start another extraction
-batch by default.
+PR40 later completed the recommended v8/v9 execution packet usefulness review
+with stable nominations. Do not treat PR39 alone as permission for another
+extraction batch.
+
+## What PR40 Added
+
+PR40 answers the question: "Did the controlled Batch 8/v9 enrichment make an
+execution / implementation / follow-through packet more useful for the next
+reasoning actor, or did it merely increase corpus size?"
+
+It adds:
+
+- `tests/fixtures/reasoning_substrate_packet/pr40_v8_execution_followthrough_packet_review.json`;
+- `tests/fixtures/reasoning_substrate_packet/pr40_v9_execution_followthrough_packet_review.json`;
+- `research/reasoning-substrate-packet-pr40-v8-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr40-v9-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr40-v8-v9-comparison-render-2026-05-07.md`;
+- `tests/test_reasoning_substrate_packet_v9_fixture.py`;
+- `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`;
+- `tasks/tasks-v9-execution-packet-usefulness-review.md`;
+- living-doc posture updates.
+
+Measured PR40 packet state:
+
+- v8 candidate cards: `12`;
+- v9 candidate cards: `12`;
+- v8 reviewed cards: `0`;
+- v9 reviewed cards: `11`;
+- v8 graph-only cards: `12`;
+- v9 graph-only cards: `0`;
+- v9 weak/conflicting support cards: `1`;
+- suppressed duplicates stay fixed at `1`.
+
+PR40's decision label is `v9_execution_packet_handoff_useful`.
+
+The product lesson:
+
+> v9 execution/follow-through depth improves the same packet handoff by adding
+> operational checks for baseline, bottleneck, audit trail, failure condition,
+> feedback loop, input/output goal separation, bounded iteration,
+> validated-learning threshold, procedure handoff, delivery-loop caveat, goal
+> side effects, and habit design. The improvement is handoff depth, not final
+> answer selection.
+
+`devops-and-continuous-integration` remains the right kind of caveat: it moves
+from graph-only to `conflicting_or_weak_support`, not to a full reviewed
+DevOps/CI doctrine card.
+
+PR40 does not promote v9 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, extract new records,
+create user-facing Decision Pressure output, or allow deterministic final
+pressure selection.
+
+Recommended next slice, if opened, is PR41: an after-v9 graph-only priority
+audit, not another extraction batch by default.
 
 ## PR24 Review Questions Answered
 
@@ -902,7 +959,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "controlled_execution_followthrough_enrichment_ready|v8_graph_only_priority_audit_complete|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR39|PR40" plans research tasks -g '*.md'
+rg -n "v9_execution_packet_handoff_useful|controlled_execution_followthrough_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR40|PR41" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -914,7 +971,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR39 and do not infer permission for runtime work, broad
+Start from PR40 and do not infer permission for runtime work, broad
 extraction, or another extraction batch.
 
 Read first:
@@ -941,9 +998,11 @@ Read first:
 - research/reasoning-substrate-packet-pr37-v7-v8-comparison-render-2026-05-07.md
 - research/v8-graph-only-priority-audit-2026-05-07.md
 - research/pr39-controlled-execution-followthrough-enrichment-report-2026-05-07.md
+- research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md
+- research/reasoning-substrate-packet-pr40-v8-v9-comparison-render-2026-05-07.md
 
 Current posture:
-controlled_execution_followthrough_enrichment_ready
+v9_execution_packet_handoff_useful
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1120,12 +1179,27 @@ PR39 result:
 - no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
   3b, broad extraction, or user-facing behavior was added
 
+PR40 result:
+- decision label: v9_execution_packet_handoff_useful
+- the same explicit 12-card execution/follow-through packet was generated
+  against v8 and v9
+- v8 packet: 0 reviewed cards, 12 graph-only cards, 1 suppressed duplicate
+- v9 packet: 11 reviewed cards, 0 graph-only cards, 1 weak/conflicting support
+  card, 1 suppressed duplicate
+- v9 improves baseline, bottleneck, audit trail, debugging, feedback,
+  input/output goal, bounded iteration, validated learning, handoff procedure,
+  delivery-loop, goal-setting, and habit-design handoff material
+- `devops-and-continuous-integration` remains weak/conflicting support rather
+  than full DevOps/CI doctrine
+- no extraction, runtime promotion, prompt, lane, live adapter, model call,
+  judge, Batch 3b, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next proof slice is a PR40 v8/v9 execution packet usefulness review with stable
-nominations. Broad extraction is still not justified by count momentum.
+next proof slice is a PR41 after-v9 graph-only priority audit. Broad extraction
+is still not justified by count momentum.
 ```
 
 ## Core Memory
