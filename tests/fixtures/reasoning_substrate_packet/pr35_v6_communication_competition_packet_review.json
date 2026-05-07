@@ -1,0 +1,880 @@
+{
+  "blocked_surfaces": [
+    "live_observatory_rendering",
+    "memo_integration",
+    "step8_integration",
+    "step6_integration",
+    "lane4_integration",
+    "lolla_runtime_use",
+    "user_facing_decision_pressure_block",
+    "prompt_changes",
+    "generation_changes",
+    "new_extraction",
+    "batch_3b",
+    "paid_gate4_reruns_by_default"
+  ],
+  "candidate_cards": [
+    {
+      "absence_records": [
+        {
+          "attempted_field": "same-game-assumption-affordance",
+          "model_id": "game-theory-payoffs",
+          "reason": "The source warns that actors may not be playing the same game. A reviewed card should force incentive/frame testing rather than assume shared payoff logic.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-001-game-theory-payoffs",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Game Theory Payoffs",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "game-theory-payoffs",
+      "nomination_metadata": {
+        "lane_order": 1,
+        "lane_score": 0.9
+      },
+      "pulled_by": [
+        "lane2_companion_chunk",
+        "reviewer_note"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "game-theory-payoffs.counterparty-response-payoff-map"
+        ],
+        "case_evidence_needed": [
+          "The players or counterparties involved."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "Whose response changes the value of this move?"
+        ],
+        "do_not_use_when": [
+          "The actors are not actually playing the same game because reputation, ideology, politics, or internal incentives dominate."
+        ],
+        "misuse_guards": [
+          "Do not assume both sides are optimizing the same payoff model."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "game-theory-payoffs.counterparty-response-payoff-map",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Game_Theory_Payoffs_rag.md",
+            "source_quote": "identifying the players, the actions available to them, the information they possess, and the resultant payoff for each potential action"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to map the relevant players, likely moves, and payoff drivers, while pruning branches that do not materially change the decision.",
+            "evidence_required": [
+              "The actor taking the proposed action."
+            ],
+            "good_output_shape": [
+              "Names the players."
+            ],
+            "requirement_id": "name-players-moves-and-decisive-payoffs"
+          }
+        ],
+        "use_when": [
+          "A rival, partner, regulator, buyer, seller, or negotiating counterparty can change the value of the proposed action."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The actors are not actually playing the same game and the visible payoff model is missing the ideology, politics, or internal incentive that is really driving behavior."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams can model the wrong game when one side is optimizing politics, ideology, or internal incentives that the payoff map does not capture.",
+            "extraction_type": "explicit",
+            "mitigation": "Verify the payoff map captures the real incentives in play; politics, ideology, or internal pressures that do not appear in the model can dominate behavior.",
+            "mode": "Danger when the actors are not actually playing the same game",
+            "source_quote": "Danger when the actors are not actually playing the same game"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Name the players, moves, information asymmetries, and payoff drivers explicitly before optimizing the move.",
+            "extraction_type": "normalized",
+            "source_quote": "name the players, likely moves, information asymmetries"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What evidence would show that we chose the wrong players, incentives, or payoff assumptions for this game?",
+            "extraction_type": "explicit",
+            "source_quote": "What evidence would show that we chose the wrong players, incentives, or payoff assumptions for this game?"
+          }
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A recommendation cannot be judged in isolation because its value changes materially with how a rival, partner, regulator, or counterparty responds."
+        ],
+        "source_file": "Game_Theory_Payoffs_rag.md"
+      },
+      "source_custody": {
+        "bytes": 14696,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Game_Theory_Payoffs_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "2c318b0b5ef5e6afc1acd2c826d56d97ff38897d1c84cc2980bb194041d798ba",
+        "source_file": "Game_Theory_Payoffs_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "assistant_turn",
+          "reason": "The assistant assumes partner and competitor responses will stay stable after the team escalates.",
+          "route_or_artifact_id": "synthetic-pr35-payoff-response",
+          "source": "lane2_companion_chunk"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-002-nash-equilibrium",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Nash Equilibrium",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "nash-equilibrium",
+      "nomination_metadata": {
+        "lane_order": 2,
+        "lane_score": 0.84
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The equilibrium is computationally or behaviorally unreachable because the actors cannot actually discover or sustain it."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A theoretically stable equilibrium may be useless if real actors cannot compute or sustain it.",
+            "extraction_type": "explicit",
+            "mitigation": "Before applying equilibrium analysis, verify that real actors can observe payoffs, compute strategies, and sustain the equilibrium under actual information and resource constraints.",
+            "mode": "If your laptop cannot find it, neither can the market",
+            "source_quote": "If your laptop cannot find it, neither can the market"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Begin strategic interaction analysis with candidate best responses, then pressure-test them.",
+            "extraction_type": "normalized",
+            "source_quote": "begin the analysis of strategic interactions with the Nash equilibrium"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "Can the actual players find and sustain this equilibrium, or only the analyst?",
+            "extraction_type": "normalized",
+            "source_quote": "participants cannot be taken for granted to discover or reach the NE"
+          }
+        ],
+        "reasoning_types": [
+          "causal",
+          "counterfactual"
+        ],
+        "select_when": [
+          "Your best move depends on how other players are likely to respond rather than on your action in isolation."
+        ],
+        "source_file": "Nash_Equilibrium_rag.md"
+      },
+      "source_custody": {
+        "bytes": 15758,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Nash_Equilibrium_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "f76620ee4e213dd542ae968d24834bdf6e33be1c20f93a009f6f69120daf21a1",
+        "source_file": "Nash_Equilibrium_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "lane_gap",
+          "reason": "The plan assumes unilateral clarification will shift behavior without checking whether each party's current move is already a stable best response.",
+          "route_or_artifact_id": "synthetic-pr35-stable-response",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-003-prisoners-dilemma",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Prisoners Dilemma",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "prisoners-dilemma",
+      "nomination_metadata": {
+        "lane_order": 3,
+        "lane_score": 0.81
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The behavior is better explained by simple process repair, shared identity, or non-adversarial coordination than by defection logic."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams can treat a bad payoff structure as if better individual behavior alone will rescue the outcome.",
+            "extraction_type": "normalized",
+            "mitigation": "Before assuming betrayal dynamics, check the payoff structure: verify that the situation is actually a prisoner's dilemma rather than a coordination problem solvable through process design.",
+            "mode": "The PD highlights a crucial insight: sometimes a strategic interaction is governed by \"irredeemably lousy rules\".",
+            "source_quote": "The PD highlights a crucial insight: sometimes a strategic interaction is governed by \"irredeemably lousy rules\"."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Make the payoff structure explicit before blaming individual actors for a bad collective outcome.",
+            "extraction_type": "normalized",
+            "source_quote": "The model helps separate bad actors from bad rules by making the payoff structure explicit."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What frame other than a competitive one could govern this interaction?",
+            "extraction_type": "explicit",
+            "source_quote": "What frame other than a competitive one could govern this interaction?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "systems"
+        ],
+        "select_when": [
+          "Individually sensible moves are producing a collectively worse outcome because each actor has a credible incentive to defect."
+        ],
+        "source_file": "Prisoners_Dilemma_rag.md"
+      },
+      "source_custody": {
+        "bytes": 15717,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Prisoners_Dilemma_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "a1fd11ea8e76b7362295dbef1c67a0e6110c89fd9d3c05a01533fc4b363611a7",
+        "source_file": "Prisoners_Dilemma_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "they say they are aligned but keep delaying",
+          "evidence_source_type": "user_turn",
+          "reason": "The partner conversation is framed as alignment, but both sides may have incentives to defect or withhold.",
+          "route_or_artifact_id": "synthetic-pr35-mutual-defection",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "stereotype-shortcut-communication",
+          "model_id": "cross-cultural-communication-frameworks",
+          "reason": "The source rejects using cultural models as stereotype shortcuts. The model should prompt investigation of the actual audience, incentives, and local norms.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-004-cross-cultural-communication-frameworks",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Cross Cultural Communication Frameworks",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "cross-cultural-communication-frameworks",
+      "nomination_metadata": {
+        "lane_order": 4,
+        "lane_score": 0.78
+      },
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "cross-cultural-communication-frameworks.frame-translation-action-check"
+        ],
+        "case_evidence_needed": [
+          "The message, decision, or action that must be understood."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What does this audience need to understand, trust, and do?"
+        ],
+        "do_not_use_when": [
+          "Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience."
+        ],
+        "misuse_guards": [
+          "Do not use cultural models as stereotype shortcuts."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "cross-cultural-communication-frameworks.frame-translation-action-check",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+            "source_quote": "to bridge the inherent disconnect between the sender's intricate understanding and the receiver's often simplified, emotionally filtered processing of information"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to adapt message framing for the actual audience while preserving the core action and hard trade-offs.",
+            "evidence_required": [
+              "The message or strategy to communicate."
+            ],
+            "good_output_shape": [
+              "Names the sender/audience mismatch."
+            ],
+            "requirement_id": "translate-frame-without-hiding-action"
+          }
+        ],
+        "use_when": [
+          "The same message must survive translation across cultures, functions, or status differences without losing the intended action."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience and local norms."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "False pattern recognition can make a familiar communication frame look right even when the audience's actual context is different.",
+            "extraction_type": "normalized",
+            "mitigation": "Validate the audience's actual context before applying a familiar communication frame; surface similarity can mask deep differences in interpretation.",
+            "mode": "False Pattern Recognition / Substitution Bias",
+            "source_quote": "False Pattern Recognition / Substitution Bias"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use perspective taking, initiative, nonverbal sensitivity, and goals together so communication is designed for the actual audience context.",
+            "extraction_type": "explicit",
+            "source_quote": "The PING Approach"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What is my audience's frame of reference, and how will this message be interpreted through that lens?",
+            "extraction_type": "explicit",
+            "source_quote": "What is my audience's frame of reference, and how will this message be interpreted through that lens?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "The same message must survive translation across cultures, functions, or status differences without losing the intended action."
+        ],
+        "source_file": "Cross_Cultural_Communication_Frameworks_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16327,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Cross_Cultural_Communication_Frameworks_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "aeb62acaea497b357b2bef03f215b9f232611d1f6555f6635e0b63739182fd3f",
+        "source_file": "Cross_Cultural_Communication_Frameworks_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "user_turn",
+          "reason": "The feedback and partner messages must carry across function, status, and regional frames.",
+          "route_or_artifact_id": "synthetic-pr35-frame-translation",
+          "source": "lane1_tendency_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-005-active-listening",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Active Listening",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "active-listening",
+      "nomination_metadata": {
+        "lane_order": 5,
+        "lane_score": 0.74
+      },
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The conversation has already produced enough evidence for a decision or reversible experiment, and more listening would mainly postpone commitment."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A listener can collect words without understanding the reasoning chain beneath them and end up with brittle, surface-level understanding.",
+            "extraction_type": "normalized",
+            "mitigation": "Ask 'how' and 'why' questions that probe the reasoning behind the speaker's statements, not just the conclusions they reached.",
+            "mode": "The Line Cook Masquerading as the Chef",
+            "source_quote": "The Line Cook Masquerading as the Chef"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Ask how someone thinks, not just what they think, so the reasoning mechanics become visible.",
+            "extraction_type": "explicit",
+            "source_quote": "Don't ask people what they think; instead, ask them how they think."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What truly matters to this person that I still have not heard clearly enough to restate back to them?",
+            "extraction_type": "normalized",
+            "source_quote": "I'm gonna find out what truly matters to that person"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "Commitment, alignment, or conflict repair depends on understanding both the factual and emotional content of what another person is saying."
+        ],
+        "source_file": "Active Listening_rag.md"
+      },
+      "source_custody": {
+        "bytes": 19156,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Active Listening_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "35eb6a58b7d32059e33dbd239277cbf4df428a9a7abd2e6c0d81490c21b618f7",
+        "source_file": "Active Listening_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "clarify expectations",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The team plans to give feedback before proving it has heard the partner's actual constraint or disagreement.",
+          "route_or_artifact_id": "synthetic-pr35-listening-gap",
+          "source": "lane1_tendency_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-006-constructive-feedback-models",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Constructive Feedback Models",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "constructive-feedback-models",
+      "nomination_metadata": {
+        "lane_order": 6,
+        "lane_score": 0.7
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Feedback is technically accurate but so poorly timed, context-free, or disrespectful that defensiveness will overwhelm learning."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Defensiveness can overwhelm the learning if the feedback lands as adversarial threat instead of as respectful correction.",
+            "extraction_type": "normalized",
+            "mitigation": "Frame feedback as a shared problem to solve rather than an adversarial judgment; respectful framing reduces defensiveness and protects the learning signal.",
+            "mode": "Defensive/Adversarial Response",
+            "source_quote": "Defensive/Adversarial Response"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use the 4 I's so feedback moves from concrete observation to impact, invitation, and implications instead of stalling at vague criticism.",
+            "extraction_type": "explicit",
+            "source_quote": "The 4 I\u2019s Framework"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What would you have to believe?",
+            "extraction_type": "explicit",
+            "source_quote": "What would you have to believe?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "causal"
+        ],
+        "select_when": [
+          "Performance, learning, or trust depends on giving people information they can act on rather than vague reassurance."
+        ],
+        "source_file": "Constructive_Feedback_Models_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16284,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Constructive_Feedback_Models_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "d0abd43507260865e8a24d4f0651dc63be3891ac5e2cacc6a922e16cd1fab46c",
+        "source_file": "Constructive_Feedback_Models_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "lane_gap",
+          "reason": "The manager feedback plan lacks a specific behavior, standard, and correction path.",
+          "route_or_artifact_id": "synthetic-pr35-feedback-specificity",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-007-feedback-models-sbi",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Feedback Models Sbi",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "feedback-models-sbi",
+      "nomination_metadata": {
+        "lane_order": 7,
+        "lane_score": 0.67
+      },
+      "pulled_by": [
+        "lane2_detected_model"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The structure is being used as a script for delivering judgment while skipping curiosity, listening, or the receiver's real constraints."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Feedback can become a dressed-up judgment if the structure skips curiosity about the receiver's actual constraints.",
+            "extraction_type": "explicit",
+            "mitigation": "Lead with curiosity about the receiver's actual constraints before stating the behavior and its impact; structure that skips empathy becomes dressed-up judgment.",
+            "mode": "Feedback can become a dressed-up judgment if the structure skips curiosity about the receiver's actu...",
+            "source_quote": "Danger when the model is used as a script to deliver judgment while skipping curiosity, listening, or the receiver's actual constraints."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Anchor feedback in specific observable behavior before naming impact or implications.",
+            "extraction_type": "explicit",
+            "source_quote": "Provide concrete, specific observations of the action or approach"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What observable behavior am I actually pointing to, and what conclusion am I only inferring?",
+            "extraction_type": "explicit",
+            "source_quote": "Provide concrete, specific observations of the action or approach"
+          }
+        ],
+        "reasoning_types": [
+          "causal",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A feedback conversation needs to stay tied to specific observable behavior rather than personality labels or vague frustration."
+        ],
+        "source_file": "Feedback_Models_Sbi_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16867,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Feedback_Models_Sbi_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "5344fa8099323520d39877c6eacf3741c8212d3357034db4eb3b6c0929480de2",
+        "source_file": "Feedback_Models_Sbi_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "give feedback",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The assistant recommends feedback without separating situation, behavior, impact, and invitation.",
+          "route_or_artifact_id": "synthetic-pr35-sbi-gap",
+          "source": "lane2_detected_model"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-008-analogies-and-metaphors",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Analogies And Metaphors",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "analogies-and-metaphors",
+      "nomination_metadata": {
+        "lane_order": 8,
+        "lane_score": 0.64
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The comparison is catchy but distorts the structural boundaries of the target domain."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "People can fail to understand a concept not because information is missing but because they still lack a usable mental bucket for it.",
+            "extraction_type": "normalized",
+            "mitigation": "Identify what schema the audience already has and connect the new concept to it explicitly; if no existing schema fits, build one with a simple concrete example first.",
+            "mode": "Most useful when the audience lacks a schema.",
+            "source_quote": "Most useful when the audience lacks a schema."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use a comparison that carries the structural logic of the idea, not just a catchy image.",
+            "extraction_type": "normalized",
+            "source_quote": "Best when mechanism transfers along with familiarity."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What existing schema does the audience already have that could carry this new idea?",
+            "extraction_type": "normalized",
+            "source_quote": "Most useful when the audience lacks a schema."
+          }
+        ],
+        "reasoning_types": [
+          "analogical",
+          "metacognitive"
+        ],
+        "select_when": [
+          "The audience lacks a usable schema for the concept but does have adjacent experience that can carry the explanation."
+        ],
+        "source_file": "Analogies_And_Metaphors_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16109,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Analogies_And_Metaphors_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "74d817d560c746de94b112ee4ad34262e63820342c28ae3a340d6a7158ac42b9",
+        "source_file": "Analogies_And_Metaphors_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "their launch playbook worked",
+          "evidence_source_type": "user_turn",
+          "reason": "The team is tempted to copy the competitor launch as an analogy without testing structural fit.",
+          "route_or_artifact_id": "synthetic-pr35-analogy-fit",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-009-natural-selection-analogy",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Natural Selection Analogy",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "natural-selection-analogy",
+      "nomination_metadata": {
+        "lane_order": 9,
+        "lane_score": 0.6
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The language of emergence is being used to avoid setting goals, decision rights, or fitness criteria in a human system."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams talk about selection and emergence without defining the fitness criteria the human system should actually optimize.",
+            "extraction_type": "normalized",
+            "mitigation": "Define the fitness function explicitly before invoking selection language: state what is being optimized, by what mechanism, and over what time horizon.",
+            "mode": "failure to define what fitness actually means",
+            "source_quote": "failure to define what fitness actually means"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Do it like Darwin by generating more credible variants before narrowing too early.",
+            "extraction_type": "explicit",
+            "source_quote": "Do It Like Darwin"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What evidence would show this situation does not actually fit the selection process we are borrowing from biology?",
+            "extraction_type": "normalized",
+            "source_quote": "Does this situation fit the reference class"
+          }
+        ],
+        "reasoning_types": [
+          "analogical",
+          "systems"
+        ],
+        "select_when": [
+          "A solution space is better explored by generating variants, testing them, and letting evidence eliminate weak options."
+        ],
+        "source_file": "Natural_Selection_Analogy_rag.md"
+      },
+      "source_custody": {
+        "bytes": 13779,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Natural_Selection_Analogy_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "75984f74a2faf44242e43da8c733ed9af53bb54a99149cf1bd20168f522b7ecc",
+        "source_file": "Natural_Selection_Analogy_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "user_turn",
+          "reason": "The competitive story treats survival of a pattern as proof it is optimal rather than testing variation, selection, and retention conditions.",
+          "route_or_artifact_id": "synthetic-pr35-adaptive-pattern",
+          "source": "lane3_frame_route"
+        }
+      ]
+    }
+  ],
+  "coverage_summary": {
+    "absence_only_card_count": 0,
+    "candidate_card_count": 9,
+    "conflicting_or_weak_support_count": 0,
+    "graph_only_card_count": 7,
+    "high_value_graph_only_model_ids": [
+      "active-listening",
+      "analogies-and-metaphors",
+      "constructive-feedback-models",
+      "feedback-models-sbi",
+      "nash-equilibrium",
+      "natural-selection-analogy",
+      "prisoners-dilemma"
+    ],
+    "missing_reviewed_model_ids": [
+      "active-listening",
+      "analogies-and-metaphors",
+      "constructive-feedback-models",
+      "feedback-models-sbi",
+      "nash-equilibrium",
+      "natural-selection-analogy",
+      "prisoners-dilemma"
+    ],
+    "missing_reviewed_record_count": 7,
+    "reviewed_card_count": 2,
+    "source_too_thin_count": 0
+  },
+  "packet_id": "pr35-v6-communication-competition-packet-review",
+  "packet_policy": {
+    "candidate_card_target_max": 9,
+    "candidate_card_target_min": 0,
+    "deterministic_role": "validate_package_cap_reference_and_label",
+    "forbid_case_type_templates": true,
+    "forbid_final_pressure_selection": true,
+    "forbid_public_copy": true,
+    "semantic_selection_role": "llm_or_reviewer",
+    "snippet_target_max_per_card": 1,
+    "snippet_target_min_per_card": 0
+  },
+  "packet_version": "reasoning_substrate_packet.v1",
+  "review_notes": [
+    "Review-only packet built from explicit nominations; no live lanes were run.",
+    "Graph-only cards are eligible recall material but not reviewed affordance depth.",
+    "LLM or reviewer owns semantic selection, merging, ignoring, and final wording."
+  ],
+  "runtime_policy": "runtime_dormant",
+  "source_artifacts": [
+    "data/knowledge_graph.json",
+    "data/compiled/model_affordances/affordances_v6.json",
+    "data/model_sources/manifest.json"
+  ],
+  "status": "draft_review_only",
+  "suppressed_candidates": [
+    {
+      "candidate_id": "candidate-010-game-theory-payoffs",
+      "coverage_status": "reviewed_affordance_available",
+      "do_not_recover_as_pressure_without_review": true,
+      "model_id": "game-theory-payoffs",
+      "pulled_by": [
+        "reviewer_note"
+      ],
+      "suppression_reason": "duplicate_model_id",
+      "why_pulled": [
+        {
+          "evidence_source_type": "reviewer_note",
+          "reason": "Duplicate nomination included to prove suppression is visible instead of silently erased.",
+          "route_or_artifact_id": "synthetic-pr35-duplicate-check",
+          "source": "reviewer_note"
+        }
+      ]
+    }
+  ],
+  "transaction_context": {
+    "assistant_advice_summary": "The assistant recommends clarifying expectations, giving feedback, and matching the competitor quickly, but it does not test hidden incentives, equilibrium stability, mutual defection risk, listening quality, feedback specificity, or analogy fit.",
+    "capture_health": "synthetic_review",
+    "case_id": "pr35-partner-feedback-competition-review",
+    "known_action_or_commitment": "Escalate the partner conversation, issue manager feedback, and copy the competitor launch pattern unless a review changes the plan.",
+    "transaction_sources": [
+      "user_turn",
+      "assistant_turn",
+      "reviewer_note"
+    ],
+    "user_situation_summary": "A product team is deciding whether to confront a strategic partner, copy a competitor move, and deliver performance feedback after AI advice frames the situation as simple misalignment plus urgency."
+  }
+}
