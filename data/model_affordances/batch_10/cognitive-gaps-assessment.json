@@ -1,0 +1,145 @@
+{
+  "model_id": "cognitive-gaps-assessment",
+  "source_file": "Cognitive_Gaps_Assessment_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "cognitive-gaps-assessment.missing-reality-gap-audit",
+      "status": "supported",
+      "name": "Missing reality gap audit",
+      "mechanism": "When confidence is high but the explanation still feels under-specified, require the answer to identify the missing information, capability, perspective, or communication transfer that could change the plan before commitment.",
+      "activation_shape": {
+        "use_when": [
+          "The advice is plausible, but the gap between the current explanation and reality is still not explicit.",
+          "The user or team may be missing information, capability, perspective, or communication transfer needed before acting.",
+          "The decision should expose hidden assumptions and uncovered risks before commitment rather than after damage appears."
+        ],
+        "do_not_use_when": [
+          "The missing facts, assumptions, and capability limits are already named with evidence and decision consequences.",
+          "Gap mapping would become a performance ritual that does not change the plan, evidence bar, or exposure.",
+          "The answer would keep asking for more analysis instead of naming the next evidence or preparation step."
+        ],
+        "case_evidence_needed": [
+          "The current explanation or advice the user is considering.",
+          "The implicit assumptions, missing information, or capability limits in the advice.",
+          "The decision exposure that changes if the gap is real.",
+          "The preparation, evidence, or perspective that would close or downgrade the gap."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "convert-gap-to-decision-condition",
+          "description": "Require the answer to convert a suspected cognitive gap into a named missing condition, the evidence needed to resolve it, and the plan change if the gap remains open.",
+          "evidence_required": [
+            "The claim, plan, or explanation whose map may not match reality.",
+            "The missing information, assumption, capability, or perspective.",
+            "The consequence of acting while the gap remains unresolved.",
+            "The evidence or preparation that would close the gap."
+          ],
+          "good_output_shape": [
+            "Names the specific gap rather than saying the team may be missing something.",
+            "Separates knowledge gaps, capability gaps, perspective gaps, and communication-transfer gaps.",
+            "States what would change in the plan, evidence bar, or exposure if the gap is not closed.",
+            "Avoids gap-mapping theater that produces no decision consequence."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What important part of reality is still not represented in the current explanation?",
+        "Is this a missing information, false certainty, missing perspective, capability, or communication-transfer gap?",
+        "What would change in the plan if this gap stayed unresolved?"
+      ],
+      "misuse_guards": [
+        "Do not use gap language as a sophisticated way to postpone action without changing the decision condition.",
+        "Do not treat expertise, rank, or fluency as proof that the map already matches the territory.",
+        "Do not surface generic unknown-unknown language unless it names evidence, preparation, or exposure."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Gaps_Assessment_rag.md",
+          "source_quote": "Most useful when confidence is high, assumptions are implicit, and the gap between the current explanation and reality still feels under-specified.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Gaps_Assessment_rag.md",
+          "source_quote": "Works when leaders need to know whether the problem is lack of knowledge, false certainty, missing perspective, or weak communication transfer.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Gaps_Assessment_rag.md",
+          "source_quote": "Best when the decision should expose hidden assumptions, uncovered risks, and comprehension failures before commitment rather than after damage appears.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a compact gap-audit card that turns missing knowledge, capability, perspective, or communication-transfer gaps into decision conditions.",
+        "dropped_material": [
+          "Did not extract a broad unknown-unknowns card because the useful operation is to name the gap and its plan consequence.",
+          "Did not extract MECE, Feynman, or communication-transfer material as separate affordances."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card helps a later packet expose missing reality without creating analysis paralysis."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "gap-mapping-without-plan-change",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against labeling gaps in a sophisticated way when no plan, evidence bar, or decision exposure changes.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Gaps_Assessment_rag.md",
+          "source_quote": "Danger when teams label uncertainties, blind spots, or capability gaps in a sophisticated way but do not change the plan, evidence bar, or decision exposure in response.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "expertise-as-sufficient-gap-closure",
+      "status": "not_supported_by_source",
+      "reason": "The source treats expertise and intelligence as insufficient for complex problem solving, so the record must not use expertise as proof that no gap remains.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Gaps_Assessment_rag.md",
+          "source_quote": "Expertise and high intelligence, while necessary, are not sufficient for complex problem solving.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Cognitive_Gaps_Assessment_rag.md",
+      "source_quote": "metacognition applied strategically",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for cognitive-gaps-assessment as a missing reality gap audit before commitment.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card creates useful missing-condition checks without turning into gap theater."
+    ],
+    "review_status": "draft"
+  }
+}

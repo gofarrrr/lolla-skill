@@ -1,16 +1,15 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR44 completed the after-v10 graph-only
-priority audit. PR43 showed v10 risk/reversibility depth improves one
-stable-nomination packet; PR44 decides which remaining graph-only family should
-be considered next instead of continuing extraction by count.
+**Status:** Start-here handover after PR45 completed controlled frame
+correction / metacognitive blind-spot enrichment. PR44 selected the family;
+PR45 extracted source-backed v11 depth for exactly those 12 models.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad
 Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v10_graph_only_priority_audit_complete`
+**Current posture:** `controlled_frame_correction_enrichment_ready`
 
-**Current PR:** PR44 - after-v10 graph-only priority audit
+**Current PR:** PR45 - controlled frame correction enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -54,6 +53,8 @@ Batch 3b, or user-facing Decision Pressure work.
 
 **PR44 decision label:** `v10_graph_only_priority_audit_complete`
 
+**PR45 decision label:** `controlled_frame_correction_enrichment_ready`
+
 ## Start Here
 
 Read these files in order:
@@ -95,6 +96,7 @@ Read these files in order:
 35. `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
 36. `research/reasoning-substrate-packet-pr43-v9-v10-comparison-render-2026-05-07.md`
 37. `research/v10-graph-only-priority-audit-2026-05-07.md`
+38. `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -157,6 +159,9 @@ Keep these layers distinct:
 | Graph-only after v10 | 100 runtime models remain eligible but not reviewed affordance records. |
 | PR43 v10 risk/reversibility packet usefulness review | Same 12-card risk/reversibility nomination set compared against v9 and v10. v9 packet had 12 graph-only cards; v10 packet has 12 reviewed cards, with candidate count fixed. |
 | PR44 v10 graph-only priority audit | Reviews the remaining 100 graph-only models after v10 and recommends frame correction / metacognitive blind-spot discipline as the next controlled enrichment family. No extraction, runtime, prompt, lane, model-call, judge, or user-facing work. |
+| PR45 controlled frame-correction enrichment | 12 graph-only models from frame correction, metacognition, counterfactual, and evidence-boundary gaps gained reviewed Batch 10 records with 12 affordances and 24 absence records; compiled as draft/review-only v11. |
+| v11 affordance corpus | 134 reviewed records, 170 affordances, 253 absence records. Draft/review-only v10 plus PR45 controlled frame-correction batch, not runtime-promoted. |
+| Graph-only after v11 | 88 runtime models remain eligible but not reviewed affordance records. |
 
 The governing sentence:
 
@@ -1113,10 +1118,63 @@ PR44 does not extract records, promote v10 into runtime, run live lanes, wire
 user-facing Decision Pressure output, create deterministic reasoning-mode
 routing, or allow deterministic final pressure selection.
 
-Recommended next slice, if opened, is PR45: one controlled source-backed
-extraction batch for the 12 frame correction / metacognitive blind-spot models
-named by PR44. PR46 must then prove packet usefulness with stable nominations
-before any further extraction begins.
+PR45 later completed the recommended controlled source-backed extraction batch.
+Do not treat PR44 alone as permission for ongoing extraction momentum.
+
+## What PR45 Added
+
+PR45 answers the question: "Can source-backed frame correction /
+metacognitive blind-spot records help future reasoning packets test whether
+plausible, executable, and risk-checked advice is still being evaluated through
+the wrong frame, evidence boundary, reasoning mode, or counterfactual?"
+
+It adds:
+
+- `data/model_affordances/batch_10/`;
+- `data/compiled/model_affordances/affordances_v11.json`;
+- `data/compiled/model_affordances/quality_report_v11.md`;
+- `tests/test_pr45_batch10_records.py`;
+- `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`;
+- `tasks/tasks-controlled-frame-correction-enrichment-batch.md`;
+- living-doc posture updates.
+
+Measured PR45 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v11 reviewed records: `134`;
+- v11 reviewed affordances: `170`;
+- v11 absence records: `253`;
+- graph-only runtime models after v11: `88`;
+- v11 status: `draft_review_only`;
+- schema validation failures: `0`;
+- source quote rejections: `0`.
+
+PR45's decision label is `controlled_frame_correction_enrichment_ready`.
+
+The product lesson:
+
+> Frame-correction depth is useful only when it changes the handoff: name the
+> missing condition, separate claim/evidence/assumption, recover plausible
+> branches, identify the next discriminating question, suggest reasoning mode
+> without routing deterministically, change the decision variable, expose what
+> the favored framework filters out, interrupt familiar solution lock-in,
+> preserve opposing truths, turn bias checks inward, replace fake exactness
+> with thresholds, or audit the missing denominator.
+
+PR45 explicitly blocks deterministic reasoning-mode routing. The
+`reasoning-mode-router` record is reviewed handoff material for a later
+LLM/reviewer, not a new lane, prompt mechanic, runtime router, or case-type
+rule.
+
+PR45 does not promote v11 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, create user-facing
+Decision Pressure output, create deterministic reasoning-mode routing, or
+allow deterministic final pressure selection.
+
+Recommended next slice, if opened, is PR46: a same-nomination v10/v11 packet
+usefulness review for the frame-correction family. PR46 must prove the new
+reviewed cards improve handoff quality before any further extraction begins.
 
 ## PR24 Review Questions Answered
 
@@ -1190,7 +1248,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "v10_graph_only_priority_audit_complete|v10_risk_packet_handoff_useful|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR43|PR44|PR45|PR46" plans research tasks -g '*.md'
+rg -n "controlled_frame_correction_enrichment_ready|v10_graph_only_priority_audit_complete|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR44|PR45|PR46|PR47" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1202,7 +1260,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR44 and do not infer permission for runtime work, broad
+Start from PR45 and do not infer permission for runtime work, broad
 extraction, packet promotion, deterministic reasoning-mode routing, or
 automatic extraction momentum.
 
@@ -1237,9 +1295,10 @@ Read first:
 - research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md
 - research/reasoning-substrate-packet-pr43-v9-v10-comparison-render-2026-05-07.md
 - research/v10-graph-only-priority-audit-2026-05-07.md
+- research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md
 
 Current posture:
-v10_graph_only_priority_audit_complete
+controlled_frame_correction_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1495,14 +1554,26 @@ PR44 result:
   3b, broad extraction, deterministic reasoning-mode routing, or user-facing
   behavior was added
 
+PR45 result:
+- decision label: controlled_frame_correction_enrichment_ready
+- v11 corpus shape: 134 reviewed records, 170 affordances, 253 absence records
+- remaining graph-only runtime models after v11: 88
+- PR45 added 12 Batch 10 records for frame correction / metacognitive
+  blind-spot discipline
+- each target received one compact reviewed affordance and two absence records
+- `reasoning-mode-router` stays reviewed handoff material, not deterministic
+  routing, a new lane, or prompt mechanics
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, broad extraction, deterministic reasoning-mode routing, or user-facing
+  behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
-unless the user explicitly opens a new product-reviewed slice. If PR45 opens,
-it must be one controlled source-backed extraction batch for the 12 named
-frame-correction/metacognitive models, and PR46 must prove packet usefulness
-with stable nominations before any further extraction begins. Broad extraction
-is still not justified by count momentum.
+unless the user explicitly opens a new product-reviewed slice. The next proof
+slice should be PR46: same-nomination v10/v11 packet usefulness review for the
+frame-correction family. Broad extraction is still not justified by count
+momentum.
 ```
 
 ## Core Memory

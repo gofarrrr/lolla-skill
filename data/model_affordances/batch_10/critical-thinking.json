@@ -1,0 +1,145 @@
+{
+  "model_id": "critical-thinking",
+  "source_file": "Critical_Thinking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "critical-thinking.claim-evidence-assumption-check",
+      "status": "supported",
+      "name": "Claim evidence assumption check",
+      "mechanism": "When important judgment depends on what is actually true, require the answer to separate claim, evidence, assumption, emotion, authority, and story before recommending action.",
+      "activation_shape": {
+        "use_when": [
+          "The advice sounds plausible but may be leaning on story, authority, emotion, or first impressions.",
+          "The decision depends on separating what is true, relevant, or causal from what merely sounds coherent.",
+          "A complex problem needs decomposition, challenge, and synthesis before immediate action."
+        ],
+        "do_not_use_when": [
+          "The claim, evidence, assumptions, and causal links are already explicit and decision-relevant.",
+          "Skepticism would become detachment theater that avoids making a recommendation.",
+          "More questioning would delay a necessary action without changing the evidence threshold."
+        ],
+        "case_evidence_needed": [
+          "The central claim or recommendation.",
+          "The evidence currently offered for the claim.",
+          "The assumptions needed for the claim to hold.",
+          "The authority, emotion, or story elements that may be dominating the conclusion."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-claim-evidence-assumption",
+          "description": "Require the answer to expose the core claim, supporting evidence, necessary assumptions, and any authority or emotional influence before treating the conclusion as action-ready.",
+          "evidence_required": [
+            "The recommendation or conclusion under review.",
+            "The explicit evidence and missing evidence.",
+            "The assumptions that must be true for the conclusion to hold.",
+            "Any authority, emotion, or narrative force that could dominate scrutiny."
+          ],
+          "good_output_shape": [
+            "Names the claim being judged.",
+            "Separates evidence from story and assumption.",
+            "Identifies the make-or-break assumption or missing proof.",
+            "Keeps critique tied to action readiness instead of endless skepticism."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the central claim, and what evidence actually supports it?",
+        "Which assumption would break the recommendation if it were false?",
+        "Is authority, emotion, or story doing work that evidence has not earned?"
+      ],
+      "misuse_guards": [
+        "Do not use critical thinking as a license for endless qualification or refusal to decide.",
+        "Do not confuse a coherent story with comprehensive evidence.",
+        "Do not strip emotional or personal data out of a high-stakes human problem when the source says that can matter."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Most useful when important judgments depend on separating evidence from story",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Works when first impressions, authority, or emotion could easily dominate the conclusion",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Best when a problem needs decomposition, challenge, and synthesis rather than immediate action",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a claim/evidence/assumption card that keeps critical thinking operational instead of abstract.",
+        "dropped_material": [
+          "Did not extract broad wisdom/adaptability claims.",
+          "Did not split problem disaggregation, hypothesis-driven approach, and MECE into separate affordances."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card sharpens packet judgment without turning critique into detachment theater."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "detachment-theater-as-critical-thinking",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that skepticism and nuance can become a way to avoid taking a position or being accountable for judgment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Danger When Critical Thinking Becomes Detachment Theater",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "endless-questioning-as-higher-rigor",
+      "status": "not_supported_by_source",
+      "reason": "The source names excessive analysis and endless questioning as a failure mode when it delays decision-making and necessary action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Excessive analysis and endless questioning can delay decision-making",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Critical_Thinking_rag.md",
+      "source_quote": "evaluate evidence comprehensively",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for critical-thinking as a claim/evidence/assumption check before action.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card improves evidence discipline without making every output sound like generic critique."
+    ],
+    "review_status": "draft"
+  }
+}
