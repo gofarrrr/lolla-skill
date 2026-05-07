@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR44 are merged or in review, PR44 completed the after-v10 graph-only priority audit, and the current posture is `v10_graph_only_priority_audit_complete`
+**Status:** living roadmap; PR13-PR45 are merged or in review, PR45 completed controlled frame correction / metacognitive enrichment, and the current posture is `controlled_frame_correction_enrichment_ready`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -35,6 +35,7 @@
 **Current controlled risk/reversibility enrichment report:** `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
 **Current v10 packet usefulness review:** `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
 **Current v10 graph-only priority audit:** `research/v10-graph-only-priority-audit-2026-05-07.md`
+**Current controlled frame-correction enrichment report:** `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -134,6 +135,11 @@ What is already done:
   because future packets are likely to be thin where plausible, executable,
   and risk-checked advice is still being evaluated through the wrong frame,
   reasoning mode, evidence boundary, or counterfactual.
+- PR45 controlled frame-correction enrichment is done for 12 graph-only models
+  selected from the PR44 priority audit. It adds Batch 10 records and compiles
+  draft/review-only v11. The records are source-backed operational cards, not
+  heading parsing, schema filling, runtime promotion, prompt mechanics, or
+  deterministic reasoning-mode routing.
 - Compiled v3 artifact exists at
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records,
@@ -159,6 +165,11 @@ What is already done:
   `data/compiled/model_affordances/affordances_v10.json`.
 - v10 corpus shape: `122` reviewed records, `158` affordances, `229` absence
   records, `0` schema validation failures, `0` source-quote rejections. v10 is
+  still `draft_review_only` and not runtime-promoted.
+- Compiled v11 artifact exists at
+  `data/compiled/model_affordances/affordances_v11.json`.
+- v11 corpus shape: `134` reviewed records, `170` affordances, `253` absence
+  records, `0` schema validation failures, `0` source-quote rejections. v11 is
   still `draft_review_only` and not runtime-promoted.
 - Treatment-audit v2 activation-gated calibration exists as research evidence,
   but it is not promotion-grade proof.
@@ -440,17 +451,22 @@ What is already done:
   that family best tests whether plausible and otherwise operational advice is
   being evaluated through the right frame, reasoning mode, evidence boundary,
   and counterfactual.
+- PR45 controlled frame-correction enrichment is captured in
+  `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`:
+  decision label `controlled_frame_correction_enrichment_ready`. Twelve
+  graph-only models gained reviewed Batch 10 records with 12 affordances and
+  24 absence records, compiled as draft/review-only v11. It explicitly blocks
+  deterministic reasoning-mode routing.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `v10_graph_only_priority_audit_complete`: PR44 completed the after-v10
-  graph-only priority audit. If opened, PR45 should be one controlled
-  frame-correction/metacognitive enrichment batch for the 12 named targets,
-  and PR46 must prove packet usefulness before any further extraction.
+  `controlled_frame_correction_enrichment_ready`: PR45 completed the controlled
+  frame-correction enrichment batch. PR46 must prove same-nomination v10/v11
+  packet usefulness before any further extraction.
 
 Current posture after PR 23, PR24 review, PR25, PR26, PR27, PR28, PR29, PR30,
 PR31, PR32, PR33, PR34, PR35, PR36, PR37, PR38, PR39, PR40, PR41, PR42, and
-PR43, and PR44:
+PR43, PR44, and PR45:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -1037,15 +1053,16 @@ original proposal language.
 | Controlled risk/reversibility enrichment / PR42 | done as controlled reviewed extraction slice | Adds twelve Batch 9 records for risk controls, reversibility, failure containment, nonlinear dynamics, switching costs, and loss framing, compiles draft/review-only v10, and preserves absences. No runtime promotion. |
 | V10 risk/reversibility packet usefulness review / PR43 | done as review-only fixture/render comparison | Uses the same risk/reversibility nominations against v9 and v10. Finds v10 reviewed cards improve handoff material without increasing candidate count or selecting final pressure. |
 | V10 graph-only priority audit / PR44 | done as docs/research audit | Reviews the remaining 100 graph-only models after v10 and recommends frame correction / metacognitive blind-spot discipline as the next controlled enrichment family. No extraction or runtime promotion. |
+| Controlled frame-correction enrichment / PR45 | done as controlled reviewed extraction slice | Adds twelve Batch 10 records for frame correction, metacognition, counterfactuals, evidence boundaries, and false precision, compiles draft/review-only v11, and preserves absences. No runtime promotion or deterministic reasoning-mode routing. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR44 completed the after-v10 graph-only priority audit. v10 is still
-> draft/review-only. If opened, PR45 should be one controlled frame-correction
-> / metacognitive enrichment batch for the 12 named targets, followed by PR46
-> packet usefulness review before any further extraction.
+> PR45 completed controlled frame-correction / metacognitive enrichment. v11
+> is still draft/review-only. The next proof, if opened, should be PR46:
+> same-nomination v10/v11 packet usefulness review before any further
+> extraction.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1658,7 +1675,7 @@ Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
 The current reviewed posture is
-`v10_graph_only_priority_audit_complete` after PR44. Do not
+`controlled_frame_correction_enrichment_ready` after PR45. Do not
 treat any historical item below as active next work.
 
 Historical PR 12 scope was:

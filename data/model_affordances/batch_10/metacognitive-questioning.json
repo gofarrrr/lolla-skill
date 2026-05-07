@@ -1,0 +1,145 @@
+{
+  "model_id": "metacognitive-questioning",
+  "source_file": "Metacognitive_Questioning_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "metacognitive-questioning.process-inspection-next-question-gate",
+      "status": "supported",
+      "name": "Process inspection next-question gate",
+      "mechanism": "When the work is moving on autopilot, require the answer to inspect how the conclusion was reached, name the next discriminating question, and connect that question to a concrete step rather than endless reflection.",
+      "activation_shape": {
+        "use_when": [
+          "The path could change if the team asked a better question about assumptions, strategy choice, or evidence quality.",
+          "The team can produce answers quickly but cannot explain how it knows or where the reasoning chain may be weak.",
+          "Self-monitoring can prevent drift before the default pattern carries the work forward."
+        ],
+        "do_not_use_when": [
+          "The next discriminating question is already explicit and tied to action.",
+          "Self-questioning would postpone commitment, experimentation, or ownership.",
+          "The problem is execution of a known step, not inspection of how the team is reasoning."
+        ],
+        "case_evidence_needed": [
+          "The current answer or plan.",
+          "The method, assumption, or evidence chain that produced it.",
+          "The next question that would change the path.",
+          "The concrete action, test, or owner attached to that question."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-next-discriminating-question",
+          "description": "Require the answer to name the next question that would change the path, explain why that question matters, and tie it to a bounded action, evidence check, or owner.",
+          "evidence_required": [
+            "The current conclusion or plan.",
+            "The reasoning method used to reach it.",
+            "The weak point or assumption in that method.",
+            "The next action or evidence check that follows from the question."
+          ],
+          "good_output_shape": [
+            "Names how the current conclusion was reached.",
+            "Identifies one next discriminating question.",
+            "Connects the question to evidence, action, or ownership.",
+            "Stops self-questioning from becoming infinite deferral."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "How did this answer decide what mattered?",
+        "What next question would actually change the path?",
+        "What action, test, or owner follows from asking that question?"
+      ],
+      "misuse_guards": [
+        "Do not add recursive self-questioning that delays commitment without sharpening the next move.",
+        "Do not inspect only what the strategy is while ignoring how it will be executed.",
+        "Do not let metacognitive language clutter the packet when the user already has an action-bound question."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Metacognitive_Questioning_rag.md",
+          "source_quote": "Most useful when better questions will change the path",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Metacognitive_Questioning_rag.md",
+          "source_quote": "Works when the team must explain how it knows",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Metacognitive_Questioning_rag.md",
+          "source_quote": "Best when self-monitoring can prevent drift",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a bounded next-question gate that makes reasoning inspectable without infinite deferral.",
+        "dropped_material": [
+          "Did not extract prompt-engineering material because PR45 is not prompt work.",
+          "Did not extract broad self-awareness or learning-development material as separate cards."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card improves packet handoff without adding metacognitive clutter."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "self-questioning-as-infinite-deferral",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that reflective questions become misuse when they postpone commitment, experimentation, or ownership instead of sharpening the next move.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Metacognitive_Questioning_rag.md",
+          "source_quote": "Danger When Self-Questioning Becomes Infinite Deferral",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "what-strategy-without-how-execution",
+      "status": "not_supported_by_source",
+      "reason": "The source says strategy can fail when questioning stays on what is right while ignoring the executable how.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Metacognitive_Questioning_rag.md",
+          "source_quote": "Ignoring the \"How\" Gap",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Metacognitive_Questioning_rag.md",
+      "source_quote": "thinking about thinking",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for metacognitive-questioning as a bounded process-inspection next-question gate.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card produces useful next-question discipline rather than introspection theater."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "false-precision-avoidance",
+  "source_file": "False_Precision_Avoidance_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "false-precision-avoidance.decision-relevant-precision-boundary",
+      "status": "supported",
+      "name": "Decision relevant precision boundary",
+      "mechanism": "When extra detail, decimal points, or scenario branches are creating confidence without changing action, require the answer to replace false precision with bounded ranges, operating thresholds, or decision-relevant approximations.",
+      "activation_shape": {
+        "use_when": [
+          "A decision needs directional clarity, bounded ranges, or operating thresholds more than exact certainty.",
+          "Extra decimal places, caveats, or scenario branches are consuming attention without changing the decision.",
+          "The audience must act, align, or prioritize quickly and would be harmed more by cluttered precision than by a calibrated approximation."
+        ],
+        "do_not_use_when": [
+          "The domain genuinely requires precise calculation, engineering tolerance, surgery-level accuracy, or a quantitative update.",
+          "Simplicity would hide uncertainty, skip the underlying analysis, or present a rounded answer as if variance disappeared.",
+          "The answer would become a slogan rather than a grounded decision threshold."
+        ],
+        "case_evidence_needed": [
+          "The estimate, claim, or recommendation that appears precise.",
+          "Whether precision changes the decision or merely increases confidence.",
+          "The range, threshold, or approximation that is decision-relevant.",
+          "The underlying analysis needed before simplifying."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "replace-fake-exactness-with-threshold",
+          "description": "Require the answer to identify where precision is not decision-relevant, preserve necessary rigor, and express the result as a range, threshold, or approximation that changes action.",
+          "evidence_required": [
+            "The precise claim or estimate.",
+            "The decision that precision is supposed to affect.",
+            "The uncertainty or variance hidden by exactness.",
+            "The threshold, range, or approximation that would guide action."
+          ],
+          "good_output_shape": [
+            "Names the false-precision risk.",
+            "Preserves necessary rigor before simplifying.",
+            "Replaces fake exactness with decision-relevant thresholds or ranges.",
+            "Avoids presenting rounded clarity as if uncertainty vanished."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Does this precision change the decision, or only the feeling of confidence?",
+        "What range or threshold would be enough to act?",
+        "What uncertainty would be hidden if we simplified this too far?"
+      ],
+      "misuse_guards": [
+        "Do not use simplicity to skip underlying analysis.",
+        "Do not remove precision where the decision truly depends on it.",
+        "Do not treat polished specificity as evidence of truth."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "False_Precision_Avoidance_rag.md",
+          "source_quote": "a decision needs directional clarity, bounded ranges, or operating thresholds more than an illusion of exact certainty.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "False_Precision_Avoidance_rag.md",
+          "source_quote": "extra decimal places, caveats, or scenario branches are consuming attention without changing the decision you would actually make.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "False_Precision_Avoidance_rag.md",
+          "source_quote": "the audience must act, align, or prioritize quickly and will be harmed more by cluttered precision than by a well-calibrated approximation.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a decision-relevant precision boundary that keeps approximation tied to action.",
+        "dropped_material": [
+          "Did not extract prompt-design or presentation-design material as separate affordances.",
+          "Kept cognitive load and communication material as supporting context."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card helps packets avoid polished fake certainty without losing necessary rigor."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "simplicity-that-hides-uncertainty",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that simplicity can be misused to hide uncertainty, skip analysis, or present rounded answers as if variance no longer matters.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "False_Precision_Avoidance_rag.md",
+          "source_quote": "teams use simplicity to hide uncertainty, skip the underlying analysis, or present a rounded answer as if the underlying variance no longer matters.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "simplicity-as-excuse-for-weak-analysis",
+      "status": "not_supported_by_source",
+      "reason": "The source says avoiding false precision does not excuse weak underlying analysis; rigor and detail may still be required before simplification.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "False_Precision_Avoidance_rag.md",
+          "source_quote": "Rigor and Detail are Still Required",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "False_Precision_Avoidance_rag.md",
+      "source_quote": "excessive detail and unwarranted accuracy can hinder understanding and decision-making",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for false-precision-avoidance as a decision-relevant precision boundary.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card improves precision discipline without promoting vague approximation."
+    ],
+    "review_status": "draft"
+  }
+}

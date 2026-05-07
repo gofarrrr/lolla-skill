@@ -1,13 +1,14 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR44 after-v10 graph-only priority audit.
+**Status:** Product doctrine after PR45 controlled frame-correction /
+metacognitive enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v10_graph_only_priority_audit_complete`
+**Current posture:** `controlled_frame_correction_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -52,6 +53,8 @@ memo, or user-facing launch plan.
 **Current v10 packet usefulness review:** `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
 
 **Current v10 graph-only priority audit:** `research/v10-graph-only-priority-audit-2026-05-07.md`
+
+**Current controlled frame-correction enrichment report:** `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -636,6 +639,29 @@ controlled family because future packets are likely to be thin where plausible,
 executable, and risk-checked advice may still be evaluated through the wrong
 frame, reasoning mode, evidence boundary, or counterfactual.
 
+PR45 then completed one controlled frame-correction / metacognitive enrichment
+batch:
+
+> `controlled_frame_correction_enrichment_ready`
+
+Treat PR45 as reviewed depth for a named capability family, not runtime
+permission, deterministic reasoning-mode routing, or proof that another
+extraction batch should begin. Twelve formerly graph-only frame-correction and
+metacognitive blind-spot models now have reviewed Batch 10 records, adding
+`12` affordances and `24` absence records. v11 has `134` reviewed records,
+`170` affordances, and `253` absence records, and remains
+`draft_review_only`.
+
+The useful lesson is not "think harder." The useful lesson is that these cards
+can help a future packet ask whether otherwise plausible, executable, and
+risk-checked advice is missing a reality-gap audit, evidence-assumption check,
+counterfactual branch, process-inspection gate, context-driven reasoning-mode
+fit, decision-variable reframe, favored-framework blind spot, familiar-solution
+lock-in interrupt, bounded antithesis, self-bias accountability check,
+precision boundary, or missing-evidence denominator. PR45 explicitly blocks
+deterministic reasoning-mode routing: Python may package the source-backed card;
+the LLM/reviewer still decides whether the card matters.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -770,16 +796,23 @@ PR44 added the after-v10 graph-only priority answer:
 > blind-spot discipline, not because it completes the corpus, but because it
 > tests the next weak edge of "before you act": whether plausible,
 > executable, risk-checked advice is still being evaluated through the wrong
-> frame, reasoning mode, evidence boundary, or counterfactual. PR45 may extract
-> only the 12 named targets, and PR46 must prove packet usefulness before any
-> further extraction.
+> frame, reasoning mode, evidence boundary, or counterfactual.
+
+PR45 added the controlled frame-correction / metacognitive enrichment answer:
+
+> Yes, the named frame-correction and blind-spot gaps can produce compact
+> reviewed depth under exact source custody: v11 adds 12 records, 12
+> affordances, and 24 absence records while remaining dormant. The records are
+> operational checks and absence boundaries, not a deterministic
+> reasoning-mode router. PR46 must prove whether v11 improves a
+> same-nomination packet handoff before any further extraction.
 
 The next useful product questions are:
 
-1. Which PR28, PR32, PR34, PR36, PR39, and PR42 cards remain useful when tested in additional
-   candidate mixes, and which merely add internal bulk?
-2. Would frame correction / metacognitive blind-spot cards make a future packet
-   materially better, or merely add internal reasoning vocabulary?
+1. Which PR28, PR32, PR34, PR36, PR39, PR42, and PR45 cards remain useful when
+   tested in additional candidate mixes, and which merely add internal bulk?
+2. Do the PR45 frame-correction / metacognitive cards improve a future packet
+   materially, or merely add internal reasoning vocabulary?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?

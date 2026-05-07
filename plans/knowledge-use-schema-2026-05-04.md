@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR44 are merged or in review, PR44 completed the after-v10 graph-only priority audit, and the current posture is `v10_graph_only_priority_audit_complete`
+**Status:** living schema doctrine; PR13-PR45 are merged or in review, PR45 completed controlled frame-correction / metacognitive enrichment, and the current posture is `controlled_frame_correction_enrichment_ready`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -33,6 +33,7 @@
 **Current controlled risk/reversibility enrichment report:** `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
 **Current v10 packet usefulness review:** `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
 **Current v10 graph-only priority audit:** `research/v10-graph-only-priority-audit-2026-05-07.md`
+**Current controlled frame-correction enrichment report:** `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -75,6 +76,9 @@ real. Future sessions should treat the following as current baseline:
 - Batch 9 records: `data/model_affordances/batch_9/` for 12 controlled risk,
   reversibility, failure-containment, nonlinear dynamics, switching-cost, and
   loss-framing extractions opened after PR41 graph-only priority audit.
+- Batch 10 records: `data/model_affordances/batch_10/` for 12 controlled
+  frame correction, metacognition, counterfactual, evidence-boundary, and
+  false-precision extractions opened after PR44 graph-only priority audit.
 - Compiled v3 artifact:
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records.
@@ -103,6 +107,10 @@ real. Future sessions should treat the following as current baseline:
   `data/compiled/model_affordances/affordances_v10.json`.
 - v10 corpus shape: `122` reviewed records, `158` affordances, `229` absence
   records. v10 remains `draft_review_only` and is not runtime-promoted.
+- Compiled v11 artifact:
+  `data/compiled/model_affordances/affordances_v11.json`.
+- v11 corpus shape: `134` reviewed records, `170` affordances, `253` absence
+  records. v11 remains `draft_review_only` and is not runtime-promoted.
 - Current experiment: PR 11 Gate 4 edge-probe harness, branch
   `feature/knowledge-substrate-pr11-gate4-edge-probes`.
 - Gate 4 dry-run: `10` usable cases, `39` Lane 4 routes, `165/205` v3-covered
@@ -339,12 +347,20 @@ real. Future sessions should treat the following as current baseline:
   thin where otherwise operational advice is being evaluated through the wrong
   frame, reasoning mode, evidence boundary, or counterfactual. Decision label:
   `v10_graph_only_priority_audit_complete`.
+- PR45 completed one controlled frame-correction / metacognitive enrichment
+  batch after PR44. It adds `12` Batch 10 records for named frame correction,
+  metacognition, counterfactual reasoning, evidence-boundary, and
+  false-precision gaps, compiles draft/review-only v11, and preserves `24`
+  absence records. Decision label:
+  `controlled_frame_correction_enrichment_ready`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `v10_graph_only_priority_audit_complete`; do not build runtime packet
+  `controlled_frame_correction_enrichment_ready`; do not build runtime packet
   production, prompt changes, broad extraction, lane rewrites, user-facing
-  surfaces, or automatic extraction by default.
+  surfaces, deterministic reasoning-mode routing, or automatic extraction by
+  default. PR46 must prove same-nomination v10/v11 packet usefulness before any
+  further extraction.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1566,7 +1582,7 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation, more paid Gate 4 calibration,
-or Decision Pressure trace machinery. PR13-PR44 are complete or in review.
+or Decision Pressure trace machinery. PR13-PR45 are complete or in review.
 PR26 completed deterministic source custody backfill: all 222 runtime source
 files are now under repo-local custody, while v4 reviewed affordance depth
 remains 55 model records. PR27 then completed one review-only mixed packet
@@ -1610,6 +1626,22 @@ the source does not support full DevOps/CI doctrine.
 PR40 then compared one explicit 12-card execution/follow-through packet against
 v8 and v9 and found the v9 reviewed/weak-support cards improve handoff material
 without increasing candidate count or selecting final pressure.
+PR41 then audited the remaining 112 graph-only models after v9 and selected
+risk controls / reversibility / failure containment as the next controlled
+enrichment family.
+PR42 then executed that controlled risk/reversibility batch for 12 named
+graph-only models, compiled v10 as draft/review-only material, and preserved
+absence records as first-class corpus evidence.
+PR43 then compared one explicit 12-card risk/reversibility packet against v9
+and v10 and found the v10 reviewed cards improve handoff material without
+increasing candidate count or selecting final pressure.
+PR44 then audited the remaining 100 graph-only models after v10 and selected
+frame correction / metacognitive blind-spot discipline as the next controlled
+enrichment family.
+PR45 then executed that controlled frame-correction batch for 12 named
+graph-only models, compiled v11 as draft/review-only material, and preserved
+absence records as first-class corpus evidence. It explicitly does not create
+deterministic reasoning-mode routing.
 
 Current task:
 
@@ -1655,62 +1687,74 @@ Current task:
     as the current controlled v9 enrichment report.
 21. Use `research/reasoning-substrate-v9-packet-usefulness-review-2026-05-07.md`
     as the current v9 packet usefulness review.
-22. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
+22. Use `research/v9-graph-only-priority-audit-2026-05-07.md` as the current
+    after-v9 graph-only priority audit.
+23. Use `research/pr42-controlled-risk-reversibility-enrichment-report-2026-05-07.md`
+    as the current controlled v10 enrichment report.
+24. Use `research/reasoning-substrate-v10-packet-usefulness-review-2026-05-07.md`
+    as the current v10 packet usefulness review.
+25. Use `research/v10-graph-only-priority-audit-2026-05-07.md` as the current
+    after-v10 graph-only priority audit.
+26. Use `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
+    as the current controlled v11 enrichment report.
+27. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
    product north star: broad intake, disciplined output.
-23. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
+28. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
    architecture line: pull shelves, enrich cards, let the LLM reason.
-24. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
+29. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-25. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
-26. Treat PR23's generalization readout as directional product evidence, not
+30. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
+31. Treat PR23's generalization readout as directional product evidence, not
    deterministic case logic.
-27. Treat PR25 as dormant enrichment placement, not runtime packet production.
-28. Treat PR26 as source custody, not v4 extraction.
-29. Treat PR27 as fixture usefulness evidence, not runtime packet production.
-30. Treat PR28 as controlled extraction quality evidence, not v5 runtime
+32. Treat PR25 as dormant enrichment placement, not runtime packet production.
+33. Treat PR26 as source custody, not v4 extraction.
+34. Treat PR27 as fixture usefulness evidence, not runtime packet production.
+35. Treat PR28 as controlled extraction quality evidence, not v5 runtime
     promotion or broad extraction permission.
-31. Treat PR29 as handoff-depth evidence, not final-answer evidence or
+36. Treat PR29 as handoff-depth evidence, not final-answer evidence or
     permission for deterministic pressure selection.
-32. Treat PR30 as receiver-review ergonomics, not a product renderer, UI, memo,
+37. Treat PR30 as receiver-review ergonomics, not a product renderer, UI, memo,
     package function, or semantic selector.
-33. Treat PR31 as a capability audit, not extraction or runtime promotion.
-34. Treat PR32 as controlled capability-gap enrichment, not v6 runtime
+38. Treat PR31 as a capability audit, not extraction or runtime promotion.
+39. Treat PR32 as controlled capability-gap enrichment, not v6 runtime
     promotion, corpus completion, or proof that another batch should begin.
-35. Treat PR33 as packet handoff usefulness evidence, not final-answer evidence,
+40. Treat PR33 as packet handoff usefulness evidence, not final-answer evidence,
     live packet production, or runtime permission.
-36. Treat PR34 as controlled communication/competition enrichment, not v7
+41. Treat PR34 as controlled communication/competition enrichment, not v7
     runtime promotion, corpus completion, or proof that another batch should
     begin.
-37. Treat PR35 as packet handoff usefulness evidence, not final-answer evidence,
+42. Treat PR35 as packet handoff usefulness evidence, not final-answer evidence,
     live packet production, or runtime permission.
-38. Treat PR36 as controlled trust/negotiation enrichment, not v8 runtime
+43. Treat PR36 as controlled trust/negotiation enrichment, not v8 runtime
     promotion, corpus completion, or proof that another batch should begin.
-39. Treat PR37 as packet handoff usefulness evidence, not final-answer evidence,
+44. Treat PR37 as packet handoff usefulness evidence, not final-answer evidence,
     live packet production, or runtime permission.
-40. Treat PR38 as a graph-only priority audit, not extraction.
-41. Treat PR39 as controlled execution/follow-through enrichment, not v9
+45. Treat PR38 as a graph-only priority audit, not extraction.
+46. Treat PR39 as controlled execution/follow-through enrichment, not v9
     runtime promotion, corpus completion, or proof that another batch should
     begin.
-42. Treat PR40 as packet handoff usefulness evidence, not final-answer
+47. Treat PR40 as packet handoff usefulness evidence, not final-answer
     evidence, live packet production, or runtime permission.
-43. Treat PR41 as a graph-only priority audit, not extraction.
-44. Treat PR42 as controlled risk/reversibility enrichment, not v10 runtime
+48. Treat PR41 as a graph-only priority audit, not extraction.
+49. Treat PR42 as controlled risk/reversibility enrichment, not v10 runtime
     promotion, corpus completion, or proof that another batch should begin.
-45. Treat PR43 as packet handoff usefulness evidence, not final-answer
+50. Treat PR43 as packet handoff usefulness evidence, not final-answer
     evidence, live packet production, or runtime permission.
-46. Treat PR44 as a graph-only priority audit, not extraction.
-47. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+51. Treat PR44 as a graph-only priority audit, not extraction.
+52. Treat PR45 as controlled frame-correction / metacognitive enrichment, not
+    v11 runtime promotion, deterministic reasoning-mode routing, corpus
+    completion, or proof that another batch should begin.
+53. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-48. Preserve coverage honesty and no-casuistry rails.
-49. Do not run more paid model calls for this slice.
-50. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+54. Preserve coverage honesty and no-casuistry rails.
+55. Do not run more paid model calls for this slice.
+56. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Do not extract more affordance records or wire live runtime behavior by
-momentum. PR44 selected frame correction / metacognitive blind-spot discipline
-as the next controlled family after auditing the remaining graph-only set. If
-PR45 opens, it must be a capped source-backed batch for the named targets,
-followed by PR46 packet usefulness review before any further extraction.
+momentum. PR45 completed the capped source-backed frame correction /
+metacognitive batch selected by PR44. PR46 must prove same-nomination v10/v11
+packet usefulness before any further extraction.
 
 ---
 
