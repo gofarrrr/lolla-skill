@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
-**Date:** 2026-05-06
-**Status:** Product doctrine after PR32 controlled capability-gap enrichment.
+**Date:** 2026-05-07
+**Status:** Product doctrine after PR33 v6 packet usefulness review.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_capability_gap_enrichment_ready`
+**Current posture:** `v6_packet_handoff_useful`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -28,6 +28,8 @@ memo, or user-facing launch plan.
 **Current v5 capability audit:** `research/v5-reviewed-model-capability-audit-2026-05-07.md`
 
 **Current controlled capability-gap enrichment report:** `research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md`
+
+**Current v6 packet usefulness review:** `research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -439,6 +441,17 @@ communication gaps while preserving source absences, including a deliberately
 thin/narrow `batna` record because the source does not support full BATNA
 doctrine.
 
+PR33 then completed one v6 packet usefulness review:
+
+> `v6_packet_handoff_useful`
+
+Treat PR33 as handoff-quality evidence, not runtime permission. The same
+explicit 10-card nomination set moved from `1` reviewed / `9` graph-only cards
+under v5 to `10` reviewed / `0` graph-only cards under v6, without increasing
+candidate count or selecting final pressure. That means PR32's reviewed depth
+improved packet material for a later LLM/reviewer, but it still does not make
+Python wise.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -479,6 +492,13 @@ PR32 added the first gap-enrichment answer:
 > custody: v6 adds 16 records, 16 affordances, and 32 absence records while
 > remaining dormant. The next proof is whether v6 improves packet handoff
 > usefulness, not whether another extraction batch can raise the count.
+
+PR33 added the first v6 packet-usefulness answer:
+
+> Yes, when the same shelves are nominated, v6 reviewed cards improve the
+> handoff for fallback, counterparty, relative-position, delay, control,
+> customer-job, lock-in, path-dependence, and cross-cultural reasoning without
+> changing candidate count or creating user-facing output.
 
 The next useful product questions are:
 

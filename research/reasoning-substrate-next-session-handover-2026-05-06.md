@@ -1,14 +1,14 @@
 # Reasoning Substrate Next Session Handover
 
-**Date:** 2026-05-06
-**Status:** Start-here handover after PR32 completed a controlled
-capability-gap enrichment batch and compiled draft/review-only v6. This is
-still not runtime behavior, prompt promotion, lane rewrite, broad Batch 3b, or
-user-facing Decision Pressure work.
+**Date:** 2026-05-07
+**Status:** Start-here handover after PR33 completed a v6 packet usefulness
+review. PR32 compiled draft/review-only v6; PR33 tested that v6 depth in one
+explicit packet handoff. This is still not runtime behavior, prompt promotion,
+lane rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_capability_gap_enrichment_ready`
+**Current posture:** `v6_packet_handoff_useful`
 
-**Current PR:** PR32 - controlled capability-gap enrichment batch
+**Current PR:** PR33 - v6 packet usefulness review
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -27,6 +27,8 @@ user-facing Decision Pressure work.
 **PR31 decision label:** `v5_capability_audit_complete`
 
 **PR32 decision label:** `controlled_capability_gap_enrichment_ready`
+
+**PR33 decision label:** `v6_packet_handoff_useful`
 
 ## Start Here
 
@@ -52,6 +54,8 @@ Read these files in order:
 18. `research/reasoning-substrate-packet-pr29-review-render-2026-05-07.md`
 19. `research/v5-reviewed-model-capability-audit-2026-05-07.md`
 20. `research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md`
+21. `research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md`
+22. `research/reasoning-substrate-packet-pr33-v5-v6-comparison-render-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -95,6 +99,7 @@ Keep these layers distinct:
 | PR30 packet review rendering | Deterministic reviewer-only Markdown renders for PR27, PR29, and their comparison. Makes packet review easier; does not select output or create a product surface. |
 | PR31 v5 capability audit | Audits what the 65 reviewed records can already support and names the next controlled enrichment gaps. |
 | PR32 controlled capability-gap enrichment | 16 graph-only models from the PR31 gap list gained reviewed records with 16 affordances and 32 absence records; compiled as draft/review-only v6. |
+| PR33 v6 packet usefulness review | Same 10-card nomination set compared against v5 and v6. Reviewed cards increased from 1 to 10, graph-only cards fell from 9 to 0, and candidate count stayed fixed. |
 
 The governing sentence:
 
@@ -462,11 +467,41 @@ PR32 does not promote v6 into runtime, run live lanes, wire `/lolla`, change
 prompts, run model calls or judges, create Batch 3b, or create user-facing
 Decision Pressure output.
 
-The next proof should be packet usefulness against v6: nominate PR32-upgraded
-models in one or two review-only packet fixtures, render them with the PR30
-reviewer-only renderer, and decide whether the new reviewed cards improve the
-handoff without adding clutter. Do not start another extraction batch by count
-momentum.
+## What PR33 Added
+
+PR33 answers the question: "Did PR32's v6 depth actually improve a packet
+handoff, or merely increase corpus size?"
+
+It adds:
+
+- `tests/fixtures/reasoning_substrate_packet/pr33_v5_capability_gap_packet_review.json`;
+- `tests/fixtures/reasoning_substrate_packet/pr33_v6_capability_gap_packet_review.json`;
+- `tests/test_reasoning_substrate_packet_v6_fixture.py`;
+- `research/reasoning-substrate-packet-pr33-v5-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr33-v6-review-render-2026-05-07.md`;
+- `research/reasoning-substrate-packet-pr33-v5-v6-comparison-render-2026-05-07.md`;
+- `research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md`.
+
+Measured PR33 packet comparison:
+
+- candidate cards stay fixed at `10`;
+- suppressed duplicate count stays fixed at `1`;
+- reviewed cards move from `1` under v5 to `10` under v6;
+- graph-only cards move from `9` under v5 to `0` under v6;
+- missing reviewed records move from `9` to `0`;
+- no final pressure or user-facing output is generated.
+
+PR33's decision label is `v6_packet_handoff_useful`.
+
+The product lesson:
+
+> v6 reviewed cards improve concrete packet handoff material when the same
+> shelves are nominated. The improvement is operational depth under stable
+> packet shape, not deterministic answer selection.
+
+PR33 does not promote v6 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, or create user-facing
+Decision Pressure output.
 
 ## PR24 Review Questions Answered
 
@@ -568,9 +603,11 @@ Read first:
 - research/reasoning-substrate-packet-comparison-render-2026-05-07.md
 - research/v5-reviewed-model-capability-audit-2026-05-07.md
 - research/pr32-controlled-capability-gap-enrichment-report-2026-05-07.md
+- research/reasoning-substrate-v6-packet-usefulness-review-2026-05-07.md
+- research/reasoning-substrate-packet-pr33-v5-v6-comparison-render-2026-05-07.md
 
 Current posture:
-controlled_capability_gap_enrichment_ready
+v6_packet_handoff_useful
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -658,13 +695,23 @@ PR32 result:
 - no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
   3b, or user-facing behavior was added
 
+PR33 result:
+- decision label: v6_packet_handoff_useful
+- the same explicit 10-card packet was generated against v5 and v6
+- v5 packet: 1 reviewed card, 9 graph-only cards, 1 suppressed duplicate
+- v6 packet: 10 reviewed cards, 0 graph-only cards, 1 suppressed duplicate
+- v6 improves fallback, counterparty, relative-position, delay, control,
+  customer-job, lock-in, path-dependence, and cross-cultural handoff material
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next production slice is a v6 packet usefulness review using review-only
-fixtures/renders that nominate PR32-upgraded models. Broad extraction is still
-not justified by count momentum.
+next production slice may be another controlled enrichment batch selected by
+capability gaps and likely packet usefulness. Broad extraction is still not
+justified by count momentum.
 ```
 
 ## Core Memory
