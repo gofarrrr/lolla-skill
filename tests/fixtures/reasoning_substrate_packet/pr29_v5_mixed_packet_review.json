@@ -390,13 +390,19 @@
       ]
     },
     {
-      "absence_records": [],
-      "card_id": "card-004-step-back",
-      "coverage_status": "graph_only_runtime_card",
-      "display_name": "Step Back",
-      "do_not_overclaim": [
-        "No reviewed affordance record is available in the current corpus."
+      "absence_records": [
+        {
+          "attempted_field": "indefinite-reflection-affordance",
+          "model_id": "step-back",
+          "reason": "The source supports a pause that improves the next move, not open-ended reflection. It explicitly warns that the pause can become a hiding place for avoiding commitment.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
       ],
+      "card_id": "card-004-step-back",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Step Back",
+      "do_not_overclaim": [],
       "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
       "model_id": "step-back",
       "nomination_metadata": {
@@ -406,7 +412,50 @@
       "pulled_by": [
         "lane3_frame_route"
       ],
-      "reviewed_affordance_fields": {},
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "step-back.reorientation-before-execution-gate"
+        ],
+        "case_evidence_needed": [
+          "The immediate action, analysis, or detail work the team is immersed in."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What governing structure or core point is being obscured by the current details?"
+        ],
+        "do_not_use_when": [
+          "Reflection is being used to postpone commitment, avoid trade-offs, or keep options abstract."
+        ],
+        "misuse_guards": [
+          "Do not use step-back as a socially acceptable way to avoid commitment."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "step-back.reorientation-before-execution-gate",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Step_Back_rag.md",
+            "source_quote": "necessary pause"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to step back from detail immersion and name the governing structure, core point, or problem-owner frame before recommending execution.",
+            "evidence_required": [
+              "The detail work, analysis, or action currently absorbing attention."
+            ],
+            "good_output_shape": [
+              "Names what matters more than the current detail stream."
+            ],
+            "requirement_id": "find-governing-structure-before-action"
+          }
+        ],
+        "use_when": [
+          "The team is too close to the details to see what actually matters."
+        ]
+      },
       "runtime_graph_fields": {
         "danger_when": [
           "The pause is becoming a hiding place for avoiding commitment, trade-offs, or concrete next steps."
@@ -452,8 +501,8 @@
         "manifest_path": "data/model_sources/Step_Back_rag.md",
         "sha256": "eae47b3180c29b9ac04836f0890e53bab666451460492a023c387233febd78c3",
         "source_file": "Step_Back_rag.md",
-        "reviewed_affordance_available": false,
-        "reviewed_record_available": false
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true
       },
       "why_pulled": [
         {
@@ -466,13 +515,19 @@
       ]
     },
     {
-      "absence_records": [],
-      "card_id": "card-005-constraints",
-      "coverage_status": "graph_only_runtime_card",
-      "display_name": "Constraints",
-      "do_not_overclaim": [
-        "No reviewed affordance record is available in the current corpus."
+      "absence_records": [
+        {
+          "attempted_field": "permanent-rule-compliance-affordance",
+          "model_id": "constraints",
+          "reason": "The source does not support treating constraints as permanent rules. It warns that old constraints can become misleading when the environment changes.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
       ],
+      "card_id": "card-005-constraints",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Constraints",
+      "do_not_overclaim": [],
       "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
       "model_id": "constraints",
       "nomination_metadata": {
@@ -482,7 +537,50 @@
       "pulled_by": [
         "lane4_gap_route"
       ],
-      "reviewed_affordance_fields": {},
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "constraints.scope-boundary-decision-filter"
+        ],
+        "case_evidence_needed": [
+          "The goal, scope, decision, or problem surface being constrained."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What boundary, rule, or limitation defines the scope of this decision?"
+        ],
+        "do_not_use_when": [
+          "The constraint is inherited, outdated, or untested after the economics, technology, or stakeholder environment has changed."
+        ],
+        "misuse_guards": [
+          "Do not treat old constraints as permanent without checking whether the environment changed."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "constraints.scope-boundary-decision-filter",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Constraints_rag.md",
+            "source_quote": "boundary, rule, or limitation that defines the functional scope, responsibilities, or acceptable parameters of a system, problem, or endeavor"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to state the scope boundary, success constraint, acceptable trade-off, and deliberate exclusion before recommending action.",
+            "evidence_required": [
+              "The decision or workstream being bounded."
+            ],
+            "good_output_shape": [
+              "Names the constraint in operational terms."
+            ],
+            "requirement_id": "name-boundaries-and-exclusions"
+          }
+        ],
+        "use_when": [
+          "Too many goals, variables, stakeholders, or possible moves are competing for attention and the team is losing clarity."
+        ]
+      },
       "runtime_graph_fields": {
         "danger_when": [
           "Old constraints are remaining unquestioned after the economics, technology, or stakeholder environment has changed."
@@ -528,8 +626,8 @@
         "manifest_path": "data/model_sources/Constraints_rag.md",
         "sha256": "3c9663e9f0f6fa2a4ed795d03939e1fbe7df8d14a2ed7418142b55d32388b4cd",
         "source_file": "Constraints_rag.md",
-        "reviewed_affordance_available": false,
-        "reviewed_record_available": false
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true
       },
       "why_pulled": [
         {
@@ -541,13 +639,19 @@
       ]
     },
     {
-      "absence_records": [],
-      "card_id": "card-006-chain-of-verification",
-      "coverage_status": "graph_only_runtime_card",
-      "display_name": "Chain Of Verification",
-      "do_not_overclaim": [
-        "No reviewed affordance record is available in the current corpus."
+      "absence_records": [
+        {
+          "attempted_field": "exhaustive-signoff-verification-affordance",
+          "model_id": "chain-of-verification",
+          "reason": "The source supports evidence-backed link verification, not sign-off accumulation. It explicitly warns that added checks can become verification theater if they do not improve the truth of the chain.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
       ],
+      "card_id": "card-006-chain-of-verification",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Chain Of Verification",
+      "do_not_overclaim": [],
       "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
       "model_id": "chain-of-verification",
       "nomination_metadata": {
@@ -557,7 +661,50 @@
       "pulled_by": [
         "lane2_companion_chunk"
       ],
-      "reviewed_affordance_fields": {},
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "chain-of-verification.make-or-break-premise-audit"
+        ],
+        "case_evidence_needed": [
+          "The conclusion or commitment under review and the linked premises it depends on."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "Which link in this reasoning chain would collapse the whole conclusion if it were false?"
+        ],
+        "do_not_use_when": [
+          "The situation needs a reversible probe or flexible engagement more than exhaustive step-by-step verification."
+        ],
+        "misuse_guards": [
+          "Do not use chain-of-verification to justify endless sign-offs when a bounded reversible test would create better learning."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "chain-of-verification.make-or-break-premise-audit",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Chain_Of_Verification_rag.md",
+            "source_quote": "evidence to back up each link in that chain"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the conclusion, its linked premises, and the premise that would collapse the conclusion before expressing confidence.",
+            "evidence_required": [
+              "The conclusion, plan, or hypothesis being advanced."
+            ],
+            "good_output_shape": [
+              "Shows the chain of premises in order."
+            ],
+            "requirement_id": "map-critical-links-before-confidence"
+          }
+        ],
+        "use_when": [
+          "A recommendation, forecast, rollout, or diagnosis depends on several linked premises that must all hold for the conclusion to survive."
+        ]
+      },
       "runtime_graph_fields": {
         "danger_when": [
           "Verification is becoming theater through extra checks and sign-offs that do not materially improve the truth of the chain."
@@ -603,8 +750,8 @@
         "manifest_path": "data/model_sources/Chain_Of_Verification_rag.md",
         "sha256": "0affb9a5abee4b78fc3620d481bff0918be4f8a9087d6aaf7893b4b337390067",
         "source_file": "Chain_Of_Verification_rag.md",
-        "reviewed_affordance_available": false,
-        "reviewed_record_available": false
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true
       },
       "why_pulled": [
         {
@@ -617,13 +764,19 @@
       ]
     },
     {
-      "absence_records": [],
-      "card_id": "card-007-confirmation-bias",
-      "coverage_status": "graph_only_runtime_card",
-      "display_name": "Confirmation Bias",
-      "do_not_overclaim": [
-        "No reviewed affordance record is available in the current corpus."
+      "absence_records": [
+        {
+          "attempted_field": "accuse-others-of-confirmation-bias-affordance",
+          "model_id": "confirmation-bias",
+          "reason": "The source warns that teams can become good at naming confirmation bias in others while leaving their own evidence standards untouched. A useful affordance must change the evidence test, not assign blame.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
       ],
+      "card_id": "card-007-confirmation-bias",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Confirmation Bias",
+      "do_not_overclaim": [],
       "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
       "model_id": "confirmation-bias",
       "nomination_metadata": {
@@ -633,7 +786,50 @@
       "pulled_by": [
         "lane1_tendency_route"
       ],
-      "reviewed_affordance_fields": {},
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "confirmation-bias.disconfirming-evidence-equality-check"
+        ],
+        "case_evidence_needed": [
+          "The favored conclusion, sponsor-backed recommendation, or preferred thesis under review."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What evidence would prove this recommendation wrong?"
+        ],
+        "do_not_use_when": [
+          "The answer would merely accuse others of bias without changing the evidence standard or decision test."
+        ],
+        "misuse_guards": [
+          "Do not use confirmation-bias language to accuse other people while leaving your own evidence standard unchanged."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "confirmation-bias.disconfirming-evidence-equality-check",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Confirmation_Bias_rag.md",
+            "source_quote": "tendency to continuously filter for and focus on incoming data points that confirm our current beliefs, attitudes, and opinions"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to bring disconfirming observations, objections, failed cases, and quiet losses into the same comparison set as visible confirming evidence.",
+            "evidence_required": [
+              "The confirming evidence currently carrying the recommendation."
+            ],
+            "good_output_shape": [
+              "Names the confirming evidence and the excluded counter-evidence side by side."
+            ],
+            "requirement_id": "surface-disconfirming-case-with-equal-weight"
+          }
+        ],
+        "use_when": [
+          "A team is converging quickly on a favored recommendation before the evidence is fully in."
+        ]
+      },
       "runtime_graph_fields": {
         "danger_when": [
           "The review is already structured around explicit falsification, equal treatment of confirming and disconfirming evidence, and adversarial challenge."
@@ -679,8 +875,8 @@
         "manifest_path": "data/model_sources/Confirmation_Bias_rag.md",
         "sha256": "b59487b075a480942e25f9ddb15113beb5c32b3ba4e5246b67947eebe7c87a21",
         "source_file": "Confirmation_Bias_rag.md",
-        "reviewed_affordance_available": false,
-        "reviewed_record_available": false
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true
       },
       "why_pulled": [
         {
@@ -696,24 +892,14 @@
     "absence_only_card_count": 0,
     "candidate_card_count": 7,
     "conflicting_or_weak_support_count": 0,
-    "graph_only_card_count": 4,
-    "high_value_graph_only_model_ids": [
-      "chain-of-verification",
-      "confirmation-bias",
-      "constraints",
-      "step-back"
-    ],
-    "missing_reviewed_model_ids": [
-      "chain-of-verification",
-      "confirmation-bias",
-      "constraints",
-      "step-back"
-    ],
-    "missing_reviewed_record_count": 4,
+    "graph_only_card_count": 0,
+    "high_value_graph_only_model_ids": [],
+    "missing_reviewed_model_ids": [],
+    "missing_reviewed_record_count": 0,
     "source_too_thin_count": 0,
-    "reviewed_card_count": 3
+    "reviewed_card_count": 7
   },
-  "packet_id": "pr27-mixed-packet-review",
+  "packet_id": "pr29-v5-mixed-packet-depth-review",
   "packet_policy": {
     "candidate_card_target_max": 8,
     "candidate_card_target_min": 0,
@@ -734,7 +920,7 @@
   "runtime_policy": "runtime_dormant",
   "source_artifacts": [
     "data/knowledge_graph.json",
-    "data/compiled/model_affordances/affordances_v4.json",
+    "data/compiled/model_affordances/affordances_v5.json",
     "data/model_sources/manifest.json"
   ],
   "status": "draft_review_only",

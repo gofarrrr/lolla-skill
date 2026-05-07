@@ -226,7 +226,7 @@ Before any broad extraction beyond a reviewed batch:
   and how misuse is prevented.
 - The compiled artifact should keep v4 status dormant until product review
   explicitly approves a later runtime boundary.
-- Coverage reports must distinguish `v4_reviewed_affordance_available`,
+- Coverage reports must distinguish `reviewed_affordance_available`,
   `graph_only_runtime_card`, `absence_only`, `missing_reviewed_record`,
   `source_too_thin`, and `conflicting_or_weak_support`.
 - Packet producer tests must prove v4 enrichment does not swallow graph-only

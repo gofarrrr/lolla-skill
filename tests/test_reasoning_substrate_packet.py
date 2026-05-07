@@ -39,7 +39,7 @@ def _cards_by_model(packet: dict[str, object]) -> dict[str, dict[str, object]]:
     }
 
 
-def test_v4_reviewed_candidate_gets_compact_v4_snippets_and_source_references() -> None:
+def test_reviewed_candidate_gets_compact_snippets_and_source_references() -> None:
     packet = _build_packet(
         [
             CandidateNomination(
@@ -59,7 +59,7 @@ def test_v4_reviewed_candidate_gets_compact_v4_snippets_and_source_references() 
     )
 
     card = _cards_by_model(packet)["opportunity-cost"]
-    assert card["coverage_status"] == "v4_reviewed_affordance_available"
+    assert card["coverage_status"] == "reviewed_affordance_available"
     assert card["pulled_by"] == ["lane4_gap_route"]
     assert card["why_pulled"][0]["route_or_artifact_id"] == "resource-allocation"  # type: ignore[index]
     reviewed = card["reviewed_affordance_fields"]  # type: ignore[index]
@@ -94,7 +94,7 @@ def test_graph_only_candidate_remains_eligible_with_graph_only_label() -> None:
     assert card["coverage_status"] == "graph_only_runtime_card"
     assert card["runtime_graph_fields"]["reasoning_types"] == ["causal", "deductive"]  # type: ignore[index]
     assert card["reviewed_affordance_fields"] == {}
-    assert "No reviewed v4 affordance record" in card["do_not_overclaim"][0]  # type: ignore[index]
+    assert "No reviewed affordance record" in card["do_not_overclaim"][0]  # type: ignore[index]
 
 
 def test_candidate_missing_from_runtime_graph_is_suppressed_honestly() -> None:
@@ -235,7 +235,7 @@ def test_caps_dedupe_provenance_and_forbidden_fields() -> None:
         "chain-of-verification",
     ]
     assert packet["coverage_summary"]["candidate_card_count"] == 2  # type: ignore[index]
-    assert packet["coverage_summary"]["v4_reviewed_card_count"] == 1  # type: ignore[index]
+    assert packet["coverage_summary"]["reviewed_card_count"] == 1  # type: ignore[index]
     assert packet["coverage_summary"]["graph_only_card_count"] == 1  # type: ignore[index]
 
     suppressed_reasons = {

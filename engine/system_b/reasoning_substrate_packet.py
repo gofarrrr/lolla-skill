@@ -12,7 +12,7 @@ STATUS = "draft_review_only"
 RUNTIME_POLICY = "runtime_dormant"
 ALLOWED_COVERAGE_STATUSES = frozenset(
     {
-        "v4_reviewed_affordance_available",
+        "reviewed_affordance_available",
         "graph_only_runtime_card",
         "absence_only",
         "missing_reviewed_record",
@@ -41,7 +41,7 @@ GRAPH_CONTEXT_FIELDS = (
     "premortem_questions",
     "heuristics",
 )
-V4_SNIPPET_FIELDS = (
+REVIEWED_SNIPPET_FIELDS = (
     "use_when",
     "do_not_use_when",
     "case_evidence_needed",
@@ -117,7 +117,7 @@ def build_reasoning_substrate_packet(
     snippet_target_max_per_card: int = 3,
 ) -> dict[str, Any]:
     models = _mapping(knowledge_graph.get("models"))
-    v4_index = _v4_index(affordances)
+    reviewed_index = _reviewed_record_index(affordances)
     source_custody = _source_custody_index(source_manifest)
 
     cards: list[dict[str, Any]] = []
@@ -139,7 +139,7 @@ def build_reasoning_substrate_packet(
                     nomination=nomination,
                     candidate_index=original_index,
                     suppression_reason="duplicate_model_id",
-                    coverage_status=_coverage_status_for(model_id, v4_index),
+                    coverage_status=_coverage_status_for(model_id, reviewed_index),
                 )
             )
             continue
@@ -163,13 +163,13 @@ def build_reasoning_substrate_packet(
                     nomination=nomination,
                     candidate_index=original_index,
                     suppression_reason="packet_cap",
-                    coverage_status=_coverage_status_for(model_id, v4_index),
+                    coverage_status=_coverage_status_for(model_id, reviewed_index),
                 )
             )
             continue
 
-        v4_record = v4_index.get(model_id)
-        coverage_status = _coverage_status_for(model_id, v4_index)
+        reviewed_record = reviewed_index.get(model_id)
+        coverage_status = _coverage_status_for(model_id, reviewed_index)
         cards.append(
             _candidate_card(
                 model_id=model_id,
@@ -177,7 +177,7 @@ def build_reasoning_substrate_packet(
                 nomination=nomination,
                 card_index=len(cards),
                 coverage_status=coverage_status,
-                v4_record=v4_record,
+                reviewed_record=reviewed_record,
                 source_custody_entry=source_custody.get(model_id),
                 snippet_cap=snippet_target_max_per_card,
             )
@@ -207,7 +207,7 @@ def build_reasoning_substrate_packet(
         "blocked_surfaces": list(DEFAULT_BLOCKED_SURFACES),
         "review_notes": [
             "Review-only packet built from explicit nominations; no live lanes were run.",
-            "Graph-only cards are eligible recall material but not reviewed v4 source custody.",
+            "Graph-only cards are eligible recall material but not reviewed affordance depth.",
             "LLM or reviewer owns semantic selection, merging, ignoring, and final wording.",
         ],
     }
@@ -220,7 +220,7 @@ def _candidate_card(
     nomination: CandidateNomination,
     card_index: int,
     coverage_status: str,
-    v4_record: Mapping[str, Any] | None,
+    reviewed_record: Mapping[str, Any] | None,
     source_custody_entry: Mapping[str, Any] | None,
     snippet_cap: int,
 ) -> dict[str, Any]:
@@ -236,7 +236,7 @@ def _candidate_card(
         "source_custody": _source_custody_payload(
             model=model,
             entry=source_custody_entry,
-            v4_record_available=v4_record is not None,
+            reviewed_record_available=reviewed_record is not None,
             coverage_status=coverage_status,
         ),
         "runtime_graph_fields": graph_fields,
@@ -254,16 +254,16 @@ def _candidate_card(
             "lane_score": nomination.lane_score,
         }
 
-    if v4_record is None:
+    if reviewed_record is None:
         card["do_not_overclaim"].append(
-            "No reviewed v4 affordance record is available in the current corpus."
+            "No reviewed affordance record is available in the current corpus."
         )
         return card
 
-    card["absence_records"] = _absence_records(v4_record, snippet_cap=snippet_cap)
-    if coverage_status in {"v4_reviewed_affordance_available", "conflicting_or_weak_support"}:
+    card["absence_records"] = _absence_records(reviewed_record, snippet_cap=snippet_cap)
+    if coverage_status in {"reviewed_affordance_available", "conflicting_or_weak_support"}:
         card["reviewed_affordance_fields"] = _reviewed_affordance_fields(
-            v4_record,
+            reviewed_record,
             has_source_custody=has_source_custody,
             snippet_cap=snippet_cap,
         )
@@ -431,7 +431,7 @@ def _coverage_summary(cards: list[Mapping[str, Any]]) -> dict[str, Any]:
     ]
     return {
         "candidate_card_count": len(cards),
-        "v4_reviewed_card_count": statuses["v4_reviewed_affordance_available"],
+        "reviewed_card_count": statuses["reviewed_affordance_available"],
         "graph_only_card_count": statuses["graph_only_runtime_card"],
         "absence_only_card_count": statuses["absence_only"],
         "missing_reviewed_record_count": len(missing_reviewed),
@@ -460,8 +460,11 @@ def _suppressed_candidate(
     }
 
 
-def _coverage_status_for(model_id: str, v4_index: Mapping[str, Mapping[str, Any]]) -> str:
-    record = v4_index.get(model_id)
+def _coverage_status_for(
+    model_id: str,
+    reviewed_index: Mapping[str, Mapping[str, Any]],
+) -> str:
+    record = reviewed_index.get(model_id)
     if record is None:
         return "graph_only_runtime_card"
     status = str(record.get("status", ""))
@@ -472,13 +475,13 @@ def _coverage_status_for(model_id: str, v4_index: Mapping[str, Mapping[str, Any]
     if status in {"weak_support", "deferred_for_review"}:
         return "conflicting_or_weak_support"
     if affordances:
-        return "v4_reviewed_affordance_available"
+        return "reviewed_affordance_available"
     if absence_records or status in {"not_supported_by_source", "duplicate_of_existing_field"}:
         return "absence_only"
     return "missing_reviewed_record"
 
 
-def _v4_index(affordances: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
+def _reviewed_record_index(affordances: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
     return {
         str(record.get("model_id")): _mapping(record)
         for record in _list(affordances.get("model_records"))
@@ -500,7 +503,7 @@ def _source_custody_payload(
     *,
     model: Mapping[str, Any],
     entry: Mapping[str, Any] | None,
-    v4_record_available: bool,
+    reviewed_record_available: bool,
     coverage_status: str,
 ) -> dict[str, Any]:
     source_file = str(model.get("source_file", ""))
@@ -509,9 +512,9 @@ def _source_custody_payload(
             "repo_source_custodied" if entry is not None else "missing_source_custody"
         ),
         "source_file": source_file,
-        "v4_reviewed_record_available": v4_record_available,
-        "v4_reviewed_affordance_available": (
-            coverage_status == "v4_reviewed_affordance_available"
+        "reviewed_record_available": reviewed_record_available,
+        "reviewed_affordance_available": (
+            coverage_status == "reviewed_affordance_available"
         ),
     }
     if entry is not None:

@@ -22,7 +22,7 @@ It packages candidate mental-model shelves for a later LLM or reviewer:
 - what was pulled;
 - why it was pulled;
 - what runtime graph material exists;
-- what reviewed v4 affordance material exists;
+- what reviewed affordance material exists in the selected draft artifact;
 - what is graph-only or missing;
 - what should not be overclaimed.
 
@@ -116,7 +116,7 @@ Each candidate card should represent one model or tendency-adjacent model shelf.
   "display_name": "Opportunity Cost",
   "pulled_by": [],
   "why_pulled": [],
-  "coverage_status": "v4_reviewed_affordance_available",
+  "coverage_status": "reviewed_affordance_available",
   "runtime_graph_fields": {},
   "reviewed_affordance_fields": {},
   "absence_records": [],
@@ -185,7 +185,7 @@ Recall can be broad. Attribution must stay narrow.
 
 Allowed `coverage_status` values:
 
-- `v4_reviewed_affordance_available`
+- `reviewed_affordance_available`
 - `graph_only_runtime_card`
 - `absence_only`
 - `missing_reviewed_record`
@@ -196,10 +196,10 @@ Meaning:
 
 | Status | Meaning |
 | --- | --- |
-| `v4_reviewed_affordance_available` | The model has reviewed v4 affordance material with source custody. |
-| `graph_only_runtime_card` | The model exists in the 222-model runtime graph but lacks reviewed v4 depth. |
+| `reviewed_affordance_available` | The model has reviewed affordance material in the selected draft reviewed artifact, with source custody. |
+| `graph_only_runtime_card` | The model exists in the 222-model runtime graph but lacks reviewed affordance depth in the selected artifact. |
 | `absence_only` | Reviewed material exists mainly to say useful affordance support is absent. |
-| `missing_reviewed_record` | The runtime graph model has no reviewed v4 record yet. |
+| `missing_reviewed_record` | The runtime graph model has no reviewed affordance record in the selected artifact. |
 | `source_too_thin` | Available source does not support strong operational use. |
 | `conflicting_or_weak_support` | Material is relevant but weak, conflicting, or unsafe to overclaim. |
 
@@ -229,7 +229,7 @@ Caps:
 - preserve enough material for LLM reasoning;
 - do not dump all graph text.
 
-Runtime graph fields give breadth. They are not reviewed v4 source custody.
+Runtime graph fields give breadth. They are not reviewed affordance depth.
 
 ## Reviewed Affordance Fields
 
@@ -311,7 +311,7 @@ Suppressed candidates are audit material, not extra user-facing pressures.
 ```json
 {
   "candidate_card_count": 0,
-  "v4_reviewed_card_count": 0,
+  "reviewed_card_count": 0,
   "graph_only_card_count": 0,
   "absence_only_card_count": 0,
   "missing_reviewed_record_count": 0,
@@ -376,7 +376,7 @@ Deterministic code may:
 - dedupe exact or ID-level duplicates;
 - cap packet size;
 - attach runtime graph snippets;
-- attach reviewed v4 snippets when IDs resolve;
+- attach reviewed affordance snippets when IDs resolve;
 - label graph-only and missing-reviewed coverage;
 - preserve absence records;
 - produce review-only counts, IDs, and drift reports.
@@ -402,7 +402,7 @@ imitate.
 ```json
 {
   "model_id": "opportunity-cost",
-  "coverage_status": "v4_reviewed_affordance_available",
+  "coverage_status": "reviewed_affordance_available",
   "pulled_by": ["lane4_gap_route", "reviewer_note"],
   "why_pulled": [
     {
@@ -439,7 +439,7 @@ imitate.
     ]
   },
   "do_not_overclaim": [
-    "No reviewed v4 affordance record is available in the current corpus."
+    "No reviewed affordance record is available in the current corpus."
   ],
   "llm_instruction": "Use as broad graph context only; do not claim source-backed v4 treatment requirements."
 }
@@ -453,7 +453,7 @@ If a later slice is explicitly approved, mechanical validation could check:
 - packet has 5-12 cards unless reviewer override is present;
 - every `model_id` resolves in `data/knowledge_graph.json`;
 - v4 affordance IDs resolve when used;
-- graph-only cards do not include reviewed v4 fields;
+- graph-only cards do not include reviewed affordance fields;
 - reviewed cards preserve source evidence and confidence;
 - missing reviewed coverage is explicit;
 - no final pressure or user-facing copy fields are present.

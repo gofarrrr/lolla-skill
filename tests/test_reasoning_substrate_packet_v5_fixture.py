@@ -16,9 +16,22 @@ FIXTURE_PATH = (
     / "tests"
     / "fixtures"
     / "reasoning_substrate_packet"
-    / "pr27_mixed_packet_review.json"
+    / "pr29_v5_mixed_packet_review.json"
 )
-
+V5_AFFORDANCES_PATH = (
+    REPO_ROOT / "data" / "compiled" / "model_affordances" / "affordances_v5.json"
+)
+LIVE_RUNTIME_PATHS = (
+    REPO_ROOT / "engine" / "system_b" / "__init__.py",
+    REPO_ROOT / "engine" / "system_b" / "pipeline.py",
+    REPO_ROOT / "scripts" / "run_pipeline.py",
+)
+PR28_UPGRADED_MODEL_IDS = {
+    "chain-of-verification",
+    "confirmation-bias",
+    "constraints",
+    "step-back",
+}
 
 TRANSACTION_CONTEXT = {
     "case_id": "pr27-synthetic-renewal-rollout-review",
@@ -40,30 +53,26 @@ TRANSACTION_CONTEXT = {
 }
 
 
-def test_pr27_fixture_matches_dormant_packet_producer_output() -> None:
+def test_pr29_v5_fixture_matches_dormant_packet_producer_output() -> None:
     fixture = _load_fixture()
     expected = _build_expected_packet()
 
     assert fixture == expected
 
 
-def test_pr27_fixture_is_dormant_reasoning_substrate_packet_v1() -> None:
+def test_pr29_v5_fixture_is_dormant_reasoning_substrate_packet_v1() -> None:
     packet = _load_fixture()
 
     assert packet["packet_version"] == "reasoning_substrate_packet.v1"
-    assert packet["packet_id"] == "pr27-mixed-packet-review"
+    assert packet["packet_id"] == "pr29-v5-mixed-packet-depth-review"
     assert packet["status"] == "draft_review_only"
     assert packet["runtime_policy"] == "runtime_dormant"
     assert packet["transaction_context"] == TRANSACTION_CONTEXT
-    assert set(packet) >= {
-        "source_artifacts",
-        "candidate_cards",
-        "suppressed_candidates",
-        "coverage_summary",
-        "packet_policy",
-        "blocked_surfaces",
-        "review_notes",
-    }
+    assert packet["source_artifacts"] == [
+        "data/knowledge_graph.json",
+        "data/compiled/model_affordances/affordances_v5.json",
+        "data/model_sources/manifest.json",
+    ]
     assert len(packet["candidate_cards"]) <= packet["packet_policy"][
         "candidate_card_target_max"
     ]
@@ -83,82 +92,85 @@ def test_pr27_fixture_is_dormant_reasoning_substrate_packet_v1() -> None:
     ]
 
 
-def test_pr27_fixture_mixes_v4_graph_only_and_suppressed_candidates() -> None:
+def test_pr29_v5_fixture_upgrades_pr28_models_to_reviewed_cards() -> None:
     packet = _load_fixture()
     cards = _cards_by_model(packet)
 
     assert len(packet["candidate_cards"]) == 7
     assert packet["coverage_summary"]["candidate_card_count"] == 7
-    assert packet["coverage_summary"]["reviewed_card_count"] == 3
-    assert packet["coverage_summary"]["graph_only_card_count"] == 4
-    assert packet["coverage_summary"]["high_value_graph_only_model_ids"] == [
-        "chain-of-verification",
-        "confirmation-bias",
-        "constraints",
-        "step-back",
-    ]
-    assert packet["coverage_summary"]["missing_reviewed_model_ids"] == [
-        "chain-of-verification",
-        "confirmation-bias",
-        "constraints",
-        "step-back",
-    ]
+    assert packet["coverage_summary"]["reviewed_card_count"] == 7
+    assert packet["coverage_summary"]["graph_only_card_count"] == 0
+    assert packet["coverage_summary"]["missing_reviewed_model_ids"] == []
+    assert packet["coverage_summary"]["high_value_graph_only_model_ids"] == []
+
+    for model_id in PR28_UPGRADED_MODEL_IDS:
+        card = cards[model_id]
+        assert card["coverage_status"] == "reviewed_affordance_available"
+        assert card["source_custody"]["custody_status"] == "repo_source_custodied"
+        assert card["source_custody"]["reviewed_record_available"] is True
+        assert card["source_custody"]["reviewed_affordance_available"] is True
+        assert card["reviewed_affordance_fields"]["affordance_ids"]
+        assert card["reviewed_affordance_fields"]["use_when"]
+        assert card["reviewed_affordance_fields"]["do_not_use_when"]
+        assert card["reviewed_affordance_fields"]["case_evidence_needed"]
+        assert card["reviewed_affordance_fields"]["treatment_requirements"]
+        assert card["reviewed_affordance_fields"]["diagnostic_questions"]
+        assert card["reviewed_affordance_fields"]["misuse_guards"]
+        assert card["reviewed_affordance_fields"]["source_evidence"]
+
+
+def test_pr29_v5_fixture_preserves_pr28_absence_records() -> None:
+    packet = _load_fixture()
+    cards = _cards_by_model(packet)
+    expected_absence_fields = {
+        "chain-of-verification": {
+            "exhaustive-signoff-verification-affordance",
+        },
+        "constraints": {
+            "permanent-rule-compliance-affordance",
+        },
+        "confirmation-bias": {
+            "accuse-others-of-confirmation-bias-affordance",
+        },
+        "step-back": {
+            "indefinite-reflection-affordance",
+        },
+    }
+
+    for model_id, attempted_fields in expected_absence_fields.items():
+        card_fields = {
+            str(absence["attempted_field"])
+            for absence in cards[model_id]["absence_records"]
+        }
+        assert attempted_fields.issubset(card_fields)
+
+
+def test_pr29_v5_fixture_preserves_provenance_suppression_and_source_custody() -> None:
+    packet = _load_fixture()
+    cards = _cards_by_model(packet)
+
+    assert cards["chain-of-verification"]["why_pulled"][0]["evidence_quote"] == (
+        "track risks after launch"
+    )
+    assert cards["constraints"]["pulled_by"] == ["lane4_gap_route"]
+    assert cards["confirmation-bias"]["pulled_by"] == ["lane1_tendency_route"]
+
+    for card in cards.values():
+        custody = card["source_custody"]
+        assert custody["custody_status"] == "repo_source_custodied"
+        assert custody["manifest_path"].startswith("data/model_sources/")
+        assert custody["sha256"]
 
     suppressed = packet["suppressed_candidates"]
     assert len(suppressed) == 1
     assert suppressed[0]["model_id"] == "opportunity-cost"
     assert suppressed[0]["suppression_reason"] == "duplicate_model_id"
+    assert suppressed[0]["coverage_status"] == "reviewed_affordance_available"
     assert suppressed[0]["do_not_recover_as_pressure_without_review"] is True
 
-    for model_id in (
-        "opportunity-cost",
-        "falsifiability",
-        "probabilistic-thinking",
-    ):
-        card = cards[model_id]
-        assert card["coverage_status"] == "reviewed_affordance_available"
-        assert card["reviewed_affordance_fields"]["affordance_ids"]
-        assert card["reviewed_affordance_fields"]["source_evidence"]
-        assert card["source_custody"]["custody_status"] == "repo_source_custodied"
-        assert card["source_custody"]["reviewed_record_available"] is True
-        assert card["source_custody"]["reviewed_affordance_available"] is True
 
-    for model_id in (
-        "step-back",
-        "constraints",
-        "chain-of-verification",
-        "confirmation-bias",
-    ):
-        card = cards[model_id]
-        assert card["coverage_status"] == "graph_only_runtime_card"
-        assert card["reviewed_affordance_fields"] == {}
-        assert card["source_custody"]["custody_status"] == "repo_source_custodied"
-        assert card["source_custody"]["reviewed_record_available"] is False
-        assert card["source_custody"]["reviewed_affordance_available"] is False
-        assert card["source_custody"]["manifest_path"].startswith("data/model_sources/")
-        assert "No reviewed affordance record" in card["do_not_overclaim"][0]
-
-
-def test_pr27_fixture_preserves_provenance_and_contains_no_final_surface() -> None:
+def test_pr29_v5_fixture_contains_no_final_surface() -> None:
     packet = _load_fixture()
-    cards = _cards_by_model(packet)
-
-    assert cards["opportunity-cost"]["pulled_by"] == [
-        "lane4_gap_route",
-        "reviewer_note",
-    ]
-    assert cards["opportunity-cost"]["why_pulled"][0] == {
-        "source": "lane4_gap_route",
-        "reason": (
-            "The advice commits the same budget and launch window without "
-            "naming the displaced alternative."
-        ),
-        "evidence_source_type": "lane_gap",
-        "route_or_artifact_id": "synthetic-lane4-resource-commitment",
-    }
-    assert cards["chain-of-verification"]["why_pulled"][0]["evidence_quote"] == (
-        "track risks after launch"
-    )
 
     forbidden_keys = {
         "final_decision_pressure",
@@ -177,25 +189,32 @@ def test_pr27_fixture_preserves_provenance_and_contains_no_final_surface() -> No
     assert "rendered_html" not in serialized
 
 
+def test_pr29_v5_fixture_does_not_import_into_live_runtime_paths() -> None:
+    forbidden_fragments = (
+        "affordances_v5",
+        "model_affordances_v5",
+        "build_reasoning_substrate_packet",
+        "build_reasoning_substrate_packet_from_files",
+    )
+
+    for path in LIVE_RUNTIME_PATHS:
+        text = path.read_text(encoding="utf-8")
+        assert all(fragment not in text for fragment in forbidden_fragments)
+
+
 def _build_expected_packet() -> dict[str, Any]:
     return build_reasoning_substrate_packet(
-        packet_id="pr27-mixed-packet-review",
+        packet_id="pr29-v5-mixed-packet-depth-review",
         transaction_context=TRANSACTION_CONTEXT,
         nominations=_nominations(),
         knowledge_graph=_load_json(REPO_ROOT / "data" / "knowledge_graph.json"),
-        affordances=_load_json(
-            REPO_ROOT
-            / "data"
-            / "compiled"
-            / "model_affordances"
-            / "affordances_v4.json"
-        ),
+        affordances=_load_json(V5_AFFORDANCES_PATH),
         source_manifest=_load_json(
             REPO_ROOT / "data" / "model_sources" / "manifest.json"
         ),
         source_artifacts=[
             "data/knowledge_graph.json",
-            "data/compiled/model_affordances/affordances_v4.json",
+            "data/compiled/model_affordances/affordances_v5.json",
             "data/model_sources/manifest.json",
         ],
         candidate_card_target_max=8,
