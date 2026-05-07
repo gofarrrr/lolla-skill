@@ -43,7 +43,7 @@ Measured from the current repo and canonical source directory:
 | v4 reviewed records | 55 model records | Deep reviewed affordance subset |
 | v4 reviewed affordances | 91 affordances | Source-backed operational constraints |
 | v4 absence records | 95 absence records | Coverage honesty / do-not-promote evidence |
-| Graph-only models after v4 | 167 models | Broad runtime candidates without reviewed v4 depth |
+| Graph-only models after v4 | 167 models | Broad runtime candidates without reviewed affordance depth |
 
 Reasoning-type coverage also shows why the 55 cannot become the whole story:
 
@@ -135,7 +135,7 @@ Candidate card:
   - evidence source type: `user_turn`, `assistant_turn`, `lane_gap`,
     `graph_recall`, `embedding_recall`, `reviewer_note`
 - `coverage_status`
-  - `v4_reviewed_affordance_available`
+  - `reviewed_affordance_available`
   - `graph_only_runtime_card`
   - `absence_only`
   - `missing_reviewed_record`

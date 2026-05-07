@@ -15,7 +15,7 @@ object for the next LLM/reviewer, it passes the first usefulness check:
 
 - v4-reviewed cards add operational depth the graph alone does not provide;
 - source-custodied graph-only cards remain useful shelf hints;
-- source custody is visible without pretending to be v4 reviewed depth;
+- source custody is visible without pretending to be reviewed affordance depth;
 - provenance, coverage labels, blocked surfaces, and suppression are
   inspectable;
 - Python packages the material but does not choose the conclusion.
@@ -49,9 +49,9 @@ Candidate mix:
 
 | Model ID | Coverage | Source custody | Role in fixture |
 | --- | --- | --- | --- |
-| `opportunity-cost` | `v4_reviewed_affordance_available` | repo-custodied | Scarce resource and displaced alternative check |
-| `falsifiability` | `v4_reviewed_affordance_available` | repo-custodied | Reversal evidence and kill-criteria check |
-| `probabilistic-thinking` | `v4_reviewed_affordance_available` | repo-custodied | Binary certainty vs uncertain outcome check |
+| `opportunity-cost` | `reviewed_affordance_available` | repo-custodied | Scarce resource and displaced alternative check |
+| `falsifiability` | `reviewed_affordance_available` | repo-custodied | Reversal evidence and kill-criteria check |
+| `probabilistic-thinking` | `reviewed_affordance_available` | repo-custodied | Binary certainty vs uncertain outcome check |
 | `step-back` | `graph_only_runtime_card` | repo-custodied | Pause/reframe shelf hint |
 | `constraints` | `graph_only_runtime_card` | repo-custodied | Scope/budget/launch boundary shelf hint |
 | `chain-of-verification` | `graph_only_runtime_card` | repo-custodied | Sequential-premise verification shelf hint |
@@ -136,13 +136,14 @@ PR27 adds explicit `source_custody` metadata to candidate cards:
 - `manifest_path`
 - `sha256`
 - `bytes`
-- `v4_reviewed_record_available`
-- `v4_reviewed_affordance_available`
+- `reviewed_record_available`
+- `reviewed_affordance_available`
 
 For graph-only cards, source custody now says:
 
 > the source is in the repo and can be inspected later,
-> but no reviewed v4 record or reviewed v4 affordance is available now.
+> but no reviewed affordance record or reviewed affordance field is available
+> now.
 
 That is the correct distinction. It makes the card more trustworthy without
 turning custody into reviewed depth.
@@ -172,7 +173,7 @@ Yes.
 
 The packet makes the 222/55/167 distinction visible:
 
-- v4 cards: `v4_reviewed_affordance_available`
+- reviewed cards: `reviewed_affordance_available`
 - graph-only cards: `graph_only_runtime_card`
 - graph-only IDs listed under `missing_reviewed_model_ids`
 - source custody separately visible on every card
@@ -191,7 +192,7 @@ The cards are more than internal machinery because the LLM can read them as:
 - why this shelf was pulled;
 - what evidence class nominated it;
 - what the graph says;
-- what reviewed v4 adds;
+- what reviewed affordance depth adds;
 - what source support is missing;
 - what not to overclaim;
 - which surfaces remain blocked.

@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-06
-**Status:** Product doctrine after PR28 controlled graph-only extraction. This
+**Status:** Product doctrine after PR29 v5 packet handoff-depth review. This
 is not a runtime proposal, prompt change, broad extraction brief, or
 user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_graph_only_extraction_batch_ready`
+**Current posture:** `v5_packet_depth_improved`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -18,6 +18,8 @@ user-facing launch plan.
 **Current packet spec:** `research/reasoning-substrate-packet-v1-spec-2026-05-06.md`
 
 **Current controlled extraction report:** `research/pr28-controlled-graph-only-extraction-report-2026-05-06.md`
+
+**Current v5 packet depth review:** `research/reasoning-substrate-v5-packet-depth-review-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -380,16 +382,21 @@ PR28 then completed one controlled graph-only extraction batch:
 
 > `controlled_graph_only_extraction_batch_ready`
 
+PR29 then completed one v5 packet handoff-depth review:
+
+> `v5_packet_depth_improved`
+
 Future sessions should read
 `research/reasoning-substrate-next-session-handover-2026-05-06.md` first and
 treat PR26 as source custody, not extraction, and PR27 as fixture-usefulness
 evidence, not runtime production. Treat PR28 as a controlled extraction quality
-loop, not v5 runtime promotion or Batch 3b. Existing lanes stay intact,
-reviewed affordances are additive to lane-selected candidates, graph-only
-models remain eligible, and Python packages reasoning material for LLM/reviewer
-judgment. Do not start runtime packet production, prompt changes, lane
-rewrites, broad extraction, Batch 3b, paid runs, or user-facing Decision
-Pressure output by default.
+loop, not v5 runtime promotion or Batch 3b. Treat PR29 as handoff-depth
+evidence, not final-answer evidence or deterministic pressure-selection
+permission. Existing lanes stay intact, reviewed affordances are additive to
+lane-selected candidates, graph-only models remain eligible, and Python
+packages reasoning material for LLM/reviewer judgment. Do not start runtime
+packet production, prompt changes, lane rewrites, broad extraction, Batch 3b,
+paid runs, or user-facing Decision Pressure output by default.
 
 ## Next Product Work, Not Engineering Work
 
@@ -403,18 +410,26 @@ The completed source/packet audit answered the immediate slice question:
 PR27 added the first fixture answer:
 
 > Yes, mixed v4 + source-custodied graph-only packets are useful handoff
-> material, but graph-only cards are still thinner than reviewed v4 cards.
+> material, but graph-only cards are still thinner than reviewed affordance cards.
 
 PR28 added the first controlled extraction answer:
 
 > Yes, the first ten graph-only sources can produce compact reviewed affordance
 > cards when exact source custody and absence records are enforced.
 
+PR29 added the first v5 handoff-depth answer:
+
+> Yes, the same PR27 nominations become more useful LLM handoff material when
+> regenerated against v5: four formerly graph-only cards gain clearer
+> activation, evidence, do-not-use, misuse, treatment, and absence signals
+> without changing candidate count or letting Python choose the conclusion.
+
 The next useful product questions are:
 
-1. Does the PR27 mixed packet become meaningfully more useful when regenerated
-   against v5?
-2. Which PR28 cards improve LLM judgment, and which merely add internal bulk?
+1. Does a receiver-side LLM/reviewer actually use the added v5 depth to choose,
+   merge, ignore, or set aside candidate shelves more cleanly?
+2. Which PR28 cards remain useful when tested in additional candidate mixes,
+   and which merely add internal bulk?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?

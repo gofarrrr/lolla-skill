@@ -143,7 +143,7 @@ For each candidate model, include:
   - gap dimension;
   - frame element.
 - `coverage_status`
-  - `v4_reviewed_affordance_available`
+  - `reviewed_affordance_available`
   - `graph_only_runtime_card`
   - `absence_only`
   - `missing_reviewed_record`

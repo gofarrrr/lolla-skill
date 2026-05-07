@@ -350,7 +350,7 @@ The packet must not collapse those layers into one evidence class.
 
 Recommended card statuses:
 
-- `v4_reviewed_affordance_available`;
+- `reviewed_affordance_available`;
 - `graph_only_runtime_card`;
 - `absence_only`;
 - `missing_reviewed_record`;
@@ -408,7 +408,7 @@ The direction is wrong if:
 
 - the packet grows into a library dump;
 - v4 depth causes the system to ignore the other 167 graph-only runtime models;
-- graph-only fields are presented as reviewed v4 evidence;
+- graph-only fields are presented as reviewed affordance evidence;
 - absence records disappear because they feel unhelpful;
 - Python begins choosing pressure quality;
 - Python infers pressures from case type, route label, keyword, or example

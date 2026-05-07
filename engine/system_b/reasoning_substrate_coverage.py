@@ -248,7 +248,7 @@ def _recommended_expansion_batches(
             "batch_id": "static-lane-signal-graph-only-custody-batch-1",
             "selection_rule": (
                 "graph-only runtime models with existing static lane-route signals, "
-                "source availability, and no reviewed v4 record"
+                "source availability, and no reviewed affordance record"
             ),
             "batch_size": len(selected),
             "model_ids": selected,
