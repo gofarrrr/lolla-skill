@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-06
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR27 are merged or in review, PR27 completed a review-only mixed packet fixture, and the current posture is `mixed_packet_fixture_useful`
+**Status:** living schema doctrine; PR13-PR28 are merged or in review, PR28 completed a controlled graph-only extraction batch, and the current posture is `controlled_graph_only_extraction_batch_ready`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -15,6 +15,7 @@
 **Current full-corpus coverage audit:** `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
 **Current source custody report:** `research/reasoning-substrate-source-custody-backfill-2026-05-06.md`
 **Current packet fixture review:** `research/reasoning-substrate-packet-fixture-review-2026-05-06.md`
+**Current controlled extraction report:** `research/pr28-controlled-graph-only-extraction-report-2026-05-06.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -40,10 +41,16 @@ real. Future sessions should treat the following as current baseline:
 - Pilot records: `data/model_affordances/pilot/` for 10 models.
 - Batch 1 records: `data/model_affordances/batch_1/` for 20 models.
 - Batch 2 records: `data/model_affordances/batch_2/` for 20 Lane-4-frequency models.
+- Batch 4 records: `data/model_affordances/batch_4/` for 10 controlled
+  graph-only extractions opened after PR27 packet review.
 - Compiled v3 artifact:
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records.
 - v3 validation: `0` schema failures and `0` source-quote rejections.
+- Compiled v5 artifact:
+  `data/compiled/model_affordances/affordances_v5.json`.
+- v5 corpus shape: `65` reviewed records, `101` affordances, `115` absence
+  records. v5 remains `draft_review_only` and is not runtime-promoted.
 - Current experiment: PR 11 Gate 4 edge-probe harness, branch
   `feature/knowledge-substrate-pr11-gate4-edge-probes`.
 - Gate 4 dry-run: `10` usable cases, `39` Lane 4 routes, `165/205` v3-covered
@@ -186,12 +193,17 @@ real. Future sessions should treat the following as current baseline:
   `1` suppressed duplicate. Decision label: `mixed_packet_fixture_useful`.
   The packet is useful handoff material, but graph-only cards remain thinner
   than v4 reviewed cards.
+- PR28 completed one controlled reviewed extraction batch after PR27. Ten
+  source-custodied graph-only models now have Batch 4 records, adding `10`
+  affordances and `20` absence records. Decision label:
+  `controlled_graph_only_extraction_batch_ready`. This created a draft/review
+  v5 artifact, not runtime coverage or Batch 3b.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `mixed_packet_fixture_useful`; do not build runtime packet production,
-  prompt changes, extraction, lane rewrites, or user-facing surfaces by default
-  unless a controlled reviewed extraction slice is explicitly opened.
+  `controlled_graph_only_extraction_batch_ready`; do not build runtime packet
+  production, prompt changes, broad extraction, lane rewrites, or user-facing
+  surfaces by default.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1413,12 +1425,13 @@ This creates the rails before the extraction work begins.
 ### 10.3 Current Implementation Slice
 
 The current slice is no longer schema creation, more paid Gate 4 calibration,
-or Decision Pressure trace machinery. PR13-PR27 are complete or in review.
+or Decision Pressure trace machinery. PR13-PR28 are complete or in review.
 PR26 completed deterministic source custody backfill: all 222 runtime source
 files are now under repo-local custody, while v4 reviewed affordance depth
 remains 55 model records. PR27 then completed one review-only mixed packet
 fixture and found the packet useful enough to justify controlled enrichment,
-not runtime promotion.
+not runtime promotion. PR28 then executed the first controlled reviewed
+graph-only extraction batch and compiled v5 as draft/review-only material.
 
 Current task:
 
@@ -1436,31 +1449,33 @@ Current task:
    the current source custody report.
 7. Use `research/reasoning-substrate-packet-fixture-review-2026-05-06.md` as
    the current mixed packet fixture review.
-8. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
+8. Use `research/pr28-controlled-graph-only-extraction-report-2026-05-06.md`
+   as the current controlled extraction quality report.
+9. Use `research/decision-pressure-product-doctrine-2026-05-06.md` as the
    product north star: broad intake, disciplined output.
-9. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
+10. Use `research/enriched-mental-model-packet-strategy-2026-05-06.md` as the
    architecture line: pull shelves, enrich cards, let the LLM reason.
-10. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
+11. Preserve PR19's runtime-dormant `decision_pressure_trace` contract before
    any UI or runtime work.
-11. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
-12. Treat PR23's generalization readout as directional product evidence, not
+12. Treat PR20/PR21/PR22 adapter work as review infrastructure, not live product.
+13. Treat PR23's generalization readout as directional product evidence, not
    deterministic case logic.
-13. Treat PR25 as dormant enrichment placement, not runtime packet production.
-14. Treat PR26 as source custody, not v4 extraction.
-15. Treat PR27 as fixture usefulness evidence, not runtime packet production.
-16. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+14. Treat PR25 as dormant enrichment placement, not runtime packet production.
+15. Treat PR26 as source custody, not v4 extraction.
+16. Treat PR27 as fixture usefulness evidence, not runtime packet production.
+17. Treat PR28 as controlled extraction quality evidence, not v5 runtime
+    promotion or broad extraction permission.
+18. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-17. Preserve coverage honesty and no-casuistry rails.
-18. Do not run more paid model calls for this slice.
-19. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+19. Preserve coverage honesty and no-casuistry rails.
+20. Do not run more paid model calls for this slice.
+21. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
-Do not extract new affordance records or wire live runtime behavior until the
-dormant packet producer is tested against reviewed fixtures and a product
-review names the specific uncertainty the next slice should answer. PR27 names
-one such uncertainty: graph-only cards are useful but too thin for operational
-treatment, so the next reasonable work is a controlled reviewed extraction
-batch if explicitly approved.
+Do not extract more affordance records or wire live runtime behavior by
+momentum. PR29 should first regenerate and compare a tiny mixed packet using
+v5, so product review can decide whether PR28's added depth improves the LLM
+handoff before any broader extraction.
 
 ---
 

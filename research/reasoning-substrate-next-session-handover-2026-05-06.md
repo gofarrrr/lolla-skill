@@ -1,14 +1,13 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-06
-**Status:** Start-here handover after PR27 completed a tiny mixed
-reasoning-substrate packet fixture review. This is still not runtime
-promotion, prompt promotion, lane rewrite, extraction, or user-facing Decision
-Pressure work.
+**Status:** Start-here handover after PR28 completed the first controlled
+graph-only extraction batch. This is still not runtime promotion, prompt
+promotion, lane rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `mixed_packet_fixture_useful`
+**Current posture:** `controlled_graph_only_extraction_batch_ready`
 
-**Current PR:** PR27 - Mixed packet fixture review
+**Current PR:** PR28 - Controlled graph-only extraction batch
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -17,6 +16,8 @@ Pressure work.
 **PR26 decision label:** `source_custody_backfill_complete`
 
 **PR27 decision label:** `mixed_packet_fixture_useful`
+
+**PR28 decision label:** `controlled_graph_only_extraction_batch_ready`
 
 ## Start Here
 
@@ -34,6 +35,7 @@ Read these files in order:
 10. `research/full-corpus-enrichment-coverage-audit-2026-05-06.md`
 11. `research/reasoning-substrate-source-custody-backfill-2026-05-06.md`
 12. `research/reasoning-substrate-packet-fixture-review-2026-05-06.md`
+13. `research/pr28-controlled-graph-only-extraction-report-2026-05-06.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -68,13 +70,15 @@ Keep these layers distinct:
 | Canonical markdown | 222 files, about 491k words. Source truth for broader expansion. |
 | Repo-local source custody | 222 files in `data/model_sources/` with SHA-256 manifest after PR26. |
 | v4 affordance corpus | 55 reviewed records, 91 affordances, 95 absence records. Deep reviewed subset, still dormant. |
-| Graph-only after v4 | 167 runtime models remain eligible but not v4-reviewed. |
+| v5 affordance corpus | 65 reviewed records, 101 affordances, 115 absence records. Draft/review-only v4 plus PR28 controlled batch, not runtime-promoted. |
+| Graph-only after v5 | 157 runtime models remain eligible but not reviewed affordance records. |
 | PR27 mixed packet fixture | 7 candidate cards plus 1 suppressed duplicate. Review-only proof that mixed v4 + graph-only packets are useful handoff material. |
+| PR28 controlled extraction batch | 10 graph-only models gained reviewed records with 10 affordances and 20 absence records. |
 
 The governing sentence:
 
-> 222 gives breadth. v4 gives depth. The packet must preserve both without
-> pretending they are the same kind of evidence.
+> 222 gives breadth. Reviewed affordance artifacts give depth. The packet must
+> preserve both without pretending they are the same kind of evidence.
 
 ## Existing Lanes Stay Intact
 
@@ -230,6 +234,46 @@ PR27 does not extract new records, modify `affordances_v4.json`, run live
 lanes, wire `/lolla`, change prompts, run model calls or judges, or create
 user-facing Decision Pressure output.
 
+## What PR28 Added
+
+PR28 completes the first controlled reviewed extraction batch for graph-only
+models exposed as useful but thin by PR27:
+
+- added ten records under `data/model_affordances/batch_4/`;
+- compiled `data/compiled/model_affordances/affordances_v5.json`;
+- generated `data/compiled/model_affordances/quality_report_v5.md`;
+- added `tests/test_pr28_batch4_records.py`;
+- added `research/pr28-controlled-graph-only-extraction-report-2026-05-06.md`;
+- kept v5 `draft_review_only` and unimported by live runtime paths.
+
+PR28 target models:
+
+- `chain-of-verification`;
+- `constraints`;
+- `confirmation-bias`;
+- `step-back`;
+- `scientific-method-evidence-testing`;
+- `five-whys-method`;
+- `root-cause-analysis`;
+- `first-principles-thinking`;
+- `intellectual-humility`;
+- `authority-bias`.
+
+PR28 added `10` affordances and `20` absence records. Every target model was a
+runtime graph model, source-custodied, and absent from v4 before PR28.
+
+PR28's decision label is `controlled_graph_only_extraction_batch_ready`.
+
+The product lesson:
+
+> Source custody made extraction possible, PR27 made extraction justified, and
+> PR28 shows the first graph-only sources can add compact operational depth when
+> absence records are treated as first-class output.
+
+PR28 does not promote v5 into runtime, modify `affordances_v4.json`, run live
+lanes, wire `/lolla`, change prompts, run model calls or judges, create Batch
+3b, or create user-facing Decision Pressure output.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -314,7 +358,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR27 and do not infer permission for runtime work.
+Start from PR28 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -324,9 +368,10 @@ Read first:
 - research/full-corpus-enrichment-coverage-audit-2026-05-06.md
 - research/reasoning-substrate-source-custody-backfill-2026-05-06.md
 - research/reasoning-substrate-packet-fixture-review-2026-05-06.md
+- research/pr28-controlled-graph-only-extraction-report-2026-05-06.md
 
 Current posture:
-mixed_packet_fixture_useful
+controlled_graph_only_extraction_batch_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -357,12 +402,22 @@ PR27 result:
 - source custody is visible separately from v4 reviewed depth
 - no extraction or runtime behavior was added
 
+PR28 result:
+- decision label: controlled_graph_only_extraction_batch_ready
+- ten graph-only models received reviewed batch_4 records
+- v5 draft/review-only compiled artifact exists with 65 reviewed records
+- PR28 added 10 affordances and 20 absence records
+- v5 is not runtime-promoted or imported by live runtime paths
+- no prompt, lane, live adapter, model call, judge, Batch 3b, or user-facing
+  behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. A later
-controlled extraction batch is reasonable only if explicitly opened and kept
-reviewed, quote-validated, dormant, and absence-friendly.
+packet regeneration/comparison slice is the recommended next step. Broad
+extraction is not justified until the v5 packet comparison shows which added
+depth improves the LLM handoff.
 ```
 
 ## Core Memory

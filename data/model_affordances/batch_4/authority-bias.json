@@ -1,0 +1,210 @@
+{
+  "model_id": "authority-bias",
+  "source_file": "Authority_Bias_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "authority-bias.domain-bound-deference-audit",
+      "status": "supported",
+      "name": "Domain-bound deference audit",
+      "mechanism": "When a recommendation depends on authority, make the deference explicit, verify expertise, trustworthiness, domain fit, and track record, then require the authority's reasoning and override evidence so rank or polish accelerates triage without replacing falsification.",
+      "activation_shape": {
+        "use_when": [
+          "The real question is whose judgment deserves initial weight before the team reinvents the wheel.",
+          "A specialist, senior leader, institution, consultant, or proven playbook is influencing the recommendation.",
+          "Decision speed matters, but the organization still has a mechanism for challenge, audit, or second opinion.",
+          "The team can state which authority it is following, why the authority is believable in this domain, and what evidence would override them."
+        ],
+        "do_not_use_when": [
+          "Credibility, rank, polish, institutional prestige, or credentials are standing in for falsification.",
+          "The authority's expertise does not transfer to the domain at hand.",
+          "The team is suppressing dissent, independent judgment, or domain-boundary checks because of status pressure.",
+          "The expert answer is accepted without the reasoning steps, assumptions, or evidence standard."
+        ],
+        "case_evidence_needed": [
+          "The authority, expert, senior sponsor, institution, or playbook influencing the decision.",
+          "The relevant credentials, trustworthiness, track record, and domain boundary.",
+          "The reasoning steps, assumptions, and evidence behind the authority's recommendation.",
+          "The counter-evidence, second opinion, or falsifier that would override the authority.",
+          "The group process used to decouple status from the idea."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "make-deference-explicit-and-domain-bound",
+          "description": "Require the answer to state which authority is being followed, why they are believable in this domain, and where their authority does not transfer.",
+          "evidence_required": [
+            "The person, institution, credential, or playbook being deferred to.",
+            "The domain where the authority has relevant expertise or track record.",
+            "The domain boundary where the authority may not transfer.",
+            "The reason deference improves speed or accuracy in this case."
+          ],
+          "good_output_shape": [
+            "Names the authority and the domain of believability.",
+            "Separates expertise from rank, polish, or institutional prestige.",
+            "States what the authority does not get to decide.",
+            "Keeps deference visible rather than invisible."
+          ]
+        },
+        {
+          "requirement_id": "require-reasoning-and-override-evidence",
+          "description": "Before accepting authority, require the reasoning chain, assumptions, and evidence that would justify overriding the recommendation.",
+          "evidence_required": [
+            "The authority's reasoning steps or thought chain.",
+            "The assumptions embedded in the framework or solution.",
+            "The evidence that would falsify or override the recommendation.",
+            "The independent judgment, second opinion, or challenge mechanism used."
+          ],
+          "good_output_shape": [
+            "Asks for the how, not only the expert answer.",
+            "Names assumptions embedded in the authority's framework.",
+            "Defines the override evidence before deference becomes blind.",
+            "Uses challenge or separate judgments to decouple status from idea merit."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which authority are we following, and why are they believable in this domain?",
+        "Where does this person's expertise or track record not transfer?",
+        "Are rank, polish, credentials, or institutional prestige standing in for falsification?",
+        "What reasoning chain and assumptions support the expert answer?",
+        "What evidence, second opinion, or challenge process would override the authority?"
+      ],
+      "misuse_guards": [
+        "Do not treat credentials or prestige as proof that a recommendation survived evidence testing.",
+        "Do not let authority suppress independent judgments or dissent.",
+        "Do not transfer expertise across domains without checking the boundary.",
+        "Do not accept an expert answer without the reasoning steps, assumptions, and override condition."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "mechanical tendency to accept the statements and directions of individuals perceived as authorities",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "expertise and trustworthiness",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "Most useful when the real question is whose judgment deserves initial weight",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "Works when deference is explicit rather than invisible",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "Danger when credibility is standing in for falsification",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "provide their **thought chain** and reasoning steps",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source supports a domain-bound deference audit that preserves the useful speed of expertise while requiring domain fit, reasoning, and override evidence.",
+        "dropped_material": [
+          "Did not extract influence tactics, ghostwriting credibility, AI persona authority, or consultant-status examples as separate affordances.",
+          "Did not treat authority as either always bad or always good; the record is a boundary and audit card."
+        ],
+        "open_questions": [
+          "PR29 should test whether authority-bias cards help packets avoid both blind deference and reflexive anti-expert posturing."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "blind-credential-deference-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source describes blind authority following as the bias risk, not as a usable affordance. Credentials and polish must not replace logic, evidence, or falsification.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "The fundamental essence of the model is that the audience is persuaded by the expert's **status as \"expert,\"** rather than the arguments themselves.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "Danger when credibility is standing in for falsification",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "expertise-transfers-across-domains-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that accepting advice from an authority outside the relevant domain can lead to poor solutions. Domain transfer must be checked, not assumed.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "Accepting advice from an authority figure whose expertise does not transfer to the domain at hand (Domain Dependence) can lead to suboptimal solutions",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Authority_Bias_rag.md",
+          "source_quote": "Does the person have the credentials to speak with authority? Which credentials?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Authority_Bias_rag.md",
+      "source_quote": "the messenger had become the focal message",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Authority_Bias_rag.md",
+      "source_quote": "requiring team members to write down initial opinions and rationales *independently* before discussing them",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 4 source reading found strong operational support. Extracted one domain-bound deference audit and preserved blind credential deference plus assumed domain transfer as absence records.",
+    "dropped_material": [
+      "Influence, persuasion, halo effect, and ghostwriting passages were treated as examples of the same authority mechanism.",
+      "No runtime, prompt, lane, or packet-producer changes are implied."
+    ],
+    "open_questions": [
+      "Future review should inspect overlap with intellectual-humility, first-principles-thinking, and scientific-method-evidence-testing."
+    ],
+    "review_status": "draft"
+  }
+}

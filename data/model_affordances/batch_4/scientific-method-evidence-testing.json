@@ -1,0 +1,203 @@
+{
+  "model_id": "scientific-method-evidence-testing",
+  "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "scientific-method-evidence-testing.falsifiable-hypothesis-threshold-test",
+      "status": "supported",
+      "name": "Falsifiable hypothesis threshold test",
+      "mechanism": "When a causal claim or high-cost choice needs evidence rather than authority, define the hypothesis, disconfirming evidence, measurement proxy, and decision threshold before analysis begins, then use the result to revise the claim instead of defending it.",
+      "activation_shape": {
+        "use_when": [
+          "Causal claims, competing explanations, or high-cost choices need to be resolved by evidence rather than authority, intuition, politics, or narrative.",
+          "A team can define what would count as disconfirming evidence before diving into data.",
+          "The decision requires clear analytical thresholds for action, delay, revision, or rejection.",
+          "Powerful analytic tools or available data may tempt the team to analyze before the hypothesis and output are clear."
+        ],
+        "do_not_use_when": [
+          "The hypothesis is politically protected and cannot realistically be falsified.",
+          "The measurement proxy is convenient but weakly connected to the actual phenomenon.",
+          "The team is using scientific language to defend a predetermined conclusion.",
+          "The problem is human-centered, novel, or design-heavy enough that analytical disaggregation alone would miss the real issue."
+        ],
+        "case_evidence_needed": [
+          "The hypothesis, causal claim, competing explanation, or high-cost choice under review.",
+          "The evidence that would confirm, disconfirm, support, or refute the hypothesis.",
+          "The analytical threshold that determines commit, stop, delay, revise, or gather narrower evidence.",
+          "The measurement proxy and evidence that it tracks the actual phenomenon.",
+          "The political, status, or narrative pressure that could prevent falsification."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-hypothesis-falsifier-threshold",
+          "description": "Require the answer to state the testable hypothesis, disconfirming evidence, and action threshold before recommending analysis or commitment.",
+          "evidence_required": [
+            "The hypothesis or causal claim being tested.",
+            "The evidence that would disconfirm it.",
+            "The threshold that changes the downstream decision.",
+            "The decision branch attached to pass, fail, or inconclusive evidence."
+          ],
+          "good_output_shape": [
+            "Frames the claim as a hypothesis, not a defended belief.",
+            "Names what would count as disconfirming evidence.",
+            "States the analytical threshold before data is gathered.",
+            "Connects each result branch to an action or revision."
+          ]
+        },
+        {
+          "requirement_id": "audit-proxy-and-politics-before-trusting-result",
+          "description": "Before trusting a disciplined-looking test, check whether the proxy measures the real phenomenon and whether organizational politics allow the hypothesis to fail.",
+          "evidence_required": [
+            "The metric, proxy, or measurement instrument being used.",
+            "The underlying phenomenon the proxy is supposed to represent.",
+            "The authority, sponsor, or political pressure attached to the hypothesis.",
+            "The path by which a negative result could still change the recommendation."
+          ],
+          "good_output_shape": [
+            "Separates proxy validity from measurement convenience.",
+            "States the domain boundary of the test.",
+            "Names political protection that would invalidate the testing process.",
+            "Refuses to call the process scientific when the conclusion cannot fail."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What hypothesis is being tested, and what evidence would disconfirm it?",
+        "What analytical threshold changes the downstream decision?",
+        "Is the measurement proxy connected to the actual phenomenon or merely convenient?",
+        "Could this politically protected hypothesis really fail?",
+        "Are we diving into data before the structure of the model and testable hypotheses are clear?"
+      ],
+      "misuse_guards": [
+        "Do not use scientific language when the favored hypothesis is protected from falsification.",
+        "Do not trust convenient proxies without checking their relationship to the real phenomenon.",
+        "Do not begin complex analysis before problem structure, hypotheses, and output are clear.",
+        "Do not let narrative or authority determine which evidence is allowed to count."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+          "source_quote": "logic, reason, and empirical evidence",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+          "source_quote": "clear idea of the structure of the model and testable hypotheses",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+          "source_quote": "clear analytical thresholds",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+          "source_quote": "Most useful when** causal claims, competing explanations, or high-cost choices need to be resolved by evidence rather than authority, intuition, or politics.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+          "source_quote": "hypotheses can be falsified clearly and the team defines what would count as disconfirming evidence before diving into the data.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+          "source_quote": "Danger when** a politically protected hypothesis cannot really be falsified, so the process keeps the language of science while losing the substance.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source supports a hypothesis, falsifier, proxy, and threshold test with strong guards against political hypothesis defense and premature data analysis.",
+        "dropped_material": [
+          "Did not extract digital-twin validation, game theory simulation, or design-thinking relations as separate affordances.",
+          "Did not duplicate experimentation records; this record focuses on evidence testing and falsifiable thresholds rather than running probes."
+        ],
+        "open_questions": [
+          "PR29 should compare this card against falsifiability, experimentation, and chain-of-verification for distinct packet utility."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "politically-protected-hypothesis-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly treats politically protected hypotheses as a danger because they preserve scientific language while preventing falsification. This should block promotion, not become an affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+          "source_quote": "Danger when** a politically protected hypothesis cannot really be falsified, so the process keeps the language of science while losing the substance.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+          "source_quote": "Tasked teams may fear challenging a vision put forward by senior leaders, leading to the pretense of objective testing when the conclusion is already decided.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "proxy-measurement-shortcut-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that convenient proxies can produce disciplined-looking but misleading conclusions. The reviewed record must require proxy validation rather than promote proxy convenience.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+          "source_quote": "Danger when** measurement proxies are convenient but weakly connected to the actual phenomenon, producing disciplined-looking but misleading conclusions.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+      "source_quote": "only gather enough facts to prove or disprove a hypothesis",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Scientific_Method_Evidence_Testing_rag.md",
+      "source_quote": "Focus first on **rigorously framing the question or hypothesis** before starting complex data work.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 4 source reading found strong reviewed operational support. Extracted one falsifiable threshold-test record with absences for political hypothesis theater and proxy shortcuts.",
+    "dropped_material": [
+      "Design-thinking, systems-thinking, and digital-twin examples were not promoted as separate cards.",
+      "No runtime, prompt, lane, or packet-producer changes are implied."
+    ],
+    "open_questions": [
+      "Future review should test whether this card should merge with or stay distinct from falsifiability and experimentation in packets."
+    ],
+    "review_status": "draft"
+  }
+}

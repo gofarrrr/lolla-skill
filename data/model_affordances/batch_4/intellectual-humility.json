@@ -1,0 +1,203 @@
+{
+  "model_id": "intellectual-humility",
+  "source_file": "Intellectual_Humility_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "intellectual-humility.corrigible-confidence-review",
+      "status": "supported",
+      "name": "Corrigible confidence review",
+      "mechanism": "When confidence is outrunning evidence, keep the claim clear enough to update, require external critique or believable disagreement, and define what would change the view without letting humility become self-minimization or uncritical deference.",
+      "activation_shape": {
+        "use_when": [
+          "Smart people have strong opinions and partial evidence, but the cost of being wrong is meaningful.",
+          "Collaboration depends on people publicly updating beliefs, absorbing critique, or changing course.",
+          "The team needs to preserve adaptability, learning speed, or truth quality over ego, status, or tidy certainty.",
+          "A decision needs outside critique because the decision-maker is a poor critic of their own thinking."
+        ],
+        "do_not_use_when": [
+          "Humility is being performed as vague openness while people avoid real updating, clear claims, or accountable judgment.",
+          "Doubt is being used to underweight a well-supported position that deserves confidence.",
+          "Humility about one's own view is sliding into uncritical acceptance of an authority figure.",
+          "The case needs decisive action and the remaining uncertainty is already bounded and acknowledged."
+        ],
+        "case_evidence_needed": [
+          "The claim, recommendation, or belief whose confidence may exceed evidence.",
+          "The evidence supporting the current view and the uncertainty still unresolved.",
+          "The critique, alternative view, or believable person who might improve the judgment.",
+          "The update condition that would change the claim, confidence, or action.",
+          "The risk of performative humility, status-protection, or authority deference."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-claim-confidence-and-update-condition",
+          "description": "Require the answer to state the live claim, current confidence, unresolved uncertainty, and what would update the view.",
+          "evidence_required": [
+            "The belief, diagnosis, or recommendation under review.",
+            "The evidence supporting it and the evidence missing.",
+            "The cost of being wrong.",
+            "The observation, critique, or test that would change the view."
+          ],
+          "good_output_shape": [
+            "Makes the claim clear enough to be challenged.",
+            "States confidence as corrigible rather than performative.",
+            "Names what would change the claim or action.",
+            "Avoids both overconfidence and vague self-minimization."
+          ]
+        },
+        {
+          "requirement_id": "bring-in-believable-critique-without-blind-deference",
+          "description": "Use critique, team diversity, or believability-weighted input to improve truth-seeking while preserving independent evidence checks.",
+          "evidence_required": [
+            "The person, team, or outside view being consulted.",
+            "Their relevant expertise, track record, or perspective.",
+            "The disagreement or critique they raise.",
+            "The evidence standard that prevents blind deference."
+          ],
+          "good_output_shape": [
+            "Names whose critique is being used and why it is relevant.",
+            "Shows how the critique changes the claim, confidence, or action.",
+            "Keeps the final judgment tied to evidence, not status.",
+            "Explains when the person should act as teacher, student, or peer."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Where is confidence outrunning evidence?",
+        "What would change this view if we were genuinely corrigible?",
+        "Who is likely to see what we are missing, and why are they believable here?",
+        "Are we signaling openness while avoiding a clear claim or accountable judgment?",
+        "Are we confusing humility with deference to authority?"
+      ],
+      "misuse_guards": [
+        "Do not use humility to avoid making a clear, testable claim.",
+        "Do not let humility systematically underweight well-supported evidence.",
+        "Do not turn humility into uncritical acceptance of a higher-status person.",
+        "Do not rely only on self-critique when external review is available and the cost of error is high."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Intellectual_Humility_rag.md",
+          "source_quote": "we don’t know everything and that our current views may be in error",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Intellectual_Humility_rag.md",
+          "source_quote": "need to be right",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Intellectual_Humility_rag.md",
+          "source_quote": "Most useful when confidence is outrunning evidence",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Intellectual_Humility_rag.md",
+          "source_quote": "Works when the cost of being wrong is higher than the discomfort of doubt",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Intellectual_Humility_rag.md",
+          "source_quote": "Never rely on your own critique",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Intellectual_Humility_rag.md",
+          "source_quote": "teacher, a student, or a peer",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source supports a compact confidence-review card that asks for corrigibility, critique, and update conditions while guarding against self-minimization and authority deference.",
+        "dropped_material": [
+          "Did not extract journaling, Dalio protocol, jazz analogy, or cognitive-toolbox expansion as separate affordances.",
+          "Did not duplicate confidence-calibration; this card focuses on willingness to update and external critique."
+        ],
+        "open_questions": [
+          "PR29 should test whether this card helps packets handle humility without becoming generic 'be open-minded' advice."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "performative-self-minimization-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly treats performative humility as a misuse when people signal openness while avoiding real updating, clear claims, or accountable judgment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Intellectual_Humility_rag.md",
+          "source_quote": "Danger When Humility Becomes Performative Self-Minimization",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Intellectual_Humility_rag.md",
+          "source_quote": "people signal openness or modesty outwardly but still avoid real updating, clear claims, or accountable judgment.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "authority-deference-through-humility-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source names authority bias as a risk when humility about one's own view defaults to uncritical acceptance of authority. The useful record must keep an evidence check.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Intellectual_Humility_rag.md",
+          "source_quote": "intellectual-humility vs authority-bias:** intellectual-humility conflicts with authority-bias (authority bias) when humility about one's own views defaults to uncritical acceptance of the authority's position.",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Intellectual_Humility_rag.md",
+      "source_quote": "Most of us are poor critics of our own thinking",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Intellectual_Humility_rag.md",
+      "source_quote": "The simple act of creating hypotheses as a team (versus alone) makes the results much stronger.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 4 source reading found strong reviewed operational support. Extracted one corrigible-confidence record and preserved absences for performative self-minimization and authority deference.",
+    "dropped_material": [
+      "Idea meritocracy details, journaling, and musical analogies were treated as context rather than separate packet card fields.",
+      "No runtime, prompt, lane, or packet-producer changes are implied."
+    ],
+    "open_questions": [
+      "Future review should check whether this overlaps with confidence-calibration or deserves a separate card in packet comparisons."
+    ],
+    "review_status": "draft"
+  }
+}
