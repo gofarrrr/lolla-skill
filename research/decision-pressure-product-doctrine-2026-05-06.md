@@ -1,14 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR46 v10/v11 frame-correction packet
-usefulness review.
+**Status:** Product doctrine after PR47 after-v11 graph-only priority audit.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `v11_frame_correction_packet_handoff_useful`
+**Current posture:** `v11_graph_only_priority_audit_complete`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -57,6 +56,8 @@ memo, or user-facing launch plan.
 **Current controlled frame-correction enrichment report:** `research/pr45-controlled-frame-correction-enrichment-report-2026-05-07.md`
 
 **Current v11 packet usefulness review:** `research/reasoning-substrate-v11-packet-usefulness-review-2026-05-07.md`
+
+**Current v11 graph-only priority audit:** `research/v11-graph-only-priority-audit-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -676,6 +677,19 @@ review finds useful depth because the new cards add activation, evidence,
 dismissal, misuse, treatment, source, and absence signals without making Python
 choose the answer.
 
+PR47 then completed one after-v11 graph-only priority audit:
+
+> `v11_graph_only_priority_audit_complete`
+
+Treat PR47 as prioritization evidence, not extraction, runtime permission, or
+corpus-completion pressure. It reviews the remaining 88 graph-only runtime
+models and selects adaptive exploration / option generation / synthesis
+discipline as the next controlled family because future packets may still be
+trapped inside too narrow an option space even after evidence, execution,
+risk, reversibility, and frame-correction depth have improved. The recommended
+PR48 family must stay source-backed and absence-friendly; PR49 must then prove
+same-nomination packet usefulness before further extraction.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -830,12 +844,21 @@ PR46 added the v11 frame-correction packet usefulness answer:
 > lock-in interrupts, bounded synthesis, inward bias accountability, false
 > precision boundaries, and missing-evidence denominators.
 
+PR47 added the after-v11 graph-only priority answer:
+
+> The next controlled family should be adaptive exploration / option
+> generation / synthesis discipline, not because it completes the remaining 88
+> graph-only models, but because it tests whether otherwise plausible,
+> evidence-aware, executable, risk-checked, and frame-corrected advice is still
+> trapped inside too narrow an option space. This is a planning audit only; it
+> adds no records and authorizes no runtime behavior.
+
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, PR36, PR39, PR42, and PR45 cards remain useful when
    tested in additional candidate mixes, and which merely add internal bulk?
-2. Which remaining graph-only family after v11 would make future packets thin
-   enough to justify another controlled batch?
+2. Does the recommended PR48 adaptive-exploration batch produce real
+   source-backed depth, or just creativity vocabulary?
 3. Which decision moments most clearly need pressure before action?
 4. What would make a user trust a pressure pass?
 5. What would make the output feel like noise?
