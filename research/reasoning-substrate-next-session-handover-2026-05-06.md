@@ -1,14 +1,14 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-06
-**Status:** Start-here handover after PR29 compared the PR27 mixed packet
-against v5 and found the added reviewed depth improves the LLM handoff. This is
-still not runtime promotion, prompt promotion, lane rewrite, broad Batch 3b, or
-user-facing Decision Pressure work.
+**Status:** Start-here handover after PR30 added compact reviewer-only Markdown
+renderings for the PR27/PR29 reasoning substrate packets. This makes receiver
+review easier without creating runtime behavior, prompt promotion, lane
+rewrites, broad Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `v5_packet_depth_improved`
+**Current posture:** `packet_review_rendering_ready`
 
-**Current PR:** PR29 - V5 packet handoff-depth review
+**Current PR:** PR30 - packet receiver-review rendering
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -21,6 +21,8 @@ user-facing Decision Pressure work.
 **PR28 decision label:** `controlled_graph_only_extraction_batch_ready`
 
 **PR29 decision label:** `v5_packet_depth_improved`
+
+**PR30 decision label:** `packet_review_rendering_ready`
 
 ## Start Here
 
@@ -40,6 +42,10 @@ Read these files in order:
 12. `research/reasoning-substrate-packet-fixture-review-2026-05-06.md`
 13. `research/pr28-controlled-graph-only-extraction-report-2026-05-06.md`
 14. `research/reasoning-substrate-v5-packet-depth-review-2026-05-07.md`
+15. `research/reasoning-substrate-packet-review-rendering-2026-05-07.md`
+16. `research/reasoning-substrate-packet-comparison-render-2026-05-07.md`
+17. `research/reasoning-substrate-packet-pr27-review-render-2026-05-07.md`
+18. `research/reasoning-substrate-packet-pr29-review-render-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -79,6 +85,7 @@ Keep these layers distinct:
 | PR27 mixed packet fixture | 7 candidate cards plus 1 suppressed duplicate. Review-only proof that mixed v4 + graph-only packets are useful handoff material. |
 | PR28 controlled extraction batch | 10 graph-only models gained reviewed records with 10 affordances and 20 absence records. |
 | PR29 v5 packet depth review | Same 7-card PR27 fixture regenerated against v5. Reviewed cards increased from 3 to 7, graph-only cards fell from 4 to 0, and packet burden stayed acceptable. |
+| PR30 packet review rendering | Deterministic reviewer-only Markdown renders for PR27, PR29, and their comparison. Makes packet review easier; does not select output or create a product surface. |
 
 The governing sentence:
 
@@ -316,6 +323,36 @@ PR29 does not extract new records, promote v5 into runtime, modify
 calls or judges, create Batch 3b, or create user-facing Decision Pressure
 output.
 
+## What PR30 Added
+
+PR30 adds a compact, deterministic receiver-review rendering layer for existing
+dormant packet fixtures:
+
+- `engine/system_b/reasoning_substrate_packet_review.py` renders a packet or
+  before/after packet comparison to reviewer-only Markdown;
+- `tests/test_reasoning_substrate_packet_review_render.py` proves the renderer
+  rejects non-dormant packets, stays out of live runtime imports, and does not
+  emit final pressure fields, memo copy, HTML, or user-facing prose;
+- `research/reasoning-substrate-packet-pr27-review-render-2026-05-07.md`
+  renders the PR27 mixed packet;
+- `research/reasoning-substrate-packet-pr29-review-render-2026-05-07.md`
+  renders the PR29 v5 packet;
+- `research/reasoning-substrate-packet-comparison-render-2026-05-07.md`
+  renders the PR27 vs PR29 count and coverage comparison.
+
+PR30's decision label is `packet_review_rendering_ready`.
+
+The product lesson:
+
+> Receiver-side review needs an inspectable handoff surface before more
+> extraction. The renderer makes packet evidence easier to inspect while
+> preserving the boundary: Python renders custody, coverage, provenance, and
+> compact signals; it does not choose user-visible output.
+
+PR30 does not run model calls, answer the case, choose Decision Pressure,
+promote v5 into runtime, run live lanes, wire `/lolla`, change prompts, create
+Batch 3b, add extraction, or create user-facing output.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -400,7 +437,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR29 and do not infer permission for runtime work.
+Start from PR30 and do not infer permission for runtime work.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -412,9 +449,11 @@ Read first:
 - research/reasoning-substrate-packet-fixture-review-2026-05-06.md
 - research/pr28-controlled-graph-only-extraction-report-2026-05-06.md
 - research/reasoning-substrate-v5-packet-depth-review-2026-05-07.md
+- research/reasoning-substrate-packet-review-rendering-2026-05-07.md
+- research/reasoning-substrate-packet-comparison-render-2026-05-07.md
 
 Current posture:
-v5_packet_depth_improved
+packet_review_rendering_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -463,13 +502,24 @@ PR29 result:
 - no extraction, runtime promotion, prompt, lane, model call, judge, Batch 3b,
   or user-facing behavior was added
 
+PR30 result:
+- decision label: packet_review_rendering_ready
+- compact reviewer-only Markdown renders now exist for PR27, PR29, and their
+  comparison
+- renderer output is generated from the dormant packet fixtures and checked by
+  tests
+- the renderer does not answer the case, choose user-visible output, emit memo
+  copy, render HTML, or import into live runtime paths
+- no extraction, runtime promotion, prompt, lane, model call, judge, Batch 3b,
+  or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next step is a receiver-side packet review, ideally with an explicitly approved
-external LLM/reviewer, before another small extraction batch. Broad extraction
-is still not justified by count momentum.
+next step is a receiver-side packet review using the compact renders, ideally
+with an explicitly approved external LLM/reviewer, before another small
+extraction batch. Broad extraction is still not justified by count momentum.
 ```
 
 ## Core Memory
