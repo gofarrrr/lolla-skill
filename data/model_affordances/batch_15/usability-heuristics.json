@@ -121,6 +121,42 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "nielsen-checklist-as-source-supported-ui-audit",
+      "status": "not_supported_by_source",
+      "reason": "The source supports broad heuristics as checked shortcuts, decision aids, and examples such as Occam's Razor and the Rule of Three; it does not support promoting a concrete Nielsen UI checklist audit from this record.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Usability_Heuristics_rag.md",
+          "source_quote": "mental shortcuts, rules of thumb",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Usability_Heuristics_rag.md",
+          "source_quote": "Occam's Razor",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Usability_Heuristics_rag.md",
+          "source_quote": "The Rule of Three",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Usability_Heuristics_rag.md",
+          "source_quote": "decision aids, interface conventions, or triage rules",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +169,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 15 source reading found strong reviewed depth for usability heuristics as checked, bounded shortcuts.",
+    "normalization_note": "PR89 v51 source reread kept usability heuristics as one checked-shortcut affordance and added a guard against treating the broad heuristics source as a concrete Nielsen UI checklist.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

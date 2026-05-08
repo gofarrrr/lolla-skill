@@ -81,11 +81,122 @@
       "review_notes": {
         "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports UX research as observed-user-evidence and validation discipline.",
         "dropped_material": [
-          "Did not extract digital twin examples as permission for model calls.",
-          "Did not turn UX research into a generic empathy slogan."
+          "Did not turn UX research into a generic empathy slogan.",
+          "Did not extract extreme-user research as a standalone affordance because it supports the same observed-user-evidence transaction."
         ],
         "open_questions": [
           "Later packet review should test whether this card helps graph-only UX/product candidates remain evidence-centered."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "user-experience-research-methods.digital-twin-screening-before-live-commitment",
+      "status": "supported",
+      "name": "Digital twin screening before live commitment",
+      "mechanism": "When live testing or product commitment is costly and source-backed user or segment evidence exists, use validated digital twins or personas to screen messages, feature reactions, or edge cases before live commitment, while treating simulation as provisional screening rather than market proof.",
+      "activation_shape": {
+        "use_when": [
+          "A user or customer segment can be represented from source research, market reports, public data, reviews, or prior UX evidence.",
+          "The team needs to screen many messages, feature reactions, or edge cases before slower live testing or product commitment.",
+          "Twin fidelity, accuracy validation, and ethical controls can be inspected rather than assumed."
+        ],
+        "do_not_use_when": [
+          "No source research, persona data, segment evidence, or validation basis exists for the simulated user.",
+          "The simulation would be treated as market proof, adoption proof, or a replacement for real user evidence.",
+          "Transparency, privacy, manipulation, or bias controls are absent."
+        ],
+        "case_evidence_needed": [
+          "The target user segment and source data used to construct the persona or twin.",
+          "The behavioral tendencies, language, decision process, or edge case being modeled.",
+          "The twin accuracy or fidelity validation check.",
+          "The live decision boundary and follow-up validation plan.",
+          "The transparency, privacy, manipulation, and bias controls."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "validate-twin-before-screening-commitment",
+          "description": "Require the answer to show the twin's evidence base, validation check, decision boundary, and ethical controls before using simulation to narrow live options.",
+          "evidence_required": [
+            "The user or segment source data behind the twin.",
+            "The modeled behavior, language, decision tendency, or edge case.",
+            "A fidelity or accuracy validation check.",
+            "The live follow-up test or decision boundary.",
+            "Transparency, privacy, manipulation, and bias controls."
+          ],
+          "good_output_shape": [
+            "Names the persona or segment evidence base.",
+            "Uses simulation to screen options, not prove demand.",
+            "States how twin accuracy is checked.",
+            "Identifies what still requires live user validation.",
+            "Surfaces privacy, transparency, and bias constraints."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What source evidence makes this digital twin more than an invented persona?",
+        "How will the twin be validated before its reactions influence commitment?",
+        "What live user evidence is still required after in-silico screening?"
+      ],
+      "misuse_guards": [
+        "Do not treat simulated persona output as direct market proof.",
+        "Do not use digital twins as a replacement for real user research or live validation.",
+        "Do not screen with twins when transparency, privacy, manipulation, or bias controls are missing."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "AI Agents as Digital Twins",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "computational representations of users or customer segments designed to mimic behavioral tendencies, personality, language, and decision-making processes",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "validating twins for accuracy",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "predict customer reactions to new features",
+          "section_hint": "Concrete Examples",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "pre-validate decisions in silico",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "transparency, privacy, and avoiding manipulation or bias must be discussed and addressed",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR89 v51 split: the source supports digital twin screening as a distinct transaction because it adds persona source-data, twin validation, live-boundary, and ethical-control requirements not present in ordinary UX research.",
+        "dropped_material": [
+          "Did not interpret digital twins as runtime permission for LLM model calls.",
+          "Did not promote simulation as market proof or as a replacement for real-user evidence."
+        ],
+        "open_questions": [
+          "Packet stress review should keep this card visibly provisional so it does not authorize synthetic certainty."
         ],
         "review_status": "draft"
       }
@@ -121,6 +232,21 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "research-volume-as-rigor-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects gathering data for its own sake and supports just-enough evidence to prove or disprove a focused hypothesis.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "Gathering data for research's sake, or attempting to analyze every possible detail, wastes time and effort",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +259,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 15 source reading found strong reviewed depth for UX research as evidence-backed problem reframing.",
+    "normalization_note": "PR89 v51 source reread kept the observed-user-evidence card and added a separate, guarded digital-twin screening affordance where the source creates distinct validation and ethics requirements.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],
