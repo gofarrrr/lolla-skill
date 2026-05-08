@@ -88,11 +88,130 @@
       "review_notes": {
         "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports an incumbent-option inertia test that is balanced: challenge defaults without assuming change is always better.",
         "dropped_material": [
-          "Did not extract choice-architecture examples as separate affordances because the packet value is testing incumbent survival against alternatives.",
+          "Did not merge choice-architecture examples into this card because diagnosing incumbent survival and designing a beneficial default require different receiver actions.",
           "Did not extract general System 1 cognitive economy as a separate card."
         ],
         "open_questions": [
-          "Future packet review should test overlap with commitment-bias, lock-in, and path-dependence."
+          "Future packet review should test overlap with commitment-bias, lock-in, path-dependence, and default-choice architecture."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "status-quo-bias.default-choice-architecture",
+      "status": "supported",
+      "name": "Default choice architecture with opt-out guard",
+      "mechanism": "When the task is to design a repeated or low-stakes choice environment, deliberately set beneficial defaults or reduce choice overload while preserving an easy opt-out and checking for exploitation, so inertia supports the user's goal instead of silently protecting the incumbent.",
+      "activation_shape": {
+        "use_when": [
+          "The task is designing enrollment, opt-in or opt-out paths, defaults, or choice sets rather than diagnosing whether an incumbent plan should survive.",
+          "Decisions are repeatable, low-impact, or made under time pressure, and a helpful default could reduce cognitive load.",
+          "Choice overload is causing inaction, no-choice behavior, or default sticking, and reducing the option set would improve the decision."
+        ],
+        "do_not_use_when": [
+          "The default would exploit inertia for the designer's benefit against user welfare, informed consent, or easy reversal.",
+          "The case needs evidence-backed comparison of an incumbent and alternative rather than default or choice-set design.",
+          "The choice is high-stakes or irreversible enough that simplification would hide material trade-offs users must understand."
+        ],
+        "case_evidence_needed": [
+          "The desired behavior, welfare outcome, or operating standard the default should support.",
+          "The current default, opt-in or opt-out path, and evidence of choice overload, inaction, or avoidable cognitive load.",
+          "The options to reduce, preserve, disclose, or make easy to reverse.",
+          "The risk that the default manipulates rather than helps the decision-maker."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "design-beneficial-default-with-reversal",
+          "description": "Set the default around the user's welfare or operating goal, then preserve disclosure, opt-out, and reversal so status-quo inertia helps rather than traps.",
+          "evidence_required": [
+            "The welfare, participation, decision-quality, or operating outcome the default is meant to support.",
+            "The default state and the active opt-in or opt-out behavior required today.",
+            "The opt-out, reversal, disclosure, or review path that keeps the default from becoming coercive.",
+            "Evidence that the default helps a repeatable or low-stakes choice rather than hides a material trade-off."
+          ],
+          "good_output_shape": [
+            "Names the default and why it is beneficial in this context.",
+            "States the opt-out or reversal path plainly.",
+            "Separates helpful cognitive-load reduction from exploitative inertia.",
+            "Rejects default design when user welfare or informed reversal is not protected."
+          ]
+        },
+        {
+          "requirement_id": "reduce-choice-overload-with-welfare-check",
+          "description": "When too many options are causing paralysis, reduce the offered set while retaining the choices needed for meaningful user goals and decision quality.",
+          "evidence_required": [
+            "The current option set and evidence that overload is producing inaction or default sticking.",
+            "The options that can be removed, bundled, sequenced, or deferred without harming the user's goal.",
+            "The high-stakes or preference-sensitive options that must remain visible.",
+            "The success measure showing the reduced set improves decisions rather than only conversion."
+          ],
+          "good_output_shape": [
+            "Explains which choices are removed or sequenced and why.",
+            "Keeps materially different or high-stakes options visible.",
+            "Defines a decision-quality or welfare measure, not only an adoption metric.",
+            "Warns when simplification would become manipulation or information hiding."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What beneficial default would reduce cognitive load without trapping the user?",
+        "What opt-out, reversal, or disclosure keeps this default from becoming exploitative?",
+        "Which choices can be reduced because they create paralysis, and which choices must stay visible because they change welfare or risk?",
+        "Are we designing a helpful default, or using inertia to avoid evidence-backed comparison?"
+      ],
+      "misuse_guards": [
+        "Do not use default design as a dark pattern that exploits inertia against the decision-maker's welfare.",
+        "Do not reduce choices by hiding materially different, high-stakes, or preference-sensitive options.",
+        "Do not use choice architecture to avoid comparing the incumbent against a live alternative when that is the actual decision.",
+        "Do not treat adoption caused by friction or opt-out difficulty as proof that the default is beneficial."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "In the real world, the Status Quo Bias is applied—or exploited—most commonly in situations involving decision architecture and organizational inertia.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "If a company automatically enrolls employees in a 401(k) plan and requires them to actively opt-out, participation rates are significantly higher than if they must actively opt-in.",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "This uses the psychological inertia of the SQB to ensure the beneficial default option is maintained.",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "To overcome this, the **Less Frame** should be applied, which involves reducing the number of choices offered.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "When decisions are repeatable, low-impact, or occur under time pressure, relying on the status quo or heuristics (fast, established thinking) is highly effective for reducing **cognitive load**.",
+          "section_hint": "Contexts Where Status Quo Tendencies Are Most Powerful (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Split from the incumbent-option inertia test because this affordance designs defaults and option sets, while the existing card audits whether staying with an incumbent is evidence-backed or inertia-protected.",
+        "dropped_material": [
+          "Did not split 401(k) defaulting and Less Frame into separate affordances; both are choice-architecture treatments that use inertia or choice reduction deliberately.",
+          "Did not promote general consistency, trust, or AI-persona style persistence into this affordance because those are not default or choice-set design transactions."
+        ],
+        "open_questions": [
+          "Packet stress should verify that the exploitation guard remains visible when the card is rendered compactly."
         ],
         "review_status": "draft"
       }
@@ -149,7 +268,8 @@
   "review_notes": {
     "normalization_note": "Batch 5 source reading found strong reviewed depth for Status Quo Bias. Extracted one incumbent-option comparison record and preserved absences for anti-legacy and novelty-seeking misuse.",
     "dropped_material": [
-      "401(k), jam study, and executive vision examples were treated as illustrations rather than separate records.",
+      "The 401(k), Less Frame, and jam-study material is now represented in the default-choice-architecture affordance rather than collapsed into the incumbent-option comparison record.",
+      "Executive vision examples remain application context for incumbent-option inertia rather than separate records.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
     "open_questions": [

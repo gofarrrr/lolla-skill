@@ -223,6 +223,28 @@
           "confidence": "medium"
         }
       ]
+    },
+    {
+      "attempted_field": "calculated-label-with-unbounded-downside",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects treating a move as calculated when assumptions are weak, downside is unbounded, or dissent is ignored. Do not promote calculated-risk-taking unless the wager changes action, hedge, exposure limit, or commitment threshold.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "The model fails when teams call a move calculated even though assumptions were weak, downside was not bounded, or dissenting evidence was ignored.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Calculated_Risk_Taking_rag.md",
+          "source_quote": "The model adds value when the right move is neither reckless action nor timid avoidance, but a disciplined wager with bounded downside.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
