@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-08
-**Status:** Product doctrine after PR53 controlled economic / systems structure enrichment.
+**Status:** Product doctrine after PR54 completed reviewed source-backed coverage for all 222 runtime models.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_economic_systems_enrichment_ready`
+**Current posture:** `full_reviewed_source_backed_coverage_complete`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -68,6 +68,10 @@ memo, or user-facing launch plan.
 **Current controlled self-regulation / bias-calibration enrichment report:** `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`
 
 **Current controlled cultural / product communication enrichment report:** `research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md`
+
+**Current controlled economic / systems structure enrichment report:** `research/pr53-controlled-economic-systems-enrichment-report-2026-05-08.md`
+
+**Current controlled final graph-only enrichment report:** `research/pr54-controlled-final-graph-only-enrichment-report-2026-05-08.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -801,6 +805,23 @@ fatalism, emergent order with governance, promotion-fit diagnosis, institutional
 mechanism comparison, consulting evidence plans, tradition/innovation sorting,
 and high-variance evaluation with context and measurement-quality caveats.
 
+PR54 then completed the final graph-only enrichment batch:
+
+> `full_reviewed_source_backed_coverage_complete`
+
+Treat PR54 as source-backed substrate enrichment, not packet usefulness proof,
+runtime permission, prompt mechanics, deterministic reasoning-mode routing,
+educational diagnosis, psychological diagnosis, or proof that full reviewed
+coverage means Python can decide final judgment. It adds 16 Batch 17 records
+and compiles draft/review-only v18 with 222 reviewed records, 258 affordances,
+and 429 absence records. The useful depth is operational: agile feedback loops,
+causal diagnosis before blame, chain-of-thought verification, competence
+boundaries, compression with causal spine, outside-view repricing, latticework
+tests, fallacy premise checks, reality-map feedback, metacognitive course
+correction, perceptual cue learning, scaffolding fadeout, System 1 context
+checks, System 2 deliberation cost, leverage pruning, and time-tested
+present-fit validation.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -1016,16 +1037,23 @@ PR53 added the controlled economic / systems structure answer:
 > to response evidence, constraints, role fit, governance, outcome comparison,
 > and absence records that block market folklore, scale theater, ideology
 > shorthand, consulting slide theater, and punitive evaluation. v17 remains
-> dormant and full coverage should finish through one final bounded
-> source-backed batch, not broad Batch 3b.
+> dormant.
+
+PR54 added the full-coverage substrate answer:
+
+> Yes, the final 16 graph-only sources can produce compact reviewed depth when
+> extraction stays direct-reading and absence-friendly. v18 covers all 222
+> runtime models as draft/review-only substrate, with 0 graph-only runtime
+> models remaining in the reviewed artifact. That is not runtime permission; it
+> is the point where extraction stops being the default next move.
 
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, PR48, PR49, PR50, PR51,
-   PR52, and PR53 cards remain useful when
+   PR52, PR53, and PR54 cards remain useful when
    tested in additional candidate mixes, and which merely add internal bulk?
-2. Can PR54 complete the final 16 graph-only models without drifting into
-   mechanical schema filling?
+2. Which broad meta-reasoning cards need packet caps, renderer hardening, or
+   narrower field selection before any runtime experiment?
 3. When should the next periodic packet usefulness review happen so extraction
    quality stays connected to handoff usefulness?
 4. Which decision moments most clearly need pressure before action?

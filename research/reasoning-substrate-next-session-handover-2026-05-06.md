@@ -1,16 +1,15 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-08
-**Status:** Start-here handover after PR53 completed the controlled economic /
-systems structure enrichment batch. PR52 added source-backed v16 cultural /
-product communication depth; the user explicitly approved continued controlled
-extraction toward the full 222-model set while keeping the same quality rails.
+**Status:** Start-here handover after PR54 completed reviewed source-backed
+coverage for all 222 runtime models. PR54 added the final controlled Batch 17
+records for the last 16 graph-only models and compiled draft/review-only v18.
 This is still not runtime behavior, prompt promotion, lane rewrite, broad Batch
 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_economic_systems_enrichment_ready`
+**Current posture:** `full_reviewed_source_backed_coverage_complete`
 
-**Current PR:** PR53 - controlled economic / systems structure enrichment
+**Current PR:** PR54 - controlled final graph-only enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -72,6 +71,8 @@ This is still not runtime behavior, prompt promotion, lane rewrite, broad Batch
 
 **PR53 decision label:** `controlled_economic_systems_enrichment_ready`
 
+**PR54 decision label:** `full_reviewed_source_backed_coverage_complete`
+
 ## Start Here
 
 Read these files in order:
@@ -122,6 +123,8 @@ Read these files in order:
 44. `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 45. `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`
 46. `research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md`
+47. `research/pr53-controlled-economic-systems-enrichment-report-2026-05-08.md`
+48. `research/pr54-controlled-final-graph-only-enrichment-report-2026-05-08.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -207,6 +210,9 @@ Keep these layers distinct:
 | PR53 controlled economic / systems structure enrichment | 12 graph-only models from market pressure, pricing, scale, specialization, adaptation pressure, emergent order, promotion fit, institutional comparison, consulting methodology, tradition/innovation balance, and stress-test evaluation gained reviewed Batch 16 records with 12 affordances and 24 absence records; compiled as draft/review-only v17. |
 | v17 affordance corpus | 206 reviewed records, 242 affordances, 397 absence records. Draft/review-only v16 plus PR53 controlled economic/systems structure batch, not runtime-promoted. |
 | Graph-only after v17 | 16 runtime models remain eligible but not reviewed affordance records. |
+| PR54 controlled final graph-only enrichment | Final 16 graph-only models from agile delivery, causal attribution, chain-of-thought, competence boundaries, simplification, endowment, model-lattice, fallacy checking, reality maps, metacognition, perceptual learning, scaffolding, System 1, System 2, Tier-2 value, and time-tested validation gained reviewed Batch 17 records with 16 affordances and 32 absence records; compiled as draft/review-only v18. |
+| v18 affordance corpus | 222 reviewed records, 258 affordances, 429 absence records. Draft/review-only v17 plus PR54 final graph-only batch, not runtime-promoted. |
+| Graph-only after v18 | 0 runtime models remain graph-only in the draft reviewed artifact. |
 
 The governing sentence:
 
@@ -1687,10 +1693,9 @@ Decision Pressure output, create deterministic cultural classification,
 create deterministic persuasion routing, or allow deterministic final pressure
 selection.
 
-Historical PR52 recommendation was PR53. PR53 is now complete; the next slice
-should be PR54 as the final capped controlled extraction batch for the remaining
-16 graph-only runtime models. Keep the same direct-reading, absence-friendly
-quality standard and keep the next artifact draft/review-only.
+Historical PR52 recommendation was PR53. PR53 and PR54 are now complete. PR54
+finished the final 16 graph-only runtime models and compiled draft/review-only
+v18 with reviewed source-backed coverage for all 222 runtime models.
 
 ## What PR53 Added
 
@@ -1757,10 +1762,80 @@ Decision Pressure output, create deterministic market recommendations,
 create deterministic political classification, create deterministic consulting
 case templates, or allow deterministic final pressure selection.
 
-Recommended next slice is PR54: finish the remaining 16 graph-only runtime
-models in one final capped source-backed extraction batch. Keep the same
-direct-reading, absence-friendly quality standard and keep the next artifact
-draft/review-only.
+Historical PR53 recommendation was PR54. PR54 is now complete. The next useful
+slice should be a full-corpus reviewed coverage audit and/or packet stress
+review before any runtime promotion.
+
+## What PR54 Added
+
+PR54 answers the question: "Can the remaining meta-reasoning, cognitive-process,
+educational, and model-lattice graph-only shelves gain reviewed source-backed
+depth without turning Python into the reasoning actor?"
+
+It adds:
+
+- `data/model_affordances/batch_17/`;
+- `data/compiled/model_affordances/affordances_v18.json`;
+- `data/compiled/model_affordances/quality_report_v18.md`;
+- `tests/test_pr54_batch17_records.py`;
+- `research/pr54-controlled-final-graph-only-enrichment-report-2026-05-08.md`;
+- `tasks/tasks-controlled-final-graph-only-enrichment-batch.md`;
+- living-doc posture updates.
+
+Measured PR54 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v18 reviewed records: `222`;
+- v18 reviewed affordances: `258`;
+- v18 absence records: `429`;
+- graph-only runtime models after v18: `0`;
+- v18 status: `draft_review_only`;
+- schema validation failures: `0`;
+- source quote rejections: `0`.
+
+PR54's decision label is `full_reviewed_source_backed_coverage_complete`.
+
+The product lesson:
+
+> Full reviewed source-backed coverage is now complete, but it is still a
+> dormant substrate. The next question is not "what should we extract next?"
+> It is "how do we audit, stress, and package the complete reviewed substrate
+> without letting Python pretend it has judgment?"
+
+PR54 extracted exactly this target set:
+
+- `agile-methodologies`;
+- `causal-attribution-resistance`;
+- `chain-of-thought`;
+- `circle-of-competence`;
+- `complexity-bias-resistance`;
+- `endowment-effect`;
+- `latticework-of-mental-models`;
+- `logical-fallacies`;
+- `mental-models-of-reality`;
+- `meta-cognitive-reflection`;
+- `perceptual-learning`;
+- `scaffolding-educational`;
+- `system-1`;
+- `system-2`;
+- `tier-2-high-value`;
+- `time-tested-validation`.
+
+Each target received one compact reviewed affordance and two absence records.
+Several cards are broad meta-reasoning cards; later packet review should test
+whether they remain useful under caps and whether any need tighter packet shape
+before runtime experiments.
+
+PR54 does not promote v18 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, create user-facing
+Decision Pressure output, create deterministic reasoning-mode routing,
+create deterministic psychological or educational diagnosis, or allow
+deterministic final pressure selection.
+
+Recommended next slice is PR55: full-corpus reviewed coverage audit and/or
+packet stress review. Do not extract more by default; after v18 there are no
+remaining graph-only runtime models.
 
 ## PR24 Review Questions Answered
 
@@ -1813,7 +1888,8 @@ These remain blocked unless explicitly approved after product review:
 - live Observatory rendering;
 - memo / Step 8 / Step 6 integration;
 - Lane 4 runtime affordance integration;
-- new extraction unless explicitly opened as a controlled reviewed batch;
+- new extraction unless a future audit identifies a missing or defective
+  reviewed record and explicitly opens a controlled repair batch;
 - broad Batch 3 or Batch 3b;
 - paid Gate 4 reruns;
 - deterministic pressure selection;
@@ -1834,7 +1910,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "controlled_economic_systems_enrichment_ready|controlled_cultural_product_communication_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR52|PR53|PR54" plans research tasks -g '*.md'
+rg -n "full_reviewed_source_backed_coverage_complete|controlled_economic_systems_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR53|PR54|PR55" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1846,7 +1922,7 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR53 and do not infer permission for runtime work, broad
+Start from PR54 and do not infer permission for runtime work, broad
 Batch 3b, packet promotion, deterministic reasoning-mode routing,
 deterministic option selection, deterministic mastery classification, or
 deterministic statistical routing, deterministic psychological diagnosis, or
@@ -1896,9 +1972,10 @@ Read first:
 - research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md
 - research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md
 - research/pr53-controlled-economic-systems-enrichment-report-2026-05-08.md
+- research/pr54-controlled-final-graph-only-enrichment-report-2026-05-08.md
 
 Current posture:
-controlled_economic_systems_enrichment_ready
+full_reviewed_source_backed_coverage_complete
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -2308,13 +2385,33 @@ PR53 result:
   selection, deterministic pressure selection, or user-facing behavior was
   added
 
+PR54 result:
+- decision label: full_reviewed_source_backed_coverage_complete
+- the final 16 graph-only runtime models received reviewed batch_17 records
+- v18 draft/review-only compiled artifact exists with 222 reviewed records
+- PR54 added 16 affordances and 32 absence records
+- v18 contains 258 affordances and 429 absence records
+- 0 runtime models remain graph-only after v18
+- each target received one compact source-backed affordance and two absence
+  records
+- the records add handoff depth around agile feedback loops, causal attribution
+  caution, chain-of-thought verification, competence boundaries, simplicity
+  with causal spine, endowment repricing, latticework cross-checks, fallacy
+  checking, reality-map testing, metacognitive course correction, perceptual
+  cue learning, scaffolding fadeout, System 1 domain checks, System 2
+  deliberation cost, leverage pruning, and time-tested present-fit validation
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, deterministic reasoning-mode routing, deterministic psychological or
+  educational diagnosis, deterministic option selection, deterministic pressure
+  selection, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next slice is PR54: a final capped controlled source-backed extraction batch for
-the remaining 16 graph-only models. Full coverage is now the direction, but
-mechanical schema filling is still not acceptable.
+next slice is PR55: a full-corpus reviewed coverage audit and/or packet stress
+review. Full reviewed source-backed coverage is complete in v18, but runtime use
+still needs product review and guardrail hardening.
 ```
 
 ## Core Memory

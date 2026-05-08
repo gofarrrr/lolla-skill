@@ -1,0 +1,145 @@
+{
+  "model_id": "agile-methodologies",
+  "source_file": "Agile_Methodologies_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "agile-methodologies.feedback-loop-delivery-control",
+      "status": "supported",
+      "name": "Control delivery through learning loops",
+      "mechanism": "When delivery is underway but requirements, stakeholder learning, or technical realities keep changing, use agile methods to ship small increments, inspect feedback, and update the next cycle without pretending the whole path is knowable upfront.",
+      "activation_shape": {
+        "use_when": [
+          "Requirements, stakeholder learning, or technical realities are changing while delivery is already underway.",
+          "The team can ship in small increments and inspect real feedback before the next cycle.",
+          "The work needs short-duration plans, clear accountability, and visible learning rather than one frozen blueprint."
+        ],
+        "do_not_use_when": [
+          "External commitments, interfaces, or regulatory approvals are fixed enough that agility would deny real sequencing dependencies.",
+          "Agile ceremonies are continuing but backlog churn has replaced learning, accountability, or decision rights.",
+          "Hypothesis-driven sprints are being used to confirm a mandated conclusion rather than genuinely test it."
+        ],
+        "case_evidence_needed": [
+          "The uncertainty that makes a short learning loop necessary.",
+          "The real feedback signal the next iteration will inspect.",
+          "The accountability owner for the next increment.",
+          "The fixed dependencies that cannot be wished away by agile language."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-loop-feedback-and-fixed-dependencies",
+          "description": "Require the answer to name the delivery loop, the feedback source, and the fixed dependency so agility remains a learning control instead of ceremony.",
+          "evidence_required": [
+            "The changing requirement or stakeholder learning signal.",
+            "The next shippable increment.",
+            "The feedback mechanism that can change the plan.",
+            "Any real sequencing, interface, approval, or regulatory constraint."
+          ],
+          "good_output_shape": [
+            "Defines the next short cycle.",
+            "Names the feedback to inspect.",
+            "Keeps ownership explicit.",
+            "Warns where agile language cannot override fixed dependencies."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What has changed since the last plan, and what feedback would make the next cycle smarter?",
+        "What can be shipped or tested small enough to learn before full-plan commitment?",
+        "Which dependency is fixed enough that calling the work agile would become denial?"
+      ],
+      "misuse_guards": [
+        "Do not equate agile rituals with evidence of learning.",
+        "Do not use backlog churn as a substitute for clear ownership and decision rights.",
+        "Do not let sprint language confirm a mandated conclusion without a genuine test."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Agile_Methodologies_rag.md",
+          "source_quote": "requirements, stakeholder learning, or technical realities are expected to change",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Agile_Methodologies_rag.md",
+          "source_quote": "ship in small increments, inspect real feedback quickly",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Agile_Methodologies_rag.md",
+          "source_quote": "\"agile\" becomes denial about real sequencing or approval dependencies",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports agile as a delivery learning loop with explicit feedback and dependency caveats.",
+        "dropped_material": [
+          "Did not turn agile into a runtime project-management method or lane behavior.",
+          "Did not infer scrum-specific practice beyond the source's feedback-loop and accountability claims."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card stays distinct from iteration and lean-startup-methodology."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "agile-without-feedback-loop",
+      "status": "not_supported_by_source",
+      "reason": "The source requires real inspected feedback between increments; it does not support labeling ordinary motion or repeated work as agile without a feedback loop.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Agile_Methodologies_rag.md",
+          "source_quote": "inspect real feedback quickly",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "ceremony-as-agility",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that rituals can continue after learning and accountability disappear; it does not support treating ceremony as evidence of agility.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Agile_Methodologies_rag.md",
+          "source_quote": "agile rituals keep running but backlog churn replaces learning",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Agile_Methodologies_rag.md",
+      "source_quote": "rapid, team-based problem solving",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 kept agile as a feedback-and-accountability card, not a generic process slogan.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, project-management workflow, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should inspect whether agile adds unique value when iteration and feedback-loops are also nominated."
+    ],
+    "review_status": "draft"
+  }
+}

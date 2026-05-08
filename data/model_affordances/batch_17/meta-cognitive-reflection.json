@@ -1,0 +1,145 @@
+{
+  "model_id": "meta-cognitive-reflection",
+  "source_file": "Meta_Cognitive_Reflection_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "meta-cognitive-reflection.check-thinking-before-more-motion",
+      "status": "supported",
+      "name": "Check thinking before adding motion",
+      "mechanism": "When a team is busy producing output but may be confusing motion with thinking, use meta-cognitive reflection to add checkpoint questions about assumptions, progress, evidence quality, and course updates.",
+      "activation_shape": {
+        "use_when": [
+          "People are busy, producing output, or escalating effort without checking whether the method, frame, or objective still makes sense.",
+          "Reasoning quality needs active monitoring for bias, drift, overconfidence, or shallow understanding.",
+          "A plan needs checkpoint questions about assumptions, progress, evidence quality, and when to update course."
+        ],
+        "do_not_use_when": [
+          "Reflection becomes self-soothing instead of correction.",
+          "Endless questioning thwarts necessary action.",
+          "The team talks about its thinking without changing assumptions, methods, or decisions."
+        ],
+        "case_evidence_needed": [
+          "The method, frame, or objective currently being followed.",
+          "The assumption, evidence, or progress checkpoint that needs review.",
+          "The action change that would follow from reflection.",
+          "The time or trigger that prevents reflection from becoming rumination."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "tie-reflection-to-course-update",
+          "description": "Require the answer to connect reflection to a concrete assumption check, method change, or next action so metacognition does not become rumination.",
+          "evidence_required": [
+            "The current frame or method.",
+            "The assumption or evidence-quality question.",
+            "The progress signal being monitored.",
+            "The action, method, or decision that can change."
+          ],
+          "good_output_shape": [
+            "Names the checkpoint question.",
+            "States what evidence would update course.",
+            "Keeps reflection bounded.",
+            "Ends with a changed method or next action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are we doing more work because the method is working or because momentum has replaced thinking?",
+        "Which assumption, evidence signal, or objective needs an explicit self-audit now?",
+        "What would actually change if this reflection found a problem?"
+      ],
+      "misuse_guards": [
+        "Do not let reflection become self-soothing analysis.",
+        "Do not continue questioning without an action trigger.",
+        "Do not use sophisticated process language to avoid changing the method."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Meta_Cognitive_Reflection_rag.md",
+          "source_quote": "confusing motion with thinking",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Meta_Cognitive_Reflection_rag.md",
+          "source_quote": "explicit self-audit questions about assumptions, progress, evidence quality, and when to update course",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Meta_Cognitive_Reflection_rag.md",
+          "source_quote": "reflection becomes self-soothing instead of correction",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports reflection as bounded course correction, not endless self-analysis.",
+        "dropped_material": [
+          "Did not add deterministic self-reflection loops to runtime.",
+          "Did not convert metacognition into a generic instruction to think longer."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with metacognitive-questioning."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "metacognition-as-rumination",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that reflection can become analysis paralysis; it does not support endless self-questioning without action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Meta_Cognitive_Reflection_rag.md",
+          "source_quote": "endless questioning that thwarts necessary action",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "reflection-without-action-loop",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against reflection that does not change assumptions, methods, or decisions; it does not support reflection without an action loop.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Meta_Cognitive_Reflection_rag.md",
+          "source_quote": "without actually changing assumptions, methods, or decisions in response",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Meta_Cognitive_Reflection_rag.md",
+      "source_quote": "thinking about thinking",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 keeps meta-cognitive reflection as monitored correction tied to a next move.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, reflective loop, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether this card is distinct enough from metacognitive-questioning."
+    ],
+    "review_status": "draft"
+  }
+}
