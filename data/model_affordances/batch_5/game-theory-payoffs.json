@@ -202,6 +202,128 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "game-theory-payoffs.adverse-response-floor-test",
+      "status": "supported",
+      "name": "Adverse response floor test",
+      "mechanism": "When adversarial uncertainty makes downside survivability more important than the most likely payoff, require the answer to compare strategies by maximum loss, minimum gain, and exit threshold before recommending entry, escalation, or continued play.",
+      "activation_shape": {
+        "use_when": [
+          "A rival, adversary, or counterparty can choose a strongest plausible adverse response that could dominate the decision.",
+          "The decision is less about the average or expected payoff and more about whether the minimum outcome remains survivable.",
+          "A team is deciding whether to enter, avoid, continue, or exit a game after stress-testing the opponent's best response."
+        ],
+        "do_not_use_when": [
+          "The task only needs a map of players, moves, and decisive payoffs; use the counterparty-response payoff map instead.",
+          "The adverse response is not bounded, plausible, or tied to a specific opponent strategy.",
+          "Worst-case language is being used as fear theater without a minimum-gain, maximum-loss, or avoid-the-game threshold."
+        ],
+        "case_evidence_needed": [
+          "The players, candidate strategies, and opponent response being stress-tested.",
+          "The strongest plausible adverse response against the user's best or intended strategy.",
+          "The maximum loss, minimum gain, downside survivability, and avoid-or-exit threshold.",
+          "Any exit strategy or long-term outcome that changes whether the game is worth playing."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "calculate-adverse-response-floor",
+          "description": "Require the answer to compare candidate strategies by the minimum gain or maximum loss that remains after the opponent's strongest plausible response.",
+          "evidence_required": [
+            "The candidate strategies available to the actor.",
+            "The opponent's strongest plausible adverse response to each strategy.",
+            "The minimum gain, maximum loss, and downside threshold for each option."
+          ],
+          "good_output_shape": [
+            "Names the adverse response being tested.",
+            "Compares strategy floors rather than only expected or likely payoffs.",
+            "States which option has a survivable floor and which does not."
+          ]
+        },
+        {
+          "requirement_id": "decide-avoid-exit-or-continue",
+          "description": "Use the adverse-response floor to say whether the game should be avoided, exited, continued, or redesigned before play.",
+          "evidence_required": [
+            "The threshold that would make the game unacceptable.",
+            "The exit option or long-term consequence of continuing.",
+            "The relationship between the downside floor and the actor's capacity to survive it."
+          ],
+          "good_output_shape": [
+            "States the avoid-or-enter decision after the adverse response is included.",
+            "Separates robust strategy from optimistic expected-payoff reasoning.",
+            "Rejects games whose strongest plausible adverse response creates an unacceptable floor."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the opponent's strongest plausible response to our intended move?",
+        "Which strategy maximizes the minimum gain or minimizes the maximum loss?",
+        "If the strongest adverse response lands, is the downside still survivable?",
+        "Is the outcome bad enough to justify avoiding this game altogether?"
+      ],
+      "misuse_guards": [
+        "Do not optimize only the expected or likely payoff while burying a catastrophic adverse response.",
+        "Do not inflate every remote downside into a game-theory floor; require a plausible opponent response.",
+        "Do not build an ornate payoff tree when the decision turns on one or two survivability branches.",
+        "Do not use this affordance when the issue is credibility of a threat, promise, or commitment device rather than downside floor."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "Game theorists use constructs like minmax (choosing an outcome that maximizes your minimum gain) and maxmin (choosing an outcome that minimizes your maximum loss) to define robust strategies.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "Explicitly calculate strategies that minimize the maximum loss or maximize the minimum gain.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "use game theory to work through potential exit strategies and assess long-term outcomes.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "If the worst-case scenario occurs (the opponent chooses their best strategy against our best strategy), is the outcome bad enough to justify avoiding this game altogether?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "Stress-test low-probability, high-impact downside instead of optimizing only the expected case.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "If the opponent's strongest adverse response lands, is the downside still survivable?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR84 split this from payoff mapping because the downstream receiver transaction is not only to identify countermoves; it is to decide whether the strategy has a survivable floor after the opponent's strongest plausible response.",
+        "dropped_material": [
+          "Did not promote formal zero-sum mathematics or exhaustive minmax calculation beyond the source-supported robust-strategy and avoid-the-game check.",
+          "Did not duplicate risk-assessment or expected-value; this card requires an adversarial response that changes the floor of the game."
+        ],
+        "open_questions": [
+          "Packet stress should test whether this affordance sharpens adversarial-entry decisions without making every strategic packet worst-case dominated."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -275,13 +397,14 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 5 source reading found strong reviewed depth for Game Theory Payoffs. Extracted the original payoff-map affordance, preserved absences for false shared-game assumptions and ornate payoff trees, and PR77 adds a separate credible sequencing and commitment-device affordance. The PR60 credibility-device absence remains as the misuse boundary.",
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Game Theory Payoffs. Extracted the original payoff-map affordance, preserved absences for false shared-game assumptions and ornate payoff trees, PR77 added a credible sequencing and commitment-device affordance, and PR84 adds an adverse-response floor test.",
     "dropped_material": [
       "Formal equilibrium procedures and auction-specific tactics were not extracted because this batch targets compact packet handoff depth.",
+      "Corporate war-game workshops, empathy, Red Queen dynamics, and AI-agent modeling remain examples or relation context unless they change the receiver transaction.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
     "open_questions": [
-      "Later packet comparison should check whether payoff mapping and credible game-change sequencing remain legible as separate compact cards."
+      "Later packet comparison should check whether payoff mapping, credible game-change sequencing, and adverse-response floor testing remain legible as separate compact cards."
     ],
     "review_status": "draft"
   }

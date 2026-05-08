@@ -104,13 +104,150 @@
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports one costly proof-of-intent test and warns against cheap symbolic signals and impression management.",
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports a costly proof-of-intent test and warns against cheap symbolic signals and impression management.",
         "dropped_material": [
-          "Did not extract croc-brain, map/territory, or storytelling material as separate affordances.",
+          "PR84 splits actionable coordination from proof-of-intent because the downstream transaction is to make an abstract signal usable, not to demand costly unstaged proof.",
+          "Did not extract croc-brain persuasion, press-secretary self-justification, AI persona consistency, or ghostwriting value as separate affordances.",
           "Kept trust, attention, and reliability examples as supporting context for a compact proof test."
         ],
         "open_questions": [
           "Future packet review should test this card with reciprocity and international negotiation when signals may be staged."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "signaling.create-actionable-coordination-signal",
+      "status": "supported",
+      "name": "Actionable coordination signal",
+      "mechanism": "When a strategy, architecture, change, or abstract intent is accurate but not usable, require the answer to convert the signal into a focused, concrete, audience-fit map, story, diagram, or core message that resolves ambiguity and tells receivers what to do differently.",
+      "activation_shape": {
+        "use_when": [
+          "A complex, abstract, or invisible idea must become shared enough for employees, clients, investors, or collaborators to coordinate action.",
+          "The current message may be accurate, detailed, or strategically true but fails to guide the receiver's next decision or day-to-day choices.",
+          "Execution depends on bridging the gap between what should be done and how receivers should act, choose, or prioritize."
+        ],
+        "do_not_use_when": [
+          "The central issue is whether hidden quality, intent, reliability, or commitment is real; use the costly proof-of-intent test instead.",
+          "Sharper packaging would mainly hide a weak offer, weak reasoning, weak execution standard, or impression-management problem.",
+          "The receiver already has actionable decision criteria and the remaining issue is evidence quality rather than signal clarity."
+        ],
+        "case_evidence_needed": [
+          "The abstract strategy, architecture, change, vision, or intent being signaled.",
+          "The receiver group and the concrete decision, action, or priority the signal must guide.",
+          "The current signal's failure mode: abstraction, jargon, story-of-search clutter, too many purposes, threat, or accuracy without practical guidance.",
+          "The concrete map, story, diagram, analogy, example, or core message that would make the signal actionable."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-core-signal-and-action",
+          "description": "Require the answer to state the core signal and the receiver action it should enable before adding explanation, evidence, or narrative.",
+          "evidence_required": [
+            "The receiver and their decision context.",
+            "The single core message or signal the receiver must retain.",
+            "The concrete behavior, choice, prioritization, or interpretation the signal should change."
+          ],
+          "good_output_shape": [
+            "Names the action or decision the receiver should be able to make after the signal lands.",
+            "Separates the core signal from the sender's research trail or story of the search.",
+            "Rejects accurate-but-useless wording that leaves day-to-day choices unchanged."
+          ]
+        },
+        {
+          "requirement_id": "make-abstract-intent-concrete",
+          "description": "Translate the abstract idea into a concrete map, story, diagram, analogy, sensory detail, or example, then remove jargon and detail that does not help the receiver act.",
+          "evidence_required": [
+            "The abstract or invisible concept that needs translation.",
+            "The concrete form chosen to make it tangible: map, diagram, story, analogy, example, or specific language.",
+            "The unnecessary jargon, complexity, or competing purpose that should be removed."
+          ],
+          "good_output_shape": [
+            "Makes the concept tangible enough to coordinate behavior.",
+            "Uses concrete language that gives receivers a shared interpretation.",
+            "Omits details that confuse the receiver or dissipate the signal."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What action or decision should the receiver be able to take after this signal?",
+        "Which part of the message is accurate but still useless because it does not guide a choice?",
+        "What map, story, diagram, analogy, example, or concrete phrase makes the abstract intent actionable?",
+        "Which details are story-of-search clutter rather than decision signal?"
+      ],
+      "misuse_guards": [
+        "Do not treat clearer signaling as proof of hidden capability, intent, or commitment when costly unstaged proof is needed.",
+        "Do not use stories, visuals, or emotional simplification to disguise weak substance.",
+        "Do not present the sender's full search process when the receiver needs the core recommendation and rationale.",
+        "Do not rely on jargon, slogans, or multiple purposes that mean different things to different receivers."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "communication is never just about transferring facts; it is about creating a shared, actionable reality",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "resolve ambiguity and manage uncertainty",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "Signaling is essential when communicating abstract or invisible ideas, such as company strategy, software architecture, or change management.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "Using conceptual charts, diagrams, or stories helps visualize non-quantified links, making these concepts feel tangible and actionable.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "Clear, focused messaging and structuring the communication around actions ensure that the intended strategy translates into actionable steps for employees or clients.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "An idea can be accurate but useless if it fails to help the recipient make decisions.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "telling a flight attendant to \"maximize shareholder value\" is accurate but offers no guidance on day-to-day choices",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "Misapplication through Abstract Jargon",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR84 split this from costly proof-of-intent because the receiver action is to make a true or strategic signal actionable enough to coordinate behavior, not to judge whether the signal proves hidden commitment.",
+        "dropped_material": [
+          "Did not promote primal-brain persuasion, hot-cognition sales tactics, or story polish as an independent affordance; the card requires actionable coordination rather than bypassing analysis.",
+          "Did not duplicate social-proof, reciprocity, or authority-bias proof checks."
+        ],
+        "open_questions": [
+          "Packet stress should test whether this card helps strategy/change-management cases without becoming generic communication advice."
         ],
         "review_status": "draft"
       }
@@ -180,12 +317,12 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Signaling. Extracted one costly proof-of-intent test and rejected cheap symbolic signals, impression-management-as-substance, and PR77's low-cost commercial signals as proof of authority or buying intent.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Signaling. Extracted a costly proof-of-intent test; PR84 adds a separate actionable coordination signal; rejected cheap symbolic signals, impression-management-as-substance, and PR77's low-cost commercial signals as proof of authority or buying intent.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
     "open_questions": [
-      "Later packet comparison should check whether this card helps receivers demand better proof without over-reading every small action."
+      "Later packet comparison should check whether proof-of-intent and actionable-coordination signaling remain legible as separate compact cards."
     ],
     "review_status": "draft"
   }
