@@ -7,12 +7,12 @@
       "affordance_id": "commitment-bias.recommitment-stop-rule-review",
       "status": "supported",
       "name": "Recommitment stop-rule review",
-      "mechanism": "When a prior commitment creates momentum, require the answer to distinguish useful follow-through from escalation, name the stop rule, and test whether new evidence would still justify recommitting if sunk costs, public identity, or ego were removed.",
+      "mechanism": "When a prior commitment creates momentum after evidence changes, require the answer to separate future value from escalation, name the stop rule, and test whether recommitment still makes sense if sunk costs, public identity, or ego were removed.",
       "activation_shape": {
         "use_when": [
           "A prior choice, investment, promise, public stance, or identity-linked goal is shaping current judgment.",
-          "Execution needs persistence but also explicit stop rules before additional resources are committed.",
-          "The main risk is either under-follow-through or over-escalation after evidence changes."
+          "New evidence raises whether an existing commitment should be stopped, revised, or recommitted to before additional resources are committed.",
+          "The main risk is over-escalation, sunk-cost defense, or consistency being treated as correctness after evidence changes."
         ],
         "do_not_use_when": [
           "The commitment is a reversible experiment with clear learning cadence and live stop rules already in place.",
@@ -86,13 +86,107 @@
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a recommitment stop-rule review that preserves useful follow-through while blocking escalation and sunk-cost defense.",
+        "normalization_note": "Batch 5 outcome tightened in PR57: this affordance handles recommitment review after prior choices and changed evidence, while the separate constructive-commitment card handles under-follow-through before escalation pressure appears.",
         "dropped_material": [
           "Did not extract sales foot-in-the-door or AI persona consistency as separate affordances because they illustrate commitment mechanics but are less useful for packet review.",
           "Did not duplicate sunk-cost-fallacy; this record focuses on recommitment after identity or public stance hardens."
         ],
         "open_questions": [
           "Future packet review should test whether this card adds distinct value beside status-quo-bias and sunk-cost-fallacy."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "commitment-bias.constructive-commitment-architecture",
+      "status": "supported",
+      "name": "Constructive commitment architecture",
+      "mechanism": "When the failure mode is drift rather than escalation, require the answer to design a reversible commitment structure: small initial commitment, cadence, identity or value alignment, accountability surface, and explicit review or stop rule.",
+      "activation_shape": {
+        "use_when": [
+          "Execution is unraveling through distraction, drift, or weak follow-through rather than through a bad plan already overfunded.",
+          "A reversible experiment, disciplined cadence, or identity-based habit would make useful persistence more likely.",
+          "The commitment can be aligned with genuine values and paired with explicit review or stop rules."
+        ],
+        "do_not_use_when": [
+          "Evidence has changed and the question is whether to stop or recommit after prior investment; use the stop-rule review affordance instead.",
+          "The commitment device would pressure compliance, manipulate identity, or manufacture public consistency without informed consent.",
+          "The commitment is irreversible, ego-protective, or lacks a review cadence."
+        ],
+        "case_evidence_needed": [
+          "The desired behavior, strategic focus, or habit that needs follow-through.",
+          "Evidence that the current failure mode is drift, distraction, or weak accountability.",
+          "The proposed commitment form, cadence, or identity-alignment mechanism.",
+          "The review trigger, stop rule, or reversibility constraint that prevents escalation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "design-commitment-with-review-cadence",
+          "description": "Require the answer to design a commitment mechanism that increases follow-through while preserving reversibility, values fit, and explicit review discipline.",
+          "evidence_required": [
+            "The behavior or focus that needs commitment.",
+            "The under-follow-through pattern the commitment should counter.",
+            "The cadence, accountability surface, or identity framing being proposed.",
+            "The review trigger or stop rule that keeps commitment from becoming escalation."
+          ],
+          "good_output_shape": [
+            "Names the follow-through failure.",
+            "Designs a small or reversible commitment mechanism.",
+            "Connects the commitment to values, cadence, or accountability.",
+            "States the review or stop rule that prevents stale persistence."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What small, reversible commitment would make the desired behavior more likely this week?",
+        "How will the commitment stay aligned with genuine values rather than public identity pressure?",
+        "What cadence or stop rule lets the team learn without escalating?"
+      ],
+      "misuse_guards": [
+        "Do not use commitment design as foot-in-the-door manipulation.",
+        "Do not create identity pressure without reversibility and review.",
+        "Do not promote persistence when new evidence calls for recommitment stop-rule review."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "Leverage the tendency of minor verbal commitments to lead to much larger behavior changes",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "technical recommendations or engineering/economic strategies alone do not build commitment or accountability",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "reversible experiment, disciplined cadence, or identity-based habit that benefits from staying power",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Commitment_Bias_rag.md",
+          "source_quote": "main risk is under-follow-through rather than over-escalation",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR57 targeted enrichment: the source supports constructive commitment architecture as a separate receiver transaction from recommitment stop-rule review. This card is for useful follow-through under drift, not escalation after changed evidence.",
+        "dropped_material": [
+          "Kept sales foot-in-the-door and AI persona consistency as cautionary or illustrative material rather than standalone positive affordances.",
+          "Did not expand into generic productivity scheduling; the card requires under-follow-through evidence plus review and reversibility."
+        ],
+        "open_questions": [
+          "Packet stress should check whether both commitment-bias affordances remain grouped so the receiver can choose constructive commitment or stop-rule review, not blend them."
         ],
         "review_status": "draft"
       }
@@ -147,9 +241,9 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 5 source reading found strong reviewed depth for Commitment Bias. Extracted one recommitment stop-rule review and rejected sunk-cost defense plus consistency-as-correctness.",
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Commitment Bias. PR57 adds a second, source-backed transaction for constructive commitment architecture while preserving the original recommitment stop-rule review.",
     "dropped_material": [
-      "Persuasion/compliance examples and fixed-schedule productivity were kept as context rather than separate PR32 records.",
+      "Foot-in-the-door persuasion, AI persona consistency, and generic productivity scheduling remain context rather than separate positive runtime affordances.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
     "open_questions": [
