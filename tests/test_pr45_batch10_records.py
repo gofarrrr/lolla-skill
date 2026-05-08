@@ -37,6 +37,10 @@ APPROVED_BATCH_MODEL_IDS = {
     "wysiati",
 }
 
+APPROVED_MULTI_AFFORDANCE_MODEL_IDS = {
+    "metacognitive-questioning",
+}
+
 LIVE_RUNTIME_PATHS = (
     REPO_ROOT / "engine" / "system_b" / "__init__.py",
     REPO_ROOT / "engine" / "system_b" / "pipeline.py",
@@ -92,7 +96,10 @@ def test_pr45_batch10_records_are_compact_and_absence_first() -> None:
         absences = record["absence_records"]
 
         assert record["status"] == "supported"
-        assert len(affordances) == 1
+        expected_affordance_count = (
+            2 if model_id in APPROVED_MULTI_AFFORDANCE_MODEL_IDS else 1
+        )
+        assert len(affordances) == expected_affordance_count
         assert len(absences) == 2
         assert affordances[0]["confidence"] == "high"
         assert all(absence["runtime_policy"] == "do_not_promote" for absence in absences)
