@@ -216,6 +216,57 @@
           "confidence": "medium"
         }
       ]
+    },
+    {
+      "attempted_field": "standalone-reference-class-forecasting-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source uses reference classes and outside-view anchoring as inputs to EV reasoning, but the distinct operational contract for prior or reference-class anchoring belongs to the base-rates record. Expected-value should consume credible priors as inputs to weighted payoff comparison, not promote a second reference-class affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "EV principles are applied using **reference classes** to predict uncertain outcomes.",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "**Anchor your beliefs** to established reference classes (historical data from similar situations) rather than relying solely on the particulars of your current situation.",
+          "section_hint": "Mitigation Strategies and Pre-Mortem Questions",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-decision-tree-scenario-or-game-theory-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source lists decision trees, scenario analysis, known and unknowns, and game theory as methods that feed EV reasoning. They do not add a separate Expected Value affordance beyond probability-weighted payoff comparison, assumption stress-testing, and tail-risk boundaries; standalone use belongs to adjacent records such as decision-trees, game-theory-payoffs, calculated-risk-taking, risk-assessment, or uncertainty-routing records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "**Decision Trees:** These are logical frameworks used to break down problems. They are particularly useful for **modeling choices that are probabilistic in nature**",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "When dealing with complexity or black swan events, one must use systems thinking and **scenario analysis** to systematically uncover risks and assess their impact.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "In competitive or adversarial settings, EV principles are integrated with game theory.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
