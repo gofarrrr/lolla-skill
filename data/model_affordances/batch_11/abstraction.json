@@ -89,6 +89,108 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "abstraction.abductive-hypothesis-framing-check",
+      "status": "supported",
+      "name": "Abductive hypothesis framing check",
+      "mechanism": "When sparse observations must become a provisional explanation or solution hypothesis, require the answer to state the abstract hypothesis, the observations and assumptions behind it, and the next evidence needed to prove, disprove, or replace it.",
+      "activation_shape": {
+        "use_when": [
+          "Limited observations must be turned into the most plausible explanatory or solution hypothesis before focused analysis can begin.",
+          "A team needs an abstract early guess that directs data gathering and analysis rather than more open-ended fact collection.",
+          "Design or strategy work requires suppressing assumptions and distilling observations into a conceptual model that can be tested."
+        ],
+        "do_not_use_when": [
+          "The provisional hypothesis is being treated as a confirmed category or final abstraction.",
+          "The abstraction hides untested assumptions or selects evidence only to confirm the early guess.",
+          "The case already has enough concrete evidence and only needs compression back into an actionable model."
+        ],
+        "case_evidence_needed": [
+          "The limited observations being explained.",
+          "The provisional abstract hypothesis.",
+          "The assumptions that must hold for the hypothesis to be plausible.",
+          "The evidence that would prove, disprove, or refine the hypothesis.",
+          "The competing hypothesis or disconfirming observation to test."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "frame-hypothesis-then-test",
+          "description": "Require the answer to turn sparse observations into a provisional abstraction, expose its assumptions, and specify the smallest useful evidence plan that can prove or disprove it.",
+          "evidence_required": [
+            "The sparse observations.",
+            "The candidate abstract explanation or solution.",
+            "The assumptions behind the candidate abstraction.",
+            "The focused evidence-gathering or disconfirmation plan."
+          ],
+          "good_output_shape": [
+            "States the provisional hypothesis.",
+            "Names the observations it explains.",
+            "Lists assumptions that must be true.",
+            "Defines the next proof, disproof, or refinement evidence."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What limited observations are we trying to explain with this abstraction?",
+        "What would have to be true for this hypothesis to be the right abstraction?",
+        "What evidence would prove, disprove, or refine the hypothesis next?"
+      ],
+      "misuse_guards": [
+        "Do not treat an abductive hypothesis as a confirmed model.",
+        "Do not let high-level labels hide untested assumptions.",
+        "Do not gather more facts than needed to prove or disprove the hypothesis."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "Abstraction is vital for **abductive reasoning**",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "use a limited set of observations to generate the most plausible explanation",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "This process starts with formulating a hypothesis—an abstract, early guess at the answer—which then dictates the structure of the data gathering and analysis.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "requires designers to suppress assumptions and distill observations into conceptual models.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "abstraction_rag.md",
+          "source_quote": "Gather only enough facts to prove or disprove a hypothesis—anything more is a waste of time and effort.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR85 targeted enrichment: the source supports abductive hypothesis framing as a separate transaction from evidence-anchored compression.",
+        "dropped_material": [
+          "Did not promote logic trees, Feynman explanation, or AI digital twins as separate abstraction affordances.",
+          "Kept evidence-anchored compression in the existing affordance."
+        ],
+        "open_questions": [
+          "Packet review should test whether this card helps the receiver form a provisional hypothesis without converting it into a confirmed abstraction."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -133,12 +235,13 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 11 source reading found strong reviewed depth for abstraction as evidence-anchored compression.",
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for abstraction as evidence-anchored compression. PR85 adds a separate abductive hypothesis card for sparse-observation cases where the abstraction is an early guess that directs evidence gathering.",
     "dropped_material": [
+      "PR85 rejected logic trees, Feynman explanation, and AI digital twins as separate abstraction cards.",
       "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
     ],
     "open_questions": [
-      "Later packet review should test whether this card helps the next LLM compress without overclaiming."
+      "Later packet review should test whether abstraction cards remain grouped by transaction: compression/regrounding versus hypothesis framing/testing."
     ],
     "review_status": "draft"
   }

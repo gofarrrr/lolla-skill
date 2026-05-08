@@ -89,6 +89,102 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "association.schema-bridge-for-usable-context",
+      "status": "supported",
+      "name": "Schema bridge for usable context",
+      "mechanism": "When an unfamiliar idea will not become useful until it connects to a known mental structure, require the answer to name the audience schema, map the new idea into that schema, and state the action or decision the bridge makes easier without treating the shortcut as proof.",
+      "activation_shape": {
+        "use_when": [
+          "A new idea, product, or recommendation becomes valuable only after it connects to an existing structure, story, schema, or known pattern.",
+          "Communication needs instant context without long explanation and the audience has a familiar mental bucket that can carry the new idea.",
+          "The goal is to make unfamiliar material quickly usable, memorable, or actionable rather than to prove a causal transfer."
+        ],
+        "do_not_use_when": [
+          "The associative bridge is being used as evidence that the source and target structures causally match.",
+          "The audience may not share the assumed schema, so the shortcut becomes curse-of-knowledge communication.",
+          "The simplified association is accurate but too abstract or complex to guide action."
+        ],
+        "case_evidence_needed": [
+          "The unfamiliar idea or recommendation that needs context.",
+          "The audience or user schema being activated.",
+          "The mapping between the familiar structure and the new idea.",
+          "The action, prediction, or decision the bridge should make easier.",
+          "The boundary where the schema bridge could mislead."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-schema-to-actionable-context",
+          "description": "Require the answer to identify the listener's existing schema, connect the new idea to it, state the practical use created by the bridge, and flag the boundary where the shortcut stops helping.",
+          "evidence_required": [
+            "The new idea being bridged.",
+            "The existing schema or mental bucket.",
+            "The audience or user who must understand it.",
+            "The action or decision made easier.",
+            "The boundary or likely misread."
+          ],
+          "good_output_shape": [
+            "Names the familiar schema.",
+            "Maps the new idea into that schema.",
+            "Explains the action or decision the bridge enables.",
+            "Separates usable context from causal proof."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What familiar schema would make this unfamiliar idea immediately usable for this audience?",
+        "What action or decision does the association make easier?",
+        "Where would the schema bridge stop helping or start misleading?"
+      ],
+      "misuse_guards": [
+        "Do not treat a schema bridge as proof that the source and target cases share causal structure.",
+        "Do not assume the audience has the expert's associations.",
+        "Do not use an accurate but unactionable association that leaves the receiver unable to decide what to do."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "Strategically, it provides **instant context and understanding** by relating new information to existing knowledge structures.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "Most useful when a new idea becomes valuable only after it connects to an existing structure",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "Best when communication needs instant context without long explanation",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "A **high-concept pitch** works by creating a simple, one-sentence analogy",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR85 targeted enrichment: the source supports schema bridging for usable context as a separate receiver transaction from structural association testing.",
+        "dropped_material": [
+          "Did not promote general pre-suasion, role-based prompting, or digital advisory boards as standalone association cards.",
+          "Kept causal-fit checking in the existing structural-association-test affordance."
+        ],
+        "open_questions": [
+          "Packet review should test whether this card helps the receiver make unfamiliar ideas usable without letting the shortcut become proof."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -121,6 +217,21 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "schema-bridge-without-audience-action",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that accurate associations can still be useless if they are too complex or abstract to connect with action, prediction, or daily decision-making.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "An accurate message that is too complex or abstract to be associated with action or clear predictions is without value.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,12 +244,13 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 11 source reading found strong reviewed depth for association as structural match testing.",
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for association as structural match testing. PR85 adds a separate schema-bridge affordance for usable context when the downstream action is communication/comprehension rather than causal transfer.",
     "dropped_material": [
+      "PR85 rejected generic pre-suasion, AI persona construction, and digital advisory-board material as separate association affordances.",
       "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
     ],
     "open_questions": [
-      "Later packet review should test whether this card makes analogical options safer and more useful for the next LLM."
+      "Later packet review should test whether the two association cards remain distinct: one bridges unfamiliar ideas into usable context, the other tests structural fit before transfer."
     ],
     "review_status": "draft"
   }

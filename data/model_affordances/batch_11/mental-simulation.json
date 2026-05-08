@@ -191,6 +191,116 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "mental-simulation.persona-fidelity-role-play",
+      "status": "supported",
+      "name": "Persona fidelity role play",
+      "mechanism": "When the case depends on how modeled actors or workflows would react, require the answer to define the persona or twin with grounding data, behavioral tendencies, decision rules, pressure context, and validation checks before using role-play output as decision material.",
+      "activation_shape": {
+        "use_when": [
+          "The decision depends on stakeholder, customer, buyer, regulator, expert, or workflow behavior that can be simulated through role-play or digital twins.",
+          "The answer proposes a digital advisory board, multi-agent role-play, persona twin, or process twin to surface reactions, concerns, or bottlenecks.",
+          "The modeled behavior can be grounded in relevant data, behavioral tendencies, decision rules, context, and human-calibrated validation queries."
+        ],
+        "do_not_use_when": [
+          "The persona is defined mainly by surface demographics rather than relevant behavior, decision logic, or context.",
+          "The simulation output is being treated as evidence without validation, measurement, or human calibration.",
+          "A vivid role-play substitutes for direct stakeholder engagement, real-world feedback, or threshold-based scenario testing."
+        ],
+        "case_evidence_needed": [
+          "The actor, stakeholder, persona, process, or workflow being simulated.",
+          "The grounding data and relevant behavioral tendencies.",
+          "The decision-making framework or rules the persona should follow.",
+          "The context or pressure condition being role-played.",
+          "The validation queries, expected ideal answers, or human calibration step."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-persona-fidelity-and-validation",
+          "description": "Require the answer to specify the modeled actor, behavior model, decision rules, pressure context, and validation step before using simulated reactions as planning material.",
+          "evidence_required": [
+            "The modeled actor or workflow.",
+            "The grounding data or source of fidelity.",
+            "The behavioral tendencies or personality traits that matter.",
+            "The decision framework or rules.",
+            "The validation or calibration check."
+          ],
+          "good_output_shape": [
+            "Names the modeled persona or twin.",
+            "Grounds behavior in relevant data and tendencies.",
+            "States the decision rules under pressure.",
+            "Labels outputs as simulated signals requiring validation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which actor or workflow are we simulating, and what data grounds that model?",
+        "What behavioral tendencies and decision rules should shape the simulated response?",
+        "What validation query or human-calibrated answer would tell us whether the persona is reliable enough to use?"
+      ],
+      "misuse_guards": [
+        "Do not infer behavior from demographics alone.",
+        "Do not trust persona outputs without validation or measurement.",
+        "Do not let vivid role-play become evidence of what real stakeholders will do."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "AI is used as a \"digital twin creator\"—a way to **clone countless realistic personas and scenarios**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "A digital twin is a carefully crafted AI persona, grounded in data, designed to think and act as a target human or system would in a given context.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "**Explicit Persona Definition (Digital Twins):** To create high-fidelity simulations",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "**Behavioral Tendencies and Personality:** Deep psychological traits",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "**Decision-Making Framework:** Encoding the explicit logic and rules",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "Validate AI simulations by defining a small set of **test queries with expected ideal answers**",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR85 targeted enrichment: the source supports persona and digital-twin role-play as a separate transaction from strategic scenario rehearsal and personal skill rehearsal.",
+        "dropped_material": [
+          "Did not promote generic AI agent enthusiasm or unvalidated advisory-board output.",
+          "Kept threshold-based future comparison in assumption-bound scenario rehearsal."
+        ],
+        "open_questions": [
+          "Packet review should test whether this card surfaces stakeholder reactions without letting simulated personas masquerade as evidence."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -223,6 +333,21 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "demographic-only-persona-simulation",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that demographic-only persona construction can produce stereotyping and inaccurate behavioral predictions, so persona simulation must require behavioral and decision-rule fidelity.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "While demographics set context, focusing only on them can lead to **stereotyping** and inaccurate behavioral predictions.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -235,12 +360,13 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 11 source reading found strong reviewed depth for mental-simulation as assumption-bound scenario rehearsal. PR58 adds skill rehearsal and response preparation as a second, source-backed transaction.",
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for mental-simulation as assumption-bound scenario rehearsal. PR58 adds skill rehearsal and response preparation; PR85 adds persona-fidelity role-play as a third, source-backed transaction.",
     "dropped_material": [
+      "PR85 rejected demographic-only persona construction and generic unvalidated AI advisory-board output.",
       "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
     ],
     "open_questions": [
-      "Later packet review should test whether this card improves scenario comparison without overclaiming simulation certainty."
+      "Later packet review should test whether the three mental-simulation cards stay distinct: scenario thresholds, skill rehearsal, and persona-fidelity role-play."
     ],
     "review_status": "draft"
   }
