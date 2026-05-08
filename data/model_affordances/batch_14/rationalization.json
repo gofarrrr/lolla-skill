@@ -1,0 +1,145 @@
+{
+  "model_id": "rationalization",
+  "source_file": "Rationalization_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "rationalization.rationale-vs-real-driver-test",
+      "status": "supported",
+      "name": "Rationale versus real driver test",
+      "mechanism": "When a recommendation sounds clean, logical, or politically convenient, require the answer to separate stated rationale from actual drivers by testing premises, disconfirming evidence, emotional data, and the conditions that would force revision.",
+      "activation_shape": {
+        "use_when": [
+          "A decision already feels attractive, identity-protective, or politically convenient.",
+          "The argument is tidy but premises, data quality, or causal assumptions may be weak.",
+          "The team needs falsification discipline rather than a better-sounding story."
+        ],
+        "do_not_use_when": [
+          "The rationale was built before commitment and has already been pressure-tested.",
+          "The case is mainly communication clarity rather than post-hoc defense.",
+          "The answer would use rationalization as a mind-reading accusation without evidence."
+        ],
+        "case_evidence_needed": [
+          "The stated rationale and the decision it supports.",
+          "The timing of the rationale relative to the commitment.",
+          "Premises, data quality, and causal links.",
+          "Evidence that would disconfirm or force revision."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "pressure-test-stated-rationale",
+          "description": "Require the answer to test whether the stated rationale is doing discovery work or merely defending a desired conclusion.",
+          "evidence_required": [
+            "Stated rationale.",
+            "Desired or already-made decision.",
+            "Underlying premises and evidence.",
+            "Disconfirmation or revision threshold."
+          ],
+          "good_output_shape": [
+            "Separates claims, evidence, and assumptions.",
+            "Asks what evidence would compel rejection.",
+            "Checks emotional, political, or identity drivers.",
+            "Warns when the argument is cleaner than the evidence."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Was this rationale discovered before the decision or assembled after commitment?",
+        "What information would compel us to reject this solution?",
+        "Which premises are doing real work, and how good is the evidence behind them?"
+      ],
+      "misuse_guards": [
+        "Do not infer hidden motives from a clean argument alone.",
+        "Do not mistake logical structure for truth when evidence is weak.",
+        "Do not let rationalization review become endless analysis without a bounded falsification check."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Rationalization_rag.md",
+          "source_quote": "providing a logical or acceptable explanation for actions or beliefs motivated by non-rational factors",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Rationalization_rag.md",
+          "source_quote": "Strong hypotheses are framed not to be proven, but to be challenged and pressure tested",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Rationalization_rag.md",
+          "source_quote": "Danger when the argument is cleaner than the evidence",
+          "section_hint": "Common Anti-Patterns and Dangerous Misapplications",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports rationalization as a rationale-vs-driver pressure test.",
+        "dropped_material": [
+          "Did not extract rationalization as mind-reading.",
+          "Did not turn logical communication patterns into proof of truth."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with cognitive-dissonance and first-principles records."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "good-reason-as-true-reason",
+      "status": "not_supported_by_source",
+      "reason": "The source distinguishes stated rationale from psychological rationalization, so a good-sounding reason is not proof of the true driver.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Rationalization_rag.md",
+          "source_quote": "stated rationale is driving the choice or merely defending it",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "post-hoc-story-as-accountability",
+      "status": "not_supported_by_source",
+      "reason": "The source's press-secretary metaphor frames post-hoc stories as defensive spin, not accountability or source-backed explanation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Rationalization_rag.md",
+          "source_quote": "strategically spinning the truth",
+          "section_hint": "Most Powerful Analogies and Metaphors",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Rationalization_rag.md",
+      "source_quote": "What information would compel us to reject this solution",
+      "section_hint": "Effective Mitigation Strategies and Pre-Mortem Questions",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for testing whether logic is discovery or defense.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card makes post-hoc explanation risks inspectable."
+    ],
+    "review_status": "draft"
+  }
+}

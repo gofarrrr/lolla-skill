@@ -1,0 +1,145 @@
+{
+  "model_id": "cognitive-dissonance",
+  "source_file": "Cognitive_Dissonance_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "cognitive-dissonance.commitment-evidence-revision-check",
+      "status": "supported",
+      "name": "Commitment evidence revision check",
+      "mechanism": "When a public, costly, or identity-linked commitment is being defended against contrary evidence, require the answer to separate evidence updating from comfort-restoring belief revision and add pre-set exit or review criteria.",
+      "activation_shape": {
+        "use_when": [
+          "A person or team is defending a prior commitment after contrary signals appear.",
+          "The commitment is public, ego-identified, costly, or hard to reverse.",
+          "Evidence avoidance, rationalization, or escalation may be preserving psychological consistency."
+        ],
+        "do_not_use_when": [
+          "The discomfort is simply a useful sign of unresolved uncertainty and no commitment defense is visible.",
+          "The case lacks evidence of prior commitment, identity threat, or contrary signals.",
+          "A better fit is purely financial sunk-cost analysis or operational bottleneck diagnosis."
+        ],
+        "case_evidence_needed": [
+          "The prior commitment and who is identified with it.",
+          "The contrary signal being minimized or avoided.",
+          "The current rationalization or escalation behavior.",
+          "Any kill criteria, leading indicators, or independent review path."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-comfort-from-update",
+          "description": "Require the answer to name the discomfort-preserving commitment, the evidence being defended against, and a review mechanism that makes changing course socially and psychologically cheaper.",
+          "evidence_required": [
+            "Public or ego-linked commitment.",
+            "Contrary evidence or failure signal.",
+            "Current belief-revision or evidence-avoidance behavior.",
+            "Predefined criteria for continuing, changing, or stopping."
+          ],
+          "good_output_shape": [
+            "Distinguishes honest belief updating from comfort-restoring rationalization.",
+            "Asks what evidence would make the prior commitment wrong.",
+            "Adds kill criteria or independent review before more commitment.",
+            "Protects public mind-changing as good judgment, not humiliation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What commitment would become uncomfortable if this evidence were taken seriously?",
+        "Are we revising beliefs toward accuracy or toward consistency with what we already did?",
+        "What would we do if this same project or position were brought fresh today?"
+      ],
+      "misuse_guards": [
+        "Do not treat all discomfort as cognitive dissonance.",
+        "Do not use the label to psychoanalyze motives without commitment and evidence-avoidance signals.",
+        "Do not resolve the tension by urging consistency; the source frames the risk as motivated belief revision."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Dissonance_rag.md",
+          "source_quote": "people do not change behavior to align with beliefs nearly as often as they change beliefs to align with behavior",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Dissonance_rag.md",
+          "source_quote": "a public, ego-identified commitment has been made",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Dissonance_rag.md",
+          "source_quote": "Apply explicit kill criteria before committing resources",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports dissonance as post-commitment belief revision requiring exit criteria and independent review.",
+        "dropped_material": [
+          "Did not extract generic discomfort management.",
+          "Did not convert cognitive dissonance into motive certainty."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with commitment-bias and sunk-cost records."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "discomfort-as-error",
+      "status": "not_supported_by_source",
+      "reason": "The source treats dissonance as a drive toward motivated resolution, not proof that the uncomfortable belief or action is wrong.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Dissonance_rag.md",
+          "source_quote": "motivated belief revision, not a mechanism for honest belief updating",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "attitude-change-without-behavior-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source supports belief revision through commitments and behavior; it does not support claiming a private attitude changed without evidence of the commitment context.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Dissonance_rag.md",
+          "source_quote": "The public advocacy creates a cognition",
+          "section_hint": "Real-World Applications and Examples",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Cognitive_Dissonance_rag.md",
+      "source_quote": "Commitment amplifies dissonance",
+      "section_hint": "Key Dynamics for Decision-Makers",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for cognitive dissonance as a commitment-review and evidence-avoidance guard.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should decide when this card or commitment-bias should carry the sharper treatment."
+    ],
+    "review_status": "draft"
+  }
+}

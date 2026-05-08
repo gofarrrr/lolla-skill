@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-07
-**Status:** Product doctrine after PR50 controlled quantitative inference / distributional reasoning enrichment.
+**Status:** Product doctrine after PR51 controlled self-regulation / bias-calibration enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_quantitative_inference_enrichment_ready`
+**Current posture:** `controlled_self_regulation_bias_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -64,6 +64,8 @@ memo, or user-facing launch plan.
 **Current controlled learning / skill-acquisition enrichment report:** `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
 
 **Current controlled quantitative inference enrichment report:** `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
+
+**Current controlled self-regulation / bias-calibration enrichment report:** `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -745,6 +747,22 @@ sample-structure inference, prediction/generalization checks, question to
 measurement to model handoff, signal-preserving compression, power-law tail
 caution, and durable-base checks before compounding extrapolation.
 
+PR51 then completed the controlled self-regulation / bias-calibration
+enrichment batch:
+
+> `controlled_self_regulation_bias_enrichment_ready`
+
+Treat PR51 as source-backed substrate enrichment, not packet usefulness proof,
+runtime permission, prompt mechanics, deterministic psychological diagnosis,
+accusation generation, or proof that Python can decide what someone is really
+thinking. It adds 12 Batch 14 records and compiles draft/review-only v15 with
+182 reviewed records, 218 affordances, and 349 absence records. The useful
+depth is operational: symmetric debiasing, dissonance review,
+rationale-versus-driver testing, confidence calibration, audience scaffolding,
+hindsight-safe postmortems, controllable-lever ownership, follow-through
+condition design, motivation architecture, growth feedback loops, grit with
+stop rules, and regret with risk checks.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -933,11 +951,21 @@ answer:
 > that block false precision. v14 remains dormant and full coverage must
 > continue through bounded source-backed families, not broad Batch 3b.
 
+PR51 added the controlled self-regulation / bias-calibration answer:
+
+> Yes, the selected self-regulation sources support compact reviewed depth when
+> extraction binds psychological and behavioral labels to calibration evidence,
+> audience understanding, prior-state records, controllable levers, environment
+> design, motivation architecture, feedback loops, stop rules, risk checks, and
+> absence records that block accusation and moralized certainty. v15 remains
+> dormant and full coverage must continue through bounded source-backed
+> families, not broad Batch 3b.
+
 The next useful product questions are:
 
-1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, PR48, PR49, and PR50 cards remain useful when
+1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, PR48, PR49, PR50, and PR51 cards remain useful when
    tested in additional candidate mixes, and which merely add internal bulk?
-2. Which remaining graph-only family should PR51 extract next without drifting
+2. Which remaining graph-only family should PR52 extract next without drifting
    into mechanical completion?
 3. When should the next periodic packet usefulness review happen so extraction
    quality stays connected to handoff usefulness?

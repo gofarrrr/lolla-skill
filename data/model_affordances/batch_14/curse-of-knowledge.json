@@ -1,0 +1,145 @@
+{
+  "model_id": "curse-of-knowledge",
+  "source_file": "Curse_of_Knowledge_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "curse-of-knowledge.audience-starting-state-reconstruction",
+      "status": "supported",
+      "name": "Audience starting state reconstruction",
+      "mechanism": "When an expert communicates to a less-exposed audience, require the answer to reconstruct the recipient's starting model, unpack skipped inferential steps, define compressed terms, and demand evidence of understanding rather than polite agreement.",
+      "activation_shape": {
+        "use_when": [
+          "An expert, founder, manager, teacher, or system designer must make a concept usable by a less-exposed audience.",
+          "The communication contains compressed jargon, skipped premises, or expert shorthand.",
+          "The cost of misunderstanding is high enough that nodding or lack of questions is not reliable evidence."
+        ],
+        "do_not_use_when": [
+          "The audience already shares the domain model and extra scaffolding would create unnecessary load.",
+          "The issue is persuasion, motivation, or trust rather than missing shared context.",
+          "The communication can be verified by direct user testing or teach-back instead of guessed from the expert's perspective."
+        ],
+        "case_evidence_needed": [
+          "The audience's actual prior exposure and vocabulary.",
+          "The expert terms, steps, or assumptions being compressed.",
+          "The decision or behavior that depends on understanding.",
+          "A teach-back, novice test, or worked-example check."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "rebuild-recipient-model",
+          "description": "Require the answer to translate expert fluency into recipient-level scaffolding and verify understanding through demonstration, not agreement.",
+          "evidence_required": [
+            "Audience knowledge state.",
+            "Unexplained expert terms.",
+            "Skipped inferential steps.",
+            "Comprehension test or teach-back mechanism."
+          ],
+          "good_output_shape": [
+            "Names what the expert is taking for granted.",
+            "Unpacks terms or steps into plain language.",
+            "Adds a recipient-side test of understanding.",
+            "Warns that silence or nodding is not proof of comprehension."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What step feels obvious to the expert but may be invisible to the recipient?",
+        "Which terms carry compressed expert meaning that the audience may not share?",
+        "Can the recipient explain the idea back in their own words or apply it to a new example?"
+      ],
+      "misuse_guards": [
+        "Do not confuse the curse of knowledge with arrogance or condescension.",
+        "Do not solve it by merely shortening the same expert-calibrated explanation.",
+        "Do not accept polite nodding or absence of questions as comprehension evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "expert produces output calibrated for their own internal model, not for the recipient's absent model",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "Articulate the Steps You're Skipping",
+          "section_hint": "Key Heuristics for Countering the Curse",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "Polite nodding, superficial agreement, and absence of questions are misread as understanding",
+          "section_hint": "Common Failure Modes and Blind Spots",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports curse-of-knowledge as a communication scaffolding and teach-back requirement.",
+        "dropped_material": [
+          "Did not treat expert communication failure as bad intent.",
+          "Did not extract product-design details beyond audience-state verification."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with user-experience and scaffolding cards."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "expert-clarity-as-user-clarity",
+      "status": "not_supported_by_source",
+      "reason": "The source says the expert's own clarity is exactly what hides the audience gap, so expert confidence cannot stand in for recipient understanding.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "the knowledge itself makes the ignorance invisible",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "audience-confusion-as-inattention",
+      "status": "not_supported_by_source",
+      "reason": "The source frames audience confusion as absent shared model and invisible compression, not as proof that the audience failed to pay attention.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "The cursed expert interprets confusion as insufficient attention rather than absent shared model",
+          "section_hint": "Real-World Applications and Examples",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Curse_of_Knowledge_rag.md",
+      "source_quote": "would a smart person who has never encountered this topic understand this",
+      "section_hint": "Key Heuristics for Countering the Curse",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for translating expert fluency into audience-calibrated scaffolding.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves handoff in expert-to-user explanation cases."
+    ],
+    "review_status": "draft"
+  }
+}

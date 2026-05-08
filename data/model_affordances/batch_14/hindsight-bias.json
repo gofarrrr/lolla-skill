@@ -1,0 +1,145 @@
+{
+  "model_id": "hindsight-bias",
+  "source_file": "Hindsight_Bias_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "hindsight-bias.predecision-record-for-learning-review",
+      "status": "supported",
+      "name": "Predecision record for learning review",
+      "mechanism": "When reviewing an outcome after the fact, require the answer to reconstruct what was known, uncertain, and plausible at decision time before extracting lessons or judging decision quality.",
+      "activation_shape": {
+        "use_when": [
+          "A postmortem, appraisal, regulatory review, or strategy lesson is being drawn after the outcome is known.",
+          "The realized outcome makes the path feel obvious, negligent, or inevitable.",
+          "The team needs to learn from the decision process rather than reward or punish the outcome alone."
+        ],
+        "do_not_use_when": [
+          "The case already includes a contemporaneous decision record and the issue is not outcome contamination.",
+          "The lesson is about execution variance rather than decision-time uncertainty.",
+          "The answer would use hindsight-bias language to excuse ignored evidence that was clearly available."
+        ],
+        "case_evidence_needed": [
+          "What was known at decision time.",
+          "What alternatives and probabilities were live before the outcome.",
+          "The original decision rationale or absence of documentation.",
+          "The post-hoc lesson being proposed."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-process-from-outcome",
+          "description": "Require the answer to use predecision evidence and live alternatives before judging whether the decision process was good or bad.",
+          "evidence_required": [
+            "Outcome now known.",
+            "Decision-time information set.",
+            "Live alternatives or probability distribution.",
+            "Process criteria used before outcome knowledge."
+          ],
+          "good_output_shape": [
+            "Separates process quality from outcome quality.",
+            "Names what was uncertain at the time.",
+            "Rejects lessons that assume the failure was obvious.",
+            "Adds documentation or knowledge-tracker discipline for future reviews."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What did the decision-maker know before the outcome?",
+        "Which alternative paths were live at decision time?",
+        "Would we evaluate the same process differently if the outcome had been good?"
+      ],
+      "misuse_guards": [
+        "Do not convert outcome knowledge into proof of decision negligence.",
+        "Do not use hindsight bias to excuse failure when decision-time evidence was actually ignored.",
+        "Do not extract lessons without preserving uncertainty that existed before the result."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Hindsight_Bias_rag.md",
+          "source_quote": "Document Pre-Decision Reasoning",
+          "section_hint": "Key Heuristics for Countering Hindsight Bias",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Hindsight_Bias_rag.md",
+          "source_quote": "Evaluate Process, Not Outcome",
+          "section_hint": "Key Heuristics for Countering Hindsight Bias",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Hindsight_Bias_rag.md",
+          "source_quote": "known at the time and the decision process used",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports hindsight-bias as predecision documentation and process/outcome separation.",
+        "dropped_material": [
+          "Did not use hindsight bias as blanket excuse for bad decisions.",
+          "Did not extract broad narrative theory beyond post-outcome review discipline."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with probabilistic-thinking and knowledge-tracker treatment."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "known-outcome-as-foreseeable",
+      "status": "not_supported_by_source",
+      "reason": "The source says known outcomes make events feel more predictable than they were, so outcome knowledge cannot prove foreseeability.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Hindsight_Bias_rag.md",
+          "source_quote": "tendency to perceive past events as having been more predictable than they actually were at the time",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "postmortem-without-prior-state",
+      "status": "not_supported_by_source",
+      "reason": "The source says post-hoc reconstruction cannot be trusted without contemporaneous documentation of what was known and uncertain.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Hindsight_Bias_rag.md",
+          "source_quote": "Post-hoc reconstruction cannot be trusted",
+          "section_hint": "Key Heuristics for Countering Hindsight Bias",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Hindsight_Bias_rag.md",
+      "source_quote": "corrupts the feedback loop for decision quality",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for protecting organizational learning from outcome contamination.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves postmortem and review cases."
+    ],
+    "review_status": "draft"
+  }
+}
