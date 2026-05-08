@@ -1,0 +1,145 @@
+{
+  "model_id": "simplification",
+  "source_file": "Simplification_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "simplification.distill-core-with-boundaries",
+      "status": "supported",
+      "name": "Distill the core with boundaries",
+      "mechanism": "When complexity blocks action, alignment, or recall, simplify to the essential governing idea while preserving the caveat, boundary, or uncertainty that keeps the simplification safe to use.",
+      "activation_shape": {
+        "use_when": [
+          "Complexity is blocking action, alignment, or recall more than improving decision quality.",
+          "The audience needs the essential governing idea rather than every analysis branch.",
+          "A recommendation must survive handoff to operators who need a rule, intent, or checkpoint."
+        ],
+        "do_not_use_when": [
+          "The simplification removes the caveat, boundary, or uncertainty that makes the decision safe.",
+          "The source problem is novel enough that a previous simplified frame may mislead.",
+          "The output would be accurate but useless for prediction, decision, or action."
+        ],
+        "case_evidence_needed": [
+          "The complexity or clutter blocking action.",
+          "The core decision, action, or message that should survive.",
+          "The boundary condition that must not be removed.",
+          "The audience or operator who must use the simplification."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "keep-core-and-safety-boundary",
+          "description": "Require the answer to name one core idea and one safety boundary, avoiding both clutter and false simplicity.",
+          "evidence_required": [
+            "The decision or handoff that needs simplification.",
+            "The main point or governing idea.",
+            "The critical caveat, boundary, or uncertainty.",
+            "The user or operator action the simplification should enable."
+          ],
+          "good_output_shape": [
+            "States the core in plain language.",
+            "Cuts details that do not advance the purpose.",
+            "Keeps the critical boundary visible.",
+            "Makes the next action or decision easier."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the one idea that must survive the handoff?",
+        "Which caveat would make this unsafe if removed?",
+        "Is this simpler in a way that helps someone decide or act?"
+      ],
+      "misuse_guards": [
+        "Do not confuse simplification with dumbing down.",
+        "Do not remove uncertainty that the downstream actor needs.",
+        "Do not keep an accurate statement if it is operationally useless."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Simplification_rag.md",
+          "source_quote": "ruthless prioritization and distillation of information to its essential core",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Simplification_rag.md",
+          "source_quote": "removes the very caveat, boundary, or uncertainty",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Simplification_rag.md",
+          "source_quote": "not merely brevity but achieving \"useful simplicity\"",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports simplification as core-plus-boundary discipline.",
+        "dropped_material": [
+          "Did not extract generic shortness or slogan advice.",
+          "Did not collapse simplification into narrative or UX heuristics."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps keep packets compact without losing safety caveats."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "simplification-as-dumbing-down",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says simplification is not merely making things easy; it is useful simplicity that preserves decision value.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Simplification_rag.md",
+          "source_quote": "not merely about making things easy",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "simple-message-without-core-tradeoff",
+      "status": "not_supported_by_source",
+      "reason": "The source requires finding the core and preserving usefulness; a simple message without the relevant trade-off is not supported.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Simplification_rag.md",
+          "source_quote": "If the audience remembers only one thing",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Simplification_rag.md",
+      "source_quote": "complexity is blocking action, alignment, or recall",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for simplification as actionable compression with boundary protection.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should test whether simplification helps renderer/card burden decisions."
+    ],
+    "review_status": "draft"
+  }
+}

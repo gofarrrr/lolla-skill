@@ -1,9 +1,9 @@
 # Knowledge Substrate Roadmap - Make The Models Do More Work
 
 **Date:** 2026-05-04
-**Last updated:** 2026-05-07
+**Last updated:** 2026-05-08
 **Audience:** future coding session with no prior conversation context
-**Status:** living roadmap; PR13-PR51 are merged or in review, PR51 completed the controlled self-regulation / bias-calibration enrichment batch, and the current posture is `controlled_self_regulation_bias_enrichment_ready`
+**Status:** living roadmap; PR13-PR52 are merged or in review, PR52 completed the controlled cultural / product communication enrichment batch, and the current posture is `controlled_cultural_product_communication_enrichment_ready`
 **Primary source substrate:** reviewed source files in `data/model_sources/`, copied from `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216/` with SHA-256 manifest
 **Current runtime repo:** `/Users/marcin/Desktop/Apps/lolla-skill/`
 **Companion schema note:** `plans/knowledge-use-schema-2026-05-04.md`
@@ -42,6 +42,7 @@
 **Current controlled learning / skill-acquisition enrichment report:** `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
 **Current controlled quantitative inference enrichment report:** `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 **Current controlled self-regulation / bias-calibration enrichment report:** `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`
+**Current controlled cultural / product communication enrichment report:** `research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -177,6 +178,11 @@ What is already done:
   Batch 14 records and compiles draft/review-only v15. The records are
   source-backed operational cards, not psychological labels, accusation
   machinery, runtime promotion, or deterministic psychological diagnosis.
+- PR52 controlled cultural / product communication enrichment is done for 12
+  graph-only models selected from the remaining v15 graph-only set. It adds
+  Batch 15 records and compiles draft/review-only v16. The records are
+  source-backed operational cards, not stereotypes, slogan work, UX theater,
+  manipulation tactics, runtime promotion, or deterministic persuasion routing.
 - Compiled v3 artifact exists at
   `data/compiled/model_affordances/affordances_v3.json`.
 - v3 corpus shape: `50` model records, `86` affordances, `83` absence records,
@@ -227,6 +233,11 @@ What is already done:
   `data/compiled/model_affordances/affordances_v15.json`.
 - v15 corpus shape: `182` reviewed records, `218` affordances, `349` absence
   records, `0` schema validation failures, `0` source-quote rejections. v15 is
+  still `draft_review_only` and not runtime-promoted.
+- Compiled v16 artifact exists at
+  `data/compiled/model_affordances/affordances_v16.json`.
+- v16 corpus shape: `194` reviewed records, `230` affordances, `373` absence
+  records, `0` schema validation failures, `0` source-quote rejections. v16 is
   still `draft_review_only` and not runtime-promoted.
 - Treatment-audit v2 activation-gated calibration exists as research evidence,
   but it is not promotion-grade proof.
@@ -563,19 +574,27 @@ What is already done:
   psychological and behavioral labels to calibration evidence, prior-state
   records, controllable levers, audience scaffolds, motivation architecture,
   feedback loops, stop rules, risk checks, and anti-overclaim absences.
+- PR52 controlled cultural / product communication enrichment is captured in
+  `research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md`:
+  decision label `controlled_cultural_product_communication_enrichment_ready`.
+  Twelve graph-only models gained reviewed Batch 15 records with 12 affordances
+  and 24 absence records, compiled as draft/review-only v16. The cards bind
+  cultural, audience, user, story, category, perception, simplification, liking,
+  and pre-suasion labels to evidence, boundaries, validation loops, and
+  anti-overclaim absences.
 - The next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should read it first. The active posture is
-  `controlled_self_regulation_bias_enrichment_ready`: PR51 completed the
-  controlled self-regulation / bias-calibration extraction
+  `controlled_cultural_product_communication_enrichment_ready`: PR52 completed
+  the controlled cultural / product communication extraction
   batch. The user explicitly approved continuing controlled extraction toward
-  full coverage; the next slice should be PR52 as another capped,
-  source-backed family selected from the remaining 40 graph-only runtime
+  full coverage; the next slice should be PR53 as another capped,
+  source-backed family selected from the remaining 28 graph-only runtime
   models.
 
 Current posture after PR 23, PR24 review, PR25, PR26, PR27, PR28, PR29, PR30,
 PR31, PR32, PR33, PR34, PR35, PR36, PR37, PR38, PR39, PR40, PR41, PR42, and
-PR43, PR44, PR45, PR46, PR47, PR48, PR49, PR50, and PR51:
+PR43, PR44, PR45, PR46, PR47, PR48, PR49, PR50, PR51, and PR52:
 
 1. PR24's `stop_and_consolidate` posture stopped the wrong Decision Pressure
    machinery. PR25 explicitly reopened forward work only for enrichment
@@ -1169,17 +1188,17 @@ original proposal language.
 | Controlled learning / skill-acquisition enrichment / PR49 | done as controlled reviewed extraction slice | Adds twelve Batch 12 records for mastery sequencing, cognitive load, deliberate practice, productive difficulty, expertise matching, plain-language gap testing, generation, learning curves, scaffolding, schema acquisition, varied practice, and reachable stretch, compiles draft/review-only v13, and preserves absences. No runtime promotion or deterministic mastery classification. |
 | Controlled quantitative inference enrichment / PR50 | done as controlled reviewed extraction slice | Adds twelve Batch 13 records for Bayesian updating, regression-to-mean baselines, conjunction risk, representativeness, Monte Carlo range checks, Markov transition caveats, statistics, statistical learning, data-science framing, information compression, power laws, and compounding, compiles draft/review-only v14, and preserves absences. No runtime promotion or deterministic statistical routing. |
 | Controlled self-regulation / bias-calibration enrichment / PR51 | done as controlled reviewed extraction slice | Adds twelve Batch 14 records for cognitive biases, cognitive dissonance, rationalization, Dunning-Kruger calibration, curse of knowledge, hindsight, locus of control, self-control, self-determination, growth mindset, persistence/grit, and regret theory, compiles draft/review-only v15, and preserves absences. No runtime promotion or deterministic psychological diagnosis. |
+| Controlled cultural / product communication enrichment / PR52 | done as controlled reviewed extraction slice | Adds twelve Batch 15 records for cultural dimensions, cultural intelligence, multicultural team dynamics, narratives, storytelling frameworks, usability heuristics, UX research, Gestalt perception, simplification, category decisions, liking, and pre-suasion, compiles draft/review-only v16, and preserves absences. No runtime promotion or deterministic cultural classification or persuasion routing. |
 | Runtime Lane 4 affordance integration | not started | Not authorized by PR23. Must wait for an explicit product-promotion decision. |
 | Selective chat/memo promotion | not started | Last step, and may never be needed. |
 
 Current boundary rule:
 
-> PR51 completed the controlled self-regulation / bias-calibration enrichment
-> batch. v15 is still draft/review-only. The next slice should be PR52:
-> another capped, source-backed extraction family from the remaining 40
-> graph-only runtime
-> models. Continue quality-first extraction toward full coverage; do not turn
-> that into broad Batch 3b or runtime promotion.
+> PR52 completed the controlled cultural / product communication enrichment
+> batch. v16 is still draft/review-only. The next slice should be PR53:
+> another capped, source-backed extraction family from the remaining 28
+> graph-only runtime models. Continue quality-first extraction toward full
+> coverage; do not turn that into broad Batch 3b or runtime promotion.
 
 ### PR 1 - Affordance Schema And Extraction Contract
 
@@ -1792,7 +1811,7 @@ Pressure surface work and PR13-PR24 follow-up are also complete as dormant
 research/infrastructure.
 
 The current reviewed posture is
-`controlled_self_regulation_bias_enrichment_ready` after PR51. Do not
+`controlled_cultural_product_communication_enrichment_ready` after PR52. Do not
 treat any historical item below as active next work.
 
 Historical PR 12 scope was:

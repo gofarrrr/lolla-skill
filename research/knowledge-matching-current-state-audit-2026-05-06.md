@@ -4,13 +4,13 @@
 **Status:** Historical product/architecture audit after the merged PR13-PR23
 stack and Decision Pressure product doctrine. The architecture conclusions
 still stand, but the reviewed affordance counts have been superseded by later
-controlled enrichment and packet-review slices through PR51. This is not a
+controlled enrichment and packet-review slices through PR52. This is not a
 runtime proposal, not an extraction brief, not a prompt change, and not
 user-facing promotion.
 
 **Doctrine anchor:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_self_regulation_bias_enrichment_ready`
+**Current posture:** `controlled_cultural_product_communication_enrichment_ready`
 
 **Current handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -34,9 +34,9 @@ collapsed into one story.
 
 2. **Reviewed affordance substrate**
    At the time of this audit, the v4 affordance corpus had `55` reviewed
-   source-backed model records. After later controlled enrichment through PR51,
-   the current draft/review-only v15 corpus has `182` reviewed records, `218`
-   affordances, and `349` absence records. PR40 showed the v9 execution cards
+   source-backed model records. After later controlled enrichment through PR52,
+   the current draft/review-only v16 corpus has `194` reviewed records, `230`
+   affordances, and `373` absence records. PR40 showed the v9 execution cards
    improve one stable-nomination packet handoff. PR41 then audited the
    remaining graph-only set and selected risk controls / reversibility /
    failure containment as the next controlled family. PR42 added source-backed
@@ -58,7 +58,10 @@ collapsed into one story.
    distributional reasoning models while preserving the no deterministic
    statistical-routing boundary. PR51 then added source-backed v15 depth for 12
    self-regulation / bias-calibration models while preserving the no
-   deterministic psychological-diagnosis boundary. The corpus is richer and more operational, but
+   deterministic psychological-diagnosis boundary. PR52 then added
+   source-backed v16 depth for 12 cultural / product communication models while
+   preserving the no deterministic cultural-classification or persuasion-routing
+   boundary. The corpus is richer and more operational, but
    it is still `draft_review_only`.
    It supports review artifacts; it does not yet select or generate live
    pressures.
@@ -66,7 +69,7 @@ collapsed into one story.
 So the accurate current claim is:
 
 > Lolla has a 222-model runtime graph and a growing reviewed affordance corpus.
-> After PR51, the reviewed corpus has 182 records. PR40 showed v9 improved one
+> After PR52, the reviewed corpus has 194 records. PR40 showed v9 improved one
 > execution/follow-through packet handoff; PR42 added v10 risk/reversibility
 > depth for the family PR41 selected; PR43 showed that v10 improves one
 > risk/reversibility packet handoff; PR44 selected frame correction /
@@ -80,7 +83,9 @@ So the accurate current claim is:
 > deterministic mastery classification; PR50 added v14 quantitative inference
 > / distributional reasoning depth while blocking deterministic statistical
 > routing; PR51 added v15 self-regulation / bias-calibration depth while
-> blocking deterministic psychological diagnosis.
+> blocking deterministic psychological diagnosis; PR52 added v16 cultural /
+> product communication depth while blocking deterministic cultural
+> classification and persuasion routing.
 > It is still not the live matching system.
 
 This matters because expanding from 55 records should not mean "add records
@@ -91,10 +96,10 @@ next LLM can think better without Python pretending to choose the pressure.
 ## Corpus Shape
 
 Measured from the repo artifacts when this audit was first written. For the
-current v15 counts and packet-review posture, use the handover, PR39 report,
+current v16 counts and packet-review posture, use the handover, PR39 report,
 PR40 review, PR41 audit, PR42 report, PR43 review, PR44 audit, PR45 report,
-PR46 review, PR47 audit, PR48 report, PR49 report, PR50 report, and PR51
-report.
+PR46 review, PR47 audit, PR48 report, PR49 report, PR50 report, PR51 report,
+and PR52 report.
 
 | Artifact | Count / state | Current role |
 | --- | ---: | --- |

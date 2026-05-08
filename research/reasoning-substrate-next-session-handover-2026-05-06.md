@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
-**Date:** 2026-05-07
-**Status:** Start-here handover after PR51 completed the controlled
-self-regulation / bias-calibration enrichment batch. PR50 added source-backed
-v14 quantitative inference / distributional reasoning depth; the user explicitly
-approved continued controlled extraction toward the full 222-model set while
-keeping the same quality rails. This is still not runtime behavior, prompt
-promotion, lane rewrite, broad Batch 3b, or user-facing Decision Pressure work.
+**Date:** 2026-05-08
+**Status:** Start-here handover after PR52 completed the controlled cultural /
+product communication enrichment batch. PR51 added source-backed v15
+self-regulation / bias-calibration depth; the user explicitly approved
+continued controlled extraction toward the full 222-model set while keeping the
+same quality rails. This is still not runtime behavior, prompt promotion, lane
+rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_self_regulation_bias_enrichment_ready`
+**Current posture:** `controlled_cultural_product_communication_enrichment_ready`
 
-**Current PR:** PR51 - controlled self-regulation / bias-calibration enrichment
+**Current PR:** PR52 - controlled cultural / product communication enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -68,6 +68,8 @@ promotion, lane rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 
 **PR51 decision label:** `controlled_self_regulation_bias_enrichment_ready`
 
+**PR52 decision label:** `controlled_cultural_product_communication_enrichment_ready`
+
 ## Start Here
 
 Read these files in order:
@@ -117,6 +119,7 @@ Read these files in order:
 43. `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
 44. `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 45. `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`
+46. `research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -196,6 +199,9 @@ Keep these layers distinct:
 | PR51 controlled self-regulation / bias-calibration enrichment | 12 graph-only models from cognitive bias, dissonance, rationalization, calibration, hindsight, agency, follow-through, motivation, mindset, grit, and regret gaps gained reviewed Batch 14 records with 12 affordances and 24 absence records; compiled as draft/review-only v15. |
 | v15 affordance corpus | 182 reviewed records, 218 affordances, 349 absence records. Draft/review-only v14 plus PR51 controlled self-regulation batch, not runtime-promoted. |
 | Graph-only after v15 | 40 runtime models remain eligible but not reviewed affordance records. |
+| PR52 controlled cultural / product communication enrichment | 12 graph-only models from cultural interpretation, team diversity, narrative/story structure, UX research, usability heuristics, perception, simplification, category boundaries, liking, and pre-suasion gained reviewed Batch 15 records with 12 affordances and 24 absence records; compiled as draft/review-only v16. |
+| v16 affordance corpus | 194 reviewed records, 230 affordances, 373 absence records. Draft/review-only v15 plus PR52 controlled cultural/product communication batch, not runtime-promoted. |
+| Graph-only after v16 | 28 runtime models remain eligible but not reviewed affordance records. |
 
 The governing sentence:
 
@@ -1604,10 +1610,82 @@ prompts, run model calls or judges, create Batch 3b, create user-facing
 Decision Pressure output, create deterministic psychological diagnosis, or
 allow deterministic final pressure selection.
 
-Recommended next slice is PR52: continue controlled extraction from the
-remaining 40 graph-only runtime models, selecting one bounded family of 8-12
-models from source-custodied files. Keep the same direct-reading,
-absence-friendly quality standard and keep v16 draft/review-only.
+Historical PR51 recommendation was PR52: continue controlled extraction from
+the remaining 40 graph-only runtime models. PR52 later completed the controlled
+cultural / product communication enrichment batch. Do not revert to the older
+PR51 recommendation as active direction.
+
+## What PR52 Added
+
+PR52 answers the question: "Can cultural, product, UX, perception, story, and
+receptivity models add source-backed operational depth without turning
+communication into stereotype, slogan, UX theater, or manipulation machinery?"
+
+It adds:
+
+- `data/model_affordances/batch_15/`;
+- `data/compiled/model_affordances/affordances_v16.json`;
+- `data/compiled/model_affordances/quality_report_v16.md`;
+- `tests/test_pr52_batch15_records.py`;
+- `research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md`;
+- `tasks/tasks-controlled-cultural-product-communication-enrichment-batch.md`;
+- living-doc posture updates.
+
+Measured PR52 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v16 reviewed records: `194`;
+- v16 reviewed affordances: `230`;
+- v16 absence records: `373`;
+- graph-only runtime models after v16: `28`;
+- v16 status: `draft_review_only`;
+- schema validation failures: `0`;
+- source quote rejections: `0`.
+
+PR52's decision label is
+`controlled_cultural_product_communication_enrichment_ready`.
+
+The product lesson:
+
+> The cultural/product communication family adds real handoff depth when cards
+> bind human-context, audience, user, story, category, perception, and influence
+> labels to evidence, boundaries, validation loops, and absences that block
+> stereotype, story-as-proof, design-proof shortcuts, and manipulation.
+
+PR52 extracted exactly this target set:
+
+- `cultural-dimensions-theory`;
+- `cultural-intelligence`;
+- `multicultural-team-dynamics`;
+- `narratives`;
+- `storytelling-frameworks`;
+- `usability-heuristics`;
+- `user-experience-research-methods`;
+- `gestalt-principles-of-perception`;
+- `simplification`;
+- `category-decisions`;
+- `liking-principle`;
+- `pre-suasion`.
+
+Each target received one compact reviewed affordance and two absence records.
+The absence records block culture as stereotype, cultural dimensions as
+deterministic personality, cultural intelligence as politeness, diversity as
+automatic performance, narrative as truth proof, storytelling as decoration,
+heuristics as design proof, user quotes as market proof, Gestalt as aesthetic
+rule, simplification as dumbing down, category as labeling, liking as
+manipulation license, and pre-suasion as covert control.
+
+PR52 does not promote v16 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, create user-facing
+Decision Pressure output, create deterministic cultural classification,
+create deterministic persuasion routing, or allow deterministic final pressure
+selection.
+
+Recommended next slice is PR53: continue controlled extraction from the
+remaining 28 graph-only runtime models, selecting one bounded source-backed
+family. Keep the same direct-reading, absence-friendly quality standard and
+keep v17 draft/review-only.
 
 ## PR24 Review Questions Answered
 
@@ -1681,7 +1759,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "controlled_self_regulation_bias_enrichment_ready|controlled_quantitative_inference_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR50|PR51|PR52" plans research tasks -g '*.md'
+rg -n "controlled_cultural_product_communication_enrichment_ready|controlled_self_regulation_bias_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR51|PR52|PR53" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1693,10 +1771,11 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR51 and do not infer permission for runtime work, broad
+Start from PR52 and do not infer permission for runtime work, broad
 Batch 3b, packet promotion, deterministic reasoning-mode routing,
 deterministic option selection, deterministic mastery classification, or
 deterministic statistical routing, deterministic psychological diagnosis, or
+deterministic cultural classification, deterministic persuasion routing, or
 mechanical extraction momentum.
 
 Read first:
@@ -1738,9 +1817,10 @@ Read first:
 - research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md
 - research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md
 - research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md
+- research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md
 
 Current posture:
-controlled_self_regulation_bias_enrichment_ready
+controlled_cultural_product_communication_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -2129,12 +2209,32 @@ PR51 result:
   3b, deterministic psychological diagnosis, deterministic option selection,
   deterministic pressure selection, or user-facing behavior was added
 
+PR52 result:
+- decision label: controlled_cultural_product_communication_enrichment_ready
+- 12 graph-only models from cultural / product communication received reviewed
+  batch_15 records
+- v16 draft/review-only compiled artifact exists with 194 reviewed records
+- PR52 added 12 affordances and 24 absence records
+- v16 contains 230 affordances and 373 absence records
+- 28 runtime models remain graph-only after v16
+- each target received one compact source-backed affordance and two absence
+  records
+- the records add handoff depth around cross-cultural coordination,
+  perspective translation, team dissent process, narrative evidence checks,
+  audience-outcome story structure, usability/task heuristics, UX validation,
+  Gestalt grouping caveats, useful simplification, category validation,
+  liking with evidence standards, and pre-suasion with merit/consent checks
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, deterministic cultural classification, deterministic persuasion routing,
+  deterministic option selection, deterministic pressure selection, or
+  user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next slice is PR52: another controlled source-backed extraction batch from the
-remaining 40 graph-only models, capped and family-shaped. Full coverage is now
+next slice is PR53: another controlled source-backed extraction batch from the
+remaining 28 graph-only models, capped and family-shaped. Full coverage is now
 the direction, but broad mechanical completion is still not acceptable.
 ```
 

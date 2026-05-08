@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
-**Date:** 2026-05-07
-**Status:** Product doctrine after PR51 controlled self-regulation / bias-calibration enrichment.
+**Date:** 2026-05-08
+**Status:** Product doctrine after PR52 controlled cultural / product communication enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_self_regulation_bias_enrichment_ready`
+**Current posture:** `controlled_cultural_product_communication_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -66,6 +66,8 @@ memo, or user-facing launch plan.
 **Current controlled quantitative inference enrichment report:** `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 
 **Current controlled self-regulation / bias-calibration enrichment report:** `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`
+
+**Current controlled cultural / product communication enrichment report:** `research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md`
 
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -763,6 +765,23 @@ hindsight-safe postmortems, controllable-lever ownership, follow-through
 condition design, motivation architecture, growth feedback loops, grit with
 stop rules, and regret with risk checks.
 
+PR52 then completed the controlled cultural / product communication enrichment
+batch:
+
+> `controlled_cultural_product_communication_enrichment_ready`
+
+Treat PR52 as source-backed substrate enrichment, not packet usefulness proof,
+runtime permission, prompt mechanics, deterministic cultural classification,
+deterministic persuasion routing, stereotype generation, UX theater, or proof
+that Python can decide how to influence someone. It adds 12 Batch 15 records
+and compiles draft/review-only v16 with 194 reviewed records, 230 affordances,
+and 373 absence records. The useful depth is operational: cross-cultural
+coordination with verification, adoption translation, independent dissent
+process, narrative evidence checks, audience-outcome story structure,
+heuristic fit checks, UX validation, Gestalt pattern caveats, useful
+simplification, category validation, liking with evidence standards, and
+pre-suasion with merit and consent checks.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -961,11 +980,22 @@ PR51 added the controlled self-regulation / bias-calibration answer:
 > dormant and full coverage must continue through bounded source-backed
 > families, not broad Batch 3b.
 
+PR52 added the controlled cultural / product communication answer:
+
+> Yes, the selected communication and interpretation sources support compact
+> reviewed depth when extraction binds culture, audience, user, narrative,
+> category, perception, simplification, liking, and pre-suasion labels to
+> evidence, boundaries, validation loops, and absence records that block
+> stereotype, story-as-proof, design-proof shortcuts, and manipulation. v16
+> remains dormant and full coverage must continue through bounded
+> source-backed families, not broad Batch 3b.
+
 The next useful product questions are:
 
-1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, PR48, PR49, PR50, and PR51 cards remain useful when
+1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, PR48, PR49, PR50, PR51,
+   and PR52 cards remain useful when
    tested in additional candidate mixes, and which merely add internal bulk?
-2. Which remaining graph-only family should PR52 extract next without drifting
+2. Which remaining graph-only family should PR53 extract next without drifting
    into mechanical completion?
 3. When should the next periodic packet usefulness review happen so extraction
    quality stays connected to handoff usefulness?
