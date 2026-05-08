@@ -11,6 +11,7 @@
       "activation_shape": {
         "use_when": [
           "A choice is among non-perishable ideas, tools, practices, protocols, or technologies where survival time may signal resilience.",
+          "A long-standing relationship, partnership, or client tie has persisted through enough conditions that durability may be meaningful evidence.",
           "The environment is noisy, recent options are hype-sensitive, and direct forecasting is weak.",
           "The decision is about durability, staying power, or what is likely to remain useful beyond the current cycle."
         ],
@@ -51,12 +52,16 @@
             "Technological discontinuities, changing constraints, or new evidence relevant to the entity.",
             "Ways the current environment differs from the conditions under which the entity survived.",
             "Rare disruptive events or replacement dynamics that could end the old baseline.",
-            "Alternative frameworks or cuts at the problem that might expose hidden novelty."
+            "Alternative frameworks or cuts at the problem that might expose hidden novelty.",
+            "The enduring principle separated from any legacy implementation that may no longer fit.",
+            "For major durability commitments, a concrete path by which the long-lived option could still fail."
           ],
           "good_output_shape": [
             "Names the conditions under which the Lindy prior would stop carrying weight.",
             "Separates survival-based resilience from mere familiarity or institutional inertia.",
+            "Separates the durable principle from the inherited implementation before recommending preservation.",
             "Checks whether a genuinely novel context makes the old framework misleading.",
+            "Names at least one serious baseline-breaking alternative or red-team objection in high-stakes cases.",
             "Revises or rejects the longevity-weighted choice when baseline-breaking evidence is strong."
           ]
         }
@@ -97,6 +102,13 @@
           "source_file": "Lindy_Effect_rag.md",
           "source_quote": "Will this trend endure the test of time, or is it just a passing phase?",
           "section_hint": "Key Heuristics and Guiding Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "long-standing, stable client or partner relationships",
+          "section_hint": "The Playbook in Action",
           "extraction_type": "explicit",
           "confidence": "high"
         },
@@ -155,6 +167,27 @@
           "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "build modern solutions *from* those enduring truths",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "red-team/blue-team competitions",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "The outcome was a disaster",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
         }
       ],
       "confidence": "high",
@@ -172,7 +205,45 @@
       }
     }
   ],
-  "absence_records": [],
+  "absence_records": [
+    {
+      "attempted_field": "age-as-proof-of-superiority",
+      "status": "not_supported_by_source",
+      "reason": "The source says Lindy is a durability prior for non-perishable entities, not proof that older is superior. Do not promote the card when the answer treats age as decisive while ignoring discontinuity, changing constraints, or new evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "**Danger when** age is treated as proof of superiority and the analysis ignores technological discontinuity, changing constraints, or new evidence that breaks the old baseline.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "lindy-for-perishable-or-fast-baseline-break-context",
+      "status": "not_supported_by_source",
+      "reason": "The source limits the model to non-perishable entities and warns that rapidly evolving or genuinely novel environments can make old frames misleading. Do not promote Lindy when perishability, rapid change, or baseline-breaking evidence controls the decision.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "The Lindy Effect is most powerful when applied to **non-perishable entities** like ideas, protocols, or technologies where existence itself suggests durability.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "In complex or rapidly evolving environments",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
   "source_evidence": [
     {
       "source_file": "Lindy_Effect_rag.md",

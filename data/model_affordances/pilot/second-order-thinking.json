@@ -23,7 +23,10 @@
           "The first threshold where delay, overload, or information-hiding would cascade into a worse second-order outcome.",
           "The incentive that would cause a local team to protect its metric while making the system worse.",
           "The behavior the intervention will teach surrounding teams to repeat if it works locally.",
-          "The later dependency that becomes harder, costlier, or politically harder to reverse because this move happens now."
+          "The later dependency that becomes harder, costlier, or politically harder to reverse because this move happens now.",
+          "The delayed, distributed, or hidden cost such as rework, fragility, lock-in, or incentive distortion.",
+          "The problem structure, flow, or disaggregation that anchors the consequence chain.",
+          "The action threshold or enough-evidence point that prevents endless consequence tracing."
         ]
       },
       "treatment_requirements": [
@@ -34,12 +37,14 @@
             "The visible first-order gain being considered.",
             "The downstream dependency that must hold for the gain to stay beneficial.",
             "The first delay, overload, or information-hiding threshold that would flip the outcome.",
-            "The local metric or incentive that could make a team protect itself while worsening the system."
+            "The local metric or incentive that could make a team protect itself while worsening the system.",
+            "The delayed, distributed, or hidden cost that would show up later as rework, fragility, lock-in, or incentive distortion."
           ],
           "good_output_shape": [
             "States the immediate gain and the dependency chain it assumes.",
             "Names the first cascade threshold where the result could become worse.",
-            "Identifies the incentive that could protect a local metric while damaging the broader system."
+            "Identifies the incentive that could protect a local metric while damaging the broader system.",
+            "Names the hidden future cost that is absent from the first-order win."
           ]
         },
         {
@@ -69,12 +74,29 @@
             "States which later dependency becomes harder to reverse because the move happens now.",
             "Defines the first signal that the cheap recovery path has disappeared."
           ]
+        },
+        {
+          "requirement_id": "bound-chain-with-structure-and-action-threshold",
+          "description": "Require the answer to anchor consequence tracing in a problem structure and name the threshold for acting under uncertainty so second-order analysis does not become infinite deliberation.",
+          "evidence_required": [
+            "The problem structure, dependency map, flowchart, or disaggregation that anchors the chain.",
+            "The minimum evidence needed to prove or disprove the second-order concern.",
+            "The one-day answer or action threshold that keeps the analysis decision-relevant.",
+            "For social systems, the emotional, narrative, or actor-experience data that materially shapes behavior."
+          ],
+          "good_output_shape": [
+            "Maps the problem structure before tracing long consequence chains.",
+            "Names the action threshold or enough-evidence point.",
+            "Keeps second-order analysis tied to a decision rather than open-ended complexity.",
+            "Includes human-system data when implementation depends on actor behavior."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What dependency chain must hold, where can delay, overload, or information-hiding flip the result, and what incentive would make a team protect its metric while worsening the system?",
         "If the intervention works locally, what behavior will surrounding teams learn to repeat, and how could that adaptation affect the next cycle?",
-        "Which later dependency becomes harder, costlier, or politically harder to reverse because this move happens now, and what is the first signal that the cheap recovery path has already disappeared?"
+        "Which later dependency becomes harder, costlier, or politically harder to reverse because this move happens now, and what is the first signal that the cheap recovery path has already disappeared?",
+        "What is the one-day answer or action threshold that keeps this consequence analysis from becoming endless?"
       ],
       "misuse_guards": [
         "Do not invent long speculative consequence chains that are not anchored in the real mechanism, actor reactions, or constraints of the case.",
@@ -132,6 +154,34 @@
         },
         {
           "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "rework, fragility, lock-in, or incentive distortion",
+          "section_hint": "Strengths",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "without first thinking carefully about the underlying problem structure",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "Establish the \"One-Day Answer\"",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "emotional reality is a crucial \"fact\" influencing behavior and implementation",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
           "source_quote": "Danger when the model is used to invent long speculative chains that feel sophisticated but are not anchored in the real mechanism, actor reactions, or constraints of the case.",
           "section_hint": "Weaknesses and Anti-Patterns",
           "extraction_type": "explicit",
@@ -166,6 +216,21 @@
           "source_file": "Second_Order_Thinking_rag.md",
           "source_quote": "how individuals feel about a situation, as this emotional reality is a crucial \"fact\" influencing behavior and implementation.",
           "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "speculative-consequence-chain-without-mechanism",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against second-order storytelling that invents long speculative chains without anchoring them in the real mechanism, actor reactions, or constraints of the case.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "invent long speculative chains that feel sophisticated but are not anchored in the real mechanism, actor reactions, or constraints of the case",
+          "section_hint": "Weaknesses and Anti-Patterns",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }

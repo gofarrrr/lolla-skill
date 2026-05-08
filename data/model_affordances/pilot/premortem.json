@@ -44,11 +44,16 @@
           "description": "Require important surfaced risks to be translated into owners, mitigations, reversal triggers, stop-loss thresholds, or explicit decision changes.",
           "evidence_required": [
             "The surfaced risk or failure path and whether it can be controlled before launch.",
-            "The mitigation, owner, threshold, checkpoint, or decision change that will address it."
+            "The mitigation, owner, threshold, checkpoint, or decision change that will address it.",
+            "Whether the risk is a known unknown or unknown unknown and what would convert it into a known known.",
+            "The severe downside or one-to-two-standard-deviation failure case when the base case looks acceptable.",
+            "Whether the next concrete step is under the decision-maker's control."
           ],
           "good_output_shape": [
             "Separates actionable risks from worries that cannot change the plan.",
             "Attaches owners, mitigations, thresholds, or decision changes to retained risks.",
+            "Classifies key risks by known/unknown status and names the de-risking move.",
+            "Tests the base case against severe tail outcomes before preserving commitment level.",
             "Defers runtime use when the output remains an obvious worry list."
           ]
         }
@@ -56,6 +61,7 @@
       "diagnostic_questions": [
         "What would you have to believe for the current plan to work?",
         "Is the worst case bad enough to change the plan or commitment level?",
+        "Which surfaced risks are known unknowns or unknown unknowns, and what would turn them into known knowns?",
         "Do we still remember the question we are trying to answer, or have we substituted an easier one?"
       ],
       "misuse_guards": [
@@ -136,6 +142,34 @@
         },
         {
           "source_file": "Premortem_rag.md",
+          "source_quote": "known unknowns",
+          "section_hint": "Powerful Analogies and Metaphors:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "unknown unknowns",
+          "section_hint": "Powerful Analogies and Metaphors:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "one or two standard deviations from the mean outcome",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "factors **under the client’s control**",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
           "source_quote": "\"Is the worst case bad enough?\"",
           "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use:",
           "extraction_type": "explicit",
@@ -169,7 +203,38 @@
       }
     }
   ],
-  "absence_records": [],
+  "absence_records": [
+    {
+      "attempted_field": "after-commitment-criticism-theater",
+      "status": "not_supported_by_source",
+      "reason": "The source frames premortem as a pre-commitment tool for improving the plan. It explicitly warns against using premortem language after commitment as criticism theater.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "**Danger when** premortem language is used after commitment only as criticism theater rather than as a pre-decision tool for improving the plan.",
+          "section_hint": "Weaknesses and Anti-Patterns:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "obvious-worry-list-without-owner-or-plan-change",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that a premortem is not complete when it only produces obvious worries. Do not promote the card unless surfaced failure paths are tied to owners, mitigations, thresholds, or decision changes.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "**Danger when** the exercise produces an obvious list of worries without owners, mitigations, or decision changes tied to what was surfaced.",
+          "section_hint": "Weaknesses and Anti-Patterns:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
   "source_evidence": [
     {
       "source_file": "Premortem_rag.md",
