@@ -89,6 +89,93 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "learning-curve.progressive-scaffold-and-handoff",
+      "status": "supported",
+      "name": "Progressive scaffold and handoff",
+      "mechanism": "When the task is to design the climb from supported novice performance to independent execution, use the learning curve to stage knowledge, modeling, questioning, correction, and handoff rather than only measuring whether performance is improving.",
+      "activation_shape": {
+        "use_when": [
+          "A learner or team needs a staged path from expert support to independent capability.",
+          "The issue is not only whether performance compounds, but how support should change as competence develops.",
+          "The next learning move requires deciding what the expert demonstrates, what is jointly practiced, and what the learner performs alone."
+        ],
+        "do_not_use_when": [
+          "The case only needs a measurement view of whether capability is improving over time.",
+          "The mismatch is mainly novice-versus-expert support level, where expertise-reversal-effect is the tighter card.",
+          "There is no feedback, correction, or independence signal to govern the handoff."
+        ],
+        "case_evidence_needed": [
+          "The learner's current stage and current support.",
+          "The expert demonstration, joint practice, or independent task being proposed.",
+          "Feedback and correction signals that show what should change next.",
+          "The evidence that control can be handed over without collapsing performance."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "stage-demonstration-practice-correction-and-handoff",
+          "description": "Require the answer to name the current scaffold, the next handoff step, the correction loop, and the independence signal that lets support fade without pretending early progress is mastery.",
+          "evidence_required": [
+            "Current learner stage.",
+            "Support or demonstration being provided.",
+            "Joint practice or learner-owned task.",
+            "Correction loop and independence signal."
+          ],
+          "good_output_shape": [
+            "Separates expert demonstration, joint practice, and independent execution.",
+            "Names what feedback changes the next step.",
+            "Defines the handoff trigger.",
+            "Keeps learning-curve optimism tied to demonstrated consolidation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What part of the skill is still expert-demonstrated, jointly practiced, or learner-owned?",
+        "What correction loop tells us the learner is ready for the next handoff?",
+        "What would show independence rather than temporary performance under support?"
+      ],
+      "misuse_guards": [
+        "Do not use staged handoff as a substitute for measuring performance.",
+        "Do not preserve beginner supports after competence makes them redundant.",
+        "Do not hand over responsibility before the learner can perform without the scaffold."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Learning_Curve_rag.md",
+          "source_quote": "**The Scaffolding Model (\"I Do, We Do, You Do\"):**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Learning_Curve_rag.md",
+          "source_quote": "gradual handover of control and mastery from teacher/expert to student/novice",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Learning_Curve_rag.md",
+          "source_quote": "The expert first provides knowledge and demonstration of strategies, then moves to modeling, questioning, and correction, continually restructuring the task until the learner achieves independence.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR82 split: source supports a distinct staged handoff identity separate from measuring capability compounding.",
+        "dropped_material": [
+          "Did not turn all scaffolding, Bloom, or Feynman allies into learning-curve affordances.",
+          "Kept this split limited to the control-transfer transaction."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this split helps receivers distinguish measurement from staged capability transfer."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -117,6 +204,21 @@
           "source_file": "Learning_Curve_rag.md",
           "source_quote": "the question is not just whether a team can do something today, but how quickly it can become reliably good at it",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "early-progress-as-scalable-mastery",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that early gains can be mistaken for mastery; PR82 must not promote scaling responsibility before capability has consolidated.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Learning_Curve_rag.md",
+          "source_quote": "**Danger when** early progress is mistaken for mastery and the organization scales responsibility faster than capability has actually consolidated.",
+          "section_hint": "Common Anti-Patterns",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }
