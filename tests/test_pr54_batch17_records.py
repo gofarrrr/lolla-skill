@@ -55,6 +55,7 @@ EXPECTED_ABSENCE_FIELDS = {
     "fallacy-label-as-argument",
     "fallacy-spotting-without-premise-check",
     "high-value-without-case-fit",
+    "rationalization-as-reflection",
     "intuition-without-context",
     "latticework-as-model-name-dropping",
     "map-without-feedback",
@@ -87,6 +88,7 @@ LIVE_RUNTIME_PATHS = (
 
 APPROVED_EXTRA_ABSENCE_MODEL_IDS = {
     "chain-of-thought",
+    "meta-cognitive-reflection",
 }
 
 

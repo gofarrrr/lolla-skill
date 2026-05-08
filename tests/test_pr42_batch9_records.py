@@ -45,6 +45,10 @@ LIVE_RUNTIME_PATHS = (
     REPO_ROOT / "scripts" / "run_pipeline.py",
 )
 
+APPROVED_EXTRA_ABSENCE_MODEL_IDS = {
+    "chaos-theory",
+}
+
 
 def test_pr42_batch9_records_exist_for_approved_models_only() -> None:
     paths = sorted(BATCH_DIR.glob("*.json"))
@@ -91,8 +95,10 @@ def test_pr42_batch9_keeps_absence_records_first_class() -> None:
         for model_id in APPROVED_BATCH_MODEL_IDS
     }
 
-    assert all(count == 2 for count in absence_counts.values())
-    assert sum(absence_counts.values()) == 24
+    for model_id, count in absence_counts.items():
+        expected_count = 3 if model_id in APPROVED_EXTRA_ABSENCE_MODEL_IDS else 2
+        assert count == expected_count
+    assert sum(absence_counts.values()) == 25
 
 
 def test_pr42_batch9_models_were_graph_only_before_this_batch() -> None:
