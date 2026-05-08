@@ -4,10 +4,10 @@
   "status": "supported",
   "affordances": [
     {
-      "affordance_id": "constraints.scope-boundary-decision-filter",
+      "affordance_id": "constraints.scope-boundary-exclusion-filter",
       "status": "supported",
-      "name": "Scope boundary decision filter",
-      "mechanism": "When a problem is becoming vague or overfull, turn constraints into explicit boundaries around scope, success, trade-offs, and exclusions, then stress-test whether those boundaries still fit the current environment and whether each item earns its place.",
+      "name": "Scope boundary exclusion filter",
+      "mechanism": "When a problem is becoming vague or overfull because too many goals, variables, stakeholders, or information demands compete for attention, turn constraints into explicit boundaries around scope, success, trade-offs, and deliberate exclusions so the current effort has a usable decision frame.",
       "activation_shape": {
         "use_when": [
           "Too many goals, variables, stakeholders, or possible moves are competing for attention and the team is losing clarity.",
@@ -16,17 +16,16 @@
           "A plan, memo, prompt, or engagement needs a clear filter for what belongs inside and outside the current effort."
         ],
         "do_not_use_when": [
-          "The constraint is inherited, outdated, or untested after the economics, technology, or stakeholder environment has changed.",
-          "The boundary is so loose that it creates false control, or so tight that it blocks signal, adaptation, or learning.",
+          "The main question is whether an inherited, outdated, loose, or over-tight constraint still fits the current environment; use the constraint-fit stress test instead.",
+          "The boundary has already been stated and the remaining task is to test whether the boundary should loosen, tighten, or be dropped.",
           "A familiar framework is being imposed because it is available rather than because its assumptions fit the problem.",
           "The answer would over-engineer rules that make the work accurate but less useful."
         ],
         "case_evidence_needed": [
           "The goal, scope, decision, or problem surface being constrained.",
           "The boundaries, rules, limitations, exclusions, and acceptable trade-offs being proposed.",
-          "The current economics, technology, stakeholder environment, and signals that could make old constraints obsolete.",
           "The specific material, work, or stakeholder demand being excluded and why that exclusion preserves usefulness.",
-          "The test for whether a constraint is too loose, too tight, outdated, or still decision-improving."
+          "The success criterion that makes the boundary useful rather than arbitrary."
         ]
       },
       "treatment_requirements": [
@@ -45,35 +44,17 @@
             "Explains why the exclusion improves clarity or quality.",
             "Keeps the boundary tied to success criteria rather than habit."
           ]
-        },
-        {
-          "requirement_id": "stress-test-constraint-fit",
-          "description": "Check whether the proposed or inherited constraint still fits the current environment and whether it is calibrated tightly enough for focus without choking off learning.",
-          "evidence_required": [
-            "The age, source, or rationale of the current constraint.",
-            "Changes in economics, technology, stakeholders, or evidence since the constraint was adopted.",
-            "Signals that the constraint is too loose, too tight, or obsolete.",
-            "The learning or adaptation that would be lost if the constraint stayed unchanged."
-          ],
-          "good_output_shape": [
-            "Separates binding constraints from stale assumptions.",
-            "Names what would have to be true for the constraint to remain valid.",
-            "Loosens or tightens the boundary based on current evidence.",
-            "Drops accurate-but-useless detail that does not help the decision."
-          ]
         }
       ],
       "diagnostic_questions": [
         "What boundary, rule, or limitation defines the scope of this decision?",
         "Which goals, variables, or stakeholders are creating clarity loss?",
         "What will this effort deliberately exclude, and what would be lost if that exclusion were wrong?",
-        "Which inherited constraint might no longer fit the current economics, technology, or stakeholder environment?",
-        "Is this constraint focusing useful signal or choking off adaptation and learning?"
+        "If this was cut, would anything decision-relevant be lost?"
       ],
       "misuse_guards": [
-        "Do not treat old constraints as permanent without checking whether the environment changed.",
-        "Do not write constraints so loosely that they create false confidence in control.",
-        "Do not write constraints so tightly that they suppress signal, adaptation, or learning.",
+        "Do not use this card to defend an inherited boundary without testing whether it still fits.",
+        "Do not make the boundary so elaborate that it becomes accurate but useless.",
         "Do not use a familiar framework as a constraint unless its assumptions match the current problem."
       ],
       "source_evidence": [
@@ -107,6 +88,96 @@
         },
         {
           "source_file": "Constraints_rag.md",
+          "source_quote": "If this was cut, would anything be lost?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR78 split this from constraint-fit stress testing because the receiver transaction is boundary and exclusion definition, not validity review of the boundary.",
+        "dropped_material": [
+          "Did not extract AI prompt constraints, teaching chunking, or presentation curation as separate records because they are examples of the same boundary discipline."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this card stays distinct from prioritization and trade-offs when the task only needs an exclusion filter."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "constraints.constraint-fit-stress-test",
+      "status": "supported",
+      "name": "Constraint fit stress test",
+      "mechanism": "When a proposed or inherited boundary may be stale, loose, over-tight, over-engineered, or based on a familiar framework, stress-test the constraint against current economics, technology, stakeholders, assumptions, external factors, and learning needs before treating it as decision-improving.",
+      "activation_shape": {
+        "use_when": [
+          "A constraint is inherited, outdated, or untested after the economics, technology, or stakeholder environment has changed.",
+          "A boundary is so loose that it creates false confidence in control or so tight that it suppresses signal, adaptation, or learning.",
+          "A familiar framework, initial anchor, or past-successful constraint may be blinding the answer to external factors.",
+          "The answer needs to decide whether to loosen, tighten, drop, or reframe a boundary rather than merely state it."
+        ],
+        "do_not_use_when": [
+          "The task has no explicit boundary yet and first needs a scope/exclusion filter.",
+          "The constraint has recently been tested against current evidence and the remaining task is execution within that boundary.",
+          "The boundary is a mandatory external rule where the decision is compliance rather than fit."
+        ],
+        "case_evidence_needed": [
+          "The current constraint, framework, or boundary under review.",
+          "The age, source, rationale, and assumptions behind that constraint.",
+          "Changes in economics, technology, stakeholders, evidence, or external factors since the constraint was adopted.",
+          "Signals that the constraint is too loose, too tight, obsolete, over-engineered, or still decision-improving."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "stress-test-constraint-fit",
+          "description": "Check whether the proposed or inherited constraint still fits the current environment and whether it is calibrated tightly enough for focus without choking off learning.",
+          "evidence_required": [
+            "The age, source, or rationale of the current constraint.",
+            "Changes in economics, technology, stakeholders, or evidence since the constraint was adopted.",
+            "Signals that the constraint is too loose, too tight, or obsolete.",
+            "The learning or adaptation that would be lost if the constraint stayed unchanged."
+          ],
+          "good_output_shape": [
+            "Separates binding constraints from stale assumptions.",
+            "Names what would have to be true for the constraint to remain valid.",
+            "Loosens or tightens the boundary based on current evidence.",
+            "Drops accurate-but-useless detail that does not help the decision."
+          ]
+        },
+        {
+          "requirement_id": "test-framework-assumptions-and-external-factors",
+          "description": "Expose what must be true for the chosen framework or boundary to be valid, then test whether excluded external factors or alternative cuts would change the answer.",
+          "evidence_required": [
+            "The familiar framework, initial constraint, or anchor being applied.",
+            "The assumptions required for that frame to fit the current problem.",
+            "External factors, alternative cuts, or feedback that the frame might ignore."
+          ],
+          "good_output_shape": [
+            "States what would have to be true for the constraint to remain useful.",
+            "Names the external factor or alternative frame most likely to invalidate the boundary.",
+            "Reframes, loosens, tightens, or drops the constraint when current evidence no longer supports it."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which inherited constraint might no longer fit the current economics, technology, or stakeholder environment?",
+        "Is this constraint focusing useful signal or choking off adaptation and learning?",
+        "What would you have to believe for this framework or boundary to still fit?",
+        "Which external factor or alternative cut would change the constraint?"
+      ],
+      "misuse_guards": [
+        "Do not treat old constraints as permanent without checking whether the environment changed.",
+        "Do not write constraints so loosely that they create false confidence in control.",
+        "Do not write constraints so tightly that they suppress signal, adaptation, or learning.",
+        "Do not use a familiar framework as a constraint unless its assumptions match the current problem.",
+        "Do not let a constraint blind the answer to important factors outside the frame."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Constraints_rag.md",
           "source_quote": "Danger when** old constraints remain unquestioned after the economics, technology, or stakeholder environment has changed.",
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
@@ -118,17 +189,44 @@
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "This happens when assumptions underlying a framework are not met, leading to ineffective or costly solutions because reality is tortured to fit the model.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "Frameworks, by nature, tell us what to pay attention to, and thus what to ignore.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "When a constraint or framework is applied, ask **\"What would you have to believe?\"** to accept this frame.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constraints_rag.md",
+          "source_quote": "Different frames yield different insights, reducing the risk of being misled by an initial, suboptimal constraint.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
         }
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source supports a compact boundary-and-exclusion filter with explicit old-constraint, loose-constraint, and over-tightening guards.",
+        "normalization_note": "PR78 split this from scope-boundary definition because the receiver transaction is validity review: test whether the boundary still fits, is calibrated, and is not a familiar frame hiding external factors.",
         "dropped_material": [
-          "Did not extract AI prompt constraints, teaching chunking, or presentation curation as separate records because they are examples of the same boundary discipline.",
           "Did not convert every named framework into a field; the operational value is the fit-tested scope boundary."
         ],
         "open_questions": [
-          "PR29 should check whether this card remains useful without duplicating trade-offs, prioritization, or theory-of-constraints."
+          "Packet stress should check whether constraint-fit stress testing routes away from optionality or lateral-thinking when the real issue is exploration outside a rigid frame."
         ],
         "review_status": "draft"
       }
@@ -190,7 +288,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 4 source reading found enough reviewed operational depth for Constraints. The record is intentionally narrow: scope boundaries, exclusions, and fit-testing, with absences for permanent rules and elaborate control systems.",
+    "normalization_note": "Batch 4 source reading found enough reviewed operational depth for Constraints. PR78 splits the prior compressed card into scope/exclusion definition and constraint-fit stress testing, with absences for permanent rules and elaborate control systems.",
     "dropped_material": [
       "CWD agent examples, scaffolding, and LLM prompt examples were treated as illustrations only.",
       "No runtime, prompt, lane, or packet-producer changes are implied."

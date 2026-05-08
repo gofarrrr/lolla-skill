@@ -43,12 +43,27 @@
             "Identifies the pacing dependency.",
             "States the first measure that should move when the bottleneck is relieved."
           ]
+        },
+        {
+          "requirement_id": "plan-how-to-relieve-constraint",
+          "description": "After identifying the bottleneck, require the answer to state how the constrained step will actually be relieved rather than stopping at the label.",
+          "evidence_required": [
+            "The specific constrained step or dependency.",
+            "The execution action that would increase capacity, reduce queueing, change sequencing, or remove the gating dependency.",
+            "The owner, prerequisite, or implementation constraint that determines whether the relief action can happen."
+          ],
+          "good_output_shape": [
+            "Names how the constrained step will improve.",
+            "Separates bottleneck diagnosis from bottleneck relief.",
+            "Identifies the owner or prerequisite required to execute the relief action."
+          ]
         }
       ],
       "diagnostic_questions": [
         "Which step would still throttle the whole system if every other improvement were funded?",
         "What evidence shows this is the binding constraint rather than the loudest complaint?",
-        "Which dependency, queue, approval, or specialist function is pacing everything else?"
+        "Which dependency, queue, approval, or specialist function is pacing everything else?",
+        "How will the constrained step actually improve once we name it?"
       ],
       "misuse_guards": [
         "Do not treat the noisiest queue or highest-status pain point as the bottleneck without throughput evidence.",
@@ -76,11 +91,18 @@
           "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
+        },
+        {
+          "source_file": "Bottlenecks_rag.md",
+          "source_quote": "overlooking the difficulty of figuring out *how* to execute the solution",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
         }
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one binding-constraint check centered on throughput, sequence, capacity, and gating dependencies.",
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one binding-constraint check centered on throughput, sequence, capacity, gating dependencies, and PR78's execution path for actually relieving the constrained step.",
         "dropped_material": [
           "Did not extract cognitive load, prompt context windows, or communication focus as separate affordances.",
           "Kept queue, migration, launch, and handoff examples under one throughput check."
@@ -134,7 +156,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Bottlenecks. Extracted one binding constraint check and rejected loudest-pain and parallelization-over-gating-dependency errors.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Bottlenecks. Extracted one binding constraint check, rejected loudest-pain and parallelization-over-gating-dependency errors, and PR78 hardens the treatment to require an execution path for relieving the constrained step.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
