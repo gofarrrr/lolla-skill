@@ -1,0 +1,145 @@
+{
+  "model_id": "consulting-firms-methodology",
+  "source_file": "consulting_firms_methodology_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "consulting-firms-methodology.structure-uncertainty-into-testable-questions",
+      "status": "supported",
+      "name": "Structure uncertainty into testable questions",
+      "mechanism": "When a vague, politically messy, or data-heavy problem needs forward motion, use consulting-firm methodology to define the owner, success criteria, constraints, actors, hypotheses, and make-or-break analyses while preventing framework-complete theater.",
+      "activation_shape": {
+        "use_when": [
+          "A vague, politically messy, or data-heavy problem needs to become a structured sequence of discriminating questions.",
+          "Teams need a common language for hypothesis setting, analysis pruning, synthesis, and decision support.",
+          "The problem is consequential enough that intuition is too loose but exhaustive analysis would stall action."
+        ],
+        "do_not_use_when": [
+          "The methodology is being performed cosmetically as framework-complete slides without uncertainty reduction.",
+          "Hypothesis discipline has hardened into answer defense.",
+          "Client-specific evidence, ownership, constraints, or adoption politics are missing."
+        ],
+        "case_evidence_needed": [
+          "Trouble, owner, success criteria, constraints, and actors.",
+          "The initial hypothesis and make-or-break questions.",
+          "The fact-gathering plan and pruning rationale.",
+          "The client or stakeholder context needed for adoption."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "turn-framework-into-evidence-plan",
+          "description": "Require the answer to convert the framework into a specific evidence plan and adoption context rather than treating the consulting method itself as the answer.",
+          "evidence_required": [
+            "The TOSCA-style problem definition.",
+            "The discriminating hypothesis or issue tree.",
+            "The make-or-break analysis.",
+            "Stakeholder or client-specific evidence needed for implementation."
+          ],
+          "good_output_shape": [
+            "Defines the problem precisely.",
+            "Names the critical hypotheses.",
+            "Prunes nonessential analysis.",
+            "Adds stakeholder adoption and evidence checks."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What are the trouble, owner, success criteria, constraints, and actors?",
+        "Which hypothesis is make-or-break, and what evidence would disprove it?",
+        "Is the framework reducing uncertainty or just making the work look structured?"
+      ],
+      "misuse_guards": [
+        "Do not treat framework completeness as problem solving.",
+        "Do not protect the initial hypothesis from disconfirming evidence.",
+        "Do not ignore client-specific evidence, adoption politics, or implementation context."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "consulting_firms_methodology_rag.md",
+          "source_quote": "vague, politically messy, or data-heavy problem needs to be turned into a structured sequence of discriminating questions",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "consulting_firms_methodology_rag.md",
+          "source_quote": "methodology is performed cosmetically",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "consulting_firms_methodology_rag.md",
+          "source_quote": "TOSCA Framework",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports consulting methodology as uncertainty structuring with evidence plans, not slide theater.",
+        "dropped_material": [
+          "Did not extract consulting method as universal answer format.",
+          "Did not create a deterministic case template."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves problem definition without bloating packets."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "consulting-method-as-answer",
+      "status": "not_supported_by_source",
+      "reason": "The source treats methodology as a way to structure and test uncertainty, not as the answer itself.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "consulting_firms_methodology_rag.md",
+          "source_quote": "framework-complete slides without real uncertainty reduction or causal learning",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "framework-without-client-specific-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source requires client involvement and context; it does not support generic framework application without client-specific evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "consulting_firms_methodology_rag.md",
+          "source_quote": "Involve the client in selecting the dimensions to be studied and the methods used",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "consulting_firms_methodology_rag.md",
+      "source_quote": "systematic problem-solving framework",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found strong reviewed depth for consulting methodology as evidence discipline and structured uncertainty reduction.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, case-template routing, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should inspect whether this card helps or over-structures ambiguous advice cases."
+    ],
+    "review_status": "draft"
+  }
+}

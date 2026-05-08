@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-08
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR52 are merged or in review, PR52 completed the controlled cultural / product communication enrichment batch, and the current posture is `controlled_cultural_product_communication_enrichment_ready`
+**Status:** living schema doctrine; PR13-PR53 are merged or in review, PR53 completed the controlled economic / systems structure enrichment batch, and the current posture is `controlled_economic_systems_enrichment_ready`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -144,6 +144,13 @@ real. Future sessions should treat the following as current baseline:
   `data/compiled/model_affordances/affordances_v16.json`.
 - v16 corpus shape: `194` reviewed records, `230` affordances, `373` absence
   records. v16 remains `draft_review_only` and is not runtime-promoted.
+- Batch 16 records: `data/model_affordances/batch_16/` for 12 controlled
+  economic, systems-structure, institutional, consulting-method, and evaluation
+  extractions opened after PR52.
+- Compiled v17 artifact:
+  `data/compiled/model_affordances/affordances_v17.json`.
+- v17 corpus shape: `206` reviewed records, `242` affordances, `397` absence
+  records. v17 remains `draft_review_only` and is not runtime-promoted.
 - Current experiment: PR 11 Gate 4 edge-probe harness, branch
   `feature/knowledge-substrate-pr11-gate4-edge-probes`.
 - Gate 4 dry-run: `10` usable cases, `39` Lane 4 routes, `165/205` v3-covered
@@ -432,18 +439,27 @@ real. Future sessions should treat the following as current baseline:
   simplification, category decisions, liking, and pre-suasion. It compiles
   draft/review-only v16 and preserves `24` absence records. Decision label:
   `controlled_cultural_product_communication_enrichment_ready`.
+- PR53 completed one controlled economic / systems structure enrichment batch
+  after PR52. It adds `12` Batch 16 records for elasticity, supply and demand,
+  price discrimination, scale economies, specialization, evolutionary pressure,
+  self-organization, Peter Principle, comparative political systems, consulting
+  methodology, tradition/innovation balance, and extreme performance
+  evaluation. It compiles draft/review-only v17 and preserves `24` absence
+  records. Decision label: `controlled_economic_systems_enrichment_ready`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `controlled_cultural_product_communication_enrichment_ready`; do not build runtime packet
+  `controlled_economic_systems_enrichment_ready`; do not build runtime packet
   production, prompt changes, broad Batch 3b, lane rewrites, user-facing
   surfaces, deterministic reasoning-mode routing, deterministic option
   selection, deterministic mastery classification, deterministic statistical
   routing, deterministic psychological diagnosis, deterministic cultural
-  classification, deterministic persuasion routing, or mechanical extraction.
+  classification, deterministic persuasion routing, deterministic market
+  recommendation, deterministic political classification, deterministic
+  consulting templates, punitive scoring, or mechanical extraction.
   The user explicitly approved continued controlled extraction toward full
-  coverage; the next slice should be PR53 as another capped source-backed
-  family from the remaining 28 graph-only models.
+  coverage; the next slice should be PR54 as the final capped source-backed
+  family for the remaining 16 graph-only models.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1851,11 +1867,16 @@ Current task:
     v16 runtime promotion, prompt mechanics, deterministic cultural
     classification, deterministic persuasion routing, stereotype generation,
     UX theater, or proof that Python can decide how to influence someone.
-60. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+60. Treat PR53 as controlled economic / systems structure enrichment, not v17
+    runtime promotion, prompt mechanics, deterministic market recommendations,
+    political classification, consulting-case templates, punitive scoring, or
+    proof that Python can decide which economic or organizational explanation
+    governs the final answer.
+61. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-61. Preserve coverage honesty and no-casuistry rails.
-62. Do not run more paid model calls for this slice.
-63. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+62. Preserve coverage honesty and no-casuistry rails.
+63. Do not run more paid model calls for this slice.
+64. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Continue controlled extraction only under the quality rails: small bounded
@@ -1865,9 +1886,10 @@ skill-acquisition depth as draft/review v13. PR50 added source-backed
 quantitative inference / distributional reasoning depth as draft/review v14.
 PR51 added source-backed self-regulation / bias-calibration depth as
 draft/review v15. PR52 added source-backed cultural / product communication
-depth as draft/review v16. The next slice should be PR53 as another controlled
-family from the remaining 28 graph-only models, not broad Batch 3b or runtime
-promotion.
+depth as draft/review v16. PR53 added source-backed economic / systems
+structure depth as draft/review v17. The next slice should be PR54 as the
+final controlled family for the remaining 16 graph-only models, not broad
+Batch 3b or runtime promotion.
 
 ---
 

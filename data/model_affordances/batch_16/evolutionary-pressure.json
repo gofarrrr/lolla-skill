@@ -1,0 +1,145 @@
+{
+  "model_id": "evolutionary-pressure",
+  "source_file": "Evolutionary_Pressure_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "evolutionary-pressure.identify-selection-environment",
+      "status": "supported",
+      "name": "Identify the selection environment",
+      "mechanism": "When behavior is shaped by incentives, status games, stress, fear, repetition, or resource constraints rather than stated intent, use evolutionary pressure to ask what the environment rewards, selects against, and makes likely to survive.",
+      "activation_shape": {
+        "use_when": [
+          "Behavior is being shaped by selection pressure rather than stated intent.",
+          "The real question is what survives competition, stress, and resource constraint rather than what sounds best in theory.",
+          "Leaders need to diagnose fitness trade-offs in a system."
+        ],
+        "do_not_use_when": [
+          "Evolutionary logic is being used as fatalism or as an excuse not to redesign incentives.",
+          "Selection pressure is being equated with moral progress or good outcomes.",
+          "The case lacks evidence of the environment, reward structure, or stressor doing the selecting."
+        ],
+        "case_evidence_needed": [
+          "The selection environment and repeated pressure.",
+          "The behavior, message, or structure that survives under that pressure.",
+          "What the system rewards and selects against.",
+          "A redesign lever for incentives, guardrails, or communication."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-selection-from-endorsement",
+          "description": "Require the answer to distinguish what the environment selects from what should be endorsed, then name the incentive or guardrail that could change the selection pressure.",
+          "evidence_required": [
+            "The environmental pressure.",
+            "The selected behavior or structure.",
+            "The fitness trade-off created by the pressure.",
+            "A redesign lever for changing incentives or guardrails."
+          ],
+          "good_output_shape": [
+            "Names the selection pressure.",
+            "States what survives and what is selected against.",
+            "Avoids treating survival as approval.",
+            "Adds a redesign lever."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the system actually rewarding here?",
+        "What behavior survives competition, stress, fear, or resource constraint even if nobody explicitly endorses it?",
+        "What incentive, guardrail, or communication change would alter the selection pressure?"
+      ],
+      "misuse_guards": [
+        "Do not treat survival as evidence of wisdom or moral worth.",
+        "Do not use evolutionary logic as an excuse for fatalism.",
+        "Do not infer selection pressure without a concrete environment and repeated pressure."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Evolutionary_Pressure_rag.md",
+          "source_quote": "behavior is being shaped by selection pressure rather than stated intent",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Evolutionary_Pressure_rag.md",
+          "source_quote": "what behaviors, structures, or messages survive competition, stress, and resource constraint",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Evolutionary_Pressure_rag.md",
+          "source_quote": "what the system is rewarding, what it is selecting against",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports evolutionary pressure as selection-environment diagnosis with anti-fatalism caveats.",
+        "dropped_material": [
+          "Did not turn biological analogy into inevitability.",
+          "Did not treat selection pressure as proof of progress."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps distinguish incentives from explicit intent."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "adaptation-without-fitness-environment",
+      "status": "not_supported_by_source",
+      "reason": "The source requires an environment that rewards or selects behavior; it does not support generic adaptation claims without a fitness environment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Evolutionary_Pressure_rag.md",
+          "source_quote": "Darwinian fitness",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "selection-pressure-as-progress",
+      "status": "not_supported_by_source",
+      "reason": "The source frames selection around survival and fitness trade-offs, not improvement; it does not support treating selected behavior as inherently better.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Evolutionary_Pressure_rag.md",
+          "source_quote": "not necessarily happiness or perfect logic",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Evolutionary_Pressure_rag.md",
+      "source_quote": "forces that favor survival, adaptation, and efficiency",
+      "section_hint": "Opening Summary",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found strong reviewed depth for evolutionary pressure as environment/reward diagnosis rather than deterministic fatalism.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, biological determinism, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare evolutionary-pressure with incentives and status-quo-bias if they co-occur."
+    ],
+    "review_status": "draft"
+  }
+}
