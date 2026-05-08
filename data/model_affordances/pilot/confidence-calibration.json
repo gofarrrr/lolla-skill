@@ -333,7 +333,38 @@
       }
     }
   ],
-  "absence_records": [],
+  "absence_records": [
+    {
+      "attempted_field": "calibration-as-bias-immunity",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that calibration exercises can create false assurance that judgments are bias-free; do not promote a calibration check as sufficient when bias, adversarial review, or disconfirmation remains untested.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "calibration exercises create false assurance that one's judgments are now bias-free.",
+          "section_hint": "Structured Tension Curation (2026-04-03):",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "domain-calibration-transfer-without-domain-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that confidence calibrated in one domain can be transferred uncritically to domains where the calibrator lacks expertise; do not promote confidence-calibration when the track record or evidence is not domain-matched to the decision.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Confidence_Calibration_rag.md",
+          "source_quote": "well-calibrated confidence in one domain is transferred uncritically to domains where the calibrator lacks expertise",
+          "section_hint": "Structured Tension Curation (2026-04-03):",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
   "source_evidence": [
     {
       "source_file": "Confidence_Calibration_rag.md",

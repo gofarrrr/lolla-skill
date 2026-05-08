@@ -263,7 +263,30 @@
       "confidence": "high"
     }
   ],
-  "absence_records": [],
+  "absence_records": [
+    {
+      "attempted_field": "team-option-set-after-shared-anchor",
+      "status": "not_supported_by_source",
+      "reason": "The source supports option expansion in team settings only when initial options and rationales are generated independently enough to decorrelate errors; it does not support treating a set built after the first salient proposal anchors the group as real optionality.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "Being inadvertently influenced by the first piece of information or initial option presented, which unduly limits the perceived range of future options.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "require members to record their initial opinions and rationales independently before sharing with the group to decorrelate errors.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
   "source_evidence": [
     {
       "source_file": "Optionality_rag.md",
