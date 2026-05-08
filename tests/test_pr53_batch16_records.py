@@ -58,6 +58,7 @@ EXPECTED_ABSENCE_FIELDS = {
     "supply-demand-without-constraints",
     "tradition-as-proof",
     "willingness-to-pay-as-extraction-license",
+    "elastic-snippet-without-relevance-quality-check",
 }
 
 LIVE_RUNTIME_PATHS = (
@@ -67,6 +68,10 @@ LIVE_RUNTIME_PATHS = (
     REPO_ROOT / "engine" / "system_b" / "reasoning_substrate_packet_review.py",
     REPO_ROOT / "scripts" / "run_pipeline.py",
 )
+
+APPROVED_EXTRA_ABSENCE_MODEL_IDS = {
+    "elasticity",
+}
 
 
 def test_pr53_batch16_records_exist_for_approved_models_only() -> None:
@@ -116,7 +121,10 @@ def test_pr53_batch16_records_are_compact_and_absence_first() -> None:
 
         assert record["status"] in {"supported", "weak_support"}
         assert len(affordances) == 1
-        assert len(absences) == 2
+        expected_absence_count = (
+            3 if model_id in APPROVED_EXTRA_ABSENCE_MODEL_IDS else 2
+        )
+        assert len(absences) == expected_absence_count
         assert affordances[0]["confidence"] in {"high", "medium"}
         assert all(absence["runtime_policy"] == "do_not_promote" for absence in absences)
 

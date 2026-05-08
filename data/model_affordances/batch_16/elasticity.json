@@ -121,6 +121,21 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "elastic-snippet-without-relevance-quality-check",
+      "status": "not_supported_by_source",
+      "reason": "The source supports elastic context triage only when selected snippets remain relevant and high quality; it does not support promoting elastic snippets when retrieved bits are irrelevant, low quality, or likely to skew the answer.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Elasticity_rag.md",
+          "source_quote": "If the search pulls in irrelevant or low-quality data bits, it might confuse the model or skew the answer",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
