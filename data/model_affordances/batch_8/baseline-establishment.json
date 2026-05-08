@@ -121,6 +121,28 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "goal-baseline-with-solution-imported",
+      "status": "not_supported_by_source",
+      "reason": "The source says goal setting must be separated from solution, diagnosis, and implementation thinking; it does not support a baseline that imports the execution plan into the desired outcome.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "Goal setting must be done without thinking about solutions",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "Am I defining the desired outcome, or am I already thinking about the execution steps required to achieve it?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +155,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Baseline Establishment. Extracted one starting-condition comparison gate and rejected stale-baseline and convenient-metric overclaims.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Baseline Establishment. Extracted one starting-condition comparison gate and rejected stale-baseline and convenient-metric overclaims. PR60 adds a guard against importing solutions or execution steps into the goal baseline.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
