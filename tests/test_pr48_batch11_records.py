@@ -37,6 +37,10 @@ APPROVED_BATCH_MODEL_IDS = {
     "variation-and-selection",
 }
 
+PR58_APPROVED_SPLIT_AFFORDANCE_COUNTS = {
+    "mental-simulation": 2,
+}
+
 EXPECTED_ABSENCE_FIELDS = {
     "accuracy-without-action",
     "analogy-as-proof",
@@ -115,9 +119,9 @@ def test_pr48_batch11_records_are_compact_and_absence_first() -> None:
         absences = record["absence_records"]
 
         assert record["status"] == "supported"
-        assert len(affordances) == 1
+        assert len(affordances) == PR58_APPROVED_SPLIT_AFFORDANCE_COUNTS.get(model_id, 1)
         assert len(absences) == 2
-        assert affordances[0]["confidence"] == "high"
+        assert all(affordance["confidence"] == "high" for affordance in affordances)
         assert all(absence["runtime_policy"] == "do_not_promote" for absence in absences)
 
 

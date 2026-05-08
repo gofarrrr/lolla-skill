@@ -81,11 +81,113 @@
       "review_notes": {
         "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports mental simulation as bounded scenario rehearsal with explicit assumptions, ranges, and thresholds.",
         "dropped_material": [
-          "Did not extract AI digital twins, persona definitions, or skill rehearsal as separate affordances.",
+          "PR58 promotes skill rehearsal and anticipatory response preparation as a separate bounded affordance from decision scenario rehearsal.",
+          "Did not extract AI digital twins or persona definitions as separate affordances.",
           "Kept wargaming and digital advisory board material as examples of simulation contexts."
         ],
         "open_questions": [
           "PR49 should test whether this card helps packets rehearse options without making simulation feel like proof."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "mental-simulation.skill-rehearsal-response-prep",
+      "status": "supported",
+      "name": "Skill rehearsal response preparation",
+      "mechanism": "When the task is future performance rather than option evaluation, require the answer to mentally rehearse the response, break the competency into parts, make the right words or moves available, and pair rehearsal with real-world practice or validation.",
+      "activation_shape": {
+        "use_when": [
+          "A person needs to rehearse a high-stakes conversation, intervention, or cognitively demanding performance before doing it.",
+          "The task can be broken into component moves, responses, or decision cues for mental practice.",
+          "Mental rehearsal can make appropriate responses available under pressure before direct engagement."
+        ],
+        "do_not_use_when": [
+          "The main task is comparing strategic futures, tail risks, or contingency thresholds; use the assumption-bound scenario rehearsal affordance instead.",
+          "The task is mostly physical or environment-specific and cannot be improved much without direct practice.",
+          "Rehearsal is being used as proof of readiness without real-world engagement, feedback, or validation."
+        ],
+        "case_evidence_needed": [
+          "The skill, conversation, intervention, or performance being rehearsed.",
+          "The component parts, cues, words, or response sequence to practice.",
+          "The future context or pressure condition where the response must be available.",
+          "The direct engagement, feedback, or validation step that follows mental rehearsal."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "rehearse-response-then-validate",
+          "description": "Require the answer to structure mental practice into component responses and name the direct practice or feedback loop that prevents rehearsal from becoming false confidence.",
+          "evidence_required": [
+            "The target skill or response.",
+            "The component moves or words to rehearse.",
+            "The pressure context where the response will be used.",
+            "The direct practice, feedback, or validation plan."
+          ],
+          "good_output_shape": [
+            "Names the performance or response being rehearsed.",
+            "Breaks it into specific component moves.",
+            "States the pressure cue that should trigger the response.",
+            "Pairs mental rehearsal with real-world practice or feedback."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What exact response needs to be available before the real situation arrives?",
+        "Which component moves or words should be rehearsed rather than merely imagined?",
+        "What direct practice or feedback will test whether rehearsal transferred?"
+      ],
+      "misuse_guards": [
+        "Do not treat rehearsal as evidence of mastery without direct engagement.",
+        "Do not use this card for broad scenario comparison when the decision thresholds matter more than performance practice.",
+        "Do not overstate mental practice for tasks that depend mainly on physical or environment-specific feedback."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "mental practice** or rehearsal, which has been shown to build skills and improve performance",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "intentionally breaking down a problem or competency into parts",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "Mentally rehearsing a potential argument with a boss or picturing an intervention for a bad habit",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "makes the right words available when needed",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Simulation_rag.md",
+          "source_quote": "Mastery is difficult to achieve without **direct engagement in the environments** where a skill is actually applied.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR58 targeted enrichment: the source supports skill rehearsal and anticipatory response preparation as a separate receiver transaction from assumption-bound decision simulation.",
+        "dropped_material": [
+          "Did not promote generic visualization or AI persona/digital twin construction as standalone runtime cards.",
+          "Kept the gap with reality as a guard requiring direct engagement or validation."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this card routes practice and response-prep cases without making rehearsal look like proof."
         ],
         "review_status": "draft"
       }
@@ -133,7 +235,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 11 source reading found strong reviewed depth for mental-simulation as assumption-bound scenario rehearsal.",
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for mental-simulation as assumption-bound scenario rehearsal. PR58 adds skill rehearsal and response preparation as a second, source-backed transaction.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
     ],
