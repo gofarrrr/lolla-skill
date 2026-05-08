@@ -1,0 +1,145 @@
+{
+  "model_id": "persistence-grit",
+  "source_file": "Persistence_Grit_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "persistence-grit.sustained-effort-with-stop-rules",
+      "status": "supported",
+      "name": "Sustained effort with stop rules",
+      "mechanism": "When success depends on sustained effort through friction and setbacks, require the answer to pair persistence with practice loops, progress evidence, recovery routines, and stop or pivot criteria that prevent identity-driven escalation.",
+      "activation_shape": {
+        "use_when": [
+          "A goal requires sustained effort across many repetitions, setbacks, or morale dips.",
+          "The strategy remains plausible but friction, repetition, or discouragement may cause premature quitting.",
+          "The team can define progress evidence, checkpoint metrics, and recovery routines."
+        ],
+        "do_not_use_when": [
+          "The core strategy has already been disproven by evidence, economics, or customer response.",
+          "Persistence is becoming identity defense, sunk-cost exposure, or refusal to pivot.",
+          "The real bottleneck is wrong framing, wrong market, or wrong capability mix."
+        ],
+        "case_evidence_needed": [
+          "The long-term goal and why persistence matters.",
+          "The practice loop or repeated action required.",
+          "Progress metrics or checkpoint evidence.",
+          "Stop rules, kill criteria, or pivot triggers."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "pair-grit-with-pivot-criteria",
+          "description": "Require the answer to support sustained effort only when progress evidence and stop or pivot criteria are visible.",
+          "evidence_required": [
+            "Plausible strategy or learning path.",
+            "Repeated practice or execution loop.",
+            "Checkpoint metric.",
+            "Stop rule or pivot criterion."
+          ],
+          "good_output_shape": [
+            "Names the friction that persistence must carry through.",
+            "Defines a practice or execution cadence.",
+            "Specifies what progress would look like.",
+            "Warns when persistence has become escalation of commitment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is this hard because of friction and repetition, or because the strategy has been disproven?",
+        "What progress metric tells us persistence is working?",
+        "What stop rule prevents grit from becoming sunk-cost escalation?"
+      ],
+      "misuse_guards": [
+        "Do not praise endurance without progress evidence.",
+        "Do not let grit become identity defense after the facts change.",
+        "Do not ignore rest, cognitive load, or recovery routines required for sustained effort."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "hard because of friction, repetition, or morale decay rather than because the core strategy has already been disproven",
+          "section_hint": "Strengths: Contexts where Persistence Grit is Most Powerful",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "**Danger when** persistence becomes identity defense",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "stop rules, kill criteria",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports persistence only when paired with progress evidence and pivot discipline.",
+        "dropped_material": [
+          "Did not extract persistence as unconditional virtue.",
+          "Did not convert grit into a reason to ignore negative data."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with commitment-bias and growth-mindset records."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "persistence-as-always-virtue",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that persistence can be dangerous after evidence, economics, or customer response has changed.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "after the evidence, economics, or customer response has materially changed",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "grit-without-stop-condition",
+      "status": "not_supported_by_source",
+      "reason": "The source says leaders must define stop rules and what progress would count as proof, so grit without criteria is unsupported.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "what kind of progress would count as proof the effort is working",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Persistence_Grit_rag.md",
+      "source_quote": "sustained effort, systematic practice, and high commitment",
+      "section_hint": "Comprehensive Briefing Document",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for persistence as bounded sustained effort, not blind endurance.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps decide when to continue versus pivot."
+    ],
+    "review_status": "draft"
+  }
+}

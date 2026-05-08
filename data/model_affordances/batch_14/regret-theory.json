@@ -1,0 +1,145 @@
+{
+  "model_id": "regret-theory",
+  "source_file": "Regret_Theory_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "regret-theory.long-run-regret-with-risk-check",
+      "status": "supported",
+      "name": "Long-run regret with risk check",
+      "mechanism": "When a deeply personal, values-loaded, hard-to-revisit choice is stalled by fear or status quo comfort, require the answer to compare regret of omission against regret of action while adding probability, downside, reversibility, and option-expansion checks.",
+      "activation_shape": {
+        "use_when": [
+          "A high-stakes personal or strategic choice is novel, ambiguous, and hard to revisit later.",
+          "The real bottleneck is psychological commitment after options have already been clarified.",
+          "Fear of failure or present inconvenience may be crowding out long-run identity consequences."
+        ],
+        "do_not_use_when": [
+          "The decision is routine, operational, or better handled by cost-benefit and probabilistic analysis alone.",
+          "Regret language would romanticize reckless action without risk work.",
+          "The case lacks values or long-run identity stakes and is mostly missing information."
+        ],
+        "case_evidence_needed": [
+          "The action and inaction options.",
+          "The long-run regret being anticipated.",
+          "Probability, downside, and reversibility evidence.",
+          "Alternative options that may reduce both short-term and long-term regret."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "pair-regret-frame-with-risk-work",
+          "description": "Require the answer to use regret as a values signal while checking probabilities, reversibility, and option space before recommending action.",
+          "evidence_required": [
+            "Values-loaded choice.",
+            "Regret of action and inaction.",
+            "Risk and probability evidence.",
+            "Reversibility or fallback path."
+          ],
+          "good_output_shape": [
+            "Names the regret of omission and commission.",
+            "Checks whether regret is a legitimate values signal.",
+            "Adds probability and downside work.",
+            "Looks for third, fourth, or fifth options before action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is the anticipated regret a stable values signal or a vivid emotional distortion?",
+        "What objective probabilities and downside risks are being ignored?",
+        "What reversible or intermediate option could preserve learning without reckless commitment?"
+      ],
+      "misuse_guards": [
+        "Do not let regret language bypass probability and downside analysis.",
+        "Do not use regret theory for routine vendor, operational, or optimization choices.",
+        "Do not romanticize underprepared action as noble anti-regret behavior."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Regret_Theory_rag.md",
+          "source_quote": "high-stakes, novel, and ambiguous decision-making",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Regret_Theory_rag.md",
+          "source_quote": "Best when the decision is deeply personal, values-loaded, and hard to revisit later",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Regret_Theory_rag.md",
+          "source_quote": "Danger When Regret Language Romanticizes Recklessness",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports regret theory as values-loaded action/inaction comparison with risk checks.",
+        "dropped_material": [
+          "Did not extract regret as a universal decision rule.",
+          "Did not treat anticipated emotion as probability evidence."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps values-heavy choices without encouraging recklessness."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "regret-as-decision-rule",
+      "status": "not_supported_by_source",
+      "reason": "The source presents regret minimization as a heuristic shortcut for a narrow class of choices, not a universal decision rule.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Regret_Theory_rag.md",
+          "source_quote": "heuristic shortcut",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "anticipated-regret-without-probability",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that regret focus can ignore probability of failure, so anticipated regret alone cannot justify action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Regret_Theory_rag.md",
+          "source_quote": "probability of failure",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Regret_Theory_rag.md",
+      "source_quote": "What objective data",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for regret as long-run values signal with probability safeguards.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves personal high-stakes decision packets."
+    ],
+    "review_status": "draft"
+  }
+}

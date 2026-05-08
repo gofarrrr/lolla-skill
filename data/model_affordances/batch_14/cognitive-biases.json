@@ -1,0 +1,145 @@
+{
+  "model_id": "cognitive-biases",
+  "source_file": "Cognitive_Biases_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "cognitive-biases.debiasing-process-before-confident-judgment",
+      "status": "supported",
+      "name": "Debiasing process before confident judgment",
+      "mechanism": "When a consequential judgment is confident, pressured, novel, or politically convenient, require the answer to add process friction: outside view, disconfirming evidence, assumption challenge, and a check that bias language is applied symmetrically.",
+      "activation_shape": {
+        "use_when": [
+          "A person or team is making a high-stakes judgment under ambiguity, pressure, or strong priors.",
+          "The answer risks accepting intuition, confidence, status, or a coherent story without disconfirming checks.",
+          "Bias language could help design the review process rather than merely label someone as biased."
+        ],
+        "do_not_use_when": [
+          "The case needs a specific bias card that is already reviewed and narrower than this general shelf.",
+          "The model would become a rhetorical weapon against another party rather than a self-checking process.",
+          "The core problem is missing facts, constraints, or incentives rather than distorted judgment."
+        ],
+        "case_evidence_needed": [
+          "The judgment, belief, or recommendation being protected from bias.",
+          "The pressure, incentive, identity, or prior belief that could distort the reasoning.",
+          "The outside-view reference class or disconfirming evidence source.",
+          "The process step that will slow or challenge the initial view."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "add-symmetric-debiasing-checks",
+          "description": "Require the answer to convert bias awareness into symmetric process checks, not accusations or generic advice to be less biased.",
+          "evidence_required": [
+            "The current confident judgment or proposed move.",
+            "The likely bias channel or pressure source.",
+            "Outside-view or disconfirming evidence path.",
+            "A challenge step such as dialectic review or what-would-you-have-to-believe analysis."
+          ],
+          "good_output_shape": [
+            "Names the judgment at risk.",
+            "Adds at least one disconfirming or outside-view check.",
+            "Applies the check to the user's own reasoning as well as opponents.",
+            "Warns against bias language as a dismissal tool."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What prior, incentive, identity, or vivid recent example might be shaping the judgment?",
+        "What would we expect to see from the outside view if this story were wrong?",
+        "Are we using bias language to improve our process or to dismiss someone else?"
+      ],
+      "misuse_guards": [
+        "Do not treat a catalog of biases as a diagnosis without case evidence.",
+        "Do not use bias labels as proof that another person is wrong.",
+        "Do not let debiasing become endless analysis that prevents a bounded next move."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Biases_rag.md",
+          "source_quote": "systematic errors of judgment",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Biases_rag.md",
+          "source_quote": "what is true of the world in general",
+          "section_hint": "Actionable Frameworks and Guiding Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Biases_rag.md",
+          "source_quote": "bias language becomes a rhetorical weapon for dismissing opponents",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports cognitive-bias use as disciplined process design rather than bias-name theater.",
+        "dropped_material": [
+          "Did not extract every listed bias as a separate affordance.",
+          "Did not convert bias awareness into deterministic reasoning criticism."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this general card is redundant when narrower bias cards are present."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "bias-list-as-diagnosis",
+      "status": "not_supported_by_source",
+      "reason": "The source lists common biases, but operational use requires a process check and case evidence rather than naming a bias from the list.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Biases_rag.md",
+          "source_quote": "The most important biases to address in problem solving include",
+          "section_hint": "Key Biases and Heuristics in Practice",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "bias-label-as-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that intelligence does not protect against blind spots, so a bias label alone cannot prove another party is wrong.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Biases_rag.md",
+          "source_quote": "high cognitive ability does not attenuate the bias blind spot",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Cognitive_Biases_rag.md",
+      "source_quote": "**Works best when** decisions need explicit debiasing moves",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for cognitive biases as symmetric debiasing process discipline.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this broad card helps when the exact bias is not yet clear."
+    ],
+    "review_status": "draft"
+  }
+}

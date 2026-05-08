@@ -1,0 +1,145 @@
+{
+  "model_id": "self-determination-theory",
+  "source_file": "Self_Determination_Theory_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "self-determination-theory.motivation-architecture-diagnosis",
+      "status": "supported",
+      "name": "Motivation architecture diagnosis",
+      "mechanism": "When performance or commitment is weak despite nominal capability, require the answer to diagnose autonomy, competence support, relatedness, standards, and feedback quality before prescribing pressure, rewards, or vague purpose.",
+      "activation_shape": {
+        "use_when": [
+          "The apparent performance problem may be a mismatch in autonomy, competence support, or relatedness.",
+          "Compliance exists but ownership, initiative, retention, or creativity remain low.",
+          "Leaders can change decision latitude, feedback quality, growth path, or social belonging."
+        ],
+        "do_not_use_when": [
+          "The problem is routine task compliance where simple incentives and standards are sufficient.",
+          "Autonomy language would hide missing standards, quality bars, or accountability.",
+          "The case lacks ability to redesign conditions and only motivational slogans are available."
+        ],
+        "case_evidence_needed": [
+          "Where motivation, commitment, or initiative is failing.",
+          "Autonomy, competence, and relatedness conditions.",
+          "Current standards, feedback quality, and accountability structure.",
+          "What environmental condition can actually be redesigned."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "diagnose-three-needs-before-pressure",
+          "description": "Require the answer to inspect autonomy, competence, and relatedness conditions before adding pressure or rewards.",
+          "evidence_required": [
+            "Motivation or commitment gap.",
+            "Autonomy condition.",
+            "Competence support and feedback quality.",
+            "Relatedness or belonging condition."
+          ],
+          "good_output_shape": [
+            "Names which SDT need is likely thwarted.",
+            "Adds a condition redesign rather than just pressure.",
+            "Keeps standards and accountability explicit.",
+            "Warns against purpose or autonomy slogans without structure."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is the bottleneck autonomy, competence, relatedness, or a missing standard?",
+        "Are people able to do the work but not internalizing ownership?",
+        "What condition can be redesigned rather than merely incentivized?"
+      ],
+      "misuse_guards": [
+        "Do not reduce motivation to reward size alone.",
+        "Do not invoke autonomy while leaving expectations or quality bars vague.",
+        "Do not use purpose language to suppress criticism or skeptical doubts."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Self_Determination_Theory_rag.md",
+          "source_quote": "When these three needs are satisfied, individuals are motivated, productive, and happy",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Determination_Theory_rag.md",
+          "source_quote": "motivation architecture is the real bottleneck",
+          "section_hint": "Strengths (Contexts of High Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Determination_Theory_rag.md",
+          "source_quote": "Danger When Autonomy Talk Masks Missing Standards",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports SDT as motivation architecture diagnosis across autonomy, competence, and relatedness.",
+        "dropped_material": [
+          "Did not extract generic purpose or empowerment slogans.",
+          "Did not treat motivation as reward size alone."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves team, learning, and behavior-change cases."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "motivation-as-reward-size",
+      "status": "not_supported_by_source",
+      "reason": "The source contrasts SDT with external carrots and sticks and frames motivation around autonomy, competence, and relatedness.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Determination_Theory_rag.md",
+          "source_quote": "beyond these external forces",
+          "section_hint": "Most Powerful Analogy: The Third Drive",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "autonomy-without-competence-relatedness",
+      "status": "not_supported_by_source",
+      "reason": "The source treats autonomy as one of three needs and warns that autonomy talk can mask missing standards.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Determination_Theory_rag.md",
+          "source_quote": "Autonomy, Competence, Relatedness",
+          "section_hint": "Most Powerful Analogy: The Third Drive",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Self_Determination_Theory_rag.md",
+      "source_quote": "compliance is possible but commitment is weak",
+      "section_hint": "Strengths (Contexts of High Power)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for motivation architecture, not motivational decoration.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether SDT helps distinguish motivation, capability, and standards gaps."
+    ],
+    "review_status": "draft"
+  }
+}

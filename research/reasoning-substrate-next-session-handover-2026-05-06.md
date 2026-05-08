@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR50 completed the controlled
-quantitative inference / distributional reasoning enrichment batch. PR49 added
-source-backed v13 learning / skill-acquisition depth; the user explicitly
+**Status:** Start-here handover after PR51 completed the controlled
+self-regulation / bias-calibration enrichment batch. PR50 added source-backed
+v14 quantitative inference / distributional reasoning depth; the user explicitly
 approved continued controlled extraction toward the full 222-model set while
 keeping the same quality rails. This is still not runtime behavior, prompt
 promotion, lane rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_quantitative_inference_enrichment_ready`
+**Current posture:** `controlled_self_regulation_bias_enrichment_ready`
 
-**Current PR:** PR50 - controlled quantitative inference / distributional reasoning enrichment
+**Current PR:** PR51 - controlled self-regulation / bias-calibration enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -66,6 +66,8 @@ promotion, lane rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 
 **PR50 decision label:** `controlled_quantitative_inference_enrichment_ready`
 
+**PR51 decision label:** `controlled_self_regulation_bias_enrichment_ready`
+
 ## Start Here
 
 Read these files in order:
@@ -114,6 +116,7 @@ Read these files in order:
 42. `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
 43. `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
 44. `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
+45. `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -190,6 +193,9 @@ Keep these layers distinct:
 | PR50 controlled quantitative inference enrichment | 12 graph-only models from quantitative inference, distributional reasoning, statistical discipline, model-fit, and signal-compression gaps gained reviewed Batch 13 records with 12 affordances and 24 absence records; compiled as draft/review-only v14. |
 | v14 affordance corpus | 170 reviewed records, 206 affordances, 325 absence records. Draft/review-only v13 plus PR50 controlled quantitative inference batch, not runtime-promoted. |
 | Graph-only after v14 | 52 runtime models remain eligible but not reviewed affordance records. |
+| PR51 controlled self-regulation / bias-calibration enrichment | 12 graph-only models from cognitive bias, dissonance, rationalization, calibration, hindsight, agency, follow-through, motivation, mindset, grit, and regret gaps gained reviewed Batch 14 records with 12 affordances and 24 absence records; compiled as draft/review-only v15. |
+| v15 affordance corpus | 182 reviewed records, 218 affordances, 349 absence records. Draft/review-only v14 plus PR51 controlled self-regulation batch, not runtime-promoted. |
+| Graph-only after v15 | 40 runtime models remain eligible but not reviewed affordance records. |
 
 The governing sentence:
 
@@ -1451,7 +1457,7 @@ prompts, run model calls or judges, create Batch 3b, create user-facing
 Decision Pressure output, create deterministic mastery classification, or
 allow deterministic final pressure selection.
 
-Recommended next slice is PR50: continue controlled extraction from the
+Historical PR49 recommendation was PR50: continue controlled extraction from the
 remaining 64 graph-only runtime models, selecting one bounded family of 8-12
 models from source-custodied files. Keep periodic packet usefulness reviews as
 a quality gate after several families or when packet shape may change.
@@ -1523,10 +1529,85 @@ prompts, run model calls or judges, create Batch 3b, create user-facing
 Decision Pressure output, create deterministic statistical routing, or allow
 deterministic final pressure selection.
 
-Recommended next slice is PR51: continue controlled extraction from the
+Historical PR50 recommendation was PR51: continue controlled extraction from the
 remaining 52 graph-only runtime models, selecting one bounded family of 8-12
 models from source-custodied files. Keep the same direct-reading,
 absence-friendly quality standard and keep v15 draft/review-only.
+
+PR51 later completed the controlled self-regulation / bias-calibration
+enrichment batch. Do not revert to the older PR50 recommendation as active
+direction.
+
+## What PR51 Added
+
+PR51 answers the question: "Can self-regulation and bias-calibration models add
+source-backed operational depth without turning psychology labels into
+accusations, deterministic diagnosis, or moralized advice?"
+
+It adds:
+
+- `data/model_affordances/batch_14/`;
+- `data/compiled/model_affordances/affordances_v15.json`;
+- `data/compiled/model_affordances/quality_report_v15.md`;
+- `tests/test_pr51_batch14_records.py`;
+- `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`;
+- `tasks/tasks-controlled-self-regulation-bias-enrichment-batch.md`;
+- living-doc posture updates.
+
+Measured PR51 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v15 reviewed records: `182`;
+- v15 reviewed affordances: `218`;
+- v15 absence records: `349`;
+- graph-only runtime models after v15: `40`;
+- v15 status: `draft_review_only`;
+- schema validation failures: `0`;
+- source quote rejections: `0`.
+
+PR51's decision label is
+`controlled_self_regulation_bias_enrichment_ready`.
+
+The product lesson:
+
+> The self-regulation family adds real handoff depth when cards bind
+> psychological or behavioral labels to evidence, calibration, audience
+> understanding, prior-state records, controllable levers, environment design,
+> motivation architecture, feedback loops, stop rules, and absence records that
+> block accusation, moralizing, and certainty theater.
+
+PR51 extracted exactly this target set:
+
+- `cognitive-biases`;
+- `cognitive-dissonance`;
+- `rationalization`;
+- `dunning-kruger-effect`;
+- `curse-of-knowledge`;
+- `hindsight-bias`;
+- `internal-locus-of-control`;
+- `self-control`;
+- `self-determination-theory`;
+- `growth-mindset`;
+- `persistence-grit`;
+- `regret-theory`.
+
+Each target received one compact reviewed affordance and two absence records.
+The absence records block bias lists as diagnosis, discomfort as error,
+confidence as competence, expert clarity as audience clarity, postmortems
+without prior-state records, agency without constraints, willpower as moral
+trait, motivation as reward size, effort as guarantee, unconditional grit, and
+regret without probability.
+
+PR51 does not promote v15 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, create user-facing
+Decision Pressure output, create deterministic psychological diagnosis, or
+allow deterministic final pressure selection.
+
+Recommended next slice is PR52: continue controlled extraction from the
+remaining 40 graph-only runtime models, selecting one bounded family of 8-12
+models from source-custodied files. Keep the same direct-reading,
+absence-friendly quality standard and keep v16 draft/review-only.
 
 ## PR24 Review Questions Answered
 
@@ -1600,7 +1681,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "controlled_quantitative_inference_enrichment_ready|controlled_learning_skill_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR49|PR50|PR51" plans research tasks -g '*.md'
+rg -n "controlled_self_regulation_bias_enrichment_ready|controlled_quantitative_inference_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR50|PR51|PR52" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1612,10 +1693,11 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR50 and do not infer permission for runtime work, broad
+Start from PR51 and do not infer permission for runtime work, broad
 Batch 3b, packet promotion, deterministic reasoning-mode routing,
 deterministic option selection, deterministic mastery classification, or
-deterministic statistical routing, or mechanical extraction momentum.
+deterministic statistical routing, deterministic psychological diagnosis, or
+mechanical extraction momentum.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -1655,9 +1737,10 @@ Read first:
 - research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md
 - research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md
 - research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md
+- research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md
 
 Current posture:
-controlled_quantitative_inference_enrichment_ready
+controlled_self_regulation_bias_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -2027,12 +2110,31 @@ PR50 result:
   3b, deterministic statistical routing, deterministic option selection,
   deterministic pressure selection, or user-facing behavior was added
 
+PR51 result:
+- decision label: controlled_self_regulation_bias_enrichment_ready
+- 12 graph-only models from self-regulation / bias calibration received
+  reviewed batch_14 records
+- v15 draft/review-only compiled artifact exists with 182 reviewed records
+- PR51 added 12 affordances and 24 absence records
+- v15 contains 218 affordances and 349 absence records
+- 40 runtime models remain graph-only after v15
+- each target received one compact source-backed affordance and two absence
+  records
+- the records add handoff depth around symmetric debiasing, dissonance review,
+  rationale-vs-driver tests, confidence calibration, audience scaffolding,
+  hindsight-safe postmortems, controllable-lever ownership, follow-through
+  design, motivation architecture, growth feedback loops, grit with stop
+  rules, and regret with risk checks
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, deterministic psychological diagnosis, deterministic option selection,
+  deterministic pressure selection, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next slice is PR51: another controlled source-backed extraction batch from the
-remaining 52 graph-only models, capped and family-shaped. Full coverage is now
+next slice is PR52: another controlled source-backed extraction batch from the
+remaining 40 graph-only models, capped and family-shaped. Full coverage is now
 the direction, but broad mechanical completion is still not acceptable.
 ```
 

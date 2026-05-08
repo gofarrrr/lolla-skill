@@ -1,0 +1,145 @@
+{
+  "model_id": "dunning-kruger-effect",
+  "source_file": "Dunning_Kruger_Effect_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "dunning-kruger-effect.objective-calibration-before-trust",
+      "status": "supported",
+      "name": "Objective calibration before trust",
+      "mechanism": "When confidence, charisma, fluency, or new responsibility may outrun real competence, require the answer to compare self-assessment against objective tests, observed performance, external review, or coaching feedback before assigning trust.",
+      "activation_shape": {
+        "use_when": [
+          "A novice or newly promoted operator is confident in a domain where skill has not been demonstrated.",
+          "A high-consequence trust decision depends on separating apparent fluency from operating skill.",
+          "Experts may be assuming the overconfidence problem belongs only to others."
+        ],
+        "do_not_use_when": [
+          "The evidence already includes objective performance and the issue is not self-assessment calibration.",
+          "The label would be used to dismiss someone rather than improve calibration and coaching.",
+          "Low confidence from a skilled person is the active risk and confidence-calibration is the better card."
+        ],
+        "case_evidence_needed": [
+          "The person's claimed competence or confidence level.",
+          "Objective task performance, test result, external review, or observed behavior.",
+          "The domain boundaries where competence has and has not been demonstrated.",
+          "The coaching or calibration mechanism that would expose unknown unknowns."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compare-confidence-to-performance",
+          "description": "Require the answer to ground trust in objective calibration rather than confidence, status, fluency, or a Dunning-Kruger label.",
+          "evidence_required": [
+            "Confidence or fluency signal.",
+            "Observed task performance.",
+            "External or objective calibration check.",
+            "Domain boundary where the claim is valid or unproven."
+          ],
+          "good_output_shape": [
+            "Separates confidence from competence.",
+            "Names the objective check needed before trust.",
+            "Preserves coaching and learning path for novices.",
+            "Warns experts to test their own unknown unknowns."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What objective evidence shows competence rather than fluency?",
+        "Where might this person be outside their circle of competence?",
+        "Are we using the Dunning-Kruger label to calibrate trust or to dismiss someone?"
+      ],
+      "misuse_guards": [
+        "Do not use Dunning-Kruger as a lazy insult.",
+        "Do not assume experts are immune to overconfidence or unknown unknowns.",
+        "Do not equate confidence, charisma, or preliminary credibility with competence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Dunning_Kruger_Effect_rag.md",
+          "source_quote": "lack the necessary skills to distinguish between incompetence and competence",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Dunning_Kruger_Effect_rag.md",
+          "source_quote": "self-assessment can be compared to objective tests, external review, or observed performance",
+          "section_hint": "Contexts of Power",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Dunning_Kruger_Effect_rag.md",
+          "source_quote": "lazy dismissal of someone else's view",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports Dunning-Kruger as objective calibration and trust-boundary discipline.",
+        "dropped_material": [
+          "Did not extract Dunning-Kruger as insult or deterministic competence classifier.",
+          "Did not ignore the source's warning about experts and impostor-syndrome inverse risk."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card remains distinct from confidence-calibration."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "confidence-as-competence",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that people with limited competence can overestimate ability, so confidence cannot be treated as competence evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Dunning_Kruger_Effect_rag.md",
+          "source_quote": "overestimate their abilities",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "novice-label-as-dismissal",
+      "status": "not_supported_by_source",
+      "reason": "The source says the label should create calibration, evidence, and coaching rather than dismiss a view.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Dunning_Kruger_Effect_rag.md",
+          "source_quote": "prompt to create better calibration, evidence, and coaching",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Dunning_Kruger_Effect_rag.md",
+      "source_quote": "separate apparent fluency or charisma from real operating skill",
+      "section_hint": "Contexts of Power",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for trust calibration before relying on confidence.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps compare confidence, competence, and coaching needs."
+    ],
+    "review_status": "draft"
+  }
+}
