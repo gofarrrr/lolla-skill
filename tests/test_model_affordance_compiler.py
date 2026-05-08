@@ -220,8 +220,8 @@ def test_compiler_can_compile_pilot_and_batch_records_to_v2(
     assert result.compiled["artifact"] == "model_affordances_v2"
     assert result.quality_report.startswith("# Model Affordance Quality Report v2\n")
     assert metadata["contributing_record_count"] == 30
-    assert metadata["affordance_count"] == 56
-    assert metadata["absence_record_count"] == 70
+    assert metadata["affordance_count"] == 57
+    assert metadata["absence_record_count"] == 71
     assert {entry["model_id"] for entry in source_files} == expected_model_ids
     assert "### Repeated Diagnostic Question Openings" in result.quality_report
     assert "`what would you have to`" in result.quality_report
@@ -251,8 +251,8 @@ def test_compiler_can_compile_pilot_batch1_batch2_records_to_v3(
     assert result.compiled["artifact"] == "model_affordances_v3"
     assert result.quality_report.startswith("# Model Affordance Quality Report v3\n")
     assert metadata["contributing_record_count"] == 50
-    assert metadata["affordance_count"] == 90
-    assert metadata["absence_record_count"] == 125
+    assert metadata["affordance_count"] == 91
+    assert metadata["absence_record_count"] == 126
     assert metadata["validation"]["schema_validation_failure_count"] == 0
     assert metadata["validation"]["source_quote_rejection_count"] == 0
     assert {entry["model_id"] for entry in source_files} == expected_model_ids
@@ -291,8 +291,8 @@ def test_compiler_can_compile_pilot_batch1_batch2_batch3a_records_to_v4(
     assert result.compiled["artifact"] == "model_affordances_v4"
     assert result.quality_report.startswith("# Model Affordance Quality Report v4\n")
     assert metadata["contributing_record_count"] == 55
-    assert metadata["affordance_count"] == 95
-    assert metadata["absence_record_count"] == 138
+    assert metadata["affordance_count"] == 96
+    assert metadata["absence_record_count"] == 139
     assert metadata["validation"]["schema_validation_failure_count"] == 0
     assert metadata["validation"]["source_quote_rejection_count"] == 0
     assert {entry["model_id"] for entry in source_files} == expected_model_ids

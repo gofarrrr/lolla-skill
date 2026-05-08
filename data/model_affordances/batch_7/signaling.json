@@ -12,18 +12,20 @@
         "use_when": [
           "Quality, intent, or reliability cannot be directly observed and must be inferred from behavior, framing, and follow-through.",
           "Ambiguity is high enough that small credible actions can change trust, attention, or willingness to engage.",
-          "Words, timing, and costly behavior can reinforce one another instead of sending mixed messages about commitment or competence."
+          "Words, timing, and costly behavior can reinforce one another instead of sending mixed messages about commitment or competence.",
+          "References, pilots, diligence speed, or sponsor enthusiasm may be preserving optionality rather than proving real commitment."
         ],
         "do_not_use_when": [
           "Cheap symbolic signals are being allowed to substitute for real capability, accountability, or truth-aligned behavior.",
           "The message is optimized for impression management while the underlying offer, reasoning, or execution standard remains weak.",
-          "The evidence package is controlled by the party trying to win the deal and no unstaged proof is available."
+          "The evidence package is controlled by the party trying to win the deal and no unstaged proof is available.",
+          "Introductions, compliance-process access, fast responses, or polished diligence are being treated as actual authority, buying intent, or willingness to bear cost."
         ],
         "case_evidence_needed": [
           "The ambiguous quality, intent, reliability, or commitment claim.",
           "The signal currently being offered.",
           "Whether the signal is costly, hard to fake, and tied to future behavior.",
-          "The next proof of intent or capability that cannot be staged cheaply."
+          "The next proof of intent or capability that cannot be staged cheaply, such as budget owner time, exclusivity, integration work, reserved capacity, or pre-commitment."
         ]
       },
       "treatment_requirements": [
@@ -47,12 +49,14 @@
       "diagnostic_questions": [
         "What quality, intent, or reliability claim is being signaled?",
         "Is this signal costly enough to be credible, or just polished symbolism?",
-        "What proof would still matter if the signaler controlled the evidence package?"
+        "What proof would still matter if the signaler controlled the evidence package?",
+        "Which costly proof of intent should be demanded next instead of trusting polished surface signals?"
       ],
       "misuse_guards": [
         "Do not treat polished surface signals as proof of capability.",
         "Do not reward appearance-trustworthy behavior over truth-aligned behavior.",
-        "Do not ignore mixed messages between words, timing, and costly behavior."
+        "Do not ignore mixed messages between words, timing, and costly behavior.",
+        "Do not mistake low-cost commercial signals such as references, diligence speed, or sponsor enthusiasm for actual authority, buying intent, or willingness to bear cost."
       ],
       "source_evidence": [
         {
@@ -72,6 +76,27 @@
         {
           "source_file": "Signaling_rag.md",
           "source_quote": "what costly proof of intent to demand next",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "references, pilots, diligence speed, or sponsor enthusiasm may be low-cost signals that preserve optionality rather than proof of real commitment.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "the real decision is what costly proof of intent to demand next—budget owner time, exclusivity, integration work, reserved capacity, or pre-commitment—instead of whether to trust polished surface signals.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "introductions, compliance-process access, fast responses, or polished diligence are being mistaken for actual authority, buying intent, or willingness to bear cost.",
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
@@ -121,6 +146,28 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "low-cost-commercial-signal-as-actual-buying-intent",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that references, pilots, diligence speed, sponsor enthusiasm, introductions, or compliance-process access may preserve optionality rather than prove authority, buying intent, or willingness to bear cost.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "references, pilots, diligence speed, or sponsor enthusiasm may be low-cost signals that preserve optionality rather than proof of real commitment.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "introductions, compliance-process access, fast responses, or polished diligence are being mistaken for actual authority, buying intent, or willingness to bear cost.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +180,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Signaling. Extracted one costly proof-of-intent test and rejected cheap symbolic signals plus impression-management-as-substance.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Signaling. Extracted one costly proof-of-intent test and rejected cheap symbolic signals, impression-management-as-substance, and PR77's low-cost commercial signals as proof of authority or buying intent.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
