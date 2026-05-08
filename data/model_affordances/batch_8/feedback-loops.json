@@ -183,6 +183,93 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "feedback-loops.absolute-standard-drift-guard",
+      "status": "supported",
+      "name": "Absolute standard drift guard",
+      "mechanism": "When feedback is being used to explain lower results, require the answer to separate legitimate learning from standard drift by naming the original standard, the recent signal, the proposed target change, and the process lever that should change without normalizing weaker performance.",
+      "activation_shape": {
+        "use_when": [
+          "Recent feedback or poor performance is being used to quietly lower the accepted standard.",
+          "The decision depends on whether the team should adapt the process, the lever, or the target itself.",
+          "The system needs feedback-informed adjustment while keeping objective standards from drifting downward."
+        ],
+        "do_not_use_when": [
+          "The original standard is obsolete because the environment, goal, or constraint genuinely changed.",
+          "The case only needs a feedback signal tied to the next lever, with no evidence of target or standard drift.",
+          "The feedback signal is too delayed, nonlinear, or local to justify changing either the process or the standard yet."
+        ],
+        "case_evidence_needed": [
+          "The original standard, threshold, or quality bar.",
+          "The recent feedback, poor result, or performance signal putting pressure on the standard.",
+          "The proposed target change and whether it reflects learning or drift.",
+          "The process, lever, or operating behavior that could change while the standard remains explicit."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-learning-from-standard-drift",
+          "description": "Require the answer to preserve the absolute standard unless the source evidence supports a legitimate standard change, and to route poor feedback into process adjustment rather than quiet normalization.",
+          "evidence_required": [
+            "The standard or metric that is being lowered or defended.",
+            "The feedback signal and recent performance context.",
+            "The reason the standard should remain absolute or be explicitly revised.",
+            "The process lever, priority, or behavior that should change in response to the signal."
+          ],
+          "good_output_shape": [
+            "Names the original standard.",
+            "Separates legitimate learning from drift to low performance.",
+            "States whether the target is being revised or preserved.",
+            "Identifies the process lever that changes before weaker performance becomes normal."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are we learning from feedback, or lowering the bar because recent performance was poor?",
+        "What standard was absolute before this feedback arrived?",
+        "Which process lever should change before the target itself is relaxed?"
+      ],
+      "misuse_guards": [
+        "Do not treat poor recent results as permission to normalize lower quality.",
+        "Do not freeze an obsolete standard when the environment or goal has genuinely changed.",
+        "Do not call a target change feedback-driven unless the signal and process implication are explicit."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "A major failure mode in systems is the slow acceptance of diminishing quality.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "Explicitly define and adhere to objective, high standards for the system, regardless of recent poor results",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "What core standards have we failed to meet in the past, and how are we ensuring those same metrics remain absolute this quarter?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR93 targeted enrichment: the source supports standard drift prevention as a distinct receiver transaction from closing a loop or classifying loop polarity.",
+        "dropped_material": [
+          "Did not promote all performance-management or goal-setting material; this affordance only activates when feedback pressure is lowering standards.",
+          "Kept obsolete-standard risk as a do-not-use boundary rather than a separate positive card."
+        ],
+        "open_questions": [
+          "Packet stress should test whether this card prevents feedback language from normalizing degraded performance."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -215,6 +302,51 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "feedback-volume-as-feedback-quality",
+      "status": "not_supported_by_source",
+      "reason": "The source says feedback volume requires filtering; it does not support treating more feedback as better feedback unless the useful signal is identified.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "The sheer volume and variety of feedback we receive daily require a critical ability to **filter feedback** and identify which information is actually useful for progress.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "one-way-communication-as-feedback-loop",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that one-way communication creates stuck routines and misinformation, so PR93 must not promote broadcast-only reporting as a feedback loop.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "communication flows only in one direction, the system gets bogged down in routines and misinformation",
+          "section_hint": "Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "local-signal-as-whole-system-truth",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that local logic can become unreasonable from the whole-system view; a local feedback signal should not be promoted as whole-system truth without broader context.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "logic that makes sense within a local part of a system but is unreasonable when viewed within the broader context or the entire system",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -227,7 +359,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Feedback Loops. PR57 adds loop polarity intervention as a second, source-backed transaction while preserving the original closed-loop action signal.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Feedback Loops. PR57 added loop polarity intervention as a second, source-backed transaction; PR93 adds standard-drift prevention where feedback pressure lowers the bar rather than changing the process.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

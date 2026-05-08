@@ -81,11 +81,105 @@
       "review_notes": {
         "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one validated-learning threshold gate for fragile hypotheses, narrow tests, honest metrics, and continuation/pivot/kill decisions.",
         "dropped_material": [
-          "Did not extract MECE, empathy maps, dream buyer, or strategic ideation as separate affordances.",
-          "Kept MVP and feedback-loop material under the single validated-learning gate."
+          "Did not extract empathy maps, dream buyer, or strategic ideation as separate affordances.",
+          "Kept MVP and feedback-loop material under the validated-learning gate."
         ],
         "open_questions": [
           "PR40 should test whether this card helps packets avoid treating any activity as market validation."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "lean-startup-methodology.subhypothesis-experiment-coverage-map",
+      "status": "supported",
+      "name": "Subhypothesis experiment coverage map",
+      "mechanism": "When a broad product or business thesis hides multiple necessary assumptions, require the answer to decompose the bet into testable sub-hypotheses, target segments, and make-or-break evidence before treating one MVP metric as validated learning.",
+      "activation_shape": {
+        "use_when": [
+          "A product, market, or behavior thesis depends on several conditions that all need to hold.",
+          "A single MVP metric or customer signal could validate only the convenient slice of the business bet.",
+          "Experiment choice needs coverage across sub-hypotheses, segments, or components before a kill, pivot, or continue threshold is meaningful."
+        ],
+        "do_not_use_when": [
+          "The live hypothesis is already narrow enough that the validated-learning gate can define the test and threshold directly.",
+          "The proposed decomposition would gather broad facts without changing the next experiment or decision.",
+          "The source evidence cannot identify the sub-hypotheses, target segment, or make-or-break condition being tested."
+        ],
+        "case_evidence_needed": [
+          "The central product, market, or behavior hypothesis.",
+          "The sub-hypotheses or precise conditions required for the overall thesis to hold.",
+          "The target segments, components, or experiment branches that should be kept distinct.",
+          "The make-or-break evidence that would confirm, disconfirm, or reprioritize each branch."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-subhypotheses-before-experiment-choice",
+          "description": "Require the answer to decompose the Lean Startup bet into testable sub-hypotheses and choose experiments that cover the make-or-break conditions rather than only the easiest signal.",
+          "evidence_required": [
+            "The overall thesis being treated as a Lean Startup bet.",
+            "The sub-hypotheses that must hold for that thesis to be true.",
+            "The customer segment, product component, or behavior condition attached to each sub-hypothesis.",
+            "The smallest evidence path that can prove or disprove the current make-or-break branch."
+          ],
+          "good_output_shape": [
+            "States the central thesis.",
+            "Breaks it into distinct testable conditions.",
+            "Chooses the next experiment by make-or-break coverage rather than convenience.",
+            "Connects each branch to confirm, disconfirm, pivot, or kill implications."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which sub-hypotheses must be true for this product or market thesis to hold?",
+        "Which convenient MVP metric could validate one slice while missing the make-or-break condition?",
+        "What is the smallest experiment that tests the riskiest branch rather than the easiest one?"
+      ],
+      "misuse_guards": [
+        "Do not treat one positive metric as validation of every assumption in the business thesis.",
+        "Do not decompose so widely that Lean Startup turns back into boiling the ocean.",
+        "Do not call a branch covered unless the evidence can confirm or disconfirm that specific condition."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "defining sub-hypotheses that represent the precise conditions required for the overall solution to hold true",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "each step, component, or target customer segment should be distinct and separate (mutually exclusive)",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "gather **only enough facts** to prove or disprove the current hypothesis",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "alternative hypotheses are actively tested, embraced, or rejected",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR93 targeted enrichment: the source supports sub-hypothesis coverage as a separate receiver transaction before the validated-learning threshold can be trusted.",
+        "dropped_material": [
+          "Did not promote customer empathy maps, dream-buyer work, or foothold strategy as Lean Startup affordances; those remain adjacent context unless tied to hypothesis coverage and validation evidence.",
+          "Did not duplicate generic experimentation or chain-of-verification; this card activates only for Lean Startup product, market, or behavior bets."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this card stays distinct from experimentation and chain-of-verification when all three are nominated."
         ],
         "review_status": "draft"
       }
@@ -121,6 +215,80 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "qualitative-empathy-as-demand-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source supports empathy maps as learning input, but it still requires honest evidence of demand or fit; qualitative empathy work alone should not be promoted as demand proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "This qualitative, human-centered data fuels the \"Learn\" phase.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "without lying to itself about what counts as evidence of demand or fit",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "framework-reuse-as-lean-validation",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against torturing reality to fit a familiar model or MVP format; prior success with Lean should not be promoted as validation for the current case.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "tortures reality so that it fits [their] models",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "persist in using that same framework or initial MVP format",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "symptom-pivot-as-product-learning",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that rapid iteration can chase symptoms while missing root causes; pivot language should not be promoted as product learning when diagnosis is still superficial.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "addressing **symptoms** rather than properly diagnosing the underlying **root causes**",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "internal-capacity-blind-lean-recommendation",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that Lean Startup can fail when external data outruns the team's ability to execute; PR93 should not promote a recommendation that ignores internal capacity.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "neglect critical internal data points, such as the organization's capacity to execute the recommended changes",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +301,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Lean Startup Methodology. Extracted one validated-learning kill/pivot gate and rejected vanity-metric validation plus MVP-over-trust misuse.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Lean Startup Methodology. PR93 preserves the validated-learning kill/pivot gate and adds sub-hypothesis coverage as a separate pre-threshold transaction.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

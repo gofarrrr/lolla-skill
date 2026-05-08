@@ -121,6 +121,73 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "solution-before-diagnosis",
+      "status": "not_supported_by_source",
+      "reason": "The source separates diagnosis from solution design; PR93 should not promote a fix before the failure condition and defect path have been diagnosed.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "separates the initial perception of the problem from the design of an effective solution",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "performing these steps one at a time and in order, as blurring the steps interferes with uncovering true problems",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "deductive-debugging-for-novel-creation",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that genuinely novel creation problems may require abductive reasoning rather than deductive diagnosis; PR93 should not promote debugging as the default move for invention work.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "Problems requiring the creation of new artifacts or solutions (like those solved via Design Thinking) often require **abductive reasoning** instead of deduction.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "analysis-paralysis-as-debugging-rigor",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that excessive investigation can block action, so PR93 should not promote slow diagnostic expansion as rigor after the needed defect path is actionable enough.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "Excessive focus on slow thinking and thorough investigation can lead to analysis paralysis, hindering the ability to take action.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "single-frame-debugging-as-complete-diagnosis",
+      "status": "not_supported_by_source",
+      "reason": "The source recommends several frames or cuts to avoid availability traps; one familiar diagnostic frame should not be promoted as a complete debugging diagnosis.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Debugging_Strategies_rag.md",
+          "source_quote": "test **several frames** or \"cuts\" at the problem to expose insight",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +200,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Debugging Strategies. Extracted one failure-condition/root-cause trace and rejected premature debugging plus confirmation-driven diagnosis.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Debugging Strategies. PR93 keeps the positive record compressed because machine-vs-case and premortem-like material are better owned by adjacent records, while adding rails against solution-first, deductive-overreach, paralysis, and single-frame diagnosis.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

@@ -121,6 +121,81 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "iteration-without-current-synthesis",
+      "status": "not_supported_by_source",
+      "reason": "The source treats one-day-answer synthesis as a way to keep iteration coherent; PR93 should not promote iteration that cannot state its current best answer and solution path.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "create a coherent summary of their best understanding of the problem and a solution path at any point in the project",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "premature-data-dive-as-iteration",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects wading into data before the desired output and problem structure are clear; such activity should not be promoted as disciplined iteration.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "wading prematurely into data without defining the problem structure leads to inefficient, endless work",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "sunk-cost-path-continuation-as-iteration",
+      "status": "not_supported_by_source",
+      "reason": "The source says iteration should be abandoned when evidence shows the path is not serving impact; continued tweaking from sunk-cost pressure should not be promoted as learning.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "If a solution fails to meet the desired impact after tweaks, **have the courage to walk away** and start the problem-solving process over from Step One.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "ceremonial-review-loop-as-iteration",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that review loops can become ceremonial and prevent substantive change; PR93 must not promote ritualized review as real iteration.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "review loops become ceremonial and prevent substantive change",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "rigid-blueprint-as-iteration",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that implementation is emergent and not purely mechanical; a rigid blueprint should not be promoted as iteration just because it contains repeated steps.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "Implementation is often *more emergent* than amenable to a blueprint or a purely linear, mechanical problem-solving belief system.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +208,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Iteration. Extracted one bounded learning cycle gate and rejected iteration-without-stop-rules plus local-polishing-as-learning overclaims.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Iteration. Extracted one bounded learning cycle gate; PR93 preserves the one-day-answer, premature-data, sunk-cost, ceremonial-review, and rigid-blueprint material as misuse rails rather than separate positive cards.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
