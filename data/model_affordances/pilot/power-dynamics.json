@@ -247,6 +247,100 @@
         }
       ],
       "confidence": "high"
+    },
+    {
+      "affordance_id": "power-dynamics.weakest-link-constraint-map",
+      "status": "supported",
+      "name": "Weakest-link constraint map",
+      "mechanism": "When several parties depend on one constrained actor, require the answer to identify the participant with the least slack or narrowest fallback, explain how that constraint sets the effective floor for everyone else, and avoid blaming the loudest negotiator.",
+      "activation_shape": {
+        "use_when": [
+          "A multi-party negotiation or operating relationship depends on one constrained actor whose fallback is narrower than everyone else's.",
+          "Several parties depend on one actor's capacity, approval, timing, access, or slack.",
+          "The visible dispute focuses on the loudest negotiator even though a quieter weakest link may set the true floor."
+        ],
+        "do_not_use_when": [
+          "The negotiation is effectively bilateral and each party's outside option can be mapped directly.",
+          "A hard regulatory or physical bottleneck explains the constraint better than bargaining power among participants.",
+          "The model would scapegoat a constrained actor instead of asking how the dependency structure can be changed."
+        ],
+        "case_evidence_needed": [
+          "The parties in the negotiation or operating relationship.",
+          "Each party's fallback, slack, capacity, approval path, or timing constraint.",
+          "The dependency path showing which actor constrains everyone else's feasible option set.",
+          "The intervention that relaxes, routes around, compensates, or acknowledges the weakest-link constraint."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "identify-constrained-actor-before-blame",
+          "description": "Require the answer to map all relevant actors and name the constrained participant whose narrow fallback sets the effective bargaining or operating constraint.",
+          "evidence_required": [
+            "The full set of parties and dependencies.",
+            "Fallback or slack evidence for each relevant participant.",
+            "The path by which one constrained actor limits everyone else's options.",
+            "The mitigation or negotiation move that changes the dependency."
+          ],
+          "good_output_shape": [
+            "Names the weakest-link actor.",
+            "Explains the fallback or slack evidence.",
+            "Shows how that actor resets the effective constraint.",
+            "Separates structural dependency from blame or loudness."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which participant has the least slack or narrowest fallback, even if they are not the loudest negotiator?",
+        "How does that constrained actor reset everyone else's feasible option set?",
+        "Can the dependency be relaxed, routed around, compensated, or made explicit in the terms?"
+      ],
+      "misuse_guards": [
+        "Do not confuse the loudest actor with the actor setting the real constraint.",
+        "Do not blame the weakest link for a dependency structure the system created.",
+        "Do not use this card when a bilateral outside-option map is sufficient."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "Name the weakest-link dependency",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "the actor with the least slack or the narrowest fallback can set the effective constraint for everyone else",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "several parties depend on one constrained actor and the weakest fallback option sets the real constraint for everyone else",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Dynamics_rag.md",
+          "source_quote": "Teams focus on the loudest negotiator instead of the constrained actor whose dependency sets the true floor.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR58 targeted enrichment: weakest-link dependency is promoted because multi-party constraint mapping changes receiver behavior compared with bilateral outside-option credibility.",
+        "dropped_material": [
+          "Did not expand into general stakeholder mapping or blame assignment.",
+          "Kept exogenous physical/regulatory bottlenecks as a do-not-use boundary."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this card helps multi-party negotiations without duplicating ordinary outside-option mapping."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [],
@@ -267,13 +361,13 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Extracted two operational affordances from the raw source: outside-option credibility before terms and commitment-gradient leverage inversion. Reviewed waves agree with this focus, but the canonical Markdown is the evidence authority.",
+    "normalization_note": "Extracted two operational affordances from the raw source: outside-option credibility before terms and commitment-gradient leverage inversion. PR58 adds weakest-link constraint mapping as a third, source-backed transaction for multi-party dependency cases.",
     "dropped_material": [
-      "Multi-party weakest-link dependency is source-backed but not extracted separately because it is thinner as a standalone affordance and can be handled inside outside-option mapping.",
+      "PR58 promotes multi-party weakest-link dependency as a separate bounded affordance after source adequacy review found it changes receiver behavior.",
       "Relation semantics for incentives, lock-in, optionality, confirmation bias, and opportunity cost were used only as orientation and not promoted into affordances."
     ],
     "open_questions": [
-      "A later pass could decide whether the weakest-link dependency deserves a separate affordance after more examples or runtime evidence."
+      "Later packet review should test whether weakest-link constraint mapping stays distinct from ordinary outside-option credibility."
     ],
     "review_status": "draft"
   }
