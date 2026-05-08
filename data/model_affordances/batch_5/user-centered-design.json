@@ -4,55 +4,55 @@
   "status": "supported",
   "affordances": [
     {
-      "affordance_id": "user-centered-design.prototype-user-evidence-loop",
+      "affordance_id": "user-centered-design.reframe-flawed-brief-from-user-observation",
       "status": "supported",
-      "name": "Prototype user-evidence loop",
-      "mechanism": "When a solution team understands the technology better than the user's lived problem, require the answer to gather user evidence, reframe the problem, and test prototypes before treating internal intuition or stakeholder rank as product truth.",
+      "name": "Reframe flawed brief from user observation",
+      "mechanism": "When the initial design brief, product ask, or internal frame may be wrong because solution developers do not yet understand the user's lived problem, use user observation and synthesis to reframe the problem from the user's point of view before ideating or prototyping.",
       "activation_shape": {
         "use_when": [
+          "The initial design brief, product ask, or internal frame may be wrong because the team lacks user lived-problem evidence.",
           "The solution team understands the technology better than the user's lived problem, incentives, or constraints.",
-          "Adoption depends on validating assumptions with real users rather than internal intuition or stakeholder rank.",
-          "The problem space is still fuzzy enough that discovery, prototyping, and observed behavior can change the direction."
+          "The problem space is fuzzy enough that observation, discovery, and synthesis can materially change the direction."
         ],
         "do_not_use_when": [
-          "A handful of user anecdotes are being treated as strategy truth without segmentation or trade-off discipline.",
+          "The problem is already well-defined, purely technical, or governed by established causal relationships.",
           "Discovery has become open-ended empathy theater after the core problem and decision criteria are already clear.",
-          "The decision needs execution against validated criteria rather than another discovery loop."
+          "The available evidence only confirms average-user beliefs or what the team already expected."
         ],
         "case_evidence_needed": [
-          "The user behavior, pain, constraint, or adoption problem being explained.",
-          "Observed user evidence rather than internal claims alone.",
-          "Prototype or experiment evidence that could validate or change the solution direction.",
-          "The trade-offs, segmentation, and viability checks that limit what user evidence can prove."
+          "The original brief, product ask, or internal frame being challenged.",
+          "Observed user evidence from interviews, immersion, journey mapping, empathy mapping, or prototype reactions.",
+          "The themes, tensions, or design imperatives synthesized from the evidence.",
+          "The point-of-view statement or reframed problem, including what original frame is rejected, narrowed, or deferred."
         ]
       },
       "treatment_requirements": [
         {
-          "requirement_id": "test-solution-assumptions-with-users",
-          "description": "Require the answer to identify the user assumption that matters, name the evidence needed from users, and propose a bounded prototype or observation loop.",
+          "requirement_id": "convert-observation-into-user-point-of-view",
+          "description": "Require the answer to turn user observation into a specific point-of-view reframing before proposing solution ideas.",
           "evidence_required": [
-            "The product or service assumption being made.",
-            "Observed user behavior or missing user evidence.",
-            "The prototype, test, or observation that could change the decision.",
-            "The criteria for stopping discovery and choosing a direction."
+            "The original problem frame or brief.",
+            "User observations that challenge or complicate that frame.",
+            "A synthesized user point of view, theme, or design imperative.",
+            "The solution direction or assumption that changes because of the reframing."
           ],
           "good_output_shape": [
-            "Names the user assumption.",
-            "Separates user evidence from stakeholder opinion.",
-            "Proposes a bounded prototype or observation loop.",
-            "States what evidence would change scope, messaging, or design."
+            "States the starting frame.",
+            "Names the observed user evidence that changes the frame.",
+            "Produces a user-centered point-of-view statement.",
+            "Explains what solution assumption should not proceed unchanged."
           ]
         }
       ],
       "diagnostic_questions": [
-        "What user behavior have we observed rather than inferred?",
-        "Which assumption about the user's lived problem would a prototype test?",
-        "Are we still learning something decision-relevant, or just extending discovery?"
+        "What part of the initial brief is probably wrong from the user's point of view?",
+        "Which observed user behavior or story changes the problem definition?",
+        "What design imperative follows from the user evidence rather than the team's preferred solution?"
       ],
       "misuse_guards": [
-        "Do not treat a handful of anecdotes as strategy truth.",
-        "Do not let empathy work delay shipping after decision criteria are clear.",
-        "Do not infer user needs only from internal intuition, historical data, or stakeholder rank."
+        "Do not treat average-user confirmation as discovery.",
+        "Do not let reframing become open-ended empathy theater after decision criteria are clear.",
+        "Do not proceed to solution ideation before naming the user point of view being served."
       ],
       "source_evidence": [
         {
@@ -64,6 +64,94 @@
         },
         {
           "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "reframe the problem",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "reframe and correct",
+          "section_hint": "Powerful Analogies or Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "**reframe it** through a Point of View",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR89 v51 split: the source supports problem reframing as a distinct transaction from prototype testing because it changes whether the original brief should proceed at all.",
+        "dropped_material": [
+          "Did not expand every design-thinking phase into a separate affordance.",
+          "Did not treat empathy maps, journey maps, or design imperatives as standalone packet cards."
+        ],
+        "open_questions": [
+          "Packet stress review should test whether this card stays distinct from user-experience-research-methods and jobs-to-be-done."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "user-centered-design.prototype-user-evidence-loop",
+      "status": "supported",
+      "name": "Prototype user-evidence loop",
+      "mechanism": "When a candidate solution or design direction is being treated as plausible before real-user reaction evidence exists, require bounded prototyping and testing with users before treating internal intuition, stakeholder rank, or creator confidence as product truth.",
+      "activation_shape": {
+        "use_when": [
+          "A candidate solution, interaction, prototype, or design direction needs validation with real users.",
+          "Adoption depends on validating solution assumptions rather than internal intuition or stakeholder rank.",
+          "Prototype reactions could change scope, interaction design, messaging, or implementation priority before costly build-out."
+        ],
+        "do_not_use_when": [
+          "The initial design brief has not yet been reframed from user evidence.",
+          "A handful of user anecdotes are being treated as strategy truth without segmentation or trade-off discipline.",
+          "Discovery has become open-ended empathy theater after the core problem and decision criteria are already clear.",
+          "The decision needs execution against validated criteria rather than another discovery loop."
+        ],
+        "case_evidence_needed": [
+          "The candidate solution, prototype, interaction, or design assumption being tested.",
+          "The real-user reaction evidence needed rather than stakeholder opinion alone.",
+          "The prototype or experiment evidence that could validate or change the solution direction.",
+          "The trade-offs, segmentation, and viability checks that limit what user evidence can prove."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-solution-assumptions-with-users",
+          "description": "Require the answer to identify the solution assumption that matters, name the real-user reaction evidence needed, and propose a bounded prototype or test loop.",
+          "evidence_required": [
+            "The product, service, interaction, or design assumption being made.",
+            "Real-user reaction evidence or the missing user evidence.",
+            "The prototype, test, or observation that could change the solution decision.",
+            "The criteria for stopping discovery and choosing a direction."
+          ],
+          "good_output_shape": [
+            "Names the solution assumption.",
+            "Separates user evidence from stakeholder opinion.",
+            "Proposes a bounded prototype or test loop.",
+            "States what evidence would change scope, messaging, or design."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What solution assumption is the prototype meant to test?",
+        "What real-user reaction would validate or change the design direction?",
+        "Are we still learning something decision-relevant, or just extending discovery?"
+      ],
+      "misuse_guards": [
+        "Do not treat a handful of anecdotes as strategy truth.",
+        "Do not let empathy work delay shipping after decision criteria are clear.",
+        "Do not infer user needs only from internal intuition, historical data, or stakeholder rank."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "User_Centered_Design_rag.md",
           "source_quote": "evidence from users’ reactions to successful or failed prototypes",
           "section_hint": "Core Principles and Analogies",
           "extraction_type": "explicit",
@@ -71,14 +159,21 @@
         },
         {
           "source_file": "User_Centered_Design_rag.md",
-          "source_quote": "the solution team understands the technology better than the user's lived problem, incentives, or constraints",
-          "section_hint": "Application Context: Strengths and Weaknesses",
+          "source_quote": "**Build and Test** iteratively with real people",
+          "section_hint": "The Playbook in Action",
           "extraction_type": "explicit",
           "confidence": "high"
         },
         {
           "source_file": "User_Centered_Design_rag.md",
-          "source_quote": "discovery, prototyping, and observed behavior can materially change the direction of the solution",
+          "source_quote": "test assumptions about solutions",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "iterative prototyping and testing with users to **validate assumptions**",
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
@@ -86,7 +181,7 @@
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a bounded prototype/user-evidence loop with explicit anti-anecdote and anti-empathy-theater guards.",
+        "normalization_note": "PR89 v51 retained and narrowed this affordance to solution/prototype validation after separating the prior problem-reframing work into its own affordance.",
         "dropped_material": [
           "Did not extract all design-thinking stages as separate affordances because the packet needs compact evidence-loop depth.",
           "Did not infer full research-method doctrine beyond the source."
@@ -128,6 +223,64 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "average-user-confirmation-as-sufficient-discovery",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that focusing only on the average user may merely confirm existing beliefs, so average-user confirmation is not sufficient discovery.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "confirm what we already know",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "Focus on **extreme users**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "synthetic-persona-as-user-evidence-replacement",
+      "status": "not_supported_by_source",
+      "reason": "The source includes digital twin personas for rapid pre-validation, but still grounds UCD in real-user observation, prototype reactions, and testing with real people.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "evidence from users’ reactions to successful or failed prototypes",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "**Build and Test** iteratively with real people",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "digital twin personas",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "enabling rapid pre-validation of ideas *in silico*",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -147,7 +300,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 5 source reading found strong reviewed depth for User-Centered Design. Extracted one bounded user-evidence loop and rejected anecdote strategy plus open-ended empathy theater.",
+    "normalization_note": "PR89 v51 source reread split User-Centered Design into problem-reframing and prototype-validation transactions while keeping design-thinking stage inventory compressed.",
     "dropped_material": [
       "Empathy maps, journey maps, and design-stage inventory were left out as implementation examples rather than packet-level affordances.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."
