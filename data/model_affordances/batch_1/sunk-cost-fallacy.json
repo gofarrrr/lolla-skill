@@ -12,12 +12,13 @@
         "use_when": [
           "Prior time, money, identity, or effort is making an exit, kill, or reallocation decision feel harder than the future economics justify.",
           "A team keeps defending continuation because of what has already been sacrificed instead of because the next step has attractive expected value.",
+          "A high-cost commitment is being designed and stop/change criteria can be set before investment creates attachment.",
           "A project, investment, partnership, or personal commitment needs a start-again-today reset from current facts."
         ],
         "do_not_use_when": [
           "The exit argument ignores real remaining upside, learning value, switching costs, or residual option value.",
           "Continuation is justified by attractive expected value after current facts and future costs and benefits are separated from past expenditure.",
-          "There is no prior-investment pressure and the live problem is ordinary option comparison or forecasting."
+          "There is no prior-investment pressure, no high-cost commitment needing pre-set exit criteria, and the live problem is ordinary option comparison or forecasting."
         ],
         "case_evidence_needed": [
           "The time, money, emotional effort, identity, or other investment that is already irretrievable.",
@@ -47,12 +48,18 @@
           "evidence_required": [
             "The criteria that must be met to justify the next phase of investment.",
             "Evidence that would prove the original hypothesis wrong or show that future upside still remains.",
-            "Any real learning value, switching cost, cash-flow advantage, or residual option value that could justify continuation."
+            "Any real learning value, switching cost, cash-flow advantage, or residual option value that could justify continuation.",
+            "For a new high-cost commitment, the time, budget, performance, or falsification criteria that should be set before attachment forms.",
+            "For a financial case, the marginal analysis, NPV/DCF logic, or cash-flow evidence that separates future value from historical outlays.",
+            "The future harm, opportunity cost, or additional resource depletion if continuation is wrong."
           ],
           "good_output_shape": [
             "States the threshold or evidence that would stop, change, or justify the next phase.",
             "Uses outside or objective perspectives when attachment to the prior investment may be distorting judgment.",
-            "Checks remaining upside, learning value, and switching costs before treating exit as the obvious answer."
+            "Checks remaining upside, learning value, and switching costs before treating exit as the obvious answer.",
+            "For new high-cost commitments, predefines stop/change criteria before investment creates sunk-cost pressure.",
+            "For financial cases, uses marginal future value and cash-flow reality rather than book values or historical outlays.",
+            "Names the opportunity cost or future damage path if another phase is funded for sunk-cost reasons."
           ]
         }
       ],
@@ -61,6 +68,7 @@
         "What specific performance criteria must be met to justify the next phase of investment?",
         "How would someone entirely new to this situation advise us to proceed?",
         "What evidence exists that would fundamentally prove our original hypothesis wrong?",
+        "Before this high-cost commitment starts, what conditions would stop or change it?",
         "Is the rationale for continuing based on past effort or on rational future financial projections?",
         "If we quit now, is the cost truly a loss, or is it freeing up resources for a greater gain?"
       ],
@@ -212,7 +220,38 @@
       }
     }
   ],
-  "absence_records": [],
+  "absence_records": [
+    {
+      "attempted_field": "reckless-abandonment-as-anti-sunk-cost-discipline",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that anti-sunk-cost logic can be misused as cover for quitting without evaluating learning value, switching costs, or real remaining upside.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "people use “don’t honor sunk costs” as cover for quitting without evaluating learning value, switching costs, or the real future upside that still remains",
+          "section_hint": "Limitations (Weaknesses) and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "ordinary-option-comparison-without-prior-investment-pressure",
+      "status": "not_supported_by_source",
+      "reason": "The source says the model is strongest when prior investment is distorting a forward-looking choice. Do not promote sunk-cost-fallacy when there is no prior-investment pressure and the case is ordinary option comparison or forecasting.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "prior investment is distorting a forward-looking choice",
+          "section_hint": "Most Powerful Contexts (Strengths)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
   "source_evidence": [
     {
       "source_file": "Sunk_Cost_Fallacy_rag.md",
