@@ -23,6 +23,7 @@
           "The central claim or recommendation.",
           "The evidence currently offered for the claim.",
           "The assumptions needed for the claim to hold.",
+          "Any named framework, process, analogy, or mental model carrying the recommendation.",
           "The authority, emotion, or story elements that may be dominating the conclusion."
         ]
       },
@@ -42,16 +43,48 @@
             "Identifies the make-or-break assumption or missing proof.",
             "Keeps critique tied to action readiness instead of endless skepticism."
           ]
+        },
+        {
+          "requirement_id": "preserve-personal-data-and-action-threshold",
+          "description": "Require the answer to include emotional or personal data when it is decision-relevant, then bound the critique with a one-day answer or action threshold so rigor does not become detachment.",
+          "evidence_required": [
+            "The emotional, relational, or personal data that may change the problem interpretation.",
+            "Whether that data is relevant evidence, noise, or an unvalidated interpretation.",
+            "The action threshold, one-day answer, or decision point that prevents endless critique."
+          ],
+          "good_output_shape": [
+            "Keeps relevant emotional or personal data visible instead of filtering it out as irrational.",
+            "Separates validated personal evidence from assumed emotional readings.",
+            "Ends the critique with an action-ready judgment, one-day answer, or explicit evidence threshold."
+          ]
+        },
+        {
+          "requirement_id": "test-active-framework-fit",
+          "description": "When a familiar framework, process, analogy, or mental model is carrying the recommendation, require the answer to name its imported assumptions and the stress fracture where this context may not fit.",
+          "evidence_required": [
+            "The framework, process, analogy, or mental model doing work in the recommendation.",
+            "The assumptions, omissions, or wrong-context adaptation that framework imports.",
+            "The stress fracture or flaw in logic that would change the conclusion if the framework does not fit."
+          ],
+          "good_output_shape": [
+            "Names the framework carrying the claim rather than treating it as neutral structure.",
+            "States the assumption or wrong-context adaptation that could make the framework misleading.",
+            "Explains what conclusion, risk, or action changes if the framework does not fit the case."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What is the central claim, and what evidence actually supports it?",
         "Which assumption would break the recommendation if it were false?",
-        "Is authority, emotion, or story doing work that evidence has not earned?"
+        "Is authority, emotion, or story doing work that evidence has not earned?",
+        "What personal or emotional data would change the problem if it were filtered out?",
+        "What one-day answer or action threshold keeps this critique from becoming detachment theater?",
+        "Which framework, process, or analogy is carrying the recommendation, and where might this context not fit it?"
       ],
       "misuse_guards": [
         "Do not use critical thinking as a license for endless qualification or refusal to decide.",
         "Do not confuse a coherent story with comprehensive evidence.",
+        "Do not turn critical thinking into framework shopping; test framework fit only when a named framework is carrying the recommendation.",
         "Do not strip emotional or personal data out of a high-stakes human problem when the source says that can matter."
       ],
       "source_evidence": [
@@ -73,6 +106,55 @@
           "source_file": "Critical_Thinking_rag.md",
           "source_quote": "Best when a problem needs decomposition, challenge, and synthesis rather than immediate action",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Ignoring emotional content in high-stakes situations",
+          "section_hint": "Weaknesses, Limitations, and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "missing crucial **personal data** necessary for problem-solving.",
+          "section_hint": "Weaknesses, Limitations, and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Use **\"one-day answers\"**",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Prioritize Critical Hypotheses",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "tiny stress fractures in the wing of an airliner",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "when a procurement process designed for a different situation is inappropriately adapted for the current one",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "over-relies on a favorite framework or mental model, forcing reality to fit the model they have handy",
+          "section_hint": "Weaknesses, Limitations, and Anti-Patterns",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -121,6 +203,57 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "emotion-filtered-rationality-as-critical-thinking",
+      "status": "not_supported_by_source",
+      "reason": "The source says critical thinking can fail when it filters out relevant emotional or personal data in high-stakes human problems. Do not promote a critical-thinking card that treats all emotion as noise before checking whether it changes the problem.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Ignoring emotional content in high-stakes situations",
+          "section_hint": "Weaknesses, Limitations, and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "missing crucial **personal data** necessary for problem-solving.",
+          "section_hint": "Weaknesses, Limitations, and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-problem-disaggregation-as-critical-thinking",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source includes problem disaggregation, MECE, and framework testing, but those are better owned by decomposition unless the live transaction is evaluating a claim, evidence, assumption, authority, emotion, or story before action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Problem Disaggregation",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "MECE Principle",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "What You Have to Believe",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +266,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 10 source reading found strong reviewed depth for critical-thinking as a claim/evidence/assumption check before action.",
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for critical-thinking as a claim/evidence/assumption check before action. PR73 hardens the card so relevant personal data is not filtered out and generic decomposition work routes to decomposition rather than bloating this record.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],
