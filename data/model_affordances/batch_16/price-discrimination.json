@@ -42,17 +42,33 @@
             "States the tier or offer boundary.",
             "Adds unfairness, arbitrage, and trust checks."
           ]
+        },
+        {
+          "requirement_id": "anchor-offer-differences-against-comparison-and-limits",
+          "description": "Require the answer to compare each differentiated offer against a reference alternative and make lower-tier limits or risk tradeoffs explicit, rather than relying on persona language alone.",
+          "evidence_required": [
+            "The comparison alternative or reference offer for each segment.",
+            "The feature-to-benefit or value rationale behind the difference.",
+            "The limitations, risks, or service-level boundaries buyers need to understand."
+          ],
+          "good_output_shape": [
+            "Answers compared to what before justifying the differentiated offer.",
+            "Connects tier differences to concrete benefits or risk reduction.",
+            "States lower-tier limitations plainly enough to reduce confusion and trust damage."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What evidence shows these segments value the same outcome differently?",
         "Can buyers compare or arbitrage across tiers in a way that makes the structure feel unfair?",
-        "Does the pricing logic capture value while preserving long-term trust?"
+        "Does the pricing logic capture value while preserving long-term trust?",
+        "Compared to what alternative does each segment judge the offer, and what limits must be made transparent?"
       ],
       "misuse_guards": [
         "Do not infer willingness to pay from demographics alone.",
         "Do not use differentiated pricing as short-term extraction without trust analysis.",
-        "Do not hide a generic pitch behind segmentation language."
+        "Do not hide a generic pitch behind segmentation language.",
+        "Do not treat persona, archetype, or buyer-psychology language as proof of willingness to pay."
       ],
       "source_evidence": [
         {
@@ -73,6 +89,20 @@
           "source_file": "Price_Discrimination_rag.md",
           "source_quote": "customers can arbitrage between tiers or compare treatment easily",
           "section_hint": "Limitations, Anti-patterns, and Dangerous Outcomes",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "Compared to what?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "explicitly outline the limitations",
+          "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -117,6 +147,43 @@
           "source_file": "Price_Discrimination_rag.md",
           "source_quote": "damages long-term trust, brand clarity, or willingness to buy",
           "section_hint": "Limitations, Anti-patterns, and Dangerous Outcomes",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "persona-or-archetype-as-willingness-to-pay-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source treats personality frameworks and archetypes as useful guides, but the pricing affordance requires willingness-to-pay, urgency, risk, or use-case grounding; do not promote persona language or buyer psychology into pricing evidence by itself.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "personality frameworks (like the Big Five traits) are useful guides",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "segmentation is grounded in willingness to pay, urgency, risk, or use case",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "formal-economics-or-legal-price-discrimination-doctrine",
+      "status": "not_supported_by_source",
+      "reason": "The source says the term Price Discrimination is not found in the sources and synthesizes pricing, persuasion, and segmentation material; do not use this weak-support record for formal economics, legality, market-power, or regulatory claims without a stronger source.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "term \"Price Discrimination\" is not found in the sources",
+          "section_hint": "Core Principles and Analogies",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }
