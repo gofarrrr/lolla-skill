@@ -31,6 +31,14 @@ Do not:
 
 - `scripts/audit_v18_source_adequacy_queue.py`
   - deterministic queue generator.
+- `research/pr56-canonical-corpus-custody-check-2026-05-08.md`
+  - proof that `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216`,
+    `data/model_sources/`, and v18 compile metadata agree on 222 Markdown
+    sources with zero hash mismatch.
+- `research/pr56-v18-full-corpus-source-adequacy-synthesis-2026-05-08.md`
+  - full-corpus source-read synthesis across all 222 records.
+- `research/pr56-v18-targeted-v19-candidate-queue-2026-05-08.md`
+  - later PR57/v19 proof queue for targeted changes.
 - `research/pr56-v18-source-adequacy-audit-brief-2026-05-08.md`
   - central decision frame.
 - `research/pr56-v18-source-adequacy-risk-queue-2026-05-08.md`
@@ -40,7 +48,48 @@ Do not:
 - `research/pr56-v18-source-adequacy-ledger-pilot-2026-05-08.md`
   - first manual source-read pilot.
 
+## Current Full-Corpus Verdict
+
+All 222 canonical Markdown records have now been reviewed against individual affordance JSON and compiled v18 shape.
+
+The result:
+
+- source custody passed;
+- compile drift check passed;
+- most one-affordance records are complete-as-compressed;
+- weak-support records should remain visibly cautious;
+- broad/meta cards need packet discipline, not automatic extraction;
+- a targeted set of positive split candidates should be proven in a later v19 PR;
+- several records need absence or guard enrichment rather than new positive affordances.
+
+Firm positive split review candidates:
+
+- `category-decisions`
+- `power-dynamics`
+- `mental-models-of-reality`
+- `critical-thinking`
+- `metacognitive-questioning`
+- `commitment-bias`
+- `conjunction-fallacy`
+- `emotional-intelligence`
+- `evolutionary-pressure`
+- `feedback-loops`
+- `international-negotiation-and-diplomacy-models`
+- `lock-in`
+- `mental-simulation`
+- `path-dependence`
+- `redundancy`
+- `switching-costs`
+
+Do not edit these in PR56. Use them as PR57 proof targets.
+
+Important correction from the early pilot:
+
+- `chain-of-thought` should be handled as absence/misuse enrichment, not a positive split by default.
+
 ## Stage 1: Finish P0/P1 Ledger
+
+Status: completed by PR56 full-corpus audit.
 
 Records:
 
@@ -72,7 +121,9 @@ Acceptance:
 
 ## Stage 2: Prove Or Reject Pilot Split Candidates
 
-Current serious pilot split candidate:
+Status: partially completed by PR56 full-corpus audit.
+
+Early serious pilot split candidate:
 
 - `chain-of-thought`
 
@@ -94,10 +145,16 @@ Split proof must include:
 
 If the proof fails:
 
-- [ ] keep one affordance;
-- [ ] enrich absence/misuse guards instead.
+- [x] keep one affordance;
+- [x] enrich absence/misuse guards instead in a later targeted PR.
+
+Current positive split proof queue lives in:
+
+- `research/pr56-v18-targeted-v19-candidate-queue-2026-05-08.md`
 
 ## Stage 3: P2 Stratified Sampling
+
+Status: completed by PR56 full-corpus audit.
 
 Sample buckets:
 
@@ -127,11 +184,13 @@ Initial P2 queue heads:
 
 Acceptance:
 
-- [ ] Stop sampling only after new source-read patterns stop appearing.
-- [ ] Preserve complete-as-compressed records.
-- [ ] Record every dropped candidate and why it is not transaction-distinct.
+- [x] Stop sampling only after new source-read patterns stop appearing.
+- [x] Preserve complete-as-compressed records.
+- [x] Record every dropped candidate and why it is not transaction-distinct.
 
 ## Stage 4: v19 Candidate List
+
+Status: candidate queue created; do not implement in PR56.
 
 Only after the source adequacy ledger, produce a candidate list:
 
@@ -147,10 +206,10 @@ risk_if_changed:
 
 Acceptance:
 
-- [ ] No bulk enrichment.
-- [ ] No record edited without source-line support.
-- [ ] Every new positive affordance must change downstream receiver behavior.
-- [ ] Absence enrichment is preferred over positive expansion when the issue is overclaim risk.
+- [x] No bulk enrichment.
+- [x] No record edited without source-line support.
+- [x] Every new positive affordance must change downstream receiver behavior.
+- [x] Absence enrichment is preferred over positive expansion when the issue is overclaim risk.
 
 ## Stage 5: Targeted v19 PR
 

@@ -6,6 +6,18 @@ Branch: `feature/knowledge-substrate-pr56-source-adequacy-audit`
 
 Status: human source-read pilot; no record rewrites; no runtime pickup
 
+## Full-Corpus Update
+
+This document is the early PR56 pilot, not the final corpus verdict.
+
+The later full-corpus audit in `research/pr56-v18-full-corpus-source-adequacy-synthesis-2026-05-08.md` supersedes several provisional labels:
+
+- `chain-of-thought` moves from provisional `split_candidate` to `needs_absence_enrichment`; a second positive affordance would risk promoting reasoning traces as proof.
+- `systems-thinking`, `confidence-calibration`, and `inversion` look source-adequate as compressed multi-affordance records; their remaining risk is packet display, absence visibility, and rewrite gating.
+- `theory-of-constraints` remains a watch item around stakeholder / decision-right bottlenecks, not an automatic third affordance.
+
+Keep this pilot as audit history, but use the full-corpus synthesis and targeted v19 candidate queue for next implementation decisions.
+
 ## Method
 
 This pilot reviewed P0/P1 records plus selected P2/control records against:

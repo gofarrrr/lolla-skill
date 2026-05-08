@@ -22,6 +22,26 @@ Current status:
 - `REVISE` for source adequacy before runtime usefulness testing.
 - `BLOCK` live `/lolla` testing until high-risk records are classified as complete, split candidates, source-thin, or needing targeted enrichment.
 
+## Canonical Corpus Custody
+
+PR56 treats `/Users/marcin/Desktop/Apps/Lolla-system-b/MM_CANONICAL_216` as the canonical source corpus.
+
+Deterministic custody check found:
+
+- canonical Markdown files: `222`;
+- local `data/model_sources/` Markdown files: `222`;
+- v18 compiled source metadata entries: `222`;
+- v18 model records: `222`;
+- canonical/local filename mismatch: `0`;
+- canonical/local SHA-256 mismatch: `0`;
+- v18 metadata hash mismatch against canonical files: `0`.
+
+Detailed custody artifact:
+
+- `research/pr56-canonical-corpus-custody-check-2026-05-08.md`
+
+This means the local source files used by v18 are byte-identical to the canonical corpus. The remaining audit question is semantic adequacy, not source custody.
+
 ## Why This Comes Before System Testing
 
 Testing v18 inside the system now would mix too many unknowns:
@@ -66,6 +86,12 @@ This audit adds:
 
 - `scripts/audit_v18_source_adequacy_queue.py`
   - deterministic risk-queue generator for v18 adequacy review.
+- `research/pr56-canonical-corpus-custody-check-2026-05-08.md`
+  - proof that canonical Markdown, local source copy, and v18 source metadata align.
+- `research/pr56-v18-full-corpus-source-adequacy-synthesis-2026-05-08.md`
+  - full-corpus source-read synthesis across all 222 records.
+- `research/pr56-v18-targeted-v19-candidate-queue-2026-05-08.md`
+  - proof queue for later targeted v19 enrichment.
 - `research/pr56-v18-source-adequacy-risk-queue-2026-05-08.md`
   - P0/P1/P2 prioritization for human source reads.
 - `research/pr56-v18-granularity-decision-rubric-2026-05-08.md`
@@ -142,6 +168,43 @@ The first manual source-read pilot found a mixed picture:
 
 This means one-affordance dominance is not automatically a failure. But it is also not automatically safe.
 
+## Full-Corpus Audit Refinement
+
+After the pilot, PR56 expanded to a full-corpus source-read pass across all 222 canonical Markdown files.
+
+The full pass refined the pilot in important ways:
+
+- `chain-of-thought` should not be treated as a positive split by default. The stronger action is absence/misuse enrichment so the system does not promote step-by-step traces, user-facing reasoning chains, or reasoning-as-proof theater.
+- `systems-thinking`, `confidence-calibration`, and `inversion` look source-adequate as compressed multi-affordance records. Their risk is packet display, zero-absence posture, and rewrite gating, not more positive extraction by default.
+- High-source-ref one-affordance records are usually not under-extracted. In many cases, many source passages support one operational transaction.
+- Weak/proxy records should stay weak/proxy. Expanding them to look symmetrical would lower epistemic quality.
+- The genuine remaining gaps are targeted: a small set of records compress different downstream receiver actions into one card.
+
+Firm positive split review candidates from the full pass:
+
+- `category-decisions`
+- `power-dynamics`
+- `mental-models-of-reality`
+- `critical-thinking`
+- `metacognitive-questioning`
+- `commitment-bias`
+- `conjunction-fallacy`
+- `emotional-intelligence`
+- `evolutionary-pressure`
+- `feedback-loops`
+- `international-negotiation-and-diplomacy-models`
+- `lock-in`
+- `mental-simulation`
+- `path-dependence`
+- `redundancy`
+- `switching-costs`
+
+These are not approved edits yet. They are a targeted v19 proof queue.
+
+The governing rule remains:
+
+> Add a positive affordance only when it changes downstream use/reject/defer/merge behavior. Otherwise, prefer absence enrichment, guard visibility, packet hardening, or no change.
+
 ## What Counts As PASS
 
 A record can pass source adequacy when every operational source cluster is:
@@ -168,9 +231,9 @@ Packet testing cannot prove source adequacy. It can only test what the packet wa
 
 ## Immediate Recommendation
 
-Continue PR56 as a source-adequacy audit, not a v19 enrichment PR yet.
+Finish PR56 as a source-adequacy audit, not a v19 enrichment PR.
 
-The next concrete step is to finish the P0/P1 ledger, then sample P2 until the review stops finding new split-candidate patterns.
+The next concrete step is to merge the audit-only PR, then open a separate targeted v19 preparation PR using the full-corpus synthesis and candidate queue.
 
 Only after that should a targeted v19 PR update any records.
 
