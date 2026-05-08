@@ -320,6 +320,21 @@
           "confidence": "medium"
         }
       ]
+    },
+    {
+      "attempted_field": "large-n-confidence-with-wrong-population",
+      "status": "not_supported_by_source",
+      "reason": "The source supports sample-size confidence only when the sample is comparable to the real decision population. Large N should not promote confidence if the observations are biased, non-comparable, or structurally mismatched.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "The model fails when teams invoke sample size confidence even though the sample is biased, non-comparable, or structurally mismatched to the real decision.",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
