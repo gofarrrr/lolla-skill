@@ -42,12 +42,28 @@
             "Adds evidence checks.",
             "Warns that an orderly trace is not proof."
           ]
+        },
+        {
+          "requirement_id": "prune-chain-to-governing-answer",
+          "description": "Require the answer to prune reasoning branches that do not materially change the answer and restate the governing answer or solution path so stepwise structure does not become cognitive load.",
+          "evidence_required": [
+            "The branches, details, or steps currently included in the reasoning chain.",
+            "Which branches materially change the answer and which only add legibility or completeness.",
+            "The governing thought, one-day answer, or solution path that reconnects the chain to the decision."
+          ],
+          "good_output_shape": [
+            "Prunes irrelevant or low-value branches instead of displaying every step.",
+            "Names the one or two variables or weak links that actually drive the answer.",
+            "States the governing answer or solution path after the chain is audited."
+          ]
         }
       ],
       "diagnostic_questions": [
         "Which causal step or hidden assumption would break the conclusion if false?",
         "What evidence verifies the step rather than merely making it sound logical?",
-        "Does the reasoning chain end in an executable action path?"
+        "Does the reasoning chain end in an executable action path?",
+        "Which branch can be pruned because it does not significantly change the answer?",
+        "What is the one-day answer or governing thought after the chain is audited?"
       ],
       "misuse_guards": [
         "Do not treat a reasoning transcript as truth.",
@@ -73,6 +89,34 @@
           "source_file": "Chain_Of_Thought_rag.md",
           "source_quote": "whether the premises, evidence, or action path are actually sound",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "ruthlessly prune branches of the logic tree that don't significantly contribute to the answer.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "The One-Day Answer",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "produce a coherent summary of the best understanding of the problem and a solution path.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "The main idea is stated first, followed by supporting ideas that logically support the assertion.",
+          "section_hint": "Concrete Examples of Application",
           "extraction_type": "explicit",
           "confidence": "high"
         }
