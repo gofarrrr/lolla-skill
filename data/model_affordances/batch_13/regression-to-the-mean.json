@@ -1,0 +1,145 @@
+{
+  "model_id": "regression-to-the-mean",
+  "source_file": "Regression_To_The_Mean_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "regression-to-the-mean.baseline-before-causal-story",
+      "status": "supported",
+      "name": "Baseline before causal story",
+      "mechanism": "When a dramatic result invites a confident causal story, require the answer to compare it with the longer-run baseline and identify whether a structural change exists before treating the deviation as signal.",
+      "activation_shape": {
+        "use_when": [
+          "A recent win, loss, spike, or drop is being explained with a strong story.",
+          "An intervention happened near an extreme result and is being over-credited.",
+          "The case needs a baseline, reference class, or repeated measurement before action."
+        ],
+        "do_not_use_when": [
+          "There is concrete evidence that the underlying system has changed.",
+          "Waiting for reversion would excuse a deteriorating process that needs intervention.",
+          "The case concerns tail risk rather than normal fluctuation around a mean."
+        ],
+        "case_evidence_needed": [
+          "The relevant baseline or long-run mean.",
+          "The extreme result being interpreted.",
+          "Any plausible structural cause of change.",
+          "The decision that would change if the deviation is noise."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-deviation-against-structural-change",
+          "description": "Require the answer to separate temporary deviation from structural change before recommending reward, punishment, strategy change, or dismissal.",
+          "evidence_required": [
+            "Historical baseline.",
+            "Current extreme observation.",
+            "Candidate cause for a changed mean.",
+            "Repeated measurement or reference-class evidence."
+          ],
+          "good_output_shape": [
+            "Names the observed deviation.",
+            "Compares it with a baseline.",
+            "Tests whether a reason for changed mean exists.",
+            "Avoids both overreaction and lazy dismissal."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the baseline this result is deviating from?",
+        "What reason would make the mean itself change?",
+        "Are we attributing regression to a treatment just because of timing?"
+      ],
+      "misuse_guards": [
+        "Do not use regression to the mean to ignore real system change.",
+        "Do not infer intervention success from a rebound after an extreme low.",
+        "Do not project a single exceptional result as a new trend."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Regression_To_The_Mean_rag.md",
+          "source_quote": "a change without a reason for the change is not really a change",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Regression_To_The_Mean_rag.md",
+          "source_quote": "Most useful when a result looks dramatic but causality is weak",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Regression_To_The_Mean_rag.md",
+          "source_quote": "Danger when RTM becomes an excuse to ignore real change",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports RTM as baseline discipline with a real-change caveat.",
+        "dropped_material": [
+          "Did not turn RTM into a universal wait-and-see recommendation.",
+          "Did not infer causality from statistical reversion."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card prevents overreaction without dulling response to structural change."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "single-outcome-as-trend-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly treats extreme data points as possible temporary deviations or noise until a reason for changed performance is shown.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Regression_To_The_Mean_rag.md",
+          "source_quote": "temporary deviations or random noise in a system",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "regression-as-dismissal",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against using RTM to dismiss meaningful shifts in system structure or market dynamics.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Regression_To_The_Mean_rag.md",
+          "source_quote": "leaders dismiss a meaningful shift in system structure, market dynamics, or process quality",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Regression_To_The_Mean_rag.md",
+      "source_quote": "**wait for the Regression to the Mean** before making high-stakes decisions",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for RTM as baseline-before-causal-story discipline.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps distinguish noise from true system change."
+    ],
+    "review_status": "draft"
+  }
+}

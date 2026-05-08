@@ -1,0 +1,145 @@
+{
+  "model_id": "power-laws",
+  "source_file": "Power_Laws_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "power-laws.dominant-driver-tail-check",
+      "status": "supported",
+      "name": "Dominant driver tail check",
+      "mechanism": "When outcomes may be highly unequal, require the answer to identify whether a few drivers truly dominate, verify the distribution shape, and check what long-tail reliability, fairness, or resilience concern would be neglected.",
+      "activation_shape": {
+        "use_when": [
+          "A few drivers are likely to dominate the outcome.",
+          "Scarce attention or capital must be allocated toward disproportionate impact.",
+          "The average may hide tail behavior or leverage concentration."
+        ],
+        "do_not_use_when": [
+          "The domain has not been shown to be power-law shaped.",
+          "The long tail contains reliability, fairness, or resilience obligations.",
+          "The apparent vital few are visible symptoms rather than causal drivers."
+        ],
+        "case_evidence_needed": [
+          "The distribution or evidence of unequal impact.",
+          "The candidate dominant drivers.",
+          "Whether the long tail can safely be ignored.",
+          "A disconfirming test for the 80/20 hypothesis."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "validate-tail-before-prioritizing-vital-few",
+          "description": "Require the answer to validate leverage concentration before reallocating attention away from the long tail.",
+          "evidence_required": [
+            "Distribution evidence.",
+            "Candidate vital few.",
+            "Ignored-tail risk.",
+            "Actionable leverage point."
+          ],
+          "good_output_shape": [
+            "Names the suspected unequal distribution.",
+            "Identifies causal drivers rather than visible symptoms.",
+            "Checks the long-tail caveat.",
+            "Recommends focused action only where evidence supports concentration."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What evidence says this distribution is actually power-law shaped?",
+        "Is the proposed vital few a driver or a visible symptom?",
+        "What long-tail obligation becomes dangerous if ignored?"
+      ],
+      "misuse_guards": [
+        "Do not assume every uneven distribution is a power law.",
+        "Do not use averages when extremes dominate the mean.",
+        "Do not sacrifice resilience or fairness merely because the long tail is low-volume."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Power_Laws_rag.md",
+          "source_quote": "a few drivers are likely to dominate the outcome",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Laws_rag.md",
+          "source_quote": "every uneven distribution is casually assumed to be power-law shaped",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Power_Laws_rag.md",
+          "source_quote": "ignore reliability, fairness, or resilience concerns that live in the long tail",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports power laws as leverage concentration with tail-caveat discipline.",
+        "dropped_material": [
+          "Did not duplicate the existing Pareto Principle record.",
+          "Did not promote 80/20 as a universal rule."
+        ],
+        "open_questions": [
+          "Later review should check whether this overlaps too much with Pareto Principle or adds distinct tail-distribution caution."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "power-law-as-universal-explanation",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against casually assuming every uneven distribution is power-law shaped.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Power_Laws_rag.md",
+          "source_quote": "every uneven distribution is casually assumed to be power-law shaped",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "average-as-tail-safe",
+      "status": "not_supported_by_source",
+      "reason": "The source notes that power-law distributions can make average-based forecasts misleading because extremes dominate the mean.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Power_Laws_rag.md",
+          "source_quote": "average-based forecasts misleading because the mean is dominated by extreme values",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Power_Laws_rag.md",
+      "source_quote": "**natural distribution** where **20% of the actions we take are responsible for 80% of the results**",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found useful reviewed depth for Power Laws as dominance/tail reasoning, with overlap to Pareto acknowledged.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card remains distinct from Pareto or should become an absence/duplicate in a future cleanup."
+    ],
+    "review_status": "draft"
+  }
+}

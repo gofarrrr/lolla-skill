@@ -1,0 +1,145 @@
+{
+  "model_id": "statistics-concepts",
+  "source_file": "Statistics_Concepts_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "statistics-concepts.sample-structure-before-inference",
+      "status": "supported",
+      "name": "Sample structure before inference",
+      "mechanism": "When a claim leans on data, require the answer to test sample structure, assumptions, and distributional context before treating the number as decision evidence.",
+      "activation_shape": {
+        "use_when": [
+          "A decision is being argued from samples, metrics, estimates, or statistical language.",
+          "The team must distinguish signal from noise rather than argue from anecdotes.",
+          "Ranges, distributions, or sampling logic can improve calibrated inference."
+        ],
+        "do_not_use_when": [
+          "Statistical language is decorative and the data quality is unknown.",
+          "A number is being used without sample, denominator, or measurement context.",
+          "The key issue is value judgment, stakeholder meaning, or implementation rather than inference."
+        ],
+        "case_evidence_needed": [
+          "The sampled population and sample source.",
+          "The metric or statistic being used.",
+          "The assumption connecting sample to population.",
+          "The decision threshold affected by the statistic."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "validate-number-before-decision-weight",
+          "description": "Require the answer to name the sample, assumptions, and distribution shape before assigning decision weight to a statistic.",
+          "evidence_required": [
+            "Sample source and denominator.",
+            "Statistic or estimate.",
+            "Assumptions and measurement limits.",
+            "Decision implication."
+          ],
+          "good_output_shape": [
+            "Names what the number measures.",
+            "Checks sample and denominator context.",
+            "Identifies signal/noise risk.",
+            "Limits the conclusion to what the data supports."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What population is this sample supposed to represent?",
+        "What assumption lets this statistic carry decision weight?",
+        "Are we looking at signal, noise, distribution shape, or just a vivid number?"
+      ],
+      "misuse_guards": [
+        "Do not use statistical terms as evidence by themselves.",
+        "Do not hide weak data quality behind calibrated-sounding language.",
+        "Do not collapse variance and distribution shape into one headline mean."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Statistics_Concepts_rag.md",
+          "source_quote": "use evidence in samples to make inferences about the characteristics of populations",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistics_Concepts_rag.md",
+          "source_quote": "uncertainty is quantifiable enough that ranges, distributions, or sampling logic meaningfully improve the decision",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistics_Concepts_rag.md",
+          "source_quote": "statistical language gets used decoratively",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports statistics as sample-to-population inference discipline.",
+        "dropped_material": [
+          "Did not extract generic data-driven-decision advice.",
+          "Did not imply the LLM should compute statistical tests."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves denominator and sample-context checks."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "statistical-term-as-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that statistical language can be decorative unless data quality, assumptions, and sample structure justify the conclusion.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Statistics_Concepts_rag.md",
+          "source_quote": "no one checks whether the data quality, assumptions, or sample structure justify the conclusion",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "number-without-sample-context",
+      "status": "not_supported_by_source",
+      "reason": "The source grounds inference in evidence from samples about populations, so a number without sample context is insufficient.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Statistics_Concepts_rag.md",
+          "source_quote": "use evidence in samples to make inferences about the characteristics of populations",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Statistics_Concepts_rag.md",
+      "source_quote": "disciplined use of data to make rational inferences",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for statistics as sample, distribution, and assumption discipline.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card prevents decorative quantification."
+    ],
+    "review_status": "draft"
+  }
+}

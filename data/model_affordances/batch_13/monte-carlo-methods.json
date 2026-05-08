@@ -1,0 +1,145 @@
+{
+  "model_id": "monte-carlo-methods",
+  "source_file": "Monte_Carlo_Methods_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "monte-carlo-methods.distributional-range-stress-test",
+      "status": "supported",
+      "name": "Distributional range stress test",
+      "mechanism": "When a decision is being made from a single-point forecast, require the answer to expose uncertain input ranges, inspect downside and tail outcomes, and state whether the assumptions are reliable enough for simulation-style reasoning.",
+      "activation_shape": {
+        "use_when": [
+          "Uncertain inputs can be expressed as ranges or distributions.",
+          "The decision depends on downside, variance, or tail exposure.",
+          "A base-case forecast is hiding interacting variables or repeated uncertainty."
+        ],
+        "do_not_use_when": [
+          "Input distributions are guessed casually and would create fake rigor.",
+          "Unknown unknowns or structural breaks dominate the risk.",
+          "A simpler dominant-variable analysis would be more honest and useful."
+        ],
+        "case_evidence_needed": [
+          "The key uncertain variables.",
+          "Plausible ranges or distributions for those variables.",
+          "The downside/tail outcome that would change the decision.",
+          "Known unknowns or structural breaks not captured by the model."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "replace-single-point-with-range-and-assumption-caveat",
+          "description": "Require the answer to move from a base case to a range of outcomes while naming input-assumption limits.",
+          "evidence_required": [
+            "Single-point forecast being challenged.",
+            "Input ranges or reference classes.",
+            "Tail or downside thresholds.",
+            "Assumptions that are too weak for simulation."
+          ],
+          "good_output_shape": [
+            "Names the base-case trap.",
+            "Surfaces the range of plausible outcomes.",
+            "Highlights tail exposure.",
+            "Warns where simulation would become false precision."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which uncertain inputs can be represented as ranges rather than one number?",
+        "Is the worst case bad enough to change the decision?",
+        "What important uncertainty is outside the simulated imagination?"
+      ],
+      "misuse_guards": [
+        "Do not let simulated output appear more certain than the input assumptions.",
+        "Do not ignore unknown unknowns just because they are hard to sample.",
+        "Do not run complex simulation when a simpler driver explains the decision."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Monte_Carlo_Methods_rag.md",
+          "source_quote": "move decision-making away from reliance on a single, fixed outcome",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Monte_Carlo_Methods_rag.md",
+          "source_quote": "uncertain inputs can be expressed as ranges or distributions",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Monte_Carlo_Methods_rag.md",
+          "source_quote": "input distributions are guessed casually",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports Monte Carlo as range/tail stress testing with an input-quality caveat.",
+        "dropped_material": [
+          "Did not extract simulation as runtime modeling.",
+          "Did not imply Lolla should run simulations."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves risk packets without adding mathematical theater."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "simulation-as-forecast-certainty",
+      "status": "not_supported_by_source",
+      "reason": "The source frames simulation as exposing ranges and likelihoods, not as producing certain forecasts.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Monte_Carlo_Methods_rag.md",
+          "source_quote": "understanding the **range of possible outcomes**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "randomness-without-assumption-check",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that simulations become dangerous when underlying distributions or uncertainty parameters cannot be reliably estimated.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Monte_Carlo_Methods_rag.md",
+          "source_quote": "underlying distributions or **parameters of uncertainty cannot be reliably estimated**",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Monte_Carlo_Methods_rag.md",
+      "source_quote": "estimating **conditional probabilities through experiments and sampling**",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for Monte Carlo as probabilistic range and tail exposure discipline.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps LLMs ask for ranges without pretending to compute them."
+    ],
+    "review_status": "draft"
+  }
+}

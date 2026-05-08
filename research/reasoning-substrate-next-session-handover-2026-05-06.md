@@ -1,16 +1,16 @@
 # Reasoning Substrate Next Session Handover
 
 **Date:** 2026-05-07
-**Status:** Start-here handover after PR49 completed the controlled learning /
-skill-acquisition enrichment batch. PR48 added source-backed v12 adaptive
-exploration depth; the user then explicitly approved continued controlled
-extraction toward the full 222-model set while keeping the same quality rails.
-This is still not runtime behavior, prompt promotion, lane rewrite, broad
-Batch 3b, or user-facing Decision Pressure work.
+**Status:** Start-here handover after PR50 completed the controlled
+quantitative inference / distributional reasoning enrichment batch. PR49 added
+source-backed v13 learning / skill-acquisition depth; the user explicitly
+approved continued controlled extraction toward the full 222-model set while
+keeping the same quality rails. This is still not runtime behavior, prompt
+promotion, lane rewrite, broad Batch 3b, or user-facing Decision Pressure work.
 
-**Current posture:** `controlled_learning_skill_enrichment_ready`
+**Current posture:** `controlled_quantitative_inference_enrichment_ready`
 
-**Current PR:** PR49 - controlled learning / skill-acquisition enrichment
+**Current PR:** PR50 - controlled quantitative inference / distributional reasoning enrichment
 
 **PR24 review verdict:** `approve_pr24`
 
@@ -64,6 +64,8 @@ Batch 3b, or user-facing Decision Pressure work.
 
 **PR49 decision label:** `controlled_learning_skill_enrichment_ready`
 
+**PR50 decision label:** `controlled_quantitative_inference_enrichment_ready`
+
 ## Start Here
 
 Read these files in order:
@@ -111,6 +113,7 @@ Read these files in order:
 41. `research/v11-graph-only-priority-audit-2026-05-07.md`
 42. `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
 43. `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
+44. `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 
 Only read the older PR13-PR23 artifacts when you need historical evidence. Do
 not restart from them as the active product direction.
@@ -184,6 +187,9 @@ Keep these layers distinct:
 | PR49 controlled learning / skill-acquisition enrichment | 12 graph-only models from learning, pedagogy, and skill-acquisition discipline gained reviewed Batch 12 records with 12 affordances and 24 absence records; compiled as draft/review-only v13. |
 | v13 affordance corpus | 158 reviewed records, 194 affordances, 301 absence records. Draft/review-only v12 plus PR49 controlled learning batch, not runtime-promoted. |
 | Graph-only after v13 | 64 runtime models remain eligible but not reviewed affordance records. |
+| PR50 controlled quantitative inference enrichment | 12 graph-only models from quantitative inference, distributional reasoning, statistical discipline, model-fit, and signal-compression gaps gained reviewed Batch 13 records with 12 affordances and 24 absence records; compiled as draft/review-only v14. |
+| v14 affordance corpus | 170 reviewed records, 206 affordances, 325 absence records. Draft/review-only v13 plus PR50 controlled quantitative inference batch, not runtime-promoted. |
+| Graph-only after v14 | 52 runtime models remain eligible but not reviewed affordance records. |
 
 The governing sentence:
 
@@ -1450,6 +1456,78 @@ remaining 64 graph-only runtime models, selecting one bounded family of 8-12
 models from source-custodied files. Keep periodic packet usefulness reviews as
 a quality gate after several families or when packet shape may change.
 
+PR50 later completed the controlled quantitative inference enrichment batch.
+Do not revert to the older PR49 recommendation as active direction.
+
+## What PR50 Added
+
+PR50 answers the question: "Can quantitative inference / distributional
+reasoning models add source-backed operational depth without turning numbers,
+statistics, simulations, or model fit into deterministic authority?"
+
+It adds:
+
+- `data/model_affordances/batch_13/`;
+- `data/compiled/model_affordances/affordances_v14.json`;
+- `data/compiled/model_affordances/quality_report_v14.md`;
+- `tests/test_pr50_batch13_records.py`;
+- `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`;
+- `tasks/tasks-controlled-quantitative-inference-enrichment-batch.md`;
+- living-doc posture updates.
+
+Measured PR50 corpus state:
+
+- runtime graph models: `222`;
+- repo-custodied source files: `222`;
+- v14 reviewed records: `170`;
+- v14 reviewed affordances: `206`;
+- v14 absence records: `325`;
+- graph-only runtime models after v14: `52`;
+- v14 status: `draft_review_only`;
+- schema validation failures: `0`;
+- source quote rejections: `0`.
+
+PR50's decision label is
+`controlled_quantitative_inference_enrichment_ready`.
+
+The product lesson:
+
+> The quantitative family adds real handoff depth when records bind numerical
+> or model-shaped claims to priors, baselines, sample structure, distribution
+> shape, transition stability, tail behavior, model generalization, signal
+> compression, and absence records that block false precision.
+
+PR50 extracted exactly this target set:
+
+- `bayesian`;
+- `regression-to-the-mean`;
+- `conjunction-fallacy`;
+- `representativeness-heuristic`;
+- `monte-carlo-methods`;
+- `markov-chains`;
+- `statistics-concepts`;
+- `statistical-learning-theory`;
+- `data-science-reasoning-framework`;
+- `information-theory`;
+- `power-laws`;
+- `compounding`.
+
+Each target received one compact reviewed affordance and two absence records.
+`markov-chains` is intentionally medium-confidence because its source supports
+state-transition reasoning while noting that formal Markov-chain language is
+not explicit. `power-laws` is kept distinct from `pareto-principle` as
+tail/distribution-shape caution, not just vital-few prioritization.
+
+PR50 does not promote v14 into runtime, run live lanes, wire `/lolla`, change
+prompts, run model calls or judges, create Batch 3b, create user-facing
+Decision Pressure output, create deterministic statistical routing, or allow
+deterministic final pressure selection.
+
+Recommended next slice is PR51: continue controlled extraction from the
+remaining 52 graph-only runtime models, selecting one bounded family of 8-12
+models from source-custodied files. Keep the same direct-reading,
+absence-friendly quality standard and keep v15 draft/review-only.
+
 ## PR24 Review Questions Answered
 
 PR24 review answered yes to all three questions:
@@ -1522,7 +1600,7 @@ When changing direction, update:
 Before finishing a docs slice, run a drift scan:
 
 ```text
-rg -n "controlled_learning_skill_enrichment_ready|controlled_adaptive_exploration_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR48|PR49|PR50" plans research tasks -g '*.md'
+rg -n "controlled_quantitative_inference_enrichment_ready|controlled_learning_skill_enrichment_ready|current posture|next default|Decision Pressure producer|runtime promotion|Batch 3b|PR49|PR50|PR51" plans research tasks -g '*.md'
 ```
 
 The goal is not to remove every historical reference. The goal is to make sure
@@ -1534,10 +1612,10 @@ the active posture.
 If handing this to a new coder, use:
 
 ```text
-Start from PR49 and do not infer permission for runtime work, broad
+Start from PR50 and do not infer permission for runtime work, broad
 Batch 3b, packet promotion, deterministic reasoning-mode routing,
 deterministic option selection, deterministic mastery classification, or
-mechanical extraction momentum.
+deterministic statistical routing, or mechanical extraction momentum.
 
 Read first:
 - research/reasoning-substrate-next-session-handover-2026-05-06.md
@@ -1576,9 +1654,10 @@ Read first:
 - research/v11-graph-only-priority-audit-2026-05-07.md
 - research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md
 - research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md
+- research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md
 
 Current posture:
-controlled_learning_skill_enrichment_ready
+controlled_quantitative_inference_enrichment_ready
 
 Your first job is to preserve the corrected enrichment boundary and source
 custody distinction, not build live Decision Pressure machinery.
@@ -1928,12 +2007,32 @@ PR49 result:
   3b, deterministic mastery classification, deterministic option selection,
   deterministic pressure selection, or user-facing behavior was added
 
+PR50 result:
+- decision label: controlled_quantitative_inference_enrichment_ready
+- 12 graph-only models from quantitative inference / distributional reasoning
+  received reviewed batch_13 records
+- v14 draft/review-only compiled artifact exists with 170 reviewed records
+- PR50 added 12 affordances and 24 absence records
+- v14 contains 206 affordances and 325 absence records
+- 52 runtime models remain graph-only after v14
+- each target received one compact source-backed affordance and two absence
+  records
+- the records add handoff depth around Bayesian updating, regression-to-mean
+  baselines, conjunction-risk sequence checks, representativeness correction,
+  Monte Carlo range/tail caveats, Markov transition caveats, sample-structure
+  inference, statistical-learning generalization, data-science question design,
+  signal-preserving compression, power-law tail caution, and durable
+  compounding bases
+- no runtime promotion, prompt, lane, live adapter, model call, judge, Batch
+  3b, deterministic statistical routing, deterministic option selection,
+  deterministic pressure selection, or user-facing behavior was added
+
 Do not build runtime packet production, prompt changes, lane rewrites,
 Batch 3b, live Observatory, memo, Step 8, Step 6, Lane 4 runtime, judges,
 paid model calls, deterministic pressure selection, or user-facing output
 unless the user explicitly opens a new product-reviewed slice. The recommended
-next slice is PR50: another controlled source-backed extraction batch from the
-remaining 64 graph-only models, capped and family-shaped. Full coverage is now
+next slice is PR51: another controlled source-backed extraction batch from the
+remaining 52 graph-only models, capped and family-shaped. Full coverage is now
 the direction, but broad mechanical completion is still not acceptable.
 ```
 

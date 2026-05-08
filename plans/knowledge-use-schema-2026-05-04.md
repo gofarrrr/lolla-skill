@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-07
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR49 are merged or in review, PR49 completed the controlled learning / skill-acquisition enrichment batch, and the current posture is `controlled_learning_skill_enrichment_ready`
+**Status:** living schema doctrine; PR13-PR50 are merged or in review, PR50 completed the controlled quantitative inference / distributional reasoning enrichment batch, and the current posture is `controlled_quantitative_inference_enrichment_ready`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -38,6 +38,7 @@
 **Current v11 graph-only priority audit:** `research/v11-graph-only-priority-audit-2026-05-07.md`
 **Current controlled adaptive exploration enrichment report:** `research/pr48-controlled-adaptive-exploration-enrichment-report-2026-05-07.md`
 **Current controlled learning / skill-acquisition enrichment report:** `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
+**Current controlled quantitative inference enrichment report:** `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -123,6 +124,10 @@ real. Future sessions should treat the following as current baseline:
   `data/compiled/model_affordances/affordances_v13.json`.
 - v13 corpus shape: `158` reviewed records, `194` affordances, `301` absence
   records. v13 remains `draft_review_only` and is not runtime-promoted.
+- Compiled v14 artifact:
+  `data/compiled/model_affordances/affordances_v14.json`.
+- v14 corpus shape: `170` reviewed records, `206` affordances, `325` absence
+  records. v14 remains `draft_review_only` and is not runtime-promoted.
 - Current experiment: PR 11 Gate 4 edge-probe harness, branch
   `feature/knowledge-substrate-pr11-gate4-edge-probes`.
 - Gate 4 dry-run: `10` usable cases, `39` Lane 4 routes, `165/205` v3-covered
@@ -389,16 +394,25 @@ real. Future sessions should treat the following as current baseline:
   acquisition, varied practice, and reachable stretch. It compiles
   draft/review-only v13 and preserves `24` absence records. Decision label:
   `controlled_learning_skill_enrichment_ready`.
+- PR50 completed one controlled quantitative inference / distributional
+  reasoning enrichment batch after PR49. It adds `12` Batch 13 records for
+  Bayesian updating, regression-to-mean baselines, conjunction-risk checks,
+  representativeness, Monte Carlo ranges, Markov transition caveats,
+  statistics, statistical learning, data-science framing, information
+  compression, power laws, and compounding. It compiles draft/review-only v14
+  and preserves `24` absence records. Decision label:
+  `controlled_quantitative_inference_enrichment_ready`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `controlled_learning_skill_enrichment_ready`; do not build runtime packet
+  `controlled_quantitative_inference_enrichment_ready`; do not build runtime packet
   production, prompt changes, broad Batch 3b, lane rewrites, user-facing
   surfaces, deterministic reasoning-mode routing, deterministic option
-  selection, deterministic mastery classification, or mechanical extraction.
+  selection, deterministic mastery classification, deterministic statistical
+  routing, or mechanical extraction.
   The user explicitly approved continued controlled extraction toward full
-  coverage; the next slice should be PR50 as another capped source-backed
-  family from the remaining graph-only models.
+  coverage; the next slice should be PR51 as another capped source-backed
+  family from the remaining 52 graph-only models.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1794,19 +1808,24 @@ Current task:
 56. Treat PR49 as controlled learning / skill-acquisition enrichment, not v13
     runtime promotion, prompt mechanics, deterministic mastery classification,
     or proof that Python can decide what someone should learn next.
-57. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+57. Treat PR50 as controlled quantitative inference / distributional reasoning
+    enrichment, not v14 runtime promotion, prompt mechanics, deterministic
+    statistical routing, model-output authority, or proof that Python can
+    decide which numeric claim should govern the final answer.
+58. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-58. Preserve coverage honesty and no-casuistry rails.
-59. Do not run more paid model calls for this slice.
-60. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+59. Preserve coverage honesty and no-casuistry rails.
+60. Do not run more paid model calls for this slice.
+61. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Continue controlled extraction only under the quality rails: small bounded
 families, direct source reading, exact source quote custody, absence records,
 and draft/review-only compilation. PR49 added source-backed learning /
-skill-acquisition depth as draft/review v13. The next slice should be PR50 as
-another controlled family from the remaining graph-only set, not broad Batch 3b
-or runtime promotion.
+skill-acquisition depth as draft/review v13. PR50 added source-backed
+quantitative inference / distributional reasoning depth as draft/review v14.
+The next slice should be PR51 as another controlled family from the remaining
+graph-only set, not broad Batch 3b or runtime promotion.
 
 ---
 
