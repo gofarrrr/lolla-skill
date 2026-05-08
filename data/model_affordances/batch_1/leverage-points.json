@@ -371,13 +371,96 @@
         }
       ],
       "confidence": "high"
+    },
+    {
+      "affordance_id": "leverage-points.value-driver-sensitivity-tree",
+      "status": "supported",
+      "name": "Value-driver sensitivity tree",
+      "mechanism": "For business or operating systems with measurable outcomes, decompose the outcome into a driver tree and test which variable changes the result most under what-if scenarios before calling an action high leverage.",
+      "activation_shape": {
+        "use_when": [
+          "The decision concerns a measurable business, operating, financial, or growth outcome with identifiable drivers.",
+          "The team needs to know whether price, volume, market share, cost, overhead, asset use, or another driver is the true lever.",
+          "A proposed intervention sounds important but has not been sensitivity-tested against the value drivers."
+        ],
+        "do_not_use_when": [
+          "The outcome cannot be decomposed into meaningful drivers or variables.",
+          "The case lacks enough evidence to compare driver sensitivity, even directionally.",
+          "The driver tree is used as a spreadsheet ritual without changing which intervention should be prioritized."
+        ],
+        "case_evidence_needed": [
+          "The target outcome or value metric.",
+          "The driver tree or logical decomposition that connects variables to that outcome.",
+          "The candidate driver changes and their directional or quantitative sensitivity.",
+          "The intervention that changes because one driver proves more sensitive or more influenceable than others."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "decompose-outcome-into-drivers",
+          "description": "Require the answer to show the value-driver decomposition and compare driver sensitivity before naming the leverage action.",
+          "evidence_required": [
+            "The target value metric or operating outcome.",
+            "The variables that compose the outcome, such as price, volume, market share, fixed cost, variable cost, overhead, or asset utilization.",
+            "A directional or quantitative what-if comparison across candidate drivers.",
+            "The practical influence the actor has over the most sensitive driver."
+          ],
+          "good_output_shape": [
+            "Shows the value-driver tree before recommending the action.",
+            "Names which driver moves the outcome most and whether the actor can influence it.",
+            "Separates high-sensitivity levers from lower-sensitivity or low-influence work.",
+            "Uses the sensitivity result to change prioritization."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What value-driver tree connects this outcome to its component variables?",
+        "Which driver changes the result most under a what-if scenario?",
+        "Which sensitive driver is actually influenceable by this actor now?"
+      ],
+      "misuse_guards": [
+        "Do not call an action a value lever without showing the driver relationship that makes it one.",
+        "Do not confuse mathematical sensitivity with practical influence.",
+        "Do not let a driver tree become ornamental analysis that does not change prioritization."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "Employing a **Return on Capital Tree** can expose the fundamental levers of the business",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "such as revenue (price, volume, market share), costs (fixed, variable, overheads), and asset utilization",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "making \"what if\" scenario analysis easy.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "This decomposition shows the variables in a clear mathematical relationship.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
     }
   ],
   "absence_records": [
     {
       "attempted_field": "standalone-communication-core-affordance",
       "status": "duplicate_of_existing_field",
-      "reason": "The source contains pitch and core-message examples, but they are applications of prioritizing the vital few and avoiding overload rather than a separate broad-overlay treatment contract for this record.",
+      "reason": "The source supports communication examples only when prioritizing the vital few changes an audience-processing, overload, or first-foothold problem. Do not promote generic shorter wording as a leverage-points affordance; route skipped-premise repair to curse-of-knowledge, signal-preserving compression to information-theory, and context-before-ask work to pre-suasion.",
       "runtime_policy": "do_not_promote",
       "source_evidence": [
         {
@@ -436,15 +519,14 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Extracted three structural affordances from the full packet: proving a real leverage point before action, bounding analysis to hypothesis-testing facts, and hardening the selected point against resistance, bias, and execution failure. Curation files were read for orientation, but exact evidence is drawn from Leverage_Points_rag.md. This is an offline review artifact and does not imply runtime promotion.",
+    "normalization_note": "Extracted four operational affordances from the full packet: proving a real leverage point before action, bounding analysis to hypothesis-testing facts, hardening the selected point against resistance and execution failure, and decomposing measurable outcomes into value-driver sensitivity trees. Curation files were read for orientation, but exact evidence is drawn from Leverage_Points_rag.md. This is an offline review artifact and does not imply runtime promotion.",
     "dropped_material": [
       "Did not create a generic definition affordance because the model definition explains leverage points but does not add a distinct operational contract beyond the extracted records.",
       "Did not create standalone relation affordances for systems-thinking, prioritization, first-principles-thinking, optionality, margin-of-safety, or confirmation-bias because those are already represented in relation curation unless later review needs cross-model contracts.",
-      "Did not extract a separate communication or startup-pitching affordance because those passages are narrower applications of vital-few prioritization and overload avoidance.",
+      "Did not extract a positive core-message affordance because the source support is real but too easy to duplicate curse-of-knowledge, information-theory, pre-suasion, or generic simplification records unless a later domain-specific packet proves the need.",
       "Did not treat source headings or risk-table labels as automatic misuse guards; only lines that changed evidence, questions, sequencing, treatment, or audit behavior were normalized."
     ],
     "open_questions": [
-      "A later reviewer could decide whether the communication-focused examples deserve a separate domain-specific affordance, but they were intentionally left out of this broad-overlay record.",
       "The resistance and execution-hardening affordance combines resistance, bias, and implementation evidence because the source supports them as safeguards around the same candidate leverage point, not as three independent runtime contracts."
     ],
     "review_status": "draft"

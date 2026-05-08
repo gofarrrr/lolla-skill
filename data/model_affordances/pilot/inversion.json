@@ -302,6 +302,181 @@
         }
       ],
       "confidence": "high"
+    },
+    {
+      "affordance_id": "inversion.zero-base-continuation-test",
+      "status": "supported",
+      "name": "Zero-base continuation test",
+      "mechanism": "Invert the default assumption that the current path should continue by asking what the team would choose if it were not already committed, then compare continuation against a clean-sheet path and the optionality cost of staying locked in.",
+      "activation_shape": {
+        "use_when": [
+          "A current project, process, relationship, product, or strategic path is being continued mainly because it is already in motion.",
+          "Commitment, consistency pressure, or switching friction may be hiding whether the current baseline still serves the goal.",
+          "A decision requires comparing the inherited path with a clean-sheet way to achieve the same objective."
+        ],
+        "do_not_use_when": [
+          "There is no inherited path, prior commitment, or default baseline being defended.",
+          "The clean-sheet exercise is being used to erase real constraints, obligations, switching costs, or accumulated capabilities.",
+          "The answer stops at imagining a new baseline without naming whether to continue, modify, or exit."
+        ],
+        "case_evidence_needed": [
+          "The current path, policy, commitment, or baseline being treated as default.",
+          "The goal the current path is supposed to achieve.",
+          "A clean-sheet alternative for achieving that goal if the current path did not already exist.",
+          "The resources, optionality, switching costs, or obligations that make continuation materially different from a fresh choice."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "reset-baseline-before-continuing",
+          "description": "Require the answer to compare the current path against a clean-sheet alternative before treating continuation as the baseline.",
+          "evidence_required": [
+            "The path or commitment currently being continued.",
+            "The objective that path is meant to serve.",
+            "The clean-sheet way to pursue that objective if the team were not already doing the current thing.",
+            "The lock-in, optionality, switching-cost, or obligation evidence that affects whether exit or modification is realistic."
+          ],
+          "good_output_shape": [
+            "States the inherited baseline and the clean-sheet alternative side by side.",
+            "Names what would be chosen if the current commitment did not already exist.",
+            "Separates valid continuation reasons from sunk-cost or consistency pressure.",
+            "Ends with continue, modify, or exit criteria rather than only a thought experiment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "If we were not already doing this, how would we best achieve the goal?",
+        "What resources or optionality are behind the door before we step through or stay through it?",
+        "Which continuation reason is still valid under a clean-sheet comparison, and which is only commitment pressure?"
+      ],
+      "misuse_guards": [
+        "Do not treat zero-base thinking as permission to ignore real constraints, duties, accumulated learning, or switching costs.",
+        "Do not use a clean sheet to create novelty theater; the output must still decide whether to continue, modify, or exit.",
+        "Do not confuse a sunk-cost objection with proof that the current path has no remaining future value."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Start with a clean sheet of paper and ask, \"If we weren't already doing what we do, how can we best achieve our goal?\"",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "This inverts the default assumption that continuing the current path is the correct baseline.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Every commitment is analogous to walking through a door that closes behind you",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "the resources and optionality left in the room behind are the cost.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Once a plan is announced or resources committed, the psychological pressure to remain consistent conflicts directly with inversion's demand to seriously consider that the plan might be wrong.",
+          "section_hint": "Conflicting Relationships (Antagonists)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "inversion.survivor-absence-signal",
+      "status": "supported",
+      "name": "Survivor absence signal test",
+      "mechanism": "When evidence comes only from cases that survived selection, invert the observed pattern by asking which missing cases could not appear and what their absence says about the true failure point.",
+      "activation_shape": {
+        "use_when": [
+          "The available evidence comes mainly from survivors, successful cases, returning cases, retained customers, active users, or visible examples.",
+          "The obvious fix follows the visible marks in observed cases, but failed or missing cases could reverse the lesson.",
+          "A decision depends on what the absent non-survivors would reveal if they had been observed."
+        ],
+        "do_not_use_when": [
+          "The evidence already includes both surviving and failed cases with comparable coverage.",
+          "The absence mechanism is unknown and the answer would only speculate about missing cases.",
+          "The task is only to recover a hidden denominator or missing evidence, without reversing the apparent intervention target.",
+          "The missing-case inference is being used as a clever reversal without changing the decision."
+        ],
+        "case_evidence_needed": [
+          "The observed survivor sample and what visible pattern it appears to show.",
+          "The non-surviving or missing cases that selection prevents from appearing.",
+          "The selection mechanism explaining why those cases are absent.",
+          "The decision that changes when absence is treated as the signal."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "infer-missing-failure-point",
+          "description": "Require the answer to state the survivor sample, the missing cases, and the selection mechanism before drawing a lesson from visible evidence.",
+          "evidence_required": [
+            "The cases that are visible because they survived selection.",
+            "The cases that would be missing if failure prevented observation.",
+            "The mechanism that filters non-survivors out of the data.",
+            "The revised action implied by the missing cases rather than the visible marks alone."
+          ],
+          "good_output_shape": [
+            "Identifies the survivor-only sample.",
+            "Names the non-survivor class that cannot appear in the observed data.",
+            "Explains why absence, not visible damage, carries the key signal.",
+            "Changes the intervention target accordingly."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who or what is missing from this evidence because it did not survive long enough to be observed?",
+        "What would the non-survivors show if they could return to the sample?",
+        "Does the absence of a mark identify the true failure point more than the visible marks do?"
+      ],
+      "misuse_guards": [
+        "Do not apply survivor-absence inversion when failed cases are already represented in the data.",
+        "Do not invent missing cases without a plausible selection mechanism.",
+        "Route generic hidden-denominator recovery to survivorship-bias unless absence changes where the intervention should land.",
+        "Do not stop at naming survivorship bias; specify how the intervention target changes."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Initially, they examined returning planes and planned to add armor where the bullet holes were.",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Using inversion, they realized they should add armor to where the returning planes *hadn't* been hit",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "because the planes shot in those clean areas were the ones that didn't survive to return.",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "The absence of damage was the signal, not the presence of it.",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
     }
   ],
   "absence_records": [
@@ -341,6 +516,35 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "generic-hidden-denominator-without-reversed-target",
+      "status": "duplicate_of_existing_field",
+      "reason": "The RAF example supports an inversion affordance only when absence reverses the apparent intervention target. If the case only needs hidden-denominator recovery, route to survivorship-bias; if it only needs missing-evidence confidence control, route to WYSIATI.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Using inversion, they realized they should add armor to where the returning planes *hadn't* been hit",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "because the planes shot in those clean areas were the ones that didn't survive to return.",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "The absence of damage was the signal, not the presence of it.",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -367,10 +571,10 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Extracted three operational affordances from the Markdown: anti-goal failure mapping, disconfirmation discipline, and obstacle-removal sequencing. Relation material and illustrative examples were used only when they changed evidence, questions, or treatment shape.",
+    "normalization_note": "Extracted five operational affordances from the Markdown: anti-goal failure mapping, disconfirmation discipline, obstacle-removal sequencing, zero-base continuation testing, and survivor-absence signal testing. Relation material and illustrative examples were used only when they changed evidence, questions, or treatment shape.",
     "dropped_material": [
       "Did not extract a standalone premortem relation affordance because the source frames premortem as a procedural ally rather than an inversion affordance needed in this schema.",
-      "Did not extract the Patagonia, Vanguard, RAF, India, or Atomic Habits examples as separate affordances; they illustrate the same inversion mechanisms already represented.",
+      "Did not extract the Patagonia, Vanguard, India, or Atomic Habits examples as separate affordances; they illustrate inversion mechanisms already represented.",
       "Did not extract generic 'think backward' or brand/philosophy claims because they would not change runtime evidence or treatment requirements."
     ],
     "open_questions": [

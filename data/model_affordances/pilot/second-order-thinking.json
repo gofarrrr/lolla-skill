@@ -235,6 +235,64 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "machine-level-diagnosis-without-downstream-consequence",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source mentions machine-level and case-at-hand diagnosis, but a standalone recurring-cause diagnosis is better owned by root-cause-analysis or systems-thinking unless the case also requires downstream reversal, delayed cost, adaptation, incentive distortion, or recovery-path loss.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "the **machine level** (why an outcome was produced—the diagnosis of the system's rules and processes)",
+          "section_hint": "Concrete Examples in Decision-Making",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "By focusing on the machine level, managers look beyond the first-order failure (the case) to the systemic cause",
+          "section_hint": "Concrete Examples in Decision-Making",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "Most useful when a move improves the obvious local metric but may degrade incentives, trust, coordination, resilience, or future option value downstream.",
+          "section_hint": "Strengths",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "audience-modeling-without-downstream-message-effect",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports communication as second-order thinking only when the message's downstream effect changes audience belief, action, or guessing patterns. Generic skipped-premise repair belongs to curse-of-knowledge, and stakeholder-feeling work belongs to empathy or motivation records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "forgetting the necessary building blocks for the audience to follow.",
+          "section_hint": "Concrete Examples in Decision-Making",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "SOT applied to communication means anticipating the audience's mental state (Theory of Mind).",
+          "section_hint": "Concrete Examples in Decision-Making",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "a presenter should focus on the second-order effect of the message",
+          "section_hint": "Concrete Examples in Decision-Making",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -282,11 +340,11 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Compressed the source's downstream dependency, threshold, incentive, behavioral-adaptation, and recovery-path material into one operational affordance for stress-testing attractive local interventions.",
+    "normalization_note": "Preserved the source's downstream dependency, threshold, incentive, behavioral-adaptation, and recovery-path material in one operational affordance. PR72 re-reviewed machine-level and audience-communication passages but kept them as routing absences because root-cause-analysis, systems-thinking, and curse-of-knowledge already own the generic transactions unless a downstream SOT consequence chain is present.",
     "dropped_material": [
       "Did not extract broad introductory definitions, domino analogies, or mental-model framing because they explain the concept but add little operational contract beyond the stress-test affordance.",
-      "Did not extract organization adaptation, pitching, allies, antagonists, or relation semantics as separate affordances; they remain useful context but are less direct than the source-backed risk-table prompts.",
-      "Did not create absence records for fields that were not attempted."
+      "Did not extract allies, antagonists, or relation semantics as separate affordances; they remain useful context but are less direct than the source-backed operational prompts.",
+      "Did not split generic machine-level diagnosis or generic audience scaffolding into positive second-order affordances because they would duplicate better-owned records."
     ],
     "open_questions": [],
     "review_status": "draft"
