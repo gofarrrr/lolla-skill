@@ -7,12 +7,12 @@
       "affordance_id": "redundancy.single-point-failure-backup-test",
       "status": "supported",
       "name": "Single point failure backup test",
-      "mechanism": "When failure of one path, component, memory, viewpoint, or process would cripple the system, require the answer to name the specific failure mode, the backup path, and the cost/drag trade-off that makes redundancy worth it.",
+      "mechanism": "When failure of one path, component, role, resource, or process would cripple the system, require the answer to name the specific failure mode, the backup or failover path, and the cost/drag trade-off that makes redundancy worth it.",
       "activation_shape": {
         "use_when": [
-          "Single-point failure is unacceptable because continuity, resilience, recall, or survival matters more than lean elegance.",
+          "Single-point failure is unacceptable because continuity, resilience, recovery, or survival matters more than lean elegance.",
           "A backup path materially changes survival or recovery quality.",
-          "Extra capacity, checks, or representations create real protection rather than decorative duplication."
+          "Extra capacity, checks, or failover paths create real protection rather than decorative duplication."
         ],
         "do_not_use_when": [
           "Duplication is added by habit without a named failure mode.",
@@ -20,9 +20,9 @@
           "Redundant information creates cognitive overload or makes the core message less clear."
         ],
         "case_evidence_needed": [
-          "The component, decision path, memory, resource, or viewpoint that could fail.",
+          "The component, decision path, role, resource, or process that could fail.",
           "The consequence if that one path fails.",
-          "The proposed backup, spare capacity, repeated check, or second perspective.",
+          "The proposed backup, spare capacity, repeated check, or failover path.",
           "The drag, complexity, cost, or cognitive load created by the redundancy."
         ]
       },
@@ -79,13 +79,107 @@
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one redundancy affordance centered on named failure modes, backup paths, and the resilience-vs-drag trade-off.",
+        "normalization_note": "Batch 9 outcome tightened in PR57: this affordance handles single-point-failure backup and failover resilience, while the separate cognitive-reinforcement card handles retention and communication clarity.",
         "dropped_material": [
-          "Did not split learning repetition, communication repetition, and systems backup into separate affordances.",
-          "Kept cognitive redundancy as supporting context because the PR42 family is risk/failure containment."
+          "Did not split learning repetition and communication repetition into multiple affordances; PR57 promotes one bounded cognitive-reinforcement card instead.",
+          "Kept cognitive-load and analysis-paralysis warnings as active guards rather than treating repetition as universally helpful."
         ],
         "open_questions": [
           "PR43 should test whether this card improves packet handoff without encouraging backup theater."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "redundancy.cognitive-reinforcement-for-retention",
+      "status": "supported",
+      "name": "Cognitive reinforcement for retention",
+      "mechanism": "When the failure mode is forgetting, misunderstanding, or weak transfer rather than infrastructure failure, require the answer to reinforce one core idea through spaced, reframed, or audience-appropriate repetition while checking cognitive load.",
+      "activation_shape": {
+        "use_when": [
+          "A learner, team, or audience is likely to forget, misunderstand, or fail to retain the core point.",
+          "Repetition, re-framing, or spaced recall would strengthen memory, schema formation, or communication clarity.",
+          "The extra representation changes retention or understanding rather than merely duplicating the same information."
+        ],
+        "do_not_use_when": [
+          "The repeated content is simultaneously available in another format and only adds cognitive load.",
+          "The core message is already clear enough and more repetition would create clutter or prompt bloat.",
+          "Repeated analysis delays action after enough evidence is available to prove or disprove the hypothesis."
+        ],
+        "case_evidence_needed": [
+          "The specific idea, skill, or message that must be retained or clarified.",
+          "Evidence that the current failure mode is forgetting, misunderstanding, or weak transfer.",
+          "The repetition, re-framing, spaced recall, or reinforcement plan.",
+          "The cognitive-load or clutter check that determines when reinforcement becomes waste."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "reinforce-core-with-load-check",
+          "description": "Require the answer to identify the core idea, reinforce it through deliberate repetition or re-framing, and state how cognitive load or clutter will be limited.",
+          "evidence_required": [
+            "The core idea or skill being reinforced.",
+            "The retention, clarity, or transfer problem.",
+            "The planned repetition, re-framing, or recall mechanism.",
+            "The stop condition where redundancy becomes overload."
+          ],
+          "good_output_shape": [
+            "Names the core message or skill.",
+            "Explains why retention or clarity needs reinforcement.",
+            "Uses varied or spaced repetition rather than rote duplication.",
+            "Defines a cognitive-load check and stop condition."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What one idea must survive in memory or stay clear after the interaction ends?",
+        "Would repetition here add understanding, or would it duplicate information the audience already has?",
+        "How will we vary, space, or reframe the reinforcement so it strengthens retention without adding load?"
+      ],
+      "misuse_guards": [
+        "Do not treat verbatim duplication as clarity.",
+        "Do not add redundant prompt or presentation material when it increases cognitive load.",
+        "Do not let repeated analysis become a substitute for synthesis or action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Redundancy_rag.md",
+          "source_quote": "The intentional repetition, reiteration, or re-framing of information to embed knowledge deeply in long-term memory or to enhance communication clarity.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Redundancy_rag.md",
+          "source_quote": "Redundancy through methods like **spaced repetition** is essential for moving new information from limited working memory into long-term memory via robust schemas.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Redundancy_rag.md",
+          "source_quote": "strategically utilized repetition is an ally to **Clarity**",
+          "section_hint": "Interactions with Other Mental Models",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Redundancy_rag.md",
+          "source_quote": "This superfluous content increases cognitive load",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR57 targeted enrichment: the source separates cognitive redundancy for retention and clarity from single-point-failure backup. This card is bounded by cognitive-load and action-delay guards.",
+        "dropped_material": [
+          "Did not create separate learning, presentation, prompt-engineering, and memory affordances; they share one reinforcement-with-load-check transaction.",
+          "Kept negative redundancy and analysis paralysis as guards rather than separate positive actions."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this card is selected only for retention or clarity problems, not every case where repetition sounds helpful."
         ],
         "review_status": "draft"
       }
@@ -133,7 +227,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 9 source reading found strong reviewed depth for redundancy as single-point-failure protection with explicit drag checks.",
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for redundancy as single-point-failure protection with explicit drag checks. PR57 adds a second, source-backed transaction for cognitive reinforcement under retention or clarity failure.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

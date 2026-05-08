@@ -81,11 +81,105 @@
       "review_notes": {
         "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one closed-loop action signal requiring observable consequences, real levers, timing, and changed behavior.",
         "dropped_material": [
-          "Did not extract balancing vs reinforcing loops, digital twins, or creative iteration as separate affordances.",
+          "PR57 promotes loop polarity as a separate bounded affordance; digital twins and creative iteration remain implementation contexts rather than standalone cards.",
           "Kept delay/nonlinearity as misuse context."
         ],
         "open_questions": [
           "PR40 should test whether this card prevents packets from treating reporting as learning."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "feedback-loops.loop-polarity-intervention-map",
+      "status": "supported",
+      "name": "Loop polarity intervention map",
+      "mechanism": "When output feeds back into input and the intervention depends on system behavior, require the answer to classify the loop as balancing or reinforcing, then choose whether to stabilize, dampen, amplify, or monitor delayed nonlinear effects.",
+      "activation_shape": {
+        "use_when": [
+          "A system grows, stabilizes, oscillates, or runs away because output feeds back into input.",
+          "Repeated behavior suggests a reinforcing vicious or virtuous cycle rather than a one-way causal chain.",
+          "The right intervention depends on whether the loop is stabilizing, goal-seeking, self-enhancing, or runaway."
+        ],
+        "do_not_use_when": [
+          "The case only needs a measurement signal tied to a next lever; use the closed-loop action affordance instead.",
+          "There is no evidence that system output is acting as input to the same system.",
+          "Delay, nonlinearity, or missing boundary information makes loop polarity too uncertain to classify confidently."
+        ],
+        "case_evidence_needed": [
+          "The system variable or output that feeds back into future input.",
+          "The feedback path linking output to the next system state.",
+          "Evidence for balancing, stabilizing, reinforcing, compounding, or runaway behavior.",
+          "The intervention lever and whether it should stabilize, dampen, amplify, or wait for delayed effects."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "classify-loop-polarity-before-intervening",
+          "description": "Require the answer to map the feedback path, classify loop polarity, and choose an intervention consistent with stabilizing or reinforcing dynamics.",
+          "evidence_required": [
+            "The output or stock that changes over time.",
+            "How that output feeds back into the system.",
+            "The evidence for balancing or reinforcing polarity.",
+            "The lever, delay, or boundary condition affecting intervention choice."
+          ],
+          "good_output_shape": [
+            "Names the feedback path.",
+            "Classifies the loop as balancing or reinforcing, with uncertainty if needed.",
+            "Chooses stabilize, dampen, amplify, or observe based on polarity.",
+            "States the delay or nonlinear caveat that could change the intervention."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is the loop pushing the system back toward equilibrium or amplifying movement away from it?",
+        "What output becomes the next input, and through which path?",
+        "Would the intervention dampen a vicious cycle, restore a balancing target, or amplify a useful compounding loop?"
+      ],
+      "misuse_guards": [
+        "Do not label every repeated pattern a reinforcing loop without an output-to-input path.",
+        "Do not intervene on a loop before deciding whether the target is stability, damping, or amplification.",
+        "Do not ignore delays and nonlinear effects when judging loop polarity."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "These are stabilizing, goal-seeking, and regulating mechanisms that oppose or reverse the direction of change imposed on the system.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "These are self-enhancing loops that lead to exponential growth or runaway collapses over time.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "Feedback loops are foundational structures in systems; they determine if the system grows or stabilizes.",
+          "section_hint": "Interactions with Other Mental Models",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "that reinforcing loop becomes dominant, causing the system to get out of balance or leading to a \"vicious cycle\" of overthinking that feels like progress but is not.",
+          "section_hint": "Interactions with Other Mental Models",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR57 targeted enrichment: the source supports loop polarity and intervention choice as a separate receiver transaction from measurement-to-action closure.",
+        "dropped_material": [
+          "Did not promote digital twins, causal-loop diagram tooling, or generic creative iteration as separate affordances.",
+          "Kept delay, nonlinearity, and boundary uncertainty as guards on polarity classification."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this card routes only cases with circular causality, not ordinary KPI feedback."
         ],
         "review_status": "draft"
       }
@@ -133,7 +227,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Feedback Loops. Extracted one closed-loop action signal and rejected feedback collection without behavior change plus instant-linear assumptions.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Feedback Loops. PR57 adds loop polarity intervention as a second, source-backed transaction while preserving the original closed-loop action signal.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

@@ -81,11 +81,105 @@
       "review_notes": {
         "normalization_note": "Batch 9 outcome: strong_affordance_record. The source contains unusually concrete operational material for platform exits, dual-run dependency drag, reversibility decay, and unwind governance.",
         "dropped_material": [
-          "Did not extract persuasion, FUD, or analogical-shortcut material as separate affordances.",
-          "Focused PR42 extraction on platform-exit reversibility and containment because that directly fits the risk/reversibility family."
+          "Did not extract persuasion or FUD material as positive affordances.",
+          "PR57 promotes adoption friction and incumbent loyalty as a separate bounded affordance while keeping platform-exit reversibility as its own transaction."
         ],
         "open_questions": [
           "PR43 should test whether this card materially improves packet handoff for migration and lock-in decisions."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "switching-costs.adoption-friction-incumbent-loyalty-map",
+      "status": "supported",
+      "name": "Adoption friction incumbent loyalty map",
+      "mechanism": "When a better-looking alternative is not adopted, require the answer to map the economic, psychological, operational, identity, trust, and political switching friction that preserves incumbent loyalty, then decide whether to lower friction, exploit lock-in, or expose deteriorating fit.",
+      "activation_shape": {
+        "use_when": [
+          "A superior-seeming alternative is still losing because adoption lag, incumbent loyalty, or migration friction dominates the decision.",
+          "The strategy depends on lowering the cognitive and operational cost of change for new adopters.",
+          "The full switching cost includes workflow retraining, integration effort, identity commitment, trust, or political disruption."
+        ],
+        "do_not_use_when": [
+          "The main question is platform exit, rollback ownership, or reversibility decay; use the exit-plan affordance instead.",
+          "Switching cost is being reduced to license price or headline migration budget.",
+          "The proposed strategy relies on fear, uncertainty, doubt, or manipulative lock-in rather than real switching-friction analysis."
+        ],
+        "case_evidence_needed": [
+          "The incumbent state, alternative state, and adoption behavior to explain.",
+          "The affected users, teams, or buyers whose switching friction matters.",
+          "The workflow, retraining, integration, trust, identity, or political costs preserving the incumbent.",
+          "The friction-lowering bridge, adoption strategy, or lock-in exposure that would change behavior."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-switching-friction-before-adoption-strategy",
+          "description": "Require the answer to explain incumbent loyalty through concrete switching frictions before recommending adoption, positioning, or lock-in strategy.",
+          "evidence_required": [
+            "The incumbent and alternative being compared.",
+            "The observed adoption lag or loyalty pattern.",
+            "The psychological, operational, economic, identity, or political frictions.",
+            "The proposed way to lower friction, exploit legitimate lock-in, or reveal deteriorating fit."
+          ],
+          "good_output_shape": [
+            "Names the incumbent loyalty mechanism.",
+            "Separates full switching cost from headline price.",
+            "Maps cognitive and operational friction for the actual adopter.",
+            "States whether to lower friction, use lock-in defensibly, or challenge inertia."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What cost of change is the adopter actually avoiding by staying with the incumbent?",
+        "Which part of the switching cost is cognitive, operational, economic, identity-based, trust-based, or political?",
+        "Can the new option bridge existing mental models or workflows instead of demanding a cold start?"
+      ],
+      "misuse_guards": [
+        "Do not mistake inertia for genuine satisfaction or strategic strength.",
+        "Do not use fear, uncertainty, or doubt as a positive switching-cost strategy.",
+        "Do not recommend adoption tactics until the full cost of change is mapped for the real adopter."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Switching_Costs_rag.md",
+          "source_quote": "friction inherent in moving from an incumbent state to an alternative state",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Switching_Costs_rag.md",
+          "source_quote": "why individuals or organizations remain loyal to an existing product, system, or belief, even when a seemingly superior alternative exists",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Switching_Costs_rag.md",
+          "source_quote": "adoption lag, incumbent loyalty, or migration friction is the real explanation for why a better-looking alternative is still losing",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Switching_Costs_rag.md",
+          "source_quote": "strategy must either exploit existing lock-in or deliberately lower the cognitive and operational cost of change for new adopters",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR57 targeted enrichment: the source supports adoption friction and incumbent loyalty as a separate receiver transaction from platform-exit reversibility decay.",
+        "dropped_material": [
+          "Did not promote fear, uncertainty, doubt, persuasion theater, or exploitative lock-in as positive affordances.",
+          "Kept analogies as one possible friction-lowering bridge inside this card rather than a standalone switching-cost affordance."
+        ],
+        "open_questions": [
+          "Packet stress should check whether adoption-friction cases receive this card without crowding out lock-in or reversibility cards when the task is an exit decision."
         ],
         "review_status": "draft"
       }
@@ -133,7 +227,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 9 source reading found strong reviewed depth for switching-costs as reversibility decay and exit-plan governance.",
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for switching-costs as reversibility decay and exit-plan governance. PR57 adds adoption friction and incumbent loyalty as a second, source-backed transaction.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
