@@ -17,6 +17,7 @@
         "do_not_use_when": [
           "The discomfort is simply a useful sign of unresolved uncertainty and no commitment defense is visible.",
           "The case lacks evidence of prior commitment, identity threat, or contrary signals.",
+          "The active risk is private dissent being pulled into public team consensus before independent assessment.",
           "A better fit is purely financial sunk-cost analysis or operational bottleneck diagnosis."
         ],
         "case_evidence_needed": [
@@ -86,6 +87,105 @@
         ],
         "open_questions": [
           "Later packet review should test overlap with commitment-bias and sunk-cost records."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "cognitive-dissonance.private-doubt-before-group-consensus",
+      "status": "supported",
+      "name": "Private doubt before group consensus",
+      "mechanism": "When visible leadership commitment or public team consensus creates pressure for members to revise private doubts toward the group position, require independent anonymous assessment before discussion and protect dissent from social consequences.",
+      "activation_shape": {
+        "use_when": [
+          "A leader or group has visibly committed to a position before members give independent assessments.",
+          "Individual members may have private doubts that conflict with the public team consensus.",
+          "Social pressure may cause people to revise private beliefs toward the team position.",
+          "The case needs dissent captured before group discussion hardens the consensus."
+        ],
+        "do_not_use_when": [
+          "The case is an individual post-commitment rationalization with no group-consensus pressure.",
+          "Independent anonymous assessments have already been collected and reviewed before discussion.",
+          "The disagreement is already public, protected, and evidence-linked.",
+          "The output would use anonymous feedback to avoid accountability rather than surface dissonance pressure."
+        ],
+        "case_evidence_needed": [
+          "The leader commitment or public team consensus shaping the room.",
+          "The private doubts, minority arguments, or devil's-advocate concerns at risk of suppression.",
+          "The assessment method used before group discussion.",
+          "The protection against social consequences for raising the dissent.",
+          "How the group will engage the most opposed argument after independent assessment."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "collect-anonymous-assessments-before-group-discussion",
+          "description": "Require the answer to separate evaluation from commitment by collecting independent anonymous assessments before discussion and protecting the dissenting argument from social punishment.",
+          "evidence_required": [
+            "The visible commitment or consensus pressure.",
+            "The private doubt or opposed argument being suppressed.",
+            "The independent assessment channel.",
+            "The social consequence or status pressure that would silence dissent."
+          ],
+          "good_output_shape": [
+            "Names the public consensus or leader commitment.",
+            "Captures private assessments before group discussion.",
+            "Preserves the strongest opposed argument for real engagement.",
+            "Protects devil's advocates from social consequences."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What private doubt would become harder to voice after the group discusses this openly?",
+        "Have independent, anonymous assessments been collected before consensus pressure starts?",
+        "What would the person most opposed to this plan say, and have we genuinely engaged with that argument?",
+        "What protection keeps devil's advocates from paying a social price for raising the concern?"
+      ],
+      "misuse_guards": [
+        "Do not use this card to hide responsibility for a critique that can be safely raised in the open.",
+        "Do not treat all team disagreement as cognitive dissonance; look for public consensus pressure against private doubt.",
+        "Do not substitute anonymous polling for genuine engagement with the strongest opposing argument.",
+        "Do not merge this with sunk-cost exit criteria when the live failure mode is social belief revision before discussion."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cognitive_Dissonance_rag.md",
+          "source_quote": "individual members face personal dissonance between their private doubts and the public team consensus",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Dissonance_rag.md",
+          "source_quote": "Social pressure amplifies the individual drive to revise private beliefs toward the team position.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Dissonance_rag.md",
+          "source_quote": "Require independent, anonymous assessments before group discussion.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cognitive_Dissonance_rag.md",
+          "source_quote": "Protect devil's advocates from social consequences.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR86 split group dissonance from individual commitment revision because the receiver action is different: capture anonymous private assessment before discussion and protect dissent from social consequences.",
+        "dropped_material": [
+          "Did not extract generic groupthink; this card activates specifically when public consensus creates dissonance with private doubts.",
+          "Did not replace kill-criteria review for individual or project commitment defense."
+        ],
+        "open_questions": [
+          "Packet stress review should test whether this card routes separately from peer-review-your-perspectives and psychological-safety."
         ],
         "review_status": "draft"
       }

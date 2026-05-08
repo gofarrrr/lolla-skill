@@ -7,12 +7,11 @@
       "affordance_id": "confirmation-bias.disconfirming-evidence-equality-check",
       "status": "supported",
       "name": "Disconfirming evidence equality check",
-      "mechanism": "When a team is converging on the answer it wanted, force contradictory signals, missing denominators, and failed cases into the same evidence set as visible wins, then name the first falsifier that would change or stop the recommendation.",
+      "mechanism": "When a team is converging on the answer it wanted, force contradictory signals, missing denominators, and failed cases into the same evidence set as visible wins, then revise the recommendation against the full comparison set.",
       "activation_shape": {
         "use_when": [
           "A team is converging quickly on a favored recommendation before the evidence is fully in.",
           "Dissenting evidence is being reframed as anecdotal, temporary, special-case, or execution noise.",
-          "A sponsor-backed recommendation, investment memo, hiring decision, vendor review, or market-entry case is defending the preferred answer.",
           "Visible wins, pilots, references, or case studies are present while churned, failed, rejected, or abandoned cases are missing."
         ],
         "do_not_use_when": [
@@ -25,8 +24,7 @@
           "The favored conclusion, sponsor-backed recommendation, or preferred thesis under review.",
           "The confirming evidence being emphasized and the disconfirming evidence being minimized or excluded.",
           "The missing denominator: failed pilots, churned users, rejected prospects, abandoned trials, dissenting functions, or quiet losses.",
-          "The first evidence signal that would prove the recommendation wrong or require revision.",
-          "The process rule that keeps contradictory evidence from being waved away as an exception."
+          "The comparison rule that keeps excluded cases from being waved away as exceptions."
         ]
       },
       "treatment_requirements": [
@@ -45,30 +43,12 @@
             "Refuses to treat every contradiction as an exception by default.",
             "Explains how the recommendation changes when the missing evidence is included."
           ]
-        },
-        {
-          "requirement_id": "name-first-falsifier-before-approval",
-          "description": "Before approving the favored answer, require the answer to name the first observable signal that would prove it wrong and where that signal will be protected from dismissal.",
-          "evidence_required": [
-            "The claim or recommendation seeking approval.",
-            "The evidence that would falsify or materially weaken it.",
-            "The review point where that signal will be checked.",
-            "The incentive or sponsor pressure that might cause the signal to be dismissed."
-          ],
-          "good_output_shape": [
-            "States what evidence would prove the recommendation wrong.",
-            "Names where that evidence would appear first.",
-            "Defines who has permission to raise the falsifier.",
-            "Prevents sponsor preference from converting falsifiers into edge cases."
-          ]
         }
       ],
       "diagnostic_questions": [
-        "What evidence would prove this recommendation wrong?",
         "Which dissenting signal is being treated as anecdotal or temporary because it threatens the favored answer?",
         "Which visible win only looks persuasive because failed or abandoned cases were not counted with equal weight?",
-        "If the sponsor's preferred answer were false, what would appear first?",
-        "Where have we protected the disconfirming signal from being waved away as an exception?"
+        "How would the recommendation change if quiet losses entered the same denominator as visible wins?"
       ],
       "misuse_guards": [
         "Do not use confirmation-bias language to accuse other people while leaving your own evidence standard unchanged.",
@@ -111,10 +91,102 @@
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. PR86 narrowed this card to the missing-denominator/equal-weight transaction after splitting sponsor-backed first-falsifier protection into its own affordance.",
+        "dropped_material": [
+          "Did not extract generic bias education, WYSIATI theory, or professional diagnosis examples as separate records.",
+          "Did not treat confirmation bias as a productive model; the useful card is a mitigation and evidence-standard intervention."
+        ],
+        "open_questions": [
+          "PR29 should compare this with falsifiability and scientific-method cards to ensure each keeps a distinct activation boundary."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "confirmation-bias.first-falsifier-before-approval",
+      "status": "supported",
+      "name": "First falsifier before sponsor-backed approval",
+      "mechanism": "When sponsor preference shifts review from testing a recommendation to defending it, require the packet to name the first observable falsifying signal and where that signal will be protected before approval.",
+      "activation_shape": {
+        "use_when": [
+          "A sponsor, executive, committee, or high-status stakeholder has signaled a preferred answer before approval.",
+          "Contradictory signals are being downgraded into temporary noise, edge cases, execution error, or anecdote.",
+          "The decision process is shifting from testing the recommendation to defending the preferred answer.",
+          "The case needs an explicit first falsifier before resources, reputation, or authority lock in the recommendation."
+        ],
+        "do_not_use_when": [
+          "There is no sponsor-backed preferred answer or approval pressure.",
+          "The team has already named the first falsifying signal and the review point that can act on it.",
+          "The issue is a missing denominator of failed cases rather than sponsor pressure around approval.",
+          "The output would perform falsifiability theater without assigning where the signal will be checked."
+        ],
+        "case_evidence_needed": [
+          "The sponsor-backed recommendation or preferred answer seeking approval.",
+          "The contradictory signal currently treated as noise, edge case, or execution error.",
+          "The first evidence signal that would prove the preferred answer false or require revision.",
+          "The review point, metric, or decision gate where that signal will be checked.",
+          "Who can raise the falsifier without it being waved away as an exception."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "protect-first-falsifier-before-approval",
+          "description": "Before approving the sponsor-backed answer, require the answer to name the first observable falsifier and the decision process that protects that signal from dismissal.",
+          "evidence_required": [
+            "The preferred answer and who is backing it.",
+            "The evidence that would falsify or materially weaken it.",
+            "The point where that evidence would appear first.",
+            "The incentive or authority pressure that might convert the signal into an exception."
+          ],
+          "good_output_shape": [
+            "Names the sponsor-backed claim seeking approval.",
+            "States the first evidence signal that would prove it wrong.",
+            "Defines where the signal will be checked before more commitment.",
+            "Prevents sponsor preference from converting falsifiers into edge cases."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "If the sponsor's preferred answer were false, what evidence would appear first?",
+        "Where in this plan can that signal be raised before approval?",
+        "Who has permission to treat that signal as decision-relevant rather than anecdotal?",
+        "What would stop the review from downgrading the falsifier into temporary noise?"
+      ],
+      "misuse_guards": [
+        "Do not use this card when there is no sponsor-backed preferred answer or approval pressure.",
+        "Do not stop at naming an abstract falsifier; require the place where it can be observed and acted on.",
+        "Do not let authority pressure turn contradictory signals into edge cases by default.",
+        "Do not duplicate the missing-denominator card when the live issue is excluded failed cases rather than sponsor-backed defense."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Confirmation_Bias_rag.md",
+          "source_quote": "Once a senior sponsor signals the preferred answer, the review process quietly shifts from testing the recommendation to defending it",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
         },
         {
           "source_file": "Confirmation_Bias_rag.md",
-          "source_quote": "What evidence would prove the recommendation is wrong?",
+          "source_quote": "contradictory signals are downgraded into temporary noise, edge cases, or execution error",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confirmation_Bias_rag.md",
+          "source_quote": "Name the first falsifier before approval:",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Confirmation_Bias_rag.md",
+          "source_quote": "If the sponsor's preferred answer were false, what evidence would appear first, and where in this plan have we made sure that signal cannot be waved away as an exception?",
           "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
@@ -122,13 +194,13 @@
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source strongly supports a disconfirming-evidence equality check around sponsor pressure, visible wins, exception labeling, missing denominators, and first falsifiers.",
+        "normalization_note": "PR86 split this from disconfirming-evidence equality because sponsor-backed approval requires a different receiver transaction: naming and protecting the first falsifier before authority pressure locks in the recommendation.",
         "dropped_material": [
-          "Did not extract generic bias education, WYSIATI theory, or professional diagnosis examples as separate records.",
-          "Did not treat confirmation bias as a productive model; the useful card is a mitigation and evidence-standard intervention."
+          "Did not convert all falsifiability language into this card; the card activates on sponsor-backed approval pressure.",
+          "Did not extract generic red-team process language without a first observable signal and decision gate."
         ],
         "open_questions": [
-          "PR29 should compare this with falsifiability and scientific-method cards to ensure each keeps a distinct activation boundary."
+          "Packet stress review should check whether this card and falsifiability remain distinct when both are nominated."
         ],
         "review_status": "draft"
       }
