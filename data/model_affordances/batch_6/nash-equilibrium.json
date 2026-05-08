@@ -81,11 +81,145 @@
       "review_notes": {
         "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a stable best-response map with explicit reachability and desirability guards.",
         "dropped_material": [
-          "Did not extract auction design, minmax/maxmin, or focal-point selection as separate affordances.",
+          "PR84 splits dominant-strategy mechanism design because the downstream transaction is to redesign rules so actors do not need strategic sophistication, not merely to predict a stable response pattern.",
+          "Did not extract minmax/maxmin or focal-point selection as separate Nash affordances.",
           "Did not infer formal equilibrium computation beyond the source's decision-useful strategic mapping."
         ],
         "open_questions": [
           "Future packet review should test whether this card complements game-theory-payoffs without creating strategic tree bulk."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "nash-equilibrium.dominant-strategy-mechanism-design",
+      "status": "supported",
+      "name": "Dominant strategy mechanism design",
+      "mechanism": "When a rule, market, auction, ranking, or governance design can harness self-interest, require the answer to test whether the desired behavior becomes each actor's best move regardless of what others do, rather than merely predicting a stable equilibrium.",
+      "activation_shape": {
+        "use_when": [
+          "The problem is designing rules so the desired behavior becomes individually rational without requiring players to compute a complex equilibrium.",
+          "A market, auction, platform, governance rule, or incentive mechanism must align multiple selfish actors toward a productive interaction.",
+          "Incentives are visible but alignment is not guaranteed, and a stable pattern alone would not prove the system is incentive-compatible."
+        ],
+        "do_not_use_when": [
+          "The task is only to map a stable response pattern or default convention; use the stable best-response map instead.",
+          "The proposed behavior depends on other players holding their current moves, so it is not a dominant strategy.",
+          "The actors, desired behavior, payoff rules, and per-player incentives cannot be named clearly enough to test the mechanism.",
+          "The answer would call a rule incentive-compatible without checking side effects, quality constraints, or who bears the cost."
+        ],
+        "case_evidence_needed": [
+          "The actors whose self-interest the mechanism must harness.",
+          "The desired behavior or outcome the rule is supposed to produce.",
+          "The current or proposed rule, auction, ranking, governance process, or incentive mechanism.",
+          "Evidence that the desired action is each actor's best move regardless of what others do.",
+          "Quality, fairness, or side-effect constraints that the rule must preserve while harnessing self-interest."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-dominant-strategy-compatibility",
+          "description": "Require the answer to show whether the desired behavior is each actor's best move regardless of other actors' strategies.",
+          "evidence_required": [
+            "The actors and their available moves.",
+            "The desired action or truth-revealing behavior.",
+            "The payoff rule that makes the desired behavior individually rational.",
+            "The alternative moves each actor might choose if the rule is not incentive-compatible."
+          ],
+          "good_output_shape": [
+            "Names the desired dominant strategy.",
+            "Shows why each actor should choose it regardless of what others do.",
+            "Distinguishes incentive-compatible rule design from ordinary equilibrium prediction."
+          ]
+        },
+        {
+          "requirement_id": "harness-self-interest-with-system-constraints",
+          "description": "Design or reject the mechanism based on whether it converts selfish motives into productive interaction without relying on a single controller or untested benevolence.",
+          "evidence_required": [
+            "The self-interested motives each actor brings to the system.",
+            "The algorithm, auction, ranking, governance rule, or constraint that channels those motives.",
+            "The productive interaction the mechanism is supposed to create.",
+            "The quality, user, fairness, or long-term constraint that could be damaged if incentives are too narrow."
+          ],
+          "good_output_shape": [
+            "Explains how self-interest is being channeled rather than wished away.",
+            "States whether the mechanism works without central heroic coordination.",
+            "Rejects designs that produce local self-interest at the expense of the system objective."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What rule would make the desired behavior each actor's best move regardless of what others do?",
+        "Are we predicting a stable outcome, or designing a game where players do not have to be strategic?",
+        "Whose selfish motive is being harnessed, and what productive interaction should it create?",
+        "What side effect would show the mechanism aligned incentives too narrowly?"
+      ],
+      "misuse_guards": [
+        "Do not call a merely stable equilibrium an incentive-compatible mechanism.",
+        "Do not assume actors will choose the desired behavior unless the payoff rule makes it individually rational.",
+        "Do not hide poor quality, fairness, or long-term outcomes behind a clever mechanism.",
+        "Do not use this affordance when the issue is opponent response mapping or adverse-response downside rather than rule design."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "aiming to be so strategic when designing a game that the players **don’t have to be strategic** when they play it.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "creating a *dominant strategy*, which is a player's best move regardless of what others are thinking or doing.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "the dominant strategy is simply to bid what the item is worth to you",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "where the **selfish motives of three parties** (advertiser, user, and Google) are harnessed by an algorithm",
+          "section_hint": "Concrete Examples in Decision-Making",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "resulting in the most productive interaction without a single controller.",
+          "section_hint": "Concrete Examples in Decision-Making",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "Works when incentives are visible but alignment is not guaranteed",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "Works when parties are individually rational yet may still converge on a collectively mediocre steady state.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR84 split this from stable-response mapping because the source supports a mechanism-design transaction: change the rules so desired behavior is individually rational regardless of others, instead of only asking whether an equilibrium is reachable or desirable.",
+        "dropped_material": [
+          "Did not promote all auction design, Google ad auction details, or formal mechanism-design math as packet bulk.",
+          "Did not split focal-point selection; it remains inside stable-response mapping unless future packets need salience/common-knowledge treatment."
+        ],
+        "open_questions": [
+          "Packet stress should test whether this card helps incentive/rule-design cases without duplicating incentives or game-theory-payoffs."
         ],
         "review_status": "draft"
       }
@@ -140,7 +274,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 6 source reading found strong reviewed depth for Nash Equilibrium. Extracted one stable-response map and rejected stability-as-good plus unreachable prediction.",
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Nash Equilibrium. Extracted a stable-response map; PR84 adds dominant-strategy mechanism design; rejected stability-as-good plus unreachable prediction.",
     "dropped_material": [
       "Formal game-theory variants were not extracted because PR34 targets compact packet handoff depth.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."
