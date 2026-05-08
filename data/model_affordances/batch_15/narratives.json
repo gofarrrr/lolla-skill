@@ -42,6 +42,22 @@
             "Maps key claims to evidence.",
             "Ends in a concrete decision, action, or memory anchor."
           ]
+        },
+        {
+          "requirement_id": "test-competing-story-frames",
+          "description": "When a narrative uses a familiar successful frame or will guide a decision, require the answer to treat the story as a hypothesis, test at least one competing frame, and keep disconfirming assumptions visible.",
+          "evidence_required": [
+            "The familiar narrative frame or schema being used.",
+            "The evidence that would fit a competing frame.",
+            "The assumption a skeptic or opposing viewpoint would challenge.",
+            "The decision or action that changes if the competing frame is stronger."
+          ],
+          "good_output_shape": [
+            "Names the story frame as a hypothesis.",
+            "Tests one alternative frame or opposing viewpoint.",
+            "Keeps disconfirming evidence visible.",
+            "Uses the narrative only after preserving caveats or decision thresholds."
+          ]
         }
       ],
       "diagnostic_questions": [
@@ -73,6 +89,27 @@
           "source_file": "Narratives_rag.md",
           "source_quote": "**Avoid when** the audience needs a direct protocol, checklist, or threshold rule",
           "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Narratives_rag.md",
+          "source_quote": "Recognize that different frames yield different insights and test several cuts through the problem.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Narratives_rag.md",
+          "source_quote": "If I were a skeptic or had an opposing viewpoint, what specific assumptions in this story would I challenge?",
+          "section_hint": "Pre-Mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Narratives_rag.md",
+          "source_quote": "map each key claim to explicit evidence and run a disconfirming-evidence check before acting.",
+          "section_hint": "The Latticework: Systemic Interactions",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -162,7 +199,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 15 source reading found strong reviewed depth for narrative as compact causal handoff, not proof.",
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for narrative as compact causal handoff, not proof. PR80 hardens competing-frame testing inside the existing narrative card.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

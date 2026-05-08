@@ -42,6 +42,22 @@
             "Adds a check against halo effect.",
             "Preserves room for dissent or escalation."
           ]
+        },
+        {
+          "requirement_id": "ground-warmth-in-audience-language-and-problem",
+          "description": "Require warmth and receptivity work to be grounded in the audience's own problem language and concrete usefulness, not invented empathy, charm, or expertise-display.",
+          "evidence_required": [
+            "The audience's own phrases, terminology, or vernacular.",
+            "The actual problem the audience is trying to solve.",
+            "Competence, reliability, or usefulness evidence.",
+            "Whether the messenger is over-centering their own expertise."
+          ],
+          "good_output_shape": [
+            "Mirrors the audience's language accurately.",
+            "Shows problem understanding.",
+            "Offers concrete help.",
+            "Keeps evidentiary standards unchanged."
+          ]
         }
       ],
       "diagnostic_questions": [
@@ -73,6 +89,27 @@
           "source_file": "Liking_Principle_rag.md",
           "source_quote": "social warmth causes teams to lower their evidentiary standards",
           "section_hint": "Common Anti-Patterns and Dangerous Misapplications",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Liking_Principle_rag.md",
+          "source_quote": "exact phrases, terminology, and vernacular",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Liking_Principle_rag.md",
+          "source_quote": "helping to solve them",
+          "section_hint": "Concrete Examples",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Liking_Principle_rag.md",
+          "source_quote": "lack of broad competence",
+          "section_hint": "Weaknesses and Limitations",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -121,6 +158,21 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "charisma-or-familiarity-without-broad-competence",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that liking can cover a competence gap; affinity, familiarity, or charisma alone should not earn recommendation weight.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Liking_Principle_rag.md",
+          "source_quote": "lack of broad competence",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +185,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 15 source reading found strong reviewed depth for liking as receptivity with evidence-standard guardrails.",
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for liking as receptivity with evidence-standard guardrails. PR80 grounds warmth in audience language and adds a competence-gap absence rail.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

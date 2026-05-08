@@ -252,7 +252,7 @@ def test_compiler_can_compile_pilot_batch1_batch2_records_to_v3(
     assert result.quality_report.startswith("# Model Affordance Quality Report v3\n")
     assert metadata["contributing_record_count"] == 50
     assert metadata["affordance_count"] == 93
-    assert metadata["absence_record_count"] == 127
+    assert metadata["absence_record_count"] == 128
     assert metadata["validation"]["schema_validation_failure_count"] == 0
     assert metadata["validation"]["source_quote_rejection_count"] == 0
     assert {entry["model_id"] for entry in source_files} == expected_model_ids
@@ -292,7 +292,7 @@ def test_compiler_can_compile_pilot_batch1_batch2_batch3a_records_to_v4(
     assert result.quality_report.startswith("# Model Affordance Quality Report v4\n")
     assert metadata["contributing_record_count"] == 55
     assert metadata["affordance_count"] == 98
-    assert metadata["absence_record_count"] == 140
+    assert metadata["absence_record_count"] == 141
     assert metadata["validation"]["schema_validation_failure_count"] == 0
     assert metadata["validation"]["source_quote_rejection_count"] == 0
     assert {entry["model_id"] for entry in source_files} == expected_model_ids

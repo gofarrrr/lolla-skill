@@ -42,6 +42,22 @@
             "Separates goodwill from decision merit.",
             "Blocks obligation pressure from substituting for evaluation."
           ]
+        },
+        {
+          "requirement_id": "verify-promises-before-goodwill",
+          "description": "Before reciprocal goodwill supports an ask, require the answer to verify that prior promises, commitments, or professional obligations were actually delivered; if not, repair delivery or clarify agreement before relying on goodwill.",
+          "evidence_required": [
+            "The prior promises, commitments, or obligations.",
+            "Whether they were delivered on time and without defect.",
+            "Any current defect, ambiguity, or broken agreement.",
+            "Whether past goodwill is being used to excuse the current problem."
+          ],
+          "good_output_shape": [
+            "Inventories prior promises.",
+            "Checks delivery before the ask.",
+            "Separates earned trust from cognitive-dissonance pressure.",
+            "Recommends repair or agreement clarification before relying on goodwill."
+          ]
         }
       ],
       "diagnostic_questions": [
@@ -52,7 +68,8 @@
       "misuse_guards": [
         "Do not use reciprocity to manufacture mindless compliance.",
         "Do not let gifts or favors distract from substance, economics, or ethics.",
-        "Do not confuse goodwill with proof that the underlying offer is good."
+        "Do not confuse goodwill with proof that the underlying offer is good.",
+        "Do not rely on past goodwill, early professionalism, or cognitive dissonance to excuse current defects."
       ],
       "source_evidence": [
         {
@@ -73,6 +90,27 @@
           "source_file": "Reciprocity_Principle_rag.md",
           "source_quote": "durable goodwill and mutual commitment, not a one-off extraction of compliance",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reciprocity_Principle_rag.md",
+          "source_quote": "faultlessly and without fail\u2014on time, no excuses",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reciprocity_Principle_rag.md",
+          "source_quote": "clarity of understanding and agreement",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reciprocity_Principle_rag.md",
+          "source_quote": "relying on past goodwill",
+          "section_hint": "Pre-mortem Questions to Ensure Wise Use",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -133,7 +171,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Reciprocity Principle. Extracted one costly-value trust test and rejected obligation pressure plus favor distraction.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Reciprocity Principle. Extracted one costly-value trust test and rejected obligation pressure plus favor distraction. PR80 hardens promise-delivery verification before reciprocal goodwill can support an ask.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

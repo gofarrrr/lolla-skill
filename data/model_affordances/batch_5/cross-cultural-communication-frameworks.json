@@ -89,6 +89,93 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "cross-cultural-communication-frameworks.align-conversation-layer-before-message",
+      "status": "supported",
+      "name": "Align conversation layer before message",
+      "mechanism": "When a cross-context exchange is failing because participants are treating the same interaction as practical, emotional, or social, identify the active conversation layer before reframing the message so the response addresses what must be solved, felt, or recognized while preserving the sender's goal and required action.",
+      "activation_shape": {
+        "use_when": [
+          "A message is technically clear but the exchange still fails because the parties are answering different conversation layers: practical issue, emotional impact, or social identity/status.",
+          "The receiver seems to need recognition, trust repair, emotional acknowledgment, or identity/status clarification before the practical ask can land.",
+          "The communicator must consider the recipient's motives and feelings while retaining sight of their own goals."
+        ],
+        "do_not_use_when": [
+          "The issue is only message simplification or audience-frame translation; use the frame-translation action check instead.",
+          "There is no evidence of practical, emotional, or social layer mismatch.",
+          "Conversation-layer language would mind-read motives or soften away the action, disagreement, urgency, or hard trade-off."
+        ],
+        "case_evidence_needed": [
+          "The message, decision, or action at issue.",
+          "Which layer each party appears to be operating in, with observable cues for that inference.",
+          "The goal or action that must remain intact after layer alignment.",
+          "The relationship, status, or emotion signal that must be acknowledged before the practical message can land."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-layer-and-preserve-goal",
+          "description": "Require the answer to identify the practical, emotional, or social conversation layer, respond to that layer first enough to restore connection, and then preserve the concrete goal, action, disagreement, or trade-off.",
+          "evidence_required": [
+            "The practical issue, emotional signal, or social identity/status concern in play.",
+            "Observable cues that support the layer diagnosis.",
+            "The concrete goal, action, disagreement, urgency, or trade-off that must survive the response.",
+            "The acknowledgment, sequencing, or reframing move needed before the practical message can land."
+          ],
+          "good_output_shape": [
+            "Names the active conversation layer.",
+            "Responds to that layer without pretending to read minds.",
+            "Preserves the sender's goal and required action.",
+            "Keeps disagreement, urgency, and trade-offs visible."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are both parties having the same kind of conversation: practical, emotional, or social?",
+        "What observable cue suggests the receiver needs recognition, trust repair, or status clarification before the practical message can land?",
+        "What goal, action, disagreement, or trade-off must survive after the layer is acknowledged?"
+      ],
+      "misuse_guards": [
+        "Do not use conversation-layer language to mind-read motives.",
+        "Do not soften away the concrete ask, disagreement, urgency, or hard trade-off.",
+        "Do not use this card when the issue is only message simplification or audience-frame translation."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+          "source_quote": "a single discussion often involves shifting between three different conversations: the **Practical** (What's This Really About?), the **Emotional** (How Do We Feel?), and the **Social** (Who Are We?).",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+          "source_quote": "If participants are not having the same kind of conversation at the same moment, connection is unlikely.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cross_Cultural_Communication_Frameworks_rag.md",
+          "source_quote": "considering the recipient's motives and feelings while still retaining sight of your own goals",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR80 split: the source supports a distinct conversation-layer diagnosis before message translation. This differs from frame translation because the receiver must first decide whether the parties are in practical, emotional, or social layers.",
+        "dropped_material": [
+          "Did not extract PING, Minto, BLUF, or other named communication frameworks as separate cards.",
+          "Did not infer culture-specific advice beyond observable layer and audience-frame evidence."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this split stays distinct from non-violent-communication and active-listening in conflict-heavy cases."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -140,7 +227,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 5 source reading found strong reviewed depth for Cross-Cultural Communication Frameworks. Extracted one frame-translation/action check and rejected stereotype shortcuts plus harmony-hidden trade-offs.",
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Cross-Cultural Communication Frameworks. PR80 adds a second, transaction-distinct conversation-layer alignment card while preserving stereotype and harmony-hidden-tradeoff guards.",
     "dropped_material": [
       "MECE, Minto, Feynman, and emotional-intelligence links were left as context rather than separate cards.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."
