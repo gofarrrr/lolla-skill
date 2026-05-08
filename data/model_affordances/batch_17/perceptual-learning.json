@@ -42,17 +42,36 @@
             "Adds an anomaly check.",
             "Avoids treating perception as objective proof."
           ]
+        },
+        {
+          "requirement_id": "extract-tacit-cues-with-stories-and-pari",
+          "description": "When the cue library is tacit, require the answer to elicit expert stories, timelines, and precursor-action-result-interpretation patterns before turning pattern recognition into training guidance.",
+          "evidence_required": [
+            "The expert, practitioner, or high-performing source whose cue discrimination matters.",
+            "A concrete story, case, or timeline where the cue was used.",
+            "The precursor, action, result, and interpretation that reveal hidden cognitive process.",
+            "The cue library, training surface, or anomaly check that will use the elicited pattern."
+          ],
+          "good_output_shape": [
+            "Asks for stories rather than generic advice when the cue is tacit.",
+            "Captures precursor, action, result, and interpretation before abstraction.",
+            "Names the discriminating cue or anomaly the learner should practice noticing.",
+            "Keeps this card limited to cue discrimination rather than generic expert interviewing."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What subtle cue separates expert judgment from novice confusion here?",
         "What feedback trained this pattern, and is it still updating?",
-        "What anomaly would show that the familiar frame is the wrong tool?"
+        "What anomaly would show that the familiar frame is the wrong tool?",
+        "Which story or timeline reveals the cue before we turn it into advice?",
+        "What precursor, action, result, and interpretation should be captured for training?"
       ],
       "misuse_guards": [
         "Do not let accumulated expertise suppress anomaly detection.",
         "Do not use the handy framework when the case is genuinely novel.",
-        "Do not treat pattern recognition as proof without feedback and testing."
+        "Do not treat pattern recognition as proof without feedback and testing.",
+        "Do not use perceptual learning as generic expert interviewing unless the receiver action is cue discrimination or anomaly training."
       ],
       "source_evidence": [
         {
@@ -73,6 +92,27 @@
           "source_file": "Perceptual_Learning_rag.md",
           "source_quote": "accumulated expertise suppresses anomaly detection",
           "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "Cognitive Task Analysis",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "Ask for Stories, Not Advice",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "Precursor, Action, Result, and Interpretation",
+          "section_hint": "The Playbook in Action",
           "extraction_type": "explicit",
           "confidence": "high"
         }
