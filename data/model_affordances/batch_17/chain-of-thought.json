@@ -1,0 +1,145 @@
+{
+  "model_id": "chain-of-thought",
+  "source_file": "Chain_Of_Thought_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "chain-of-thought.audit-stepwise-reasoning",
+      "status": "supported",
+      "name": "Audit stepwise reasoning for weak links",
+      "mechanism": "When a problem contains hidden assumptions, branching dependencies, or several causal steps, use chain-of-thought as an inspectable decomposition while separately verifying premises, evidence, and action path.",
+      "activation_shape": {
+        "use_when": [
+          "The problem contains several causal steps, hidden assumptions, or branching dependencies.",
+          "An unfamiliar decision path needs enough structure to expose weak links.",
+          "Stepwise reasoning improves correctness, transfer, or auditability more than it costs in speed."
+        ],
+        "do_not_use_when": [
+          "A detailed reasoning trace is being treated as truth.",
+          "The reasoning sounds orderly but premises, evidence, or action path remain unchecked.",
+          "The model is used to rationalize a conclusion after the fact."
+        ],
+        "case_evidence_needed": [
+          "The steps or dependencies that need to be made explicit.",
+          "The premise or evidence check attached to each critical step.",
+          "The action path that turns the conclusion into something executable.",
+          "A verification pass that is separate from the reasoning transcript."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-trace-from-verification",
+          "description": "Require the answer to use stepwise structure only as an audit surface, then verify premises and action path instead of treating the trace itself as evidence.",
+          "evidence_required": [
+            "The causal or dependency steps.",
+            "The hidden assumptions in those steps.",
+            "The evidence check for the decisive steps.",
+            "The path from conclusion to feasible action."
+          ],
+          "good_output_shape": [
+            "Shows the key steps.",
+            "Marks the weak or uncertain step.",
+            "Adds evidence checks.",
+            "Warns that an orderly trace is not proof."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which causal step or hidden assumption would break the conclusion if false?",
+        "What evidence verifies the step rather than merely making it sound logical?",
+        "Does the reasoning chain end in an executable action path?"
+      ],
+      "misuse_guards": [
+        "Do not treat a reasoning transcript as truth.",
+        "Do not publish internal chain text as user-facing proof.",
+        "Do not use stepwise logic to rationalize a preferred conclusion after the fact."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "several causal steps, hidden assumptions, or branching dependencies",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "people mistake a detailed reasoning trace for truth",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "whether the premises, evidence, or action path are actually sound",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports chain-of-thought as an auditable decomposition, not as proof or product copy.",
+        "dropped_material": [
+          "Did not add prompt changes or expose chain-of-thought to users.",
+          "Did not use this card as a deterministic reasoning selector."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with chain-of-verification."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "chain-of-thought-as-truth",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that detailed traces can be mistaken for truth; it does not support using a reasoning transcript as proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "people mistake a detailed reasoning trace for truth",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "reasoning-transcript-without-verification",
+      "status": "not_supported_by_source",
+      "reason": "The source requires checking premises, evidence, and action path; it does not support accepting a transcript without verification.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "premises, evidence, or action path are actually sound",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Chain_Of_Thought_rag.md",
+      "source_quote": "decomposition of a complex problem into a sequence",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 keeps chain-of-thought as a review-only decomposition affordance and blocks transcript-as-truth overclaiming.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, chain disclosure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should decide whether this model mainly supports internal review or external answer shaping."
+    ],
+    "review_status": "draft"
+  }
+}

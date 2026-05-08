@@ -3,7 +3,7 @@
 **Date:** 2026-05-04
 **Last updated:** 2026-05-08
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR53 are merged or in review, PR53 completed the controlled economic / systems structure enrichment batch, and the current posture is `controlled_economic_systems_enrichment_ready`
+**Status:** living schema doctrine; PR13-PR54 are merged or in review, PR54 completed reviewed source-backed coverage for all 222 runtime models, and the current posture is `full_reviewed_source_backed_coverage_complete`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -41,6 +41,8 @@
 **Current controlled quantitative inference enrichment report:** `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 **Current controlled self-regulation / bias-calibration enrichment report:** `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`
 **Current controlled cultural / product communication enrichment report:** `research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md`
+**Current controlled economic / systems structure enrichment report:** `research/pr53-controlled-economic-systems-enrichment-report-2026-05-08.md`
+**Current controlled final graph-only enrichment report:** `research/pr54-controlled-final-graph-only-enrichment-report-2026-05-08.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -151,6 +153,16 @@ real. Future sessions should treat the following as current baseline:
   `data/compiled/model_affordances/affordances_v17.json`.
 - v17 corpus shape: `206` reviewed records, `242` affordances, `397` absence
   records. v17 remains `draft_review_only` and is not runtime-promoted.
+- Batch 17 records: `data/model_affordances/batch_17/` for the final 16
+  graph-only runtime models: agile methods, causal attribution resistance,
+  chain of thought, competence boundaries, complexity resistance, endowment,
+  latticework, fallacy checks, reality maps, metacognition, perceptual
+  learning, scaffolding, System 1, System 2, Tier-2 High Value, and
+  time-tested validation.
+- Compiled v18 artifact:
+  `data/compiled/model_affordances/affordances_v18.json`.
+- v18 corpus shape: `222` reviewed records, `258` affordances, `429` absence
+  records. v18 remains `draft_review_only` and is not runtime-promoted.
 - Current experiment: PR 11 Gate 4 edge-probe harness, branch
   `feature/knowledge-substrate-pr11-gate4-edge-probes`.
 - Gate 4 dry-run: `10` usable cases, `39` Lane 4 routes, `165/205` v3-covered
@@ -446,10 +458,19 @@ real. Future sessions should treat the following as current baseline:
   methodology, tradition/innovation balance, and extreme performance
   evaluation. It compiles draft/review-only v17 and preserves `24` absence
   records. Decision label: `controlled_economic_systems_enrichment_ready`.
+- PR54 completed the final controlled graph-only enrichment batch after PR53.
+  It adds `16` Batch 17 records for agile methodologies, causal attribution
+  resistance, chain of thought, circle of competence, complexity resistance,
+  endowment effect, latticework, logical fallacies, mental models of reality,
+  meta-cognitive reflection, perceptual learning, scaffolding, System 1,
+  System 2, Tier-2 High Value, and time-tested validation. It compiles
+  draft/review-only v18, preserves `32` absence records, and leaves `0`
+  runtime models graph-only in the draft reviewed artifact. Decision label:
+  `full_reviewed_source_backed_coverage_complete`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `controlled_economic_systems_enrichment_ready`; do not build runtime packet
+  `full_reviewed_source_backed_coverage_complete`; do not build runtime packet
   production, prompt changes, broad Batch 3b, lane rewrites, user-facing
   surfaces, deterministic reasoning-mode routing, deterministic option
   selection, deterministic mastery classification, deterministic statistical
@@ -457,9 +478,9 @@ real. Future sessions should treat the following as current baseline:
   classification, deterministic persuasion routing, deterministic market
   recommendation, deterministic political classification, deterministic
   consulting templates, punitive scoring, or mechanical extraction.
-  The user explicitly approved continued controlled extraction toward full
-  coverage; the next slice should be PR54 as the final capped source-backed
-  family for the remaining 16 graph-only models.
+  Full reviewed source-backed coverage is complete in v18. The next slice
+  should audit full-corpus quality and stress packet shape before any runtime
+  promotion.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1872,24 +1893,22 @@ Current task:
     political classification, consulting-case templates, punitive scoring, or
     proof that Python can decide which economic or organizational explanation
     governs the final answer.
-61. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+61. Treat PR54 as controlled final graph-only enrichment, not v18 runtime
+    promotion, prompt mechanics, deterministic reasoning-mode routing,
+    educational diagnosis, psychological diagnosis, or proof that full coverage
+    means Python can choose final judgment.
+62. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-62. Preserve coverage honesty and no-casuistry rails.
-63. Do not run more paid model calls for this slice.
-64. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+63. Preserve coverage honesty and no-casuistry rails.
+64. Do not run more paid model calls for this slice.
+65. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
-Continue controlled extraction only under the quality rails: small bounded
-families, direct source reading, exact source quote custody, absence records,
-and draft/review-only compilation. PR49 added source-backed learning /
-skill-acquisition depth as draft/review v13. PR50 added source-backed
-quantitative inference / distributional reasoning depth as draft/review v14.
-PR51 added source-backed self-regulation / bias-calibration depth as
-draft/review v15. PR52 added source-backed cultural / product communication
-depth as draft/review v16. PR53 added source-backed economic / systems
-structure depth as draft/review v17. The next slice should be PR54 as the
-final controlled family for the remaining 16 graph-only models, not broad
-Batch 3b or runtime promotion.
+Controlled extraction reached full reviewed source-backed coverage in PR54.
+v18 now covers all 222 runtime models as a draft/review-only artifact, with
+258 affordances and 429 absence records. The next slice should not extract more
+by default; it should audit full-corpus quality and stress packet shape before
+any runtime promotion.
 
 ---
 

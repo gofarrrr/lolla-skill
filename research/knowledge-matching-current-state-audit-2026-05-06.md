@@ -4,13 +4,13 @@
 **Status:** Historical product/architecture audit after the merged PR13-PR23
 stack and Decision Pressure product doctrine. The architecture conclusions
 still stand, but the reviewed affordance counts have been superseded by later
-controlled enrichment and packet-review slices through PR53. This is not a
+controlled enrichment and packet-review slices through PR54. This is not a
 runtime proposal, not an extraction brief, not a prompt change, and not
 user-facing promotion.
 
 **Doctrine anchor:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_economic_systems_enrichment_ready`
+**Current posture:** `full_reviewed_source_backed_coverage_complete`
 
 **Current handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 
@@ -34,9 +34,9 @@ collapsed into one story.
 
 2. **Reviewed affordance substrate**
    At the time of this audit, the v4 affordance corpus had `55` reviewed
-   source-backed model records. After later controlled enrichment through PR53,
-   the current draft/review-only v17 corpus has `206` reviewed records, `242`
-   affordances, and `397` absence records. PR40 showed the v9 execution cards
+   source-backed model records. After later controlled enrichment through PR54,
+   the current draft/review-only v18 corpus has `222` reviewed records, `258`
+   affordances, and `429` absence records. PR40 showed the v9 execution cards
    improve one stable-nomination packet handoff. PR41 then audited the
    remaining graph-only set and selected risk controls / reversibility /
    failure containment as the next controlled family. PR42 added source-backed
@@ -64,6 +64,10 @@ collapsed into one story.
    boundary. PR53 then added source-backed v17 depth for 12 economic / systems
    structure models while preserving the no deterministic market-recommendation,
    political-classification, consulting-template, or punitive-scoring boundary.
+   PR54 then added source-backed v18 depth for the final 16 graph-only runtime
+   models while preserving the no deterministic reasoning-mode-routing,
+   educational-diagnosis, psychological-diagnosis, or full-coverage-as-runtime
+   boundary.
    The corpus is richer and more operational, but
    it is still `draft_review_only`.
    It supports review artifacts; it does not yet select or generate live
@@ -72,7 +76,7 @@ collapsed into one story.
 So the accurate current claim is:
 
 > Lolla has a 222-model runtime graph and a growing reviewed affordance corpus.
-> After PR53, the reviewed corpus has 206 records. PR40 showed v9 improved one
+> After PR54, the reviewed corpus has 222 records. PR40 showed v9 improved one
 > execution/follow-through packet handoff; PR42 added v10 risk/reversibility
 > depth for the family PR41 selected; PR43 showed that v10 improves one
 > risk/reversibility packet handoff; PR44 selected frame correction /
@@ -90,7 +94,10 @@ So the accurate current claim is:
 > product communication depth while blocking deterministic cultural
 > classification and persuasion routing; PR53 added v17 economic / systems
 > structure depth while blocking deterministic market recommendations,
-> political classification, consulting templates, and punitive scoring.
+> political classification, consulting templates, and punitive scoring; PR54
+> added v18 source-backed depth for the final graph-only models while blocking
+> deterministic reasoning-mode routing, educational diagnosis, and
+> full-coverage-as-runtime claims.
 > It is still not the live matching system.
 
 This matters because expanding from 55 records should not mean "add records
@@ -101,10 +108,10 @@ next LLM can think better without Python pretending to choose the pressure.
 ## Corpus Shape
 
 Measured from the repo artifacts when this audit was first written. For the
-current v17 counts and packet-review posture, use the handover, PR39 report,
+current v18 counts and packet-review posture, use the handover, PR39 report,
 PR40 review, PR41 audit, PR42 report, PR43 review, PR44 audit, PR45 report,
 PR46 review, PR47 audit, PR48 report, PR49 report, PR50 report, PR51 report,
-PR52 report, and PR53 report.
+PR52 report, PR53 report, and PR54 report.
 
 | Artifact | Count / state | Current role |
 | --- | ---: | --- |
@@ -124,6 +131,10 @@ PR52 report, and PR53 report.
 | v4 affordances | 91 | Source-backed operational affordances |
 | v4 absence records | 95 | Coverage honesty / do-not-promote evidence |
 | Reviewed source files | 55 markdown files | Source custody for v4 records |
+| v18 affordance records | 222 model records | Complete draft/review-only source-backed substrate |
+| v18 affordances | 258 | Source-backed operational affordances |
+| v18 absence records | 429 | Coverage honesty / do-not-promote evidence |
+| Graph-only after v18 | 0 runtime models | Full reviewed coverage, still not runtime promotion |
 
 The v4 corpus is not "55 mental models used by the live skill." It is 55
 reviewed canonical sources that can support source-backed operational pressure

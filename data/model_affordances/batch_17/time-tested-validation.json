@@ -1,0 +1,145 @@
+{
+  "model_id": "time-tested-validation",
+  "source_file": "Time_Tested_Validation_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "time-tested-validation.reuse-proven-method-with-fit-check",
+      "status": "supported",
+      "name": "Reuse proven methods with present-fit checks",
+      "mechanism": "When a tested method or protocol can prevent reinvention, use time-tested validation as a starting point while checking whether its assumptions, reference class, and original validation still fit current conditions.",
+      "activation_shape": {
+        "use_when": [
+          "The team needs an already-tested method, protocol, or evaluative lens to avoid reinventing a solved discipline from scratch.",
+          "Prior validation provides a trustworthy starting point that can accelerate diagnosis, comparison, or execution.",
+          "Speed and reliability matter more than novelty, but the framework still needs to be checked against current conditions."
+        ],
+        "do_not_use_when": [
+          "Time-tested gets treated as self-justifying authority.",
+          "Nobody rechecks whether the original validation still matches the present environment.",
+          "Competitive adaptation or changed conditions make historical validation obsolete."
+        ],
+        "case_evidence_needed": [
+          "The proven method, protocol, framework, or reference class being reused.",
+          "The assumptions under the original validation.",
+          "The current case conditions that match or violate those assumptions.",
+          "The minimum evidence needed to prove or disprove fit."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "line-up-assumptions-before-reuse",
+          "description": "Require the answer to line up the assumptions behind a proven method and test current-case fit before recommending reuse.",
+          "evidence_required": [
+            "The time-tested method or reference class.",
+            "The assumptions under its historical success.",
+            "The present conditions that may differ.",
+            "The evidence needed to confirm fit or trigger first-principles rework."
+          ],
+          "good_output_shape": [
+            "Names the proven method.",
+            "Lists the assumptions that matter.",
+            "Checks current fit.",
+            "Warns against authority-by-tradition when conditions changed."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which tested method or reference class applies, and what assumptions made it valid?",
+        "Do current conditions still match the original validation?",
+        "Are we using time-tested structure to reduce risk, or to avoid rethinking changed conditions?"
+      ],
+      "misuse_guards": [
+        "Do not treat time-tested as proof by itself.",
+        "Do not reuse a framework without checking present fit.",
+        "Do not let validation become confirmation of a desired hypothesis."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Time_Tested_Validation_rag.md",
+          "source_quote": "already-tested method, protocol, or evaluative lens",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Time_Tested_Validation_rag.md",
+          "source_quote": "line up all the assumptions that underpin a reference class",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Time_Tested_Validation_rag.md",
+          "source_quote": "original validation still matches the present environment",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports proven methods as starting points that require reference-class and present-fit validation.",
+        "dropped_material": [
+          "Did not treat historical precedent as sufficient proof.",
+          "Did not extract a preference for tradition over first-principles re-derivation."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with tradition-vs-innovation-balance and first-principles-thinking."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "time-tested-as-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against treating time-tested status as self-justifying authority; it does not support historical validation as proof by itself.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Time_Tested_Validation_rag.md",
+          "source_quote": "self-justifying authority",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "tradition-without-current-fit",
+      "status": "not_supported_by_source",
+      "reason": "The source requires checking current conditions; it does not support deferring to tradition when original validation no longer fits.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Time_Tested_Validation_rag.md",
+          "source_quote": "framework still needs to be checked against current conditions",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Time_Tested_Validation_rag.md",
+      "source_quote": "anchored in foundational, repeatable truth",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 treats time-tested validation as disciplined reuse with assumption and fit checks.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, tradition selector, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether this card reduces reinvention without creating authority bias."
+    ],
+    "review_status": "draft"
+  }
+}

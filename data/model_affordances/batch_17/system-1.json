@@ -1,0 +1,145 @@
+{
+  "model_id": "system-1",
+  "source_file": "System_1_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "system-1.treat-intuition-as-first-pass-signal",
+      "status": "supported",
+      "name": "Treat intuition as a first-pass signal",
+      "mechanism": "When fast pattern recognition arises in a well-practiced domain, use System 1 as a first-pass signal while checking feedback history, novelty, missing information, and whether System 2 scrutiny is needed.",
+      "activation_shape": {
+        "use_when": [
+          "The domain is well-understood, frequently practiced, and provides rapid, unambiguous feedback.",
+          "Speed is required and the cost of deliberation exceeds the benefit.",
+          "A gut signal should trigger scrutiny rather than substitute for a conclusion."
+        ],
+        "do_not_use_when": [
+          "The domain is novel, rare, or provides delayed or ambiguous feedback.",
+          "System 1 is building a confident story from thin evidence.",
+          "The intuition is being applied outside the zone where the pattern was trained."
+        ],
+        "case_evidence_needed": [
+          "The fast intuition or pattern judgment.",
+          "The training domain and feedback history behind it.",
+          "The missing information or WYSIATI risk.",
+          "The System 2 check required for novel, high-stakes, or low-feedback cases."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "audit-intuition-domain-and-missing-info",
+          "description": "Require the answer to preserve useful intuition as a signal while checking whether its domain, feedback history, and missing information justify trust.",
+          "evidence_required": [
+            "The intuitive judgment being offered.",
+            "The stable domain and feedback that trained it.",
+            "The missing information that could reverse it.",
+            "The reason to escalate to System 2."
+          ],
+          "good_output_shape": [
+            "Names the gut signal.",
+            "Checks whether the cue was trained in a stable domain.",
+            "Audits missing information.",
+            "Uses System 2 for novel or high-asymmetry decisions."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is this intuition trained in a stable, fast-feedback domain or imported from elsewhere?",
+        "What missing information would System 1 fail to notice because the story already feels coherent?",
+        "Should this gut signal trigger System 2 scrutiny rather than become the conclusion?"
+      ],
+      "misuse_guards": [
+        "Do not treat System 1 as bad thinking by default.",
+        "Do not treat a fluent story as complete evidence.",
+        "Do not trust expert intuition outside the domain where it was trained."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "System_1_rag.md",
+          "source_quote": "rapid, unambiguous feedback that teaches pattern recognition over time",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "System_1_rag.md",
+          "source_quote": "first-pass signal",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "System_1_rag.md",
+          "source_quote": "novel, rare, or provides delayed or ambiguous feedback",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports System 1 as useful trained intuition under feedback conditions, with explicit WYSIATI and expert-overreach guardrails.",
+        "dropped_material": [
+          "Did not treat System 1 as categorically irrational.",
+          "Did not promote intuition to final judgment without scrutiny."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with perceptual-learning and system-2."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "system-1-as-bad-thinking",
+      "status": "not_supported_by_source",
+      "reason": "The source says System 1 is neither always right nor always wrong; it does not support treating all intuition as bad thinking.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "System_1_rag.md",
+          "source_quote": "neither always right nor always wrong",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "intuition-without-context",
+      "status": "not_supported_by_source",
+      "reason": "The source requires stable feedback conditions for reliable intuition; it does not support intuition claims without domain context.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "System_1_rag.md",
+          "source_quote": "whether the domain provides the fast feedback and stable patterns",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "System_1_rag.md",
+      "source_quote": "operates automatically and quickly",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 keeps System 1 as trained first-pass cognition with explicit domain and missing-information checks.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, intuition scorer, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether this card helps the LLM preserve useful intuition without endorsing WYSIATI."
+    ],
+    "review_status": "draft"
+  }
+}

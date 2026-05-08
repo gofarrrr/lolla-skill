@@ -1,0 +1,145 @@
+{
+  "model_id": "circle-of-competence",
+  "source_file": "Circle_Of_Competence_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "circle-of-competence.calibrate-judgment-boundary",
+      "status": "supported",
+      "name": "Calibrate judgment boundary before acting",
+      "mechanism": "When false confidence would be costly, use circle of competence to decide whether judgment is earned by repeated exposure, fast feedback, and error correction, or whether the case needs refusal, learning, or outside expertise.",
+      "activation_shape": {
+        "use_when": [
+          "The downside of being wrong is large enough that false confidence matters more than missing an exciting opportunity.",
+          "A team must decide whether its intuition is earned in this specific domain.",
+          "Focus requires saying no to adjacent opportunities so scarce attention stays where judgment is calibrated."
+        ],
+        "do_not_use_when": [
+          "The circle is treated as a permanent identity label rather than a map that can expand, decay, or shift.",
+          "Stay in your circle is being used to avoid adjacent learning, partnership, or edge evidence.",
+          "The claim of competence lacks evidence of repeated exposure, fast feedback, and real error correction."
+        ],
+        "case_evidence_needed": [
+          "The domain boundary where judgment is claimed.",
+          "Evidence of repeated exposure and fast feedback.",
+          "The errors that corrected the judgment over time.",
+          "The adjacent edge where partnership, learning, or refusal may be wiser."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-competence-edge-and-next-move",
+          "description": "Require the answer to name the competence boundary, the evidence that calibrates it, and the next move when the case sits outside the boundary.",
+          "evidence_required": [
+            "The specific domain of claimed competence.",
+            "The feedback and error-correction history.",
+            "The cost of being wrong.",
+            "The viable outside-expertise, learning, or refusal path."
+          ],
+          "good_output_shape": [
+            "Names the calibrated domain.",
+            "States what evidence earned the intuition.",
+            "Identifies the edge of competence.",
+            "Chooses learn, partner, delay, or decline when outside the circle."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What variables matter in this situation, and why are we competent to judge them?",
+        "What feedback history trained this intuition, and is the current case inside that history?",
+        "Is this boundary protecting judgment quality or freezing learning into an identity label?"
+      ],
+      "misuse_guards": [
+        "Do not use the circle as a permanent identity boundary.",
+        "Do not claim competence without exposure, feedback, and error correction.",
+        "Do not let stay-in-your-circle language avoid partnership or learning at the edge."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Circle_Of_Competence_rag.md",
+          "source_quote": "false confidence matters more than missing an exciting opportunity",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Competence_rag.md",
+          "source_quote": "repeated exposure, fast feedback, and real error correction",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Competence_rag.md",
+          "source_quote": "the circle is treated as a permanent identity label",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports competence-boundary calibration with evidence and edge-learning caveats.",
+        "dropped_material": [
+          "Did not turn circle of competence into a fixed taxonomy of what the system can answer.",
+          "Did not infer competence from domain labels alone."
+        ],
+        "open_questions": [
+          "Later packet review should inspect relationship to intellectual-humility and authority-bias."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "circle-of-competence-as-permanent-boundary",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against treating the circle as permanent; it does not support identity-bound competence limits.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Circle_Of_Competence_rag.md",
+          "source_quote": "permanent identity label instead of a map that should expand, decay, or shift",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "competence-claim-without-edge-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source grounds competence in repeated exposure, feedback, and error correction; it does not support self-declared competence without edge evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Circle_Of_Competence_rag.md",
+          "source_quote": "repeated exposure, fast feedback, and real error correction",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Circle_Of_Competence_rag.md",
+      "source_quote": "acknowledging what you know and, critically, what you do not know",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 treats the model as calibrated boundary-setting, not as a permanent capability label.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, capability classifier, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether this card helps the LLM ask for expertise rather than retreat from adjacent work."
+    ],
+    "review_status": "draft"
+  }
+}

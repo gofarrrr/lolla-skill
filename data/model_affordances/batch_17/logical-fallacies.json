@@ -1,0 +1,145 @@
+{
+  "model_id": "logical-fallacies",
+  "source_file": "Logical_Fallacies_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "logical-fallacies.test-persuasive-argument-validity",
+      "status": "supported",
+      "name": "Test persuasive arguments for validity",
+      "mechanism": "When an argument sounds persuasive before it is valid, use logical fallacy detection to separate presentation quality from evidence quality and inspect premises, inference steps, and burden of proof.",
+      "activation_shape": {
+        "use_when": [
+          "Rhetoric, confidence, or familiarity is doing more work than the inference structure.",
+          "Teams need to separate evidence quality from presentation quality.",
+          "Decision quality depends on disciplined challenge before resources are committed."
+        ],
+        "do_not_use_when": [
+          "Fallacy hunting is being used performatively to score debate points.",
+          "Logical scrutiny ignores emotional or social data that affect the premises of a human system.",
+          "A fallacy label is substituted for explaining why the claim fails."
+        ],
+        "case_evidence_needed": [
+          "The claim being assessed.",
+          "The premises and inference steps supporting it.",
+          "The burden of proof and the evidence quality.",
+          "Any emotional or social information that affects the premises."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "inspect-premises-inference-and-proof",
+          "description": "Require the answer to inspect premises, inference steps, and burden of proof instead of merely naming a fallacy.",
+          "evidence_required": [
+            "The argument's core claim.",
+            "The premises supplied.",
+            "The inference step under scrutiny.",
+            "The evidence required to carry the burden of proof."
+          ],
+          "good_output_shape": [
+            "Separates claim from presentation.",
+            "Names the premise or inference failure.",
+            "States what evidence would repair the argument.",
+            "Avoids performative fallacy labeling."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the claim, and which premise or inference step carries the load?",
+        "Is the argument persuasive because of evidence or because of rhetoric, confidence, or familiarity?",
+        "Would naming a fallacy clarify the decision, or merely score a debate point?"
+      ],
+      "misuse_guards": [
+        "Do not use fallacy labels as arguments.",
+        "Do not treat logical nitpicking as problem solving.",
+        "Do not ignore emotional or social data when those facts affect the premises."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Logical_Fallacies_rag.md",
+          "source_quote": "an argument sounds persuasive before it is valid",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Logical_Fallacies_rag.md",
+          "source_quote": "separate evidence quality from presentation quality",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Logical_Fallacies_rag.md",
+          "source_quote": "premises, inference steps, and burden of proof",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports validity checking with explicit caution against performative fallacy hunting.",
+        "dropped_material": [
+          "Did not extract a debate-winning or punitive labeling affordance.",
+          "Did not ignore relationship-level data in human-system cases."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with critical-thinking and formal-reasoning."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "fallacy-label-as-argument",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against performative fallacy hunting; it does not support using a label as a substitute for argument analysis.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Logical_Fallacies_rag.md",
+          "source_quote": "score debate points instead of clarifying the decision",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "fallacy-spotting-without-premise-check",
+      "status": "not_supported_by_source",
+      "reason": "The source requires scrutiny of premises, inference steps, and proof burden; it does not support fallacy spotting without premise analysis.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Logical_Fallacies_rag.md",
+          "source_quote": "premises, inference steps, and burden of proof",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Logical_Fallacies_rag.md",
+      "source_quote": "particulars of illogical thinking",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 keeps logical fallacies as validity checking, not as a rhetorical weapon.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, argument scorer, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether fallacy detection helps without making the answer pedantic."
+    ],
+    "review_status": "draft"
+  }
+}

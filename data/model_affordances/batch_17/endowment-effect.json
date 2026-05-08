@@ -1,0 +1,145 @@
+{
+  "model_id": "endowment-effect",
+  "source_file": "Endowment_Effect_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "endowment-effect.reprice-owned-option-from-outside-view",
+      "status": "supported",
+      "name": "Reprice owned options from outside view",
+      "mechanism": "When possession is distorting valuation or choice quality, use the endowment effect to separate genuine strategic value from attachment by asking what the option would be worth if it were not already owned.",
+      "activation_shape": {
+        "use_when": [
+          "Ownership itself is making an asset, idea, or status quo feel more valuable than it would to an outsider.",
+          "A team is defending what it already has without comparing it to the best available alternative.",
+          "Negotiation, divestment, switching, or repricing depends on separating attachment from utility."
+        ],
+        "do_not_use_when": [
+          "The endowment label is used without evidence that ownership is actually distorting valuation.",
+          "The asset has genuine strategic value that an outside-view replacement check would preserve.",
+          "Pre-ownership or possession tactics are being used to manipulate rather than clarify value."
+        ],
+        "case_evidence_needed": [
+          "The owned asset, idea, option, or status quo being overvalued.",
+          "The outside-view replacement value or acquisition willingness.",
+          "The best available alternative today.",
+          "Evidence distinguishing strategic value from psychological reluctance to let go."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compare-owned-option-to-today-alternative",
+          "description": "Require the answer to compare the owned option against what would be paid or chosen today so attachment does not hide opportunity cost.",
+          "evidence_required": [
+            "The owned option under evaluation.",
+            "The current outside-view value or willingness to pay.",
+            "The alternative that could be chosen instead.",
+            "The emotional or historical attachment that may distort the comparison."
+          ],
+          "good_output_shape": [
+            "Names the ownership anchor.",
+            "Asks the today-acquisition question.",
+            "Compares against the best alternative.",
+            "Separates strategic value from attachment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "If we did not own this today, what would we pay or trade to acquire it?",
+        "What alternative would we choose if history and attachment were removed?",
+        "Is the resistance to letting go grounded in strategic value or ownership emotion?"
+      ],
+      "misuse_guards": [
+        "Do not diagnose endowment from ownership alone.",
+        "Do not ignore real strategic value just because an asset is already owned.",
+        "Do not use pre-ownership tactics as manipulation without a trust check."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Endowment_Effect_rag.md",
+          "source_quote": "possession is distorting valuation or choice quality",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Endowment_Effect_rag.md",
+          "source_quote": "ownership itself is making an asset, idea, or status quo feel more valuable",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Endowment_Effect_rag.md",
+          "source_quote": "defend what they already have without seriously comparing it",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports an owned-option valuation check anchored to outside view and opportunity cost.",
+        "dropped_material": [
+          "Did not turn endowment effect into generic anti-ownership advice.",
+          "Did not extract manipulation-oriented sales tactics."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with opportunity-cost and status-quo-bias."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "endowment-as-ownership-label",
+      "status": "not_supported_by_source",
+      "reason": "The source requires ownership to distort valuation or choice quality; it does not support invoking endowment merely because something is owned.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Endowment_Effect_rag.md",
+          "source_quote": "ownership itself is making an asset, idea, or status quo feel more valuable",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "unearned-endowment-premium",
+      "status": "not_supported_by_source",
+      "reason": "The source points to a today-acquisition test; it does not support granting an ownership premium without independent willingness-to-pay evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Endowment_Effect_rag.md",
+          "source_quote": "If I did not currently own this asset, how much would I be willing to pay to acquire it today?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Endowment_Effect_rag.md",
+      "source_quote": "seeing past the veil of ownership to assess true value",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 treats endowment effect as an outside-view valuation correction, not as a blanket argument against keeping owned assets.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, negotiation automation, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether this card improves divestment and switching-cost cases."
+    ],
+    "review_status": "draft"
+  }
+}
