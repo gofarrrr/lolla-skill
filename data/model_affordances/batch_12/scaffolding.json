@@ -1,0 +1,145 @@
+{
+  "model_id": "scaffolding",
+  "source_file": "Scaffolding_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "scaffolding.temporary-support-with-fade-plan",
+      "status": "supported",
+      "name": "Temporary support with fade plan",
+      "mechanism": "When complexity exceeds current capacity, break the task into sequenced support, modeling, guided practice, correction, and handoff so the learner reaches independent performance rather than permanent dependence on the framework.",
+      "activation_shape": {
+        "use_when": [
+          "The learner or team cannot yet hold the whole system in mind but can master the next increment.",
+          "Order, pacing, and support determine whether people build competence or confusion.",
+          "Temporary structure can later be removed as judgment and autonomy develop."
+        ],
+        "do_not_use_when": [
+          "The scaffold becomes permanent bureaucracy rather than a path to autonomy.",
+          "The framework is the wrong fit for the problem assumptions.",
+          "The group is using structure to delay action after enough learning has occurred."
+        ],
+        "case_evidence_needed": [
+          "Current capability and overload point.",
+          "The next manageable chunk.",
+          "The modeling, guided practice, correction, and handoff sequence.",
+          "The condition for removing support."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "sequence-support-and-remove-it",
+          "description": "Require the answer to define the staged support, the learner handoff, and the condition under which the scaffold should be reduced or removed.",
+          "evidence_required": [
+            "The current complexity that exceeds capacity.",
+            "The learner's next reachable increment.",
+            "Support and feedback steps.",
+            "Independence or fade criterion."
+          ],
+          "good_output_shape": [
+            "Chunks the task into a next manageable step.",
+            "Defines modeling and guided practice.",
+            "Includes feedback or correction.",
+            "Names when the scaffold comes down."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the smallest next chunk the learner can manage?",
+        "What support is temporary, and how will it be faded?",
+        "Is the scaffold solving overload or creating dependency?"
+      ],
+      "misuse_guards": [
+        "Do not make the scaffold permanent.",
+        "Do not let the first framework become immune to disconfirming evidence.",
+        "Do not simplify so much that the learner cannot transfer judgment."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Scaffolding_rag.md",
+          "source_quote": "temporary support structures are erected around a building",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scaffolding_rag.md",
+          "source_quote": "Most useful when complexity exceeds current capacity",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scaffolding_rag.md",
+          "source_quote": "Danger When the Scaffold Never Comes Down",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports scaffolding as staged temporary support that should transfer control.",
+        "dropped_material": [
+          "Did not extract AI persona scaffolding as a runtime prompt affordance.",
+          "Kept consulting-framework examples as source context only."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card creates useful support design without permanent process overhead."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "permanent-support",
+      "status": "not_supported_by_source",
+      "reason": "The source defines scaffolding as temporary support toward mastery; permanent dependence is explicitly a danger.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Scaffolding_rag.md",
+          "source_quote": "Best when temporary structure can later be removed",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "support-without-fade-plan",
+      "status": "not_supported_by_source",
+      "reason": "The source says the goal is staged movement toward independent performance; support without a removal condition is not reviewed depth.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Scaffolding_rag.md",
+          "source_quote": "gradual hand-over of control and mastery",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Scaffolding_rag.md",
+      "source_quote": "simplifying complexity to facilitate mastery and learning",
+      "section_hint": "Definition and Purpose",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for scaffolding as temporary support and transfer of responsibility.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves support sequencing without adding bureaucracy."
+    ],
+    "review_status": "draft"
+  }
+}

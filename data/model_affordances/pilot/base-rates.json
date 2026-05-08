@@ -1,0 +1,232 @@
+{
+  "model_id": "base-rates",
+  "source_file": "Base_Rates_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "base-rates.outside-view-reference-class-anchor",
+      "status": "supported",
+      "name": "Outside-view reference-class anchor before case-specific updating",
+      "mechanism": "Start a forecast, diagnosis, budget, or estimate from the historical frequency of a structurally similar reference class, test that class for fit, then update with the specific facts instead of letting the inside-view story set the baseline.",
+      "activation_shape": {
+        "use_when": [
+          "A forecast, diagnosis, budget, or estimate is vulnerable to a vivid inside-view story.",
+          "A credible reference class exists for comparing the current case to similar past outcomes.",
+          "The decision depends on likely ranges or tail outcomes rather than a single optimistic base case."
+        ],
+        "do_not_use_when": [
+          "The proposed reference class is too broad, too narrow, or structurally mismatched.",
+          "A real regime shift or causal break makes old frequencies an unsafe baseline.",
+          "The prior is being used to avoid updating on high-quality specific evidence."
+        ],
+        "case_evidence_needed": [
+          "The outcome being forecast, diagnosed, budgeted, or estimated.",
+          "A named reference class of structurally similar past projects, outcomes, or cases.",
+          "Historical frequency, success/failure rates, likely ranges, or tail-outcome data for that class.",
+          "Case-specific evidence that may justify updating the outside-view prior."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-and-test-reference-class",
+          "description": "Name the reference class, collect its historical frequency or success/failure rate, and test whether its structural assumptions match the current case before using it as the prior.",
+          "evidence_required": [
+            "A proposed reference class of similar past problems or outcomes.",
+            "Aggregate historical data from that class.",
+            "The assumptions that make the current case comparable to the class.",
+            "Any specific facts that should update the prior."
+          ],
+          "good_output_shape": [
+            "States the outside-view prior before the inside-view narrative.",
+            "Explains why the reference class fits or where fit is uncertain.",
+            "Updates the prior with specific evidence instead of discarding the prior.",
+            "Names any reference-class mismatch or regime shift that blocks promotion."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the average success/failure rate for projects or situations like this, regardless of our unique details?",
+        "Do the underlying structures and core assumptions of this reference group actually match our current situation, or are we confusing familiarity with fit?",
+        "If a believable expert saw only the statistics and not the personal narrative, what would they say is the most likely outcome?"
+      ],
+      "misuse_guards": [
+        "Do not use a base rate when the chosen reference class is too broad, too narrow, or structurally mismatched.",
+        "Do not treat old frequencies as decisive when the case contains a real regime shift or causal break.",
+        "Do not let vivid, individualized, or emotionally salient details replace the general frequency of the outcome."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "The fundamental essence of the Base Rate model is the recognition and application of **prior probabilities** or **robust statistical regularities** when evaluating a specific case or making a prediction.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "For sound reasoning and effective decisions, one should always seek to anchor first to this outside view.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "a group of similar problems or outcomes from the past",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "The aggregate historical data from this class provides the base rate, setting the expectation for the current situation.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "incorporating the prior probability (the base rate) before integrating the new, specific evidence.",
+          "section_hint": "Key Heuristics and Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "a forecast, diagnosis, budget, or estimate is vulnerable to a vivid inside-view story that could drown out historical frequency.",
+          "section_hint": "Strengths and Contexts of Power:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "a credible reference class exists and the team can compare the current case to that class before arguing from specialness.",
+          "section_hint": "Strengths and Contexts of Power:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "the decision depends on calibrating likely ranges and tail outcomes rather than relying on a single optimistic base case.",
+          "section_hint": "Strengths and Contexts of Power:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "the chosen reference class is too broad, too narrow, or structurally mismatched, making the prior look rigorous while actually misleading the decision.",
+          "section_hint": "Weaknesses and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "the context contains a real regime shift or causal break, but the team still treats old frequencies as if nothing important has changed.",
+          "section_hint": "Weaknesses and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "Systematically start the analysis by collecting and prioritizing the general statistics related to the outcome before incorporating specific facts.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "Line up all the assumptions supporting the chosen reference class and rigorously test the current case for fit with each assumption.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "What is the average success/failure rate for projects/situations like this, regardless of our unique details?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "Do the underlying structures and core assumptions of this reference group actually match our current situation, or are we confusing familiarity with fit?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "If a believable expert, viewing only the statistics and not my personal narrative, were to assess this, what would they say is the most likely outcome?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "Ignoring the general frequency of an outcome because specific case details are compelling, vivid, or emotionally salient.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "advertising-message-targeting-affordance",
+      "status": "source_too_thin",
+      "reason": "The source offers a single advertising example about demographic anxiety, but it does not supply a reusable treatment requirement beyond the already extracted reference-class anchoring mechanism.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "Understanding base rates can guide messaging strategy. If a demographic has a **higher base rate of anxiety** about a topic (like financial hardship), focusing on their deepest fears (avoiding loss) will resonate more than focusing solely on the benefits.",
+          "section_hint": "Concrete Examples in Business and Strategy:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Base_Rates_rag.md",
+      "source_quote": "For sound reasoning and effective decisions, one should always seek to anchor first to this outside view.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Base_Rates_rag.md",
+      "source_quote": "The aggregate historical data from this class provides the base rate, setting the expectation for the current situation.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Base_Rates_rag.md",
+      "source_quote": "Systematically start the analysis by collecting and prioritizing the general statistics related to the outcome before incorporating specific facts.",
+      "section_hint": "Risks and Mitigations:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Base_Rates_rag.md",
+      "source_quote": "Line up all the assumptions supporting the chosen reference class and rigorously test the current case for fit with each assumption.",
+      "section_hint": "Risks and Mitigations:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Merged the raw outside-view principle, reference-class forecasting playbook, Wave 1 activation context, and Wave 2 intervention semantics into one operational affordance. Wave 3 relation material was read as context but not promoted into a separate affordance.",
+    "dropped_material": [
+      "Did not extract separate affordances for System 1, System 2, the scientific method, motivated reasoning, or cognitive entrenchment because the operational demand is already represented by the outside-view reference-class treatment.",
+      "Did not promote the advertising and messaging example because it is domain-specific application context rather than a general operational requirement."
+    ],
+    "open_questions": [
+      "Future runtime evaluation should decide whether relation-only material belongs in model-affordance records or remains in relation semantics."
+    ],
+    "review_status": "draft"
+  }
+}

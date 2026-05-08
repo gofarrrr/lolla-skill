@@ -1,0 +1,145 @@
+{
+  "model_id": "learning-curve",
+  "source_file": "Learning_Curve_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "learning-curve.measure-capability-compounding-over-time",
+      "status": "supported",
+      "name": "Measure capability compounding over time",
+      "mechanism": "When current performance is weak but learnable, distinguish temporary beginner inefficiency from a capability that can compound through repetition, feedback, chunking, and measured consolidation.",
+      "activation_shape": {
+        "use_when": [
+          "Performance is expected to improve through repetition, feedback, and chunked skill-building.",
+          "Leaders need to know how quickly a person or team can become reliably good at a task.",
+          "Early inefficiency may be normal rather than proof the capability is impossible."
+        ],
+        "do_not_use_when": [
+          "Early progress is being mistaken for mastery and responsibility is scaling faster than competence.",
+          "The team is applying a familiar learned pattern to a genuinely novel problem.",
+          "The curve story hides missing measurement, feedback, or transfer evidence."
+        ],
+        "case_evidence_needed": [
+          "Baseline current performance.",
+          "Repetition and feedback conditions.",
+          "What reliable competence would look like.",
+          "Evidence that the task is learnable rather than structurally blocked."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-beginner-inefficiency-from-consolidated-capability",
+          "description": "Require the answer to define the baseline, the practice/feedback loop, the expected consolidation signal, and the risk of premature scaling.",
+          "evidence_required": [
+            "Current baseline.",
+            "Learning reps or exposure pattern.",
+            "Feedback signal.",
+            "Reliability or plateau indicator."
+          ],
+          "good_output_shape": [
+            "Names whether the current weakness is early learning or structural inability.",
+            "Specifies the repetition and feedback loop.",
+            "Defines a measurement point for reliable improvement.",
+            "Warns against scaling responsibility before consolidation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What baseline are we measuring against?",
+        "What repetition and feedback will make performance compound?",
+        "What would show that early progress has not yet become reliable mastery?"
+      ],
+      "misuse_guards": [
+        "Do not treat the learning curve as destiny or automatic improvement.",
+        "Do not scale responsibility based on early gains alone.",
+        "Do not ignore expertise reversal or cognitive entrenchment as the curve advances."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Learning_Curve_rag.md",
+          "source_quote": "**relationship between effort, repetition, and the resulting increase in performance or efficiency**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Learning_Curve_rag.md",
+          "source_quote": "**Most useful when** performance improves through repetition, feedback, and chunked skill-building rather than one-off inspiration.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Learning_Curve_rag.md",
+          "source_quote": "**Danger when** early progress is mistaken for mastery and the organization scales responsibility faster than capability has actually consolidated.",
+          "section_hint": "Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports the learning curve as measured capability growth with a premature-scaling guard.",
+        "dropped_material": [
+          "Did not extract all allied models as separate learning-curve affordances.",
+          "Kept business strategy examples as context for learnable execution."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps distinguish learnable weakness from structural inability."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "curve-as-destiny",
+      "status": "not_supported_by_source",
+      "reason": "The source describes effort, repetition, consolidation, and retrieval as the mechanism; improvement is not automatic.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Learning_Curve_rag.md",
+          "source_quote": "initial encoding into short-term working memory, consolidation into a cohesive knowledge structure in long-term memory, and retrieval",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "progress-without-measurement",
+      "status": "not_supported_by_source",
+      "reason": "The source frames the curve as relationship between effort and resulting performance; PR49 must not promote improvement claims without observable performance evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Learning_Curve_rag.md",
+          "source_quote": "the question is not just whether a team can do something today, but how quickly it can become reliably good at it",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Learning_Curve_rag.md",
+      "source_quote": "moving from novice incompetence toward expert mastery",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for learning curve as measured capability consolidation over time.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card makes learning-rate assumptions inspectable."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "model_id": "psychological-safety",
+  "source_file": "Psychological_Safety_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "psychological-safety.surface-withheld-risk-signals",
+      "status": "supported",
+      "name": "Speak-up risk requires withheld-signal evidence",
+      "mechanism": "When fear, humiliation risk, status, or impression management may keep bad news, upward challenge, local knowledge, or mistakes out of the decision record, the answer must identify the specific withheld signal and create a low-fear, nonpunishing way to surface both objective and personal data before treating the team view as reliable.",
+      "activation_shape": {
+        "use_when": [
+          "The team must surface bad news early, challenge assumptions upward, or admit mistakes before they become expensive.",
+          "Decision quality depends on local knowledge that senior leaders do not directly observe.",
+          "Silence, fear, humiliation risk, status pressure, or impression management could be hiding decision-relevant evidence."
+        ],
+        "do_not_use_when": [
+          "The request is only for a warmer culture, more politeness, or protection from challenge.",
+          "The case gives no reason to believe dissent, bad news, mistakes, local knowledge, or personal data are being withheld.",
+          "The team already has enough evidence for a decision or reversible experiment and is using discussion to postpone action."
+        ],
+        "case_evidence_needed": [
+          "The specific bad news, upward challenge, execution mistake, local observation, or personal data that may not be said.",
+          "The fear, status relationship, humiliation risk, or impression-management pressure that could suppress the signal.",
+          "The decision, incident review, strategy challenge, product risk review, or postmortem that would change if the signal surfaced."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-withheld-signal",
+          "description": "Before invoking psychological safety, identify the concrete risk signal, assumption challenge, mistake, local knowledge, or personal data that may be missing from the visible conversation.",
+          "evidence_required": [
+            "A plausible suppressed signal such as bad news, upward challenge, execution mistakes, local knowledge, or personal data.",
+            "The decision or learning process that depends on that signal.",
+            "Why the visible consensus may be incomplete without that signal."
+          ],
+          "good_output_shape": [
+            "Names the missing signal rather than saying only that the team needs safety.",
+            "Connects the missing signal to decision quality, learning, or early error correction.",
+            "Separates source-backed speak-up risk from generic culture improvement."
+          ]
+        },
+        {
+          "requirement_id": "reduce-fear-enough-for-candor",
+          "description": "Specify a nonpunishing, simple, and specific way to invite the withheld signal so people can voice concerns, challenge assumptions, and admit mistakes without making comfort or harmony the goal.",
+          "evidence_required": [
+            "The interpersonal risk that makes candor costly, such as fear of retribution, humiliation, status pressure, or defensive reaction.",
+            "The kind of data that must be welcomed, including objective facts and personal data about how people are affected.",
+            "The meeting, review, or decision point where the invitation for candor must occur."
+          ],
+          "good_output_shape": [
+            "Creates a concrete speak-up path for the withheld evidence.",
+            "Uses nonpunishing and specific language to keep the focus on truth-seeking.",
+            "Keeps discomfort acceptable when silence would be more dangerous."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What bad news, upward challenge, execution mistake, local knowledge, or personal data is still not being said?",
+        "Who would bear fear, humiliation, status, or impression-management risk by saying it?",
+        "What decision or learning process would change if that withheld signal became discussable?",
+        "Is silence more dangerous than the discomfort of surfacing this concern now?"
+      ],
+      "misuse_guards": [
+        "Do not treat psychological safety as generic kindness, harmony, or protection from challenge.",
+        "Do not infer safety from visible agreement until suppressed bad news, mistakes, local knowledge, and personal data have been checked.",
+        "Do not keep discussing after the evidence is already sufficient for a decision or reversible experiment.",
+        "Do not ask for candor without naming the interpersonal risk that makes candor costly."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "where individuals feel safe to voice concerns, challenge assumptions, and admit mistakes without fear of retribution or humiliation.",
+          "section_hint": "unknown_section",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "the team must surface bad news early, challenge assumptions upward, or admit execution mistakes before they become expensive.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "work is cross-functional and decision quality depends on local knowledge that senior leaders do not directly observe.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "providing and welcoming all relevant data, which includes both **objective data** (facts about ideas, events, or situations) and **personal data** (how individuals feel about what is happening to them).",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "Maintaining nonpunishing, simple, and specific language is essential to keep the focus on the search for truth.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "silence is more dangerous than discomfort",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance keeps the model anchored on speak-up risk: withheld bad news, upward challenge, mistakes, local knowledge, and personal data under fear, humiliation, status, or impression-management pressure.",
+        "dropped_material": [
+          "Did not turn broad radical-transparency or culture-building language into a standalone affordance unless it changes what suppressed evidence must be surfaced.",
+          "Did not preserve generic listening or empathy material beyond the source-backed function of making withheld decision evidence discussable."
+        ],
+        "open_questions": [
+          "Reviewer should confirm whether personal data belongs directly in runtime case evidence or remains a review-only clue for likely behavior."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "psychological-safety.convert-candor-into-correction",
+      "status": "supported",
+      "name": "Candor must become bias-fighting correction",
+      "mechanism": "When a prevailing view, executive preference, prior commitment, or group pressure may cause dissent and inconvenient evidence to be filtered out, the answer must turn speak-up into a decision process: require antithesis, disconfirming evidence, diverse review, and clear ownership or decision rights so candor produces correction rather than unresolved talk.",
+      "activation_shape": {
+        "use_when": [
+          "The team risks groupthink, confirmation bias, or filtered evidence around a prevailing leadership view.",
+          "A proposal needs challenge by antithesis before learning is synthesized.",
+          "Leaders are inviting openness, but ownership, standards, or decision rights are too vague for correction to matter."
+        ],
+        "do_not_use_when": [
+          "The case only needs people to be nicer to one another and does not involve decision quality, bias, learning, or correction.",
+          "The team is already reconciling disconfirming evidence and has clear decision rights for acting on what emerges.",
+          "More discussion would mainly delay a hard call that already has enough evidence for a decision or reversible experiment."
+        ],
+        "case_evidence_needed": [
+          "The prevailing view, executive preference, prior decision, or group pressure that could suppress dissent.",
+          "The missing antithesis, critical viewpoint, disconfirming evidence, or diverse review input.",
+          "The owner, standard, decision right, or next correction step that will convert surfaced dissent into action."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "force-antithesis-before-synthesis",
+          "description": "Require the current thesis to be challenged by a serious antithesis before synthesis, and make the ignored critical viewpoint or disconfirming evidence explicit.",
+          "evidence_required": [
+            "The current thesis, hypothesis, proposed solution, or leadership-favored view.",
+            "The strongest opposing argument, critical viewpoint, or disconfirming data.",
+            "Why that opposing view might otherwise remain silent or be dismissed."
+          ],
+          "good_output_shape": [
+            "States the thesis and antithesis before settling on a synthesis.",
+            "Names the critical viewpoint that would be ignored if the decision failed.",
+            "Insists on identifying and reconciling disconfirming evidence instead of treating agreement as proof."
+          ]
+        },
+        {
+          "requirement_id": "assign-correction-path",
+          "description": "Pair openness with ownership, standards, and decision rights so surfaced dissent changes the work, the decision, or the reversible experiment instead of becoming venting without accountability.",
+          "evidence_required": [
+            "The owner or decision-maker who can act on the surfaced concern.",
+            "The standard or decision right that determines what happens after candor.",
+            "The correction, mitigation, review, or reversible experiment that should follow."
+          ],
+          "good_output_shape": [
+            "Clarifies who owns the correction after dissent is heard.",
+            "Connects the challenge to a decision, standard, mitigation, or experiment.",
+            "Prevents openness from becoming talk without correction or accountability."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the thesis, and what antithesis has not yet been argued seriously?",
+        "If this decision fails, whose critical viewpoint did we ignore, and why did they remain silent?",
+        "What disconfirming evidence would contradict the prevailing hypothesis?",
+        "Who owns the correction, and what decision right or standard makes action possible after candor?"
+      ],
+      "misuse_guards": [
+        "Do not count openness as useful unless it changes decision quality, learning, bias exposure, or correction.",
+        "Do not let a leadership-favored idea become the only acceptable evidence filter.",
+        "Do not invite dissent while leaving ownership, standards, or decision rights vague.",
+        "Do not use psychological safety to postpone a decision or reversible experiment once the evidence is sufficient."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "This ensures every idea or hypothesis is challenged by its antithesis before the learning is synthesized.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "absence of safety causes teams to suppress dissent and filter evidence to match the prevailing leadership view.",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "The pressure to conform, leading individuals to suppress doubts or criticism, especially of ideas favored by leadership.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "Implement a **dialectic standard** (thesis, antithesis, synthesis).",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "Insist on **identifying and reconciling disconfirming evidence**.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "leaders invite openness but leave ownership, standards, or decision rights vague, creating talk without correction or accountability.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance keeps the information-suppression mechanism operational: candor earns weight only when it becomes antithesis, disconfirming evidence, diverse review, and accountable correction.",
+        "dropped_material": [
+          "Did not split authority-bias, confirmation-bias, commitment-bias, groupthink, and dialectic-standard material into separate affordances because the source uses them as one decision-correction pattern.",
+          "Did not promote relation semantics as standalone affordances; they remain useful context for why dissent is suppressed or filtered."
+        ],
+        "open_questions": [
+          "A future relation-aware pass may separate authority-bias and confirmation-bias tensions, but this record keeps them inside the same suppression-to-correction treatment."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "comfort-harmony-culture-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly rejects interpreting psychological safety as comfort, politeness, or protection from challenge; generic culture or harmony advice would invert the model's decision-quality function.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "psychological safety is redefined as comfort, politeness, or protection from challenge instead of candid truth in service of better decisions.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "risks mistaking comfortable agreement for challenging truth",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "more-discussion-as-safety-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports candor for learning and correction, but it warns against using additional discussion to avoid hard calls when enough evidence exists for a decision or reversible experiment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "teams are using \"more discussion\" to postpone hard calls that already have enough evidence for a decision or a reversible experiment.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Psychological_Safety_rag.md",
+          "source_quote": "A safe environment should not lead to **analysis paralysis** (being stuck in endless questioning).",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Psychological_Safety_rag.md",
+      "source_quote": "where individuals feel safe to voice concerns, challenge assumptions, and admit mistakes without fear of retribution or humiliation.",
+      "section_hint": "unknown_section",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Psychological_Safety_rag.md",
+      "source_quote": "The low-fear environment promoted by this model is crucial in contexts defined by complexity, uncertainty, and the need for continuous learning:",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Psychological_Safety_rag.md",
+      "source_quote": "absence of safety causes teams to suppress dissent and filter evidence to match the prevailing leadership view.",
+      "section_hint": "Structured Tension Curation (2026-02-27)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Psychological_Safety_rag.md",
+      "source_quote": "leaders invite openness but leave ownership, standards, or decision rights vague, creating talk without correction or accountability.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Psychological_Safety_rag.md",
+      "source_quote": "teams are using \"more discussion\" to postpone hard calls that already have enough evidence for a decision or a reversible experiment.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "review_note",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection note, full Psychological_Safety_rag.md source, activation curation, intervention semantics, and relation semantics. Extracted two affordances: withheld speak-up evidence under interpersonal/status risk, and suppression-to-correction decision discipline. The record deliberately avoids generic stakeholder-alignment or culture language.",
+    "dropped_material": [
+      "Did not create separate affordances for radical transparency, idea meritocracy, believability weighting, listening, empathy, AI ethics, System 1/System 2 self-scripts, or curse-of-knowledge communication because the source uses them as supporting context unless they change speak-up evidence or correction requirements.",
+      "Did not create a third affordance for ownership and decision rights because that material is strongest as a treatment requirement and misuse guard inside the candor-to-correction affordance.",
+      "Did not promote authority-bias, confirmation-bias, commitment-bias, or systems-thinking relations as standalone affordances in this record."
+    ],
+    "open_questions": [
+      "Reviewer should check whether the accountability material deserves a separate affordance in a later pass; this extraction keeps it merged because the operational loss is small when it remains a required correction path.",
+      "Reviewer flag: source mixes Dalio-style radical transparency language with psychological-safety language, so runtime use should stay anchored to speak-up risk, interpersonal risk, learning, and information suppression rather than generic culture transformation."
+    ],
+    "review_status": "draft"
+  }
+}

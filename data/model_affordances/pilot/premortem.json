@@ -1,0 +1,207 @@
+{
+  "model_id": "premortem",
+  "source_file": "Premortem_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "premortem.simulated-failure-to-plan-change",
+      "status": "supported",
+      "name": "Simulated failure converted into plan changes",
+      "mechanism": "Before commitment, treat the plan as already failed, work backward through plausible causes and domino effects, then convert controllable failure paths into mitigations, owners, reversal thresholds, or decision changes.",
+      "activation_shape": {
+        "use_when": [
+          "A project or decision is still pre-commitment and failure would be costly.",
+          "Optimism, social pressure, or executive momentum is making a favored plan feel safer than it is.",
+          "Success depends on multiple conditions lining up and weak links or contingency gaps need surfacing."
+        ],
+        "do_not_use_when": [
+          "The plan is already committed and premortem language would only become after-the-fact criticism theater.",
+          "The team will list worries without assigning owners, mitigations, or decision changes."
+        ],
+        "case_evidence_needed": [
+          "The current plan or thesis, including the success conditions that must line up.",
+          "Implicit assumptions the team would have to believe for the plan to hold.",
+          "Plausible failure causes, downstream domino effects, and the worst-case outcome.",
+          "Which surfaced risks are controllable enough to change before launch."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "simulate-failure",
+          "description": "Require the answer to assume the project has failed before launch and work backward to plausible causes instead of starting from the preferred success case.",
+          "evidence_required": [
+            "A concrete simulated failure state for the project or decision.",
+            "Plausible reasons why that failure occurred, including hidden assumptions and weak links."
+          ],
+          "good_output_shape": [
+            "Names the simulated failure and the causal path that could produce it.",
+            "Maps core assumptions using what-would-you-have-to-believe framing.",
+            "Checks whether the worst case is bad enough to alter the decision."
+          ]
+        },
+        {
+          "requirement_id": "bind-risks-to-changes",
+          "description": "Require important surfaced risks to be translated into owners, mitigations, reversal triggers, stop-loss thresholds, or explicit decision changes.",
+          "evidence_required": [
+            "The surfaced risk or failure path and whether it can be controlled before launch.",
+            "The mitigation, owner, threshold, checkpoint, or decision change that will address it."
+          ],
+          "good_output_shape": [
+            "Separates actionable risks from worries that cannot change the plan.",
+            "Attaches owners, mitigations, thresholds, or decision changes to retained risks.",
+            "Defers runtime use when the output remains an obvious worry list."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What would you have to believe for the current plan to work?",
+        "Is the worst case bad enough to change the plan or commitment level?",
+        "Do we still remember the question we are trying to answer, or have we substituted an easier one?"
+      ],
+      "misuse_guards": [
+        "Do not treat a generic list of worries as a completed premortem unless it changes ownership, mitigations, or decisions.",
+        "Do not replace the backward failure simulation with a pro-con list that makes positives more available than failure causes.",
+        "Do not use the model after commitment as criticism theater when the team is unwilling to alter the plan."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "Before the project begins, the team gathers and assumes that the project has failed spectacularly. They then spend time detailing the plausible reasons *why* it failed, operating under the psychological advantage of hindsight.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "Instead of just considering the first step or immediate consequence (e.g., \"We launch the product\"), the Premortem forces visualization of the entire chain of consequences, or **\"all the dominoes\"** that could fall, extending beyond immediate, self-imposed consequences.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "This involves meticulously spelling out all the implicit assumptions inherent in the project plan and pressure-testing them against reality.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "**Most useful when** a project is still pre-commitment and the cost of discovering failure modes early is much lower than discovering them after launch.",
+          "section_hint": "Strengths (Most Powerful Contexts):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "**Works best when** social pressure, optimism, or executive momentum would otherwise suppress dissent and make obvious-looking plans feel safer than they are.",
+          "section_hint": "Strengths (Most Powerful Contexts):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "**Best used when** success depends on multiple conditions lining up and the team needs to expose weak links, reversibility limits, and contingency gaps in advance.",
+          "section_hint": "Strengths (Most Powerful Contexts):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "**Danger when** the exercise produces an obvious list of worries without owners, mitigations, or decision changes tied to what was surfaced.",
+          "section_hint": "Weaknesses and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "**Danger when** premortem language is used after commitment only as criticism theater rather than as a pre-decision tool for improving the plan.",
+          "section_hint": "Weaknesses and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "A common anti-pattern is substituting the deep, critical work of a Premortem with a simpler, more available tool, such as a basic pro-con list.",
+          "section_hint": "Weaknesses and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "Premortem surfaces hidden failure assumptions before escalation by forcing teams to write explicit falsification checks, reversal triggers, and stop-loss thresholds that are binding at checkpoint review.",
+          "section_hint": "Conflicting Relationships (Antagonists):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "\"Is the worst case bad enough?\"",
+          "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "\"What would you have to believe?\" to accept the current plan's core assumptions.",
+          "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "\"Do we still remember the question we are trying to answer? Or have we substituted an easier one?\"",
+          "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Condensed the raw source and reviewed curation into one operational contract: simulate failure before commitment, identify plausible causes and domino effects, then bind actionable risks to plan changes.",
+        "dropped_material": [
+          "Did not split systems-thinking, second-order-thinking, competitive strategy, Digital Twins, or organizational design into separate affordances because they support or contextualize the same core premortem operation in this source."
+        ],
+        "open_questions": [
+          "Future relation-aware review could decide whether second-order-thinking deserves a separate affordance rather than remaining inside this treatment requirement."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Premortem_rag.md",
+      "source_quote": "The **Premortem** is a powerful decision-making technique that deliberately introduces prospective hindsight to mitigate common cognitive biases that lead to project failure.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Premortem_rag.md",
+      "source_quote": "Its fundamental essence is to force participants to **look backward from a simulated future failure** to identify its causes.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Premortem_rag.md",
+      "source_quote": "The Premortem is structurally an effort to convert uncertain risks into controllable elements.",
+      "section_hint": "Powerful Analogies and Metaphors:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "One high-confidence affordance was retained because the source is strongest on prospective hindsight before commitment and on converting surfaced failure paths into concrete changes.",
+    "dropped_material": [
+      "Broad examples in financial advising, competitive strategy, and organizational systems design were treated as application contexts rather than separate runtime affordances.",
+      "Relation curation around systems-thinking, second-order-thinking, confirmation-bias, and commitment-bias was used only where it clarified the core operational contract."
+    ],
+    "open_questions": [
+      "Whether later model-relation packets should preserve second-order-thinking as a distinct allied operating requirement."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,404 @@
+{
+  "model_id": "systems-thinking",
+  "source_file": "Systems_Thinking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "systems-thinking.structure-over-events",
+      "status": "supported",
+      "name": "Diagnose recurring events through system structure",
+      "mechanism": "Before treating a visible event, separate the immediate case from the system design that produced it, expose the working assumptions, and decide whether recurring symptoms point to deeper structure rather than a local fix.",
+      "activation_shape": {
+        "use_when": [
+          "Recurring symptoms, repeated escalations, or oscillating outcomes suggest the local patch is missing the source behavior.",
+          "A visible event may be a symptom of deeper structural flaws rather than the true problem.",
+          "A leadership or management discussion is staying on the immediate case and needs the machine-level cause."
+        ],
+        "do_not_use_when": [
+          "The case is a bounded one-off event with no recurring pattern, structural signal, or system behavior to diagnose.",
+          "The available evidence does not yet identify any system design, assumption, or repeated outcome to examine."
+        ],
+        "case_evidence_needed": [
+          "The immediate case details and the repeated event pattern that makes a local patch suspect.",
+          "Candidate structures, designs, or rules that could have produced the observed outcome.",
+          "The mental model or assumption currently being used to explain the system."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "two-level-diagnosis",
+          "description": "The answer must handle both the case-at-hand level and the machine level, naming what immediate response is needed and what underlying structure should be investigated or redesigned.",
+          "evidence_required": [
+            "A visible symptom, event, escalation, or oscillating outcome.",
+            "A candidate machine-level structure or design that plausibly produced the symptom.",
+            "An exposed assumption about why the system is behaving this way."
+          ],
+          "good_output_shape": [
+            "Separate the immediate case response from the underlying system diagnosis.",
+            "Name the structural cause to investigate before prescribing a local fix.",
+            "State which assumption about the system should be made visible and checked."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What structure, design, or recurring pattern produced this visible event?",
+        "What changes when the discussion moves from the case-at-hand level to the machine level?",
+        "Which assumption about the system needs to be exposed before others can check it?"
+      ],
+      "misuse_guards": [
+        "Do not treat the surface event as the root cause when the source points to deeper structural flaws.",
+        "Do not let attention to the immediate case become micromanagement while the underlying system remains unexamined."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "The presenting issue (the \"event\") is often symptomatic of deeper problems or structural flaws within the system.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "By looking deeper, systems thinkers seek to understand **root causes** rather than merely treating surface symptoms.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "A key practice is to **expose mental models to the light of day**.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "discussions should be conducted at two levels: the **machine level** (exploring the structure and design that produced the outcome) and the **case-at-hand level** (addressing the immediate situation).",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Focusing only on the \"case-at-hand\" leads to micromanagement, whereas systems thinking requires addressing the underlying system.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Most useful when recurring symptoms, repeated escalations, or oscillating outcomes suggest the local patch is not touching the real source of behavior.",
+          "section_hint": "Strengths (Contexts of High Utility):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "systems-thinking.feedback-loop-mapping",
+      "status": "supported",
+      "name": "Map circular feedback before selecting a fix",
+      "mechanism": "When cause and effect are delayed, circular, or distributed, require a dynamic map of feedback loops, actors, constraints, and downstream effects before choosing the intervention.",
+      "activation_shape": {
+        "use_when": [
+          "Cause and effect appear delayed, circular, or distributed across multiple actors and constraints.",
+          "No single proximate cause explains the observed pattern on its own.",
+          "A decision is likely to ramify through distant parts of the system."
+        ],
+        "do_not_use_when": [
+          "The problem is dominated by a direct, proximate cause that does not require delayed or circular system explanation.",
+          "The team is using a linear reactive frame for a genuinely circular problem without evidence of the relevant loops."
+        ],
+        "case_evidence_needed": [
+          "The actors, incentives, constraints, and feedback loops that interact in the case.",
+          "Any known delays between an intervention and its visible effects.",
+          "Likely downstream effects created by acting at one point in the system."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "dynamic-loop-map",
+          "description": "The answer must represent the system dynamically, identifying relevant feedback loops and delays before recommending a fix or narrowing to a simpler analytic model.",
+          "evidence_required": [
+            "Named actors or parts that mutually influence one another.",
+            "At least one suspected reinforcing or balancing feedback loop.",
+            "A downstream effect or delay that could change the outcome after the intervention."
+          ],
+          "good_output_shape": [
+            "Describe the causal loop or stock-and-flow relationship in plain language.",
+            "Identify where the loop reinforces, balances, delays, or distributes the effect.",
+            "Explain how acting at one point could create effects elsewhere in the system."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which feedback loops, delays, or distributed interactions make a single proximate cause insufficient?",
+        "How could a decision at one point ramify into an effect at a distant one?",
+        "What parts of the system are mutually dependent rather than separable?"
+      ],
+      "misuse_guards": [
+        "Do not apply reactive linear thinking to a circular interconnected system.",
+        "Do not choose a fix before the relevant feedback loops and delayed effects have been made visible."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Systems are inherently circular and proactive, not linear and reactive.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Systems dynamics often involves understanding *reinforcing feedback* (driving growth or decrease) and *balancing feedback*.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Systems thinkers utilize tools like **causal loop diagrams** and **stock and flow diagrams** to visualize the system.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Causal loop diagrams specifically showcase the feedback loops at work.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Works when multiple actors, incentives, constraints, and feedback loops interact so that no single proximate cause explains the pattern on its own.",
+          "section_hint": "Strengths (Contexts of High Utility):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "It allows leaders to visualize the dynamics of complex systems and **foresee how a decision at one point will ramify to create an effect at a distant one**.",
+          "section_hint": "Strengths (Contexts of High Utility):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Applying a reactive, linear mode of thinking to a problem that exists in a **circular, interconnected system**.",
+          "section_hint": "Common Anti-Patterns and Misapplication:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "systems-thinking.metric-leverage-design",
+      "status": "supported",
+      "name": "Convert system maps into measured leverage points",
+      "mechanism": "A system explanation earns weight only when it links the goal, process, measurement point, lever, and progress signal so the map can change outcomes instead of remaining descriptive.",
+      "activation_shape": {
+        "use_when": [
+          "A system map or causal story exists but the team still needs a concrete intervention variable.",
+          "Strategic metrics must be designed from the goal and process rather than copied from visible symptoms.",
+          "The discussion risks producing rich diagrams without saying where to intervene or what signal would show progress."
+        ],
+        "do_not_use_when": [
+          "The team cannot name a variable to move, a place to intervene, or a progress signal after mapping the system.",
+          "The work is only broad explanation and cannot yet bridge from analysis into action."
+        ],
+        "case_evidence_needed": [
+          "The goal the system is meant to serve.",
+          "The process or machine that produces the current outcome.",
+          "Candidate measurement points, levers, and signals of progress."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "goal-process-lever-chain",
+          "description": "The answer must turn the system map into a goal-process-measure-lever chain, then identify what signal should move if the intervention is working.",
+          "evidence_required": [
+            "A named goal for the system.",
+            "A process view showing where the current outcome is produced.",
+            "At least one candidate metric tied to a lever that can adjust the process."
+          ],
+          "good_output_shape": [
+            "State the goal before choosing the metric.",
+            "Locate the measurement point within the process or machine.",
+            "Name the lever, the variable it should move, and the progress signal to watch."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which variable should move, where should the intervention occur, and what signal would show progress?",
+        "What goal and process stage make this metric meaningful rather than decorative?",
+        "Which lever tied to the metric can actually adjust the process and change outcomes?"
+      ],
+      "misuse_guards": [
+        "Do not let a system map remain a rich diagram without a leverage point or progress signal.",
+        "Do not mistake understanding for implementation when the source says systems thinking cannot bridge that gap by itself."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "This involves first knowing the goal, then understanding the process (the \"machine\"), identifying the key points in the process that are best for measurement, and finally, exploring how to create levers (tied to those metrics) to adjust the process and change outcomes.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "These metrics are often constructed alongside **process flow diagrams** and procedures manuals.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Danger when teams produce rich diagrams, broad causal stories, or elegant architecture language but still cannot say which variable to move, where to intervene, or what signal would show progress.",
+          "section_hint": "Common Anti-Patterns and Misapplication:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "It provides understanding but **cannot bridge the gap to implementation**; that requires human spirit and resolve.",
+          "section_hint": "Weaknesses and Limitations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "systems-thinking.architecture-misdiagnosis-test",
+      "status": "supported",
+      "name": "Test social-system causes before architecture rewrites",
+      "mechanism": "Before approving a rewrite or redesign, test whether recurring failures persist after ownership boundaries, decision rights, feedback loops, and cross-team accountability are made explicit.",
+      "activation_shape": {
+        "use_when": [
+          "A team wants a full architecture rewrite or technical redesign in response to recurring failures.",
+          "Architecture debt is being used as the explanation while coordination debt or ownership ambiguity may be driving the pattern.",
+          "A cleaner technical stack could reproduce the same failure because social-system design remains unresolved."
+        ],
+        "do_not_use_when": [
+          "The failure is already traced to a specific technical defect and does not depend on ownership, decision rights, or feedback design.",
+          "There is no recurring failure pattern to distinguish from the immediate technical symptom."
+        ],
+        "case_evidence_needed": [
+          "The recurring failure pattern the rewrite is meant to solve.",
+          "Current ownership boundaries, decision rights, feedback loops, and cross-team accountability.",
+          "Evidence about whether the pattern persists once those social-system factors are made explicit."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "social-system-before-rewrite",
+          "description": "The answer must test the social structure operating the system before treating architecture debt as the root cause of recurring failures.",
+          "evidence_required": [
+            "The proposed rewrite or redesign and the failure pattern it targets.",
+            "Evidence for or against coordination debt, ownership ambiguity, weak feedback loops, or cross-team accountability gaps.",
+            "A check of whether clearer coordination would remove the failure pattern before architecture changes are approved."
+          ],
+          "good_output_shape": [
+            "Separate the messy-code symptom from the coordination or ownership cause hypothesis.",
+            "Ask whether the failure pattern persists once decision rights and feedback loops are explicit.",
+            "Approve architecture work only after the social-system test does not explain the recurring failure."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are the failures caused by the technical system itself or by the social structure operating it?",
+        "Does the failure pattern persist once ownership boundaries, decision rights, and feedback loops are explicit?",
+        "Would a cleaner stack reproduce the same failure if cross-team accountability stays unresolved?"
+      ],
+      "misuse_guards": [
+        "Do not let architecture debt become the default explanation for coordination debt or ownership ambiguity.",
+        "Do not approve a rewrite that solves messy code while leaving decision rights, feedback loops, and accountability unresolved."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Best when a team wants a full architecture rewrite or technical redesign, but the recurring failures may be driven by ownership ambiguity, weak feedback loops, or coordination breakdown rather than technical debt alone.",
+          "section_hint": "Strengths (Contexts of High Utility):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Architecture debt is used as the explanation when the recurring failures are actually coordination debt or ownership ambiguity.",
+          "section_hint": "Weaknesses and Limitations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "A cleaner stack can reproduce the same failure if decision rights, feedback loops, or cross-team accountability remain unresolved.",
+          "section_hint": "Weaknesses and Limitations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "The rewrite solves the symptom (messy code) while leaving the cause (unclear who decides, who owns, who has skin in the outcome) intact.",
+          "section_hint": "Weaknesses and Limitations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Before approving a rewrite, test whether the failures are caused by the system itself or by the social structure operating it.",
+          "section_hint": "Weaknesses and Limitations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Systems_Thinking_rag.md",
+          "source_quote": "Before approving a redesign, ask whether the failure pattern persists once ownership boundaries, decision rights, and feedback loops are made explicit.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Systems_Thinking_rag.md",
+      "source_quote": "Its core purpose is to serve as a **framework for seeing interrelationships rather than things**, and for seeing patterns of change rather than static \"snapshots\".",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Systems_Thinking_rag.md",
+      "source_quote": "Systems thinking provides actionable frameworks and heuristics crucial for complex decision-making, particularly in strategic and organizational contexts.",
+      "section_hint": "The Playbook in Action:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Systems_Thinking_rag.md",
+      "source_quote": "Systems thinking is most powerful when dealing with **complex, non-linear, and highly uncertain problems**.",
+      "section_hint": "Strengths (Contexts of High Utility):",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted four operational affordances from the source: structure-over-events diagnosis, feedback-loop mapping, metric/leverage design, and the architecture-misdiagnosis test. Curation files were used only as orientation; exact evidence is drawn from Systems_Thinking_rag.md.",
+    "dropped_material": [
+      "Did not create separate affordances for ecosystem, iceberg, orchestra, or fractal metaphors because they explain the model but do not add distinct runtime operational contracts beyond the extracted mechanisms.",
+      "Did not create standalone relation affordances for multidisciplinary allies, specialization, WYSIATI, simplification, or decomposition because those are better held by relation semantics unless a later runtime contract needs them.",
+      "Did not extract a generic complexity-navigation affordance because the stronger records already specify what evidence, question, sequence, or treatment changes."
+    ],
+    "open_questions": [
+      "A later reviewer could decide whether assumption exposure deserves a separate affordance, but in this draft it is folded into the structure-over-events diagnosis where the source makes it operational."
+    ],
+    "review_status": "draft"
+  }
+}

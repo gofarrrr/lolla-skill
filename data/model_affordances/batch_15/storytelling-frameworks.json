@@ -1,0 +1,145 @@
+{
+  "model_id": "storytelling-frameworks",
+  "source_file": "Storytelling_Frameworks_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "storytelling-frameworks.structure-behavior-change-message",
+      "status": "supported",
+      "name": "Structure behavior-change message",
+      "mechanism": "When true information is not yet sticky enough to change behavior, use a simple story framework to define what the audience should know, think, feel, or do differently, then keep every detail tied to that outcome.",
+      "activation_shape": {
+        "use_when": [
+          "Facts are available but not yet consequential, memorable, or decision-relevant.",
+          "The audience needs coherence and tension rather than another bullet list.",
+          "Communication must change behavior, alignment, persuasion, or retention."
+        ],
+        "do_not_use_when": [
+          "The story the speaker wants to tell is not the story the audience needs to hear.",
+          "The narrative arc would launder weak evidence, missing trade-offs, or causal gaps.",
+          "A complex framework would confuse real-time communication more than it helps."
+        ],
+        "case_evidence_needed": [
+          "The specific audience outcome: know, think, feel, or do.",
+          "The simple story structure being used.",
+          "Which details earn their place and which should be cut.",
+          "The evidence or data that must remain visible beneath the story."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-audience-outcome-before-story",
+          "description": "Require the answer to choose a simple structure only after defining the audience outcome and pruning details that do not advance it.",
+          "evidence_required": [
+            "The audience and their current belief or behavior.",
+            "The desired change in knowledge, belief, emotion, or action.",
+            "The simple story framework fit for the moment.",
+            "The details that support the outcome and the evidence behind them."
+          ],
+          "good_output_shape": [
+            "States the audience outcome first.",
+            "Uses a compact structure such as context-conflict-outcome-takeaway.",
+            "Keeps detail burden low.",
+            "Pairs emotional sequence with substance."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What does the audience need to know, think, feel, or do differently?",
+        "Which story detail would be cut without losing the point?",
+        "Does the story make the truth clearer or merely more pleasing?"
+      ],
+      "misuse_guards": [
+        "Do not mistake a slogan or abstract wisdom for a story.",
+        "Do not tell the story the communicator wants if it misses the audience's problem.",
+        "Do not let coherence outrun reality or evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "**Define outcomes** for the audience first",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "story the audience needs to hear",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "Story Coherence Outruns Reality",
+          "section_hint": "Common Anti-Patterns and Dangerous Misapplications",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports storytelling frameworks as audience-outcome structure, not decoration.",
+        "dropped_material": [
+          "Did not extract every named framework as separate cards.",
+          "Did not generate product copy or final answer prose."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card is too close to narratives or adds useful structure."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "storytelling-as-decoration",
+      "status": "not_supported_by_source",
+      "reason": "The source frames storytelling as behavior-change structure with audience outcomes, not ornamental narrative polish.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "Best when communication must change behavior",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "emotion-without-action-logic",
+      "status": "not_supported_by_source",
+      "reason": "The source supports emotional engagement only when tied to a clear audience outcome and structured message.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "what you want the audience to **know, think, feel, or do differently**",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Storytelling_Frameworks_rag.md",
+      "source_quote": "facts are true but not yet sticky",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for story framework selection and audience outcome discipline.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should check whether paired narrative cards require tighter caps."
+    ],
+    "review_status": "draft"
+  }
+}

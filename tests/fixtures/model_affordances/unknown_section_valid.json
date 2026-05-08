@@ -1,0 +1,69 @@
+{
+  "model_id": "unknown-section-model",
+  "source_file": "Unknown_Section_Model.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "unknown-section-model.evidence-before-treatment",
+      "status": "supported",
+      "name": "Evidence before treatment checkpoint",
+      "mechanism": "The record keeps operational treatment tied to exact source support while allowing the section label to remain unknown when no reliable heading exists.",
+      "activation_shape": {
+        "use_when": [
+          "The source quote supports a treatment move but does not sit under a reliable heading.",
+          "A reviewer can preserve quote provenance without inventing a section label."
+        ],
+        "do_not_use_when": [
+          "A nearby heading exists and can be named without changing the source truth."
+        ],
+        "case_evidence_needed": [
+          "The exact quote that supports the affordance and the reason the section hint is unknown."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "preserve-unknown-section",
+          "description": "Keep the exact quote and mark the section as unknown instead of inventing a source heading.",
+          "evidence_required": [
+            "An exact source quote that appears in the source file."
+          ],
+          "good_output_shape": [
+            "A provenance span with section_hint set to unknown_section and no invented heading."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Does the exact quote support this treatment move without requiring an invented section label?"
+      ],
+      "misuse_guards": [
+        "Do not create a plausible heading when the source has no reliable section marker."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Unknown_Section_Model.md",
+          "source_quote": "This exact source sentence supports an affordance even though the section label is not reliably recoverable.",
+          "section_hint": "unknown_section",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Unknown_Section_Model.md",
+      "source_quote": "This exact source sentence supports an affordance even though the section label is not reliably recoverable.",
+      "section_hint": "unknown_section",
+      "extraction_type": "explicit",
+      "confidence": "medium"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Fixture proving unknown_section is a valid provenance value when the source does not offer a reliable heading.",
+    "dropped_material": [],
+    "open_questions": [],
+    "review_status": "fixture"
+  }
+}

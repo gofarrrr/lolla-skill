@@ -1,0 +1,555 @@
+{
+  "model_id": "optimization-theory",
+  "source_file": "Optimization_Theory_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "optimization-theory.objective-constraint-tradeoff-fit",
+      "status": "supported",
+      "name": "Objective, constraint, and trade-off fit",
+      "mechanism": "Before recommending an allocation, require the true objective, proxy or decision variable, real constraints, and conflict metric to line up; then compare options by how capital, time, risk, headcount, bottlenecks, and interactions change the whole-system result rather than a local indicator.",
+      "activation_shape": {
+        "use_when": [
+          "The team can say what it is actually maximizing or minimizing and must distinguish the true target from a convenient proxy.",
+          "Capital, time, risk limits, headcount, governance boundaries, or operational bottlenecks materially change which option is best.",
+          "A recommendation must state what is being sacrificed, what is being protected, and which metric wins when goals conflict.",
+          "A measurable indicator, local process metric, or elegant model output could improve while drifting away from the real whole-system outcome."
+        ],
+        "do_not_use_when": [
+          "The objective cannot yet be named clearly enough to distinguish the true target from a convenient proxy.",
+          "The constraints are decorative and do not materially change which options are feasible or best.",
+          "The situation is dominated by unknown unknowns, novelty, or discontinuous system behavior where strict maximization would create false certainty.",
+          "The better move is a good-enough threshold because maximizing one objective would ignore diminishing returns."
+        ],
+        "case_evidence_needed": [
+          "The true objective function and the real outcome it is supposed to serve.",
+          "The measurable proxy, local process metric, decision variable, or model output being improved and why it still tracks the real outcome.",
+          "The capital, time, risk, headcount, governance, or bottleneck constraints that materially change the option ranking.",
+          "The explicit trade-off: what is sacrificed, what is protected, and which metric wins when goals conflict.",
+          "The interaction evidence showing that a local gain does not damage the whole-system result."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-true-target-and-proxy",
+          "description": "Anchor the recommendation to the real outcome before comparing options, and test whether the metric or variable being improved is still a faithful proxy.",
+          "evidence_required": [
+            "The stated objective or outcome the work is meant to improve.",
+            "The measurable proxy, local metric, or model output being used to judge progress.",
+            "Evidence that the proxy still tracks the real outcome rather than only the dashboard or local process.",
+            "The rejection or revision condition if the proxy has become the target."
+          ],
+          "good_output_shape": [
+            "States the true target separately from the convenient proxy.",
+            "Explains why the proxy or variable still represents the real outcome.",
+            "Rejects metric improvement when the proxy no longer tracks the target.",
+            "Avoids best-result language until the objective and proxy are aligned."
+          ]
+        },
+        {
+          "requirement_id": "bind-constraints-to-option-choice",
+          "description": "Make constraints operational by showing how actual limits change feasibility, ranking, and trade-off selection across options.",
+          "evidence_required": [
+            "The relevant capital, time, risk, headcount, governance, or bottleneck constraints.",
+            "How each constraint changes which option is feasible or best.",
+            "The protected outcome, sacrificed outcome, and winning metric under conflict.",
+            "The option or scope change required when constraints bind."
+          ],
+          "good_output_shape": [
+            "Names real constraints in operational units instead of listing decorative limits.",
+            "Shows how constraints change the option ranking.",
+            "States what is sacrificed, what is protected, and which metric wins.",
+            "Cuts or revises options that only work when the constraints are ignored."
+          ]
+        },
+        {
+          "requirement_id": "check-whole-system-effect",
+          "description": "Before accepting a local metric gain, trace the interaction path from the local change to the whole-system result and block improvements that only optimize a part.",
+          "evidence_required": [
+            "The local process, team, metric, or model output being improved.",
+            "The wider system outcome the local change is supposed to serve.",
+            "The interaction, dependency, or trade-off path connecting the local change to the whole-system result.",
+            "Evidence that the local gain will not move harm into another part of the system."
+          ],
+          "good_output_shape": [
+            "Separates local metric movement from whole-system outcome movement.",
+            "Names the dependency or interaction that makes the local gain matter.",
+            "Flags proxy gains that damage or fail to move the real outcome.",
+            "Treats whole-system fit as a requirement, not a decoration after local success."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What are we actually maximizing or minimizing, and is the measure still tracking the real outcome?",
+        "Which capital, time, risk, headcount, governance, or bottleneck constraint materially changes which option is best?",
+        "What are we sacrificing, what are we protecting, and which metric wins when goals conflict?",
+        "Which local metric could improve while the whole-system result gets worse or stays unchanged?",
+        "Are we maximizing past the point where a good-enough threshold would capture the value more efficiently?"
+      ],
+      "misuse_guards": [
+        "Do not optimize a measurable indicator, local process metric, or elegant model output after it stops tracking the real outcome.",
+        "Do not invoke best-result language until the objective, variable, constraints, and trade-offs are explicit.",
+        "Do not treat local metric improvement as whole-system improvement without tracing the relevant interactions.",
+        "Do not force strict maximization in unknown-unknown, novel, or discontinuous systems where de-risking, resilience, or scenario work is the source-backed move.",
+        "Do not keep maximizing one objective when diminishing returns make a good-enough threshold more appropriate."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Optimization Theory, as a mental model, focuses on the fundamental objective of maximizing desired outcomes or minimizing undesirable variables within a constrained system. It is the systematic pursuit of the *best possible result*.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Optimization is intrinsically linked to defining clear goals. Success is only achieved when execution serves the \"right outcome\", and all subsequent actions and decisions must align with that overall purpose.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "True optimization occurs within limits.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Most useful when the team can say what it is actually maximizing or minimizing and can distinguish the true target from a convenient proxy.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Works when capital, time, risk limits, headcount, governance boundaries, or operational bottlenecks materially change which option is best.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Best when a recommendation should state what is being sacrificed, what is being protected, and which metric wins when goals conflict.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Danger when teams optimize a measurable indicator, local process metric, or elegant model output that no longer tracks the real outcome they claim to care about.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "The conductor ensures that the collective output is greater than the sum of its parts, thereby **optimizing the whole** organization.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "The entire discipline of systems thinking is oriented toward optimizing complex interactions, moving from seeing static \"snapshots\" to recognizing interrelationships and patterns of change.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "The existence of **Unknown Unknowns** means optimization must shift to de-risking and resilience, rather than strict maximization.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "optimization-theory conflicts with satisficing (satisficing) when maximizing one objective ignores diminishing returns that a good-enough threshold would capture more efficiently.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed objective clarity, proxy discipline, constraint reality, explicit trade-off selection, and local-vs-whole-system checking into one affordance because the source presents these as the minimum conditions under which optimization is useful rather than generic efficiency rhetoric.",
+        "dropped_material": [
+          "Did not split objective naming and proxy-risk auditing into separate affordances because the source's strongest operational question is whether the named objective and its proxy still track the real outcome.",
+          "Did not split local-vs-global optimization into a standalone affordance because it functions here as the required whole-system check before a local metric gain can count.",
+          "Did not promote satisficing, non-linear dynamics, knowns-and-unknowns, systems-thinking, or prospect-theory relations into separate runtime affordances."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with trade-offs: this affordance should activate when the objective function, constraints, and winning metric must be specified, while trade-offs owns broader sacrifice and hidden-cost discipline.",
+          "Reviewer should confirm the boundary with theory-of-constraints: this record handles constraints as feasibility and option-selection limits, not as a single measured throughput cap."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "optimization-theory.leverage-bounded-analysis",
+      "status": "supported",
+      "name": "Leverage-bounded analysis before resource spend",
+      "mechanism": "Allocate analysis effort by defining the problem and end product, stating a one-day answer or hypothesis, identifying key drivers, and stopping fact gathering once evidence can prove or disprove the hypothesis, so scarce effort goes to leverage rather than completeness.",
+      "activation_shape": {
+        "use_when": [
+          "The problem is drowning in detail and the team needs to filter nonessential work toward core leverage points.",
+          "A strategic or resource-allocation problem needs key drivers and current activities tied back to the overall strategic goal.",
+          "The team is at risk of boiling the ocean by starting complex analysis or model building before defining the needed output.",
+          "Completeness or accuracy could become useless because the result would not help people make predictions or daily decisions."
+        ],
+        "do_not_use_when": [
+          "The situation requires full-distribution downside sizing, scenario planning, or worst-case stress testing before any bounded-analysis shortcut is acceptable.",
+          "The problem is genuinely novel enough that a familiar optimization framework would substitute old pattern recognition for discovery.",
+          "The source-backed task is to test every possibility or run a portfolio of experiments rather than prune analysis early.",
+          "The team has not named the objective clearly enough for key drivers or enough-facts thresholds to be meaningful."
+        ],
+        "case_evidence_needed": [
+          "The decision maker's need, problem definition, and end product the analysis must serve.",
+          "The one-day answer, hypothesis, or working solution path that can guide analysis.",
+          "The key drivers or core leverage points that would change the recommendation.",
+          "The facts needed to prove or disprove the hypothesis and the stop condition for additional analysis.",
+          "The work, detail, or attractive analysis path the team will not pursue because it does not move the leverage point."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "frame-answer-before-analysis",
+          "description": "Require a precise problem frame, one-day answer, or challengeable hypothesis before complex analysis begins.",
+          "evidence_required": [
+            "The problem definition and decision output the analysis must serve.",
+            "The one-day answer or coherent solution path available from current evidence.",
+            "The hypothesis that analysis is meant to prove, disprove, or revise.",
+            "The first facts that would most efficiently challenge the hypothesis."
+          ],
+          "good_output_shape": [
+            "States the decision output before listing analyses.",
+            "Offers a provisional one-day answer or hypothesis when evidence permits.",
+            "Links each proposed analysis step to proving or disproving the hypothesis.",
+            "Rejects analysis tasks that do not change the decision output."
+          ]
+        },
+        {
+          "requirement_id": "prune-to-key-drivers",
+          "description": "Concentrate effort on the key drivers and explicitly decide what not to do, so resource use follows leverage instead of volume.",
+          "evidence_required": [
+            "The candidate drivers or factors in the problem.",
+            "The minority of drivers likely to yield most of the insight or strategic movement.",
+            "The current activities or analysis tasks that do not advance the strategic goal.",
+            "The analysis, facts, or tasks that will be deferred or killed."
+          ],
+          "good_output_shape": [
+            "Names the key drivers before allocating analysis effort.",
+            "States what not to do or what to stop gathering.",
+            "Connects current activities to the overall strategic goal.",
+            "Keeps fact gathering to the level needed to prove or disprove the hypothesis."
+          ]
+        },
+        {
+          "requirement_id": "keep-output-decision-useful",
+          "description": "Stop accuracy and completeness work when it no longer improves predictions, daily decisions, or the recipient's ability to act.",
+          "evidence_required": [
+            "The audience or decision maker who must use the output.",
+            "The prediction, daily decision, or action the output is supposed to improve.",
+            "The added completeness or accuracy currently being pursued.",
+            "Evidence that extra precision changes the action or only increases complexity."
+          ],
+          "good_output_shape": [
+            "Defines usefulness in terms of predictions, decisions, or action.",
+            "Simplifies or stops analysis when extra accuracy does not change behavior.",
+            "Names the cost of continuing to analyze.",
+            "Avoids presenting an accurate but unusable answer as optimized."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the one-day answer or challengeable hypothesis before we start complex analysis?",
+        "Which key drivers would change the recommendation if we understood them better?",
+        "What facts are enough to prove or disprove the hypothesis?",
+        "What analysis, detail, or activity are we deciding not to do because it does not move the leverage point?",
+        "Would the added accuracy help people make predictions or daily decisions, or would it only make the answer look more complete?"
+      ],
+      "misuse_guards": [
+        "Do not start complex analysis or model building before the problem, end product, and hypothesis are framed.",
+        "Do not gather facts past the point where they prove or disprove the hypothesis.",
+        "Do not treat completeness, accuracy, or exhaustive analysis as value when the output is not usable for decisions.",
+        "Do not use a familiar optimization framework on a genuinely novel problem without testing whether the framework fits.",
+        "Do not prune analysis when worst-case downside or distribution shape must be stress-tested first."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Optimization necessitates filtering out the nonessential to focus on the core leverage points.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Defining the problem precisely",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Deciding what to do and what *not* to do, ensuring efforts are focused where they will yield the greatest return.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Using strong hypotheses to guide analysis, which helps to accelerate the discovery of the optimal path by testing assumptions efficiently.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "The principle of finding the **key drivers** saves time and effort by directing thorough analysis only where it will yield the most good, keeping the focus on how current activities advance the overall strategic goal.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Ask: **\"What's the one-day answer?\"** to force a coherent summary and solution path at any stage.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Rigorously frame the question or hypothesis *before* commencing complex analysis. Gather only enough facts to prove or disprove the hypothesis.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Optimizing for completeness or accuracy can be useless if the resulting idea does not help employees make predictions or daily decisions.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "**An accurate but useless idea is still useless**.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Applying a favorite or familiar mental model (e.g., a return on capital tree) to every problem, even novel ones, simply because it's readily available.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Use simulations to highlight the range of possible outcomes.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Kept leverage-bounded analysis separate from objective and constraint fit because this affordance changes the analysis budget and sequencing: frame the answer or hypothesis, focus key drivers, and stop nonessential fact gathering before completeness becomes waste.",
+        "dropped_material": [
+          "Did not split Pareto, hypothesis-driven work, communication simplicity, and cognitive-load examples into separate affordances because they all serve the same bounded-effort mechanism in this source.",
+          "Did not treat portfolio-of-experiments creative testing as part of this affordance because that source-backed example can require broad testing rather than early pruning.",
+          "Did not promote one-day-answer wording into a generic speed heuristic; it is retained only as a control against boiling the ocean."
+        ],
+        "open_questions": [
+          "Reviewer should confirm the boundary with prioritization and pareto-principle records once those Batch 2 extractions exist; this record should own the optimization-specific analysis-budget contract, not general task ranking or 80/20 distribution claims."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-optimize-the-objective-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source does describe maximizing desired outcomes, but it only becomes operational when the true target, proxy, constraints, and trade-offs are explicit. A generic optimize-the-objective affordance would erase the source-backed safeguards requested for this extraction.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Most useful when the team can say what it is actually maximizing or minimizing and can distinguish the true target from a convenient proxy.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Works when capital, time, risk limits, headcount, governance boundaries, or operational bottlenecks materially change which option is best.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Best when a recommendation should state what is being sacrificed, what is being protected, and which metric wins when goals conflict.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Danger when teams optimize a measurable indicator, local process metric, or elegant model output that no longer tracks the real outcome they claim to care about.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "strict-maximization-under-unknown-unknowns",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly limits optimization when unknown unknowns, novelty, diminishing returns, or discontinuous response surfaces make strict maximization misleading. Those cases should route to de-risking, resilience, satisficing, non-linear dynamics, or review rather than this affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "The existence of **Unknown Unknowns** means optimization must shift to de-risking and resilience, rather than strict maximization.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "When confronting a *genuinely novel problem*, the instinct to use previously successful optimization models (an **availability heuristic** or **substitution bias**) can lead to disastrously wrong solutions or prevent the discovery of novel, truly optimal paths.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "optimization-theory conflicts with satisficing (satisficing) when maximizing one objective ignores diminishing returns that a good-enough threshold would capture more efficiently.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "optimization-theory conflicts with non-linear-dynamics (non-linear dynamics) when optimization assumes smooth response surfaces in systems with discontinuous phase transitions.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-domain-heuristic-affordances",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source mentions Pareto, cognitive load, first principles, game theory, MECE, simulations, pitching, and experiments as examples or neighboring models. Promoting each into an optimization-theory affordance would duplicate adjacent model records and blur the narrower objective-constraint and bounded-analysis contracts.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "The Pareto Principle (80/20 Rule):",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Cognitive Load Optimization:",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "First Principles Thinking:",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "Game theory helps work through choices and competitor responses to choose the optimal strategy, often involving simulations.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "MECE structures thinking with \"maximum clarity (hence minimum confusion) and maximum completeness\".",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Optimization_Theory_rag.md",
+          "source_quote": "In creative fields, optimization means creating a portfolio of experiments rather than trying to predict winners.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Optimization_Theory_rag.md",
+      "source_quote": "Most useful when the team can say what it is actually maximizing or minimizing and can distinguish the true target from a convenient proxy.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optimization_Theory_rag.md",
+      "source_quote": "Works when capital, time, risk limits, headcount, governance boundaries, or operational bottlenecks materially change which option is best.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optimization_Theory_rag.md",
+      "source_quote": "Best when a recommendation should state what is being sacrificed, what is being protected, and which metric wins when goals conflict.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optimization_Theory_rag.md",
+      "source_quote": "Danger when teams optimize a measurable indicator, local process metric, or elegant model output that no longer tracks the real outcome they claim to care about.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optimization_Theory_rag.md",
+      "source_quote": "Optimization necessitates filtering out the nonessential to focus on the core leverage points.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optimization_Theory_rag.md",
+      "source_quote": "Rigorously frame the question or hypothesis *before* commencing complex analysis. Gather only enough facts to prove or disprove the hypothesis.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection note, full Optimization_Theory_rag.md source, Wave 1 activation curation, Wave 2 intervention semantics, and Wave 3 relation semantics. Extracted two affordances: one for true-objective, constraint, trade-off, proxy, and local-vs-whole fit; one for leverage-bounded analysis effort. No third affordance was produced, so the Batch 2 third-affordance differentiation test was not triggered.",
+    "dropped_material": [
+      "Did not extract a generic optimize-the-objective affordance because the source-backed model use requires named objectives, real constraints, explicit trade-offs, and proxy discipline.",
+      "Did not extract standalone Pareto, cognitive-load, first-principles, game-theory, MECE, simulation, pitching, or portfolio-experiment affordances; those are examples, allies, or adjacent model surfaces rather than distinct optimization-theory contracts here.",
+      "Did not promote relation curation for systems-thinking, constraints, leverage-points, confirmation-bias, risk-vs-uncertainty, satisficing, non-linear dynamics, or prospect-theory into separate runtime affordances."
+    ],
+    "open_questions": [
+      "Reviewer should check boundaries with trade-offs, pareto-principle, prioritization, and theory-of-constraints once the remaining Batch 2 resource-allocation records are present.",
+      "Reviewer should confirm whether the source's structured tension curation dated 2026-04-03 should remain review context or be promoted later by a relation-aware compilation pass."
+    ],
+    "review_status": "draft"
+  }
+}

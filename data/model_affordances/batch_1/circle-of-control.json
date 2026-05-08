@@ -1,0 +1,265 @@
+{
+  "model_id": "circle-of-control",
+  "source_file": "Circle_Of_Control_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "circle-of-control.control-influence-action-map",
+      "status": "supported",
+      "name": "Control-influence action map with reclassification",
+      "mechanism": "Separate situation facts into direct control, indirect influence, and no-control buckets, then turn the first two into actions, the third into monitoring rules, and revisit classifications as evidence or incentives change.",
+      "activation_shape": {
+        "use_when": [
+          "External volatility, crisis pressure, negotiations, or emotional load are dominating perception while some levers remain actionable.",
+          "The next step depends on separating direct ownership, indirect influence through escalation or negotiation, and conditions that only need monitoring.",
+          "The team needs to move under uncertainty without pretending every important variable can be controlled first."
+        ],
+        "do_not_use_when": [
+          "The model would shrink responsibility by labeling difficult but influenceable stakeholder, system, or incentive problems as outside control too early.",
+          "The team is optimizing immediate controllables while missing broader feedback loops or slow indirect influence pathways.",
+          "The control map is treated as fixed after new data, changed incentives, or altered stakeholder positions."
+        ],
+        "case_evidence_needed": [
+          "The situation facts that are being classified.",
+          "Which items are direct control, indirect influence, and no control.",
+          "The actions proposed for the first two buckets and monitoring rules for the third.",
+          "Evidence for each classification and any new information or incentive change that could move an item between buckets."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "bucket-before-action",
+          "description": "List the facts first, classify them into direct-control, indirect-influence, and no-control buckets, then generate actions only where intervention or influence is possible.",
+          "evidence_required": [
+            "The concrete situation facts before classification.",
+            "A direct-control, indirect-influence, or no-control label for each material fact.",
+            "The proposed action, escalation, negotiation, or monitoring response tied to each bucket."
+          ],
+          "good_output_shape": [
+            "A control map that separates owned levers, influenceable conditions, and monitored external variables.",
+            "Actions attached to direct-control and indirect-influence items rather than to no-control conditions.",
+            "Monitoring rules for uncontrollable items instead of reactive planning loops."
+          ]
+        },
+        {
+          "requirement_id": "evidence-and-reclassification",
+          "description": "Require evidence for each bucket assignment and revisit classifications when new information, changed incentives, or altered stakeholder positions change what is influenceable.",
+          "evidence_required": [
+            "The evidence supporting each direct-control, indirect-influence, or no-control classification.",
+            "Signals that would show a classification has become stale or wrong.",
+            "New information, incentive changes, or stakeholder position changes that could expand or shrink influence."
+          ],
+          "good_output_shape": [
+            "Flags any item marked uncontrollable without evidence.",
+            "States where control may be overestimated in an adaptive system.",
+            "Names a review cadence or trigger for moving items between buckets."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which item did we mark uncontrollable without evidence?",
+        "Where are we assuming control we do not actually have?",
+        "What one action would increase our influence on the highest-impact external factor?"
+      ],
+      "misuse_guards": [
+        "Do not classify difficult but influenceable factors as outside control before testing how influence could be increased.",
+        "Do not mistake activity for leverage in systems mostly constrained by external actors or feedback loops.",
+        "Do not lock items into one bucket after new data, incentives, or stakeholder positions have changed.",
+        "Do not optimize immediate controllables so narrowly that broader feedback loops undo the local gain."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Circle of Control is a decision model for separating what you can directly influence from what you cannot control.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "In practice, start by listing the situation facts, then split them into three buckets: direct control, indirect influence, and no control. Create actions only for the first two buckets and monitoring rules for the third. This prevents reactive planning loops.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Teams can immediately identify controllable levers such as communication cadence, pricing experiments, staffing, sequencing, and risk limits.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Works when the next step depends on separating what one team owns directly, what it can influence through escalation or negotiation, and what must be monitored rather than solved immediately.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Best when the organization needs to move under uncertainty without pretending that every important variable can be controlled first.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "A common anti-pattern is labeling difficult-but-influenceable factors as \"outside control\" too early, which can become avoidance disguised as realism.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Resolution requires periodic reclassification: what was uncontrollable yesterday may become influenceable after new information or changed incentives.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "False helplessness happens when teams classify influenceable variables as uncontrollable.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Control illusion happens when teams overestimate intervention power in adaptive systems.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Rigid categorization happens when the buckets are never revisited.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Teams optimize what is immediately controllable while missing how broader feedback loops will undo the local gain.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Mitigations include a recurring review cadence, explicit evidence for each classification decision, and pre-mortem checks.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Useful pre-mortem questions: \"Which item did we mark uncontrollable without evidence?\" \"Where are we assuming control we do not actually have?\" \"What one action would increase our influence on the highest-impact external factor?\"",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed bucket classification, action-or-monitoring handoff, evidence requirement, and reclassification into one operational affordance because the source presents them as one playbook.",
+        "dropped_material": [
+          "Did not split false helplessness, control illusion, static categorization, and local control myopia into separate affordances; they are misuse guards and review checks for the same control map.",
+          "Did not promote named model allies or tensions into independent runtime material."
+        ],
+        "open_questions": [
+          "Review may later decide whether local-control myopia should become a separate systems-thinking interaction record rather than remain a misuse guard here."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-latticework-relation-affordances",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source names complements and tensions, but in this model-affordance layer they only sharpen the control-map boundaries and misuse guards; they do not add a separate treatment contract for circle-of-control.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Circle of Control works well with First Principles Thinking, where constraints are decomposed into controllable assumptions and testable actions. It also complements Risk vs. Uncertainty by distinguishing what should be hedged versus what can be actively changed.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "Potential tension appears with Systems Thinking when local optimization inside the control circle obscures broader feedback loops. Another tension appears with Game Theory when opponents can shift your controllable set dynamically.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-emotional-resilience-or-empowerment-coaching",
+      "status": "not_supported_by_source",
+      "reason": "The source mentions attention management, emotional noise, and blame reduction, but it does not support a separate mindset-coaching affordance beyond operational classification, action rules, and ownership boundaries.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "It supports disciplined attention management and prevents repeated escalation of emotional or strategic noise.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Circle_Of_Control_rag.md",
+          "source_quote": "It improves execution focus, reduces blame-oriented reasoning, and creates clearer ownership boundaries.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Circle_Of_Control_rag.md",
+      "source_quote": "In practice, start by listing the situation facts, then split them into three buckets: direct control, indirect influence, and no control. Create actions only for the first two buckets and monitoring rules for the third. This prevents reactive planning loops.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Circle_Of_Control_rag.md",
+      "source_quote": "Resolution requires periodic reclassification: what was uncontrollable yesterday may become influenceable after new information or changed incentives.",
+      "section_hint": "The Latticework: Systemic Interactions",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Circle_Of_Control_rag.md",
+      "source_quote": "Mitigations include a recurring review cadence, explicit evidence for each classification decision, and pre-mortem checks.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Circle_Of_Control_rag.md",
+      "source_quote": "A common anti-pattern is labeling difficult-but-influenceable factors as \"outside control\" too early, which can become avoidance disguised as realism.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full packet, raw source, and Wave 1-3 curation. Extracted one source-backed affordance and kept the record dormant for review rather than runtime promotion.",
+    "dropped_material": [
+      "Did not extract a generic empowerment or emotional-resilience affordance because the source's operational content is the control/influence/no-control playbook.",
+      "Did not turn model allies, structured tensions, or business examples into separate affordances.",
+      "Did not add completeness fields beyond what the source directly supports."
+    ],
+    "open_questions": [
+      "The source is concise; future review could split reclassification cadence from the bucket map only if later evidence shows they behave differently in treatment audits."
+    ],
+    "review_status": "draft"
+  }
+}

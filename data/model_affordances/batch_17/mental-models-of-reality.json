@@ -1,0 +1,145 @@
+{
+  "model_id": "mental-models-of-reality",
+  "source_file": "Mental_Models_of_Reality_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "mental-models-of-reality.compare-frame-to-territory",
+      "status": "supported",
+      "name": "Compare mental frames against reality",
+      "mechanism": "When repeated surprise, disagreement, or prediction failure suggests the current frame is missing causal structure, use mental models of reality to compare competing worldviews by prediction, explanation, and action guidance.",
+      "activation_shape": {
+        "use_when": [
+          "Repeated surprise, disagreement, or prediction failure suggests the current frame is missing causal structure.",
+          "A team needs to compare competing worldviews before choosing the one that best predicts, explains, and guides action.",
+          "A model should help simulate likely outcomes rather than decorate the explanation."
+        ],
+        "do_not_use_when": [
+          "An elegant model is being treated as reality itself.",
+          "Collecting models is replacing operational testing, measurement, or concrete decisions.",
+          "A high-level abstraction feels explanatory enough but does not reveal a mechanism, threshold, or protocol."
+        ],
+        "case_evidence_needed": [
+          "The surprise, disagreement, or prediction failure that reveals a frame gap.",
+          "The competing model or worldview being compared.",
+          "The prediction, explanation, or action guidance each frame provides.",
+          "The feedback, measurement, or decision that will test the map against the territory."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-map-against-prediction",
+          "description": "Require the answer to state what each frame predicts or explains and how the chosen map will be checked against reality.",
+          "evidence_required": [
+            "The failed or incomplete current frame.",
+            "The competing model or worldview.",
+            "The prediction or action implication each frame produces.",
+            "The feedback or measurement that tests the map."
+          ],
+          "good_output_shape": [
+            "Names the frame gap.",
+            "Compares at least one alternative frame.",
+            "States a prediction or action implication.",
+            "Adds a reality-check loop."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What surprise or prediction failure suggests the current map is missing causal structure?",
+        "Which competing frame better predicts, explains, and guides action?",
+        "How will the map be tested against reality instead of admired as a model?"
+      ],
+      "misuse_guards": [
+        "Do not confuse a mental model with reality.",
+        "Do not let elegant abstraction replace operational testing.",
+        "Do not add model language unless it changes prediction, explanation, or action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Mental_Models_of_Reality_rag.md",
+          "source_quote": "repeated surprise, disagreement, or prediction failure suggests the current frame is missing causal structure",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Models_of_Reality_rag.md",
+          "source_quote": "compare competing worldviews explicitly before choosing the one that best predicts, explains, and guides action",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Mental_Models_of_Reality_rag.md",
+          "source_quote": "collecting elegant models becomes a substitute for operational testing",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports mental models as predictive maps that must be compared and tested against reality.",
+        "dropped_material": [
+          "Did not turn model selection into deterministic worldview routing.",
+          "Did not treat model elegance as evidence."
+        ],
+        "open_questions": [
+          "Later packet review should inspect whether this meta-card is too broad alongside latticework-of-mental-models."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "reality-model-as-reality",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly distinguishes map from territory; it does not support treating a mental model as reality itself.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Mental_Models_of_Reality_rag.md",
+          "source_quote": "the map is **not reality**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "map-without-feedback",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that elegant models can replace testing; it does not support a map that is never checked against measurement or action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Mental_Models_of_Reality_rag.md",
+          "source_quote": "operational testing, measurement, or making a concrete decision",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Mental_Models_of_Reality_rag.md",
+      "source_quote": "predictive tools",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 keeps mental models of reality as testable maps, not as truth objects.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, worldview classifier, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether this card helps resolve frame drift without adding abstraction clutter."
+    ],
+    "review_status": "draft"
+  }
+}

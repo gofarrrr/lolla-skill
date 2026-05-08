@@ -1,0 +1,145 @@
+{
+  "model_id": "feynman-technique",
+  "source_file": "Feynman_Technique_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "feynman-technique.plain-language-gap-test",
+      "status": "supported",
+      "name": "Plain-language explanation gap test",
+      "mechanism": "When understanding may be hiding behind jargon, require a plain-language explanation, identify where it breaks, and repair the missing link with evidence or analogy before trusting the concept.",
+      "activation_shape": {
+        "use_when": [
+          "A concept must transfer across teams, novice audiences, or domains.",
+          "The current explanation is smooth but may hide missing links or unsupported assumptions.",
+          "Simplifying the idea can expose blind spots before more analysis is added."
+        ],
+        "do_not_use_when": [
+          "Simplification would strip out technical conditions, edge cases, or math needed for correct decisions.",
+          "A smooth explanation is being treated as proof without application or pressure testing.",
+          "The exercise is performed superficially with jargon or rambling left intact."
+        ],
+        "case_evidence_needed": [
+          "The concept or decision that must be explained.",
+          "The intended audience or transfer context.",
+          "The part of the explanation that becomes vague, circular, or unsupported.",
+          "The evidence, analogy, or test that repairs the gap."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "force-plain-explanation-and-gap-repair",
+          "description": "Require the answer to produce or request a plain-language explanation, name the breakdown point, and specify what must be studied, evidenced, or tested before the explanation earns weight.",
+          "evidence_required": [
+            "Current explanation.",
+            "Jargon or breakdown point.",
+            "Missing evidence or logical link.",
+            "Repair step through study, analogy, or application test."
+          ],
+          "good_output_shape": [
+            "States the idea in plain language.",
+            "Identifies the blind spot or missing link.",
+            "Names a repair step.",
+            "Blocks smooth explanation from becoming false mastery."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Can this be explained in plain language without losing the causal logic?",
+        "Where does the explanation become vague, circular, or jargon-heavy?",
+        "What evidence or application would show the explanation is more than fluency?"
+      ],
+      "misuse_guards": [
+        "Do not confuse a simple explanation with complete domain competence.",
+        "Do not remove edge cases or technical constraints needed for action.",
+        "Do not let the explainer protect their first story from correction."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Feynman_Technique_rag.md",
+          "source_quote": "true understanding is demonstrated by the ability to simplify",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feynman_Technique_rag.md",
+          "source_quote": "**Best used when** simplifying the idea will expose hidden confusion, missing links, or unsupported assumptions in your current mental model.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feynman_Technique_rag.md",
+          "source_quote": "**Danger when** simplification strips out the technical conditions, edge cases, or math needed for correct decisions in the real domain.",
+          "section_hint": "Weaknesses and Anti-patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports Feynman as a plain-language diagnostic plus gap-repair method, not just simplification.",
+        "dropped_material": [
+          "Did not extract the semantic tree or tapestry analogies as separate affordances.",
+          "Kept business pitching examples as context only."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card exposes shallow explanations without over-simplifying technical cases."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "explanation-fluency-as-understanding",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that smooth explanation can be superficial if blind spots are not honestly identified and repaired.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feynman_Technique_rag.md",
+          "source_quote": "The explanation may hold together logically but still lack the necessary foundational depth",
+          "section_hint": "Risks and Failure Modes",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "simple-explanation-as-complete-answer",
+      "status": "not_supported_by_source",
+      "reason": "The source says simplification can become useless if it removes necessary technical conditions or application pressure tests.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feynman_Technique_rag.md",
+          "source_quote": "a smooth explanation is mistaken for mastery even though the concept has not been pressure tested in application",
+          "section_hint": "Weaknesses and Anti-patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Feynman_Technique_rag.md",
+      "source_quote": "Write down an explanation of the concept in **plain English**",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for Feynman as a gap-exposing explanation test.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves explanation quality without rewarding false simplicity."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "international-negotiation-and-diplomacy-models",
+  "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "international-negotiation-and-diplomacy-models.substance-signaling-settlement-map",
+      "status": "supported",
+      "name": "Substance signaling settlement map",
+      "mechanism": "When goals are interdependent and partially conflicting, require the answer to map substance, signaling, stakeholders, concessions, credibility, and sequencing so tactical wins do not damage the durable settlement.",
+      "activation_shape": {
+        "use_when": [
+          "Goals are interdependent and partially conflicting.",
+          "Substance and signaling both matter because positions, concessions, credibility, and sequencing will be interpreted by multiple audiences.",
+          "Alignment must be built across stakeholders with different incentives, face concerns, legitimacy needs, and communication constraints."
+        ],
+        "do_not_use_when": [
+          "Tactical cleverness, point-scoring, posture, or symbolic wins are replacing strategic alignment.",
+          "The answer focuses only on content while ignoring relationship, acceptance, resistance, or trust.",
+          "The negotiation is simple enough that a full multi-stakeholder map would add unnecessary bulk."
+        ],
+        "case_evidence_needed": [
+          "The actors and their partially conflicting goals.",
+          "The substantive issue and the signal each move sends.",
+          "The audiences or stakeholders who will interpret concessions and commitments.",
+          "The durable settlement or coalition that matters beyond the immediate point."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-substance-signal-and-durable-alignment",
+          "description": "Require the answer to separate the substantive deal problem from the signaling and relationship problem, then test whether proposed moves help the durable settlement rather than just winning a point.",
+          "evidence_required": [
+            "The substantive interests.",
+            "The signals sent by concessions, timing, and posture.",
+            "The stakeholders and audiences whose interpretation matters.",
+            "The durable agreement, coalition, or implementation path."
+          ],
+          "good_output_shape": [
+            "Maps actors and interdependent goals.",
+            "Separates substance from signaling.",
+            "Names stakeholder interpretation risks.",
+            "Rejects point-scoring that weakens durable alignment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which goals are interdependent and partially conflicting?",
+        "What does each concession, refusal, or timing choice signal to each audience?",
+        "Does this move strengthen the durable settlement or only win the immediate exchange?"
+      ],
+      "misuse_guards": [
+        "Do not optimize for symbolic wins that weaken the settlement.",
+        "Do not treat content correctness as enough when relationship acceptance matters.",
+        "Do not add diplomatic machinery when the case is a simple bilateral choice."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
+          "source_quote": "goals are interdependent and partially conflicting",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
+          "source_quote": "substance and signaling both matter",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
+          "source_quote": "positions, concessions, credibility, and sequencing will be interpreted by multiple audiences",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports one multi-party negotiation card that binds substance, signaling, and durable alignment.",
+        "dropped_material": [
+          "Did not extract game theory simulation, CWD multi-agent collaboration, or persuasion blueprint as separate affordances.",
+          "Kept consulting logic-tree material as context rather than a duplicate problem-structuring card."
+        ],
+        "open_questions": [
+          "Future packet review should test this card against Nash equilibrium, game-theory-payoffs, signaling, and reciprocity in negotiation packets."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "tactical-point-scoring-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that tactical cleverness and symbolic wins can weaken the durable settlement or coalition.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
+          "source_quote": "point-scoring, posture, or symbolic wins that weaken the durable settlement or coalition",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "content-only-negotiation",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that focusing only on analytical content while ignoring relationship-level data is a critical mistake.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
+          "source_quote": "Focusing on Content over Relationship",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
+      "source_quote": "competitive and collaborative goals coexist",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for International Negotiation and Diplomacy Models. Extracted one substance/signaling/settlement map and rejected point-scoring plus content-only negotiation.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card reduces negotiation clutter by focusing on durable alignment."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,910 @@
+{
+  "blocked_surfaces": [
+    "live_observatory_rendering",
+    "memo_integration",
+    "step8_integration",
+    "step6_integration",
+    "lane4_integration",
+    "lolla_runtime_use",
+    "user_facing_decision_pressure_block",
+    "prompt_changes",
+    "generation_changes",
+    "new_extraction",
+    "batch_3b",
+    "paid_gate4_reruns_by_default"
+  ],
+  "candidate_cards": [
+    {
+      "absence_records": [
+        {
+          "attempted_field": "generic-alternative-comparison-affordance",
+          "model_id": "opportunity-cost",
+          "reason": "A broad compare-the-options affordance would duplicate trade-offs, prioritization, expected-value, or decision-trees. Opportunity cost earns a separate Batch 3a record only when it identifies the real next-best use displaced by the current commitment.",
+          "runtime_policy": "do_not_promote",
+          "status": "duplicate_of_existing_field"
+        }
+      ],
+      "card_id": "card-001-opportunity-cost",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Opportunity Cost",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "opportunity-cost",
+      "nomination_metadata": {
+        "lane_order": 1,
+        "lane_score": 0.91
+      },
+      "pulled_by": [
+        "lane4_gap_route",
+        "reviewer_note"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "opportunity-cost.displaced-alternative-commitment-gate"
+        ],
+        "case_evidence_needed": [
+          "The decision under approval and the scarce resource it consumes: people, budget, calendar time, launch window, leadership attention, trust, or optionality."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What is the single best executable alternative use of the same people, budget, launch window, or attention?"
+        ],
+        "do_not_use_when": [
+          "The real alternatives, constraints, or objective function are not framed well enough for comparison without false precision."
+        ],
+        "misuse_guards": [
+          "Do not count unrealistic alternatives that the team cannot actually fund, execute, or own."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "opportunity-cost.displaced-alternative-commitment-gate",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Opportunity_Cost_rag.md",
+            "source_quote": "The fundamental essence of this model is the value of the best alternative opportunity you didn't choose"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the best real alternative displaced by the current yes, not a vague list of possibilities or a decorative comparison set.",
+            "evidence_required": [
+              "The current commitment, continuation, renewal, feature, market, or project under consideration."
+            ],
+            "good_output_shape": [
+              "States the current yes and the next-best alternative in the same operational currency."
+            ],
+            "requirement_id": "name-real-next-best-alternative"
+          }
+        ],
+        "use_when": [
+          "A roadmap addition, renewal, sprint, vendor, project, or channel looks cheap because the explicit spend is small while the same people, budget, launch window, or attention are needed elsewhere."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The option set is still poorly framed, so comparison would create false precision around the wrong alternatives or objective function."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Commitment can hide what becomes impossible once resources, time, or attention are locked into one path.",
+            "extraction_type": "normalized",
+            "mitigation": "Before committing, explicitly list what becomes impossible: name the specific projects, options, or capabilities that this commitment forecloses.",
+            "mode": "Foreclosure hidden by commitment",
+            "source_quote": "Foreclosure hidden by commitment"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Upgrade simple pro-con thinking into a comparison that includes the implicit costs of the best foregone option.",
+            "extraction_type": "normalized",
+            "source_quote": "Cost-Benefit Analysis (CBA) Upgrade"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "Before approval: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months.",
+            "extraction_type": "explicit",
+            "source_quote": "Before approving: name the single most valuable thing this decision makes impossible or significantly harder for the next 12 months."
+          }
+        ],
+        "reasoning_types": [
+          "counterfactual",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A team wants to add one more initiative even though the same people, budget, or launch window are needed by a higher-leverage move."
+        ],
+        "source_file": "Opportunity_Cost_rag.md"
+      },
+      "source_custody": {
+        "bytes": 18336,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Opportunity_Cost_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "7b02dc4846ff24bc246939cfd19c944f36a52db05a02c3fbb485812a162f5bb9",
+        "source_file": "Opportunity_Cost_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "lane_gap",
+          "reason": "The advice commits the same team and launch window without naming the displaced alternative.",
+          "route_or_artifact_id": "synthetic-pr33-displaced-alternative",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-002-batna",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Batna",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "batna",
+      "nomination_metadata": {
+        "lane_order": 2,
+        "lane_score": 0.86
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "People are declaring a fallback as their BATNA even though it is vague, unexecutable, or worse than continuing to negotiate."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Confirmation bias can make the current deal look stronger by filtering the real quality of the walk-away option.",
+            "extraction_type": "normalized",
+            "mitigation": "Enforce the dialectic: challenge every favorable assessment of the deal with its antithesis and require independent evaluation of the walk-away option.",
+            "mode": "Confirmation Bias",
+            "source_quote": "Confirmation Bias"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use MECE to compare alternatives cleanly instead of letting options blur together.",
+            "extraction_type": "normalized",
+            "source_quote": "MECE (Mutually Exclusive, Collectively Exhaustive)"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What would we have to believe to accept a contrasting viewpoint, and are we truly open-minded enough to consider it?",
+            "extraction_type": "explicit",
+            "source_quote": "What would we have to believe to accept a contrasting viewpoint, and are we truly open-minded enough to consider it?"
+          }
+        ],
+        "reasoning_types": [
+          "deductive",
+          "counterfactual"
+        ],
+        "select_when": [
+          "Negotiation leverage depends on knowing the walk-away path before entering a pressured conversation."
+        ],
+        "source_file": "Batna_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16617,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Batna_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "f5c3b6d66ed398f4c5c751dbbae700c3c23085ed261c4fd1e121a4103521d85a",
+        "source_file": "Batna_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "renew the platform",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The renewal advice treats staying with the incumbent as the only credible path without testing a walk-away option.",
+          "route_or_artifact_id": "synthetic-pr33-fallback-gap",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-003-game-theory-payoffs",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Game Theory Payoffs",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "game-theory-payoffs",
+      "nomination_metadata": {
+        "lane_order": 3,
+        "lane_score": 0.82
+      },
+      "pulled_by": [
+        "lane2_companion_chunk"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The actors are not actually playing the same game and the visible payoff model is missing the ideology, politics, or internal incentive that is really driving behavior."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams can model the wrong game when one side is optimizing politics, ideology, or internal incentives that the payoff map does not capture.",
+            "extraction_type": "explicit",
+            "mitigation": "Verify the payoff map captures the real incentives in play; politics, ideology, or internal pressures that do not appear in the model can dominate behavior.",
+            "mode": "Danger when the actors are not actually playing the same game",
+            "source_quote": "Danger when the actors are not actually playing the same game"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Name the players, moves, information asymmetries, and payoff drivers explicitly before optimizing the move.",
+            "extraction_type": "normalized",
+            "source_quote": "name the players, likely moves, information asymmetries"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What evidence would show that we chose the wrong players, incentives, or payoff assumptions for this game?",
+            "extraction_type": "explicit",
+            "source_quote": "What evidence would show that we chose the wrong players, incentives, or payoff assumptions for this game?"
+          }
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A recommendation cannot be judged in isolation because its value changes materially with how a rival, partner, regulator, or counterparty responds."
+        ],
+        "source_file": "Game_Theory_Payoffs_rag.md"
+      },
+      "source_custody": {
+        "bytes": 14696,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Game_Theory_Payoffs_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "2c318b0b5ef5e6afc1acd2c826d56d97ff38897d1c84cc2980bb194041d798ba",
+        "source_file": "Game_Theory_Payoffs_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "assistant_turn",
+          "reason": "The assistant assumes vendor and competitor responses will stay stable after the team commits publicly.",
+          "route_or_artifact_id": "synthetic-pr33-counterparty-response",
+          "source": "lane2_companion_chunk"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-004-red-queen-effect",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Red Queen Effect",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "red-queen-effect",
+      "nomination_metadata": {
+        "lane_order": 4,
+        "lane_score": 0.78
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The pressure to keep running is pushing the team into analysis paralysis, feature creep, or action-first thrash without clear problem definition."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams can mistake heavy effort for real progress even when rivals' simultaneous adaptation is canceling out the gain.",
+            "extraction_type": "normalized",
+            "mitigation": "Measure progress against the competitive landscape, not against your own baseline: ask whether the gap to rivals has actually widened, not just whether internal metrics improved.",
+            "mode": "effort does not guarantee progress; intense effort (running) is merely the cost of maintaining a relative status",
+            "source_quote": "effort does not guarantee progress; intense effort (running) is merely the cost of maintaining a relative status"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Treat anti-complacency as an execution discipline, not just as a motivational slogan.",
+            "extraction_type": "normalized",
+            "source_quote": "focusing on implementation disciplines (execution) to bridge the gap"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What would need to be true for this idea to work in a baseline that is still moving under us?",
+            "extraction_type": "explicit",
+            "source_quote": "What would need to be true for this idea to work?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "systems"
+        ],
+        "select_when": [
+          "Standing still effectively means losing ground because rivals, substitutes, or environmental pressures are improving at the same time."
+        ],
+        "source_file": "Red_Queen_Effect_rag.md"
+      },
+      "source_custody": {
+        "bytes": 17861,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Red_Queen_Effect_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "5a296179fc8c58a8d73df7efcfc745784e6447a4985a230a9835b45e83fe8ea4",
+        "source_file": "Red_Queen_Effect_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "we cannot afford to stand still",
+          "evidence_source_type": "user_turn",
+          "reason": "The user frame treats speed as advantage without separating genuine progress from keeping up.",
+          "route_or_artifact_id": "synthetic-pr33-relative-position",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-005-delays",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Delays",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "delays",
+      "nomination_metadata": {
+        "lane_order": 5,
+        "lane_score": 0.74
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "People are romanticizing waiting and reflection even though the next useful move is already clear and the real cost is execution drift."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams can treat delayed feedback as proof that an intervention failed and overcorrect before the system has time to respond.",
+            "extraction_type": "normalized",
+            "mitigation": "Account for system response time before judging an intervention; overcorrecting before delayed feedback arrives creates unnecessary oscillation.",
+            "mode": "Teams can treat delayed feedback as proof that an intervention failed and overcorrect before the sys...",
+            "source_quote": "Danger when teams treat delayed feedback as proof that an intervention failed, then overcorrect before the system has had time to respond."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Map the delayed feedback path before changing course so you know when a response should realistically become visible.",
+            "extraction_type": "normalized",
+            "source_quote": "Recognizing the location and length of time delays is key to successful system intervention."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "Are we reading no visible result yet as no effect, even though the system is known to respond with a lag?",
+            "extraction_type": "normalized",
+            "source_quote": "Most useful when actions and consequences are separated in time, so naive short-term reading would mistake \"no result yet\" for \"no effect\"."
+          }
+        ],
+        "reasoning_types": [
+          "causal",
+          "systems"
+        ],
+        "select_when": [
+          "Actions and consequences are separated in time, so a naive short-term read could mistake no result yet for no effect."
+        ],
+        "source_file": "Delays_rag.md"
+      },
+      "source_custody": {
+        "bytes": 17189,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Delays_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "36137d19ff0551e15364ff2d4e35fd2756c00fddf55536238bece278868f62a9",
+        "source_file": "Delays_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "handle adoption issues after rollout",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The advice postpones adoption learning until after launch without naming the feedback lag or review window.",
+          "route_or_artifact_id": "synthetic-pr33-feedback-lag",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-006-obligations-controls-mapping",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Obligations Controls Mapping",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "obligations-controls-mapping",
+      "nomination_metadata": {
+        "lane_order": 6,
+        "lane_score": 0.71
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The situation is novel enough that forcing an existing control map would create false pattern recognition or suppress needed learning."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Confirmation bias can structure the map to confirm the preferred conclusion instead of exposing the real obligation gap.",
+            "extraction_type": "normalized",
+            "mitigation": "Have an independent reviewer audit the map against the raw obligation source to catch any framing that conveniently narrows or reinterprets what is actually required.",
+            "mode": "Structuring the investigation or mapping the controls/data gathering to yield a pre-determined conclusion or hypothesis.",
+            "source_quote": "Structuring the investigation or mapping the controls/data gathering to yield a pre-determined conclusion or hypothesis."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Define the role and its constraints explicitly before the system starts acting.",
+            "extraction_type": "normalized",
+            "source_quote": "the system prompt defines the agent\u2019s role ... and its backstory ... Explicitly documenting and encoding behavioral tendencies"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What would you have to believe?",
+            "extraction_type": "normalized",
+            "source_quote": "Ask the crucial pre-mortem question: What would you have to believe? to spell out all assumptions implicit in a perspective."
+          }
+        ],
+        "reasoning_types": [
+          "deductive",
+          "causal"
+        ],
+        "select_when": [
+          "The obligation is already known, but the controls, checkpoints, ownership, or operational boundaries needed to fulfill it are still vague."
+        ],
+        "source_file": "Obligations_Controls_Mapping_rag.md"
+      },
+      "source_custody": {
+        "bytes": 18385,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Obligations_Controls_Mapping_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "8b1cb7f6c4ee5b7412c188c6607c9b3a3edf78a121322e89a282610a2822a3c8",
+        "source_file": "Obligations_Controls_Mapping_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "lane_gap",
+          "reason": "The plan names international commitments without mapping the obligation owner, control, evidence, or cadence.",
+          "route_or_artifact_id": "synthetic-pr33-control-gap",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-007-jobs-to-be-done",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Jobs To Be Done",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "jobs-to-be-done",
+      "nomination_metadata": {
+        "lane_order": 7,
+        "lane_score": 0.68
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Teams are calling every preference a job and skipping the discipline of distinguishing true progress from surface wants or internal strategy wishes."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams can call every preference a job and skip the work of separating true functional progress from surface wants or channel noise.",
+            "extraction_type": "explicit",
+            "mitigation": "Separate true functional progress from surface preferences: calling every want a job inflates the framework beyond its utility.",
+            "mode": "Danger when teams call every preference a job",
+            "source_quote": "Danger when teams call every preference a job"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Define the job in terms of the outcome being hired for, not the product attribute being sold.",
+            "extraction_type": "normalized",
+            "source_quote": "People don't want to buy a quarter-inch drill. They want a quarter-inch hole"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What real progress is the user trying to make that feature comparisons alone are failing to explain?",
+            "extraction_type": "normalized",
+            "source_quote": "real progress the user is trying to make"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "systems"
+        ],
+        "select_when": [
+          "Customers are adopting, switching, or abandoning solutions for reasons that feature comparisons alone do not explain."
+        ],
+        "source_file": "Jobs_To_Be_Done_rag.md"
+      },
+      "source_custody": {
+        "bytes": 12975,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Jobs_To_Be_Done_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "2b30463c9e33df60ccbc03ba3cd405dc28eff7da177a39b4f5b45a9eb0d4915d",
+        "source_file": "Jobs_To_Be_Done_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "customers asked for easier integration",
+          "evidence_source_type": "user_turn",
+          "reason": "The advice treats requested features as demand without checking the customer progress job behind adoption.",
+          "route_or_artifact_id": "synthetic-pr33-customer-job",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-008-lock-in",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Lock In",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "lock-in",
+      "nomination_metadata": {
+        "lane_order": 8,
+        "lane_score": 0.66
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The situation is genuinely novel, so reusing the incumbent frame would likely become an unhelpful or misleading default."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Temporary coexistence can quietly become the mechanism that keeps the organization trapped in the old path.",
+            "extraction_type": "normalized",
+            "mitigation": "Set an explicit sunset date for temporary coexistence; without one, interim arrangements quietly become the permanent path.",
+            "mode": "Danger when leaders treat \"temporary coexistence\" as harmless implementation detail.",
+            "source_quote": "Danger when leaders treat \"temporary coexistence\" as harmless implementation detail."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Decide deliberately which norms or systems should become sticky and which must stay revisable.",
+            "extraction_type": "normalized",
+            "source_quote": "Lock-in becomes productive when leaders consciously choose which norms, systems, or strategic positions should remain sticky and which must stay revisable."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What would you have to believe for the current sticky path to still be the best choice a year from now?",
+            "extraction_type": "normalized",
+            "source_quote": "What would you have to believe?"
+          }
+        ],
+        "reasoning_types": [
+          "counterfactual",
+          "systems"
+        ],
+        "select_when": [
+          "Consistency, standardization, or deep commitment is creating compounding advantage, so the real question is which path should become sticky."
+        ],
+        "source_file": "Lock_In_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16761,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Lock_In_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "f83e67d0fd85e618413e0040e26cbc6d25275a55e683de23b0aea8de317f5ae6",
+        "source_file": "Lock_In_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "assistant_turn",
+          "reason": "The renewal advice defers reversal-cost analysis until after another integration cycle.",
+          "route_or_artifact_id": "synthetic-pr33-lock-in-risk",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-009-path-dependence",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Path Dependence",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "path-dependence",
+      "nomination_metadata": {
+        "lane_order": 9,
+        "lane_score": 0.63
+      },
+      "pulled_by": [
+        "lane2_detected_model"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Path-lock is being diagnosed so broadly that it becomes an excuse for not redesigning anything that could actually change."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A system can keep reproducing old behavior even after intent changes because historical grooves are stronger than the latest plan.",
+            "extraction_type": "normalized",
+            "mitigation": "Map the switching costs explicitly: for each path-dependent behavior, estimate what it would actually cost to change, and compare that cost to the value of the alternative.",
+            "mode": "Works when a system keeps reproducing old behavior despite new intent.",
+            "source_quote": "Works when a system keeps reproducing old behavior despite new intent."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Map inherited constraints explicitly so the team can tell the difference between present preference and historical route-lock.",
+            "extraction_type": "normalized",
+            "source_quote": "Path dependence is strongest when the real driver is inherited architecture, history, or commitment rather than present-day preference alone."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "Which early choice is constraining current options more than people realize?",
+            "extraction_type": "normalized",
+            "source_quote": "Most useful when early choices are constraining current options more than people realize."
+          }
+        ],
+        "reasoning_types": [
+          "counterfactual",
+          "systems"
+        ],
+        "select_when": [
+          "Early choices are constraining current options more than people realize, so history matters more than present-day preference alone."
+        ],
+        "source_file": "Path_Dependence_rag.md"
+      },
+      "source_custody": {
+        "bytes": 19639,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Path_Dependence_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "806ef2cbadf519436896a96b7bc0fb7013f6db9778a4d3e1a585b57fe0fff1b5",
+        "source_file": "Path_Dependence_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "assistant_turn",
+          "reason": "The assistant treats the current installed path as neutral rather than as a constraint on future options.",
+          "route_or_artifact_id": "synthetic-pr33-installed-path",
+          "source": "lane2_detected_model"
+        }
+      ]
+    },
+    {
+      "absence_records": [],
+      "card_id": "card-010-cross-cultural-communication-frameworks",
+      "coverage_status": "graph_only_runtime_card",
+      "display_name": "Cross Cultural Communication Frameworks",
+      "do_not_overclaim": [
+        "No reviewed affordance record is available in the current corpus."
+      ],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "cross-cultural-communication-frameworks",
+      "nomination_metadata": {
+        "lane_order": 10,
+        "lane_score": 0.59
+      },
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "reviewed_affordance_fields": {},
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Cultural models are being used as stereotype shortcuts instead of prompts to investigate the actual audience and local norms."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "False pattern recognition can make a familiar communication frame look right even when the audience's actual context is different.",
+            "extraction_type": "normalized",
+            "mitigation": "Validate the audience's actual context before applying a familiar communication frame; surface similarity can mask deep differences in interpretation.",
+            "mode": "False Pattern Recognition / Substitution Bias",
+            "source_quote": "False Pattern Recognition / Substitution Bias"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use perspective taking, initiative, nonverbal sensitivity, and goals together so communication is designed for the actual audience context.",
+            "extraction_type": "explicit",
+            "source_quote": "The PING Approach"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What is my audience's frame of reference, and how will this message be interpreted through that lens?",
+            "extraction_type": "explicit",
+            "source_quote": "What is my audience's frame of reference, and how will this message be interpreted through that lens?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "The same message must survive translation across cultures, functions, or status differences without losing the intended action."
+        ],
+        "source_file": "Cross_Cultural_Communication_Frameworks_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16327,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Cross_Cultural_Communication_Frameworks_rag.md",
+        "reviewed_affordance_available": false,
+        "reviewed_record_available": false,
+        "sha256": "aeb62acaea497b357b2bef03f215b9f232611d1f6555f6635e0b63739182fd3f",
+        "source_file": "Cross_Cultural_Communication_Frameworks_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "user_turn",
+          "reason": "The international rollout assumes the same message will carry across regions without translating frames into action.",
+          "route_or_artifact_id": "synthetic-pr33-cross-cultural-frame",
+          "source": "lane1_tendency_route"
+        }
+      ]
+    }
+  ],
+  "coverage_summary": {
+    "absence_only_card_count": 0,
+    "candidate_card_count": 10,
+    "conflicting_or_weak_support_count": 0,
+    "graph_only_card_count": 9,
+    "high_value_graph_only_model_ids": [
+      "batna",
+      "cross-cultural-communication-frameworks",
+      "delays",
+      "game-theory-payoffs",
+      "jobs-to-be-done",
+      "lock-in",
+      "obligations-controls-mapping",
+      "path-dependence",
+      "red-queen-effect"
+    ],
+    "missing_reviewed_model_ids": [
+      "batna",
+      "cross-cultural-communication-frameworks",
+      "delays",
+      "game-theory-payoffs",
+      "jobs-to-be-done",
+      "lock-in",
+      "obligations-controls-mapping",
+      "path-dependence",
+      "red-queen-effect"
+    ],
+    "missing_reviewed_record_count": 9,
+    "reviewed_card_count": 1,
+    "source_too_thin_count": 0
+  },
+  "packet_id": "pr33-v5-capability-gap-packet-review",
+  "packet_policy": {
+    "candidate_card_target_max": 10,
+    "candidate_card_target_min": 0,
+    "deterministic_role": "validate_package_cap_reference_and_label",
+    "forbid_case_type_templates": true,
+    "forbid_final_pressure_selection": true,
+    "forbid_public_copy": true,
+    "semantic_selection_role": "llm_or_reviewer",
+    "snippet_target_max_per_card": 1,
+    "snippet_target_min_per_card": 0
+  },
+  "packet_version": "reasoning_substrate_packet.v1",
+  "review_notes": [
+    "Review-only packet built from explicit nominations; no live lanes were run.",
+    "Graph-only cards are eligible recall material but not reviewed affordance depth.",
+    "LLM or reviewer owns semantic selection, merging, ignoring, and final wording."
+  ],
+  "runtime_policy": "runtime_dormant",
+  "source_artifacts": [
+    "data/knowledge_graph.json",
+    "data/compiled/model_affordances/affordances_v5.json",
+    "data/model_sources/manifest.json"
+  ],
+  "status": "draft_review_only",
+  "suppressed_candidates": [
+    {
+      "candidate_id": "candidate-011-opportunity-cost",
+      "coverage_status": "reviewed_affordance_available",
+      "do_not_recover_as_pressure_without_review": true,
+      "model_id": "opportunity-cost",
+      "pulled_by": [
+        "reviewer_note"
+      ],
+      "suppression_reason": "duplicate_model_id",
+      "why_pulled": [
+        {
+          "evidence_source_type": "reviewer_note",
+          "reason": "Duplicate nomination included to prove suppression is visible instead of silently erased.",
+          "route_or_artifact_id": "synthetic-pr33-duplicate-check",
+          "source": "reviewer_note"
+        }
+      ]
+    }
+  ],
+  "transaction_context": {
+    "assistant_advice_summary": "The assistant recommends staying with the incumbent vendor, launching quickly, and handling adoption issues after rollout, but it does not price lock-in, fallback credibility, counterparty response, customer job evidence, cross-cultural interpretation, or delayed feedback.",
+    "capture_health": "synthetic_review",
+    "case_id": "pr33-international-platform-renewal-review",
+    "known_action_or_commitment": "Renew the platform and commit the international rollout plan unless reviewed shelf evidence changes the decision record.",
+    "transaction_sources": [
+      "user_turn",
+      "assistant_turn",
+      "reviewer_note"
+    ],
+    "user_situation_summary": "A team is considering renewing an incumbent platform, entering two international segments, and accelerating roadmap commitments after receiving plausible AI advice that favors speed and continuity."
+  }
+}

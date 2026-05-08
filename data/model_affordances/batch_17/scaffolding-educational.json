@@ -1,0 +1,145 @@
+{
+  "model_id": "scaffolding-educational",
+  "source_file": "Scaffolding_Educational_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "scaffolding-educational.stage-support-toward-autonomy",
+      "status": "supported",
+      "name": "Stage support toward independent execution",
+      "mechanism": "When learners or teams cannot yet perform a complex process reliably, use scaffolding to reduce degrees of freedom, create a next executable step, and fade support as autonomy becomes possible.",
+      "activation_shape": {
+        "use_when": [
+          "Complexity must be mastered in sequence rather than all at once.",
+          "People understand the goal but cannot yet perform the process reliably.",
+          "Support can be removed over time without collapsing performance."
+        ],
+        "do_not_use_when": [
+          "Temporary guidance becomes permanent structure that keeps the learner compliant but not independent.",
+          "Over-structured guidance suppresses reflective reframing or independent decomposition.",
+          "The scaffold is just handholding without a fading plan."
+        ],
+        "case_evidence_needed": [
+          "The complex task or process being learned.",
+          "The learner's current gap between abstract intent and executable step.",
+          "The temporary support needed now.",
+          "The fading trigger that shows performance can stand without support."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-support-and-fading-trigger",
+          "description": "Require the answer to name the temporary support, the next executable step, and the trigger for removing support so scaffolding builds autonomy.",
+          "evidence_required": [
+            "The current competence gap.",
+            "The next small executable step.",
+            "The support that reduces degrees of freedom.",
+            "The evidence that the support can be faded."
+          ],
+          "good_output_shape": [
+            "Stages the task.",
+            "Names the temporary support.",
+            "Names the next executable step.",
+            "Defines when to fade support."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What degree of freedom should be reduced so the next step becomes manageable?",
+        "What support is temporary, and what evidence shows it can be removed?",
+        "Is this scaffold building autonomy or keeping the learner dependent?"
+      ],
+      "misuse_guards": [
+        "Do not confuse handholding with scaffolding.",
+        "Do not leave temporary support in place after performance can stand.",
+        "Do not impose a rigid sequence when the case needs independent decomposition."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Scaffolding_Educational_rag.md",
+          "source_quote": "complexity must be mastered in sequence rather than all at once",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scaffolding_Educational_rag.md",
+          "source_quote": "abstract intent and next executable step",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scaffolding_Educational_rag.md",
+          "source_quote": "support can be removed over time without collapsing performance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports staged support that reduces cognitive load and fades toward autonomy.",
+        "dropped_material": [
+          "Did not turn scaffolding into permanent procedure.",
+          "Did not infer educational policy beyond the source's temporary-support mechanism."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with cognitive-load-theory and step-back."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "scaffolding-as-handholding",
+      "status": "not_supported_by_source",
+      "reason": "The source defines scaffolding as temporary support toward independent structure; it does not support handholding without autonomy.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Scaffolding_Educational_rag.md",
+          "source_quote": "designed to be removed once the permanent structure",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "scaffolding-without-fading",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that support can outlive usefulness; it does not support scaffolds that never fade.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Scaffolding_Educational_rag.md",
+          "source_quote": "temporary guidance becomes permanent structure",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Scaffolding_Educational_rag.md",
+      "source_quote": "temporary support structured for gradual mastery",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 treats scaffolding as staged support with a fading trigger, not permanent assistance.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, educational workflow, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether this card improves advice about enablement and skill transfer."
+    ],
+    "review_status": "draft"
+  }
+}

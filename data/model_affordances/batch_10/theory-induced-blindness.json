@@ -1,0 +1,145 @@
+{
+  "model_id": "theory-induced-blindness",
+  "source_file": "Theory_Induced_Blindness_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "theory-induced-blindness.favored-framework-blindness-check",
+      "status": "supported",
+      "name": "Favored framework blindness check",
+      "mechanism": "When a favored theory or model is shaping what counts as relevant, require the answer to ask what the current framework filters out and whether another model would expose missing signal.",
+      "activation_shape": {
+        "use_when": [
+          "A favored framework might be hiding reality or filtering inconvenient evidence.",
+          "Different models would produce materially different cuts through the problem.",
+          "Progress depends on exposing what the dominant theory is causing everyone not to notice."
+        ],
+        "do_not_use_when": [
+          "The current framework's assumptions, omissions, and limits are already explicit.",
+          "The answer would keep shopping for theories to avoid evidence, testable claims, or operational decisions.",
+          "The model is used to reject all frameworks instead of checking whether this framework fits."
+        ],
+        "case_evidence_needed": [
+          "The framework, theory, or model currently shaping the advice.",
+          "The assumptions and variables that framework foregrounds.",
+          "The evidence or variables the framework may be filtering out.",
+          "The alternative cut that could expose missing signal."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-what-framework-filters-out",
+          "description": "Require the answer to name the favored framework, what it makes visible, what it filters out, and what alternative cut would test whether the current map is hiding reality.",
+          "evidence_required": [
+            "The current model or theory behind the advice.",
+            "The assumptions embedded in that model.",
+            "The missing or inconvenient evidence the model may filter out.",
+            "A plausible alternative frame that would expose different signal."
+          ],
+          "good_output_shape": [
+            "Names the current framework rather than attacking expertise generally.",
+            "Identifies what the framework ignores or abstracts away.",
+            "Offers an alternative cut only if it changes evidence or action.",
+            "Avoids endless theory shopping."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What theory or framework is deciding what counts as relevant here?",
+        "What evidence would this framework make easy to ignore?",
+        "Which alternative cut would expose signal the current model is hiding?"
+      ],
+      "misuse_guards": [
+        "Do not treat all frameworks as suspect; test fit, omissions, and assumptions.",
+        "Do not keep changing theories to avoid operational evidence or a decision.",
+        "Do not let a favored model absorb contradictory evidence without revision."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Theory_Induced_Blindness_rag.md",
+          "source_quote": "Most useful when a favored framework might be hiding reality",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Induced_Blindness_rag.md",
+          "source_quote": "Works when different models yield materially different cuts",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Induced_Blindness_rag.md",
+          "source_quote": "Best when reframing can uncover missing signal",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a favored-framework blindness card that asks what a model filters out.",
+        "dropped_material": [
+          "Did not extract a broad mental-models or latticework card.",
+          "Did not extract AI personality consistency material because PR45 is not runtime or prompt work."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card helps packets catch framework lock-in without encouraging theory shopping."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "endless-theory-shopping",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that changing frameworks can become misuse when it avoids commitment to evidence, testable claims, or operational decisions.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Theory_Induced_Blindness_rag.md",
+          "source_quote": "Danger When Reframing Becomes Endless Theory Shopping",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "framework-as-complete-territory",
+      "status": "not_supported_by_source",
+      "reason": "The source says models necessarily omit parts of reality, so the record must not let a useful framework become a complete representation of the territory.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Theory_Induced_Blindness_rag.md",
+          "source_quote": "they \"do not embrace every aspect of reality\"",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Theory_Induced_Blindness_rag.md",
+      "source_quote": "A way of seeing is also a way of not seeing",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for theory-induced-blindness as a favored-framework blindness check.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card exposes missing signal without making the LLM distrust every framework."
+    ],
+    "review_status": "draft"
+  }
+}

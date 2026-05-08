@@ -1,0 +1,376 @@
+{
+  "model_id": "social-proof",
+  "source_file": "Social_Proof_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "social-proof.verify-context-matched-proof",
+      "status": "supported",
+      "name": "Context-matched proof earns only credibility weight",
+      "mechanism": "When quality is hard to inspect directly and trust is the bottleneck, social proof can reduce perceived risk only if the proof source is structurally similar to the current audience and decision. The answer must identify the proof source, test context, incentives, constraints, and causal transfer, then keep mechanism, evidence quality, and customer truth separate from borrowed credibility.",
+      "activation_shape": {
+        "use_when": [
+          "A decision is leaning on adoption, endorsement, customer proof, statistics, quotes, or peer behavior because quality cannot be inspected directly.",
+          "The audience faces uncertainty, complexity, or high cognitive load and needs credible adoption evidence to reduce perceived risk.",
+          "Trust is the real bottleneck and context-matched peers, customers, or operators could shorten evaluation time without replacing underlying substance."
+        ],
+        "do_not_use_when": [
+          "The cited proof comes from prestigious adopters whose context, incentives, or constraints do not match the current decision.",
+          "Social proof is being used as a substitute for mechanism, evidence quality, customer truth, or causal explanation.",
+          "The case already has direct evidence of quality and more social validation would distract from the decision's real evidence question."
+        ],
+        "case_evidence_needed": [
+          "The exact proof source being cited: peers, customers, operators, high-status clients, statistics, quotes, adopters, or observed behavior.",
+          "Evidence that the cited group is structurally similar to the current audience or decision in context, incentives, and constraints.",
+          "The mechanism, evidence quality, customer truth, or causal claim that still matters after social proof accelerates credibility.",
+          "The specific behavior being copied and whether it is causally relevant in the current domain rather than only associated with visible success."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "identify-proof-source-and-fit",
+          "description": "Name the proof source and test whether it is structurally similar enough to the current audience for its adoption, endorsement, quote, statistic, or behavior to deserve credibility weight.",
+          "evidence_required": [
+            "Who or what is being treated as proof, including whether the source is a peer, customer, operator, statistic, quote, adopter, or high-status signal.",
+            "The current audience's relevant context, incentives, constraints, and quality-inspection limits.",
+            "The cited proof source's context, incentives, and constraints, including mismatches that would turn credibility into prestige leakage."
+          ],
+          "good_output_shape": [
+            "Separates peer or customer proof from prestige-only endorsement.",
+            "States why the proof source does or does not look structurally similar to the decision-maker's situation.",
+            "Treats social proof as evidence about credibility or perceived risk, not as automatic evidence that the underlying claim is true."
+          ]
+        },
+        {
+          "requirement_id": "preserve-substance-and-transfer-test",
+          "description": "After social proof earns limited credibility weight, require the underlying mechanism, evidence quality, customer truth, and causal transfer test before recommending adoption or copying behavior.",
+          "evidence_required": [
+            "The mechanism or evidence-quality claim that would justify the decision if social proof were removed.",
+            "The customer truth, operational fact, or causal link that explains why the endorsed behavior works.",
+            "The assumptions embedded in the successful behavior being copied and the evidence that those assumptions hold in the new domain."
+          ],
+          "good_output_shape": [
+            "States what social proof accelerates and what it cannot replace.",
+            "Asks whether the copied behavior transfers causally rather than copying the full bundle of visible success habits.",
+            "Names the remaining mechanism, customer evidence, or disconfirming check needed before commitment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who or what are we treating as proof, and what exact claim is that proof supposed to validate?",
+        "Do the cited peers, customers, operators, or adopters match our context, incentives, and constraints?",
+        "If we removed the social proof entirely, what mechanism, evidence quality, or customer truth would still justify this decision?",
+        "Does this copied behavior transfer causally into our domain, or are we borrowing success halo from an unrelated practice?"
+      ],
+      "misuse_guards": [
+        "Do not borrow prestige from irrelevant high-status adopters when their context, incentives, or constraints do not match the current decision.",
+        "Do not let adoption or endorsement replace mechanism, evidence quality, customer truth, or causal explanation.",
+        "Do not copy an admired actor's full visible behavior bundle when only some elements may be causally relevant.",
+        "Do not keep gathering social validation when the case already has direct inspectable quality evidence and the real issue is deciding from that evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "often relying on third-party validation, statistics, or quotes from credible sources.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "buyers or teammates cannot directly inspect the underlying quality and need credible adoption evidence to reduce perceived risk.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "the proof comes from peers, customers, or operators who look structurally similar to the audience making the decision.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "trust is the real bottleneck and third-party validation can shorten evaluation time without replacing the need for underlying substance.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "Danger when** teams borrow prestige from irrelevant high-status adopters whose context, incentives, or constraints do not match the current decision.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "Danger when** Social Proof is used as a substitute for mechanism, evidence quality, or customer truth instead of as a credibility accelerant.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "copy practices that are merely correlational with success, rather than causal.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "ensure that the adopted behavior (e.g., a celebrity's endorsement) is causally relevant to the desired outcome in the new domain, rather than just an unrelated practice of the successful person.",
+          "section_hint": "Pre-Mortem Questions to Ensure Wise Use",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance preserves the positive use of social proof while bounding it: credible adoption evidence can reduce perceived risk under uncertainty, but only after proof-source fit and substance checks.",
+        "dropped_material": [
+          "Did not split third-party validation, statistics, quotes, peers, customers, operators, and high-profile adopters into separate affordances because they all answer the same proof-source validity question.",
+          "Kept cargo-cult copying as a treatment boundary here because the operational work is the same: ask whether the cited success evidence transfers into the current context instead of borrowing prestige."
+        ],
+        "open_questions": [
+          "Reviewer should check whether future runtime cases need a separate correlation-vs-causation handoff for copied-behavior transfer rather than keeping it inside the proof-source validity affordance."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "social-proof.contain-consensus-contagion",
+      "status": "supported",
+      "name": "Consensus contagion needs independent dissent channels",
+      "mechanism": "When high-status opinion, visible consensus, or group momentum is shaping agreement, social proof becomes a contagion risk. The answer must collect independent rationales before group discussion, protect dissent through structure or anonymity, and require dialectic challenge plus disconfirming evidence before consensus is treated as truth.",
+      "activation_shape": {
+        "use_when": [
+          "A team is coalescing quickly around consensus, endorsement, or a high-status person's opinion.",
+          "Dissenting members may be withholding private doubts because group momentum makes going along feel safer.",
+          "Decision quality depends on surfacing rationales before status, consensus, or halo effects shape what people are willing to say."
+        ],
+        "do_not_use_when": [
+          "Agreement follows from independently gathered evidence and rationales that were recorded before group discussion.",
+          "The central issue is validating an external proof source rather than containing social contagion inside the decision process.",
+          "There is no shared decision process, meeting, group norm, or visible consensus signal that could suppress dissent."
+        ],
+        "case_evidence_needed": [
+          "The high-status person, consensus signal, group norm, or adoption cue currently shaping agreement.",
+          "The dissenting rationale, private doubt, disconfirming evidence, or minority view that may be suppressed.",
+          "Whether independent opinions and rationales were collected before group discussion.",
+          "The challenge structure, anonymity channel, dialectic standard, or disconfirming-evidence step available before synthesis."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "capture-independent-rationales-first",
+          "description": "Before discussing consensus, collect each relevant participant's independent opinion and rationale, using anonymity when status or halo effects could make dissent costly.",
+          "evidence_required": [
+            "The current sequence of discussion, endorsement, voting, or recommendation.",
+            "The high-status opinion or visible consensus that could become contagious.",
+            "The independent rationales or private concerns that exist before the group converges."
+          ],
+          "good_output_shape": [
+            "Requests independent opinions and reasons before open group discussion.",
+            "Names when anonymity or written input is needed to keep high-status contagion from dominating.",
+            "Separates genuine agreement from agreement produced by sequencing, status, or social pressure."
+          ]
+        },
+        {
+          "requirement_id": "challenge-consensus-before-synthesis",
+          "description": "Treat the prevailing consensus as a thesis that must meet an antithesis, disconfirming evidence, and perspective-taking before the group moves to synthesis or commitment.",
+          "evidence_required": [
+            "The prevailing consensus or thesis the group is converging around.",
+            "A credible antithesis, dissenting rationale, or disconfirming evidence that could challenge it.",
+            "The decision change, synthesis, or reconciliation that follows from the challenge."
+          ],
+          "good_output_shape": [
+            "States the consensus and the strongest challenge to it before recommending commitment.",
+            "Uses disconfirming evidence or an antithesis to test whether consensus is truth-tracking.",
+            "Moves from challenge to synthesis rather than using dissent as open-ended delay."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Have independent opinions and rationales been collected before group discussion?",
+        "Which high-status opinion or visible consensus signal might be especially contagious here?",
+        "What private doubt would be costly for someone to voice publicly?",
+        "What disconfirming evidence or antithesis must be reconciled before consensus earns weight?"
+      ],
+      "misuse_guards": [
+        "Do not treat fast consensus as evidence until independent rationales have survived the social-pressure sequence.",
+        "Do not call every agreement groupthink; the risk is social contagion suppressing dissent, not the mere existence of consensus.",
+        "Do not use anonymity to gather vague sentiment only; require rationales that can be tested against evidence.",
+        "Do not let dialectic challenge become endless debate; it should produce synthesis, commitment changes, or an explicit evidence gap."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "opinions from high-status members are **\"especially contagious\"** due to the halo effect.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "Social Proof can encourage groups to coalesce around consensus quickly, actively discouraging members who hold dissenting opinions from sharing them.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "just go with the flow",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "**Solicit independent opinions and rationales** before group discussion, potentially using anonymity to contain the contagion of high-status opinions.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "Establish a **Dialectic Standard** (thesis, antithesis, synthesis) as a team norm, requiring every idea or hypothesis to be constructively challenged.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "Actively look for and reconcile **disconfirming evidence**.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance is intentionally about the internal herd-effect path: status and visible consensus can change what stakeholders disclose before the substance has been tested.",
+        "dropped_material": [
+          "Did not use a generic conformity warning; the operational requirement is sequencing independent rationales before group discussion and challenging consensus before synthesis.",
+          "Did not duplicate the first affordance's external proof-source validity test; this one activates on group-process contagion and dissent suppression."
+        ],
+        "open_questions": [
+          "Reviewer may later connect this to psychological-safety or six-thinking-hats, but this record keeps the social-proof mechanism centered on high-status contagion and consensus pressure."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-cargo-cult-copying-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source strongly supports a copying-success anti-pattern, but in this extraction the distinct operational work is already carried by the proof-source validity affordance: identify the admired behavior, test structural fit, and ask whether the behavior transfers causally. A separate third affordance would duplicate that activation and evidence requirement.",
+      "runtime_policy": "available_for_review",
+      "source_evidence": [
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "The underlying mechanism of Social Proof involves adopting behaviors broadly because it is difficult to identify the precise causal links to success.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "**\"Does this particular behavior transfer?\"** Given that learners copy behaviors broadly, ensure that the adopted behavior (e.g., a celebrity's endorsement) is causally relevant to the desired outcome in the new domain, rather than just an unrelated practice of the successful person.",
+          "section_hint": "Pre-Mortem Questions to Ensure Wise Use",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-automatic-compliance-persuasion-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source describes automatic compliance and primal-brain marketing tactics, but it does not support a decision-quality affordance whose goal is to bypass analysis. This extraction retains that material only as a warning about social proof replacing substance or suppressing critical evaluation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "Social Proof is one of the principles that can produce *automatic, mindless compliance*.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "relying on Social Proof helps messages bypass the target’s highly analytical neocortex and instead activate the primal brain (the \"croc brain\") with simple, non-threatening, and clear ideas, resulting in \"hot cognitions\" or instant wanting.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-ai-persona-generalization-affordance",
+      "status": "source_too_thin",
+      "reason": "The source mentions AI persona modeling as an example of generalized social models, but it does not provide enough distinct treatment requirements beyond segment-based assumptions. The operational social-proof affordances above are better grounded in proof-source validity and herd-effect containment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "When creating AI agents or digital twins meant to simulate human behavior, designers may generalize based on segments (e.g., assuming \"young urban professionals might value convenience over price\") and encode these tendencies into the persona profile.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Social_Proof_rag.md",
+      "source_quote": "Social Proof is particularly powerful in contexts characterized by **uncertainty, complexity, and high cognitive load**.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Social_Proof_rag.md",
+      "source_quote": "buyers or teammates cannot directly inspect the underlying quality and need credible adoption evidence to reduce perceived risk.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Social_Proof_rag.md",
+      "source_quote": "Danger when** Social Proof is used as a substitute for mechanism, evidence quality, or customer truth instead of as a credibility accelerant.",
+      "section_hint": "Weaknesses and Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Social_Proof_rag.md",
+      "source_quote": "Social Proof can encourage groups to coalesce around consensus quickly, actively discouraging members who hold dissenting opinions from sharing them.",
+      "section_hint": "Weaknesses and Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Social_Proof_rag.md",
+      "source_quote": "**Solicit independent opinions and rationales** before group discussion, potentially using anonymity to contain the contagion of high-status opinions.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full Social Proof source, main curation record, intervention and relation semantic curation, PR 9 Batch 2 selection notes, the schema, and nearby Batch 2 records. Extracted two affordances to preserve source-backed distinctions: external proof-source validity and internal herd-effect containment.",
+    "dropped_material": [
+      "Did not promote a third affordance for cargo-cult copying because it duplicates the proof-source validity contract once the treatment requires causal transfer, structural fit, and substance checks.",
+      "Did not promote automatic-compliance marketing tactics as a standalone affordance; they are useful as risk context, not as an operational decision-quality treatment.",
+      "Did not preserve the AI persona modeling example as an affordance because the source gives only a brief application example without a distinct operational contract."
+    ],
+    "open_questions": [
+      "Reviewer should check whether the first affordance's copied-behavior transfer treatment should later hand off to correlation-vs-causation once that Batch 2 record exists.",
+      "Reviewer should check relation boundaries with authority-bias and psychological-safety: this record keeps status contagion and dissent suppression under social proof, but future routing may share evidence with those models."
+    ],
+    "review_status": "draft"
+  }
+}

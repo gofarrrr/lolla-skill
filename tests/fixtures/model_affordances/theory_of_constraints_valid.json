@@ -1,0 +1,91 @@
+{
+  "model_id": "theory-of-constraints",
+  "source_file": "Theory_Of_Constraints_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "theory-of-constraints.constraint-proof-before-optimization",
+      "status": "supported",
+      "name": "Constraint proof before optimization",
+      "mechanism": "The model forces an answer to prove the binding throughput limit before optimizing visible work or scaling effort.",
+      "activation_shape": {
+        "use_when": [
+          "The plan optimizes a visible painful step without proving it is the binding constraint.",
+          "The answer adds people, budget, tooling, or process before naming the capacity limit."
+        ],
+        "do_not_use_when": [
+          "The case has no throughput, queue, capacity, scarce-resource, handoff, or dependency structure.",
+          "The answer already names and measures the binding constraint before selecting interventions."
+        ],
+        "case_evidence_needed": [
+          "a proposed intervention that consumes resources",
+          "a possible bottleneck, approval gate, queue, scarce specialist, or constrained capacity",
+          "evidence that non-bottleneck work may look productive while leaving the outcome capped"
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-binding-constraint",
+          "description": "Name the single measured constraint that still caps the outcome if local improvements succeed.",
+          "evidence_required": [
+            "constraint name",
+            "metric or observable limit",
+            "dependency controlled by the constraint"
+          ],
+          "good_output_shape": [
+            "The binding constraint is X, not Y.",
+            "The first metric that should move is Z.",
+            "Stop or subordinate A until X moves."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Before committing, what single measured limit would still cap throughput if every local improvement succeeded next week?",
+        "If this first bottleneck actually moves, what step becomes the next cap within two weeks?"
+      ],
+      "misuse_guards": [
+        "Do not mistake visible work, local noise, or dashboard activity for the binding constraint.",
+        "Do not keep funding the same intervention package after evidence shows the constraint moved."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week? If you cannot name the binding constraint, the dependency it controls, and the metric that would move first, you are not improving the system -- you are improving a visible step.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "If this first bottleneck actually moves, what step becomes the next cap within two weeks, and what evidence in this plan would tell us the constraint has already shifted there?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Fixture uses the source's constraint proof and constraint-shift checks as one operational affordance.",
+        "dropped_material": [],
+        "open_questions": [],
+        "review_status": "fixture"
+      }
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Theory_Of_Constraints_rag.md",
+      "source_quote": "**Constraint proof before optimization:** Ask **\"Before committing: what is the single measured limit that would still cap throughput if every local improvement in this plan succeeded next week? If you cannot name the binding constraint, the dependency it controls, and the metric that would move first, you are not improving the system -- you are improving a visible step.\"**",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Validation fixture only; not a reviewed corpus extraction.",
+    "dropped_material": [],
+    "open_questions": [],
+    "review_status": "fixture"
+  }
+}

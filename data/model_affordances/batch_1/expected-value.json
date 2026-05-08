@@ -1,0 +1,263 @@
+{
+  "model_id": "expected-value",
+  "source_file": "Expected_Value_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "expected-value.probability-weighted-payoff-boundary",
+      "status": "supported",
+      "name": "Probability-weighted payoff comparison with assumption boundaries",
+      "mechanism": "Compare options by enumerating possible outcomes, estimating likelihoods and consequences, testing which assumptions drive the payoff, and carrying tail-risk and boundary-condition caveats alongside the calculated expected value.",
+      "activation_shape": {
+        "use_when": [
+          "Choices involve asymmetric payoffs where vivid outcomes may displace weighted outcomes.",
+          "The team can estimate probabilities and consequences well enough to compare options on a common basis.",
+          "The decision must trade off upside, downside, and likelihood rather than react to the most salient outcome."
+        ],
+        "do_not_use_when": [
+          "EV math would launder weak assumptions, speculative probabilities, or unacceptable downside into false rationality.",
+          "The options, costs, benefits, or probabilities are too unclear for a trustworthy numerical comparison.",
+          "A single base case or mean outcome would hide tail outcomes that could dominate the decision."
+        ],
+        "case_evidence_needed": [
+          "A finite set of options, actions, or strategic paths being compared.",
+          "Possible outcomes for each option, including upside, downside, and tail cases.",
+          "Probability or likelihood estimates for those outcomes, plus the basis for the estimates.",
+          "Costs, benefits, payoffs, or consequences attached to each outcome.",
+          "Assumptions and boundary conditions that would change the recommendation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "enumerate-weighted-outcomes",
+          "description": "Lay out each option's possible outcomes, estimated likelihoods, and payoffs before ranking options by expected value.",
+          "evidence_required": [
+            "The options or actions under consideration.",
+            "The outcome distribution for each option rather than only the base case.",
+            "Likelihood estimates for each material outcome.",
+            "Payoff, cost, benefit, or consequence estimates for each material outcome."
+          ],
+          "good_output_shape": [
+            "Compares options on a common probability-weighted basis.",
+            "Shows how likelihood and payoff combine to change the ranking.",
+            "Names relevant upside, downside, and tail cases.",
+            "Avoids presenting a single base case as the expected result."
+          ]
+        },
+        {
+          "requirement_id": "stress-test-assumptions-and-tails",
+          "description": "Run sensitivity and tail-risk checks to identify which uncertain inputs drive the payoff and whether worst-case outcomes change the decision.",
+          "evidence_required": [
+            "The probability, payoff, or consequence assumptions most likely to change the result.",
+            "Low-probability, high-impact negative outcomes that could dominate the decision.",
+            "The basis for any precise probability or value estimate.",
+            "Known unknowns or missing variables that remain outside the calculation."
+          ],
+          "good_output_shape": [
+            "Identifies the assumptions that most change the payoff comparison.",
+            "States where greater accuracy is needed before relying on the calculation.",
+            "Tests whether the worst case is severe enough to overturn the choice.",
+            "Shares the calculated EV with boundary conditions instead of naked precision."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What would you have to believe for the favorable outcome to be credible?",
+        "Is the worst case bad enough to overturn the expected payoff comparison?",
+        "Which probability, payoff, or consequence assumption most changes the ranking if varied?",
+        "Are we comparing the full distribution of outcomes or only the base case?"
+      ],
+      "misuse_guards": [
+        "Do not let numerical EV language launder weak assumptions, speculative probabilities, or ethically unacceptable downside.",
+        "Do not assign precise probabilities or values when the source data is conjectural or highly subjective.",
+        "Do not rely on the mean or base case when far-from-mean outcomes could dominate.",
+        "Do not let a favored mathematical framework torture reality into fitting the model."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "It dictates that decisions should not be based solely on a single anticipated outcome (the \"base case\"), but rather on a systematic weighing of all possible outcomes against the likelihood of those outcomes occurring.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "This requires establishing causal links between events that can be verified.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "the **distribution of outcomes**, rather than solely focusing on the average or mean outcome.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "**Most useful when** choices involve asymmetric payoffs and intuitive judgment is likely to overweight vivid outcomes rather than weighted outcomes.",
+          "section_hint": "Contexts Where the Model Is Most Powerful (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "**Works best when** the team can estimate probabilities and consequences well enough to compare options on a common decision basis.",
+          "section_hint": "Contexts Where the Model Is Most Powerful (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "**Best used when** a decision must trade off upside, downside, and likelihood instead of reacting to whichever outcome feels most salient.",
+          "section_hint": "Contexts Where the Model Is Most Powerful (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "EV requires accurate estimates, but since options and costs/benefits are often unclear, performing a **sensitivity analysis** is crucial.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "This involves testing inputs to uncover key drivers and appreciate where greater accuracy is needed in assumptions.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "The **Knowns & Unknowns model** helps categorize risks (Known knowns, Known unknowns, Unknown knowns, and Unknown unknowns), ensuring all relevant variables that contribute to the payoff are considered.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "Ask the question, **\"Is the worst case bad enough?\"** to ensure low-probability, high-impact negative outcomes are sufficiently analyzed.",
+          "section_hint": "Mitigation Strategies and Pre-Mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "ask, \"**What would you have to believe?**\" to spell out all implicit assumptions required to accept the favorable outcome.",
+          "section_hint": "Mitigation Strategies and Pre-Mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "EV math is used to launder weak assumptions, speculative probabilities, or ethically unacceptable downside into a false aura of rationality.",
+          "section_hint": "Limitations and Dangerous Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "Attempting to assign precise probabilities or values where data is conjectural or highly subjective can create a **craving for false precision**.",
+          "section_hint": "Limitations and Dangerous Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "Over-reliance on the mean or \"base case\" outcome is a common error, leading to insufficient weighting on catastrophic low-probability events or highly positive high-impact events (outcomes far from the mean).",
+          "section_hint": "Limitations and Dangerous Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "torturing reality so that it fits their models",
+          "section_hint": "Limitations and Dangerous Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "The calculated EV must be shared with accompanying assumptions, as explaining the boundary conditions under which the recommendations hold true makes them more credible",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed weighted comparison, sensitivity analysis, tail-risk checks, and assumption-boundary disclosure into one operational contract because the source treats them as parts of the same EV discipline.",
+        "dropped_material": [
+          "Did not split decision trees, scenario analysis, or game theory into separate affordances; they are supporting methods for the weighted payoff comparison.",
+          "Did not promote relation semantics into separate model affordances because the source mostly names allies and antagonists rather than independent treatment requirements."
+        ],
+        "open_questions": [
+          "The reviewed activation curation notes that the threshold for probabilities being good enough remains case-dependent."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-business-case-document-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports a business case as an inspectable output of EV reasoning, but not as a separate affordance beyond the weighted comparison and assumption audit already extracted.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Expected_Value_rag.md",
+          "source_quote": "The final step of applying EV and related decision models is to produce a **business case**, a document outlining the explicit reasoning behind a decision, laying out the premises and explaining how they lead to the conclusion. This helps identify holes in the decision-making process.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Expected_Value_rag.md",
+      "source_quote": "It dictates that decisions should not be based solely on a single anticipated outcome (the \"base case\"), but rather on a systematic weighing of all possible outcomes against the likelihood of those outcomes occurring.",
+      "section_hint": "Core Definition and Purpose",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Expected_Value_rag.md",
+      "source_quote": "EV requires accurate estimates, but since options and costs/benefits are often unclear, performing a **sensitivity analysis** is crucial.",
+      "section_hint": "Key Heuristics and Actionable Frameworks",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Expected_Value_rag.md",
+      "source_quote": "EV math is used to launder weak assumptions, speculative probabilities, or ethically unacceptable downside into a false aura of rationality.",
+      "section_hint": "Limitations and Dangerous Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Expected_Value_rag.md",
+      "source_quote": "The calculated EV must be shared with accompanying assumptions, as explaining the boundary conditions under which the recommendations hold true makes them more credible",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the packet source plus activation, intervention, and relation curation. Extracted one high-confidence operational affordance and kept runtime policy dormant.",
+    "dropped_material": [
+      "Did not extract industry-specific movie, project, or startup examples because they illustrate the same weighted-outcome mechanism.",
+      "Did not extract a separate reference-class affordance because that material is a supporting input discipline here and is covered more directly by the base-rates model.",
+      "Did not promote structured tensions or ally relationships into runtime affordances."
+    ],
+    "open_questions": [
+      "Review may later decide whether EV should be split into estimation hygiene and communication hygiene, as noted by intervention curation."
+    ],
+    "review_status": "draft"
+  }
+}

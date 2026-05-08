@@ -1,0 +1,145 @@
+{
+  "model_id": "perceptual-learning",
+  "source_file": "Perceptual_Learning_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "perceptual-learning.train-cue-discrimination",
+      "status": "supported",
+      "name": "Train cue discrimination in noisy domains",
+      "mechanism": "When better pattern detection would change real-world performance, use perceptual learning to identify the subtle cues, anomalies, and signal filters that separate expert judgment from novice confusion.",
+      "activation_shape": {
+        "use_when": [
+          "Better pattern detection changes real-world performance.",
+          "Subtle cues separate expert judgment from novice confusion.",
+          "A domain rewards anomaly detection, signal filtering, or cue discrimination."
+        ],
+        "do_not_use_when": [
+          "Accumulated expertise suppresses anomaly detection and the case is meaningfully different.",
+          "A familiar framework is being used because it is handy rather than right.",
+          "Pattern recognition is treated as objective proof without fresh feedback or tests."
+        ],
+        "case_evidence_needed": [
+          "The domain where cue discrimination matters.",
+          "The specific subtle cues or anomalies that experts notice.",
+          "The feedback or practice history that trained the pattern.",
+          "The signal that this case may differ from the learned pattern."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-cue-feedback-and-anomaly",
+          "description": "Require the answer to identify the cue, the feedback that trained it, and the anomaly that would stop pattern recognition from overfitting.",
+          "evidence_required": [
+            "The expert cue or pattern being used.",
+            "The feedback history that made the cue reliable.",
+            "The noisy input field being filtered.",
+            "The anomaly or mismatch that would require updating the pattern."
+          ],
+          "good_output_shape": [
+            "Names the discriminating cue.",
+            "States why the cue is reliable.",
+            "Adds an anomaly check.",
+            "Avoids treating perception as objective proof."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What subtle cue separates expert judgment from novice confusion here?",
+        "What feedback trained this pattern, and is it still updating?",
+        "What anomaly would show that the familiar frame is the wrong tool?"
+      ],
+      "misuse_guards": [
+        "Do not let accumulated expertise suppress anomaly detection.",
+        "Do not use the handy framework when the case is genuinely novel.",
+        "Do not treat pattern recognition as proof without feedback and testing."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "better pattern detection changes real-world performance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "subtle cues separate expert judgment from novice confusion",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "accumulated expertise suppresses anomaly detection",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports cue discrimination where feedback-trained patterns improve performance, with anomaly checks.",
+        "dropped_material": [
+          "Did not convert perceptual learning into a persona classifier or visual pattern engine.",
+          "Did not treat expert perception as automatically objective."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with system-1 and circle-of-competence."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "perceptual-learning-without-feedback",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that pattern recognition can stop updating; it does not support perceptual learning claims without feedback or anomaly correction.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "Pattern Recognition Stops Updating",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "perception-as-objective-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against torturing reality to fit existing models; it does not support treating a perceived pattern as objective proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "torture reality so that it fits your models",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Perceptual_Learning_rag.md",
+      "source_quote": "efficiently filter, organize, and recognize meaningful patterns",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 keeps perceptual learning as feedback-trained cue discrimination, not as untested intuition.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, perception classifier, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test when this card adds value beyond system-1 and expertise calibration."
+    ],
+    "review_status": "draft"
+  }
+}

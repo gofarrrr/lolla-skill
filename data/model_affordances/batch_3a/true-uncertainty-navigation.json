@@ -1,0 +1,222 @@
+{
+  "model_id": "true-uncertainty-navigation",
+  "source_file": "True_Uncertainty_Navigation_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "true-uncertainty-navigation.scenario-bound-robust-action",
+      "status": "supported",
+      "name": "Scenario-bound robust action under ambiguity",
+      "mechanism": "When one forecast would be misleading, convert ambiguity into a small set of plausible paths, active hypotheses, and commitment rules that preserve action while avoiding scenario theater, overconfident prediction, or analysis paralysis.",
+      "activation_shape": {
+        "use_when": [
+          "The future cannot be reduced to one reliable forecast and a confident storyline would understate the range of possible outcomes.",
+          "Uncertainty materially changes capital allocation, sequencing, commitment size, or the choice between a big bet, staged bet, reversible action, and no-regrets move.",
+          "The user needs robust action under ambiguity rather than more analysis intended to eliminate ambiguity completely.",
+          "A novel or high-stakes case is at risk of being forced into a familiar frame that does not match the problem structure."
+        ],
+        "do_not_use_when": [
+          "The problem is predictable enough that heavy uncertainty work would boil the ocean without changing the next move.",
+          "Scenario work is producing narratives without concrete triggers, option value, reversible actions, or a commitment decision.",
+          "The team is using uncertainty language to delay action after enough has been learned to choose a robust next step.",
+          "The case primarily needs a bounded hypothesis test, probability range, or explicit buffer rather than a multi-path ambiguity surface."
+        ],
+        "case_evidence_needed": [
+          "The decision, allocation, sequence, or commitment that changes under different plausible futures.",
+          "The two to four live scenarios or paths that differ enough to alter action, not just mood or narrative.",
+          "The active hypothesis, assumption, or belief each scenario tests.",
+          "The action type under consideration: no-regrets move, staged commitment, reversible probe, delayed commitment, or big bet.",
+          "The trigger, observation, or review moment that would shift the commitment or retire scenario work."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-scenarios-from-single-forecast",
+          "description": "Require the answer to replace a single false forecast with a small set of plausible paths only when the paths would change the allocation, sequence, or commitment decision.",
+          "evidence_required": [
+            "The forecast or storyline currently being treated as sufficient.",
+            "The plausible futures that materially change the decision.",
+            "The action difference between those futures.",
+            "The uncertainty level or ambiguity reason that makes one prediction unsafe."
+          ],
+          "good_output_shape": [
+            "Names the plausible futures in decision-relevant terms rather than narrative color.",
+            "Links each path to a different allocation, sequence, or commitment choice.",
+            "Rejects scenarios that would not change action.",
+            "Keeps the scenario set small enough to guide a next move."
+          ]
+        },
+        {
+          "requirement_id": "tie-ambiguity-to-commitment-shape",
+          "description": "Translate uncertainty into a commitment shape such as no-regrets move, reversible probe, staged commitment, or big bet instead of leaving the user with more ambiguity language.",
+          "evidence_required": [
+            "The cost, reversibility, downside, upside, and timing of the commitment.",
+            "The known unknowns or unknown unknowns that still matter.",
+            "The assumptions that would have to be true for the current path to work.",
+            "The smallest action that preserves learning or option value under ambiguity."
+          ],
+          "good_output_shape": [
+            "States the recommended commitment size and why it fits the uncertainty level.",
+            "Uses active hypotheses to focus evidence gathering.",
+            "Names what is being preserved: option value, downside protection, strategic learning, or timing flexibility.",
+            "Defines when further analysis should stop because robust action is available."
+          ]
+        },
+        {
+          "requirement_id": "stop-scenario-theater",
+          "description": "Refuse uncertainty work that creates many stories without triggers, options, reversible actions, or a decision update.",
+          "evidence_required": [
+            "The scenarios or uncertainty narratives already being generated.",
+            "The trigger, metric, observation, or event that would make each scenario decision-relevant.",
+            "The reversible or no-regrets action available before prediction improves.",
+            "The decision that would not change even if more scenarios were added."
+          ],
+          "good_output_shape": [
+            "Suppresses scenarios with no action delta.",
+            "Adds concrete triggers or option-preserving actions to scenarios that remain live.",
+            "Names the point where uncertainty work becomes theater.",
+            "Moves from narrative ambiguity to a robust next action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which plausible futures would actually change the allocation, sequence, or commitment decision?",
+        "Are we choosing robust action under ambiguity, or pretending ambiguity can be eliminated before acting?",
+        "What would have to be true for the current path to work under each live scenario?",
+        "Which trigger, option, or reversible action keeps this from becoming scenario theater?",
+        "When is the next move no longer improved by more uncertainty work?"
+      ],
+      "misuse_guards": [
+        "Do not generate uncertainty narratives unless each one changes a commitment, trigger, option, or next action.",
+        "Do not use this record for predictable Level 1 cases where a normal forecast or bounded test would resolve the decision.",
+        "Do not let true-uncertainty language become an excuse for delayed commitment after robust action is available.",
+        "Do not force a familiar strategy frame onto a novel problem before checking whether the problem structure matches.",
+        "Do not confuse good outcome luck with good decision quality under ambiguity."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "The fundamental essence of True Uncertainty Navigation is the disciplined approach to decision-making when predictive modeling fails, acknowledging that the difficulty lies not just in executing a strategy, but in knowing *how* to proceed when the objective environment is unclear.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "These are challenging settings where uncertainty rises, requiring tailored actions, such as \"big bets\" or \"no regrets\" moves.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "When uncertainty is high, **creating multiple plausible futures** (scenarios) is more valuable than trying to generate a single forecast.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "Best used when** the challenge is choosing robust action under ambiguity, not pretending the ambiguity can be eliminated first.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "Teams can produce many uncertainty narratives without linking them to concrete triggers, option value, or reversible actions.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Read the PR15 brief, schema, full True_Uncertainty_Navigation_rag.md source, Wave 1 activation curation, and intervention semantics. Extracted one record that ties multi-path uncertainty to commitment shape and anti-theater triggers.",
+        "dropped_material": [
+          "Did not preserve broad latticework, compass, GPS, Feynman, or Munger analogy material as separate affordances.",
+          "Did not extract a generic knowns-and-unknowns inventory because existing uncertainty records already cover reducible evidence gathering; this record stays on robust action under ambiguity.",
+          "Did not create a separate calibration affordance because confidence calibration and probabilistic-thinking records carry that narrower function."
+        ],
+        "open_questions": [
+          "Reviewer should test whether the scenario-theater guard is strong enough without inventing monitoring machinery beyond the source's trigger, option-value, and reversible-action language."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-unknown-unknowns-inventory",
+      "status": "duplicate_of_existing_field",
+      "reason": "A broad knowns-and-unknowns inventory would overlap existing uncertainty and experimentation records unless it changes commitment shape under genuine ambiguity. Batch 3a should not add scenario vocabulary that only expands coverage.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "The goal is to enumerate items in each quadrant and systematically work to turn them all into **known knowns**.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "Best used when** the challenge is choosing robust action under ambiguity, not pretending the ambiguity can be eliminated first.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "prediction-replacement-with-more-analysis",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that true uncertainty requires action orientation. An affordance that responds to ambiguity by piling up analysis without a commitment rule would invert the source.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "True Uncertainty Navigation requires practitioners to be \"as thorough as Hamlet and as action oriented as Othello\".",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "Teams can produce many uncertainty narratives without linking them to concrete triggers, option value, or reversible actions.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "True_Uncertainty_Navigation_rag.md",
+      "source_quote": "Most useful when** the future cannot be reduced to one forecast and the team must reason across several plausible paths instead of one confident storyline.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "True_Uncertainty_Navigation_rag.md",
+      "source_quote": "This model is most powerful when facing genuinely novel problems where previous frameworks may be \"unhelpful or misleading\".",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 3a outcome: strong_affordance_record. The source supports a narrow robust-action record because it explicitly combines multi-path futures, true uncertainty levels, active hypotheses, commitment discipline, anti-paralysis, and scenario-theater warnings.",
+    "dropped_material": [
+      "Did not extract multidisciplinary-toolbox material, Bayesian ally material, critical-thinking ally material, or narrative-thinking antagonists as fields.",
+      "Did not add broad uncertainty theater to improve coverage statistics; the record is dormant until a later dry surface proves it improves compact Decision Pressure.",
+      "No runtime, prompt, validator, or existing affordance record changes are implied by this record."
+    ],
+    "open_questions": [
+      "Later dry-surface review should check whether this record changes suppressed uncertainty pressures or merely adds more language to compress."
+    ],
+    "review_status": "draft"
+  }
+}

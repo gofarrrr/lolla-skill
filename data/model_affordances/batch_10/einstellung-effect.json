@@ -1,0 +1,145 @@
+{
+  "model_id": "einstellung-effect",
+  "source_file": "Einstellung_Effect_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "einstellung-effect.familiar-solution-lock-in-interrupt",
+      "status": "supported",
+      "name": "Familiar solution lock-in interrupt",
+      "mechanism": "When a solution arrives suspiciously fast because prior experience supplies a familiar template, require the answer to interrupt fixed thinking and test whether the situation demands a different approach before commitment.",
+      "activation_shape": {
+        "use_when": [
+          "An experienced team keeps reaching for the same proven frame even though the situation feels structurally different.",
+          "The first solution arrived suspiciously fast and expertise may be blinding the group to alternatives.",
+          "The problem requires reframing, cross-domain analogies, or deliberate interruption of the dominant mental template before committing."
+        ],
+        "do_not_use_when": [
+          "The familiar pattern has been tested against the current case and the assumptions still hold.",
+          "Avoiding fixation becomes a reason to reject all prior knowledge rather than distinguish useful pattern recognition from stale lock-in.",
+          "The answer would generate alternatives without testing whether the dominant template is actually wrong."
+        ],
+        "case_evidence_needed": [
+          "The familiar solution or frame currently being applied.",
+          "The prior experience that makes it feel obvious.",
+          "The case features that may make the familiar template unreliable.",
+          "The alternative test, analogy, or frame that could break lock-in."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-familiar-template-fit",
+          "description": "Require the answer to name the familiar template, identify what makes the case different, and specify the test or alternative frame that would reveal stale pattern lock-in.",
+          "evidence_required": [
+            "The solution or pattern that arrived quickly.",
+            "The experience or template it comes from.",
+            "The mismatch between the template and the present case.",
+            "The alternative frame or interruption test."
+          ],
+          "good_output_shape": [
+            "Names the familiar solution path.",
+            "Identifies why speed may be a warning sign.",
+            "Distinguishes useful expertise from stale pattern lock-in.",
+            "Produces a bounded interruption test before commitment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What familiar solution is being reused here?",
+        "What about this case makes the familiar template potentially unreliable?",
+        "What small test or alternative frame would break stale solution lock-in?"
+      ],
+      "misuse_guards": [
+        "Do not reject prior knowledge merely because novelty is possible.",
+        "Do not generate alternatives for novelty theater without testing the dominant template.",
+        "Do not treat fast pattern recognition as reliable when the case structure differs."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Einstellung_Effect_rag.md",
+          "source_quote": "existing or previously learned solution prevents an individual from perceiving, or being open to, alternative solutions",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Einstellung_Effect_rag.md",
+          "source_quote": "an experienced team keeps reaching for the same proven frame even though the situation feels structurally different.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Einstellung_Effect_rag.md",
+          "source_quote": "a problem requires reframing, cross-domain analogies, or deliberate interruption of the dominant mental template before committing.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a familiar-solution lock-in interrupt that tests stale templates without rejecting expertise wholesale.",
+        "dropped_material": [
+          "Did not extract learning-mode, word-search, or interrogative-self-talk material as separate affordances.",
+          "Kept Feynman and first-principles material as supporting context only."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card helps packets interrupt stale solution lock-in without producing novelty theater."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "reject-all-prior-knowledge",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that avoiding fixation should not become a reason to reject helpful pattern recognition and prior knowledge.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Einstellung_Effect_rag.md",
+          "source_quote": "distinguishing helpful pattern recognition from stale pattern lock-in",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "fluency-as-truth-for-template-fit",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that cognitive ease can make a familiar path feel true even when fluency is not a reliable test of fit.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Einstellung_Effect_rag.md",
+          "source_quote": "fluency is not easily distinguished from truth",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Einstellung_Effect_rag.md",
+      "source_quote": "getting stuck in solving a problem or understanding a concept as a result of becoming fixated on a flawed approach",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for einstellung-effect as a familiar-solution lock-in interrupt.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card catches stale patterns without making prior experience look useless."
+    ],
+    "review_status": "draft"
+  }
+}

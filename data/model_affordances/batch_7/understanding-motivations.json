@@ -1,0 +1,145 @@
+{
+  "model_id": "understanding-motivations",
+  "source_file": "Understanding_Motivations_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "understanding-motivations.hidden-driver-hypothesis-test",
+      "status": "supported",
+      "name": "Hidden driver hypothesis test",
+      "mechanism": "When visible behavior looks irrational, inconsistent, or self-defeating, require the answer to form and test hypotheses about what the other party is optimizing for before designing persuasion, incentives, or cooperation.",
+      "activation_shape": {
+        "use_when": [
+          "Visible behavior appears irrational, inconsistent, or self-defeating until status, identity, fear, reward, or purpose is surfaced.",
+          "Adoption, resistance, effort quality, or cooperation depends on what the other party is truly optimizing for.",
+          "A message, role, or system has to align with what people will actually respond to rather than what they claim publicly."
+        ],
+        "do_not_use_when": [
+          "The answer would over-psychologize a simple constraint, capability, or resource problem.",
+          "Stated motivations are being treated as sufficient truth despite politics, image management, or self-deception.",
+          "The model would turn every disagreement into hidden motive speculation instead of testing concrete evidence."
+        ],
+        "case_evidence_needed": [
+          "The visible behavior or resistance that needs explanation.",
+          "The candidate hidden driver: status, identity, fear, reward, purpose, or pressure.",
+          "Evidence that distinguishes stated motive from actual optimization.",
+          "A disconfirming check that would falsify the motivational hypothesis."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-hidden-driver-before-intervention",
+          "description": "Require the answer to state a motivational hypothesis, identify what evidence would support or disconfirm it, and avoid treating stated motives as final truth.",
+          "evidence_required": [
+            "The puzzling behavior.",
+            "The stated motivation.",
+            "The candidate hidden motive or incentive.",
+            "A test or observation that would distinguish motive hypotheses."
+          ],
+          "good_output_shape": [
+            "Names the behavior that needs explanation.",
+            "Separates stated motive from inferred driver.",
+            "Provides a falsifiable check.",
+            "Designs the intervention around the tested driver rather than around speculation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is this person or group actually optimizing for?",
+        "What would make the visible behavior rational from their point of view?",
+        "What evidence would prove our motive hypothesis wrong?"
+      ],
+      "misuse_guards": [
+        "Do not over-psychologize simple constraint or capability problems.",
+        "Do not accept stated motivation as sufficient truth when image management is likely.",
+        "Do not invent hidden motives without a disconfirming check."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "visible behavior looks irrational, inconsistent, or self-defeating until the real status, identity, fear, or reward structure is surfaced",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "what the other party is truly optimizing for",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "What would you have to believe?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports a hidden-driver hypothesis test with explicit over-psychologizing and stated-motive guards.",
+        "dropped_material": [
+          "Did not extract AMP, buyer-avatar, or AI persona creation as separate affordances.",
+          "Did not generalize motivation into unsupported personality inference."
+        ],
+        "open_questions": [
+          "Future packet review should test this card against reciprocity and persuasion when stated motives and influence tactics diverge."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "over-psychologize-simple-constraints",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that motivational analysis can over-explain cases that are actually constraint or capability problems.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "over-psychologize simple constraint or capability problems",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "stated-motive-as-final-truth",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that stated motivations can be distorted by image management, politics, or self-deception.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "stated motivations are treated as sufficient truth in contexts where image management, politics, or self-deception are strong",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Understanding_Motivations_rag.md",
+      "source_quote": "What are other people\u2019s primary motivations and what unspoken, underlying motivations might they have that they (and you) are not even aware of?",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Understanding Motivations. Extracted one hidden-driver test and rejected over-psychologizing plus stated-motive credulity.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps prevent shallow advice in resistance/adoption cases."
+    ],
+    "review_status": "draft"
+  }
+}

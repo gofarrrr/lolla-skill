@@ -1,0 +1,145 @@
+{
+  "model_id": "baseline-establishment",
+  "source_file": "Baseline_Establishment_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "baseline-establishment.starting-condition-comparison-gate",
+      "status": "supported",
+      "name": "Starting condition comparison gate",
+      "mechanism": "When a recommendation claims improvement, change, or execution readiness, require the answer to name the shared starting condition, success criteria, and comparison facts before treating later movement as meaningful.",
+      "activation_shape": {
+        "use_when": [
+          "A team lacks a shared starting picture of the problem, the success criteria, or the facts that later comparisons should be judged against.",
+          "Diagnosis, measurement, and ownership depend on agreeing what normal, broken, or improved actually mean.",
+          "Later intervention quality will be judged by change from an explicit starting condition rather than by impressionistic anecdotes."
+        ],
+        "do_not_use_when": [
+          "The initial baseline has fossilized into doctrine and the team keeps optimizing around an outdated starting frame after the environment has shifted.",
+          "The chosen baseline metric is convenient to measure but weakly tied to the real causal drivers of success or failure.",
+          "The proposed baseline defines a symptom rather than the root condition that future action should change."
+        ],
+        "case_evidence_needed": [
+          "The current starting condition.",
+          "The desired outcome and success criteria.",
+          "The facts, metrics, or observations that define normal, broken, or improved.",
+          "The context shift that would require revisiting the baseline."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-baseline-before-improvement-claim",
+          "description": "Require the answer to define what starting condition and comparison standard must exist before claims of improvement, diagnosis, or execution progress can be trusted.",
+          "evidence_required": [
+            "The claimed improvement or decision target.",
+            "The starting facts or current operating condition.",
+            "The comparison metric or qualitative marker.",
+            "The causal reason that marker reflects the real problem."
+          ],
+          "good_output_shape": [
+            "States the starting condition plainly.",
+            "Defines what normal, broken, and improved mean.",
+            "Separates convenient measurement from causal relevance.",
+            "Names when the baseline should be revisited."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the shared starting condition before this advice is judged?",
+        "What does normal, broken, or improved mean in this case?",
+        "Is the chosen baseline causally tied to success, or just easy to measure?"
+      ],
+      "misuse_guards": [
+        "Do not let an obsolete baseline become doctrine after context shifts.",
+        "Do not use a convenient metric as the baseline if it does not track the real driver.",
+        "Do not define the baseline around a symptom and then optimize the wrong condition."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "a team lacks a shared starting picture of the problem, the success criteria, or the facts that later comparisons should be judged against",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "what \"normal,\" \"broken,\" or \"improved\" actually mean",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "change from an explicit starting condition rather than by impressionistic anecdotes",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one operational baseline gate for starting facts, success criteria, comparison meaning, and measurement discipline.",
+        "dropped_material": [
+          "Did not extract AI persona consistency, TOSCA/design brief, or commander's intent as separate affordances.",
+          "Kept goal/process separation as context for baseline discipline."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card prevents packet recommendations from claiming improvement without a starting condition."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "obsolete-baseline-as-doctrine",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that baselines become dangerous when they fossilize into doctrine after the environment has shifted.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "the initial baseline fossilizes into doctrine and the team keeps optimizing around an outdated starting frame after the environment has shifted",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "convenient-metric-as-baseline",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects a baseline metric that is convenient to measure but weakly tied to the real causal drivers of success or failure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Baseline_Establishment_rag.md",
+          "source_quote": "the chosen baseline metric is convenient to measure but weakly tied to the real causal drivers of success or failure",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Baseline_Establishment_rag.md",
+      "source_quote": "clarity of the starting condition and intentional focus on the desired goal",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Baseline Establishment. Extracted one starting-condition comparison gate and rejected stale-baseline and convenient-metric overclaims.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should check whether this card helps separate baseline facts from success theater."
+    ],
+    "review_status": "draft"
+  }
+}

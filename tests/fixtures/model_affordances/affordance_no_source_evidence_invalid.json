@@ -1,0 +1,54 @@
+{
+  "model_id": "second-order-thinking",
+  "source_file": "Second_Order_Thinking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "second-order-thinking.recovery-path-check",
+      "status": "supported",
+      "name": "Recovery path check",
+      "mechanism": "The model forces a decision to identify which downstream dependency becomes harder to reverse after the current move.",
+      "activation_shape": {
+        "use_when": [
+          "The answer celebrates a local gain while delayed dependencies may remove a cheap recovery path."
+        ],
+        "do_not_use_when": [
+          "The decision is reversible and has no delayed dependency chain."
+        ],
+        "case_evidence_needed": [
+          "a current move and a later dependency whose reversibility could change"
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-recovery-path",
+          "description": "Name the later dependency that becomes harder to reverse because the current move happens now.",
+          "evidence_required": [
+            "current move",
+            "later dependency",
+            "first signal that reversal cost has changed"
+          ],
+          "good_output_shape": [
+            "This move removes the cheap recovery path at milestone X."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which later dependency becomes harder, costlier, or politically harder to reverse because this move happens now?"
+      ],
+      "misuse_guards": [
+        "Do not use second-order language to postpone commitment without naming an action threshold."
+      ],
+      "source_evidence": [],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [],
+  "review_notes": {
+    "normalization_note": "Intentional invalid fixture: the affordance has no source evidence.",
+    "dropped_material": [],
+    "open_questions": [],
+    "review_status": "fixture"
+  }
+}

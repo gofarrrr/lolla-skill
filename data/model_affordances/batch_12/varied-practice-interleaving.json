@@ -1,0 +1,145 @@
+{
+  "model_id": "varied-practice-interleaving",
+  "source_file": "Varied_Practice_Interleaving_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "varied-practice-interleaving.contrast-frames-before-commitment",
+      "status": "supported",
+      "name": "Contrast frames before commitment",
+      "mechanism": "When one frame is under-explaining a problem, require multiple materially different examples, counterexamples, or analytical cuts before commitment, then prune the variation back to the decision-relevant contrast.",
+      "activation_shape": {
+        "use_when": [
+          "The first plausible explanation feels coherent but leaves behavior, stakeholder reactions, or edge cases unexplained.",
+          "Learning must transfer across situations rather than solve one memorized case.",
+          "Teams need contrast before locking in the operating story."
+        ],
+        "do_not_use_when": [
+          "The problem is simple enough that multiple frames only add burden.",
+          "Variety becomes undisciplined wandering without sharpening the decision.",
+          "Too many frameworks overload novices before basic categories stabilize."
+        ],
+        "case_evidence_needed": [
+          "The initial frame or explanation.",
+          "At least two materially different alternative frames, examples, or counterexamples.",
+          "The decision-relevant contrast the variation exposes.",
+          "The pruning rule that stops further wandering."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-multiple-cuts-then-prune",
+          "description": "Require the answer to compare several frames or examples, name the non-obvious contrast each exposes, and prune to the frame that changes the decision.",
+          "evidence_required": [
+            "Current frame.",
+            "Alternative frames or examples.",
+            "Different insight exposed by each.",
+            "Decision criterion for pruning."
+          ],
+          "good_output_shape": [
+            "Names the initial frame and its blind spot.",
+            "Tests materially different cuts.",
+            "Extracts the decision-relevant contrast.",
+            "Stops variation once it no longer changes the next move."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What alternative frame have we explicitly tested?",
+        "What contrast does this example or counterexample expose?",
+        "What is the pruning rule that prevents varied practice from becoming wandering?"
+      ],
+      "misuse_guards": [
+        "Do not add frames that do not change evidence, assumptions, or action.",
+        "Do not overwhelm novices with too many examples before basic categories stabilize.",
+        "Do not let variation replace commitment when the useful contrast is already known."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Varied_Practice_Interleaving_rag.md",
+          "source_quote": "Most useful when one frame is clearly under-explaining the problem",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Varied_Practice_Interleaving_rag.md",
+          "source_quote": "Works when learning must transfer across situations",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Varied_Practice_Interleaving_rag.md",
+          "source_quote": "Danger when variety becomes undisciplined wandering",
+          "section_hint": "Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports varied practice/interleaving as frame contrast plus pruning, not endless framework accumulation.",
+        "dropped_material": [
+          "Did not extract every analogy or strategy example as a separate affordance.",
+          "Kept stock analyst/private equity example as source context only."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card adds transfer and contrast without making packets sprawl."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "interleaving-as-randomness",
+      "status": "not_supported_by_source",
+      "reason": "The source describes deliberate contrast among frameworks and examples, not random variety.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Varied_Practice_Interleaving_rag.md",
+          "source_quote": "consciously using **multiple, contrasting frameworks and diverse perspectives**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "variety-without-comparison",
+      "status": "not_supported_by_source",
+      "reason": "The source says varied practice should expose contrasts and different insights; variety without comparison is wandering.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Varied_Practice_Interleaving_rag.md",
+          "source_quote": "different analytical frames or \"cuts\" often **yield different insights**",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Varied_Practice_Interleaving_rag.md",
+      "source_quote": "cultivate the ability to mobilize, combine, and contrast many different frameworks",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for varied practice as contrastive transfer with pruning.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps packets widen frames while staying compact."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "self-control",
+  "source_file": "Self_Control_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "self-control.system-design-for-follow-through",
+      "status": "supported",
+      "name": "System design for follow-through",
+      "mechanism": "When the right move is known but not executed under stress, temptation, or distraction, require the answer to shift from character judgment to environment, habit, prompt, rest, and deliberation design.",
+      "activation_shape": {
+        "use_when": [
+          "The gap is follow-through rather than knowledge.",
+          "Long-term goals repeatedly lose to short-term impulses, stress, or distraction.",
+          "Behavior can be shaped through routines, prompts, environment design, and recovery."
+        ],
+        "do_not_use_when": [
+          "The problem is missing knowledge, resources, incentives, or strategy rather than self-regulation.",
+          "The answer would moralize failure instead of redesigning conditions.",
+          "Extra self-monitoring would interrupt flow or create analysis paralysis."
+        ],
+        "case_evidence_needed": [
+          "The known intended behavior and the actual repeated failure point.",
+          "The trigger, stressor, temptation, or distraction pattern.",
+          "The environment, habit loop, prompt, rest, or incentive condition that can be changed.",
+          "The minimum viable standard for action after deliberation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "redesign-conditions-not-character",
+          "description": "Require the answer to redesign conditions around the behavior instead of treating self-control as a moral trait.",
+          "evidence_required": [
+            "Known right move.",
+            "Repeated execution failure.",
+            "Trigger or depletion context.",
+            "Design lever such as routine, prompt, environment, rest, or habit."
+          ],
+          "good_output_shape": [
+            "Names the follow-through gap.",
+            "Identifies the trigger or depletion pattern.",
+            "Adds an environment or habit design change.",
+            "Warns against blaming character alone."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What known move is failing at execution?",
+        "Which trigger, depletion state, or environment cue precedes the failure?",
+        "What routine or design change reduces dependence on moment-to-moment willpower?"
+      ],
+      "misuse_guards": [
+        "Do not treat self-control failure as moral failure.",
+        "Do not ignore ego depletion, rest, sleep, or environmental triggers.",
+        "Do not prescribe more deliberation when a good-enough action threshold is needed."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "Most useful when the gap is not knowledge but follow-through",
+          "section_hint": "Strengths (Most Powerful Contexts)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "Best when behavior can be shaped through systems rather than pure willpower",
+          "section_hint": "Strengths (Most Powerful Contexts)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "Danger When Self-Control Is Treated as a Moral Trait Instead of a Design Problem",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports self-control as condition design for known follow-through gaps.",
+        "dropped_material": [
+          "Did not extract moralized willpower advice.",
+          "Did not treat self-control as a universal replacement for incentive or knowledge design."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with habit-formation and execution/follow-through cards."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "willpower-as-moral-trait",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against treating self-control as a moral trait instead of a design problem.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "failure is blamed on character alone",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "restraint-without-environment-design",
+      "status": "not_supported_by_source",
+      "reason": "The source says routines, prompts, and environment design can reduce reliance on moment-to-moment discipline.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Control_rag.md",
+          "source_quote": "routines, prompts, and environment design can reduce the burden",
+          "section_hint": "Strengths (Most Powerful Contexts)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Self_Control_rag.md",
+      "source_quote": "separating deliberation from taking action",
+      "section_hint": "Key Heuristics and Actionable Frameworks",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for self-control as follow-through system design.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves advice that otherwise says simply try harder."
+    ],
+    "review_status": "draft"
+  }
+}

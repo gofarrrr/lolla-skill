@@ -1,0 +1,145 @@
+{
+  "model_id": "price-discrimination",
+  "source_file": "Price_Discrimination_rag.md",
+  "status": "weak_support",
+  "affordances": [
+    {
+      "affordance_id": "price-discrimination.segment-offer-by-value-evidence",
+      "status": "weak_support",
+      "name": "Segment offers by value evidence",
+      "mechanism": "When different customer segments genuinely value the same outcome differently, use differentiated offer shapes, terms, or service levels only if segmentation evidence, trust boundaries, and arbitrage risks are explicit.",
+      "activation_shape": {
+        "use_when": [
+          "Different segments genuinely value the same outcome differently.",
+          "Offer shape, terms, or service levels can be separated cleanly enough to avoid buyer confusion.",
+          "Segmentation is grounded in willingness to pay, urgency, risk, or use case rather than shallow demographic stereotypes."
+        ],
+        "do_not_use_when": [
+          "The source evidence is only a generic buyer story or demographic label.",
+          "Customers can arbitrage between tiers or easily compare unequal treatment.",
+          "Short-term extraction would damage long-term trust, brand clarity, or willingness to buy."
+        ],
+        "case_evidence_needed": [
+          "The distinct segments and the value driver for each.",
+          "Evidence of willingness to pay, urgency, risk, or use-case difference.",
+          "The tier boundary and any arbitrage path.",
+          "A trust or brand-risk check for perceived unfairness."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-value-segments-with-trust-check",
+          "description": "Require the answer to validate segment-specific value before recommending differentiated pricing or offers, and to check whether the structure erodes trust.",
+          "evidence_required": [
+            "Segment-specific value or urgency evidence.",
+            "The intended tier, term, or service-level difference.",
+            "A buyer confusion or arbitrage check.",
+            "A long-term trust or brand clarity check."
+          ],
+          "good_output_shape": [
+            "Names the segments.",
+            "Names why value differs.",
+            "States the tier or offer boundary.",
+            "Adds unfairness, arbitrage, and trust checks."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What evidence shows these segments value the same outcome differently?",
+        "Can buyers compare or arbitrage across tiers in a way that makes the structure feel unfair?",
+        "Does the pricing logic capture value while preserving long-term trust?"
+      ],
+      "misuse_guards": [
+        "Do not infer willingness to pay from demographics alone.",
+        "Do not use differentiated pricing as short-term extraction without trust analysis.",
+        "Do not hide a generic pitch behind segmentation language."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "different segments genuinely value the same outcome differently",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "segmentation is grounded in willingness to pay, urgency, risk, or use case",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "customers can arbitrage between tiers or compare treatment easily",
+          "section_hint": "Limitations, Anti-patterns, and Dangerous Outcomes",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "medium",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: thin_narrow_affordance_record. The source says the term is not explicitly defined, but supports a narrow differentiated-offer affordance with trust and segment-evidence caveats.",
+        "dropped_material": [
+          "Did not extract a complete economics doctrine of price discrimination.",
+          "Did not treat buyer psychology as license for manipulation."
+        ],
+        "open_questions": [
+          "A stronger economics source may be needed before this card should carry high-confidence pricing advice."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "price-discrimination-without-segment-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source requires willingness-to-pay, urgency, risk, or use-case grounding; it does not support differentiated pricing from segment labels alone.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "rather than in shallow demographic stereotypes",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "willingness-to-pay-as-extraction-license",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that short-term value extraction can damage trust and brand clarity; it does not support using willingness-to-pay evidence as unrestricted extraction license.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Price_Discrimination_rag.md",
+          "source_quote": "damages long-term trust, brand clarity, or willingness to buy",
+          "section_hint": "Limitations, Anti-patterns, and Dangerous Outcomes",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Price_Discrimination_rag.md",
+      "source_quote": "maximizing value extraction by precisely tailoring offers and pricing",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "normalized",
+      "confidence": "medium"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 kept this record medium-confidence because the source itself notes that Price Discrimination is not explicitly defined in the provided sources.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, pricing policy, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later enrichment may need a stronger canonical economics file if high-confidence price-discrimination depth is required."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "model_id": "decision-trees",
+  "source_file": "Decision_Trees_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "decision-trees.branch-trigger-map",
+      "status": "supported",
+      "name": "Branch triggers with weighted payoffs",
+      "mechanism": "Before choosing, the model turns options into visible branches with preferences, payoffs, probabilities, and trigger or kill conditions, so the next action follows explicit logic rather than a flat pro-con list.",
+      "activation_shape": {
+        "use_when": [
+          "A decision has explicit branches, trigger conditions, or kill criteria that can be made visible before resources are committed.",
+          "Thresholds, approvals, or likely countermoves can be expressed clearly enough that the tree sharpens action rather than merely documenting options.",
+          "The next action depends on naming the branch that activates if one approval, data signal, legal condition, or counterpart response breaks the favored path."
+        ],
+        "do_not_use_when": [
+          "Payoffs or probabilities are too unstable, so the tree would create false precision and confidence rather than guidance.",
+          "Strong feedback loops, path dependence, or interdependencies make the branches less independent than the diagram implies.",
+          "The branch labels are too vague to become clear hypotheses that can be tested or acted on."
+        ],
+        "case_evidence_needed": [
+          "The option set, including the preferences or goals each option serves.",
+          "The payoff upside, downside, and probability evidence for each serious branch.",
+          "The trigger condition, approval, counterparty response, threshold, or kill criterion that chooses between branches."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "integrate-three-ps",
+          "description": "Require each serious option to carry explicit preferences, payoff consequences, and probability estimates before comparing branches.",
+          "evidence_required": [
+            "The goal or value preference behind each option.",
+            "Upside and downside payoffs for each branch.",
+            "Probability or likelihood evidence for the relevant outcomes."
+          ],
+          "good_output_shape": [
+            "Shows the branch options with preferences, payoffs, and probabilities visible side by side.",
+            "Explains why the recommended branch has better supported expected value or utility than the alternatives.",
+            "Names where uncertainty remains instead of hiding it behind a neat diagram."
+          ]
+        },
+        {
+          "requirement_id": "name-branch-rules",
+          "description": "Define the action rule that makes one branch beat another, including the trigger, approval, threshold, countermove, or kill condition.",
+          "evidence_required": [
+            "The condition that activates the next branch.",
+            "The branch that activates if an approval, data signal, legal condition, or counterpart response fails.",
+            "The cutoff that changes the recommendation from testing to commitment or from commitment to fallback."
+          ],
+          "good_output_shape": [
+            "States the branch rule as an explicit if-this-then-that decision path.",
+            "Identifies the fallback branch when a named condition fails.",
+            "Separates actionable branch logic from vague option labels."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which condition, approval, data signal, or counterpart response decides which branch activates next?",
+        "Which threshold flips this recommendation from test to commitment, and what branch takes over after that cutoff?",
+        "Are the branch labels clear hypotheses that can be tested, or just option names that document the discussion?"
+      ],
+      "misuse_guards": [
+        "Do not use a decision tree as a polished pro-con list without payoffs, probabilities, and explicit branch rules.",
+        "Do not rely on a neat tree when unstable payoffs, unstable probabilities, or branch interdependencies create false precision.",
+        "Do not treat vague branch labels as analysis unless they drive testing or action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "to provide an **explicit approach to how decisions are made**, and to help decision-makers systematically evaluate options by quantifying and weighting various factors.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Decision trees integrate **preferences, payoffs, and probabilities** into a systematic decision process.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "The basic pro-con method is considered \"flat\" because it fails to incorporate crucial information about the size of the potential payoffs (gains or losses) and the probability of those outcomes occurring.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Effective use requires explicitly defining and integrating three components for each option:",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "For high-stakes decisions or automated systems, the Decision Tree helps explicitly define the rules for choosing action A over action B.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "**Most useful when** a decision has explicit branches, trigger conditions, or kill criteria that can be made visible before resources are committed.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "**Best used when** thresholds, approvals, or likely countermoves can be expressed clearly enough that the tree sharpens action rather than merely documenting options.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Works when multiple teams can see the options, but the real decision quality depends on making explicit what happens if one approval, data signal, legal condition, or counterpart response breaks the favored path.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "The effectiveness of logic trees diminishes quickly if branches contain **vague labels** instead of clear hypotheses that can be tested",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "decision-trees.branch-kill-hardening",
+      "status": "supported",
+      "name": "Branch-kill audit before commitment",
+      "mechanism": "After a tree appears viable, the model audits the favored branch for unstated threshold assumptions, dependency breaks, missing world states, and second-order consequences that would terminate or reroute the path before scale.",
+      "activation_shape": {
+        "use_when": [
+          "A favored branch is being treated as decision-ready before scale, rollout, underwriting, pricing, vendor, or approval commitment.",
+          "A threshold, approval, counterparty assumption, shared dependency, or missing state of the world could reverse which branch is correct.",
+          "The branch looks precise on paper but operators still need a usable rule when the key signal is noisy, late, or contested."
+        ],
+        "do_not_use_when": [
+          "There is no candidate branch or recommendation to harden yet.",
+          "The branch cannot name any threshold, dependency, evidence signal, or reroute condition that would change the action.",
+          "Feedback loops, path dependence, or interdependencies make independent branch hardening misleading."
+        ],
+        "case_evidence_needed": [
+          "The favored branch and the threshold, dependency break, or second-order consequence that could kill it.",
+          "Evidence that would show the team has crossed a reversal threshold before sunk effort locks in the wrong path.",
+          "Any shared approval, data feed, specialist, or counterpart action whose failure would collapse the branch."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "run-branch-kill-audit",
+          "description": "Check the favored branch for the threshold, dependency break, or second-order consequence that would terminate it before scale.",
+          "evidence_required": [
+            "The favored branch and its assumed success path.",
+            "The named threshold, dependency, or second-order consequence that can kill the branch.",
+            "The first observable evidence that the kill condition has arrived."
+          ],
+          "good_output_shape": [
+            "Names the specific branch that remains viable only under an assumption.",
+            "States the kill condition and the signal that should end the branch before more resources are committed.",
+            "Revises the recommendation if the kill condition is already close or crossed."
+          ]
+        },
+        {
+          "requirement_id": "model-reroute-state",
+          "description": "Add the missing external state, shared dependency, or reversal threshold that would force the decision onto a different branch.",
+          "evidence_required": [
+            "The state of the world or shared dependency omitted from the current tree.",
+            "Evidence that tells whether the case is closer to the omitted branch than the favored one.",
+            "The branch instruction operators should follow when the key signal is noisy, late, or contested."
+          ],
+          "good_output_shape": [
+            "Shows the reroute branch next to the favored branch.",
+            "Names the evidence that changes the active branch.",
+            "Gives operators a simpler branch instruction when precision exceeds practical actionability."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which branch in this tree looks viable only because we have not named the threshold that kills it, the dependency that can fail first, or the second-order consequence that makes an early win a later loss?",
+        "Which threshold assumption would reverse which branch is correct, and what evidence would tell us we have already crossed it before sunk effort locks us into the wrong path?",
+        "Which branch in this tree looks precise on paper but still leaves the operator without a usable decision rule when the key signal is noisy, late, or contested?",
+        "What state of the world would force this decision onto a different branch immediately, where is that branch represented in the tree?"
+      ],
+      "misuse_guards": [
+        "Do not treat a complete-looking tree as decision-ready until branch-kill logic is named.",
+        "Do not let mean-outcome thinking hide far-from-average outcomes that would reverse the branch.",
+        "Do not let a branch survive only because a shared approval, data feed, specialist, or counterpart action remains implicit."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Branches are modeled neatly enough to look complete, but the tree does not name the threshold, dependency break, or second-order consequence that would terminate the favored path before scale.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Which branch in this tree looks viable only because we have not named the threshold that kills it, the dependency that can fail first, or the second-order consequence that makes an early win a later loss?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Placing excessive emphasis on the mean outcome (the base case) and insufficient weight on outcomes far from the mean.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Which threshold assumption would reverse which branch is correct, and what evidence would tell us we have already crossed it before sunk effort locks us into the wrong path?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Which branch in this tree looks precise on paper but still leaves the operator without a usable decision rule when the key signal is noisy, late, or contested, and what simpler branch instruction would they actually need at the moment of choice?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "The tree compares options as if each branch can be executed independently, but a shared approval, data feed, specialist, or counterpart action can fail first and collapse the favored path before the modeled upside is reachable.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "The tree is drawn around the options under discussion, but it omits the external condition that would force a different choice, making the recommendation look stable only because the decisive branch condition was never modeled.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "What state of the world would force this decision onto a different branch immediately, where is that branch represented in the tree, and what evidence would tell us we are already closer to that path than the favored one?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Decision_Trees_rag.md",
+      "source_quote": "Decision trees integrate **preferences, payoffs, and probabilities** into a systematic decision process.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Decision_Trees_rag.md",
+      "source_quote": "**Most useful when** a decision has explicit branches, trigger conditions, or kill criteria that can be made visible before resources are committed.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Decision_Trees_rag.md",
+      "source_quote": "Branches are modeled neatly enough to look complete, but the tree does not name the threshold, dependency break, or second-order consequence that would terminate the favored path before scale.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted two source-backed affordances: constructing a branch-and-trigger map with preferences, payoffs, and probabilities, then hardening the favored branch against unstated kill conditions before commitment. Wave curation aligned with the source on explicit branches, trigger visibility, anti-activation false precision, and branch-reversal risks; the Markdown source remained the quote authority.",
+    "dropped_material": [
+      "Problem disaggregation, logic-tree family context, cost-benefit analysis, game theory, chain-of-thought, and business-case synthesis were treated as supporting context rather than separate affordances.",
+      "Digital twin and automation examples were used only as evidence for explicit branch rules, not as runtime promotion for agents or system prompts.",
+      "Behavioral-driver encoding from the risk table was not extracted as a separate affordance because the stronger source-backed obligations are branch logic and branch-kill hardening."
+    ],
+    "open_questions": [
+      "A later relation-aware pass may decide whether competitive countermove mapping deserves a separate affordance when game-theory source records are available.",
+      "Reviewers should confirm whether the enriched Risks and Mitigations table is intended to carry the same canonical weight as the older explanatory sections."
+    ],
+    "review_status": "draft"
+  }
+}

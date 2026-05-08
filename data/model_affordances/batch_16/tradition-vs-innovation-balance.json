@@ -1,0 +1,145 @@
+{
+  "model_id": "tradition-vs-innovation-balance",
+  "source_file": "Tradition_Vs_Innovation_Balance_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "tradition-vs-innovation-balance.separate-standards-from-experiments",
+      "status": "supported",
+      "name": "Separate standards from experiments",
+      "mechanism": "When reliability and adaptation both matter, use tradition-vs-innovation balance to distinguish what should remain standardized from what should be experimented on, avoiding both stale process worship and innovation theater.",
+      "activation_shape": {
+        "use_when": [
+          "An organization must preserve reliability, safety, or institutional memory while adapting to a shifting market or problem structure.",
+          "The team can explicitly separate what should remain standardized from what should be experimented on.",
+          "Leaders must prevent either stale process worship or innovation theater without execution discipline."
+        ],
+        "do_not_use_when": [
+          "Tradition is being used as cover for fear, sunk-cost protection, or avoidance of evidence.",
+          "Innovation is being used as identity performance that rejects useful inherited practice.",
+          "The answer cannot state the execution process that turns novelty into reliable change."
+        ],
+        "case_evidence_needed": [
+          "The inherited practice, standard, or institutional memory at stake.",
+          "The market, user, or problem shift requiring adaptation.",
+          "Which elements should remain standardized and which should be tested.",
+          "The execution discipline and evidence gate for the experiment."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "classify-keep-test-and-retire",
+          "description": "Require the answer to classify what to preserve, what to experiment on, and what evidence would retire or revise the inherited practice.",
+          "evidence_required": [
+            "The practice or tradition being protected.",
+            "The innovation or adaptation being proposed.",
+            "The reliability, safety, or institutional-memory reason to preserve some elements.",
+            "The evidence gate for changing or retiring the practice."
+          ],
+          "good_output_shape": [
+            "Names what to preserve.",
+            "Names what to experiment on.",
+            "States the evidence gate.",
+            "Warns against process worship and innovation theater."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which parts of the current practice are reliability-preserving standards, and which are just inherited habit?",
+        "What evidence shows the environment has changed enough to justify experimentation?",
+        "What execution discipline keeps innovation from becoming performance?"
+      ],
+      "misuse_guards": [
+        "Do not treat tradition as proof that a method still fits.",
+        "Do not treat novelty as automatic improvement.",
+        "Do not separate strategy from the process that makes change executable."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Tradition_Vs_Innovation_Balance_rag.md",
+          "source_quote": "preserve reliability, safety, or institutional memory while still adapting",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Tradition_Vs_Innovation_Balance_rag.md",
+          "source_quote": "separate which elements should remain standardized from which elements should be experimented on",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Tradition_Vs_Innovation_Balance_rag.md",
+          "source_quote": "innovation theater without execution discipline",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports tradition/innovation balance as explicit standard-vs-experiment sorting.",
+        "dropped_material": [
+          "Did not extract tradition as conservatism or innovation as automatic progress.",
+          "Did not turn the model into ideology classification."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps distinguish useful institutional memory from sunk-cost protection."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "tradition-as-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that tradition can become cover for fear, sunk cost, or ignored evidence; it does not support tradition as proof of fit.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Tradition_Vs_Innovation_Balance_rag.md",
+          "source_quote": "\"tradition\" becomes cover for fear, sunk-cost protection",
+          "section_hint": "Common Anti-Patterns and Dangers",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "innovation-as-automatic-improvement",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against novelty without execution discipline and against rejecting useful inherited practice merely because it feels old.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Tradition_Vs_Innovation_Balance_rag.md",
+          "source_quote": "feels old or politically unfashionable",
+          "section_hint": "Common Anti-Patterns and Dangers",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Tradition_Vs_Innovation_Balance_rag.md",
+      "source_quote": "conscious management of the trade-off",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found strong reviewed depth for balancing standards and experiments under change.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, ideology classification, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare this card with status-quo-bias and commitment-bias when existing practice is defended."
+    ],
+    "review_status": "draft"
+  }
+}

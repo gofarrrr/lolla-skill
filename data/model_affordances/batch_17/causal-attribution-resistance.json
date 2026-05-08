@@ -1,0 +1,145 @@
+{
+  "model_id": "causal-attribution-resistance",
+  "source_file": "Causal_Attribution_Resistance_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "causal-attribution-resistance.separate-blame-from-cause",
+      "status": "supported",
+      "name": "Separate blame from causal diagnosis",
+      "mechanism": "When a blame story arrives before diagnosis, use causal attribution resistance to separate the symptom, trigger, and structural cause before assigning accountability or designing the remedy.",
+      "activation_shape": {
+        "use_when": [
+          "An outcome is emotionally charged and the organization already has a convenient culprit.",
+          "Symptom, proximate cause, and structural cause are being conflated.",
+          "Accountability is needed but should follow diagnosis instead of replacing it."
+        ],
+        "do_not_use_when": [
+          "Skepticism has become endless suspension of judgment after evidence is strong enough to act.",
+          "The team is using root-cause language to avoid necessary accountability.",
+          "The case only needs a quick one-day answer and deeper attribution would delay an adequate interim move."
+        ],
+        "case_evidence_needed": [
+          "The observed outcome or symptom.",
+          "The immediate trigger or proximate cause.",
+          "The deeper design feature or mechanism that made the outcome likely.",
+          "The evidence threshold for acting without over-attributing blame."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "split-outcome-trigger-and-structure",
+          "description": "Require the answer to separate what happened, what triggered it, and what structural condition made it likely before recommending accountability or remediation.",
+          "evidence_required": [
+            "The visible event or symptom.",
+            "The proximate trigger.",
+            "The structural cause or design feature.",
+            "The evidence that distinguishes diagnosis from blame."
+          ],
+          "good_output_shape": [
+            "Names the symptom.",
+            "Names the proximate trigger.",
+            "Names the structural cause.",
+            "States where accountability can proceed without becoming a substitute for diagnosis."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the visible symptom, and what merely triggered it?",
+        "What deeper design feature made this outcome likely before the immediate incident?",
+        "Are we delaying accountability for good diagnosis, or using diagnosis to avoid action?"
+      ],
+      "misuse_guards": [
+        "Do not treat the most emotionally satisfying culprit as the cause.",
+        "Do not use root-cause analysis as an excuse to postpone action indefinitely.",
+        "Do not design fixes for symptoms while the structural cause remains unnamed."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Causal_Attribution_Resistance_rag.md",
+          "source_quote": "the blame story arrives too fast",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Causal_Attribution_Resistance_rag.md",
+          "source_quote": "symptom, proximate cause, and structural cause are getting conflated",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Causal_Attribution_Resistance_rag.md",
+          "source_quote": "resisting simplistic attribution turns into endless suspension of judgment",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports a diagnosis-before-blame affordance with an explicit anti-delay caveat.",
+        "dropped_material": [
+          "Did not convert this into deterministic root-cause selection.",
+          "Did not infer organizational blame assignments from the model."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with root-cause-analysis and five-whys-method."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "attribution-without-observed-mechanism",
+      "status": "not_supported_by_source",
+      "reason": "The source requires movement from proximate cause toward root cause; it does not support causal attribution without an observed mechanism or structural explanation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Causal_Attribution_Resistance_rag.md",
+          "source_quote": "rather than merely addressing the *proximate cause*",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "blame-label-as-cause",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against emotionally satisfying surface causes; it does not support treating a blame label as a causal account.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Causal_Attribution_Resistance_rag.md",
+          "source_quote": "emotionally satisfying, or superficially visible cause",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Causal_Attribution_Resistance_rag.md",
+      "source_quote": "systematic skepticism",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 preserves causal attribution resistance as an honesty rail around diagnosis, blame, and accountability timing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic diagnosis, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should decide when this card is redundant with root-cause-analysis."
+    ],
+    "review_status": "draft"
+  }
+}

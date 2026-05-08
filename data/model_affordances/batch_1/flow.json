@@ -1,0 +1,282 @@
+{
+  "model_id": "flow",
+  "source_file": "Flow_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "flow.calibrated-immersion-channel",
+      "status": "supported",
+      "name": "Calibrated immersion channel before deep work",
+      "mechanism": "Before treating immersion as useful, the model checks that the work has a clear goal, rapid feedback, enough skill, and a challenge just above current competence, then protects focus while keeping problem-fit and feedback visible.",
+      "activation_shape": {
+        "use_when": [
+          "A task has a clear goal, rapid feedback, and a challenge high enough to demand full attention without creating panic.",
+          "Deep work, craft practice, or complex execution depends on sustained immersion rather than fragmented multitasking.",
+          "A person or team already has enough skill to stretch at the edge of competence and benefit from uninterrupted concentration."
+        ],
+        "do_not_use_when": [
+          "The team may be entering flow on the wrong problem and efficient execution could outrun strategic sensemaking.",
+          "Feedback loops, stakeholder coordination, or environmental changes are too weak to keep immersion anchored to reality.",
+          "The challenge is static, too easy, or too far beyond current ability, making boredom, frustration, or anxiety more likely than flow."
+        ],
+        "case_evidence_needed": [
+          "The immediate goal and the larger ultimate problem the work is supposed to solve.",
+          "The current skill-to-challenge match and why the task sits near the edge of competence.",
+          "The feedback loop that will show performance, drift, or needed adjustment during the activity.",
+          "The deep-work structure: relevant variables, next-step question, and consolidation checkpoint."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "verify-flow-conditions",
+          "description": "Confirm the work actually has the source-backed conditions for flow before recommending immersion as the treatment.",
+          "evidence_required": [
+            "A clear goal for the activity.",
+            "A rapid feedback loop for performance or drift.",
+            "Evidence that the challenge is high but not panic-inducing for the current skill level.",
+            "A reason sustained immersion is more important than fragmented multitasking."
+          ],
+          "good_output_shape": [
+            "Names the goal, feedback loop, challenge level, and current skill before advising deep focus.",
+            "Explains why the task belongs in the flow channel instead of boredom, anxiety, or ordinary execution.",
+            "Protects uninterrupted concentration only after the flow conditions are visible."
+          ]
+        },
+        {
+          "requirement_id": "maintain-problem-fit",
+          "description": "Insert lightweight problem-fit checks so efficient immersion does not continue on the wrong problem or stale challenge.",
+          "evidence_required": [
+            "The larger problem or purpose that the deep work is meant to serve.",
+            "The point at which the work should pause for big-picture review.",
+            "Evidence that the challenge still stretches ability instead of sliding into boredom or overwhelm."
+          ],
+          "good_output_shape": [
+            "Includes a periodic check that the focused work still solves the ultimate problem.",
+            "Names the feedback or premise that should interrupt the session if the problem framing is wrong.",
+            "Adjusts the challenge upward, downward, or sideways when the skill-to-demand match changes."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Does this task have a clear goal, rapid feedback, and enough challenge to demand full attention without panic?",
+        "What feedback loop will tell us quickly whether performance is improving or drifting?",
+        "How does what I'm doing right now solve the ultimate problem?",
+        "Are we solving the right problem before diving into the efficient solution phase?",
+        "Has current ability exceeded task demands enough that boredom or static repetition is replacing stretch?"
+      ],
+      "misuse_guards": [
+        "Do not treat a felt state of focus as evidence that the underlying problem is correct.",
+        "Do not use flow when feedback, coordination, or environmental signals are too weak to keep work reality anchored.",
+        "Do not promote automatic execution over deliberate monitoring, stopping rules, or assumption checks.",
+        "Do not force flow language onto work that lacks a clear goal, rapid feedback, or an edge-of-competence challenge."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "The mental model of **Flow** describes the **psychology of optimal experience**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "challenged at the peak of their ability",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "the strategic matching of a person\u2019s skill level to the demands of the challenge",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "A defining feature of the flow state is the expectation of an immediate feedback loop. This instant knowledge of performance allows the individual to adjust their actions on the fly, reinforcing a sense of control and mastery.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "Since **deep work is an activity well suited to generate a flow state**, practitioners can use structured deep thinking to trigger flow. This involves a cycle of:",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "**Reviewing and storing** relevant variables in working memory.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "**Identifying and tackling** the specific next-step question using those variables.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "**Consolidating the gains** by clearly reviewing the answer identified, then starting the process over to push to the next level of depth.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "**Most useful when** the task has a clear goal, rapid feedback, and a challenge level that is high enough to demand full attention without creating panic.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "**Works best when** deep work, craft practice, or complex execution depends on sustained immersion rather than fragmented multitasking.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "**Best used when** a person or team already has enough skill to stretch at the edge of competence and benefit from uninterrupted concentration.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "**Danger when** the team is entering flow on the wrong problem, so efficient execution outruns strategic sensemaking.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "**Danger when** feedback loops, stakeholder coordination, or environmental changes are too weak for immersion to stay reality-anchored.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "Regularly take a mental step back from the deep, focused work. Ensure the activity is constantly linked to a larger, overarching purpose or question.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "Ensure that the foundational problem structure is correctly analyzed *before* diving into the efficient solution phase.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Compressed the source into one operational affordance: set up and maintain the flow channel only when goal, feedback, challenge, skill, and problem-fit evidence are present.",
+        "dropped_material": [
+          "Did not extract generic motivation, fulfillment, or zone-of-genius language as a separate affordance.",
+          "Did not split stagnation, overwhelm, tunnel vision, and wrong-problem execution into separate records; they act as calibration and misuse checks for the same affordance."
+        ],
+        "open_questions": [
+          "Because Flow is a psychological-state model, reviewers may keep this affordance review-only until treatment audits show reliable case evidence for goal, feedback, and challenge calibration."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-group-flow-affordance",
+      "status": "source_too_thin",
+      "reason": "The source says group flow needs shared goals and clear communication, but it does not provide a distinct diagnostic or treatment contract beyond the general calibrated-immersion setup.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "**Group flow** occurs when the flow state transcends the individual and takes root within a collective unit.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "clear communication and **shared goals** are essential to synchronize the individual focus and immersion of all participants",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "runtime-automaticity-or-stop-rule-promotion",
+      "status": "not_supported_by_source",
+      "reason": "The source frames immersive automaticity as a risk when it bypasses critical monitoring or stopping rules, so Flow should not be promoted as a runtime default for automatic execution.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "flow conflicts with critical-thinking (critical thinking) when the immersive automaticity of flow bypasses the deliberate analytical monitoring needed to catch reasoning errors.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Flow_rag.md",
+          "source_quote": "flow conflicts with self-control (self control) when the absorptive state of flow overrides stopping rules that should interrupt the activity when conditions change.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Flow_rag.md",
+      "source_quote": "**Most useful when** the task has a clear goal, rapid feedback, and a challenge level that is high enough to demand full attention without creating panic.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Flow_rag.md",
+      "source_quote": "Since **deep work is an activity well suited to generate a flow state**, practitioners can use structured deep thinking to trigger flow. This involves a cycle of:",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Flow_rag.md",
+      "source_quote": "**Danger when** the team is entering flow on the wrong problem, so efficient execution outruns strategic sensemaking.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Flow_rag.md",
+      "source_quote": "flow conflicts with self-control (self control) when the absorptive state of flow overrides stopping rules that should interrupt the activity when conditions change.",
+      "section_hint": "The Latticework: Systemic Interactions",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full /tmp extraction packet, raw Flow source, and Wave 1-3 curation. Extracted one narrow source-backed affordance and kept the record dormant for review rather than runtime promotion.",
+    "dropped_material": [
+      "Did not extract separate affordances for happiness, motivation, zone of genius, job redesign, or general productivity advice.",
+      "Did not promote group-flow, latticework allies, or structured tensions into independent affordances.",
+      "Did not add runtime behavior, completeness fields, or unsupported diagnostic questions beyond the source-backed calibration checks."
+    ],
+    "open_questions": [
+      "Reviewers should decide whether even this supported affordance should remain observatory-only until case evidence can reliably show clear goal, rapid feedback, challenge level, and skill calibration."
+    ],
+    "review_status": "draft"
+  }
+}

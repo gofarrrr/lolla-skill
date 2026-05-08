@@ -1,0 +1,402 @@
+{
+  "model_id": "problem-framing-and-reframing",
+  "source_file": "Problem_Framing_and_Reframing_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "problem-framing-and-reframing.define-before-analysis",
+      "status": "supported",
+      "name": "Define the problem before analysis deepens",
+      "mechanism": "Because the chosen frame dictates the solution space, the model requires a precise decision-maker-centered problem statement before expensive analysis or solution work earns weight.",
+      "activation_shape": {
+        "use_when": [
+          "The team is working hard but getting weak answers, weak priorities, or repeated confusion.",
+          "Analysis is starting before the core question, owner, constraints, actors, and success criteria are explicit."
+        ],
+        "do_not_use_when": [
+          "The next useful move is commitment and additional reframing is mainly postponing a hard decision."
+        ],
+        "case_evidence_needed": [
+          "The current problem statement and the decision maker whose needs it is meant to serve.",
+          "The proposed analysis path, desired output, success criteria, constraints, and actors affected by the problem."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-decision-question",
+          "description": "State the core decision-worthy question and the minimum analysis output needed before gathering more data or proposing solutions.",
+          "evidence_required": [
+            "Quote or restate the current problem definition before changing it.",
+            "Name the decision maker, the success criteria, constraints, actors, and the analysis output required."
+          ],
+          "good_output_shape": [
+            "A precise problem statement tied to the decision maker's need.",
+            "A short path from the reframed question to the next analysis or solution decision."
+          ]
+        },
+        {
+          "requirement_id": "delay-computation",
+          "description": "Delay computation or broad data gathering until the frame specifies what evidence would prove or disprove the current hypothesis.",
+          "evidence_required": [
+            "The current hypothesis or question that analysis is supposed to resolve.",
+            "The smallest fact set needed to advance toward the goal."
+          ],
+          "good_output_shape": [
+            "A bounded evidence request instead of an open-ended data search.",
+            "A clear explanation of how the requested analysis advances the problem-solving path."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the single core question we are trying to answer?",
+        "What output is precisely needed from this analysis to solve the problem?",
+        "Is this solution focused on the symptom or the root cause?"
+      ],
+      "misuse_guards": [
+        "Do not let reframing become a substitute for commitment.",
+        "Do not gather broad data until the frame or hypothesis says what the analysis must prove or disprove."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "how a problem is defined dictates the solution space",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "Problem solving begins with the critical step of defining the problem precisely to meet the decision maker's needs.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "A structured framework for rigorous problem definition, ensuring clarity on the **T**rouble, **O**wner, **S**uccess criteria, **C**onstraints, and **A**ctors involved.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "the team is working hard on a problem but getting suspiciously weak answers, weak priorities, or repeated confusion.",
+          "section_hint": "Strengths (When Most Powerful)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "reframing becomes a substitute for commitment and teams keep changing the question to avoid making a hard decision.",
+          "section_hint": "Weaknesses and Anti-Patterns (Limitations and Dangers)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "Constantly aim for a coherent summary of the best understanding of the problem and solution path at any point, providing immediate clarity.",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "What is the single core question we are trying to answer?",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "Rigorously frame the question or hypothesis before embarking on complex analysis (such as machine learning). Gather *only enough facts* needed to prove or disprove the current hypothesis.",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "What output is precisely needed from this analysis to solve the problem?",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "Is this solution focused on the symptom or the root cause?",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "problem-framing-and-reframing.test-alternative-frames",
+      "status": "supported",
+      "name": "Test alternative frames before choosing the lens",
+      "mechanism": "The model treats each frame as a partial map that reveals some factors and hides others, so a high-cost problem should be cut through several structurally different lenses before a frame is chosen.",
+      "activation_shape": {
+        "use_when": [
+          "Multiple plausible frames exist and the cost of choosing the wrong one is high.",
+          "The current lens is producing weak priorities, repeated confusion, or a suspiciously narrow unit of analysis."
+        ],
+        "do_not_use_when": [
+          "The issue has already been tested through distinct frames and the limiting need is execution or decision commitment."
+        ],
+        "case_evidence_needed": [
+          "The initial frame, unit of analysis, and any familiar framework currently shaping the work.",
+          "Alternative disciplines, functional frames, logical frameworks, or boundaries that could view the issue differently."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compare-distinct-frames",
+          "description": "Generate and compare multiple distinct frames, then identify what each frame reveals, hides, assumes, and changes about the unit of analysis.",
+          "evidence_required": [
+            "The current frame and at least two plausible alternative frames.",
+            "The assumptions embedded in the current frame and whether those assumptions hold in context."
+          ],
+          "good_output_shape": [
+            "A frame comparison that names the different lenses and the distinct insight each produces.",
+            "A selected frame or reframed boundary with a reason tied to problem structure, not familiarity."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What other disciplines or frameworks might view this problem entirely differently?",
+        "What are the implicit assumptions embedded in the current frame, and are they met in this context?"
+      ],
+      "misuse_guards": [
+        "Do not force reality to fit the one framework the team knows best.",
+        "Watch for anchoring or substitution bias when one salient cue or familiar framework leads the work."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "A way of seeing is also inherently a way of not seeing.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "Different frames often yield different insights, necessitating the testing of several approaches.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "By utilizing a broad **\"latticework\"** of mental models from various disciplines, one can view a problem in a multi-dimensional way, ensuring the most appropriate frame is selected.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "multiple plausible frames exist and the cost of choosing the wrong one is high.",
+          "section_hint": "Strengths (When Most Powerful)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "Apply a \"multi-disciplinary approach\" by looking at the same issue through different lenses, such as industry, functional, or logical frameworks.",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "What other disciplines or frameworks might view this problem entirely differently?",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "What are the implicit assumptions embedded in the current frame, and are they met in this context?",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "If a problem solver knows one framework well, they often apply it universally, even if inappropriate for the specific context.",
+          "section_hint": "Weaknesses and Anti-Patterns (Limitations and Dangers)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "Focusing too much on a single, salient piece of information (the anchor) or substituting a known, simple framework for a complex, necessary one.",
+          "section_hint": "Common Failure Modes, Cognitive Biases, or Blind Spots",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "problem-framing-and-reframing.falsify-frame-assumptions",
+      "status": "supported",
+      "name": "Expose assumptions that lock a frame in place",
+      "mechanism": "When an initial frame or objection is driven by old assumptions, the model converts the frame into enabling conditions, belief commitments, and falsifying evidence before preserving or replacing it.",
+      "activation_shape": {
+        "use_when": [
+          "A preferred hypothesis or initial vision is hardening into the problem frame.",
+          "A novel idea looks impossible under old mental models, but the enabling conditions have not yet been specified."
+        ],
+        "do_not_use_when": [
+          "The team only wants evidence that confirms its initial framing or preferred conclusion."
+        ],
+        "case_evidence_needed": [
+          "The current hypothesis, preferred frame, objection, or assumption-laden viewpoint.",
+          "The beliefs that would have to be true and the evidence that would prove the frame wrong."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-beliefs-and-disconfirmation",
+          "description": "Surface the beliefs underneath the current frame and specify the evidence or future conditions that would validate, invalidate, or replace it.",
+          "evidence_required": [
+            "The current framing or hypothesis and why it is attractive or familiar.",
+            "Disconfirming evidence, enabling conditions, and next moves if the hypothesis fails."
+          ],
+          "good_output_shape": [
+            "A list of assumptions or would-have-to-believe statements underneath the frame.",
+            "A falsification test and a next-frame path if the current hypothesis is disproved."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What would need to be true for this idea to work?",
+        "What would you have to believe?",
+        "What evidence would conclusively prove our current framing/hypothesis wrong?",
+        "If we disproved this hypothesis, what would we do next?"
+      ],
+      "misuse_guards": [
+        "Do not let constructive reframing become motivated reasoning for the conclusion the team already wants.",
+        "Do not evaluate novel problems only through familiar frames that block alternative causal structures."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "What would need to be true for this idea to work?",
+          "section_hint": "Concrete Application Examples",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "This reframing allowed them to anticipate and invest in the emergence of a new mental model that eventually made the concept acceptable and profitable.",
+          "section_hint": "Concrete Application Examples",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "Confirmation bias drives problem solvers to seek evidence that confirms their initial framing or hypothesis, making them unwilling to investigate or analyze deeply enough to justify a reframing.",
+          "section_hint": "Conflicting Relationships (Antagonists)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "The psychological tendency to process information and select a frame that leads to a desired conclusion, rather than one that discovers the truth.",
+          "section_hint": "Common Failure Modes, Cognitive Biases, or Blind Spots",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "What would you have to believe?",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "What evidence would conclusively prove our current framing/hypothesis wrong?",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "If we disproved this hypothesis, what would we do next?",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "problem solvers sometimes persist in using familiar frames that are unhelpful or misleading, risking disastrously wrong solutions.",
+          "section_hint": "Weaknesses and Anti-Patterns (Limitations and Dangers)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "persona-configuration-affordance",
+      "status": "source_too_thin",
+      "reason": "The AI persona example shows that a frame can shape simulated behavior, but the source treats it as an example rather than a general problem-framing treatment requirement or diagnostic path.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Problem_Framing_and_Reframing_rag.md",
+          "source_quote": "When building an AI persona (a digital twin), framing involves defining its psychological fingerprint.",
+          "section_hint": "Concrete Application Examples",
+          "extraction_type": "review_note",
+          "confidence": "weak"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Problem_Framing_and_Reframing_rag.md",
+      "source_quote": "how a problem is defined dictates the solution space",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Problem_Framing_and_Reframing_rag.md",
+      "source_quote": "Different frames often yield different insights, necessitating the testing of several approaches.",
+      "section_hint": "Powerful Analogies and Metaphors",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Problem_Framing_and_Reframing_rag.md",
+      "source_quote": "What would need to be true for this idea to work?",
+      "section_hint": "Concrete Application Examples",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Problem_Framing_and_Reframing_rag.md",
+      "source_quote": "reframing becomes a substitute for commitment and teams keep changing the question to avoid making a hard decision.",
+      "section_hint": "Weaknesses and Anti-Patterns (Limitations and Dangers)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted three source-backed operational affordances: precise problem definition before analysis, multiple-frame testing, and assumption/falsification work for frame lock. Curation files were used only as orientation; raw Markdown quotes control the records.",
+    "dropped_material": [
+      "Did not extract the AI persona example as a general affordance; it illustrates frame-driven behavior but is too narrow for a reusable operational contract.",
+      "Did not extract How Might We as its own affordance because the source supports it mainly as one question-form technique; the anti-anchoring material is covered by alternative-frame testing.",
+      "Did not use the Wave 2 quoted prompt \"What's the one-day answer?\" because that exact string is absent from the canonical Markdown; retained the raw one-day-answer mitigation only in normalized treatment language."
+    ],
+    "open_questions": [
+      "Review may decide whether organizational-context framing deserves a fourth affordance; the source supports it, but it appears more like a mitigation under hidden issues than a separate operational contract."
+    ],
+    "review_status": "draft"
+  }
+}

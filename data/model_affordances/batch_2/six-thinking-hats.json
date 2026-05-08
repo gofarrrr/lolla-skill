@@ -1,0 +1,243 @@
+{
+  "model_id": "six-thinking-hats",
+  "source_file": "Six_Thinking_Hats_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "six-thinking-hats.separate-modes-before-synthesis",
+      "status": "supported",
+      "name": "Mode-separated deliberation before synthesis",
+      "mechanism": "When a group is jamming evidence, risk, creativity, and synthesis into one argument, require distinct thinking modes with different standards, evidence, goals, and outputs, then synthesize only after the needed perspectives have been covered.",
+      "activation_shape": {
+        "use_when": [
+          "A team needs to separate risk review, creativity, evidence checking, and synthesis that are currently interfering with each other.",
+          "A meeting is stuck in unstructured argument and the same issue needs deliberate perspective rotation.",
+          "A dominant initial frame is being mistaken for the whole problem before other angles have been examined.",
+          "The case requires role-separated review where each role changes the question type, evidence standard, or output."
+        ],
+        "do_not_use_when": [
+          "Participants are only adopting hat labels without switching standards, evidence, and goals.",
+          "The answer would add a meeting format but not change what evidence, risk, creativity, or synthesis gets checked.",
+          "The case lacks a multi-perspective deliberation problem and needs a direct decision criterion instead.",
+          "The structure is forcing premature closure while ideas are still fluid or before the problem is defined."
+        ],
+        "case_evidence_needed": [
+          "Which thinking modes are currently jammed together or missing from the deliberation.",
+          "The issue being reviewed by the same group and the dominant frame currently controlling the discussion.",
+          "What each required mode must produce, such as facts, risks, creative options, opposing views, or synthesis.",
+          "Evidence that switching hats will change standards, evidence, or goals rather than only relabeling participants."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "split-required-modes",
+          "description": "Separate the deliberation into explicit rounds or roles for the modes the case needs, and require each mode to produce a distinct contribution before the answer combines them.",
+          "evidence_required": [
+            "The modes of thought currently competing in the same argument.",
+            "The specific modes the case needs, including risk review, creativity, evidence checking, or synthesis.",
+            "The output expected from each mode before the discussion moves on."
+          ],
+          "good_output_shape": [
+            "Names the required thinking modes instead of describing a generic discussion process.",
+            "Keeps evidence checking, risk review, creative generation, and synthesis from being performed in the same breath.",
+            "Produces separate findings for each relevant mode before combining them into a recommendation."
+          ]
+        },
+        {
+          "requirement_id": "rotate-beyond-dominant-frame",
+          "description": "Force perspective rotation around the same issue so the first dominant frame is tested against opposing views, outside-view information, and disconfirming evidence before synthesis.",
+          "evidence_required": [
+            "The current dominant frame or leading hypothesis.",
+            "The alternate viewpoints, antithesis, outside view, or disconfirming evidence still missing.",
+            "The same underlying issue examined from several angles before a final synthesis is made."
+          ],
+          "good_output_shape": [
+            "Identifies the dominant frame that might be standing in for the whole problem.",
+            "Articulates an opposing or alternate view with enough force to change the analysis.",
+            "Shows what information beyond the immediate view was considered before synthesis."
+          ]
+        },
+        {
+          "requirement_id": "verify-real-mode-shift",
+          "description": "Before accepting a hat rotation as meaningful, check that the standard, evidence, and goal changed; if they did not, treat the move as performative labeling and set it aside.",
+          "evidence_required": [
+            "The standard, evidence, or goal used by the previous mode.",
+            "The different standard, evidence, or goal required by the new mode.",
+            "The distinct output that proves the role switch changed the work rather than the label."
+          ],
+          "good_output_shape": [
+            "States what changes when the answer moves from one hat or mode to another.",
+            "Rejects role labels that do not alter the evidence standard, question type, or required output.",
+            "Uses the anti-performative check as a guardrail before relying on the structure."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which modes are currently jammed together: risk review, creativity, evidence checking, synthesis, or another needed lens?",
+        "What dominant frame is being mistaken for the whole problem?",
+        "For this hat, what standard, evidence, or goal changed from the previous hat?",
+        "What opposing view or information beyond the immediate view still needs to be considered before synthesis?"
+      ],
+      "misuse_guards": [
+        "Do not treat hat names as sufficient; the source requires real switching of standards, evidence, and goals.",
+        "Do not synthesize or select a solution before the required modes have produced distinct outputs.",
+        "Do not force structure so early that it anchors ideation or closes down fluid creative work prematurely.",
+        "Do not apply a familiar framework to every problem when the case does not need multi-perspective deliberation coverage."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "a team needs to separate competing modes of thought so risk review, creativity, evidence checking, and synthesis do not jam each other.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "meetings are stuck in unstructured argument and would benefit from deliberate perspective rotation.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "the same group must examine one issue from several angles without mistaking the first dominant frame for the whole problem.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "the roles become performative labels and participants stop doing the real cognitive work of switching standards, evidence, and goals.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "Require team members to model and articulate the antithesis or opposing view \"as compellingly as the other\".",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "The structure combats this by forcing the consideration of information beyond the immediate \"view\".",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "It is crucial to resist the impulse to start ideating while defining problems, as solutions generated too early can anchor the subsequent thought process.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "medium",
+      "review_notes": {
+        "normalization_note": "Collapsed mode separation, deliberate perspective rotation, dominant-frame coverage, and the anti-performative label check into one affordance because they all serve the same operational contract: hats must produce distinct deliberation coverage before synthesis.",
+        "dropped_material": [
+          "Did not split divergent-versus-convergent sequencing into a second affordance; in this source it functions as one example of mode separation rather than an independent Six Thinking Hats contract.",
+          "Did not promote generic meeting facilitation, turn-taking, or role naming because the source explicitly warns against labels without switched standards, evidence, and goals.",
+          "Did not extract AI advisory-board simulation as a separate affordance because it is an implementation example of role-separated perspectives, not a distinct runtime treatment."
+        ],
+        "open_questions": [
+          "Reviewer should check whether confidence should remain medium because the source states the named model is not explicitly present in the underlying materials, even though the operational mode-separation support is strong."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-facilitation-or-meeting-format",
+      "status": "not_supported_by_source",
+      "reason": "The source supports structured roles only when they change standards, evidence, and goals. A generic facilitation or meeting-format affordance would contradict the explicit warning against performative labels.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "the roles become performative labels and participants stop doing the real cognitive work of switching standards, evidence, and goals.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-ai-persona-advisory-board",
+      "status": "source_too_thin",
+      "reason": "The source gives an AI advisory-board example, but the example does not add a structurally distinct affordance beyond the main requirement to separate perspectives and outputs. Promoting it separately would sprawl into agent architecture.",
+      "runtime_policy": "observatory_only",
+      "source_evidence": [
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "These specialized personas, modeled on distinct styles and training data, augment executive thinking by providing diverse perspectives rapidly and sparking ideas, much like a multi-faceted team meeting.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "separate-bias-antagonist-affordances",
+      "status": "duplicate_of_existing_field",
+      "reason": "Anchoring, commitment bias, and confirmation bias are useful guards for this model, but separate affordances would duplicate the core perspective-rotation mechanism or existing bias records unless they introduced a new hat-specific treatment requirement.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "teams default to their initial hypothesis rather than genuinely adopting each hat's perspective to pressure-test alternatives.",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Six_Thinking_Hats_rag.md",
+      "source_quote": "a team needs to separate competing modes of thought so risk review, creativity, evidence checking, and synthesis do not jam each other.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Six_Thinking_Hats_rag.md",
+      "source_quote": "the same group must examine one issue from several angles without mistaking the first dominant frame for the whole problem.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Six_Thinking_Hats_rag.md",
+      "source_quote": "the roles become performative labels and participants stop doing the real cognitive work of switching standards, evidence, and goals.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Six_Thinking_Hats_rag.md",
+      "source_quote": "the \"Six Thinking Hats\" model is not explicitly named in the provided materials",
+      "section_hint": "unknown_section",
+      "extraction_type": "review_note",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full Six Thinking Hats source, main curation record, intervention and relation semantic curation, PR 9 Batch 2 selection notes, the schema, and the extraction contract. The record keeps only the stakeholder-alignment affordance that changes deliberation coverage through role or hat separation.",
+    "dropped_material": [
+      "Did not create broad facilitation, meeting-improvement, or collaboration affordances because they would not require distinct treatment through hat separation or coverage.",
+      "Did not preserve AI persona, digital advisory board, logic-tree, design-thinking, or general problem-solving material as separate affordances because each either exemplifies the same mode-separation mechanism or belongs to another model.",
+      "Did not create a third affordance; additional candidates failed the structural differentiation test of requiring a different evidence standard, required output, or sequencing rule from mode-separated deliberation before synthesis."
+    ],
+    "open_questions": [
+      "Reviewer flag: the source caveats that Six Thinking Hats is not explicitly named in the provided materials; the affordance is therefore source-backed by analogous role and mode separation rather than by a canonical Six Thinking Hats passage.",
+      "Reviewer flag: if later runtime distinguishes human deliberation from AI-agent orchestration, the AI advisory-board example may deserve a separate reviewed source rather than promotion from this record."
+    ],
+    "review_status": "draft"
+  }
+}

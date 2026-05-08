@@ -1,0 +1,145 @@
+{
+  "model_id": "usability-heuristics",
+  "source_file": "Usability_Heuristics_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "usability-heuristics.lower-friction-with-checked-shortcuts",
+      "status": "supported",
+      "name": "Lower friction with checked shortcuts",
+      "mechanism": "When people need fast navigation through a repeatable messy task, use heuristics as practical decision aids or interface conventions, then check whether the shortcut still fits the current task, audience, and system.",
+      "activation_shape": {
+        "use_when": [
+          "A task is repeatable enough for a rule of thumb to reduce friction.",
+          "People need fast, reliable navigation rather than full optimization from first principles.",
+          "An interface, process, or triage rule should lower cognitive load without claiming total coverage."
+        ],
+        "do_not_use_when": [
+          "The shortcut has hardened into doctrine without checking fit.",
+          "The problem is novel enough that pattern recognition may substitute the wrong model.",
+          "The answer would treat a heuristic as proof that the design or decision is correct."
+        ],
+        "case_evidence_needed": [
+          "The task, interface, or decision friction the heuristic is meant to reduce.",
+          "Evidence that the environment is repeatable enough for the shortcut.",
+          "The assumption the heuristic makes about user behavior or task structure.",
+          "A check that would reveal when the shortcut no longer fits."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "use-heuristic-as-aid-not-proof",
+          "description": "Require the answer to name the specific friction, apply the heuristic as a bounded aid, and preserve a fit check against the current task.",
+          "evidence_required": [
+            "The repeated task or user interaction.",
+            "The cognitive load or decision friction present.",
+            "The heuristic and its assumption.",
+            "Evidence or test condition for whether the heuristic works here."
+          ],
+          "good_output_shape": [
+            "Names the friction to reduce.",
+            "Applies one bounded heuristic.",
+            "States the assumption behind the shortcut.",
+            "Adds a test or exception case."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What user or operator friction is this shortcut meant to reduce?",
+        "What must be repeatable for this heuristic to be valid?",
+        "What would show the shortcut has become doctrine rather than help?"
+      ],
+      "misuse_guards": [
+        "Do not treat heuristics as design proof.",
+        "Do not let a familiar shortcut replace user or task evidence.",
+        "Do not use heuristics to avoid first-principles thinking when the situation is novel."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Usability_Heuristics_rag.md",
+          "source_quote": "fast, reliable navigation through a messy task",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Usability_Heuristics_rag.md",
+          "source_quote": "repeatable enough for good rules of thumb",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Usability_Heuristics_rag.md",
+          "source_quote": "shortcut quietly hardens into doctrine",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports heuristics as bounded friction reducers with assumption checks.",
+        "dropped_material": [
+          "Did not extract general cognitive heuristics as separate UX-specific rules.",
+          "Did not treat heuristics as a replacement for user research."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card stays distinct from simplification."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "heuristic-as-design-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source treats heuristics as efficient aids that must be checked, not as proof that a design or process is right.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Usability_Heuristics_rag.md",
+          "source_quote": "do those assumptions hold true in this unique context",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "usability-without-user-task-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source requires the heuristic to match the task, audience, or system; it does not support generic usability claims without task evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Usability_Heuristics_rag.md",
+          "source_quote": "current task, audience, or system",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Usability_Heuristics_rag.md",
+      "source_quote": "lower friction without pretending to capture the whole territory",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for usability heuristics as checked, bounded shortcuts.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare this card against user-experience-research-methods for sequencing."
+    ],
+    "review_status": "draft"
+  }
+}

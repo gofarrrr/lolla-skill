@@ -1,0 +1,160 @@
+{
+  "model_id": "optimism-bias-and-planning-fallacy",
+  "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "optimism-bias-and-planning-fallacy.outside-view-premortem-forecast",
+      "status": "supported",
+      "name": "Outside-view pre-mortem forecast check",
+      "mechanism": "When a plan sounds coherent because the inside view is optimistic, require the answer to compare against reference classes, imagine disaster before commitment, and separate motivational energy from evidence that timelines, budgets, dependencies, or execution assumptions will hold.",
+      "activation_shape": {
+        "use_when": [
+          "A plan depends on many milestones, approvals, hires, launches, or dependencies all going right.",
+          "The team has conviction, morale, or founder energy but weak outside-view evidence for the timeline or budget.",
+          "Commitment should wait for a reference class, pre-mortem, or sensitivity check."
+        ],
+        "do_not_use_when": [
+          "The decision is reversible, low downside, and the main need is learning through action.",
+          "Optimism is being used as morale for execution while forecast quality is already separately governed.",
+          "The answer would punish initiative rather than improve forecast discipline."
+        ],
+        "case_evidence_needed": [
+          "The plan, forecast, timeline, or budget being trusted.",
+          "The chain of dependencies or conjunctive steps required for success.",
+          "Comparable project history, base rates, or reference-class data.",
+          "The disaster scenario or assumption change that would make the plan wrong."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "force-outside-view-before-commitment",
+          "description": "Require the answer to compare the inside plan against similar past cases and name the pre-mortem failure mode before treating confidence as earned.",
+          "evidence_required": [
+            "The internal estimate or plan.",
+            "Comparable historical cases or base-rate evidence.",
+            "The dependencies that must all succeed.",
+            "The likely disaster story if the plan fails."
+          ],
+          "good_output_shape": [
+            "Names the inside-view forecast.",
+            "Adds outside-view reference evidence.",
+            "Identifies the most fragile dependency.",
+            "States what buffer, delay, or stop condition follows."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What happened in comparable projects, and how does that change this timeline or budget?",
+        "If this plan fails a year from now, what neglected threat probably caused it?",
+        "Are we treating enthusiasm, charisma, or mission clarity as evidence that the plan will land?"
+      ],
+      "misuse_guards": [
+        "Do not confuse motivational optimism with forecast evidence.",
+        "Do not let step-by-step planning narrow attention so much that external events disappear.",
+        "Do not use planning-fallacy language to block low-downside reversible experiments."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+          "source_quote": "systematically **overestimate their capacity** and set **absurdly ambitious plans**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+          "source_quote": "consult the past history of similar projects",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+          "source_quote": "Imagine it is a year from today. We have followed the plan to the letter. The result is a disaster. Take five or ten minutes to write about this disaster",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+          "source_quote": "plans involve many conjunctive steps",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports an outside-view plus pre-mortem forecast check for plans where optimism hides conjunctive risk.",
+        "dropped_material": [
+          "Did not extract interrogative self-talk or entrepreneur optimism as separate affordances because the packet value is forecast discipline before commitment.",
+          "Did not duplicate base-rates or confidence-calibration; this record focuses on the planning-fallacy chain."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card improves planning packets without duplicating probabilistic-thinking."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "enthusiasm-as-forecast-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against using conviction, charisma, or mission clarity as validation of timeline, forecast, or execution assumptions.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+          "source_quote": "enthusiasm is being used as evidence",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "step-by-step-plan-as-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source says detailed step-by-step preparation can amplify the planning fallacy by narrowing focus and excluding unexpected external events.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+          "source_quote": "Detailed, step-by-step preparation, typically seen as positive, can actually **amplify the planning fallacy** by excessively narrowing focus and preventing planners from anticipating unexpected external events.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+      "source_quote": "The mental model centers on two interconnected cognitive biases that undermine rational planning and decision-making: **Overoptimism** and the **Planning Fallacy**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optimism_Bias_and_Planning_Fallacy_rag.md",
+      "source_quote": "Best when a decision needs explicit downside imagination",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Optimism Bias and Planning Fallacy. Extracted one outside-view pre-mortem record and rejected enthusiasm-as-evidence plus step-by-step-plan-as-proof.",
+    "dropped_material": [
+      "Entrepreneurial optimism and self-talk examples were kept as nuance rather than separate records.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should test this card against probabilistic-thinking and base-rates to avoid redundant reviewed snippets."
+    ],
+    "review_status": "draft"
+  }
+}

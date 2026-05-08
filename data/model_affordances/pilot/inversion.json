@@ -1,0 +1,344 @@
+{
+  "model_id": "inversion",
+  "source_file": "Inversion_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "inversion.anti-goal-failure-mechanism-map",
+      "status": "supported",
+      "name": "Anti-goal failure mechanism map",
+      "mechanism": "Reverse the desired outcome into a concrete non-goal, identify the actions that would create that failure, and remove or avoid those actions before committing resources.",
+      "activation_shape": {
+        "use_when": [
+          "A plan or goal is being pursued forward and the cost of the wrong path is high enough that failure avoidance should precede optimization.",
+          "The team can name plausible routes to failure more clearly than it can name a reliable route to success.",
+          "A plan, strategy, or assumption needs stress-testing before resources are committed."
+        ],
+        "do_not_use_when": [
+          "The exercise stops at avoidance and does not commit to a positive next action.",
+          "The inverse scenarios are easy straw men rather than uncomfortable ways the plan could really fail."
+        ],
+        "case_evidence_needed": [
+          "The desired outcome, plan, or commitment being considered.",
+          "A named non-goal or value-destroying failure state.",
+          "Specific actions, defaults, terms, or omissions that would cause that failure."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-non-goal",
+          "description": "State the anti-goal and the behaviors that would produce it before prescribing the forward plan.",
+          "evidence_required": [
+            "The positive objective and its inverse non-goal.",
+            "The concrete causes or actions that would produce the non-goal.",
+            "The behaviors to eradicate, avoid, or make difficult."
+          ],
+          "good_output_shape": [
+            "An anti-goal statement followed by named failure mechanisms.",
+            "A remove-or-avoid action attached to each failure mechanism.",
+            "A positive next action that remains necessary after the avoidance list."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What don't I want to achieve? What causes the non-goal? How can I avoid that?",
+        "What actions could our company take to destroy as much value as possible in as short a time as possible?",
+        "We have identified what to avoid — what is the single most important positive action we must still take, and by when?"
+      ],
+      "misuse_guards": [
+        "Do not let avoidance analysis replace execution; the source warns this leads to paralysis, not progress.",
+        "Reject straw-man negative scenarios that can be easily dismissed.",
+        "Do not treat a finite checklist of failure modes as proof the system is foolproof."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Instead of asking how to achieve a desired outcome, inversion demands that you ask what would guarantee failure, and then systematically avoid those things.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "the cost of a mistake is catastrophic, making the avoidance of stupidity a far more profitable strategy than the pursuit of brilliance.",
+          "section_hint": "Strengths (Most Powerful Contexts)",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "the path to success is unclear, but the paths to failure are identifiable.",
+          "section_hint": "Strengths (Most Powerful Contexts)",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Rather than setting direct goals, establish \"anti-goals.\" Ask yourself: \"What don't I want to achieve? What causes the non-goal? How can I avoid that?\"",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Ask the team: \"What actions could our company take to destroy as much value as possible in as short a time as possible?\" Then ensure those behaviors are eradicated.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "identifying what to avoid without subsequently taking positive action leads to paralysis, not progress.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "\"straw man\" negative scenarios are generated that are easily dismissed, falsely convincing the team they have applied rigorous backward thinking when they have merely performed a ritual.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "A team might identify the five ways a project could fail, implement safeguards for those five things, and falsely believe the system is now foolproof",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "inversion.disconfirmation-before-defense",
+      "status": "supported",
+      "name": "Disconfirmation before defense",
+      "mechanism": "Treat the initial hypothesis as something to disprove by seeking evidence that would make it wrong or force abandonment of the preferred plan.",
+      "activation_shape": {
+        "use_when": [
+          "A team has an initial assumption, hypothesis, or preferred plan and is gathering confirming evidence.",
+          "First-conclusion bias or commitment pressure makes the plan hard to challenge.",
+          "The decision needs an explicit condition under which the current plan would be revised or abandoned."
+        ],
+        "do_not_use_when": [
+          "There is no concrete hypothesis, assumption, or decision that could be disproved.",
+          "The inverse scenario is peripheral and cannot threaten the preferred plan."
+        ],
+        "case_evidence_needed": [
+          "The favored hypothesis or plan stated in falsifiable terms.",
+          "Evidence that would suggest the hypothesis is wrong.",
+          "At least one inverse scenario that could require abandoning the current plan."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "seek-disconfirming-evidence",
+          "description": "Before defending the hypothesis, require a search for disconfirming evidence and name the condition that would overturn the current plan.",
+          "evidence_required": [
+            "The current hypothesis or plan the team is inclined to defend.",
+            "The evidence source or observation that could suggest the team is wrong.",
+            "The plan-threatening inverse scenario that would require revision or abandonment."
+          ],
+          "good_output_shape": [
+            "A disconfirmation search target, not only supporting evidence.",
+            "A plan-threatening inverse scenario and an explicit abandon-or-revise trigger.",
+            "A note distinguishing genuine disproof pressure from peripheral risk listing."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Let's try and disprove it.",
+        "Where can I find the evidence that suggests I am wrong?",
+        "Which of our inverse scenarios, if true, would require us to abandon our current plan entirely — and have we taken that scenario seriously?"
+      ],
+      "misuse_guards": [
+        "Do not constrain backward analysis to scenarios that still validate the preferred forward plan.",
+        "Do not protect the team's emotional investment in being right from inverse evidence.",
+        "Do not count peripheral risks as disconfirmation if they cannot change the plan."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "When forming an initial assumption or hypothesis, rather than looking for evidence to confirm it, use inversion to actively seek ways to disprove your own theory.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Charles Darwin famously utilized this extreme anti-confirmation-bias method, training himself to intensively consider any evidence that tended to disconfirm his hypotheses.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "By taking your initial assumption and asking \"Let's try and disprove it,\" inversion forces a level of objectivity that forward-thinking rarely achieves.",
+          "section_hint": "Strengths (Most Powerful Contexts)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Where can I find the evidence that suggests I am wrong?",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Require at least one inverse scenario that directly threatens the team's preferred plan, not just peripheral risks.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "inversion conflicts with confirmation-bias (confirmation bias) when backward analysis is subconsciously constrained to scenarios that still validate the preferred forward plan.",
+          "section_hint": "Structured Tension Curation (2026-04-07):",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "the emotional investment in being right overrides the intellectual discipline of checking for wrong.",
+          "section_hint": "Conflicting Relationships (Antagonists)",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "inversion.obstacle-removal-before-added-force",
+      "status": "supported",
+      "name": "Obstacle removal before added force",
+      "mechanism": "Map supporting and impeding forces, then prefer removing the impeding forces or friction before merely adding more propulsion.",
+      "activation_shape": {
+        "use_when": [
+          "A change effort is pushing harder on supporting forces while obstacles or frictions remain in place.",
+          "The objective is clear enough to identify forces supporting and impeding it.",
+          "The team is starting to solve before understanding what holds the problem in place."
+        ],
+        "do_not_use_when": [
+          "The work has not identified the forces holding the problem in place.",
+          "Obstacle removal is being used as a complete substitute for forward execution or positive-force augmentation."
+        ],
+        "case_evidence_needed": [
+          "The objective or change being attempted.",
+          "The supporting forces and impeding forces.",
+          "The friction or obstacle whose removal would be cheaper than adding propulsion."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "remove-impeding-force",
+          "description": "Map the force field, select the binding impeding force, and remove or reduce that obstacle before adding more supporting force.",
+          "evidence_required": [
+            "The target objective for the change effort.",
+            "A split list of supporting forces and impeding forces.",
+            "The obstacle or friction that can be removed before more propulsion is added."
+          ],
+          "good_output_shape": [
+            "A force-field map distinguishing supporting from impeding forces.",
+            "A named obstacle-removal action and the positive force it must be paired with.",
+            "A short explanation of why removal is cheaper or more effective than added propulsion."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which forces are supporting the objective, and which forces are impeding it?",
+        "Where are we pushing harder when removing an obstacle would be less costly?",
+        "What positive force still needs augmentation after the obstacle is removed?"
+      ],
+      "misuse_guards": [
+        "Do not start solving before mapping the failure landscape or the forces holding the problem in place.",
+        "Do not assume obstacle removal alone is sufficient for true change.",
+        "Do not confuse removing friction with having completed the forward execution work."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Psychologist Kurt Lewin proposed that to enact change, you must identify forces supporting the objective and forces impeding it.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "The inversion occurs when, instead of just pushing harder on the supporting forces, you focus on removing the obstacles (the impeding forces).",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Removing friction is frequently more effective and less costly than adding propulsion.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Starting to solve a problem before understanding the forces holding the problem in place.",
+          "section_hint": "Common Failure Modes and Cognitive Biases",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "identifying and removing obstacles (inversion) must still be paired with augmenting the positive forces to achieve true change.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Inversion_rag.md",
+          "source_quote": "Use inversion to identify and remove obstacles, but pair it with augmenting positive forces (Lewin).",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Inversion_rag.md",
+      "source_quote": "Instead of asking how to achieve a desired outcome, inversion demands that you ask what would guarantee failure, and then systematically avoid those things.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Inversion_rag.md",
+      "source_quote": "When forming an initial assumption or hypothesis, rather than looking for evidence to confirm it, use inversion to actively seek ways to disprove your own theory.",
+      "section_hint": "Key Heuristics and Actionable Frameworks",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Inversion_rag.md",
+      "source_quote": "The inversion occurs when, instead of just pushing harder on the supporting forces, you focus on removing the obstacles (the impeding forces).",
+      "section_hint": "Key Heuristics and Actionable Frameworks",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted three operational affordances from the Markdown: anti-goal failure mapping, disconfirmation discipline, and obstacle-removal sequencing. Relation material and illustrative examples were used only when they changed evidence, questions, or treatment shape.",
+    "dropped_material": [
+      "Did not extract a standalone premortem relation affordance because the source frames premortem as a procedural ally rather than an inversion affordance needed in this schema.",
+      "Did not extract the Patagonia, Vanguard, RAF, India, or Atomic Habits examples as separate affordances; they illustrate the same inversion mechanisms already represented.",
+      "Did not extract generic 'think backward' or brand/philosophy claims because they would not change runtime evidence or treatment requirements."
+    ],
+    "open_questions": [
+      "A later relation-specific layer may want to preserve the strong premortem and margin-of-safety relationships separately from this affordance file.",
+      "The source has many usable prompts; this draft keeps only the prompts that materially change evidence requirements or guard against misuse."
+    ],
+    "review_status": "draft"
+  }
+}

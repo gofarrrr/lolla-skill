@@ -1,0 +1,145 @@
+{
+  "model_id": "reasoning-mode-router",
+  "source_file": "Reasoning_Mode_Router_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "reasoning-mode-router.context-driven-mode-selection-check",
+      "status": "supported",
+      "name": "Context driven mode selection check",
+      "mechanism": "When a case could require diagnosis, creative exploration, adversarial critique, execution planning, or another mode, require the answer to name the current reasoning stage and why that mode fits before deepening the analysis.",
+      "activation_shape": {
+        "use_when": [
+          "The problem could be solved through very different reasoning modes with different failure modes.",
+          "Choosing the wrong reasoning path would waste cycles, hide assumptions, or bias the answer early.",
+          "The team can explicitly name the current stage of work and switch modes as evidence changes."
+        ],
+        "do_not_use_when": [
+          "The right mode is already explicit and the next discriminating question is clear.",
+          "Routing debate would become overhead instead of pushing the next experiment, question, or evidence check.",
+          "A deterministic system would infer reasoning mode from case type, route label, or model name."
+        ],
+        "case_evidence_needed": [
+          "The current problem stage: goal, problem, diagnosis, design, doing, critique, or exploration.",
+          "The reasoning modes that could plausibly fit.",
+          "The evidence that the current mode is mismatched.",
+          "The next question or action that the selected mode should produce."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-stage-and-mode-fit",
+          "description": "Require the answer to name the current reasoning stage, the mode being used, why that mode fits the task, and what evidence would trigger a mode switch.",
+          "evidence_required": [
+            "The current stage of work.",
+            "The plausible reasoning modes for the task.",
+            "The cost of using the wrong mode.",
+            "The evidence that would justify switching modes."
+          ],
+          "good_output_shape": [
+            "Names the mode as a reviewed handoff suggestion, not a deterministic route.",
+            "Explains why the mode fits the current task and stage.",
+            "States what would trigger a switch.",
+            "Avoids creating a new lane, prompt mechanic, or case-type rule."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What reasoning mode is the advice using right now?",
+        "What task stage are we actually in, and does this mode fit that stage?",
+        "What evidence would tell us to switch from diagnosis to design, critique, exploration, or execution?"
+      ],
+      "misuse_guards": [
+        "Do not turn this card into deterministic reasoning-mode routing.",
+        "Do not create a new lane, prompt mechanic, or case-type classifier from this model.",
+        "Do not let mode selection become overhead that displaces the next discriminating question."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Reasoning_Mode_Router_rag.md",
+          "source_quote": "conscious selection of a processing strategy",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reasoning_Mode_Router_rag.md",
+          "source_quote": "the problem could be solved through very different modes such as diagnosis, creative exploration, adversarial critique, or execution planning.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reasoning_Mode_Router_rag.md",
+          "source_quote": "the team can explicitly name the current stage of work and switch modes as evidence changes rather than blending all modes at once.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports mode-selection as reviewer/LLM handoff material, not deterministic routing.",
+        "dropped_material": [
+          "Did not extract role-based prompt or AI-agent configuration material because PR45 is not prompt work.",
+          "Did not create a runtime routing taxonomy or lane boundary."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card helps a later packet notice mode mismatch without becoming a deterministic router."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "deterministic-case-type-mode-router",
+      "status": "not_supported_by_source",
+      "reason": "The source says mode choice is contextually dependent, so PR45 must not let Python infer the right reasoning mode from case type, route label, or model ID.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Reasoning_Mode_Router_rag.md",
+          "source_quote": "The appropriate thinking mode is always \"contextually dependent\".",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "routing-debate-as-progress",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that routing can become a tax when teams debate the method instead of moving to the next question or experiment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Reasoning_Mode_Router_rag.md",
+          "source_quote": "Routing itself can become a tax if the team keeps debating the method instead of pushing the next discriminating question or experiment forward.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Reasoning_Mode_Router_rag.md",
+      "source_quote": "engage different cognitive resources",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for reasoning-mode-router as a context-driven mode-selection check. The record explicitly rejects deterministic routing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic router, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card improves LLM handoff without tempting runtime routing."
+    ],
+    "review_status": "draft"
+  }
+}

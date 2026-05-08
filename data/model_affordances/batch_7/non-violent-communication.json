@@ -1,0 +1,152 @@
+{
+  "model_id": "non-violent-communication",
+  "source_file": "Non_Violent_Communication_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "non-violent-communication.needs-observations-request-clarifier",
+      "status": "supported",
+      "name": "Needs observations request clarifier",
+      "mechanism": "When tension is being carried in the relationship as much as in the issue list, require the answer to separate observable facts, relationship concerns, needs, and explicit requests so directness can survive without accusation or appeasement.",
+      "activation_shape": {
+        "use_when": [
+          "A disagreement is entangled with defensiveness, face-saving, mistrust, or fear of blame.",
+          "The next move requires directness without putting down or infringing on the other party.",
+          "Progress depends on naming observations, needs, and requests cleanly rather than arguing about character or intent."
+        ],
+        "do_not_use_when": [
+          "The model would soften every edge of disagreement until boundaries, trade-offs, or accountability disappear.",
+          "Perspective taking would cause the user to overlook their own interests or sabotage their self-interest.",
+          "The conversation needs a concrete decision, enforcement step, or stopping rule more than further relational processing."
+        ],
+        "case_evidence_needed": [
+          "The factual observation at issue.",
+          "The relationship tension or emotional concern that may be shaping the exchange.",
+          "The need, boundary, or request that has to be stated directly.",
+          "Evidence that both clarity and non-escalation matter for the next move."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-observation-need-and-request",
+          "description": "Require the answer to state the observable issue, name the relevant need or relationship concern, and convert it into a concrete request or next action without accusation.",
+          "evidence_required": [
+            "The observable event or behavior.",
+            "The relationship-level concern.",
+            "The specific need or boundary.",
+            "The explicit request, decision, or next action."
+          ],
+          "good_output_shape": [
+            "Separates facts from interpretations.",
+            "Names the relationship tension without blame language.",
+            "Preserves directness about what needs to change.",
+            "Ends with a concrete request or action criterion."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What observable fact can be named without accusing the other party's character?",
+        "What need, boundary, or request is currently being hidden behind frustration?",
+        "Would softening this message avoid conflict at the cost of clarity or accountability?"
+      ],
+      "misuse_guards": [
+        "Do not turn non-violent wording into conflict avoidance.",
+        "Do not use empathy to erase the user's own interests or boundaries.",
+        "Do not let relationship processing replace an explicit request, trade-off, or accountability step."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "stating directly what you want and how you see things without putting down or infringing on the rights of others",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "Best when alignment depends on naming observations, needs, and requests cleanly",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "Most useful when the factual disagreement is entangled with defensiveness, face-saving, mistrust, or fear of blame.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports one compact communication clarifier that keeps facts, relationship concerns, needs, and requests distinct.",
+        "dropped_material": [
+          "Did not extract broad dialogue theory, PING, or feedback ADD structure as separate affordances.",
+          "Kept sales and pitch examples as context rather than separate PR36 cards."
+        ],
+        "open_questions": [
+          "Future packet review should test this card against boundaries and reciprocity in cases where direct requests can become either too soft or too coercive."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "conflict-avoidance-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against confusing non-violent communication with avoiding hard boundaries, trade-offs, or accountability requests.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "Danger when \"non-violent\" gets confused with conflict avoidance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "empathy-over-interest-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source distinguishes perspective-taking from empathy that overlooks one's own interests, so the record must not promote self-erasure as communication skill.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "detrimentally overlook your own interests",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Non_Violent_Communication_rag.md",
+      "source_quote": "This framework requires participants to be **radically open-minded and assertive at the same time**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Non_Violent_Communication_rag.md",
+      "source_quote": "Works when directness must survive without escalation",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Non-Violent Communication. Extracted one observation/need/request clarifier and rejected conflict avoidance plus empathy-over-interest misuse.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps distinguish relational clarity from soft avoidance."
+    ],
+    "review_status": "draft"
+  }
+}

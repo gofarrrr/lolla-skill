@@ -1,0 +1,145 @@
+{
+  "model_id": "variation-and-selection",
+  "source_file": "Variation_And_Selection_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "variation-and-selection.variation-with-selection-rule",
+      "status": "supported",
+      "name": "Variation with selection rule",
+      "mechanism": "When the current answer set is too narrow or biased by the first plausible idea, require broader variations and a stated evidence-based selection rule so experiments, prototypes, or hypotheses can be pruned into commitment instead of expanding forever.",
+      "activation_shape": {
+        "use_when": [
+          "The current answer set is too narrow, path-dependent, or biased by the first plausible idea.",
+          "The team can afford small experiments, prototypes, or comparative tests.",
+          "Innovation quality depends on broad option generation first and disciplined evidence-based pruning second."
+        ],
+        "do_not_use_when": [
+          "The team celebrates variation without defining how learning, pruning, and commitment will happen.",
+          "Variation becomes endless analysis or an excuse to boil the ocean.",
+          "Selection is corrupted by confirmation bias toward a preferred idea."
+        ],
+        "case_evidence_needed": [
+          "The narrow current option set or first plausible idea.",
+          "The variations or hypotheses to compare.",
+          "The evidence-based selection rule.",
+          "The simplest test that could collapse or advance the candidate solution."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "pair-variants-with-pruning-rule",
+          "description": "Require the answer to name the variants being generated, the selection evidence that will compare them, and the commitment or pruning decision that follows.",
+          "evidence_required": [
+            "The current narrow option set.",
+            "The candidate variants.",
+            "The selection evidence or comparison criteria.",
+            "The test or threshold that drives pruning."
+          ],
+          "good_output_shape": [
+            "Expands beyond the first plausible idea.",
+            "Defines how variants will be compared.",
+            "Names what evidence selects, kills, or iterates a variant.",
+            "Avoids treating experiment volume as progress."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What variations are missing because the first plausible idea looked good enough?",
+        "What selection rule will compare these variants?",
+        "What is the smallest test today that could collapse or advance the solution?"
+      ],
+      "misuse_guards": [
+        "Do not generate variations without a selection rule.",
+        "Do not let experimentation expand without pruning or commitment.",
+        "Do not search only for evidence that supports the preferred variant."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Variation_And_Selection_rag.md",
+          "source_quote": "Most useful when** the current answer set is too narrow, path-dependent, or biased by the first idea that seemed plausible.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Variation_And_Selection_rag.md",
+          "source_quote": "Best used when** innovation quality depends on broad option generation first and disciplined evidence-based pruning second.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Variation_And_Selection_rag.md",
+          "source_quote": "test every single possibility and compare outcomes",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports variation only when paired with evidence-based selection and pruning.",
+        "dropped_material": [
+          "Did not extract design thinking iteration or viral content as separate affordances.",
+          "Kept hypothesis-driven problem solving as support for test-and-prune discipline."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card makes option broadening more evidence-driven rather than merely more expansive."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "variation-without-selection-rule",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says variation is dangerous when teams celebrate variation without defining the selection rule.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Variation_And_Selection_rag.md",
+          "source_quote": "teams celebrate variation without defining the selection rule, so experimentation expands but learning, pruning, and commitment never happen.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "over-variation-as-analysis-paralysis",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that over-reliance on exploration can create analysis paralysis, delays, and irrelevant data gathering.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Variation_And_Selection_rag.md",
+          "source_quote": "Over-reliance on the initial exploration phase can lead to \"analysis paralysis,\"",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Variation_And_Selection_rag.md",
+      "source_quote": "The **Variation** phase involves increasing the volume and scope of potential solutions or hypotheses.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for variation-and-selection as option generation paired with evidence-based pruning.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card helps the next LLM widen and prune candidate paths without increasing candidate count."
+    ],
+    "review_status": "draft"
+  }
+}

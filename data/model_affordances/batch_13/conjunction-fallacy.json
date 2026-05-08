@@ -1,0 +1,145 @@
+{
+  "model_id": "conjunction-fallacy",
+  "source_file": "Conjunction_Fallacy_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "conjunction-fallacy.sequence-probability-stress-test",
+      "status": "supported",
+      "name": "Sequence probability stress test",
+      "mechanism": "When a plan depends on many individually plausible events, require the answer to expose the sequential gates, test cumulative probability, and identify the weakest link before treating the plan as likely.",
+      "activation_shape": {
+        "use_when": [
+          "Success depends on multiple steps all going right.",
+          "Each step sounds likely but the whole plan has not been probability-tested.",
+          "A timeline, launch, integration, or workflow is being treated as safer than its cumulative dependencies justify."
+        ],
+        "do_not_use_when": [
+          "The dominant risk is one independent disjunctive failure rather than sequential success.",
+          "Detailed probability arithmetic would distract from a clear binding dependency.",
+          "The input probabilities are fictional and should be replaced with reference-class evidence."
+        ],
+        "case_evidence_needed": [
+          "The sequence of necessary steps.",
+          "The step-level confidence or reference-class evidence.",
+          "The dependency that can break the whole chain.",
+          "A mitigation, fallback, or scope reduction for the weakest step."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-necessary-gates-before-optimism",
+          "description": "Require the answer to list necessary gates, expose cumulative fragility, and convert optimism into mitigation or smaller commitment.",
+          "evidence_required": [
+            "Sequential gates.",
+            "Step-level uncertainty.",
+            "Reference-class or historical completion evidence.",
+            "Weakest link and mitigation."
+          ],
+          "good_output_shape": [
+            "Names the conjunctive structure.",
+            "Shows why plausible steps do not equal plausible total success.",
+            "Identifies the weakest link.",
+            "Adjusts scope, buffer, or fallback accordingly."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which steps must all succeed for this plan to work?",
+        "Which link is the weakest if the optimistic story fails?",
+        "What reference class gives the success rate for similar sequences?"
+      ],
+      "misuse_guards": [
+        "Do not let a detailed scenario feel more probable because it is detailed.",
+        "Do not use fake step probabilities as rigor.",
+        "Do not ignore one or two dominant dependencies under a cloud of arithmetic."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Conjunction_Fallacy_rag.md",
+          "source_quote": "success depends on the successful occurrence of *each* step or event in a series",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Conjunction_Fallacy_rag.md",
+          "source_quote": "**Most useful when** success depends on many individually plausible events all needing to go right in sequence.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Conjunction_Fallacy_rag.md",
+          "source_quote": "probability logic becomes pseudo-precision and distracts from the one or two concrete dependencies",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports conjunction fallacy as cumulative sequence-risk discipline.",
+        "dropped_material": [
+          "Did not extract project-management templates.",
+          "Did not require exact numeric multiplication when evidence is qualitative."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card catches over-optimistic multi-step plans."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "specific-story-as-probability-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source says the outside view and reference classes are needed before trusting the unique optimistic details of a plan.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Conjunction_Fallacy_rag.md",
+          "source_quote": "anchoring decisions to broader statistical regularities rather than solely relying on the unique, optimistic details",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "detail-rich-conjunction-as-more-likely",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that narrative coherence can override the mathematical reality that additional conditions reduce probability.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Conjunction_Fallacy_rag.md",
+          "source_quote": "adding conditions can only reduce probability",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Conjunction_Fallacy_rag.md",
+      "source_quote": "break the complex plan down into its smallest necessary components",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for conjunction fallacy as sequential-gate fragility.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves execution-risk packets without bloating them."
+    ],
+    "review_status": "draft"
+  }
+}

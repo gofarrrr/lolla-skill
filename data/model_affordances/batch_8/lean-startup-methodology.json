@@ -1,0 +1,145 @@
+{
+  "model_id": "lean-startup-methodology",
+  "source_file": "Lean_Startup_Methodology_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "lean-startup-methodology.validated-learning-kill-pivot-gate",
+      "status": "supported",
+      "name": "Validated learning kill pivot gate",
+      "mechanism": "When advice depends on product, market, or behavior uncertainty, require a narrow experiment with honest evidence, short feedback loop, and explicit continuation, pivot, or kill decision before treating learning as validated.",
+      "activation_shape": {
+        "use_when": [
+          "A product, market, or behavior hypothesis is still fragile enough that learning speed matters more than polished completeness.",
+          "Experiments can be scoped narrowly, measured honestly, and used to trigger real continuation, pivot, or kill decisions.",
+          "The team can keep feedback loops short without lying to itself about what counts as evidence of demand or fit."
+        ],
+        "do_not_use_when": [
+          "Teams call any customer contact or usage blip validated learning even though the metric is weak, vanity-driven, or disconnected from real adoption.",
+          "MVP discipline is applied mechanically to domains with compliance, safety, or trust thresholds that cannot be cheaply approximated.",
+          "The team uses speed to jump to conclusions instead of testing the central hypothesis."
+        ],
+        "case_evidence_needed": [
+          "The fragile product, market, or behavior hypothesis.",
+          "The narrow experiment and the evidence it must produce.",
+          "The metric that distinguishes adoption or fit from vanity movement.",
+          "The continuation, pivot, or kill threshold."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-validated-learning-threshold",
+          "description": "Require the answer to turn the product or market bet into a narrow hypothesis test with honest evidence and a precommitted continuation, pivot, or kill threshold.",
+          "evidence_required": [
+            "The hypothesis being tested.",
+            "The smallest experiment that can test it without fake evidence.",
+            "The adoption, demand, or fit signal.",
+            "The decision threshold for continue, pivot, or kill."
+          ],
+          "good_output_shape": [
+            "Names the fragile hypothesis.",
+            "Defines a narrow test.",
+            "Separates real demand evidence from vanity metrics.",
+            "States the pivot, kill, or continuation rule."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What hypothesis is fragile enough that a narrow test should precede polish?",
+        "What evidence would count as real demand or fit rather than vanity movement?",
+        "What result triggers continue, pivot, or kill?"
+      ],
+      "misuse_guards": [
+        "Do not call weak usage blips validated learning.",
+        "Do not use MVP discipline to bypass safety, compliance, or trust thresholds.",
+        "Do not gather more facts than needed to prove or disprove the current hypothesis."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "validated learning** through rapid, focused experimentation aimed at reducing uncertainty and waste",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "experiments can be scoped narrowly, measured honestly, and used to trigger real continuation, pivot, or kill decisions",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "without lying to itself about what counts as evidence of demand or fit",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one validated-learning threshold gate for fragile hypotheses, narrow tests, honest metrics, and continuation/pivot/kill decisions.",
+        "dropped_material": [
+          "Did not extract MECE, empathy maps, dream buyer, or strategic ideation as separate affordances.",
+          "Kept MVP and feedback-loop material under the single validated-learning gate."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card helps packets avoid treating any activity as market validation."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "vanity-metric-as-validated-learning",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that customer contact or usage blips are not validated learning when the metric is weak, vanity-driven, or disconnected from real adoption.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "teams call any customer contact or usage blip \"validated learning\" even though the metric is weak, vanity-driven, or disconnected from real adoption",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "mvp-bypasses-safety-trust-thresholds",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects applying MVP discipline mechanically in domains where compliance, safety, or trust thresholds cannot be cheaply approximated.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lean_Startup_Methodology_rag.md",
+          "source_quote": "MVP discipline is applied mechanically to domains with compliance, safety, or trust thresholds that cannot be cheaply approximated",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Lean_Startup_Methodology_rag.md",
+      "source_quote": "working *smarter, not harder*",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Lean Startup Methodology. Extracted one validated-learning kill/pivot gate and rejected vanity-metric validation plus MVP-over-trust misuse.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should test whether this card helps the LLM ask for real evidence before recommending product execution."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "model_id": "complex-adaptive-systems",
+  "source_file": "Complex_Adaptive_Systems_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "complex-adaptive-systems.adaptive-feedback-leverage-choice",
+      "status": "supported",
+      "name": "Choose leverage points inside adaptive feedback",
+      "mechanism": "When many agents respond to one another, an intervention changes the system that will later receive the next intervention, so the answer must map agents, feedback, delays, incentives, and the small leverage point before prescribing action.",
+      "activation_shape": {
+        "use_when": [
+          "People, teams, markets, or components are continuously adapting to each other rather than behaving like fixed parts.",
+          "Feedback, delays, or incentives keep reshaping the environment after each intervention.",
+          "Improving the whole depends on finding a small change that alters learning loops, coordination, or adaptation."
+        ],
+        "do_not_use_when": [
+          "The case is a bounded static-machine problem with no evidence of adapting agents, feedback, delays, or incentives.",
+          "Complexity language is being used to avoid naming a concrete leverage point, experiment, or owner for improvement."
+        ],
+        "case_evidence_needed": [
+          "The adapting agents or components and how they respond to one another.",
+          "The feedback loops, delays, incentives, boundaries, or limiting factors that can reshape the intervention.",
+          "A candidate leverage point and the learning, coordination, or adaptation signal it is expected to move."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "agent-loop-leverage-map",
+          "description": "The answer must identify the adapting agents, feedback or delay structure, and a concrete leverage point before recommending what to change.",
+          "evidence_required": [
+            "Named agents or components that are adapting in response to one another.",
+            "At least one feedback loop, delay, incentive, boundary, or limiting factor that changes how action will play out.",
+            "A specific leverage point, owner, or experiment tied to a learning, coordination, or adaptation signal."
+          ],
+          "good_output_shape": [
+            "Name the agents and the response pattern that makes the situation adaptive.",
+            "Explain how feedback, delay, incentive, or boundary conditions will reshape the intervention over time.",
+            "Recommend the small leverage point to try next and the signal that should change if it is working."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which agents are adapting to one another, and how will they respond after the intervention?",
+        "Which feedback loop, delay, incentive, boundary, or limiting factor could reshape the result over time?",
+        "Where can a small change alter learning loops, coordination, or adaptation instead of micromanaging parts?"
+      ],
+      "misuse_guards": [
+        "Do not let complexity language become an excuse for failing to name leverage points, experiments, or ownership.",
+        "Do not micromanage isolated parts when the whole depends on learning loops, coordination, or adaptation.",
+        "Do not ignore delays, limiting factors, or false boundaries when designing the intervention."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "CAS is strongest when people, teams, markets, or components are continuously responding to each other rather than behaving like fixed parts in a static machine.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "The model has high leverage when the intervention itself changes the system and the system then changes how future interventions will work.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "CAS is especially useful when improving the whole depends on understanding where a small change can alter learning loops, coordination, or adaptation.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "The model is distorted when complexity language is used to excuse the absence of concrete leverage points, experiments, or ownership for improvement.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Mistreating a system by failing to account for delays, limiting factors, and false boundaries can lead to misdesign and poor outcomes.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "complex-adaptive-systems.ordered-adaptive-learning-loop",
+      "status": "supported",
+      "name": "Run the ordered adaptive learning loop",
+      "mechanism": "Good use keeps complex-system work in a fast recurring sequence of goal, problem, diagnosis, plan, and execution, because understanding a system is not the same as pushing a design through emergent implementation.",
+      "activation_shape": {
+        "use_when": [
+          "The team has a complex adaptive problem and needs to evolve quickly through a repeated learning process.",
+          "People are jumping to plans before goals, problems, or root causes have been made explicit.",
+          "The system diagnosis is not yet connected to the doing required to produce results."
+        ],
+        "do_not_use_when": [
+          "The task is already a simple one-step execution problem with no adaptive learning loop to manage.",
+          "The work cannot yet name the goal, problem, diagnosis, plan, or doing step that should be handled next."
+        ],
+        "case_evidence_needed": [
+          "The ambitious goal or desired outcome the system is meant to move toward.",
+          "The current problem signal and the root-cause diagnosis, separated from the proposed plan.",
+          "The design to try, the doing required to push it through, and the result signal that will feed the next loop."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "goal-problem-diagnosis-design-doing",
+          "description": "The answer must place the case in the ordered adaptive loop and state the next disciplined step instead of treating system understanding as sufficient implementation.",
+          "evidence_required": [
+            "A stated goal or desired outcome.",
+            "A problem statement and root-cause diagnosis that precede the design recommendation.",
+            "A plan, execution step, and result signal that will let the system learn from what happens next."
+          ],
+          "good_output_shape": [
+            "Separate goals, problems, root causes, plans, and doing instead of collapsing them into one recommendation.",
+            "Name which step is current and which step would be premature to skip toward.",
+            "Close with the execution move and feedback signal needed to continue the adaptive loop."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which step of the adaptive loop are we actually in: goal, problem, root-cause diagnosis, design, or doing?",
+        "What root cause must be diagnosed before this plan can be treated as more than a guess?",
+        "What has to be done to push the design through to results, and what signal will feed the next loop?"
+      ],
+      "misuse_guards": [
+        "Do not let system understanding masquerade as implementation.",
+        "Do not skip the ordered sequence when the source says the steps must be done one at a time and in order.",
+        "Do not assume a blueprint will absorb the implementation complexity of an adaptive system."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Successful engagement with adaptive systems depends on a continuous, looping process, done fast and continuously to evolve quickly. The steps must be done one at a time and in order to avoid suboptimal outcomes:",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Accurately diagnosing root causes.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Doing what's necessary to push these designs through to results.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Systems thinking can identify solutions and pinpoint problems, but it often cannot bridge the gap between *understanding* and *implementation*.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Implementation is more complex and \"more emergent than amenable to a blueprint\".",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "complex-adaptive-systems.assumption-and-bias-exposure",
+      "status": "supported",
+      "name": "Expose assumptions before trusting the system map",
+      "mechanism": "Because adaptive systems require disconfirming feedback to learn, a system map earns weight only after the answer makes its assumptions explicit, tests what would have to be true, and checks whether a familiar or desired conclusion is defending itself.",
+      "activation_shape": {
+        "use_when": [
+          "A framework, system map, or strategic perspective depends on implicit assumptions.",
+          "An expert or team may be substituting a familiar problem type for a genuinely novel context.",
+          "The evidence could be filtered by motivated reasoning, confirmation bias, or model-defending behavior."
+        ],
+        "do_not_use_when": [
+          "No system framework, strategic perspective, or assumption set is carrying the recommendation.",
+          "The needed assumptions and disconfirming evidence have already been made explicit enough for review."
+        ],
+        "case_evidence_needed": [
+          "The framework, system map, or perspective currently being used to explain the case.",
+          "The implicit assumptions that must be true for that explanation to work.",
+          "Disconfirming data, outside perspectives, or bias checks that could challenge the favored conclusion."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "assumptions-disconfirmation-check",
+          "description": "The answer must spell out the assumptions carrying the system view and test them against disconfirming evidence before relying on the map.",
+          "evidence_required": [
+            "The current framework, perspective, or system map.",
+            "The assumptions that must hold for the view to explain observed behavior.",
+            "Evidence or outside perspective that could disconfirm the favored interpretation."
+          ],
+          "good_output_shape": [
+            "List the load-bearing assumptions in the system view.",
+            "Ask what would have to be true for the scenario or recommendation to work.",
+            "Name the disconfirming evidence or opposing perspective that would prevent model-defending behavior."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What are the assumptions embedded in the framework being used here?",
+        "What would have to be true for this scenario or recommendation to work?",
+        "Are we pursuing this conclusion because the evidence supports it, or because we want it to be true?"
+      ],
+      "misuse_guards": [
+        "Do not assume a familiar framework fits a genuinely novel adaptive-system context.",
+        "Do not let motivated reasoning or confirmation bias filter out the feedback needed for adaptation.",
+        "Do not rely on a system map whose assumptions and underlying logic have not been made visible."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Strategy demands making assumptions and underlying logic visible and rigorous.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "A key heuristic is to use the **\"What would you have to believe?\"** question to spell out all the implicit assumptions in a perspective, forcing clarity on the systemic foundations of a viewpoint.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Experienced problem solvers risk assuming **\"I have seen this one before, it is an X problem\"**.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "When analyzing systemic behavior, there is a risk that people will process information to reach a conclusion they *want* rather than discovering what is true.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Confirmation bias (model-defending behavior) actively fights the accumulation of new, disconfirming data necessary for system adaptation.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "What are the assumptions embedded in the framework I am using? What would have to be true for this scenario to work?.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Am I pursuing an outcome because I *want* it to be true (motivated reasoning), or because the evidence supports it?.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "digital-twin-simulation-affordance",
+      "status": "source_too_thin",
+      "reason": "The source gives concrete multi-agent AI simulation examples, but it does not provide a general treatment requirement for when to build digital twins beyond the broader adaptive-system mapping and foresight material.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "The CAS model is applied by creating AI agents as **\"digital twin creators\"** to clone countless realistic personas and scenarios.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "Advanced applications include simulating an entire buying committee or social network using multi-agent systems.",
+          "section_hint": "The Playbook in Action:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "multidisciplinary-latticework-standalone-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The latticework passages support using multiple models around CAS, but in this record they are better treated as review context and relation material rather than a separate operational affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Complex_Adaptive_Systems_rag.md",
+          "source_quote": "This model suggests that because multiple factors shape almost every system, understanding requires tools from varied disciplines (like psychology, mathematics, engineering, and economics).",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Complex_Adaptive_Systems_rag.md",
+      "source_quote": "The purpose of this model is to understand the dynamics of complex systems, which are characterized by interconnectedness, feedback, nonlinearity, and a tendency toward producing surprising, emergent behavior.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Complex_Adaptive_Systems_rag.md",
+      "source_quote": "Succeeding in this environment requires mastering increasingly complex systems and skills.",
+      "section_hint": "Core Principles and Analogies:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Complex_Adaptive_Systems_rag.md",
+      "source_quote": "Applying a CAS mindset requires focusing on structure, embracing iteration, and leveraging modeling tools to test outcomes.",
+      "section_hint": "The Playbook in Action:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Extracted three operational affordances from the source: adaptive feedback/leverage choice, the ordered adaptive learning loop, and assumption/bias exposure before trusting a system map. Curation files were read for orientation, but exact evidence is drawn from Complex_Adaptive_Systems_rag.md. This remains an offline review artifact and does not imply runtime promotion.",
+    "dropped_material": [
+      "Did not create a broad CAS-definition affordance because the source's definition material explains the model but does not add a distinct operational contract.",
+      "Did not promote digital-twin or persona-simulation examples into a runtime treatment because the source gives examples without a reusable activation and treatment contract.",
+      "Did not create standalone relation affordances for systems-thinking, feedback-loops, leverage-points, optionality, or confirmation-bias because those are already represented in relation curation unless later review needs a cross-model runtime contract.",
+      "Did not extract a generic VUCA or complexity-navigation affordance because the sharper records already specify what evidence, question, sequence, or treatment changes."
+    ],
+    "open_questions": [
+      "A later reviewer could decide whether communication simplification deserves its own affordance, but the current source support is closer to mitigation against overload than a CAS-specific treatment contract.",
+      "The implementation-loop affordance intentionally stays at the source's five-step sequence and does not invent a full experiment protocol."
+    ],
+    "review_status": "draft"
+  }
+}

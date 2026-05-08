@@ -1,0 +1,60 @@
+{
+  "model_id": "theory-of-constraints",
+  "source_file": "Theory_Of_Constraints_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "theory-of-constraints.generic-careful-thinking",
+      "status": "supported",
+      "name": "Careful thinking",
+      "mechanism": "Use this model to think more carefully about the problem and make a better decision.",
+      "activation_shape": {
+        "use_when": [
+          "The problem is important and needs careful thought."
+        ],
+        "do_not_use_when": [
+          "The model is not relevant."
+        ],
+        "case_evidence_needed": [
+          "some evidence from the case"
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "think-carefully",
+          "description": "Use this model to analyze the situation and consider the risks.",
+          "evidence_required": [
+            "some relevant evidence"
+          ],
+          "good_output_shape": [
+            "Think carefully before deciding."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "How can we think more carefully about this problem?"
+      ],
+      "misuse_guards": [
+        "Do not forget to consider the problem carefully."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "The application of this model centers on developing a disciplined approach to identifying the single most leverageable point and dedicating resources to it.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "normalized",
+          "confidence": "weak"
+        }
+      ],
+      "confidence": "weak"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [],
+  "review_notes": {
+    "normalization_note": "Intentional invalid fixture: this is generic filler.",
+    "dropped_material": [],
+    "open_questions": [],
+    "review_status": "fixture"
+  }
+}

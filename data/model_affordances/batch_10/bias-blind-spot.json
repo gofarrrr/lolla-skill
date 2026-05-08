@@ -1,0 +1,145 @@
+{
+  "model_id": "bias-blind-spot",
+  "source_file": "Bias_Blind_Spot_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "bias-blind-spot.self-bias-accountability-check",
+      "status": "supported",
+      "name": "Self bias accountability check",
+      "mechanism": "When a reviewer or team is confident in its own objectivity, require the answer to test where its own judgment may be distorted before redirecting critique only toward other people.",
+      "activation_shape": {
+        "use_when": [
+          "Decision-makers are confident in their own objectivity before judging ambiguous evidence, trade-offs, or rival interpretations.",
+          "Expert teams need explicit routines for challenging their own reasoning before critique gets redirected outward.",
+          "A review, postmortem, or strategy debate risks turning into story defense rather than a search for distorted judgment."
+        ],
+        "do_not_use_when": [
+          "The answer already names how the reviewer's own incentives, emotions, or perspective may distort judgment.",
+          "Bias language is being used mainly to diagnose other people's reasoning.",
+          "Performative humility would sound self-aware without changing how evidence is weighed."
+        ],
+        "case_evidence_needed": [
+          "The judgment or critique being made.",
+          "The reviewer's stake, incentives, emotion, or preferred story.",
+          "The evidence that would challenge the reviewer's own position.",
+          "The external check, independent judgment, or accountability routine used to test it."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "turn-bias-check-inward",
+          "description": "Require the answer to identify where the reviewer or advising party may be biased, what evidence would challenge that bias, and what external check prevents critique from pointing only outward.",
+          "evidence_required": [
+            "The party making the judgment.",
+            "Their incentives, preferred story, or emotional stake.",
+            "The evidence that would challenge their position.",
+            "The independent review or accountability mechanism."
+          ],
+          "good_output_shape": [
+            "Turns the bias check inward before diagnosing others.",
+            "Names the evidence that would challenge the reviewer's own story.",
+            "Adds an external or independent check.",
+            "Avoids humble-sounding self-knowledge without changed evidence weighting."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Where might our own judgment be distorted before we critique theirs?",
+        "What evidence would challenge the story we prefer?",
+        "What external check would stop this from becoming performative humility?"
+      ],
+      "misuse_guards": [
+        "Do not use bias labels only against other people.",
+        "Do not count awareness of bias as mitigation unless evidence handling changes.",
+        "Do not let intelligence or expertise substitute for an external check."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Bias_Blind_Spot_rag.md",
+          "source_quote": "the tendency to be much better at recognizing biased reasoning in others than in oneself",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Bias_Blind_Spot_rag.md",
+          "source_quote": "decision-makers are confident in their own objectivity but are about to judge ambiguous evidence, trade-offs, or rival interpretations.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Bias_Blind_Spot_rag.md",
+          "source_quote": "a review, postmortem, or strategy debate risks turning into story defense rather than a search for where judgment may already be distorted.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a self-bias accountability check that prevents bias critique from pointing only outward.",
+        "dropped_material": [
+          "Did not extract organizational baseball-card material or intellectual journaling as separate affordances.",
+          "Kept outside-view and decorrelating-errors material as supporting context."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card improves packet humility without making bias language accusatory."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "performative-self-knowledge-as-mitigation",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that awareness of bias can become performative humility when it does not change evidence weighting.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Bias_Blind_Spot_rag.md",
+          "source_quote": "awareness of the bias blind spot becomes performative self-knowledge that sounds humble without changing how evidence is weighed.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "bias-labels-for-other-people-only",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that diagnosing other people's distortions recreates the blind spot at a higher level.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Bias_Blind_Spot_rag.md",
+          "source_quote": "the model is used mainly to diagnose other people's distortions, which recreates the same blind spot at a higher level.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Bias_Blind_Spot_rag.md",
+      "source_quote": "gaping blind spot at the very center of our introspective vision",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for bias-blind-spot as an inward accountability check.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card keeps bias checks non-accusatory and evidence-changing."
+    ],
+    "review_status": "draft"
+  }
+}

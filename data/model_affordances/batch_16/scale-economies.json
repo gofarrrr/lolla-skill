@@ -1,0 +1,145 @@
+{
+  "model_id": "scale-economies",
+  "source_file": "Scale_Economies_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "scale-economies.validate-reusable-capability-before-volume",
+      "status": "supported",
+      "name": "Validate reusable capability before volume",
+      "mechanism": "When fixed costs are high and a reusable capability can serve many customers or units, use scale economies to test whether volume compounds structural advantage or merely magnifies defects, coordination failures, and mediocre quality.",
+      "activation_shape": {
+        "use_when": [
+          "Fixed costs are high and marginal costs fall with volume.",
+          "The same capability can be reused across many customers or units.",
+          "Standardization, throughput, or process learning compounds instead of forcing bespoke reinvention each time."
+        ],
+        "do_not_use_when": [
+          "Scale would magnify defects, coordination failures, or mediocre quality faster than the system can detect and correct them.",
+          "Volume would erode differentiation, service quality, or local fit.",
+          "The answer treats scale as automatic advantage without proving cost spread, reuse, or learning effects."
+        ],
+        "case_evidence_needed": [
+          "The fixed cost or reusable capability being spread.",
+          "Evidence that marginal cost falls or learning compounds with volume.",
+          "The quality, coordination, or local-fit risks that could scale along with volume.",
+          "A metric that detects whether volume is creating structural advantage or structural damage."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "prove-reuse-before-scaling-volume",
+          "description": "Require the answer to prove the reusable capability and defect-detection loop before recommending scale.",
+          "evidence_required": [
+            "The reusable capability or infrastructure.",
+            "The volume or throughput increase under consideration.",
+            "The cost, learning, or distribution mechanism that improves with scale.",
+            "A defect, quality, or coordination signal that would worsen if scale is premature."
+          ],
+          "good_output_shape": [
+            "Names the scale mechanism.",
+            "States the reuse or cost-spread evidence.",
+            "Warns what failure mode scales too.",
+            "Adds a detection or correction loop."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What fixed cost, infrastructure, knowledge, or distribution asset is being spread over more volume?",
+        "What improves with scale: cost, learning, throughput, reach, or none of these?",
+        "What defect or coordination failure would scale faster than correction?"
+      ],
+      "misuse_guards": [
+        "Do not equate more volume with better economics.",
+        "Do not scale before proving quality, differentiation, and local-fit retention.",
+        "Do not ignore defect-detection loops when recommending throughput increases."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Scale_Economies_rag.md",
+          "source_quote": "fixed costs are high, marginal costs fall with volume",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scale_Economies_rag.md",
+          "source_quote": "the same capability can be reused across many customers or units",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Scale_Economies_rag.md",
+          "source_quote": "scale magnifies defects, coordination failures, or mediocre quality",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports scale as reusable capability and cost-spread discipline, with explicit quality and coordination caveats.",
+        "dropped_material": [
+          "Did not extract scale as generic growth advice.",
+          "Did not treat volume as inherently valuable."
+        ],
+        "open_questions": [
+          "Later packet review should test how this card interacts with bottlenecks and constraints."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "scale-as-automatic-advantage",
+      "status": "not_supported_by_source",
+      "reason": "The source requires fixed-cost spread, reuse, learning, or distribution effects; it does not support treating size itself as structural advantage.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Scale_Economies_rag.md",
+          "source_quote": "create a real structural advantage",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "quality-volume-without-correction-loop",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that volume can magnify mediocre quality and defects; it does not support scale advice without detection and correction loops.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Scale_Economies_rag.md",
+          "source_quote": "Volume is only beneficial if it is **quality volume**",
+          "section_hint": "Common Anti-Patterns and Dangerous Outcomes",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Scale_Economies_rag.md",
+      "source_quote": "maximizing efficiency and leverage as volume or size increases",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found strong reviewed depth for scale economies as conditional structural advantage.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, growth engine, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare scale-economies with bottlenecks, feedback-loops, and constraints when operational scaling is the case shape."
+    ],
+    "review_status": "draft"
+  }
+}

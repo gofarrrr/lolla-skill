@@ -1,0 +1,407 @@
+{
+  "model_id": "optionality",
+  "source_file": "Optionality_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "optionality.expand-before-evaluating",
+      "status": "supported",
+      "name": "Create a non-binary option set before selection",
+      "mechanism": "When an important decision has collapsed into a do-or-do-not frame, separate invention from evaluation: generate at least three viable options, then compare benefits, costs, payoffs, and probabilities before choosing.",
+      "activation_shape": {
+        "use_when": [
+          "An important decision is framed as only do or do not.",
+          "The problem is complex enough that premature selection may hide better alternatives.",
+          "The current recommendation lacks a visible array of viable paths."
+        ],
+        "do_not_use_when": [
+          "The option set is already large enough that further expansion is causing paralysis.",
+          "The decision is routine or inconsequential enough that option analysis would waste attention.",
+          "The team is seeking a perfect option instead of making a needed decision."
+        ],
+        "case_evidence_needed": [
+          "Evidence that the current frame is binary or prematurely narrowed.",
+          "A list of at least three viable options before evaluation begins.",
+          "A comparison basis for benefits, costs, payoffs, or probabilities across options."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-invention-from-evaluation",
+          "description": "Delay selection long enough to invent multiple viable paths, with at least three options visible before the recommendation narrows.",
+          "evidence_required": [
+            "Current binary framing or prematurely narrowed alternatives.",
+            "A generated option set with at least three viable paths.",
+            "Criteria that explain why any option is retained or eliminated."
+          ],
+          "good_output_shape": [
+            "Names the expanded option set before recommending a path.",
+            "Explains which options remain viable and which are dominated.",
+            "Shows that selection happened after invention, not before it."
+          ]
+        },
+        {
+          "requirement_id": "compare-option-economics",
+          "description": "Evaluate the option array by comparing benefits, costs, payoffs, and probabilistic branches rather than using a simple pro-con list.",
+          "evidence_required": [
+            "Benefits and costs for each serious option.",
+            "Relevant payoffs, probabilities, or branches where uncertainty matters.",
+            "Explicit trade-offs that distinguish the options from each other."
+          ],
+          "good_output_shape": [
+            "Presents a compact comparison across the option array.",
+            "Identifies the option with the best supported upside-to-downside profile.",
+            "Names uncertainty that should change the final selection."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What viable third option breaks the do-or-do-not frame?",
+        "Have we generated at least three options before selecting among them?",
+        "Which benefits, costs, payoffs, or probabilities differ across the options?"
+      ],
+      "misuse_guards": [
+        "Stop expanding the set when too many attractive choices are preventing any decision.",
+        "Do not spend meaningful analysis on routine, inconsequential choices.",
+        "Do not keep analyzing in pursuit of a perfect option when action is needed."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "the tendency to simplify a complex issue down to just two options (e.g., \"do\" or \"do not\").",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "requiring the decision-maker to generate at least three options (3+) for every important decision.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "generate many options before selecting among them",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "requires quantifying benefits and costs across an array of options.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "decision trees can be used, particularly if some choices are probabilistic in nature.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "When faced with too many attractive options, people can become paralyzed and fail to make a decision at all.",
+          "section_hint": "Limitations and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "Spending significant time analyzing options for routine, inconsequential decisions (e.g., what to eat, watch, or wear) wastes enormous amounts of time",
+          "section_hint": "Limitations and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "The goal is not to analyze everything to achieve perfection",
+          "section_hint": "Limitations and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "affordance_id": "optionality.preserve-reversible-learning",
+      "status": "supported",
+      "name": "Preserve reversible paths to buy learning",
+      "mechanism": "When uncertainty is high and commitment is expensive, keep several reversible paths open long enough to run cheap learning moves, cap downside, and commit once evidence makes delay more costly than choice.",
+      "activation_shape": {
+        "use_when": [
+          "Uncertainty is high, early commitment is expensive, and cheap experiments can buy learning.",
+          "The decision is reversible enough that moving now creates information value.",
+          "Downside can be capped while upside remains open across plausible futures."
+        ],
+        "do_not_use_when": [
+          "Preserving options delays the commitment needed to capture time-sensitive value.",
+          "Maintaining optionality consumes cash, attention, or simplicity better spent on the chosen path.",
+          "The worst case is too severe to tolerate even as a staged experiment."
+        ],
+        "case_evidence_needed": [
+          "A clear statement of what makes the choice reversible or irreversible.",
+          "A cheap experiment or staged action that buys information before final commitment.",
+          "A downside cap and a decision boundary for when enough information exists to commit."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "stage-reversible-learning",
+          "description": "Classify reversibility, then choose the cheapest staged move that can reduce uncertainty before the irreversible call.",
+          "evidence_required": [
+            "What would make the decision irreversible or expensive to reverse.",
+            "The specific learning the reversible move is expected to produce.",
+            "The capped downside if the staged move fails."
+          ],
+          "good_output_shape": [
+            "Separates reversible learning moves from irreversible commitment.",
+            "Names the experiment, expected information, and downside cap.",
+            "Keeps upside open while making the next action concrete."
+          ]
+        },
+        {
+          "requirement_id": "set-commitment-boundary",
+          "description": "Define when optionality expires, using an information threshold, deadline, or clarified strategic fit to force commitment.",
+          "evidence_required": [
+            "Current level of information relative to the decision threshold.",
+            "Cost of delaying commitment in cash, attention, simplicity, or timing.",
+            "Evidence that would prove one path has the best economics or strategic fit."
+          ],
+          "good_output_shape": [
+            "States the commitment trigger before preserving more options.",
+            "Commits once evidence has clarified the best-supported path.",
+            "Treats optionality as temporary learning capacity, not permanent deferral."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What cheap reversible move buys information before the irreversible call?",
+        "Is the worst case bad enough?",
+        "Would we regret making or not making this decision later?",
+        "Do we have between 40% and 70% of the information needed to decide?"
+      ],
+      "misuse_guards": [
+        "Do not let optionality become a permanent excuse not to commit after evidence clarifies best fit.",
+        "Do not preserve paths whose carrying cost is consuming cash, attention, or simplicity.",
+        "Do not treat every decision as irreversible; that assumption can create indecision."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.",
+          "section_hint": "Strengths and Most Powerful Contexts:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "decisions are reversible enough that preserving multiple paths creates information value rather than just indecision.",
+          "section_hint": "Strengths and Most Powerful Contexts:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "downside can be capped while upside remains open across several plausible futures.",
+          "section_hint": "Strengths and Most Powerful Contexts:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "there is nothing to lose and only information and speed to gain.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "Make a decision when you have **no less than 40% of the information** you need but **no more than 70%**.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "optionality becomes a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit.",
+          "section_hint": "Limitations and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "maintaining optionality is itself consuming cash, attention, or organizational simplicity that would be better spent on a chosen path.",
+          "section_hint": "Limitations and Anti-Patterns:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "Is the worst case bad enough?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "asks if they would regret making (or not making) a specific decision.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "normalized",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Optionality_rag.md",
+          "source_quote": "Assuming all decisions are irreversible causes indecision.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "the tendency to simplify a complex issue down to just two options (e.g., \"do\" or \"do not\").",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "requiring the decision-maker to generate at least three options (3+) for every important decision.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "generate many options before selecting among them",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "requires quantifying benefits and costs across an array of options.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "decision trees can be used, particularly if some choices are probabilistic in nature.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "When faced with too many attractive options, people can become paralyzed and fail to make a decision at all.",
+      "section_hint": "Limitations and Anti-Patterns:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "Spending significant time analyzing options for routine, inconsequential decisions (e.g., what to eat, watch, or wear) wastes enormous amounts of time",
+      "section_hint": "Limitations and Anti-Patterns:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "The goal is not to analyze everything to achieve perfection",
+      "section_hint": "Limitations and Anti-Patterns:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "uncertainty is high, early commitment is expensive, and cheap experiments can buy learning before an irreversible call.",
+      "section_hint": "Strengths and Most Powerful Contexts:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "decisions are reversible enough that preserving multiple paths creates information value rather than just indecision.",
+      "section_hint": "Strengths and Most Powerful Contexts:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "downside can be capped while upside remains open across several plausible futures.",
+      "section_hint": "Strengths and Most Powerful Contexts:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "there is nothing to lose and only information and speed to gain.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "Make a decision when you have **no less than 40% of the information** you need but **no more than 70%**.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "optionality becomes a permanent excuse not to commit even after evidence has clarified which path has the best economics or strategic fit.",
+      "section_hint": "Limitations and Anti-Patterns:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "maintaining optionality is itself consuming cash, attention, or organizational simplicity that would be better spent on a chosen path.",
+      "section_hint": "Limitations and Anti-Patterns:",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "Is the worst case bad enough?",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "asks if they would regret making (or not making) a specific decision.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "normalized",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Optionality_rag.md",
+      "source_quote": "Assuming all decisions are irreversible causes indecision.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Compressed the optionality source into two operational affordances: widen a binary choice before evaluation, then manage reversible paths as temporary learning capacity before irreversible commitment.",
+    "dropped_material": [
+      "Decision Multiverse, Toolbox, and Diamond Cutter analogies were treated as explanatory context rather than separate runtime affordances.",
+      "AI agent decision-making, consulting and pitching, expertise-development, and broad latticework examples were not extracted because they repeat the core option-generation or relation material without adding sharper operational requirements.",
+      "Wave 3 relation material was used as context only; this record keeps relation semantics out of the model-affordance layer unless they change direct operational use."
+    ],
+    "open_questions": [
+      "Whether the 40-70% rule should become a generic decision-timing affordance across several models or remain optionality-specific review material."
+    ],
+    "review_status": "draft"
+  }
+}

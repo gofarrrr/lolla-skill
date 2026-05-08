@@ -1,0 +1,152 @@
+{
+  "model_id": "input-vs-output-goals",
+  "source_file": "Input_Vs_Output_Goals_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "input-vs-output-goals.controllable-input-output-alignment",
+      "status": "supported",
+      "name": "Controllable input output alignment",
+      "mechanism": "When advice names a desired outcome but not the operating discipline, require the answer to separate the result from the controllable actions, checkpoints, and effort measures that can plausibly produce it without mistaking activity for value.",
+      "activation_shape": {
+        "use_when": [
+          "Teams know the destination but not the operating discipline.",
+          "Visible effort is being confused with value.",
+          "Separating destination from method improves accountability."
+        ],
+        "do_not_use_when": [
+          "Input metrics become a substitute for outcomes.",
+          "Teams start protecting activity counts, routines, or compliance markers even after those inputs have stopped producing the result they were meant to serve.",
+          "The recommendation blurs output setting with solution design and hides the true root problem."
+        ],
+        "case_evidence_needed": [
+          "The desired output or strategic destination.",
+          "The proposed input behaviors, tasks, routines, or process.",
+          "The evidence connecting those inputs to the output.",
+          "The checkpoint that would show inputs have stopped producing value."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-result-from-controllable-behavior",
+          "description": "Require the answer to distinguish the outcome from the controllable inputs and state how those inputs will be checked against the result they are supposed to produce.",
+          "evidence_required": [
+            "The desired outcome.",
+            "The controllable actions or behaviors.",
+            "The activity metric currently being used.",
+            "The outcome measure that proves value rather than effort."
+          ],
+          "good_output_shape": [
+            "Names the output goal.",
+            "Names the input behaviors under control.",
+            "Explains the causal link between input and output.",
+            "Defines when activity metrics should be changed or abandoned."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What output do we actually want, and what inputs are under our control?",
+        "Are visible effort metrics being protected after outcome movement has stalled?",
+        "Which input checkpoint would prove the process is no longer producing value?"
+      ],
+      "misuse_guards": [
+        "Do not treat activity counts as value delivery.",
+        "Do not blur goal setting with solution design.",
+        "Do not keep input routines that no longer move the outcome."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Input_Vs_Output_Goals_rag.md",
+          "source_quote": "teams know the destination but not the operating discipline",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Input_Vs_Output_Goals_rag.md",
+          "source_quote": "visible effort is being confused with value",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Input_Vs_Output_Goals_rag.md",
+          "source_quote": "successful execution is tied directly to the chosen outcome",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one controllable input/output alignment affordance that distinguishes desired results from operating discipline and activity metrics.",
+        "dropped_material": [
+          "Did not extract SMART goals, anti-goals, sales outcome framing, or conductor analogy as separate affordances.",
+          "Kept systems and accountability material as support for the alignment check."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card makes packets distinguish controllable action from lagging desired outcomes."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "activity-counts-as-value",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that input metrics can become substitutes for outcomes when activity counts, routines, or compliance markers persist after they stop producing value.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Input_Vs_Output_Goals_rag.md",
+          "source_quote": "Input Metrics Become a Substitute for Outcomes",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Input_Vs_Output_Goals_rag.md",
+          "source_quote": "teams start protecting activity counts, routines, or compliance markers even after those inputs have stopped producing the result they were meant to serve",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "premature-ends-means-collapse",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that blurring goals, diagnosis, and solution design can interfere with uncovering the true root problems.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Input_Vs_Output_Goals_rag.md",
+          "source_quote": "Blurring the lines between setting goals (Outputs) and designing solutions/diagnosing problems (Inputs) can interfere with uncovering the *true* root problems",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Input_Vs_Output_Goals_rag.md",
+      "source_quote": "the intended end-state and the means used to achieve it",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Input Vs Output Goals. Extracted one controllable input/output alignment affordance and rejected activity-count and ends/means-collapse misuse.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should test whether this card helps the LLM avoid effort theater."
+    ],
+    "review_status": "draft"
+  }
+}

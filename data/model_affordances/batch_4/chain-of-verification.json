@@ -1,0 +1,203 @@
+{
+  "model_id": "chain-of-verification",
+  "source_file": "Chain_Of_Verification_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "chain-of-verification.make-or-break-premise-audit",
+      "status": "supported",
+      "name": "Make-or-break premise audit trail",
+      "mechanism": "When a conclusion depends on sequential premises, decompose the claim into links, identify the premise that would collapse the whole chain if false, require evidence for that link before proceeding, and preserve the trail so trust comes from inspectable support rather than confidence theater.",
+      "activation_shape": {
+        "use_when": [
+          "A recommendation, forecast, rollout, or diagnosis depends on several linked premises that must all hold for the conclusion to survive.",
+          "One bad premise, dependency, or sub-hypothesis would collapse the larger conclusion or make the next commitment unsafe.",
+          "Stakeholders need an auditable trail showing how the claim was established, not just a polished expert assertion.",
+          "The next commitment should follow validated premises, thresholds, or dependencies rather than momentum."
+        ],
+        "do_not_use_when": [
+          "The situation needs a reversible probe or flexible engagement more than exhaustive step-by-step verification.",
+          "The proposed check would add documents, sign-offs, or procedural delay without improving the truth of the chain.",
+          "The chain is not specific enough to name links, evidence, and collapse points.",
+          "The issue is an emergent social implementation problem where a purely linear process would hide feedback and adaptation needs."
+        ],
+        "case_evidence_needed": [
+          "The conclusion or commitment under review and the linked premises it depends on.",
+          "The premise, dependency, or sub-hypothesis that is most make-or-break.",
+          "The evidence that would prove, disprove, support, or refute each critical link.",
+          "The threshold for proceeding, revising, stopping, or restarting the reasoning path.",
+          "The audit trail a reviewer can inspect to understand why the conclusion was trusted."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-critical-links-before-confidence",
+          "description": "Require the answer to name the conclusion, its linked premises, and the premise that would collapse the conclusion before expressing confidence.",
+          "evidence_required": [
+            "The conclusion, plan, or hypothesis being advanced.",
+            "The sequential premises or dependencies required for the conclusion to hold.",
+            "The link whose failure would most change the recommendation.",
+            "The evidence currently supporting or weakening that link."
+          ],
+          "good_output_shape": [
+            "Shows the chain of premises in order.",
+            "Marks the make-or-break link explicitly.",
+            "Separates verified links from assumed links.",
+            "States what would happen if the weak link failed."
+          ]
+        },
+        {
+          "requirement_id": "keep-verification-from-becoming-theater",
+          "description": "Bound verification to truth-improving checks and avoid adding process, documentation, or sign-off rituals that only create the appearance of rigor.",
+          "evidence_required": [
+            "The check or review being proposed.",
+            "The truth claim that the check would actually test.",
+            "The cost, delay, or rigidity introduced by additional verification.",
+            "The point where a failed link should trigger revision or restart."
+          ],
+          "good_output_shape": [
+            "Names the specific truth claim each check tests.",
+            "Drops checks that do not change confidence in a link.",
+            "Uses the lightest verification sufficient for the commitment.",
+            "Allows the process to compress, expand, or restart when evidence changes."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which link in this reasoning chain would collapse the whole conclusion if it were false?",
+        "What evidence backs each critical link, and which link is still only assumed?",
+        "What would a reviewer need to inspect to trust how the claim was established?",
+        "Where would another check improve truth, and where would it only add verification theater?",
+        "If this link fails, do we revise the chain, stop the commitment, or restart the process?"
+      ],
+      "misuse_guards": [
+        "Do not use chain-of-verification to justify endless sign-offs when a bounded reversible test would create better learning.",
+        "Do not let each step merely confirm prior steps without a real disconfirmation test.",
+        "Do not treat procedural detail as insight when the issue is the system-level truth of the chain.",
+        "Do not force emergent social implementation into a rigid linear sequence when feedback and adaptation are central."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Verification_rag.md",
+          "source_quote": "evidence to back up each link in that chain",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Verification_rag.md",
+          "source_quote": "Priority is given to critical, \"make or break\" hypotheses** that, if proven wrong, would collapse the entire hypothesis pyramid, verifying the structural integrity of the solution first.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Verification_rag.md",
+          "source_quote": "Most useful when one bad link would collapse the whole conclusion",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Verification_rag.md",
+          "source_quote": "Works when trust depends on an auditable trail",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Verification_rag.md",
+          "source_quote": "Danger When Verification Theater Replaces Judgment",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source strongly supports a compact make-or-break premise audit: identify critical links, test evidence per link, preserve an auditable trail, and avoid verification theater.",
+        "dropped_material": [
+          "Did not extract AI chain-of-thought or digital-twin validation as separate affordances because the reusable packet value is premise verification, not AI implementation.",
+          "Did not promote persuasion/documentation material into a separate affordance because it risks making credibility theater look like reasoning support."
+        ],
+        "open_questions": [
+          "PR29 packet regeneration should test whether this record improves graph-only chain-of-verification cards without encouraging exhaustive process bloat."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "exhaustive-signoff-verification-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports evidence-backed link verification, not sign-off accumulation. It explicitly warns that added checks can become verification theater if they do not improve the truth of the chain.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Verification_rag.md",
+          "source_quote": "Danger When Verification Theater Replaces Judgment",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Verification_rag.md",
+          "source_quote": "The model is misapplied when teams keep adding checks, documents, or sign-offs that create an appearance of rigor without improving the actual truth of the chain.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "pure-linear-implementation-control-affordance",
+      "status": "source_too_thin",
+      "reason": "The source acknowledges sequential rigor but warns that implementation in social systems can be emergent and iterative. It does not support a rigid linear control recipe for all execution problems.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Verification_rag.md",
+          "source_quote": "Treating the implementation phase as a purely rational, linear, or mechanical process (using blueprints and fixed definitions) overlooks the fact that social systems are living systems, making implementation emergent and complex.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Verification_rag.md",
+          "source_quote": "Treat the Process like an Accordion",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Chain_Of_Verification_rag.md",
+      "source_quote": "The fundamental essence of the Chain of Verification model lies in establishing **foundational accuracy and logical soundness** through rigorous, incremental testing, thereby mitigating risk and building robust conclusions.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Chain_Of_Verification_rag.md",
+      "source_quote": "Best when commitment should follow validated premises",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 4 source reading found strong reviewed depth for Chain of Verification. Extracted one compact premise-audit record and treated exhaustive sign-off and pure linear implementation as absences.",
+    "dropped_material": [
+      "AI prompting, medical-digital-twin, and advertising examples were treated as illustrations rather than separate operational cards.",
+      "No runtime, prompt, lane, or packet-producer changes are implied."
+    ],
+    "open_questions": [
+      "Future packet review should check whether chain-of-verification stays distinct from scientific-method-evidence-testing and falsifiability."
+    ],
+    "review_status": "draft"
+  }
+}

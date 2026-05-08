@@ -1,0 +1,160 @@
+{
+  "model_id": "constructive-feedback-models",
+  "source_file": "Constructive_Feedback_Models_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "constructive-feedback-models.specific-standard-correction",
+      "status": "supported",
+      "name": "Specific standard correction",
+      "mechanism": "When performance, learning, or trust depends on corrective information, require the answer to tie accurate criticism to a specific action, objective standard, cause/effect context, and supportive next adjustment rather than vague reassurance or personal attack.",
+      "activation_shape": {
+        "use_when": [
+          "Performance, learning, or trust depends on giving people information they can act on rather than vague reassurance.",
+          "The goal is to improve future behavior while preserving enough relationship quality that the feedback will be heard.",
+          "Correction must be specific, evidence-backed, and tied to standards rather than personal attack."
+        ],
+        "do_not_use_when": [
+          "Feedback is technically accurate but delivered without timing, context, or respect.",
+          "The feedback is shaped by the giver's rank rather than the quality of the observation.",
+          "Feedback is selectively delivered or received to confirm existing beliefs about performance."
+        ],
+        "case_evidence_needed": [
+          "The action, output, or behavior being evaluated.",
+          "The objective standard or expected outcome.",
+          "The specific deviation and why it matters.",
+          "The relationship, timing, and supportive context needed for the feedback to be heard."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "tie-feedback-to-standard-and-adjustment",
+          "description": "Require the answer to name the observed deviation, the standard it missed, the impact, and the actionable adjustment without turning correction into rank pressure or vague advice.",
+          "evidence_required": [
+            "The observed action, output, or behavior.",
+            "The objective standard or expected result.",
+            "The evidence-backed deviation.",
+            "The adjustment that would improve future performance."
+          ],
+          "good_output_shape": [
+            "Names the specific observation.",
+            "Links it to a standard.",
+            "Explains the impact.",
+            "Invites a concrete future adjustment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What specific behavior or output deviated from the standard?",
+        "What cause/effect link does the recipient need to see to adjust?",
+        "Will the timing, context, and tone make the feedback hearable?"
+      ],
+      "misuse_guards": [
+        "Do not use rank or authority as a substitute for observation quality.",
+        "Do not deliver technically accurate criticism in a way that overwhelms learning with defensiveness.",
+        "Do not select feedback evidence merely to confirm an existing performance narrative."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "structured process for evaluating an action, output, or behavior against an objective standard",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "specific, actionable deviations",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "performance, learning, or trust depends on giving people information they can act on rather than vague reassurance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "feedback is technically accurate but delivered without timing, context, or respect, so defensiveness overwhelms learning",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a specific standard correction record that keeps criticism actionable and hearable.",
+        "dropped_material": [
+          "Did not extract AI accuracy frameworks, Radical Candor, and machine-vs-case-at-hand as separate cards.",
+          "Did not duplicate feedback-models-sbi, which carries a more incident-structured feedback format."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card and SBI remain complementary rather than redundant."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "rank-backed-feedback-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that feedback shaped by rank creates compliance pressure rather than learning.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "feedback delivery is shaped by the giver's rank rather than the quality of the observation",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "confirming-performance-narrative",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against feedback that selectively confirms existing beliefs rather than surfacing genuine deviation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "feedback is selectively delivered or received to confirm existing beliefs about performance rather than surface genuine deviation",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Constructive_Feedback_Models_rag.md",
+      "source_quote": "Accurate criticism is more valuable than compliments",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Constructive_Feedback_Models_rag.md",
+      "source_quote": "Focus on the System/Process",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Constructive Feedback Models. Extracted one standard-correction card and rejected rank-backed and confirmation-biased feedback.",
+    "dropped_material": [
+      "Detailed organizational examples were kept as context, not as separate operational cards.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card improves team-process packets without making every communication problem a feedback problem."
+    ],
+    "review_status": "draft"
+  }
+}

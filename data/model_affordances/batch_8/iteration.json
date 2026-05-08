@@ -1,0 +1,145 @@
+{
+  "model_id": "iteration",
+  "source_file": "Iteration_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "iteration.bounded-learning-cycle-gate",
+      "status": "supported",
+      "name": "Bounded learning cycle gate",
+      "mechanism": "When advice proposes learning by doing, require each loop to have a clear learning objective, bounded scope, comparison standard, success threshold, and stop or reset rule before iteration is treated as disciplined progress.",
+      "activation_shape": {
+        "use_when": [
+          "The first version is unlikely to be correct and the cheapest path to quality is repeated prototype-test-learn cycles.",
+          "Each loop has a clear learning objective, bounded scope, and a way to compare the next version against the last one.",
+          "Uncertainty can be reduced through small corrections faster than through long upfront planning."
+        ],
+        "do_not_use_when": [
+          "Iteration continues without stop rules, success thresholds, or a decision about what evidence is strong enough to commit.",
+          "Teams keep polishing local details while avoiding a reset on the underlying problem framing, hypothesis, or strategy.",
+          "The loop has become endless questioning, perfectionism, or a way to avoid a commitment decision."
+        ],
+        "case_evidence_needed": [
+          "The hypothesis, prototype, or plan being iterated.",
+          "The learning objective for the next loop.",
+          "The bounded scope and comparison standard.",
+          "The success threshold, stop rule, or reset condition."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "bound-each-learning-loop",
+          "description": "Require the answer to define the next iteration as a bounded learning loop with objective, scope, comparison, threshold, and commitment/reset condition.",
+          "evidence_required": [
+            "The current version or hypothesis.",
+            "The specific uncertainty being reduced.",
+            "The measure or observation that compares versions.",
+            "The threshold for continuing, committing, pivoting, or stopping."
+          ],
+          "good_output_shape": [
+            "Names the learning objective.",
+            "Bounds the next loop.",
+            "Defines comparison against the prior version.",
+            "States the stop, commit, or reset rule."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is this iteration supposed to learn?",
+        "How will the next version be compared against the last one?",
+        "What evidence is strong enough to commit, stop, or reset the frame?"
+      ],
+      "misuse_guards": [
+        "Do not let iteration become endless polishing.",
+        "Do not use iteration to avoid resetting a bad hypothesis.",
+        "Do not continue loops without success thresholds or stop rules."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "repeated prototype-test-learn cycles",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "each loop has a clear learning objective, bounded scope, and a way to compare the next version against the last one",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "continues without stop rules, success thresholds, or a decision about what evidence is strong enough to commit",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one bounded learning cycle gate with learning objective, bounded scope, comparison, thresholds, and stop/reset rules.",
+        "dropped_material": [
+          "Did not extract Feynman Technique, design thinking loop, iterative prompting, or one-day answer as separate affordances.",
+          "Kept analysis paralysis and sunk-cost warnings as misuse guards."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card prevents iteration theater in execution packets."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "iteration-without-stop-rules",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that iteration is dangerous when it continues without stop rules, success thresholds, or a decision about what evidence justifies commitment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "iteration continues without stop rules, success thresholds, or a decision about what evidence is strong enough to commit",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "local-polishing-as-learning",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects polishing local details while avoiding a reset on the underlying framing, hypothesis, or strategy.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Iteration_rag.md",
+          "source_quote": "teams keep polishing local details while avoiding a reset on the underlying problem framing, hypothesis, or strategy",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Iteration_rag.md",
+      "source_quote": "progress is achieved through continuous cycles of testing and refinement",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Iteration. Extracted one bounded learning cycle gate and rejected iteration-without-stop-rules plus local-polishing-as-learning overclaims.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should test whether this card clarifies when to continue, commit, pivot, or stop."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "dialectical-reasoning",
+  "source_file": "Dialectical_Reasoning_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "dialectical-reasoning.bounded-antithesis-synthesis-test",
+      "status": "supported",
+      "name": "Bounded antithesis synthesis test",
+      "mechanism": "When a situation contains partial truths or competing interpretations, require the answer to surface the strongest antithesis and then convert the tension into a bounded synthesis, decision, or next step.",
+      "activation_shape": {
+        "use_when": [
+          "The situation contains live disagreement, partial truths, or competing interpretations that need to be surfaced rather than flattened.",
+          "A team must challenge its own thesis hard enough to earn a real synthesis instead of defending first instincts.",
+          "The goal is to turn conflict into sharper understanding rather than force premature agreement."
+        ],
+        "do_not_use_when": [
+          "The opposing position is already represented and the decision criterion is clear.",
+          "Dialectic would become endless contrarianism without a bounded decision or next step.",
+          "The synthesis would become compromise for peace rather than evidence-based integration."
+        ],
+        "case_evidence_needed": [
+          "The thesis or current recommendation.",
+          "The strongest antithesis or rival interpretation.",
+          "The evidence each side preserves.",
+          "The bounded synthesis, decision, or next step that follows."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "turn-tension-into-bounded-synthesis",
+          "description": "Require the answer to state the thesis, strongest antithesis, evidence each preserves, and the bounded synthesis or next step that prevents conflict from becoming endless debate.",
+          "evidence_required": [
+            "The current thesis or recommendation.",
+            "The strongest opposing view.",
+            "The evidence or concern each side preserves.",
+            "The decision, synthesis, or next step that resolves the tension enough to act."
+          ],
+          "good_output_shape": [
+            "Represents the opposing view strongly.",
+            "Keeps the real tension visible instead of flattening it.",
+            "Produces a bounded synthesis, decision test, or next step.",
+            "Avoids both premature agreement and endless contrarianism."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the strongest antithesis to the current recommendation?",
+        "What partial truth does each side preserve?",
+        "What synthesis, decision test, or next step would make this tension useful?"
+      ],
+      "misuse_guards": [
+        "Do not turn dialectic into endless contrarianism.",
+        "Do not force compromise when one side is stronger on evidence.",
+        "Do not let process debate replace the bounded next step."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Dialectical_Reasoning_rag.md",
+          "source_quote": "thesis, antithesis, synthesis",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Dialectical_Reasoning_rag.md",
+          "source_quote": "the situation contains live disagreement, partial truths, or competing interpretations that need to be surfaced rather than flattened.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Dialectical_Reasoning_rag.md",
+          "source_quote": "the goal is to turn conflict into sharper understanding rather than to force premature agreement.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a bounded antithesis/synthesis card that preserves tension without infinite debate.",
+        "dropped_material": [
+          "Did not extract broad systems-context or idea-meritocracy material as separate affordances.",
+          "Kept attack/defense simulations and perspective taking as supporting context."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card helps packets preserve opposing truths without forcing bland compromise."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "endless-contrarianism-as-dialectic",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against confusing productive dialectic with endless contrarianism that never translates tension into a bounded decision or next step.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Dialectical_Reasoning_rag.md",
+          "source_quote": "teams confuse productive dialectic with endless contrarianism and never translate tension into a bounded decision or next step.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "compromise-for-peace-as-synthesis",
+      "status": "not_supported_by_source",
+      "reason": "The source distinguishes true synthesis from simple compromise or consensus, so the record must not promote peace-making as reasoning quality.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Dialectical_Reasoning_rag.md",
+          "source_quote": "False Synthesis / Compromise for Peace",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Dialectical_Reasoning_rag.md",
+      "source_quote": "advancing understanding through structured conflict and integration",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for dialectical-reasoning as bounded antithesis and synthesis.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card improves handling of conflicting truths without expanding packet clutter."
+    ],
+    "review_status": "draft"
+  }
+}

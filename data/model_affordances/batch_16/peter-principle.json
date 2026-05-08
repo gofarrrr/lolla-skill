@@ -1,0 +1,145 @@
+{
+  "model_id": "peter-principle",
+  "source_file": "Peter_Principle_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "peter-principle.validate-next-role-fit",
+      "status": "supported",
+      "name": "Validate next-role fit before promotion",
+      "mechanism": "When advancement criteria and future role requirements are misaligned, use the Peter Principle to separate past-role excellence from next-role competence, role design, support needs, and complementary team allocation.",
+      "activation_shape": {
+        "use_when": [
+          "Advancement criteria and role requirements are misaligned.",
+          "A leadership problem may actually be a role-design or talent-allocation problem.",
+          "Promotion decisions carry compounding organizational cost."
+        ],
+        "do_not_use_when": [
+          "The label is being used for after-the-fact blame or fatalism.",
+          "The answer collapses mismatch, incompetence, missing support, and bad role design into one personal failure story.",
+          "There is no evidence of distinct skill requirements for the next role."
+        ],
+        "case_evidence_needed": [
+          "The current-role performance evidence.",
+          "The distinct skills required for the proposed or current higher role.",
+          "The role-design, support, and complementary-team context.",
+          "The organizational cost if the mismatch persists."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "distinguish-person-from-role-design",
+          "description": "Require the answer to distinguish individual capability from role-design mismatch, then specify what should be assessed before promotion or redesign.",
+          "evidence_required": [
+            "Current-role strength.",
+            "Next-role skill requirements.",
+            "Support or complementary skills available.",
+            "Decision criteria for promotion, redesign, or non-promotion."
+          ],
+          "good_output_shape": [
+            "Names the skill mismatch.",
+            "Separates person judgment from role design.",
+            "Identifies support or complementary coverage.",
+            "Adds a future-fit assessment before promotion."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What skills made the person successful in the current role, and which skills does the next role actually require?",
+        "Is the observed failure incompetence, mismatch, missing support, or bad role design?",
+        "What evidence would justify promotion, role redesign, or complementary staffing?"
+      ],
+      "misuse_guards": [
+        "Do not use Peter Principle as a personal-failure label.",
+        "Do not promote based only on current-role excellence.",
+        "Do not ignore role design, support, or complementary team composition."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Peter_Principle_rag.md",
+          "source_quote": "promoting individuals based purely on their excellence in a *current* role",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Peter_Principle_rag.md",
+          "source_quote": "assess the distinct skills required for each role",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Peter_Principle_rag.md",
+          "source_quote": "role-design or talent-allocation problem",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports Peter Principle as future-role-fit and role-design diagnosis, not blame labeling.",
+        "dropped_material": [
+          "Did not extract deterministic promotion advice.",
+          "Did not turn behavioral tendency profiles into psychological diagnosis."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps distinguish bad promotion from bad support design."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "promotion-as-personal-failure-diagnosis",
+      "status": "not_supported_by_source",
+      "reason": "The source distinguishes incompetence, mismatch, support, and role design; it does not support using the model as a simple personal failure diagnosis.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Peter_Principle_rag.md",
+          "source_quote": "separate incompetence, mismatch, and missing support",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "past-performance-as-next-role-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source's central warning is that current-role excellence does not prove competence for the next role.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Peter_Principle_rag.md",
+          "source_quote": "rather than their competence and specific skillset for the *next* role",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Peter_Principle_rag.md",
+      "source_quote": "right people in the right roles",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found strong reviewed depth for promotion-fit diagnosis with role-design humility.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, HR decision, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare this model with specialization and growth-mindset in talent decisions."
+    ],
+    "review_status": "draft"
+  }
+}

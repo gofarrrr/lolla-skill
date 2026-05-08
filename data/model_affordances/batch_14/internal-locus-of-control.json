@@ -1,0 +1,145 @@
+{
+  "model_id": "internal-locus-of-control",
+  "source_file": "Internal_Locus_Of_Control_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "internal-locus-of-control.controllable-lever-ownership-map",
+      "status": "supported",
+      "name": "Controllable lever ownership map",
+      "mechanism": "When a case risks either helplessness or self-blame, require the answer to map controllable levers, ownership, constraints, and escalation paths so agency becomes specific action rather than denial of system limits.",
+      "activation_shape": {
+        "use_when": [
+          "A person or team needs to translate responsibility into actions they can own, measure, and improve.",
+          "Stress, ambiguity, or blame is obscuring which factors are controllable.",
+          "The next move should separate action, acceptance, escalation, and redesign."
+        ],
+        "do_not_use_when": [
+          "Agency language would deny structural constraints, missing resources, or system incentives.",
+          "The answer would turn accountability into self-blame or solitary heroics.",
+          "The actual need is systemic redesign by someone with different authority."
+        ],
+        "case_evidence_needed": [
+          "The outcome or problem being attributed.",
+          "The controllable and uncontrollable factors.",
+          "Who owns each lever and what can be measured.",
+          "Constraints, resources, incentives, and escalation paths."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-action-acceptance-and-escalation",
+          "description": "Require the answer to turn agency into a lever map that distinguishes direct action, acceptance, escalation, and system redesign.",
+          "evidence_required": [
+            "Controllable factors.",
+            "Uncontrollable or structural constraints.",
+            "Owner of each action or lever.",
+            "Measurement or feedback signal."
+          ],
+          "good_output_shape": [
+            "Names what can be controlled now.",
+            "Names what must be accepted or escalated.",
+            "Assigns ownership without blame theater.",
+            "Warns against agency language that hides constraints."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which factors can we actually influence, and which must be accepted or escalated?",
+        "What action can the person or team own, measure, and improve?",
+        "Are we using accountability to create agency or to deny real constraints?"
+      ],
+      "misuse_guards": [
+        "Do not equate control with total responsibility for all outcomes.",
+        "Do not use internal locus language to ignore resources, incentives, or structure.",
+        "Do not turn accountability into self-blame, solitary heroics, or refusal to ask for help."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "focus on what you can control and not on what you can't",
+          "section_hint": "Key Heuristics and Guiding Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "specific actions the person or team can actually own, measure, and improve",
+          "section_hint": "Strengths: Contexts Where Internal LOC is Most Powerful",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "agency language is used to deny structural constraints",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports internal locus as controllable-lever mapping with constraint honesty.",
+        "dropped_material": [
+          "Did not extract total-control or self-blame framing.",
+          "Did not convert agency into deterministic ownership assignment."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with constraints and responsibility cards."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "control-as-total-responsibility",
+      "status": "not_supported_by_source",
+      "reason": "The source frames control as focusing efforts on controllable factors, not total responsibility for every outcome.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "limiting efforts and concerns only to factors that are within one's control",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "agency-without-constraint-map",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that internal agency misfires when it ignores external constraints, resources, and system incentives.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Internal_Locus_Of_Control_rag.md",
+          "source_quote": "Ignoring Systemic or External Constraints",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Internal_Locus_Of_Control_rag.md",
+      "source_quote": "Which of these factors could actually cause major changes",
+      "section_hint": "Strengths: Contexts Where Internal LOC is Most Powerful",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for agency as controllable-lever ownership with constraint boundaries.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps turn helplessness into bounded ownership without blame."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "regulatory-horizon-scanning",
+  "source_file": "Regulatory_Horizon_Scanning_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "regulatory-horizon-scanning.weak-signal-response-trigger",
+      "status": "supported",
+      "name": "Weak signal response trigger",
+      "mechanism": "When external rules, enforcement priorities, or policy narratives are shifting before certainty arrives, require the answer to turn weak signals into scenarios, accountable owners, response triggers, and preparatory options.",
+      "activation_shape": {
+        "use_when": [
+          "External rules, enforcement priorities, or policy narratives are moving early enough that waiting for certainty would create strategic or compliance lag.",
+          "Weak signals can be converted into explicit scenarios, ownership questions, and preparatory options.",
+          "Long-horizon regulatory patterns must connect to present-day product, operating, or capital decisions."
+        ],
+        "do_not_use_when": [
+          "Horizon scanning would become trend-slide collection without thresholds, owners, or response triggers.",
+          "The team is overreacting to headlines that are not structurally meaningful.",
+          "The analysis names the future pressure but never defines the present operating or capital decision it changes."
+        ],
+        "case_evidence_needed": [
+          "The rule, enforcement priority, policy narrative, or weak signal being monitored.",
+          "The scenario or assumption that would make it material.",
+          "The owner responsible for monitoring and response.",
+          "The trigger that changes product, operations, capital allocation, or compliance preparation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "convert-signal-to-owner-trigger",
+          "description": "Require the answer to translate regulatory weak signals into explicit scenarios, named owners, thresholds, preparatory options, and present-day decisions that would change if the signal strengthens.",
+          "evidence_required": [
+            "The weak regulatory or policy signal.",
+            "The structurally meaningful interpretation.",
+            "The owner and monitoring cadence.",
+            "The response trigger and preparatory option."
+          ],
+          "good_output_shape": [
+            "Separates signal detection from interpretation.",
+            "Names the owner and threshold.",
+            "Connects long-horizon change to a current decision.",
+            "Avoids trend ritual without accountability."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which weak signal is structurally meaningful enough to monitor?",
+        "Who owns interpretation and response if the signal strengthens?",
+        "What threshold changes a present product, operating, capital, or compliance decision?"
+      ],
+      "misuse_guards": [
+        "Do not treat regulatory trend language as readiness.",
+        "Do not overreact to headlines without structural interpretation.",
+        "Do not leave monitoring without accountable owners or response triggers."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Regulatory_Horizon_Scanning_rag.md",
+          "source_quote": "external rules, enforcement priorities, or policy narratives are moving early enough that waiting for certainty would create strategic or compliance lag",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Regulatory_Horizon_Scanning_rag.md",
+          "source_quote": "weak signals can be turned into explicit scenarios, ownership questions, and preparatory options before the pressure becomes immediate",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Regulatory_Horizon_Scanning_rag.md",
+          "source_quote": "connect long-horizon regulatory pattern shifts to present-day product, operating, and capital decisions",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one regulatory weak-signal affordance that requires scenarios, owners, triggers, and present-day decision links.",
+        "dropped_material": [
+          "Did not extract a general systems-thinking or latticework card.",
+          "Kept simulations and game theory as supporting methods for scenario construction."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card improves packet handoff without turning scans into slide rituals."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "trend-slide-as-readiness",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against horizon scanning as a slide ritual that lacks thresholds, response triggers, or owners.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Regulatory_Horizon_Scanning_rag.md",
+          "source_quote": "horizon scanning becomes a slide ritual that collects trend language without assigning thresholds, response triggers, or accountable owners",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "headline-reaction-as-signal-interpretation",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects confusing signal detection with signal interpretation and overreacting to headlines that are not structurally meaningful.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Regulatory_Horizon_Scanning_rag.md",
+          "source_quote": "confuses signal detection with signal interpretation and overreacts to headlines that are not yet structurally meaningful",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Regulatory_Horizon_Scanning_rag.md",
+      "source_quote": "systematic effort to reduce strategic blindness by adopting varied perspectives to uncover reality",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for regulatory horizon scanning as weak-signal-to-trigger discipline.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card makes external-risk advice more monitorable and accountable."
+    ],
+    "review_status": "draft"
+  }
+}

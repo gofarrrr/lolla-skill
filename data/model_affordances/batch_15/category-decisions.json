@@ -1,0 +1,145 @@
+{
+  "model_id": "category-decisions",
+  "source_file": "Category_Decisions_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "category-decisions.precommit-boundaries-before-repeat-choice",
+      "status": "supported",
+      "name": "Precommit boundaries before repeat choice",
+      "mechanism": "When repeated decisions are vulnerable to inconsistent in-the-moment exceptions, use category decisions to define stable buckets and boundaries before evaluating individual cases, while checking that the category still matches the underlying situation.",
+      "activation_shape": {
+        "use_when": [
+          "Repeated decisions are vulnerable to in-the-moment inconsistency.",
+          "Option overload is degrading judgment quality.",
+          "A team needs a stable decision rule rather than case-by-case improvisation."
+        ],
+        "do_not_use_when": [
+          "Inherited buckets replace decomposition of underlying mechanisms.",
+          "A universal playbook is being applied to structurally different incident types.",
+          "The category has locked in after the causal structure changed."
+        ],
+        "case_evidence_needed": [
+          "The repeated decision or incident class.",
+          "The boundary between what can and cannot be chosen.",
+          "Evidence that cases belong in the same category.",
+          "A revalidation trigger for when the bucket no longer fits."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "validate-category-before-rule",
+          "description": "Require the answer to validate the category before applying the rule, especially when universal process is tempting.",
+          "evidence_required": [
+            "The proposed category or bucket.",
+            "The boundary condition that defines it.",
+            "Evidence that the cases share operational signature or failure dynamics.",
+            "A trigger for revising the category."
+          ],
+          "good_output_shape": [
+            "Names the category decision.",
+            "States what is in and out.",
+            "Tests whether cases truly belong together.",
+            "Warns against category lock-in."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What decision should be made once in advance instead of repeatedly in the moment?",
+        "What evidence shows these cases belong in one category?",
+        "What would tell us yesterday's bucket no longer fits?"
+      ],
+      "misuse_guards": [
+        "Do not use labels as a substitute for boundary evidence.",
+        "Do not apply one universal playbook to structurally heterogeneous cases.",
+        "Do not let precommitment become category lock-in."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "onetime, advance choice about what options you can and cannot choose",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "what kind of incident is this?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "Category Lock-In",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports category decisions as precommitment plus category validation.",
+        "dropped_material": [
+          "Did not extract category design marketing as a separate affordance.",
+          "Did not create deterministic classifiers or runtime routing."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps incident/process advice avoid universal playbook errors."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "category-as-labeling-exercise",
+      "status": "not_supported_by_source",
+      "reason": "The source requires boundary, logic, and synthesis; it does not support merely naming a bucket.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "maximum clarity (avoiding overlap) and maximum completeness",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "category-choice-without-buyer-frame",
+      "status": "not_supported_by_source",
+      "reason": "The source's category design example requires a specific problem, person, and way; it does not support category positioning without audience frame.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "1 Specific Problem, 1 Specific Person, 1 Specific Way",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Category_Decisions_rag.md",
+      "source_quote": "repeated decisions are vulnerable to in-the-moment inconsistency",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for category decisions as precommitment and taxonomy validation.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should test whether category decisions helps distinguish product category work from incident taxonomy work."
+    ],
+    "review_status": "draft"
+  }
+}

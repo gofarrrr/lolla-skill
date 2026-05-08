@@ -1,0 +1,145 @@
+{
+  "model_id": "auditability-traceability",
+  "source_file": "Auditability_Traceability_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "auditability-traceability.reconstructable-decision-trail",
+      "status": "supported",
+      "name": "Reconstructable decision trail",
+      "mechanism": "When advice will be acted on by others or reviewed later, require a reconstructable trail from inputs, assumptions, logical steps, and intentional design choices to the final recommendation and owner action.",
+      "activation_shape": {
+        "use_when": [
+          "Decisions, outputs, or model behavior must be explained clearly enough that others can inspect how conclusions were reached.",
+          "The cost of error is high and the organization needs a recoverable trail from evidence to judgment to action.",
+          "Trust depends not only on being right, but on being able to show what happened, why it happened, and who changed what."
+        ],
+        "do_not_use_when": [
+          "Traceability would become performative documentation that consumes attention without improving judgment, accountability, or learning.",
+          "The work is being treated as a linear mechanical blueprint even though implementation depends on engagement, accountability, or social-system behavior.",
+          "Documentation overhead would lock the team into a recorded path and discourage justified late-stage pivots."
+        ],
+        "case_evidence_needed": [
+          "The recommendation, decision, or output that must later be inspected.",
+          "The inputs, assumptions, logical steps, and design choices behind it.",
+          "The owner of each judgment or change.",
+          "The failure, review, or learning moment that the trail must support."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "preserve-causal-decision-chain",
+          "description": "Require the answer to state what would make the recommendation reconstructable later: inputs, assumptions, reasoning steps, owner changes, and the review question the trace must answer.",
+          "evidence_required": [
+            "The final recommendation or output.",
+            "The source inputs and assumptions.",
+            "The logical steps or design choices.",
+            "The actor responsible for changing or approving the path."
+          ],
+          "good_output_shape": [
+            "Links evidence to judgment to action.",
+            "Names the assumptions that must remain inspectable.",
+            "Separates useful traceability from documentation theater.",
+            "Defines what a later reviewer should be able to reconstruct."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Could a later reviewer reconstruct how this advice moved from evidence to judgment to action?",
+        "Which assumptions and owner changes would disappear if we only kept the final recommendation?",
+        "Is this trace improving learning and accountability, or only creating documentation?"
+      ],
+      "misuse_guards": [
+        "Do not treat documentation volume as proof of judgment quality.",
+        "Do not turn traceability into a bureaucratic lock on a path that should pivot.",
+        "Do not hide social-system implementation risk behind a neat causal diagram."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Auditability_Traceability_rag.md",
+          "source_quote": "clear, reconstructable causal chain",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Auditability_Traceability_rag.md",
+          "source_quote": "decisions, outputs, or model behavior must be explained clearly enough that others can inspect how conclusions were reached",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Auditability_Traceability_rag.md",
+          "source_quote": "show what happened, why it happened, and who changed what",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one reconstructable trail affordance for inputs, assumptions, logical steps, ownership, and later review.",
+        "dropped_material": [
+          "Did not split Minto Pyramid, logic trees, and AI explainability into separate affordances.",
+          "Kept business-case and first-principles material as support for the causal trail."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card improves packet handoff without encouraging documentation theater."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "performative-documentation-as-auditability",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that traceability can become performative documentation that consumes attention without improving judgment, accountability, or learning.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Auditability_Traceability_rag.md",
+          "source_quote": "traceability becomes performative documentation that consumes attention without improving judgment, accountability, or learning",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "linear-blueprint-for-social-implementation",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects treating implementation as a purely rational linear process when social-system engagement and accountability determine whether the trace is useful.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Auditability_Traceability_rag.md",
+          "source_quote": "Treating implementation as a fundamentally rational, linear process ignores that a social system is a living system, not amenable to mechanical blueprints.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Auditability_Traceability_rag.md",
+      "source_quote": "transparent, verifiable means",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Auditability Traceability. Extracted one reconstructable decision trail and rejected performative documentation plus linear-blueprint misuse.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card helps the next LLM ask for inspectable evidence without over-documenting."
+    ],
+    "review_status": "draft"
+  }
+}

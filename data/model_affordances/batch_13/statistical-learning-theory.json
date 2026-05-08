@@ -1,0 +1,145 @@
+{
+  "model_id": "statistical-learning-theory",
+  "source_file": "Statistical_Learning_Theory_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "statistical-learning-theory.prediction-fit-generalization-check",
+      "status": "supported",
+      "name": "Prediction fit generalization check",
+      "mechanism": "When a model or learning system is being trusted for prediction, require the answer to separate prediction from causation, test generalization beyond the fitted sample, and ask whether the model is useful for the actual decision.",
+      "activation_shape": {
+        "use_when": [
+          "The task is prediction under uncertainty using repeated observations.",
+          "A model looks accurate on one sample but may not generalize.",
+          "The team must decide whether prediction, causal explanation, or decision usefulness is the real goal."
+        ],
+        "do_not_use_when": [
+          "The target is poorly defined or the data is too thin.",
+          "Causal understanding matters more than predictive accuracy.",
+          "A black-box score is being treated as authority without decision context."
+        ],
+        "case_evidence_needed": [
+          "The prediction target.",
+          "The data/sample used for learning.",
+          "Evidence of generalization or out-of-sample performance.",
+          "The decision that depends on the model output."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-fit-from-decision-usefulness",
+          "description": "Require the answer to distinguish model fit, generalization, and decision usefulness before trusting a predictive model.",
+          "evidence_required": [
+            "Target outcome.",
+            "Training or observed sample.",
+            "Generalization evidence.",
+            "Decision use case."
+          ],
+          "good_output_shape": [
+            "Names prediction versus causation.",
+            "Checks model complexity and generalization.",
+            "Limits claims to the decision use case.",
+            "Warns against model worship."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are we predicting a state of the world or explaining causal drivers?",
+        "What evidence shows this model generalizes beyond the sample?",
+        "What decision becomes better if this prediction is trusted?"
+      ],
+      "misuse_guards": [
+        "Do not treat model fit as world fit.",
+        "Do not use a statistical model as authority when the target is unclear.",
+        "Do not prefer complexity when a simpler decision-useful model is enough."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Learning_Theory_rag.md",
+          "source_quote": "reasoning like a good statistician",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Learning_Theory_rag.md",
+          "source_quote": "the task is prediction under uncertainty",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Learning_Theory_rag.md",
+          "source_quote": "balance model complexity, generalization, and decision usefulness",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports SLT as prediction/generalization/decision-usefulness discipline.",
+        "dropped_material": [
+          "Did not extract AI agent design as runtime behavior.",
+          "Did not promote any model-selection automation."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves checks around ML-shaped claims."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "statistical-learning-as-black-box-certainty",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against treating statistical learning as a universal answer when target, data, or causal needs are mismatched.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Learning_Theory_rag.md",
+          "source_quote": "target is poorly defined, the data is thin, or causal understanding matters more than prediction",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "training-fit-as-world-fit",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly requires balancing fit with generalization and decision usefulness.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Learning_Theory_rag.md",
+          "source_quote": "generalization, and decision usefulness rather than chase fit on one sample",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Statistical_Learning_Theory_rag.md",
+      "source_quote": "**selecting the best-fitting hypothesis** from a vast realm of possibilities",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for SLT as predictive model discipline under uncertainty.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card keeps model confidence tied to generalization evidence."
+    ],
+    "review_status": "draft"
+  }
+}

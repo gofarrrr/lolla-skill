@@ -1,0 +1,145 @@
+{
+  "model_id": "boundaries",
+  "source_file": "Boundaries_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "boundaries.scope-ownership-decision-rights-filter",
+      "status": "supported",
+      "name": "Scope ownership decision-rights filter",
+      "mechanism": "When effort is diffusing across fuzzy scope, ownership, decision rights, or relevance criteria, require the answer to define what is inside, outside, influenceable, and worth protecting before adding work.",
+      "activation_shape": {
+        "use_when": [
+          "Scope, ownership, decision rights, or relevance criteria are fuzzy enough that effort is diffusing.",
+          "Saying no, narrowing the field, or refusing peripheral work creates more value than one more line of inquiry.",
+          "Finite time, attention, or political capital makes protecting the core objective more important than completeness."
+        ],
+        "do_not_use_when": [
+          "A boundary is being drawn mainly to avoid hard conversations, accountability, or inconvenient evidence.",
+          "The answer would prematurely narrow inquiry before the problem frame has been tested.",
+          "The boundary hides feedback loops or interdependencies that cross the chosen perimeter."
+        ],
+        "case_evidence_needed": [
+          "The current scope or ownership ambiguity.",
+          "The finite capacity being protected.",
+          "What is inside, outside, or influenceable.",
+          "Evidence that exclusion serves the objective rather than comfort."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-inside-outside-and-influence",
+          "description": "Require the answer to define the boundary, name what it protects, and test whether excluded work is truly irrelevant or merely uncomfortable.",
+          "evidence_required": [
+            "The core objective.",
+            "The current fuzzy perimeter.",
+            "The capacity, role, or decision right at stake.",
+            "The excluded item and why it can be excluded."
+          ],
+          "good_output_shape": [
+            "States what is inside the work.",
+            "States what is outside the work.",
+            "Names what can actually be influenced.",
+            "Checks whether the boundary protects purpose rather than comfort."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is inside, outside, and merely adjacent to the current objective?",
+        "Who owns the decision or action this answer is trying to assign?",
+        "Is this boundary protecting scarce capacity or avoiding an inconvenient issue?"
+      ],
+      "misuse_guards": [
+        "Do not draw scope lines to avoid accountability or evidence.",
+        "Do not narrow too early when multiple frames still need testing.",
+        "Do not hide cross-boundary dependencies behind a clean scope statement."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "scope, ownership, decision rights, or relevance criteria are fuzzy enough that energy is being wasted in every direction at once",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "that they can actually influence",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "Best when finite capacity matters more than completeness",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports a scope/ownership/decision-rights filter with comfort-protection and premature-narrowing guards.",
+        "dropped_material": [
+          "Did not extract MECE, context-window, or Circle of Competence material as separate affordances.",
+          "Kept system-boundary theory as context for one compact packet card."
+        ],
+        "open_questions": [
+          "Future packet review should test this card in cases where relationship boundaries and project scope boundaries collide."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "comfort-protection-boundary",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that boundaries are misused when they protect comfort instead of serving the real objective.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "Danger When Boundaries Protect Comfort Instead of Purpose",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "premature-narrowing-as-discipline",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly identifies premature narrowing as a failure mode, not an affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "Premature Narrowing of Inquiry",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Boundaries_rag.md",
+      "source_quote": "what can be safely excluded",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Boundaries. Extracted one scope/ownership filter and rejected comfort-protection plus premature narrowing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps receivers make crisp exclusions without hiding obligations."
+    ],
+    "review_status": "draft"
+  }
+}

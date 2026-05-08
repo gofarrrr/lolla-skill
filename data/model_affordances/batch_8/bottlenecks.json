@@ -1,0 +1,146 @@
+{
+  "model_id": "bottlenecks",
+  "source_file": "Bottlenecks_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "bottlenecks.binding-constraint-throughput-check",
+      "status": "supported",
+      "name": "Binding constraint throughput check",
+      "mechanism": "When a plan spreads effort across many pain points, require the answer to identify the verified throughput limiter, the queue or dependency it controls, and the single choke point that would still throttle the system if other work were funded.",
+      "activation_shape": {
+        "use_when": [
+          "Local optimization is masking the true throughput limiter.",
+          "Sequence and capacity matter more than aggregate effort.",
+          "Fixing one choke point could unlock disproportionate downstream gain.",
+          "A migration, launch, or handoff plan assumes every workstream can move in parallel."
+        ],
+        "do_not_use_when": [
+          "The team labels the noisiest queue, most visible complaint, or highest-status pain point as the bottleneck without verifying actual system throughput.",
+          "A roadmap treats all workstreams as equally movable even though one approval, integration, or staffing dependency is pacing everything else.",
+          "The bottleneck label is being used to avoid the harder question of how the fix will actually be executed."
+        ],
+        "case_evidence_needed": [
+          "The system, process, launch, migration, or handoff under review.",
+          "The visible queues, dependencies, or capacity constraints.",
+          "Evidence that one step is actually limiting system throughput.",
+          "The downstream gain expected if that choke point is relieved."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "verify-binding-throughput-limiter",
+          "description": "Require the answer to distinguish the visible pain point from the verified binding constraint and name what evidence would prove the choke point is pacing the whole system.",
+          "evidence_required": [
+            "The candidate bottleneck.",
+            "The system output or throughput measure.",
+            "The queue, approval, integration, staffing, or specialist dependency.",
+            "The effect expected if that constraint is relieved before other improvements."
+          ],
+          "good_output_shape": [
+            "Names the current throughput limiter.",
+            "Explains why other busy areas are not the binding constraint.",
+            "Identifies the pacing dependency.",
+            "States the first measure that should move when the bottleneck is relieved."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which step would still throttle the whole system if every other improvement were funded?",
+        "What evidence shows this is the binding constraint rather than the loudest complaint?",
+        "Which dependency, queue, approval, or specialist function is pacing everything else?"
+      ],
+      "misuse_guards": [
+        "Do not treat the noisiest queue or highest-status pain point as the bottleneck without throughput evidence.",
+        "Do not parallelize around one hidden gating dependency.",
+        "Do not identify the what of a constraint while ignoring the how of relieving it."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Bottlenecks_rag.md",
+          "source_quote": "local optimization is masking the true throughput limiter",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Bottlenecks_rag.md",
+          "source_quote": "sequence and capacity matter more than aggregate effort",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Bottlenecks_rag.md",
+          "source_quote": "Which step would still throttle the whole system if I funded every other improvement on the list?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one binding-constraint check centered on throughput, sequence, capacity, and gating dependencies.",
+        "dropped_material": [
+          "Did not extract cognitive load, prompt context windows, or communication focus as separate affordances.",
+          "Kept queue, migration, launch, and handoff examples under one throughput check."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card makes execution packets more concrete about what must be unblocked first."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "noisiest-pain-point-as-bottleneck",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that the noisiest queue, most visible complaint, or highest-status pain point is not necessarily the bottleneck unless actual throughput verifies it.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Bottlenecks_rag.md",
+          "source_quote": "teams label the noisiest queue, most visible complaint, or highest-status pain point as the bottleneck without verifying actual system throughput",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "parallel-workstreams-hide-gating-dependency",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects roadmap logic that treats workstreams as equally movable when one approval, integration, or staffing dependency is pacing everything else.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Bottlenecks_rag.md",
+          "source_quote": "a roadmap treats all workstreams as equally movable even though one approval, integration, or staffing dependency is pacing everything else",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Bottlenecks_rag.md",
+      "source_quote": "every system, regardless of its complexity, has a point of greatest restriction",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Bottlenecks. Extracted one binding constraint check and rejected loudest-pain and parallelization-over-gating-dependency errors.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should test whether this card helps identify the real pacing dependency rather than an attractive pain point."
+    ],
+    "review_status": "draft"
+  }
+}

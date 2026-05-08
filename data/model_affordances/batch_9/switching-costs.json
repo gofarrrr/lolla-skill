@@ -1,0 +1,145 @@
+{
+  "model_id": "switching-costs",
+  "source_file": "Switching_Costs_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "switching-costs.reversibility-decay-exit-plan",
+      "status": "supported",
+      "name": "Reversibility decay exit plan",
+      "mechanism": "When a migration, platform exit, or strategic switch is framed as reversible, require the answer to expose dual-run dependency drag, reversal-cost growth, dependency cleanup, rollback ownership, and unwind gates before commitment deepens.",
+      "activation_shape": {
+        "use_when": [
+          "A platform or ERP exit is framed as reversible while dual-run coexistence, partner workflows, and reporting dependencies shrink the rollback window.",
+          "The stated migration plan governs implementation but not unwind.",
+          "The real choice is whether custom reports, compliance steps, and partner integrations have already narrowed the option set more than the plan admits."
+        ],
+        "do_not_use_when": [
+          "Switching cost is reduced to license price or headline migration budget.",
+          "Dependency cleanup is treated as routine implementation detail even though it determines whether exit is economically reversible.",
+          "Governance is defined for cutover but not for the unwind path."
+        ],
+        "case_evidence_needed": [
+          "The incumbent state, alternative state, and proposed switch.",
+          "The dual-run capabilities and dependencies that must stay alive.",
+          "The rollback owner, unwind gate, or stop trigger.",
+          "How reversal cost grows as data, customizations, or contracts accumulate."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-dual-run-and-unwind-gates",
+          "description": "Require the answer to treat the exit plan as a decision object by mapping dual-run dependencies, reversal-cost growth, rollback ownership, and unwind gates.",
+          "evidence_required": [
+            "The migration or switch under consideration.",
+            "The dual-run dependencies and partner/workflow links.",
+            "The rollback or unwind owner.",
+            "The gate where reversibility decays."
+          ],
+          "good_output_shape": [
+            "Names the hidden coexistence costs.",
+            "Shows how rollback windows shrink.",
+            "Defines owner, checkpoint, and stop/re-plan trigger.",
+            "Separates real reversibility from stated reversibility."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What must run in both old and new states, and for how long?",
+        "How fast does reversal cost grow as data, customizations, or contracts accumulate?",
+        "Who owns the unwind decision if temporary coexistence starts becoming permanent?"
+      ],
+      "misuse_guards": [
+        "Do not treat license price as the full switching cost.",
+        "Do not assume migration is reversible without an unwind gate.",
+        "Do not let temporary coexistence harden into permanent architecture unnoticed."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Switching_Costs_rag.md",
+          "source_quote": "a platform or ERP exit is framed as reversible even though dual-run coexistence, partner workflows, and reporting dependencies are quietly shrinking the rollback window",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Switching_Costs_rag.md",
+          "source_quote": "Reversibility decay",
+          "section_hint": "Structural Dependence Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Switching_Costs_rag.md",
+          "source_quote": "Governance gap on unwind",
+          "section_hint": "Structural Dependence Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source contains unusually concrete operational material for platform exits, dual-run dependency drag, reversibility decay, and unwind governance.",
+        "dropped_material": [
+          "Did not extract persuasion, FUD, or analogical-shortcut material as separate affordances.",
+          "Focused PR42 extraction on platform-exit reversibility and containment because that directly fits the risk/reversibility family."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card materially improves packet handoff for migration and lock-in decisions."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "license-price-as-switching-cost",
+      "status": "not_supported_by_source",
+      "reason": "The source says switching costs are often dominated not by licenses but by dependency drag from coexistence phases.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Switching_Costs_rag.md",
+          "source_quote": "switching costs are often dominated not by licenses, but by dependency drag from coexistence phases",
+          "section_hint": "Operational Platform Exit Dynamics",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "implementation-plan-without-unwind-governance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that cutover governance without unwind governance lets temporary coexistence harden into permanent architecture before anyone has a trigger to stop.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Switching_Costs_rag.md",
+          "source_quote": "governance is defined for the cutover but not for the unwind path",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Switching_Costs_rag.md",
+      "source_quote": "friction inherent in moving from an incumbent state to an alternative state",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for switching-costs as reversibility decay and exit-plan governance.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card makes reversibility and rollback ownership visible before commitment deepens."
+    ],
+    "review_status": "draft"
+  }
+}

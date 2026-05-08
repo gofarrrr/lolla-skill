@@ -1,0 +1,145 @@
+{
+  "model_id": "growth-mindset",
+  "source_file": "Growth_Mindset_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "growth-mindset.feedback-loop-for-expandable-capability",
+      "status": "supported",
+      "name": "Feedback loop for expandable capability",
+      "mechanism": "When the issue is genuinely developable skill, require the answer to turn growth language into feedback, repetition, root-cause diagnosis, and improvement quality while preserving constraints, strategy fit, and evidence of progress.",
+      "activation_shape": {
+        "use_when": [
+          "A capability can plausibly improve through feedback, repetition, practice, and diagnosis.",
+          "Setbacks are being treated as identity threats rather than learning signals.",
+          "A team needs to reward surfacing weaknesses and improving competence over protecting ego."
+        ],
+        "do_not_use_when": [
+          "The bottleneck is immutable constraint, missing fit, weak strategy, or lack of resources.",
+          "Growth language would excuse bad evidence, low leverage work, or unrealistic commitments.",
+          "The real issue is stop criteria or sunk-cost exposure rather than learning."
+        ],
+        "case_evidence_needed": [
+          "The specific capability to improve.",
+          "Feedback source and repetition loop.",
+          "Root-cause diagnosis of the current weakness.",
+          "Constraints, role fit, resources, and evidence that improvement is possible."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "convert-growth-into-practice-loop",
+          "description": "Require the answer to translate growth mindset into a concrete practice and feedback loop while checking constraints and strategy fit.",
+          "evidence_required": [
+            "Expandable skill or capability.",
+            "Feedback mechanism.",
+            "Practice cadence or repetition loop.",
+            "Constraint or fit check."
+          ],
+          "good_output_shape": [
+            "Names the capability that can improve.",
+            "Adds a feedback and practice loop.",
+            "Distinguishes effort quality from effort volume.",
+            "Warns against mindset talk that denies real constraints."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is this capability genuinely expandable through feedback and repetition?",
+        "What weakness should be surfaced early rather than protected from ego threat?",
+        "What evidence would show improvement quality rather than mere effort?"
+      ],
+      "misuse_guards": [
+        "Do not treat effort as a guarantee of success.",
+        "Do not use mindset language to deny constraints, role mismatch, or weak strategy.",
+        "Do not reward busyness or optimism when feedback shows the approach is not working."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Growth_Mindset_rag.md",
+          "source_quote": "true potential are unknown, not fixed, and capable of continuous change and growth",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Growth_Mindset_rag.md",
+          "source_quote": "capability is genuinely expandable through feedback and repetition",
+          "section_hint": "Strengths (Optimal Contexts)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Growth_Mindset_rag.md",
+          "source_quote": "Danger When Growth Language Denies Real Constraints",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports growth mindset as developable capability plus feedback-loop discipline, not vague optimism.",
+        "dropped_material": [
+          "Did not extract limitless potential or motivational slogans.",
+          "Did not treat improvement desire as evidence that improvement is feasible."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with learning-loop and persistence cards."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "effort-as-guarantee",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that success does not come from hard work alone and must be tied to what gets results.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Growth_Mindset_rag.md",
+          "source_quote": "Success does not come from hard work alone",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "mindset-as-substitute-for-feedback",
+      "status": "not_supported_by_source",
+      "reason": "The source says growth mindset welcomes critical feedback, so mindset without feedback is not reviewed operational depth.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Growth_Mindset_rag.md",
+          "source_quote": "welcomes critical feedback",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Growth_Mindset_rag.md",
+      "source_quote": "setbacks should trigger learning loops instead of identity threat",
+      "section_hint": "Strengths (Optimal Contexts)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for growth mindset as feedback-driven capability development.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card blocks false-growth optimism."
+    ],
+    "review_status": "draft"
+  }
+}

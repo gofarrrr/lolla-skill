@@ -1,0 +1,438 @@
+{
+  "model_id": "survivorship-bias",
+  "source_file": "Survivorship_Bias_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "survivorship-bias.recover-hidden-denominator-selection",
+      "status": "supported",
+      "name": "Hidden denominator recovery before learning from survivors",
+      "mechanism": "A lesson drawn from visible winners earns weight only after the answer identifies who is missing, how the sample passed through a selection process, and whether excluded failures would change the conclusion.",
+      "activation_shape": {
+        "use_when": [
+          "Evidence is dominated by visible winners, survivors, current customers, success stories, benchmarks, or case studies.",
+          "The observed sample may be nonrandom because failed, rejected, churned, abandoned, or never-acquired cases are absent.",
+          "A strategy, hiring, investing, product, or benchmark conclusion is being shaped by apparent winners that are easier to observe than hidden failures."
+        ],
+        "do_not_use_when": [
+          "The case already includes the full population, the non-survivors, and the selection rule that produced the visible sample.",
+          "The task is to estimate an outside-view prior from a validated reference class; that is the base-rates record, not this survivorship-bias record.",
+          "The correction would erase meaningful differences between real winners and real losers instead of explaining them."
+        ],
+        "case_evidence_needed": [
+          "The visible survivor group, success story, benchmark, customer set, or case-study sample currently driving the conclusion.",
+          "The missing non-survivors, including failed, rejected, churned, abandoned, never-acquired, or quietly unsuccessful cases.",
+          "The selection mechanism or funnel that made some cases visible and excluded others.",
+          "Evidence about whether survivors and non-survivors differ in ways that would change the lesson."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-missing-cases-and-selection-process",
+          "description": "Before extracting a lesson from visible successes, name the missing cases and the selection process that made the observed sample nonrandom.",
+          "evidence_required": [
+            "The survivor-only sample or visible success narrative being used.",
+            "The underlying population the sample is supposed to represent.",
+            "The failed, dropped-out, never-entered, or rejected cases missing from the evidence.",
+            "The funnel, time window, benchmark design, or data-collection rule that selected the visible cases."
+          ],
+          "good_output_shape": [
+            "States who is missing from the sample before trusting the survivor lesson.",
+            "Explains what made the observed sample nonrandom relative to the underlying population.",
+            "Shows how the hidden failures would confirm, weaken, or reverse the proposed conclusion.",
+            "Separates survivorship correction from base-rate anchoring by focusing on excluded cases and the selection mechanism."
+          ]
+        },
+        {
+          "requirement_id": "rebuild-evidence-with-non-survivors",
+          "description": "Replace survivor-only evidence with an expanded sample that deliberately includes failures, churned cases, rejected alternatives, and disconfirming evidence.",
+          "evidence_required": [
+            "Data or case evidence about the visible survivors.",
+            "Data or case evidence about non-survivors or a plan to obtain it.",
+            "Differences between survivors and non-survivors that might explain the observed outcome.",
+            "A revised lesson that preserves real winner-loser differences instead of flattening them."
+          ],
+          "good_output_shape": [
+            "Requests or incorporates non-survivor evidence before making the recommendation.",
+            "Marks conclusions based on survivor-only data as provisional.",
+            "Analyzes meaningful differences between winners and losers after the denominator is restored.",
+            "Avoids tailoring strategy only to people or cases already convinced, retained, or visible."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who is missing from this sample population, and what would their outcomes do to the conclusion?",
+        "What selection process made these winners, customers, benchmarks, or success stories visible while hiding failures?",
+        "Which failed, churned, rejected, never-entered, or abandoned cases should be inspected before we draw the lesson?",
+        "Are we preserving real differences between winners and losers, or just replacing survivor worship with a flattened anti-bias warning?"
+      ],
+      "misuse_guards": [
+        "Do not invoke survivorship bias abstractly while still using samples, benchmarks, or case studies that exclude the hidden denominator.",
+        "Do not treat current customers, retained employees, successful competitors, or famous cases as representative without checking who disappeared from view.",
+        "Do not merge this into base-rates when the active problem is missing failures, excluded cases, selection mechanism, or visible-success distortion.",
+        "Do not overcorrect so broadly that meaningful differences between real winners and real losers are ignored rather than analyzed."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "The fundamental essence of Survivorship Bias lies in a failure of observation: it is the error of concentrating on the things that successfully passed a selection process while overlooking those that failed to survive.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "The data we observe (the \"survivors\") is often highly nonrandom and can lead to drastically misleading conclusions.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "**\"Who is missing from the sample population?\"** and **\"What could be making this sample population nonrandom relative to the underlying population?\"**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "If a company wants to grow its customer base, it should **not just sample existing customers**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "This sample population is likely nonrandom and may behave differently (e.g., early adopters versus the early majority) than the larger population of potential customers.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "In real-world application, overcoming survivorship bias involves proactive strategies and systematic approaches designed to seek out the non-survivors and disconfirming evidence.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "Analytical mistakes frequently include using samples composed only of remaining customers, only dissatisfied customers, or applying disputable time frames.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "Analyzing the failures (those who churned, those who were never acquired) must be mandatory.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "**Works best when** a team can deliberately inspect who dropped out, who never entered, what failed quietly, and which conditions selected the apparent winners.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "**Danger when** teams invoke survivorship bias abstractly but still use samples, benchmarks, or case studies that exclude the hidden denominator.",
+          "section_hint": "Weaknesses and Anti-Patterns (Dangers of Misapplication)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "**Danger when** the anti-bias correction becomes so broad that meaningful differences between real winners and real losers are ignored rather than analyzed.",
+          "section_hint": "Weaknesses and Anti-Patterns (Dangers of Misapplication)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance is the primary boundary with pilot/base-rates. Base-rates is reference-class and denominator anchoring before case-specific updating; survivorship-bias is missing failures, excluded cases, selection mechanism, and visible-success distortion.",
+        "dropped_material": [
+          "Did not split existing-customer sampling, competitor strategy, hiring, investing, and product examples into separate affordances because they all require the same hidden-denominator and selection-mechanism recovery."
+        ],
+        "open_questions": [
+          "Reviewer should watch for cases where outside-view prior estimation is better handled by base-rates after this record restores the missing cases."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "survivorship-bias.restore-failure-tail-outcomes",
+      "status": "supported",
+      "name": "Failure and tail outcomes before trusting the mean",
+      "mechanism": "When a base case, average, or visible success path hides projects that failed early or went catastrophically wrong, the answer must restore the failure distribution before treating the mean outcome as decision-relevant.",
+      "activation_shape": {
+        "use_when": [
+          "A project, investment, strategy, or plan is being evaluated through a mean outcome, expected case, or success-path narrative.",
+          "Failures that ended early, disappeared from the sample, or ran catastrophically over budget may be excluded from the evidence.",
+          "The decision depends on whether hidden failure cases or outliers make the apparent expected case too optimistic."
+        ],
+        "do_not_use_when": [
+          "The case already includes early failures, catastrophic overruns, tail outcomes, and the distribution around the mean.",
+          "The live question is only whether a reference class fits; use base-rates for that prior-anchoring task.",
+          "The answer would merely say to be cautious about risk without adding non-survivor or tail-outcome evidence."
+        ],
+        "case_evidence_needed": [
+          "The mean outcome, base case, expected case, or success-path story being trusted.",
+          "Early failures, catastrophic overruns, abandoned attempts, or other non-surviving cases missing from the analysis.",
+          "Outcomes one or two standard deviations from the mean, including worst-case scenarios.",
+          "The conjunctive sequence of steps where hidden failures could make apparent success probability too optimistic."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "replace-base-case-with-failure-distribution",
+          "description": "Before accepting a mean or base case, add early failures, catastrophic overruns, outliers, and non-surviving cases back into the outcome distribution.",
+          "evidence_required": [
+            "The current mean outcome, expected case, or base-case assumption.",
+            "Known or plausible early failures and catastrophic overruns excluded from that view.",
+            "Outcome spread, outlier cases, or one-to-two-standard-deviation scenarios.",
+            "Whether the revised distribution changes the decision threshold."
+          ],
+          "good_output_shape": [
+            "Names the non-surviving outcomes missing from the mean or expected case.",
+            "Shows how failure and outlier cases change the apparent outcome distribution.",
+            "Treats the base case as provisional until hidden failures are represented.",
+            "States whether the revised distribution changes the recommendation or risk treatment."
+          ]
+        },
+        {
+          "requirement_id": "ask-worst-case-before-commitment",
+          "description": "Use worst-case and premortem-style failure analysis to test whether hidden non-survivor outcomes make the apparently acceptable path unacceptable.",
+          "evidence_required": [
+            "The proposed commitment or decision that depends on survivor-visible success.",
+            "The worst-case scenario and the factors that could cause it.",
+            "Failure points in a conjunctive sequence where every step must work.",
+            "The threshold at which the worst case is bad enough to reverse, defer, or redesign the plan."
+          ],
+          "good_output_shape": [
+            "Asks whether the worst case is bad enough before committing.",
+            "Lists the factors that could cause the project or plan to fail.",
+            "Connects failure factors to non-surviving cases rather than treating them as abstract risks.",
+            "Changes the plan, buffer, or commitment when hidden failure cases make the visible success path misleading."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which failed early, disappeared, or catastrophic cases are excluded from this mean or expected case?",
+        "What does the outcome distribution look like after we add non-survivors and outliers back in?",
+        "Is the worst case bad enough to make the visible success path a misleading guide?",
+        "Where does the plan require a long sequence of steps to all work, and which hidden failures reveal the true fragility?"
+      ],
+      "misuse_guards": [
+        "Do not place too much weight on the mean outcome when early failures or catastrophic overruns are absent from the sample.",
+        "Do not turn survivorship bias into generic pessimism; the correction must restore failure evidence and tail outcomes.",
+        "Do not let a coherent success story hide missing information, disconfirming evidence, or non-surviving cases.",
+        "Do not overestimate a conjunctive success path by focusing only on the steps that worked for survivors."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "The model is most effective in structuring difficult problems where the **distribution of outcomes** is critical, not just the average.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "It pushes thinkers to include outliers and failure scenarios in their analyses, which is essential for risk mitigation.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "In managing **large projects**, a decision-making approach influenced by survivorship bias might lead to placing too much emphasis on the **mean outcome** (the expected case).",
+          "section_hint": "Concrete Examples in Business and Decision-Making",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "This approach fails to account for projects that fail early or run catastrophically over budget (the non-survivors).",
+          "section_hint": "Concrete Examples in Business and Decision-Making",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "problem-solving requires giving **sufficient weight to outcomes that are one or even two standard deviations from the mean**.",
+          "section_hint": "Concrete Examples in Business and Decision-Making",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "When assessing large projects, analysts must ask, **\"Is the worst case bad enough?\"**",
+          "section_hint": "Concrete Examples in Business and Decision-Making",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "Deliberately consider the **worst-case scenario** before a decision is made, detailing all the factors that might have caused the project to fail.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "This ensures you analyze the non-survivors proactively.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "By solely focusing on the *survivors*, the bias leads to an **unwarranted optimism**.",
+          "section_hint": "Weaknesses and Anti-Patterns (Dangers of Misapplication)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "This causes one to dangerously **overestimate the probability of conjunctive events** succeeding (where a long sequence of steps must *all* work).",
+          "section_hint": "Weaknesses and Anti-Patterns (Dangers of Misapplication)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "This affordance owns the source-backed distribution and failure-tail correction. It is not generic risk assessment: the trigger is a mean, base case, or success path that excludes non-surviving outcomes.",
+        "dropped_material": [
+          "Did not split premortem, inverse goal setting, and System 2 into separate affordances because the source presents them as mitigations for restoring non-survivor failure analysis."
+        ],
+        "open_questions": [
+          "Reviewer should confirm whether this remains survivorship-specific enough when later Batch 2 risk-response records are compiled alongside it."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-base-rate-reference-class-anchor",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source names outside view and reference classes as an ally for correcting survivorship bias, but the operational contract for reference-class prior anchoring already belongs to data/model_affordances/pilot/base-rates.json. This record only promotes missing failures, excluded cases, selection mechanism, and visible-success distortion.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "An actionable framework involves anchoring decision-making first to the **outside view**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "This requires establishing a **reference class** and comparing the current case against the assumptions underpinning that class.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "Successfully applying the outside view demands that one explicitly looks at the probabilities of the wider class of outcomes, not just the single, vivid instance.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-recruitment-talent-strategy-affordance",
+      "status": "source_too_thin",
+      "reason": "The recruitment passage is a domain example of survivor-only organizational judgment, but it does not add distinct case evidence or treatment requirements beyond restoring missing evidence and comparing survivors against non-survivors.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "When designing solutions within an organization, it is critical to resist the bias where people \"consistently overlook the evidence of one person being better than another at something and assume that both are equally good\".",
+          "section_hint": "Concrete Examples in Business and Decision-Making",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "standalone-relation-and-general-mitigation-affordances",
+      "status": "not_supported_by_source",
+      "reason": "Confirmation bias, availability bias, optimism bias, System 2, team diversity, and uncertainty are useful context or mitigations, but the source does not make them independent survivorship-specific treatment contracts separate from hidden-denominator and failure-distribution recovery.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "Survivorship Bias does not exist in isolation but interacts dynamically with other key mental models.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "To block errors originating in the fast, intuitive System 1 (which favors the vivid survivor story), you must **recognize the cognitive minefield, slow down, and ask for reinforcement from System 2** (conscious analysis and reasoning).",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Survivorship_Bias_rag.md",
+          "source_quote": "The diversity in thinking and experiences deepens creativity and reduces the chance of persistent biases.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Survivorship_Bias_rag.md",
+      "source_quote": "The fundamental essence of Survivorship Bias lies in a failure of observation: it is the error of concentrating on the things that successfully passed a selection process while overlooking those that failed to survive.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Survivorship_Bias_rag.md",
+      "source_quote": "**Works best when** a team can deliberately inspect who dropped out, who never entered, what failed quietly, and which conditions selected the apparent winners.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Survivorship_Bias_rag.md",
+      "source_quote": "This approach fails to account for projects that fail early or run catastrophically over budget (the non-survivors).",
+      "section_hint": "Concrete Examples in Business and Decision-Making",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Survivorship_Bias_rag.md",
+      "source_quote": "**Danger when** teams invoke survivorship bias abstractly but still use samples, benchmarks, or case studies that exclude the hidden denominator.",
+      "section_hint": "Weaknesses and Anti-Patterns (Dangers of Misapplication)",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the extraction contract, schema, PR 9 Batch 2 selection note, full Survivorship_Bias_rag.md source, activation curation, intervention semantics, relation semantics, and pilot/base-rates. Extracted two affordances: hidden-denominator selection recovery and failure-tail outcome restoration. Explicit boundary with base-rates: base-rates is reference-class/denominator anchoring; survivorship-bias is missing failures, excluded cases, selection mechanism, and visible-success distortion. No third affordance was produced, so the structural differentiation test was not triggered.",
+    "dropped_material": [
+      "Did not promote outside-view/reference-class anchoring as a survivorship affordance because it duplicates pilot/base-rates after the hidden denominator is restored.",
+      "Did not split current-customer sampling, competitor strategy, recruitment, simulations, premortems, inverse goal setting, System 2, team diversity, or relationship material into separate affordances because they either illustrate the retained mechanisms or belong to adjacent records.",
+      "Did not promote confirmation-bias, availability-bias, optimism-bias-and-planning-fallacy, critical-thinking, premortem, or base-rates relation curation into standalone runtime affordances."
+    ],
+    "open_questions": [
+      "Reviewer should confirm whether the failure-tail affordance is sufficiently survivorship-specific once risk-assessment, margin-of-safety, black-swan-events, and base-rates records are loaded together.",
+      "Future relation review may connect this record to base-rates after hidden-denominator recovery without merging their operational contracts."
+    ],
+    "review_status": "draft"
+  }
+}

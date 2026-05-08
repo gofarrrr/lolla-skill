@@ -1,0 +1,59 @@
+{
+  "model_id": "theory-of-constraints",
+  "source_file": "Theory_Of_Constraints_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "theory-of-constraints.constraint-proof-before-optimization",
+      "status": "supported",
+      "name": "Constraint proof before optimization",
+      "mechanism": "The model requires a plan to prove the binding limit before optimizing a visible step.",
+      "activation_shape": {
+        "use_when": [
+          "The answer optimizes a visible step without proving it is the binding constraint."
+        ],
+        "do_not_use_when": [
+          "The answer already measures the binding constraint and sequences around it."
+        ],
+        "case_evidence_needed": [
+          "a proposed intervention and a possible scarce capacity"
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-binding-constraint",
+          "description": "Name the measured constraint before authorizing local optimization.",
+          "evidence_required": [
+            "constraint name and metric"
+          ],
+          "good_output_shape": [
+            "The binding constraint is X, not Y."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What measured limit would still cap throughput after the proposed local improvements?"
+      ],
+      "misuse_guards": [
+        "Do not optimize the loudest step before proving it is the throughput cap."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [],
+  "review_notes": {
+    "normalization_note": "Intentional invalid fixture: source_quote is missing.",
+    "dropped_material": [],
+    "open_questions": [],
+    "review_status": "fixture"
+  }
+}

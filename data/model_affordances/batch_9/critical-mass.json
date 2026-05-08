@@ -1,0 +1,145 @@
+{
+  "model_id": "critical-mass",
+  "source_file": "Critical_Mass_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "critical-mass.viability-threshold-density-test",
+      "status": "supported",
+      "name": "Viability threshold density test",
+      "mechanism": "When a system only becomes viable after enough density, adoption, liquidity, trust, or participation exists in a defined area, require the answer to name the threshold, boundary, reinforcement loop, and evidence that early wins are compounding.",
+      "activation_shape": {
+        "use_when": [
+          "Adoption, liquidity, trust, or participation only starts working once activity crosses a minimum density.",
+          "A few early successes do not matter unless they connect into a self-reinforcing system.",
+          "The real decision is whether density can hold inside a particular geography, segment, or network."
+        ],
+        "do_not_use_when": [
+          "Early energy, launch excitement, or one-off seeding is being mistaken for durable mass.",
+          "The problem is being forced into a single-threshold framing even though other mechanisms explain it better.",
+          "The answer names a target size but not the boundary, reinforcement loop, or failure mode."
+        ],
+        "case_evidence_needed": [
+          "The threshold variable and the area, segment, or network boundary.",
+          "Evidence of density, participation, trust, liquidity, or adoption.",
+          "The reinforcement loop that makes momentum self-sustaining.",
+          "The failure mode if early wins do not connect."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-threshold-boundary-and-loop",
+          "description": "Require the answer to define the minimum viable threshold, the boundary where it must hold, and the reinforcement loop that turns isolated wins into self-sustaining momentum.",
+          "evidence_required": [
+            "The threshold variable.",
+            "The relevant geography, segment, or network.",
+            "Evidence of density or participation.",
+            "The reinforcement loop and failure mode."
+          ],
+          "good_output_shape": [
+            "Names the threshold and its boundary.",
+            "Separates isolated wins from self-sustaining momentum.",
+            "States what evidence shows the loop is working.",
+            "Avoids mistaking early excitement for durable mass."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What density or participation threshold must hold before this becomes viable?",
+        "Inside which geography, segment, or network does the threshold matter?",
+        "Are early wins connected into a reinforcement loop or merely isolated evidence?"
+      ],
+      "misuse_guards": [
+        "Do not treat launch excitement as threshold security.",
+        "Do not force every growth problem into a critical-mass frame.",
+        "Do not name a target size without defining the boundary where it must hold."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Critical_Mass_rag.md",
+          "source_quote": "threshold that determines viability and sustained momentum",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Mass_rag.md",
+          "source_quote": "Most useful when viability is threshold-dependent",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Mass_rag.md",
+          "source_quote": "Works when isolated wins do not compound on their own",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one critical-mass affordance focused on threshold, boundary, density, and reinforcement-loop viability.",
+        "dropped_material": [
+          "Did not extract strategic communication or AI persona critical-mass material as separate affordances.",
+          "Kept network-effect and marketplace examples as support for the threshold-density card."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card improves threshold viability reasoning without overclaiming early momentum."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "launch-energy-as-durable-mass",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that early adopter enthusiasm or one-off seeding can be mistaken for durable mass before the reinforcement loop is stable.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Critical_Mass_rag.md",
+          "source_quote": "Danger When Early Energy Is Mistaken for Threshold Security",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "single-threshold-frame-for-every-growth-problem",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that critical mass can become the only tool in the toolbox, forcing problems into threshold framing even when other models are more appropriate.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Critical_Mass_rag.md",
+          "source_quote": "forcing problems to be framed as needing a single threshold",
+          "section_hint": "Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Critical_Mass_rag.md",
+      "source_quote": "minimal size, momentum, or density required for a complex system",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for critical-mass as threshold density and reinforcement-loop viability testing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card distinguishes real critical mass from isolated early wins."
+    ],
+    "review_status": "draft"
+  }
+}

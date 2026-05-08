@@ -1,0 +1,218 @@
+{
+  "model_id": "lindy-effect",
+  "source_file": "Lindy_Effect_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "lindy-effect.longevity-prior-with-baseline-break-check",
+      "status": "supported",
+      "name": "Longevity prior with baseline-break check",
+      "mechanism": "Use an entity's survival time as durability evidence only when the entity is non-perishable and forecasting is weak, then test whether discontinuity, changing constraints, new evidence, or rare disruption breaks the old baseline.",
+      "activation_shape": {
+        "use_when": [
+          "A choice is among non-perishable ideas, tools, practices, protocols, or technologies where survival time may signal resilience.",
+          "The environment is noisy, recent options are hype-sensitive, and direct forecasting is weak.",
+          "The decision is about durability, staying power, or what is likely to remain useful beyond the current cycle."
+        ],
+        "do_not_use_when": [
+          "Age is being treated as proof of superiority while discontinuity, changing constraints, or new evidence are being ignored.",
+          "The context is genuinely novel or rapidly evolving enough that the familiar long-lived frame may be misleading.",
+          "Rare disruptive events or replacement dynamics could abruptly end the useful life of the old baseline."
+        ],
+        "case_evidence_needed": [
+          "The specific non-perishable entity being judged: idea, tool, practice, protocol, technology, institution, or relationship.",
+          "The entity's age or persistence history and the conditions it has already survived.",
+          "Why survival over time is meaningful evidence in this decision rather than mere familiarity.",
+          "The recent hype, new alternative, or forecast being weighed against the longevity signal.",
+          "The discontinuities, changing constraints, new evidence, or rare events that could break the historical baseline."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "qualify-longevity-signal",
+          "description": "Use survival time as a durability prior only after identifying the entity as non-perishable, naming what persistence has demonstrated, and tying the signal to a noisy weak-forecasting decision.",
+          "evidence_required": [
+            "The entity whose future usefulness or durability is being judged.",
+            "Evidence that the entity is non-perishable enough for age to carry evidentiary weight.",
+            "The entity's age, persistence history, or record of surviving relevant conditions.",
+            "The hype, novelty, or weak forecast that makes a durability prior useful."
+          ],
+          "good_output_shape": [
+            "States the longevity signal as a prior or heuristic, not as proof of superiority.",
+            "Explains why the old option's survival is relevant to the current durability choice.",
+            "Compares the signal against recent hype or unproven alternatives.",
+            "Keeps the recommendation focused on staying power beyond the current cycle."
+          ]
+        },
+        {
+          "requirement_id": "stress-test-old-baseline",
+          "description": "Before recommending the long-lived option, test whether discontinuity, changing constraints, new evidence, novelty, or rare disruption makes the inherited baseline unreliable.",
+          "evidence_required": [
+            "Technological discontinuities, changing constraints, or new evidence relevant to the entity.",
+            "Ways the current environment differs from the conditions under which the entity survived.",
+            "Rare disruptive events or replacement dynamics that could end the old baseline.",
+            "Alternative frameworks or cuts at the problem that might expose hidden novelty."
+          ],
+          "good_output_shape": [
+            "Names the conditions under which the Lindy prior would stop carrying weight.",
+            "Separates survival-based resilience from mere familiarity or institutional inertia.",
+            "Checks whether a genuinely novel context makes the old framework misleading.",
+            "Revises or rejects the longevity-weighted choice when baseline-breaking evidence is strong."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Will this trend endure the test of time, or is it just a passing phase?",
+        "What technological discontinuity, changing constraint, new evidence, or rare event would break the old baseline?",
+        "Are we using the long-lived frame because it fits this case, or because it is the familiar frame at hand?"
+      ],
+      "misuse_guards": [
+        "Do not treat age as proof of superiority; verify whether the environment and evidence still preserve the old baseline.",
+        "Do not apply a long-lived framework to a genuinely novel or rapidly evolving context without checking whether it becomes misleading.",
+        "Do not let a known long-lived frame substitute for several cuts at a genuinely novel problem."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "future life expectancy of certain non-perishable entities, such as ideas or technologies, is proportional to their current age",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "The model serves as a **mental sieve**. Its core purpose is to help discern between enduring value and fleeting trends.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "The Lindy Effect provides a practical heuristic for navigating environments characterized by high uncertainty",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "Will this trend endure the test of time, or is it just a passing phase?",
+          "section_hint": "Key Heuristics and Guiding Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "The Lindy Effect is most powerful when applied to **non-perishable entities** like ideas, protocols, or technologies where existence itself suggests durability.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "**Most useful when** choosing among non-perishable ideas, tools, or practices where survival over time is itself meaningful evidence of resilience.",
+          "section_hint": "Strengths",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "**Works best when** the environment is noisy and forecasting is weak, making longevity a better guide than recent hype.",
+          "section_hint": "Strengths",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "**Best used when** the decision is about durability, staying power, or what is likely to remain useful beyond the current cycle.",
+          "section_hint": "Strengths",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "**Danger when** age is treated as proof of superiority and the analysis ignores technological discontinuity, changing constraints, or new evidence that breaks the old baseline.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "risks applying frameworks that are \"unhelpful or misleading in the new and different context\".",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "lindy-effect conflicts with black-swan-events (black swan events) when black Swan Events highlight unpredictable, rare occurrences that can abruptly end the longevity of ideas, opposing the Lindy Effect's predictability.",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lindy_Effect_rag.md",
+          "source_quote": "Actively force yourself to test **several cuts at the problem** or use different frameworks",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Collapsed the source's durability heuristic, hype filter, and anti-age-as-proof cautions into one bounded operational contract: use longevity as a prior only for non-perishable entities, then test whether the baseline has broken.",
+        "dropped_material": [
+          "Did not split technology adoption, organizational principles, relationships, investment, or lifestyle examples into separate affordances because they illustrate the same longevity-as-resilience mechanism.",
+          "Did not promote first-principles-thinking, system-2-thinking, scaffolding, adaptive-strategy, creative-destruction, or black-swan relationships into separate affordances; they remain relation or caveat material unless reviewed later.",
+          "Did not encode a numeric life-expectancy forecast requirement because the source's operational value here is a qualitative durability prior rather than a calibrated prediction engine."
+        ],
+        "open_questions": [
+          "Review may later decide whether baseline-break testing should become a cross-model relation with creative destruction or black swan events instead of staying inside this Lindy affordance."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [],
+  "source_evidence": [
+    {
+      "source_file": "Lindy_Effect_rag.md",
+      "source_quote": "The Lindy Effect is most powerful when applied to **non-perishable entities** like ideas, protocols, or technologies where existence itself suggests durability.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Lindy_Effect_rag.md",
+      "source_quote": "**Works best when** the environment is noisy and forecasting is weak, making longevity a better guide than recent hype.",
+      "section_hint": "Strengths",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Lindy_Effect_rag.md",
+      "source_quote": "**Danger when** age is treated as proof of superiority and the analysis ignores technological discontinuity, changing constraints, or new evidence that breaks the old baseline.",
+      "section_hint": "Weaknesses and Anti-Patterns",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Lindy_Effect_rag.md",
+      "source_quote": "Actively force yourself to test **several cuts at the problem** or use different frameworks",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Read the full extraction packet, canonical source markdown, Wave 1 activation curation, Wave 2 intervention curation, and Wave 3 relation curation. Extracted one sparse affordance because the source is mostly a bounded durability heuristic plus cautions against age-as-proof reasoning.",
+    "dropped_material": [
+      "Did not create separate affordances for examples in technology, organizational structure, relationships, or team building because they do not add distinct case evidence or treatment requirements.",
+      "Did not create a runtime promotion path; this remains a dormant review artifact.",
+      "Did not force ally or antagonist relationships into the affordance layer beyond using baseline-breaking tensions as source-backed misuse context."
+    ],
+    "open_questions": [
+      "The source gives a rough proportional life-expectancy idea, but this record treats it as a qualitative prior because the packet does not provide calibration rules for quantitative forecasting."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "chaos-theory",
+  "source_file": "Chaos_Theory_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "chaos-theory.resilience-over-precision-bet-sizing",
+      "status": "supported",
+      "name": "Resilience over precision bet sizing",
+      "mechanism": "When the system is nonlinear and not controllable enough for precise prediction, require the answer to size exposure around resilience, buffers, monitoring, reversibility, and adaptation rather than a single high-confidence forecast.",
+      "activation_shape": {
+        "use_when": [
+          "Local interventions, timing shifts, or minor shocks can propagate unpredictably.",
+          "Resilience matters more than precise prediction.",
+          "Leaders need to size bets under irreducible uncertainty because the system will not stay linear long enough for a neat plan to hold."
+        ],
+        "do_not_use_when": [
+          "Chaos language is being used as a reason to avoid prioritization, bounded bets, or accountability.",
+          "The system is stable enough for conventional measurement, optimization, or operator-level thresholds.",
+          "The answer would emphasize unpredictability without naming monitoring, buffers, or adaptation mechanisms."
+        ],
+        "case_evidence_needed": [
+          "The nonlinear system or environment under decision.",
+          "The exposure being sized.",
+          "The buffer, monitoring signal, or reversible path.",
+          "The adaptation rule if the system behaves differently than expected."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "size-bet-for-adaptation-not-forecast",
+          "description": "Require the answer to shift from exact prediction to bounded exposure: name the bet size, buffer, monitoring signal, reversibility path, and adaptation trigger.",
+          "evidence_required": [
+            "The unstable system or decision environment.",
+            "The exposure being created.",
+            "The monitoring signal and buffer.",
+            "The reversibility or adaptation path."
+          ],
+          "good_output_shape": [
+            "Acknowledges irreducible uncertainty without helplessness.",
+            "Sizes the bet rather than pretending to optimize.",
+            "Names monitoring and adaptation triggers.",
+            "Preserves reversibility or recoverability where possible."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Where does this plan rely on a precise forecast the system cannot support?",
+        "What buffer, monitor, or reversible path keeps the decision recoverable?",
+        "What adaptation trigger replaces the illusion of control?"
+      ],
+      "misuse_guards": [
+        "Do not use chaos as an excuse for helplessness or lack of accountability.",
+        "Do not optimize what the source says cannot be optimized.",
+        "Do not leave unpredictability without a monitoring or adaptation rule."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Chaos_Theory_rag.md",
+          "source_quote": "Works when resilience matters more than precise prediction",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chaos_Theory_rag.md",
+          "source_quote": "Best when leaders need to size bets under irreducible uncertainty",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chaos_Theory_rag.md",
+          "source_quote": "the decision should shape exposure, buffers, monitoring, and reversibility",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one chaos-theory affordance focused on sizing bets for resilience, monitoring, reversibility, and adaptation under irreducible uncertainty.",
+        "dropped_material": [
+          "Did not extract a generic complexity or systems-thinking card.",
+          "Kept envisioning and listening-to-the-system material as support for adaptive monitoring."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card improves bounded exposure reasoning without creating helplessness."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "chaos-as-accountability-escape",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects treating chaos as a reason to avoid prioritization, bounded bets, or accountability.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chaos_Theory_rag.md",
+          "source_quote": "Performative Uncertainty Talk",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "exact-optimization-under-chaos",
+      "status": "not_supported_by_source",
+      "reason": "The source says exact foresight and optimization are not realistic in chaotic systems, so PR42 must not extract a precision-planning card.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chaos_Theory_rag.md",
+          "source_quote": "we can’t optimize; we don’t even know what to optimize",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Chaos_Theory_rag.md",
+      "source_quote": "non-linearity and irreducible uncertainty** within dynamic systems",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for chaos-theory as resilience-over-precision bet sizing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card encourages adaptive monitoring rather than fatalism."
+    ],
+    "review_status": "draft"
+  }
+}

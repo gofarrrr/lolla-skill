@@ -1,0 +1,145 @@
+{
+  "model_id": "comparative-political-systems-analysis",
+  "source_file": "Comparative_Political_Systems_Analysis_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "comparative-political-systems-analysis.compare-institutions-by-function",
+      "status": "supported",
+      "name": "Compare institutions by function",
+      "mechanism": "When institutional design, incentives, and power structures matter more than surface ideology, use comparative political systems analysis to compare formal rules, informal behavior, outcomes, and assumptions without forcing one familiar national frame onto unlike systems.",
+      "activation_shape": {
+        "use_when": [
+          "Institutional design, incentives, and power structure matter more than stated ideology or surface narrative.",
+          "The analyst must compare governance systems, policy responses, or political trajectories without assuming one familiar national frame fits all cases.",
+          "Strategic interpretation depends on how formal rules and informal behavior interact across system designs."
+        ],
+        "do_not_use_when": [
+          "Comparison collapses into superficial analogy because systems share one visible label or institution.",
+          "A political system label is being used as a verdict without outcome and mechanism comparison.",
+          "A single familiar framework is being used because it is available, not because its assumptions fit."
+        ],
+        "case_evidence_needed": [
+          "The institutional designs being compared.",
+          "The formal rules and informal behaviors in each system.",
+          "The outcome, incentive, or power mechanism to compare.",
+          "The assumptions embedded in the chosen comparison frame."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compare-mechanisms-not-labels",
+          "description": "Require the answer to compare institutions by function, incentives, and outcomes rather than by surface label.",
+          "evidence_required": [
+            "The systems or institutions being compared.",
+            "The formal and informal mechanisms in each.",
+            "The relevant outcome or power/incentive structure.",
+            "An explicit warning about the frame's assumptions."
+          ],
+          "good_output_shape": [
+            "Names the comparison basis.",
+            "Separates label from mechanism.",
+            "Compares formal rules and informal behavior.",
+            "States what outcome evidence would change the interpretation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are we comparing institutional function, incentive structure, and outcomes, or just matching labels?",
+        "What formal rules and informal behaviors interact in each system?",
+        "Which familiar national frame might be distorting the comparison?"
+      ],
+      "misuse_guards": [
+        "Do not treat a political label as a conclusion.",
+        "Do not use superficial analogy across unlike systems.",
+        "Do not ignore informal behavior, power, and incentive structure."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Comparative_Political_Systems_Analysis_rag.md",
+          "source_quote": "institutional design, incentives, and power structure matter more",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Political_Systems_Analysis_rag.md",
+          "source_quote": "without assuming one familiar national frame fits all cases",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Comparative_Political_Systems_Analysis_rag.md",
+          "source_quote": "formal rules and informal behavior interact",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports comparative analysis as mechanism/outcome comparison with explicit anti-label caveats.",
+        "dropped_material": [
+          "Did not extract political ideology classification.",
+          "Did not create deterministic cultural or regime judgments."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps compare institutions without stereotyping political systems."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "institution-comparison-without-outcomes",
+      "status": "not_supported_by_source",
+      "reason": "The source requires comparing mechanisms, formal/informal behavior, and outcomes; it does not support institutional comparison without outcome evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Comparative_Political_Systems_Analysis_rag.md",
+          "source_quote": "what others or general statistics suggest",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "political-system-label-as-verdict",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that unlike systems cannot be treated as equivalent because they share visible labels; it does not support label-as-verdict reasoning.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Comparative_Political_Systems_Analysis_rag.md",
+          "source_quote": "comparison collapses into superficial analogy",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Comparative_Political_Systems_Analysis_rag.md",
+      "source_quote": "seeing interrelationships rather than things",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found useful reviewed depth for cross-system institutional comparison without classification shortcuts.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, political classification, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare this card with comparative-advantage and risk-vs-uncertainty when sparse comparables are involved."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "model_id": "status-quo-bias",
+  "source_file": "Status_Quo_Bias_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "status-quo-bias.incumbent-option-inertia-test",
+      "status": "supported",
+      "name": "Incumbent option inertia test",
+      "mechanism": "When staying the course sounds prudent, force the answer to test whether the incumbent option remains superior on evidence or is surviving because loss aversion, switching friction, default effects, or precedent make change feel costly.",
+      "activation_shape": {
+        "use_when": [
+          "A current default, routine, vendor, strategy, or plan is being favored over alternatives.",
+          "The team needs to separate real switching costs from inertia, sunk costs, or unchallenged precedent.",
+          "A proposal to stay the course sounds prudent but may be disguising loss aversion or status pressure."
+        ],
+        "do_not_use_when": [
+          "The incumbent option is actually superior after evidence-backed comparison.",
+          "The proposed change is novelty seeking without baseline evidence that the new option is better.",
+          "The answer would treat every legacy choice as bad simply because it is old."
+        ],
+        "case_evidence_needed": [
+          "The incumbent option and the alternative being considered.",
+          "The evidence that the status quo still performs better or worse.",
+          "The real switching costs, risks, and reversibility constraints.",
+          "The assumptions or social costs that make challenge to the default difficult."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compare-default-against-live-alternative",
+          "description": "Require the answer to compare the current default against a live alternative, separating real switching cost from inertia before recommending staying or changing.",
+          "evidence_required": [
+            "The current default or incumbent path.",
+            "A credible alternative path.",
+            "Evidence for relative performance, cost, risk, and reversibility.",
+            "The loss aversion, precedent, or social cost that may protect the default."
+          ],
+          "good_output_shape": [
+            "Names the incumbent and alternative.",
+            "Separates switching cost from inertia.",
+            "States what evidence would justify staying.",
+            "States what evidence would justify changing."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is this option surviving because it is better, or because changing feels costly?",
+        "What real switching cost exists, and what part is just inertia or precedent?",
+        "What evidence would make staying the course the correct choice rather than the comfortable choice?"
+      ],
+      "misuse_guards": [
+        "Do not treat every legacy choice as bad just because it is old.",
+        "Do not turn anti-status-quo energy into novelty-seeking change without baseline evidence.",
+        "Do not ignore real switching costs while accusing the team of inertia."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "inherent preference for the current state or default option",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "test whether an incumbent option is surviving because it is actually superior or merely because changing feels costly",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "separate real switching costs from inertia",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "a proposal to \"stay the course\" sounds prudent but may be disguising loss aversion, sunk costs, or unchallenged precedent",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports an incumbent-option inertia test that is balanced: challenge defaults without assuming change is always better.",
+        "dropped_material": [
+          "Did not extract choice-architecture examples as separate affordances because the packet value is testing incumbent survival against alternatives.",
+          "Did not extract general System 1 cognitive economy as a separate card."
+        ],
+        "open_questions": [
+          "Future packet review should test overlap with commitment-bias, lock-in, and path-dependence."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "legacy-equals-bad-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against treating legacy choices as bad merely because they are old. The model requires evidence-backed comparison.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "every legacy choice is treated as bad simply because it is old",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "novelty-seeking-change-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects change for novelty alone. It warns that breaking inertia without baseline evidence can become unsafe novelty seeking.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Status_Quo_Bias_rag.md",
+          "source_quote": "novelty-seeking change without enough baseline evidence that the new option is actually better",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Status_Quo_Bias_rag.md",
+      "source_quote": "The fundamental essence of the Status Quo Bias (SQB) is the **inherent preference for the current state or default option**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Status_Quo_Bias_rag.md",
+      "source_quote": "The bias becomes dangerous when it is maintained blindly, leading to poor outcomes",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Status Quo Bias. Extracted one incumbent-option comparison record and preserved absences for anti-legacy and novelty-seeking misuse.",
+    "dropped_material": [
+      "401(k), jam study, and executive vision examples were treated as illustrations rather than separate records.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card is distinct enough from commitment-bias and lock-in."
+    ],
+    "review_status": "draft"
+  }
+}

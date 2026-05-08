@@ -1,0 +1,145 @@
+{
+  "model_id": "blooms-taxonomy",
+  "source_file": "Blooms_Taxonomy_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "blooms-taxonomy.mastery-level-diagnosis-before-tasking",
+      "status": "supported",
+      "name": "Mastery level diagnosis before tasking",
+      "mechanism": "When a learner, team, or answer jumps to critique, strategy, or creation, use Bloom's levels to diagnose the current cognitive layer and require the next task to match the missing foundation rather than treating learning as one vague activity.",
+      "activation_shape": {
+        "use_when": [
+          "A person or team is being asked to evaluate, create, or execute before the needed understanding, application, or analysis is visible.",
+          "The learning goal needs sequencing from recall and comprehension toward judgment or synthesis.",
+          "A coaching, onboarding, or explanation problem needs a sharper diagnosis of where comprehension breaks."
+        ],
+        "do_not_use_when": [
+          "The problem requires iterative exploration where rigid level-by-level sequencing would block useful loops.",
+          "The person already has enough foundation and the bottleneck is action, feedback, or prioritization.",
+          "The taxonomy is being used as a decorative classification rather than to change the next task."
+        ],
+        "case_evidence_needed": [
+          "The current task being asked of the learner or team.",
+          "Evidence of which Bloom level is already demonstrated.",
+          "The next performance requirement that depends on missing foundations.",
+          "Any pressure to skip directly to evaluation, creation, or critique."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "match-next-move-to-cognitive-layer",
+          "description": "Require the answer to name the current mastery layer, the layer being demanded, and the next task that would build the missing foundation without freezing iteration.",
+          "evidence_required": [
+            "Current learner output or team behavior.",
+            "Requested level of performance.",
+            "Observed gap between comprehension, application, analysis, evaluation, or creation.",
+            "Constraint that determines whether sequencing or iteration is needed."
+          ],
+          "good_output_shape": [
+            "Names the likely current cognitive layer.",
+            "Identifies the premature leap or missing foundation.",
+            "Assigns a next task that builds the missing layer.",
+            "Keeps the hierarchy flexible enough for real-world iteration."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What level of mastery is the person actually demonstrating right now?",
+        "Are we asking them to evaluate or create before they can analyze or apply?",
+        "What task would expose whether understanding is real rather than memorized?"
+      ],
+      "misuse_guards": [
+        "Do not use the taxonomy as a rigid staircase that blocks revisiting earlier levels.",
+        "Do not label a task with a Bloom verb unless that label changes the next evidence or practice requirement.",
+        "Do not treat higher-level vocabulary as proof of higher-level mastery."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Blooms_Taxonomy_rag.md",
+          "source_quote": "mastery is cumulative",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Blooms_Taxonomy_rag.md",
+          "source_quote": "**Most useful when** the work requires diagnosing whether someone is stuck at recall, understanding, application, or synthesis rather than treating “learning” as one vague block.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Blooms_Taxonomy_rag.md",
+          "source_quote": "**Danger when** the taxonomy is treated as a rigid staircase and used to block iteration, creativity, or revisiting earlier levels when real learning loops back.",
+          "section_hint": "Common Anti-Patterns and Dangerous Misapplication",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports Bloom's as a mastery-level diagnosis and sequencing aid, with explicit guardrails against rigid linearity.",
+        "dropped_material": [
+          "Did not extract each Bloom level as a separate affordance.",
+          "Kept consulting and AI examples as evidence of transfer, not product routing rules."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps distinguish missing mastery from generic learning advice."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "classification-as-learning",
+      "status": "not_supported_by_source",
+      "reason": "The source treats the taxonomy as a tool for diagnosing and sequencing mastery, not as proof that classification alone creates learning.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Blooms_Taxonomy_rag.md",
+          "source_quote": "the work requires diagnosing whether someone is stuck at recall, understanding, application, or synthesis rather than treating “learning” as one vague block",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "taxonomy-as-lesson-plan",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against treating the hierarchy as a literal, gated process; a real learning plan still needs iteration and context.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Blooms_Taxonomy_rag.md",
+          "source_quote": "The presentation of the taxonomy as a literal, gated, and sequential process may overlook the reality that complex learning",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Blooms_Taxonomy_rag.md",
+      "source_quote": "six sequential levels of cognitive mastery",
+      "section_hint": "Core Definition and Purpose",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for Bloom's as a mastery diagnosis and sequencing card.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic mastery classification, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card prevents premature critique and creation without creating schoolroom clutter."
+    ],
+    "review_status": "draft"
+  }
+}

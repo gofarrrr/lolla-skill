@@ -1,0 +1,160 @@
+{
+  "model_id": "peer-review-your-perspectives",
+  "source_file": "Peer_Review_Your_Perspectives_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "peer-review-your-perspectives.independent-dissent-review",
+      "status": "supported",
+      "name": "Independent dissent review before consensus",
+      "mechanism": "When a consequential conclusion is forming, expose the reasoning early to independent and diverse critique before consensus hardens, so the packet can separate evidence-quality challenges from status-driven agreement or ceremonial comments.",
+      "activation_shape": {
+        "use_when": [
+          "A draft conclusion, strategy, or recommendation is consequential enough that blind spots would be expensive.",
+          "The team may converge around a high-status opinion before independent critique is visible.",
+          "A decision spans multiple disciplines and no single operator can judge the full trade-off surface alone."
+        ],
+        "do_not_use_when": [
+          "The review would be ceremonial alignment theater with no power to challenge assumptions or stop the plan.",
+          "The team is still in divergent ideation and premature evaluation would kill useful variety.",
+          "The feedback is too vague to change an action, assumption, evidence standard, or implementation step."
+        ],
+        "case_evidence_needed": [
+          "The draft conclusion, hypothesis, or recommendation under review.",
+          "The independent critiques, dissenting perspectives, or missing disciplines not yet represented.",
+          "The assumption, evidence link, or blind spot each reviewer is testing.",
+          "The decision authority to revise, stop, or narrow the plan after review."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "collect-independent-critique-before-consensus",
+          "description": "Require the answer to expose the draft reasoning to independent critique, name the challenged assumption, and preserve dissent before social consensus or authority effects settle the decision.",
+          "evidence_required": [
+            "The draft conclusion or plan that could harden prematurely.",
+            "The reviewers, disciplines, or perspectives needed for real challenge.",
+            "The assumptions or evidence links each critique tests.",
+            "The action that would change if the critique lands."
+          ],
+          "good_output_shape": [
+            "Names the conclusion under review.",
+            "Separates independent critique from group discussion.",
+            "Links each critique to an assumption or evidence gap.",
+            "States what could change, stop, or narrow after review."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which assumption needs independent critique before the group sees everyone else's rationale?",
+        "Whose dissent would be costly to miss because they see a different frame, discipline, or trade-off?",
+        "Does this review have power to change or stop the plan, or is it alignment theater?"
+      ],
+      "misuse_guards": [
+        "Do not call a process peer review if nobody can challenge the core assumption or stop a weak plan.",
+        "Do not let the highest-status reviewer set the frame before independent opinions are captured.",
+        "Do not use vague comments as evidence of reviewed reasoning."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Peer_Review_Your_Perspectives_rag.md",
+          "source_quote": "systematic validation and refinement of one's thinking, hypotheses, or proposed solutions through the intentional scrutiny of external, diverse viewpoints",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Peer_Review_Your_Perspectives_rag.md",
+          "source_quote": "solicit initial opinions and rationales *independently*",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Peer_Review_Your_Perspectives_rag.md",
+          "source_quote": "the team can expose reasoning early, invite real dissent, and compare independent critiques before social consensus hardens",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Peer_Review_Your_Perspectives_rag.md",
+          "source_quote": "a decision spans multiple disciplines and no single operator has enough perspective to judge the full trade-off surface alone",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports independent critique before consensus hardens, with explicit guards against status and ceremonial review.",
+        "dropped_material": [
+          "Did not extract digital advisory boards as a separate affordance because they are one implementation of diverse peer review.",
+          "Did not extract Feynman Technique separately because it is already a distinct learning/communication method in the corpus."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card is especially useful for receiver-side review and external critique workflows."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "ceremonial-alignment-review",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly rejects review that only collects comments without empowering challenge to core assumptions or weak plans.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Peer_Review_Your_Perspectives_rag.md",
+          "source_quote": "nobody is empowered to challenge the core assumption or stop a weak plan",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "early-convergence-idea-policing",
+      "status": "source_too_thin",
+      "reason": "The source warns that excessive convergence too early can kill innovation. It does not support applying peer review as idea policing during divergent generation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Peer_Review_Your_Perspectives_rag.md",
+          "source_quote": "Excessive convergence too early can kill innovative solutions.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Peer_Review_Your_Perspectives_rag.md",
+      "source_quote": "guard against inaccuracies, omissions, and cognitive biases",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Peer_Review_Your_Perspectives_rag.md",
+      "source_quote": "ideas are considered on their merit rather than influenced by the *halo effect* or the status of the person holding the belief",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Peer Review Your Perspectives. Extracted one independent dissent review record and treated ceremonial review plus premature idea policing as absences.",
+    "dropped_material": [
+      "Perspective taking, WWHB, digital advisory boards, and Feynman examples were treated as supporting methods rather than separate PR32 records.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should test whether this record improves receiver-side handoff review without causing reviewer-process bloat."
+    ],
+    "review_status": "draft"
+  }
+}
