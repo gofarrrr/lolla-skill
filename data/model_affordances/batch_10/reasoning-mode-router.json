@@ -17,13 +17,15 @@
         "do_not_use_when": [
           "The right mode is already explicit and the next discriminating question is clear.",
           "Routing debate would become overhead instead of pushing the next experiment, question, or evidence check.",
-          "A deterministic system would infer reasoning mode from case type, route label, or model name."
+          "A deterministic system would infer reasoning mode from case type, route label, or model name.",
+          "The selected mode is captured by the first framing, a favored tool, a familiar label, or a high-status template despite contradictory evidence."
         ],
         "case_evidence_needed": [
           "The current problem stage: goal, problem, diagnosis, design, doing, critique, or exploration.",
           "The reasoning modes that could plausibly fit.",
           "The evidence that the current mode is mismatched.",
-          "The next question or action that the selected mode should produce."
+          "The next question or action that the selected mode should produce.",
+          "The contradictory evidence, embedded assumption, or unfamiliar problem structure that would force a route correction."
         ]
       },
       "treatment_requirements": [
@@ -34,12 +36,14 @@
             "The current stage of work.",
             "The plausible reasoning modes for the task.",
             "The cost of using the wrong mode.",
-            "The evidence that would justify switching modes."
+            "The evidence that would justify switching modes.",
+            "Evidence that the selected mode is not merely the first frame, favored tool, familiar label, or high-status template."
           ],
           "good_output_shape": [
             "Names the mode as a reviewed handoff suggestion, not a deterministic route.",
             "Explains why the mode fits the current task and stage.",
             "States what would trigger a switch.",
+            "Names the assumption or contradictory evidence that would show the route is template-captured.",
             "Avoids creating a new lane, prompt mechanic, or case-type rule."
           ]
         }
@@ -47,12 +51,14 @@
       "diagnostic_questions": [
         "What reasoning mode is the advice using right now?",
         "What task stage are we actually in, and does this mode fit that stage?",
-        "What evidence would tell us to switch from diagnosis to design, critique, exploration, or execution?"
+        "What evidence would tell us to switch from diagnosis to design, critique, exploration, or execution?",
+        "Is this mode chosen because the problem structure demands it, or because the first frame, familiar label, favored tool, or high-status template captured the route?"
       ],
       "misuse_guards": [
         "Do not turn this card into deterministic reasoning-mode routing.",
         "Do not create a new lane, prompt mechanic, or case-type classifier from this model.",
-        "Do not let mode selection become overhead that displaces the next discriminating question."
+        "Do not let mode selection become overhead that displaces the next discriminating question.",
+        "Do not keep the first or familiar route when contradictory evidence suggests a different reasoning mode."
       ],
       "source_evidence": [
         {
@@ -73,6 +79,13 @@
           "source_file": "Reasoning_Mode_Router_rag.md",
           "source_quote": "the team can explicitly name the current stage of work and switch modes as evidence changes rather than blending all modes at once.",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reasoning_Mode_Router_rag.md",
+          "source_quote": "The mode choice can get captured by the first framing, a favored tool, or a high-status template, even after contradictory evidence suggests a different path.",
+          "section_hint": "Limitations and Anti-Patterns",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -117,6 +130,35 @@
           "source_file": "Reasoning_Mode_Router_rag.md",
           "source_quote": "Routing itself can become a tax if the team keeps debating the method instead of pushing the next discriminating question or experiment forward.",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "anchored-or-template-captured-mode-selection",
+      "status": "not_supported_by_source",
+      "reason": "The source requires context-driven mode selection and switching as evidence changes. It does not support reasoning-mode routing when the first framing, a favored tool, a familiar label, or a high-status template keeps control despite contradictory evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Reasoning_Mode_Router_rag.md",
+          "source_quote": "The mode choice can get captured by the first framing, a favored tool, or a high-status template, even after contradictory evidence suggests a different path.",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reasoning_Mode_Router_rag.md",
+          "source_quote": "reasoning-mode-router conflicts with anchoring when first framing locks route selection despite contradictory evidence.",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reasoning_Mode_Router_rag.md",
+          "source_quote": "reasoning-mode-router conflicts with representativeness-heuristic when familiar labels force premature mode routing.",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }

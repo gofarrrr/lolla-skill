@@ -42,17 +42,35 @@
             "Turns each model into a test or comparison.",
             "Avoids ornamental model lists."
           ]
+        },
+        {
+          "requirement_id": "cap-and-prune-model-set",
+          "description": "Require the answer to test only the few model cuts that change the case, prune dead-end or low-relevance models, and keep the remaining set small enough to improve judgment.",
+          "evidence_required": [
+            "The candidate model cuts being considered.",
+            "The test, comparison, or hypothesis each cut changes.",
+            "The dead-end, redundant, or low-relevance models to prune.",
+            "The focused execution pressure created by the retained models."
+          ],
+          "good_output_shape": [
+            "Names the small set of model cuts worth testing.",
+            "States why each retained model changes the case.",
+            "Explicitly sets aside dead-end or decorative models.",
+            "Converts the remaining models into decision pressure instead of a model pile."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What does the current frame miss: incentives, trade-offs, second-order effects, or causal layer?",
         "Which model adds a concrete test rather than just a new label?",
-        "Are we broadening judgment or merely collecting model names?"
+        "Are we broadening judgment or merely collecting model names?",
+        "Which candidate model cuts should be pruned because they do not change the hypothesis, comparison, or decision?"
       ],
       "misuse_guards": [
         "Do not use a model name unless it changes a test, comparison, or decision implication.",
         "Do not treat surface familiarity with many models as expertise.",
-        "Do not overload the packet with a model list that weakens the actual handoff."
+        "Do not overload the packet with a model list that weakens the actual handoff.",
+        "Do not keep dead-end model cuts after they fail to add case-specific decision pressure."
       ],
       "source_evidence": [
         {
@@ -73,6 +91,27 @@
           "source_file": "Latticework_Of_Mental_Models_rag.md",
           "source_quote": "collect model names as intellectual decoration",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Latticework_Of_Mental_Models_rag.md",
+          "source_quote": "testing several \"cuts\" at a problem using frames from different disciplines to see which one yields the most insight",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Latticework_Of_Mental_Models_rag.md",
+          "source_quote": "pruning off dead-end analyses and focusing on confirming, disproving, or modifying hypotheses",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Latticework_Of_Mental_Models_rag.md",
+          "source_quote": "Overloading the mind with too many models or too much complexity can impair clear thinking",
+          "section_hint": "Weaknesses and Limitations",
           "extraction_type": "explicit",
           "confidence": "high"
         }

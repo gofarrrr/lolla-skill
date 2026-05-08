@@ -150,6 +150,35 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "elaborate-stepwise-chain-when-core-variable-or-nonlinear-leap-is-needed",
+      "status": "not_supported_by_source",
+      "reason": "The source supports stepwise decomposition only when it exposes weak links. It does not support elaborate chain-of-thought when sequential decomposition suppresses a better nonlinear leap, obscures the one or two variables that drive the outcome, or adds cognitive load without changing the decision.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "chain-of-thought conflicts with lateral-thinking (lateral thinking) when sequential step-by-step decomposition suppresses non-linear leaps that would reach a better solution faster.",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "chain-of-thought conflicts with simplification (simplification) when an elaborate reasoning chain adds legibility at the cost of obscuring the one or two variables that actually drive the outcome.",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "imposing an unnecessarily complex sequence or focusing on minute, irrelevant details can overload the **working memory**.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
