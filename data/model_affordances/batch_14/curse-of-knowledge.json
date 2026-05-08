@@ -17,13 +17,13 @@
         "do_not_use_when": [
           "The audience already shares the domain model and extra scaffolding would create unnecessary load.",
           "The issue is persuasion, motivation, or trust rather than missing shared context.",
-          "The communication can be verified by direct user testing or teach-back instead of guessed from the expert's perspective."
+          "Direct novice observation or teach-back is feasible and should be used before relying on guessed audience reconstruction alone."
         ],
         "case_evidence_needed": [
           "The audience's actual prior exposure and vocabulary.",
           "The expert terms, steps, or assumptions being compressed.",
           "The decision or behavior that depends on understanding.",
-          "A teach-back, novice test, or worked-example check."
+          "Any available signal about where recipient understanding breaks."
         ]
       },
       "treatment_requirements": [
@@ -42,35 +42,17 @@
             "Adds a recipient-side test of understanding.",
             "Warns that silence or nodding is not proof of comprehension."
           ]
-        },
-        {
-          "requirement_id": "verify-with-novice-demonstration",
-          "description": "When the communication or design will be used by novices, require direct novice demonstration, teach-back, worked examples, or observation before trusting expert predictions about what is clear.",
-          "evidence_required": [
-            "The novice, first-time user, learner, or stakeholder group whose understanding matters.",
-            "The expert prediction or assumed onboarding path.",
-            "A teach-back, worked example, or observed novice interaction.",
-            "The design, explanation, or training step that changed after observing the novice."
-          ],
-          "good_output_shape": [
-            "Treats expert prediction of novice understanding as suspect.",
-            "Asks for observed novice use or teach-back when feasible.",
-            "Separates what the expert thinks is clear from what the novice demonstrates.",
-            "Uses novice evidence to adjust the explanation, interface, or training sequence."
-          ]
         }
       ],
       "diagnostic_questions": [
         "What step feels obvious to the expert but may be invisible to the recipient?",
         "Which terms carry compressed expert meaning that the audience may not share?",
-        "Can the recipient explain the idea back in their own words or apply it to a new example?",
-        "Have we watched a genuine novice use the explanation, product, or training path instead of asking an expert to predict the gap?"
+        "Can the recipient explain the idea back in their own words or apply it to a new example?"
       ],
       "misuse_guards": [
         "Do not confuse the curse of knowledge with arrogance or condescension.",
         "Do not solve it by merely shortening the same expert-calibrated explanation.",
-        "Do not accept polite nodding or absence of questions as comprehension evidence.",
-        "Do not rely on expert predictions of novice confusion when direct novice observation or teach-back is available."
+        "Do not accept polite nodding or absence of questions as comprehension evidence."
       ],
       "source_evidence": [
         {
@@ -93,34 +75,6 @@
           "section_hint": "Common Failure Modes and Blind Spots",
           "extraction_type": "explicit",
           "confidence": "high"
-        },
-        {
-          "source_file": "Curse_of_Knowledge_rag.md",
-          "source_quote": "They cannot genuinely experience the onboarding journey of a first-time user.",
-          "section_hint": "The Playbook in Action",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "source_file": "Curse_of_Knowledge_rag.md",
-          "source_quote": "interfaces that are efficient for experts and impenetrable for beginners.",
-          "section_hint": "The Playbook in Action",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "source_file": "Curse_of_Knowledge_rag.md",
-          "source_quote": "Observe, don't ask — experts predict novice confusion inaccurately because the prediction itself suffers from the curse.",
-          "section_hint": "Risks and Mitigations",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "source_file": "Curse_of_Knowledge_rag.md",
-          "source_quote": "Have we watched someone who has never seen this product try to use it — not asked them if they could?",
-          "section_hint": "Risks and Mitigations",
-          "extraction_type": "explicit",
-          "confidence": "high"
         }
       ],
       "confidence": "high",
@@ -128,10 +82,111 @@
         "normalization_note": "Batch 14 outcome: strong_affordance_record. The source supports curse-of-knowledge as a communication scaffolding and teach-back requirement.",
         "dropped_material": [
           "Did not treat expert communication failure as bad intent.",
-          "Did not extract product-design details beyond audience-state verification."
+          "Moved observed novice validation into a separate PR82 affordance to preserve transaction identity."
         ],
         "open_questions": [
           "Later packet review should test overlap with user-experience and scaffolding cards."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "curse-of-knowledge.observed-novice-validation-before-clarity-trust",
+      "status": "supported",
+      "name": "Observed novice validation before clarity trust",
+      "mechanism": "When an expert believes an explanation, interface, training path, or handoff is clear for true novices, require teach-back or observed novice use before trusting expert prediction of understanding.",
+      "activation_shape": {
+        "use_when": [
+          "A product, explanation, onboarding path, training, or briefing will be consumed by genuine novices.",
+          "Expert prediction of novice clarity is unreliable and misunderstanding would change decisions or behavior.",
+          "The case needs recipient-side evidence, not only expert-side reconstruction of the missing model."
+        ],
+        "do_not_use_when": [
+          "The audience has already demonstrated understanding in the relevant task context.",
+          "The audience genuinely shares the expert model and novice validation would add unnecessary friction.",
+          "The problem is motivation, agreement, or persuasion rather than comprehension."
+        ],
+        "case_evidence_needed": [
+          "The novice, first-time user, learner, or stakeholder group whose understanding matters.",
+          "The expert prediction or assumed onboarding path.",
+          "A teach-back, worked example, or observed novice interaction.",
+          "The explanation, interface, or training step changed after observing the novice."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "verify-clarity-with-recipient-demonstration",
+          "description": "Require the answer to replace expert-predicted clarity with recipient demonstration, observed novice use, or teach-back before treating the communication as understood.",
+          "evidence_required": [
+            "Novice recipient group.",
+            "Expert clarity claim.",
+            "Observed use, teach-back, or application test.",
+            "Adjustment made from recipient evidence."
+          ],
+          "good_output_shape": [
+            "Treats expert prediction of novice understanding as suspect.",
+            "Asks for observed novice use or teach-back when feasible.",
+            "Separates what the expert thinks is clear from what the novice demonstrates.",
+            "Uses novice evidence to adjust the explanation, interface, or training sequence."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Have we watched someone who has never seen this try to use or explain it?",
+        "Can the recipient apply the idea to a new example without repeating expert wording?",
+        "What changed after observing the novice rather than asking the expert to predict the gap?"
+      ],
+      "misuse_guards": [
+        "Do not treat polite comprehension signals as evidence of understanding.",
+        "Do not stop at guessed audience reconstruction when direct recipient evidence is feasible.",
+        "Do not run novice validation as a ritual unless it changes the explanation, design, or training path."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "Require recipients to demonstrate understanding by explaining back in their own words or applying the concept to a new example.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "Polite comprehension signals are not evidence of understanding.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "Include genuine novice users in design and testing processes.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "Observe, don't ask — experts predict novice confusion inaccurately because the prediction itself suffers from the curse.",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "Have we watched someone who has never seen this product try to use it — not asked them if they could?",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR82 split: source supports recipient-side validation as a separate card transaction from expert-side audience reconstruction.",
+        "dropped_material": [
+          "Did not turn all product-design examples into UX policy.",
+          "Kept the affordance limited to novice demonstration and teach-back evidence."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this split prevents guessed clarity from passing as observed understanding."
         ],
         "review_status": "draft"
       }

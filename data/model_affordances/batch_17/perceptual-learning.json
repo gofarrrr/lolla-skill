@@ -42,36 +42,17 @@
             "Adds an anomaly check.",
             "Avoids treating perception as objective proof."
           ]
-        },
-        {
-          "requirement_id": "extract-tacit-cues-with-stories-and-pari",
-          "description": "When the cue library is tacit, require the answer to elicit expert stories, timelines, and precursor-action-result-interpretation patterns before turning pattern recognition into training guidance.",
-          "evidence_required": [
-            "The expert, practitioner, or high-performing source whose cue discrimination matters.",
-            "A concrete story, case, or timeline where the cue was used.",
-            "The precursor, action, result, and interpretation that reveal hidden cognitive process.",
-            "The cue library, training surface, or anomaly check that will use the elicited pattern."
-          ],
-          "good_output_shape": [
-            "Asks for stories rather than generic advice when the cue is tacit.",
-            "Captures precursor, action, result, and interpretation before abstraction.",
-            "Names the discriminating cue or anomaly the learner should practice noticing.",
-            "Keeps this card limited to cue discrimination rather than generic expert interviewing."
-          ]
         }
       ],
       "diagnostic_questions": [
         "What subtle cue separates expert judgment from novice confusion here?",
         "What feedback trained this pattern, and is it still updating?",
-        "What anomaly would show that the familiar frame is the wrong tool?",
-        "Which story or timeline reveals the cue before we turn it into advice?",
-        "What precursor, action, result, and interpretation should be captured for training?"
+        "What anomaly would show that the familiar frame is the wrong tool?"
       ],
       "misuse_guards": [
         "Do not let accumulated expertise suppress anomaly detection.",
         "Do not use the handy framework when the case is genuinely novel.",
-        "Do not treat pattern recognition as proof without feedback and testing.",
-        "Do not use perceptual learning as generic expert interviewing unless the receiver action is cue discrimination or anomaly training."
+        "Do not treat pattern recognition as proof without feedback and testing."
       ],
       "source_evidence": [
         {
@@ -94,27 +75,6 @@
           "section_hint": "Weaknesses and Anti-Patterns",
           "extraction_type": "explicit",
           "confidence": "high"
-        },
-        {
-          "source_file": "Perceptual_Learning_rag.md",
-          "source_quote": "Cognitive Task Analysis",
-          "section_hint": "The Playbook in Action",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "source_file": "Perceptual_Learning_rag.md",
-          "source_quote": "Ask for Stories, Not Advice",
-          "section_hint": "The Playbook in Action",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "source_file": "Perceptual_Learning_rag.md",
-          "source_quote": "Precursor, Action, Result, and Interpretation",
-          "section_hint": "The Playbook in Action",
-          "extraction_type": "explicit",
-          "confidence": "high"
         }
       ],
       "confidence": "high",
@@ -126,6 +86,107 @@
         ],
         "open_questions": [
           "Later packet review should inspect overlap with system-1 and circle-of-competence."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "perceptual-learning.tacit-cue-extraction-before-training",
+      "status": "supported",
+      "name": "Tacit cue extraction before training",
+      "mechanism": "When the useful perceptual cue is hidden inside expert practice, use stories, timelines, think-aloud work, and PARI details to extract the cue library before turning pattern recognition into training or anomaly detection guidance.",
+      "activation_shape": {
+        "use_when": [
+          "Experts outperform novices but cannot state the relevant cues as simple procedures.",
+          "Training depends on extracting tacit signals, anomalies, or decision cues from expert practice.",
+          "The task requires stories or timelines before a cue-discrimination surface can be built."
+        ],
+        "do_not_use_when": [
+          "The discriminating cues are already known and the task is to train or test them directly.",
+          "The case is generic expert interviewing without a cue, anomaly, or training surface.",
+          "The expert pattern may be stale, biased, or mismatched to the current environment and needs challenge before extraction."
+        ],
+        "case_evidence_needed": [
+          "The expert, practitioner, or high-performing source whose cue discrimination matters.",
+          "A concrete story, case, or timeline where the cue was used.",
+          "The precursor, action, result, and interpretation that reveal hidden cognitive process.",
+          "The cue library, training surface, or anomaly check that will use the elicited pattern."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "elicit-stories-and-pari-before-cue-training",
+          "description": "Require the answer to gather expert stories and PARI details, then convert them into discriminating cues, anomaly checks, or training surfaces rather than generic advice.",
+          "evidence_required": [
+            "Expert story or timeline.",
+            "Precursor, action, result, and interpretation.",
+            "Hidden cue or anomaly signal.",
+            "Training or decision surface that will use the cue."
+          ],
+          "good_output_shape": [
+            "Asks for stories rather than generic advice when the cue is tacit.",
+            "Captures precursor, action, result, and interpretation before abstraction.",
+            "Names the discriminating cue or anomaly the learner should practice noticing.",
+            "Keeps this card limited to cue discrimination rather than generic expert interviewing."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which story or timeline reveals the cue before we turn it into advice?",
+        "What precursor, action, result, and interpretation should be captured for training?",
+        "How will the extracted cue be tested against anomalies or updated feedback?"
+      ],
+      "misuse_guards": [
+        "Do not use perceptual learning as generic expert interviewing.",
+        "Do not convert tacit expert stories into rules without naming the cue and anomaly check.",
+        "Do not protect stale expert patterns from fresh feedback."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "This family of techniques extracts knowledge from experts by focusing on the **knowledge and skills used as the basis for a decision**, particularly when tasks cannot be reduced to simple procedures.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "Experts often struggle to articulate their tacit knowledge.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "Instead, interviewers should act like journalists, gathering facts and establishing a timeline to walk through decisions step-by-step.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "Focuses on having experts generate typical problems, think aloud while solving them, and rehash the *Precursor, Action, Result, and Interpretation* to reveal hidden cognitive processes.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Perceptual_Learning_rag.md",
+          "source_quote": "Best when a domain rewards anomaly detection, signal filtering, or cue discrimination:",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR82 split: source supports tacit cue extraction as a separate upstream transaction before cue-discrimination training.",
+        "dropped_material": [
+          "Did not convert CTA into generic interviewing guidance.",
+          "Kept the split tied to cue libraries, anomaly checks, and perceptual training."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with expertise-reversal-effect tacit cognition extraction."
         ],
         "review_status": "draft"
       }

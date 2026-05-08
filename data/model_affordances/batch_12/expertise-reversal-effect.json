@@ -89,6 +89,93 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "expertise-reversal-effect.extract-tacit-expert-cognition-with-stories",
+      "status": "supported",
+      "name": "Extract tacit expert cognition with stories",
+      "mechanism": "When experts cannot reliably state the cues and decisions behind their performance as direct advice, elicit concrete incidents, timelines, and PARI patterns before turning expertise into training, prompts, or operating guidance.",
+      "activation_shape": {
+        "use_when": [
+          "The task is to extract how an expert actually decides, not merely to tune instruction for a novice or expert audience.",
+          "Direct expert advice is too abstract, compressed, or post-rationalized to train others.",
+          "A training surface needs precursor, action, result, and interpretation patterns from real expert incidents."
+        ],
+        "do_not_use_when": [
+          "The problem is only mismatched instructional support across expertise levels.",
+          "The expert's schema may be wrong and needs challenge, outside view, or disconfirming evidence before extraction.",
+          "The requested output is generic expert interviewing without converting stories into decision cues or training guidance."
+        ],
+        "case_evidence_needed": [
+          "The expert domain and decision type.",
+          "Concrete stories, incidents, or timelines from expert work.",
+          "Precursor, action, result, and interpretation details.",
+          "The training, prompt, or operating guidance that will use the extracted cues."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "convert-expert-stories-into-cue-patterns",
+          "description": "Require the answer to ask for stories rather than advice, recover timeline and PARI details, and name the decision cue or cognitive flow before treating expert performance as transferable knowledge.",
+          "evidence_required": [
+            "Expert incident story.",
+            "Timeline or factual sequence.",
+            "Precursor, action, result, and interpretation details.",
+            "Cue, decision pattern, or training implication."
+          ],
+          "good_output_shape": [
+            "Rejects generic advice as insufficient when tacit expertise matters.",
+            "Elicits a concrete story or timeline.",
+            "Extracts precursor, action, result, and interpretation.",
+            "Turns the extracted cognition into a bounded training or decision cue."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What story shows the expert making the decision under real conditions?",
+        "What precursor, action, result, and interpretation reveal the hidden cognitive flow?",
+        "What cue should the learner practice noticing, and what would falsify that cue?"
+      ],
+      "misuse_guards": [
+        "Do not treat expert advice as reliable just because the expert is fluent.",
+        "Do not protect an expert schema from challenge when the context may have changed.",
+        "Do not use this affordance for generic interviewing unless the output becomes a cue, training, or operating pattern."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Expertise_Reversal_Effect_rag.md",
+          "source_quote": "direct advice is often ineffective because experts may be unconsciously aware of their foundational skills and find it difficult to self-report tacit knowledge.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expertise_Reversal_Effect_rag.md",
+          "source_quote": "**Ask for Stories, Not Advice:** Focusing on narratives helps extract factual details and timelines, which are the raw material for understanding decision-making processes.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expertise_Reversal_Effect_rag.md",
+          "source_quote": "**Use PARI Method:** Have experts discuss typical problems they face, focusing on the **P**recursor, **A**ction, **R**esult, and **I**nterpretation of the events to illuminate the cognitive flow.",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR82 split: source supports tacit expert cognition extraction as a separate transaction from matching scaffold/compression to audience expertise.",
+        "dropped_material": [
+          "Did not turn prompt-engineering examples into prompt policy.",
+          "Kept this split tied to story/PARI extraction rather than general expert status."
+        ],
+        "open_questions": [
+          "Later packet review should test overlap with perceptual-learning tacit cue extraction."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -117,6 +204,21 @@
           "source_file": "Expertise_Reversal_Effect_rag.md",
           "source_quote": "The model misfires when teams strip away support merely because someone is experienced",
           "section_hint": "Common Anti-Patterns and Dangers",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "expert-schema-as-correct-by-default",
+      "status": "not_supported_by_source",
+      "reason": "The source says expertise reversal assumes the expert schema is correct and warns that flawed expert beliefs may require detailed challenge rather than less instruction.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Expertise_Reversal_Effect_rag.md",
+          "source_quote": "if the expert has **erroneous embedded beliefs**, the detailed instruction that causes the reversal effect might actually be necessary to challenge and change the flawed schema",
+          "section_hint": "Weaknesses and Limitations",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }
