@@ -69,6 +69,7 @@ EXPECTED_ABSENCE_FIELDS = {
     "scaffolding-as-handholding",
     "scaffolding-without-fading",
     "simple-answer-as-proof",
+    "single-familiar-frame-without-context-fit",
     "single-model-certainty",
     "system-1-as-bad-thinking",
     "system-2-as-automatic-correctness",
@@ -88,6 +89,7 @@ LIVE_RUNTIME_PATHS = (
 
 APPROVED_EXTRA_ABSENCE_MODEL_IDS = {
     "chain-of-thought",
+    "mental-models-of-reality",
     "meta-cognitive-reflection",
 }
 

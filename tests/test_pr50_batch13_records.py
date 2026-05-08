@@ -42,6 +42,8 @@ EXPECTED_ABSENCE_FIELDS = {
     "prior-without-update-evidence",
     "growth-rate-as-guarantee",
     "compounding-without-time-horizon",
+    "disjunctive-failure-risk-as-conjunctive-sequence",
+    "expert-confidence-as-cumulative-risk-proof",
     "specific-story-as-probability-proof",
     "detail-rich-conjunction-as-more-likely",
     "data-science-as-algorithmic-authority",
@@ -71,6 +73,10 @@ LIVE_RUNTIME_PATHS = (
     REPO_ROOT / "engine" / "system_b" / "reasoning_substrate_packet_review.py",
     REPO_ROOT / "scripts" / "run_pipeline.py",
 )
+
+APPROVED_EXTRA_ABSENCE_COUNTS = {
+    "conjunction-fallacy": 4,
+}
 
 
 def test_pr50_batch13_records_exist_for_approved_models_only() -> None:
@@ -120,7 +126,8 @@ def test_pr50_batch13_records_are_compact_and_absence_first() -> None:
 
         assert record["status"] in {"supported", "weak_support"}
         assert len(affordances) == 1
-        assert len(absences) == 2
+        expected_absence_count = APPROVED_EXTRA_ABSENCE_COUNTS.get(model_id, 2)
+        assert len(absences) == expected_absence_count
         assert affordances[0]["confidence"] in {"high", "medium"}
         assert all(absence["runtime_policy"] == "do_not_promote" for absence in absences)
 

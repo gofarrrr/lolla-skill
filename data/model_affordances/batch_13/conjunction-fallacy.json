@@ -121,6 +121,50 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "disjunctive-failure-risk-as-conjunctive-sequence",
+      "status": "not_supported_by_source",
+      "reason": "The source distinguishes conjunctive success chains from disjunctive failure structures where any single component can fail; future decoders should reject or defer this card when the case needs disjunctive failure-path governance rather than sequential success-gate testing.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Conjunction_Fallacy_rag.md",
+          "source_quote": "failure happens if *any* single component fails",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Conjunction_Fallacy_rag.md",
+          "source_quote": "If a decision-maker incorrectly frames a situation as conjunctive when it is actually defined by **disjunctive** failure risks",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "expert-confidence-as-cumulative-risk-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that expert experience can create overconfidence and unwillingness to conduct objective cumulative-risk analysis; expert confidence alone should not be accepted as probability evidence for a multi-step plan.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Conjunction_Fallacy_rag.md",
+          "source_quote": "Experts are susceptible to this fallacy because their deep experience can create an **illusion of understanding** and overconfidence",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Conjunction_Fallacy_rag.md",
+          "source_quote": "Obtain **separate, independent judgments** on each element of the plan *before* combining them.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [

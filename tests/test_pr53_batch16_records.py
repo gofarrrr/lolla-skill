@@ -56,6 +56,7 @@ EXPECTED_ABSENCE_FIELDS = {
     "self-organization-without-governance",
     "specialization-without-coordination-cost",
     "supply-demand-without-constraints",
+    "threat-filter-communication-packaging",
     "tradition-as-proof",
     "willingness-to-pay-as-extraction-license",
     "elastic-snippet-without-relevance-quality-check",
@@ -71,6 +72,7 @@ LIVE_RUNTIME_PATHS = (
 
 APPROVED_EXTRA_ABSENCE_MODEL_IDS = {
     "elasticity",
+    "evolutionary-pressure",
 }
 
 
