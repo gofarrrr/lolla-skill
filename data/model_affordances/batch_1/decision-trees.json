@@ -256,7 +256,81 @@
       "confidence": "high"
     }
   ],
-  "absence_records": [],
+  "absence_records": [
+    {
+      "attempted_field": "standalone-decision-tree-runtime-automation-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source uses AI, digital twins, conditional prompts, and approval workflows as examples of explicit branch logic, but that material does not add a separate runtime automation affordance beyond the existing decision-trees.branch-trigger-map requirement to make branch rules explicit.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "For high-stakes decisions or automated systems, the Decision Tree helps explicitly define the rules for choosing action A over action B.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "They form the basis for **conditional prompts** and logic embedded in system prompts for AI agents, allowing digital twins to behave realistically and consistently by having an explicit decision-making framework.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "behavior-free-human-decision-tree",
+      "status": "not_supported_by_source",
+      "reason": "The source does not support treating a neat logical tree as adequate for human or social decisions when emotions, beliefs, wishes, desires, or behavioral tendencies materially affect the branches. Future decoder behavior should reject or defer decision-tree treatment unless those behavioral drivers are explicitly represented as branch evidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "**\"life rarely arranges itself so neatly\"**",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Decision trees primarily deal with logic and evidence. They are often designed without formally incorporating psychological factors or behavioral tendencies.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "Ensure that the model accounts for the distinction between objective facts and **emotions, beliefs, wishes, and desires** that influence decision-making.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "exhaustive-option-tree-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports pruning and prioritizing branches, not turning every attractive option into an exhaustive tree. If the case mainly needs option narrowing, a decoder should reject or defer decision-tree promotion until the tree names what not to work on and avoids decision-paralysis expansion.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "After disaggregating a problem into branches, the model enables **prioritization** by helping users determine what *not* to work on",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Decision_Trees_rag.md",
+          "source_quote": "While aiming for clarity, if the model requires input on too many attractive options, it can contribute to **decision paralysis**.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
   "source_evidence": [
     {
       "source_file": "Decision_Trees_rag.md",
