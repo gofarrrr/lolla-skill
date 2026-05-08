@@ -42,17 +42,35 @@
             "Explains the impact.",
             "Invites a concrete future adjustment."
           ]
+        },
+        {
+          "requirement_id": "check-machine-level-when-pattern-repeats",
+          "description": "When the same deviation repeats or the outcome appears process-produced, require the answer to inspect the machine level as well as the case-at-hand so feedback improves the system rather than only correcting a person or incident.",
+          "evidence_required": [
+            "Whether the deviation is a one-off case or part of a repeated pattern.",
+            "The process, structure, handoff, incentive, or support condition that may have produced the outcome.",
+            "What immediate case-at-hand action is still needed.",
+            "What machine-level adjustment would prevent recurrence."
+          ],
+          "good_output_shape": [
+            "Keeps the specific observed deviation visible.",
+            "Names the case-at-hand correction without stopping there when the pattern repeats.",
+            "Identifies the process or structure that produced the outcome.",
+            "Turns feedback into a person-safe adjustment and a system/process improvement."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What specific behavior or output deviated from the standard?",
         "What cause/effect link does the recipient need to see to adjust?",
-        "Will the timing, context, and tone make the feedback hearable?"
+        "Will the timing, context, and tone make the feedback hearable?",
+        "Is this only a case-at-hand issue, or did the machine level produce the outcome?"
       ],
       "misuse_guards": [
         "Do not use rank or authority as a substitute for observation quality.",
         "Do not deliver technically accurate criticism in a way that overwhelms learning with defensiveness.",
-        "Do not select feedback evidence merely to confirm an existing performance narrative."
+        "Do not select feedback evidence merely to confirm an existing performance narrative.",
+        "Do not personalize a repeated or process-produced failure without checking the underlying structure."
       ],
       "source_evidence": [
         {
@@ -80,6 +98,27 @@
           "source_file": "Constructive_Feedback_Models_rag.md",
           "source_quote": "feedback is technically accurate but delivered without timing, context, or respect, so defensiveness overwhelms learning",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "Focus on the System/Process",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "understanding the underlying structure or \"machine level\" that produced the outcome",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "why the outcome was produced by the underlying process",
+          "section_hint": "The Playbook in Action",
           "extraction_type": "explicit",
           "confidence": "high"
         }

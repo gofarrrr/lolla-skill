@@ -42,17 +42,37 @@
             "Separates diagnosis from advice.",
             "Uses confirmation before proposing the next move."
           ]
+        },
+        {
+          "requirement_id": "capture-process-before-abstracting-advice",
+          "description": "When the needed knowledge is trapped in expert, customer, or operator practice, require the answer to elicit how the person thinks, decides, sequences, and notices exceptions before abstracting advice.",
+          "evidence_required": [
+            "The concrete situation where the expert, customer, operator, or stakeholder made decisions.",
+            "The sequence, cue, constraint, or exception that shaped the decision.",
+            "The stories, facts, timelines, or exact language the source uses to describe the process.",
+            "The synthesis, design choice, learning move, or action threshold the elicited process will inform."
+          ],
+          "good_output_shape": [
+            "Asks how the person thinks or decides rather than asking only what they recommend.",
+            "Captures stories, timelines, constraints, and exceptions before abstraction.",
+            "Separates extracted process evidence from the assistant's own interpretation.",
+            "Turns the captured process into a bounded decision, design, or learning move."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What does the other side think we do not understand about their perspective?",
         "What facts, emotions, or constraints are missing from our current frame?",
-        "Have we confirmed their meaning before moving to advice or rebuttal?"
+        "Have we confirmed their meaning before moving to advice or rebuttal?",
+        "What would we miss if we asked only what to do instead of how the person thinks?",
+        "Which story, timeline, or decision walkthrough reveals the tacit process?"
       ],
       "misuse_guards": [
         "Do not use listening language performatively when the answer is already decided.",
         "Do not force a sweeping interpretation that makes the speaker feel judged or analyzed.",
-        "Do not let listening become endless diagnosis when action criteria are already clear."
+        "Do not let listening become endless diagnosis when action criteria are already clear.",
+        "Do not collapse the source's process into generic best-practice advice.",
+        "Do not treat long listening as useful unless it changes a decision, design, or synthesis."
       ],
       "source_evidence": [
         {
@@ -82,14 +102,43 @@
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "ask questions that yield detailed answers, focusing on the process rather than the outcome",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "Don’t ask people what they think; instead, **ask them how they think**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "experts often communicate tacit knowledge poorly or unconsciously omit key details",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "asking for stories, facts, and step-by-step decision walkthroughs",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
         }
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a hidden-disagreement diagnostic loop with explicit anti-performative and anti-premature-interpretation guards.",
+        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a hidden-disagreement diagnostic loop with explicit anti-performative and anti-premature-interpretation guards. PR74 hardens the same card for tacit expert, customer, or operator process capture rather than splitting a second listening affordance.",
         "dropped_material": [
           "Did not extract all nine active-listening actions as separate affordances.",
-          "Did not infer therapy-style guidance beyond the source's decision and conflict diagnosis material."
+          "Did not split expert-process listening from the core diagnostic loop because the existing card already owns asking how the speaker thinks before advice.",
+          "Did not duplicate feedback models, non-violent communication, or evidence-testing cards."
         ],
         "open_questions": [
           "Future packet review should test this card against Prisoner's Dilemma in cases where adversarial incentives and listening both appear relevant."
@@ -141,6 +190,28 @@
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "listening-through-adversarial-incentives",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source says active listening can conflict with Prisoner's Dilemma when incentives reward withholding. Do not promote listening harder as the primary move when the case first needs incentive, payoff, or trust-structure diagnosis.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "active-listening conflicts with prisoners-dilemma when adversarial incentives reward information withholding over truthful sharing.",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "Most useful when the visible disagreement is not the real disagreement",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "medium"
         }
       ]
     }
