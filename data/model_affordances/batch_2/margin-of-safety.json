@@ -215,6 +215,36 @@
           "confidence": "medium"
         }
       ]
+    },
+    {
+      "attempted_field": "optimistic-base-case-as-margin-of-safety",
+      "status": "not_supported_by_source",
+      "reason": "The source requires margin sizing from comparable estimation error, not from confidence, optimism, or a clean forecast path. A best-case forecast should not be promoted as a safety margin.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "A margin of safety is only real if it is wider than your recent track record of estimation errors -- not wider than your best-case model.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "static-buffer-as-durable-margin",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that a buffer can become unsafe when burn rate, exposure, or volatility changes. A fixed reserve should not be promoted as durable margin without a resize trigger.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Margin_Of_Safety_rag.md",
+          "source_quote": "the assumed buffer is static while the burn rate, exposure, or environmental volatility is changing underneath it.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
