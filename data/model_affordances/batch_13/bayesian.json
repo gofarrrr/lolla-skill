@@ -121,6 +121,49 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "short-run-structural-shift-claim-without-explicit-update",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports Bayesian updating when the prior, signal reliability, posterior movement, and action threshold are explicit. If a short run of results is being treated as structural change without that update discipline, route first to regression-to-the-mean or law-of-large-numbers rather than letting Bayesian language promote the claim.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Bayesian_rag.md",
+          "source_quote": "governs how beliefs must be logically updated when new evidence or information is encountered",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Bayesian_rag.md",
+          "source_quote": "**Most useful when** a short run of wins, losses, or experiment results is being treated as proof that the underlying probability structure has shifted.",
+          "section_hint": "Strengths (When the Model is Most Powerful)",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Bayesian_rag.md",
+          "source_quote": "**Works when** the evidence is thin, recent, or self-selected but the plan is already acting as if the posterior is settled enough for irreversible commitment.",
+          "section_hint": "Strengths (When the Model is Most Powerful)",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Regression_To_The_Mean_rag.md",
+          "source_quote": "a change without a reason for the change is not really a change",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Law_of_Large_Numbers_rag.md",
+          "source_quote": "the **larger the sample size (N), the more likely it is that the sample mean will converge to the true mean of the underlying population**.",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
