@@ -42,17 +42,34 @@
             "Separates bad rules from bad actors.",
             "Proposes a trust, enforcement, or game-redesign lever."
           ]
+        },
+        {
+          "requirement_id": "test-competitive-frame-before-defection-diagnosis",
+          "description": "Before using defection logic, check whether the situation has been framed competitively by one side and whether negotiation, reputation, repeated interaction, shared identity, or a cooperative frame changes the payoff diagnosis.",
+          "evidence_required": [
+            "The current frame being imposed on the interaction.",
+            "Whether the interaction is competitive, cooperative, repeated, reputation-sensitive, or negotiable.",
+            "The non-adversarial repair or cooperative frame that could make defection logic unnecessary or incomplete."
+          ],
+          "good_output_shape": [
+            "Names the competitive frame before accepting it.",
+            "Tests whether a cooperative or repeated-game frame changes the recommended move.",
+            "Preserves reputation, negotiation, norms, shared identity, and process repair as checks on hostile payoff framing."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What is each actor rewarded for doing alone, and why does that hurt the group?",
         "What mechanism would make cooperation stable rather than naive?",
-        "Are we looking at betrayal, or at a process/coordination problem wearing a competitive frame?"
+        "Are we looking at betrayal, or at a process/coordination problem wearing a competitive frame?",
+        "What frame other than a competitive one could govern this interaction?",
+        "Would real-time negotiation, future consequences, reputation, or repeated interaction change the immediate payoff matrix?"
       ],
       "misuse_guards": [
         "Do not treat every coordination problem as betrayal.",
         "Do not ignore social context, future consequences, negotiation, or reputation.",
-        "Do not blame actors before testing whether the payoff structure creates the bad behavior."
+        "Do not blame actors before testing whether the payoff structure creates the bad behavior.",
+        "Do not accept the adversary's competitive frame as the only frame when a cooperative or repeated-game context could change the outcome."
       ],
       "source_evidence": [
         {
@@ -80,6 +97,41 @@
           "source_file": "Prisoners_Dilemma_rag.md",
           "source_quote": "what mechanism could keep the cooperative outcome from collapsing",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "The PD serves as a potent metaphor for the influence of **framing**—the way a situation or explanation is presented.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "the prosecutors in the PD have chosen to frame the situation **competitively** because the 5-year/5-year Nash equilibrium is their preferred outcome.",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "if the prisoners could instead frame the situation **cooperatively**—prioritizing mutual benefit—they could vastly improve their outcome (1 year each).",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "The simple PD formulation fails if players consider factors outside the immediate payoff matrix, such as real-time negotiation or the expectation of **future retribution**.",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prisoners_Dilemma_rag.md",
+          "source_quote": "The model’s outcome changes drastically depending on whether the situation is framed competitively (by the prosecution/adversary) or cooperatively (by the criminals/partners).",
+          "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -147,7 +199,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 6 source reading found strong reviewed depth for Prisoner's Dilemma. Extracted one game-redesign card and rejected betrayal overreach.",
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Prisoner's Dilemma. Extracted one game-redesign card, rejected betrayal overreach, and PR77 hardens the card with competitive-frame, cooperative-frame, negotiation, reputation, and repeated-interaction checks.",
     "dropped_material": [
       "Classic payoff matrix detail was used as evidence but not preserved as packet bulk.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."

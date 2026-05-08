@@ -174,13 +174,28 @@
             "Avoids unfair penalization or reward based on luck rather than behavior.",
             "Recommends a proxy, review cadence, or accountability rule that better tracks the hidden behavior."
           ]
+        },
+        {
+          "requirement_id": "check-delayed-risk-externalization",
+          "description": "When immediate observable outcomes drive reward or oversight, test whether the proxy creates short-term gains by externalizing delayed stability, ethical, or systemic risk.",
+          "evidence_required": [
+            "The immediate observable outcome being used for payment, reward, penalty, or oversight.",
+            "The long-term stability, ethical, or systemic risk that could be shifted outside the measurement window.",
+            "The second-order consequences that would appear after the protected behavior compounds."
+          ],
+          "good_output_shape": [
+            "Separates short-term metric improvement from durable accountability.",
+            "Names delayed risks that the current proxy fails to capture.",
+            "Requires a review window, accountability rule, or second-order consequence check before treating the proxy as safe."
+          ]
         }
       ],
       "diagnostic_questions": [
         "Which post-decision action, effort, or care cannot be directly observed?",
         "What observable metric is being used as the proxy for that hidden behavior?",
         "Which chance factors could make this outcome look good or bad regardless of the agent's effort?",
-        "Would this incentive punish luck, reward luck, or actually change the behavior we need?"
+        "Would this incentive punish luck, reward luck, or actually change the behavior we need?",
+        "What long-term stability, ethical, or systemic risk could this short-term metric externalize?"
       ],
       "misuse_guards": [
         "Do not assume a perfect one-to-one relationship between observable outcomes and unobservable effort.",
@@ -221,6 +236,20 @@
           "source_file": "Moral_Hazard_rag.md",
           "source_quote": "Assuming a perfect, certain link between observable outcome and unobservable effort can lead to unfair penalization or rewarding based on luck, rather than behavior.",
           "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "If payments are based solely on immediate observable outcomes (e.g., quarterly profit), this can inadvertently incentivize short-term gains at the expense of long-term stability or ethical behavior, leading to a focus on maximizing current profit while externalizing long-term risk",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Moral_Hazard_rag.md",
+          "source_quote": "forcing oneself to visualize all the subsequent \"dominoes\" (second-order consequences) helps reveal the systemic, often delayed, risks introduced by protected behavior.",
+          "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -338,7 +367,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Read the full Moral_Hazard_rag.md source, the activation, intervention, and relation curation layers, the Batch 2 selection brief, and the Batch 1 information-asymmetry boundary record. Extracted two affordances focused on post-decision risk transfer and post-delegation hidden effort, preserving moral hazard as changed behavior after action and consequence are separated.",
+    "normalization_note": "Read the full Moral_Hazard_rag.md source, the activation, intervention, and relation curation layers, the Batch 2 selection brief, and the Batch 1 information-asymmetry boundary record. Extracted two affordances focused on post-decision risk transfer and post-delegation hidden effort, preserving moral hazard as changed behavior after action and consequence are separated. PR77 hardens the hidden-effort proxy card against delayed risk externalization without promoting short-termism as a third affordance.",
     "dropped_material": [
       "Did not create a generic information-asymmetry, principal-agent, or hidden-evidence affordance because the boundary test is post-contract or post-decision behavior change under transferred downside.",
       "Did not promote short-termism into a third affordance; it is source-backed as a failure mode of immediate observable outcome metrics and delayed downside externalization, but the treatment is already carried by proxy design and exposure alignment.",

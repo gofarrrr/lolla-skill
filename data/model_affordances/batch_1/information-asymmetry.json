@@ -419,6 +419,118 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "information-asymmetry.knowledge-authority-risk-map",
+      "status": "supported",
+      "name": "Knowledge authority risk map before commitment",
+      "mechanism": "When the people who know the most, bear the risk, and approve the decision are not the same actors, map decision power, fact sets, hidden assumptions, selective disclosure, and risk ownership before treating disagreement as preference conflict.",
+      "activation_shape": {
+        "use_when": [
+          "Stakeholder knowledge, risk-bearing, and decision authority are misaligned across different actors.",
+          "Apparent disagreement may be unequal information rather than a true preference clash.",
+          "The next move is to map real decision-makers, require disclosure, or collect decoupled judgments before commitment."
+        ],
+        "do_not_use_when": [
+          "The evidence problem is supplier-controlled proof, staged references, or hidden optimization by a party being evaluated.",
+          "The evidence problem is expert-recipient tacit knowledge extraction or communication accessibility.",
+          "The true blocker is incentive misalignment, weak governance, or lack of authority to act on already-known facts."
+        ],
+        "case_evidence_needed": [
+          "Which actors know the most, which actors bear the risk, and which actors approve or block the decision.",
+          "The different fact sets, hidden assumptions, selective disclosures, stakeholder biases, or non-decision-maker distractions shaping the conflict.",
+          "The commitment decision that would change after disclosure, real decision-maker mapping, or decoupled stakeholder judgments."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-knowledge-risk-and-authority",
+          "description": "Identify who knows the relevant facts, who bears the consequence, who approves the decision, and where stakeholder bias or non-decision-maker focus is distorting the commitment path.",
+          "evidence_required": [
+            "The stakeholders or parties involved in the decision.",
+            "Who has the relevant knowledge, who bears the risk, and who has approval authority.",
+            "The stakeholder biases, preferences, or decision-maker map that could change the next move."
+          ],
+          "good_output_shape": [
+            "Separates knowledge ownership, risk ownership, and approval authority.",
+            "Names the real decision-makers instead of spending effort on non-decision-makers.",
+            "States which disclosure, diligence, or stakeholder-mapping step changes the commitment decision."
+          ]
+        },
+        {
+          "requirement_id": "surface-fact-set-differences",
+          "description": "Test whether disagreement is actually caused by different fact sets, hidden assumptions, or selective disclosure before treating it as a fixed preference conflict.",
+          "evidence_required": [
+            "The apparent disagreement or preference clash.",
+            "The facts, assumptions, or disclosures each side is acting from.",
+            "Separate stakeholder judgments or perspective records gathered before group convergence."
+          ],
+          "good_output_shape": [
+            "Shows where parties are reasoning from different information rather than different values.",
+            "Uses decoupled judgments to uncover missing or conflicting information.",
+            "Clarifies whether the conflict should be solved by disclosure, authority mapping, incentive redesign, or genuine negotiation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who knows the most, who bears the risk, and who actually approves the decision?",
+        "Are the parties disagreeing about preferences, or are they acting from different fact sets, hidden assumptions, or selective disclosure?",
+        "Which decision-maker map or decoupled judgment would change the commitment path?"
+      ],
+      "misuse_guards": [
+        "Do not treat known facts as an information-asymmetry problem when the blocker is incentive misalignment, weak governance, or lack of authority to act.",
+        "Do not collapse this affordance into supplier-controlled evidence or expert-recipient teaching; those are separate information-asymmetry transactions.",
+        "Do not ask for more information without naming which missing fact, stakeholder, or authority map would change the decision."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "**Social cartography** (drawing a mental map of key players) ensures the strategist has a complete picture of stakeholder biases and preferences, preventing effort from being wasted on non-decision-makers.",
+          "section_hint": "Actionable Frameworks and Heuristics (Mitigating IA)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Works when the practical decision is whether to add diligence, require disclosure, redesign incentives, use signaling, or map the real decision-makers before committing.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Best when the people who know the most, the people who bear the risk, and the people who approve the decision are not the same actors.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Works when conflict is being misread as preference clash even though the real issue is that different parties are acting from different fact sets, hidden assumptions, or selective disclosure.",
+          "section_hint": "Strengths (Contexts of Power)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Decorrelate errors by obtaining separate judgments on the issue before any discussion",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR77 split this from party-controlled evidence and expert-recipient tacit extraction because the downstream transaction is a stakeholder map: align knowledge, risk-bearing, and authority before interpreting disagreement.",
+        "dropped_material": [
+          "Did not promote exploitative knowledge-gap leverage or FUD tactics.",
+          "Did not duplicate generic stakeholder, empathy, or negotiation records; this affordance only activates when unequal information changes the decision authority map."
+        ],
+        "open_questions": [
+          "Packet stress should later check whether three information-asymmetry affordances remain legible under caps."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -479,6 +591,21 @@
           "confidence": "medium"
         }
       ]
+    },
+    {
+      "attempted_field": "known-facts-without-authority-or-incentive-as-information-gap",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that some cases look like knowledge gaps but are really incentive misalignment, weak governance, or lack of authority to act on known facts. Do not promote information-asymmetry when the missing move is incentive, governance, or authority redesign rather than disclosure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Information_Asymmetry_rag.md",
+          "source_quote": "Danger when the situation looks like a knowledge gap but the true blocker is incentive misalignment, weak governance, or lack of authority to act on the known facts.",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -519,14 +646,14 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Read the full packet assembled at /tmp/model-affordance-packets/information-asymmetry.json, the full canonical source markdown, and the activation, intervention, and relation curation layers. Extracted two party-level affordances and kept the main one focused on supplier/agent-controlled evidence rather than generic uncertainty or confidence calibration.",
+    "normalization_note": "Read the full packet assembled at /tmp/model-affordance-packets/information-asymmetry.json, the full canonical source markdown, and the activation, intervention, and relation curation layers. Extracted three bounded affordances: supplier/agent-controlled evidence, expert-recipient tacit knowledge extraction, and PR77's stakeholder knowledge-authority-risk map. The record stays away from generic uncertainty or confidence calibration.",
     "dropped_material": [
       "Did not create separate affordances for PE investing, pitching, procurement FUD, WYSIATI, Feynman Technique, cognitive load theory, or Systems Thinking because those either need policy review, belong to relation curation, or duplicate another model's mechanism.",
       "Did not create a generic unknown-unknowns or calibration affordance; the source's usable IA shape is one party possessing, withholding, selecting, or failing to articulate information another party needs.",
       "Did not promote any record into runtime routing, Lane 4 behavior, chat, memo, Step 6, Step 8, or Observatory output behavior."
     ],
     "open_questions": [
-      "Review may want to split supplier/principal-agent observability from expert-recipient tacit knowledge in a later pass.",
+      "Packet stress should check whether three information-asymmetry affordances remain legible under caps.",
       "Exploitative strategic applications are source-present but intentionally deferred until review decides whether they belong in a safety-bounded affordance at all."
     ],
     "review_status": "draft"

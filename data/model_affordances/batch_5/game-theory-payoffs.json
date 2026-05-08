@@ -89,6 +89,119 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "game-theory-payoffs.credible-sequencing-commitment-device",
+      "status": "supported",
+      "name": "Credible sequencing commitment device",
+      "mechanism": "When leverage comes from changing the game rather than choosing inside a fixed payoff map, require the answer to test sequencing, reveal/conceal choices, commitments, threats, promises, or forcing moves for credibility before treating them as strategic leverage.",
+      "activation_shape": {
+        "use_when": [
+          "The real leverage is altering incentives, expectations, or credible constraints so another actor changes behavior.",
+          "The decision depends on whether to move first, wait, reveal information, conceal information, or create a forcing move.",
+          "A proposed commitment, threat, promise, or signal would change the other side's response only if follow-through is credible."
+        ],
+        "do_not_use_when": [
+          "The task only needs a static map of players, moves, and payoffs; use the counterparty-response payoff map instead.",
+          "The stated threat, promise, or commitment has no device that makes follow-through in the actor's own interest.",
+          "Sequencing language is being used to make speculative manipulation sound rigorous without naming the counterparties and credibility constraints."
+        ],
+        "case_evidence_needed": [
+          "The counterparty whose expectations or response set the move is meant to change.",
+          "The sequencing choice, commitment, threat, promise, signal, reveal/conceal decision, or forcing move being considered.",
+          "The credibility device, such as contract, sunk cost, reputation, public commitment, or irreversible action, that makes follow-through believable."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-game-changing-move",
+          "description": "Identify the proposed game-changing move and explain how it alters incentives, expectations, constraints, or the other side's response set.",
+          "evidence_required": [
+            "The current game or strategic interaction.",
+            "The move that would change incentives, expectations, or constraints.",
+            "The response shift expected from the other actor."
+          ],
+          "good_output_shape": [
+            "Names the exact commitment, threat, promise, signal, sequencing move, or forcing move.",
+            "Explains how the move changes the other side's available or attractive responses.",
+            "Separates genuine game change from simply choosing a different action inside the same game."
+          ]
+        },
+        {
+          "requirement_id": "test-credibility-device",
+          "description": "Before treating a commitment, threat, or promise as leverage, specify what device makes follow-through credible and what happens if the counterparty doubts it.",
+          "evidence_required": [
+            "The stated commitment, threat, promise, or signal.",
+            "The device that makes follow-through in the actor's own interest.",
+            "The fallback if the other side sees the move as cheap talk."
+          ],
+          "good_output_shape": [
+            "Names the credibility device rather than relying on stated intent.",
+            "States why follow-through remains rational later, not just desirable now.",
+            "Flags commitments, threats, or promises that should be rejected as incredible."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are we choosing inside the current game, or trying to change the game?",
+        "Should we move first, wait, reveal information, conceal information, or create a forcing move?",
+        "What specific device makes the commitment, threat, or promise credible to the other side?",
+        "What happens if the counterparty treats the move as cheap talk?"
+      ],
+      "misuse_guards": [
+        "Do not treat a stated commitment, threat, or promise as strategic leverage without a credibility device.",
+        "Do not use sequencing language to hide an untested payoff map; name the players, responses, and expected behavior change.",
+        "Do not assume the counterparty will believe a signal merely because it is clear, dramatic, or rhetorically forceful."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "Works when the real leverage is not only choosing within a fixed game, but altering incentives, expectations, or credible constraints so the other side changes behavior.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "Works when the decision depends on whether to move first, wait, reveal information, conceal information, or create a forcing move that shifts the opponent into a worse response set.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "Actions intended to change the game (commitments, threats, promises) must be credible.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "This involves developing devices that make it in your interest to carry them out in the end, allowing you to change the game to your advantage.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "What specific devices (e.g., contracts, sunk costs, reputation) make our stated threat or promise absolutely credible to our opponent?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR77 split this from the static payoff-map card because the downstream receiver transaction is to design or reject a game-changing move based on sequencing and credibility, not merely map responses.",
+        "dropped_material": [
+          "Did not promote cheap talk, manipulation, or broad negotiation theater; the card requires a credibility device before the move can carry strategic weight.",
+          "Did not extract formal auction or simultaneous-game mathematics."
+        ],
+        "open_questions": [
+          "Packet stress should later test whether this affordance and signaling remain distinct when both mention credible behavior."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -162,13 +275,13 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 5 source reading found strong reviewed depth for Game Theory Payoffs. Extracted one payoff-map affordance and preserved absences for false shared-game assumptions and ornate payoff trees. PR60 adds a credibility-device absence for commitments, threats, and promises.",
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Game Theory Payoffs. Extracted the original payoff-map affordance, preserved absences for false shared-game assumptions and ornate payoff trees, and PR77 adds a separate credible sequencing and commitment-device affordance. The PR60 credibility-device absence remains as the misuse boundary.",
     "dropped_material": [
       "Formal equilibrium procedures and auction-specific tactics were not extracted because this batch targets compact packet handoff depth.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
     "open_questions": [
-      "Later packet comparison should check whether payoff mapping remains legible in compact cards."
+      "Later packet comparison should check whether payoff mapping and credible game-change sequencing remain legible as separate compact cards."
     ],
     "review_status": "draft"
   }
