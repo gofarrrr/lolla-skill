@@ -42,17 +42,35 @@
             "Adds a recipient-side test of understanding.",
             "Warns that silence or nodding is not proof of comprehension."
           ]
+        },
+        {
+          "requirement_id": "verify-with-novice-demonstration",
+          "description": "When the communication or design will be used by novices, require direct novice demonstration, teach-back, worked examples, or observation before trusting expert predictions about what is clear.",
+          "evidence_required": [
+            "The novice, first-time user, learner, or stakeholder group whose understanding matters.",
+            "The expert prediction or assumed onboarding path.",
+            "A teach-back, worked example, or observed novice interaction.",
+            "The design, explanation, or training step that changed after observing the novice."
+          ],
+          "good_output_shape": [
+            "Treats expert prediction of novice understanding as suspect.",
+            "Asks for observed novice use or teach-back when feasible.",
+            "Separates what the expert thinks is clear from what the novice demonstrates.",
+            "Uses novice evidence to adjust the explanation, interface, or training sequence."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What step feels obvious to the expert but may be invisible to the recipient?",
         "Which terms carry compressed expert meaning that the audience may not share?",
-        "Can the recipient explain the idea back in their own words or apply it to a new example?"
+        "Can the recipient explain the idea back in their own words or apply it to a new example?",
+        "Have we watched a genuine novice use the explanation, product, or training path instead of asking an expert to predict the gap?"
       ],
       "misuse_guards": [
         "Do not confuse the curse of knowledge with arrogance or condescension.",
         "Do not solve it by merely shortening the same expert-calibrated explanation.",
-        "Do not accept polite nodding or absence of questions as comprehension evidence."
+        "Do not accept polite nodding or absence of questions as comprehension evidence.",
+        "Do not rely on expert predictions of novice confusion when direct novice observation or teach-back is available."
       ],
       "source_evidence": [
         {
@@ -73,6 +91,34 @@
           "source_file": "Curse_of_Knowledge_rag.md",
           "source_quote": "Polite nodding, superficial agreement, and absence of questions are misread as understanding",
           "section_hint": "Common Failure Modes and Blind Spots",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "They cannot genuinely experience the onboarding journey of a first-time user.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "interfaces that are efficient for experts and impenetrable for beginners.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "Observe, don't ask — experts predict novice confusion inaccurately because the prediction itself suffers from the curse.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Curse_of_Knowledge_rag.md",
+          "source_quote": "Have we watched someone who has never seen this product try to use it — not asked them if they could?",
+          "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
         }

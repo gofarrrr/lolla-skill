@@ -52,7 +52,8 @@
       "misuse_guards": [
         "Do not use persuasion to speed acceptance of a weak answer.",
         "Do not override autonomy or suppress necessary dissent.",
-        "Do not confuse emotional resonance with evidence quality."
+        "Do not confuse emotional resonance with evidence quality.",
+        "Do not optimize for automatic compliance; preserve enough deliberation and friction for the audience to evaluate the claim."
       ],
       "source_evidence": [
         {
@@ -73,6 +74,20 @@
           "source_file": "Persuasion_Principles_rag.md",
           "source_quote": "adoption is the bottleneck",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "automatic, mindless compliance",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "allowing individuals to bypass the \"rigors of thinking\"",
+          "section_hint": "Core Principles and Analogies",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -113,6 +128,35 @@
       "reason": "The source rejects influence tactics that override autonomy or suppress flaw-revealing friction.",
       "runtime_policy": "do_not_promote",
       "source_evidence": [
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "influence tactics override the recipient's autonomy or suppress the kind of friction that would have exposed an important flaw",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "mindless-compliance-as-persuasion-goal",
+      "status": "not_supported_by_source",
+      "reason": "The source names automatic compliance as a mechanism and risk, but the reviewed affordance supports adoption design only when evidence, autonomy, and flaw-revealing friction remain visible.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "automatic, mindless compliance",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "allowing individuals to bypass the \"rigors of thinking\"",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
         {
           "source_file": "Persuasion_Principles_rag.md",
           "source_quote": "influence tactics override the recipient's autonomy or suppress the kind of friction that would have exposed an important flaw",

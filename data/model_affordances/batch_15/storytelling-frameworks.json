@@ -42,17 +42,36 @@
             "Keeps detail burden low.",
             "Pairs emotional sequence with substance."
           ]
+        },
+        {
+          "requirement_id": "cut-search-story-and-excess-baggage",
+          "description": "Require the answer to tell the story the audience needs for the decision or behavior change, not the communicator's search process, and to cut details that do not earn their place.",
+          "evidence_required": [
+            "The recommendation, decision, or behavior change the story must support.",
+            "Whether the draft is telling the search process or the solution rationale.",
+            "Details that advance the audience outcome versus details included because the communicator lived through them.",
+            "The simple story structure that remains after pruning excess baggage."
+          ],
+          "good_output_shape": [
+            "Centers the solution, decision, or audience outcome rather than the communicator's effort.",
+            "Cuts details that do not advance the story.",
+            "Keeps the structure simple enough for real-time use.",
+            "Preserves the evidence or rationale beneath the story."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What does the audience need to know, think, feel, or do differently?",
         "Which story detail would be cut without losing the point?",
-        "Does the story make the truth clearer or merely more pleasing?"
+        "Does the story make the truth clearer or merely more pleasing?",
+        "Are we telling the story of the solution or merely justifying the search?",
+        "If this detail was cut, would anything be lost?"
       ],
       "misuse_guards": [
         "Do not mistake a slogan or abstract wisdom for a story.",
         "Do not tell the story the communicator wants if it misses the audience's problem.",
-        "Do not let coherence outrun reality or evidence."
+        "Do not let coherence outrun reality or evidence.",
+        "Do not make the audience sit through the communicator's problem-solving journey when they need the recommendation and rationale."
       ],
       "source_evidence": [
         {
@@ -73,6 +92,34 @@
           "source_file": "Storytelling_Frameworks_rag.md",
           "source_quote": "Story Coherence Outruns Reality",
           "section_hint": "Common Anti-Patterns and Dangerous Misapplications",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "It is tempting to tell the story of the *search* (the problem-solving process and hard work performed) instead of telling the story of the *solution*.",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "Make Everything Earn Its Place",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "If this was cut, would anything be lost?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "Does this advance the story?",
+          "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
         }
