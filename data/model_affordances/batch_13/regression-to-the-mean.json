@@ -121,6 +121,21 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "reversion-confidence-from-flawed-mean",
+      "status": "not_supported_by_source",
+      "reason": "The source requires a meaningful baseline before regression-to-the-mean reasoning earns weight. If the mean is calculated from flawed, biased, or too-small data, the card should not promote reversion confidence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Regression_To_The_Mean_rag.md",
+          "source_quote": "If the data set used to calculate the mean is flawed, biased, or too small (e.g., an overreliance on recent, limited experiences, similar to the **Availability Bias**), the resulting prediction of the mean will be inaccurate.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [

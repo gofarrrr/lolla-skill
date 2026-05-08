@@ -164,6 +164,21 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "decorative-update-with-weak-priors",
+      "status": "not_supported_by_source",
+      "reason": "The source supports explicit belief updating, not Bayesian-looking arithmetic built from weak priors, low-quality evidence, or false precision. Such updates should be blocked or deferred rather than treated as calibrated posterior movement.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Bayesian_rag.md",
+          "source_quote": "The model fails when numerical updates are performed with false precision, weak priors, or low-quality evidence that gives the appearance of rigor without real calibration.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [

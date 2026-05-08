@@ -208,6 +208,21 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "old-frequency-after-regime-shift",
+      "status": "not_supported_by_source",
+      "reason": "The source supports historical frequencies only after reference-class fit survives a causal-break check. A base rate should not be promoted when a real regime shift makes old frequencies an unsafe prior.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Base_Rates_rag.md",
+          "source_quote": "the context contains a real regime shift or causal break, but the team still treats old frequencies as if nothing important has changed.",
+          "section_hint": "Weaknesses and Anti-Patterns:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [

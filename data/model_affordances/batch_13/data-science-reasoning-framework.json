@@ -89,6 +89,108 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "data-science-reasoning-framework.assumption-pressure-before-analytic-output",
+      "status": "supported",
+      "name": "Assumption pressure before analytic output",
+      "mechanism": "When a data-backed thesis, model output, or analytic recommendation looks coherent, require the answer to expose what must be believed, identify the facts that would resolve or overturn the issue, and challenge the thesis before treating the analysis as decision evidence.",
+      "activation_shape": {
+        "use_when": [
+          "A data-backed thesis, model, dashboard, or analytic recommendation depends on hidden assumptions.",
+          "The team may accept precise analysis because it is coherent, authoritative, or already aligned with a preferred conclusion.",
+          "The decision would change if assumptions, antithesis, or resolving facts were made explicit."
+        ],
+        "do_not_use_when": [
+          "The core problem is still agreeing the decision question or measurement design; use the question-measure-model handoff first.",
+          "The assumptions are already explicit, tested, and decision-ready, so another challenge pass would only delay action.",
+          "The issue is stakeholder values, ownership, or implementation capacity rather than analytic inference."
+        ],
+        "case_evidence_needed": [
+          "The thesis, model output, dashboard claim, or analytic recommendation being considered.",
+          "The assumptions that must be true for that output to deserve decision weight.",
+          "The counter-argument, antithesis, or disconfirming case that could weaken the thesis.",
+          "The facts or missing information that would unambiguously resolve, overturn, or narrow the issue."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "surface-beliefs-and-resolution-facts",
+          "description": "Before accepting the analytic output, state what would have to be believed, what facts would resolve the issue, and what information may be ignored or skipped.",
+          "evidence_required": [
+            "The thesis or analytic output that would drive the decision.",
+            "The implicit assumptions and premises beneath the output.",
+            "The antithesis, counter-argument, or disconfirming evidence that must be considered.",
+            "The fact pattern that would resolve the issue enough to accept, revise, or defer the recommendation."
+          ],
+          "good_output_shape": [
+            "Lists the assumptions that must be true for the analysis to hold.",
+            "Names the counter-argument or antithesis before synthesizing the recommendation.",
+            "States which facts would resolve the issue and which missing information may be distorting the conclusion.",
+            "Accepts, revises, or defers the analytic output based on assumption support rather than presentation polish."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What would you have to believe for this analytic thesis to be true?",
+        "What facts would unambiguously resolve this issue?",
+        "What information are we ignoring or trying to skip?",
+        "What antithesis must be met before this data-backed recommendation earns decision weight?"
+      ],
+      "misuse_guards": [
+        "Do not use assumption pressure as a substitute for choosing the right measurement or model.",
+        "Do not let polished analytic structure bypass antithesis, disconfirming facts, or unresolved premises.",
+        "Do not keep challenging assumptions after the resolving facts are available and the commitment rule is clear."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "A powerful tool in problem-solving teams is to ask, **\"What would you have to believe?\"** to accept a particular thesis.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "This requires spelling out all implicit assumptions, forcing a rigorous examination of the premises underlying the data analysis.",
+          "section_hint": "Key Heuristics and Actionable Frameworks:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "Every idea (thesis) must be met with its counter-argument (antithesis) before synthesis occurs.",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "What facts would unambiguously resolve this issue?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "What information am I ignoring or trying to skip?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Split this from question-measure-model handoff because the source gives a distinct card transaction: pressure the assumptions under an analytic thesis before accepting its output.",
+        "dropped_material": [
+          "Did not promote general dialectical reasoning; this affordance activates only when the assumption test changes whether a data-science output deserves decision weight.",
+          "Did not turn the card into a red-team workflow or runtime model-call instruction."
+        ],
+        "open_questions": [
+          "Future packet review should check whether this split helps the receiver reject polished analytic outputs whose hidden premises remain unsupported."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -117,6 +219,21 @@
           "source_file": "Data_Science_Reasoning_Framework_rag.md",
           "source_quote": "starts modeling before agreeing on the causal question or business decision",
           "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "proxy-metric-as-underlying-reality",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that proxy metrics can create precise analysis around the wrong target. Do not promote a data-science card when the metric is being mistaken for the underlying reality it is supposed to measure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "convenient proxy metrics are treated as the underlying reality, producing precise analysis around the wrong target.",
+          "section_hint": "Limitations and Anti-Patterns:",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }

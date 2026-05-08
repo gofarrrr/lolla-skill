@@ -121,6 +121,58 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "predictive-fit-as-causal-understanding",
+      "status": "not_supported_by_source",
+      "reason": "The source distinguishes prediction from causal understanding. A predictive model should not be promoted as causal explanation when causation, not forecasting, is the decision need.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Learning_Theory_rag.md",
+          "source_quote": "causal understanding matters more than prediction",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Statistical_Learning_Theory_rag.md",
+          "source_quote": "Are you primarily trying to understand the drivers of causation, or are you primarily trying to predict a state of the world?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "confirmation-shaped-model-selection",
+      "status": "not_supported_by_source",
+      "reason": "The source requires generalization evidence rather than model selection that confirms a preferred hypothesis. Do not promote statistical-learning reasoning when the model was chosen to protect the desired answer rather than tested out of sample.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Learning_Theory_rag.md",
+          "source_quote": "model selection is driven by confirming a preferred hypothesis rather than out-of-sample generalization performance.",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "training-narrative-with-censored-failures",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source flags censored failures as a statistical-learning danger, but survivorship-bias owns the primary card transaction. This record should use the issue as a blocker or handoff, not as a separate positive statistical-learning affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Statistical_Learning_Theory_rag.md",
+          "source_quote": "training narratives ignore censored failures.",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [

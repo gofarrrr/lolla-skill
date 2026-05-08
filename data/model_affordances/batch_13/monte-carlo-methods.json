@@ -121,6 +121,36 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "simulation-erases-unknown-unknowns-or-structural-breaks",
+      "status": "not_supported_by_source",
+      "reason": "The source supports simulation only inside the world the model can imagine. If unknown unknowns or structural breaks dominate, simulation output should be treated as incomplete scenario material rather than decision-grade probability.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Monte_Carlo_Methods_rag.md",
+          "source_quote": "unknown unknowns or structural breaks dominate the outcome, since the model can only sample from what it was told to imagine.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "simulation-complexity-over-dominant-driver",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that Monte Carlo can conflict with simplification when simulation complexity hides the dominant variables. Do not promote simulation-shaped reasoning when a simpler driver analysis would reveal the decision more honestly.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Monte_Carlo_Methods_rag.md",
+          "source_quote": "simulation complexity obscures the dominant variables a simpler closed-form analysis would reveal.",
+          "section_hint": "Structured Tension Curation (2026-04-03):",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
