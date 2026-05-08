@@ -1,0 +1,145 @@
+{
+  "model_id": "reframing-perspective",
+  "source_file": "Reframing_Perspective_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "reframing-perspective.decision-variable-reframe-test",
+      "status": "supported",
+      "name": "Decision variable reframe test",
+      "mechanism": "When the first story makes one option look inevitable, require the answer to test whether a different frame changes the success criterion, primary variable, visible trade-off, or next action.",
+      "activation_shape": {
+        "use_when": [
+          "The current language makes one option look inevitable, impossible, or obviously correct.",
+          "The same facts support different actions depending on viewpoint.",
+          "A different frame would change what counts as success, what variables matter, or what trade-offs become visible."
+        ],
+        "do_not_use_when": [
+          "The proposed reframe is only a vivid slogan or euphemism for the same hard reality.",
+          "New language keeps resetting the conversation without forcing an evidence, trade-off, or decision test.",
+          "The current frame is already tied to the real decision variable and next action."
+        ],
+        "case_evidence_needed": [
+          "The current problem frame and the option it makes natural.",
+          "The alternative frame being considered.",
+          "The decision variable or success criterion that changes under the alternative frame.",
+          "The next action, trade-off, or evidence test changed by the reframe."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "show-variable-changed-by-frame",
+          "description": "Require the answer to show what decision variable, success criterion, trade-off, or next action changes if the problem is reframed.",
+          "evidence_required": [
+            "The current frame and its hidden assumptions.",
+            "The alternative frame.",
+            "The decision variable made primary by the new frame.",
+            "The action or evidence test that changes because of the frame."
+          ],
+          "good_output_shape": [
+            "Names the old frame and new frame.",
+            "Shows the variable, trade-off, or success criterion that changes.",
+            "Connects the reframe to a next action or evidence test.",
+            "Rejects reframing that is merely euphemism or conversation reset."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What option does the current frame make feel inevitable?",
+        "If the frame is wrong, what decision variable becomes primary?",
+        "What action or evidence test changes under the alternative frame?"
+      ],
+      "misuse_guards": [
+        "Do not reframe for cleverness unless it changes evidence, action, or dismissal conditions.",
+        "Do not use new language to soften a hard trade-off.",
+        "Do not let reframing become a way to avoid committing to a decision test."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Reframing_Perspective_rag.md",
+          "source_quote": "Most useful when the first story is trapping the decision",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reframing_Perspective_rag.md",
+          "source_quote": "Best when the recommendation should actually change what counts as success, what variables matter, or what trade-offs become visible.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Reframing_Perspective_rag.md",
+          "source_quote": "If the current framing is wrong, what decision variable becomes primary instead, and how would that change the next action immediately?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a decision-variable reframe test that makes reframing operational.",
+        "dropped_material": [
+          "Did not extract empathy, analogy, prompt-engineering, or digital-twin material as separate affordances.",
+          "Kept communication bridge material as context rather than a PR45 card."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card helps packets change the right variable without adding clever reframe noise."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "reframing-as-euphemism",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects reframing that only renames a hard reality or softens a trade-off without improving truth surface or decision quality.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Reframing_Perspective_rag.md",
+          "source_quote": "Danger when reframing becomes euphemism",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "reframing-as-conversation-reset",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects frame changes that keep resetting conversation rather than forcing a decision, evidence, trade-off, or failure-mode test.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Reframing_Perspective_rag.md",
+          "source_quote": "Danger when reframing keeps resetting the conversation instead of forcing a decision test",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Reframing_Perspective_rag.md",
+      "source_quote": "conscious and deliberate act of changing one's viewpoint or interpretive lens",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for reframing-perspective as a decision-variable reframe test.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card changes what the LLM inspects rather than merely changing wording."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "supply-and-demand",
+  "source_file": "Supply_And_Demand_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "supply-and-demand.model-market-pressure-first",
+      "status": "supported",
+      "name": "Model market pressure first",
+      "mechanism": "When price, scarcity, substitution, or capacity constraints are central, use supply and demand as a first-pass model for market pressure before adding behavioral, regulatory, power, narrative, and threshold effects.",
+      "activation_shape": {
+        "use_when": [
+          "Price, scarcity, substitution, or capacity constraints are central to the situation.",
+          "A team needs a clean first-pass model of market pressure and quantity before adding nuance.",
+          "A business decision depends on whether price or supply changes will materially shift demand and profitability."
+        ],
+        "do_not_use_when": [
+          "The model is being treated as a full explanation for human behavior.",
+          "Power, regulation, narrative, habit, anchoring, or critical-mass thresholds are doing most of the work.",
+          "The answer would turn an economic principle into a generic policy verdict without execution constraints."
+        ],
+        "case_evidence_needed": [
+          "The relevant supply constraint or capacity limit.",
+          "The demand signal, substitution path, or willingness to buy.",
+          "The price, volume, or market-share lever under discussion.",
+          "Behavioral or institutional factors that may break the simple model."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "use-as-first-pass-not-full-explanation",
+          "description": "Require the answer to use supply and demand as a bounded first-pass model, then name the non-economic forces that could dominate the observed behavior.",
+          "evidence_required": [
+            "The supply side condition.",
+            "The demand side behavior.",
+            "The price, scarcity, substitution, or capacity constraint.",
+            "At least one check for behavioral, regulatory, narrative, power, or threshold effects."
+          ],
+          "good_output_shape": [
+            "States the market-pressure mechanism.",
+            "Identifies the key constraint.",
+            "Names where the simple model may fail.",
+            "Adds a second-order or implementation check."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which lever is changing: supply, demand, price, substitution, or capacity?",
+        "What evidence shows this is a market-pressure problem rather than mostly habit, power, regulation, or narrative?",
+        "What second-order behavior follows if the price or supply condition changes?"
+      ],
+      "misuse_guards": [
+        "Do not treat market clearing as a complete policy answer.",
+        "Do not ignore constraints, anchors, habits, regulation, or thresholds.",
+        "Do not use supply and demand as the only model for human behavior."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Supply_And_Demand_rag.md",
+          "source_quote": "price, scarcity, substitution, or capacity constraints are central drivers",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Supply_And_Demand_rag.md",
+          "source_quote": "clean first-pass model of how market pressure, incentives, and quantity interact",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Supply_And_Demand_rag.md",
+          "source_quote": "power, regulation, narrative, or habit are doing most of the work",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports supply and demand as a bounded first-pass market-pressure model.",
+        "dropped_material": [
+          "Did not promote supply and demand to a full human-behavior explanation.",
+          "Did not create market-clearing policy advice."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps distinguish market pressure from behavioral and institutional pressure."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "market-clearing-as-policy-answer",
+      "status": "not_supported_by_source",
+      "reason": "The source supports supply and demand as a predictive market model, but it explicitly warns against treating it as a full explanation for human or institutional behavior.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Supply_And_Demand_rag.md",
+          "source_quote": "treated as a full explanation for human behavior",
+          "section_hint": "Weaknesses and Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "supply-demand-without-constraints",
+      "status": "not_supported_by_source",
+      "reason": "The source's activation conditions require price, scarcity, substitution, or capacity constraints; it does not support generic supply-demand claims without those constraints.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Supply_And_Demand_rag.md",
+          "source_quote": "capacity constraints are central drivers",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Supply_And_Demand_rag.md",
+      "source_quote": "foundational economic concept",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found useful reviewed depth for market-pressure diagnosis with explicit behavioral caveats.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, pricing engine, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare this against elasticity, price-discrimination, and critical-mass when all appear in the same packet."
+    ],
+    "review_status": "draft"
+  }
+}

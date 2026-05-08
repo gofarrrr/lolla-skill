@@ -1,0 +1,222 @@
+{
+  "model_id": "falsifiability",
+  "source_file": "Falsifiability_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "falsifiability.disconfirming-reversal-gate",
+      "status": "supported",
+      "name": "Disconfirming evidence reversal gate",
+      "mechanism": "Before a thesis is treated as decision-ready, require a specific disconfirming observation, threshold, or fact that would reverse, kill, or revise the recommendation, then keep evidence gathering aimed at that failure point rather than at confirmation.",
+      "activation_shape": {
+        "use_when": [
+          "A recommendation, hypothesis, plan, or strategic thesis is strong enough to shape commitment but has not named what would prove it wrong.",
+          "Credibility depends on stating the evidence that would reverse the recommendation instead of projecting certainty.",
+          "The main risk is belief protection, confirmation bias, or group pressure rather than lack of arguments for the favored thesis.",
+          "The user needs a dismissal path, kill criterion, reversal condition, or user-verifiable test before acting."
+        ],
+        "do_not_use_when": [
+          "The work is still so vague that a hypothesis would be decorative rather than testable.",
+          "Politics, ego, or mandate status make the hypothesis untouchable enough that falsifiability language would become theater.",
+          "The case already has a bounded experiment with thresholds and the needed move is execution rather than another falsification wrapper.",
+          "The output would invent tidy kill criteria that the user cannot verify from available evidence."
+        ],
+        "case_evidence_needed": [
+          "The live hypothesis, recommendation, assumption, or theory that could be wrong.",
+          "The single fact, observation, threshold, or analysis result that would abandon, reverse, or materially revise the hypothesis.",
+          "The evidence already being used to confirm the favored thesis and the missing disconfirming evidence path.",
+          "The owner, timing, and consequence of the reversal condition.",
+          "The organizational, political, or ego constraint that might prevent the team from accepting disconfirming evidence."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-reversal-condition-before-commitment",
+          "description": "Require the answer to state the concrete observation, threshold, or fact that would cause the thesis or recommendation to be abandoned before commitment proceeds.",
+          "evidence_required": [
+            "The thesis, claim, plan, or recommendation under review.",
+            "The commitment that would follow if the thesis is accepted.",
+            "The disconfirming fact, threshold, or observation that would reverse the recommendation.",
+            "The practical way the user can observe or test that reversal condition."
+          ],
+          "good_output_shape": [
+            "Names the claim and the reversal condition in the same paragraph.",
+            "Uses a user-verifiable fact or threshold rather than a vague warning.",
+            "States what changes if the reversal condition appears: stop, revise, delay, reallocate, or run a narrower test.",
+            "Separates true dismissal logic from generic skepticism."
+          ]
+        },
+        {
+          "requirement_id": "seek-disconfirming-evidence-first",
+          "description": "Direct the evidence search toward the strongest disconfirming path instead of accumulating congenial facts for the favored hypothesis.",
+          "evidence_required": [
+            "The confirming evidence already available or politically preferred.",
+            "The disconfirming evidence that would be most damaging if true.",
+            "The analysis, red-team, peer challenge, or assumption stress test that can expose the failure point.",
+            "The decision deadline or review point where the evidence must be accepted."
+          ],
+          "good_output_shape": [
+            "Identifies the evidence most capable of proving the hypothesis wrong.",
+            "Prevents the answer from treating the hypothesis as an end goal to prove.",
+            "Includes an explicit step-back or red-team moment before commitment.",
+            "Updates the recommendation when the facts contradict the initial hypothesis."
+          ]
+        },
+        {
+          "requirement_id": "suppress-untestable-falsification-theater",
+          "description": "Reject falsifiability language when no actual disconfirming test, threshold, or observation is named or when power dynamics make reversal practically unavailable.",
+          "evidence_required": [
+            "The claimed falsification test and whether it is observable by the user.",
+            "The political, ego, or mandate condition that could make the hypothesis untouchable.",
+            "The consequence if disconfirming evidence is found.",
+            "The reason an experiment, peer challenge, or step-back would be accepted rather than ignored."
+          ],
+          "good_output_shape": [
+            "Flags falsifiability rhetoric that has no testable failure condition.",
+            "Names when the hypothesis is too protected for this record to help.",
+            "Recommends a narrower test or no promotion when reversal would not be honored.",
+            "Keeps dismissal paths honest rather than tidy."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What single fact, if true, would cause us to abandon this hypothesis immediately?",
+        "By how much would the core assumptions need to change for the conclusion to be wrong?",
+        "Which evidence path are we avoiding because it could disconfirm the favored recommendation?",
+        "Who would accept the reversal condition, and what action changes if it appears?",
+        "Is the hypothesis specific enough to be proven wrong by observable facts?"
+      ],
+      "misuse_guards": [
+        "Do not use falsifiability language without naming an actual disconfirming test, threshold, or observation.",
+        "Do not treat a hypothesis as an end goal to prove regardless of what the facts show.",
+        "Do not invent kill criteria that are tidy but not user-verifiable.",
+        "Do not ignore power, ego, or groupthink conditions that would make reversal unavailable.",
+        "Do not duplicate experimentation unless the added value is a dismissal path or reversal condition."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Falsifiability_rag.md",
+          "source_quote": "The fundamental essence of Falsifiability is the principle that **a theory or hypothesis must be capable of being proven false**.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Falsifiability_rag.md",
+          "source_quote": "Instead of accumulating evidence that supports a belief (which the mind is naturally biased to do—confirmation bias), Falsifiability insists on actively seeking **disconfirming evidence** to understand the limits of a model's validity.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Falsifiability_rag.md",
+          "source_quote": "Most useful when** the team has a strong thesis and needs a disciplined way to prove it wrong before committing to it.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Falsifiability_rag.md",
+          "source_quote": "Works best when** credibility depends on stating what evidence would reverse the recommendation instead of projecting certainty.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Falsifiability_rag.md",
+          "source_quote": "What single fact, if true, would cause us to abandon this hypothesis immediately?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Read the PR15 brief, schema, full Falsifiability_rag.md source, Wave 1 activation curation, and intervention semantics. Extracted one record centered on Decision Pressure dismissal paths: disconfirming evidence, reversal conditions, and anti-theater guards.",
+        "dropped_material": [
+          "Did not preserve philosophy-of-science, Feynman analogy, AI validation, Airbnb, and intellectual-humility sections as separate affordances.",
+          "Did not split dialectic standard, sensitivity analysis, and red-team practice into separate records because they all serve the same reversal-gate operation here.",
+          "Did not create generic skepticism fields because the PR15 contract requires a user-verifiable dismissal path."
+        ],
+        "open_questions": [
+          "Reviewer should confirm whether any future runtime treatment needs an explicit field for power-protected hypotheses; this record keeps that as a do-not-use guard."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "generic-skepticism-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports specific testability, disconfirming evidence, and reversal thresholds. Generic skepticism would not improve Decision Pressure dismissal or tripwire quality.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Falsifiability_rag.md",
+          "source_quote": "Danger when** people use the rhetoric of falsifiability but never specify an actual disconfirming test, threshold, or observation that would count.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Falsifiability_rag.md",
+          "source_quote": "This frames the analysis around the point of failure (falsification) rather than the point of success.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "protected-mandate-falsification",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that senior-leadership politics and ego can make a hypothesis practically unchallengeable. In that condition the correct output is a caution or do-not-promote note, not fake reversal machinery.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Falsifiability_rag.md",
+          "source_quote": "If a theory or vision comes from senior leadership, it may not be seen as \"a hypothesis to be skeptically challenged\" due to career pressure, potential groupthink, or the CEO's ego.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Falsifiability_rag.md",
+          "source_quote": "Challenging a powerful belief can be met with resistance, which interferes with the falsification process.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Falsifiability_rag.md",
+      "source_quote": "By how much would your assumptions need to change... for your conclusion to be wrong?",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Falsifiability_rag.md",
+      "source_quote": "If new information gathered throughout the analysis contradicts this IH, consultants are trained to hold an \"occasional step back\" to check the facts and be **prepared to accept that the facts may prove you wrong**.",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 3a outcome: strong_affordance_record. The source is strong enough for a Decision Pressure-ready dismissal record because it repeatedly requires disconfirming tests, reversal thresholds, and acceptance that facts may overturn the initial hypothesis.",
+    "dropped_material": [
+      "Did not split red-team, dialectic, sensitivity analysis, five whys, and Feynman technique into independent affordances.",
+      "Did not use the record to improve coverage statistics for experimentation or statistical-discipline; the distinct product value is Dismiss if and Tripwire quality.",
+      "No runtime, prompt, validator, or existing affordance record changes are implied by this record."
+    ],
+    "open_questions": [
+      "Later dry-surface review should test whether this record materially improves dismissal paths in compact pressures or just restates existing experimentation discipline."
+    ],
+    "review_status": "draft"
+  }
+}

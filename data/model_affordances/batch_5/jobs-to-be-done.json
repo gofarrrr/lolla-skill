@@ -1,0 +1,160 @@
+{
+  "model_id": "jobs-to-be-done",
+  "source_file": "Jobs_To_Be_Done_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "jobs-to-be-done.real-progress-job-discovery",
+      "status": "supported",
+      "name": "Real progress job discovery",
+      "mechanism": "When product, positioning, or roadmap decisions are being driven by features or surface feedback, require the answer to identify the real progress customers are hiring the product to make and separate that job from preferences, channels, or internal wishes.",
+      "activation_shape": {
+        "use_when": [
+          "Customers are adopting, switching, or abandoning solutions for reasons that feature comparisons alone do not explain.",
+          "The team needs to clarify the real progress the user is trying to make before choosing scope, messaging, or go-to-market.",
+          "Product assumptions may reflect creator intent rather than the job customers actually hire the product to do."
+        ],
+        "do_not_use_when": [
+          "The answer would call every preference a job.",
+          "The team lacks evidence that separates functional progress from surface wants, channel feedback, or internal strategy wishes.",
+          "The decision only needs a narrow feature fix and not a job-level reframing."
+        ],
+        "case_evidence_needed": [
+          "Evidence of adoption, switching, abandonment, workaround, or repeated use.",
+          "The progress customers are trying to make in their own context.",
+          "The functional, emotional, or social job if supported by evidence.",
+          "The distinction between the true job and surface feature preferences."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-job-from-feature-preference",
+          "description": "Require the answer to name the customer's real progress goal and distinguish it from feature requests or internal product assumptions.",
+          "evidence_required": [
+            "Customer behavior showing adoption, switching, or abandonment.",
+            "The situation in which customers use or reject the product.",
+            "The progress customers are trying to make.",
+            "The feature or preference signals that may be surface-level."
+          ],
+          "good_output_shape": [
+            "States the job as customer progress.",
+            "Separates progress from feature comparison.",
+            "Names what evidence supports the job.",
+            "Explains how scope or messaging changes if the job is true."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What progress is the customer trying to make when they hire this product?",
+        "What adoption, switching, or abandonment behavior reveals the real job?",
+        "Which feature requests are surface wants rather than the job itself?"
+      ],
+      "misuse_guards": [
+        "Do not call every preference a job.",
+        "Do not skip the separation between true functional progress and surface wants.",
+        "Do not let internal strategy wishes masquerade as customer job evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Jobs_To_Be_Done_rag.md",
+          "source_quote": "customers \"hire\" a product or service to fulfill a specific task or achieve a desired outcome",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Jobs_To_Be_Done_rag.md",
+          "source_quote": "real job that your product does",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Jobs_To_Be_Done_rag.md",
+          "source_quote": "customers are adopting, switching, or abandoning solutions for reasons that feature comparisons alone do not explain",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Jobs_To_Be_Done_rag.md",
+          "source_quote": "clarify the real progress the user is trying to make",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a customer-progress discovery affordance with clear guards against feature/preference inflation.",
+        "dropped_material": [
+          "Did not extract pivot strategy or milkshake-style examples as separate records because the compact packet value is job discovery.",
+          "Did not infer full interview methodology beyond source support."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card pairs cleanly with user-centered-design without duplicating it."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "preference-as-job-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that calling every preference a job skips the discipline that makes JTBD useful.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Jobs_To_Be_Done_rag.md",
+          "source_quote": "call every preference a “job”",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "surface-wants-as-job-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects skipping the separation between true functional progress and surface wants, channel feedback, or internal strategy wishes.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Jobs_To_Be_Done_rag.md",
+          "source_quote": "skip the discipline of separating true functional progress from surface wants",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Jobs_To_Be_Done_rag.md",
+      "source_quote": "The **Jobs to Be Done (JTBD)** model is a critical mental model, particularly useful in innovation and business strategy, designed to identify the true motivations behind customer actions.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Jobs_To_Be_Done_rag.md",
+      "source_quote": "The model compels practitioners to shift focus from the features of a solution to the fundamental needs of the consumer.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Jobs to Be Done. Extracted one real-progress discovery card and rejected preference/surface-want inflation.",
+    "dropped_material": [
+      "Examples and adjacent product strategy material were kept as context rather than separate PR32 affordances.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps product cases without making all customer feedback look like JTBD."
+    ],
+    "review_status": "draft"
+  }
+}

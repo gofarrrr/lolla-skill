@@ -1,0 +1,145 @@
+{
+  "model_id": "divergent-vs-convergent-thinking",
+  "source_file": "Divergent_Vs_Convergent Thinking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "divergent-vs-convergent-thinking.mode-separated-option-cycle",
+      "status": "supported",
+      "name": "Mode separated option cycle",
+      "mechanism": "When a problem needs both creative option breadth and disciplined narrowing, require the answer to separate the divergent phase from the convergent phase, name the switching point, and avoid chaotic mode-mixing that prevents either ideation or evaluation from working.",
+      "activation_shape": {
+        "use_when": [
+          "The team is prematurely collapsing to the first workable idea or endlessly ideating without a selection moment.",
+          "The problem is novel enough to need broad option generation but consequential enough to require disciplined narrowing.",
+          "Creative exploration and critical evaluation are both necessary but destructive when mixed at the same time."
+        ],
+        "do_not_use_when": [
+          "The team switches modes so chaotically that neither ideation nor evaluation gets done well.",
+          "The divergent phase is being cut short by early judgment or anchoring.",
+          "Convergent pressure is being used to force an obvious answer before the option space is mapped."
+        ],
+        "case_evidence_needed": [
+          "Whether the current failure is premature convergence, endless divergence, or chaotic mode-switching.",
+          "The options or problem frames that still need widening.",
+          "The selection criteria or evidence that will narrow the options.",
+          "The explicit moment when the team should switch from could to should."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-could-from-should",
+          "description": "Require the answer to name whether the case needs divergence, convergence, or a staged cycle, then define how the widened option set will be narrowed without collapsing too early.",
+          "evidence_required": [
+            "The current mode failure.",
+            "The option space that needs widening.",
+            "The narrowing criteria.",
+            "The mode-switch trigger."
+          ],
+          "good_output_shape": [
+            "Separates could-thinking from should-thinking.",
+            "Names the stage the case is in.",
+            "Defines how and when selection begins.",
+            "Avoids evaluating ideas while generating them."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are we stuck because we narrowed too early, widened too long, or mixed both modes badly?",
+        "What could we do before we ask what we should do?",
+        "What evidence or criterion marks the switch from divergence to convergence?"
+      ],
+      "misuse_guards": [
+        "Do not call chaotic switching balanced thinking.",
+        "Do not evaluate options during the generation phase.",
+        "Do not use convergence to avoid mapping the real option space."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Divergent_Vs_Convergent Thinking_rag.md",
+          "source_quote": "Most useful when** the team is either prematurely collapsing to the first workable idea or endlessly ideating without a selection moment.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Divergent_Vs_Convergent Thinking_rag.md",
+          "source_quote": "creative exploration and critical evaluation are both necessary, but destructive when mixed at the same time.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Divergent_Vs_Convergent Thinking_rag.md",
+          "source_quote": "asking **\"What *could* you do?\"** promotes the expansive exploration of divergent thinking",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports a staged divergence/convergence handoff rather than generic creativity advice.",
+        "dropped_material": [
+          "Did not extract design thinking, scenario analysis, or one-day answer as separate affordances.",
+          "Kept focused/diffuse mode material as context for stage separation."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card helps a packet know whether to widen or narrow without creating mode-management clutter."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "chaotic-mode-switching",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that participants can think they are balanced while switching modes so chaotically that neither ideation nor evaluation gets done well.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Divergent_Vs_Convergent Thinking_rag.md",
+          "source_quote": "participants think they are being “balanced” but are actually switching modes so chaotically that neither ideation nor evaluation gets done well.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "premature-convergence",
+      "status": "not_supported_by_source",
+      "reason": "The source says early evaluation and anchoring can cut short divergence and hamper originality, so PR48 must not collapse options too soon.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Divergent_Vs_Convergent Thinking_rag.md",
+          "source_quote": "Cutting short the divergent phase by evaluating ideas too quickly **\"run[s] the risk of hampering originality\"**.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Divergent_Vs_Convergent Thinking_rag.md",
+      "source_quote": "divergence and convergence are the **\"engines of creative problem solving\"**.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for divergent-vs-convergent-thinking as a mode-separated option cycle.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card improves widen/narrow timing without turning into process overhead."
+    ],
+    "review_status": "draft"
+  }
+}

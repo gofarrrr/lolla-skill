@@ -1,0 +1,145 @@
+{
+  "model_id": "extreme-performance-evaluation",
+  "source_file": "Extreme_Performance_Evaluation_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "extreme-performance-evaluation.stress-test-against-high-variance-standards",
+      "status": "supported",
+      "name": "Stress-test against high-variance standards",
+      "mechanism": "When mediocre performance is costly and outcomes are difficult, nonlinear, or high variance, use extreme performance evaluation to test breaking points, distinguish robust excellence from luck, and calibrate standards without turning evaluation into fear or vanity metrics.",
+      "activation_shape": {
+        "use_when": [
+          "The cost of mediocre performance is large enough that robust excellence must be distinguished from merely acceptable output.",
+          "Evaluation must separate signal from luck across difficult, nonlinear, or high-variance performance environments.",
+          "The goal is to improve standards, calibration, and readiness rather than reward appearances of effort."
+        ],
+        "do_not_use_when": [
+          "Extreme standards are imposed without matching context, support, or measurement quality.",
+          "Evaluation becomes perfectionism, analysis paralysis, fear, or vanity metrics.",
+          "The answer generalizes outlier performance standards to ordinary contexts without selection evidence."
+        ],
+        "case_evidence_needed": [
+          "The high-stakes performance environment.",
+          "The standard or stress condition being applied.",
+          "Evidence that the metric separates signal from luck.",
+          "The context, support, and measurement quality needed for the standard to be fair."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "stress-test-with-context-and-measurement-quality",
+          "description": "Require the answer to define the standard, the stress condition, and the measurement-quality caveat before recommending extreme evaluation.",
+          "evidence_required": [
+            "The performance target and consequence of mediocrity.",
+            "The stress test or adversarial evaluation condition.",
+            "The signal-vs-luck measurement logic.",
+            "The context and support required for the standard to be meaningful."
+          ],
+          "good_output_shape": [
+            "Names the breaking point to test.",
+            "States the evaluation metric.",
+            "Separates robust performance from luck.",
+            "Adds context/support caveats and avoids vanity metrics."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What failure mode must be discovered before real-world deployment?",
+        "Does this metric separate robust excellence from luck or merely reward appearances?",
+        "Are the context, support, and measurement quality strong enough for extreme standards to be fair?"
+      ],
+      "misuse_guards": [
+        "Do not impose outlier standards without context and support.",
+        "Do not turn evaluation into fear, perfectionism, or vanity scoring.",
+        "Do not confuse stress testing with deterministic proof of final readiness."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Extreme_Performance_Evaluation_rag.md",
+          "source_quote": "cost of mediocre performance is large enough",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Extreme_Performance_Evaluation_rag.md",
+          "source_quote": "separate signal from luck across difficult, nonlinear, or high-variance performance environments",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Extreme_Performance_Evaluation_rag.md",
+          "source_quote": "extreme standards are imposed without matching context, support, or measurement quality",
+          "section_hint": "Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports extreme evaluation as stress testing and calibration with context/support caveats.",
+        "dropped_material": [
+          "Did not extract extreme standards as a general management default.",
+          "Did not turn simulation or scoring into product readiness."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves evaluation advice without making packets harsh or over-scored."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "extreme-performance-as-general-rule",
+      "status": "not_supported_by_source",
+      "reason": "The source says extreme evaluation is strongest in high-stakes, high-variance contexts and warns against analyzing everything to perfection.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Extreme_Performance_Evaluation_rag.md",
+          "source_quote": "not to analyze *absolutely everything* to achieve perfection",
+          "section_hint": "Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "outlier-standards-without-selection-context",
+      "status": "not_supported_by_source",
+      "reason": "The source requires matching context, support, and measurement quality; it does not support imposing outlier standards without selection context.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Extreme_Performance_Evaluation_rag.md",
+          "source_quote": "without matching context, support, or measurement quality",
+          "section_hint": "Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Extreme_Performance_Evaluation_rag.md",
+      "source_quote": "actively seeking out and testing the breaking points",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found strong reviewed depth for stress testing and high-standard calibration with fairness caveats.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, judge call, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare this card with margin-of-safety and confirmation-bias in evaluation cases."
+    ],
+    "review_status": "draft"
+  }
+}

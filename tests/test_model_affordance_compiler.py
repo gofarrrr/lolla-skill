@@ -22,6 +22,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 PILOT_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "pilot"
 BATCH_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "batch_1"
 BATCH_2_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "batch_2"
+BATCH_3A_RECORD_DIR = REPO_ROOT / "data" / "model_affordances" / "batch_3a"
 PILOT_MANIFEST_PATH = REPO_ROOT / "data" / "model_affordances" / "pilot_manifest.json"
 SOURCE_DIR = REPO_ROOT / "data" / "model_sources"
 SOURCE_MANIFEST_PATH = REPO_ROOT / "data" / "model_sources" / "manifest.json"
@@ -80,6 +81,13 @@ BATCH_2_MODEL_IDS = {
     "social-proof",
     "statistical-discipline",
     "survivorship-bias",
+}
+BATCH_3A_MODEL_IDS = {
+    "falsifiability",
+    "opportunity-cost",
+    "principal-agent-problem",
+    "probabilistic-thinking",
+    "true-uncertainty-navigation",
 }
 
 
@@ -250,6 +258,46 @@ def test_compiler_can_compile_pilot_batch1_batch2_records_to_v3(
     assert {entry["model_id"] for entry in source_files} == expected_model_ids
     assert "## Gate 3 Status" in result.quality_report
     assert "Gate 3: cleared." in result.quality_report
+
+
+def test_compiler_can_compile_pilot_batch1_batch2_batch3a_records_to_v4(
+    tmp_path: Path,
+) -> None:
+    extra_sections = "## Batch 3a Status\n\nBatch 3a: targeted coverage patch.\n"
+    result = compile_model_affordances(
+        root=REPO_ROOT,
+        record_dirs=(
+            PILOT_RECORD_DIR,
+            BATCH_RECORD_DIR,
+            BATCH_2_RECORD_DIR,
+            BATCH_3A_RECORD_DIR,
+        ),
+        output_dir=tmp_path / "compiled",
+        compiled_filename="affordances_v4.json",
+        quality_report_filename="quality_report_v4.md",
+        artifact_id="model_affordances_v4",
+        report_title="Model Affordance Quality Report v4",
+        extra_sections=extra_sections,
+    )
+
+    metadata = result.compiled["compile_metadata"]
+    source_files = metadata["source_files"]
+    expected_model_ids = (
+        PILOT_MODEL_IDS | BATCH_MODEL_IDS | BATCH_2_MODEL_IDS | BATCH_3A_MODEL_IDS
+    )
+
+    assert result.compiled_path.name == "affordances_v4.json"
+    assert result.quality_report_path.name == "quality_report_v4.md"
+    assert result.compiled["artifact"] == "model_affordances_v4"
+    assert result.quality_report.startswith("# Model Affordance Quality Report v4\n")
+    assert metadata["contributing_record_count"] == 55
+    assert metadata["affordance_count"] == 91
+    assert metadata["absence_record_count"] == 95
+    assert metadata["validation"]["schema_validation_failure_count"] == 0
+    assert metadata["validation"]["source_quote_rejection_count"] == 0
+    assert {entry["model_id"] for entry in source_files} == expected_model_ids
+    assert "## Batch 3a Status" in result.quality_report
+    assert "Batch 3a: targeted coverage patch." in result.quality_report
 
 
 def test_quality_report_avoids_scorecard_language(tmp_path: Path) -> None:

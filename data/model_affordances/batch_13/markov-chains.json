@@ -1,0 +1,145 @@
+{
+  "model_id": "markov-chains",
+  "source_file": "Markov_Chains_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "markov-chains.state-transition-boundary-check",
+      "status": "supported",
+      "name": "State transition boundary check",
+      "mechanism": "When a process can be represented as movement between states, require the answer to name the current state, transition evidence, and what memory, hidden state, or regime shift would make the simplification unsafe.",
+      "activation_shape": {
+        "use_when": [
+          "Outcomes can be modeled as movement between discrete states.",
+          "The next step depends mainly on the current visible state.",
+          "Stable transition patterns are useful for queues, funnels, workflows, or operational behavior."
+        ],
+        "do_not_use_when": [
+          "Memory, path dependence, or hidden state matters more than the visible state.",
+          "The environment is shifting enough that yesterday's transition probabilities are stale.",
+          "The process is emergent social behavior rather than a stable transition system."
+        ],
+        "case_evidence_needed": [
+          "The current state and possible next states.",
+          "Evidence that transition patterns are stable.",
+          "Hidden variables or history that may matter.",
+          "The operational choice affected by the transition map."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "bound-state-model-before-forecasting",
+          "description": "Require the answer to use state-transition reasoning only after naming the transition boundary and its stability caveat.",
+          "evidence_required": [
+            "Current state.",
+            "Candidate transitions.",
+            "Transition evidence.",
+            "Hidden-state or memory caveat."
+          ],
+          "good_output_shape": [
+            "Names the state model.",
+            "Uses local transition evidence.",
+            "Identifies where memory or regime shift breaks the model.",
+            "Keeps the forecast bounded."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What state is the system in now?",
+        "What evidence supports the transition probability to the next state?",
+        "What hidden history would make the current state insufficient?"
+      ],
+      "misuse_guards": [
+        "Do not overclaim memorylessness when path dependence matters.",
+        "Do not use stale transition rates under regime change.",
+        "Do not reduce emergent social systems to a neat state diagram without evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "outcomes can be modeled as movement between discrete states",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "transition patterns are stable enough that local probabilities provide meaningful guidance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "memory, path dependence, or hidden state matters more than the current visible state",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "medium",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: thin_narrow_affordance_record. The source says Markov Chain is not explicitly named, but supports state-transition reasoning with strong caveats.",
+        "dropped_material": [
+          "Did not extract formal Markov mathematics.",
+          "Did not imply deterministic routing or workflow execution."
+        ],
+        "open_questions": [
+          "Later review should decide whether this card remains reviewed depth or is better treated as graph-light with caveats."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "markov-memorylessness-overclaim",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that hidden state, memory, or path dependence can make the simplification misleading.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "memory, path dependence, or hidden state matters more than the current visible state",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "state-model-without-transition-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source limits the affordance to settings where transition patterns are stable enough to provide meaningful guidance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "transition patterns are stable enough that local probabilities provide meaningful guidance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Markov_Chains_rag.md",
+      "source_quote": "the term *Markov Chain* is not explicitly found in the sources",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "review_note",
+      "confidence": "medium"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found source-backed but narrower reviewed depth for Markov Chains: state-transition simplification with memory/regime caveats.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "This card should be treated as medium confidence because the canonical file itself flags that formal Markov-chain language is not explicit."
+    ],
+    "review_status": "draft"
+  }
+}

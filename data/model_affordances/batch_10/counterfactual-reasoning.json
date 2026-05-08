@@ -1,0 +1,145 @@
+{
+  "model_id": "counterfactual-reasoning",
+  "source_file": "Counterfactual_Reasoning_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "counterfactual-reasoning.plausible-alternative-branch-test",
+      "status": "supported",
+      "name": "Plausible alternative branch test",
+      "mechanism": "When the observed outcome or preferred path is hiding decision quality, require the answer to reconstruct plausible alternative branches, omitted scenarios, and failure paths that were genuinely open before action.",
+      "activation_shape": {
+        "use_when": [
+          "A realized or preferred outcome is being treated as proof that the decision process is good.",
+          "Learning depends on omitted paths, not only observed results.",
+          "A pre-mortem, scenario tree, or retrospective needs sharper causal pressure before commitment."
+        ],
+        "do_not_use_when": [
+          "The alternative paths are fictional, implausible, or untethered from the real decision context.",
+          "The counterfactual is built only after the outcome is known and hindsight contaminates plausibility.",
+          "The answer would spin unlimited alternatives without naming the evidence that distinguishes them."
+        ],
+        "case_evidence_needed": [
+          "The actual or preferred path under review.",
+          "The plausible alternatives available at the time of choice.",
+          "The assumptions or evidence that would have changed the path.",
+          "The failure or success paths that deserve pre-action attention."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "recover-plausible-branches",
+          "description": "Require the answer to recover realistic branches that the current story is suppressing, then connect each branch to assumptions, evidence, or failure paths that would change the recommendation.",
+          "evidence_required": [
+            "The decision or outcome being treated as inevitable.",
+            "Plausible alternative paths available before action.",
+            "The assumptions that make each branch possible.",
+            "The evidence that would distinguish the current path from alternatives."
+          ],
+          "good_output_shape": [
+            "Separates realized outcome from decision quality.",
+            "Names plausible omitted branches rather than imaginary possibilities.",
+            "Shows what evidence would make an alternative path matter.",
+            "Uses counterfactuals to sharpen action, not to produce stories."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What plausible branch is missing because the current path already feels inevitable?",
+        "What would have had to be true for the alternative path to be better?",
+        "Which failure path should be examined before commitment rather than after hindsight arrives?"
+      ],
+      "misuse_guards": [
+        "Do not invent fictional alternatives without causal structure, base rates, or real decision context.",
+        "Do not let the known outcome contaminate what seemed plausible at the time.",
+        "Do not use counterfactual richness as a substitute for evidence that changes the current action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "Most useful when one realized outcome is hiding the real decision quality",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "Works when learning depends on exploring omitted paths, not just observed results",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "Best when pre-mortems, scenario trees, or retrospectives need sharper causal pressure",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a plausible-alternative branch test that distinguishes decision quality from the realized or preferred path.",
+        "dropped_material": [
+          "Did not extract generic scenario analysis or decision-tree material as separate cards.",
+          "Kept inverse thinking and pre-mortem material as supporting context for branch testing."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card improves packet handoff without inviting fanciful alternatives."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "counterfactual-fiction-as-discipline",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that counterfactuals fail when imagined alternatives are untethered from causal structure, base rates, or the actual decision context.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "Danger When Counterfactuals Become Fiction Instead of Discipline",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "hindsight-contaminated-alternative-paths",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly flags hindsight contamination as a conflict when later outcome knowledge distorts which alternative paths were genuinely open.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "when knowledge of what actually happened contaminates the plausibility assessment of alternative paths that were genuinely open at the time",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Counterfactual_Reasoning_rag.md",
+      "source_quote": "imagining states of the world or outcomes that did not happen but could have happened",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for counterfactual-reasoning as a plausible alternative branch test.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card finds omitted branches without creating fictional scenario clutter."
+    ],
+    "review_status": "draft"
+  }
+}

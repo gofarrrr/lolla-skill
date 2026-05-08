@@ -1,0 +1,145 @@
+{
+  "model_id": "habit-formation",
+  "source_file": "Habit_Formation_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "habit-formation.automatic-action-design-check",
+      "status": "supported",
+      "name": "Automatic action design check",
+      "mechanism": "When execution depends on repeated behavior rather than one heroic effort, require the answer to identify the cue, friction, response, reward, and reliability condition that would make the right small action automatic under stress.",
+      "activation_shape": {
+        "use_when": [
+          "Execution quality depends on repeating the right small behaviors.",
+          "The decision is not whether to act, but how to make good action automatic.",
+          "The system must preserve reliability under stress or limited attention."
+        ],
+        "do_not_use_when": [
+          "Automation replaces judgment because the environment has changed enough that automatic behavior is now solving yesterday's problem.",
+          "Strategy remains inert because it exists in a pristine document but does not drive action.",
+          "Habit framing turns execution into moral virtue rather than environment, cue, response, and reward design."
+        ],
+        "case_evidence_needed": [
+          "The repeated behavior the plan depends on.",
+          "The cue, internal state, friction, response, and reward.",
+          "The stress, overload, or limited-attention condition where reliability matters.",
+          "The context shift that would make the habit obsolete."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "design-repeatable-behavior-loop",
+          "description": "Require the answer to turn the execution need into a cue-response-reward behavior loop that reduces friction while preserving judgment when context changes.",
+          "evidence_required": [
+            "The behavior that must repeat.",
+            "The cue or feeling that triggers it.",
+            "The friction preventing consistent response.",
+            "The reward, reliability condition, and context-change exception."
+          ],
+          "good_output_shape": [
+            "Names the cue and response.",
+            "Reduces friction in the environment.",
+            "Connects repetition to the intended outcome.",
+            "States when automatic behavior should be interrupted."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What small behavior has to repeat for this advice to work?",
+        "What cue and friction determine whether the behavior happens under stress?",
+        "When would automation become liability because the environment changed?"
+      ],
+      "misuse_guards": [
+        "Do not treat habit as moral virtue or willpower.",
+        "Do not automate behavior that solves yesterday's problem after context has shifted.",
+        "Do not leave strategy in a pristine document without designing the repeated action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "execution quality depends on repeating the right small behaviors",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "how to make good action automatic",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "preserve reliability under stress or limited attention",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one automatic action design check grounded in cue/craving/response/reward, friction, reliability, and context-change safeguards.",
+        "dropped_material": [
+          "Did not extract AI persona consistency, professional first impressions, or strategic goal hierarchy as separate affordances.",
+          "Kept System 1/System 2 and scaffolding material as support for behavior-loop design."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card helps packets translate advice into repeated behavior without moralizing execution."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "automaticity-as-permanent-good",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that automatic behavior becomes a liability when the environment has changed enough that the habit solves yesterday's problem.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "the environment has changed enough that automatic behavior is now solving yesterday's problem",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "strategy-document-as-execution",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects inert strategy: a pristine document that does not drive action should not be treated as execution depth.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Habit_Formation_rag.md",
+          "source_quote": "strategy often fails not because it is bad, but because it is inert—it exists in a pristine document but \"does not drive action\"",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Habit_Formation_rag.md",
+      "source_quote": "Cue, Craving, Response, and Reward",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Habit Formation. Extracted one automatic action design check and rejected automaticity-as-permanent-good plus strategy-document-as-execution overclaims.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should test whether this card improves repeatability without encouraging rigid habit worship."
+    ],
+    "review_status": "draft"
+  }
+}

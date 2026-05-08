@@ -1,0 +1,196 @@
+{
+  "model_id": "root-cause-analysis",
+  "source_file": "Root_Cause_Analysis_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "root-cause-analysis.machine-level-recurrence-diagnosis",
+      "status": "supported",
+      "name": "Machine-level recurrence diagnosis",
+      "mechanism": "When recurring symptoms are being handled as separate incidents, distinguish the proximate event from the deeper machine-level reason, map the causal stack without forcing a single neat cause, and choose a controllable design, ownership, incentive, or environment change that prevents recurrence.",
+      "activation_shape": {
+        "use_when": [
+          "Recurring failures, incidents, complaints, or performance misses keep surfacing as different symptoms.",
+          "Fixing the immediate case is not enough because the process, ownership, incentives, or environment will recreate the failure.",
+          "The apparent cause is too close to the event, emotionally satisfying, or politically convenient.",
+          "The next action should change the system that produces outcomes rather than only remediate the current case."
+        ],
+        "do_not_use_when": [
+          "The team is trying to force a single root cause despite interacting causes, handoffs, feedback loops, or incentive failures.",
+          "The diagnosis would become analysis paralysis rather than a path to an influenceable design change.",
+          "A familiar framework is being applied because it is handy, not because its assumptions fit the problem.",
+          "The proposed cause is a vague blame label, action, or symptom rather than a reason."
+        ],
+        "case_evidence_needed": [
+          "The recurring symptom, proximate event, and immediate remediation already being used.",
+          "The deeper design, ownership, incentive, capacity, capability, or environmental reason being tested.",
+          "The causal stack, handoffs, interactions, or feedback loops that recreate the problem.",
+          "The levers under the team's or client's control.",
+          "The machine-level change that would prevent recurrence rather than merely fix the case."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-proximate-event-from-generative-reason",
+          "description": "Require the answer to distinguish the immediate event from the deeper reason that keeps recreating the problem.",
+          "evidence_required": [
+            "The observed problem, incident, or failure.",
+            "The proximate cause or current explanation.",
+            "The deeper reason, mechanism, or design condition being tested.",
+            "Evidence that the problem will recur if only the immediate case is fixed."
+          ],
+          "good_output_shape": [
+            "Names the proximate cause without stopping there.",
+            "States the root cause as a reason rather than an action.",
+            "Shows how the deeper mechanism recreates symptoms.",
+            "Explains what recurrence would look like if the mechanism stays unchanged."
+          ]
+        },
+        {
+          "requirement_id": "map-causal-stack-to-controllable-machine-change",
+          "description": "Require the answer to map interacting causes and choose an influenceable change in process design, ownership, incentives, or environment.",
+          "evidence_required": [
+            "The causal stack, handoffs, or interacting causes.",
+            "The process, ownership, incentive, or environmental lever under control.",
+            "The alternative explanation that would be missed by a single-cause story.",
+            "The specific change that prevents recurrence."
+          ],
+          "good_output_shape": [
+            "Shows the causal stack rather than a single tidy cause when complexity demands it.",
+            "Focuses on levers that are actually influenceable.",
+            "Separates blame from design diagnosis.",
+            "Converts the diagnosis into a machine-level change."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the proximate cause, and what deeper reason may be generating it?",
+        "Why will this failure recur if we only fix the case-at-hand?",
+        "Which process design, ownership, incentive, or environmental condition recreates the symptom?",
+        "Are we forcing one root cause where a causal stack is required?",
+        "Which part of the machine is actually under our control to change?"
+      ],
+      "misuse_guards": [
+        "Do not call an action, blame label, or symptom the root cause.",
+        "Do not force a single neat explanation when multiple interacting causes matter.",
+        "Do not let diagnosis become a report-writing substitute for an influenceable change.",
+        "Do not apply a familiar diagnostic frame without checking whether its assumptions fit the case."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Root_Cause_Analysis_rag.md",
+          "source_quote": "differentiating the **proximate cause** from the **root cause**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Root_Cause_Analysis_rag.md",
+          "source_quote": "root cause is a reason, not an action",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Root_Cause_Analysis_rag.md",
+          "source_quote": "Works when the next action should change the machine, not just the case",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Root_Cause_Analysis_rag.md",
+          "source_quote": "process design, ownership, incentives, or environment will recreate the failure",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Root_Cause_Analysis_rag.md",
+          "source_quote": "Danger when the search for one root cause erases a causal stack",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source supports one compact machine-level recurrence diagnosis with clear proximate/root distinction and causal-stack guards.",
+        "dropped_material": [
+          "Did not extract ABC model, return-on-capital trees, or generic business-disaggregation examples as separate affordances.",
+          "Did not split Five Whys and Fishbone into peer records here; they are methods within the broader recurrence diagnosis."
+        ],
+        "open_questions": [
+          "PR29 should test whether this card enriches graph-only root-cause-analysis without swallowing the narrower Five Whys card."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "single-neat-root-cause-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that a search for one root cause can erase interacting causes, handoffs, or incentives. A single-cause affordance would overclaim the source.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Root_Cause_Analysis_rag.md",
+          "source_quote": "Danger when the situation actually depends on several interacting causes, handoffs, or incentive failures and the team keeps forcing a single neat explanation.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "diagnosis-reporting-without-machine-change-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source supports diagnosis that leads to a controllable machine-level change. It warns that excessive diagnosis and reports can become paralysis before action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Root_Cause_Analysis_rag.md",
+          "source_quote": "the excessive pursuit of diagnosis and reports before action can lead to indecision and paralysis.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Root_Cause_Analysis_rag.md",
+          "source_quote": "Narrow the diagnosis to items that are **under the client’s control**.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Root_Cause_Analysis_rag.md",
+      "source_quote": "Most useful when recurring failures keep surfacing as different symptoms",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Root_Cause_Analysis_rag.md",
+      "source_quote": "The problem statement should be precise enough to meet the decision maker’s needs.",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 4 source reading found strong operational support. Extracted one recurrence-diagnosis record and preserved absences for one-cause overclaiming and diagnosis without machine change.",
+    "dropped_material": [
+      "Psychological examples, business tree examples, and method lists were treated as source support, not separate cards.",
+      "No runtime, prompt, lane, or packet-producer changes are implied."
+    ],
+    "open_questions": [
+      "Future packet review should inspect collisions with Five Whys, systems-thinking, and theory-of-constraints."
+    ],
+    "review_status": "draft"
+  }
+}

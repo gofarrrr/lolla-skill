@@ -1,0 +1,153 @@
+{
+  "model_id": "nash-equilibrium",
+  "source_file": "Nash_Equilibrium_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "nash-equilibrium.stable-best-response-map",
+      "status": "supported",
+      "name": "Stable best-response map",
+      "mechanism": "When a strategic move only makes sense relative to other actors' stable responses, require the answer to name the players, credible moves, payoff drivers, beliefs, and whether the resulting pattern is reachable and worth preserving.",
+      "activation_shape": {
+        "use_when": [
+          "A decision only makes sense relative to the likely stable responses of other players, not in isolation.",
+          "The players, payoff drivers, and response options can be bounded tightly enough for best-response reasoning to help.",
+          "The core question is whether the system will settle into a stable pattern, focal point, or default convention that one player cannot escape alone."
+        ],
+        "do_not_use_when": [
+          "The equilibrium is computationally or behaviorally unreachable for the actual actors.",
+          "The answer would treat a stable outcome as desirable merely because no player wants to move alone.",
+          "The model would assume pure rationality while ignoring bounded, distracted, political, emotional, or inconsistent actors."
+        ],
+        "case_evidence_needed": [
+          "The players whose responses matter.",
+          "The credible moves and payoff drivers for each player.",
+          "The beliefs each player appears to hold about the others.",
+          "Evidence that the stable pattern can be discovered, sustained, and judged separately from whether it is desirable."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-stable-from-good-and-reachable",
+          "description": "Require the answer to distinguish whether the proposed equilibrium is stable, reachable, and desirable as three separate claims.",
+          "evidence_required": [
+            "The candidate stable response pattern.",
+            "The payoff drivers and beliefs that would keep each actor from moving alone.",
+            "The actor limitations that may make the equilibrium unreachable.",
+            "The welfare or strategic reason to preserve, escape, or redesign the stable state."
+          ],
+          "good_output_shape": [
+            "Names each player's best response.",
+            "States what beliefs must be correct.",
+            "Tests reachability before treating the equilibrium as predictive.",
+            "Separates stability from desirability."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is each actor's best response if the other actors hold their current moves?",
+        "Can the actual actors find and sustain this equilibrium, or is it only clean on paper?",
+        "Is the stable pattern useful, or just a collectively mediocre trap no one can leave alone?"
+      ],
+      "misuse_guards": [
+        "Do not assume a stable outcome is a good outcome.",
+        "Do not predict equilibrium when the actors cannot compute, discover, or sustain it.",
+        "Do not ignore values, egos, emotions, politics, or bounded rationality when mapping strategic response."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "no player can increase their payoff by unilaterally changing their action",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "Most useful when a decision only makes sense relative to the likely stable responses of other players, not in isolation.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "Works when the players, payoff drivers, and response options can be bounded tightly enough that \u201cbest response\u201d reasoning is decision-useful rather than ornamental.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a stable best-response map with explicit reachability and desirability guards.",
+        "dropped_material": [
+          "Did not extract auction design, minmax/maxmin, or focal-point selection as separate affordances.",
+          "Did not infer formal equilibrium computation beyond the source's decision-useful strategic mapping."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card complements game-theory-payoffs without creating strategic tree bulk."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "stable-outcome-equals-good-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that a stable equilibrium can be undesirable or inefficient. Stability should not be promoted as goodness.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "treating a stable outcome as a good outcome",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "pure-computable-equilibrium-prediction",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects prediction from equilibrium concepts that are not efficiently computable or reachable by real actors.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Nash_Equilibrium_rag.md",
+          "source_quote": "If your laptop cannot find it, neither can the market",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Nash_Equilibrium_rag.md",
+      "source_quote": "Best when coordination or lock-in matters",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Nash_Equilibrium_rag.md",
+      "source_quote": "begin with the Nash equilibrium, and then think of reasons why, and the manner in which, the outcome may differ",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Nash Equilibrium. Extracted one stable-response map and rejected stability-as-good plus unreachable prediction.",
+    "dropped_material": [
+      "Formal game-theory variants were not extracted because PR34 targets compact packet handoff depth.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether Nash and Prisoner's Dilemma cards help a receiver separate stable bad patterns from repairable games."
+    ],
+    "review_status": "draft"
+  }
+}

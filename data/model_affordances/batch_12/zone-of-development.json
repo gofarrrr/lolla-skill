@@ -1,0 +1,145 @@
+{
+  "model_id": "zone-of-development",
+  "source_file": "Zone_Of_Development_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "zone-of-development.calibrate-next-reachable-stretch",
+      "status": "supported",
+      "name": "Calibrate next reachable stretch",
+      "mechanism": "When growth depends on challenge level, identify the next step that is demanding enough to grow capability but supported enough to avoid confusion, withdrawal, or fake heroics.",
+      "activation_shape": {
+        "use_when": [
+          "The next level is reachable but not yet automatic.",
+          "Instruction or support must match current capability rather than the ideal end state.",
+          "Progress depends on sequencing, calibration, and feedback rather than heroic leaps."
+        ],
+        "do_not_use_when": [
+          "The step is so easy it produces no growth or so hard it creates overload.",
+          "Authority or status assumptions are constraining learner growth.",
+          "The team is investing effort before the real development problem is defined."
+        ],
+        "case_evidence_needed": [
+          "Current capability and current failure edge.",
+          "The next reachable stretch task.",
+          "Support and feedback needed for the stretch.",
+          "Signs that the challenge is too easy, too hard, or mismatched."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-current-edge-next-stretch-and-support",
+          "description": "Require the answer to name the current capability edge, the next stretch, the support required, and the feedback signal that proves the zone is correctly calibrated.",
+          "evidence_required": [
+            "Current competence evidence.",
+            "Near-edge challenge.",
+            "Support mechanism.",
+            "Feedback or adjustment signal."
+          ],
+          "good_output_shape": [
+            "Defines the current edge of capability.",
+            "Sets a reachable stretch.",
+            "Adds support and feedback.",
+            "Flags mismatch if challenge is comfort or overload."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What can the learner do now, and what is just beyond reach?",
+        "What support makes the next stretch possible without removing the challenge?",
+        "What signal will tell us the step was too easy or too hard?"
+      ],
+      "misuse_guards": [
+        "Do not call comfort-zone work growth.",
+        "Do not assign unsupported stretch as proof of ambition.",
+        "Do not let rank or authority assumptions define the learner's zone."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Zone_Of_Development_rag.md",
+          "source_quote": "Most useful when the next level is reachable but not yet automatic",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Zone_Of_Development_rag.md",
+          "source_quote": "Works when instruction or support must match current capability, not idealized end state",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Zone_Of_Development_rag.md",
+          "source_quote": "Danger When Challenge Is Mismatched to Readiness",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports ZOD as calibrated stretch with support and feedback.",
+        "dropped_material": [
+          "Did not extract chain-of-thought examples as prompt guidance.",
+          "Kept execution and communication examples as context only."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves challenge calibration without motivational fluff."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "comfort-zone-as-growth",
+      "status": "not_supported_by_source",
+      "reason": "The source says the next level must be reachable but not automatic; comfortable routines do not create the developmental stretch.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Zone_Of_Development_rag.md",
+          "source_quote": "next level is reachable but not yet automatic",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "challenge-without-support",
+      "status": "not_supported_by_source",
+      "reason": "The source frames development as structured effort with support; unsupported challenge can create confusion, dependence, or withdrawal.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Zone_Of_Development_rag.md",
+          "source_quote": "so hard it produces confusion, dependence, or withdrawal",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Zone_Of_Development_rag.md",
+      "source_quote": "optimal boundary between current competency and necessary challenge",
+      "section_hint": "Comprehensive Briefing",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for ZOD as challenge calibration around the current capability edge.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps packets calibrate learning challenge without generic growth talk."
+    ],
+    "review_status": "draft"
+  }
+}

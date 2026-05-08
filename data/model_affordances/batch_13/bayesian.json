@@ -1,0 +1,145 @@
+{
+  "model_id": "bayesian",
+  "source_file": "Bayesian_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "bayesian.explicit-prior-evidence-update",
+      "status": "supported",
+      "name": "Explicit prior evidence update",
+      "mechanism": "When confidence is moving under uncertainty, require the answer to name the prior belief, the evidence that should update it, and whether the posterior supports action, more evidence, or a lower-commitment bet.",
+      "activation_shape": {
+        "use_when": [
+          "A team is treating early evidence as decisive or ignoring follow-up evidence.",
+          "A decision depends on combining base rates, priors, and new signals.",
+          "The reasoning needs to show why confidence changed rather than merely assert a conclusion."
+        ],
+        "do_not_use_when": [
+          "The available evidence is too weak or self-selected to support numerical-looking confidence.",
+          "A decorative calculation would hide motivated priors or poor evidence quality.",
+          "The issue is not uncertainty updating but missing ownership, incentives, or feasibility."
+        ],
+        "case_evidence_needed": [
+          "The current prior, baseline, or reference class.",
+          "The new evidence and its reliability.",
+          "The specific belief that should move.",
+          "The commitment size implied by the updated confidence."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-prior-signal-and-commitment",
+          "description": "Require the answer to separate prior, evidence, and posterior action threshold before recommending a commitment.",
+          "evidence_required": [
+            "Prior or base-rate belief.",
+            "New signal and confidence in that signal.",
+            "How the signal changes belief.",
+            "Decision threshold or next evidence needed."
+          ],
+          "good_output_shape": [
+            "States the starting belief.",
+            "Names what evidence would move it.",
+            "Explains whether confidence moved enough for action.",
+            "Warns against false precision when inputs are weak."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What prior are we updating, and where did it come from?",
+        "What evidence would legitimately move the posterior?",
+        "Is the commitment sized to the updated confidence or to wishful certainty?"
+      ],
+      "misuse_guards": [
+        "Do not treat Bayesian language as a certainty machine.",
+        "Do not update only on confirming evidence.",
+        "Do not make numbers look rigorous when the prior or signal quality is weak."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Bayesian_rag.md",
+          "source_quote": "governs how beliefs must be logically updated when new evidence or information is encountered",
+          "section_hint": "Core Definition and Purpose",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Bayesian_rag.md",
+          "source_quote": "Best when priors, updates, and uncertainty need to be made explicit",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Bayesian_rag.md",
+          "source_quote": "Danger When the Math Becomes Decorative",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports Bayesian thinking as explicit prior/evidence updating with a false-precision guard.",
+        "dropped_material": [
+          "Did not extract Bayesian brain theory as a runtime cognition claim.",
+          "Did not promote Bayesian calculation into deterministic pressure selection."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves confidence calibration without inviting pseudo-math."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "bayesian-as-certainty-machine",
+      "status": "not_supported_by_source",
+      "reason": "The source frames decisions as bets under current beliefs, not as a path to certainty.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Bayesian_rag.md",
+          "source_quote": "Decisions are bets based on our current beliefs",
+          "section_hint": "Powerful Analogies and Metaphors",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "prior-without-update-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source says Bayesian use requires updating beliefs when evidence arrives; a static prior alone is not the affordance.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Bayesian_rag.md",
+          "source_quote": "new information (likelihood) is acquired, and beliefs are adjusted",
+          "section_hint": "Key Heuristics and Actionable Frameworks",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Bayesian_rag.md",
+      "source_quote": "systematic quantification and updating of uncertainty",
+      "section_hint": "Key Heuristics and Actionable Frameworks",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for Bayesian thinking as belief-updating discipline under uncertainty.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps a reviewer size commitments under uncertain evidence."
+    ],
+    "review_status": "draft"
+  }
+}

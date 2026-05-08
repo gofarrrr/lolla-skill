@@ -1,0 +1,145 @@
+{
+  "model_id": "elasticity",
+  "source_file": "Elasticity_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "elasticity.adapt-skill-deployment-with-invariants",
+      "status": "supported",
+      "name": "Adapt skill deployment with invariants",
+      "mechanism": "When roles, markets, or context windows are shifting quickly, use elasticity to decide what can stretch across boundaries while preserving the stable objective, ownership, and quality bar that must not stretch.",
+      "activation_shape": {
+        "use_when": [
+          "Roles, markets, or constraints are changing fast enough that fixed job boundaries or rigid playbooks are liabilities.",
+          "A team must adapt tactics, formats, or skill deployment without abandoning the stable objective.",
+          "A system needs dynamic context triage so only the most relevant material is carried forward."
+        ],
+        "do_not_use_when": [
+          "Elasticity would become shapelessness, leaving responsibilities, standards, or decision rights unclear.",
+          "Cross-functional adaptability is being used to hide weak craft or the absence of a true domain expert.",
+          "A pricing or demand claim is being inferred from story-led assumptions rather than observed response curves."
+        ],
+        "case_evidence_needed": [
+          "The specific boundary that must stretch.",
+          "The objective, quality bar, or decision right that must remain invariant.",
+          "Evidence that the environment is shifting enough to justify adaptation.",
+          "A check that the adaptation is not merely masking missing depth."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-stretch-and-invariant",
+          "description": "Require the answer to name both the flexible element and the invariant element so adaptation does not become vague shapeshifting.",
+          "evidence_required": [
+            "The shifting role, market, or constraint.",
+            "The stable objective or quality bar.",
+            "The skill or artifact that must adapt.",
+            "Evidence that the adaptation preserves competence rather than diluting it."
+          ],
+          "good_output_shape": [
+            "Names what can stretch.",
+            "Names what must stay invariant.",
+            "Warns against shapeless ownership.",
+            "Adds a depth or craft check before broadening scope."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What exactly needs to stretch here: role boundary, format, skill deployment, or context selection?",
+        "What objective, quality bar, or decision right must stay fixed while the system adapts?",
+        "Is this elasticity preserving competence, or hiding the absence of a domain expert?"
+      ],
+      "misuse_guards": [
+        "Do not use elasticity as a permission slip for unclear ownership.",
+        "Do not treat broad adaptability as a substitute for craft depth.",
+        "Do not infer price or demand response from narrative fit without response evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Elasticity_rag.md",
+          "source_quote": "roles, markets, or constraints are shifting fast enough",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Elasticity_rag.md",
+          "source_quote": "preserving a stable objective and quality bar",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Elasticity_rag.md",
+          "source_quote": "elasticity becomes shapelessness",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports elasticity as adaptive skill and context deployment with explicit invariants, not generic economic price elasticity.",
+        "dropped_material": [
+          "Did not convert this source into a classic price-elasticity calculator.",
+          "Did not treat knowledge gap elasticity as a permission to exploit perceived expertise."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card remains distinct from flexibility, optionality, and price-discrimination."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "elasticity-without-response-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that elasticity can conflict with narrative-driven demand assumptions; it does not support treating story fit as evidence of response curvature.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Elasticity_rag.md",
+          "source_quote": "story-led demand assumptions replace observed response curves",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "breadth-without-domain-depth",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that elastic cross-functional work can mask missing depth; it does not support treating breadth alone as competence.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Elasticity_rag.md",
+          "source_quote": "cross-functional adaptability is used to mask missing depth",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Elasticity_rag.md",
+      "source_quote": "elastic skills are prized",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading preserved the source's actual emphasis: flexible skill/context deployment under shifting constraints.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, economic estimator, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should inspect whether classic demand-elasticity use needs a separate, stronger source."
+    ],
+    "review_status": "draft"
+  }
+}

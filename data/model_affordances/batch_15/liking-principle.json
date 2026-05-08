@@ -1,0 +1,145 @@
+{
+  "model_id": "liking-principle",
+  "source_file": "Liking_Principle_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "liking-principle.build-receptivity-with-substance-check",
+      "status": "supported",
+      "name": "Build receptivity with substance check",
+      "mechanism": "When trust or willingness to engage is the bottleneck, use liking to lower defensiveness through relevance, warmth, and reliability, while explicitly protecting evidentiary standards from affinity or charisma.",
+      "activation_shape": {
+        "use_when": [
+          "Trust, receptivity, or willingness to engage is the bottleneck.",
+          "Warmth can help a hard message, recommendation, or ask be heard.",
+          "The relationship must be paired with competence, reliability, and concrete relevance to the other person's problem."
+        ],
+        "do_not_use_when": [
+          "Social warmth would cause lower evidentiary standards for a favored messenger.",
+          "The desire to stay likable would suppress dissent, feedback, or escalation.",
+          "The situation needs deep analytical thought more than relationship repair."
+        ],
+        "case_evidence_needed": [
+          "The audience or relationship where receptivity is blocking progress.",
+          "The specific problem the other person needs solved.",
+          "Concrete competence or reliability evidence, not just charm.",
+          "A substance check that keeps liking from bypassing scrutiny."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "pair-warmth-with-evidence-standard",
+          "description": "Require the answer to improve receptivity while preserving the same evidence standard it would use for an unliked messenger.",
+          "evidence_required": [
+            "The relationship or audience bottleneck.",
+            "The difficult message or ask.",
+            "Evidence of competence, reliability, or relevance.",
+            "A counterfactual scrutiny check."
+          ],
+          "good_output_shape": [
+            "Shows understanding of the other person's problem.",
+            "Pairs warmth with concrete usefulness.",
+            "Adds a check against halo effect.",
+            "Preserves room for dissent or escalation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is trust the bottleneck, or are we avoiding the hard substance?",
+        "Would we accept this evidence from a less likable messenger?",
+        "What dissent or escalation might liking suppress?"
+      ],
+      "misuse_guards": [
+        "Do not use liking as manipulation license.",
+        "Do not let affinity lower evidence standards.",
+        "Do not let the wish to be liked suppress necessary disagreement."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Liking_Principle_rag.md",
+          "source_quote": "trust, receptivity, or willingness to engage is the bottleneck",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Liking_Principle_rag.md",
+          "source_quote": "warmth is paired with demonstrated competence, reliability, and concrete relevance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Liking_Principle_rag.md",
+          "source_quote": "social warmth causes teams to lower their evidentiary standards",
+          "section_hint": "Common Anti-Patterns and Dangerous Misapplications",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports liking as receptivity work only when paired with substance and scrutiny.",
+        "dropped_material": [
+          "Did not extract charm, charisma, or sales tricks as recommended tactics.",
+          "Did not create user-facing persuasion copy."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps separate trust repair from manipulation."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "liking-as-manipulation-license",
+      "status": "not_supported_by_source",
+      "reason": "The source pairs liking with relevance, competence, and evidence checks; it does not support using affinity to bypass judgment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Liking_Principle_rag.md",
+          "source_quote": "substituting rapport for rigorous intellectual work",
+          "section_hint": "Common Anti-Patterns and Dangerous Misapplications",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "affinity-without-trust-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source supports trust-building when warmth is paired with reliability and relevance, not affinity alone.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Liking_Principle_rag.md",
+          "source_quote": "demonstrated competence, reliability, and concrete relevance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Liking_Principle_rag.md",
+      "source_quote": "desire to stay likable suppresses dissent",
+      "section_hint": "Common Anti-Patterns and Dangerous Misapplications",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for liking as receptivity with evidence-standard guardrails.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should test whether this card is useful alongside reciprocity and persuasion cards."
+    ],
+    "review_status": "draft"
+  }
+}

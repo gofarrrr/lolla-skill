@@ -1,0 +1,145 @@
+{
+  "model_id": "wysiati",
+  "source_file": "WYSIATI_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "wysiati.missing-evidence-denominator-audit",
+      "status": "supported",
+      "name": "Missing evidence denominator audit",
+      "mechanism": "When a coherent story is producing confidence, require the answer to audit what evidence, denominator, disconfirming case, or information source is absent before treating the picture as complete.",
+      "activation_shape": {
+        "use_when": [
+          "The available evidence forms a coherent story that feels complete.",
+          "Confidence may be tracking story quality rather than evidence completeness.",
+          "The missing denominator, disconfirming case, or absent briefing side could change the conclusion."
+        ],
+        "do_not_use_when": [
+          "The answer already names the missing evidence and why its absence is random or structured.",
+          "The current decision has enough reference-class and disconfirming evidence for the commitment being made.",
+          "The packet would merely say more information may exist without naming the missing denominator."
+        ],
+        "case_evidence_needed": [
+          "The coherent story or conclusion under review.",
+          "The evidence currently visible.",
+          "The evidence, denominator, or disconfirming case that is absent.",
+          "Whether the absence is random, incentive-shaped, or controlled by another party."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "audit-missing-denominator",
+          "description": "Require the answer to separate story coherence from evidence completeness by naming the missing denominator, absent disconfirming case, and why the absence matters before commitment.",
+          "evidence_required": [
+            "The coherent story or recommendation.",
+            "The visible evidence set.",
+            "The missing denominator or absent contrary case.",
+            "The reason the absence is random, structured, or controlled by another party."
+          ],
+          "good_output_shape": [
+            "Names what is missing from the picture.",
+            "Separates coherence from completeness.",
+            "Identifies whether missing evidence is structured or random.",
+            "States how the absent evidence could change the decision."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is this conclusion well-supported, or just well-constructed?",
+        "What evidence would need to be in the picture before confidence is warranted?",
+        "Is the missing denominator random, or is someone controlling what we see?"
+      ],
+      "misuse_guards": [
+        "Do not treat narrative coherence as evidence completeness.",
+        "Do not ask for generic more information; name the absent denominator or disconfirming case.",
+        "Do not let a one-sided briefing feel complete because it is internally fluent."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "WYSIATI_rag.md",
+          "source_quote": "Confidence tracks story quality, not evidence completeness.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "WYSIATI_rag.md",
+          "source_quote": "Audit the Denominator",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "WYSIATI_rag.md",
+          "source_quote": "Before we close on this, can we name the three most important things we do not know",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a missing-evidence denominator audit for coherent stories that generate confidence.",
+        "dropped_material": [
+          "Did not extract separate anchoring, confirmation-bias, survivorship-bias, or base-rate cards.",
+          "Focused the record on denominator and evidence-completeness checks."
+        ],
+        "open_questions": [
+          "PR46 should test whether this card improves packet evidence honesty without adding generic missing-information boilerplate."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "coherent-story-as-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says a coherent argument is not more likely to be true, so the card must not treat fluency or tidy logic as proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "WYSIATI_rag.md",
+          "source_quote": "A coherent argument is not more likely to be true.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "available-evidence-as-complete-picture",
+      "status": "not_supported_by_source",
+      "reason": "The source says WYSIATI treats available evidence as complete, so the record must not promote currently visible information as the whole evidence base.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "WYSIATI_rag.md",
+          "source_quote": "it simply treats available evidence as complete",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "WYSIATI_rag.md",
+      "source_quote": "What You See Is All There Is",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for WYSIATI as a missing-evidence denominator audit.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether the card forces specific missing-evidence checks instead of vague caution."
+    ],
+    "review_status": "draft"
+  }
+}

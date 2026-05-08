@@ -1,0 +1,145 @@
+{
+  "model_id": "tier-2-high-value",
+  "source_file": "Tier_2_High_Value_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "tier-2-high-value.prune-to-leverage-drivers",
+      "status": "supported",
+      "name": "Prune work to leverage drivers",
+      "mechanism": "When many tasks look valuable but only a few move outcome quality, use Tier-2 High Value to distinguish leverage from busyness and define the end product that resolves the issue.",
+      "activation_shape": {
+        "use_when": [
+          "Many tasks look valuable on the surface but only a few meaningfully move the outcome, decision quality, or learning rate.",
+          "The team can distinguish leverage from busyness and define the specific end-product that would resolve the issue.",
+          "Time, attention, or capital are scarce enough that ruthless pruning matters more than completeness theater."
+        ],
+        "do_not_use_when": [
+          "People talk fluently about leverage, strategy, or value while skipping concrete enabling details.",
+          "High-level framing creates a false sense that the hard thinking is complete.",
+          "Tier-2 language is used as a quality rank without case-specific fit."
+        ],
+        "case_evidence_needed": [
+          "The outcome, decision quality, or learning rate that matters.",
+          "The small set of leverage drivers or high-impact activities.",
+          "The end product that would resolve the issue.",
+          "The enabling details, ownership, sequencing, or evidence that make the leverage real."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "name-driver-end-product-and-enablers",
+          "description": "Require the answer to name the leverage driver, the resolving end product, and the enabling details so high-value framing becomes executable.",
+          "evidence_required": [
+            "The crowded task set.",
+            "The high-leverage driver.",
+            "The end product or decision that resolves the issue.",
+            "The concrete enabling details, ownership, and sequence."
+          ],
+          "good_output_shape": [
+            "Prunes low-impact work.",
+            "Names the leverage driver.",
+            "Defines the end product.",
+            "Adds the concrete enabling details needed for execution."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which few actions actually move the outcome, decision quality, or learning rate?",
+        "What end product would resolve the issue rather than just keep work moving?",
+        "Are we using high-value language while skipping the concrete enabling details?"
+      ],
+      "misuse_guards": [
+        "Do not treat Tier 2 as a status label or quality rank.",
+        "Do not let leverage language skip ownership, sequence, and evidence.",
+        "Do not confuse high-level framing with finished thinking."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Tier_2_High_Value_rag.md",
+          "source_quote": "many tasks look valuable on the surface but only a few meaningfully move the outcome",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Tier_2_High_Value_rag.md",
+          "source_quote": "distinguish leverage from busyness and define the specific end-product",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Tier_2_High_Value_rag.md",
+          "source_quote": "skipping the concrete enabling details that make the recommendation executable",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports high-value pruning only when leverage drivers are connected to executable end products.",
+        "dropped_material": [
+          "Did not treat Tier 2 as a universal importance rank.",
+          "Did not convert the model into deterministic prioritization."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with opportunity-cost and leverage-points."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "tier-2-as-quality-rank",
+      "status": "not_supported_by_source",
+      "reason": "The source defines Tier-2 value through case-specific leverage drivers; it does not support treating the label as a quality rank.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Tier_2_High_Value_rag.md",
+          "source_quote": "distinguish between the truly crucial elements and the peripheral noise",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "high-value-without-case-fit",
+      "status": "not_supported_by_source",
+      "reason": "The source requires the specific end product and leverage logic for the case; it does not support high-value claims without fit.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Tier_2_High_Value_rag.md",
+          "source_quote": "define the specific end-product that would actually resolve the issue",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Tier_2_High_Value_rag.md",
+      "source_quote": "focusing energy and resources exclusively on the core drivers",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 keeps Tier-2 High Value as leverage pruning tied to a case-specific end product.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, prioritization scorer, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether this card helps prune candidate advice without over-centralizing the packet around leverage language."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "model_id": "analogies-and-metaphors",
+  "source_file": "Analogies_And_Metaphors_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "analogies-and-metaphors.structural-fit-transfer-test",
+      "status": "supported",
+      "name": "Structural fit transfer test",
+      "mechanism": "When an analogy is used to make a new idea graspable, require the answer to test whether the source and target domains share the relevant mechanism, state the analogy boundary, and prevent a vivid comparison from replacing evidence about the target system.",
+      "activation_shape": {
+        "use_when": [
+          "The audience lacks a usable schema for a new concept but has adjacent experience that can carry the explanation.",
+          "Abstraction is blocking understanding, memory, or discussion.",
+          "The analogy transfers the important structural logic of the target domain rather than merely providing a catchy image."
+        ],
+        "do_not_use_when": [
+          "The analogy is based on superficial similarity rather than shared mechanism.",
+          "The borrowed comparison becomes more psychologically real than the target system.",
+          "Layered or overused metaphors add cognitive load instead of reducing it."
+        ],
+        "case_evidence_needed": [
+          "The target concept or decision that needs explanation.",
+          "The source analogy and the audience schema it activates.",
+          "The mechanism or structural relationship that transfers.",
+          "The boundary where the analogy stops applying."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-reference-class-fit-before-transfer",
+          "description": "Require the answer to line up assumptions in the source analogy against the target case and name at least one limitation before relying on the comparison.",
+          "evidence_required": [
+            "The source analogy or metaphor.",
+            "The target concept or case.",
+            "The assumptions and structural mechanisms that must match.",
+            "The limitation or mismatch that could make the analogy misleading."
+          ],
+          "good_output_shape": [
+            "Names the analogy and target.",
+            "Maps the structural mechanism that transfers.",
+            "Names the boundary or mismatch.",
+            "Uses the analogy to clarify, not to prove."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What mechanism transfers from the source domain to the target domain?",
+        "Where does this analogy stop applying?",
+        "Is the analogy clarifying the target system, or starting to substitute for it?"
+      ],
+      "misuse_guards": [
+        "Do not let a vivid analogy become proof.",
+        "Do not transfer familiarity without testing structural fit.",
+        "Do not stack metaphors when the audience needs one clear mapping and its limits."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Analogies_And_Metaphors_rag.md",
+          "source_quote": "**bridges**, connecting what an audience already understands to the new ideas",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Analogies_And_Metaphors_rag.md",
+          "source_quote": "line up all the assumptions that underpin a reference class and test the current case for fit with each",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Analogies_And_Metaphors_rag.md",
+          "source_quote": "Best when mechanism transfers along with familiarity",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Analogies_And_Metaphors_rag.md",
+          "source_quote": "preserves the important structural logic of the target domain rather than merely supplying a catchy image",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports an analogy structural-fit transfer test with explicit boundary and map-vs-territory guards.",
+        "dropped_material": [
+          "Did not extract viral metaphors, high-concept pitching, or the Feynman Technique as separate affordances.",
+          "Did not infer generic creative brainstorming guidance beyond source-supported structural transfer."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this card helps hypothesis generation without making polished analogy feel like evidence."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "analogy-as-proof-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source says metaphors obscure as much as they reveal. A vivid analogy should not be promoted as proof of the target system.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Analogies_And_Metaphors_rag.md",
+          "source_quote": "obscure as much as they reveal",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "map-substitutes-for-territory",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that the borrowed comparison can become more psychologically real than the target system and drive conclusions past its boundary.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Analogies_And_Metaphors_rag.md",
+          "source_quote": "the borrowed comparison becomes more psychologically real than the target system itself",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Analogies_And_Metaphors_rag.md",
+      "source_quote": "Analogies can be **generative**",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Analogies_And_Metaphors_rag.md",
+      "source_quote": "provide **counterexamples**",
+      "section_hint": "Risks and Mitigations",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Analogies and Metaphors. Extracted one structural-fit transfer test and rejected analogy-as-proof plus map-substitution misuse.",
+    "dropped_material": [
+      "Communication examples were kept as context rather than separate PR34 affordances.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should test whether this card adds useful hypothesis-generation depth without increasing rhetorical clutter."
+    ],
+    "review_status": "draft"
+  }
+}

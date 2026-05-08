@@ -1,0 +1,145 @@
+{
+  "model_id": "complexity-bias-resistance",
+  "source_file": "Complexity_Bias_Resistance_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "complexity-bias-resistance.compress-with-causal-spine",
+      "status": "supported",
+      "name": "Compress complexity without losing causality",
+      "mechanism": "When analysis, messaging, or product logic has become too cluttered to use, apply complexity bias resistance by finding the governing variable and preserving the causal spine through compression.",
+      "activation_shape": {
+        "use_when": [
+          "Complexity is obscuring the governing variable or decision rule.",
+          "A recommendation must remain true after compression.",
+          "Sophistication is being confused with clutter and the output is harder to use than the problem requires."
+        ],
+        "do_not_use_when": [
+          "Simplicity means accepting the first appealing explanation without adequate testing.",
+          "Legitimate nuance is being stripped away to reach a cleaner story or faster conclusion.",
+          "The team wants a simple answer as proof instead of preserving the causal spine."
+        ],
+        "case_evidence_needed": [
+          "The clutter or excess structure currently hiding the decision rule.",
+          "The governing variable or causal spine that must survive simplification.",
+          "The nuance that must not be removed.",
+          "A test showing the compressed version still holds."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "preserve-governing-variable",
+          "description": "Require the answer to name the governing variable and the nuance preserved during simplification so clarity does not become shallow certainty.",
+          "evidence_required": [
+            "The overly complex structure or message.",
+            "The governing variable or decision rule.",
+            "The causal spine that must stay intact.",
+            "A check against the first appealing simple story."
+          ],
+          "good_output_shape": [
+            "Names the governing variable.",
+            "Compresses the recommendation.",
+            "States the nuance retained.",
+            "Warns against easy-route simplification."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What governing variable or decision rule is hidden by the current complexity?",
+        "What must remain true after compression for the recommendation to stay valid?",
+        "Are we simplifying to preserve clarity, or just choosing the easiest story?"
+      ],
+      "misuse_guards": [
+        "Do not turn simplicity into premature certainty.",
+        "Do not discard legitimate nuance just to make the answer cleaner.",
+        "Do not treat a simple answer as proof without testing the causal spine."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Complexity_Bias_Resistance_rag.md",
+          "source_quote": "complexity is obscuring the governing variable or decision rule",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complexity_Bias_Resistance_rag.md",
+          "source_quote": "recommendation must remain true after compression",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Complexity_Bias_Resistance_rag.md",
+          "source_quote": "strip away legitimate nuance simply to reach a cleaner story",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports simplification only when the governing variable and causal spine are preserved.",
+        "dropped_material": [
+          "Did not convert complexity resistance into anti-intellectual simplicity worship.",
+          "Did not infer that the shortest answer is necessarily the truest answer."
+        ],
+        "open_questions": [
+          "Later packet review should inspect overlap with false-precision-avoidance and first-principles-thinking."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "complexity-bias-as-simplicity-worship",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against both needless complexity and inaccurate oversimplification; it does not support worshiping simplicity as inherently correct.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Complexity_Bias_Resistance_rag.md",
+          "source_quote": "needless complexity or adopt inaccurate, oversimplified models",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "simple-answer-as-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that the first simple explanation can be an untested shortcut; it does not support treating simplicity itself as proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Complexity_Bias_Resistance_rag.md",
+          "source_quote": "accepting the first, simplest explanation without adequate testing",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Complexity_Bias_Resistance_rag.md",
+      "source_quote": "disciplined commitment to **simplicity and clarity**",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 preserves complexity bias resistance as clarity with testing, not an aesthetic preference for simple answers.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, simplification engine, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should test whether this card helps trim bloat without flattening nuance."
+    ],
+    "review_status": "draft"
+  }
+}

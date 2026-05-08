@@ -1,0 +1,153 @@
+{
+  "model_id": "batna",
+  "source_file": "Batna_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "batna.credible-walk-away-alternative-test",
+      "status": "supported",
+      "name": "Credible walk-away alternative test",
+      "mechanism": "When a negotiation or deal decision is pressured, require the answer to compare the proposed agreement against a credible, executable outside option rather than hope, sunk effort, or a vague fallback.",
+      "activation_shape": {
+        "use_when": [
+          "Negotiation leverage depends on knowing the walk-away path before entering a pressured conversation.",
+          "A team is comparing a proposed deal against hope, sunk effort, or fear of losing the current option.",
+          "Fallback clarity would change bargaining posture, sequencing, or willingness to say no."
+        ],
+        "do_not_use_when": [
+          "The supposed BATNA is vague, unexecutable, or worse than continuing to negotiate.",
+          "The source material is being used to claim textbook BATNA depth that the file itself does not contain.",
+          "The answer would treat any alternative as leverage without testing credibility, timing, or execution."
+        ],
+        "case_evidence_needed": [
+          "The proposed deal or agreement being considered.",
+          "The specific outside option available if the deal is rejected.",
+          "The cost, timing, risk, and executability of the outside option.",
+          "The threshold at which saying no is better than continuing negotiation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "compare-deal-against-executable-fallback",
+          "description": "Require the answer to name the walk-away option, test whether it is executable, and compare the deal against that option rather than against hope or sunk effort.",
+          "evidence_required": [
+            "The concrete proposed deal.",
+            "The named outside option and its availability.",
+            "Evidence that the outside option can actually be executed.",
+            "The cost of continuing negotiation versus walking away."
+          ],
+          "good_output_shape": [
+            "Names the deal and the fallback.",
+            "Tests fallback credibility before using it as leverage.",
+            "Compares expected outcomes against the outside option.",
+            "States what would justify saying no."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the concrete outside option if this negotiation fails?",
+        "Is the fallback executable now, or just a comforting label?",
+        "What deal terms are worse than the walk-away path?"
+      ],
+      "misuse_guards": [
+        "Do not treat a vague fallback as a BATNA.",
+        "Do not claim the source provides textbook BATNA doctrine beyond its explicit custody caveat.",
+        "Do not compare the deal against sunk effort or hope when a real outside option must be priced."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "negotiation leverage depends on knowing the walk-away path before entering a pressured conversation",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "compare a proposed deal against a credible outside option rather than against hope or sunk effort",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "clarity about fallback options changes bargaining posture, sequencing, and the willingness to say no",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "medium",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: thin_narrow_affordance_record. The source supports a credible walk-away test but explicitly says BATNA is not defined or discussed in the source corpus, so confidence remains medium.",
+        "dropped_material": [
+          "Did not extract full negotiation doctrine because the source custody note limits support.",
+          "Did not infer bargaining tactics, concession sequencing, or reservation-price methods from general knowledge."
+        ],
+        "open_questions": [
+          "Future enrichment may need better source material before BATNA should carry high-confidence reviewed depth."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "textbook-batna-definition-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says BATNA is not defined or discussed in the provided source material. Reviewed extraction should not pretend the file supports full BATNA doctrine.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "It is important to note that the term \"BATNA\" (Best Alternative To a Negotiated Agreement) is not explicitly defined or discussed within the provided sources or our conversation history.",
+          "section_hint": "Source custody note",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "vague-fallback-as-batna",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that declaring a vague or unexecutable fallback as a BATNA is dangerous. That pattern should be blocked rather than promoted.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "people declare a fallback as their BATNA even though it is vague, unexecutable, or worse than continuing to negotiate",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Batna_rag.md",
+      "source_quote": "Therefore, the following analysis synthesizes expert perspectives on finding an optimal solution, comparing alternatives, setting clear objectives, and managing complexity in decision-making, which form the functional context of a mental model like BATNA.",
+      "section_hint": "Source custody note",
+      "extraction_type": "explicit",
+      "confidence": "medium"
+    },
+    {
+      "source_file": "Batna_rag.md",
+      "source_quote": "Most useful when** negotiation leverage depends on knowing the walk-away path before entering a pressured conversation.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "medium"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found useful but limited reviewed depth for BATNA. Extracted one credible-fallback test and preserved the source's explicit caveat that full BATNA doctrine is not available.",
+    "dropped_material": [
+      "No reservation price, ZOPA, concession design, or negotiation-tactics affordance was extracted from generic knowledge.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "BATNA may need stronger canonical source material before it should be used as anything beyond a narrow reviewed packet card."
+    ],
+    "review_status": "draft"
+  }
+}

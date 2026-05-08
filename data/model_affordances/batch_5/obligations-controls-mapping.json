@@ -1,0 +1,160 @@
+{
+  "model_id": "obligations-controls-mapping",
+  "source_file": "Obligations_Controls_Mapping_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "obligations-controls-mapping.obligation-to-control-trace",
+      "status": "supported",
+      "name": "Obligation-to-control trace map",
+      "mechanism": "When responsibility is known but execution discipline is weak, translate the obligation into explicit controls, checkpoints, owners, and boundaries so actions can be traced back to purpose rather than hidden in documentation or vague intent.",
+      "activation_shape": {
+        "use_when": [
+          "A team knows what must be true or delivered but has not mapped how the obligation will be controlled in practice.",
+          "Failure would come from handoff ambiguity, unowned checkpoints, or controls that are not tied to live operating behavior.",
+          "Compliance, reliability, traceability, or role clarity matter alongside execution."
+        ],
+        "do_not_use_when": [
+          "The proposed mapping would create documentation theater without changing live decision points or behavior.",
+          "The real issue is a novel diagnosis, not translation of known obligations into operating controls.",
+          "The control map would ignore human, political, or implementation data that determines whether the control can work."
+        ],
+        "case_evidence_needed": [
+          "The obligation, requirement, responsibility, or success criterion being translated.",
+          "The operational controls, checkpoints, owners, and boundaries currently proposed or missing.",
+          "The handoff, process stage, or system behavior where failure would occur.",
+          "The evidence that the control changes real behavior rather than documentation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "trace-obligation-to-live-control",
+          "description": "Require the answer to name the obligation, the control that enforces it, the owner or checkpoint, and how the control will be observed in real operation.",
+          "evidence_required": [
+            "The specific obligation or responsibility at stake.",
+            "The control or process meant to satisfy it.",
+            "The owner, boundary, or checkpoint that prevents handoff ambiguity.",
+            "The live evidence that the control actually changes behavior."
+          ],
+          "good_output_shape": [
+            "Pairs each obligation with an operating control.",
+            "Names the owner or stage where the control lives.",
+            "Shows the evidence trail from action back to obligation.",
+            "Flags any control that is only documentation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What obligation is this control supposed to satisfy, and where is that trace visible?",
+        "Which handoff, owner, or checkpoint would fail if the obligation fell through the gaps?",
+        "Is this mapping changing live behavior, or merely producing a document that looks controlled?"
+      ],
+      "misuse_guards": [
+        "Do not treat a control map as useful unless it is tied to an actual obligation, decision point, or operating behavior.",
+        "Do not use familiar frameworks as controls when the real obligation has not been diagnosed.",
+        "Do not ignore personal, organizational, or political data that determines whether the control can be implemented."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Obligations_Controls_Mapping_rag.md",
+          "source_quote": "ensuring that a system's structure and behavior are inherently aligned with its mandated goals, responsibilities, and constraints",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Obligations_Controls_Mapping_rag.md",
+          "source_quote": "every action undertaken within the system (whether an organization or an AI agent) is traceable back to a defined purpose, responsibility, or boundary",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Obligations_Controls_Mapping_rag.md",
+          "source_quote": "responsibility is clear but execution discipline is not",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Obligations_Controls_Mapping_rag.md",
+          "source_quote": "failure would come from handoff ambiguity rather than missing intent",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports an obligation-to-control trace map for turning known responsibilities into observable operating controls.",
+        "dropped_material": [
+          "Did not extract LLM agent prompt roles as a separate affordance because the reusable value is traceability from obligation to control.",
+          "Did not extract MECE or TOSCA separately because those are supporting control-mapping tools already covered elsewhere."
+        ],
+        "open_questions": [
+          "Future packet review should ensure this card stays distinct from checklists and formal-reasoning."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "documentation-theater-control-map",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that control mapping fails when elaborate mappings are no longer tied to actual obligations, decision points, or behavior.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Obligations_Controls_Mapping_rag.md",
+          "source_quote": "teams produce elaborate mappings that look rigorous but are no longer tied to actual obligations, live decision points, or real operating behavior",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "familiar-framework-as-control",
+      "status": "not_supported_by_source",
+      "reason": "The source does not support applying a familiar control framework before diagnosing whether the frame fits the obligation. It flags false pattern recognition as an anti-pattern.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Obligations_Controls_Mapping_rag.md",
+          "source_quote": "When facing genuinely novel problems, relying too heavily on established frameworks (Controls) can be misleading or unhelpful.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Obligations_Controls_Mapping_rag.md",
+      "source_quote": "It acts as a bridge between high-level vision and granular execution.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Obligations_Controls_Mapping_rag.md",
+      "source_quote": "Best when compliance, reliability, and traceability matter at the same time",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Obligations Controls Mapping. Extracted one traceability affordance and rejected documentation theater plus familiar-framework control mapping.",
+    "dropped_material": [
+      "Orchestra, map/territory, playwright/agent, CTA, and process engineering examples were kept as source context rather than separate records.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should test whether this card helps obligation/control cases without bloating process-heavy packets."
+    ],
+    "review_status": "draft"
+  }
+}

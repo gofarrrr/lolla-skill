@@ -1,0 +1,1334 @@
+{
+  "blocked_surfaces": [
+    "live_observatory_rendering",
+    "memo_integration",
+    "step8_integration",
+    "step6_integration",
+    "lane4_integration",
+    "lolla_runtime_use",
+    "user_facing_decision_pressure_block",
+    "prompt_changes",
+    "generation_changes",
+    "new_extraction",
+    "batch_3b",
+    "paid_gate4_reruns_by_default"
+  ],
+  "candidate_cards": [
+    {
+      "absence_records": [
+        {
+          "attempted_field": "conflict-avoidance-affordance",
+          "model_id": "non-violent-communication",
+          "reason": "The source explicitly warns against confusing non-violent communication with avoiding hard boundaries, trade-offs, or accountability requests.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-001-non-violent-communication",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Non Violent Communication",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "non-violent-communication",
+      "nomination_metadata": {
+        "lane_order": 1,
+        "lane_score": 0.9
+      },
+      "pulled_by": [
+        "lane1_tendency_route",
+        "reviewer_note"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "non-violent-communication.needs-observations-request-clarifier"
+        ],
+        "case_evidence_needed": [
+          "The factual observation at issue."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What observable fact can be named without accusing the other party's character?"
+        ],
+        "do_not_use_when": [
+          "The model would soften every edge of disagreement until boundaries, trade-offs, or accountability disappear."
+        ],
+        "misuse_guards": [
+          "Do not turn non-violent wording into conflict avoidance."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "non-violent-communication.needs-observations-request-clarifier",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Non_Violent_Communication_rag.md",
+            "source_quote": "stating directly what you want and how you see things without putting down or infringing on the rights of others"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to state the observable issue, name the relevant need or relationship concern, and convert it into a concrete request or next action without accusation.",
+            "evidence_required": [
+              "The observable event or behavior."
+            ],
+            "good_output_shape": [
+              "Separates facts from interpretations."
+            ],
+            "requirement_id": "separate-observation-need-and-request"
+          }
+        ],
+        "use_when": [
+          "A disagreement is entangled with defensiveness, face-saving, mistrust, or fear of blame."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The conversation is being softened so much that real boundaries, trade-offs, or accountability requests never become explicit."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams can soften conflict language enough to avoid argument while still failing to make the real boundary or trade-off discussable.",
+            "extraction_type": "explicit",
+            "mitigation": "After collaborative dialogue, verify that the real trade-off or boundary was stated, not just softened into vagueness: ask each party to restate what was decided and what was given up.",
+            "mode": "Teams can soften conflict language enough to avoid argument while still failing to make the real bou...",
+            "source_quote": "Danger when teams smooth over the sharp edge of disagreement so much that real boundaries, trade-offs, or accountability requests never become explicit."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Check both the content level and the relationship level before deciding what the conversation actually needs next.",
+            "extraction_type": "normalized",
+            "source_quote": "Always operate at two levels: the analytical content and the relationship tension."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "Are we trying to convince each other that we are right, or are we trying to hear each perspective to figure out what is true and what to do?",
+            "extraction_type": "explicit",
+            "source_quote": "Are we going to try to convince each other that we are right or are we going to open-mindedly hear each other\u2019s perspectives to try to figure out what\u2019s true and what to do about it?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "causal"
+        ],
+        "select_when": [
+          "Completion and synchronization matter more than winning an argument, and the team needs a clearer split between content and relationship data."
+        ],
+        "source_file": "Non_Violent_Communication_rag.md"
+      },
+      "source_custody": {
+        "bytes": 19334,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Non_Violent_Communication_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "ea4855cd43ff508fb09f4749132173469b5e838ae15977804657529fcd55693a",
+        "source_file": "Non_Violent_Communication_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "be transparent and empathize",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The repair note risks mixing accusation, need, and request instead of making the relationship concern observable and actionable.",
+          "route_or_artifact_id": "synthetic-pr37-repair-note",
+          "source": "lane1_tendency_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "empathy-substitutes-for-standards",
+          "model_id": "emotional-intelligence",
+          "reason": "The source explicitly rejects treating empathy as a substitute for standards, evidence, or hard conversations.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-002-emotional-intelligence",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Emotional Intelligence",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "emotional-intelligence",
+      "nomination_metadata": {
+        "lane_order": 2,
+        "lane_score": 0.86
+      },
+      "pulled_by": [
+        "lane1_tendency_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "emotional-intelligence.emotion-evidence-landing-check"
+        ],
+        "case_evidence_needed": [
+          "The decision, change, conflict, or message that must land socially."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What emotion or fairness concern might change whether this technically sound answer lands?"
+        ],
+        "do_not_use_when": [
+          "Empathy is being used as a substitute for standards, evidence, or hard conversations."
+        ],
+        "misuse_guards": [
+          "Do not equate emotional intelligence with niceness."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "emotional-intelligence.emotion-evidence-landing-check",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Emotional_Intelligence_rag.md",
+            "source_quote": "manage feelings so they are expressed **appropriately and effectively**"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the emotional signal and likely cause, test that interpretation, and keep evidence and accountability requirements visible.",
+            "evidence_required": [
+              "The emotional or trust signal."
+            ],
+            "good_output_shape": [
+              "Names the emotion or trust concern as case evidence."
+            ],
+            "requirement_id": "validate-emotion-without-dropping-standards"
+          }
+        ],
+        "use_when": [
+          "The technical answer is not enough because trust, morale, conflict, or perceived fairness will shape whether a decision lands."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Empathy is being treated as a substitute for standards, evidence, or hard conversations."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Emotional intelligence can be misread as niceness, leaving hard but necessary truth unsaid.",
+            "extraction_type": "normalized",
+            "mitigation": "Distinguish empathy from avoidance: emotional intelligence includes delivering hard truths, not just maintaining comfort.",
+            "mode": "The Nice Guy Trap",
+            "source_quote": "The Nice Guy Trap"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use emotional granularity instead of vague labels so the real issue becomes more actionable.",
+            "extraction_type": "explicit",
+            "source_quote": "emotional granularity"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What emotion is present here, and what do I think is causing it?",
+            "extraction_type": "normalized",
+            "source_quote": "Identifying the emotion and naming the cause"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "The technical answer is not enough because trust, morale, conflict, or perceived fairness will shape whether the decision lands."
+        ],
+        "source_file": "Emotional_Intelligence_rag.md"
+      },
+      "source_custody": {
+        "bytes": 18004,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Emotional_Intelligence_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "cdaaebe042fc65fd6e4195735679b1e1f1b808c7bfdbc64ca4caba10060b6dd5",
+        "source_file": "Emotional_Intelligence_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "user_turn",
+          "reason": "The plan treats emotional landing as style rather than evidence about adoption, fairness, and trust.",
+          "route_or_artifact_id": "synthetic-pr37-emotional-landing",
+          "source": "lane1_tendency_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "over-psychologize-simple-constraints",
+          "model_id": "understanding-motivations",
+          "reason": "The source warns that motivational analysis can over-explain cases that are actually constraint or capability problems.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-003-understanding-motivations",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Understanding Motivations",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "understanding-motivations",
+      "nomination_metadata": {
+        "lane_order": 3,
+        "lane_score": 0.82
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "understanding-motivations.hidden-driver-hypothesis-test"
+        ],
+        "case_evidence_needed": [
+          "The visible behavior or resistance that needs explanation."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What is this person or group actually optimizing for?"
+        ],
+        "do_not_use_when": [
+          "The answer would over-psychologize a simple constraint, capability, or resource problem."
+        ],
+        "misuse_guards": [
+          "Do not over-psychologize simple constraint or capability problems."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "understanding-motivations.hidden-driver-hypothesis-test",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Understanding_Motivations_rag.md",
+            "source_quote": "visible behavior looks irrational, inconsistent, or self-defeating until the real status, identity, fear, or reward structure is surfaced"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to state a motivational hypothesis, identify what evidence would support or disconfirm it, and avoid treating stated motives as final truth.",
+            "evidence_required": [
+              "The puzzling behavior."
+            ],
+            "good_output_shape": [
+              "Names the behavior that needs explanation."
+            ],
+            "requirement_id": "test-hidden-driver-before-intervention"
+          }
+        ],
+        "use_when": [
+          "Visible behavior appears irrational, inconsistent, or self-defeating until status, identity, fear, reward, or purpose is surfaced."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The team is over-psychologizing a problem that is better explained by simple constraints, incentives, or capability gaps."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams can treat publicly stated reasons as the whole truth even when image management, politics, or self-deception are shaping the answer.",
+            "extraction_type": "normalized",
+            "mitigation": "Probe beyond stated reasons: use indirect evidence (behavior, resource allocation, past choices) to test whether the publicly stated motivation matches the revealed preference.",
+            "mode": "Danger when stated motivations are treated as sufficient truth",
+            "source_quote": "Danger when stated motivations are treated as sufficient truth"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Separate intrinsic and extrinsic drivers instead of treating all motivation as one blended force.",
+            "extraction_type": "explicit",
+            "source_quote": "Intrinsic vs. Extrinsic Motivation"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What would you have to believe for this motive explanation to be true?",
+            "extraction_type": "explicit",
+            "source_quote": "What would you have to believe?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "causal"
+        ],
+        "select_when": [
+          "Observed behavior is easy to name, but the real decision quality depends on identifying the why beneath it."
+        ],
+        "source_file": "Understanding_Motivations_rag.md"
+      },
+      "source_custody": {
+        "bytes": 18540,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Understanding_Motivations_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "e86ad8011479e5495931248b75f244fbd8112976df73ff47ada87727dc69aec7",
+        "source_file": "Understanding_Motivations_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "they may need more reassurance",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The assistant infers resistance but does not test hidden drivers against observable behavior or disconfirming evidence.",
+          "route_or_artifact_id": "synthetic-pr37-hidden-driver",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "comfort-protection-boundary",
+          "model_id": "boundaries",
+          "reason": "The source warns that boundaries are misused when they protect comfort instead of serving the real objective.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-004-boundaries",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Boundaries",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "boundaries",
+      "nomination_metadata": {
+        "lane_order": 4,
+        "lane_score": 0.78
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "boundaries.scope-ownership-decision-rights-filter"
+        ],
+        "case_evidence_needed": [
+          "The current scope or ownership ambiguity."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What is inside, outside, and merely adjacent to the current objective?"
+        ],
+        "do_not_use_when": [
+          "A boundary is being drawn mainly to avoid hard conversations, accountability, or inconvenient evidence."
+        ],
+        "misuse_guards": [
+          "Do not draw scope lines to avoid accountability or evidence."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "boundaries.scope-ownership-decision-rights-filter",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Boundaries_rag.md",
+            "source_quote": "scope, ownership, decision rights, or relevance criteria are fuzzy enough that energy is being wasted in every direction at once"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to define the boundary, name what it protects, and test whether excluded work is truly irrelevant or merely uncomfortable.",
+            "evidence_required": [
+              "The core objective."
+            ],
+            "good_output_shape": [
+              "States what is inside the work."
+            ],
+            "requirement_id": "define-inside-outside-and-influence"
+          }
+        ],
+        "use_when": [
+          "Scope, ownership, decision rights, or relevance criteria are fuzzy enough that effort is diffusing."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Scope lines are being drawn mainly to avoid inconvenient evidence, hard conversations, or accountability."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Boundaries fail when they are drawn to protect comfort, politics, or convenience instead of the actual purpose of the work.",
+            "extraction_type": "explicit",
+            "mitigation": "Audit whether boundaries serve the work or protect comfort: ask whether moving the boundary would improve the outcome even if it creates discomfort.",
+            "mode": "Danger When Boundaries Protect Comfort Instead of Purpose",
+            "source_quote": "Danger When Boundaries Protect Comfort Instead of Purpose"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Formalize the scope and expected output before the analysis sprawls.",
+            "extraction_type": "explicit",
+            "source_quote": "Formalizing the Contract and Scope"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What is this work actually supposed to cover, and what is deliberately out of scope?",
+            "extraction_type": "explicit",
+            "source_quote": "The Boundaries of Your Analysis"
+          }
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A project, analysis, or negotiation needs explicit scope lines before effort spreads into unowned terrain."
+        ],
+        "source_file": "Boundaries_rag.md"
+      },
+      "source_custody": {
+        "bytes": 14042,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Boundaries_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "e96ccfaf089560f5a5d09b15e90433239905e7e56116c1073c9ff4ec520108b5",
+        "source_file": "Boundaries_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "reset internal ownership boundaries",
+          "evidence_source_type": "user_turn",
+          "reason": "The internal reset needs a line between ownership, influence, and excluded work instead of a vague expectation reset.",
+          "route_or_artifact_id": "synthetic-pr37-ownership-boundary",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "authentic-style-without-substance",
+          "model_id": "authenticity",
+          "reason": "The source warns that authentic style without domain knowledge or factual substance can be wrong despite sounding real.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-005-authenticity",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Authenticity",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "authenticity",
+      "nomination_metadata": {
+        "lane_order": 5,
+        "lane_score": 0.74
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "authenticity.congruence-candor-substance-check"
+        ],
+        "case_evidence_needed": [
+          "The trust or credibility gap."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "Where do words, incentives, and behavior fail to line up?"
+        ],
+        "do_not_use_when": [
+          "Authentic style is being used without factual or procedural substance."
+        ],
+        "misuse_guards": [
+          "Do not confuse authentic style with reliable substance."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "authenticity.congruence-candor-substance-check",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Authenticity_rag.md",
+            "source_quote": "putting into words what one is genuinely experiencing during the work"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the real experience or constraint that should be surfaced, then tie it to evidence and accountable action rather than mere self-expression.",
+            "evidence_required": [
+              "The internal state, uncertainty, constraint, or credibility issue."
+            ],
+            "good_output_shape": [
+              "States the real experience or constraint plainly."
+            ],
+            "requirement_id": "name-real-experience-and-ground-it"
+          }
+        ],
+        "use_when": [
+          "Trust depends on congruence rather than polish."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Authenticity is being used as a shield against evidence, preparation, or accountability for consequences."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A team can spend energy managing impressions instead of surfacing the truth that would actually let the work improve.",
+            "extraction_type": "explicit",
+            "mitigation": "Establish constructive confrontation as a team norm so every hypothesis meets its antithesis; make it safe to surface uncomfortable truths.",
+            "mode": "Managing Impressions",
+            "source_quote": "Managing Impressions"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Put real-time internal experience into words when that honesty helps the other side see the actual problem more clearly.",
+            "extraction_type": "explicit",
+            "source_quote": "Verbalizing Internal Experience"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What conclusions would unbiased others draw if they saw the exact same facts?",
+            "extraction_type": "explicit",
+            "source_quote": "What conclusions would unbiased others draw if they saw the exact same facts?"
+          }
+        ],
+        "reasoning_types": [
+          "metacognitive",
+          "causal"
+        ],
+        "select_when": [
+          "Trust depends on whether words, incentives, and behavior line up under pressure rather than on whether the presentation sounds polished."
+        ],
+        "source_file": "Authenticity_rag.md"
+      },
+      "source_custody": {
+        "bytes": 16110,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Authenticity_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "260a18a244ed74ce18bc3f4aba1d5f9fac2ac269c7235fa9de4d05e345ed9ddd",
+        "source_file": "Authenticity_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "user_turn",
+          "reason": "The founder wants candor that rebuilds trust, but candor must stay congruent with evidence and accountability.",
+          "route_or_artifact_id": "synthetic-pr37-candor-substance",
+          "source": "lane3_frame_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "repeat-harm-excuse",
+          "model_id": "hanlons-razor",
+          "reason": "The source warns that Hanlon's Razor should not become an excuse for repeat harm or incentive-rewarded bad faith.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-006-hanlons-razor",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Hanlons Razor",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "hanlons-razor",
+      "nomination_metadata": {
+        "lane_order": 6,
+        "lane_score": 0.7
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "hanlons-razor.non-malice-diagnostic-delay"
+        ],
+        "case_evidence_needed": [
+          "The negative outcome or perceived slight."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What non-malicious operational explanation would fit these facts?"
+        ],
+        "do_not_use_when": [
+          "Repeat harm, obvious deception, or incentives practically reward bad-faith behavior."
+        ],
+        "misuse_guards": [
+          "Do not use Hanlon's Razor to excuse repeated harm."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "hanlons-razor.non-malice-diagnostic-delay",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Core Principles and Analogies",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Hanlons_Razor_rag.md",
+            "source_quote": "we should not attribute to malice that which is more easily explained by stupidity"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to state at least one non-malicious explanation, identify the evidence that would distinguish it from malice, and preserve an escalation path if bad faith remains plausible.",
+            "evidence_required": [
+              "The harmful event."
+            ],
+            "good_output_shape": [
+              "Delays hostile attribution."
+            ],
+            "requirement_id": "test-neglect-before-malice"
+          }
+        ],
+        "use_when": [
+          "A failure, delay, or conflict can plausibly be explained by coordination breakdown, poor incentives, missing training, or overloaded systems."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The principle is becoming a reflexive excuse for repeat harm, obvious deception, or incentive structures that reward bad-faith behavior."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Teams escalate conflict when they assign hostile intent before checking for simpler explanations like poor clarity, overload, or process breakdown.",
+            "extraction_type": "explicit",
+            "mitigation": "Check for simpler explanations \u2014 poor clarity, overload, misaligned incentives \u2014 before assigning hostile intent.",
+            "mode": "Teams escalate conflict when they assign hostile intent before checking for simpler explanations lik...",
+            "source_quote": "Works best when the emotional temptation is to assign hostile intent before checking for simpler operational explanations."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Default first to neglect, overload, or system failure before jumping to malice.",
+            "extraction_type": "explicit",
+            "source_quote": "Do not attribute to malice that which is more easily explained by stupidity."
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What simpler operational explanation could plausibly account for this failure before we infer hostile intent?",
+            "extraction_type": "explicit",
+            "source_quote": "Is there another reasonable explanation for the events that have occurred?"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "metacognitive"
+        ],
+        "select_when": [
+          "A failure, delay, or conflict could plausibly be explained by poor clarity, coordination breakdown, overload, or neglect rather than hostile intent."
+        ],
+        "source_file": "Hanlons_Razor_rag.md"
+      },
+      "source_custody": {
+        "bytes": 15906,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Hanlons_Razor_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "021cd127e6a5b6318d088a159fd06f7815b86f3d33fa81179b0d71a9cfafa435",
+        "source_file": "Hanlons_Razor_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "they keep stalling",
+          "evidence_source_type": "user_turn",
+          "reason": "The partner delay may be malice, overload, incentives, or coordination failure; the plan should not jump to intent attribution.",
+          "route_or_artifact_id": "synthetic-pr37-intent-attribution",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "obligation-without-evaluation",
+          "model_id": "reciprocity-principle",
+          "reason": "The source warns that reciprocity can create obligation before the recipient has evaluated the merits.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-007-reciprocity-principle",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Reciprocity Principle",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "reciprocity-principle",
+      "nomination_metadata": {
+        "lane_order": 7,
+        "lane_score": 0.66
+      },
+      "pulled_by": [
+        "lane2_detected_model"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "reciprocity-principle.costly-value-trust-test"
+        ],
+        "case_evidence_needed": [
+          "The ask, negotiation, or sale that needs trust before evaluation."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What real value has been given before the ask?"
+        ],
+        "do_not_use_when": [
+          "Reciprocity pressure creates obligation without informed evaluation."
+        ],
+        "misuse_guards": [
+          "Do not use reciprocity to manufacture mindless compliance."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "reciprocity-principle.costly-value-trust-test",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Reciprocity_Principle_rag.md",
+            "source_quote": "trust or relationship depth must be built before a difficult ask, negotiation, or sale can even be evaluated seriously"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the value offered, test whether it is costly and relevant, and protect the recipient's ability to evaluate the actual decision.",
+            "evidence_required": [
+              "The proposed gift, favor, work, or concession."
+            ],
+            "good_output_shape": [
+              "Names the reciprocal value exchange."
+            ],
+            "requirement_id": "distinguish-real-value-from-obligation-pressure"
+          }
+        ],
+        "use_when": [
+          "Trust or relationship depth must be built before a difficult ask, negotiation, or sale can be evaluated seriously."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Gifts, favors, or access are becoming a distraction from the substance, economics, or ethics of the underlying decision."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A team can mistake reciprocity pressure for genuine agreement and push people toward yes before they have judged the merits.",
+            "extraction_type": "normalized",
+            "mitigation": "Separate social pressure from judgment: after any reciprocity-driven exchange, ask whether the person would still agree if the prior favor had never occurred.",
+            "mode": "Danger when reciprocity pressure creates obligation without informed evaluation",
+            "source_quote": "Danger when reciprocity pressure creates obligation without informed evaluation"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Lead with real value before asking for commitment so the exchange is anchored in usefulness rather than in obligation theater.",
+            "extraction_type": "normalized",
+            "source_quote": "The more value you give, the more value you get"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "If the other side accepts now, is the acceptance coming from thoughtful analysis or from the pressure to reciprocate?",
+            "extraction_type": "normalized",
+            "source_quote": "is their acceptance based on thoughtful, deliberate analysis of the outcomes (System 2), or merely on the psychological pressure to reciprocate"
+          }
+        ],
+        "reasoning_types": [
+          "diagnostic",
+          "causal"
+        ],
+        "select_when": [
+          "Trust or relationship depth must be built before a difficult ask, negotiation, or sale can be evaluated seriously."
+        ],
+        "source_file": "Reciprocity_Principle_rag.md"
+      },
+      "source_custody": {
+        "bytes": 13463,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Reciprocity_Principle_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "d94b935ec1caeb93307bbab208cd878a076989a8a8596a9ac5f4ac3f661da54d",
+        "source_file": "Reciprocity_Principle_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "offer a concession",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The concession is meant to rebuild trust before an ask, but the packet needs to distinguish real value from obligation pressure.",
+          "route_or_artifact_id": "synthetic-pr37-reciprocal-value",
+          "source": "lane2_detected_model"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "better-packaging-for-weak-answer",
+          "model_id": "persuasion-principles",
+          "reason": "The source explicitly warns that persuasive technique can accelerate acceptance of a weak or flawed answer.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-008-persuasion-principles",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Persuasion Principles",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "persuasion-principles",
+      "nomination_metadata": {
+        "lane_order": 8,
+        "lane_score": 0.62
+      },
+      "pulled_by": [
+        "lane2_companion_chunk"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "persuasion-principles.substance-preserving-adoption-design"
+        ],
+        "case_evidence_needed": [
+          "The sound underlying insight or recommendation."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "Is the underlying answer actually sound before we improve its packaging?"
+        ],
+        "do_not_use_when": [
+          "Persuasive technique would accelerate acceptance of a weak answer."
+        ],
+        "misuse_guards": [
+          "Do not use persuasion to speed acceptance of a weak answer."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "persuasion-principles.substance-preserving-adoption-design",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Persuasion_Principles_rag.md",
+            "source_quote": "the insight is already sound but attention, belief, or action is still blocked by indifference, overload, or weak framing"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to simplify and frame the message for adoption while explicitly preserving the evidence standard and the audience's ability to evaluate the claim.",
+            "evidence_required": [
+              "The substantive claim."
+            ],
+            "good_output_shape": [
+              "States the core message clearly."
+            ],
+            "requirement_id": "package-without-bypassing-judgment"
+          }
+        ],
+        "use_when": [
+          "The insight is already sound but attention, belief, or action is blocked by indifference, overload, or weak framing."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Persuasive technique is being used to accelerate acceptance of a weak answer."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A communicator can accelerate acceptance of a weak answer, turning better packaging into worse downstream decisions.",
+            "extraction_type": "normalized",
+            "mitigation": "Separate packaging from substance: after any persuasive communication, require the audience to restate the core evidence and logic without the framing \u2014 if the case collapses, the persuasion was compensating for weakness.",
+            "mode": "brilliant communication of the wrong answer is even more harmful",
+            "source_quote": "brilliant communication of the wrong answer is even more harmful"
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use pre-suasion and salience cues to prepare attention before delivering the core ask.",
+            "extraction_type": "explicit",
+            "source_quote": "Pre-suasion"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What do I want the audience to think, feel, and do?",
+            "extraction_type": "explicit",
+            "source_quote": "Think, Feel, and Do"
+          }
+        ],
+        "reasoning_types": [
+          "causal",
+          "metacognitive"
+        ],
+        "select_when": [
+          "The insight is already sound but attention, belief, or action is still blocked by indifference, overload, or weak framing."
+        ],
+        "source_file": "Persuasion_Principles_rag.md"
+      },
+      "source_custody": {
+        "bytes": 15665,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Persuasion_Principles_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "8e3620280fe126ccc0c6c555af74196948d1da9adccac07c27456aed39febb92",
+        "source_file": "Persuasion_Principles_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "make the case more compelling",
+          "evidence_source_type": "assistant_turn",
+          "reason": "The adoption plan may need better framing, but only if persuasion preserves evidence, autonomy, and substance.",
+          "route_or_artifact_id": "synthetic-pr37-substance-preserving-adoption",
+          "source": "lane2_companion_chunk"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "tactical-point-scoring-affordance",
+          "model_id": "international-negotiation-and-diplomacy-models",
+          "reason": "The source warns that tactical cleverness and symbolic wins can weaken the durable settlement or coalition.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-009-international-negotiation-and-diplomacy-models",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "International Negotiation And Diplomacy Models",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "international-negotiation-and-diplomacy-models",
+      "nomination_metadata": {
+        "lane_order": 9,
+        "lane_score": 0.58
+      },
+      "pulled_by": [
+        "lane4_gap_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "international-negotiation-and-diplomacy-models.substance-signaling-settlement-map"
+        ],
+        "case_evidence_needed": [
+          "The actors and their partially conflicting goals."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "Which goals are interdependent and partially conflicting?"
+        ],
+        "do_not_use_when": [
+          "Tactical cleverness, point-scoring, posture, or symbolic wins are replacing strategic alignment."
+        ],
+        "misuse_guards": [
+          "Do not optimize for symbolic wins that weaken the settlement."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "international-negotiation-and-diplomacy-models.substance-signaling-settlement-map",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md",
+            "source_quote": "goals are interdependent and partially conflicting"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to separate the substantive deal problem from the signaling and relationship problem, then test whether proposed moves help the durable settlement rather than just winning a point.",
+            "evidence_required": [
+              "The substantive interests."
+            ],
+            "good_output_shape": [
+              "Maps actors and interdependent goals."
+            ],
+            "requirement_id": "map-substance-signal-and-durable-alignment"
+          }
+        ],
+        "use_when": [
+          "Goals are interdependent and partially conflicting."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "Political signaling pressure is displacing fact-grounded option analysis."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "A negotiation can look efficient on paper while failing because positions, concessions, and credibility are interpreted differently by different audiences.",
+            "extraction_type": "explicit",
+            "mitigation": "Map how positions, concessions, and credibility are likely to be interpreted by the other side, not just how they are intended.",
+            "mode": "A negotiation can look efficient on paper while failing because positions, concessions, and credibil...",
+            "source_quote": "The model has high leverage when the decision is not just what deal is efficient, but how positions, concessions, credibility, and sequencing will be interpreted by multiple audiences."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Model the negotiation as a multi-audience interpretation problem, not just as a single efficient bargain.",
+            "extraction_type": "normalized",
+            "source_quote": "multiple audiences"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "How will each relevant audience interpret this concession or sequence step differently?",
+            "extraction_type": "normalized",
+            "source_quote": "positions, concessions, credibility, and sequencing will be interpreted by multiple audiences"
+          }
+        ],
+        "reasoning_types": [
+          "causal",
+          "systems"
+        ],
+        "select_when": [
+          "No party can simply impose its will without triggering response, retaliation, or coalition effects."
+        ],
+        "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md"
+      },
+      "source_custody": {
+        "bytes": 17934,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/International_Negotiation_and_Diplomacy_Models_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "e4d56175f0f9a50f0bc031bb3f8ccb468f9642a491c202aa80a3a663bb968a6f",
+        "source_file": "International_Negotiation_and_Diplomacy_Models_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_source_type": "lane_gap",
+          "reason": "The rollout delay involves substance, signaling, stakeholders, concessions, and sequencing across more than one party.",
+          "route_or_artifact_id": "synthetic-pr37-settlement-map",
+          "source": "lane4_gap_route"
+        }
+      ]
+    },
+    {
+      "absence_records": [
+        {
+          "attempted_field": "cheap-symbolic-signal-as-proof",
+          "model_id": "signaling",
+          "reason": "The source warns that cheap symbolic signals must not substitute for real capability, accountability, or truth-aligned behavior.",
+          "runtime_policy": "do_not_promote",
+          "status": "not_supported_by_source"
+        }
+      ],
+      "card_id": "card-010-signaling",
+      "coverage_status": "reviewed_affordance_available",
+      "display_name": "Signaling",
+      "do_not_overclaim": [],
+      "llm_instruction": "Consider, merge, set aside, or ignore. Do not force use. Do not treat coverage labels as final semantic selection.",
+      "model_id": "signaling",
+      "nomination_metadata": {
+        "lane_order": 10,
+        "lane_score": 0.54
+      },
+      "pulled_by": [
+        "lane3_frame_route"
+      ],
+      "reviewed_affordance_fields": {
+        "affordance_ids": [
+          "signaling.costly-proof-of-intent-test"
+        ],
+        "case_evidence_needed": [
+          "The ambiguous quality, intent, reliability, or commitment claim."
+        ],
+        "confidence": "high",
+        "diagnostic_questions": [
+          "What quality, intent, or reliability claim is being signaled?"
+        ],
+        "do_not_use_when": [
+          "Cheap symbolic signals are being allowed to substitute for real capability, accountability, or truth-aligned behavior."
+        ],
+        "misuse_guards": [
+          "Do not treat polished surface signals as proof of capability."
+        ],
+        "source_evidence": [
+          {
+            "affordance_id": "signaling.costly-proof-of-intent-test",
+            "confidence": "high",
+            "extraction_type": "explicit",
+            "section_hint": "Application Context: Strengths and Weaknesses",
+            "source_custody": "reviewed_manifest",
+            "source_file": "Signaling_rag.md",
+            "source_quote": "quality, intent, or reliability cannot be directly observed and the receiver must infer them from behavior, framing, and follow-through"
+          }
+        ],
+        "treatment_requirements": [
+          {
+            "description": "Require the answer to name the current signal, judge whether it is cheap or costly, and specify the next proof of commitment or capability to demand.",
+            "evidence_required": [
+              "The claim being signaled."
+            ],
+            "good_output_shape": [
+              "Identifies the signal."
+            ],
+            "requirement_id": "ask-for-costly-unstaged-proof"
+          }
+        ],
+        "use_when": [
+          "Quality, intent, or reliability cannot be directly observed and must be inferred from behavior, framing, and follow-through."
+        ]
+      },
+      "runtime_graph_fields": {
+        "danger_when": [
+          "The work is mostly impression management, and better signaling would only make a weak underlying offer look cleaner."
+        ],
+        "failure_modes": [
+          {
+            "confidence": "high",
+            "description": "Cheap symbolic signals can substitute for real capability, accountability, or truth-aligned behavior.",
+            "extraction_type": "explicit",
+            "mitigation": "Audit signals for substance: require every symbolic claim to be backed by a verifiable capability, commitment, or track record.",
+            "mode": "Cheap symbolic signals can substitute for real capability, accountability, or truth-aligned behavior...",
+            "source_quote": "Danger when cheap symbolic signals are allowed to substitute for real capability, accountability, or truth-aligned behavior."
+          }
+        ],
+        "heuristics": [
+          {
+            "confidence": "high",
+            "description": "Use signals that are costly enough or behaviorally concrete enough to separate appearance from substance.",
+            "extraction_type": "normalized",
+            "source_quote": "cheap symbolic signals"
+          }
+        ],
+        "premortem_questions": [
+          {
+            "confidence": "high",
+            "description": "What costly behavior would prove this signal is real rather than symbolic?",
+            "extraction_type": "normalized",
+            "source_quote": "cheap symbolic signals"
+          }
+        ],
+        "reasoning_types": [
+          "systems",
+          "diagnostic"
+        ],
+        "select_when": [
+          "A strategy, offer, or position needs to communicate credibility under uncertainty, and the current message may not align with the actual underlying quality."
+        ],
+        "source_file": "Signaling_rag.md"
+      },
+      "source_custody": {
+        "bytes": 17160,
+        "custody_status": "repo_source_custodied",
+        "manifest_path": "data/model_sources/Signaling_rag.md",
+        "reviewed_affordance_available": true,
+        "reviewed_record_available": true,
+        "sha256": "0a516fcb644f13e4d92d84d35682e55b51bb89b10c76dbf1c8b1c7a78f32d367",
+        "source_file": "Signaling_rag.md"
+      },
+      "why_pulled": [
+        {
+          "evidence_quote": "ask for a public commitment",
+          "evidence_source_type": "user_turn",
+          "reason": "The public commitment request needs costly proof of intent rather than a cheap symbolic promise.",
+          "route_or_artifact_id": "synthetic-pr37-costly-proof",
+          "source": "lane3_frame_route"
+        }
+      ]
+    }
+  ],
+  "coverage_summary": {
+    "absence_only_card_count": 0,
+    "candidate_card_count": 10,
+    "conflicting_or_weak_support_count": 0,
+    "graph_only_card_count": 0,
+    "high_value_graph_only_model_ids": [],
+    "missing_reviewed_model_ids": [],
+    "missing_reviewed_record_count": 0,
+    "reviewed_card_count": 10,
+    "source_too_thin_count": 0
+  },
+  "packet_id": "pr37-v8-trust-negotiation-packet-review",
+  "packet_policy": {
+    "candidate_card_target_max": 10,
+    "candidate_card_target_min": 0,
+    "deterministic_role": "validate_package_cap_reference_and_label",
+    "forbid_case_type_templates": true,
+    "forbid_final_pressure_selection": true,
+    "forbid_public_copy": true,
+    "semantic_selection_role": "llm_or_reviewer",
+    "snippet_target_max_per_card": 1,
+    "snippet_target_min_per_card": 0
+  },
+  "packet_version": "reasoning_substrate_packet.v1",
+  "review_notes": [
+    "Review-only packet built from explicit nominations; no live lanes were run.",
+    "Graph-only cards are eligible recall material but not reviewed affordance depth.",
+    "LLM or reviewer owns semantic selection, merging, ignoring, and final wording."
+  ],
+  "runtime_policy": "runtime_dormant",
+  "source_artifacts": [
+    "data/knowledge_graph.json",
+    "data/compiled/model_affordances/affordances_v8.json",
+    "data/model_sources/manifest.json"
+  ],
+  "status": "draft_review_only",
+  "suppressed_candidates": [
+    {
+      "candidate_id": "candidate-011-signaling",
+      "coverage_status": "reviewed_affordance_available",
+      "do_not_recover_as_pressure_without_review": true,
+      "model_id": "signaling",
+      "pulled_by": [
+        "reviewer_note"
+      ],
+      "suppression_reason": "duplicate_model_id",
+      "why_pulled": [
+        {
+          "evidence_source_type": "reviewer_note",
+          "reason": "Duplicate nomination included to prove suppression is visible instead of silently erased.",
+          "route_or_artifact_id": "synthetic-pr37-duplicate-check",
+          "source": "reviewer_note"
+        }
+      ]
+    }
+  ],
+  "transaction_context": {
+    "assistant_advice_summary": "The assistant recommends being transparent, empathizing, setting expectations, making a reciprocal offer, and signaling commitment, but it does not separate needs from accusations, hidden motivations from mind-reading, boundaries from avoidance, or costly proof from cheap theater.",
+    "capture_health": "synthetic_review",
+    "case_id": "pr37-trust-repair-negotiation-review",
+    "known_action_or_commitment": "Send the partner repair note, reset internal ownership boundaries, offer a concession, and ask for a public commitment this week unless a review changes the plan.",
+    "transaction_sources": [
+      "user_turn",
+      "assistant_turn",
+      "reviewer_note"
+    ],
+    "user_situation_summary": "A founder must repair a damaged partner relationship, set boundaries with an internal lead, and negotiate a delayed rollout after AI advice frames the issue as communication cleanup plus stronger persuasion."
+  }
+}

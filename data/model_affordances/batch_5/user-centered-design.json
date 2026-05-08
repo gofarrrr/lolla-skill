@@ -1,0 +1,160 @@
+{
+  "model_id": "user-centered-design",
+  "source_file": "User_Centered_Design_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "user-centered-design.prototype-user-evidence-loop",
+      "status": "supported",
+      "name": "Prototype user-evidence loop",
+      "mechanism": "When a solution team understands the technology better than the user's lived problem, require the answer to gather user evidence, reframe the problem, and test prototypes before treating internal intuition or stakeholder rank as product truth.",
+      "activation_shape": {
+        "use_when": [
+          "The solution team understands the technology better than the user's lived problem, incentives, or constraints.",
+          "Adoption depends on validating assumptions with real users rather than internal intuition or stakeholder rank.",
+          "The problem space is still fuzzy enough that discovery, prototyping, and observed behavior can change the direction."
+        ],
+        "do_not_use_when": [
+          "A handful of user anecdotes are being treated as strategy truth without segmentation or trade-off discipline.",
+          "Discovery has become open-ended empathy theater after the core problem and decision criteria are already clear.",
+          "The decision needs execution against validated criteria rather than another discovery loop."
+        ],
+        "case_evidence_needed": [
+          "The user behavior, pain, constraint, or adoption problem being explained.",
+          "Observed user evidence rather than internal claims alone.",
+          "Prototype or experiment evidence that could validate or change the solution direction.",
+          "The trade-offs, segmentation, and viability checks that limit what user evidence can prove."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-solution-assumptions-with-users",
+          "description": "Require the answer to identify the user assumption that matters, name the evidence needed from users, and propose a bounded prototype or observation loop.",
+          "evidence_required": [
+            "The product or service assumption being made.",
+            "Observed user behavior or missing user evidence.",
+            "The prototype, test, or observation that could change the decision.",
+            "The criteria for stopping discovery and choosing a direction."
+          ],
+          "good_output_shape": [
+            "Names the user assumption.",
+            "Separates user evidence from stakeholder opinion.",
+            "Proposes a bounded prototype or observation loop.",
+            "States what evidence would change scope, messaging, or design."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What user behavior have we observed rather than inferred?",
+        "Which assumption about the user's lived problem would a prototype test?",
+        "Are we still learning something decision-relevant, or just extending discovery?"
+      ],
+      "misuse_guards": [
+        "Do not treat a handful of anecdotes as strategy truth.",
+        "Do not let empathy work delay shipping after decision criteria are clear.",
+        "Do not infer user needs only from internal intuition, historical data, or stakeholder rank."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "observation and discovery of human needs at the core",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "evidence from users’ reactions to successful or failed prototypes",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "the solution team understands the technology better than the user's lived problem, incentives, or constraints",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "discovery, prototyping, and observed behavior can materially change the direction of the solution",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a bounded prototype/user-evidence loop with explicit anti-anecdote and anti-empathy-theater guards.",
+        "dropped_material": [
+          "Did not extract all design-thinking stages as separate affordances because the packet needs compact evidence-loop depth.",
+          "Did not infer full research-method doctrine beyond the source."
+        ],
+        "open_questions": [
+          "Future packet comparison should test whether this card complements Jobs to Be Done without duplicating product discovery signals."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "anecdotes-as-strategy-truth",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that treating a handful of anecdotes as strategy truth without segmentation, trade-off discipline, or viability checks is dangerous.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "a handful of user anecdotes are treated as strategy truth",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "open-ended-empathy-theater",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects discovery that becomes open-ended empathy theater after the problem and decision criteria are already clear.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "User_Centered_Design_rag.md",
+          "source_quote": "open-ended empathy theater that delays shipping",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "User_Centered_Design_rag.md",
+      "source_quote": "disciplined process for solving human-centered, complex problems that are poorly understood by solution developers",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "User_Centered_Design_rag.md",
+      "source_quote": "iterative prototyping and testing with users to **validate assumptions**",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for User-Centered Design. Extracted one bounded user-evidence loop and rejected anecdote strategy plus open-ended empathy theater.",
+    "dropped_material": [
+      "Empathy maps, journey maps, and design-stage inventory were left out as implementation examples rather than packet-level affordances.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card gives enough user-evidence discipline without becoming product-process bulk."
+    ],
+    "review_status": "draft"
+  }
+}

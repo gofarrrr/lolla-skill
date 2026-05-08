@@ -1,0 +1,145 @@
+{
+  "model_id": "persuasion-principles",
+  "source_file": "Persuasion_Principles_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "persuasion-principles.substance-preserving-adoption-design",
+      "status": "supported",
+      "name": "Substance preserving adoption design",
+      "mechanism": "When a sound insight is blocked by indifference, overload, or weak framing, require the answer to package the message for attention, belief, emotion, and action while preserving evidence, autonomy, and the quality of the underlying answer.",
+      "activation_shape": {
+        "use_when": [
+          "The insight is already sound but attention, belief, or action is blocked by indifference, overload, or weak framing.",
+          "The message format must match how the audience will actually process it emotionally and cognitively.",
+          "Adoption is the bottleneck and strong substance needs simple, credible, emotionally resonant packaging."
+        ],
+        "do_not_use_when": [
+          "Persuasive technique would accelerate acceptance of a weak answer.",
+          "Influence tactics would override autonomy or suppress friction that should expose a flaw.",
+          "The content is flawed and better communication would make the downstream decision worse."
+        ],
+        "case_evidence_needed": [
+          "The sound underlying insight or recommendation.",
+          "The adoption barrier: indifference, overload, weak framing, or emotional mismatch.",
+          "The audience's likely cognitive and emotional processing mode.",
+          "The evidence or friction that must not be suppressed by persuasive packaging."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "package-without-bypassing-judgment",
+          "description": "Require the answer to simplify and frame the message for adoption while explicitly preserving the evidence standard and the audience's ability to evaluate the claim.",
+          "evidence_required": [
+            "The substantive claim.",
+            "The audience processing barrier.",
+            "The simple, credible, emotional, or story-based packaging move.",
+            "The evidence or dissent channel that remains available."
+          ],
+          "good_output_shape": [
+            "States the core message clearly.",
+            "Adapts format to audience processing.",
+            "Keeps the evidence basis visible.",
+            "Avoids bypassing autonomy or useful resistance."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Is the underlying answer actually sound before we improve its packaging?",
+        "What is blocking adoption: attention, belief, emotion, memory, or action?",
+        "What friction should remain because it might reveal a flaw?"
+      ],
+      "misuse_guards": [
+        "Do not use persuasion to speed acceptance of a weak answer.",
+        "Do not override autonomy or suppress necessary dissent.",
+        "Do not confuse emotional resonance with evidence quality."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "the insight is already sound but attention, belief, or action is still blocked by indifference, overload, or weak framing",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "message format matches how the audience will actually process it emotionally and cognitively",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "adoption is the bottleneck",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports adoption-oriented message design while explicitly warning against persuasive acceleration of weak answers.",
+        "dropped_material": [
+          "Did not extract all six influence principles, pre-suasion, or SUCCESs as separate cards.",
+          "Kept high-concept pitch and analogy examples as supporting context."
+        ],
+        "open_questions": [
+          "Future packet review should test this card against reciprocity and signaling in cases where influence can either clarify or manipulate."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "better-packaging-for-weak-answer",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that persuasive technique can accelerate acceptance of a weak or flawed answer.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "persuasive technique is used to accelerate acceptance of a weak answer",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "autonomy-bypassing-influence",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects influence tactics that override autonomy or suppress flaw-revealing friction.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "influence tactics override the recipient's autonomy or suppress the kind of friction that would have exposed an important flaw",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Persuasion_Principles_rag.md",
+      "source_quote": "brilliant communication of the wrong answer is \"even more harmful than poor communication\"",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Persuasion Principles. Extracted one substance-preserving adoption design card and rejected weak-answer acceleration plus autonomy-bypassing influence.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps receivers preserve evidence while improving adoption."
+    ],
+    "review_status": "draft"
+  }
+}

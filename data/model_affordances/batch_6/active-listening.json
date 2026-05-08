@@ -1,0 +1,160 @@
+{
+  "model_id": "active-listening",
+  "source_file": "Active Listening_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "active-listening.hidden-disagreement-diagnostic-loop",
+      "status": "supported",
+      "name": "Hidden disagreement diagnostic loop",
+      "mechanism": "When the visible disagreement may not be the real disagreement, require the answer to gather factual and emotional content, ask how the other side thinks, and confirm understanding before advising, rebutting, or designing a solution.",
+      "activation_shape": {
+        "use_when": [
+          "The surface objection may be hiding fear, misaligned incentives, identity threat, unstated constraints, or different success criteria.",
+          "Plans, products, negotiations, or diagnoses depend on local knowledge that is still missing from the current frame.",
+          "Action would be premature without better diagnosis of facts, emotions, and priorities."
+        ],
+        "do_not_use_when": [
+          "Listening language is being used performatively to manage optics or extract information after the answer is already decided.",
+          "The listener is reflecting back sweeping interpretations the speaker is not ready to accept.",
+          "The conversation has become dominated by a speaker who abuses probing and reflection without moving toward shared understanding."
+        ],
+        "case_evidence_needed": [
+          "The visible disagreement, objection, or emotional signal.",
+          "The factual content and emotional content being communicated.",
+          "The speaker's underlying constraints, values, goals, or success criteria.",
+          "Confirmation from the speaker that the listener's summary is accurate enough to support action."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "diagnose-before-rebuttal-or-advice",
+          "description": "Require the answer to ask how the other side thinks, reflect the content and emotion, and confirm understanding before moving to solution or rebuttal.",
+          "evidence_required": [
+            "The current visible disagreement.",
+            "The missing facts, emotions, or local constraints.",
+            "The other side's reasoning process or success criteria.",
+            "A confirmation loop that tests whether the summary is accurate."
+          ],
+          "good_output_shape": [
+            "Names what may be hidden beneath the surface objection.",
+            "Asks how the speaker is reasoning.",
+            "Separates diagnosis from advice.",
+            "Uses confirmation before proposing the next move."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What does the other side think we do not understand about their perspective?",
+        "What facts, emotions, or constraints are missing from our current frame?",
+        "Have we confirmed their meaning before moving to advice or rebuttal?"
+      ],
+      "misuse_guards": [
+        "Do not use listening language performatively when the answer is already decided.",
+        "Do not force a sweeping interpretation that makes the speaker feel judged or analyzed.",
+        "Do not let listening become endless diagnosis when action criteria are already clear."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "comprehending your conversation partner 100 percent clearly and certainly",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "ask them how they think",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "Most useful when the visible disagreement is not the real disagreement",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "action would be premature without better diagnosis",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a hidden-disagreement diagnostic loop with explicit anti-performative and anti-premature-interpretation guards.",
+        "dropped_material": [
+          "Did not extract all nine active-listening actions as separate affordances.",
+          "Did not infer therapy-style guidance beyond the source's decision and conflict diagnosis material."
+        ],
+        "open_questions": [
+          "Future packet review should test this card against Prisoner's Dilemma in cases where adversarial incentives and listening both appear relevant."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "performative-listening-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that listening becomes dangerous when it is used to manage optics or extract information while the listener is not prepared to update.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "listening becomes performative",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "sweeping-interpretation-as-listening",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that reflecting back grand theories or sweeping interpretations can make the speaker feel judged or analyzed.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "reflecting back a sweeping interpretation that the speaker is not ready for can make the speaker feel judged or analyzed",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Active Listening_rag.md",
+      "source_quote": "paraphrasing and reflecting what the speaker has said to confirm comprehension and show empathy",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Active Listening_rag.md",
+      "source_quote": "without judgment or early advice",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Active Listening. Extracted one diagnosis-before-advice loop and rejected performative listening plus sweeping interpretation.",
+    "dropped_material": [
+      "Sales, marketing, AI persona, and broad emotional-intelligence material were kept as context rather than separate PR34 cards.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps receivers decide when to listen versus when incentive redesign matters more."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "latticework-of-mental-models",
+  "source_file": "Latticework_Of_Mental_Models_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "latticework-of-mental-models.cross-check-causal-layers",
+      "status": "supported",
+      "name": "Cross-check causal layers with multiple models",
+      "mechanism": "When one disciplinary frame keeps missing incentives, trade-offs, or second-order effects, use a latticework to cross-check causal layers while translating each model into concrete tests and decision pressure.",
+      "activation_shape": {
+        "use_when": [
+          "A single disciplinary frame keeps missing important incentives, trade-offs, or second-order effects.",
+          "The decision spans several causal layers and benefits from cross-checking one model against another.",
+          "The case needs broader judgment rather than deeper expertise inside one local toolset."
+        ],
+        "do_not_use_when": [
+          "People are collecting model names as intellectual decoration.",
+          "The latticework is used as a substitute for expertise.",
+          "Too many models overload working memory and obscure the actual decision."
+        ],
+        "case_evidence_needed": [
+          "The local frame that is missing something important.",
+          "The second-order effect, trade-off, or incentive another model reveals.",
+          "The concrete test, comparison, or decision pressure each model adds.",
+          "A reason the selected models are useful for this case rather than decorative."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "translate-models-into-tests",
+          "description": "Require the answer to translate each nominated model into a test, comparison, or decision implication so latticework does not become name-dropping.",
+          "evidence_required": [
+            "The missing incentive, trade-off, or second-order effect.",
+            "The model that reveals it.",
+            "The concrete test or comparison the model suggests.",
+            "The decision pressure created by the cross-check."
+          ],
+          "good_output_shape": [
+            "Names the limits of the first frame.",
+            "Adds only models that reveal case-relevant structure.",
+            "Turns each model into a test or comparison.",
+            "Avoids ornamental model lists."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What does the current frame miss: incentives, trade-offs, second-order effects, or causal layer?",
+        "Which model adds a concrete test rather than just a new label?",
+        "Are we broadening judgment or merely collecting model names?"
+      ],
+      "misuse_guards": [
+        "Do not use a model name unless it changes a test, comparison, or decision implication.",
+        "Do not treat surface familiarity with many models as expertise.",
+        "Do not overload the packet with a model list that weakens the actual handoff."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Latticework_Of_Mental_Models_rag.md",
+          "source_quote": "single disciplinary frame keeps missing important incentives, trade-offs, or second-order effects",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Latticework_Of_Mental_Models_rag.md",
+          "source_quote": "decision spans several causal layers and benefits from cross-checking one model against another",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Latticework_Of_Mental_Models_rag.md",
+          "source_quote": "collect model names as intellectual decoration",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 17 outcome: strong_affordance_record. The source supports cross-model judgment only when models become concrete tests or comparisons.",
+        "dropped_material": [
+          "Did not extract a blanket instruction to use many models.",
+          "Did not treat the latticework as a substitute for domain expertise."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card is useful as a meta-card or too broad for candidate packets."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "latticework-as-model-name-dropping",
+      "status": "not_supported_by_source",
+      "reason": "The source directly warns against collecting model names as decoration; it does not support ornamental latticework.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Latticework_Of_Mental_Models_rag.md",
+          "source_quote": "collect model names as intellectual decoration",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "single-model-certainty",
+      "status": "not_supported_by_source",
+      "reason": "The source uses the hammer/nail warning to reject reliance on one tool; it does not support single-model certainty in complex cases.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Latticework_Of_Mental_Models_rag.md",
+          "source_quote": "If all you have is a hammer, everything looks like a nail",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Latticework_Of_Mental_Models_rag.md",
+      "source_quote": "broader repertoire of tools (models) makes a person's thinking sharper",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 17 keeps latticework as disciplined cross-checking, not a high-status model collection.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, model-ranking, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A future packet should decide whether this card belongs as packet policy rather than as an ordinary candidate card."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "goal-setting",
+  "source_file": "Goal_Setting_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "goal-setting.outcome-checkpoint-alignment-gate",
+      "status": "supported",
+      "name": "Outcome checkpoint alignment gate",
+      "mechanism": "When effort is scattered or strategy must become execution, require the answer to name one explicit outcome, connect it to larger purpose, and define owned checkpoints, thresholds, and review cadence before treating commitment as real.",
+      "activation_shape": {
+        "use_when": [
+          "Effort is scattered and the team needs one explicit outcome to align trade-offs, sequencing, and measurement.",
+          "The goal is concrete enough to govern daily decisions but still connected to a larger purpose that sustains motivation through friction.",
+          "Success depends on turning aspiration into owned checkpoints, thresholds, and review cadence rather than verbal commitment alone."
+        ],
+        "do_not_use_when": [
+          "Goals are sticky enough to organize action but not revisited often enough to reflect changed evidence, constraints, or strategic reality.",
+          "The chosen goal optimizes what is legible or motivational while neglecting the side effects it creates elsewhere in the system.",
+          "The goal is abstractly accurate but useless for frontline decisions."
+        ],
+        "case_evidence_needed": [
+          "The desired outcome and the larger purpose it serves.",
+          "The trade-offs, sequencing, and measurements the goal must govern.",
+          "The owner, checkpoint, threshold, and review cadence.",
+          "The changed evidence or constraint that would force goal review."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "turn-aspiration-into-owned-checkpoints",
+          "description": "Require the answer to convert the goal from aspiration into a concrete operating target with owner, checkpoint, threshold, cadence, and revision condition.",
+          "evidence_required": [
+            "The stated goal.",
+            "The larger purpose or strategy it serves.",
+            "The owner and operating cadence.",
+            "The threshold that determines progress, review, or change."
+          ],
+          "good_output_shape": [
+            "Names one explicit outcome.",
+            "Shows how it governs trade-offs and daily decisions.",
+            "Assigns ownership and review cadence.",
+            "States what evidence would require revisiting the goal."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What one outcome should align trade-offs, sequencing, and measurement?",
+        "Who owns the checkpoint, threshold, and review cadence?",
+        "What changed evidence would make this goal stale or harmful?"
+      ],
+      "misuse_guards": [
+        "Do not confuse verbal commitment with owned execution checkpoints.",
+        "Do not keep sticky goals after strategic reality changes.",
+        "Do not optimize legible or motivational goals while ignoring system side effects."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Goal_Setting_rag.md",
+          "source_quote": "effort is scattered and the team needs one explicit outcome to align trade-offs, sequencing, and measurement",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Goal_Setting_rag.md",
+          "source_quote": "concrete enough to govern daily decisions but still connected to a larger purpose",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Goal_Setting_rag.md",
+          "source_quote": "owned checkpoints, thresholds, and review cadence rather than verbal commitment alone",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one goal-to-checkpoint gate centered on explicit outcome, larger purpose, trade-offs, ownership, thresholds, and review cadence.",
+        "dropped_material": [
+          "Did not extract SMART goals, moon-shot examples, goal hierarchy, or interrogative self-talk as separate affordances.",
+          "Kept process focus and systemization as supporting material for execution discipline."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card helps packets move from aspiration to owned execution without becoming generic goal advice."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "stale-goal-as-commitment",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that goals can organize action while failing to update after changed evidence, constraints, or strategic reality.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Goal_Setting_rag.md",
+          "source_quote": "goals are sticky enough to organize action but not revisited often enough to reflect changed evidence, constraints, or strategic reality",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "legible-goal-with-system-side-effects",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects goals that optimize what is legible or motivational while neglecting side effects elsewhere in the system.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Goal_Setting_rag.md",
+          "source_quote": "the chosen goal optimizes what is legible or motivational while neglecting the side effects it creates elsewhere in the system",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Goal_Setting_rag.md",
+      "source_quote": "to clarify intended outcomes and focus resources toward achieving them",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Goal Setting. Extracted one outcome/checkpoint alignment gate and rejected stale-goal and legible-goal side-effect overclaims.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should test whether this card improves action ownership rather than merely restating goal-setting advice."
+    ],
+    "review_status": "draft"
+  }
+}

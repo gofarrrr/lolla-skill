@@ -1,0 +1,145 @@
+{
+  "model_id": "butterfly-effect",
+  "source_file": "Butterfly_Effect_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "butterfly-effect.cascade-path-trace",
+      "status": "supported",
+      "name": "Plausible cascade path trace",
+      "mechanism": "When a local decision could cascade through interdependence, delay, amplification, or sequencing, require the answer to trace the plausible second- and third-order transmission path before calling a small move safe or dangerous.",
+      "activation_shape": {
+        "use_when": [
+          "Seemingly local decisions could cascade through interdependence, delay, amplification, or sequencing.",
+          "First-order reasoning is too shallow because the obvious near-term consequence is not the main risk.",
+          "Decision quality depends on scanning for cascade paths rather than isolated events."
+        ],
+        "do_not_use_when": [
+          "Butterfly-effect language would justify vague fear or grandiosity without a plausible transmission path.",
+          "The analysis tries to account for every potential variable and becomes paralysis.",
+          "The source evidence supports ordinary second-order analysis rather than a dramatic cascade claim."
+        ],
+        "case_evidence_needed": [
+          "The local intervention or small initial condition.",
+          "The first-order consequence.",
+          "The second- and third-order transmission path.",
+          "The dependency, delay, or amplification mechanism that makes propagation plausible."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "trace-plausible-cascade-path",
+          "description": "Require the answer to trace how a small move could propagate through the system, naming the first-order effect, downstream dependency, amplification path, and where the chain becomes speculative.",
+          "evidence_required": [
+            "The initial local move.",
+            "The first-order effect.",
+            "The downstream dependency or delay.",
+            "The amplification or sequencing mechanism."
+          ],
+          "good_output_shape": [
+            "Shows the cascade path rather than invoking vague systemic risk.",
+            "Separates plausible transmission from speculative fear.",
+            "Names where monitoring should focus.",
+            "Keeps the analysis bounded enough to support action."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What is the first-order consequence, and why is it not the main risk?",
+        "Through which dependency, delay, or amplification path could the effect propagate?",
+        "Where does the cascade story become speculative rather than evidenced?"
+      ],
+      "misuse_guards": [
+        "Do not use butterfly-effect language for vague fear or grandiosity.",
+        "Do not analyze every variable in search of theoretical completeness.",
+        "Do not treat a small move as dangerous unless the transmission path is plausible."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Butterfly_Effect_rag.md",
+          "source_quote": "small changes in inputs can lead to massive, non-linear, and often unpredictable changes in outputs over time",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Butterfly_Effect_rag.md",
+          "source_quote": "Works when first-order reasoning is too shallow",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Butterfly_Effect_rag.md",
+          "source_quote": "Best when leaders must scan for cascade paths rather than isolated events",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one cascade-path affordance that requires plausible transmission through dependencies, delays, amplification, or sequencing.",
+        "dropped_material": [
+          "Did not extract digital twins or information cascades as separate affordances.",
+          "Kept systems thinking and scenario analysis as support for bounded cascade tracing."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card improves downstream-risk reasoning without making every small move feel mystical."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "cascade-mysticism",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against invoking butterfly-effect language to justify vague fear or grandiosity without a plausible transmission path.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Butterfly_Effect_rag.md",
+          "source_quote": "Danger When Cascade Thinking Turns into Mysticism",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "total-variable-analysis",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that meticulously accounting for every potential variable can become analysis paralysis rather than decision support.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Butterfly_Effect_rag.md",
+          "source_quote": "meticulously account for every potential variable and second-order consequence can lead to **endless work getting back on track**",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Butterfly_Effect_rag.md",
+      "source_quote": "profound interrelationships within complex systems and the necessity of anticipating second- and third-order consequences",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for butterfly-effect as bounded cascade-path tracing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card makes cascade risk monitorable rather than dramatic."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,382 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lolla.local/knowledge/decision-pressure-trace.schema.json",
+  "title": "Lolla Decision Pressure Trace",
+  "description": "Runtime-dormant contract for reviewed Decision Pressure Observatory traces. This object preserves provenance, suppression, and coverage transparency; it does not imply runtime promotion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "trace_id",
+    "status",
+    "runtime_policy",
+    "source_artifacts",
+    "selected_pressures",
+    "coverage_transparency_panels",
+    "suppressed_candidates",
+    "review_notes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "decision_pressure_trace.v1"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft_review_only"
+      ]
+    },
+    "runtime_policy": {
+      "type": "string",
+      "enum": [
+        "runtime_dormant"
+      ]
+    },
+    "source_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 8
+      }
+    },
+    "selected_pressures": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/selectedPressure"
+      }
+    },
+    "coverage_transparency_panels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/coverageTransparencyPanel"
+      }
+    },
+    "suppressed_candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/suppressedCandidate"
+      }
+    },
+    "review_notes": {
+      "$ref": "#/$defs/reviewNotes"
+    }
+  },
+  "$defs": {
+    "coverageStatus": {
+      "type": "string",
+      "enum": [
+        "fully_source_backed",
+        "partially_source_backed",
+        "coverage_transparency",
+        "no_substrate_backed_pressure"
+      ]
+    },
+    "provenanceClass": {
+      "type": "string",
+      "enum": [
+        "source_backed",
+        "case_grounded",
+        "llm_synthesized",
+        "user_to_verify"
+      ]
+    },
+    "userFacingReadiness": {
+      "type": "string",
+      "enum": [
+        "not_ready",
+        "maybe_later",
+        "candidate_after_review"
+      ]
+    },
+    "v4Contribution": {
+      "type": "string",
+      "enum": [
+        "none",
+        "minor",
+        "material"
+      ]
+    },
+    "suppressedDisposition": {
+      "type": "string",
+      "enum": [
+        "merged_support",
+        "observatory_only",
+        "still_suppressed",
+        "needs_generation_test"
+      ]
+    },
+    "provenanceByField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pressure",
+        "what_to_verify",
+        "why_it_matters",
+        "dismiss_if",
+        "tripwire_or_next_action",
+        "coverage_status"
+      ],
+      "properties": {
+        "pressure": {
+          "$ref": "#/$defs/provenanceList"
+        },
+        "what_to_verify": {
+          "$ref": "#/$defs/provenanceList"
+        },
+        "why_it_matters": {
+          "$ref": "#/$defs/provenanceList"
+        },
+        "dismiss_if": {
+          "$ref": "#/$defs/provenanceList"
+        },
+        "tripwire_or_next_action": {
+          "$ref": "#/$defs/provenanceList"
+        },
+        "coverage_status": {
+          "$ref": "#/$defs/provenanceList"
+        }
+      }
+    },
+    "provenanceList": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/provenanceClass"
+      }
+    },
+    "selectedPressure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pressure_id",
+        "case_id",
+        "route_ids",
+        "pressure",
+        "what_to_verify",
+        "why_it_matters",
+        "dismiss_if",
+        "tripwire_or_next_action",
+        "coverage_status",
+        "provenance_by_field",
+        "source_affordances",
+        "v4_contribution",
+        "suppressed_nearby_candidate_ids",
+        "operator_note",
+        "user_facing_readiness"
+      ],
+      "properties": {
+        "pressure_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "case_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "route_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "pressure": {
+          "type": "string",
+          "minLength": 20
+        },
+        "what_to_verify": {
+          "type": "string",
+          "minLength": 20
+        },
+        "why_it_matters": {
+          "type": "string",
+          "minLength": 20
+        },
+        "dismiss_if": {
+          "type": "string",
+          "minLength": 20
+        },
+        "tripwire_or_next_action": {
+          "type": "string",
+          "minLength": 20
+        },
+        "coverage_status": {
+          "$ref": "#/$defs/coverageStatus"
+        },
+        "provenance_by_field": {
+          "$ref": "#/$defs/provenanceByField"
+        },
+        "source_affordances": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*(?:\\.[a-z0-9]+(?:-[a-z0-9]+)*)+$"
+          }
+        },
+        "v4_contribution": {
+          "$ref": "#/$defs/v4Contribution"
+        },
+        "suppressed_nearby_candidate_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "operator_note": {
+          "type": "string",
+          "minLength": 20
+        },
+        "user_facing_readiness": {
+          "$ref": "#/$defs/userFacingReadiness"
+        }
+      }
+    },
+    "coverageTransparencyPanel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "panel_id",
+        "case_id",
+        "route_id",
+        "coverage_status",
+        "missing_model_ids",
+        "operator_trace_copy",
+        "do_not_smooth_over_with",
+        "why_it_matters"
+      ],
+      "properties": {
+        "panel_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "case_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "route_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "coverage_status": {
+          "$ref": "#/$defs/coverageStatus"
+        },
+        "missing_model_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "operator_trace_copy": {
+          "type": "string",
+          "minLength": 20
+        },
+        "do_not_smooth_over_with": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "why_it_matters": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "suppressedCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "case_id",
+        "route_id",
+        "candidate_summary",
+        "suppression_reason",
+        "v4_made_stronger",
+        "disposition",
+        "related_selected_pressure_id"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "case_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "route_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "candidate_summary": {
+          "type": "string",
+          "minLength": 20
+        },
+        "suppression_reason": {
+          "type": "string",
+          "minLength": 20
+        },
+        "v4_made_stronger": {
+          "type": "boolean"
+        },
+        "disposition": {
+          "$ref": "#/$defs/suppressedDisposition"
+        },
+        "related_selected_pressure_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      }
+    },
+    "reviewNotes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_label",
+        "runtime_dormancy_note",
+        "principal_agent_medium_confidence_caution",
+        "blocked_surfaces"
+      ],
+      "properties": {
+        "decision_label": {
+          "type": "string",
+          "const": "decision_pressure_trace_contract_ready"
+        },
+        "runtime_dormancy_note": {
+          "type": "string",
+          "minLength": 20
+        },
+        "principal_agent_medium_confidence_caution": {
+          "type": "string",
+          "minLength": 20
+        },
+        "blocked_surfaces": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

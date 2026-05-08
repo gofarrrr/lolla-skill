@@ -1,0 +1,146 @@
+{
+  "model_id": "devops-and-continuous-integration",
+  "source_file": "Devops_and_Continuous_Integration_rag.md",
+  "status": "weak_support",
+  "affordances": [
+    {
+      "affordance_id": "devops-and-continuous-integration.build-observe-adjust-loop",
+      "status": "weak_support",
+      "name": "Build observe adjust operating loop",
+      "mechanism": "When advice depends on reliable delivery under change, require the answer to identify the build, observe, diagnose, and adjust loop, with special attention to integration friction, delayed feedback, rollback pain, and system fragility.",
+      "activation_shape": {
+        "use_when": [
+          "Delivery speed and reliability have to coexist.",
+          "The bottleneck is integration friction: handoffs, untested merges, delayed feedback, brittle release steps, or poor coordination between builders and operators.",
+          "The recommendation needs a living operating loop that shortens the distance between build, observe, diagnose, and adjust."
+        ],
+        "do_not_use_when": [
+          "Local pipeline optimization hides system fragility.",
+          "Teams optimize for merge speed, ticket throughput, or release cadence while quietly increasing rollback pain, debugging latency, or production brittleness.",
+          "The named DevOps/CI doctrine would be stronger than the source supports; the source synthesizes adjacent systems, iteration, and continuous-learning material."
+        ],
+        "case_evidence_needed": [
+          "The delivery system or operational process under review.",
+          "The integration point, handoff, release step, feedback delay, or rollback path.",
+          "The reliability measure that must not degrade while speed improves.",
+          "The next observation that would change the operating loop."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "map-build-observe-diagnose-adjust-loop",
+          "description": "Require the answer to identify the operating loop that connects delivery changes to observation, diagnosis, adjustment, and rollback/reliability protection.",
+          "evidence_required": [
+            "The delivery change or recommendation.",
+            "The integration or handoff friction.",
+            "The feedback signal and its delay.",
+            "The rollback, reliability, or debugging constraint."
+          ],
+          "good_output_shape": [
+            "Names the build-observe-diagnose-adjust loop.",
+            "Identifies integration friction instead of local speed alone.",
+            "States what feedback would force adjustment.",
+            "Protects reliability and rollback before optimizing cadence."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Where does delivery speed currently trade against reliability?",
+        "Which handoff, merge, release, or feedback delay creates integration friction?",
+        "What would we observe soon enough to diagnose and adjust before brittleness compounds?"
+      ],
+      "misuse_guards": [
+        "Do not treat merge speed, ticket throughput, or release cadence as the whole system outcome.",
+        "Do not optimize local pipeline speed while hiding rollback pain or debugging latency.",
+        "Do not pretend the source provides full DevOps doctrine beyond the adjacent operating-loop support."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "Most useful when delivery speed and reliability have to coexist",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "Works when the bottleneck is integration friction",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "shortening the distance between build, observe, diagnose, and adjust",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "medium",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: thin_narrow_affordance_record. The source explicitly says DevOps and Continuous Integration is not defined in the provided source material, but it supports a narrow delivery-speed/reliability operating-loop affordance from adjacent systems, iteration, and continuous-learning material.",
+        "dropped_material": [
+          "Did not extract full CI/CD doctrine, deployment automation, test pyramid, trunk-based development, SRE, or incident-management claims.",
+          "Kept the record weak_support to avoid rescuing the source with generic technical knowledge."
+        ],
+        "open_questions": [
+          "Reviewer should decide whether this medium-confidence card helps PR40 packets or should remain graph-only/absence-heavy."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "full-devops-ci-doctrine",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says DevOps and Continuous Integration is not defined in the provided material, so PR39 must not infer full technical DevOps or CI/CD doctrine.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "DevOps and Continuous Integration*, is not explicitly defined within the provided source material",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "local-throughput-as-reliability-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that optimizing merge speed, ticket throughput, or release cadence can quietly increase rollback pain, debugging latency, or production brittleness.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "teams optimize for merge speed, ticket throughput, or release cadence while quietly increasing rollback pain, debugging latency, or production brittleness",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Devops_and_Continuous_Integration_rag.md",
+      "source_quote": "Systems Thinking, Iteration, Disciplined Problem Solving, and Continuous Learning",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "review_note",
+      "confidence": "medium"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found only narrow support for DevOps and Continuous Integration as an operating loop synthesized from adjacent material. Extracted one medium-confidence build-observe-adjust loop and recorded absence for full DevOps doctrine.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied.",
+      "No external DevOps knowledge was used to strengthen the source."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this weak-support card helps with execution friction or should be suppressed."
+    ],
+    "review_status": "needs_review"
+  }
+}

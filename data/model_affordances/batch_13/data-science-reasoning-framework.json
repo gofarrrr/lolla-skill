@@ -1,0 +1,145 @@
+{
+  "model_id": "data-science-reasoning-framework",
+  "source_file": "Data_Science_Reasoning_Framework_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "data-science-reasoning-framework.question-measure-model-handoff",
+      "status": "supported",
+      "name": "Question measure model handoff",
+      "mechanism": "When analysis risks turning into dashboard or model theater, require the answer to separate problem framing, measurement design, modeling choice, and communication before treating data output as decision evidence.",
+      "activation_shape": {
+        "use_when": [
+          "Large noisy evidence sets need a bounded reasoning process.",
+          "The team must compare explanations against data rather than authority or anecdote.",
+          "Question framing, measurement design, modeling, and communication are being blurred."
+        ],
+        "do_not_use_when": [
+          "The causal question or business decision has not been agreed.",
+          "Proxy metrics are being mistaken for the underlying reality.",
+          "Data volume is substituting for problem clarity."
+        ],
+        "case_evidence_needed": [
+          "The decision or causal question.",
+          "The measurement design and proxy limits.",
+          "The model or analysis chosen and why.",
+          "The communication output the decision maker can use."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-question-metric-model-and-message",
+          "description": "Require the answer to structure data-science reasoning into question, measurement, model, and decision handoff.",
+          "evidence_required": [
+            "Problem definition.",
+            "Metric/proxy design.",
+            "Modeling approach.",
+            "Decision-facing output."
+          ],
+          "good_output_shape": [
+            "Names the decision question.",
+            "Identifies the measurement/proxy caveat.",
+            "Explains why the model fits the question.",
+            "Translates output into bounded decision evidence."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What decision or causal question is this analysis for?",
+        "What proxy metric could be mistaken for reality?",
+        "Does the model answer the question or only produce a dashboard?"
+      ],
+      "misuse_guards": [
+        "Do not let data volume replace problem clarity.",
+        "Do not treat model output as authority without question design.",
+        "Do not optimize proxy metrics while suppressing stakeholder or system signals."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "large, noisy evidence sets need to be turned into a bounded reasoning process",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "separate question framing, measurement design, modeling, and communication",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "data volume substitutes for problem clarity",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 13 outcome: strong_affordance_record. The source supports DSRF as question-measure-model-communication discipline.",
+        "dropped_material": [
+          "Did not extract AI digital twin content as runtime behavior.",
+          "Did not add any model-call, analytics, or dashboard implementation."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves metric/proxy caveats."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "data-science-as-algorithmic-authority",
+      "status": "not_supported_by_source",
+      "reason": "The source says explanations should be compared against observed data rather than settled by authority, intuition, or anecdote.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "competing explanations need to be compared against observed data rather than settled by authority, intuition, or anecdote",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "model-output-without-question-design",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against modeling before agreeing on the causal question or business decision.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Data_Science_Reasoning_Framework_rag.md",
+          "source_quote": "starts modeling before agreeing on the causal question or business decision",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Data_Science_Reasoning_Framework_rag.md",
+      "source_quote": "define a problem precisely to meet the decision maker's needs before embarking on analysis",
+      "section_hint": "Core Definition and Purpose",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 13 source reading found strong reviewed depth for data-science reasoning as bounded analytic handoff, not model authority.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps LLMs distinguish useful analysis from dashboard theater."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "signaling",
+  "source_file": "Signaling_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "signaling.costly-proof-of-intent-test",
+      "status": "supported",
+      "name": "Costly proof of intent test",
+      "mechanism": "When quality, intent, or reliability cannot be directly observed, require the answer to distinguish credible costly signals from cheap symbolic signals and identify what proof of commitment should be demanded next.",
+      "activation_shape": {
+        "use_when": [
+          "Quality, intent, or reliability cannot be directly observed and must be inferred from behavior, framing, and follow-through.",
+          "Ambiguity is high enough that small credible actions can change trust, attention, or willingness to engage.",
+          "Words, timing, and costly behavior can reinforce one another instead of sending mixed messages about commitment or competence."
+        ],
+        "do_not_use_when": [
+          "Cheap symbolic signals are being allowed to substitute for real capability, accountability, or truth-aligned behavior.",
+          "The message is optimized for impression management while the underlying offer, reasoning, or execution standard remains weak.",
+          "The evidence package is controlled by the party trying to win the deal and no unstaged proof is available."
+        ],
+        "case_evidence_needed": [
+          "The ambiguous quality, intent, reliability, or commitment claim.",
+          "The signal currently being offered.",
+          "Whether the signal is costly, hard to fake, and tied to future behavior.",
+          "The next proof of intent or capability that cannot be staged cheaply."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "ask-for-costly-unstaged-proof",
+          "description": "Require the answer to name the current signal, judge whether it is cheap or costly, and specify the next proof of commitment or capability to demand.",
+          "evidence_required": [
+            "The claim being signaled.",
+            "The visible behavior, framing, or follow-through.",
+            "The cost or difficulty of faking the signal.",
+            "The next proof point: budget owner time, integration work, reserved capacity, pre-commitment, or other costly action."
+          ],
+          "good_output_shape": [
+            "Identifies the signal.",
+            "Separates cheap symbolism from costly proof.",
+            "Names what would still be credible if the scene could not be staged.",
+            "Connects the requested proof to future reliability."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What quality, intent, or reliability claim is being signaled?",
+        "Is this signal costly enough to be credible, or just polished symbolism?",
+        "What proof would still matter if the signaler controlled the evidence package?"
+      ],
+      "misuse_guards": [
+        "Do not treat polished surface signals as proof of capability.",
+        "Do not reward appearance-trustworthy behavior over truth-aligned behavior.",
+        "Do not ignore mixed messages between words, timing, and costly behavior."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "quality, intent, or reliability cannot be directly observed and the receiver must infer them from behavior, framing, and follow-through",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "words, timing, and costly behavior can reinforce one another",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "what costly proof of intent to demand next",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 7 outcome: strong_affordance_record. The source supports one costly proof-of-intent test and warns against cheap symbolic signals and impression management.",
+        "dropped_material": [
+          "Did not extract croc-brain, map/territory, or storytelling material as separate affordances.",
+          "Kept trust, attention, and reliability examples as supporting context for a compact proof test."
+        ],
+        "open_questions": [
+          "Future packet review should test this card with reciprocity and international negotiation when signals may be staged."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "cheap-symbolic-signal-as-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that cheap symbolic signals must not substitute for real capability, accountability, or truth-aligned behavior.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "cheap symbolic signals are allowed to substitute for real capability, accountability, or truth-aligned behavior",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "impression-management-as-substance",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects optimizing the message for impression management while the underlying offer or execution standard remains weak.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Signaling_rag.md",
+          "source_quote": "message is optimized for impression management while the underlying offer, reasoning, or execution standard remains weak",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Signaling_rag.md",
+      "source_quote": "communication is never just about transferring facts; it is about creating a shared, actionable reality",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Signaling. Extracted one costly proof-of-intent test and rejected cheap symbolic signals plus impression-management-as-substance.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps receivers demand better proof without over-reading every small action."
+    ],
+    "review_status": "draft"
+  }
+}

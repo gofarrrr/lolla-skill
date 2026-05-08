@@ -1,0 +1,145 @@
+{
+  "model_id": "branch-solve-merge",
+  "source_file": "Branch_Solve_Merge_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "branch-solve-merge.branch-evidence-merge-rule",
+      "status": "supported",
+      "name": "Branch evidence merge rule",
+      "mechanism": "When a problem is too tangled to solve in one pass, require the answer to branch it into distinct sub-questions, solve the branches with focused evidence, and define the merge rule that converts branch findings into one coherent decision narrative.",
+      "activation_shape": {
+        "use_when": [
+          "The problem is too tangled to solve in one pass and needs explicit decomposition before analysis becomes productive.",
+          "Different sub-questions can be investigated in parallel but must return to one coherent decision narrative.",
+          "Diagnosis, solutioning, and communication are being mixed into one blur."
+        ],
+        "do_not_use_when": [
+          "The team branches aggressively but never defines the merge rule.",
+          "Workstreams multiply while the final recommendation becomes less coherent.",
+          "A familiar branch structure is being applied unquestioningly to a genuinely novel problem."
+        ],
+        "case_evidence_needed": [
+          "The core problem and the candidate branches.",
+          "The evidence needed to solve each branch.",
+          "The merge rule that joins branch findings into one recommendation.",
+          "The audience or decision that the merged narrative must serve."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-branch-solve-merge-contract",
+          "description": "Require the answer to state the branch structure, the evidence each branch needs, and the merge rule that prevents parallel work from becoming fragmented analysis.",
+          "evidence_required": [
+            "The core problem.",
+            "The distinct branch questions.",
+            "The evidence or output for each branch.",
+            "The merge rule or governing narrative."
+          ],
+          "good_output_shape": [
+            "Branches the problem without overlap or gaps where possible.",
+            "Assigns evidence needs to branches.",
+            "Defines the merge rule before workstreams multiply.",
+            "Produces one coherent recommendation or next decision."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What are the distinct branches of this problem?",
+        "What evidence or output would solve each branch?",
+        "What merge rule turns branch findings into one coherent recommendation?"
+      ],
+      "misuse_guards": [
+        "Do not branch without a merge rule.",
+        "Do not over-solve branches with low-value analysis.",
+        "Do not use a familiar logic tree if it hides the actual structure of the problem."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Branch_Solve_Merge_rag.md",
+          "source_quote": "Most useful when** the problem is too tangled to solve in one pass and the team needs an explicit decomposition before analysis becomes productive.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Branch_Solve_Merge_rag.md",
+          "source_quote": "different sub-questions can be investigated in parallel but still need to come back together in one coherent decision narrative.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Branch_Solve_Merge_rag.md",
+          "source_quote": "The purpose is to ensure the final conclusion is clear, logical, and persuasive.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports branch-solve-merge as decomposition plus a defined integration rule.",
+        "dropped_material": [
+          "Did not extract MECE, pyramid principle, or AI-agent parallel workflow as separate affordances.",
+          "Kept logic-tree and bottom-line-up-front material as supporting context."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card helps packets keep parallel option work coherent without becoming project-management theater."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "branches-without-merge-rule",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that branching can multiply workstreams while making the final recommendation less coherent if no merge rule exists.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Branch_Solve_Merge_rag.md",
+          "source_quote": "teams branch aggressively but never define the merge rule, so workstreams multiply while the final recommendation gets less coherent.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "over-solved-branch-boiling-ocean",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that solving branches can become excessive low-value analysis and boiling the ocean.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Branch_Solve_Merge_rag.md",
+          "source_quote": "gathering too much data or conducting excessive, low-value analysis simply because the data is available.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Branch_Solve_Merge_rag.md",
+      "source_quote": "**breaking it down** into discrete, manageable sub-problems (Branch), **conducting focused analysis and action** on those parts (Solve), and **integrating the findings** back into a coherent, actionable solution (Merge).",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for branch-solve-merge as branch evidence plus merge rule.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card keeps option-generation packets coherent without adding process bulk."
+    ],
+    "review_status": "draft"
+  }
+}

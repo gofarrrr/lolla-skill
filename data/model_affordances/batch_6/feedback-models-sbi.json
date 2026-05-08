@@ -1,0 +1,160 @@
+{
+  "model_id": "feedback-models-sbi",
+  "source_file": "Feedback_Models_Sbi_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "feedback-models-sbi.situation-impact-invitation-structure",
+      "status": "supported",
+      "name": "Situation impact invitation structure",
+      "mechanism": "When feedback risks becoming vague or defensive, require the answer to anchor the conversation in a concrete situation/action, explain impact, invite collaboration, and state consequences without smuggling in a preloaded judgment.",
+      "activation_shape": {
+        "use_when": [
+          "A feedback conversation needs to stay tied to specific observable behavior rather than personality labels or vague frustration.",
+          "The goal is to reduce defensiveness by separating what happened, why it mattered, and what change is invited next.",
+          "Coaching, performance repair, or collaboration quality depends on recurring course correction around concrete incidents."
+        ],
+        "do_not_use_when": [
+          "The model is being used as a script to deliver judgment while skipping curiosity, listening, or the receiver's constraints.",
+          "The situation is framed selectively so the structure looks objective while hiding a preloaded conclusion.",
+          "The structure ignores emotional or relational context that is part of the relevant data."
+        ],
+        "case_evidence_needed": [
+          "The concrete situation or incident.",
+          "The observable behavior or action.",
+          "The impact on the person, team, system, or goal.",
+          "The collaborative invitation and implications for changing or not changing."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "anchor-feedback-in-observable-incident",
+          "description": "Require the answer to keep feedback tied to concrete observation, impact, invitation, and implications while preserving curiosity about the receiver's constraints.",
+          "evidence_required": [
+            "The specific situation or incident.",
+            "The observed behavior or action.",
+            "The impact or consequence.",
+            "The collaboration request and possible implications."
+          ],
+          "good_output_shape": [
+            "Names the situation.",
+            "States observable behavior.",
+            "Explains impact without personality labels.",
+            "Invites a concrete next adjustment."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What exactly happened, and what can be observed rather than inferred?",
+        "What impact did the behavior have on the person, system, or goal?",
+        "What collaboration request follows, and what receiver constraints still need curiosity?"
+      ],
+      "misuse_guards": [
+        "Do not use the structure as a script for judgment while skipping curiosity.",
+        "Do not frame the situation selectively to smuggle in a conclusion.",
+        "Do not ignore emotional or relational context when it affects whether feedback can land."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "clear link between a specific action and its observed consequence",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "specific and actionable",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "Provide concrete, specific observations",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "Extend a collaboration request",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports an incident-anchored feedback structure that separates observation, impact, invitation, and implications.",
+        "dropped_material": [
+          "Did not extract AI prompt feedback, digital twin design, or scaffolding examples as separate affordances.",
+          "Did not duplicate the broader constructive-feedback standard-correction card."
+        ],
+        "open_questions": [
+          "Future packet review should test whether SBI adds enough incident structure beyond the broader constructive-feedback card."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "scripted-judgment-feedback",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against using the model as a script to deliver judgment while skipping curiosity, listening, or the receiver's constraints.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "used as a script to deliver judgment while skipping curiosity, listening, or the receiver's actual constraints",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "selective-situation-framing",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that a selective situation frame can make the structure look objective while smuggling in a conclusion.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "the \"situation\" is framed selectively so the structure looks objective while smuggling in a preloaded conclusion",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Feedback_Models_Sbi_rag.md",
+      "source_quote": "Explain the effect",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Feedback_Models_Sbi_rag.md",
+      "source_quote": "Detail the positive and/or negative consequences",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Feedback Models SBI. Extracted one incident/impact/invitation structure and rejected scripted judgment plus selective framing.",
+    "dropped_material": [
+      "LLM and coaching examples were retained as supporting context rather than separate cards.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card improves feedback packets without creating procedural clutter."
+    ],
+    "review_status": "draft"
+  }
+}

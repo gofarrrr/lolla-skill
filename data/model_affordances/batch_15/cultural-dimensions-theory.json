@@ -1,0 +1,145 @@
+{
+  "model_id": "cultural-dimensions-theory",
+  "source_file": "Cultural_Dimensions_Theory_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "cultural-dimensions-theory.coordinate-across-default-norms",
+      "status": "supported",
+      "name": "Coordinate across default norms",
+      "mechanism": "When people from different cultural or operating contexts interpret the same behavior differently, use cultural dimensions as a comparative lens for trust, hierarchy, conflict, and commitment. Keep the card probabilistic and evidence-seeking, not identity-labeling.",
+      "activation_shape": {
+        "use_when": [
+          "A recommendation depends on cross-cultural coordination, communication style, hierarchy, conflict, trust, or commitment norms.",
+          "The same action is likely to be interpreted differently by groups with different default expectations.",
+          "The answer needs adaptation without losing strategic clarity or inventing personality claims."
+        ],
+        "do_not_use_when": [
+          "The case lacks any cross-context interpretation problem.",
+          "The model would assign fixed traits to individuals or groups without direct evidence.",
+          "The real issue is incentives, authority, resource constraints, or factual disagreement rather than cultural interpretation."
+        ],
+        "case_evidence_needed": [
+          "The groups or contexts whose default norms may differ.",
+          "The behavior, message, or decision being interpreted differently.",
+          "Direct evidence from the relationship or situation, not a stereotype.",
+          "The coordination outcome that depends on adapting the frame."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "translate-norms-with-verification",
+          "description": "Require the answer to name the specific norm clash, offer a context-sensitive adaptation, and preserve a verification step before treating the cultural lens as true.",
+          "evidence_required": [
+            "Observed coordination breakdown or interpretive mismatch.",
+            "The specific norm dimension likely involved.",
+            "A relationship-specific check that could confirm or revise the hypothesis.",
+            "A bounded adaptation that does not erase the original strategic objective."
+          ],
+          "good_output_shape": [
+            "Frames the model as a comparative lens.",
+            "Names what may be read differently.",
+            "Adds a check against stereotyping.",
+            "Turns the insight into an adaptation in communication, sequencing, or commitment design."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which behavior is being interpreted differently across contexts?",
+        "What evidence comes from this relationship rather than from a cultural stereotype?",
+        "What adaptation preserves the strategic goal while reducing norm mismatch?"
+      ],
+      "misuse_guards": [
+        "Do not treat cultural dimensions as fixed labels for individuals.",
+        "Do not let broad cultural branching postpone concrete coordination commitments.",
+        "Do not use cultural explanation to ignore incentives, power, or material constraints."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cultural_Dimensions_Theory_rag.md",
+          "source_quote": "coordination depends on understanding different default norms",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cultural_Dimensions_Theory_rag.md",
+          "source_quote": "adaptation without losing strategic clarity",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cultural_Dimensions_Theory_rag.md",
+          "source_quote": "treated as fixed labels for individuals rather than probabilistic context clues",
+          "section_hint": "Limitations and Common Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports cultural dimensions as a verified comparative coordination lens, not a trait classifier.",
+        "dropped_material": [
+          "Did not extract Hofstede-style dimension taxonomies because the source explicitly says the provided sources do not detail them.",
+          "Did not turn cultural context into deterministic individual prediction."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card stays useful without encouraging cultural overfitting."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "culture-as-stereotype",
+      "status": "not_supported_by_source",
+      "reason": "The source supports using cultural differences as context clues, but explicitly blocks treating the model as fixed labels for individuals.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cultural_Dimensions_Theory_rag.md",
+          "source_quote": "Stereotyping by Framework",
+          "section_hint": "Limitations and Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "dimensions-as-deterministic-personality",
+      "status": "not_supported_by_source",
+      "reason": "The source frames the model as a simplified map that needs verification; it does not support deterministic personality inference from cultural categories.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cultural_Dimensions_Theory_rag.md",
+          "source_quote": "the map is not the territory itself",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Cultural_Dimensions_Theory_rag.md",
+      "source_quote": "Works when the decision-maker needs a comparative lens rather than a personal intuition",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for cross-context coordination, with explicit anti-stereotyping constraints.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should show whether this card helps the LLM separate context adaptation from identity stereotyping."
+    ],
+    "review_status": "draft"
+  }
+}

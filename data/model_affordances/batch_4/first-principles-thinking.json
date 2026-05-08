@@ -1,0 +1,196 @@
+{
+  "model_id": "first-principles-thinking",
+  "source_file": "First_Principles_Thinking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "first-principles-thinking.elemental-truth-rebuild-gate",
+      "status": "supported",
+      "name": "Elemental truth rebuild gate",
+      "mechanism": "When inherited categories or conventional rules are distorting the problem, strip the case to facts and desired outcome, identify what would have to be true for a novel path to work, and rebuild toward concrete action without using first-principles language as status theater.",
+      "activation_shape": {
+        "use_when": [
+          "Existing categories, market assumptions, inherited rules, or stale templates are distorting the problem.",
+          "The team needs to separate facts from conventions before deciding what is actually non-negotiable.",
+          "A novel solution requires rebuilding from elemental truths instead of optimizing a familiar template.",
+          "The current explanation is accurate but too abstract to guide day-to-day action."
+        ],
+        "do_not_use_when": [
+          "First-principles language is being used as a status move to ignore practical constraints, accumulated know-how, or implementation costs.",
+          "The problem is ordinary enough that re-deriving from scratch would only create analysis paralysis.",
+          "The output would remain abstract and fail to produce a concrete, usable recommendation.",
+          "The team is defending its chosen fundamentals through confirmation bias instead of stress-testing them."
+        ],
+        "case_evidence_needed": [
+          "The inherited category, assumption, rule, template, or expert doctrine being questioned.",
+          "The elemental facts and desired outcome that remain after stripping away convention.",
+          "The assumptions that would have to be true for the novel path to work.",
+          "The practical constraints, implementation costs, and accumulated know-how that still matter.",
+          "The concrete action, message, or design choice rebuilt from the fundamentals."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-facts-from-conventions",
+          "description": "Require the answer to name the inherited assumption or category, strip it back to facts and desired outcome, and state what remains non-negotiable.",
+          "evidence_required": [
+            "The convention, template, category, or rule currently shaping the answer.",
+            "The facts that remain true without that convention.",
+            "The desired outcome the team is actually trying to reach.",
+            "The assumptions that were exposed by the decomposition."
+          ],
+          "good_output_shape": [
+            "Separates facts from inherited rules.",
+            "Names what is truly non-negotiable.",
+            "Identifies assumptions that need testing.",
+            "Rebuilds the recommendation from the smaller set of truths."
+          ]
+        },
+        {
+          "requirement_id": "convert-rebuild-into-usable-action",
+          "description": "Prevent first-principles analysis from staying abstract by requiring a concrete action, message, or design choice that follows from the rebuilt argument.",
+          "evidence_required": [
+            "The rebuilt argument or principle.",
+            "The practical constraint, cost, or implementation reality that could invalidate it.",
+            "The intended user, audience, or operator who must act on it.",
+            "The day-to-day action or decision the principle should guide."
+          ],
+          "good_output_shape": [
+            "Translates the principle into a usable move.",
+            "Names the practical constraints that still bind.",
+            "Avoids status language about being first-principles.",
+            "Shows what changes compared with the stale template."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which inherited rule, category, or expert doctrine is distorting the problem?",
+        "What facts and desired outcome remain after stripping away convention?",
+        "What would need to be true for this idea or path to work?",
+        "Which practical constraint or implementation cost are we tempted to ignore?",
+        "What concrete action follows from the rebuilt principle?"
+      ],
+      "misuse_guards": [
+        "Do not use first-principles language to dismiss practical constraints or accumulated know-how.",
+        "Do not re-derive from scratch when a familiar template already fits and speed matters.",
+        "Do not stop at abstraction; translate the principle into action.",
+        "Do not defend the chosen fundamentals through confirmation bias after the rebuild begins."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "First_Principles_Thinking_rag.md",
+          "source_quote": "set of facts and a desired outcome",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "First_Principles_Thinking_rag.md",
+          "source_quote": "what you want, (2) what is true, and (3) what you should do to achieve your goals in light of the discovered truth",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "First_Principles_Thinking_rag.md",
+          "source_quote": "What would need to be true for this idea to work?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "First_Principles_Thinking_rag.md",
+          "source_quote": "Most useful when** existing categories, market assumptions, or inherited rules are distorting the problem rather than clarifying it.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "First_Principles_Thinking_rag.md",
+          "source_quote": "Danger when** “first principles” is used as a status move to ignore practical constraints, accumulated know-how, or real implementation costs.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 4 outcome: strong_affordance_record. The source supports one rebuild gate: strip conventions to facts and desired outcome, ask what must be true, then convert the principle into concrete action while preserving practical constraints.",
+        "dropped_material": [
+          "Did not extract advertising, Airbnb, Bloom's taxonomy, or Feynman technique examples as separate affordances.",
+          "Did not duplicate Five Whys or hypothesis-driven problem-solving records."
+        ],
+        "open_questions": [
+          "PR29 should test whether this card helps graph-only first-principles hints without becoming generic decomposition advice."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "ignore-constraints-because-first-principles-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that first-principles language can become a status move that ignores constraints, accumulated know-how, and real costs. That behavior should block use.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "First_Principles_Thinking_rag.md",
+          "source_quote": "Danger when** “first principles” is used as a status move to ignore practical constraints, accumulated know-how, or real implementation costs.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "abstract-truth-without-action-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that stopping at abstraction leaves the user without true understanding or usable recommendations. The affordance must end in concrete action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "First_Principles_Thinking_rag.md",
+          "source_quote": "If the analysis stays too abstract, it provides an answer without fostering true understanding, leaving the user vulnerable when things go wrong.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "First_Principles_Thinking_rag.md",
+          "source_quote": "Effective FPT must result in concrete, actionable recommendations.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "First_Principles_Thinking_rag.md",
+      "source_quote": "systematically question every assumption underlying a problem, belief, or proposed solution",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "First_Principles_Thinking_rag.md",
+      "source_quote": "abstract missions should be replaced with simple, actionable proverbs",
+      "section_hint": "The Playbook in Action",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 4 source reading found strong but broad operational support. Extracted one narrow rebuild gate and treated constraint-ignoring status moves plus abstract truth without action as absence records.",
+    "dropped_material": [
+      "Learning, advertising, venture, and communication examples were retained only as evidence of the same pattern.",
+      "No runtime, prompt, lane, or packet-producer changes are implied."
+    ],
+    "open_questions": [
+      "Future review should preserve the boundary with decomposition, Five Whys, scientific-method-evidence-testing, and constraints."
+    ],
+    "review_status": "draft"
+  }
+}

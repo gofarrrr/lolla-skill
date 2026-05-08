@@ -1,0 +1,145 @@
+{
+  "model_id": "prospect-theory",
+  "source_file": "Prospect_Theory_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "prospect-theory.loss-frame-decision-quality-check",
+      "status": "supported",
+      "name": "Loss frame decision quality check",
+      "mechanism": "When behavior is being driven by perceived gains, losses, reference points, or short-term bias rather than objective value, require the answer to identify the frame and protect decision quality from manipulation or emotional overreaction.",
+      "activation_shape": {
+        "use_when": [
+          "The choice depends heavily on reference points, recent expectations, or fear of losing what people think they already have.",
+          "Two options are economically similar but lead to different behavior depending on gain/loss framing.",
+          "The plan must account for loss aversion, risk seeking in the loss domain, or reluctance to accept a sure small loss to avoid a larger uncertain one later."
+        ],
+        "do_not_use_when": [
+          "Framing is being used to manipulate rather than clarify.",
+          "The model is being treated as a normative answer to what people should choose.",
+          "The answer would exploit threat language without improving economics, truth, or decision quality."
+        ],
+        "case_evidence_needed": [
+          "The current reference point or perceived entitlement.",
+          "How the options are framed as gains or losses.",
+          "The objective economics or long-term value.",
+          "The decision-quality risk created by emotional framing."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-frame-from-economics",
+          "description": "Require the answer to identify the reference point and loss/gain frame, then compare it against objective economics, long-term value, and manipulation risk.",
+          "evidence_required": [
+            "The perceived gain or loss frame.",
+            "The reference point or recent expectation.",
+            "The objective economics or long-term consequence.",
+            "The party who benefits from the framing."
+          ],
+          "good_output_shape": [
+            "Names the reference point.",
+            "Shows how framing changes behavior without changing fundamentals.",
+            "Distinguishes descriptive human bias from normative advice.",
+            "Protects against manipulation and short-termism."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What reference point makes this option feel like a gain or a loss?",
+        "Would the recommendation change if the same economics were framed neutrally?",
+        "Who benefits if loss aversion or threat language drives the decision?"
+      ],
+      "misuse_guards": [
+        "Do not use loss framing to force compliance.",
+        "Do not treat Prospect Theory as a normative theory of what people should choose.",
+        "Do not optimize persuasion while ignoring underlying economics or truth."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Prospect_Theory_rag.md",
+          "source_quote": "Most useful when behavior is being driven by perceived losses and gains, not objective value",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prospect_Theory_rag.md",
+          "source_quote": "Works when framing can change action without changing fundamentals",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prospect_Theory_rag.md",
+          "source_quote": "Best when a recommendation must account for human short-term bias",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 9 outcome: strong_affordance_record. The source supports one prospect-theory affordance that separates reference-point framing from objective economics and manipulation risk.",
+        "dropped_material": [
+          "Did not extract marketing or sales persuasion as a separate affordance.",
+          "Kept System 1/System 2 and risk preference material as support for frame diagnosis."
+        ],
+        "open_questions": [
+          "PR43 should test whether this card improves risk packet handoff without encouraging manipulative framing."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "manipulative-loss-framing",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against exploiting loss aversion or threat language to force compliance without improving economics, truth, or decision quality.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Prospect_Theory_rag.md",
+          "source_quote": "Danger when framing is used to manipulate rather than clarify",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "prospect-theory-as-normative-rule",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says Prospect Theory is descriptive and cannot replace normative expected-utility analysis.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Prospect_Theory_rag.md",
+          "source_quote": "it tells us how people *do* decide, not how they *should*",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Prospect_Theory_rag.md",
+      "source_quote": "evaluation is relative to a neutral reference point",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 9 source reading found strong reviewed depth for prospect-theory as a loss-frame decision-quality check.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card catches frame distortion without making the next LLM manipulative."
+    ],
+    "review_status": "draft"
+  }
+}

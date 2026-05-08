@@ -1,0 +1,145 @@
+{
+  "model_id": "association",
+  "source_file": "Association_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "association.structural-association-test",
+      "status": "supported",
+      "name": "Structural association test",
+      "mechanism": "When disconnected signals or a tempting analogy could reveal a useful pattern, require the answer to identify the structural variable that makes the association work, test whether it matches the current case, and reject catchy comparisons that substitute resemblance for causal fit.",
+      "activation_shape": {
+        "use_when": [
+          "Customer behavior, operational friction, and strategic response look weak in isolation but jointly point to a pattern.",
+          "A recommendation depends on transferring insight from one known domain into a structurally similar but unfamiliar one.",
+          "The real gain comes from linking the live problem to a second structure the team has not connected."
+        ],
+        "do_not_use_when": [
+          "A catchy analogy is being treated as proof without checking causal structure.",
+          "The first useful association has hardened into the only association.",
+          "The comparison imports goals, metrics, or operating rules from the wrong category."
+        ],
+        "case_evidence_needed": [
+          "The disconnected signals or analogy being linked.",
+          "The structural variable that made the source case work.",
+          "Whether that variable is matched, inverted, missing, or uncontrollable in the current case.",
+          "The competing association or disconfirming evidence to test."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-structural-match-before-transfer",
+          "description": "Require the answer to state what association is doing the persuasive work and test the underlying structural match before using the comparison as reasoning material.",
+          "evidence_required": [
+            "The proposed analogy or association.",
+            "The variable that makes the source pattern work.",
+            "The match or mismatch in the current case.",
+            "A competing association or disconfirming check."
+          ],
+          "good_output_shape": [
+            "Names the association.",
+            "Identifies the structural variable behind it.",
+            "Checks whether that variable carries over.",
+            "Rejects surface resemblance as proof."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which structural variable made the source analogy work in the first place?",
+        "Is that variable matched, inverted, missing, or uncontrollable in this case?",
+        "What competing association should be tested before acting on the favorite comparison?"
+      ],
+      "misuse_guards": [
+        "Do not treat surface similarity as causal evidence.",
+        "Do not let the first association become the only frame.",
+        "Do not import goals or metrics from a source category that does not fit the current decision."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "teams are staring at disconnected signals that only become meaningful once they are linked",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "analogy is not rhetorical decoration but the fastest honest way to make a new pattern decision-usable.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "Which structural variable made the source analogy work in the first place, and in our case is that variable matched, inverted, or missing enough to break the comparison before we act on it?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports association as structural-link testing, not analogy-as-proof.",
+        "dropped_material": [
+          "Did not extract role-based prompting or digital advisory boards as separate affordances.",
+          "Kept pre-suasion and latticework examples as context for association effects."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card helps packets use analogy without drifting into resemblance theater."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "analogy-as-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns against using a catchy analogy as proof without checking whether the underlying causal structure matches.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "Danger when teams use a catchy analogy as if it were proof",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "first-association-as-only-frame",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that an initial metaphor or conceptual link can become dominant enough to blind the team to better frames or disconfirming structure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Association_rag.md",
+          "source_quote": "The model fails when an initial metaphor or conceptual link becomes so dominant that it blinds the team to better frames or disconfirming structure.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Association_rag.md",
+      "source_quote": "understanding and prediction are driven by the linkage of concepts",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for association as structural match testing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should test whether this card makes analogical options safer and more useful for the next LLM."
+    ],
+    "review_status": "draft"
+  }
+}

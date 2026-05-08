@@ -1,0 +1,145 @@
+{
+  "model_id": "brainstorming",
+  "source_file": "Brainstorming_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "brainstorming.bounded-divergence-before-selection",
+      "status": "supported",
+      "name": "Bounded divergence before selection",
+      "mechanism": "When a team is stuck too early on one answer, require a prepared divergence phase that expands volume and variety without evaluation, then explicitly hands off to selection, testing, or prioritization so ideation does not become decision avoidance.",
+      "activation_shape": {
+        "use_when": [
+          "The team has latched onto the first available solution or one narrow frame.",
+          "The search space is still underexplored and idea volume plus variety are genuinely useful.",
+          "Divergence can be separated from evaluation before the answer narrows."
+        ],
+        "do_not_use_when": [
+          "The team is already avoiding a choice, test, or kill decision by generating more options.",
+          "The session lacks preparation, a problem frame, or an explicit follow-on selection method.",
+          "Hierarchy, anchoring, or showmanship prevents broad participation."
+        ],
+        "case_evidence_needed": [
+          "The current frame or first idea that is constraining exploration.",
+          "The prepared problem statement or How Might We question.",
+          "The intended selection, testing, or prioritization step after divergence.",
+          "The participation constraint that could suppress idea variety."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-generation-from-selection",
+          "description": "Require the answer to define what should be widened, how judgment will be deferred during generation, and how the resulting option set will later be selected, tested, or killed.",
+          "evidence_required": [
+            "The narrow current answer or stuck frame.",
+            "The problem statement or HMW frame.",
+            "The divergence method or participation setup.",
+            "The later selection or testing method."
+          ],
+          "good_output_shape": [
+            "Names the option space that needs widening.",
+            "Defers evaluation during generation.",
+            "Specifies the later selection or testing step.",
+            "Blocks brainstorming as a substitute for choosing."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What first idea or frame is anchoring the team too early?",
+        "What prepared problem statement or HMW question will guide divergence?",
+        "How will the team select, test, or kill ideas after the divergent phase?"
+      ],
+      "misuse_guards": [
+        "Do not treat more ideas as progress unless a later selection or testing step exists.",
+        "Do not brainstorm without advance work on the problem frame.",
+        "Do not let hierarchy or performance theater replace broad participation."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Brainstorming_rag.md",
+          "source_quote": "Most useful when the team is stuck too early on one frame or one answer",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Brainstorming_rag.md",
+          "source_quote": "Best when divergence is explicitly separated from evaluation",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Brainstorming_rag.md",
+          "source_quote": "Following brainstorming, use subsequent selection processes like **PMI (Plus, Minus, Interesting)** to sift and prioritize the raw concepts.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports brainstorming as bounded divergence that must later hand off to selection or testing.",
+        "dropped_material": [
+          "Did not extract 9x9 grid, mind mapping, or HMW as separate affordances.",
+          "Kept design-thinking and McKinsey examples as context for the divergence/selection handoff."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card widens a packet's options without making the packet feel like ideation theater."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "divergence-as-decision-avoidance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that brainstorming becomes wasteful when teams keep generating options to avoid choosing, testing, or killing weak ideas.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Brainstorming_rag.md",
+          "source_quote": "Brainstorming becomes wasteful when teams keep generating options to avoid choosing, testing, or killing weak ideas.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "unprepared-ideation-theater",
+      "status": "not_supported_by_source",
+      "reason": "The source says brainstorming cannot be done successfully in a vacuum, so PR48 must not promote generic idea generation without hard-nosed setup.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Brainstorming_rag.md",
+          "source_quote": "effective brainstorming **cannot be done successfully in a vacuum**.",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Brainstorming_rag.md",
+      "source_quote": "**create an expansive catalog of potential concepts** that can then be evaluated, compared, and ranked",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for brainstorming as prepared divergence before explicit selection.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card increases useful option breadth without increasing clutter."
+    ],
+    "review_status": "draft"
+  }
+}

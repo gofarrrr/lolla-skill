@@ -1,0 +1,145 @@
+{
+  "model_id": "expertise-reversal-effect",
+  "source_file": "Expertise_Reversal_Effect_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "expertise-reversal-effect.match-support-to-expertise-level",
+      "status": "supported",
+      "name": "Match support to expertise level",
+      "mechanism": "When the same instruction, prompt, or operating procedure lands differently across experience levels, diagnose whether the support is helping novices build schemas or adding redundant cognitive load for experts, then adjust detail, autonomy, and challenge.",
+      "activation_shape": {
+        "use_when": [
+          "Novices need explicit scaffolding while experts need compression, speed, or autonomy.",
+          "Performance drops because guidance is mismatched to the recipient's current expertise.",
+          "Training, communication, prompts, or procedures must adapt as mastery rises."
+        ],
+        "do_not_use_when": [
+          "The expert's schema may be wrong and needs challenge rather than less instruction.",
+          "Support is stripped away merely because someone is experienced in a different context.",
+          "The problem is systemic failure analysis rather than instructional fit."
+        ],
+        "case_evidence_needed": [
+          "Audience or learner expertise level.",
+          "Current support, instruction, or procedure format.",
+          "Evidence of novice confusion, expert redundancy, or mismatched challenge.",
+          "Context novelty that may require renewed structure for an expert."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-novice-scaffold-from-expert-compression",
+          "description": "Require the answer to distinguish novice and expert needs, preserve support where schemas are missing, and remove or compress support only where it has become redundant drag.",
+          "evidence_required": [
+            "Recipient expertise profile.",
+            "The support currently provided.",
+            "Observed confusion, boredom, redundancy, or error.",
+            "Whether the task context is familiar or novel."
+          ],
+          "good_output_shape": [
+            "Names which audience needs scaffold versus compression.",
+            "Explains why the current support is mismatched.",
+            "Adjusts detail and autonomy without abandoning necessary structure.",
+            "Flags cases where expert beliefs still need correction."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who is novice, who is expert, and what evidence shows it?",
+        "Is the guidance building missing schemas or adding redundant load?",
+        "Is this expert facing a familiar task or a novel context that needs structure again?"
+      ],
+      "misuse_guards": [
+        "Do not remove guidance just because someone has status or tenure.",
+        "Do not force expert users through novice material when it adds redundant load.",
+        "Do not assume an expert's existing schema is correct when the context has changed."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Expertise_Reversal_Effect_rag.md",
+          "source_quote": "instructional methods that are highly beneficial and necessary for novice learners can become inefficient, redundant, or even detrimental",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expertise_Reversal_Effect_rag.md",
+          "source_quote": "Most useful when the same message is landing very differently across experience levels",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Expertise_Reversal_Effect_rag.md",
+          "source_quote": "Danger When Less Guidance Is Confused with Better Guidance",
+          "section_hint": "Common Anti-Patterns and Dangers",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports ERE as adaptive support based on expertise level, with a clear caution against simply removing guidance.",
+        "dropped_material": [
+          "Did not extract prompt examples as prompt policy.",
+          "Kept expert-overconfidence risks as guards rather than a separate affordance."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card prevents one-size-fits-all training recommendations."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "novice-expert-treatment-collapse",
+      "status": "not_supported_by_source",
+      "reason": "The source is specifically about the reversal between novice and expert support, so PR49 must not collapse them into one learning treatment.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Expertise_Reversal_Effect_rag.md",
+          "source_quote": "**Novices:** These individuals have few or no established schemas for a topic.",
+          "section_hint": "Cognitive Mechanism",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "expertise-label-as-status",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that less guidance can be confused with better guidance; expertise must be evidenced by schemas and context fit, not status.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Expertise_Reversal_Effect_rag.md",
+          "source_quote": "The model misfires when teams strip away support merely because someone is experienced",
+          "section_hint": "Common Anti-Patterns and Dangers",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Expertise_Reversal_Effect_rag.md",
+      "source_quote": "**tailoring instruction** or information delivery to the recipient’s existing level of knowledge",
+      "section_hint": "Core Definition and Purpose",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for matching scaffolding or compression to expertise.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card improves audience-fit without encouraging status-based shortcuts."
+    ],
+    "review_status": "draft"
+  }
+}

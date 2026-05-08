@@ -1,0 +1,160 @@
+{
+  "model_id": "formal-reasoning",
+  "source_file": "Formal_Reasoning_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "formal-reasoning.explicit-premise-chain-test",
+      "status": "supported",
+      "name": "Explicit premise-chain validity test",
+      "mechanism": "When a recommendation depends on a chain of premises, categories, or inference steps, force the answer to make the logic explicit, test each link against evidence, and reject clean-looking reasoning whose assumptions or definitions are not grounded in reality.",
+      "activation_shape": {
+        "use_when": [
+          "A messy dispute becomes tractable if premises, alternatives, and decision criteria are organized into a logical frame.",
+          "The disagreement is about whether evidence, premises, and conclusions connect validly.",
+          "Hidden assumptions, category mistakes, or branch logic could make a polished conclusion unsound."
+        ],
+        "do_not_use_when": [
+          "The problem is primarily emotional, political, relational, or user-discovery driven and cold logic would discard crucial data.",
+          "The answer would create formal structure around weak premises that were never tested.",
+          "The structure adds accuracy that cannot change a decision, prediction, or action."
+        ],
+        "case_evidence_needed": [
+          "The conclusion being advanced.",
+          "The premises, definitions, categories, or branches used to support it.",
+          "The evidence backing each important link.",
+          "The assumption or input that would make the formal structure misleading if false."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "ground-premises-before-validity",
+          "description": "Require the answer to show the premise chain, identify the unsupported or make-or-break premise, and ground the conclusion before relying on formal structure.",
+          "evidence_required": [
+            "The conclusion or recommendation under review.",
+            "The premises, definitions, or decision branches that support it.",
+            "The evidence for each important link.",
+            "The weakest or least grounded premise."
+          ],
+          "good_output_shape": [
+            "States the inference chain explicitly.",
+            "Marks unsupported assumptions.",
+            "Separates valid form from grounded truth.",
+            "Shows what conclusion changes if a premise fails."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which premise, definition, or category is doing the most work in this conclusion?",
+        "Is the reasoning valid only in form, or are the inputs grounded enough to trust it?",
+        "What evidence backs the link between the conclusion and its most important premise?"
+      ],
+      "misuse_guards": [
+        "Do not let clean logical form launder weak premises or untested definitions.",
+        "Do not use formal reasoning to ignore emotional, political, or human data that the case makes material.",
+        "Do not present technically accurate structure that cannot change a decision or action."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Formal_Reasoning_rag.md",
+          "source_quote": "relies on **logic and explicit structure** to reach sound conclusions",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Formal_Reasoning_rag.md",
+          "source_quote": "rigorously testing the links in a causal chain and insisting on evidence to back up each link",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Formal_Reasoning_rag.md",
+          "source_quote": "premises and branches must be made explicit",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Formal_Reasoning_rag.md",
+          "source_quote": "people have plenty of ideas already, but lack a valid way to connect evidence, premises, and conclusions",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 5 outcome: strong_affordance_record. The source supports a premise-chain validity test with a strong guard against formal structure laundering weak inputs.",
+        "dropped_material": [
+          "Did not extract MECE, logic trees, or Pyramid Principle as separate affordances because the most reusable PR32 value is grounding formal inference before trusting it.",
+          "Did not extract game-theory formalism here because game-theory-payoffs is a separate PR32 target."
+        ],
+        "open_questions": [
+          "Future packet review should watch overlap with chain-of-verification while preserving formal reasoning's focus on explicit premises and valid inference."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "formal-validity-with-ungrounded-premises",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that clean logic misleads when the inference chain is formally valid but rests on ungrounded assumptions, definitions, or inputs.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Formal_Reasoning_rag.md",
+          "source_quote": "Clean logic becomes misleading when the inference chain is valid in form but rests on assumptions, definitions, or inputs that were never grounded in reality.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "cold-logic-for-human-context",
+      "status": "source_too_thin",
+      "reason": "The source says pure logical thinking can be too blunt for emotional or social dynamics. It does not support using formal reasoning as the dominant treatment when personal data is material.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Formal_Reasoning_rag.md",
+          "source_quote": "Pure logical thinking can be **too blunt** when communicating results to an audience that may disagree or when dealing with highly emotional or social dynamics.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Formal_Reasoning_rag.md",
+      "source_quote": "Formal reasoning, at its fundamental essence, is a method of thinking that relies on **logic and explicit structure** to reach sound conclusions.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "source_file": "Formal_Reasoning_rag.md",
+      "source_quote": "The model has high value when a messy dispute becomes tractable once terms, alternatives, and decision criteria are organized into a clean logical frame.",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Formal Reasoning. Extracted one premise-chain test and rejected formal validity without grounded premises plus cold logic for human-context cases.",
+    "dropped_material": [
+      "Pyramid Principle, AI rule examples, and consulting process structure were retained as context rather than separate affordances.",
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet comparison should check whether this card helps with evidence/premise discipline without duplicating chain-of-verification."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "lateral-thinking",
+  "source_file": "Lateral_Thinking_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "lateral-thinking.frame-escape-before-obvious-path",
+      "status": "supported",
+      "name": "Frame escape before obvious path",
+      "mechanism": "When familiar frames keep producing stale options, require the answer to deliberately test a non-obvious frame, analogy, thought experiment, or multidisciplinary cut before narrowing, while checking that the new frame improves fit, feasibility, and decision quality.",
+      "activation_shape": {
+        "use_when": [
+          "The team keeps getting cleaner versions of the same answer because hidden assumptions remain unchallenged.",
+          "More analysis inside the current frame is unlikely to help, but reframing could open a different option space.",
+          "The task needs divergence before convergence and can later return to execution constraints."
+        ],
+        "do_not_use_when": [
+          "Novelty, surprise, or cleverness is being rewarded after the new frame fails to improve the decision.",
+          "The real issue is execution and the lateral move does not return to concrete action.",
+          "The team is using mental-model vocabulary without deep understanding of when the model applies."
+        ],
+        "case_evidence_needed": [
+          "The stale familiar frame or obvious path.",
+          "The alternative frame, analogy, or thought experiment being tested.",
+          "The evidence that the new frame improves fit, feasibility, or decision quality.",
+          "The execution constraint the reframed option must return to."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-non-obvious-frame",
+          "description": "Require the answer to name the stale frame, offer a non-obvious alternative frame or thought experiment, and then test whether that frame improves the decision rather than merely sounding creative.",
+          "evidence_required": [
+            "The stale frame.",
+            "The alternative frame or analogy.",
+            "Fit, feasibility, or decision-quality evidence.",
+            "The execution path or constraint after reframing."
+          ],
+          "good_output_shape": [
+            "Shows why the current frame is stale.",
+            "Introduces a specific alternative frame.",
+            "Tests the frame against practical decision criteria.",
+            "Returns the new option to action or evidence."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What familiar frame is making the same answer feel inevitable?",
+        "What non-obvious frame, analogy, or thought experiment could change the option space?",
+        "Does the new frame improve fit, feasibility, or decision quality enough to matter?"
+      ],
+      "misuse_guards": [
+        "Do not treat surprise or unconventionality as value.",
+        "Do not let lateral thinking replace execution planning.",
+        "Do not use sophisticated mental-model language without checking when and how the model applies."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Lateral_Thinking_rag.md",
+          "source_quote": "Most useful when familiar frames are producing stale options",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lateral_Thinking_rag.md",
+          "source_quote": "Works when the blockage is conceptual, not effort-based",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Lateral_Thinking_rag.md",
+          "source_quote": "Best when divergence comes before convergence",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 11 outcome: strong_affordance_record. The source supports lateral thinking as deliberate frame escape that must return to decision quality and execution.",
+        "dropped_material": [
+          "Did not extract SCAMPER, HMWs, or thought experiments as separate affordances.",
+          "Kept Airbnb and multidisciplinary examples as evidence for the frame-escape mechanism."
+        ],
+        "open_questions": [
+          "PR49 should test whether this card adds useful non-obvious alternatives without creating cleverness clutter."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "novelty-as-value",
+      "status": "not_supported_by_source",
+      "reason": "The source says lateral thinking becomes wasteful when surprise or unconventionality is rewarded after the new frame fails to improve fit, feasibility, or decision quality.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lateral_Thinking_rag.md",
+          "source_quote": "Lateral thinking becomes wasteful when teams reward surprise, cleverness, or unconventionality even after the new frame has failed to improve fit, feasibility, or decision quality.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "lateral-thinking-without-execution-path",
+      "status": "not_supported_by_source",
+      "reason": "The source says lateral thinking often yields the novel what but is less effective by itself on the how of implementation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Lateral_Thinking_rag.md",
+          "source_quote": "Lateral thinking often yields the *what* (the novel strategy or solution) but is less effective on its own for the *how* (the execution).",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Lateral_Thinking_rag.md",
+      "source_quote": "generating **new and unique ideas or solutions** by intentionally moving beyond conventional, linear, or established modes of thought.",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 11 source reading found strong reviewed depth for lateral-thinking as frame escape with a return to usefulness and execution.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, deterministic option selection, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card makes non-obvious alternatives more usable rather than more theatrical."
+    ],
+    "review_status": "draft"
+  }
+}

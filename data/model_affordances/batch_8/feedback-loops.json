@@ -1,0 +1,145 @@
+{
+  "model_id": "feedback-loops",
+  "source_file": "Feedback_Loops_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "feedback-loops.closed-loop-action-signal",
+      "status": "supported",
+      "name": "Closed-loop action signal",
+      "mechanism": "When advice depends on learning from reality, require the answer to name the observable consequence, the signal timing, the lever that can change next, and the behavior that will be adjusted when feedback arrives.",
+      "activation_shape": {
+        "use_when": [
+          "Outcomes should shape the next action.",
+          "Behavior changes the environment and the environment changes behavior back.",
+          "Measurement can actually close the loop because signals are tied to real levers."
+        ],
+        "do_not_use_when": [
+          "Feedback is collected but not used to change behavior, priorities, or design.",
+          "Delayed feedback, nonlinear relationships, or local bounded rationality make the visible signal misleading.",
+          "The team keeps repeating the same move while calling measurement a feedback loop."
+        ],
+        "case_evidence_needed": [
+          "The action or intervention that will produce feedback.",
+          "The observable consequence and when it will arrive.",
+          "The lever that can change after the signal is read.",
+          "The behavioral adjustment that will close the loop."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "connect-signal-to-next-adjustment",
+          "description": "Require the answer to define the feedback signal, arrival window, decision lever, and next behavior change so measurement becomes a loop rather than passive reporting.",
+          "evidence_required": [
+            "The action being tested.",
+            "The observed consequence or feedback metric.",
+            "The timing and delay of the signal.",
+            "The next adjustment that the signal could trigger."
+          ],
+          "good_output_shape": [
+            "Names the feedback signal.",
+            "States when it should arrive.",
+            "Links it to a real lever.",
+            "Defines what behavior, priority, or design will change."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What feedback signal will arrive soon enough to change the next action?",
+        "Which lever will change when the signal arrives?",
+        "Are we collecting feedback or actually closing the loop?"
+      ],
+      "misuse_guards": [
+        "Do not instrument the system heavily without changing behavior.",
+        "Do not ignore delays or nonlinear effects in the feedback signal.",
+        "Do not call measurement a loop if no lever changes afterward."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "outcomes should shape the next action",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "measurement can actually close the loop",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "signals are tied to real levers, so the next adjustment can be made on the basis of what the system just produced",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 8 outcome: strong_affordance_record. The source supports one closed-loop action signal requiring observable consequences, real levers, timing, and changed behavior.",
+        "dropped_material": [
+          "Did not extract balancing vs reinforcing loops, digital twins, or creative iteration as separate affordances.",
+          "Kept delay/nonlinearity as misuse context."
+        ],
+        "open_questions": [
+          "PR40 should test whether this card prevents packets from treating reporting as learning."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "collected-feedback-without-behavior-change",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects feedback collection that never translates into changed behavior, priorities, or design.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "teams instrument the system heavily, yet never translate the signal into changed behavior, priorities, or design",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "instant-linear-feedback-assumption",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that delays and nonlinear relationships are inherent in dynamic systems, so PR39 should not imply every signal is immediate or linear.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Loops_rag.md",
+          "source_quote": "delays** (the length of time relative to the rates of system changes) and **nonlinear relationships** are inherent properties",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Feedback_Loops_rag.md",
+      "source_quote": "the output of a system also acts as an input to that same system",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Feedback Loops. Extracted one closed-loop action signal and rejected feedback collection without behavior change plus instant-linear assumptions.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later execution-packet review should test whether this card makes feedback actionable rather than decorative."
+    ],
+    "review_status": "draft"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "model_id": "cultural-intelligence",
+  "source_file": "Cultural_Intelligence_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "cultural-intelligence.translate-human-worlds-before-adoption",
+      "status": "supported",
+      "name": "Translate human worlds before adoption",
+      "mechanism": "When adoption depends on how people interpret the same facts through different incentives, fears, identities, or local contexts, require perspective-taking and direct evidence before prescribing communication or implementation.",
+      "activation_shape": {
+        "use_when": [
+          "A technically sound answer may fail because people must interpret, accept, or enact it.",
+          "Disagreement appears driven by status norms, incentives, identity, fear, local context, or different mental models.",
+          "The answer needs to translate the recommendation into the language and operating reality of the people affected."
+        ],
+        "do_not_use_when": [
+          "The case is primarily a factual or technical problem with no adoption or interpretation issue.",
+          "The model would infer motives without listening, observation, or disconfirming checks.",
+          "Cultural language would become a polite cover for untested assumptions."
+        ],
+        "case_evidence_needed": [
+          "Whose interpretation or adoption matters.",
+          "What facts or recommendation are being read differently.",
+          "Direct listening, observation, or behavioral evidence from the relevant people.",
+          "What disconfirming evidence would change the cultural hypothesis."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-perspective-from-assumption",
+          "description": "Require the answer to translate the recommendation across human worlds while explicitly naming what is observed, what is inferred, and what still needs to be checked.",
+          "evidence_required": [
+            "The audience or actor whose perspective matters.",
+            "Observed behavior, stated concern, or local operating constraint.",
+            "A competing explanation such as role, incentive, pressure, or history.",
+            "A direct check that could confirm the interpretation."
+          ],
+          "good_output_shape": [
+            "Names the relevant human world or operating context.",
+            "Frames motives as hypotheses, not facts.",
+            "Adds a listening or observation step.",
+            "Adapts language, sequencing, or implementation to that context."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Who has to adopt this, and what world are they seeing it from?",
+        "What evidence do we have from direct listening or observation?",
+        "What role, incentive, status, or history explanation could compete with the cultural explanation?"
+      ],
+      "misuse_guards": [
+        "Do not turn cultural intelligence into motive-reading.",
+        "Do not mistake politeness or empathy language for actual evidence.",
+        "Do not let adoption framing hide the substantive quality of the recommendation."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Cultural_Intelligence_rag.md",
+          "source_quote": "same facts are being interpreted through different human worlds",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cultural_Intelligence_rag.md",
+          "source_quote": "Works when adoption matters as much as analysis",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cultural_Intelligence_rag.md",
+          "source_quote": "direct listening, observation, or disconfirming checks",
+          "section_hint": "Limitations and Dangerous Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports cultural intelligence as adoption-oriented perspective taking with evidence checks.",
+        "dropped_material": [
+          "Did not convert cultural intelligence into personality typing.",
+          "Did not extract digital twin persona detail as a runtime or model-call instruction."
+        ],
+        "open_questions": [
+          "Later packets should test whether this card reduces unsupported motive claims."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "cultural-intelligence-as-politeness",
+      "status": "not_supported_by_source",
+      "reason": "The source requires perspective taking, outside-view discipline, and adoption evidence; it does not support treating cultural intelligence as mere niceness.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cultural_Intelligence_rag.md",
+          "source_quote": "adoption matters as much as analysis",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "adaptation-without-learning-loop",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against untested assumptions, so adaptation must include listening, observation, or disconfirming checks.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cultural_Intelligence_rag.md",
+          "source_quote": "untested assumptions",
+          "section_hint": "Limitations and Dangerous Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Cultural_Intelligence_rag.md",
+      "source_quote": "gain mental perspective",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for perspective-taking as evidence-seeking adoption work.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should test whether the card helps distinguish culture, incentives, pressure, and role."
+    ],
+    "review_status": "draft"
+  }
+}

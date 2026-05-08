@@ -1,0 +1,145 @@
+{
+  "model_id": "schema-acquisition",
+  "source_file": "Schema_Acquisition_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "schema-acquisition.build-usable-patterns-with-reality-checks",
+      "status": "supported",
+      "name": "Build usable patterns with reality checks",
+      "mechanism": "When learners or teams need durable pattern recognition, help new material attach to prior knowledge through analogy, chunking, and examples while checking that the schema does not replace re-seeing the actual case.",
+      "activation_shape": {
+        "use_when": [
+          "The goal is recognizing structure and retrieving the right method under pressure.",
+          "New material must connect to prior knowledge to become usable.",
+          "A recommendation or teaching sequence needs stable mental compression for later decisions."
+        ],
+        "do_not_use_when": [
+          "A familiar template is replacing context-specific diagnosis.",
+          "The schema is being treated as the territory rather than a simplified map.",
+          "The team has too many abstract frameworks and no operational purpose."
+        ],
+        "case_evidence_needed": [
+          "The new concept or situation to encode.",
+          "The prior knowledge, analogy, or example it can attach to.",
+          "The decision or recognition task the schema should support.",
+          "Disconfirming or novel case features the schema might hide."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "connect-new-material-then-test-fit",
+          "description": "Require the answer to name the schema being built, the prior anchor that helps it stick, and the reality-check that prevents the schema from becoming a false template.",
+          "evidence_required": [
+            "New material or case structure.",
+            "Prior knowledge anchor or analogy.",
+            "Intended recognition or decision use.",
+            "Novel or disconfirming case detail."
+          ],
+          "good_output_shape": [
+            "Creates a usable schema or map.",
+            "Connects it to prior knowledge.",
+            "Names what decision it helps make.",
+            "Tests where the map fails the territory."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What prior structure can this new material attach to?",
+        "What decision or recognition task should the schema improve?",
+        "What novel detail might this schema hide?"
+      ],
+      "misuse_guards": [
+        "Do not let a schema substitute for seeing the actual case.",
+        "Do not collect frameworks without a decision use.",
+        "Do not use analogy unless the structural match and limits are named."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Schema_Acquisition_rag.md",
+          "source_quote": "Most useful when the learner needs durable pattern recognition, not isolated facts",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Schema_Acquisition_rag.md",
+          "source_quote": "Works when new material must connect to prior knowledge",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Schema_Acquisition_rag.md",
+          "source_quote": "Danger when the schema becomes a substitute for re-seeing reality",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 12 outcome: strong_affordance_record. The source supports schema acquisition as usable pattern formation with a strong template-misuse guard.",
+        "dropped_material": [
+          "Did not extract AI persona schemas or every allied model as separate affordances.",
+          "Kept Southwest and Hollywood examples as context for usable compression."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves pattern-use without encouraging template lock-in."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "schema-as-label",
+      "status": "not_supported_by_source",
+      "reason": "The source treats schemas as usable mental structures for recognition and decisions, not labels to attach after the fact.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Schema_Acquisition_rag.md",
+          "source_quote": "Best when leaders need usable mental compression",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "premature-abstraction",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that established schemas and expert abstraction can hide concrete, novel, or disconfirming details.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Schema_Acquisition_rag.md",
+          "source_quote": "also causes it to miss what is novel, concrete, or disconfirming in the case at hand",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Schema_Acquisition_rag.md",
+      "source_quote": "simplify the complex aspects of life into more digestible and organizable units",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 12 source reading found strong reviewed depth for schema acquisition as useful mental compression with re-grounding.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "Later packet review should check whether this card helps LLM handoff distinguish useful schema from template reflex."
+    ],
+    "review_status": "draft"
+  }
+}
