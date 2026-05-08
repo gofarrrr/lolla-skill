@@ -121,6 +121,42 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "precision-avoidance-that-blocks-needed-probability-update",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports resisting fake precision only when added detail does not change action. If precision affects base-rate variation or Bayesian prior updating, this record should not simplify it away; route the transaction to base-rates or bayesian instead.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "False_Precision_Avoidance_rag.md",
+          "source_quote": "Rigor and Detail are Still Required",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "False_Precision_Avoidance_rag.md",
+          "source_quote": "In fields like **engineering and surgery**, precision and accuracy are absolute requirements.",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "False_Precision_Avoidance_rag.md",
+          "source_quote": "false-precision-avoidance conflicts with base-rates (base rates) when rounding away precision discards meaningful base-rate variation that would change the decision.",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "False_Precision_Avoidance_rag.md",
+          "source_quote": "false-precision-avoidance conflicts with bayesian (Bayesian reasoning) when avoidance of precise probability estimates prevents the quantitative prior-updating that Bayesian reasoning requires.",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [

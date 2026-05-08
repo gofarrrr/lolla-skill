@@ -59,13 +59,30 @@
             "Tests whether the worst case is severe enough to overturn the choice.",
             "Shares the calculated EV with boundary conditions instead of naked precision."
           ]
+        },
+        {
+          "requirement_id": "communicate-assumptions-and-boundary-conditions",
+          "description": "Present the calculated expected value together with the assumptions, sensitivity drivers, and boundary conditions under which the recommendation remains credible.",
+          "evidence_required": [
+            "The assumptions used to estimate probabilities, payoffs, costs, or benefits.",
+            "The sensitivity drivers where changed inputs would change the preferred option.",
+            "The boundary conditions under which the recommendation holds or fails.",
+            "Any speculative, subjective, or ethically unacceptable inputs that should weaken confidence."
+          ],
+          "good_output_shape": [
+            "Shows the EV result as conditional on named assumptions rather than as naked calculation.",
+            "Names which inputs deserve better evidence before the recommendation is promoted.",
+            "States the boundary conditions that would make the recommendation no longer hold.",
+            "Prevents mathematical language from making weak assumptions look more reliable than they are."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What would you have to believe for the favorable outcome to be credible?",
         "Is the worst case bad enough to overturn the expected payoff comparison?",
         "Which probability, payoff, or consequence assumption most changes the ranking if varied?",
-        "Are we comparing the full distribution of outcomes or only the base case?"
+        "Are we comparing the full distribution of outcomes or only the base case?",
+        "Which boundary conditions would make the calculated expected value stop being credible?"
       ],
       "misuse_guards": [
         "Do not let numerical EV language launder weak assumptions, speculative probabilities, or ethically unacceptable downside.",
