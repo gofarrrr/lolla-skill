@@ -89,6 +89,93 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "metacognitive-questioning.expert-process-elicitation",
+      "status": "supported",
+      "name": "Expert process elicitation",
+      "mechanism": "When a person is asking an expert, advisor, or model for an answer but needs transferable judgment, require the response to elicit how the answer is produced: skills, criteria, variables, tests, and reasoning steps rather than only the final recommendation.",
+      "activation_shape": {
+        "use_when": [
+          "A user is asking an expert, advisor, or model what to do, but the useful knowledge is the expert's process, criteria, or test strategy.",
+          "The decision depends on learning how to judge future cases, not merely accepting a one-off answer.",
+          "A hiring, vendor, specialist, or domain-expert question needs skill criteria, evaluation tests, and reasoning transfer."
+        ],
+        "do_not_use_when": [
+          "A direct factual answer is enough and no transferable decision process is needed.",
+          "The expert or source has not shown enough domain contact to justify process elicitation.",
+          "The current question already names the criteria, tests, and reasoning steps needed for action."
+        ],
+        "case_evidence_needed": [
+          "The expert, advisor, model, or knowledge source being queried.",
+          "The answer or recommendation the user is tempted to request directly.",
+          "The skill, criterion, variable, or test that would make the answer transferable.",
+          "How the elicited process will change the user's next decision or evaluation."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "ask-how-not-what",
+          "description": "Convert answer-seeking into process-seeking by asking how the expert judges the case, which variables matter, which skills are learnable, and how the judgment should be tested.",
+          "evidence_required": [
+            "The final-answer question currently being asked.",
+            "The expert domain or decision context.",
+            "The skills, criteria, or variables that could transfer across cases.",
+            "A test or next question that checks whether the process is usable."
+          ],
+          "good_output_shape": [
+            "Names the answer the user might ask for directly.",
+            "Rewrites it into how, why, skill, criterion, and test questions.",
+            "Explains what process knowledge would be learned.",
+            "Connects the elicited process to a next decision, evaluation, or screening step."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Are we asking for the expert's conclusion or for the process that produces good conclusions?",
+        "What skills, variables, or criteria would let us judge the next similar case ourselves?",
+        "How can we test whether the elicited expert process is actually useful?"
+      ],
+      "misuse_guards": [
+        "Do not turn every simple request into an expert-interview workflow.",
+        "Do not treat expert process language as valid without domain contact or a test.",
+        "Do not keep asking how questions after they stop changing the next decision."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Metacognitive_Questioning_rag.md",
+          "source_quote": "The \"Ask How, Not What\" Heuristic (Expert Elicitation)",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Metacognitive_Questioning_rag.md",
+          "source_quote": "What skills matter and which ones can be learned on the job? Why? Where do I find the best people? How do I test these skills?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Metacognitive_Questioning_rag.md",
+          "source_quote": "This focuses the conversation on the expert's thought chain and reasoning steps",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR59 targeted enrichment: the source supports expert process elicitation as a separate transaction from a general next-question gate because the receiver action is to transform what-answer requests into how, skill, criterion, and test questions.",
+        "dropped_material": [
+          "Did not promote generic expert interviewing, prompt engineering, or consulting methodology as separate metacognitive cards.",
+          "Kept the split bounded to cases where process knowledge changes a future decision or evaluation."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this split improves expert-advice cases without adding metacognitive ceremony."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -133,7 +220,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 10 source reading found strong reviewed depth for metacognitive-questioning as a bounded process-inspection next-question gate.",
+    "normalization_note": "Batch 10 source reading found strong reviewed depth for metacognitive-questioning as a bounded process-inspection next-question gate. PR59 adds expert process elicitation where asking how, skills, criteria, and tests changes the downstream transaction.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

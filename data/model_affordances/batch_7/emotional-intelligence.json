@@ -89,6 +89,93 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "emotional-intelligence.self-regulation-under-emotional-activation",
+      "status": "supported",
+      "name": "Self-regulation under emotional activation",
+      "mechanism": "When the answer may be shaped by the user's own emotional activation, require the response to name the feeling, pause the impulse, regulate the expression, and choose a constructive action that preserves standards and effectiveness.",
+      "activation_shape": {
+        "use_when": [
+          "The user is under stress, conflict, disappointment, hostility, or setback pressure and may react before thinking clearly.",
+          "A decision or communication could be distorted by emotional hijacking, defensiveness, shame, anger, fear, or urgency.",
+          "Leadership or relationship effectiveness depends on expressing emotion appropriately without losing candor or accountability."
+        ],
+        "do_not_use_when": [
+          "The main issue is stakeholder adoption or emotional evidence outside the user, not the user's own activated response.",
+          "There is no sign that emotion is distorting judgment, communication, or timing.",
+          "Self-regulation language would soften a necessary standard, consequence, or hard conversation."
+        ],
+        "case_evidence_needed": [
+          "The triggering event, conflict, setback, or pressure.",
+          "The user's emotional state or impulse as evidence, not as a verdict.",
+          "The decision, message, or action that could be distorted by that activation.",
+          "The standard, boundary, or accountability requirement that still must be preserved."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "pause-name-regulate-then-act",
+          "description": "Require the answer to pause the activated impulse, name the likely emotion and cause, regulate timing or expression, and choose an action that remains candid, accountable, and effective.",
+          "evidence_required": [
+            "The trigger and likely emotion.",
+            "The impulse or distorted action risk.",
+            "The standard or relationship outcome that matters.",
+            "A constructive response, timing change, or communication frame."
+          ],
+          "good_output_shape": [
+            "Names the emotional activation without treating it as final truth.",
+            "Identifies the impulse that should not drive the response.",
+            "Preserves the hard standard or boundary.",
+            "Chooses a regulated action, message, or timing."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What emotion is active here, and what impulse is it pushing?",
+        "What would a regulated response preserve that a hot response might damage?",
+        "Which standard, boundary, or hard truth still needs to be expressed?"
+      ],
+      "misuse_guards": [
+        "Do not use self-regulation to suppress valid information carried by emotion.",
+        "Do not turn emotional intelligence into niceness or conflict avoidance.",
+        "Do not let a calm tone replace the accountability or boundary the case requires."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Emotional_Intelligence_rag.md",
+          "source_quote": "Managing feelings (Self-Management)",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emotional_Intelligence_rag.md",
+          "source_quote": "remain calm, steady, and effective during stressful or hostile situations",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Emotional_Intelligence_rag.md",
+          "source_quote": "Emotional Hijacking and Impulsive Action",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR59 targeted enrichment: the source supports self-regulation under emotional activation as a separate transaction from stakeholder emotion/adoption checking because the case evidence is the user's own impulse and response timing.",
+        "dropped_material": [
+          "Did not extract the full Goleman competency taxonomy as separate cards.",
+          "Did not make self-regulation a general calmness rule; it must preserve standards, boundaries, and accountability."
+        ],
+        "open_questions": [
+          "Future packet review should test whether this split helps conflict and leadership cases without softening hard truths."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -140,7 +227,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Emotional Intelligence. Extracted one emotion/evidence landing check and rejected empathy-as-softness plus unvalidated mind-reading.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Emotional Intelligence. Extracted one emotion/evidence landing check and rejected empathy-as-softness plus unvalidated mind-reading. PR59 adds self-regulation under emotional activation for cases where the user's own activated emotion could distort action.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
