@@ -1,0 +1,145 @@
+{
+  "model_id": "self-organization-and-emergent-order",
+  "source_file": "Self_Organization_and_Emergent_Order_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "self-organization-and-emergent-order.shape-conditions-for-local-adaptation",
+      "status": "supported",
+      "name": "Shape conditions for local adaptation",
+      "mechanism": "When outcomes emerge from many local interactions rather than a single central plan, use self-organization to design rules, incentives, information flows, guardrails, and feedback loops that let adaptive order emerge without abandoning governance.",
+      "activation_shape": {
+        "use_when": [
+          "Local interactions matter more than top-down instruction.",
+          "Leadership can shape conditions but cannot micromanage every move.",
+          "The goal is adaptive order under uncertainty."
+        ],
+        "do_not_use_when": [
+          "Emergence is being used as an excuse for design neglect.",
+          "The team has not specified goals, feedback, or guardrails.",
+          "A linear blueprint would be more appropriate than decentralized adaptation."
+        ],
+        "case_evidence_needed": [
+          "The interacting local agents or components.",
+          "The rule, incentive, information-flow, or feedback condition shaping interaction.",
+          "The goal or boundary condition that keeps adaptation useful.",
+          "The guardrail that prevents drift or chaos."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "shape-conditions-not-command-outcome",
+          "description": "Require the answer to name the local interactions and the governing conditions that shape them, instead of pretending emergence needs no design.",
+          "evidence_required": [
+            "The decentralized actors or components.",
+            "The local interaction pattern.",
+            "The rule, incentive, information flow, or feedback loop to adjust.",
+            "The goal, guardrail, or stop condition."
+          ],
+          "good_output_shape": [
+            "Names the local interaction.",
+            "Names the condition to shape.",
+            "States the guardrail.",
+            "Avoids top-down micromanagement and design neglect."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which local interactions are creating the observed order?",
+        "What rule, incentive, information flow, or feedback loop is shaping those interactions?",
+        "What guardrail keeps self-organization from becoming unmanaged drift?"
+      ],
+      "misuse_guards": [
+        "Do not invoke emergence to avoid specifying goals or guardrails.",
+        "Do not use a linear blueprint for a genuinely adaptive system.",
+        "Do not let decentralized order become an excuse for absent governance."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Self_Organization_and_Emergent_Order_rag.md",
+          "source_quote": "Most useful when local interactions matter more than top-down instruction",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Organization_and_Emergent_Order_rag.md",
+          "source_quote": "the real leverage is in rules, incentives, information flows, and feedback loops",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Self_Organization_and_Emergent_Order_rag.md",
+          "source_quote": "Danger When Emergence Is Used as an Excuse for Design Neglect",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports self-organization as condition shaping under uncertainty, not no-design ideology.",
+        "dropped_material": [
+          "Did not extract emergence as a reason to avoid leadership or governance.",
+          "Did not turn multi-agent system analogies into runtime architecture changes."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card stays distinct from complex-adaptive-systems and feedback-loops."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "self-organization-without-governance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly requires goals, feedback, and guardrails; it does not support unmanaged self-organization.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Organization_and_Emergent_Order_rag.md",
+          "source_quote": "specifying goals, feedback, or guardrails",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "emergent-order-as-no-design-needed",
+      "status": "not_supported_by_source",
+      "reason": "The source says leadership should shape conditions; it does not support treating emergent order as proof that design is unnecessary.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Self_Organization_and_Emergent_Order_rag.md",
+          "source_quote": "leaders invoke self-organization to avoid",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Self_Organization_and_Emergent_Order_rag.md",
+      "source_quote": "without external direction",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found strong reviewed depth for emergent order as local-interaction design with guardrails.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, agent architecture, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare this model against authority-bias when top-down control suppresses adaptation."
+    ],
+    "review_status": "draft"
+  }
+}

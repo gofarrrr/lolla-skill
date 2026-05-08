@@ -1,13 +1,13 @@
 # Decision Pressure Product Doctrine
 
 **Date:** 2026-05-08
-**Status:** Product doctrine after PR52 controlled cultural / product communication enrichment.
+**Status:** Product doctrine after PR53 controlled economic / systems structure enrichment.
 This is not a runtime proposal, prompt change, broad extraction brief, UI,
 memo, or user-facing launch plan.
 
 **Doctrine label:** `broad_intake_disciplined_output`
 
-**Current posture:** `controlled_cultural_product_communication_enrichment_ready`
+**Current posture:** `controlled_economic_systems_enrichment_ready`
 
 **Architecture simplification:** `research/enriched-mental-model-packet-strategy-2026-05-06.md`
 
@@ -782,6 +782,25 @@ heuristic fit checks, UX validation, Gestalt pattern caveats, useful
 simplification, category validation, liking with evidence standards, and
 pre-suasion with merit and consent checks.
 
+PR53 then completed the controlled economic / systems structure enrichment
+batch:
+
+> `controlled_economic_systems_enrichment_ready`
+
+Treat PR53 as source-backed substrate enrichment, not packet usefulness proof,
+runtime permission, prompt mechanics, deterministic market recommendation,
+deterministic political classification, deterministic consulting template,
+punitive scoring, or proof that Python can decide which economic or
+organizational explanation governs the final answer. It adds 12 Batch 16
+records and compiles draft/review-only v17 with 206 reviewed records, 242
+affordances, and 397 absence records. The useful depth is operational:
+elasticity with invariants, market-pressure first-pass caveats, differentiated
+pricing with segment evidence and trust checks, scale with defect detection,
+specialization with coordination boundaries, selection pressure without
+fatalism, emergent order with governance, promotion-fit diagnosis, institutional
+mechanism comparison, consulting evidence plans, tradition/innovation sorting,
+and high-variance evaluation with context and measurement-quality caveats.
+
 ## Next Product Work, Not Engineering Work
 
 The next useful work is not Decision Pressure machinery.
@@ -990,13 +1009,23 @@ PR52 added the controlled cultural / product communication answer:
 > remains dormant and full coverage must continue through bounded
 > source-backed families, not broad Batch 3b.
 
+PR53 added the controlled economic / systems structure answer:
+
+> Yes, the selected economic, organizational, political-system, consulting, and
+> evaluation sources support compact reviewed depth when extraction binds labels
+> to response evidence, constraints, role fit, governance, outcome comparison,
+> and absence records that block market folklore, scale theater, ideology
+> shorthand, consulting slide theater, and punitive evaluation. v17 remains
+> dormant and full coverage should finish through one final bounded
+> source-backed batch, not broad Batch 3b.
+
 The next useful product questions are:
 
 1. Which PR28, PR32, PR34, PR36, PR39, PR42, PR45, PR48, PR49, PR50, PR51,
-   and PR52 cards remain useful when
+   PR52, and PR53 cards remain useful when
    tested in additional candidate mixes, and which merely add internal bulk?
-2. Which remaining graph-only family should PR53 extract next without drifting
-   into mechanical completion?
+2. Can PR54 complete the final 16 graph-only models without drifting into
+   mechanical schema filling?
 3. When should the next periodic packet usefulness review happen so extraction
    quality stays connected to handoff usefulness?
 4. Which decision moments most clearly need pressure before action?

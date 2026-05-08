@@ -1,0 +1,145 @@
+{
+  "model_id": "specialization",
+  "source_file": "Specialization_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "specialization.focus-depth-with-boundary-checks",
+      "status": "supported",
+      "name": "Focus depth with boundary checks",
+      "mechanism": "When leverage comes from going deeper rather than wider, use specialization to narrow scope, concentrate attention, and build repeatable expertise while checking coordination costs, identity lock-in, and the need for broader frames.",
+      "activation_shape": {
+        "use_when": [
+          "The real edge comes from uncommon fluency, sharper pattern recognition, or superior execution inside a narrow problem class.",
+          "A market or organization rewards clear identity and repeatable expertise.",
+          "Broad scope is diluting attention and the main problem is scattered effort rather than missing optionality."
+        ],
+        "do_not_use_when": [
+          "Protecting the specialist identity matters more than noticing the problem now requires adjacent skills or broader synthesis.",
+          "The specialist's familiar tool is being applied routinely and unquestioningly.",
+          "The answer ignores role coordination, complementary capabilities, or audience translation."
+        ],
+        "case_evidence_needed": [
+          "The narrow problem class or domain where depth creates leverage.",
+          "Evidence that broader scope is diluting attention or quality.",
+          "The coordination or translation burden created by narrowing scope.",
+          "A trigger for when adjacent skills or cross-disciplinary synthesis are needed."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "state-specialist-edge-and-boundary",
+          "description": "Require the answer to define the specialist edge, the scope boundary, and the checks that prevent specialization from becoming a hammer for every problem.",
+          "evidence_required": [
+            "The specific problem class where depth matters.",
+            "The capability, identity, or trust benefit from specialization.",
+            "The adjacent skill or coordination requirement that could be neglected.",
+            "An outside-frame check for when specialization misleads."
+          ],
+          "good_output_shape": [
+            "Names the depth advantage.",
+            "States what is out of scope.",
+            "Adds a coordination or translation check.",
+            "Warns against identity lock-in."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Where does going deeper create leverage that going wider cannot?",
+        "What coordination cost or adjacent skill does this specialization create?",
+        "What signal would show the specialist frame has become the wrong hammer?"
+      ],
+      "misuse_guards": [
+        "Do not use specialization as identity protection.",
+        "Do not ignore coordination costs and complementary roles.",
+        "Do not let deep expertise replace multidisciplinary stress-testing."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Specialization_rag.md",
+          "source_quote": "Most useful when leverage comes from going deeper rather than wider",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Specialization_rag.md",
+          "source_quote": "Works when the market or organization rewards clear identity and repeatable expertise",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Specialization_rag.md",
+          "source_quote": "protecting the specialist identity matters more",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 16 outcome: strong_affordance_record. The source supports specialization as depth, focus, and repeatable expertise with explicit warnings about identity lock-in and hammer misuse.",
+        "dropped_material": [
+          "Did not extract specialization as a blanket anti-generalist rule.",
+          "Did not collapse specialization into brand positioning alone."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps when specialization conflicts with latticework breadth."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "specialization-without-coordination-cost",
+      "status": "not_supported_by_source",
+      "reason": "The source repeatedly ties specialization to systems, roles, complementary people, and responsibilities; it does not support isolated depth without coordination costs.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Specialization_rag.md",
+          "source_quote": "well-defined roles and responsibilities",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "specialist-identity-as-permanent-fit",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that focus can become identity lock-in; it does not support treating a specialist identity as permanent fit across changing problems.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Specialization_rag.md",
+          "source_quote": "different frame entirely",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Specialization_rag.md",
+      "source_quote": "focusing intense attention and resources on a narrow area",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 16 source reading found strong reviewed depth for specialization as focused leverage plus boundary discipline.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, career advice, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare specialization against latticework-of-mental-models and circle-of-competence if they co-occur."
+    ],
+    "review_status": "draft"
+  }
+}
