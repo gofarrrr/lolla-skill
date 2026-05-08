@@ -121,6 +121,35 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "structured-reasoning-without-implementation-path",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that Chain of Thought can identify what should be done while neglecting how to translate the answer into action in a living system.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "often neglects the complexity of figuring out *how* to translate that answer into action in a living system",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "Plan for Action, Not Just Analysis",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "If we acted on this plan today, what holes would be exposed?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +162,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 17 keeps chain-of-thought as a review-only decomposition affordance and blocks transcript-as-truth overclaiming.",
+    "normalization_note": "Batch 17 keeps chain-of-thought as a review-only decomposition affordance and blocks transcript-as-truth overclaiming. PR60 adds an implementation-path absence so structured reasoning is not mistaken for execution readiness.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, chain disclosure, or user-facing change is implied."
     ],

@@ -121,6 +121,28 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "commitment-threat-or-promise-without-credibility-device",
+      "status": "not_supported_by_source",
+      "reason": "The source says commitments, threats, and promises change the game only when they are credible; it does not support treating stated intent as leverage without a device that makes follow-through believable.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "Actions intended to change the game (commitments, threats, promises) must be credible.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Game_Theory_Payoffs_rag.md",
+          "source_quote": "What specific devices (e.g., contracts, sunk costs, reputation) make our stated threat or promise absolutely credible to our opponent?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -140,7 +162,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 5 source reading found strong reviewed depth for Game Theory Payoffs. Extracted one payoff-map affordance and preserved absences for false shared-game assumptions and ornate payoff trees.",
+    "normalization_note": "Batch 5 source reading found strong reviewed depth for Game Theory Payoffs. Extracted one payoff-map affordance and preserved absences for false shared-game assumptions and ornate payoff trees. PR60 adds a credibility-device absence for commitments, threats, and promises.",
     "dropped_material": [
       "Formal equilibrium procedures and auction-specific tactics were not extracted because this batch targets compact packet handoff depth.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."

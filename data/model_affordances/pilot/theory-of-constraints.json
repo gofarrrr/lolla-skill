@@ -217,7 +217,59 @@
       "confidence": "high"
     }
   ],
-  "absence_records": [],
+  "absence_records": [
+    {
+      "attempted_field": "bottleneck-claim-without-measurement-loop",
+      "status": "not_supported_by_source",
+      "reason": "The source rejects constraint claims that do not name the governing metric, current cap, and evidence that the cap moved after intervention.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "without naming the governing metric, the current cap, and the evidence that the cap actually moved after intervention",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "ToC language is used, but no current binding constraint is quantified",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "technical-bottleneck-without-ownership-route",
+      "status": "not_supported_by_source",
+      "reason": "The source says ownership, authority, incentive, and decision-right constraints can be stronger than the technical bottleneck; it does not support a constraint fix with no route to approval, coordination, or completion.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Works when stakeholder or decision-right constraints are the real bottleneck",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Execution fails because ownership, authority, and incentive constraints are stronger than the technical one",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Theory_Of_Constraints_rag.md",
+          "source_quote": "Assign owners, checkpoints, and decision rights for each bottleneck-relief action before execution starts.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
   "source_evidence": [
     {
       "source_file": "Theory_Of_Constraints_rag.md",
@@ -242,7 +294,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Extracted two operational affordances from the canonical source: constraint-first intervention selection and post-change constraint retesting. Wave 1-3 curation agreed with the source on measured caps, anti-local-optimization, retest cadence, and commitment-bias tension, but the Markdown source remained the authority for evidence spans.",
+    "normalization_note": "Extracted two operational affordances from the canonical source: constraint-first intervention selection and post-change constraint retesting. Wave 1-3 curation agreed with the source on measured caps, anti-local-optimization, retest cadence, and commitment-bias tension, but the Markdown source remained the authority for evidence spans. PR60 adds absence rails for bottleneck claims without measurement loops and technical fixes without ownership routes.",
     "dropped_material": [
       "The source's Pareto, central bottleneck, stress fracture, latticework, and Rule of Three material was useful background but did not add a sharper runtime affordance than measured constraint selection.",
       "Relation semantics for systems-thinking, bottlenecks, cognitive-load-theory, confirmation-bias, and optimization-theory were not expanded into separate affordances because the pilot record should stay centered on source-backed operational treatment moves.",

@@ -63,6 +63,7 @@ EXPECTED_ABSENCE_FIELDS = {
     "perceptual-learning-without-feedback",
     "reality-model-as-reality",
     "reasoning-transcript-without-verification",
+    "structured-reasoning-without-implementation-path",
     "reflection-without-action-loop",
     "scaffolding-as-handholding",
     "scaffolding-without-fading",
@@ -83,6 +84,10 @@ LIVE_RUNTIME_PATHS = (
     REPO_ROOT / "engine" / "system_b" / "reasoning_substrate_packet_review.py",
     REPO_ROOT / "scripts" / "run_pipeline.py",
 )
+
+APPROVED_EXTRA_ABSENCE_MODEL_IDS = {
+    "chain-of-thought",
+}
 
 
 def test_pr54_batch17_records_exist_for_approved_models_only() -> None:
@@ -132,7 +137,10 @@ def test_pr54_batch17_records_are_compact_and_absence_first() -> None:
 
         assert record["status"] in {"supported", "weak_support", "source_too_thin"}
         assert len(affordances) == 1
-        assert len(absences) == 2
+        expected_absence_count = (
+            3 if model_id in APPROVED_EXTRA_ABSENCE_MODEL_IDS else 2
+        )
+        assert len(absences) == expected_absence_count
         assert affordances[0]["confidence"] in {"high", "medium", "weak"}
         assert all(absence["runtime_policy"] == "do_not_promote" for absence in absences)
 
