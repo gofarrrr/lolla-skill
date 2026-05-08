@@ -126,25 +126,25 @@
       "confidence": "high"
     },
     {
-      "affordance_id": "leverage-points.hypothesis-bounded-analysis",
+      "affordance_id": "leverage-points.minimal-fact-threshold",
       "status": "supported",
-      "name": "Limit analysis to leverage-testing facts",
-      "mechanism": "Once a candidate leverage hypothesis exists, the model constrains analysis to the facts needed to prove or disprove that hypothesis and suppresses marginal chart-building, so scarce attention goes to variables that can change the decision.",
+      "name": "Minimal fact threshold for leverage hypothesis",
+      "mechanism": "Once a candidate leverage hypothesis exists, constrain analysis to the smallest fact set needed to prove, disprove, support, or refute that hypothesis, and stop chart-building or data collection that cannot change the recommendation.",
       "activation_shape": {
         "use_when": [
           "The team is collecting more data or producing more charts without a clear link to the leverage hypothesis.",
           "A central hypothesis can be tested with a smaller set of facts than the current analysis plan demands.",
-          "The work needs periodic checks that current effort still solves the problem and advances thinking."
+          "The question is what evidence is enough to decide whether the candidate leverage point survives."
         ],
         "do_not_use_when": [
           "The problem structure and central leverage hypothesis have not yet been named.",
           "The next step truly requires defining the system before deciding which evidence is low leverage.",
-          "The needed fact would prove or disprove the central hypothesis rather than merely add decorative completeness."
+          "The current problem is whether the work remains the highest-impact next activity; use the focus-check affordance instead."
         ],
         "case_evidence_needed": [
           "The central hypothesis or analysis being tested.",
           "The minimum facts needed to prove, disprove, support, or refute it.",
-          "The current data collection, chart production, or analysis work that should stop if it does not change the decision."
+          "The current data collection, chart production, or analysis work that should stop if it cannot change the decision."
         ]
       },
       "treatment_requirements": [
@@ -161,32 +161,17 @@
             "Limits evidence gathering to facts that change belief about the hypothesis.",
             "Marks additional analysis as low leverage when it cannot change the recommendation."
           ]
-        },
-        {
-          "requirement_id": "periodic-focus-check",
-          "description": "Use the source's check-in questions to interrupt low-leverage work before analysis expands beyond the decision need.",
-          "evidence_required": [
-            "The current work product or activity being evaluated.",
-            "How that activity solves the problem or advances thinking.",
-            "Whether it is the most important thing to do now compared with other candidate actions."
-          ],
-          "good_output_shape": [
-            "Names the current activity and its expected contribution to the problem.",
-            "Keeps only the activities that solve the problem or advance the central analysis.",
-            "Stops or defers activity that is not the most important thing to do now."
-          ]
         }
       ],
       "diagnostic_questions": [
         "What central hypothesis is this analysis trying to prove or disprove?",
-        "How does what you are doing solve the problem?",
-        "How does it advance your thinking?",
-        "Is it the most important thing you could be doing right now?"
+        "Which facts are enough to support or refute the analysis?",
+        "What data or chart would be decorative because it cannot change the recommendation?"
       ],
       "misuse_guards": [
         "Do not boil the ocean by gathering facts that cannot support or refute the central analysis.",
         "Do not keep producing charts in pursuit of tiny marginal gains when the effort is disproportionate to the gain.",
-        "Do not let comprehensive-looking analysis displace the few facts needed to test the leverage hypothesis."
+        "Do not use this card before the problem structure and leverage hypothesis are clear."
       ],
       "source_evidence": [
         {
@@ -203,6 +188,75 @@
           "extraction_type": "explicit",
           "confidence": "high"
         },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "• **Boiling the Ocean:** This anti-pattern involves gathering a mountain of data or continually producing more charts in pursuit of tiny, marginal gains, ignoring the fact that the audience cannot absorb more and that the effort is disproportionate to the gain.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR78 split this from focus checking because the receiver transaction is evidence sufficiency: which facts prove, disprove, support, or refute the candidate leverage hypothesis.",
+        "dropped_material": [
+          "Did not promote generic research minimalism; this card requires a named central leverage hypothesis."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this stays distinct from hypothesis-driven-problem-solving when the case is not explicitly about leverage points."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "leverage-points.focus-check-stop-continue",
+      "status": "supported",
+      "name": "Focus check for stop or continue",
+      "mechanism": "During leverage-point work, periodically test whether the current activity still solves the problem, advances thinking, and remains the most important next move, then stop or defer work that has become low leverage.",
+      "activation_shape": {
+        "use_when": [
+          "A team is already working on a leverage analysis, intervention, chart, workstream, or candidate action.",
+          "The current activity may no longer solve the problem, advance thinking, or remain the most important next move.",
+          "The risk is effort drift after a candidate leverage direction has already been named."
+        ],
+        "do_not_use_when": [
+          "The central question is which facts are enough to test the leverage hypothesis; use the minimal fact threshold affordance instead.",
+          "There is no current activity, workstream, or analysis path to evaluate.",
+          "The current activity clearly remains necessary to prove the structural leverage point."
+        ],
+        "case_evidence_needed": [
+          "The current activity, analysis, workstream, or intervention being evaluated.",
+          "How that activity is expected to solve the problem or advance thinking.",
+          "The alternative next moves that could be more important right now."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "periodic-focus-check",
+          "description": "Use the source's check-in questions to interrupt low-leverage work before analysis expands beyond the decision need.",
+          "evidence_required": [
+            "The current work product or activity being evaluated.",
+            "How that activity solves the problem or advances thinking.",
+            "Whether it is the most important thing to do now compared with other candidate actions."
+          ],
+          "good_output_shape": [
+            "Names the current activity and its expected contribution to the problem.",
+            "Keeps only the activities that solve the problem or advance the central analysis.",
+            "Stops or defers activity that is not the most important thing to do now."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "How does what you are doing solve the problem?",
+        "How does it advance your thinking?",
+        "Is it the most important thing you could be doing right now?"
+      ],
+      "misuse_guards": [
+        "Do not keep a workstream alive just because it already has momentum.",
+        "Do not confuse activity that advances thinking with activity that only adds polish or comfort.",
+        "Do not use the focus check to stop evidence that is still needed to test the central hypothesis."
+      ],
+      "source_evidence": [
         {
           "source_file": "Leverage_Points_rag.md",
           "source_quote": "The process of identifying and acting on leverage points must be constantly monitored to ensure focus remains on high-impact areas.",
@@ -230,37 +284,40 @@
           "section_hint": "The Playbook in Action:",
           "extraction_type": "explicit",
           "confidence": "high"
-        },
-        {
-          "source_file": "Leverage_Points_rag.md",
-          "source_quote": "• **Boiling the Ocean:** This anti-pattern involves gathering a mountain of data or continually producing more charts in pursuit of tiny, marginal gains, ignoring the fact that the audience cannot absorb more and that the effort is disproportionate to the gain.",
-          "section_hint": "Application Context: Strengths and Weaknesses:",
-          "extraction_type": "explicit",
-          "confidence": "high"
         }
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR78 split this from minimal fact threshold because the receiver transaction is activity governance: keep, stop, or defer the current work based on whether it still solves the problem.",
+        "dropped_material": [
+          "Did not turn every prioritization phrase into a separate card; the source support is the recurring stop/continue check during leverage work."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this card reduces analysis drift without duplicating prioritization."
+        ],
+        "review_status": "draft"
+      }
     },
     {
-      "affordance_id": "leverage-points.resistance-bias-execution-hardening",
+      "affordance_id": "leverage-points.assumption-antithesis-test",
       "status": "supported",
-      "name": "Harden leverage choices against resistance and bias",
-      "mechanism": "High-leverage interventions face system resistance and can be captured by familiar tools or desired conclusions, so a good answer must test assumptions, seek disconfirming evidence, model adverse scenarios, and specify the execution how before treating the point as usable.",
+      "name": "Assumption antithesis test for leverage choice",
+      "mechanism": "When a proposed leverage point may reflect a familiar frame, expert tool, preferred initiative, or desired conclusion, expose the assumptions carrying it and test them against antithesis, disconfirming evidence, outside view, or an opposing perspective before treating it as the right intervention.",
       "activation_shape": {
         "use_when": [
-          "A proposed intervention targets deep structure, governing paradigms, or another high-resistance part of the system.",
           "The candidate leverage point may reflect a familiar frame, expert tool, preferred initiative, or desired conclusion.",
-          "The strategy names the leverage point but has not yet explained the execution path required to make it work."
+          "The answer is using a known framework to interpret a novel context before proving that the frame fits.",
+          "The leverage diagnosis lacks disconfirming evidence, outside-view evidence, antithesis, or an opposing perspective."
         ],
         "do_not_use_when": [
           "There is no candidate leverage point or system intervention to harden yet.",
-          "The case already exposes assumptions, disconfirming evidence, resistance, worst-case scenarios, and execution steps.",
-          "The action is a simple low-resistance task where system pushback and leverage-point capture are not material."
+          "The candidate point has already been tested against assumptions, antithesis, outside view, and disconfirming evidence.",
+          "The remaining problem is implementation resistance and execution path, not diagnosis capture."
         ],
         "case_evidence_needed": [
           "The assumptions and underlying logic implicit in the proposed leverage point.",
           "Disconfirming evidence, an antithesis, outside-view evidence, or an opposing perspective that could challenge the proposal.",
-          "The expected resistance, worst-case scenario, and execution path that converts the chosen leverage point from what to how."
+          "The familiar frame, tool, or preferred initiative that may be steering the diagnosis."
         ]
       },
       "treatment_requirements": [
@@ -277,49 +334,20 @@
             "Presents the strongest antithesis or opposing view before synthesis.",
             "Names the disconfirming evidence that would cause the answer to revise or reject the leverage point."
           ]
-        },
-        {
-          "requirement_id": "execution-resistance-plan",
-          "description": "Convert the selected leverage point into an implementation path that accounts for system resistance and adverse scenarios.",
-          "evidence_required": [
-            "The execution steps or constraints needed to implement the point.",
-            "Where the system is likely to resist changing the leverage point.",
-            "The worst-case or far-from-mean outcome that should change the plan."
-          ],
-          "good_output_shape": [
-            "Separates the strategic what from the execution how.",
-            "Names the resistance or constraint that could stop implementation.",
-            "Includes a worst-case check before aggressive leverage is pursued."
-          ]
         }
       ],
       "diagnostic_questions": [
         "What would have to be true for this proposed leverage point to work?",
         "What disconfirming evidence or opposing view would show that the candidate point is just a familiar or preferred frame?",
-        "Where will the system resist changing this point, and what execution path handles that resistance?",
-        "Is the worst case bad enough to change the plan?"
+        "Which outside-view fact or alternative frame would make this leverage diagnosis look wrong?"
       ],
       "misuse_guards": [
         "Do not let a familiar framework turn a novel context into an assumed X problem.",
         "Do not focus analysis only on data that supports the initial assumed leverage point.",
-        "Do not treat identifying the leverage point as sufficient when the execution how remains undefined.",
-        "Do not let one expert tool hide a higher-leverage intervention outside that specialty."
+        "Do not let one expert tool hide a higher-leverage intervention outside that specialty.",
+        "Do not let a desired conclusion decide which point gets called leverage."
       ],
       "source_evidence": [
-        {
-          "source_file": "Leverage_Points_rag.md",
-          "source_quote": "A key principle associated with Leverage Points is that **the higher the leverage point, the more the system will resist changing it**.",
-          "section_hint": "Core Principles and Analogies:",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "source_file": "Leverage_Points_rag.md",
-          "source_quote": "It is often straightforward to identify the necessary strategy (the \"what,\" or the leverage point), but extremely difficult to figure out the **execution** (the \"how\"). A great plan that cannot be implemented is useless.",
-          "section_hint": "Application Context: Strengths and Weaknesses:",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
         {
           "source_file": "Leverage_Points_rag.md",
           "source_quote": "While simplification is necessary to manage complexity, there is a risk that using pre-existing theoretical frameworks leads to the assumption, \"I have seen this one before, it is an X problem,\" which may be misleading in a novel context.",
@@ -343,13 +371,6 @@
         },
         {
           "source_file": "Leverage_Points_rag.md",
-          "source_quote": "| **Motivated Reasoning** | Allowing personal beliefs or emotional investments (e.g., career implications of disproving a boss's vision) to steer the diagnosis away from uncovering the true, uncomfortable problem. |  |",
-          "section_hint": "Risks and Mitigations:",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "source_file": "Leverage_Points_rag.md",
           "source_quote": "| **Dialectic Standard & Constructive Confrontation** | Establish a norm where every hypothesis or idea is met with its **antithesis** before synthesis. Ask **“What would you have to believe?”** to explicitly spell out and stress-test all assumptions implicit in the proposed leverage point. |  |",
           "section_hint": "Risks and Mitigations:",
           "extraction_type": "explicit",
@@ -361,6 +382,82 @@
           "section_hint": "Risks and Mitigations:",
           "extraction_type": "explicit",
           "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR78 split this from execution resistance because the receiver transaction is diagnostic hardening: challenge whether the selected leverage point is only a familiar, preferred, or biased frame.",
+        "dropped_material": [
+          "Did not include execution-path and worst-case planning here; PR78 moves those into the execution-resistance affordance."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this card usefully challenges leverage choices without duplicating generic confirmation-bias records."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "leverage-points.execution-resistance-plan",
+      "status": "supported",
+      "name": "Execution resistance plan for chosen leverage point",
+      "mechanism": "When the leverage point has been selected but sits in deep structure, governing paradigms, or another high-resistance part of the system, convert the strategic what into the execution how by naming resistance, implementation constraints, adverse scenarios, and the path that makes the intervention usable.",
+      "activation_shape": {
+        "use_when": [
+          "A proposed intervention targets deep structure, governing paradigms, or another high-resistance part of the system.",
+          "The strategy names the leverage point but has not yet explained the execution path required to make it work.",
+          "The intervention may be directionally right but fragile because resistance, constraints, or adverse scenarios are not planned."
+        ],
+        "do_not_use_when": [
+          "The candidate leverage point has not yet been selected or remains vulnerable to assumption capture.",
+          "The case already names resistance, constraints, implementation steps, and worst-case plan changes.",
+          "The action is a simple low-resistance task where system pushback and implementation fragility are not material."
+        ],
+        "case_evidence_needed": [
+          "The selected leverage point and why it is worth trying.",
+          "The expected resistance, implementation constraints, and actors that could block the change.",
+          "The execution path, sequencing, and worst-case scenario that would change the plan."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "execution-resistance-plan",
+          "description": "Convert the selected leverage point into an implementation path that accounts for system resistance and adverse scenarios.",
+          "evidence_required": [
+            "The execution steps or constraints needed to implement the point.",
+            "Where the system is likely to resist changing the leverage point.",
+            "The worst-case or far-from-mean outcome that should change the plan."
+          ],
+          "good_output_shape": [
+            "Separates the strategic what from the execution how.",
+            "Names the resistance or constraint that could stop implementation.",
+            "Includes a worst-case check before aggressive leverage is pursued."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Where will the system resist changing this point, and what execution path handles that resistance?",
+        "What is the how, not just the what, of making this leverage point move?",
+        "Is the worst case bad enough to change the plan?"
+      ],
+      "misuse_guards": [
+        "Do not treat identifying the leverage point as sufficient when the execution how remains undefined.",
+        "Do not ignore system resistance just because the intervention is structurally attractive.",
+        "Do not pursue aggressive leverage without naming the adverse scenario that would make the move too brittle."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "A key principle associated with Leverage Points is that **the higher the leverage point, the more the system will resist changing it**.",
+          "section_hint": "Core Principles and Analogies:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Leverage_Points_rag.md",
+          "source_quote": "It is often straightforward to identify the necessary strategy (the \"what,\" or the leverage point), but extremely difficult to figure out the **execution** (the \"how\"). A great plan that cannot be implemented is useless.",
+          "section_hint": "Application Context: Strengths and Weaknesses:",
+          "extraction_type": "explicit",
+          "confidence": "high"
         },
         {
           "source_file": "Leverage_Points_rag.md",
@@ -370,7 +467,17 @@
           "confidence": "high"
         }
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR78 split this from assumption-antithesis testing because the receiver transaction is implementation: convert a selected high-resistance leverage point from what to how.",
+        "dropped_material": [
+          "Did not include familiar-frame and disconfirming-evidence checks here; PR78 moves those into the assumption-antithesis affordance."
+        ],
+        "open_questions": [
+          "Packet stress should check whether this card improves execution realism without duplicating bottlenecks or project-risk records."
+        ],
+        "review_status": "draft"
+      }
     },
     {
       "affordance_id": "leverage-points.value-driver-sensitivity-tree",
@@ -519,7 +626,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Extracted four operational affordances from the full packet: proving a real leverage point before action, bounding analysis to hypothesis-testing facts, hardening the selected point against resistance and execution failure, and decomposing measurable outcomes into value-driver sensitivity trees. Curation files were read for orientation, but exact evidence is drawn from Leverage_Points_rag.md. This is an offline review artifact and does not imply runtime promotion.",
+    "normalization_note": "Extracted source-backed operational affordances from the full packet. PR78 keeps structural point proof and value-driver sensitivity intact, then splits two compressed cards into minimal fact threshold, focus-check stop/continue, assumption-antithesis testing, and execution-resistance planning. Curation files were read for orientation, but exact evidence is drawn from Leverage_Points_rag.md. This is an offline review artifact and does not imply runtime promotion.",
     "dropped_material": [
       "Did not create a generic definition affordance because the model definition explains leverage points but does not add a distinct operational contract beyond the extracted records.",
       "Did not create standalone relation affordances for systems-thinking, prioritization, first-principles-thinking, optionality, margin-of-safety, or confirmation-bias because those are already represented in relation curation unless later review needs cross-model contracts.",
@@ -527,7 +634,7 @@
       "Did not treat source headings or risk-table labels as automatic misuse guards; only lines that changed evidence, questions, sequencing, treatment, or audit behavior were normalized."
     ],
     "open_questions": [
-      "The resistance and execution-hardening affordance combines resistance, bias, and implementation evidence because the source supports them as safeguards around the same candidate leverage point, not as three independent runtime contracts."
+      "Packet stress should check whether the six leverage affordances remain legible under caps and whether assumption-antithesis should sometimes route to generic confirmation-bias instead."
     ],
     "review_status": "draft"
   }
