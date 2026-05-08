@@ -42,17 +42,50 @@
             "Compares expected outcomes against the outside option.",
             "States what would justify saying no."
           ]
+        },
+        {
+          "requirement_id": "stress-test-fallback-downside-before-leverage",
+          "description": "Require the answer to test the downside, timing, and severe-case distribution of the fallback before treating it as negotiation leverage.",
+          "evidence_required": [
+            "The fallback's downside case, not only its base case.",
+            "The timing and risk of executing the fallback.",
+            "The severe outcome that could make the fallback worse than continued negotiation.",
+            "The walk-away threshold after the fallback risk is included."
+          ],
+          "good_output_shape": [
+            "Compares the current deal to the fallback's realistic downside as well as its base case.",
+            "States whether the fallback remains credible under timing and tail-risk pressure.",
+            "Updates the willingness to say no instead of treating the fallback label as automatic leverage."
+          ]
+        },
+        {
+          "requirement_id": "separate-fallback-set-before-naming-best-alternative",
+          "description": "Require the answer to compare plausible outside options and assumption-test the chosen fallback before calling it the best alternative.",
+          "evidence_required": [
+            "The plausible outside options or reason only one exists.",
+            "The assumption that makes the selected fallback available, better, and timely.",
+            "The anchoring risk that the first named fallback is being treated as best because it came to mind first."
+          ],
+          "good_output_shape": [
+            "Separates the fallback set before naming the strongest executable alternative.",
+            "States what would have to be true for the chosen fallback to beat the deal.",
+            "Avoids treating the first comforting outside option as the BATNA."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What is the concrete outside option if this negotiation fails?",
         "Is the fallback executable now, or just a comforting label?",
-        "What deal terms are worse than the walk-away path?"
+        "What deal terms are worse than the walk-away path?",
+        "Is the fallback's worst case bad enough to make the current deal better than walking away?",
+        "What other executable outside options were considered before naming this one the best alternative?"
       ],
       "misuse_guards": [
         "Do not treat a vague fallback as a BATNA.",
         "Do not claim the source provides textbook BATNA doctrine beyond its explicit custody caveat.",
-        "Do not compare the deal against sunk effort or hope when a real outside option must be priced."
+        "Do not compare the deal against sunk effort or hope when a real outside option must be priced.",
+        "Do not use a fallback as leverage when its downside, timing, or tail risk makes it less credible than continued negotiation.",
+        "Do not use BATNA for reciprocal competitor-move modeling when game theory is the better routing surface."
       ],
       "source_evidence": [
         {
@@ -75,6 +108,34 @@
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "medium"
+        },
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "Is the worst case bad enough?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "Placing too much weight on the mean outcome and insufficient weight on outcomes that are one or even two standard deviations from the mean",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "each element is separate and distinct (mutually exclusive) and that every aspect of the problem is covered by one of the elements",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "What would you have to believe?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
         }
       ],
       "confidence": "medium",
@@ -118,6 +179,50 @@
           "source_quote": "people declare a fallback as their BATNA even though it is vague, unexecutable, or worse than continuing to negotiate",
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "base-case-fallback-as-batna",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against overweighting the mean outcome and asks whether the worst case is bad enough. A fallback should not be promoted as BATNA leverage when only the base case is credible and the downside, timing, or severe-case distribution is untested.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "Is the worst case bad enough?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "Placing too much weight on the mean outcome and insufficient weight on outcomes that are one or even two standard deviations from the mean",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "reciprocal-competitive-choice-modeling-as-batna",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source assigns competitor choices, minmax/maxmin, and adversarial strategy to game theory. BATNA should stay on comparing a proposed agreement against an executable fallback, not reciprocal move modeling.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "work through **your own choices and competitor choices**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Batna_rag.md",
+          "source_quote": "Game theory thinking is the appropriate tool for difficult **competitive and adversarial problem-solving settings**",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
           "confidence": "high"
         }
       ]

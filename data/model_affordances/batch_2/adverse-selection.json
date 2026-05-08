@@ -60,24 +60,30 @@
           "evidence_required": [
             "The commitment that should wait for sorting evidence.",
             "The proposed screening, signaling, or filtering mechanism.",
-            "How that mechanism distinguishes good counterparts from bad ones."
+            "How that mechanism distinguishes good counterparts from bad ones.",
+            "Whether the filter relies on inputs controlled, selected, or strategically shaped by the hidden-type party."
           ],
           "good_output_shape": [
             "Names the filter or signal that changes the decision before commitment.",
             "Explains what evidence would pass or fail the filter.",
-            "Avoids treating a broad call for diligence as an adverse-selection treatment."
+            "Avoids treating a broad call for diligence as an adverse-selection treatment.",
+            "Checks whether the filter amplifies hidden-information asymmetry, shifts risk elsewhere, or confirms prior beliefs."
           ]
         }
       ],
       "diagnostic_questions": [
         "Which side may know more about quality, risk, or intent than the other?",
         "What worse option could self-select into the transaction under the current design?",
-        "What screening, signaling, or filtering separates good counterparts from bad ones before commitment?"
+        "What screening, signaling, or filtering separates good counterparts from bad ones before commitment?",
+        "Is the problem forming before commitment, or is it post-commitment incentive drift that belongs to another model?",
+        "Could the proposed screen be gamed, amplify biased input data, or move the risk upstream or downstream?"
       ],
       "misuse_guards": [
         "Do not call a problem adverse selection until the hidden-information selection mechanism is verified.",
         "Do not blame hidden information when incentives, execution quality, or poor process design better explain the failure.",
-        "Do not collapse this into generic information asymmetry; the record needs hidden type plus self-selection into the pool before commitment."
+        "Do not collapse this into generic information asymmetry; the record needs hidden type plus self-selection into the pool before commitment.",
+        "Do not use adverse selection for post-commitment incentive drift when moral hazard or principal-agent framing explains the failure better.",
+        "Do not promote naive rule-based screening as a fix when the screen can amplify hidden-information asymmetry or shift risk elsewhere."
       ],
       "source_evidence": [
         {
@@ -105,6 +111,27 @@
           "source_file": "Adverse Selection_rag.md",
           "source_quote": "The model misfires when analysts blame hidden information even though the real issue is incentives, execution quality, or poor process design rather than adverse selection itself.",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "rule-based screening amplifies hidden-information asymmetry in input data",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "local screening fixes shift risk upstream or downstream in the broader system",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "screeners selectively weight signals that confirm their prior beliefs about counterparty quality rather than updating on all available evidence",
+          "section_hint": "Structured Tension Curation",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -163,6 +190,57 @@
           "source_file": "Adverse Selection_rag.md",
           "source_quote": "This briefing, therefore, focuses on synthesizing the mechanisms, applications, and risk mitigation strategies associated with **mental models** and **decision hygiene** within complex systems, which address the root causes (uncertainty, information asymmetry, and bias) that Adverse Selection models seek to resolve [i].",
           "section_hint": "unknown_section",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "post-commitment-incentive-drift-as-adverse-selection",
+      "status": "not_supported_by_source",
+      "reason": "The source locates adverse-selection value in separating good counterparts from bad ones before commitment, and says the model misfires when incentives, execution quality, or poor process design better explain the problem. Post-commitment incentive drift should route to moral hazard, principal-agent, incentives, or process design instead.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "separate good counterparts from bad ones before commitment",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "real issue is incentives, execution quality, or poor process design rather than adverse selection itself",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "naive-rule-screening-as-adverse-selection-fix",
+      "status": "not_supported_by_source",
+      "reason": "The source supports screening only when it separates hidden types before commitment. It explicitly warns that rule-based screening can amplify hidden-information asymmetry, local screening can shift risk upstream or downstream, and screeners can selectively weight confirming signals.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "rule-based screening amplifies hidden-information asymmetry in input data",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "local screening fixes shift risk upstream or downstream in the broader system",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Adverse Selection_rag.md",
+          "source_quote": "screeners selectively weight signals that confirm their prior beliefs about counterparty quality rather than updating on all available evidence",
+          "section_hint": "Structured Tension Curation",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }

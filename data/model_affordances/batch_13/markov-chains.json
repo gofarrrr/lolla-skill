@@ -42,17 +42,36 @@
             "Identifies where memory or regime shift breaks the model.",
             "Keeps the forecast bounded."
           ]
+        },
+        {
+          "requirement_id": "stress-transition-chain-against-conjunctive-and-tail-risk",
+          "description": "When several transitions must all succeed, require the answer to identify weak links, antithesis assumptions, and worst-case sensitivity before treating the path as likely.",
+          "evidence_required": [
+            "The sequence of required transitions or steps.",
+            "The weakest required transition or assumption.",
+            "The severe downside or tail case if the transition path fails.",
+            "The belief that would have to hold for the state path to remain credible."
+          ],
+          "good_output_shape": [
+            "Flags conjunctive risk instead of multiplying optimism through the chain.",
+            "Names what would have to be true for the transition path to work.",
+            "Includes range, tail, or worst-case sensitivity rather than only a base transition path."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What state is the system in now?",
         "What evidence supports the transition probability to the next state?",
-        "What hidden history would make the current state insufficient?"
+        "What hidden history would make the current state insufficient?",
+        "Are we using a bounded state-transition simplification, or claiming formal Markov mathematics the source does not provide?",
+        "Does branching, novelty, or creative adaptation exceed the available transition evidence?"
       ],
       "misuse_guards": [
         "Do not overclaim memorylessness when path dependence matters.",
         "Do not use stale transition rates under regime change.",
-        "Do not reduce emergent social systems to a neat state diagram without evidence."
+        "Do not reduce emergent social systems to a neat state diagram without evidence.",
+        "Do not treat the source as support for exact transition matrices, stationarity proofs, or formal Markov-chain mathematics.",
+        "Do not force state-transition reasoning onto branching, novel, or creative-adaptive contexts where transition evidence is too weak."
       ],
       "source_evidence": [
         {
@@ -73,6 +92,27 @@
           "source_file": "Markov_Chains_rag.md",
           "source_quote": "memory, path dependence, or hidden state matters more than the current visible state",
           "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "state-space branching exceeds transition evidence quality",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "requires every single step/event to occur",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "What would you have to believe?",
+          "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -117,6 +157,57 @@
           "source_file": "Markov_Chains_rag.md",
           "source_quote": "transition patterns are stable enough that local probabilities provide meaningful guidance",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "formal-markov-math-or-transition-matrix-affordance",
+      "status": "not_supported_by_source",
+      "reason": "The source says the term Markov Chain is not explicitly found and supports only a bounded state-transition simplification. It should not be promoted as support for formal Markov mathematics, exact transition matrices, or stationarity claims.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "the term *Markov Chain* is not explicitly found in the sources",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "transition patterns are stable enough that local probabilities provide meaningful guidance",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "branching-novelty-as-markov-state-path",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that Markov-chain reasoning conflicts with optionality when state-space branching exceeds transition evidence quality, and that creativity relies on free-form recombination outside established patterns. Do not promote the card when branching, novelty, or creative adaptation is the core problem.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "state-space branching exceeds transition evidence quality",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "free-form recombination of ideas",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Markov_Chains_rag.md",
+          "source_quote": "generate new ideas outside of established patterns",
+          "section_hint": "The Latticework: Systemic Interactions",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }

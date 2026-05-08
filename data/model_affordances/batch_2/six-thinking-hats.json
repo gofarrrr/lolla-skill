@@ -70,19 +70,35 @@
             "Rejects role labels that do not alter the evidence standard, question type, or required output.",
             "Uses the anti-performative check as a guardrail before relying on the structure."
           ]
+        },
+        {
+          "requirement_id": "define-shared-output-before-mode-rotation",
+          "description": "Require the answer to define the shared issue and decision output before rotating modes, then tie each mode's contribution back to the decision objective.",
+          "evidence_required": [
+            "The problem or decision output being examined.",
+            "The point at which divergent generation should stay separate from convergent evaluation.",
+            "The high-impact variable or so-what question each mode must serve."
+          ],
+          "good_output_shape": [
+            "Defines the issue before ideation or hat rotation starts.",
+            "Separates divergent generation from convergent evaluation until both have done their work.",
+            "Synthesizes only contributions that answer the shared decision objective."
+          ]
         }
       ],
       "diagnostic_questions": [
         "Which modes are currently jammed together: risk review, creativity, evidence checking, synthesis, or another needed lens?",
         "What dominant frame is being mistaken for the whole problem?",
         "For this hat, what standard, evidence, or goal changed from the previous hat?",
-        "What opposing view or information beyond the immediate view still needs to be considered before synthesis?"
+        "What opposing view or information beyond the immediate view still needs to be considered before synthesis?",
+        "What shared decision output keeps each mode from producing accurate but useless commentary?"
       ],
       "misuse_guards": [
         "Do not treat hat names as sufficient; the source requires real switching of standards, evidence, and goals.",
         "Do not synthesize or select a solution before the required modes have produced distinct outputs.",
         "Do not force structure so early that it anchors ideation or closes down fluid creative work prematurely.",
-        "Do not apply a familiar framework to every problem when the case does not need multi-perspective deliberation coverage."
+        "Do not apply a familiar framework to every problem when the case does not need multi-perspective deliberation coverage.",
+        "Do not claim formal Six Thinking Hats doctrine, color taxonomy, or named-method authority from this source."
       ],
       "source_evidence": [
         {
@@ -131,6 +147,27 @@
           "source_file": "Six_Thinking_Hats_rag.md",
           "source_quote": "It is crucial to resist the impulse to start ideating while defining problems, as solutions generated too early can anchor the subsequent thought process.",
           "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "the \"Six Thinking Hats\" model is not explicitly named in the provided materials",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "If the outcome is \"accurate but useless,\" the idea has no value",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "asking the \"So what?\" question until contradictions are overcome",
+          "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -192,6 +229,43 @@
           "source_quote": "teams default to their initial hypothesis rather than genuinely adopting each hat's perspective to pressure-test alternatives.",
           "section_hint": "Structured Tension Curation",
           "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "hat-rotation-before-problem-definition",
+      "status": "not_supported_by_source",
+      "reason": "The source says to resist ideating while defining the problem because early solutions can anchor the subsequent thought process. Do not promote Six Thinking Hats when hat rotation starts before the issue is defined enough for each mode to use the right standard, evidence, and output.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "resist the impulse to start ideating while defining problems",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "solutions generated too early can anchor the subsequent thought process",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "formal-six-hats-taxonomy-or-color-sequence",
+      "status": "not_supported_by_source",
+      "reason": "The source says the Six Thinking Hats model is not explicitly named and supports analogous mode separation. Do not promote formal color taxonomy, de Bono-specific sequence, or named-method authority from this source.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Six_Thinking_Hats_rag.md",
+          "source_quote": "the \"Six Thinking Hats\" model is not explicitly named in the provided materials",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }
       ]

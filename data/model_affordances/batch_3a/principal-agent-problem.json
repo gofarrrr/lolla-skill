@@ -77,6 +77,21 @@
             "Proposes a checkpoint that observes the right behavior or outcome.",
             "Keeps the redesign focused on alignment rather than suspicion."
           ]
+        },
+        {
+          "requirement_id": "verify-owner-success-criteria-and-delegation-structure",
+          "description": "Require the answer to confirm that there is a definable principal, agent, delegated objective, and success criterion before using principal-agent framing.",
+          "evidence_required": [
+            "The definable problem owner or principal.",
+            "The executing agent and delegated task.",
+            "The success criterion the principal cares about.",
+            "Evidence that the problem is not a wicked multi-owner conflict with irreconcilable objectives."
+          ],
+          "good_output_shape": [
+            "Names the owner, agent, delegated objective, and success criterion.",
+            "Sets aside principal-agent framing when ownership or success criteria cannot be defined.",
+            "Routes multi-owner or political conflicts to a broader systems, governance, or stakeholder model."
+          ]
         }
       ],
       "diagnostic_questions": [
@@ -84,14 +99,16 @@
         "What performance is hard to observe directly because of expertise, distance, or complexity?",
         "Which dashboard, compliance artifact, or reported activity could look aligned while divergence continues underneath?",
         "Is the bad outcome caused by misalignment, capability, capacity, unclear objectives, or bad system design?",
-        "Who should do what differently, and what machine-level checkpoint would make alignment visible?"
+        "Who should do what differently, and what machine-level checkpoint would make alignment visible?",
+        "Is there a definable problem owner and success criterion, or is this a wicked multi-owner conflict?"
       ],
       "misuse_guards": [
         "Do not assume bad faith when the evidence points to capacity, capability, vague goals, or bad design.",
         "Do not answer with micromanagement that treats the case-at-hand while leaving the machine-level drift unchanged.",
         "Do not duplicate moral-hazard, incentives, or information-asymmetry unless the delegated principal-agent structure is explicit.",
         "Do not treat dashboards, formal compliance, or activity reports as alignment without checking the underlying behavior.",
-        "Do not use principal-agent framing to make ordinary disagreement sound like hidden betrayal."
+        "Do not use principal-agent framing to make ordinary disagreement sound like hidden betrayal.",
+        "Do not force a clean principal-agent frame onto wicked problems with no clear owner or irreconcilable multi-owner objectives."
       ],
       "source_evidence": [
         {
@@ -126,6 +143,13 @@
           "source_file": "Principal_Agent_Problem_rag.md",
           "source_quote": "When diagnosing a failure, the Principal confuses a poor outcome due to bad system design or lack of resources (capacity issue) with the Agent's personal flaws or incompetence (capability issue).",
           "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "lack a clear owner or have multiple owners with conflicting, irreconcilable objectives",
+          "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -210,6 +234,28 @@
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "review_note",
           "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "single-principal-agent-frame-for-wicked-multi-owner-conflict",
+      "status": "not_supported_by_source",
+      "reason": "The source says the model fails in wicked problems that lack a clear owner or have multiple owners with conflicting, irreconcilable objectives. Do not promote a clean principal-agent audit when no definable principal, delegated objective, or success criterion exists.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "lack a clear owner or have multiple owners with conflicting, irreconcilable objectives",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Principal_Agent_Problem_rag.md",
+          "source_quote": "requires a definable problem owner and success criteria",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
         }
       ]
     }
