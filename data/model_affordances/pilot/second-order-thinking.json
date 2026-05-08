@@ -22,7 +22,8 @@
           "The dependency chain this intervention assumes will hold.",
           "The first threshold where delay, overload, or information-hiding would cascade into a worse second-order outcome.",
           "The incentive that would cause a local team to protect its metric while making the system worse.",
-          "The behavior the intervention will teach surrounding teams to repeat if it works locally."
+          "The behavior the intervention will teach surrounding teams to repeat if it works locally.",
+          "The later dependency that becomes harder, costlier, or politically harder to reverse because this move happens now."
         ]
       },
       "treatment_requirements": [
@@ -54,11 +55,26 @@
             "Names the behavior surrounding actors are likely to repeat.",
             "Explains whether that adaptation makes the next cycle slower, noisier, or harder to govern."
           ]
+        },
+        {
+          "requirement_id": "recovery-path-check",
+          "description": "Before endorsing the sequence, identify whether acting now removes a cheap recovery path once later integration, compliance, or coordination work appears.",
+          "evidence_required": [
+            "The move whose timing changes the order of dependencies.",
+            "The later dependency that becomes harder, costlier, or politically harder to reverse.",
+            "The first signal that the cheap recovery path has already disappeared."
+          ],
+          "good_output_shape": [
+            "Names the sequencing win that looks attractive now.",
+            "States which later dependency becomes harder to reverse because the move happens now.",
+            "Defines the first signal that the cheap recovery path has disappeared."
+          ]
         }
       ],
       "diagnostic_questions": [
         "What dependency chain must hold, where can delay, overload, or information-hiding flip the result, and what incentive would make a team protect its metric while worsening the system?",
-        "If the intervention works locally, what behavior will surrounding teams learn to repeat, and how could that adaptation affect the next cycle?"
+        "If the intervention works locally, what behavior will surrounding teams learn to repeat, and how could that adaptation affect the next cycle?",
+        "Which later dependency becomes harder, costlier, or politically harder to reverse because this move happens now, and what is the first signal that the cheap recovery path has already disappeared?"
       ],
       "misuse_guards": [
         "Do not invent long speculative consequence chains that are not anchored in the real mechanism, actor reactions, or constraints of the case.",
@@ -103,6 +119,13 @@
         {
           "source_file": "Second_Order_Thinking_rag.md",
           "source_quote": "If this intervention works locally, what behavior will it teach the surrounding teams to repeat, and how could that adaptation make the next cycle slower, noisier, or harder to govern?",
+          "section_hint": "Risks and Mitigations:",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Second_Order_Thinking_rag.md",
+          "source_quote": "Which later dependency becomes harder, costlier, or politically harder to reverse because this move happens now, and what is the first signal that the cheap recovery path has already disappeared?",
           "section_hint": "Risks and Mitigations:",
           "extraction_type": "explicit",
           "confidence": "high"
@@ -194,7 +217,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Compressed the source's downstream dependency, threshold, incentive, and behavioral-adaptation material into one operational affordance for stress-testing attractive local interventions.",
+    "normalization_note": "Compressed the source's downstream dependency, threshold, incentive, behavioral-adaptation, and recovery-path material into one operational affordance for stress-testing attractive local interventions.",
     "dropped_material": [
       "Did not extract broad introductory definitions, domino analogies, or mental-model framing because they explain the concept but add little operational contract beyond the stress-test affordance.",
       "Did not extract organization adaptation, pitching, allies, antagonists, or relation semantics as separate affordances; they remain useful context but are less direct than the source-backed risk-table prompts.",
