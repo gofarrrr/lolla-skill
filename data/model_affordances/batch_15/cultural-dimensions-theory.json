@@ -121,6 +121,35 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "named-cultural-dimension-taxonomy-without-source-or-case-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The current source supports cultural dimensions only as a verified comparative norm lens. It explicitly does not define Hofstede or Trompenaars dimensions, so the record should not promote named-dimension scoring, national trait assignment, or power-distance/individualism-style prescriptions unless separate source and case evidence supply them.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Cultural_Dimensions_Theory_rag.md",
+          "source_quote": "the sources provided do not explicitly define or detail Hofstede's or Trompenaars' Cultural Dimensions Theory",
+          "section_hint": "Opening scope note",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cultural_Dimensions_Theory_rag.md",
+          "source_quote": "treated as fixed labels for individuals rather than probabilistic context clues",
+          "section_hint": "Limitations and Common Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cultural_Dimensions_Theory_rag.md",
+          "source_quote": "the map is not the territory itself",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +162,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 15 source reading found strong reviewed depth for cross-context coordination, with explicit anti-stereotyping constraints.",
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for cross-context coordination, with explicit anti-stereotyping constraints. PR80 adds a guard against hallucinated named-dimension taxonomies from a source that does not define them.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

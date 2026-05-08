@@ -17,7 +17,8 @@
         "do_not_use_when": [
           "The cited proof comes from prestigious adopters whose context, incentives, or constraints do not match the current decision.",
           "Social proof is being used as a substitute for mechanism, evidence quality, customer truth, or causal explanation.",
-          "The case already has direct evidence of quality and more social validation would distract from the decision's real evidence question."
+          "The case already has direct evidence of quality and more social validation would distract from the decision's real evidence question.",
+          "The only proof is that a norm is widespread, familiar, or common sense, without current evidence that it still serves the decision."
         ],
         "case_evidence_needed": [
           "The exact proof source being cited: peers, customers, operators, high-status clients, statistics, quotes, adopters, or observed behavior.",
@@ -321,6 +322,35 @@
           "confidence": "medium"
         }
       ]
+    },
+    {
+      "attempted_field": "widespread-or-expired-norm-as-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source supports social proof only as credibility weight under uncertainty when the proof source transfers causally. It rejects treating a widespread, familiar, or common-sense norm as proof when the practice may be expired or suboptimal.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "long passed their expiration date",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "Following Expired or Suboptimal Norms",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Social_Proof_rag.md",
+          "source_quote": "routinely upgraded",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -361,7 +391,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Read the full Social Proof source, main curation record, intervention and relation semantic curation, PR 9 Batch 2 selection notes, the schema, and nearby Batch 2 records. Extracted two affordances to preserve source-backed distinctions: external proof-source validity and internal herd-effect containment.",
+    "normalization_note": "Read the full Social Proof source, main curation record, intervention and relation semantic curation, PR 9 Batch 2 selection notes, the schema, and nearby Batch 2 records. Extracted two affordances to preserve source-backed distinctions: external proof-source validity and internal herd-effect containment. PR80 adds an expired-norm absence rail without splitting a third positive card.",
     "dropped_material": [
       "Did not promote a third affordance for cargo-cult copying because it duplicates the proof-source validity contract once the treatment requires causal transfer, structural fit, and substance checks.",
       "Did not promote automatic-compliance marketing tactics as a standalone affordance; they are useful as risk context, not as an operational decision-quality treatment.",

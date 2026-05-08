@@ -42,6 +42,22 @@
             "Adds a listening or observation step.",
             "Adapts language, sequencing, or implementation to that context."
           ]
+        },
+        {
+          "requirement_id": "treat-personal-data-as-behavioral-evidence",
+          "description": "When adoption or implementation depends on a social system, require the answer to treat stated feelings, fairness beliefs, resistance, and engagement signals as behaviorally consequential data while separating observed personal data from inferred motives.",
+          "evidence_required": [
+            "The personal data: stated feeling, fairness belief, resistance, engagement signal, or local concern.",
+            "How that personal data affects behavior, adoption, commitment, or implementation.",
+            "The objective facts or technical analysis that still remain in force.",
+            "A check that distinguishes culture, role, pressure, history, incentive, and personality explanations."
+          ],
+          "good_output_shape": [
+            "Names personal data as evidence, not politeness.",
+            "Separates objective facts from felt or social reality.",
+            "Adapts language, sequencing, or implementation without weakening the substantive recommendation.",
+            "Adds direct listening, observation, or disconfirming check before motive claims."
+          ]
         }
       ],
       "diagnostic_questions": [
@@ -72,6 +88,27 @@
         {
           "source_file": "Cultural_Intelligence_rag.md",
           "source_quote": "direct listening, observation, or disconfirming checks",
+          "section_hint": "Limitations and Dangerous Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cultural_Intelligence_rag.md",
+          "source_quote": "objective facts *and* **personal data**",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cultural_Intelligence_rag.md",
+          "source_quote": "Ignoring these feelings throws away crucial data",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Cultural_Intelligence_rag.md",
+          "source_quote": "without direct listening, observation, or disconfirming checks",
           "section_hint": "Limitations and Dangerous Anti-Patterns",
           "extraction_type": "explicit",
           "confidence": "high"
@@ -133,7 +170,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 15 source reading found strong reviewed depth for perspective-taking as evidence-seeking adoption work.",
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for perspective-taking as evidence-seeking adoption work. PR80 hardens personal data as behavioral evidence while preserving objective facts and disconfirming checks.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

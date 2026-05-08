@@ -42,6 +42,22 @@
             "Checks that the frame is relevant to the merits.",
             "Keeps rational proof and consent visible."
           ]
+        },
+        {
+          "requirement_id": "correct-irrelevant-incidental-prime",
+          "description": "Require the answer to identify any incidental mood, setting, or associative cue that may be biasing judgment, test whether it is relevant to the merits, and restore factual proof before treating the judgment as reliable.",
+          "evidence_required": [
+            "The incidental cue, mood, or setting that may be shaping interpretation.",
+            "The decision, ask, or judgment being influenced.",
+            "Whether the cue is relevant to the merits or only associative atmosphere.",
+            "The factual proof available after the irrelevant association is corrected."
+          ],
+          "good_output_shape": [
+            "Names the cue or mood.",
+            "Tests relevance to the merits.",
+            "Corrects irrelevant association before relying on judgment.",
+            "Preserves factual proof and later deliberation."
+          ]
         }
       ],
       "diagnostic_questions": [
@@ -73,6 +89,27 @@
           "source_file": "Pre_Suasion_rag.md",
           "source_quote": "decoupled from the actual merits of the proposal",
           "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "to the politicians' performance",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "rational link correction",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "factual, reliable data",
+          "section_hint": "Risks and Mitigations",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -133,7 +170,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 15 source reading found strong reviewed depth for pre-suasion as ethical sequencing with merit checks.",
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for pre-suasion as ethical sequencing with merit checks. PR80 hardens incidental-prime correction as a treatment requirement inside the existing context-setting card.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

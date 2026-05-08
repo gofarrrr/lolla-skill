@@ -42,6 +42,22 @@
             "Explains impact without personality labels.",
             "Invites a concrete next adjustment."
           ]
+        },
+        {
+          "requirement_id": "avoid-deficiency-only-demoralization",
+          "description": "When SBI is used for coaching, mastery, or performance repair, require the answer to avoid a deficiency-only frame by naming relevant observed strengths or working elements that support the next adjustment.",
+          "evidence_required": [
+            "The corrective situation, behavior, and impact.",
+            "Whether the feedback context is coaching, learning, or mastery-building.",
+            "Any observed strengths or working elements relevant to future adjustment.",
+            "The concrete change request that prevents strengths from becoming generic reassurance."
+          ],
+          "good_output_shape": [
+            "Keeps the corrective SBI structure intact.",
+            "Names relevant strengths only when observed and useful for adjustment.",
+            "Avoids generic praise or compliment-sandwich padding.",
+            "Preserves the collaboration request and implications."
+          ]
         }
       ],
       "diagnostic_questions": [
@@ -80,6 +96,13 @@
           "source_file": "Feedback_Models_Sbi_rag.md",
           "source_quote": "Extend a collaboration request",
           "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "Focusing only on \"deficiencies\" can be demoralizing rather than motivating",
+          "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -157,6 +180,35 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "outcome-only-sbi-feedback",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against judging decision quality from the outcome alone. Do not promote SBI when feedback substitutes a poor result for concrete behavior, ex ante decision process, or the structure and logic that produced the result.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "Judging the quality of a decision based on the outcome, rather than evaluating the decision process *ex ante*.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "there is a risk of focusing on the poor result rather than the structure and logic that produced it.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Feedback_Models_Sbi_rag.md",
+          "source_quote": "conduct the discussion at two levels: 1) the **machine level**",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -176,7 +228,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 6 source reading found strong reviewed depth for Feedback Models SBI. Extracted one incident/impact/invitation structure and rejected scripted judgment plus selective framing.",
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Feedback Models SBI. Extracted one incident/impact/invitation structure and rejected scripted judgment plus selective framing. PR80 hardens outcome-bias rejection and deficiency-only demoralization guards.",
     "dropped_material": [
       "LLM and coaching examples were retained as supporting context rather than separate cards.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."

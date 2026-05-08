@@ -58,6 +58,22 @@
             "Identifies the process or structure that produced the outcome.",
             "Turns feedback into a person-safe adjustment and a system/process improvement."
           ]
+        },
+        {
+          "requirement_id": "funnel-feedback-to-actionable-signal",
+          "description": "When feedback contains multiple observations, data points, or rationales, require the answer to reduce them to a manageable number of actionable items under the recipient's control and state the goal or punch line before supporting detail.",
+          "evidence_required": [
+            "The candidate feedback observations, data, or rationales.",
+            "Which items are actionable and under the recipient's control.",
+            "The goal, standard, or punch line the feedback is meant to clarify.",
+            "Which details should be deferred because they would overload learning."
+          ],
+          "good_output_shape": [
+            "Selects the few feedback items that matter now.",
+            "States the goal or punch line before supporting detail.",
+            "Keeps each item tied to a standard and future adjustment.",
+            "Avoids charts, data, or rational argument dumps that create decision paralysis."
+          ]
         }
       ],
       "diagnostic_questions": [
@@ -119,6 +135,27 @@
           "source_file": "Constructive_Feedback_Models_rag.md",
           "source_quote": "why the outcome was produced by the underlying process",
           "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "feedback data is \"funneled\" and reduced to a manageable number of items that are **actionable**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "The utility of feedback is diminished if it overwhelms the recipient.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Constructive_Feedback_Models_rag.md",
+          "source_quote": "Providing excessive charts, data, and rational arguments without clarifying the goal",
+          "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -201,7 +238,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 6 source reading found strong reviewed depth for Constructive Feedback Models. Extracted one standard-correction card and rejected rank-backed and confirmation-biased feedback.",
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Constructive Feedback Models. Extracted one standard-correction card and rejected rank-backed and confirmation-biased feedback. PR80 hardens feedback funneling so detail volume does not overwhelm actionable learning.",
     "dropped_material": [
       "Detailed organizational examples were kept as context, not as separate operational cards.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."

@@ -42,6 +42,22 @@
             "Provides a falsifiable check.",
             "Designs the intervention around the tested driver rather than around speculation."
           ]
+        },
+        {
+          "requirement_id": "test-implementation-path-after-driver",
+          "description": "After a hidden driver is tested, require the answer to identify the implementation path and social-system conditions needed for the intervention to work, rather than assuming that the right motivational explanation automatically produces action.",
+          "evidence_required": [
+            "The tested motivational driver.",
+            "The proposed message, incentive, role, or cooperation intervention.",
+            "The implementation path: who changes what, when, and under what constraints.",
+            "The emotional, social, or emergent response that could block linear execution."
+          ],
+          "good_output_shape": [
+            "Separates motive diagnosis from implementation plan.",
+            "Names the concrete intervention lever.",
+            "Tests whether the social system can actually execute the change.",
+            "Avoids treating motivation as a purely rational or mechanical process."
+          ]
         }
       ],
       "diagnostic_questions": [
@@ -73,6 +89,20 @@
           "source_file": "Understanding_Motivations_rag.md",
           "source_quote": "What would you have to believe?",
           "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "assuming that identifying the correct motivational strategy (**what** needs to be done) automatically leads to successful execution (**how** to do it)",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "Implementation in a living social system is emergent and emotional, not amenable to linear or mechanical beliefs.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
         }
@@ -121,6 +151,35 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "amp-or-reward-architecture-as-hidden-driver-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source contains AMP and intrinsic/extrinsic motivation material, but cases about redesigning autonomy, mastery, purpose, or reward form should route to self-determination-theory or incentives. Do not split Understanding Motivations into a second motivation-architecture or task-fit reward card; keep this record focused on hidden-driver hypothesis testing.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "Autonomy, Mastery, and Purpose** (AMP)\u2014form a tripod.",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "The intrinsic motivation model (AMP) is essential for work requiring creativity, problem-solving, and high-level conceptual abilities",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "Motivation 2.0 (if-then rewards) can sometimes be effective in a narrow band of simple, routine circumstances.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +192,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Understanding Motivations. Extracted one hidden-driver test and rejected over-psychologizing plus stated-motive credulity.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Understanding Motivations. Extracted one hidden-driver test and rejected over-psychologizing plus stated-motive credulity. PR80 hardens implementation-path testing and blocks AMP/reward architecture duplication.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
