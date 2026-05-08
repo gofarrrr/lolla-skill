@@ -42,17 +42,33 @@
             "States what feedback would force adjustment.",
             "Protects reliability and rollback before optimizing cadence."
           ]
+        },
+        {
+          "requirement_id": "verify-concrete-delivery-system-before-use",
+          "description": "Require the answer to show a concrete delivery or operating system before using this weak-support card, because the source supports adjacent systems-and-iteration material rather than full DevOps/CI doctrine.",
+          "evidence_required": [
+            "The concrete delivery system, operational process, or integration loop.",
+            "Domain-specific execution knowledge rather than abstract improvement language.",
+            "The source limitation that this is adjacent weak-support material, not full CI/CD doctrine."
+          ],
+          "good_output_shape": [
+            "Uses the card only after naming the concrete delivery loop.",
+            "Keeps the recommendation at operating-loop level unless stronger DevOps/CI evidence is available.",
+            "Marks abstract continuous-improvement claims as insufficient for promotion."
+          ]
         }
       ],
       "diagnostic_questions": [
         "Where does delivery speed currently trade against reliability?",
         "Which handoff, merge, release, or feedback delay creates integration friction?",
-        "What would we observe soon enough to diagnose and adjust before brittleness compounds?"
+        "What would we observe soon enough to diagnose and adjust before brittleness compounds?",
+        "What concrete delivery system is being discussed, and what domain facts keep this from becoming abstract continuous-improvement advice?"
       ],
       "misuse_guards": [
         "Do not treat merge speed, ticket throughput, or release cadence as the whole system outcome.",
         "Do not optimize local pipeline speed while hiding rollback pain or debugging latency.",
-        "Do not pretend the source provides full DevOps doctrine beyond the adjacent operating-loop support."
+        "Do not pretend the source provides full DevOps doctrine beyond the adjacent operating-loop support.",
+        "Do not promote generic systems thinking, iteration, or disciplined problem solving as DevOps/CI without a concrete delivery loop."
       ],
       "source_evidence": [
         {
@@ -75,6 +91,13 @@
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "medium"
+        },
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "cannot be done in the abstract",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "explicit",
+          "confidence": "high"
         }
       ],
       "confidence": "medium",
@@ -117,6 +140,28 @@
           "source_file": "Devops_and_Continuous_Integration_rag.md",
           "source_quote": "teams optimize for merge speed, ticket throughput, or release cadence while quietly increasing rollback pain, debugging latency, or production brittleness",
           "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "abstract-continuous-improvement-as-devops-ci",
+      "status": "not_supported_by_source",
+      "reason": "The source supports only adjacent systems, iteration, disciplined problem solving, and continuous-learning material, and warns that good problem solving cannot be done in the abstract; do not promote this card when the case lacks a concrete delivery system, integration loop, or domain-specific execution knowledge.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "cannot be done in the abstract",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "full knowledge of your field",
+          "section_hint": "Weaknesses and Limitations",
           "extraction_type": "not_supported_by_source",
           "confidence": "high"
         }
