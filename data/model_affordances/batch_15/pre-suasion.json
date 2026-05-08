@@ -1,0 +1,145 @@
+{
+  "model_id": "pre-suasion",
+  "source_file": "Pre_Suasion_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "pre-suasion.set-context-with-merit-and-consent-check",
+      "status": "supported",
+      "name": "Set context with merit and consent check",
+      "mechanism": "When the frame before an ask will shape interpretation, use pre-suasion to make the core message legible and fairly evaluated, while checking that the attention cue is relevant to the proposal's merits and not covert manipulation.",
+      "activation_shape": {
+        "use_when": [
+          "Attention placement will shape how the next message is interpreted.",
+          "The audience is overloaded, distracted, or relying on default associations.",
+          "A complex idea needs to become legible before it is defended in detail."
+        ],
+        "do_not_use_when": [
+          "The context cue is decoupled from the merits of the proposal.",
+          "The technique would steer the audience without transparency or rational engagement.",
+          "The model would prime a desired conclusion in place of evidence testing."
+        ],
+        "case_evidence_needed": [
+          "The main message or ask.",
+          "The preliminary attention cue or frame.",
+          "Why that cue is substantively relevant to the merits.",
+          "The rational proof or detail that remains available after the initial frame."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "align-frame-with-substance",
+          "description": "Require the answer to use a preliminary frame only when it helps the audience fairly understand the substance and preserves later deliberation.",
+          "evidence_required": [
+            "The audience's likely default association.",
+            "The proposed frame or cue.",
+            "The substantive link between the frame and proposal.",
+            "The proof or caveat that should follow the frame."
+          ],
+          "good_output_shape": [
+            "Names the attention frame.",
+            "Explains how it helps legibility.",
+            "Checks that the frame is relevant to the merits.",
+            "Keeps rational proof and consent visible."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What frame will the audience bring before the ask arrives?",
+        "Is the context cue relevant to the merits or just persuasive atmosphere?",
+        "What proof will the audience get after the emotional or associative frame?"
+      ],
+      "misuse_guards": [
+        "Do not use pre-suasion as covert control.",
+        "Do not let priming replace evidence testing.",
+        "Do not use an attention cue you would be ashamed to explain."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "guides the preliminary attention",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "attention placement will shape how the next message is interpreted",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "decoupled from the actual merits of the proposal",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports pre-suasion only as context-setting with merit, proof, and ethics checks.",
+        "dropped_material": [
+          "Did not extract manipulative tricks as recommended tactics.",
+          "Did not create persuasive product copy."
+        ],
+        "open_questions": [
+          "Later packet review should test whether the card helps the LLM reject manipulation while preserving legitimate sequencing."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "pre-suasion-as-covert-control",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly names ethical risk and manipulation, so covert control is not a supported operational use.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "not an entirely ethical one",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "context-cue-without-consent-or-fit",
+      "status": "not_supported_by_source",
+      "reason": "The source's mitigation asks whether the context is relevant to the merits and explainable, so arbitrary context cues are not supported.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "Is the context I am setting truly relevant to the merits of the proposal",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Pre_Suasion_rag.md",
+      "source_quote": "make a complex idea legible before it is defended in detail",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for pre-suasion as ethical sequencing with merit checks.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should test whether this card helps separate framing from manipulation."
+    ],
+    "review_status": "draft"
+  }
+}

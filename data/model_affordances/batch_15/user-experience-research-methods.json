@@ -1,0 +1,145 @@
+{
+  "model_id": "user-experience-research-methods",
+  "source_file": "User_Experience_Research_Methods_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "user-experience-research-methods.test-user-assumptions-before-commitment",
+      "status": "supported",
+      "name": "Test user assumptions before commitment",
+      "mechanism": "When product risk comes from misunderstanding real user behavior, use UX research to move from internal assumptions to observed needs, abductive hypotheses, and iterative validation before design commitment.",
+      "activation_shape": {
+        "use_when": [
+          "Internal assumptions about users are weak, stale, or contradicted by actual behavior.",
+          "The team needs direct evidence about user goals, workarounds, confusion, or unmet needs.",
+          "The product risk is more about real user behavior than technical uncertainty alone."
+        ],
+        "do_not_use_when": [
+          "Research is being used as a ritual to validate a preselected answer.",
+          "A single user quote or internal persona would be treated as market proof.",
+          "The team is gathering data for its own sake instead of testing a focused hypothesis."
+        ],
+        "case_evidence_needed": [
+          "The user assumption or product commitment at risk.",
+          "Observed behavior, interview, journey, or task evidence.",
+          "The abductive hypothesis that explains the observation.",
+          "The prototype, test, or validation step that could confirm or revise the hypothesis."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "separate-observation-hypothesis-and-validation",
+          "description": "Require the answer to separate what users were observed doing, what explanation is hypothesized, and what validation is needed before committing.",
+          "evidence_required": [
+            "The design or product decision being considered.",
+            "Direct user evidence from observation, interview, journey, or task behavior.",
+            "A clear hypothesis generated from the evidence.",
+            "A follow-up validation method."
+          ],
+          "good_output_shape": [
+            "Names the user assumption being tested.",
+            "Distinguishes observation from interpretation.",
+            "Proposes a focused validation step.",
+            "Avoids treating research as confirmation theater."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What user behavior contradicts or weakens our current assumption?",
+        "Are we observing users, interpreting users, or validating a solution?",
+        "What would disconfirm the user need we think we found?"
+      ],
+      "misuse_guards": [
+        "Do not use UX research as a ritual of validation for a preselected answer.",
+        "Do not treat a single user quote as market proof.",
+        "Do not boil the ocean when a focused hypothesis test is enough."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "observation and discovery of human needs at the core of the problem-solving effort",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "research gets used as a ritual of validation for a preselected answer",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "resulting hypotheses about solutions require testing and validation",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports UX research as observed-user-evidence and validation discipline.",
+        "dropped_material": [
+          "Did not extract digital twin examples as permission for model calls.",
+          "Did not turn UX research into a generic empathy slogan."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps graph-only UX/product candidates remain evidence-centered."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "research-as-opinion-collection",
+      "status": "not_supported_by_source",
+      "reason": "The source frames UX research as disciplined observation, synthesis, hypothesis generation, and validation rather than a pile of opinions.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "Conduct **observation**, engagement (interviews), and **immersion**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "user-quote-as-market-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source says abductive explanations from user behavior may be incorrect and require testing, so a user quote alone cannot prove the market claim.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "User_Experience_Research_Methods_rag.md",
+          "source_quote": "the explanation generated *may be incorrect*",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "User_Experience_Research_Methods_rag.md",
+      "source_quote": "human behavior and unmet needs are the primary drivers",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for UX research as evidence-backed problem reframing.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should test whether this card pairs well with jobs-to-be-done without duplicating it."
+    ],
+    "review_status": "draft"
+  }
+}

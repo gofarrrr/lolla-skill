@@ -1,9 +1,9 @@
 # Knowledge Use Schema - From Buried Markdown To Runtime Judgment
 
 **Date:** 2026-05-04
-**Last updated:** 2026-05-07
+**Last updated:** 2026-05-08
 **Audience:** future coding session with no prior conversation context
-**Status:** living schema doctrine; PR13-PR51 are merged or in review, PR51 completed the controlled self-regulation / bias-calibration enrichment batch, and the current posture is `controlled_self_regulation_bias_enrichment_ready`
+**Status:** living schema doctrine; PR13-PR52 are merged or in review, PR52 completed the controlled cultural / product communication enrichment batch, and the current posture is `controlled_cultural_product_communication_enrichment_ready`
 **Related roadmap:** `plans/knowledge-substrate-roadmap-2026-05-04.md`
 **Product doctrine:** `research/decision-pressure-product-doctrine-2026-05-06.md`
 **Current matching audit:** `research/knowledge-matching-current-state-audit-2026-05-06.md`
@@ -40,6 +40,7 @@
 **Current controlled learning / skill-acquisition enrichment report:** `research/pr49-controlled-learning-skill-enrichment-report-2026-05-07.md`
 **Current controlled quantitative inference enrichment report:** `research/pr50-controlled-quantitative-inference-enrichment-report-2026-05-07.md`
 **Current controlled self-regulation / bias-calibration enrichment report:** `research/pr51-controlled-self-regulation-bias-enrichment-report-2026-05-07.md`
+**Current controlled cultural / product communication enrichment report:** `research/pr52-controlled-cultural-product-communication-enrichment-report-2026-05-08.md`
 **Next-session handover:** `research/reasoning-substrate-next-session-handover-2026-05-06.md`
 **External architecture study:** `research/gbrain-architecture-learning-handover-2026-05-05.md`
 **External decision-process study:** `research/clear-thinking-lolla-learning-handover-2026-05-05.md`
@@ -136,6 +137,13 @@ real. Future sessions should treat the following as current baseline:
   `data/compiled/model_affordances/affordances_v15.json`.
 - v15 corpus shape: `182` reviewed records, `218` affordances, `349` absence
   records. v15 remains `draft_review_only` and is not runtime-promoted.
+- Batch 15 records: `data/model_affordances/batch_15/` for 12 controlled
+  cultural, product communication, UX, story, perception, category, liking, and
+  pre-suasion extractions opened after PR51.
+- Compiled v16 artifact:
+  `data/compiled/model_affordances/affordances_v16.json`.
+- v16 corpus shape: `194` reviewed records, `230` affordances, `373` absence
+  records. v16 remains `draft_review_only` and is not runtime-promoted.
 - Current experiment: PR 11 Gate 4 edge-probe harness, branch
   `feature/knowledge-substrate-pr11-gate4-edge-probes`.
 - Gate 4 dry-run: `10` usable cases, `39` Lane 4 routes, `165/205` v3-covered
@@ -417,17 +425,25 @@ real. Future sessions should treat the following as current baseline:
   growth mindset, persistence/grit, and regret theory. It compiles
   draft/review-only v15 and preserves `24` absence records. Decision label:
   `controlled_self_regulation_bias_enrichment_ready`.
+- PR52 completed one controlled cultural / product communication enrichment
+  batch after PR51. It adds `12` Batch 15 records for cultural dimensions,
+  cultural intelligence, multicultural team dynamics, narratives, storytelling
+  frameworks, usability heuristics, UX research methods, Gestalt perception,
+  simplification, category decisions, liking, and pre-suasion. It compiles
+  draft/review-only v16 and preserves `24` absence records. Decision label:
+  `controlled_cultural_product_communication_enrichment_ready`.
 - Next-session handover is captured in
   `research/reasoning-substrate-next-session-handover-2026-05-06.md`. Future
   sessions should start there. The active posture is
-  `controlled_self_regulation_bias_enrichment_ready`; do not build runtime packet
+  `controlled_cultural_product_communication_enrichment_ready`; do not build runtime packet
   production, prompt changes, broad Batch 3b, lane rewrites, user-facing
   surfaces, deterministic reasoning-mode routing, deterministic option
   selection, deterministic mastery classification, deterministic statistical
-  routing, deterministic psychological diagnosis, or mechanical extraction.
+  routing, deterministic psychological diagnosis, deterministic cultural
+  classification, deterministic persuasion routing, or mechanical extraction.
   The user explicitly approved continued controlled extraction toward full
-  coverage; the next slice should be PR52 as another capped source-backed
-  family from the remaining 40 graph-only models.
+  coverage; the next slice should be PR53 as another capped source-backed
+  family from the remaining 28 graph-only models.
 
 The schema is still dormant for live `/lolla` behavior. PR24 produced the
 Source Understanding And Reasoning Packet Audit and packet spec as
@@ -1831,11 +1847,15 @@ Current task:
     not v15 runtime promotion, prompt mechanics, deterministic psychological
     diagnosis, accusation generation, moralized advice, or proof that Python can
     decide what someone is really thinking.
-59. Do not start runtime, prompt changes, lane rewrites, broad extraction,
+59. Treat PR52 as controlled cultural / product communication enrichment, not
+    v16 runtime promotion, prompt mechanics, deterministic cultural
+    classification, deterministic persuasion routing, stereotype generation,
+    UX theater, or proof that Python can decide how to influence someone.
+60. Do not start runtime, prompt changes, lane rewrites, broad extraction,
     Batch 3b, or user-facing promotion from this slice.
-60. Preserve coverage honesty and no-casuistry rails.
-61. Do not run more paid model calls for this slice.
-62. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
+61. Preserve coverage honesty and no-casuistry rails.
+62. Do not run more paid model calls for this slice.
+63. Do not start UI, trace-fixture stress tests, live route-trace adapter work,
     Batch 3b, prompt changes, or runtime work by default.
 
 Continue controlled extraction only under the quality rails: small bounded
@@ -1844,8 +1864,9 @@ and draft/review-only compilation. PR49 added source-backed learning /
 skill-acquisition depth as draft/review v13. PR50 added source-backed
 quantitative inference / distributional reasoning depth as draft/review v14.
 PR51 added source-backed self-regulation / bias-calibration depth as
-draft/review v15. The next slice should be PR52 as another controlled family
-from the remaining 40 graph-only models, not broad Batch 3b or runtime
+draft/review v15. PR52 added source-backed cultural / product communication
+depth as draft/review v16. The next slice should be PR53 as another controlled
+family from the remaining 28 graph-only models, not broad Batch 3b or runtime
 promotion.
 
 ---

@@ -1,0 +1,145 @@
+{
+  "model_id": "gestalt-principles-of-perception",
+  "source_file": "Gestalt_Principles_of_Perception_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "gestalt-principles-of-perception.reveal-right-whole-before-detail",
+      "status": "supported",
+      "name": "Reveal the right whole before detail",
+      "mechanism": "When comprehension depends on how people group, contrast, or orient to information, use Gestalt principles to make the right structure visible while treating the pattern as provisional, not causal proof.",
+      "activation_shape": {
+        "use_when": [
+          "People need structure fast before they can use detail.",
+          "Design, explanation, or presentation quality depends on whether the right elements are perceived as together or apart.",
+          "A complex idea needs a coherent organizing shape to reduce cognitive load."
+        ],
+        "do_not_use_when": [
+          "A satisfying pattern would be mistaken for complete truth or causal proof.",
+          "The case requires precision in details before high-level grouping.",
+          "The model would reinforce an initial frame instead of testing it."
+        ],
+        "case_evidence_needed": [
+          "The elements people currently misgroup, miss, or confuse.",
+          "The desired whole, contrast, hierarchy, or grouping.",
+          "The task or decision the perceptual structure must support.",
+          "The evidence that the grouping reflects real relationships rather than aesthetic satisfaction."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "show-structure-with-pattern-caveat",
+          "description": "Require the answer to use visual or conceptual grouping to orient attention while adding a caveat that the pattern must be checked against evidence.",
+          "evidence_required": [
+            "The confusing elements or concepts.",
+            "The grouping or contrast that should become salient.",
+            "The task or decision improved by the grouping.",
+            "A check against false pattern recognition."
+          ],
+          "good_output_shape": [
+            "Names the whole-before-part pattern.",
+            "Explains why the grouping helps the task.",
+            "Keeps the design or explanation concrete.",
+            "Warns that pattern clarity is not proof."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What should be perceived as one whole, and what should stand apart?",
+        "What decision or task does this grouping help?",
+        "What evidence would show the pleasing pattern is misleading?"
+      ],
+      "misuse_guards": [
+        "Do not treat perceptual grouping as causal evidence.",
+        "Do not let visual or conceptual neatness hide crucial detail.",
+        "Do not lock onto the first recognized pattern without testing alternatives."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Gestalt_Principles_of_Perception_rag.md",
+          "source_quote": "perception occurs in wholes before it registers component parts",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Gestalt_Principles_of_Perception_rag.md",
+          "source_quote": "Best when design should reveal the right grouping",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Gestalt_Principles_of_Perception_rag.md",
+          "source_quote": "satisfying perceptual organization is treated as causal proof",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports Gestalt as orientation and grouping discipline with anti-pattern checks.",
+        "dropped_material": [
+          "Did not extract decorative visual-design advice.",
+          "Did not treat Gestalt grouping as evidence of causal structure."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card improves presentation and explanation packets without becoming aesthetic vocabulary."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "gestalt-as-aesthetic-rule",
+      "status": "not_supported_by_source",
+      "reason": "The source supports Gestalt as a cognitive and decision-orientation model, not a generic aesthetic preference.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Gestalt_Principles_of_Perception_rag.md",
+          "source_quote": "make sense of complexity",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "visual-grouping-without-task-context",
+      "status": "not_supported_by_source",
+      "reason": "The source anchors grouping to comprehension, design, communication, and decision tasks; it does not support grouping divorced from the work it enables.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Gestalt_Principles_of_Perception_rag.md",
+          "source_quote": "quality of the outcome depends on whether the brain naturally perceives the important elements",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Gestalt_Principles_of_Perception_rag.md",
+      "source_quote": "people need structure fast",
+      "section_hint": "Application Context: Strengths and Weaknesses",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for perceptual structure with false-pattern guardrails.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should check whether the card helps distinguish orientation from proof."
+    ],
+    "review_status": "draft"
+  }
+}

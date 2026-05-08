@@ -1,0 +1,145 @@
+{
+  "model_id": "narratives",
+  "source_file": "Narratives_rag.md",
+  "status": "supported",
+  "affordances": [
+    {
+      "affordance_id": "narratives.make-causal-meaning-actionable",
+      "status": "supported",
+      "name": "Make causal meaning actionable",
+      "mechanism": "When scattered evidence is true but not yet memorable or action-guiding, use narrative to give the audience a coherent causal line, while checking that the story does not outrun evidence, trade-offs, or uncertainty.",
+      "activation_shape": {
+        "use_when": [
+          "An abstract recommendation needs a memorable causal story so people understand why the change matters.",
+          "Adoption depends on belief shift, identity shift, or sequencing rather than more disconnected facts.",
+          "The answer must turn scattered evidence into one clear line of meaning."
+        ],
+        "do_not_use_when": [
+          "The audience needs a protocol, checklist, or threshold rule more than persuasion.",
+          "Narrative coherence would make weak evidence feel more certain than it is.",
+          "The story would hide contingencies, missing evidence, or trade-offs."
+        ],
+        "case_evidence_needed": [
+          "The audience belief or action the story is meant to change.",
+          "The evidence that supports each major causal claim.",
+          "The uncertainty, caveat, or disconfirming evidence the story must preserve.",
+          "The concrete action or takeaway the audience should remember."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "tie-story-to-evidence-and-action",
+          "description": "Require the answer to use narrative only when it clarifies a causal line for action, and to pair that story with evidence checks and explicit caveats.",
+          "evidence_required": [
+            "The core audience action or belief shift.",
+            "The causal sequence being communicated.",
+            "Evidence for each major story beat.",
+            "A caveat that prevents false inevitability."
+          ],
+          "good_output_shape": [
+            "Names the narrative purpose.",
+            "Keeps the story short and causal.",
+            "Maps key claims to evidence.",
+            "Ends in a concrete decision, action, or memory anchor."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What should the audience do or believe differently after the story?",
+        "Which story beat has the weakest evidence?",
+        "What uncertainty would disappear if this became too clean?"
+      ],
+      "misuse_guards": [
+        "Do not let story coherence replace evidence quality.",
+        "Do not tell the story of the search when the audience needs the story of the solution.",
+        "Do not use narrative when a direct operating rule is the right output."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Narratives_rag.md",
+          "source_quote": "abstract recommendation needs a memorable causal story",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Narratives_rag.md",
+          "source_quote": "story coherence outruns evidence quality",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Narratives_rag.md",
+          "source_quote": "**Avoid when** the audience needs a direct protocol, checklist, or threshold rule",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports narrative as causal meaning for action, bounded by evidence and caveats.",
+        "dropped_material": [
+          "Did not extract story as a substitute for final product prose.",
+          "Did not turn narrative into user-facing copy generation."
+        ],
+        "open_questions": [
+          "Later packet review should test whether this card helps the LLM know when to set story aside."
+        ],
+        "review_status": "draft"
+      }
+    }
+  ],
+  "absence_records": [
+    {
+      "attempted_field": "narrative-as-truth-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that clean narrative can make weak proof feel more certain than warranted.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Narratives_rag.md",
+          "source_quote": "a clean arc makes the audience feel certainty",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "story-without-evidence",
+      "status": "not_supported_by_source",
+      "reason": "The source supports story only as a structure for meaning and action, not as permission to omit evidence, trade-offs, or missing proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Narratives_rag.md",
+          "source_quote": "disconfirming-evidence check before acting",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "source_file": "Narratives_rag.md",
+      "source_quote": "make abstract ideas comprehensible, tangible, and actionable",
+      "section_hint": "Core Principles and Analogies",
+      "extraction_type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "review_notes": {
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for narrative as compact causal handoff, not proof.",
+    "dropped_material": [
+      "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
+    ],
+    "open_questions": [
+      "A later packet should compare this card against storytelling-frameworks for redundancy."
+    ],
+    "review_status": "draft"
+  }
+}
