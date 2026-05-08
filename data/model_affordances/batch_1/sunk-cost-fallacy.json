@@ -12,13 +12,12 @@
         "use_when": [
           "Prior time, money, identity, or effort is making an exit, kill, or reallocation decision feel harder than the future economics justify.",
           "A team keeps defending continuation because of what has already been sacrificed instead of because the next step has attractive expected value.",
-          "A high-cost commitment is being designed and stop/change criteria can be set before investment creates attachment.",
           "A project, investment, partnership, or personal commitment needs a start-again-today reset from current facts."
         ],
         "do_not_use_when": [
           "The exit argument ignores real remaining upside, learning value, switching costs, or residual option value.",
           "Continuation is justified by attractive expected value after current facts and future costs and benefits are separated from past expenditure.",
-          "There is no prior-investment pressure, no high-cost commitment needing pre-set exit criteria, and the live problem is ordinary option comparison or forecasting."
+          "There is no prior-investment pressure and the live problem is ordinary option comparison, forecasting, or precommitment design rather than recommitment from current facts."
         ],
         "case_evidence_needed": [
           "The time, money, emotional effort, identity, or other investment that is already irretrievable.",
@@ -49,7 +48,6 @@
             "The criteria that must be met to justify the next phase of investment.",
             "Evidence that would prove the original hypothesis wrong or show that future upside still remains.",
             "Any real learning value, switching cost, cash-flow advantage, or residual option value that could justify continuation.",
-            "For a new high-cost commitment, the time, budget, performance, or falsification criteria that should be set before attachment forms.",
             "For a financial case, the marginal analysis, NPV/DCF logic, or cash-flow evidence that separates future value from historical outlays.",
             "The future harm, opportunity cost, or additional resource depletion if continuation is wrong."
           ],
@@ -57,7 +55,6 @@
             "States the threshold or evidence that would stop, change, or justify the next phase.",
             "Uses outside or objective perspectives when attachment to the prior investment may be distorting judgment.",
             "Checks remaining upside, learning value, and switching costs before treating exit as the obvious answer.",
-            "For new high-cost commitments, predefines stop/change criteria before investment creates sunk-cost pressure.",
             "For financial cases, uses marginal future value and cash-flow reality rather than book values or historical outlays.",
             "Names the opportunity cost or future damage path if another phase is funded for sunk-cost reasons."
           ]
@@ -68,7 +65,6 @@
         "What specific performance criteria must be met to justify the next phase of investment?",
         "How would someone entirely new to this situation advise us to proceed?",
         "What evidence exists that would fundamentally prove our original hypothesis wrong?",
-        "Before this high-cost commitment starts, what conditions would stop or change it?",
         "Is the rationale for continuing based on past effort or on rational future financial projections?",
         "If we quit now, is the cost truly a loss, or is it freeing up resources for a greater gain?"
       ],
@@ -132,13 +128,6 @@
           "source_file": "Sunk_Cost_Fallacy_rag.md",
           "source_quote": "The model is also misapplied when people use \u201cdon\u2019t honor sunk costs\u201d as cover for quitting without evaluating learning value, switching costs, or the real future upside that still remains.",
           "section_hint": "Limitations (Weaknesses) and Anti-Patterns",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "source_file": "Sunk_Cost_Fallacy_rag.md",
-          "source_quote": "Proactively define specific conditions (time, budget, performance metrics) under which the commitment will be stopped or changed *before* starting the project.",
-          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
           "extraction_type": "explicit",
           "confidence": "high"
         },
@@ -208,13 +197,116 @@
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Condensed the raw source and reviewed curation into one operational contract: isolate irretrievable investment, judge the next phase by future value, and guard both against escalation and careless exit.",
+        "normalization_note": "Condensed the recommitment surface into one operational contract: isolate irretrievable investment, judge the next phase by future value, and guard both against escalation and careless exit.",
         "dropped_material": [
           "Did not split NPV, book values, stock-sale examples, supplier switching, or venture funding into separate domain affordances because they support the same future-value recommitment operation.",
-          "Did not promote relation curation for first-principles-thinking, optionality, systems-thinking, commitment-bias, or confirmation-bias into separate affordances; those relationships clarify this record but belong in relation semantics until reviewed otherwise."
+          "Did not promote relation curation for first-principles-thinking, optionality, systems-thinking, commitment-bias, or confirmation-bias into separate affordances; those relationships clarify this record but belong in relation semantics until reviewed otherwise.",
+          "Moved before-starting stop/change criteria into the precommitment split because that receiver action happens before sunk-cost pressure forms."
         ],
         "open_questions": [
-          "Future review could decide whether exit criteria should become its own affordance if runtime traces show it changes behavior independently of the recommitment test."
+          "Future packet review should check that the recommitment card and the precommitment card remain visibly distinct after packet compression."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "sunk-cost-fallacy.precommitment-exit-criteria",
+      "status": "supported",
+      "name": "Precommitment exit criteria before attachment",
+      "mechanism": "Before starting a high-cost commitment that could create sunk-cost pressure, predefine the time, budget, performance, and falsification conditions under which the commitment will stop or change, so later continuation cannot be defended by past investment alone.",
+      "activation_shape": {
+        "use_when": [
+          "A high-cost project, investment, partnership, relationship, or strategy is about to begin and future attachment could make exit difficult.",
+          "Stop, change, or next-phase criteria can be defined before time, money, identity, or emotional investment accumulates.",
+          "The team needs a precommitment gate that prevents Big Muddy escalation before resources create pressure to continue."
+        ],
+        "do_not_use_when": [
+          "The live problem is already a continuation or exit decision distorted by prior investment; use the future-value recommitment card first.",
+          "The stop rule would ignore real learning value, switching costs, cash-flow advantage, or remaining upside that should be evaluated before exit.",
+          "The commitment is low-cost, reversible, or ordinary enough that a heavy precommitment gate would add process burden without reducing sunk-cost pressure."
+        ],
+        "case_evidence_needed": [
+          "The commitment being started and the specific investments likely to become irretrievable.",
+          "The time, budget, performance, or falsification criteria that would stop, change, or justify the next phase.",
+          "The owner, review cadence, and evidence source that will apply the criteria before attachment distorts judgment.",
+          "The learning value, switching cost, or remaining upside that should keep the stop rule from becoming automatic abandonment."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "predefine-stop-change-criteria",
+          "description": "Before the commitment starts, require explicit time, budget, performance, and falsification criteria for stopping, changing, or approving the next phase.",
+          "evidence_required": [
+            "The new commitment and why future attachment or prior-history pressure is likely.",
+            "The time, budget, and performance metrics that will govern stop or change decisions.",
+            "The evidence that would fundamentally prove the original hypothesis wrong.",
+            "The person or review process responsible for applying the criteria before another phase is funded."
+          ],
+          "good_output_shape": [
+            "States the commitment and the sunk-cost pressure it could create.",
+            "Defines stop, change, and next-phase criteria before resources are committed.",
+            "Names the review owner and cadence that will apply the criteria.",
+            "Keeps exit criteria from becoming a license to abandon remaining upside without evaluation."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Before this high-cost commitment starts, what conditions would stop or change it?",
+        "What specific performance criteria must be met to justify the next phase of investment?",
+        "What evidence would fundamentally prove the original hypothesis wrong before we keep funding it?",
+        "Who will apply the stop/change criteria when future attachment makes continuation tempting?"
+      ],
+      "misuse_guards": [
+        "Do not use pre-set exit criteria as automatic quitting; evaluate learning value, switching costs, cash-flow reality, and remaining upside before exit.",
+        "Do not write vague gates that can be reinterpreted after attachment forms.",
+        "Do not route ordinary option comparison here unless future sunk-cost pressure is the specific risk."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "High Financial or Emotional Investment Exists",
+          "section_hint": "Most Powerful Contexts (Strengths)",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "Proactively define specific conditions (time, budget, performance metrics) under which the commitment will be stopped or changed *before* starting the project.",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "\"What specific performance criteria must be met to justify the next phase of investment?\"",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "\"What evidence exists that would fundamentally prove our original hypothesis wrong?\"",
+          "section_hint": "Effective Mitigation Strategies and Pre-mortem Questions",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Sunk_Cost_Fallacy_rag.md",
+          "source_quote": "organizations treat all problems as deserving endless resources, chasing diminishing returns simply because they are \"knee-deep in the Big Muddy\"",
+          "section_hint": "Limitations (Weaknesses) and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Split from future-value recommitment because this card designs exit criteria before sunk-cost pressure forms, while the original card resets a continuation decision after prior investment is already distorting judgment.",
+        "dropped_material": [
+          "Did not turn every project-management gate into a sunk-cost affordance; activation requires credible future sunk-cost pressure from high financial, identity, time, or emotional investment.",
+          "Kept marginal analysis, NPV, cash-flow, outside-view, and start-again-today discipline in the recommitment card because those are continuation treatments."
+        ],
+        "open_questions": [
+          "Packet stress should confirm that the two sunk-cost cards do not appear redundant when only one absence or one treatment line is rendered."
         ],
         "review_status": "draft"
       }

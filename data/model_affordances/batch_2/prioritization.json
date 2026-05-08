@@ -416,6 +416,28 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "symptom-ranking-before-root-cause",
+      "status": "not_supported_by_source",
+      "reason": "Prioritization should not promote a polished ranking of visible symptoms when the underlying root cause is still undiagnosed. Route to diagnosis or root-cause work before treating the priority list as decision-ready.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "Prioritization can fail if effort is focused on solving the presenting problem (symptom) instead of diagnosing the underlying root cause, leading to ineffective solutions.",
+          "section_hint": "Weaknesses and Common Anti-patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Prioritization_rag.md",
+          "source_quote": "Avoid the tendency to jump prematurely into analysis without being crystal clear about what output is needed to solve the problem.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
