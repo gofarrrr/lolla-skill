@@ -233,6 +233,36 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "pro-con-list-as-premortem-substitute",
+      "status": "not_supported_by_source",
+      "reason": "The source says a basic pro-con list is a substitution-bias failure because it makes positives more available and overlooks negative failure causes.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "a simple pro-con list tends to accentuate the positives and overlook negatives, the exact opposite of the Premortem's goal",
+          "section_hint": "Weaknesses and Anti-Patterns:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "runtime-simulation-or-ai-persona-behavior",
+      "status": "not_supported_by_source",
+      "reason": "The source mentions digital twins and multi-agent simulations as advanced stress-testing examples, not as a requirement or permission for runtime persona simulation or automated decision behavior.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Premortem_rag.md",
+          "source_quote": "using **Digital Twins** or multi-agent simulations to pre-validate decisions *in silico* and stress-test edge cases with \"extreme\" AI personas",
+          "section_hint": "The Latticework: Systemic Interactions:",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -259,7 +289,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "One high-confidence affordance was retained because the source is strongest on prospective hindsight before commitment and on converting surfaced failure paths into concrete changes.",
+    "normalization_note": "PR90 v52 source reread retained one high-confidence premortem affordance and added absence rails against pro-con substitution and runtime persona simulation overclaiming.",
     "dropped_material": [
       "Broad examples in financial advising, competitive strategy, and organizational systems design were treated as application contexts rather than separate runtime affordances.",
       "Relation curation around systems-thinking, second-order-thinking, confirmation-bias, and commitment-bias was used only where it clarified the core operational contract."

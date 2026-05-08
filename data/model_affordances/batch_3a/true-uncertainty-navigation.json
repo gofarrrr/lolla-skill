@@ -136,10 +136,106 @@
         "dropped_material": [
           "Did not preserve broad latticework, compass, GPS, Feynman, or Munger analogy material as separate affordances.",
           "Did not extract a generic knowns-and-unknowns inventory because existing uncertainty records already cover reducible evidence gathering; this record stays on robust action under ambiguity.",
-          "Did not create a separate calibration affordance because confidence calibration and probabilistic-thinking records carry that narrower function."
+          "Did not create a generic calibration affordance because confidence calibration and probabilistic-thinking records carry that narrower function."
         ],
         "open_questions": [
           "Reviewer should test whether the scenario-theater guard is strong enough without inventing monitoring machinery beyond the source's trigger, option-value, and reversible-action language."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "true-uncertainty-navigation.outcome-decoupled-decision-quality",
+      "status": "supported",
+      "name": "Outcome-decoupled decision quality",
+      "mechanism": "When uncertainty makes outcomes noisy, evaluate whether the decision was consistent with the decision-maker's preferences, available information, and uncertainty level rather than treating a good or bad outcome as proof of good or bad judgment.",
+      "activation_shape": {
+        "use_when": [
+          "Outcome quality, luck, blame, regret, or helplessness is being confused with whether the decision was good under uncertainty.",
+          "A decision must be evaluated against the preferences and information available at the time rather than against the realized outcome alone.",
+          "The case involves true uncertainty where even a good process can produce an undesirable outcome."
+        ],
+        "do_not_use_when": [
+          "The live need is still scenario construction, commitment sizing, or option-preserving action before a decision.",
+          "The answer would become deterministic hindsight grading after the outcome is known.",
+          "The decision context lacks the decision-maker's preferences, available information, or uncertainty level."
+        ],
+        "case_evidence_needed": [
+          "The decision-maker's preferences, constraints, and decision criteria at the time.",
+          "The information available or reasonably complete at the time of the decision.",
+          "The uncertainty level, plausible range, or ambiguity that made outcome prediction unreliable.",
+          "The actual or anticipated outcome and why it should not dominate process judgment."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "judge-decision-against-information-not-result",
+          "description": "Require the answer to evaluate decision quality against preferences, available information, and uncertainty level before drawing lessons from the outcome.",
+          "evidence_required": [
+            "The preferences and constraints governing the decision.",
+            "The complete information reasonably available at the time.",
+            "The uncertainty or ambiguity that limited prediction.",
+            "The result being over-weighted in praise, blame, regret, or helplessness."
+          ],
+          "good_output_shape": [
+            "Separates decision quality from outcome quality.",
+            "States whether the process fit the information and preferences available at the time.",
+            "Converts the outcome into calibration or learning without deterministic hindsight grading.",
+            "Names what would have made the decision process better under uncertainty."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What information and preferences were available when the decision was made?",
+        "Are we judging the decision process or merely reacting to the outcome?",
+        "Was the outcome bad because the process was bad, or because uncertainty remained?",
+        "What process lesson survives if the outcome had gone the other way?"
+      ],
+      "misuse_guards": [
+        "Do not treat a desirable outcome as proof that the decision process was sound.",
+        "Do not treat an undesirable outcome as proof that the decision process was unsound.",
+        "Do not use this card when the task is still to build scenarios or choose a commitment shape.",
+        "Do not grade decisions with information that was unavailable at the time."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "separating the quality of the *decision* from the quality of the *outcome*",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "a good decision is one that is consistent with the preferences and complete information of a decision maker; a good outcome is desirable",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "the best way to achieve good outcomes in the long run, short of being all-knowing",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "overcome feelings of helplessness that often paralyze their actions",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR90 v52 split: the source supports decision-quality evaluation under uncertainty as distinct from prospective scenario-bound robust action.",
+        "dropped_material": [
+          "Did not turn this into a runtime decision scorer or blame detector.",
+          "Did not duplicate counterfactual retrospective branch reconstruction; this card stays on preferences, available information, and uncertainty level."
+        ],
+        "open_questions": [
+          "Packet stress review should test whether this card remains distinct from counterfactual-reasoning.outcome-quality-retrospective."
         ],
         "review_status": "draft"
       }
@@ -189,6 +285,28 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "outcome-quality-as-decision-quality-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly separates decision quality from outcome quality, so neither a good nor bad outcome should be promoted as proof that the decision process was good or bad.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "separating the quality of the *decision* from the quality of the *outcome*",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "True_Uncertainty_Navigation_rag.md",
+          "source_quote": "a good decision is one that is consistent with the preferences and complete information of a decision maker; a good outcome is desirable",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -208,7 +326,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 3a outcome: strong_affordance_record. The source supports a narrow robust-action record because it explicitly combines multi-path futures, true uncertainty levels, active hypotheses, commitment discipline, anti-paralysis, and scenario-theater warnings.",
+    "normalization_note": "PR90 v52 source reread split True Uncertainty Navigation into prospective scenario-bound robust action and outcome-decoupled decision-quality evaluation under ambiguity.",
     "dropped_material": [
       "Did not extract multidisciplinary-toolbox material, Bayesian ally material, critical-thinking ally material, or narrative-thinking antagonists as fields.",
       "Did not add broad uncertainty theater to improve coverage statistics; the record is dormant until a later dry surface proves it improves compact Decision Pressure.",

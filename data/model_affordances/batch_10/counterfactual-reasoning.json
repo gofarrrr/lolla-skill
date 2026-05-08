@@ -7,21 +7,21 @@
       "affordance_id": "counterfactual-reasoning.plausible-alternative-branch-test",
       "status": "supported",
       "name": "Plausible alternative branch test",
-      "mechanism": "When the observed outcome or preferred path is hiding decision quality, require the answer to reconstruct plausible alternative branches, omitted scenarios, and failure paths that were genuinely open before action.",
+      "mechanism": "Before a preferred path locks in, require the answer to reconstruct plausible alternative branches, omitted scenarios, and failure paths that are genuinely open now, then identify what evidence would make those branches decision-relevant.",
       "activation_shape": {
         "use_when": [
-          "A realized or preferred outcome is being treated as proof that the decision process is good.",
-          "Learning depends on omitted paths, not only observed results.",
-          "A pre-mortem, scenario tree, or retrospective needs sharper causal pressure before commitment."
+          "A preferred path or current plan is making other plausible branches disappear before commitment.",
+          "Learning depends on exploring omitted paths, not only the most available or favored path.",
+          "A pre-mortem, scenario tree, or plan review needs sharper causal pressure before commitment."
         ],
         "do_not_use_when": [
           "The alternative paths are fictional, implausible, or untethered from the real decision context.",
-          "The counterfactual is built only after the outcome is known and hindsight contaminates plausibility.",
+          "An outcome already exists and the task is to judge decision quality from the information available at the time.",
           "The answer would spin unlimited alternatives without naming the evidence that distinguishes them."
         ],
         "case_evidence_needed": [
-          "The actual or preferred path under review.",
-          "The plausible alternatives available at the time of choice.",
+          "The preferred path, current plan, or imminent commitment under review.",
+          "The plausible alternatives still open before action or lock-in.",
           "The assumptions or evidence that would have changed the path.",
           "The failure or success paths that deserve pre-action attention."
         ]
@@ -31,13 +31,13 @@
           "requirement_id": "recover-plausible-branches",
           "description": "Require the answer to recover realistic branches that the current story is suppressing, then connect each branch to assumptions, evidence, or failure paths that would change the recommendation.",
           "evidence_required": [
-            "The decision or outcome being treated as inevitable.",
-            "Plausible alternative paths available before action.",
+            "The decision, plan, or preferred path being treated as inevitable.",
+            "Plausible alternative paths still available before action.",
             "The assumptions that make each branch possible.",
             "The evidence that would distinguish the current path from alternatives."
           ],
           "good_output_shape": [
-            "Separates realized outcome from decision quality.",
+            "Separates the preferred path from other plausible branches.",
             "Names plausible omitted branches rather than imaginary possibilities.",
             "Shows what evidence would make an alternative path matter.",
             "Uses counterfactuals to sharpen action, not to produce stories."
@@ -57,7 +57,7 @@
       "source_evidence": [
         {
           "source_file": "Counterfactual_Reasoning_rag.md",
-          "source_quote": "Most useful when one realized outcome is hiding the real decision quality",
+          "source_quote": "Best when leaders need to expose omitted scenarios before locking in a plan",
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
@@ -71,7 +71,14 @@
         },
         {
           "source_file": "Counterfactual_Reasoning_rag.md",
-          "source_quote": "Best when pre-mortems, scenario trees, or retrospectives need sharper causal pressure",
+          "source_quote": "Challenging the Initial Hypothesis",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "challenged and pressure-tested",
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
@@ -79,13 +86,115 @@
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 10 outcome: strong_affordance_record. The source supports a plausible-alternative branch test that distinguishes decision quality from the realized or preferred path.",
+        "normalization_note": "PR90 v52 retained and narrowed this affordance to pre-commitment branch pressure after separating retrospective outcome-quality reconstruction into its own affordance.",
         "dropped_material": [
           "Did not extract generic scenario analysis or decision-tree material as separate cards.",
           "Kept inverse thinking and pre-mortem material as supporting context for branch testing."
         ],
         "open_questions": [
           "PR46 should test whether this card improves packet handoff without inviting fanciful alternatives."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "counterfactual-reasoning.outcome-quality-retrospective",
+      "status": "supported",
+      "name": "Outcome quality retrospective",
+      "mechanism": "After an outcome exists, reconstruct the decision conditions and plausible outcomes available at the time so the answer can separate decision quality from realized result, luck, hindsight, or excuse-making.",
+      "activation_shape": {
+        "use_when": [
+          "A realized outcome is being treated as proof that the decision process was good or bad.",
+          "The team needs to learn from success or failure without letting the known outcome make the past feel inevitable.",
+          "Outcome noise, luck, or hindsight may be contaminating judgment about the original decision."
+        ],
+        "do_not_use_when": [
+          "The decision is still pre-commitment and the main need is to expose omitted branches before lock-in.",
+          "Counterfactuals are being used only to excuse bad outcomes while successful outcomes remain unexamined.",
+          "The reconstruction lacks information about what was known or knowable at the time of choice."
+        ],
+        "case_evidence_needed": [
+          "The decision, information set, constraints, and preferences available at the time.",
+          "The realized outcome and the plausible outcomes that could reasonably have happened.",
+          "The alternative branches or paths not taken and why they were live at the time.",
+          "The evidence that distinguishes decision-process quality from outcome luck or hindsight."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "reconstruct-ex-ante-decision-tree",
+          "description": "Require the answer to reconstruct the decision tree as it appeared at the time, then judge the decision process separately from the realized outcome.",
+          "evidence_required": [
+            "The original decision context and available information.",
+            "The plausible outcomes or branches visible at the time.",
+            "The actual outcome and what hindsight now makes salient.",
+            "The process criteria for judging whether the decision was reasonable before the result was known."
+          ],
+          "good_output_shape": [
+            "States what was known at the time.",
+            "Names plausible outcomes that did not happen.",
+            "Separates decision quality from outcome quality.",
+            "Extracts learning from both successes and failures without excuse-making."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What information was available when the decision was made?",
+        "Which plausible outcomes existed before the actual result was known?",
+        "Are we judging the process, the result, or the story hindsight now tells?",
+        "Would we apply the same counterfactual discipline to a good outcome?"
+      ],
+      "misuse_guards": [
+        "Do not let the actual outcome overfit the judgment of decision quality.",
+        "Do not use counterfactuals only to excuse failures.",
+        "Do not reconstruct the past with information that was unavailable at the time.",
+        "Do not turn retrospective learning into fictional alternatives without causal structure."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "placing the actual outcome in the proper context of other potential outcomes that existed at the time a decision was made",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "reconstructing a simplified version of the decision process and exploring paths not taken",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "separate \"what happened\" from \"what could reasonably have happened\" under the information available at the time",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "a team is treating one outcome as proof that the decision process was right or wrong",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "the actual outcome to \"overfit\" the decision quality",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR90 v52 split: the source supports post-outcome decision-quality reconstruction as a separate transaction from pre-commitment branch pressure.",
+        "dropped_material": [
+          "Did not extract decision trees, generic scenario analysis, FUD, or knowns-and-unknowns inventories as separate counterfactual affordances."
+        ],
+        "open_questions": [
+          "Packet stress review should check overlap with true-uncertainty-navigation.outcome-decoupled-decision-quality."
         ],
         "review_status": "draft"
       }
@@ -121,6 +230,28 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "bad-outcome-excuse-only-counterfactuals",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that people are more willing to contextualize bad outcomes than good ones, so counterfactuals should not be promoted as one-sided excuse-making after failure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "more eager to put bad outcomes in context than good ones",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Counterfactual_Reasoning_rag.md",
+          "source_quote": "This limits learning from successes",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +264,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 10 source reading found strong reviewed depth for counterfactual-reasoning as a plausible alternative branch test.",
+    "normalization_note": "PR90 v52 source reread split counterfactual reasoning into pre-commitment branch pressure and post-outcome decision-quality retrospective transactions.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

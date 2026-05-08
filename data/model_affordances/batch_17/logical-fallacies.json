@@ -121,6 +121,28 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "logical-validity-as-implementation-plan",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that logic can fail to bridge from knowing what to do to executing how to do it, especially in human systems.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Logical_Fallacies_rag.md",
+          "source_quote": "Logic often fails to bridge the gap between understanding *what* to do and executing *how* to do it",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Logical_Fallacies_rag.md",
+          "source_quote": "overlooks the complexity of human action",
+          "section_hint": "Weaknesses and Limitations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +155,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 17 keeps logical fallacies as validity checking, not as a rhetorical weapon.",
+    "normalization_note": "PR90 v52 kept logical fallacies compressed as validity checking and added an absence rail against treating logical validity as an implementation plan.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, argument scorer, or user-facing change is implied."
     ],
