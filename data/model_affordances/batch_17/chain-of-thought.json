@@ -223,6 +223,50 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "prompt-chaining-as-runtime-prompt-affordance",
+      "status": "source_too_thin",
+      "reason": "The source mentions LLM prompting and prompt chaining as application examples, but PR95 must not promote this dormant affordance record into runtime prompt mechanics, hidden chain disclosure, lane behavior, or product routing.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "simply adding in a “let’s think step-by-step”",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "CoT is frequently implemented using **Prompt Chaining**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "logic-tree-decomposition-as-chain-of-thought-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source uses logic trees and MECE as examples of stepwise structure, but the separate receiver transaction is already owned by decomposition and related verification records. Chain-of-thought should not duplicate branch-map ownership.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "**Problem Disaggregation**—breaking down a problem into its logical parts",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Chain_Of_Thought_rag.md",
+          "source_quote": "using **logic trees** (like deductive logic trees, hypothesis trees, or decision trees)",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
