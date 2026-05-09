@@ -121,6 +121,50 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "premature-solutioning-during-goal-selection",
+      "status": "not_supported_by_source",
+      "reason": "The source separates goal selection from diagnosis, planning, and execution. Do not promote goal setting when the answer jumps into how-to solution design before the intended outcome is clear.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Goal_Setting_rag.md",
+          "source_quote": "when setting goals, one should *only* set goals and avoid thinking about how they will be achieved or what might go wrong",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Goal_Setting_rag.md",
+          "source_quote": "When setting goals, thinking about *how* to achieve them interferes with the critical step of accurately diagnosing the true root problems later on.",
+          "section_hint": "Limitations and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "abstract-accurate-goal-without-decision-guidance",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that abstractly accurate goals can be useless if they do not guide daily or frontline decisions. Do not promote goal language that cannot govern action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Goal_Setting_rag.md",
+          "source_quote": "Goals that are abstract and accurate (e.g., \"maximize shareholder value\") are often useless because they fail to help frontline employees make daily decisions",
+          "section_hint": "Limitations and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Goal_Setting_rag.md",
+          "source_quote": "The Curse of Knowledge leads experts to share the generalized \"punch line\" without providing concrete direction.",
+          "section_hint": "Limitations and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +177,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found strong reviewed depth for Goal Setting. Extracted one outcome/checkpoint alignment gate and rejected stale-goal and legible-goal side-effect overclaims.",
+    "normalization_note": "Batch 8 source reading found strong reviewed depth for Goal Setting. Extracted one outcome/checkpoint alignment gate and rejected stale-goal and legible-goal side-effect overclaims. PR97 adds rails for premature solutioning during goal selection and abstract accurate goals without decision guidance.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

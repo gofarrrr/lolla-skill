@@ -121,6 +121,64 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "grind-without-recovery-or-load-management",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that persistence can exceed working-memory and self-control limits. Do not promote grit as nonstop grind when the case needs rest, recovery, chunking, or load management.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "Blind persistence (working harder) that ignores these limits leads to overwhelm and poor learning outcomes.",
+          "section_hint": "The Latticework: Systemic Interactions",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "Allow time for rest and renovation",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "Breaks enable the **percolation** of creative ideas via the unconscious mind.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "exhaustive-effort-without-leverage",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against boiling the ocean and perfectionist deliberation. Do not promote persistence when the effort is exhaustive, low-leverage, or disconnected from the hypothesis or action threshold.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "\"Don't boil the ocean\"—they must gather *only enough facts* to prove or disprove a hypothesis",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "exhaustive, unnecessary labor",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persistence_Grit_rag.md",
+          "source_quote": "The goal is thoughtful action, not achieving absolute perfection in analysis.",
+          "section_hint": "Weaknesses and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +191,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 14 source reading found strong reviewed depth for persistence as bounded sustained effort, not blind endurance.",
+    "normalization_note": "Batch 14 source reading found strong reviewed depth for persistence as bounded sustained effort, not blind endurance. PR97 adds rails against grit-as-grind without recovery and exhaustive effort without leverage.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],
