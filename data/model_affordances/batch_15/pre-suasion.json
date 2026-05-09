@@ -158,6 +158,94 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "emotional-sale-without-rational-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source allows emotional framing only when rational and technical proof remains available. Do not promote a pre-suasive emotional sale that withholds the factual basis needed for later deliberation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "serves as the **proof**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "rational and technical proof",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "irrelevant-prime-used-as-leverage",
+      "status": "not_supported_by_source",
+      "reason": "The source's good-mood example shows that irrelevant primes should be corrected, not exploited. Do not use mood, setting, or associative atmosphere as leverage when it is unrelated to the decision merits.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "their good mood is **irrelevant**",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "rational link correction",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "context-setting-as-confirmation-bias",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that pre-suasion can prime a desired conclusion and undermine rigorous hypothesis testing. Do not promote context-setting when it replaces open-minded evidence testing.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "priming a favorable associative pattern leads to motivated reasoning",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "undermines rigorous hypothesis testing",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "trust-theater-before-ask",
+      "status": "not_supported_by_source",
+      "reason": "The source describes simulated trust as a brilliant but ethically risky trick. Do not promote trust theater before an ask; route real costly value, receptivity, or proof to reciprocity, liking, or signaling owner records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "intentionally appearing clumsy or \"forgetful\"",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Pre_Suasion_rag.md",
+          "source_quote": "not an entirely ethical one",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -170,7 +258,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 15 source reading found strong reviewed depth for pre-suasion as ethical sequencing with merit checks. PR80 hardens incidental-prime correction as a treatment requirement inside the existing context-setting card.",
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for pre-suasion as ethical sequencing with merit checks. PR80 hardens incidental-prime correction as a treatment requirement inside the existing context-setting card. PR96 adds rails against emotional sale without proof, irrelevant primes, confirmation-biased context setting, and trust theater.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],

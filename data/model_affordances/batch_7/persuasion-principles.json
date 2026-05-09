@@ -165,6 +165,87 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "named-influence-principles-as-single-persuasion-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source lists reciprocity, liking, authority, social proof, scarcity, and consistency, but several of those are already distinct owner records with their own evidence gates. Do not split the broad persuasion card into named influence-principle summaries that flatten those owner boundaries.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "reciprocity, liking, authority, social proof, scarcity, and consistency",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "authority-evidence-as-merits-substitute",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source notes that authority can become the focal message, but domain-bound deference and authority-overclaim checks belong to authority-bias. Do not promote authority evidence as a persuasion shortcut that replaces merit evaluation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "the **messenger has become the focal message**",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "without thinking about the merits of the options",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "education-based-persuasion-as-obligation-pressure",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports education-based persuasion as value-before-ask trust building, but if the operational move is costly value, reciprocity or signaling owns the stronger evidence gate. Do not promote education as hidden obligation pressure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "providing massive value in advance",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "skepticism is reduced, trust is built",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "high-concept-analogy-as-persuasion-proof",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source uses high-concept pitch and analogy examples to show instant understanding, but analogy quality and schema bridging are already owned by association and analogies-and-metaphors. Do not treat a catchy analogy as persuasion proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "high-concept pitch",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Persuasion_Principles_rag.md",
+          "source_quote": "Analogies provide instant understanding and context",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -177,7 +258,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Persuasion Principles. Extracted one substance-preserving adoption design card and rejected weak-answer acceleration plus autonomy-bypassing influence.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Persuasion Principles. Extracted one substance-preserving adoption design card and rejected weak-answer acceleration plus autonomy-bypassing influence. PR96 adds owner-boundary rails for named influence principles, authority evidence, education-based trust, and high-concept analogy proof.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

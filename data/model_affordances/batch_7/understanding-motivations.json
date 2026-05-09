@@ -42,22 +42,6 @@
             "Provides a falsifiable check.",
             "Designs the intervention around the tested driver rather than around speculation."
           ]
-        },
-        {
-          "requirement_id": "test-implementation-path-after-driver",
-          "description": "After a hidden driver is tested, require the answer to identify the implementation path and social-system conditions needed for the intervention to work, rather than assuming that the right motivational explanation automatically produces action.",
-          "evidence_required": [
-            "The tested motivational driver.",
-            "The proposed message, incentive, role, or cooperation intervention.",
-            "The implementation path: who changes what, when, and under what constraints.",
-            "The emotional, social, or emergent response that could block linear execution."
-          ],
-          "good_output_shape": [
-            "Separates motive diagnosis from implementation plan.",
-            "Names the concrete intervention lever.",
-            "Tests whether the social system can actually execute the change.",
-            "Avoids treating motivation as a purely rational or mechanical process."
-          ]
         }
       ],
       "diagnostic_questions": [
@@ -91,20 +75,6 @@
           "section_hint": "The Playbook in Action",
           "extraction_type": "explicit",
           "confidence": "high"
-        },
-        {
-          "source_file": "Understanding_Motivations_rag.md",
-          "source_quote": "assuming that identifying the correct motivational strategy (**what** needs to be done) automatically leads to successful execution (**how** to do it)",
-          "section_hint": "Application Context: Strengths and Weaknesses",
-          "extraction_type": "explicit",
-          "confidence": "high"
-        },
-        {
-          "source_file": "Understanding_Motivations_rag.md",
-          "source_quote": "Implementation in a living social system is emergent and emotional, not amenable to linear or mechanical beliefs.",
-          "section_hint": "Application Context: Strengths and Weaknesses",
-          "extraction_type": "explicit",
-          "confidence": "high"
         }
       ],
       "confidence": "high",
@@ -116,6 +86,109 @@
         ],
         "open_questions": [
           "Future packet review should test this card against reciprocity and persuasion when stated motives and influence tactics diverge."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "understanding-motivations.motive-to-implementation-path-check",
+      "status": "supported",
+      "name": "Motive to implementation path check",
+      "mechanism": "After a plausible motivational driver has been tested, require the answer to map the intervention into a concrete social-system implementation path rather than assuming the right motive explanation automatically produces action.",
+      "activation_shape": {
+        "use_when": [
+          "A motivational driver is plausible or tested, but the proposed message, incentive, role, or cooperation move may still fail in execution.",
+          "The answer needs to specify who changes what, when, under which constraints, and through which social or emotional pathway.",
+          "A living social system could block a linear motivational explanation through misrepresentation, politics, image management, fear, or emergent response."
+        ],
+        "do_not_use_when": [
+          "The hidden driver has not been tested or could still be a simple constraint, capability, or resource problem.",
+          "The live task is reward architecture, autonomy/mastery/purpose diagnosis, or task-fit incentive design.",
+          "The problem is message packaging, proof, or user adoption testing rather than implementation of a tested motive-based intervention."
+        ],
+        "case_evidence_needed": [
+          "The tested or plausible motivational driver.",
+          "The proposed message, incentive, role, cooperation move, or intervention lever.",
+          "The implementation path: who changes what, when, and under what constraints.",
+          "The social, emotional, political, or emergent response that could block execution.",
+          "A check that would distinguish motive diagnosis failure from implementation-path failure."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-implementation-path-after-driver",
+          "description": "After a hidden driver is tested, require the answer to identify the implementation path and social-system conditions needed for the intervention to work, rather than assuming that the right motivational explanation automatically produces action.",
+          "evidence_required": [
+            "The tested motivational driver.",
+            "The proposed message, incentive, role, or cooperation intervention.",
+            "The implementation path: who changes what, when, and under what constraints.",
+            "The emotional, social, or emergent response that could block linear execution."
+          ],
+          "good_output_shape": [
+            "Separates motive diagnosis from implementation plan.",
+            "Names the concrete intervention lever.",
+            "Tests whether the social system can actually execute the change.",
+            "Avoids treating motivation as a purely rational or mechanical process."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What has to happen after the motivational driver is identified?",
+        "Who changes what, when, and under what social or emotional constraints?",
+        "What would show that the motive diagnosis was right but the implementation path was wrong?"
+      ],
+      "misuse_guards": [
+        "Do not treat motivation as a rational switch that automatically produces action.",
+        "Do not use an implementation plan to validate an untested hidden-motive story.",
+        "Do not route reward architecture or autonomy/mastery/purpose design through this card when incentives or self-determination theory owns the transaction.",
+        "Do not confuse persuasion packaging with implementation-path evidence."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "assuming that identifying the correct motivational strategy (**what** needs to be done) automatically leads to successful execution (**how** to do it)",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "implementation falters despite a clear strategy",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "Treating motivation as a **fundamentally rational process**",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "Implementation in a living social system is emergent and emotional, not amenable to linear or mechanical beliefs.",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "People deliberately misrepresent their abilities and motivations to achieve goals",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR96 accepted split: motive-to-implementation checking differs from hidden-driver diagnosis because it activates after a driver is plausible, requires implementation-path evidence, and can defer or reject motive-only advice when social-system execution conditions are missing.",
+        "dropped_material": [
+          "Did not split AMP, buyer-avatar language, AI persona construction, or hot-cognition packaging into Understanding Motivations affordances.",
+          "Kept reward architecture, user evidence, and message packaging routed to their better owner records."
+        ],
+        "open_questions": [
+          "Packet review should test whether this split prevents shallow 'find the motive, then persuade' advice in adoption and resistance cases."
         ],
         "review_status": "draft"
       }
@@ -180,6 +253,94 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "motivation-diagnosis-without-falsifier",
+      "status": "not_supported_by_source",
+      "reason": "The source supports probing for true underlying dynamics, not inventing hidden motives. Do not promote motivation diagnosis when there is no disconfirming check or competing assumption test.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "What would you have to believe?",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "probing for the true underlying dynamics",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "buyer-avatar-language-as-motivation-proof",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source's Dream Buyer material is useful for marketing language and audience fit, but buyer-avatar language is not proof of the underlying motive. Route audience language, adoption packaging, or user evidence to empathy, persuasion-principles, or user-centered-design.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "The Dream Buyer Avatar",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "The playbook focuses on defining the Dream Buyer",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "ai-persona-psychological-fingerprint-as-motive-evidence",
+      "status": "source_too_thin",
+      "reason": "The source mentions AI persona creation and psychological fingerprints as modeling examples, but this does not support runtime motivation inference or treating simulated persona output as motive evidence. Route source-backed simulation screening to user-experience-research-methods or mental-simulation.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "AI Persona Creation",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "specific psychological fingerprints must be explicitly encoded",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "hot-cognition-packaging-as-motivation-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source's croc-brain and hot-cognition packaging material belongs to persuasion, pre-suasion, or cognitive-load owner cards when the receiver action is message design. Understanding Motivations should not absorb message packaging as a separate motive card.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "relying on **hot cognitions**",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Understanding_Motivations_rag.md",
+          "source_quote": "packaging ideas for the fearful, primal croc brain",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -192,7 +353,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Understanding Motivations. Extracted one hidden-driver test and rejected over-psychologizing plus stated-motive credulity. PR80 hardens implementation-path testing and blocks AMP/reward architecture duplication.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Understanding Motivations. Extracted one hidden-driver test and rejected over-psychologizing plus stated-motive credulity. PR96 splits motive-to-implementation path checking and adds rails against unfalsified motive stories, avatar proof, AI-persona overreach, and message-packaging owner drift.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

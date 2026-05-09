@@ -168,6 +168,123 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "named-story-framework-as-standalone-card",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source lists HSO, four-part story, Steller, and Minto structures, but these are selectable structures inside the existing audience-outcome transaction. Do not promote each named framework as its own affordance without distinct activation, evidence, and receiver behavior.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "The Hook, Story, Offer (HSO) Framework",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "Context, Conflict, Outcome, and Takeaway",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "Normal → Explosion → New Normal",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "story-data-story-without-evidence-boundary",
+      "status": "not_supported_by_source",
+      "reason": "The source's Story-Data-Story pattern is meant to pair emotional buy-in with logical appeal. Do not promote a story-data-story move when the data, evidence boundary, or rational proof disappears beneath the story arc.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "Story → Data → Story (New Normal)",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "ensure logical appeal follows emotional buy-in",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "ai-backstory-as-behavior-guarantee",
+      "status": "source_too_thin",
+      "reason": "The source gives AI-agent backstory as an example of narrative shaping, but it does not support treating a backstory as a behavior guarantee or runtime agent-design affordance. Route source-backed simulation to UX research or mental-simulation records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "AI Agent Design (Systems Thinking)",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "**backstory** is a carefully crafted narrative",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "leader-story-as-credibility-proof",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source says leader stories can convey commitment and credibility, but if the receiver needs to judge proof, commitment signal, or authority, signaling and authority-bias owner records have stricter evidence gates. Do not let leader story replace credibility proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "stories about their life and experiences",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "**more legitimate and convincing than directly declaring their traits**",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "story-coherence-as-causal-proof",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that story coherence can outrun reality by laundering weak evidence, missing trade-offs, or causal gaps. Do not promote a coherent story as causal proof.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "Story Coherence Outruns Reality",
+          "section_hint": "Common Anti-Patterns and Dangerous Misapplications",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Storytelling_Frameworks_rag.md",
+          "source_quote": "laundering weak evidence, missing trade-offs, or causal gaps",
+          "section_hint": "Common Anti-Patterns and Dangerous Misapplications",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -180,7 +297,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 15 source reading found strong reviewed depth for story framework selection and audience outcome discipline.",
+    "normalization_note": "Batch 15 source reading found strong reviewed depth for story framework selection and audience outcome discipline. PR96 adds rails against named-framework bloat, story-data-story without evidence boundaries, AI-backstory guarantees, leader-story proof, and story coherence as causal proof.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],
