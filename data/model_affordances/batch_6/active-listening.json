@@ -42,36 +42,17 @@
             "Separates diagnosis from advice.",
             "Uses confirmation before proposing the next move."
           ]
-        },
-        {
-          "requirement_id": "capture-process-before-abstracting-advice",
-          "description": "When the needed knowledge is trapped in expert, customer, or operator practice, require the answer to elicit how the person thinks, decides, sequences, and notices exceptions before abstracting advice.",
-          "evidence_required": [
-            "The concrete situation where the expert, customer, operator, or stakeholder made decisions.",
-            "The sequence, cue, constraint, or exception that shaped the decision.",
-            "The stories, facts, timelines, or exact language the source uses to describe the process.",
-            "The synthesis, design choice, learning move, or action threshold the elicited process will inform."
-          ],
-          "good_output_shape": [
-            "Asks how the person thinks or decides rather than asking only what they recommend.",
-            "Captures stories, timelines, constraints, and exceptions before abstraction.",
-            "Separates extracted process evidence from the assistant's own interpretation.",
-            "Turns the captured process into a bounded decision, design, or learning move."
-          ]
         }
       ],
       "diagnostic_questions": [
         "What does the other side think we do not understand about their perspective?",
         "What facts, emotions, or constraints are missing from our current frame?",
-        "Have we confirmed their meaning before moving to advice or rebuttal?",
-        "What would we miss if we asked only what to do instead of how the person thinks?",
-        "Which story, timeline, or decision walkthrough reveals the tacit process?"
+        "Have we confirmed their meaning before moving to advice or rebuttal?"
       ],
       "misuse_guards": [
         "Do not use listening language performatively when the answer is already decided.",
         "Do not force a sweeping interpretation that makes the speaker feel judged or analyzed.",
         "Do not let listening become endless diagnosis when action criteria are already clear.",
-        "Do not collapse the source's process into generic best-practice advice.",
         "Do not treat long listening as useful unless it changes a decision, design, or synthesis."
       ],
       "source_evidence": [
@@ -105,6 +86,81 @@
         },
         {
           "source_file": "Active Listening_rag.md",
+          "source_quote": "without judgment or early advice",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a hidden-disagreement diagnostic loop with explicit anti-performative and anti-premature-interpretation guards. PR96 splits tacit expert, customer, or operator process capture into its own transaction card instead of keeping it pooled inside the hidden-disagreement card.",
+        "dropped_material": [
+          "Did not extract all nine active-listening actions as separate affordances.",
+          "Moved expert-process listening into a separate affordance because it has different activation, evidence, treatment, and receiver action from hidden disagreement diagnosis.",
+          "Did not duplicate feedback models, non-violent communication, or evidence-testing cards."
+        ],
+        "open_questions": [
+          "Future packet review should test this card against Prisoner's Dilemma in cases where adversarial incentives and listening both appear relevant."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "active-listening.tacit-process-capture-before-abstraction",
+      "status": "supported",
+      "name": "Tacit process capture before abstraction",
+      "mechanism": "When the needed knowledge is trapped in expert, customer, operator, or stakeholder practice, require the answer to elicit how the person thinks, decides, sequences, and notices exceptions before abstracting advice or design choices.",
+      "activation_shape": {
+        "use_when": [
+          "The needed knowledge is tacit, embodied in practice, or likely to be omitted by an expert, customer, operator, or stakeholder.",
+          "Generic advice would miss the sequence, cue, constraint, exception, exact language, or decision walkthrough that makes the process work.",
+          "A synthesis, design choice, learning move, or action threshold depends on recovering the source's actual process rather than only their recommendation."
+        ],
+        "do_not_use_when": [
+          "The central issue is whether an expert deserves deference rather than extracting their process evidence.",
+          "The task needs lived-context user evidence to reframe a product or service brief.",
+          "The answer is inferring hidden motives instead of collecting concrete process evidence."
+        ],
+        "case_evidence_needed": [
+          "The concrete episode where the person made a decision, solved a problem, noticed an exception, or handled a constraint.",
+          "The sequence, cue, constraint, exception, or exact language that shaped the action.",
+          "Stories, facts, timelines, or step-by-step decision walkthroughs from the source.",
+          "The synthesis, design choice, learning move, or action threshold that the captured process will change."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "capture-process-before-abstracting-advice",
+          "description": "When the needed knowledge is trapped in expert, customer, or operator practice, require the answer to elicit how the person thinks, decides, sequences, and notices exceptions before abstracting advice.",
+          "evidence_required": [
+            "The concrete situation where the expert, customer, operator, or stakeholder made decisions.",
+            "The sequence, cue, constraint, or exception that shaped the decision.",
+            "The stories, facts, timelines, or exact language the source uses to describe the process.",
+            "The synthesis, design choice, learning move, or action threshold the elicited process will inform."
+          ],
+          "good_output_shape": [
+            "Asks how the person thinks or decides rather than asking only what they recommend.",
+            "Captures stories, timelines, constraints, and exceptions before abstraction.",
+            "Separates extracted process evidence from the assistant's own interpretation.",
+            "Turns the captured process into a bounded decision, design, or learning move."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What would we miss if we asked only what to do instead of how the person thinks?",
+        "Which story, timeline, or decision walkthrough reveals the tacit process?",
+        "What cue, constraint, or exception changed the person's decision in the concrete episode?"
+      ],
+      "misuse_guards": [
+        "Do not collapse the source's process into generic best-practice advice.",
+        "Do not keep asking process questions if no decision, design, synthesis, or action threshold will change.",
+        "Do not treat expert status as proof; extract process evidence and route authority claims elsewhere.",
+        "Do not infer hidden motives when the source only provides process observations."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Active Listening_rag.md",
           "source_quote": "ask questions that yield detailed answers, focusing on the process rather than the outcome",
           "section_hint": "The Playbook in Action",
           "extraction_type": "explicit",
@@ -130,18 +186,24 @@
           "section_hint": "Application Context: Strengths and Weaknesses",
           "extraction_type": "explicit",
           "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "Ask experts to provide their \"thought chain\" and detail their reasoning steps.",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
         }
       ],
       "confidence": "high",
       "review_notes": {
-        "normalization_note": "Batch 6 outcome: strong_affordance_record. The source supports a hidden-disagreement diagnostic loop with explicit anti-performative and anti-premature-interpretation guards. PR74 hardens the same card for tacit expert, customer, or operator process capture rather than splitting a second listening affordance.",
+        "normalization_note": "PR96 accepted split: tacit process capture differs from hidden-disagreement diagnosis because it activates on source process opacity, requires concrete episode walkthrough evidence, and defers abstraction until process evidence changes a bounded decision, design, synthesis, or learning move.",
         "dropped_material": [
-          "Did not extract all nine active-listening actions as separate affordances.",
-          "Did not split expert-process listening from the core diagnostic loop because the existing card already owns asking how the speaker thinks before advice.",
-          "Did not duplicate feedback models, non-violent communication, or evidence-testing cards."
+          "Did not turn active listening into expert deference, empathy reflection, product discovery, or hidden motive inference.",
+          "Kept paraphrase-and-confirm as shared listening technique rather than a separate positive card."
         ],
         "open_questions": [
-          "Future packet review should test this card against Prisoner's Dilemma in cases where adversarial incentives and listening both appear relevant."
+          "Packet review should test whether this split helps the receiver ask for process evidence without turning every advice request into long interviewing."
         ],
         "review_status": "draft"
       }
@@ -214,6 +276,72 @@
           "confidence": "medium"
         }
       ]
+    },
+    {
+      "attempted_field": "long-listening-without-decision-change",
+      "status": "not_supported_by_source",
+      "reason": "The source supports deep listening when action would otherwise be premature, but also warns about analysis paralysis. Do not promote long listening unless the captured facts, emotions, or process evidence can change a decision, design, synthesis, or next action.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "action would be premature without better diagnosis",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "analysis paralysis",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "tacit-process-capture-without-concrete-episode",
+      "status": "not_supported_by_source",
+      "reason": "The accepted tacit-process split requires concrete stories, facts, timelines, cues, constraints, exceptions, or step-by-step walkthroughs. Do not promote process capture as generic 'ask more questions' when no episode evidence is available.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "asking for stories, facts, and step-by-step decision walkthroughs",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "Focus on gathering stories, facts, and timelines",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "empathetic-validation-as-active-listening-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source supports paraphrase, reflection, and validation as listening technique, but a standalone emotion-reflection or trust-landing transaction should route to empathy or emotional-intelligence records. Keep Active Listening focused on comprehension before response and tacit process capture.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "paraphrasing and reflecting what the speaker has said to confirm comprehension and show empathy",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Active Listening_rag.md",
+          "source_quote": "Practice Empathetic Reflection",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -233,7 +361,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 6 source reading found strong reviewed depth for Active Listening. Extracted one diagnosis-before-advice loop and rejected performative listening plus sweeping interpretation.",
+    "normalization_note": "Batch 6 source reading found strong reviewed depth for Active Listening. Extracted one diagnosis-before-advice loop and rejected performative listening plus sweeping interpretation. PR96 splits tacit process capture into a separate transaction and adds rails against long-listening, generic process questioning, and empathy-validation owner drift.",
     "dropped_material": [
       "Sales, marketing, AI persona, and broad emotional-intelligence material were kept as context rather than separate PR34 cards.",
       "No runtime, prompt, lane, packet, or user-facing change is implied."

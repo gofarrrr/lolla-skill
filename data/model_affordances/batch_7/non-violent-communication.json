@@ -121,6 +121,101 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "feedback-add-structure-as-nvc-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source describes an ADD feedback proxy, but incident/action, impact, invitation, standards, and feedback hearability are already owned by feedback-models-sbi and constructive-feedback-models. Do not promote NVC as a separate feedback-format owner.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "Providing Feedback Constructively (The ADD Structure Proxy)",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "objective observations or verifiable facts",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "invitation to collaboratively solve the problem",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "clarity-as-weapon-without-relational-fit",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that blunt clarity can be perceived as brutal or rude when the audience already disagrees. Do not promote directness unless observable facts, relationship concern, need or boundary, and request remain paired.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "Using Clarity as a Weapon",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "perceived as too brutal or outright rude",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "radical-transparency-as-nvc-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source mentions radical transparency as organizational drag reduction, but that is not the NVC transaction unless observations, needs, boundaries, and requests are present. Route candor systems to psychological-safety, feedback, or organizational owner records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "Applying radical transparency and truth",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "the job of managing others’ impressions of how they’re doing their job",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "dialectic-assumption-testing-as-nvc-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source includes WWHB and dialectic prompts, but the receiver transaction is assumption or frame testing, not relational observation-need-request clarification. Route to problem-framing, falsifiability, critical-thinking, or chain-of-verification owner cards.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "The \"What would you have to believe?\" Challenge",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Non_Violent_Communication_rag.md",
+          "source_quote": "thesis, antithesis, synthesis",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -140,7 +235,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Non-Violent Communication. Extracted one observation/need/request clarifier and rejected conflict avoidance plus empathy-over-interest misuse.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Non-Violent Communication. Extracted one observation/need/request clarifier and rejected conflict avoidance plus empathy-over-interest misuse. PR96 adds owner-routing rails for feedback ADD, blunt clarity, radical transparency, and dialectic assumption testing.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],
