@@ -121,6 +121,72 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "clean-boundary-hiding-cross-boundary-dependencies",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that tidy boundaries can hide feedback loops, interdependencies, and vital information outside the chosen frame. Do not promote a crisp scope line when the case evidence shows cross-boundary dependencies matter.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "A way of seeing is also a way of not seeing",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "artificially narrow system boundaries hide feedback loops and interdependencies that cross the defined perimeter",
+          "section_hint": "Structured Tension Curation (2026-04-03)",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "dont-boil-ocean-as-boundaries-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source's only-enough-facts heuristic supports the current finite-capacity boundary and adjacent prioritization/leverage records; it should not become a separate Boundaries affordance unless the transaction is actually scope, ownership, relevance, or exclusion.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "only enough facts",
+          "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "What is the minimum set of facts needed to prove or disprove this specific hypothesis?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "overbroad-system-boundary-as-completeness",
+      "status": "not_supported_by_source",
+      "reason": "The source identifies the systems analyst trap: boundaries that become too large can obscure the answer. Do not promote ever-wider system mapping as Boundaries unless the wider perimeter improves the current decision.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "Systems analysts sometimes make boundaries too large",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Boundaries_rag.md",
+          "source_quote": "only serve to obscure the answers to the questions at hand",
+          "section_hint": "Application Context: Strengths and Weaknesses",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +199,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 7 source reading found strong reviewed depth for Boundaries. Extracted one scope/ownership filter and rejected comfort-protection plus premature narrowing.",
+    "normalization_note": "Batch 7 source reading found strong reviewed depth for Boundaries. Extracted one scope/ownership filter and rejected comfort-protection plus premature narrowing. PR98 keeps additional richness as absence rails for hidden cross-boundary dependencies, only-enough-facts split bloat, and overbroad system-boundary completeness.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied."
     ],

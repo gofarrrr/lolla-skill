@@ -121,6 +121,50 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "expert-status-as-competence-evidence",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source warns that external expert status can be accepted outside proven domain boundaries and asks the user to seek variables and causality, not only abstract answers. Route authority deference and borrowed expertise checks to authority-bias unless the active transaction is first-party competence calibration.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Circle_Of_Competence_rag.md",
+          "source_quote": "external expert status is accepted outside proven domain boundaries",
+          "section_hint": "Structured Tension Curation (2026-02-27)",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Circle_Of_Competence_rag.md",
+          "source_quote": "What variables matter in this situation and why?",
+          "section_hint": "\"Pre-Mortem\" Questions to Ensure Wise Use",
+          "extraction_type": "review_note",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "feynman-or-analogy-as-competence-split",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source names Feynman and analogy thinking as tools for revealing or expanding the competence perimeter. They do not create separate Circle of Competence transactions unless the case also needs the owner models' plain-language gap test or analogy-boundary check.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Circle_Of_Competence_rag.md",
+          "source_quote": "failure to do so reveals a **blind spot** or gap in knowledge",
+          "section_hint": "Synergistic Relationships (Allies)",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Circle_Of_Competence_rag.md",
+          "source_quote": "Analogies connect new information to old knowledge",
+          "section_hint": "Synergistic Relationships (Allies)",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +177,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 17 treats the model as calibrated boundary-setting, not as a permanent capability label.",
+    "normalization_note": "Batch 17 treats the model as calibrated boundary-setting, not as a permanent capability label. PR98 rejects expert-status and Feynman/analogy expansion as positive CoC splits; they remain owner-routed absence rails.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, capability classifier, or user-facing change is implied."
     ],
