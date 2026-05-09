@@ -81,11 +81,97 @@
       "review_notes": {
         "normalization_note": "Batch 15 outcome: strong_affordance_record. The source supports category decisions as precommitment plus category validation.",
         "dropped_material": [
-          "Did not extract category design marketing as a separate affordance.",
+          "PR94 split category-of-one positioning into a separate affordance; this card remains focused on repeat-choice precommitment and taxonomy validation.",
           "Did not create deterministic classifiers or runtime routing."
         ],
         "open_questions": [
           "Later packet review should test whether this card helps incident/process advice avoid universal playbook errors."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "category-decisions.category-of-one-positioning-frame",
+      "status": "supported",
+      "name": "Category of one positioning frame",
+      "mechanism": "When differentiation depends on defining a category rather than choosing inside an existing one, require the answer to name the specific problem, specific person, and specific way before treating the category as a useful positioning frame.",
+      "activation_shape": {
+        "use_when": [
+          "A product, service, offer, or strategic identity is being positioned by category rather than by ordinary feature comparison.",
+          "The team needs to define a differentiated category around a specific problem, person, and way.",
+          "A broad category label sounds attractive but has not yet been tied to the audience's decision frame."
+        ],
+        "do_not_use_when": [
+          "The real job customers are hiring the product to do is still unknown; route to jobs-to-be-done first.",
+          "The category label is mainly branding theater without a specific problem, person, and way.",
+          "The task is repeated operational classification rather than market, offer, or strategy positioning."
+        ],
+        "case_evidence_needed": [
+          "The offer, product, service, or strategic identity being positioned.",
+          "The specific problem the category is meant to solve.",
+          "The specific person or audience the category is for.",
+          "The specific way the category solves the problem differently from alternatives."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "define-category-around-problem-person-way",
+          "description": "Require the answer to define the category using one specific problem, one specific person, and one specific way, then reject category language that remains accurate but operationally useless.",
+          "evidence_required": [
+            "The proposed category or category-of-one claim.",
+            "The specific problem and audience the category serves.",
+            "The specific way the offer solves that problem.",
+            "The competing frame or existing category the new category is meant to escape."
+          ],
+          "good_output_shape": [
+            "States the category frame in problem-person-way form.",
+            "Explains how the category changes comparison, positioning, or strategic focus.",
+            "Rejects labels that sound differentiated but do not change buyer or audience understanding."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What specific problem, specific person, and specific way define this category?",
+        "Which existing category or comparison frame is the new category meant to escape?",
+        "Would this category help the audience choose, or is it only an attractive label?"
+      ],
+      "misuse_guards": [
+        "Do not treat a category name as positioning unless it changes audience comparison or decision behavior.",
+        "Do not use category-of-one language before customer job or audience evidence is credible enough.",
+        "Do not confuse strategic category definition with deterministic routing or operational classification."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "Category Decisions are foundational to Category Design, which aims to differentiate a business by creating a **Category of One**.",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "1 Specific Problem, 1 Specific Person, 1 Specific Way",
+          "section_hint": "Concrete Examples of Application",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "accurate but fails to help a frontline employee make a specific decision",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR94 split: source-backed category positioning has a different receiver transaction from repeat-choice precommitment because it requires problem-person-way evidence and buyer/audience frame discipline.",
+        "dropped_material": [
+          "Did not turn all marketing category work into this affordance; customer-progress discovery remains better owned by jobs-to-be-done.",
+          "Did not promote category labels without an audience or buyer decision frame."
+        ],
+        "open_questions": [
+          "Packet stress should later test whether this split helps product and strategy cases without crowding out jobs-to-be-done or positioning evidence."
         ],
         "review_status": "draft"
       }
@@ -143,6 +229,50 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "category-lock-in-after-causal-shift",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that categories can become blinding when yesterday's buckets remain after the underlying causal structure changes. Do not promote category decisions when the category has not been revalidated against the current causal structure.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "yesterday's buckets remain in force after the underlying causal structure has changed",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "unhelpful or misleading in the new and different context",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "universal-playbook-before-taxonomy-validation",
+      "status": "not_supported_by_source",
+      "reason": "The source says a universal playbook can scale the wrong diagnosis when incidents belong to different classes. Do not promote category decisions until the answer asks what kind of incident this is before choosing a response logic.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "what kind of incident is this?",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Category_Decisions_rag.md",
+          "source_quote": "not one category but two or more",
+          "section_hint": "Effective Mitigation Strategies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -160,7 +290,7 @@
       "No runtime, prompt, lane, packet, deterministic pressure, or user-facing change is implied."
     ],
     "open_questions": [
-      "A later packet should test whether category decisions helps distinguish product category work from incident taxonomy work."
+      "A later packet should test whether category decisions helps distinguish product category work from incident taxonomy work without forcing both cards into the same receiver action."
     ],
     "review_status": "draft"
   }
