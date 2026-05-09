@@ -171,6 +171,180 @@
         ],
         "review_status": "draft"
       }
+    },
+    {
+      "affordance_id": "critical-thinking.framework-fit-stress-fracture-check",
+      "status": "supported",
+      "name": "Framework fit stress fracture check",
+      "mechanism": "When a named framework, process, analogy, or mental model is carrying a recommendation, require the answer to expose the imported assumptions and the context mismatch that could make the framework fail here.",
+      "activation_shape": {
+        "use_when": [
+          "A familiar framework, process, analogy, or mental model is doing the work of making the recommendation sound valid.",
+          "The recommendation may depend on a process or model designed for a different situation.",
+          "A small flaw in logic, context fit, or imported assumption could change the conclusion under pressure."
+        ],
+        "do_not_use_when": [
+          "No named framework, process, analogy, or mental model is materially carrying the recommendation.",
+          "The task is only to build or compare issue-tree cuts; route to decomposition instead.",
+          "Framework testing would become framework shopping rather than checking a live assumption."
+        ],
+        "case_evidence_needed": [
+          "The framework, process, analogy, or mental model carrying the recommendation.",
+          "The assumptions or omissions the framework imports.",
+          "The context difference that may make the framework misfit this case.",
+          "The decision, risk, or conclusion that would change if the framework fails."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "test-framework-for-context-misfit",
+          "description": "Require the answer to name the framework doing work, state its imported assumptions, and identify the stress fracture where this context may break the recommendation.",
+          "evidence_required": [
+            "The active framework, process, analogy, or mental model.",
+            "The assumptions or decision rule imported by that framework.",
+            "The context mismatch, omitted factor, or flaw in logic that could make it fail.",
+            "The change in recommendation if the framework does not fit."
+          ],
+          "good_output_shape": [
+            "Names the framework rather than treating it as neutral structure.",
+            "States the assumption it imports into the case.",
+            "Identifies the stress fracture or wrong-context adaptation.",
+            "Explains what decision or risk changes if the framework fails."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "Which framework, process, analogy, or mental model is carrying this recommendation?",
+        "What assumption does that framework import into this case?",
+        "Where is the stress fracture if this context is not the one the framework was designed for?"
+      ],
+      "misuse_guards": [
+        "Do not use this card to shop for more frameworks when no active framework is carrying the claim.",
+        "Do not route generic MECE or branch-structure work here when decomposition owns the transaction.",
+        "Do not treat a prestigious framework as neutral evidence before checking its context fit."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "tiny stress fractures in the wing of an airliner",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "when a procurement process designed for a different situation is inappropriately adapted for the current one",
+          "section_hint": "Concrete Examples in Business and Strategy",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "over-relies on a favorite framework or mental model, forcing reality to fit the model they have handy",
+          "section_hint": "Weaknesses, Limitations, and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR94 split: framework fit testing gets first-class identity because the receiver must inspect a named framework's imported assumptions rather than only check a generic claim for evidence.",
+        "dropped_material": [
+          "Did not duplicate decomposition's issue-tree and MECE ownership.",
+          "Did not promote framework shopping; the split activates only when a framework, process, analogy, or mental model is actually carrying the recommendation."
+        ],
+        "open_questions": [
+          "Packet stress should later test whether this split helps the receiver reject mental-model name-dropping without making every answer perform framework critique."
+        ],
+        "review_status": "draft"
+      }
+    },
+    {
+      "affordance_id": "critical-thinking.personal-data-action-threshold-check",
+      "status": "supported",
+      "name": "Personal data action threshold check",
+      "mechanism": "When a high-stakes human problem is being made falsely rational by filtering out emotion or personal context, require the answer to preserve relevant human data while still ending with an action threshold instead of endless critique.",
+      "activation_shape": {
+        "use_when": [
+          "A high-stakes human problem may change if emotional, relational, or personal data is treated as evidence rather than noise.",
+          "The answer is filtering out human context in the name of rational analysis.",
+          "The critique needs a one-day answer, action threshold, or decision point so rigor does not become detachment."
+        ],
+        "do_not_use_when": [
+          "The emotional read is unvalidated and should not be treated as evidence yet.",
+          "The main transaction is perspective-taking, emotional support, or adoption design; route to empathy or emotional-intelligence instead.",
+          "Immediate action is required and more critique would not change the evidence threshold."
+        ],
+        "case_evidence_needed": [
+          "The emotional, relational, or personal data being filtered out.",
+          "Why that data could change the problem interpretation or action threshold.",
+          "Whether the personal data is validated evidence, noise, or an untested interpretation.",
+          "The one-day answer, decision point, or action threshold that bounds the critique."
+        ]
+      },
+      "treatment_requirements": [
+        {
+          "requirement_id": "preserve-human-data-and-bound-critique",
+          "description": "Require the answer to keep relevant emotional or personal data visible, validate its relevance, and convert the critique into an action-ready threshold rather than detachment theater.",
+          "evidence_required": [
+            "The personal or emotional data that may change the case.",
+            "The validation status of that data.",
+            "The conclusion, recommendation, or action threshold under review.",
+            "The point at which further critique stops improving the decision."
+          ],
+          "good_output_shape": [
+            "States the human data that should not be filtered out.",
+            "Separates validated evidence from untested emotional interpretation.",
+            "Names the action threshold or one-day answer.",
+            "Keeps rigor tied to a decision instead of endless questioning."
+          ]
+        }
+      ],
+      "diagnostic_questions": [
+        "What emotional, relational, or personal data would change the problem if it were filtered out?",
+        "Is that data validated evidence, untested interpretation, or noise?",
+        "What one-day answer or action threshold keeps this critique from becoming detachment theater?"
+      ],
+      "misuse_guards": [
+        "Do not strip relevant human data out of a decision because it is emotionally inconvenient.",
+        "Do not treat unvalidated emotional interpretation as proof.",
+        "Do not use critical thinking to delay accountability after the evidence threshold is clear."
+      ],
+      "source_evidence": [
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Ignoring emotional content in high-stakes situations",
+          "section_hint": "Weaknesses, Limitations, and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "missing crucial **personal data** necessary for problem-solving.",
+          "section_hint": "Weaknesses, Limitations, and Anti-Patterns",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Use **\"one-day answers\"**",
+          "section_hint": "Risks and Mitigations",
+          "extraction_type": "explicit",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "review_notes": {
+        "normalization_note": "PR94 split: preserving personal data while bounding critique changes receiver behavior from generic claim checking to evidence hygiene in human-context decisions.",
+        "dropped_material": [
+          "Did not duplicate empathy's perspective-taking or emotional-support transaction.",
+          "Did not promote emotion as proof; the split requires validation and an action threshold."
+        ],
+        "open_questions": [
+          "Packet stress should later test whether this split reduces false rationality without making critical-thinking cards absorb every human-context case."
+        ],
+        "review_status": "draft"
+      }
     }
   ],
   "absence_records": [
@@ -250,6 +424,28 @@
           "source_file": "Critical_Thinking_rag.md",
           "source_quote": "What You Have to Believe",
           "section_hint": "The Playbook in Action",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "attempted_field": "academic-selfie-as-standalone-affordance",
+      "status": "duplicate_of_existing_field",
+      "reason": "The source includes self-reflection artifacts such as the academic selfie and clarification checks, but these should not become a standalone critical-thinking affordance unless they change a claim, confidence level, evidence test, or next action. Route general self-audit work to metacognitive records.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "The Academic Selfie",
+          "section_hint": "Enhancing Self-Awareness (Metacognition)",
+          "extraction_type": "review_note",
+          "confidence": "medium"
+        },
+        {
+          "source_file": "Critical_Thinking_rag.md",
+          "source_quote": "Clarification Check",
+          "section_hint": "Enhancing Self-Awareness (Metacognition)",
           "extraction_type": "review_note",
           "confidence": "medium"
         }
