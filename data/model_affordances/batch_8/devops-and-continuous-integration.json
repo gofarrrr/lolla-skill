@@ -166,6 +166,28 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "implementation-practice-checklist-as-source-supported-devops-ci",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly says DevOps and Continuous Integration is not defined in the provided material. PR93 must not import deployment automation, trunk-based development, test-pyramid, SRE, incident-management, or CI/CD checklist doctrine from outside the source.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "DevOps and Continuous Integration*, is not explicitly defined within the provided source material",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        },
+        {
+          "source_file": "Devops_and_Continuous_Integration_rag.md",
+          "source_quote": "Systems Thinking, Iteration, Disciplined Problem Solving, and Continuous Learning",
+          "section_hint": "Core Principles and Analogies",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "medium"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -178,7 +200,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 8 source reading found only narrow support for DevOps and Continuous Integration as an operating loop synthesized from adjacent material. Extracted one medium-confidence build-observe-adjust loop and recorded absence for full DevOps doctrine.",
+    "normalization_note": "Batch 8 source reading found only narrow support for DevOps and Continuous Integration as an operating loop synthesized from adjacent material. PR93 keeps the record weak_support and adds a sharper rail against importing implementation-practice doctrine from outside the source.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, or user-facing change is implied.",
       "No external DevOps knowledge was used to strengthen the source."

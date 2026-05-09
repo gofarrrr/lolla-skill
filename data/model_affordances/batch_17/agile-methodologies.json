@@ -121,6 +121,51 @@
           "confidence": "high"
         }
       ]
+    },
+    {
+      "attempted_field": "fixed-dependency-denial-as-agility",
+      "status": "not_supported_by_source",
+      "reason": "The source warns that agile language can deny real sequencing, interface, commitment, or approval dependencies; PR93 should not promote agility where fixed dependencies are being wished away.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Agile_Methodologies_rag.md",
+          "source_quote": "external commitments, interfaces, or regulatory constraints are fixed enough that \"agile\" becomes denial about real sequencing or approval dependencies",
+          "section_hint": "Limitations and Anti-Patterns",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "sprint-local-velocity-as-system-performance",
+      "status": "not_supported_by_source",
+      "reason": "The source explicitly warns that sprint-local velocity targets can degrade end-to-end performance, so velocity should not be promoted as system performance by itself.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Agile_Methodologies_rag.md",
+          "source_quote": "sprint-local velocity targets degrade end-to-end system performance",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "attempted_field": "mandated-conclusion-as-hypothesis-driven-sprint",
+      "status": "not_supported_by_source",
+      "reason": "The source warns against using hypothesis-driven sprints to confirm a mandated conclusion; PR93 should block agile theater that cannot actually falsify the sprint hypothesis.",
+      "runtime_policy": "do_not_promote",
+      "source_evidence": [
+        {
+          "source_file": "Agile_Methodologies_rag.md",
+          "source_quote": "hypothesis-driven sprints are used to confirm a mandated conclusion rather than genuinely test it",
+          "section_hint": "Structured Tension Curation",
+          "extraction_type": "not_supported_by_source",
+          "confidence": "high"
+        }
+      ]
     }
   ],
   "source_evidence": [
@@ -133,7 +178,7 @@
     }
   ],
   "review_notes": {
-    "normalization_note": "Batch 17 kept agile as a feedback-and-accountability card, not a generic process slogan.",
+    "normalization_note": "Batch 17 kept agile as a feedback-and-accountability card, not a generic process slogan. PR93 preserves branch-testing and role-collaboration material as adjacent-owner candidates while hardening fixed-dependency, local-velocity, and mandated-conclusion misuse rails.",
     "dropped_material": [
       "No runtime, prompt, lane, packet, project-management workflow, or user-facing change is implied."
     ],
